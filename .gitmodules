@@ -1,0 +1,3 @@
+[submodule "DeltaEngine/vendor/boost"]
+	path = DeltaEngine/vendor/boost
+	url = https://github.com/boostorg/log
