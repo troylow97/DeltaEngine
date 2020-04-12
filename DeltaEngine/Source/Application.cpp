@@ -1,5 +1,4 @@
 #include "Application.h"
-
 namespace DeltaEngine
 {
 	Application::Application()
@@ -16,6 +15,7 @@ namespace DeltaEngine
 	{
 		while (true)
 		{
+
 
 		}
 	}
