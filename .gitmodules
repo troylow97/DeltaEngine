@@ -1,0 +1,3 @@
+[submodule "DeltaEngine/Dep/spdlog"]
+	path = DeltaEngine/Dep/spdlog
+	url = https://github.com/gabime/spdlog
