@@ -21,20 +21,20 @@ project "DeltaEngine"
   
   files
   {
-    "%{prj.name}/Include/**.h",
+    "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp"
   }
   
   includedirs
   {
     "%{prj.name}/Dep/spdlog/include",
-    "DeltaEngine/Include"
+    "%{prj.name}/Source",
   }
   
   filter "system:windows" 
     cppdialect "C++17"
     staticruntime "On"
-    systemversion "10.0"
+    systemversion "latest"
     
     defines
     {
@@ -69,14 +69,14 @@ project "Sandbox"
   
     files
   {
-    "%{prj.name}/Include/**.h",
-    "%{prj.name}/Source/**.cpp"
+    "%{prj.name}/Source/**.h",
+    "%{prj.name}/Source/**.cpp",
   }
   
   includedirs
   {
     "DeltaEngine/Dep/spdlog/include",
-    "DeltaEngine/Include"
+    "DeltaEngine/Source"
   }
   
   links
@@ -87,7 +87,7 @@ project "Sandbox"
   filter "system:windows" 
     cppdialect "C++17"
     staticruntime "On"
-    systemversion "10.0"
+    systemversion "latest"
     
     defines
     {

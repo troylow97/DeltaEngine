@@ -354,3 +354,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+DeltaEngine/DeltaEngine.vcxproj
+DeltaEngine/DeltaEngine.vcxproj
+DeltaEngine/DeltaEngine.vcxproj.filters
+DeltaEngine/DeltaEngine.vcxproj
+Sandbox/Sandbox.vcxproj
+DeltaEngine/DeltaEngine.vcxproj
