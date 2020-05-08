@@ -14,6 +14,7 @@ int main(int argc,char** argv)
 	auto app = DeltaEngine::CreateApplication();
 	app->Run();
 	delete app;
+	
 
 }
 
