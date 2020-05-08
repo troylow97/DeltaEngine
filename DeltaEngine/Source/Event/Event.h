@@ -1,7 +1,5 @@
 #pragma once
-#include "Core.h"
-#include <string>
-#include <sstream>
+#include "Core/Core.h"
 
 namespace DeltaEngine
 {

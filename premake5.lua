@@ -19,6 +19,9 @@ project "DeltaEngine"
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
   
+  pchheader "DEpch.h"
+  pchsource "DeltaEngine/Source/DEpch.cpp"
+  
   files
   {
     "%{prj.name}/Source/**.h",
