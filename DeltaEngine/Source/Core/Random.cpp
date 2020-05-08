@@ -10,6 +10,7 @@
 				or disclosure of this file or its contents without the prior
 				written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+#include "DEpch.h"
 #include "Random.h"
 
 std::mt19937 Random::s_RandomEngine;
