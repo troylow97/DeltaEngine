@@ -1,3 +1,12 @@
 [submodule "DeltaEngine/Dep/spdlog"]
 	path = DeltaEngine/Dep/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "DeltaEngine/Dep/imgui"]
+	path = DeltaEngine/Dep/imgui
+	url = https://github.com/ocornut/imgui
+[submodule "DeltaEngine/Dep/SOIL"]
+	path = DeltaEngine/Dep/SOIL
+	url = https://github.com/kbranigan/Simple-OpenGL-Image-Library
+[submodule "DeltaEngine/Dep/glew"]
+	path = DeltaEngine/Dep/glew
+	url = https://github.com/edoren/glew
