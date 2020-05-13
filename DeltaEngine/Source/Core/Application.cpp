@@ -19,10 +19,15 @@ namespace DeltaEngine
 
 	void Application::Run()
 	{
-		while (true)
+		MSG msg = {};
+		while (msg.message != WM_QUIT)
 		{
-
-
+			if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+				continue;
+			}
 		}
 	}
 }

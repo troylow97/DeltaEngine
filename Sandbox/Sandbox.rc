@@ -66,13 +66,13 @@ BEGIN
     BEGIN
         MENUITEM "EXIT",                        ID_FILE_EXIT
     END
+    POPUP "EDIT"
+    BEGIN
+        MENUITEM "UNDO or something",           ID_EDIT_UNDOORSOMETHING
+    END
     POPUP "HELP"
     BEGIN
-        MENUITEM "ABOUT",                       ID_SSS_ABOUT
-    END
-    POPUP "lul"
-    BEGIN
-        MENUITEM "llull",                       ID_LUL_LLULL
+        MENUITEM "ABOUT or something idk",      ID_HELP_ABOUTORSOMETHINGIDK
     END
 END
 

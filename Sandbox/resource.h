@@ -1,11 +1,11 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by DeltaEngine.rc
+// Used by Sandbox.rc
 //
 #define IDR_MENU1                       101
 #define ID_FILE_EXIT                    40001
-#define ID_SSS_ABOUT                    40002
-#define ID_LUL_LLULL                    40003
+#define ID_EDIT_UNDOORSOMETHING         40002
+#define ID_HELP_ABOUTORSOMETHINGIDK     40003
 
 // Next default values for new objects
 // 

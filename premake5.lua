@@ -27,9 +27,11 @@ project "DeltaEngine"
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp"
   }
-  
+
   includedirs
   {
+    "%{prj.name}/Dep/SOIL/src",
+    "%{prj.name}/Dep/glew/include",
     "%{prj.name}/Dep/spdlog/include",
     "%{prj.name}/Source",
   }
