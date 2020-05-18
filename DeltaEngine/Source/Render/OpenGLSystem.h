@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Dep/glew/include/GL/glew.h"
+#include <GL/glew.h>
 
 namespace Graphics
 {
@@ -21,9 +21,4 @@ namespace Graphics
 		void SwapBuffers();
 		void Exit();
 	};
-
-	//OpenGLSystem* CreateOpenGLSystem()
-	//{
-	//	return new OpenGLSystem();
-	//}
 }

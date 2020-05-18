@@ -31,11 +31,24 @@ project "DeltaEngine"
   includedirs
   {
     "%{prj.name}/Dep/SOIL/src",
-    "%{prj.name}/Dep/glew/include",
+    "%{prj.name}/Dep/glew",
     "%{prj.name}/Dep/spdlog/include",
     "%{prj.name}/Source",
   }
-  
+
+  libdirs
+  {
+    "Dep\glew\GL"
+    "Dep\Libraries\**"
+  }
+
+  links
+  {
+    "SOIL"
+    "glew32s"
+    "OpenGL32"
+  }
+
   filter "system:windows" 
     cppdialect "C++17"
     staticruntime "On"
@@ -43,6 +56,7 @@ project "DeltaEngine"
     
     defines
     {
+      "GLEW_STATIC",
       "DE_PLATFORM_WINDOWS",
       "DE_BUILD_DLL"
     }
@@ -72,7 +86,7 @@ project "Sandbox"
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
   
-    files
+  files
   {
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp",
@@ -80,6 +94,7 @@ project "Sandbox"
   
   includedirs
   {
+    "DeltaEngine/Dep/glew",
     "DeltaEngine/Dep/spdlog/include",
     "DeltaEngine/Source"
   }

@@ -1,7 +1,5 @@
 #include "DEpch.h"
 #include "OpenGLSystem.h"
-#include <iostream>
-#include <algorithm>
 #include "Window.h"
 #include "../Core/Log.h"
 

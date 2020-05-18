@@ -5,8 +5,8 @@ struct Vector2
 	float x, y;
 	Vector2();
 	Vector2(float, float);
-	static Vector2 zero, one;
-	static Vector2 up, down, left, right;
+	static const Vector2 zero, one;
+	static const Vector2 up, down, left, right;
 	Vector2 Normalize();
 	Vector2 normalized() const;
 	float Magnitude() const;
@@ -32,8 +32,8 @@ struct Vector3
 	Vector3();
 	Vector3(float, float);
 	Vector3(float, float, float);
-	static Vector3 zero, one;
-	static Vector3 up, down, left, right, forward, back;
+	static const Vector3 zero, one;
+	static const Vector3 up, down, left, right, forward, back;
 	Vector3 Normalize();
 	Vector3 normalized() const;
 	float Magnitude() const;

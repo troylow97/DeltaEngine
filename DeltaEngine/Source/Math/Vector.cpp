@@ -4,12 +4,12 @@
 
 Vector2::Vector2() : x{ 0 }, y{ 0 } {}
 Vector2::Vector2(float v0, float v1) : x{ v0 }, y{ v1 } {}
-Vector2 Vector2::zero { 0, 0 };
-Vector2 Vector2::one { 1, 1 };
-Vector2 Vector2::up { 0, 1 };
-Vector2 Vector2::down { 0, -1 };
-Vector2 Vector2::left { -1, 0 };
-Vector2 Vector2::right { 1, 0 };
+const Vector2 Vector2::zero { 0, 0 };
+const Vector2 Vector2::one { 1, 1 };
+const Vector2 Vector2::up { 0, 1 };
+const Vector2 Vector2::down { 0, -1 };
+const Vector2 Vector2::left { -1, 0 };
+const Vector2 Vector2::right { 1, 0 };
 Vector2 Vector2::Normalize()
 {
 	if (SqrMagnitude() < (1 << 8))
@@ -115,14 +115,14 @@ Vector2 Vector2::operator/=(const float f)
 Vector3::Vector3() : x{ 0 }, y{ 0 }, z{ 0 } {}
 Vector3::Vector3(float v0, float v1) : x{ v0 }, y{ v1 }, z{ 0 } {}
 Vector3::Vector3(float v0, float v1, float v2) : x{ v0 }, y{ v1 }, z{ v2 } {}
-Vector3 Vector3::zero { 0, 0 };
-Vector3 Vector3::one { 1, 1, 1 };
-Vector3 Vector3::up { 0, 1 };
-Vector3 Vector3::down { 0, -1 };
-Vector3 Vector3::left { -1, 0 };
-Vector3 Vector3::right { 1, 0 };
-Vector3 Vector3::forward { 0, 0, 1 };
-Vector3 Vector3::back { 0, 0, -1 };
+const Vector3 Vector3::zero { 0, 0 };
+const Vector3 Vector3::one { 1, 1, 1 };
+const Vector3 Vector3::up { 0, 1 };
+const Vector3 Vector3::down { 0, -1 };
+const Vector3 Vector3::left { -1, 0 };
+const Vector3 Vector3::right { 1, 0 };
+const Vector3 Vector3::forward { 0, 0, 1 };
+const Vector3 Vector3::back { 0, 0, -1 };
 Vector3 Vector3::Normalize()
 {
 	if (SqrMagnitude() < (1 << 8))

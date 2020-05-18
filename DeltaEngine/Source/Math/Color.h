@@ -6,7 +6,7 @@ struct Color
 {
 	float r, g, b, a;
 
-	static Color red, green, blue, yellow, magenta, cyan, white, grey, gray, black, clear;
+	static const Color red, green, blue, yellow, magenta, cyan, white, grey, gray, black, clear;
 
 	// default constructor sets the color to white
 	Color();
