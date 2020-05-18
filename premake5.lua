@@ -30,7 +30,7 @@ project "DeltaEngine"
 
   includedirs
   {
-    "%{prj.name}/Dep/SOIL/src",
+    "%{prj.name}/Dep/SOIL",
     "%{prj.name}/Dep/glew",
     "%{prj.name}/Dep/spdlog/include",
     "%{prj.name}/Source",
@@ -38,15 +38,12 @@ project "DeltaEngine"
 
   libdirs
   {
-    "Dep\glew\GL"
-    "Dep\Libraries\**"
+    "Dep/SOIL;Dep/glew/GL;"
   }
 
   links
   {
-    "SOIL"
-    "glew32s"
-    "OpenGL32"
+    "SOIL.lib;glew32s.lib;OpenGL32.lib;"
   }
 
   filter "system:windows" 
