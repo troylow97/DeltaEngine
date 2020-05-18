@@ -6,15 +6,18 @@
 #include "Texture.h"
 #include "Shader.h"
 
-class SpriteRenderer
+namespace DeltaEngine
 {
-public:
-	Mesh* mesh;
-	Texture2D* sprite;
-	Shader* shader;
-	Transform transform;
-	Color color;
-	SpriteRenderer();
-	~SpriteRenderer();
-	void Update();
-};
+	class SpriteRenderer
+	{
+	public:
+		Mesh* mesh;
+		Texture2D* sprite;
+		Shader* shader;
+		Transform transform;
+		Color color;
+		SpriteRenderer();
+		~SpriteRenderer();
+		void Update();
+	};
+}

@@ -1,24 +1,28 @@
 #pragma once
 
+#include "Core/Core.h"
 #include <GL/glew.h>
 
-namespace Graphics
+namespace DeltaEngine
 {
-	class OpenGLSystem
+	namespace RenderModule
 	{
-		HDC m_windowDC;//global Window-device context
-		HGLRC m_wglDC;//OpenGL-device context
+		class DE_API OpenGLSystem
+		{
+			HDC m_windowDC;//global Window-device context
+			HGLRC m_wglDC;//OpenGL-device context
 
-		bool InitializeRenderingEnvironment();
-		void CleanRenderingEnvironment();
+			bool InitializeRenderingEnvironment();
+			void CleanRenderingEnvironment();
 
-	public:
-		OpenGLSystem();
-		~OpenGLSystem();
+		public:
+			OpenGLSystem();
+			~OpenGLSystem();
 
-		void Init();
-		void Update();
-		void SwapBuffers();
-		void Exit();
-	};
+			void Init();
+			void Update();
+			void SwapBuffers();
+			void Exit();
+		};
+	}
 }

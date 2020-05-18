@@ -1,20 +1,23 @@
 #pragma once
 #include "Vector.h"
 
-struct Quaternion
+namespace DeltaEngine
 {
-	float x, y, z, w;
+	struct Quaternion
+	{
+		float x, y, z, w;
 
-	Quaternion();
-	Quaternion(float, float, float, float);
-	static Quaternion identity;
-	static Quaternion AngleAxis(const float angle, const Vector3 axis);
+		Quaternion();
+		Quaternion(float, float, float, float);
+		static Quaternion identity;
+		static Quaternion AngleAxis(const float angle, const Vector3 axis);
 
-    //assumes rotation sequencing of yaw, pitch, then roll, or Body 3-2-1
-	static Quaternion EulerAnglesToQuaternion(Vector3 eulerAngles);
+		//assumes rotation sequencing of yaw, pitch, then roll, or Body 3-2-1
+		static Quaternion EulerAnglesToQuaternion(Vector3 eulerAngles);
 
-    static Quaternion EulerAnglesToQuaternion(float x, float y, float z);
+		static Quaternion EulerAnglesToQuaternion(float x, float y, float z);
 
-    static Vector3 QuaternionToEulerAngles(Quaternion q);
+		static Vector3 QuaternionToEulerAngles(Quaternion q);
 
-};
+	};
+}

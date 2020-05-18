@@ -6,144 +6,147 @@
 #include <string>
 #include <sstream>
 
-Shader::Shader()
-	: m_filepath{ "Shaders/Default.vs", "Shaders/Default.fs" }, m_RendererID{ 0 }
+namespace DeltaEngine
 {
-	m_RendererID = CreateShader(LoadShader("Shaders/Default.vs"), LoadShader("Shaders/Default.fs"));
-}
-Shader::Shader(const std::string& filepath)
-	: m_filepath{ filepath + ".vs", filepath + ".fs" }, m_RendererID{ 0 }
-{
-	m_RendererID = CreateShader(LoadShader(filepath + ".vs"), LoadShader(filepath + ".fs"));
-}
-Shader::Shader(const std::string& vsfilepath, const std::string& fsfilepath)
-	: m_filepath{ vsfilepath + ".vs", fsfilepath + ".fs" }, m_RendererID{ 0 }
-{
-	m_RendererID = CreateShader(LoadShader(vsfilepath + ".vs"), LoadShader(fsfilepath + ".fs"));
-}
-Shader::~Shader()
-{
-	GLCall(glDeleteProgram(m_RendererID));
-}
-
-void Shader::Bind() const
-{
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	GLCall(glUseProgram(m_RendererID));
-}
-
-void Shader::Unbind() const
-{
-	GLCall(glUseProgram(0));
-}
-
-std::string Shader::LoadShader(const std::string& filepath)
-{
-	std::ifstream file;
-	std::cout << "Loading shader \"" << filepath.c_str() << "\"..." << std::endl;
-	file.open((filepath).c_str());
-
-	std::string output;
-	std::string line;
-
-	if (file.is_open())
+	Shader::Shader()
+		: m_filepath{ "Shaders/Default.vs", "Shaders/Default.fs" }, m_RendererID{ 0 }
 	{
-		while (file.good())
+		m_RendererID = CreateShader(LoadShader("Shaders/Default.vs"), LoadShader("Shaders/Default.fs"));
+	}
+	Shader::Shader(const std::string& filepath)
+		: m_filepath{ filepath + ".vs", filepath + ".fs" }, m_RendererID{ 0 }
+	{
+		m_RendererID = CreateShader(LoadShader(filepath + ".vs"), LoadShader(filepath + ".fs"));
+	}
+	Shader::Shader(const std::string& vsfilepath, const std::string& fsfilepath)
+		: m_filepath{ vsfilepath + ".vs", fsfilepath + ".fs" }, m_RendererID{ 0 }
+	{
+		m_RendererID = CreateShader(LoadShader(vsfilepath + ".vs"), LoadShader(fsfilepath + ".fs"));
+	}
+	Shader::~Shader()
+	{
+		GLCall(glDeleteProgram(m_RendererID));
+	}
+
+	void Shader::Bind() const
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		GLCall(glUseProgram(m_RendererID));
+	}
+
+	void Shader::Unbind() const
+	{
+		GLCall(glUseProgram(0));
+	}
+
+	std::string Shader::LoadShader(const std::string& filepath)
+	{
+		std::ifstream file;
+		std::cout << "Loading shader \"" << filepath.c_str() << "\"..." << std::endl;
+		file.open((filepath).c_str());
+
+		std::string output;
+		std::string line;
+
+		if (file.is_open())
 		{
-			getline(file, line);
-			output.append(line + "\n");
+			while (file.good())
+			{
+				getline(file, line);
+				output.append(line + "\n");
+			}
+			std::cout << "Shader \"" << filepath.c_str() << "\" was loaded successfully." << std::endl;
 		}
-		std::cout << "Shader \"" << filepath.c_str() << "\" was loaded successfully." << std::endl;
+		else
+		{
+			std::cerr << "Unable to load shader: " << filepath << std::endl;
+		}
+
+		return output;
 	}
-	else
+	unsigned int Shader::CompileShader(unsigned int type, const std::string& source)
 	{
-		std::cerr << "Unable to load shader: " << filepath << std::endl;
+		unsigned int id = glCreateShader(type);
+		const char* src = source.c_str();
+		GLCall(glShaderSource(id, 1, &src, nullptr));
+		GLCall(glCompileShader(id));
+
+		//error handling
+		int result;
+		GLCall(glGetShaderiv(id, GL_COMPILE_STATUS, &result));
+		if (!result)
+		{
+			int length;
+			GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
+			char* message = new char[length];
+			GLCall(glGetShaderInfoLog(id, length, &length, message));
+			std::cout <<
+				"Failed to compile " <<
+				(type == GL_VERTEX_SHADER ? "vertex" : "fragment") <<
+				" shader!" << std::endl;
+			std::cout << message << std::endl;
+			GLCall(glDeleteShader(id));
+			return 0;
+		}
+
+		return id;
 	}
-
-	return output;
-}
-unsigned int Shader::CompileShader(unsigned int type, const std::string& source)
-{
-	unsigned int id = glCreateShader(type);
-	const char* src = source.c_str();
-	GLCall(glShaderSource(id, 1, &src, nullptr));
-	GLCall(glCompileShader(id));
-
-	//error handling
-	int result;
-	GLCall(glGetShaderiv(id, GL_COMPILE_STATUS, &result));
-	if (!result)
+	unsigned int Shader::CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
 	{
-		int length;
-		GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
-		char* message = new char[length];
-		GLCall(glGetShaderInfoLog(id, length, &length, message));
-		std::cout <<
-			"Failed to compile " <<
-			(type == GL_VERTEX_SHADER ? "vertex" : "fragment") <<
-			" shader!" << std::endl;
-		std::cout << message << std::endl;
-		GLCall(glDeleteShader(id));
-		return 0;
+		unsigned int program = glCreateProgram();
+		unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
+		unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
+
+		GLCall(glAttachShader(program, vs));
+		GLCall(glAttachShader(program, fs));
+		GLCall(glLinkProgram(program));
+		GLCall(glValidateProgram(program));
+
+		GLCall(glDeleteShader(vs));
+		GLCall(glDeleteShader(fs));
+
+		return program;
+	}
+	unsigned int Shader::GetShaderID()
+	{
+		return m_RendererID;
 	}
 
-	return id;
-}
-unsigned int Shader::CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
-{
-	unsigned int program = glCreateProgram();
-	unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-	unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
+	void Shader::SetUniform1i(const std::string& name, int i0)
+	{
+		Bind();
+		glUniform1i(GetUniformLocation(name), i0);
+	}
+	void Shader::SetUniformMatrix4f(const std::string& name, const Matrix4x4& matrix)
+	{
+		Bind();
+		glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, matrix.m);
+	}
+	void Shader::SetUniformColor4f(const std::string& name, Color& c)
+	{
+		Bind();
+		GLCall(glUniform4f(GetUniformLocation(name), c.r, c.g, c.b, c.a));
+	}
+	void Shader::SetUniformVector4f(const std::string& name, Vector4& v)
+	{
+		Bind();
+		GLCall(glUniform4f(GetUniformLocation(name), v.x, v.y, v.z, v.w));
+	}
+	void Shader::SetUniformVector4f(const std::string& name, float v0, float v1, float v2, float v3)
+	{
+		Bind();
+		GLCall(glUniform4f(GetUniformLocation(name), v0, v1, v2, v3));
+	}
+	int Shader::GetUniformLocation(const std::string& name)
+	{
+		if (m_uniformLocationCache.find(name) != m_uniformLocationCache.end())
+			return m_uniformLocationCache[name];
 
-	GLCall(glAttachShader(program, vs));
-	GLCall(glAttachShader(program, fs));
-	GLCall(glLinkProgram(program));
-	GLCall(glValidateProgram(program));
-
-	GLCall(glDeleteShader(vs));
-	GLCall(glDeleteShader(fs));
-
-	return program;
-}
-unsigned int Shader::GetShaderID()
-{
-	return m_RendererID;
-}
-
-void Shader::SetUniform1i(const std::string& name, int i0)
-{
-	Bind();
-	glUniform1i(GetUniformLocation(name), i0);
-}
-void Shader::SetUniformMatrix4f(const std::string& name, const Matrix4x4& matrix)
-{
-	Bind();
-	glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, matrix.m);
-}
-void Shader::SetUniformColor4f(const std::string& name, Color& c)
-{
-	Bind();
-	GLCall(glUniform4f(GetUniformLocation(name), c.r, c.g, c.b, c.a));
-}
-void Shader::SetUniformVector4f(const std::string& name, Vector4& v)
-{
-	Bind();
-	GLCall(glUniform4f(GetUniformLocation(name), v.x, v.y, v.z, v.w));
-}
-void Shader::SetUniformVector4f(const std::string& name, float v0, float v1, float v2, float v3)
-{
-	Bind();
-	GLCall(glUniform4f(GetUniformLocation(name), v0, v1, v2, v3));
-}
-int Shader::GetUniformLocation(const std::string& name)
-{
-	if (m_uniformLocationCache.find(name) != m_uniformLocationCache.end())
-		return m_uniformLocationCache[name];
-
-	GLCall(int location = glGetUniformLocation(m_RendererID, name.c_str()));
-	if (location == -1)
-		std::cout << "Warning: uniform '" << name << "' doesn't exist!" << std::endl;
-	m_uniformLocationCache[name] = location;
-	return location;
+		GLCall(int location = glGetUniformLocation(m_RendererID, name.c_str()));
+		if (location == -1)
+			std::cout << "Warning: uniform '" << name << "' doesn't exist!" << std::endl;
+		m_uniformLocationCache[name] = location;
+		return location;
+	}
 }

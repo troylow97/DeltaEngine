@@ -2,38 +2,41 @@
 #include "ErrorCheck.h"
 #include <SOIL.h>
 
-Texture2D::Texture2D(const std::string filepath) : m_RendererID{ 0 }, m_Data{ nullptr }, m_Width{ 0 }, m_Height{ 0 }, m_BPP{ 0 }
+namespace DeltaEngine
 {
-	GLCall(glGenTextures(1, &m_RendererID));
-	GLCall(glBindTexture(GL_TEXTURE_2D, m_RendererID));
+	Texture2D::Texture2D(const std::string filepath) : m_RendererID{ 0 }, m_Data{ nullptr }, m_Width{ 0 }, m_Height{ 0 }, m_BPP{ 0 }
+	{
+		GLCall(glGenTextures(1, &m_RendererID));
+		GLCall(glBindTexture(GL_TEXTURE_2D, m_RendererID));
 
-	m_Data = SOIL_load_image(filepath.c_str(), &m_Width, &m_Height, 0, SOIL_LOAD_RGBA);
+		m_Data = SOIL_load_image(filepath.c_str(), &m_Width, &m_Height, 0, SOIL_LOAD_RGBA);
 
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
 
-	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_Data));
-	GLCall(glGenerateMipmap(GL_TEXTURE_2D));
-	GLCall(glBindTexture(GL_TEXTURE_2D, 0));
+		GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_Data));
+		GLCall(glGenerateMipmap(GL_TEXTURE_2D));
+		GLCall(glBindTexture(GL_TEXTURE_2D, 0));
 
-	if (m_Data)
-		SOIL_free_image_data(m_Data);
-}
+		if (m_Data)
+			SOIL_free_image_data(m_Data);
+	}
 
-Texture2D::~Texture2D()
-{
-	GLCall(glDeleteTextures(1, &m_RendererID));
-}
+	Texture2D::~Texture2D()
+	{
+		GLCall(glDeleteTextures(1, &m_RendererID));
+	}
 
-void Texture2D::Bind(unsigned int slot) const
-{
-	glActiveTexture(GL_TEXTURE0 + slot);
-	GLCall(glBindTexture(GL_TEXTURE_2D, m_RendererID));
-}
+	void Texture2D::Bind(unsigned int slot) const
+	{
+		glActiveTexture(GL_TEXTURE0 + slot);
+		GLCall(glBindTexture(GL_TEXTURE_2D, m_RendererID));
+	}
 
-void Texture2D::Unbind() const
-{
-	GLCall(glBindTexture(GL_TEXTURE_2D, 0));
+	void Texture2D::Unbind() const
+	{
+		GLCall(glBindTexture(GL_TEXTURE_2D, 0));
+	}
 }

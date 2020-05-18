@@ -3,13 +3,16 @@
 #include "Quaternion.h"
 #include "Matrix.h"
 
-class Transform
+namespace DeltaEngine
 {
-public:
-	Vector3 position;
-	Vector3 eulerAngles;
-	Vector3 scale;
-	Quaternion rotation;
-	Transform();
-	Matrix4x4 LocalToWorldMatrix();
-};
+	class Transform
+	{
+	public:
+		Vector3 position;
+		Vector3 eulerAngles;
+		Vector3 scale;
+		Quaternion rotation;
+		Transform();
+		Matrix4x4 LocalToWorldMatrix();
+	};
+}

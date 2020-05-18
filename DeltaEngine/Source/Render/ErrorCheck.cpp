@@ -1,17 +1,20 @@
 #include "ErrorCheck.h"
-#include <iostream>
+#include "Core/Log.h"
 
-void GLClearError()
+namespace DeltaEngine
 {
-	while (glGetError() != GL_NO_ERROR);
-}
-
-bool GLLogCall(const char* function, const char* file, int line)
-{
-	while (GLenum error = glGetError())
+	void GLClearError()
 	{
-		std::cout << "[OpenGL Error] (" << error << "): " << function << " " << file << ":" << line << std::endl;
-		return false;
+		while (glGetError() != GL_NO_ERROR);
 	}
-	return true;
+
+	bool GLLogCall(const char* function, const char* file, int line)
+	{
+		while (GLenum error = glGetError())
+		{
+			DeltaEngine_CORE_ERROR("OPENGL: %s: %s %s:%d", error, function, file, line);
+			return false;
+		}
+		return true;
+	}
 }

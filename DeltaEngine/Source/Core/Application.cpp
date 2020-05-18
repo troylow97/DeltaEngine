@@ -1,5 +1,6 @@
 #include "DEpch.h"
 #include "Application.h"
+#include "../Render/GraphicsManager.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -28,6 +29,8 @@ namespace DeltaEngine
 				DispatchMessage(&msg);
 				continue;
 			}
+			//RenderModule::openGLSystem.Update();
+			//RenderModule::openGLSystem.SwapBuffers();
 		}
 	}
 }

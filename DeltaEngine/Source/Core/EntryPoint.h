@@ -1,12 +1,8 @@
 #pragma once
 
 #ifdef DE_PLATFORM_WINDOWS
-
-#include "Render/Window.h"
-#include "Render/OpenGLSystem.h"
-
+using namespace DeltaEngine;
 extern DeltaEngine::Application* DeltaEngine::CreateApplication();
-Graphics::OpenGLSystem* openGLSystem;
 
 int main(int argc,char** argv)
 {
@@ -15,13 +11,19 @@ int main(int argc,char** argv)
 
 	DeltaEngine_CORE_WARN("Initialised Log!");
 
-	Window::Create();
-	//openGLSystem = Graphics::CreateOpenGLSystem();
-	//openGLSystem->Init();
+	RenderModule::CreateWin32Window();
+	
+	//RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
+	//RenderModule::openGLSystem.Init();
 
 	auto app = DeltaEngine::CreateApplication();
 	app->Run();
 	delete app;
+
+	//RenderModule::openGLSystem->Exit();
+	//delete RenderModule::openGLSystem;
+
+
 }
 
 #endif // DE_PLATFORM_WINDOWS

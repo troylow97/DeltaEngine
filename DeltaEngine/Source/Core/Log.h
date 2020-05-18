@@ -22,7 +22,6 @@ namespace DeltaEngine
 		static std::shared_ptr<spdlog::logger> _clientLogger;
 
 	};
-
 }
 
 //CORE LOG MACROS
