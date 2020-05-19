@@ -191,15 +191,15 @@ namespace DeltaEngine
 			coords.push_back(vertices[i].y);
 			coords.push_back(vertices[i].x);
 
-			//color
-			coords.push_back(colors[i].r);
-			coords.push_back(colors[i].g);
-			coords.push_back(colors[i].b);
-			coords.push_back(colors[i].a);
+			////color
+			//coords.push_back(colors[i].r);
+			//coords.push_back(colors[i].g);
+			//coords.push_back(colors[i].b);
+			//coords.push_back(colors[i].a);
 
-			//texture
-			coords.push_back(texCoords[i].x);
-			coords.push_back(texCoords[i].y);
+			////texture
+			//coords.push_back(texCoords[i].x);
+			//coords.push_back(texCoords[i].y);
 		};
 		return coords.data();
 	}
@@ -251,11 +251,11 @@ namespace DeltaEngine
 
 		AssertProperties();
 
-		vbo.InitData(VerticesDataFormat(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
+		vbo.InitData(VerticesDataFormat(), static_cast<unsigned int>(vertices.size() * 3 * sizeof(float)));
 		VertexBufferLayout layout;
 		layout.Push<float>(3);
-		layout.Push<float>(4);
-		layout.Push<float>(2);
+		//layout.Push<float>(4);
+		//layout.Push<float>(2);
 		vao.AddBuffer(vbo, layout);
 
 		ibo.InitData(indices.data(), 6);
@@ -271,7 +271,7 @@ namespace DeltaEngine
 		ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
 		ibo.Bind();
 
-		vbo.InitData(VerticesDataFormat(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
+		vbo.InitData(VerticesDataFormat(), static_cast<unsigned int>(vertices.size() * 3 * sizeof(float)));
 		vbo.Bind();
 
 		vbo.Unbind();
@@ -281,15 +281,6 @@ namespace DeltaEngine
 		GLCall(glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr));
 
 		vao.Unbind();
-	}
-
-	void Mesh::SetVertices()
-	{
-		vertices.clear();
-		vertices.push_back(Vector3{ -1.5f, -1.5f, 0.0f });
-		vertices.push_back(Vector3{ -0.5f, -1.5f, 0.0f });
-		vertices.push_back(Vector3{ -0.5f,  -0.5f, 0.0f });
-		vertices.push_back(Vector3{ -1.5f,  -0.5f, 0.0f });
 	}
 	#pragma endregion
 }

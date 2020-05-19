@@ -71,7 +71,5 @@ namespace DeltaEngine
 	public:
 		Mesh();
 		void Draw();
-
-		void SetVertices();
 	};
 }

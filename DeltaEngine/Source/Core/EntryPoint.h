@@ -14,7 +14,6 @@ int main(int argc,char** argv)
 	RenderModule::CreateWin32Window();
 	
 	//RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
-	//RenderModule::openGLSystem.Init();
 
 	auto app = DeltaEngine::CreateApplication();
 	app->Run();

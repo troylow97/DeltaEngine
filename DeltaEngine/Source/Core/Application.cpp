@@ -1,6 +1,7 @@
 #include "DEpch.h"
 #include "Application.h"
 #include "../Render/GraphicsManager.h"
+#include "../Render/SpriteRenderer.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -8,6 +9,8 @@
 -----------------------------------*/
 namespace DeltaEngine
 {
+	std::vector<SpriteRenderer*> sprites;
+
 	Application::Application()
 	{
 
@@ -20,6 +23,14 @@ namespace DeltaEngine
 
 	void Application::Run()
 	{
+		// a lot of this should be moved to a function in GraphicsManager later
+
+		RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
+		RenderModule::openGLSystem->Init();
+
+		sprites.push_back(new SpriteRenderer());
+
+
 		MSG msg = {};
 		while (msg.message != WM_QUIT)
 		{
@@ -29,8 +40,11 @@ namespace DeltaEngine
 				DispatchMessage(&msg);
 				continue;
 			}
-			//RenderModule::openGLSystem.Update();
-			//RenderModule::openGLSystem.SwapBuffers();
+			RenderModule::openGLSystem->Update();
+			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Update(); });
+			RenderModule::openGLSystem->SwapBuffers();
 		}
+		RenderModule::openGLSystem->Exit();
+		delete RenderModule::openGLSystem;
 	}
 }

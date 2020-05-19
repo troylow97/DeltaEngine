@@ -7,6 +7,6 @@ namespace DeltaEngine
 {
 	namespace RenderModule
 	{
-		//OpenGLSystem openGLSystem;
+		OpenGLSystem* openGLSystem;
 	}
 }

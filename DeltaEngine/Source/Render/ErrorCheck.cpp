@@ -12,7 +12,7 @@ namespace DeltaEngine
 	{
 		while (GLenum error = glGetError())
 		{
-			DeltaEngine_CORE_ERROR("OPENGL: %s: %s %s:%d", error, function, file, line);
+			DeltaEngine_CORE_ERROR("OpenGL error code {}: {} {}:{}", error, function, file, line);
 			return false;
 		}
 		return true;

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include "../Core/Log.h"
 
 namespace DeltaEngine
 {
@@ -43,7 +44,7 @@ namespace DeltaEngine
 	std::string Shader::LoadShader(const std::string& filepath)
 	{
 		std::ifstream file;
-		std::cout << "Loading shader \"" << filepath.c_str() << "\"..." << std::endl;
+		DeltaEngine_CORE_TRACE("Loading shader \"{}\"...", filepath.c_str());
 		file.open((filepath).c_str());
 
 		std::string output;
@@ -56,11 +57,11 @@ namespace DeltaEngine
 				getline(file, line);
 				output.append(line + "\n");
 			}
-			std::cout << "Shader \"" << filepath.c_str() << "\" was loaded successfully." << std::endl;
+			DeltaEngine_CORE_TRACE("Shader \"{}\" was loaded successfully.", filepath.c_str());
 		}
 		else
 		{
-			std::cerr << "Unable to load shader: " << filepath << std::endl;
+			DeltaEngine_CORE_ERROR("Unable to load shader \"{}\"", filepath.c_str());
 		}
 
 		return output;
@@ -81,11 +82,8 @@ namespace DeltaEngine
 			GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
 			char* message = new char[length];
 			GLCall(glGetShaderInfoLog(id, length, &length, message));
-			std::cout <<
-				"Failed to compile " <<
-				(type == GL_VERTEX_SHADER ? "vertex" : "fragment") <<
-				" shader!" << std::endl;
-			std::cout << message << std::endl;
+			DeltaEngine_CORE_ERROR("Failed to compile {} shader!", (type == GL_VERTEX_SHADER ? "vertex" : "fragment"));
+			DeltaEngine_CORE_ERROR("{}", message);
 			GLCall(glDeleteShader(id));
 			return 0;
 		}
@@ -97,6 +95,11 @@ namespace DeltaEngine
 		unsigned int program = glCreateProgram();
 		unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
 		unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
+
+		if (!vs)
+			vs = CompileShader(GL_VERTEX_SHADER, LoadShader("Shaders/ErrorShader.vs"));
+		if (!fs)
+			fs = CompileShader(GL_FRAGMENT_SHADER, LoadShader("Shaders/ErrorShader.fs"));
 
 		GLCall(glAttachShader(program, vs));
 		GLCall(glAttachShader(program, fs));
@@ -145,7 +148,7 @@ namespace DeltaEngine
 
 		GLCall(int location = glGetUniformLocation(m_RendererID, name.c_str()));
 		if (location == -1)
-			std::cout << "Warning: uniform '" << name << "' doesn't exist!" << std::endl;
+			DeltaEngine_CORE_WARN("Warning: uniform '{}' doesn't exist!", name);
 		m_uniformLocationCache[name] = location;
 		return location;
 	}

@@ -1,5 +1,6 @@
 #include "Texture.h"
 #include "ErrorCheck.h"
+#include "../Core/Log.h"
 #include <SOIL.h>
 
 namespace DeltaEngine
@@ -10,6 +11,9 @@ namespace DeltaEngine
 		GLCall(glBindTexture(GL_TEXTURE_2D, m_RendererID));
 
 		m_Data = SOIL_load_image(filepath.c_str(), &m_Width, &m_Height, 0, SOIL_LOAD_RGBA);
+
+		if (!m_Data)
+			DeltaEngine_CORE_ERROR("ERROR: Couldn't create texture {}!", filepath);
 
 		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
 		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));

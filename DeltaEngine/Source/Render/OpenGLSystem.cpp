@@ -23,7 +23,7 @@ namespace DeltaEngine
 			DeltaEngine_CORE_INFO("Initializing OpenGL...");
 			InitializeRenderingEnvironment();
 
-			glClearColor(1.0f, 0.2f, 0.2f, 1.0f);//RGBA
+			glClearColor(0.2f, 0.2f, 0.2f, 1.0f);//RGBA
 
 			if (glewInit() != GLEW_OK)
 				DeltaEngine_CORE_ERROR("glewInit() failed!");
@@ -42,7 +42,7 @@ namespace DeltaEngine
 		void OpenGLSystem::Exit()
 		{
 			CleanRenderingEnvironment();
-			std::cout << "OpenGL system exited" << std::endl;
+			DeltaEngine_CORE_INFO("OpenGL system exited");
 		}
 
 		bool OpenGLSystem::InitializeRenderingEnvironment()
