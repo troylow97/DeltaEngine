@@ -30,6 +30,7 @@ project "DeltaEngine"
 
   includedirs
   {
+    "%{prj.name}/Dep/imgui",
     "%{prj.name}/Dep/SOIL",
     "%{prj.name}/Dep/glew",
     "%{prj.name}/Dep/spdlog/include",
@@ -91,6 +92,7 @@ project "Sandbox"
   
   includedirs
   {
+    "DeltaEngine/Dep/imgui",
     "DeltaEngine/Dep/glew",
     "DeltaEngine/Dep/spdlog/include",
     "DeltaEngine/Source"

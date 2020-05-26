@@ -2,7 +2,9 @@
 #include "Render/Window.h"
 #include "../resource.h"
 #include "../Core/Log.h"
+#include <examples/imgui_impl_win32.h>
 
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 namespace DeltaEngine
 {
     namespace RenderModule
@@ -10,8 +12,11 @@ namespace DeltaEngine
         HWND mainHWND;
         int width = 800, height = 600;
 
+
         LRESULT WINAPI Win32WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         {
+            if (ImGui_ImplWin32_WndProcHandler(hwnd, uMsg, wParam, lParam))
+                return true;
             switch (uMsg)
             {
             case WM_COMMAND:

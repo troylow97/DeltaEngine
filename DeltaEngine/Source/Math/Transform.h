@@ -2,10 +2,11 @@
 #include "Vector.h"
 #include "Quaternion.h"
 #include "Matrix.h"
+#include "Core/Core.h"
 
 namespace DeltaEngine
 {
-	class Transform
+	class DE_API Transform
 	{
 	public:
 		Vector3 position;

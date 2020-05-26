@@ -1,9 +1,10 @@
 #pragma once
 #include "Vector.h"
+#include "Core/Core.h"
 
 namespace DeltaEngine
 {
-	struct Quaternion
+	struct DE_API Quaternion
 	{
 		float x, y, z, w;
 

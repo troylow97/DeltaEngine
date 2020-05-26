@@ -2,6 +2,9 @@
 #include "OpenGLSystem.h"
 #include "Window.h"
 #include "../Core/Log.h"
+#include <imgui.h>
+#include <examples/imgui_impl_win32.h>
+#include <examples/imgui_impl_opengl3.h>
 
 namespace DeltaEngine
 {
@@ -27,6 +30,31 @@ namespace DeltaEngine
 
 			if (glewInit() != GLEW_OK)
 				DeltaEngine_CORE_ERROR("glewInit() failed!");
+
+			DeltaEngine_CORE_INFO("Initializing OpenGL successful");
+
+
+			// ----------------
+			// ImGui setup
+			// -----------------
+
+			DeltaEngine_CORE_INFO("Initializing imgui...");
+			// Application init: create a dear imgui context, setup some options, load fonts
+			ImGui::CreateContext();
+			ImGuiIO& io = ImGui::GetIO();
+			io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
+			// TODO: Set optional io.ConfigFlags values, e.g. 'io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard' to enable keyboard controls.
+			// TODO: Fill optional fields of the io structure later.
+			// TODO: Load TTF/OTF fonts if you don't want to use the default font.
+			ImGuiStyle& style = ImGui::GetStyle();
+
+			// Initialize helper Platform and Renderer bindings (here we are using imgui_impl_win32.cpp and imgui_impl_dx11.cpp)
+			ImGui_ImplWin32_Init(mainHWND);
+			ImGui_ImplOpenGL3_Init();
+
+			// ----------------
+			// ImGui setup end
+			// -----------------
 		}
 
 		void OpenGLSystem::Update()
@@ -37,6 +65,43 @@ namespace DeltaEngine
 			RECT rect;
 			GetClientRect(mainHWND, &rect);
 			glViewport((GLint)0, (GLint)0, rect.right - rect.left, rect.bottom - rect.top);
+		}
+
+		void OpenGLSystem::TestRender(std::vector<SpriteRenderer*> sprites)
+		{
+			// ----------------
+			// ImGui render
+			// -----------------
+
+			static bool my_tool_active = true;
+
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplWin32_NewFrame();
+			ImGui::NewFrame();
+
+			// 1. Show a simple window.
+			// Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets automatically appears in a window called "Debug".
+			{
+				ImGui::Begin("Sprite");
+				static float f = 0.0f;
+				ImGui::Text("Hello, world!");                           // Display some text (you can use a format string too)
+				ImGui::SliderFloat("rotate", &f, -180.0f, 180.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+				sprites[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+				ImGui::DragFloat3("pos", (float*)&sprites[0]->transform.position);
+				ImGui::DragFloat3("scale", (float*)&sprites[0]->transform.scale);
+				ImGui::ColorEdit3("clear color", (float*)&sprites[0]->color); // Edit 3 floats representing a color
+				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+				ImGui::End();
+			}
+
+			ImGui::Render();
+			Update();
+			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Update(); });
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			SwapBuffers();
+			// ----------------
+			// ImGui render end
+			// -----------------
 		}
 
 		void OpenGLSystem::Exit()

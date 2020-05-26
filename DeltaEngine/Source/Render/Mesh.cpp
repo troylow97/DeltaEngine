@@ -5,6 +5,8 @@
 
 namespace DeltaEngine
 {
+	unsigned int VBO, VAO, EBO;
+
 	//********************************************************************************
 	// VertexBufferLayout 
 	//********************************************************************************
@@ -82,7 +84,7 @@ namespace DeltaEngine
 		GLCall(glDeleteBuffers(1, &m_RendererID));
 	}
 
-	void Mesh::VertexBuffer::InitData(const void* data, unsigned int size)
+	void Mesh::VertexBuffer::InitData(const float* data, unsigned int size)
 	{
 		GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
 		GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
@@ -148,8 +150,6 @@ namespace DeltaEngine
 	Mesh::IndexBuffer::IndexBuffer()
 		: m_Count { 0 }
 	{
-		//ASSERT(sizeof(unsigned int) == sizeof(GLuint));
-
 		GLCall(glGenBuffers(1, &m_RendererID));
 	}
 
@@ -181,7 +181,7 @@ namespace DeltaEngine
 	// Mesh 
 	//********************************************************************************
 	#pragma region Mesh class
-	float* Mesh::VerticesDataFormat()
+	std::vector<float> Mesh::VerticesDataFormat()
 	{
 		std::vector<float> coords;
 		for (unsigned int i = 0; i < verticesCount; ++i)
@@ -191,17 +191,17 @@ namespace DeltaEngine
 			coords.push_back(vertices[i].y);
 			coords.push_back(vertices[i].x);
 
-			////color
-			//coords.push_back(colors[i].r);
-			//coords.push_back(colors[i].g);
-			//coords.push_back(colors[i].b);
-			//coords.push_back(colors[i].a);
+			//color
+			coords.push_back(colors[i].r);
+			coords.push_back(colors[i].g);
+			coords.push_back(colors[i].b);
+			coords.push_back(colors[i].a);
 
-			////texture
-			//coords.push_back(texCoords[i].x);
-			//coords.push_back(texCoords[i].y);
+			//texture
+			coords.push_back(texCoords[i].x);
+			coords.push_back(texCoords[i].y);
 		};
-		return coords.data();
+		return coords;
 	}
 	void Mesh::AssertProperties()
 	{
@@ -233,9 +233,9 @@ namespace DeltaEngine
 		vertices.push_back(Vector3(-0.5f, -0.5f, 0.0f));
 
 		colors.push_back(Color::white());
-		colors.push_back(Color::white());
-		colors.push_back(Color::white());
-		colors.push_back(Color::white());
+		colors.push_back(Color::green());
+		colors.push_back(Color::red());
+		colors.push_back(Color::blue());
 
 		texCoords.push_back(Vector2(0.0f, 0.0f));
 		texCoords.push_back(Vector2(1.0f, 0.0f));
@@ -251,14 +251,16 @@ namespace DeltaEngine
 
 		AssertProperties();
 
-		vbo.InitData(VerticesDataFormat(), static_cast<unsigned int>(vertices.size() * 3 * sizeof(float)));
+		vao.Bind();
+		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
+		ibo.InitData(indices.data(), 6);
+
 		VertexBufferLayout layout;
 		layout.Push<float>(3);
-		//layout.Push<float>(4);
-		//layout.Push<float>(2);
+		layout.Push<float>(4);
+		layout.Push<float>(2);
 		vao.AddBuffer(vbo, layout);
 
-		ibo.InitData(indices.data(), 6);
 		ibo.Bind();
 
 		vao.Unbind();
@@ -271,7 +273,7 @@ namespace DeltaEngine
 		ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
 		ibo.Bind();
 
-		vbo.InitData(VerticesDataFormat(), static_cast<unsigned int>(vertices.size() * 3 * sizeof(float)));
+		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
 		vbo.Bind();
 
 		vbo.Unbind();

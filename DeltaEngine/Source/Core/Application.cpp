@@ -40,9 +40,7 @@ namespace DeltaEngine
 				DispatchMessage(&msg);
 				continue;
 			}
-			RenderModule::openGLSystem->Update();
-			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Update(); });
-			RenderModule::openGLSystem->SwapBuffers();
+			RenderModule::openGLSystem->TestRender(sprites);
 		}
 		RenderModule::openGLSystem->Exit();
 		delete RenderModule::openGLSystem;

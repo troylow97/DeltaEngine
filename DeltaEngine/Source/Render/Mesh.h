@@ -12,12 +12,12 @@ namespace DeltaEngine
 
 		class VertexBuffer
 		{
-			unsigned int m_RendererID;
 		public:
+			unsigned int m_RendererID;
 			VertexBuffer();
 			~VertexBuffer();
 
-			void InitData(const void* data, unsigned int size);
+			void InitData(const float* data, unsigned int size);
 
 			void Bind() const;
 			void Unbind() const;
@@ -25,8 +25,8 @@ namespace DeltaEngine
 
 		class VertexArray
 		{
-			unsigned int m_RendererID;
 		public:
+			unsigned int m_RendererID;
 			VertexArray();
 			~VertexArray();
 
@@ -38,9 +38,9 @@ namespace DeltaEngine
 
 		class IndexBuffer
 		{
+		public:
 			unsigned int m_RendererID;
 			unsigned int m_Count;
-		public:
 			IndexBuffer();
 			~IndexBuffer();
 
@@ -66,7 +66,7 @@ namespace DeltaEngine
 		//std::vector<Vector3> normals;
 		std::vector<unsigned int> indices;
 
-		float* VerticesDataFormat();
+		std::vector<float> VerticesDataFormat();
 		void AssertProperties();
 	public:
 		Mesh();

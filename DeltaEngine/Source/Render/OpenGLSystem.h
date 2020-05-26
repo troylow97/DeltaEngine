@@ -2,6 +2,7 @@
 
 #include "Core/Core.h"
 #include <GL/glew.h>
+#include "SpriteRenderer.h"
 
 namespace DeltaEngine
 {
@@ -21,6 +22,7 @@ namespace DeltaEngine
 
 			void Init();
 			void Update();
+			void TestRender(std::vector<SpriteRenderer*>);
 			void SwapBuffers();
 			void Exit();
 		};
