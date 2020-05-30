@@ -39,8 +39,8 @@ project "DeltaEngine"
 
   libdirs
   {
-    "Dep/SOIL",
-    "Dep/glew/GL"
+    "%{prj.name}/Dep/SOIL",
+    "%{prj.name}/Dep/glew/GL"
   }
 
   links
@@ -57,6 +57,7 @@ project "DeltaEngine"
     
     defines
     {
+      "WIN32",
       "GLEW_STATIC",
       "DE_PLATFORM_WINDOWS",
       "DE_BUILD_DLL"
