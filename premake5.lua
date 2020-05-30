@@ -24,6 +24,14 @@ project "DeltaEngine"
   
   files
   {
+    "%{prj.name}/Dep/imgui/*.h",
+    "%{prj.name}/Dep/imgui/*.cpp",
+    "%{prj.name}/Dep/imgui/examples/imgui_impl_opengl3.h",
+    "%{prj.name}/Dep/imgui/examples/imgui_impl_opengl3.cpp",
+    "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.h",
+    "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.cpp",
+    "%{prj.name}/Dep/SOIL/**.h",
+    "%{prj.name}/Dep/SOIL/**.c",
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp"
   }
