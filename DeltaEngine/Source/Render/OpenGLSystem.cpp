@@ -87,8 +87,8 @@ namespace DeltaEngine
 				ImGui::Text("Hello, world!");                           // Display some text (you can use a format string too)
 				ImGui::SliderFloat("rotate", &f, -180.0f, 180.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
 				sprites[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
-				ImGui::DragFloat3("pos", (float*)&sprites[0]->transform.position);
-				ImGui::DragFloat3("scale", (float*)&sprites[0]->transform.scale);
+				ImGui::DragFloat3("pos", (float*)&sprites[0]->transform.position, 0.01f);
+				ImGui::DragFloat3("scale", (float*)&sprites[0]->transform.scale, 0.01f);
 				ImGui::ColorEdit3("clear color", (float*)&sprites[0]->color); // Edit 3 floats representing a color
 				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 				ImGui::End();

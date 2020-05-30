@@ -7,6 +7,6 @@ namespace DeltaEngine
 
 	Matrix4x4 Transform::LocalToWorldMatrix()
 	{
-		return Matrix4x4::Transpose(Matrix4x4::Translate(position)) * Matrix4x4::Scale(scale) * Matrix4x4::Rotate(rotation);
+		return  Matrix4x4::Scale(scale) * Matrix4x4::Rotate(rotation) * Matrix4x4::Transpose(Matrix4x4::Translate(position));
 	}
 }
