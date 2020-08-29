@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 
+
 namespace DeltaEngine
 {
 	class DE_API Application

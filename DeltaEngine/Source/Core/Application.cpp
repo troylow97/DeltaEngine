@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "../Render/GraphicsManager.h"
 #include "../Render/SpriteRenderer.h"
+#include "Event/InputManager.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -23,14 +24,15 @@ namespace DeltaEngine
 
 	void Application::Run()
 	{
+		//sf::Event event;
 		// a lot of this should be moved to a function in GraphicsManager later
 
 		RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
 		RenderModule::openGLSystem->Init();
 
 		sprites.push_back(new SpriteRenderer());
-
-
+		InputManager input_manager;
+		//input_manager.testFunc();
 		MSG msg = {};
 		while (msg.message != WM_QUIT)
 		{

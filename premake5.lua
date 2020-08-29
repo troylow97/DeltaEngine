@@ -29,10 +29,9 @@ project "DeltaEngine"
     "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.cpp",
     "%{prj.name}/Dep/SOIL/**.h",
     "%{prj.name}/Dep/SOIL/**.c",
+    "%{prj.name}/Dep/SFML/include/**.hpp",
     "%{prj.name}/Dep/SFML/include/SFML/**.hpp",
-    "%{prj.name}/Dep/SFML/include/SFML/System/**.hpp",
-    "%{prj.name}/Dep/SFML/include/SFML/System/**.inl",
-    "%{prj.name}/Dep/SFML/include/SFML/Window/**.hpp",
+    "%{prj.name}/Dep/SFML/include/**.inl",
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp"
   }
@@ -42,7 +41,7 @@ project "DeltaEngine"
     "%{prj.name}/Dep/imgui",
     "%{prj.name}/Dep/SOIL",
     "%{prj.name}/Dep/glew",
-    "%{prj.name}/Dep/SFML/include/SFML",
+    "%{prj.name}/Dep/SFML/include",
     "%{prj.name}/Dep/spdlog/include",
     "%{prj.name}/Source"
   }
@@ -108,7 +107,8 @@ project "Sandbox"
   {
     "DeltaEngine/Dep/imgui",
     "DeltaEngine/Dep/glew",
-    "DeltaEngine/Dep/SFML/include/SFML",
+    "DeltaEngine/Dep/SFML/include",
+    "DeltaEngine/Dep/SFML/include/SFML/",    
     "DeltaEngine/Dep/spdlog/include",
     "DeltaEngine/Source"
   }
