@@ -3,7 +3,7 @@
 #include "../Render/GraphicsManager.h"
 #include "../Render/SpriteRenderer.h"
 #include "Event/InputManager.h"
-
+#include "Event/Event.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -32,6 +32,7 @@ namespace DeltaEngine
 
 		sprites.push_back(new SpriteRenderer());
 		InputManager input_manager;
+		EventManager event_manager;
 		//input_manager.testFunc();
 		MSG msg = {};
 		while (msg.message != WM_QUIT)

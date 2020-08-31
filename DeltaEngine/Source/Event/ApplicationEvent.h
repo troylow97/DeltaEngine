@@ -2,8 +2,8 @@
 
 #include "Event.h"
 
-namespace DeltaEngine {
-
+namespace DeltaEngine 
+{
 	class WindowResizeEvent : public Event
 	{
 	public:
