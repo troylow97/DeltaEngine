@@ -49,14 +49,16 @@ project "DeltaEngine"
   libdirs
   {
     "%{prj.name}/Dep/SOIL",
-    "%{prj.name}/Dep/glew/GL"
+    "%{prj.name}/Dep/glew/GL",
+    "%{prj.name}/Dep/SFML/lib"
   }
 
   links
   {
     "SOIL.lib",
     "glew32s.lib",
-    "OpenGL32.lib"
+    "OpenGL32.lib",
+    "sfml-window.lib",
   }
 
   filter "system:windows" 
@@ -68,6 +70,7 @@ project "DeltaEngine"
     {
       "WIN32",
       "GLEW_STATIC",
+      "SFML_STATIC",
       "DE_PLATFORM_WINDOWS",
       "DE_BUILD_DLL"
     }

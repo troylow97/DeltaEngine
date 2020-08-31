@@ -44,6 +44,7 @@ namespace DeltaEngine
 				continue;
 			}
 			RenderModule::openGLSystem->TestRender(sprites);
+			input_system.left();
 		}
 		RenderModule::openGLSystem->Exit();
 		delete RenderModule::openGLSystem;
