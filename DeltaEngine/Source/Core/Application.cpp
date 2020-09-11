@@ -31,7 +31,7 @@ namespace DeltaEngine
 
 		sprites.push_back(new SpriteRenderer());
 
-		Input::InputSystem input_system; // 
+		Input::InputSystem input_system;
 
 		MSG msg = {};
 		while (msg.message != WM_QUIT)
