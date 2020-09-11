@@ -7,7 +7,7 @@
 
 namespace DeltaEngine
 {
-	namespace Input
+	namespace Input // 
 	{
 		class DE_API InputSystem
 		{

@@ -2,18 +2,18 @@
 
 namespace DeltaEngine
 {
-	namespace Input
+	namespace Input //
 	{
 		//InputSystem::InputSystem()
 		//{
 		//
 		//}
 
-		void InputSystem::left()
+		void InputSystem::left() // 
 		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 			{
-				std::cout << "AAAAAAAAAA" << std::endl;
+				std::cout << "Left is pressed yay" << std::endl;
 				// blah 
 				/* ------------------------------------------------
 				// if want to set the mouse position based on input
