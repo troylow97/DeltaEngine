@@ -9,7 +9,7 @@ namespace DeltaEngine
 		//
 		//}
 
-		void InputSystem::left()
+		void InputSystem::left() // 
 		{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
 			{
