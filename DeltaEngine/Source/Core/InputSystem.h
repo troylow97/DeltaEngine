@@ -7,14 +7,10 @@
 
 namespace DeltaEngine
 {
-	namespace Input
+	class DE_API InputSystem
 	{
-		class DE_API InputSystem
-		{
-		public:
-			//InputSystem();
-			void left();
-		};
-	}
-	
+	public:
+		//InputSystem();
+		void left();
+	};	
 }

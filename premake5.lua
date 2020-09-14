@@ -78,8 +78,9 @@ project "DeltaEngine"
   postbuildcommands
   {
    ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+
   }
-  
+
   filter "configurations:Debug"
     defines "DE_DEBUG"
     symbols "On"

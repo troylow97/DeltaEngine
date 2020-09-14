@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.h"
-#include "Core/InputSystem.h"
+#include "InputSystem.h"
 //#include "Input.h"
 
 namespace DeltaEngine

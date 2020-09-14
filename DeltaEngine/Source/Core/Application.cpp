@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "../Render/GraphicsManager.h"
 #include "../Render/SpriteRenderer.h"
-#include "Event/InputManager.h"
 #include "Event/Event.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -31,7 +30,7 @@ namespace DeltaEngine
 		RenderModule::openGLSystem->Init();
 
 		sprites.push_back(new SpriteRenderer());
-		InputManager input_manager;
+		InputSystem input_manager;
 		EventManager event_manager;
 		//input_manager.testFunc();
 		MSG msg = {};
@@ -44,7 +43,7 @@ namespace DeltaEngine
 				continue;
 			}
 			RenderModule::openGLSystem->TestRender(sprites);
-			input_system.left();
+			input_manager.left();
 		}
 		RenderModule::openGLSystem->Exit();
 		delete RenderModule::openGLSystem;
