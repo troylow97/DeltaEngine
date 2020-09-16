@@ -233,9 +233,9 @@ namespace DeltaEngine
 		vertices.push_back(Vector3(-0.5f, -0.5f, 0.0f));
 
 		colors.push_back(Color::white());
-		colors.push_back(Color::green());
-		colors.push_back(Color::red());
-		colors.push_back(Color::blue());
+		colors.push_back(Color::white());
+		colors.push_back(Color::white());
+		colors.push_back(Color::white());
 
 		texCoords.push_back(Vector2(0.0f, 0.0f));
 		texCoords.push_back(Vector2(1.0f, 0.0f));

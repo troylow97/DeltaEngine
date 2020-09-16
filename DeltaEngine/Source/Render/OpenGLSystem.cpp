@@ -1,6 +1,7 @@
 #include "DEpch.h"
 #include "OpenGLSystem.h"
 #include "Window.h"
+#include "Camera.h"
 #include "../Core/Log.h"
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
@@ -84,19 +85,28 @@ namespace DeltaEngine
 			{
 				ImGui::Begin("Sprite");
 				static float f = 0.0f;
-				ImGui::Text("Hello, world!");                           // Display some text (you can use a format string too)
+				ImGui::Text("Edit Sprite Props");                           // Display some text (you can use a format string too)
 				ImGui::SliderFloat("rotate", &f, -180.0f, 180.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
 				sprites[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
 				ImGui::DragFloat3("pos", (float*)&sprites[0]->transform.position, 0.01f);
 				ImGui::DragFloat3("scale", (float*)&sprites[0]->transform.scale, 0.01f);
 				ImGui::ColorEdit3("clear color", (float*)&sprites[0]->color); // Edit 3 floats representing a color
+				ImGui::End();
+			}
+
+			{
+				ImGui::Begin("Camera");
+				static float f = 0.0f;
+				ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
+				ImGui::DragFloat3("pos", (float*)&Camera::allCameras[0]->transform.position, 0.01f);
+				ImGui::DragFloat("size", (float*)&Camera::allCameras[0]->_size, 0.01f);
 				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 				ImGui::End();
 			}
 
 			ImGui::Render();
 			Update();
-			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Update(); });
+			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::allCameras[0]); });
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 			SwapBuffers();
 			// ----------------

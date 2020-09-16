@@ -14,14 +14,16 @@ namespace DeltaEngine
 		delete sprite;
 		delete shader;
 	}
-	void SpriteRenderer::Update()
+	void SpriteRenderer::Render(const Camera& camera)
 	{
 		//transform.position = Vector3(0.0f, 0.0f, 0.0f);
 		//transform.rotation = Quaternion::AngleAxis(0, Vector3(0, 0, 1));
 		//transform.scale = Vector3(1.0f, 1.0f, 1.0f);
 
-		Matrix4x4 proj = Matrix4x4::Transpose(Matrix4x4::Ortho(-4.0f, 4.0f, -3.0f, 3.0f, -10.0f, 10.0f));
-		Matrix4x4 view = Matrix4x4::Transpose(Matrix4x4::Translate(Vector3(0, 0, 0)));
+		//Matrix4x4 proj = Matrix4x4::Transpose(Matrix4x4::Ortho(-4.0f, 4.0f, -3.0f, 3.0f, -10.0f, 10.0f));
+		Matrix4x4 proj = camera.GetProjectionMatrix();
+		//Matrix4x4 view = Matrix4x4::Transpose(Matrix4x4::Translate(Vector3(0, 0, 0)));
+		Matrix4x4 view = camera.GetViewMatrix();
 		Matrix4x4 model = transform.LocalToWorldMatrix();
 		Matrix4x4 mvp = model * view * proj;
 

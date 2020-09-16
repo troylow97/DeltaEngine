@@ -1,6 +1,7 @@
 #include "DEpch.h"
 #include "Application.h"
 #include "../Render/GraphicsManager.h"
+#include "../Render/Camera.h"
 #include "../Render/SpriteRenderer.h"
 
 /*-----------------------------------
@@ -30,6 +31,9 @@ namespace DeltaEngine
 
 		sprites.push_back(new SpriteRenderer());
 
+		Camera* mainCamera = new Camera();
+
+		//Input::InputSystem input_system;
 
 		MSG msg = {};
 		while (msg.message != WM_QUIT)
@@ -41,6 +45,7 @@ namespace DeltaEngine
 				continue;
 			}
 			RenderModule::openGLSystem->TestRender(sprites);
+			//input_system.left();
 		}
 		RenderModule::openGLSystem->Exit();
 		delete RenderModule::openGLSystem;
