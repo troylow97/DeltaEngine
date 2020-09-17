@@ -38,6 +38,8 @@ namespace DeltaEngine
 		RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
 		RenderModule::openGLSystem->Init();
 
+		Camera* mainCamera = new Camera();
+
 		sprites.push_back(new SpriteRenderer());
 		//InputSystem input_manager;
 		EventManager event_manager;
@@ -55,7 +57,7 @@ namespace DeltaEngine
 			//EventDispatcher dispatcher(e);
 
 			RenderModule::openGLSystem->TestRender(sprites);
-			Input::InputSystem input_system;
+			//Input::InputSystem input_system;
 			
 
 			//if (keyevent.isHandled)
@@ -78,8 +80,6 @@ namespace DeltaEngine
 			//{
 			//	std::cout << "not colliding\n";
 			//}
-
-
 		}
 		RenderModule::openGLSystem->Exit();
 		delete RenderModule::openGLSystem;

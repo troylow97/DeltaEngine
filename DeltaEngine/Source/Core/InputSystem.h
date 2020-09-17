@@ -2,15 +2,15 @@
 
 #include "Core/Core.h"
 #include <iostream>
-#include <SFML/Config.hpp>
-#include <SFML/Window.hpp>
+//#include <SFML/Config.hpp>
+//#include <SFML/Window.hpp>
 
 namespace DeltaEngine::Input
 {
-	class DE_API InputSystem
-	{
-	public:
-		//InputSystem();
-		void left();
-	};	
+	//class DE_API InputSystem
+	//{
+	//public:
+	//	//InputSystem();
+	//	void left();
+	//};	
 }

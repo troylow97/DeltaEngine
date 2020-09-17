@@ -107,7 +107,7 @@ namespace DeltaEngine
 			//ImGui::ShowDemoWindow();
 			ImGui::Render();
 			glViewport(0, 0, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
-			glClearColor(0.4f, 0.2f, 0.2f, 0.2f);
+			glClearColor(49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			Update();
 			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::allCameras[0]); });
