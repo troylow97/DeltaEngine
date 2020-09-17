@@ -14,6 +14,7 @@ namespace DeltaEngine
 	public:
 		Mesh* mesh;
 		Texture2D* sprite;
+		Texture2D* spriteDist;
 		Shader* shader;
 		Transform transform;
 		Color color;

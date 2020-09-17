@@ -4,9 +4,9 @@
 
 namespace DeltaEngine
 {
-	SpriteRenderer::SpriteRenderer() : mesh{ new Mesh() }, sprite{ new Texture2D("sample.png") }, shader{ new Shader() }
+	SpriteRenderer::SpriteRenderer() : mesh{ new Mesh() }, sprite{ new Texture2D("dog.png") }, shader{ new Shader() }, spriteDist{ new Texture2D("Displacements.png") }
 	{
-
+		
 	}
 	SpriteRenderer::~SpriteRenderer()
 	{
@@ -27,10 +27,18 @@ namespace DeltaEngine
 		Matrix4x4 model = transform.LocalToWorldMatrix();
 		Matrix4x4 mvp = model * view * proj;
 
+		static float t = 0;
+		t += 0.001f;
+
 		sprite->Bind(0);
+		spriteDist->Bind(1);
 		shader->SetUniformMatrix4f("_MVP", mvp);
+		shader->SetUniformMatrix4f("_M", model);
 		shader->SetUniformColor4f("_Color", color);
 		shader->SetUniform1i("_MainTex", 0);
+		shader->SetUniform1i("_DistTex", 1);
+		shader->SetUniform1f("_Magnitude", 0.03f);
+		shader->SetUniform1f("_Time", t);
 		mesh->Draw();
 	}
 }
