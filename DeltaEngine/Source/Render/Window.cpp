@@ -10,7 +10,7 @@ namespace DeltaEngine
     namespace RenderModule
     {
         HWND mainHWND;
-        int width = 800, height = 600;
+        int width = 600, height = 600;
 
 
         LRESULT WINAPI Win32WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -31,6 +31,16 @@ namespace DeltaEngine
                 default:
                     return DefWindowProc(hwnd, uMsg, wParam, lParam);
                 }
+            }
+            break;
+            case WM_SIZE:
+            {
+                RECT rect;
+                if (GetWindowRect(hwnd, &rect))
+                {
+                    width = rect.right - rect.left;
+                    height = rect.bottom - rect.top;
+                };
             }
             break;
             case WM_DESTROY:

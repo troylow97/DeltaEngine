@@ -121,6 +121,11 @@ namespace DeltaEngine
 		Bind();
 		glUniform1i(GetUniformLocation(name), i0);
 	}
+	void Shader::SetUniform1f(const std::string& name, float f0)
+	{
+		Bind();
+		glUniform1f(GetUniformLocation(name), f0);
+	}
 	void Shader::SetUniformMatrix4f(const std::string& name, const Matrix4x4& matrix)
 	{
 		Bind();

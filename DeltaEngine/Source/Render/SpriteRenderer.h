@@ -5,6 +5,7 @@
 #include "Math/Color.h"
 #include "Texture.h"
 #include "Shader.h"
+#include "Camera.h"
 
 namespace DeltaEngine
 {
@@ -13,11 +14,12 @@ namespace DeltaEngine
 	public:
 		Mesh* mesh;
 		Texture2D* sprite;
+		Texture2D* spriteDist;
 		Shader* shader;
 		Transform transform;
 		Color color;
 		SpriteRenderer();
 		~SpriteRenderer();
-		void Update();
+		void Render(const Camera& camera);
 	};
 }
