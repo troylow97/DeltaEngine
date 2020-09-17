@@ -1,4 +1,6 @@
 #pragma once
+#include "Math/Vector.h"
+#include "Collision.h"
 
 namespace DeltaEngine
 {
@@ -24,8 +26,8 @@ namespace DeltaEngine
     Collider(const Vector3 center) : center{center} {}
     virtual ColliderType GetType() const = 0;
     virtual bool Intersection(Collider *other) = 0;
-    // AABB _aabb;
-    // AABB _fatAABB;
+    AABB _aabb;
+    AABB _fatAABB;
   };
 
 } // namespace DeltaEngine

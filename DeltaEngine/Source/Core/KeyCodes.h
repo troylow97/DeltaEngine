@@ -145,6 +145,8 @@ namespace DeltaEngine
 	
 }
 
+using KeyCode = uint16_t;
+
 // From glfw3.h
 #define DE_KEY_SPACE           ::DeltaEngine::Key::Space
 #define DE_KEY_APOSTROPHE      ::DeltaEngine::Key::Apostrophe    /* ' */

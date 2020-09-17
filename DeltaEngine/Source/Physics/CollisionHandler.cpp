@@ -16,15 +16,15 @@ namespace DeltaEngine
     _exit.Invoke(col);
   }
 
-  size_t CollisionHandler::RegisterOnEnter(const Action<class Collider &> &action)
+  size_t CollisionHandler::RegisterOnEnter(Action<class Collider &> &action)
   {
     return _enter.Subscribe(action);
   }
-  size_t CollisionHandler::RegisterOnStay(const Action<class Collider &> &action)
+  size_t CollisionHandler::RegisterOnStay(Action<class Collider &> &action)
   {
     return _stay.Subscribe(action);
   }
-  size_t CollisionHandler::RegisterOnExit(const Action<class Collider &> &action)
+  size_t CollisionHandler::RegisterOnExit(Action<class Collider &> &action)
   {
     return _exit.Subscribe(action);
   }

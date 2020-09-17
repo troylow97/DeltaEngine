@@ -8,8 +8,8 @@ namespace DeltaEngine
 
   // I added this Alias inside TypeAlias.h
   // To be removed when merged
-  template <typename... Args>
-  using Action = std::function<void>(Args...);
+template <typename... Args>
+using Action = std::function<void ( Args... )>;
 
   template <typename... ActionArgs>
   class ActionList
@@ -33,7 +33,7 @@ namespace DeltaEngine
 
     HandleID Subscribe(Action<const ActionArgs &...> action)
     {
-      _handleList.push(_top, action);
+        _handleList.push_back({ _top, action });
       return _top++;
     }
 
@@ -52,7 +52,7 @@ namespace DeltaEngine
 
     void Invoke(const ActionArgs&... args)
     {
-      for (const Handle& ref : _handleList)
+      for (Handle& ref : _handleList)
         ref.second(args...);
     }
 

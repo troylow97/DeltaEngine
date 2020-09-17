@@ -1,8 +1,9 @@
 #pragma once
 #include "ActionList.h"
+#include <cstddef>
+
 namespace DeltaEngine
 {
-
   class CollisionHandler
   {
     // Possible to do 1 for Collision & 1 for Trigger Checking
@@ -19,9 +20,9 @@ namespace DeltaEngine
   public:
     CollisionHandler() = default;
 
-    size_t RegisterOnEnter(const Action<class Collider &> &action);
-    size_t RegisterOnStay(const Action<class Collider &> &action);
-    size_t RegisterOnExit(const Action<class Collider &> &action);
+    size_t RegisterOnEnter(Action<class Collider &> &action);
+    size_t RegisterOnStay(Action<class Collider &> &action);
+    size_t RegisterOnExit(Action<class Collider &> &action);
 
     void UnregisterOnEnter(size_t id);
     void UnregisterOnStay(size_t id);

@@ -1,6 +1,6 @@
 #pragma once
 #include "Event.h"
-//input
+#include "Core/KeyCodes.h"
 
 namespace DeltaEngine
 {

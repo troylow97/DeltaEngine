@@ -5,7 +5,7 @@
 #include <SFML/Config.hpp>
 #include <SFML/Window.hpp>
 
-namespace DeltaEngine
+namespace DeltaEngine::Input
 {
 	class DE_API InputSystem
 	{

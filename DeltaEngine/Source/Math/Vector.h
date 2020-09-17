@@ -19,18 +19,19 @@ namespace DeltaEngine
 		Vector2 normalized() const;
 		float Magnitude() const;
 		float SqrMagnitude() const;
+		float DotProduct(const Vector2& a) const;
 #pragma region Vector2 Operators
 		Vector2& operator=(const Vector2& a);
-		Vector2 operator+(const Vector2 a);
+		Vector2 operator+(const Vector2 a) const;
 		Vector2 operator+=(const Vector2 a);
-		Vector2 operator-(const Vector2 a);
+		Vector2 operator-(const Vector2 a) const;
 		Vector2 operator-=(const Vector2 a);
-		Vector2 operator-();
-		Vector2 operator*(const Vector2 f);
-		Vector2 operator*(const float f);
+		Vector2 operator-() const;
+		Vector2 operator*(const Vector2 f) const;
+		Vector2 operator*(const float f) const;
 		Vector2 operator*=(const Vector2 f);
 		Vector2 operator*=(const float f);
-		Vector2 operator/(const float f);
+		Vector2 operator/(const float f) const;
 		Vector2 operator/=(const float f);
 #pragma endregion
 	};

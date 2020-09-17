@@ -70,7 +70,7 @@ namespace DeltaEngine
 			//There is no type-safety to see if its an event
 			if (_Event.GetEventType() == T::GetStaticType())
 			{
-				_Event.Handled = func(static_cast<T&>(_Event));
+				_Event.isHandled = func(static_cast<T&>(_Event));
 				return true;
 			}
 			return false;
