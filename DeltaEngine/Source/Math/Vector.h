@@ -56,16 +56,16 @@ namespace DeltaEngine
 #pragma region Vector3 Operators
 		Vector3& operator=(const Vector3& a);
 		Vector3& operator=(const Vector2& a);
-		Vector3 operator+(const Vector3 a);
+		Vector3 operator+(const Vector3 a) const;
 		Vector3 operator+=(const Vector3 a);
-		Vector3 operator-(const Vector3 a);
+		Vector3 operator-(const Vector3 a) const;
 		Vector3 operator-=(const Vector3 a);
-		Vector3 operator-();
-		Vector3 operator*(const Vector3 f);
-		Vector3 operator*(const float f);
+		Vector3 operator-() const;
+		Vector3 operator*(const Vector3 f) const;
+		Vector3 operator*(const float f) const;
 		Vector3 operator*=(const Vector3 f);
 		Vector3 operator*=(const float f);
-		Vector3 operator/(const float f);
+		Vector3 operator/(const float f) const;
 		Vector3 operator/=(const float f);
 #pragma endregion
 	};

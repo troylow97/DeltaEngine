@@ -1,7 +1,9 @@
 #include "DEpch.h"
 #include "OpenGLSystem.h"
 #include "Window.h"
+#include "Camera.h"
 #include "../Core/Log.h"
+#define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
 #include <examples/imgui_impl_opengl3.h>
@@ -24,33 +26,35 @@ namespace DeltaEngine
 		void OpenGLSystem::Init()
 		{
 			DeltaEngine_CORE_INFO("Initializing OpenGL...");
+			//ImGui_ImplWin32_EnableDpiAwareness();
 			InitializeRenderingEnvironment();
 
 			glClearColor(0.2f, 0.2f, 0.2f, 1.0f);//RGBA
 
 			if (glewInit() != GLEW_OK)
 				DeltaEngine_CORE_ERROR("glewInit() failed!");
-
-			DeltaEngine_CORE_INFO("Initializing OpenGL successful");
+			else
+				DeltaEngine_CORE_INFO("Initializing OpenGL successful");
 
 
 			// ----------------
 			// ImGui setup
 			// -----------------
 
-			DeltaEngine_CORE_INFO("Initializing imgui...");
 			// Application init: create a dear imgui context, setup some options, load fonts
 			ImGui::CreateContext();
 			ImGuiIO& io = ImGui::GetIO();
 			io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 			// TODO: Set optional io.ConfigFlags values, e.g. 'io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard' to enable keyboard controls.
+			//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+			io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 			// TODO: Fill optional fields of the io structure later.
 			// TODO: Load TTF/OTF fonts if you don't want to use the default font.
 			ImGuiStyle& style = ImGui::GetStyle();
 
 			// Initialize helper Platform and Renderer bindings (here we are using imgui_impl_win32.cpp and imgui_impl_dx11.cpp)
-			ImGui_ImplWin32_Init(mainHWND);
-			ImGui_ImplOpenGL3_Init();
+			ImGui_ImplWin32_Init(mainHWND, m_wglDC);
+			ImGui_ImplOpenGL3_Init("#version 410");
 
 			// ----------------
 			// ImGui setup end
@@ -73,8 +77,6 @@ namespace DeltaEngine
 			// ImGui render
 			// -----------------
 
-			static bool my_tool_active = true;
-
 			ImGui_ImplOpenGL3_NewFrame();
 			ImGui_ImplWin32_NewFrame();
 			ImGui::NewFrame();
@@ -84,24 +86,48 @@ namespace DeltaEngine
 			{
 				ImGui::Begin("Sprite");
 				static float f = 0.0f;
-				ImGui::Text("Hello, world!");                           // Display some text (you can use a format string too)
+				ImGui::Text("Edit Sprite Props");                           // Display some text (you can use a format string too)
 				ImGui::SliderFloat("rotate", &f, -180.0f, 180.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
 				sprites[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
 				ImGui::DragFloat3("pos", (float*)&sprites[0]->transform.position, 0.01f);
 				ImGui::DragFloat3("scale", (float*)&sprites[0]->transform.scale, 0.01f);
 				ImGui::ColorEdit3("clear color", (float*)&sprites[0]->color); // Edit 3 floats representing a color
-				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 				ImGui::End();
 			}
 
+			{
+				ImGui::Begin("Camera");
+				static float f = 0.0f;
+				ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
+				ImGui::DragFloat3("pos", (float*)&Camera::allCameras[0]->transform.position, 0.01f);
+				ImGui::DragFloat("size", (float*)&Camera::allCameras[0]->_size, 0.01f);
+				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+				ImGui::End();
+			}
+			//ImGui::ShowDemoWindow();
 			ImGui::Render();
+			glViewport(0, 0, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
+			glClearColor(0.4f, 0.2f, 0.2f, 0.2f);
+			glClear(GL_COLOR_BUFFER_BIT);
 			Update();
-			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Update(); });
+			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::allCameras[0]); });
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-			SwapBuffers();
+
+			// Update and Render additional Platform Windows
+			// (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
+			//  For this specific demo app we could also call glfwMakeContextCurrent(window) directly)
+			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			{
+				HDC backup_current_context = m_windowDC;
+				ImGui::UpdatePlatformWindows();
+				ImGui::RenderPlatformWindowsDefault();
+				wglMakeCurrent(backup_current_context, m_wglDC);
+			}
 			// ----------------
 			// ImGui render end
 			// -----------------
+
+			::SwapBuffers(m_windowDC); //using double buffering
 		}
 
 		void OpenGLSystem::Exit()
@@ -189,11 +215,6 @@ namespace DeltaEngine
 			{
 				m_windowDC = NULL;
 			}
-		}
-
-		void OpenGLSystem::SwapBuffers()
-		{
-			::SwapBuffers(m_windowDC); //using double buffering
 		}
 	}
 }
