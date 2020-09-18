@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/Window.hpp>
+//#include <SFML/Window.hpp>
 //Contains basic macros
 
 #ifdef DE_PLATFORM_WINDOWS

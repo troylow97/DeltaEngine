@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "../Render/GraphicsManager.h"
 #include "../Render/SpriteRenderer.h"
+#include "Core/InputSystem.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -31,7 +32,7 @@ namespace DeltaEngine
 
 		sprites.push_back(new SpriteRenderer());
 
-		Input::InputSystem input_system;
+		//Input::InputSystem::get()->addListener(this);
 
 		MSG msg = {};
 		while (msg.message != WM_QUIT)
@@ -43,7 +44,36 @@ namespace DeltaEngine
 				continue;
 			}
 			RenderModule::openGLSystem->TestRender(sprites);
-			input_system.left();
+
+			Input::InputSystem::get()->inputUpdate();
+
+			//Input::InputSystem::get()->isKeyTriggered();
+			if (Input::InputSystem::get()->isKeyTriggered(DEVK_A))
+				std::cout << "A triggered here" << std::endl;
+
+			if (Input::InputSystem::get()->isKeyPressed(DEVK_A))
+				std::cout << "A pressed here" << std::endl;
+			
+			if (Input::InputSystem::get()->isKeyReleased(DEVK_A))
+				std::cout << "A released here" << std::endl;
+
+			if (Input::InputSystem::get()->isMouseTriggered(DEVK_LBUTTON))
+				std::cout << "lmb is triggered" << std::endl;
+
+			if (Input::InputSystem::get()->isMouseTriggered(DEVK_RBUTTON))
+				std::cout << "rmb is triggered" << std::endl;
+
+			if (Input::InputSystem::get()->isMousePressed(DEVK_LBUTTON))
+				std::cout << "lmb is pressed" << std::endl;
+
+			if (Input::InputSystem::get()->isMousePressed(DEVK_RBUTTON))
+				std::cout << "rmb is pressed" << std::endl;
+
+			if (Input::InputSystem::get()->isMouseReleased(DEVK_LBUTTON))
+				std::cout << "lmb is released" << std::endl;
+
+			if (Input::InputSystem::get()->isMouseReleased(DEVK_RBUTTON))
+				std::cout << "rmb is released" << std::endl;
 		}
 		RenderModule::openGLSystem->Exit();
 		delete RenderModule::openGLSystem;
