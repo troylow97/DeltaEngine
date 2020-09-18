@@ -59,6 +59,9 @@ namespace DeltaEngine
 			// ----------------
 			// ImGui setup end
 			// -----------------
+
+			// Initialize common meshes
+			Mesh::InitMesh();
 		}
 
 		void OpenGLSystem::Update()

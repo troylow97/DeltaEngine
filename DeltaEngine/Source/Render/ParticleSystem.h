@@ -37,6 +37,9 @@ namespace DeltaEngine
 		std::vector<Burst> bursts;
 
 		//shape
+		int shape = 0;
+
+		//member functions
 
 	};
 }

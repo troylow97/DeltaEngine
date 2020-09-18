@@ -14,7 +14,7 @@ namespace DeltaEngine
 
 	class FrameAnimation
 	{
-		float timer;
+		float timer = 0;
 	public:
 		unsigned int frame;
 		unsigned int totalFrames;

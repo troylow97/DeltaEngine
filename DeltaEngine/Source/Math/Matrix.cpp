@@ -120,6 +120,17 @@ namespace DeltaEngine
 			0,	 0,   0,   1
 		};
 	}
+	Matrix4x4 Matrix4x4::Scale(const float f)
+	{
+		return Matrix4x4
+		{
+			f, 0, 0, 0,
+			0, f, 0, 0,
+			0, 0, f, 0,
+			0, 0, 0, 1
+		};
+	}
+
 	Matrix4x4 Matrix4x4::Translate(const Vector3 v)
 	{
 		return Matrix4x4

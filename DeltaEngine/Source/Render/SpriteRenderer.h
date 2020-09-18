@@ -12,7 +12,6 @@ namespace DeltaEngine
 	class SpriteRenderer
 	{
 	public:
-		Mesh* mesh;
 		Texture2D* sprite;
 		Texture2D* spriteDist;
 		Shader* shader;

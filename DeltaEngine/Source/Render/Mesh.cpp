@@ -284,5 +284,21 @@ namespace DeltaEngine
 
 		vao.Unbind();
 	}
+
+	Mesh* Mesh::quad;
+	void Mesh::InitMesh()
+	{
+		quad = new Mesh();
+	}
+
+	void Mesh::Exit()
+	{
+		delete quad;
+	}
+
+	void Mesh::DrawQuad()
+	{
+		quad->Draw();
+	}
 	#pragma endregion
 }

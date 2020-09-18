@@ -71,5 +71,12 @@ namespace DeltaEngine
 	public:
 		Mesh();
 		void Draw();
+
+		// commonly used mesh
+		static Mesh* quad;
+
+		static void InitMesh();
+		static void Exit();
+		static void DrawQuad();
 	};
 }
