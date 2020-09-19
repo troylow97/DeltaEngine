@@ -34,7 +34,10 @@ namespace DeltaEngine
 			if (glewInit() != GLEW_OK)
 				DeltaEngine_CORE_ERROR("glewInit() failed!");
 			else
+			{
 				DeltaEngine_CORE_INFO("Initializing OpenGL successful");
+				DeltaEngine_CORE_INFO("OpenGL version: {0}", glGetString(GL_VERSION));
+			}
 
 
 			// ----------------

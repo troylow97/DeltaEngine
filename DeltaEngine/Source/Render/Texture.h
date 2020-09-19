@@ -10,6 +10,8 @@ namespace DeltaEngine
 		unsigned char* m_Data;
 		int m_Width, m_Height;
 	public:
+		enum SpriteMode { Single, Multiple };
+
 		Texture2D(const std::string filepath);
 		~Texture2D();
 

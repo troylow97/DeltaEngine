@@ -8,9 +8,6 @@ out vec3 vertexPosition;
 out vec4 vertexColor;
 out vec2 vertexTexCoord;
 
-uniform mat4 _MVP;
-uniform mat4 _MP;
-
 uniform mat4 _M; //ModelMatrix
 uniform mat4 _V; //ViewMatrix
 uniform mat4 _P; //ProjectionMatrix
@@ -23,7 +20,7 @@ void main()
 	vec4 v3 = _P * v2;
 	gl_Position = v3;
 
-	vertexPosition = gl_Position.xyz;
+	vertexPosition = v1.xyz;
 	vertexColor = color;
 	vertexTexCoord = texCoord;
 }

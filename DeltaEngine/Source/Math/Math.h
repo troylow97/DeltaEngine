@@ -7,5 +7,6 @@ namespace DeltaEngine
 		int Clamp(int value, int min, int max);
 		float Clamp(float value, float min, float max);
 		float Clamp01(float value);
+		float Lerp(float a, float b, float t);
 	}
 }

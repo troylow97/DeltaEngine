@@ -1,7 +1,7 @@
 #include "DEpch.h"
 #include "Application.h"
 #include "../Render/GraphicsManager.h"
-#include "../Render/SpriteRenderer.h"
+#include "../Render/FrameAnimation.h"
 #include "Event/MouseEvent.h"
 #include "Event/ApplicationEvent.h"
 #include "Physics/Collision.h"
@@ -12,6 +12,7 @@
 namespace DeltaEngine
 {
 	std::vector<SpriteRenderer*> sprites;
+	std::vector<FrameAnimation*> animator;
 
 	Application::Application()
 	{
@@ -41,6 +42,11 @@ namespace DeltaEngine
 		Camera* mainCamera = new Camera();
 
 		sprites.push_back(new SpriteRenderer());
+		sprites.push_back(new SpriteRenderer());
+		animator.push_back(new FrameAnimation());
+		animator.push_back(new FrameAnimation());
+		animator[0]->renderer = sprites[0];
+		animator[1]->renderer = sprites[1];
 		//InputSystem input_manager;
 		EventManager event_manager;
 		//input_manager.testFunc();
@@ -56,6 +62,8 @@ namespace DeltaEngine
 			//KeyPressedEvent keyevent{3,69};
 			//EventDispatcher dispatcher(e);
 
+			animator[0]->Update();
+			animator[1]->Update();
 			RenderModule::openGLSystem->TestRender(sprites);
 			//Input::InputSystem input_system;
 			

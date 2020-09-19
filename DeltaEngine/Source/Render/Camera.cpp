@@ -1,6 +1,5 @@
 #include "Camera.h"
 #include <algorithm>
-#include "Camera.h"
 #include "Window.h"
 
 namespace DeltaEngine

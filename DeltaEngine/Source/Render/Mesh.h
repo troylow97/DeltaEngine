@@ -78,5 +78,6 @@ namespace DeltaEngine
 		static void InitMesh();
 		static void Exit();
 		static void DrawQuad();
+		static void DrawQuad(float offsetX, float offsetY, float tileX, float tileY);
 	};
 }

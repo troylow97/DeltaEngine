@@ -13,11 +13,14 @@ namespace DeltaEngine
 	{
 	public:
 		Texture2D* sprite;
-		Texture2D* spriteDist;
 		Shader* shader;
 		Transform transform;
 		Color color;
+
+		Vector2 offset, tiling;
+
 		SpriteRenderer();
+		SpriteRenderer(std::string textureName);
 		~SpriteRenderer();
 		void Render(const Camera& camera);
 	};
