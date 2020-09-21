@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core/Core.h"
+#include "DE_API.h"
 #include "Vector.h"
 #include "Quaternion.h"
 

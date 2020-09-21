@@ -1,30 +1,27 @@
 #pragma once
 
-#include "Core/Core.h"
+#include "DE_API.h"
 #include <GL/glew.h>
 #include "SpriteRenderer.h"
 
-namespace DeltaEngine
+namespace DeltaEngine::RenderModule
 {
-	namespace RenderModule
+	class DE_API OpenGLSystem
 	{
-		class DE_API OpenGLSystem
-		{
-			HDC m_windowDC;//global Window-device context
-			HGLRC m_wglDC;//OpenGL-device context
+		HDC m_windowDC;//global Window-device context
+		HGLRC m_wglDC;//OpenGL-device context
 
-			bool InitializeRenderingEnvironment();
-			void CleanRenderingEnvironment();
+		bool InitializeRenderingEnvironment();
+		void CleanRenderingEnvironment();
 
-		public:
-			OpenGLSystem();
-			~OpenGLSystem();
+	public:
+		OpenGLSystem();
+		~OpenGLSystem();
 
-			void Init();
-			void Update();
-			void TestRender(std::vector<SpriteRenderer*>);
-			void SwapBuffers();
-			void Exit();
-		};
-	}
+		void Init();
+		void Update();
+		void TestRender(std::vector<SpriteRenderer*>&);
+		void SwapBuffers();
+		void Exit();
+	};
 }

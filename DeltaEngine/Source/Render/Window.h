@@ -1,16 +1,13 @@
 #pragma once
 #include "DEpch.h"
-#include "../Core/Log.h"
+#include "Core/Logger/Log.h"
 
 #define MAX_LOADSTRING 100
 
-namespace DeltaEngine
+namespace DeltaEngine::RenderModule
 {
-    namespace RenderModule
-    {
-        extern HWND mainHWND;
-        extern int width, height;
+  extern HWND mainHWND;
+  extern int width, height;
 
-        void DE_API CreateWin32Window();
-    };
+  void DE_API CreateWin32Window();
 }

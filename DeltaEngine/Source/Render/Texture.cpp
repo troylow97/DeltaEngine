@@ -1,6 +1,6 @@
 #include "Texture.h"
 #include "ErrorCheck.h"
-#include "../Core/Log.h"
+#include "Core/Logger/Log.h"
 #include <SOIL.h>
 
 namespace DeltaEngine

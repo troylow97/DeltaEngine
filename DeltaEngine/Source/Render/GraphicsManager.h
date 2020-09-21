@@ -1,12 +1,9 @@
 #pragma once
 
-#include "Core/Core.h"
+#include "DE_API.h"
 #include "OpenGLSystem.h"
 
-namespace DeltaEngine
+namespace DeltaEngine::RenderModule
 {
-	namespace RenderModule
-	{
 		OpenGLSystem* openGLSystem;
-	}
 }

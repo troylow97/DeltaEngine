@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Mesh.h"
-#include "Math/Transform.h"
-#include "Math/Color.h"
+#include "Core/Math/Transform.h"
+#include "Core/Math/Color.h"
 #include "Texture.h"
 #include "Shader.h"
 

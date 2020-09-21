@@ -2,7 +2,7 @@
 #include "Vector.h"
 #include "Quaternion.h"
 #include "Matrix.h"
-#include "Core/Core.h"
+#include "DE_API.h"
 
 namespace DeltaEngine
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include "Vector.h"
-#include "Core/Core.h"
+#include "DE_API.h"
 
 namespace DeltaEngine
 {
