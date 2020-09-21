@@ -142,7 +142,6 @@ namespace DeltaEngine
 	//{
 	//	os << static_cast<int32_t>(keyCode);
 	//	return os;
-	}
 	
 }
 

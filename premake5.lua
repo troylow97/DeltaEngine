@@ -29,6 +29,9 @@ project "DeltaEngine"
     "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.cpp",
     "%{prj.name}/Dep/SOIL/**.h",
     "%{prj.name}/Dep/SOIL/**.c",
+    "%{prj.name}/Dep/SFML/include/**.hpp",
+    "%{prj.name}/Dep/SFML/include/SFML/**.hpp",
+    "%{prj.name}/Dep/SFML/include/**.inl",
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp"
   }
@@ -38,6 +41,7 @@ project "DeltaEngine"
     "%{prj.name}/Dep/imgui",
     "%{prj.name}/Dep/SOIL",
     "%{prj.name}/Dep/glew",
+    "%{prj.name}/Dep/SFML/include",
     "%{prj.name}/Dep/spdlog/include",
     "%{prj.name}/Source"
   }
@@ -45,14 +49,16 @@ project "DeltaEngine"
   libdirs
   {
     "%{prj.name}/Dep/SOIL",
-    "%{prj.name}/Dep/glew/GL"
+    "%{prj.name}/Dep/glew/GL",
+    "%{prj.name}/Dep/SFML/lib"
   }
 
   links
   {
     "SOIL.lib",
     "glew32s.lib",
-    "OpenGL32.lib"
+    "OpenGL32.lib",
+    "sfml-window.lib",
   }
 
   filter "system:windows" 
@@ -64,6 +70,7 @@ project "DeltaEngine"
     {
       "WIN32",
       "GLEW_STATIC",
+      "SFML_STATIC",
       "DE_PLATFORM_WINDOWS",
       "DE_BUILD_DLL"
     }
@@ -103,6 +110,8 @@ project "Sandbox"
   {
     "DeltaEngine/Dep/imgui",
     "DeltaEngine/Dep/glew",
+    "DeltaEngine/Dep/SFML/include",
+    "DeltaEngine/Dep/SFML/include/SFML/",    
     "DeltaEngine/Dep/spdlog/include",
     "DeltaEngine/Source"
   }
