@@ -1,6 +1,6 @@
 #pragma once
 #include "DEpch.h"
-#include "Core/Logger/Log.h"
+#include "Core/Debug/Logger/Log.h"
 
 #define MAX_LOADSTRING 100
 

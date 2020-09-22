@@ -1,7 +1,7 @@
 #include "DEpch.h"
 #include "OpenGLSystem.h"
 #include "Window.h"
-#include "Core/Logger/Log.h"
+#include "Core/Debug/Logger/Log.h"
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
 #include <examples/imgui_impl_opengl3.h>

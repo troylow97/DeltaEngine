@@ -1,5 +1,5 @@
 #include "ErrorCheck.h"
-#include "Core/Logger/Log.h"
+#include "Core/Debug/Logger/Log.h"
 
 namespace DeltaEngine
 {

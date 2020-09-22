@@ -2,28 +2,33 @@
 #include "DE_API.h"
 #include <filesystem>
 #include <vector>
+#include "Core/Debug/Logger/Log.h"
 
 
 namespace DeltaEngine::FileUtils
 {
 
-static std::string rootPath {"./"};
+namespace fs = std::filesystem;
 
-void SetRoot( std::string path );
-std::string GetRoot();
+void Root( fs::path path );
+fs::path Root();
+fs::path TempDir();
 
-bool AddDir( std::string dir_name );
-bool RemoveDir( std::string dir_name );
-bool DirExist( std::string dir_name );
-std::vector<std::string> DirList();
+bool CreateDir( fs::path dir_name );
+void CopyDir( fs::path source, fs::path dest );
+bool DeleteDir( fs::path dir_name );
+size_t DeleteAllDir( fs::path dir_name );
+bool DirExists( fs::path dir_name );
+std::vector<fs::directory_entry> DirList( fs::path dir = fs::current_path() );
 
-bool AddFile( std::string filename );
-bool RemoveFile( std::string filename);
-void CopyFile( std::string source, std::string dest );
-bool FileExist( std::string filename );
-std::vector<std::string> FileList();
+fs::path CreateFile( fs::path filename );
+bool DeleteFile( fs::path filename );
+void CopyFile( fs::path source, fs::path dest );
+bool FileExists( fs::path filename );
+size_t FileSize( fs::path filename );
+std::vector<fs::path> FileList( fs::path dir = fs::current_path() );
 
 // TBC
 // Open / Close files
-// Read / Write stream for files 
-}
+// Read / Write stream for files
+} // namespace DeltaEngine::FileUtils
