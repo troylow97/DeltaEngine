@@ -13,7 +13,7 @@ prior written consent of DigiPen Institute of Technology is prohibited.
  /* End Header *******************************************************************/
 #pragma once
 #include "Math/Vector.h"
-
+#include <algorithm>
 namespace DeltaEngine
 {
     /**************************************************************************/
@@ -23,37 +23,48 @@ namespace DeltaEngine
     /**************************************************************************/
     struct DE_API AABB
     {
+	public:
+		AABB(Vector2 min1,Vector2 max1) :
+			min{min1},
+			max{max1}
+		{}
         Vector2 min;
         Vector2 max;
     };
 
-	struct LineSegment
+	struct DE_API LineSegment
 	{
 		Vector2	m_pt0;
 		Vector2	m_pt1;
 		Vector2	m_normal; //outward
 	};
 
-	struct Circle
+	struct DE_API Circle
 	{
 		Vector2  m_center;
 		float	m_radius;
 		float   m_mass{ 1.0f };
 	};
 
-	struct Ray
+	struct DE_API Ray
 	{
 		Vector2	m_pt0;
 		Vector2	m_dir;
 	};
 
-    bool CollisionIntersection_RectRect(const AABB& aabb1, const Vector2& vel1,
-        const AABB& aabb2, const Vector2& vel2);
-
 	void BuildLineSegment(LineSegment& lineSegment,
 		const  Vector2& pos,
 		float scale,
-		float dir);	
+		float dir);
+
+	bool CollisionIntersection_RectRect_Static(const AABB& aabb1, const AABB& aabb2);
+
+    bool CollisionIntersection_RectRect(const AABB& aabb1, const Vector2& vel1,
+        const AABB& aabb2, const Vector2& vel2);
+
+	bool CollisionIntersection_RectCircle_Static(const AABB& aabb1, const Circle& circle);
+
+	bool CollisionIntersection_RectLine_Static(const AABB& aabb1, const LineSegment& line);
 
 	int CollisionIntersection_CircleLineSegment(const Circle& circle,		
 		const Vector2& ptEnd,												
@@ -61,7 +72,9 @@ namespace DeltaEngine
 		Vector2& interPt,													
 		Vector2& normalAtCollision,											
 		float& interTime,													
-		bool& checkLineEdges);												
+		bool& checkLineEdges);
+
+	bool CollisionIntersection_CircleLineSegment_Static(const Circle& circle, const LineSegment& line);
 
 	int CheckMovingCircleToLineEdge(bool withinBothLines,
 		const Circle& circle,							
@@ -69,7 +82,7 @@ namespace DeltaEngine
 		const LineSegment& lineSeg,						
 		Vector2& interPt,							
 		Vector2& normalAtCollision,					
-		float& interTime);								
+		float& interTime);
 
 	int CollisionIntersection_CircleCircle(const Circle& circleA,					
 		const Vector2& velA,													
@@ -77,7 +90,9 @@ namespace DeltaEngine
 		const Vector2& velB,
 		Vector2& interPtA,														
 		Vector2& interPtB,														
-		float& interTime);															
+		float& interTime);
+
+	bool CollisionIntersecction_CircleCircle_Static(const Circle& circle1, const Circle& circle2);
 
 	int CollisionIntersection_RayCircle(const Ray& ray,								
 		const Circle& circle,														
@@ -94,6 +109,12 @@ namespace DeltaEngine
 		const Vector2& ptInter,													
 		Vector2& ptEnd,															
 		Vector2& reflectedVectorNormalized);									
+
+	bool CollisionIntersection_RectRay(const AABB& aabb, Ray r);
+
+	bool CollisionIntersection_RayLine(const Ray& ray, const LineSegment& line);
+
+	bool CollisionIntersection_LineLine(const LineSegment& line1, const LineSegment& line2);
 
 	/******************************************************************************/
 	/*!

@@ -47,13 +47,13 @@ namespace DeltaEngine
 			io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 			// TODO: Set optional io.ConfigFlags values, e.g. 'io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard' to enable keyboard controls.
 			//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-			io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+			//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 			// TODO: Fill optional fields of the io structure later.
 			// TODO: Load TTF/OTF fonts if you don't want to use the default font.
 			ImGuiStyle& style = ImGui::GetStyle();
 
 			// Initialize helper Platform and Renderer bindings (here we are using imgui_impl_win32.cpp and imgui_impl_dx11.cpp)
-			ImGui_ImplWin32_Init(mainHWND, m_wglDC);
+			ImGui_ImplWin32_Init(mainHWND);
 			ImGui_ImplOpenGL3_Init("#version 410");
 
 			// ----------------
@@ -116,13 +116,13 @@ namespace DeltaEngine
 			// Update and Render additional Platform Windows
 			// (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
 			//  For this specific demo app we could also call glfwMakeContextCurrent(window) directly)
-			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-			{
-				HDC backup_current_context = m_windowDC;
-				ImGui::UpdatePlatformWindows();
-				ImGui::RenderPlatformWindowsDefault();
-				wglMakeCurrent(backup_current_context, m_wglDC);
-			}
+			//if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			//{
+			//	HDC backup_current_context = m_windowDC;
+			//	ImGui::UpdatePlatformWindows();
+			//	ImGui::RenderPlatformWindowsDefault();
+			//	wglMakeCurrent(backup_current_context, m_wglDC);
+			//}
 			// ----------------
 			// ImGui render end
 			// -----------------

@@ -4,10 +4,13 @@
 
 namespace DeltaEngine
 {
-	SpriteRenderer::SpriteRenderer() : mesh{ new Mesh() }, sprite{ new Texture2D("dog.png") }, shader{ new Shader() }, spriteDist{ new Texture2D("Displacements.png") }
-	{
-		
-	}
+	SpriteRenderer::SpriteRenderer() : 
+		mesh{ new Mesh() }, 
+		sprite{ new Texture2D("dog.png") }, 
+		shader{ new Shader() }, 
+		spriteDist{ new Texture2D("Displacements.png")}
+	{}
+
 	SpriteRenderer::~SpriteRenderer()
 	{
 		delete mesh;

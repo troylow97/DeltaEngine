@@ -6,10 +6,11 @@
 #include "Texture.h"
 #include "Shader.h"
 #include "Camera.h"
+#include "../Physics/Collider.h" //for testing
 
 namespace DeltaEngine
 {
-	class SpriteRenderer
+	class DE_API SpriteRenderer
 	{
 	public:
 		Mesh* mesh;
@@ -17,6 +18,8 @@ namespace DeltaEngine
 		Texture2D* spriteDist;
 		Shader* shader;
 		Transform transform;
+		BoxCollider collider; //for testing
+		CircleCollider collider2{}; //for testing
 		Color color;
 		SpriteRenderer();
 		~SpriteRenderer();

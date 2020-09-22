@@ -20,6 +20,8 @@ namespace DeltaEngine
 		float Magnitude() const;
 		float SqrMagnitude() const;
 		float DotProduct(const Vector2& a) const;
+		Vector2 CrossProduct_Vector(const Vector2& a) const; //returns a vector perpendicular to the input vector still in the same 2D plane.
+		float CrossProduct_Magnitude(const Vector2& a) const;
 #pragma region Vector2 Operators
 		Vector2& operator=(const Vector2& a);
 		Vector2 operator+(const Vector2 a) const;

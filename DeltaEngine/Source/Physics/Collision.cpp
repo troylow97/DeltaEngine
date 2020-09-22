@@ -18,6 +18,38 @@ namespace DeltaEngine
 {
 	float g_dt; //to be removed
 
+	/******************************************************************************/
+	/*!
+		Builds a line segment when given a position, scale and direction.
+		The position given would be the midpoint of the line segment and it
+		would extend in two opposite directions
+	 */
+	 /******************************************************************************/
+	void BuildLineSegment(LineSegment& lineSegment,
+		const  Vector2& pos,
+		float scale,
+		float dir)
+	{
+		//Creates a vector based on the given direction and scale
+		Vector2 v;
+		v.x = cosf(dir) * scale;
+		v.y = sinf(dir) * scale;
+
+		//Halfs the vector so that it can be added to the midpoint called pos
+		v.x /= 2;
+		v.y /= 2;
+
+		//Initialises the position of the two end points of the line segment
+		lineSegment.m_pt0 = pos + v;
+		lineSegment.m_pt1 = pos - v;
+
+		//Calculate the normal of the line segment based on the vector and normalise it
+		lineSegment.m_normal.x = v.y;
+		lineSegment.m_normal.y = -v.x;
+
+		lineSegment.m_normal = lineSegment.m_normal.Normalize();
+	}
+
 	/**************************************************************************/
 	/*!
 	  \brief	Test for intersection between two rectangular bounded objects
@@ -105,6 +137,14 @@ namespace DeltaEngine
 		return true;
 	}
 
+	bool CollisionIntersection_RectRect_Static(const AABB& aabb1, const AABB& aabb2)
+	{
+		if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
+			return true;
+
+		return false;
+	}
+
 	//need to test
 	bool CollisionIntersection_RectRay(const AABB& aabb,Ray r)
 	{
@@ -123,37 +163,43 @@ namespace DeltaEngine
 		return tmax >= tmin;
 	}
 
-
-	/******************************************************************************/
-	/*!
-		Builds a line segment when given a position, scale and direction.
-		The position given would be the midpoint of the line segment and it
-		would extend in two opposite directions
-	 */
-	 /******************************************************************************/
-	void BuildLineSegment(LineSegment& lineSegment,
-		const  Vector2& pos,
-		float scale,
-		float dir)
+	bool CollisionIntersection_RectCircle_Static(const AABB& aabb1, const Circle& circle)
 	{
-		//Creates a vector based on the given direction and scale
-		Vector2 v;
-		v.x = cosf(dir) * scale;
-		v.y = sinf(dir) * scale;
+		// temporary variables to set edges for testing
 
-		//Halfs the vector so that it can be added to the midpoint called pos
-		v.x /= 2;
-		v.y /= 2;
+		Vector2 size;
+		Vector2 center;
+		size.x = aabb1.max.x - aabb1.min.x;
+		size.y = aabb1.max.y - aabb1.min.y;
+		center.x = aabb1.min.x + 0.5 * size.x;
+		center.y = aabb1.max.x + 0.5 * size.y;
+		Vector2 temp_vec = center;
+		// which edge is closest?
+		if (circle.m_center.x < center.x)         temp_vec.x = center.x;                  // left edge
+		else if (circle.m_center.x > center.x + size.x) temp_vec.x = center.x + size.x;   // right edge
+		if (circle.m_center.y < center.y)         temp_vec.y = center.y;                  // top edge
+		else if (circle.m_center.y > center.y + size.y) temp_vec.y = center.y + size.y;   // bottom edge
 
-		//Initialises the position of the two end points of the line segment
-		lineSegment.m_pt0 = pos + v;
-		lineSegment.m_pt1 = pos - v;
+		// get distance from closest edges
+		Vector2 dist = { center.x - temp_vec.x,center.y - temp_vec.y };
+		float distance = sqrt((dist.x * dist.x) + (dist.y * dist.y));
 
-		//Calculate the normal of the line segment based on the vector and normalise it
-		lineSegment.m_normal.x = v.y;
-		lineSegment.m_normal.y = -v.x;
+		// if the distance is less than the radius, collision!
+		if (distance <= circle.m_radius)
+			return true;
 
-		lineSegment.m_normal = lineSegment.m_normal.Normalize();
+		return false;
+	}
+
+	bool CollisionIntersection_RectLine_Static(const AABB& aabb, const LineSegment& line)
+	{
+		if (((line.m_pt0.x > aabb.min.x&& line.m_pt0.x < aabb.max.x) || (line.m_pt1.x > aabb.min.x&& line.m_pt1.x < aabb.max.x)) &&
+			((line.m_pt0.y > aabb.min.y&& line.m_pt0.y < aabb.max.y) || (line.m_pt1.y > aabb.min.y&& line.m_pt1.y < aabb.max.y)))
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	/******************************************************************************/
@@ -255,6 +301,22 @@ namespace DeltaEngine
 
 	}
 
+	bool CollisionIntersection_CircleLineSegment_Static(const Circle& circle, const LineSegment& line)
+	{
+		if ((line.m_pt0.x - circle.m_center.x) * (line.m_pt0.x - circle.m_center.x) + (line.m_pt0.y - circle.m_center.y) * (line.m_pt0.y - circle.m_center.y) <=
+			(line.m_pt1.x - line.m_pt0.x) * (line.m_pt1.x - line.m_pt0.x) + (line.m_pt1.y - line.m_pt0.y) + (line.m_pt1.y - line.m_pt0.y))
+		{
+			return true;
+		}
+		if ((line.m_pt1.x - circle.m_center.x) * (line.m_pt1.x - circle.m_center.x) + (line.m_pt1.y - circle.m_center.y) * (line.m_pt1.y - circle.m_center.y) <=
+			(line.m_pt1.x - line.m_pt0.x) * (line.m_pt1.x - line.m_pt0.x) + (line.m_pt1.y - line.m_pt0.y) + (line.m_pt1.y - line.m_pt0.y))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	/******************************************************************************/
 	/*!
 		Checks to see if the ball bumps onto any edges
@@ -310,12 +372,12 @@ namespace DeltaEngine
 			{
 				if (m1 > 0)
 				{
-					float dist1 = M.DotProduct(lineSeg.m_pt1 - circle.m_center); //BsP1.M
+					float dist1 = static_cast<float>(M.DotProduct(lineSeg.m_pt1 - circle.m_center)); //BsP1.M
 					if (abs(dist1) > circle.m_radius)
 					{
 						return 0;
 					}
-					float H = sqrt(circle.m_radius * circle.m_radius - dist1 * dist1);
+					float H = static_cast<float>(sqrt(circle.m_radius * circle.m_radius - dist1 * dist1));
 					interTime = (m1 - H) / V.Magnitude();
 					if (interTime <= 1)
 					{
@@ -365,8 +427,8 @@ namespace DeltaEngine
 				}
 				else
 				{
-					float H = sqrt(circle.m_radius * circle.m_radius - dist0 * dist0);
-					interTime = (m0 - H) / V.Magnitude();
+					float H = static_cast<float>(sqrt(circle.m_radius * circle.m_radius - dist0 * dist0));
+					interTime = static_cast<float>((m0 - H) / V.Magnitude());
 					if (interTime <= 1)
 					{
 						//Calculate intersection and normal for reflection
@@ -385,8 +447,8 @@ namespace DeltaEngine
 				}
 				else
 				{
-					float H = sqrt(circle.m_radius * circle.m_radius - dist1 * dist1);
-					interTime = (m1 - H) / V.Magnitude();
+					float H = static_cast<float>(sqrt(circle.m_radius * circle.m_radius - dist1 * dist1));
+					interTime = static_cast<float>((m1 - H) / V.Magnitude());
 					if (interTime <= 1)
 					{
 						//Calculate intersection and normal for reflection
@@ -437,6 +499,22 @@ namespace DeltaEngine
 		return 0;
 	}
 
+	bool CollisionIntersecction_CircleCircle_Static(const Circle& circle1, const Circle& circle2)
+	{
+		//(x2 - x1) ^ 2 + (y1 - y2) ^ 2 <= (r1 + r2) ^ 2
+		if
+			(
+				(circle2.m_center.x - circle1.m_center.x) * (circle2.m_center.x - circle1.m_center.x) +
+				(circle2.m_center.y - circle1.m_center.y) * (circle2.m_center.y - circle1.m_center.y) <=
+				(circle1.m_radius + circle2.m_radius) * (circle1.m_radius + circle2.m_radius)
+			)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	/******************************************************************************/
 	/*!
 		Calculates if a ray and a circle intersects.
@@ -482,6 +560,39 @@ namespace DeltaEngine
 		return 0;
 	}
 
+	bool CollisionIntersection_RayLine(const Ray& ray, const LineSegment& line)
+	{
+		Vector2 v1 = ray.m_pt0 - line.m_pt0;
+		Vector2 v2 = line.m_pt1 - line.m_pt0;
+		Vector2 v3 = Vector2(-ray.m_dir.y, ray.m_dir.x);
+
+		float dot = v2.DotProduct(v3);
+		if (abs(dot) < 0.000001)
+			return -1.0f;
+
+		float t1 = v2.CrossProduct_Magnitude(v1) / dot;
+		float t2 = v1.DotProduct(v3) / dot;
+
+		if (t1 >= 0.0 && (t2 >= 0.0 && t2 <= 1.0))
+			return t1;
+
+		return -1.0f;
+	}
+
+	bool CollisionIntersection_LineLine(const LineSegment& line, const LineSegment& line2)
+	{
+		float denominator = ((line.m_pt1.x - line.m_pt0.x) * (line2.m_pt1.y - line2.m_pt0.y)) - ((line.m_pt1.y - line.m_pt0.y) * (line2.m_pt1.x - line2.m_pt0.x));
+		float numerator1 = ((line.m_pt0.y - line2.m_pt0.y) * (line2.m_pt1.x - line2.m_pt0.x)) - ((line.m_pt0.x - line2.m_pt0.x) * (line2.m_pt1.y - line2.m_pt0.y));
+		float numerator2 = ((line.m_pt0.y - line2.m_pt0.y) * (line.m_pt1.x - line.m_pt0.x)) - ((line.m_pt0.x - line2.m_pt0.x) * (line.m_pt1.y - line.m_pt0.y));
+
+		// Detect coincident lines (has a problem)
+		if (denominator == 0) return numerator1 == 0 && numerator2 == 0;
+
+		float r = numerator1 / denominator;
+		float s = numerator2 / denominator;
+
+		return (r >= 0 && r <= 1) && (s >= 0 && s <= 1);
+	}
 	/******************************************************************************/
 	/*!
 		Calculates reflection when the circle hits a line.

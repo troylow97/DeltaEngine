@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include <list>
 #include <functional>
@@ -63,3 +64,4 @@ using Action = std::function<void ( Args... )>;
     }
   };
 } // namespace DeltaEngine
+*/

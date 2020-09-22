@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include "ActionList.h"
 #include <cstddef>
@@ -31,3 +32,4 @@ namespace DeltaEngine
   };
 
 } // namespace DeltaEngine
+*/

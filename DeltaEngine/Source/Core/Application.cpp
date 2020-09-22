@@ -4,7 +4,7 @@
 #include "../Render/SpriteRenderer.h"
 #include "Event/MouseEvent.h"
 #include "Event/ApplicationEvent.h"
-#include "Physics/Collision.h"
+#include "Physics/CollisionManager.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -39,8 +39,18 @@ namespace DeltaEngine
 		RenderModule::openGLSystem->Init();
 
 		Camera* mainCamera = new Camera();
-
-		sprites.push_back(new SpriteRenderer());
+		SpriteRenderer* a = new SpriteRenderer;
+		sprites.push_back(a);
+		a->transform.position.x = 30;
+		a->transform.position.y = 30;
+		a->transform.scale.x = 5;
+		a->transform.scale.y = 5;
+		a->collider._aabb.min.x = a->transform.position.x - a->transform.scale.x / 2;
+		a->collider._aabb.min.y = a->transform.position.y - a->transform.scale.y / 2;
+		a->collider._aabb.max.x = a->transform.position.x + a->transform.scale.x / 2;
+		a->collider._aabb.max.y = a->transform.position.y + a->transform.scale.y / 2;
+		CollisionManager collisionManager;
+		collisionManager.GameObjects.push_back(a);
 		//InputSystem input_manager;
 		EventManager event_manager;
 		//input_manager.testFunc();
@@ -53,6 +63,7 @@ namespace DeltaEngine
 				DispatchMessage(&msg);
 				continue;
 			}
+			collisionManager.CollisionCheck();
 			//KeyPressedEvent keyevent{3,69};
 			//EventDispatcher dispatcher(e);
 
@@ -65,21 +76,6 @@ namespace DeltaEngine
 
 			//dispatcher.Dispatch<KeyPressedEvent>(&test_event_function);
 
-			//AABB a,b;
-			//Vector2 vel1 = { 0,0 };
-			//Vector2 vel2 = { 0,0 };
-			//a.min = { 1,2 };
-			//a.max = { 3,4 };
-			//b.min = { 4,4 };
-			//b.max = { 5,6 };
-			//if (CollisionIntersection_RectRect(a, vel1, b, vel2))
-			//{
-			//	std::cout << "colliding\n";
-			//}
-			//else
-			//{
-			//	std::cout << "not colliding\n";
-			//}
 		}
 		RenderModule::openGLSystem->Exit();
 		delete RenderModule::openGLSystem;

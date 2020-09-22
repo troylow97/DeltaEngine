@@ -1,3 +1,4 @@
+/*
 #include "CollisionHandler.h"
 
 namespace DeltaEngine
@@ -43,3 +44,4 @@ namespace DeltaEngine
   }
 
 } // namespace DeltaEngine
+*/
