@@ -20,5 +20,7 @@ namespace DeltaEngine
 
 		static Vector3 QuaternionToEulerAngles(Quaternion q);
 
+		Quaternion operator*=(Quaternion rhs);
 	};
+	Quaternion operator*(Quaternion lhs, Quaternion rhs);
 }

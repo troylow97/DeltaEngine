@@ -9,11 +9,11 @@ namespace DeltaEngine
 	class DE_API Transform
 	{
 	public:
+		Transform* parent;
 		Vector3 position;
-		Vector3 eulerAngles;
 		Vector3 scale;
 		Quaternion rotation;
 		Transform();
-		Matrix4x4 LocalToWorldMatrix();
+		Matrix4x4 LocalToWorldMatrix(bool withParents = true);
 	};
 }

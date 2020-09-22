@@ -6,6 +6,7 @@ namespace DeltaEngine
 {
 	Vector2::Vector2() : x{ 0 }, y{ 0 } {}
 	Vector2::Vector2(float v0, float v1) : x{ v0 }, y{ v1 } {}
+	Vector2::Vector2(Vector3 v) : x{ v.x }, y{ v.y } {}
 	const Vector2 Vector2::zero() { return { 0, 0 }; }
 	const Vector2 Vector2::one() { return { 1, 1 }; }
 	const Vector2 Vector2::up() { return { 0, 1 }; }
@@ -35,85 +36,85 @@ namespace DeltaEngine
 	}
 	float Vector2::DotProduct(const Vector2& a) const
 	{
-		return this->x + a.x + this->y + a.y;
+		return x + a.x + y + a.y;
 	}
 #pragma region Vector2 Operators
 	Vector2& Vector2::operator=(const Vector2& a)
 	{
-		this->x = a.x;
-		this->y = a.y;
+		x = a.x;
+		y = a.y;
 		return *this;
 	}
 	Vector2 Vector2::operator+(const Vector2 a) const
 	{
 		Vector2 v;
-		v.x = this->x + a.x;
-		v.y = this->y + a.y;
+		v.x = x + a.x;
+		v.y = y + a.y;
 		return v;
 	}
 	Vector2 Vector2::operator+=(const Vector2 a)
 	{
-		this->x += a.x;
-		this->y += a.y;
+		x += a.x;
+		y += a.y;
 		return *this;
 	}
 	Vector2 Vector2::operator-(const Vector2 a) const
 	{
 		Vector2 v;
-		v.x = this->x - a.x;
-		v.y = this->y - a.y;
+		v.x = x - a.x;
+		v.y = y - a.y;
 		return v;
 	}
 	Vector2 Vector2::operator-=(const Vector2 a)
 	{
-		this->x -= a.x;
-		this->y -= a.y;
+		x -= a.x;
+		y -= a.y;
 		return *this;
 	}
 	Vector2 Vector2::operator-() const
 	{
 		Vector2 v;
-		v.x = -this->x;
-		v.y = -this->y;
+		v.x = -x;
+		v.y = -y;
 		return v;
 	}
 	Vector2 Vector2::operator*(const Vector2 a) const
 	{
 		Vector2 v;
-		v.x = this->x * a.x;
-		v.y = this->y * a.y;
+		v.x = x * a.x;
+		v.y = y * a.y;
 		return v;
 	}
 	Vector2 Vector2::operator*(const float f) const
 	{
 		Vector2 v;
-		v.x = this->x * f;
-		v.y = this->y * f;
+		v.x = x * f;
+		v.y = y * f;
 		return v;
 	}
 	Vector2 Vector2::operator*=(const Vector2 a)
 	{
-		this->x *= a.x;
-		this->y *= a.y;
+		x *= a.x;
+		y *= a.y;
 		return *this;
 	}
 	Vector2 Vector2::operator*=(const float f)
 	{
-		this->x *= f;
-		this->y *= f;
+		x *= f;
+		y *= f;
 		return *this;
 	}
 	Vector2 Vector2::operator/(const float f) const
 	{
 		Vector2 v;
-		v.x = this->x / f;
-		v.y = this->y / f;
+		v.x = x / f;
+		v.y = y / f;
 		return v;
 	}
 	Vector2 Vector2::operator/=(const float f)
 	{
-		this->x /= f;
-		this->y /= f;
+		x /= f;
+		y /= f;
 		return *this;
 	}
 #pragma endregion
@@ -121,6 +122,7 @@ namespace DeltaEngine
 	Vector3::Vector3() : x{ 0 }, y{ 0 }, z{ 0 } {}
 	Vector3::Vector3(float v0, float v1) : x{ v0 }, y{ v1 }, z{ 0 } {}
 	Vector3::Vector3(float v0, float v1, float v2) : x{ v0 }, y{ v1 }, z{ v2 } {}
+	Vector3::Vector3(Vector2 v) : x{ v.x }, y{ v.y }, z{ 0 } {}
 	const Vector3 Vector3::zero() { return { 0, 0 }; }
 	const Vector3 Vector3::one() { return { 1, 1, 1 }; }
 	const Vector3 Vector3::up() { return { 0, 1 }; }
@@ -153,99 +155,99 @@ namespace DeltaEngine
 #pragma region Vector3 Operators
 	Vector3& Vector3::operator=(const Vector3& a)
 	{
-		this->x = a.x;
-		this->y = a.y;
-		this->z = a.z;
+		x = a.x;
+		y = a.y;
+		z = a.z;
 		return *this;
 	}
 	Vector3& Vector3::operator=(const Vector2& a)
 	{
-		this->x = a.x;
-		this->y = a.y;
-		this->z = 0;
+		x = a.x;
+		y = a.y;
+		z = 0;
 		return *this;
 	}
 	Vector3 Vector3::operator+(const Vector3 a) const
 	{
 		Vector3 v;
-		v.x = this->x + a.x;
-		v.y = this->y + a.y;
-		v.z = this->z + a.z;
+		v.x = x + a.x;
+		v.y = y + a.y;
+		v.z = z + a.z;
 		return v;
 	}
 	Vector3 Vector3::operator+=(const Vector3 a)
 	{
-		this->x += a.x;
-		this->y += a.y;
-		this->z += a.z;
+		x += a.x;
+		y += a.y;
+		z += a.z;
 		return *this;
 	}
 	Vector3 Vector3::operator-(const Vector3 a) const
 	{
 		Vector3 v;
-		v.x = this->x - a.x;
-		v.y = this->y - a.y;
-		v.z = this->z - a.z;
+		v.x = x - a.x;
+		v.y = y - a.y;
+		v.z = z - a.z;
 		return v;
 	}
 	Vector3 Vector3::operator-=(const Vector3 a)
 	{
-		this->x -= a.x;
-		this->y -= a.y;
-		this->z -= a.z;
+		x -= a.x;
+		y -= a.y;
+		z -= a.z;
 		return *this;
 	}
 	Vector3 Vector3::operator-() const
 	{
 		Vector3 v;
-		v.x = -this->x;
-		v.y = -this->y;
-		v.z = -this->z;
+		v.x = -x;
+		v.y = -y;
+		v.z = -z;
 		return v;
 	}
 	Vector3 Vector3::operator*(const Vector3 a) const
 	{
 		Vector3 v;
-		v.x = this->x * a.x;
-		v.y = this->y * a.y;
-		v.z = this->z * a.z;
+		v.x = x * a.x;
+		v.y = y * a.y;
+		v.z = z * a.z;
 		return v;
 	}
 	Vector3 Vector3::operator*(const float f) const
 	{
 		Vector3 v;
-		v.x = this->x * f;
-		v.y = this->y * f;
-		v.z = this->z * f;
+		v.x = x * f;
+		v.y = y * f;
+		v.z = z * f;
 		return v;
 	}
 	Vector3 Vector3::operator*=(const Vector3 a)
 	{
-		this->x *= a.x;
-		this->y *= a.y;
-		this->z *= a.z;
+		x *= a.x;
+		y *= a.y;
+		z *= a.z;
 		return *this;
 	}
 	Vector3 Vector3::operator*=(const float f)
 	{
-		this->x *= f;
-		this->y *= f;
-		this->z *= f;
+		x *= f;
+		y *= f;
+		z *= f;
 		return *this;
 	}
 	Vector3 Vector3::operator/(const float f) const
 	{
 		Vector3 v;
-		v.x = this->x / f;
-		v.y = this->y / f;
-		v.z = this->z / f;
+		v.x = x / f;
+		v.y = y / f;
+		v.z = z / f;
 		return v;
 	}
 	Vector3 Vector3::operator/=(const float f)
 	{
-		this->x /= f;
-		this->y /= f;
-		this->z /= f;
+		x /= f;
+		y /= f;
+		z /= f;
 		return *this;
 	}
 #pragma endregion
