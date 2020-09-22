@@ -1,6 +1,6 @@
 #include "Texture.h"
 #include "ErrorCheck.h"
-#include "../Core/Log.h"
+#include "Core/Debugging/Logger/Log.h"
 #include <stb_image.h>
 
 namespace DeltaEngine

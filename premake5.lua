@@ -30,7 +30,8 @@ project "DeltaEngine"
     "%{prj.name}/Dep/stb_image/stb_image.h",
     "%{prj.name}/Dep/stb_image/stb_image.cpp",
     "%{prj.name}/Source/**.h",
-    "%{prj.name}/Source/**.cpp"
+    "%{prj.name}/Source/**.cpp",
+    "%{prj.name}/Source/**.inl"
   }
 
   includedirs
@@ -96,6 +97,7 @@ project "Sandbox"
   {
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp",
+    "%{prj.name}/Source/**.inl"
   }
   
   includedirs
