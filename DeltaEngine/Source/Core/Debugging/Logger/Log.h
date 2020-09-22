@@ -3,8 +3,6 @@
 #include "DE_API.h"
 #include "spdlog/spdlog.h"
 
-//#include <spdlog/fmt/ostr.h> //output stream to log custom types
-
 namespace DeltaEngine
 {
 	class DE_API Log
