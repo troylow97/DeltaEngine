@@ -41,6 +41,7 @@ namespace DeltaEngine
 		static Matrix4x4 Rotate(const Quaternion q);
 		static Matrix4x4 Rotate(const Vector3 v);
 		static Matrix4x4 Scale(const Vector3 v);
+		static Matrix4x4 Scale(const float f);
 		static Matrix4x4 Translate(const Vector3 v);
 		static Matrix4x4 Transpose(const Matrix4x4 m);
 

@@ -24,9 +24,7 @@ namespace DeltaEngine
 		Color();
 		// copy a predefined color (either static or user declared)
 		Color(const Color& copy);
-		// assumes alpha is 1
-		Color(float r, float b, float g);
 		// custom color
-		Color(float r, float b, float g, float a);
+		Color(float r, float b, float g, float a = 1);
 	};
 }

@@ -30,8 +30,10 @@ namespace DeltaEngine
 		unsigned int GetShaderID();
 		// Set uniforms
 		void SetUniform1i(const std::string& name, int i0);
+		void SetUniform1f(const std::string& name, float f0);
 		void SetUniformMatrix4f(const std::string& name, const Matrix4x4& matrix);
 		void SetUniformColor4f(const std::string& name, Color& c);
+		void SetUniformVector3f(const std::string& name, Vector3& v);
 		void SetUniformVector4f(const std::string& name, Vector4& v);
 		void SetUniformVector4f(const std::string& name, float v0, float v1, float v2, float v3);
 	private:

@@ -33,6 +33,10 @@ namespace DeltaEngine
 	{
 		return sqrtf(SqrMagnitude());
 	}
+	float Vector2::DotProduct(const Vector2& a) const
+	{
+		return this->x + a.x + this->y + a.y;
+	}
 #pragma region Vector2 Operators
 	Vector2& Vector2::operator=(const Vector2& a)
 	{
@@ -40,7 +44,7 @@ namespace DeltaEngine
 		this->y = a.y;
 		return *this;
 	}
-	Vector2 Vector2::operator+(const Vector2 a)
+	Vector2 Vector2::operator+(const Vector2 a) const
 	{
 		Vector2 v;
 		v.x = this->x + a.x;
@@ -53,7 +57,7 @@ namespace DeltaEngine
 		this->y += a.y;
 		return *this;
 	}
-	Vector2 Vector2::operator-(const Vector2 a)
+	Vector2 Vector2::operator-(const Vector2 a) const
 	{
 		Vector2 v;
 		v.x = this->x - a.x;
@@ -66,21 +70,21 @@ namespace DeltaEngine
 		this->y -= a.y;
 		return *this;
 	}
-	Vector2 Vector2::operator-()
+	Vector2 Vector2::operator-() const
 	{
 		Vector2 v;
 		v.x = -this->x;
 		v.y = -this->y;
 		return v;
 	}
-	Vector2 Vector2::operator*(const Vector2 a)
+	Vector2 Vector2::operator*(const Vector2 a) const
 	{
 		Vector2 v;
 		v.x = this->x * a.x;
 		v.y = this->y * a.y;
 		return v;
 	}
-	Vector2 Vector2::operator*(const float f)
+	Vector2 Vector2::operator*(const float f) const
 	{
 		Vector2 v;
 		v.x = this->x * f;
@@ -99,7 +103,7 @@ namespace DeltaEngine
 		this->y *= f;
 		return *this;
 	}
-	Vector2 Vector2::operator/(const float f)
+	Vector2 Vector2::operator/(const float f) const
 	{
 		Vector2 v;
 		v.x = this->x / f;
@@ -161,7 +165,7 @@ namespace DeltaEngine
 		this->z = 0;
 		return *this;
 	}
-	Vector3 Vector3::operator+(const Vector3 a)
+	Vector3 Vector3::operator+(const Vector3 a) const
 	{
 		Vector3 v;
 		v.x = this->x + a.x;
@@ -176,7 +180,7 @@ namespace DeltaEngine
 		this->z += a.z;
 		return *this;
 	}
-	Vector3 Vector3::operator-(const Vector3 a)
+	Vector3 Vector3::operator-(const Vector3 a) const
 	{
 		Vector3 v;
 		v.x = this->x - a.x;
@@ -191,7 +195,7 @@ namespace DeltaEngine
 		this->z -= a.z;
 		return *this;
 	}
-	Vector3 Vector3::operator-()
+	Vector3 Vector3::operator-() const
 	{
 		Vector3 v;
 		v.x = -this->x;
@@ -199,7 +203,7 @@ namespace DeltaEngine
 		v.z = -this->z;
 		return v;
 	}
-	Vector3 Vector3::operator*(const Vector3 a)
+	Vector3 Vector3::operator*(const Vector3 a) const
 	{
 		Vector3 v;
 		v.x = this->x * a.x;
@@ -207,7 +211,7 @@ namespace DeltaEngine
 		v.z = this->z * a.z;
 		return v;
 	}
-	Vector3 Vector3::operator*(const float f)
+	Vector3 Vector3::operator*(const float f) const
 	{
 		Vector3 v;
 		v.x = this->x * f;
@@ -229,7 +233,7 @@ namespace DeltaEngine
 		this->z *= f;
 		return *this;
 	}
-	Vector3 Vector3::operator/(const float f)
+	Vector3 Vector3::operator/(const float f) const
 	{
 		Vector3 v;
 		v.x = this->x / f;

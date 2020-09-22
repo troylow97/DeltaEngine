@@ -224,7 +224,7 @@ namespace DeltaEngine
 		}
 	}
 
-	// default mesh is a unit square
+	// default mesh is a unit square (quad)
 	Mesh::Mesh()
 	{
 		vertices.push_back(Vector3(-0.5f,  0.5f, 0.0f));
@@ -233,9 +233,9 @@ namespace DeltaEngine
 		vertices.push_back(Vector3(-0.5f, -0.5f, 0.0f));
 
 		colors.push_back(Color::white());
-		colors.push_back(Color::green());
-		colors.push_back(Color::red());
-		colors.push_back(Color::blue());
+		colors.push_back(Color::white());
+		colors.push_back(Color::white());
+		colors.push_back(Color::white());
 
 		texCoords.push_back(Vector2(0.0f, 0.0f));
 		texCoords.push_back(Vector2(1.0f, 0.0f));
@@ -270,6 +270,9 @@ namespace DeltaEngine
 
 	void Mesh::Draw()
 	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
 		ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
 		ibo.Bind();
 
@@ -284,5 +287,35 @@ namespace DeltaEngine
 
 		vao.Unbind();
 	}
+
+	Mesh* Mesh::quad;
+	void Mesh::InitMesh()
+	{
+		quad = new Mesh();
+	}
+
+	void Mesh::Exit()
+	{
+		delete quad;
+	}
+
+	void Mesh::DrawQuad()
+	{
+		quad->Draw();
+	}
+
+	void Mesh::DrawQuad(float offsetX, float offsetY, float tileX, float tileY)
+	{
+		quad->texCoords[0] = Vector2(offsetX, offsetY);
+		quad->texCoords[1] = Vector2(offsetX + tileX, offsetY);
+		quad->texCoords[2] = Vector2(offsetX + tileX, offsetY + tileY);
+		quad->texCoords[3] = Vector2(offsetX, offsetY + tileY);
+		quad->Draw();
+		quad->texCoords[0] = Vector2(0, 0);
+		quad->texCoords[1] = Vector2(1, 0);
+		quad->texCoords[2] = Vector2(1, 1);
+		quad->texCoords[3] = Vector2(0, 1);
+	}
+
 	#pragma endregion
 }

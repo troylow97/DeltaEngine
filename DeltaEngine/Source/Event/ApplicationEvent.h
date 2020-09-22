@@ -2,8 +2,8 @@
 
 #include "Event.h"
 
-namespace DeltaEngine {
-
+namespace DeltaEngine 
+{
 	class WindowResizeEvent : public Event
 	{
 	public:
@@ -61,4 +61,5 @@ namespace DeltaEngine {
 		EVENT_CLASS_TYPE(AppRender)
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
+
 }

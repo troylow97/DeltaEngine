@@ -1,5 +1,7 @@
 #pragma once
-#include "Core/DE_API.h"
+#include <sstream>
+#include "Core/Core.h"
+#include "../RingBuffer.h"
 
 namespace DeltaEngine
 {
@@ -33,10 +35,20 @@ namespace DeltaEngine
 	{
 	public:
 		bool isHandled = false;
+		bool isInitialised = false; //for ring buffer
 
-		virtual EventType GetEventType() const = 0;
-		virtual const char* GetName() const = 0; //for debugging
-		virtual int GetCategoryFlags() const = 0;
+		virtual EventType GetEventType() const
+		{
+			return EventType::None;
+		}
+		virtual const char* GetName() const
+		{
+			return "NONE";
+		}
+		virtual int GetCategoryFlags() const
+		{
+			return 0;
+		}
 		virtual std::string ToString() const { return GetName(); } // for debugging to add more info when overrided 
 
 		inline bool IsInCategory(EventCategory category){ return GetCategoryFlags() & category;}
@@ -46,21 +58,19 @@ namespace DeltaEngine
 	class EventDispatcher
 	{
 	public:
-		EventDispatcher(Event& event)
-			: _Event(event)
-		{
-		}
+		EventDispatcher(Event& event) : 
+			_Event(event)
+			{}
 
-		// F will be deduced by the compiler
 		template<typename T, typename F>
-		bool Dispatch(const F& func) //dispatches it to the appropriate event
+		bool Dispatch(const F& func)
 		{
 			//checks to see which event type the current event 
 			//that we are currently dispatching is and whether it matches this template argument
 			//There is no type-safety to see if its an event
 			if (_Event.GetEventType() == T::GetStaticType())
 			{
-				_Event.Handled = func(static_cast<T&>(_Event));
+				_Event.isHandled = func(static_cast<T&>(_Event));
 				return true;
 			}
 			return false;
@@ -73,4 +83,33 @@ namespace DeltaEngine
 	{
 		return os << e.ToString();
 	}
+
+	class EventManager
+	{
+	public:
+		explicit EventManager() :
+			EventQueue{ 1000 }
+			{}
+
+		void addEvent(Event& event)
+		{
+			EventQueue.write(event);
+		}
+
+		Event resolveEvent()
+		{
+			return EventQueue.read();
+		}
+
+		void getStatus()
+		{
+			EventQueue.printdetails();
+		}
+
+	private:
+		RingBuffer<Event>EventQueue;
+
+
+
+	};
 }

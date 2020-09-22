@@ -19,18 +19,19 @@ namespace DeltaEngine
 		Vector2 normalized() const;
 		float Magnitude() const;
 		float SqrMagnitude() const;
+		float DotProduct(const Vector2& a) const;
 #pragma region Vector2 Operators
 		Vector2& operator=(const Vector2& a);
-		Vector2 operator+(const Vector2 a);
+		Vector2 operator+(const Vector2 a) const;
 		Vector2 operator+=(const Vector2 a);
-		Vector2 operator-(const Vector2 a);
+		Vector2 operator-(const Vector2 a) const;
 		Vector2 operator-=(const Vector2 a);
-		Vector2 operator-();
-		Vector2 operator*(const Vector2 f);
-		Vector2 operator*(const float f);
+		Vector2 operator-() const;
+		Vector2 operator*(const Vector2 f) const;
+		Vector2 operator*(const float f) const;
 		Vector2 operator*=(const Vector2 f);
 		Vector2 operator*=(const float f);
-		Vector2 operator/(const float f);
+		Vector2 operator/(const float f) const;
 		Vector2 operator/=(const float f);
 #pragma endregion
 	};
@@ -55,16 +56,16 @@ namespace DeltaEngine
 #pragma region Vector3 Operators
 		Vector3& operator=(const Vector3& a);
 		Vector3& operator=(const Vector2& a);
-		Vector3 operator+(const Vector3 a);
+		Vector3 operator+(const Vector3 a) const;
 		Vector3 operator+=(const Vector3 a);
-		Vector3 operator-(const Vector3 a);
+		Vector3 operator-(const Vector3 a) const;
 		Vector3 operator-=(const Vector3 a);
-		Vector3 operator-();
-		Vector3 operator*(const Vector3 f);
-		Vector3 operator*(const float f);
+		Vector3 operator-() const;
+		Vector3 operator*(const Vector3 f) const;
+		Vector3 operator*(const float f) const;
 		Vector3 operator*=(const Vector3 f);
 		Vector3 operator*=(const float f);
-		Vector3 operator/(const float f);
+		Vector3 operator/(const float f) const;
 		Vector3 operator/=(const float f);
 #pragma endregion
 	};
