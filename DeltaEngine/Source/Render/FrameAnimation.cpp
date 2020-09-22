@@ -19,7 +19,7 @@ namespace DeltaEngine
 		if (timer > totalFrames / fps)
 			timer -= totalFrames / fps;
 
-		frame = timer * fps;
+		frame = (unsigned int)(timer * fps);
 
 		renderer->offset.x = frame % columns * 1.0f / columns;
 		renderer->offset.y = frame / columns * 1.0f / rows;

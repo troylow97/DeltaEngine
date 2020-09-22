@@ -4,11 +4,14 @@
 
 namespace DeltaEngine
 {
+	struct DE_API Vector3;
+
 	struct DE_API Vector2
 	{
 		float x, y;
 		Vector2();
 		Vector2(float, float);
+		Vector2(Vector3);
 		static const Vector2 zero();
 		static const Vector2 one();
 		static const Vector2 up();
@@ -41,6 +44,7 @@ namespace DeltaEngine
 		Vector3();
 		Vector3(float, float);
 		Vector3(float, float, float);
+		Vector3(Vector2);
 		static const Vector3 zero();
 		static const Vector3 one();
 		static const Vector3 up();

@@ -1,7 +1,6 @@
 #include "DEpch.h"
 #include "Quaternion.h"
 #include <cmath>
-#include <iostream>
 
 namespace DeltaEngine
 {
@@ -9,7 +8,6 @@ namespace DeltaEngine
 
     Quaternion::Quaternion()
         : x{ 0 }, y{ 0 }, z{ 0 }, w{ 1 } {}
-
     Quaternion::Quaternion(float q0, float q1, float q2, float q3)
         : x{ q0 }, y{ q1 }, z{ q2 }, w{ q3 } {}
 
@@ -72,5 +70,19 @@ namespace DeltaEngine
         eulerAngles.z = std::atan2f(siny_cosp, cosy_cosp);
 
         return eulerAngles;
+    }
+
+    Quaternion Quaternion::operator*=(Quaternion rhs)
+    {
+        x *= rhs.x;
+        y *= rhs.y;
+        z *= rhs.z;
+        w *= rhs.w;
+        return *this;
+    }
+
+    Quaternion operator*(Quaternion lhs, Quaternion rhs)
+    {
+        return lhs *= rhs;
     }
 }

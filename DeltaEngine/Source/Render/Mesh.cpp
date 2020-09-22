@@ -5,8 +5,6 @@
 
 namespace DeltaEngine
 {
-	unsigned int VBO, VAO, EBO;
-
 	//********************************************************************************
 	// VertexBufferLayout 
 	//********************************************************************************
@@ -121,7 +119,7 @@ namespace DeltaEngine
 		vb.Bind();
 		const auto& elements = layout.GetElements();
 		unsigned int offset = 0;
-		for (unsigned int i = 0; i < elements.size(); i++)
+		for (unsigned int i = 0; i < elements.size(); ++i)
 		{
 			const auto& element = elements[i];
 			GLCall(glEnableVertexAttribArray(i));
@@ -186,10 +184,10 @@ namespace DeltaEngine
 		std::vector<float> coords;
 		for (unsigned int i = 0; i < verticesCount; ++i)
 		{
-			//position
+			//vertex position
 			coords.push_back(vertices[i].x);
 			coords.push_back(vertices[i].y);
-			coords.push_back(vertices[i].x);
+			coords.push_back(vertices[i].z);
 
 			//color
 			coords.push_back(colors[i].r);
@@ -197,7 +195,7 @@ namespace DeltaEngine
 			coords.push_back(colors[i].b);
 			coords.push_back(colors[i].a);
 
-			//texture
+			//texture coordinates
 			coords.push_back(texCoords[i].x);
 			coords.push_back(texCoords[i].y);
 		};

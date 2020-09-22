@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "../Render/GraphicsManager.h"
 #include "../Render/FrameAnimation.h"
+#include "../Render/ParticleSystem.h"
 #include "Event/MouseEvent.h"
 #include "Event/ApplicationEvent.h"
 #include "Physics/Collision.h"
@@ -13,6 +14,7 @@ namespace DeltaEngine
 {
 	std::vector<SpriteRenderer*> sprites;
 	std::vector<FrameAnimation*> animator;
+	std::vector<ParticleSystem*> ps;
 
 	Application::Application()
 	{
@@ -47,6 +49,9 @@ namespace DeltaEngine
 		animator.push_back(new FrameAnimation());
 		animator[0]->renderer = sprites[0];
 		animator[1]->renderer = sprites[1];
+
+		ps.push_back(new ParticleSystem());
+
 		//InputSystem input_manager;
 		EventManager event_manager;
 		//input_manager.testFunc();
@@ -64,7 +69,8 @@ namespace DeltaEngine
 
 			animator[0]->Update();
 			animator[1]->Update();
-			RenderModule::openGLSystem->TestRender(sprites);
+			RenderModule::openGLSystem->TestRender(sprites, ps);
+
 			//Input::InputSystem input_system;
 			
 
