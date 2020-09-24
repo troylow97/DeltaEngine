@@ -32,7 +32,9 @@ namespace DeltaEngine
 		t += 0.001f;
 
 		if (sprite)
+		{
 			sprite->Bind(0);
+		}
 		shader->SetUniformMatrix4f("_M", model);
 		shader->SetUniformMatrix4f("_V", view);
 		shader->SetUniformMatrix4f("_P", proj);
