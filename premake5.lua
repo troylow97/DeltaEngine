@@ -27,38 +27,35 @@ project "DeltaEngine"
     "%{prj.name}/Dep/imgui/examples/imgui_impl_opengl3.cpp",
     "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.h",
     "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.cpp",
-    "%{prj.name}/Dep/SOIL/**.h",
-    "%{prj.name}/Dep/SOIL/**.c",
-    "%{prj.name}/Dep/SFML/include/**.hpp",
-    "%{prj.name}/Dep/SFML/include/SFML/**.hpp",
-    "%{prj.name}/Dep/SFML/include/**.inl",
+    "%{prj.name}/Dep/freetype/include/ft2build.h",
+    "%{prj.name}/Dep/stb_image/stb_image.h",
+    "%{prj.name}/Dep/stb_image/stb_image.cpp",
     "%{prj.name}/Source/**.h",
-    "%{prj.name}/Source/**.cpp"
+    "%{prj.name}/Source/**.cpp",
+    "%{prj.name}/Source/**.inl"
   }
 
   includedirs
   {
     "%{prj.name}/Dep/imgui",
-    "%{prj.name}/Dep/SOIL",
     "%{prj.name}/Dep/glew",
-    "%{prj.name}/Dep/SFML/include",
     "%{prj.name}/Dep/spdlog/include",
+    "%{prj.name}/Dep/freetype/include",
+    "%{prj.name}/Dep/stb_image",
     "%{prj.name}/Source"
   }
 
   libdirs
   {
-    "%{prj.name}/Dep/SOIL",
     "%{prj.name}/Dep/glew/GL",
-    "%{prj.name}/Dep/SFML/lib"
+    "%{prj.name}/Dep/freetype/objs",
   }
 
   links
   {
-    "SOIL.lib",
     "glew32s.lib",
     "OpenGL32.lib",
-    "sfml-window.lib",
+    "freetype.lib"
   }
 
   filter "system:windows" 
@@ -70,9 +67,9 @@ project "DeltaEngine"
     {
       "WIN32",
       "GLEW_STATIC",
-      "SFML_STATIC",
       "DE_PLATFORM_WINDOWS",
-      "DE_BUILD_DLL"
+      "DE_BUILD_DLL",
+      "FT2_BUILD_LIBRARY"
     }
   
   postbuildcommands
@@ -105,15 +102,16 @@ project "Sandbox"
   {
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp",
+    "%{prj.name}/Source/**.inl"
   }
   
   includedirs
   {
     "DeltaEngine/Dep/imgui",
     "DeltaEngine/Dep/glew",
-    "DeltaEngine/Dep/SFML/include",
-    "DeltaEngine/Dep/SFML/include/SFML/",    
     "DeltaEngine/Dep/spdlog/include",
+    "DeltaEngine/Dep/freetype/include",
+    "DeltaEngine/Dep/stb_image",
     "DeltaEngine/Source"
   }
   

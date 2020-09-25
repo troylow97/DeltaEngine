@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GL/glew.h>
-#include "Math/Color.h"
+#include "Core/Math/Color.h"
 #include <vector>
 
 namespace DeltaEngine
@@ -71,5 +71,13 @@ namespace DeltaEngine
 	public:
 		Mesh();
 		void Draw();
+
+		// commonly used mesh
+		static Mesh* quad;
+
+		static void InitMesh();
+		static void Exit();
+		static void DrawQuad();
+		static void DrawQuad(float offsetX, float offsetY, float tileX, float tileY);
 	};
 }

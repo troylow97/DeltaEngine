@@ -4,44 +4,47 @@
 
 namespace DeltaEngine
 {
-	SpriteRenderer::SpriteRenderer() : 
-		mesh{ new Mesh() }, 
-		sprite{ new Texture2D("dog.png") }, 
-		shader{ new Shader() }, 
-		spriteDist{ new Texture2D("Displacements.png")}
-	{}
-
+	SpriteRenderer::SpriteRenderer() : sprite{ new Texture2D("run.png") }, shader{ new Shader() },
+		offset{ Vector2() }, tiling{ Vector2(1,1) }
+	{
+		
+	}
+	SpriteRenderer::SpriteRenderer(std::string textureName) : sprite{ new Texture2D(textureName) }, shader{ new Shader() },
+		offset{ Vector2() }, tiling{ Vector2(1,1) }
+	{
+		
+	}
 	SpriteRenderer::~SpriteRenderer()
 	{
-		delete mesh;
 		delete sprite;
 		delete shader;
 	}
 	void SpriteRenderer::Render(const Camera& camera)
 	{
-		//transform.position = Vector3(0.0f, 0.0f, 0.0f);
-		//transform.rotation = Quaternion::AngleAxis(0, Vector3(0, 0, 1));
-		//transform.scale = Vector3(1.0f, 1.0f, 1.0f);
-
-		//Matrix4x4 proj = Matrix4x4::Transpose(Matrix4x4::Ortho(-4.0f, 4.0f, -3.0f, 3.0f, -10.0f, 10.0f));
 		Matrix4x4 proj = camera.GetProjectionMatrix();
-		//Matrix4x4 view = Matrix4x4::Transpose(Matrix4x4::Translate(Vector3(0, 0, 0)));
 		Matrix4x4 view = camera.GetViewMatrix();
-		Matrix4x4 model = transform.LocalToWorldMatrix();
-		Matrix4x4 mvp = model * view * proj;
+		Matrix4x4 model = Matrix4x4::Scale(Vector3{
+			sprite ? (sprite->GetWidth() / 100.0f * tiling.x) : 1,
+			sprite ? (sprite->GetHeight() / 100.0f * tiling.y) : 1, 1 })
+			* transform.LocalToWorldMatrix();
 
 		static float t = 0;
 		t += 0.001f;
 
-		sprite->Bind(0);
-		spriteDist->Bind(1);
-		shader->SetUniformMatrix4f("_MVP", mvp);
+		if (sprite)
+		{
+			sprite->Bind(0);
+		}
 		shader->SetUniformMatrix4f("_M", model);
+		shader->SetUniformMatrix4f("_V", view);
+		shader->SetUniformMatrix4f("_P", proj);
 		shader->SetUniformColor4f("_Color", color);
 		shader->SetUniform1i("_MainTex", 0);
-		shader->SetUniform1i("_DistTex", 1);
-		shader->SetUniform1f("_Magnitude", 0.03f);
-		shader->SetUniform1f("_Time", t);
-		mesh->Draw();
+		//shader->SetUniform1i("_DistTex", 1);
+		//shader->SetUniform1f("_Magnitude", 0.03f);
+		//shader->SetUniform1f("_Time", t);
+		//shader->SetUniform1f("_Radius", 0.4f);
+		//shader->SetUniformVector3f("_Center", Vector3(0,0,0));
+		Mesh::DrawQuad(offset.x, offset.y, tiling.x, tiling.y);
 	}
 }

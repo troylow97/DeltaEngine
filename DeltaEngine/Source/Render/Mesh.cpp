@@ -5,8 +5,6 @@
 
 namespace DeltaEngine
 {
-	unsigned int VBO, VAO, EBO;
-
 	//********************************************************************************
 	// VertexBufferLayout 
 	//********************************************************************************
@@ -121,7 +119,7 @@ namespace DeltaEngine
 		vb.Bind();
 		const auto& elements = layout.GetElements();
 		unsigned int offset = 0;
-		for (unsigned int i = 0; i < elements.size(); i++)
+		for (unsigned int i = 0; i < elements.size(); ++i)
 		{
 			const auto& element = elements[i];
 			GLCall(glEnableVertexAttribArray(i));
@@ -186,10 +184,10 @@ namespace DeltaEngine
 		std::vector<float> coords;
 		for (unsigned int i = 0; i < verticesCount; ++i)
 		{
-			//position
+			//vertex position
 			coords.push_back(vertices[i].x);
 			coords.push_back(vertices[i].y);
-			coords.push_back(vertices[i].x);
+			coords.push_back(vertices[i].z);
 
 			//color
 			coords.push_back(colors[i].r);
@@ -197,7 +195,7 @@ namespace DeltaEngine
 			coords.push_back(colors[i].b);
 			coords.push_back(colors[i].a);
 
-			//texture
+			//texture coordinates
 			coords.push_back(texCoords[i].x);
 			coords.push_back(texCoords[i].y);
 		};
@@ -224,7 +222,7 @@ namespace DeltaEngine
 		}
 	}
 
-	// default mesh is a unit square
+	// default mesh is a unit square (quad)
 	Mesh::Mesh()
 	{
 		vertices.push_back(Vector3(-0.5f,  0.5f, 0.0f));
@@ -270,6 +268,9 @@ namespace DeltaEngine
 
 	void Mesh::Draw()
 	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
 		ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
 		ibo.Bind();
 
@@ -284,5 +285,35 @@ namespace DeltaEngine
 
 		vao.Unbind();
 	}
+
+	Mesh* Mesh::quad;
+	void Mesh::InitMesh()
+	{
+		quad = new Mesh();
+	}
+
+	void Mesh::Exit()
+	{
+		delete quad;
+	}
+
+	void Mesh::DrawQuad()
+	{
+		quad->Draw();
+	}
+
+	void Mesh::DrawQuad(float offsetX, float offsetY, float tileX, float tileY)
+	{
+		quad->texCoords[0] = Vector2(offsetX, offsetY);
+		quad->texCoords[1] = Vector2(offsetX + tileX, offsetY);
+		quad->texCoords[2] = Vector2(offsetX + tileX, offsetY + tileY);
+		quad->texCoords[3] = Vector2(offsetX, offsetY + tileY);
+		quad->Draw();
+		quad->texCoords[0] = Vector2(0, 0);
+		quad->texCoords[1] = Vector2(1, 0);
+		quad->texCoords[2] = Vector2(1, 1);
+		quad->texCoords[3] = Vector2(0, 1);
+	}
+
 	#pragma endregion
 }

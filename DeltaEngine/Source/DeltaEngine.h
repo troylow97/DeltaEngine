@@ -1,14 +1,14 @@
 #pragma once
 //For use by Delta Engine Applications
 
-#include "Core/Application.h"
-#include "Core/Log.h"
+#include "Application.h"
+#include "Core/Debugging/Logger/Log.h"
 
-#include "Math/Vector.h"
-#include "Math/Color.h"
-#include "Math/Quaternion.h"
-#include "Math/Matrix.h"
-#include "Math/Transform.h"
+#include "Core/Math/Vector.h"
+#include "Core/Math/Color.h"
+#include "Core/Math/Quaternion.h"
+#include "Core/Math/Matrix.h"
+#include "Core/Math/Transform.h"
 
 #include "Render/Window.h"
 #include "Render/ErrorCheck.h"
@@ -20,4 +20,4 @@
 #include "Render/GraphicsManager.h"
 
 
-#include "Core/EntryPoint.h"
+#include "EntryPoint.h"

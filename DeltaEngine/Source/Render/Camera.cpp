@@ -1,12 +1,11 @@
 #include "Camera.h"
 #include <algorithm>
-#include "Camera.h"
 #include "Window.h"
 
 namespace DeltaEngine
 {
 	std::vector<Camera*> Camera::allCameras;
-	Camera::Camera() : _size{ 1 }, _zNear{ -10 }, _zFar{ 10 }, cameraIndex{ allCameras.size() }
+	Camera::Camera() : _size{ 5 }, _zNear{ -10 }, _zFar{ 10 }, cameraIndex{ allCameras.size() }
 	{
 		allCameras.push_back(this);
 	}

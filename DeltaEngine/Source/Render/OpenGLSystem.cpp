@@ -2,7 +2,8 @@
 #include "OpenGLSystem.h"
 #include "Window.h"
 #include "Camera.h"
-#include "../Core/Log.h"
+#include "TextRenderer.h"
+#include "Core/Debugging/Logger/Log.h"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
@@ -12,6 +13,7 @@ namespace DeltaEngine
 {
 	namespace RenderModule
 	{
+		TextRenderer* text;
 		OpenGLSystem::OpenGLSystem()
 			: m_wglDC{}, m_windowDC{}
 		{
@@ -34,7 +36,10 @@ namespace DeltaEngine
 			if (glewInit() != GLEW_OK)
 				DeltaEngine_CORE_ERROR("glewInit() failed!");
 			else
+			{
 				DeltaEngine_CORE_INFO("Initializing OpenGL successful");
+				DeltaEngine_CORE_INFO("OpenGL version: {0}", glGetString(GL_VERSION));
+			}
 
 
 			// ----------------
@@ -59,6 +64,11 @@ namespace DeltaEngine
 			// ----------------
 			// ImGui setup end
 			// -----------------
+
+			// Initialize common meshes
+			Mesh::InitMesh();
+			Font::Init();
+			text = new TextRenderer();
 		}
 
 		void OpenGLSystem::Update()
@@ -70,8 +80,7 @@ namespace DeltaEngine
 			GetClientRect(mainHWND, &rect);
 			glViewport((GLint)0, (GLint)0, rect.right - rect.left, rect.bottom - rect.top);
 		}
-
-		void OpenGLSystem::TestRender(std::vector<SpriteRenderer*> sprites)
+		void OpenGLSystem::TestRender(std::vector<SpriteRenderer*> sprites, std::vector<ParticleSystem*> ps)
 		{
 			// ----------------
 			// ImGui render
@@ -81,17 +90,17 @@ namespace DeltaEngine
 			ImGui_ImplWin32_NewFrame();
 			ImGui::NewFrame();
 
-			// 1. Show a simple window.
 			// Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets automatically appears in a window called "Debug".
 			{
 				ImGui::Begin("Sprite");
 				static float f = 0.0f;
 				ImGui::Text("Edit Sprite Props");                           // Display some text (you can use a format string too)
 				ImGui::SliderFloat("rotate", &f, -180.0f, 180.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-				sprites[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
-				ImGui::DragFloat3("pos", (float*)&sprites[0]->transform.position, 0.01f);
-				ImGui::DragFloat3("scale", (float*)&sprites[0]->transform.scale, 0.01f);
+				ps[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+				ImGui::DragFloat3("pos", (float*)&ps[0]->transform.position, 0.01f);
+				ImGui::DragFloat3("scale", (float*)&ps[0]->transform.scale, 0.01f);
 				ImGui::ColorEdit3("clear color", (float*)&sprites[0]->color); // Edit 3 floats representing a color
+				ImGui::Text("Active particles: %u", ps[0]->GetActiveParticleCount());
 				ImGui::End();
 			}
 
@@ -111,6 +120,8 @@ namespace DeltaEngine
 			glClear(GL_COLOR_BUFFER_BIT);
 			Update();
 			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::allCameras[0]); });
+			std::for_each(ps.begin(), ps.end(), [](ParticleSystem* p) { p->Update(); p->Render(*Camera::allCameras[0]); });
+			text->Render(*Camera::allCameras[0]);
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 			// Update and Render additional Platform Windows
@@ -134,6 +145,7 @@ namespace DeltaEngine
 		{
 			CleanRenderingEnvironment();
 			DeltaEngine_CORE_INFO("OpenGL system exited");
+			delete text;
 		}
 
 		bool OpenGLSystem::InitializeRenderingEnvironment()
