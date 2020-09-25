@@ -44,6 +44,7 @@ namespace DeltaEngine
 
     void set_notFound(AssetKey key);
     
+    // serialization
     virtual void doLoad(AssetKey key) = 0;
     virtual void doLoad( AssetKey key, std::string_view str ) = 0;
   };
