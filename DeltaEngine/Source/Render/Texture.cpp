@@ -56,4 +56,8 @@ namespace DeltaEngine
 	{
 		return m_Height;
 	}
+	unsigned int Texture2D::GetID() const
+	{
+		return m_RendererID;
+	}
 }

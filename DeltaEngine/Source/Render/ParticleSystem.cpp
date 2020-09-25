@@ -233,7 +233,7 @@ namespace DeltaEngine
 			Matrix4x4 pMat = Matrix4x4::Transpose(particle.transform.LocalToWorldMatrix());
 
 			//vertex position
-			for (unsigned int j = 0; j < 16; ++j)
+			for (unsigned int j = 0; j < 12; ++j)
 			{
 				coords.push_back(pMat.m[j]);
 			}
@@ -325,7 +325,7 @@ namespace DeltaEngine
 		vao.Bind();
 		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
 		//instancedVbo.InitData(Translations().data(), static_cast<unsigned int>(100 * 3 * sizeof(float)));
-		instancedVbo.InitData(ParticleDataFormat().data(), static_cast<unsigned int>(m_activeParticles * 16 * sizeof(float)));
+		instancedVbo.InitData(ParticleDataFormat().data(), static_cast<unsigned int>(m_activeParticles * 12 * sizeof(float)));
 		ibo.InitData(indices.data(), 6);
 
 		VertexBufferLayout layout;
@@ -335,7 +335,6 @@ namespace DeltaEngine
 		vao.AddBuffer(vbo, layout);
 		layout.Clear();
 		//layout.Push<float>(3);
-		layout.Push<float>(4);
 		layout.Push<float>(4);
 		layout.Push<float>(4);
 		layout.Push<float>(4);
@@ -349,11 +348,6 @@ namespace DeltaEngine
 		ibo.Unbind();
 
 		shader = new Shader("Shaders/DefaultParticle");
-		for (unsigned int i = 0; i < 100; i++)
-		{
-			shader->SetUniformVector3f(("offsets[" + std::to_string(i) + "]"), translations[i]);
-		}
-		//Emit(100);
 	}
 	ParticleSystem::~ParticleSystem()
 	{
@@ -422,7 +416,7 @@ namespace DeltaEngine
 		vbo.Unbind();
 
 		//instancedVbo.InitData(Translations().data(), static_cast<unsigned int>(100 * 3 * sizeof(float)));
-		instancedVbo.InitData(ParticleDataFormat().data(), static_cast<unsigned int>(m_activeParticles * 16 * sizeof(float)));
+		instancedVbo.InitData(ParticleDataFormat().data(), static_cast<unsigned int>(m_activeParticles * 12 * sizeof(float)));
 		instancedVbo.Bind();
 
 		instancedVbo.Unbind();

@@ -27,6 +27,7 @@ project "DeltaEngine"
     "%{prj.name}/Dep/imgui/examples/imgui_impl_opengl3.cpp",
     "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.h",
     "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.cpp",
+    "%{prj.name}/Dep/spdlog/include/ft2build.h",
     "%{prj.name}/Dep/stb_image/stb_image.h",
     "%{prj.name}/Dep/stb_image/stb_image.cpp",
     "%{prj.name}/Source/**.h",
@@ -39,6 +40,7 @@ project "DeltaEngine"
     "%{prj.name}/Dep/imgui",
     "%{prj.name}/Dep/glew",
     "%{prj.name}/Dep/spdlog/include",
+    "%{prj.name}/Dep/freetype/include",
     "%{prj.name}/Dep/stb_image",
     "%{prj.name}/Source"
   }
@@ -46,6 +48,7 @@ project "DeltaEngine"
   libdirs
   {
     "%{prj.name}/Dep/glew/GL",
+    "%{prj.name}/Dep/freetype/objs",
   }
 
   links
@@ -105,6 +108,7 @@ project "Sandbox"
     "DeltaEngine/Dep/imgui",
     "DeltaEngine/Dep/glew",
     "DeltaEngine/Dep/spdlog/include",
+    "DeltaEngine/Dep/freetype/include",
     "DeltaEngine/Dep/stb_image",
     "DeltaEngine/Source"
   }

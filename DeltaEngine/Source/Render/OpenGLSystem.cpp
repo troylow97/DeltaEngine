@@ -2,7 +2,8 @@
 #include "OpenGLSystem.h"
 #include "Window.h"
 #include "Camera.h"
-#include "Core/Debug/Logger/Log.h"
+#include "TextRenderer.h"
+#include "Core/Log.h"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
@@ -12,6 +13,7 @@ namespace DeltaEngine
 {
 	namespace RenderModule
 	{
+		TextRenderer* text;
 		OpenGLSystem::OpenGLSystem()
 			: m_wglDC{}, m_windowDC{}
 		{
@@ -65,6 +67,8 @@ namespace DeltaEngine
 
 			// Initialize common meshes
 			Mesh::InitMesh();
+			Font::Init();
+			text = new TextRenderer();
 		}
 
 		void OpenGLSystem::Update()
@@ -76,7 +80,6 @@ namespace DeltaEngine
 			GetClientRect(mainHWND, &rect);
 			glViewport((GLint)0, (GLint)0, rect.right - rect.left, rect.bottom - rect.top);
 		}
-
 		void OpenGLSystem::TestRender(std::vector<SpriteRenderer*> sprites, std::vector<ParticleSystem*> ps)
 		{
 			// ----------------
@@ -116,8 +119,9 @@ namespace DeltaEngine
 			glClearColor(49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			Update();
-			//std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::allCameras[0]); });
+			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::allCameras[0]); });
 			std::for_each(ps.begin(), ps.end(), [](ParticleSystem* p) { p->Update(); p->Render(*Camera::allCameras[0]); });
+			text->Render(*Camera::allCameras[0]);
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 			// Update and Render additional Platform Windows
@@ -141,6 +145,7 @@ namespace DeltaEngine
 		{
 			CleanRenderingEnvironment();
 			DeltaEngine_CORE_INFO("OpenGL system exited");
+			delete text;
 		}
 
 		bool OpenGLSystem::InitializeRenderingEnvironment()

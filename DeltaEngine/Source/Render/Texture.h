@@ -21,5 +21,6 @@ namespace DeltaEngine
 		int GetWidth() const;
 		int GetHeight() const;
 
+		unsigned int GetID() const;
 	};
 }
