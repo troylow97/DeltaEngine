@@ -1,7 +1,7 @@
 #pragma once
 #include "DE_API.h"
 #include "Core/GameClock/GameClock.h"
-#include "Core/Debug/Logger/Log.h"
+#include "Core/Debugging/Logger/Log.h"
 
 namespace DeltaEngine
 {

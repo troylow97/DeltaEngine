@@ -3,7 +3,7 @@
 #include "Window.h"
 #include "Camera.h"
 #include "TextRenderer.h"
-#include "Core/Debug/Logger/log.h"
+#include "Core/Debugging/Logger/Log.h"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
