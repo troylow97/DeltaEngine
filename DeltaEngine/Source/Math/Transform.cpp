@@ -4,6 +4,8 @@
 namespace DeltaEngine
 {
 	Transform::Transform() : parent{nullptr}, position{}, rotation{}, scale{ 1, 1, 1 } {}
+	Transform::Transform(Vector3 pos, Quaternion rot, Vector3 sca)
+		: parent{ nullptr }, position{ pos }, rotation{ rot }, scale{ sca } {}
 
 	Matrix4x4 Transform::LocalToWorldMatrix(bool withParents)
 	{

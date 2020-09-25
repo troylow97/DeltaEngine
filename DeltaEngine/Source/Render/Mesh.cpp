@@ -82,10 +82,10 @@ namespace DeltaEngine
 		GLCall(glDeleteBuffers(1, &m_RendererID));
 	}
 
-	void Mesh::VertexBuffer::InitData(const float* data, unsigned int size)
+	void Mesh::VertexBuffer::InitData(const float* data, unsigned int size, bool dynamic)
 	{
 		GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_RendererID));
-		GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
+		GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW));
 	}
 
 	void Mesh::VertexBuffer::Bind() const
@@ -270,11 +270,12 @@ namespace DeltaEngine
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
 		ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
 		ibo.Bind();
 
-		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
+		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)), dynamic);
 		vbo.Bind();
 
 		vbo.Unbind();
@@ -284,6 +285,11 @@ namespace DeltaEngine
 		GLCall(glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr));
 
 		vao.Unbind();
+	}
+
+	void Mesh::MarkDynamic()
+	{
+		dynamic = true;
 	}
 
 	Mesh* Mesh::quad;

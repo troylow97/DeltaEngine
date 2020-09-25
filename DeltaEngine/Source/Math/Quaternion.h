@@ -4,13 +4,14 @@
 
 namespace DeltaEngine
 {
-	struct DE_API Quaternion
+	class DE_API Quaternion
 	{
+	public:
 		float x, y, z, w;
 
 		Quaternion();
 		Quaternion(float, float, float, float);
-		static Quaternion identity;
+		static const Quaternion identity();
 		static Quaternion AngleAxis(const float angle, const Vector3 axis);
 
 		//assumes rotation sequencing of yaw, pitch, then roll, or Body 3-2-1

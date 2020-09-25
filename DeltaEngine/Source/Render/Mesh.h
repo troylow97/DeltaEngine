@@ -17,7 +17,8 @@ namespace DeltaEngine
 			VertexBuffer();
 			~VertexBuffer();
 
-			void InitData(const float* data, unsigned int size);
+			void InitData(const float* data, unsigned int size, bool dynamic = false);
+			void InitSubData(const float* data, unsigned int size);
 
 			void Bind() const;
 			void Unbind() const;
@@ -66,11 +67,15 @@ namespace DeltaEngine
 		//std::vector<Vector3> normals;
 		std::vector<unsigned int> indices;
 
+		bool dynamic = false;
+		bool useSubdata = false;
+
 		std::vector<float> VerticesDataFormat();
 		void AssertProperties();
 	public:
 		Mesh();
 		void Draw();
+		void MarkDynamic();
 
 		// commonly used mesh
 		static Mesh* quad;

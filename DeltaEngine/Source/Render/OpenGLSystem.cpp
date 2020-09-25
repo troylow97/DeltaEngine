@@ -143,6 +143,7 @@ namespace DeltaEngine
 
 		void OpenGLSystem::Exit()
 		{
+			Mesh::Exit();
 			CleanRenderingEnvironment();
 			DeltaEngine_CORE_INFO("OpenGL system exited");
 			delete text;

@@ -5,16 +5,31 @@
 namespace DeltaEngine
 {
 	std::vector<Camera*> Camera::allCameras;
-	Camera::Camera() : _size{ 5 }, _zNear{ -10 }, _zFar{ 10 }, cameraIndex{ allCameras.size() }
+	Camera* Camera::editorCamera;
+	Camera::Camera(bool editor) : _size{ 5 }, _zNear{ -10 }, _zFar{ 10 }, cameraIndex{ editor ? -1 : static_cast<int>(allCameras.size()) }
 	{
-		allCameras.push_back(this);
+		if (!editor)
+			allCameras.push_back(this);
+		else
+		{
+			if (!editorCamera)
+				editorCamera = this;
+			else
+			{
+				DeltaEngine_CORE_ERROR("An editor camera already exists, only one should exist at a time");
+				delete this;
+			}
+		}
 	}
 	Camera::~Camera()
 	{
-		allCameras.erase(allCameras.begin() + cameraIndex);
+		if (cameraIndex >= 0)
+		{
+			allCameras.erase(allCameras.begin() + cameraIndex);
 
-		for (size_t i = 0; i < allCameras.size(); ++i)
-			allCameras[i]->cameraIndex = i;
+			for (size_t i = 0; i < allCameras.size(); ++i)
+				allCameras[i]->cameraIndex = i;
+		}
 	}
 	Matrix4x4 Camera::GetProjectionMatrix() const
 	{

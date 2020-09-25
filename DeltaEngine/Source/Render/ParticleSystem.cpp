@@ -406,6 +406,7 @@ namespace DeltaEngine
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 		ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
 		ibo.Bind();
@@ -446,7 +447,7 @@ namespace DeltaEngine
 			++m_activeParticles;
 			particle.active = true;
 			particle.transform.position = Vector3();
-			particle.transform.rotation = Quaternion::identity;
+			particle.transform.rotation = Quaternion::identity();
 
 			// Velocity
 			particle.velocity = Vector3::up();
