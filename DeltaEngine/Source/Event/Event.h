@@ -1,7 +1,7 @@
 #pragma once
 #include <sstream>
-#include "Core/Core.h"
-#include "../RingBuffer.h"
+#include "DE_API.h"
+#include "Core/Containers/RingBuffer.h"
 
 namespace DeltaEngine
 {

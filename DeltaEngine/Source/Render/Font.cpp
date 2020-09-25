@@ -1,5 +1,5 @@
 #include "Font.h"
-#include "Core/Log.h"
+#include "Core/Debug/Logger/Log.h"
 #include "ErrorCheck.h"
 #include <GL/glew.h>
 #include <ft2build.h>

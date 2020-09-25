@@ -1,7 +1,7 @@
 #include "DEpch.h"
 #include "Render/Window.h"
 #include "../resource.h"
-#include "../Core/Log.h"
+#include "Core/Debug/Logger/Log.h"
 #include <examples/imgui_impl_win32.h>
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);

@@ -12,7 +12,7 @@ prior written consent of DigiPen Institute of Technology is prohibited.
  */
  /* End Header *******************************************************************/
 #pragma once
-#include "Math/Vector.h"
+#include "Core/Math/Vector.h"
 
 namespace DeltaEngine
 {

@@ -27,11 +27,12 @@ project "DeltaEngine"
     "%{prj.name}/Dep/imgui/examples/imgui_impl_opengl3.cpp",
     "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.h",
     "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.cpp",
-    "%{prj.name}/Dep/spdlog/include/ft2build.h",
+    "%{prj.name}/Dep/freetype/include/ft2build.h",
     "%{prj.name}/Dep/stb_image/stb_image.h",
     "%{prj.name}/Dep/stb_image/stb_image.cpp",
     "%{prj.name}/Source/**.h",
-    "%{prj.name}/Source/**.cpp"
+    "%{prj.name}/Source/**.cpp",
+    "%{prj.name}/Source/**.inl"
   }
 
   includedirs
@@ -54,6 +55,7 @@ project "DeltaEngine"
   {
     "glew32s.lib",
     "OpenGL32.lib",
+    "freetype.lib"
   }
 
   filter "system:windows" 
@@ -66,7 +68,8 @@ project "DeltaEngine"
       "WIN32",
       "GLEW_STATIC",
       "DE_PLATFORM_WINDOWS",
-      "DE_BUILD_DLL"
+      "DE_BUILD_DLL",
+      "FT2_BUILD_LIBRARY"
     }
   
   postbuildcommands
@@ -99,6 +102,7 @@ project "Sandbox"
   {
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp",
+    "%{prj.name}/Source/**.inl"
   }
   
   includedirs

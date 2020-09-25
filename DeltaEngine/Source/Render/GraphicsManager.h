@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core/Core.h"
+#include "DE_API.h"
 #include "OpenGLSystem.h"
 #include "Camera.h"
 

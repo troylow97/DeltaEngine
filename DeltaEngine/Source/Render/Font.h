@@ -1,7 +1,7 @@
 #pragma once
 
 #include "DEpch.h"
-#include "Math/Vector.h"
+#include "Core/Math/Vector.h"
 
 namespace DeltaEngine
 {
