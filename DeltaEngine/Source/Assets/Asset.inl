@@ -38,10 +38,10 @@ namespace DeltaEngine
   // Move Constructor
   template <typename T1, typename T2>
   Asset<T1, T2>::Asset(Asset &&rhs) : _group{rhs._group},
-                                               _data{rhs._data},
-                                               _key{rhs._key},
-                                               _timestamp{rhs._timestamp},
-                                               _state{rhs._state}
+                                      _data{rhs._data},
+                                      _key{rhs._key},
+                                      _timestamp{rhs._timestamp},
+                                      _state{rhs._state}
   {
     rhs._group = nullptr;
     rhs._data = nullptr;
@@ -125,10 +125,10 @@ namespace DeltaEngine
   // Private Constructor
   template <typename T1, typename T2>
   Asset<T1, T2>::Asset(AssetGroup<T1> *group, AssetKey key) : _group{group},
-                                                                          _data{nullptr},
-                                                                          _key{key},
-                                                                          _timestamp{0},
-                                                                          _state{AssetState::NotLoaded}
+                                                              _data{nullptr},
+                                                              _key{key},
+                                                              _timestamp{0},
+                                                              _state{AssetState::NotLoaded}
   {
     if (_group)
       _group->increment_reference_count(_key);

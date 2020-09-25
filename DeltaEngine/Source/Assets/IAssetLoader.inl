@@ -30,9 +30,14 @@ namespace DeltaEngine
   void IAssetLoader<T1>::load(AssetKey key)
   {
     _requests++;
-    _group->set(key, nullptr, AssetState::Loading, AssetLifetime::Persistant);
-
     doLoad(key);
+  }
+
+  template <typename T1>
+  void IAssetLoader<T1>::load( AssetKey key, std::string_view str )
+  {
+    _requests++;
+    doLoad(key, str);
   }
 
   template <typename T1>
@@ -48,10 +53,10 @@ namespace DeltaEngine
   }
 
   template <typename T1>
-  template <typename T2, typename>
-  void IAssetLoader<T1>::set(AssetKey key, T2 &&data, AssetState state, AssetLifetime lifetime)
+  template <typename T1s, typename>
+  void IAssetLoader<T1>::set(AssetKey key, T1s &&data, AssetState state, AssetLifetime lifetime)
   {
-    set(key, new std::decay_t<T2>(std::forward<T2>(data)), state, lifetime);
+    set(key, new std::decay_t<T1s>(std::forward<T1s>(data)), state, lifetime);
   }
 
   template <typename T1>
@@ -61,10 +66,10 @@ namespace DeltaEngine
   }
 
   template <typename T1>
-  template <typename T2, typename>
-  void IAssetLoader<T1>::set(AssetKey key, T2 &&data)
+  template <typename T1s, typename>
+  void IAssetLoader<T1>::set(AssetKey key, T1s &&data)
   {
-    set(key, new std::decay_t<T2>(std::forward<T2>(data)));
+    set(key, new std::decay_t<T1s>(std::forward<T1s>(data)));
   }
 
   template <typename T1>

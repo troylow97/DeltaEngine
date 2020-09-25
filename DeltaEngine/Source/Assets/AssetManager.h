@@ -30,6 +30,12 @@ namespace DeltaEngine
     AssetState state(AssetKey key) const;
 
     // Assets
+    template <typename T1>
+    AssetManager<Ts...> &load( AssetKey key );
+
+    template <typename T1>
+    AssetManager<Ts...> &load( AssetKey key, std::string_view str );
+
     template <typename T1, typename T2 = T1>
     Asset<T1, T2> get(AssetKey key);
 

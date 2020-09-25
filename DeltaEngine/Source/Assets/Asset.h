@@ -12,7 +12,7 @@ namespace DeltaEngine
   {
   public:
     // Default
-    explicit Asset(){};
+    explicit Asset() = default;
 
     // Copy
     Asset(const Asset &rhs);

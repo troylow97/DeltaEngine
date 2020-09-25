@@ -21,10 +21,7 @@ namespace DeltaEngine
     AssetLifetime _lifetime{AssetLifetime::Managed};
     size_t _referenceCount{0};
 
-    explicit AssetData()
-    {
-      std::cout << "AssetData Created" << std::endl;
-    }
+    explicit AssetData() = default;
 
     // No Copy
     AssetData(const AssetData &) = delete;

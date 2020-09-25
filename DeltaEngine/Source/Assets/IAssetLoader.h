@@ -25,25 +25,27 @@ namespace DeltaEngine
     size_t notFound_count() const;
     
     void load(AssetKey key);
+    void load( AssetKey key, std::string_view str );
 
   protected:
     void set(AssetKey key, T1 *data, AssetState state, AssetLifetime lifetime);
 
-    template <typename T2,
+    template <typename T1s,
               typename = typename std::enable_if_t<
-                  !std::is_same_v<typename std::decay_t<T2>, std::nullptr_t>>>
-    void set(AssetKey key, T2 &&data, AssetState state, AssetLifetime lifetime);
+                  !std::is_same_v<typename std::decay_t<T1s>, std::nullptr_t>>>
+    void set(AssetKey key, T1s &&data, AssetState state, AssetLifetime lifetime);
 
     void set(AssetKey key, T1 *data);
 
-    template <typename T2,
+    template <typename T1s,
               typename = typename std::enable_if_t<
-                  !std::is_same_v<typename std::decay_t<T2>, std::nullptr_t>>>
-    void set(AssetKey key, T2 &&data);
+                  !std::is_same_v<typename std::decay_t<T1s>, std::nullptr_t>>>
+    void set(AssetKey key, T1s &&data);
 
     void set_notFound(AssetKey key);
     
     virtual void doLoad(AssetKey key) = 0;
+    virtual void doLoad( AssetKey key, std::string_view str ) = 0;
   };
 } // namespace DeltaEngine
 

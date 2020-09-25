@@ -45,11 +45,29 @@ namespace DeltaEngine
   //****************************************************************************
 
   template <typename T1>
-  template <typename T2>
-  Asset<T1, T2> AssetGroup<T1>::get(class AssetKey key)
+  void AssetGroup<T1>::load( AssetKey key )
   {
-    if (_loader && _datas.find(key) == _datas.end())
-      _loader->load(key);
+    if ( _loader )
+      _loader->load( key );
+  }
+
+  template <typename T1>
+  void AssetGroup<T1>::load( AssetKey key, std::string_view str )
+  {
+    if ( _loader )
+      _loader->load( key, str );
+  }
+
+  template <typename T1>
+  template <typename T2>
+  Asset<T1, T2> AssetGroup<T1>::get( AssetKey key)
+  {
+    if ( auto it = _datas.find( key ); it == _datas.end() )
+    {
+      set(key, nullptr, AssetState::NotFound, AssetLifetime::Managed);
+      load( key );
+    }
+
 
     return Asset(this, key);
   }

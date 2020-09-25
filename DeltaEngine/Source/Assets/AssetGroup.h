@@ -53,6 +53,9 @@ namespace DeltaEngine
     void clear();
 
     // Asset data
+    void load( AssetKey key );
+    void load( AssetKey key, std::string_view str );
+
     template <typename T2>
     Asset<T1, T2> get(AssetKey key);
     

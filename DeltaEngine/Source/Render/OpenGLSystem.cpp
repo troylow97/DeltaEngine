@@ -2,7 +2,7 @@
 #include "OpenGLSystem.h"
 #include "Window.h"
 #include "Camera.h"
-#include "Core/Debugging/Logger/Log.h"
+#include "Core/Debug/Logger/Log.h"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>

@@ -29,6 +29,22 @@ namespace DeltaEngine
   }
 
   template <typename... Ts>
+  template <typename T1>
+  AssetManager<Ts...> &AssetManager<Ts...>::load( AssetKey key )
+  {
+    AssetGroup<T1>::load( key );
+    return *this;
+  }
+
+  template <typename... Ts>
+  template <typename T1>
+  AssetManager<Ts...> &AssetManager<Ts...>::load( AssetKey key, std::string_view str )
+  {
+    AssetGroup<T1>::load( key, str );
+    return *this;
+  }
+
+  template <typename... Ts>
   template <typename T1, typename T2>
   Asset<T1, T2> AssetManager<Ts...>::get(AssetKey key)
   {
@@ -44,10 +60,10 @@ namespace DeltaEngine
   }
 
   template <typename... Ts>
-  template <typename T2>
-  AssetManager<Ts...> &AssetManager<Ts...>::set(AssetKey key, T2 &&data, AssetState state, AssetLifetime lifetime)
+  template <typename T1>
+  AssetManager<Ts...> &AssetManager<Ts...>::set(AssetKey key, T1 &&data, AssetState state, AssetLifetime lifetime)
   {
-    return set(key, new std::decay_t<T2>(std::forward<T2>(data)), state, lifetime);
+    return set(key, new std::decay_t<T1>(std::forward<T1>(data)), state, lifetime);
   }
 
   template <typename... Ts>
@@ -58,10 +74,10 @@ namespace DeltaEngine
   }
 
   template <typename... Ts>
-  template <typename T2>
-  AssetManager<Ts...> &AssetManager<Ts...>::set(AssetKey key, T2 &&data)
+  template <typename T1>
+  AssetManager<Ts...> &AssetManager<Ts...>::set(AssetKey key, T1 &&data)
   {
-    return set(key, new std::decay_t<T2>(std::forward<T2>(data)));
+    return set(key, new std::decay_t<T1>(std::forward<T1>(data)));
   }
 
   template <typename... Ts>
@@ -117,10 +133,10 @@ namespace DeltaEngine
   }
 
   template <typename... Ts>
-  template <typename T2>
-  AssetManager<Ts...> &AssetManager<Ts...>::set_fallback(T2 &&data)
+  template <typename T1>
+  AssetManager<Ts...> &AssetManager<Ts...>::set_fallback(T1 &&data)
   {
-    return set_fallback(new typename std::decay_t<T2>(std::forward<T2>(data)));
+    return set_fallback(new std::decay_t<T1>(std::forward<T1>(data)));
   }
 
   template <typename... Ts>

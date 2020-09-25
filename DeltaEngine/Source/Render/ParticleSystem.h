@@ -2,8 +2,8 @@
 
 #include "DEpch.h"
 #include <GL/glew.h>
-#include "Math/Vector.h"
-#include "Math/Color.h"
+#include "Core/Math/Vector.h"
+#include "Core/Math/Color.h"
 #include "Camera.h"
 #include "Shader.h"
 #include "Texture.h"

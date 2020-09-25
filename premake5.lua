@@ -39,7 +39,7 @@ project "DeltaEngine"
     "%{prj.name}/Dep/imgui",
     "%{prj.name}/Dep/glew",
     "%{prj.name}/Dep/spdlog/include",
-    "DeltaEngine/Dep/stb_image",
+    "%{prj.name}/Dep/stb_image",
     "%{prj.name}/Source"
   }
 

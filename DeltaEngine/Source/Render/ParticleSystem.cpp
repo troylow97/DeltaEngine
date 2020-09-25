@@ -1,6 +1,6 @@
 #include "ParticleSystem.h"
-#include "Math/Math.h"
-#include "Core/Random.h"
+#include "Core/Math/Math.h"
+#include "Core/Math/Random.h"
 #include "ErrorCheck.h"
 
 namespace DeltaEngine
