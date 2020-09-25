@@ -6,7 +6,6 @@
 
 namespace DeltaEngine
 {
-
   // I added this Alias inside TypeAlias.h
   // To be removed when merged
 template <typename... Args>

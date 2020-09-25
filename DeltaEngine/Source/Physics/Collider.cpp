@@ -6,8 +6,8 @@ namespace DeltaEngine
     BoxCollider::BoxCollider() :
         _aabb{ {1,1},{1,1} }
     {}
-    BoxCollider::BoxCollider(float x, float y, Vector2 size) :
-        _aabb{ {x - size.x / 2, y - size.y / 2},{x + size.x / 2, y + size.y / 2} }
+    BoxCollider::BoxCollider(Vector2 center, Vector2 size) :
+        _aabb{center,size}
     {}
 	bool BoxCollider::Intersection(const BoxCollider& aabb)
 	{
@@ -19,7 +19,7 @@ namespace DeltaEngine
     }
     bool BoxCollider::Intersection(const RayCollider& ray)
     {
-        return CollisionIntersection_RectRay(_aabb, ray.ray);
+        return CollisionIntersection_RectRay_Static(_aabb, ray.ray);
     }
     bool BoxCollider::Intersection(const LineCollider& linecollider)
     {
@@ -31,6 +31,15 @@ namespace DeltaEngine
     }
 
     //CircleColliders
+    CircleCollider::CircleCollider() :
+        circle{ {0,0},1.0f,1.0f }
+    {}
+    CircleCollider::CircleCollider(Vector2 center, float radius) :
+        circle{ center,radius, 1.0f }
+    {}
+    CircleCollider::CircleCollider(Vector2 center, float radius,float mass) :
+        circle{ center,radius, mass }
+    {}
     bool CircleCollider::Intersection(const BoxCollider& aabb)
     {
         return CollisionIntersection_RectCircle_Static(aabb._aabb, circle);
@@ -55,6 +64,12 @@ namespace DeltaEngine
     }
 
     //Line Colliders
+    LineCollider::LineCollider() :
+        line()
+    {}
+    LineCollider::LineCollider(Vector2 pt0, Vector2 pt1) :
+        line{pt0,pt1}
+    {}
     bool LineCollider::Intersection(const BoxCollider& aabb)
     {
         return CollisionIntersection_RectLine_Static(aabb._aabb, line);
@@ -65,11 +80,11 @@ namespace DeltaEngine
     }
     bool LineCollider::Intersection(const RayCollider& ray)
     {
-        return CollisionIntersection_RayLine(ray.ray, line);
+        return CollisionIntersection_RayLine_Static(ray.ray, line);
     }
     bool LineCollider::Intersection(const LineCollider& line2)
     {
-        return CollisionIntersection_LineLine(line, line2.line);
+        return CollisionIntersection_LineLine_Static(line, line2.line);
     }
     ColliderType LineCollider::GetType() const
     {
@@ -77,9 +92,15 @@ namespace DeltaEngine
     }
 
     //RayColliders
+    RayCollider::RayCollider() :
+        ray{}
+    {}
+    RayCollider::RayCollider(Vector2 pt, Vector2 dir) :
+        ray{ pt,dir }
+    {}
     bool RayCollider::Intersection(const BoxCollider& aabb)
     {
-        return CollisionIntersection_RectRay(aabb._aabb, ray);
+        return CollisionIntersection_RectRay_Static(aabb._aabb, ray);
     }
     bool RayCollider::Intersection(const CircleCollider& circle)
     {
@@ -92,7 +113,7 @@ namespace DeltaEngine
     }
     bool RayCollider::Intersection(const LineCollider& line)
     {
-        return CollisionIntersection_RayLine(ray, line.line);
+        return CollisionIntersection_RayLine_Static(ray, line.line);
     }
 
     ColliderType RayCollider::GetType() const

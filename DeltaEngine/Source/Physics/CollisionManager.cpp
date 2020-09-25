@@ -19,7 +19,7 @@ namespace DeltaEngine
 	{
 		for (const SpriteRenderer* i : GameObjects)
 		{
-			if ((*main_char).collider.Intersection(i->collider))
+			if (main_char->collider.Intersection(i->collider))
 			{
 				std::cout << "Collided" << std::endl;
 			}

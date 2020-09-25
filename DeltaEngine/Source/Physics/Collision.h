@@ -13,45 +13,10 @@ prior written consent of DigiPen Institute of Technology is prohibited.
  /* End Header *******************************************************************/
 #pragma once
 #include "Math/Vector.h"
-#include <algorithm>
+#include "CollisionShapes.h"
+#include "DEpch.h"
 namespace DeltaEngine
 {
-    /**************************************************************************/
-    /*!
-        a struct for bounding boxes
-    */
-    /**************************************************************************/
-    struct DE_API AABB
-    {
-	public:
-		AABB(Vector2 min1,Vector2 max1) :
-			min{min1},
-			max{max1}
-		{}
-        Vector2 min;
-        Vector2 max;
-    };
-
-	struct DE_API LineSegment
-	{
-		Vector2	m_pt0;
-		Vector2	m_pt1;
-		Vector2	m_normal; //outward
-	};
-
-	struct DE_API Circle
-	{
-		Vector2  m_center;
-		float	m_radius;
-		float   m_mass{ 1.0f };
-	};
-
-	struct DE_API Ray
-	{
-		Vector2	m_pt0;
-		Vector2	m_dir;
-	};
-
 	void BuildLineSegment(LineSegment& lineSegment,
 		const  Vector2& pos,
 		float scale,
@@ -96,45 +61,25 @@ namespace DeltaEngine
 
 	int CollisionIntersection_RayCircle(const Ray& ray,								
 		const Circle& circle,														
-		float& interTime);															
+		float& interTime);																							
 
-	void CollisionResponse_CircleLineSegment(const Vector2& ptInter,
-		const Vector2& normal,
-		Vector2& ptEnd,															
-		Vector2& reflected);													
+	bool CollisionIntersection_RectRay_Static(const AABB& aabb, Ray r);
 
-	void CollisionResponse_CirclePillar(const Vector2& normal,
-		const float& interTime,														
-		const Vector2& ptStart,													
-		const Vector2& ptInter,													
-		Vector2& ptEnd,															
-		Vector2& reflectedVectorNormalized);									
+	bool CollisionIntersection_RayLine_Static(const Ray& ray, const LineSegment& line);
 
-	bool CollisionIntersection_RectRay(const AABB& aabb, Ray r);
+	bool CollisionIntersection_LineLine_Static(const LineSegment& line1, const LineSegment& line2);
 
-	bool CollisionIntersection_RayLine(const Ray& ray, const LineSegment& line);
-
-	bool CollisionIntersection_LineLine(const LineSegment& line1, const LineSegment& line2);
-
-	/******************************************************************************/
-	/*!
-		Calculates reflection when the circle hits another circle.
-		A reflection vector is calculated and the end point is also updated.
-
-		This calculation takes into account the mass of two circles.
-	 */
-	 /******************************************************************************/
-	void CollisionResponse_CircleCircle(Vector2& normal,						//Normal vector of reflection on collision time - input
-		const float interTime,														//Intersection time - input
-		Vector2& velA,															//Velocity of CircleA - input
-		const float& massA,															//Mass of CircleA - input
-		Vector2& interPtA,														//Intersection position of circle A at collision time - input
-		Vector2& velB,															//Velocity of CircleB - input
-		const float& massB,															//Mass of CircleB - input
-		Vector2& interPtB,														//Intersection position of circle B at collision time - input
-		Vector2& reflectedVectorA,												//Non-Normalized reflected vector of Circle A - output
-		Vector2& ptEndA,														//Final position of the circle A after reflection - output
-		Vector2& reflectedVectorB,												//Non-Normalized reflected vector of Circle B - output
-		Vector2& ptEndB);														//Final position of the circle B after reflection - output
+	void CollisionResponse_CircleCircle(Vector2& normal,						
+		const float interTime,													
+		Vector2& velA,															
+		const float& massA,														
+		Vector2& interPtA,														
+		Vector2& velB,															
+		const float& massB,														
+		Vector2& interPtB,														
+		Vector2& reflectedVectorA,												
+		Vector2& ptEndA,														
+		Vector2& reflectedVectorB,												
+		Vector2& ptEndB);														
 
 }

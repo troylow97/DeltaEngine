@@ -2,7 +2,8 @@
 #include "Collision.h"
 #include "Collider.h"
 #include "ActionList.h"
-#include "../Render/SpriteRenderer.h" //for testing
+#include "Render/SpriteRenderer.h" //for testing
+#include "CollisionResponse.h"
 #include <vector>
 
 namespace DeltaEngine
@@ -17,8 +18,7 @@ namespace DeltaEngine
 	public:
 		SpriteRenderer* main_char;
 		std::vector<SpriteRenderer*> GameObjects;
-		//std::vector<Collider> ColliderList;
-		//ActionList<> CollisionResolutions;
+		//std::vector<ActionList<>> Collision;
 	};
 
 }

@@ -6,6 +6,7 @@ namespace DeltaEngine
 
   enum class DE_API ColliderType
   {
+    NONE,
     BOX,
     CIRCLE,
     LINE,
@@ -30,6 +31,7 @@ namespace DeltaEngine
     // AABB AABB() = 0;
 
   public:
+    Collider() : center{ 0,0 }, shape{ ColliderType::NONE } {}
     virtual ~Collider() = default;
     virtual ColliderType GetType() const = 0;
     virtual bool Intersection(const BoxCollider& aabb) = 0;
@@ -44,7 +46,7 @@ namespace DeltaEngine
       AABB _aabb;
       Vector2 size; // Collider size
       BoxCollider();
-      BoxCollider(float, float, Vector2);
+      BoxCollider(Vector2, Vector2);
       virtual bool Intersection(const BoxCollider& aabb);
       virtual bool Intersection(const CircleCollider& circle);
       virtual bool Intersection(const RayCollider& ray);
@@ -56,6 +58,9 @@ namespace DeltaEngine
   {
   public:
       Circle circle;
+      CircleCollider();
+      CircleCollider(Vector2,float);
+      CircleCollider(Vector2, float,float);
       virtual bool Intersection(const BoxCollider& aabb);
       virtual bool Intersection(const CircleCollider& circle1);
       virtual bool Intersection(const RayCollider& ray);
@@ -67,6 +72,8 @@ namespace DeltaEngine
   {
   public:
       LineSegment line;
+      LineCollider();
+      LineCollider(Vector2, Vector2);
       virtual bool Intersection(const BoxCollider& aabb);
       virtual bool Intersection(const CircleCollider& circle);
       virtual bool Intersection(const RayCollider& ray);
@@ -78,6 +85,8 @@ namespace DeltaEngine
   {
   public:
       Ray ray;
+      RayCollider();
+      RayCollider(Vector2, Vector2);
       virtual bool Intersection(const BoxCollider& aabb);
       virtual bool Intersection(const CircleCollider& circle);
       virtual bool Intersection(const RayCollider& ray);
