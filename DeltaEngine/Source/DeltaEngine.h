@@ -2,7 +2,7 @@
 //For use by Delta Engine Applications
 
 #include "Application.h"
-#include "Core/Debug/Logger/Log.h"
+#include "Core/Debugging/Logger/Log.h"
 
 #include "Core/Math/Vector.h"
 #include "Core/Math/Color.h"

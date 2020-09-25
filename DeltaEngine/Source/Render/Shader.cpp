@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "Core/Debug/Logger/Log.h"
+#include "Core/Debugging/Logger/Log.h"
 
 namespace DeltaEngine
 {
