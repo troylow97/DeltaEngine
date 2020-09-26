@@ -49,8 +49,6 @@ void Application::Run()
   RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
   RenderModule::openGLSystem->Init();
 
-  Camera *mainCamera = new Camera();
-
   sprites.push_back( new SpriteRenderer() );
   sprites.push_back( new SpriteRenderer() );
   animator.push_back( new FrameAnimation() );

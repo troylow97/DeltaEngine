@@ -32,5 +32,21 @@ namespace DeltaEngine
 		{
 			return a + (b - a) * t;
 		}
+		int RoundDown(float value)
+		{
+			return static_cast<int>(value);
+		}
+		int RoundDownToNearest(float value, int multiple)
+		{
+			return static_cast<int>(value) - static_cast<int>(value) % multiple;
+		}
+		float RoundDownf(float value)
+		{
+			return static_cast<float>(static_cast<int>(value));
+		}
+		float RoundDownToNearestf(float value, int multiple)
+		{
+			return static_cast<float>(static_cast<int>(value) - static_cast<int>(value) % multiple);
+		}
 	}
 }

@@ -7,10 +7,10 @@ namespace DeltaEngine
 {
     struct CharacterInfo
     {
-        unsigned int textureID;
-        Vector2 size;
-        Vector2 bearing;
-        unsigned int advance;
+        unsigned int textureID = 0;
+        Vector2 size = Vector2();
+        Vector2 bearing = Vector2();
+        unsigned int advance = 0;
     };
 
     class Font

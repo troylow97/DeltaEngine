@@ -1,75 +1,189 @@
 #include "Gizmos.h"
-#include <GL/glew.h>
+#include "Shader.h"
+#include "Mesh.h"
+#include "Camera.h"
+#include "Core/Math/Math.h"
 
-namespace DeltaEngine
+namespace DeltaEngine::Gizmos
 {
-	namespace Gizmos
+	Shader* gizmoShader;
+	Color color = Color(0.0f, 1.0f, 0.0f, 0.5f);
+
+	void Init()
 	{
+		gizmoShader = new Shader("Shaders/Gizmo");
+	}
+	void Exit()
+	{
+		delete gizmoShader;
+	}
 
+	void SetColor(Color c)
+	{
+		color = c;
+	}
 
-		void Init()
+	void DrawWorldGrid()
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
+		Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+		Matrix4x4 model = Transform().LocalToWorldMatrix();
+		
+		int i = 0;
+
+		if (Camera::editorCamera->_size < 50)
 		{
+			Color col = Color(1.0f, 1.0f, 1.0f, 0.1f);
+			col.a = Math::Lerp(0.0f, 0.1f, Math::Clamp01((50 - Camera::editorCamera->_size) / 50));
 
+			gizmoShader->SetUniformMatrix4f("_M", model);
+			gizmoShader->SetUniformMatrix4f("_V", view);
+			gizmoShader->SetUniformMatrix4f("_P", proj);
+			gizmoShader->SetUniformColor4f("_Color", col);
+			gizmoShader->SetUniform1i("_Circle", 0);
 
-		}
-		void DrawWorldGrid()
-		{
+			std::vector<std::pair<Vector3, Vector3>> startEndPair;
+			i = Math::RoundDown(Camera::editorCamera->Min().y);
+			for (; i <= Camera::editorCamera->Max().y; ++i)
+				startEndPair.push_back({
+					Vector3(Camera::editorCamera->Min().x, static_cast<float>(i), 0.0f),
+					Vector3(Camera::editorCamera->Max().x, static_cast<float>(i), 0.0f) });
+			i = Math::RoundDown(Camera::editorCamera->Min().x);
+			for (; i <= Camera::editorCamera->Max().x; ++i)
+				startEndPair.push_back({
+					Vector3(static_cast<float>(i), Camera::editorCamera->Min().y, 0.0f),
+					Vector3(static_cast<float>(i), Camera::editorCamera->Max().y, 0.0f) });
 
-		}
-
-		void Draw2DBox(Vector3 position, Quaternion rotation, Vector3 scale)
-		{
-			Draw2DBox(Transform(position, rotation, scale));
-		}
-		void Draw2DBox(Transform transform)
-		{
-
-		}
-
-		void Draw2DBoxWire(Vector3 position, Quaternion rotation, Vector3 scale)
-		{
-			Draw2DBoxWire(Transform(position, rotation, scale));
-		}
-		void Draw2DBoxWire(Transform transform)
-		{
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-		}
-
-		void DrawCube(Vector3 position, Quaternion rotation, Vector3 scale)
-		{
-			DrawCube(Transform(position, rotation, scale));
-		}
-		void DrawCube(Transform transform)
-		{
-
-		}
-
-		void DrawCubeWire(Vector3 position, Quaternion rotation, Vector3 scale)
-		{
-			DrawCube(Transform(position, rotation, scale));
-		}
-		void DrawCubeWire(Transform transform)
-		{
-
-		}
-
-		void DrawSphere(Vector3 position, Quaternion rotation, Vector3 scale)
-		{
-			DrawSphere(Transform(position, rotation, scale));
-		}
-		void DrawSphere(Transform transform)
-		{
-
+			Mesh::DrawLines(startEndPair);
 		}
 
-		void DrawSphereWire(Vector3 position, Quaternion rotation, Vector3 scale)
+		if (Camera::editorCamera->_size > 5)
 		{
-			DrawSphereWire(Transform(position, rotation, scale));
-		}
-		void DrawSphereWire(Transform transform)
-		{
+			Color col = Color(1.0f, 1.0f, 1.0f, 0.1f);
+			if (Camera::editorCamera->_size < 25)
+				col.a = Math::Lerp(0.1f, 0.0f, Math::Clamp01((25 - Camera::editorCamera->_size) / 25));
 
+			gizmoShader->SetUniformMatrix4f("_M", model);
+			gizmoShader->SetUniformMatrix4f("_V", view);
+			gizmoShader->SetUniformMatrix4f("_P", proj);
+			gizmoShader->SetUniformColor4f("_Color", col);
+			gizmoShader->SetUniform1i("_Circle", 0);
+
+			std::vector<std::pair<Vector3, Vector3>> startEndPair;
+			i = Math::RoundDown(Camera::editorCamera->Min().y); i -= i % 10;
+			for (; i <= Camera::editorCamera->Max().y; i += 10)
+				startEndPair.push_back({
+					Vector3(Camera::editorCamera->Min().x, static_cast<float>(i), 0.0f),
+					Vector3(Camera::editorCamera->Max().x, static_cast<float>(i), 0.0f) });
+			i = Math::RoundDown(Camera::editorCamera->Min().x); i -= i % 10;
+			for (; i <= Camera::editorCamera->Max().x; i += 10)
+				startEndPair.push_back({
+					Vector3(static_cast<float>(i), Camera::editorCamera->Min().y, 0.0f),
+					Vector3(static_cast<float>(i), Camera::editorCamera->Max().y, 0.0f) });
+
+			Mesh::DrawLines(startEndPair);
 		}
-	};
+	}
+
+	void Draw2DBox(Vector3 position, Quaternion rotation, Vector3 scale)
+	{
+		Draw2DBox(Transform(position, rotation, scale));
+	}
+	void Draw2DBox(Transform transform)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
+		Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+		Matrix4x4 model = transform.LocalToWorldMatrix();
+
+		gizmoShader->SetUniformMatrix4f("_M", model);
+		gizmoShader->SetUniformMatrix4f("_V", view);
+		gizmoShader->SetUniformMatrix4f("_P", proj);
+		gizmoShader->SetUniformColor4f("_Color", color);
+		gizmoShader->SetUniform1i("_Circle", 0);
+
+		Mesh::DrawQuad();
+	}
+
+	void Draw2DWireBox(Vector3 position, Quaternion rotation, Vector3 scale)
+	{
+		Draw2DWireBox(Transform(position, rotation, scale));
+	}
+	void Draw2DWireBox(Transform transform)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
+		Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+		Matrix4x4 model = transform.LocalToWorldMatrix();
+
+		gizmoShader->SetUniformMatrix4f("_M", model);
+		gizmoShader->SetUniformMatrix4f("_V", view);
+		gizmoShader->SetUniformMatrix4f("_P", proj);
+		gizmoShader->SetUniformColor4f("_Color", color);
+		gizmoShader->SetUniform1i("_Circle", 0);
+
+		std::vector<std::pair<Vector3, Vector3>> startEndPair;
+		startEndPair.push_back({ Vector3(-0.5f,  0.5f, 0.0f), Vector3( 0.5f,  0.5f, 0.0f) });
+		startEndPair.push_back({ Vector3( 0.5f,  0.5f, 0.0f), Vector3( 0.5f, -0.5f, 0.0f) });
+		startEndPair.push_back({ Vector3( 0.5f, -0.5f, 0.0f), Vector3(-0.5f, -0.5f, 0.0f) });
+		startEndPair.push_back({ Vector3(-0.5f, -0.5f, 0.0f), Vector3(-0.5f,  0.5f, 0.0f) });
+
+		Mesh::DrawLines(startEndPair);
+	}
+
+	void Draw2DCircle(Vector3 position, Quaternion rotation, Vector3 scale)
+	{
+		Draw2DCircle(Transform(position, rotation, scale));
+	}
+	void Draw2DCircle(Transform transform)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
+		Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+		Matrix4x4 model = transform.LocalToWorldMatrix();
+
+		gizmoShader->SetUniformMatrix4f("_M", model);
+		gizmoShader->SetUniformMatrix4f("_V", view);
+		gizmoShader->SetUniformMatrix4f("_P", proj);
+		gizmoShader->SetUniformColor4f("_Color", color);
+		gizmoShader->SetUniform1i("_Circle", 1);
+
+		Mesh::DrawQuad();
+	}
+
+	void Draw2DWireCircle(Vector3 position, Quaternion rotation, Vector3 scale)
+	{
+		Draw2DWireCircle(Transform(position, rotation, scale));
+	}
+	void Draw2DWireCircle(Transform transform)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
+		Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+		Matrix4x4 model = transform.LocalToWorldMatrix();
+
+		gizmoShader->SetUniformMatrix4f("_M", model);
+		gizmoShader->SetUniformMatrix4f("_V", view);
+		gizmoShader->SetUniformMatrix4f("_P", proj);
+		gizmoShader->SetUniformColor4f("_Color", color);
+		gizmoShader->SetUniform1i("_Circle", 0);
+
+		std::vector<std::pair<Vector3, Vector3>> startEndPair;
+
+		int segments = 24;
+		for (float theta = 0; theta < segments; ++theta)
+		{
+			startEndPair.push_back({
+				Vector3(cosf(theta / segments * Math::pi * 2), sinf(theta / segments * Math::pi * 2), 0.0f) / 2,
+				Vector3(cosf((theta + 1) / segments * Math::pi * 2), sinf((theta + 1) / segments * Math::pi * 2), 0.0f) / 2 });
+		}
+
+		Mesh::DrawLines(startEndPair);
+	}
 }

@@ -3,6 +3,7 @@
 #include "Window.h"
 #include "Camera.h"
 #include "TextRenderer.h"
+#include "Gizmos.h"
 #include "Core/Debugging/Logger/Log.h"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
@@ -66,8 +67,10 @@ namespace DeltaEngine
 			// -----------------
 
 			// Initialize common meshes
-			Mesh::InitMesh();
+			Camera* editorCam = new Camera(true);
+			Mesh::Init();
 			Font::Init();
+			Gizmos::Init();
 			text = new TextRenderer();
 		}
 
@@ -108,20 +111,23 @@ namespace DeltaEngine
 				ImGui::Begin("Camera");
 				static float f = 0.0f;
 				ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
-				ImGui::DragFloat3("pos", (float*)&Camera::allCameras[0]->transform.position, 0.01f);
-				ImGui::DragFloat("size", (float*)&Camera::allCameras[0]->_size, 0.01f);
+				ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
+				ImGui::DragFloat("size", (float*)&Camera::editorCamera->_size, 0.01f);
 				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 				ImGui::End();
 			}
 			//ImGui::ShowDemoWindow();
 			ImGui::Render();
 			glViewport(0, 0, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
-			glClearColor(49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1);
+			glClearColor(71 / 255.0f, 71 / 255.0f, 71 / 255.0f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			Update();
-			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::allCameras[0]); });
-			std::for_each(ps.begin(), ps.end(), [](ParticleSystem* p) { p->Update(); p->Render(*Camera::allCameras[0]); });
-			text->Render(*Camera::allCameras[0]);
+			Gizmos::DrawWorldGrid();
+			Gizmos::Draw2DWireBox();
+			Gizmos::Draw2DWireCircle();
+			//std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::editorCamera); });
+			//std::for_each(ps.begin(), ps.end(), [](ParticleSystem* p) { p->Update(); p->Render(*Camera::editorCamera); });
+			//text->Render(*Camera::editorCamera);
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 			// Update and Render additional Platform Windows
@@ -143,6 +149,7 @@ namespace DeltaEngine
 
 		void OpenGLSystem::Exit()
 		{
+			Gizmos::Exit();
 			Mesh::Exit();
 			CleanRenderingEnvironment();
 			DeltaEngine_CORE_INFO("OpenGL system exited");

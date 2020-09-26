@@ -225,33 +225,34 @@ namespace DeltaEngine
 	// default mesh is a unit square (quad)
 	Mesh::Mesh()
 	{
-		vertices.push_back(Vector3(-0.5f,  0.5f, 0.0f));
-		vertices.push_back(Vector3( 0.5f,  0.5f, 0.0f));
-		vertices.push_back(Vector3( 0.5f, -0.5f, 0.0f));
-		vertices.push_back(Vector3(-0.5f, -0.5f, 0.0f));
+		//vertices.push_back(Vector3(-0.5f,  0.5f, 0.0f));
+		//vertices.push_back(Vector3( 0.5f,  0.5f, 0.0f));
+		//vertices.push_back(Vector3( 0.5f, -0.5f, 0.0f));
+		//vertices.push_back(Vector3(-0.5f, -0.5f, 0.0f));
 
-		colors.push_back(Color::white());
-		colors.push_back(Color::white());
-		colors.push_back(Color::white());
-		colors.push_back(Color::white());
+		//colors.push_back(Color::white());
+		//colors.push_back(Color::white());
+		//colors.push_back(Color::white());
+		//colors.push_back(Color::white());
 
-		texCoords.push_back(Vector2(0.0f, 0.0f));
-		texCoords.push_back(Vector2(1.0f, 0.0f));
-		texCoords.push_back(Vector2(1.0f, 1.0f));
-		texCoords.push_back(Vector2(0.0f, 1.0f));
+		//texCoords.push_back(Vector2(0.0f, 0.0f));
+		//texCoords.push_back(Vector2(1.0f, 0.0f));
+		//texCoords.push_back(Vector2(1.0f, 1.0f));
+		//texCoords.push_back(Vector2(0.0f, 1.0f));
 
-		indices.push_back(0);
-		indices.push_back(1);
-		indices.push_back(2);
-		indices.push_back(2);
-		indices.push_back(3);
-		indices.push_back(0);
+		//indices.push_back(0);
+		//indices.push_back(1);
+		//indices.push_back(2);
+		//indices.push_back(2);
+		//indices.push_back(3);
+		//indices.push_back(0);
 
 		AssertProperties();
 
 		vao.Bind();
 		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
-		ibo.InitData(indices.data(), 6);
+		if (indices.size())
+			ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
 
 		VertexBufferLayout layout;
 		layout.Push<float>(3);
@@ -259,11 +260,51 @@ namespace DeltaEngine
 		layout.Push<float>(2);
 		vao.AddBuffer(vbo, layout);
 
-		ibo.Bind();
+		if (indices.size())
+			ibo.Bind();
 
 		vao.Unbind();
 		vbo.Unbind();
-		ibo.Unbind();
+		if (indices.size())
+			ibo.Unbind();
+	}
+	void Mesh::SetVertices(std::vector<Vector3> v)
+	{
+		vertices = v;
+		AssertProperties();
+		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
+	}
+	void Mesh::SetColors(std::vector<Color> c)
+	{
+		colors = c;
+		AssertProperties();
+		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
+	}
+	void Mesh::SetUVs(std::vector<Vector2> v)
+	{
+		texCoords = v;
+		AssertProperties();
+		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
+	}
+	void Mesh::SetIndices(std::vector<unsigned int> i)
+	{
+		indices = i;
+
+		if (indices.size())
+			ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
+
+		VertexBufferLayout layout;
+		layout.Push<float>(3);
+		layout.Push<float>(4);
+		layout.Push<float>(2);
+		vao.AddBuffer(vbo, layout);
+
+		if (indices.size())
+			ibo.Bind();
+	}
+	void Mesh::MarkDynamic()
+	{
+		dynamic = true;
 	}
 
 	void Mesh::Draw()
@@ -272,8 +313,11 @@ namespace DeltaEngine
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-		ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
-		ibo.Bind();
+		if (indices.size())
+		{
+			ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
+			ibo.Bind();
+		}
 
 		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)), dynamic);
 		vbo.Bind();
@@ -282,20 +326,91 @@ namespace DeltaEngine
 
 		vao.Bind();
 
-		GLCall(glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr));
+		if (indices.size())
+		{
+			GLCall(glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr));
+		}
+		else
+		{
+			GLCall(glDrawArrays(GL_TRIANGLES, 0, static_cast<unsigned int>(vertices.size())));
+		}
 
 		vao.Unbind();
+		if (indices.size())
+			ibo.Unbind();
+	}
+	void Mesh::DrawWireframe()
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		if (indices.size())
+		{
+			ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
+			ibo.Bind();
+		}
+
+		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)), dynamic);
+		vbo.Bind();
+
+		vbo.Unbind();
+
+		vao.Bind();
+
+		if (indices.size())
+		{
+			GLCall(glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr));
+		}
+		else
+		{
+			GLCall(glDrawArrays(GL_TRIANGLES, 0, static_cast<unsigned int>(vertices.size())));
+		}
+
+		vao.Unbind();
+		if (indices.size())
+			ibo.Unbind();
 	}
 
-	void Mesh::MarkDynamic()
-	{
-		dynamic = true;
-	}
+	Mesh* quad;
+	Mesh* line;
 
-	Mesh* Mesh::quad;
-	void Mesh::InitMesh()
+	void Mesh::Init()
 	{
+		// temp vectors
+		std::vector<Vector3> verts;
+		std::vector<Vector2> uvs;
+		std::vector<unsigned int> inds;
+
+		// init quad
 		quad = new Mesh();
+
+		verts.push_back(Vector3(-0.5f,  0.5f, 0.0f));
+		verts.push_back(Vector3( 0.5f,  0.5f, 0.0f));
+		verts.push_back(Vector3( 0.5f, -0.5f, 0.0f));
+		verts.push_back(Vector3(-0.5f, -0.5f, 0.0f));
+		quad->SetVertices(verts);
+
+		uvs.push_back(Vector2(0.0f, 0.0f));
+		uvs.push_back(Vector2(1.0f, 0.0f));
+		uvs.push_back(Vector2(1.0f, 1.0f));
+		uvs.push_back(Vector2(0.0f, 1.0f));
+		quad->SetUVs(uvs);
+
+		inds.push_back(0);
+		inds.push_back(1);
+		inds.push_back(2);
+		inds.push_back(2);
+		inds.push_back(3);
+		inds.push_back(0);
+		quad->SetIndices(inds);
+
+		verts.clear();
+		uvs.clear();
+		inds.clear();
+
+		// init line and circle with empty meshes, they should be called for debug purposes only
+		line = new Mesh();
 	}
 
 	void Mesh::Exit()
@@ -305,6 +420,10 @@ namespace DeltaEngine
 
 	void Mesh::DrawQuad()
 	{
+		quad->texCoords[0] = Vector2(0, 0);
+		quad->texCoords[1] = Vector2(1, 0);
+		quad->texCoords[2] = Vector2(1, 1);
+		quad->texCoords[3] = Vector2(0, 1);
 		quad->Draw();
 	}
 
@@ -315,11 +434,51 @@ namespace DeltaEngine
 		quad->texCoords[2] = Vector2(offsetX + tileX, offsetY + tileY);
 		quad->texCoords[3] = Vector2(offsetX, offsetY + tileY);
 		quad->Draw();
-		quad->texCoords[0] = Vector2(0, 0);
-		quad->texCoords[1] = Vector2(1, 0);
-		quad->texCoords[2] = Vector2(1, 1);
-		quad->texCoords[3] = Vector2(0, 1);
 	}
 
-	#pragma endregion
+	void Mesh::DrawLine(Vector3 start, Vector3 end)
+	{
+		std::vector<Vector3> verts;
+		verts.push_back(start);
+		verts.push_back(end);
+
+		line->SetVertices(verts);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		line->vbo.InitData(line->VerticesDataFormat().data(), static_cast<unsigned int>(line->vertices.size() * 9 * sizeof(float)));
+		line->vbo.Bind();
+
+		line->vbo.Unbind();
+
+		line->vao.Bind();
+
+		GLCall(glDrawArrays(GL_LINE_STRIP, 0, static_cast<unsigned int>(line->vertices.size())));
+		
+		line->vao.Unbind();
+	}
+
+	void Mesh::DrawLines(std::vector<std::pair<Vector3, Vector3>> startEndPair)
+	{
+		std::vector<Vector3> verts;
+		for (auto a : startEndPair)
+		{
+			verts.push_back(a.first);
+			verts.push_back(a.second);
+		}
+
+		line->SetVertices(verts);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		line->vbo.InitData(line->VerticesDataFormat().data(), static_cast<unsigned int>(line->vertices.size() * 9 * sizeof(float)));
+		line->vbo.Bind();
+
+		line->vbo.Unbind();
+
+		line->vao.Bind();
+
+		GLCall(glDrawArrays(GL_LINES, 0, static_cast<unsigned int>(line->vertices.size())));
+
+		line->vao.Unbind();
+	}
+#pragma endregion
 }
