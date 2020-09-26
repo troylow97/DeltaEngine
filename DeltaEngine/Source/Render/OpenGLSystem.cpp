@@ -3,7 +3,7 @@
 #include "Window.h"
 #include "Camera.h"
 #include "TextRenderer.h"
-#include "Gizmos.h"
+#include "Core/Debugging/Gizmos.h"
 #include "Core/Debugging/Logger/Log.h"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
@@ -68,6 +68,7 @@ namespace DeltaEngine
 
 			// Initialize common meshes
 			Camera* editorCam = new Camera(true);
+			editorCam->backgroundColor = Color(71 / 255.0f, 71 / 255.0f, 71 / 255.0f, 1);
 			Mesh::Init();
 			Font::Init();
 			Gizmos::Init();
@@ -125,9 +126,9 @@ namespace DeltaEngine
 			Gizmos::DrawWorldGrid();
 			Gizmos::Draw2DWireBox();
 			Gizmos::Draw2DWireCircle();
-			//std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::editorCamera); });
-			//std::for_each(ps.begin(), ps.end(), [](ParticleSystem* p) { p->Update(); p->Render(*Camera::editorCamera); });
-			//text->Render(*Camera::editorCamera);
+			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::editorCamera); });
+			std::for_each(ps.begin(), ps.end(), [](ParticleSystem* p) { p->Update(); p->Render(*Camera::editorCamera); });
+			text->Render(*Camera::editorCamera);
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 			// Update and Render additional Platform Windows

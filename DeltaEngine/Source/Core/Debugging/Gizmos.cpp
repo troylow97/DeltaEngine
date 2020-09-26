@@ -1,7 +1,7 @@
 #include "Gizmos.h"
-#include "Shader.h"
-#include "Mesh.h"
-#include "Camera.h"
+#include "Render/Shader.h"
+#include "Render/Mesh.h"
+#include "Render/Camera.h"
 #include "Core/Math/Math.h"
 
 namespace DeltaEngine::Gizmos
