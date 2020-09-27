@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include "Shader.h"
 #include "Camera.h"
+#include "Physics/Collider.h"
 
 namespace DeltaEngine
 {
@@ -16,7 +17,7 @@ namespace DeltaEngine
 		Shader* shader;
 		Transform transform;
 		Color color;
-
+		BoxCollider collider;
 		Vector2 offset, tiling;
 
 		SpriteRenderer();

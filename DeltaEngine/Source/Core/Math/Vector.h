@@ -23,6 +23,7 @@ namespace DeltaEngine
 		float Magnitude() const;
 		float SqrMagnitude() const;
 		float DotProduct(const Vector2& a) const;
+		float Vector2::CrossProduct_Magnitude(const Vector2& a) const;
 #pragma region Vector2 Operators
 		Vector2& operator=(const Vector2& a);
 		Vector2 operator+(const Vector2 a) const;

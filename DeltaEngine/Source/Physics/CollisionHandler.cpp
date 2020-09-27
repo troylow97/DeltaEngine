@@ -1,8 +1,8 @@
+/*
 #include "CollisionHandler.h"
 
 namespace DeltaEngine
 {
-
   void CollisionHandler::OnEnter(Collider &col)
   {
     _enter.Invoke(col);
@@ -43,3 +43,4 @@ namespace DeltaEngine
   }
 
 } // namespace DeltaEngine
+*/

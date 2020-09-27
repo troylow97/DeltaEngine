@@ -8,7 +8,7 @@ class RingBuffer
 {
 
 public:
-    using Size = uint32_t;
+    using Size = uint32_t; 
     using Index = uint32_t;
 
     /***********************************************************************/

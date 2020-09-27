@@ -11,119 +11,11 @@ Reproduction or disclosure of this file or its contents without the
 prior written consent of DigiPen Institute of Technology is prohibited.
  */
  /******************************************************************************/
-#include "Collision.h"
-#include <algorithm>
+#include "Physics/Collision.h"
+#include "Core/Math/Math.h"
 
 namespace DeltaEngine
 {
-	float g_dt; //to be removed
-
-	/**************************************************************************/
-	/*!
-	  \brief	Test for intersection between two rectangular bounded objects
-	  \param	aabb1 AABB of the first object
-	  \param	vel1  Velocity of the first object
-	  \param	aabb2 AABB of the second object
-	  \param	vel2  Velocity of the second object
-	*/
-	/**************************************************************************/
-	bool CollisionIntersection_RectRect(const AABB& aabb1, const Vector2& vel1,
-		const AABB& aabb2, const Vector2& vel2)
-	{
-		//Static Collision Check
-		if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
-			return true;
-	
-		float tFirst = 0;
-		float tLast = g_dt;
-		Vector2 RelativeVel;
-		// getting relative velocity
-		RelativeVel.x = vel2.x - vel1.x;
-		RelativeVel.y = vel2.y - vel1.y;
-	
-		if (RelativeVel.x == 0.0f && RelativeVel.y == 0.0f)
-			return false;
-	
-		// checking for case 1
-		if (RelativeVel.x < 0.0f)
-		{
-			// checking for case 4
-			if (aabb1.min.x > aabb2.max.x) // check A min < B max
-				return false;
-			if (aabb1.max.x < aabb2.min.x) // check A max < B min
-				tFirst = std::max((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tFirst);
-			if (aabb1.min.x < aabb2.max.x) // check A min < B Max
-				tLast = std::min((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tLast);
-		}
-		else if (RelativeVel.x > 0.0f)  //caculate the x axis of the AABB when RelativeVel is < 0
-		{
-			// checking for case 2
-			if (aabb1.max.x < aabb2.min.x) //check A max < B min
-				return false;
-			if (aabb1.min.x > aabb2.max.x) //check A min > B max
-				tFirst = std::max((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tFirst);
-			if (aabb1.max.x > aabb2.min.x) //check A min > B min
-				tLast = std::min((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tLast);
-		}
-		// checking for case 3
-		else if ((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x))
-		{
-			return false;
-		}
-	
-	
-		// checking for case 1
-		if (RelativeVel.y < 0.0f)
-		{
-			// checking for case 4
-			if (aabb1.min.y > aabb2.max.y) // check A min < B max
-				return false;
-			if (aabb1.max.y < aabb2.min.y) // check A max < B min
-				tFirst = std::max((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tFirst);
-			if (aabb1.min.y < aabb2.max.y) // check A min < B Max
-				tLast = std::min((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tLast);
-		}
-		else if (RelativeVel.y > 0.0f)
-		{
-			// checking for case 2
-			if (aabb1.max.y < aabb2.min.y) //check A max < B min
-				return false;
-			if (aabb1.min.y > aabb2.max.y) //check A min > B max
-				tFirst = std::max((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tFirst);
-			if (aabb1.max.y > aabb2.min.y) //check A min > B min
-				tLast = std::min((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tLast);
-		}
-		// checking for case 3
-		else if ((aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y))
-		{
-			return false;
-		}
-	
-		// checking for case 5
-		if (tFirst > tLast)
-			return false;
-		return true;
-	}
-
-	//need to test
-	bool CollisionIntersection_RectRay(const AABB& aabb,Ray r)
-	{
-		float tx1 = (aabb.min.x - r.m_pt0.x) * r.m_dir.x;
-		float tx2 = (aabb.max.x - r.m_pt0.x) * r.m_dir.x;
-
-		float tmin = std::min(tx1, tx2);
-		float tmax = std::max(tx1, tx2);
-
-		float ty1 = (aabb.min.y - r.m_pt0.y) * r.m_dir.y;
-		float ty2 = (aabb.max.y - r.m_pt0.y) * r.m_dir.y;
-
-		tmin = std::max(tmin, std::min(ty1, ty2));
-		tmax = std::min(tmax, std::max(ty1, ty2));
-
-		return tmax >= tmin;
-	}
-
-
 	/******************************************************************************/
 	/*!
 		Builds a line segment when given a position, scale and direction.
@@ -154,6 +46,158 @@ namespace DeltaEngine
 		lineSegment.m_normal.y = -v.x;
 
 		lineSegment.m_normal = lineSegment.m_normal.Normalize();
+	}
+
+	/**************************************************************************/
+	/*!
+	  \brief	Test for intersection between two rectangular bounded objects
+	  \param	aabb1 AABB of the first object
+	  \param	vel1  Velocity of the first object
+	  \param	aabb2 AABB of the second object
+	  \param	vel2  Velocity of the second object
+	*/
+	/**************************************************************************/
+	//bool CollisionIntersection_RectRect(const AABB& aabb1, const Vector2& vel1,
+	//	const AABB& aabb2, const Vector2& vel2)
+	//{
+	//	//Static Collision Check
+	//	if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
+	//		return true;
+	//
+	//	float tFirst = 0;
+	//	float tLast = g_dt;
+	//	Vector2 RelativeVel;
+	//	// getting relative velocity
+	//	RelativeVel.x = vel2.x - vel1.x;
+	//	RelativeVel.y = vel2.y - vel1.y;
+	//
+	//	if (RelativeVel.x == 0.0f && RelativeVel.y == 0.0f)
+	//		return false;
+	//
+	//	// checking for case 1
+	//	if (RelativeVel.x < 0.0f)
+	//	{
+	//		// checking for case 4
+	//		if (aabb1.min.x > aabb2.max.x) // check A min < B max
+	//			return false;
+	//		if (aabb1.max.x < aabb2.min.x) // check A max < B min
+	//			tFirst = std::max((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tFirst);
+	//		if (aabb1.min.x < aabb2.max.x) // check A min < B Max
+	//			tLast = std::min((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tLast);
+	//	}
+	//	else if (RelativeVel.x > 0.0f)  //caculate the x axis of the AABB when RelativeVel is < 0
+	//	{
+	//		// checking for case 2
+	//		if (aabb1.max.x < aabb2.min.x) //check A max < B min
+	//			return false;
+	//		if (aabb1.min.x > aabb2.max.x) //check A min > B max
+	//			tFirst = std::max((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tFirst);
+	//		if (aabb1.max.x > aabb2.min.x) //check A min > B min
+	//			tLast = std::min((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tLast);
+	//	}
+	//	// checking for case 3
+	//	else if ((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x))
+	//	{
+	//		return false;
+	//	}
+	//
+	//
+	//	// checking for case 1
+	//	if (RelativeVel.y < 0.0f)
+	//	{
+	//		// checking for case 4
+	//		if (aabb1.min.y > aabb2.max.y) // check A min < B max
+	//			return false;
+	//		if (aabb1.max.y < aabb2.min.y) // check A max < B min
+	//			tFirst = std::max((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tFirst);
+	//		if (aabb1.min.y < aabb2.max.y) // check A min < B Max
+	//			tLast = std::min((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tLast);
+	//	}
+	//	else if (RelativeVel.y > 0.0f)
+	//	{
+	//		// checking for case 2
+	//		if (aabb1.max.y < aabb2.min.y) //check A max < B min
+	//			return false;
+	//		if (aabb1.min.y > aabb2.max.y) //check A min > B max
+	//			tFirst = std::max((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tFirst);
+	//		if (aabb1.max.y > aabb2.min.y) //check A min > B min
+	//			tLast = std::min((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tLast);
+	//	}
+	//	// checking for case 3
+	//	else if ((aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y))
+	//	{
+	//		return false;
+	//	}
+	//
+	//	// checking for case 5
+	//	if (tFirst > tLast)
+	//		return false;
+	//	return true;
+	//}
+
+	bool CollisionIntersection_RectRect_Static(const AABB& aabb1, const AABB& aabb2)
+	{
+		if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
+			return true;
+
+		return false;
+	}
+
+	//need to test
+	bool CollisionIntersection_RectRay_Static(const AABB& aabb, Ray r)
+	{
+		float tx1 = (aabb.min.x - r.m_pt0.x) * r.m_dir.x;
+		float tx2 = (aabb.max.x - r.m_pt0.x) * r.m_dir.x;
+
+		float tmin = Math::math_max(tx1, tx2);
+		float tmax = Math::math_min(tx1, tx2);
+
+		float ty1 = (aabb.min.y - r.m_pt0.y) * r.m_dir.y;
+		float ty2 = (aabb.max.y - r.m_pt0.y) * r.m_dir.y;
+
+		tmin = Math::math_max(tmin, Math::math_min(ty1, ty2));
+		tmax = Math::math_min(tmax, Math::math_max(ty1, ty2));
+
+		return tmax >= tmin;
+	}
+
+	bool CollisionIntersection_RectCircle_Static(const AABB& aabb1, const Circle& circle)
+	{
+		// temporary variables to set edges for testing
+
+		Vector2 size;
+		Vector2 center;
+		size.x = aabb1.max.x - aabb1.min.x;
+		size.y = aabb1.max.y - aabb1.min.y;
+		center.x = aabb1.min.x + 0.5 * size.x;
+		center.y = aabb1.max.x + 0.5 * size.y;
+		Vector2 temp_vec = center;
+		// which edge is closest?
+		if (circle.m_center.x < center.x)         temp_vec.x = center.x;                  // left edge
+		else if (circle.m_center.x > center.x + size.x) temp_vec.x = center.x + size.x;   // right edge
+		if (circle.m_center.y < center.y)         temp_vec.y = center.y;                  // top edge
+		else if (circle.m_center.y > center.y + size.y) temp_vec.y = center.y + size.y;   // bottom edge
+
+		// get distance from closest edges
+		Vector2 dist = { center.x - temp_vec.x,center.y - temp_vec.y };
+		float distance = sqrt((dist.x * dist.x) + (dist.y * dist.y));
+
+		// if the distance is less than the radius, collision!
+		if (distance <= circle.m_radius)
+			return true;
+
+		return false;
+	}
+
+	bool CollisionIntersection_RectLine_Static(const AABB& aabb, const LineSegment& line)
+	{
+		if (((line.m_pt0.x > aabb.min.x&& line.m_pt0.x < aabb.max.x) || (line.m_pt1.x > aabb.min.x&& line.m_pt1.x < aabb.max.x)) &&
+			((line.m_pt0.y > aabb.min.y&& line.m_pt0.y < aabb.max.y) || (line.m_pt1.y > aabb.min.y&& line.m_pt1.y < aabb.max.y)))
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	/******************************************************************************/
@@ -255,6 +299,22 @@ namespace DeltaEngine
 
 	}
 
+	bool CollisionIntersection_CircleLineSegment_Static(const Circle& circle, const LineSegment& line)
+	{
+		if ((line.m_pt0.x - circle.m_center.x) * (line.m_pt0.x - circle.m_center.x) + (line.m_pt0.y - circle.m_center.y) * (line.m_pt0.y - circle.m_center.y) <=
+			(line.m_pt1.x - line.m_pt0.x) * (line.m_pt1.x - line.m_pt0.x) + (line.m_pt1.y - line.m_pt0.y) + (line.m_pt1.y - line.m_pt0.y))
+		{
+			return true;
+		}
+		if ((line.m_pt1.x - circle.m_center.x) * (line.m_pt1.x - circle.m_center.x) + (line.m_pt1.y - circle.m_center.y) * (line.m_pt1.y - circle.m_center.y) <=
+			(line.m_pt1.x - line.m_pt0.x) * (line.m_pt1.x - line.m_pt0.x) + (line.m_pt1.y - line.m_pt0.y) + (line.m_pt1.y - line.m_pt0.y))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	/******************************************************************************/
 	/*!
 		Checks to see if the ball bumps onto any edges
@@ -310,19 +370,19 @@ namespace DeltaEngine
 			{
 				if (m1 > 0)
 				{
-					float dist1 = M.DotProduct(lineSeg.m_pt1 - circle.m_center); //BsP1.M
+					float dist1 = static_cast<float>(M.DotProduct(lineSeg.m_pt1 - circle.m_center)); //BsP1.M
 					if (abs(dist1) > circle.m_radius)
 					{
 						return 0;
 					}
-					float H = sqrt(circle.m_radius * circle.m_radius - dist1 * dist1);
+					float H = static_cast<float>(sqrt(circle.m_radius * circle.m_radius - dist1 * dist1));
 					interTime = (m1 - H) / V.Magnitude();
 					if (interTime <= 1)
 					{
 						//Calculate intersection and normal for reflection
 						interPt = circle.m_center + V * interTime;
 						normalAtCollision = interPt - lineSeg.m_pt1;
-						normalAtCollision =  normalAtCollision.Normalize();
+						normalAtCollision = normalAtCollision.Normalize();
 						return 1;
 					}
 				}
@@ -365,8 +425,8 @@ namespace DeltaEngine
 				}
 				else
 				{
-					float H = sqrt(circle.m_radius * circle.m_radius - dist0 * dist0);
-					interTime = (m0 - H) / V.Magnitude();
+					float H = static_cast<float>(sqrt(circle.m_radius * circle.m_radius - dist0 * dist0));
+					interTime = static_cast<float>((m0 - H) / V.Magnitude());
 					if (interTime <= 1)
 					{
 						//Calculate intersection and normal for reflection
@@ -385,8 +445,8 @@ namespace DeltaEngine
 				}
 				else
 				{
-					float H = sqrt(circle.m_radius * circle.m_radius - dist1 * dist1);
-					interTime = (m1 - H) / V.Magnitude();
+					float H = static_cast<float>(sqrt(circle.m_radius * circle.m_radius - dist1 * dist1));
+					interTime = static_cast<float>((m1 - H) / V.Magnitude());
 					if (interTime <= 1)
 					{
 						//Calculate intersection and normal for reflection
@@ -437,6 +497,22 @@ namespace DeltaEngine
 		return 0;
 	}
 
+	bool CollisionIntersecction_CircleCircle_Static(const Circle& circle1, const Circle& circle2)
+	{
+		//(x2 - x1) ^ 2 + (y1 - y2) ^ 2 <= (r1 + r2) ^ 2
+		if
+			(
+			(circle2.m_center.x - circle1.m_center.x) * (circle2.m_center.x - circle1.m_center.x) +
+				(circle2.m_center.y - circle1.m_center.y) * (circle2.m_center.y - circle1.m_center.y) <=
+				(circle1.m_radius + circle2.m_radius) * (circle1.m_radius + circle2.m_radius)
+				)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	/******************************************************************************/
 	/*!
 		Calculates if a ray and a circle intersects.
@@ -482,84 +558,38 @@ namespace DeltaEngine
 		return 0;
 	}
 
-	/******************************************************************************/
-	/*!
-		Calculates reflection when the circle hits a line.
-		A reflection vector is calculated and the end point is also updated.
-	 */
-	 /******************************************************************************/
-	void CollisionResponse_CircleLineSegment(const  Vector2& interPt,
-		const  Vector2& normal,
-		Vector2& ptEnd,
-		Vector2& reflected)
+	bool CollisionIntersection_RayLine_Static(const Ray& ray, const LineSegment& line)
 	{
-		//penetration is how much excess your velocity will go through
-		Vector2 penetration = ptEnd - interPt;
+		Vector2 v1 = ray.m_pt0 - line.m_pt0;
+		Vector2 v2 = line.m_pt1 - line.m_pt0;
+		Vector2 v3 = Vector2(-ray.m_dir.y, ray.m_dir.x);
 
-		//calculate the reflection vector based on direction of ball and normal
-		float temp = penetration.DotProduct(normal);
-		reflected = penetration - normal * 2 * temp;
+		float dot = v2.DotProduct(v3);
+		if (abs(dot) < 0.000001)
+			return -1.0f;
 
-		//update ptEnd which is the next position of the ball
-		ptEnd = interPt + reflected;
-		reflected = reflected.Normalize();
+		float t1 = v2.CrossProduct_Magnitude(v1) / dot;
+		float t2 = v1.DotProduct(v3) / dot;
+
+		if (t1 >= 0.0 && (t2 >= 0.0 && t2 <= 1.0))
+			return t1;
+
+		return -1.0f;
 	}
 
-	/******************************************************************************/
-	/*!
-		Calculates reflection when the circle hits a pillar.
-		A reflection vector is calculated and the end point is also updated.
-	 */
-	 /******************************************************************************/
-	void CollisionResponse_CirclePillar(Vector2& normal,
-		const float& interTime,
-		const Vector2& ptStart,
-		const Vector2& ptInter,
-		Vector2& ptEnd,
-		Vector2& reflectedVectorNormalized)
+	bool CollisionIntersection_LineLine_Static(const LineSegment& line, const LineSegment& line2)
 	{
-		//penetration is how much excess your velocity will go through
-		Vector2 penetration = ptStart - ptInter;
+		float denominator = ((line.m_pt1.x - line.m_pt0.x) * (line2.m_pt1.y - line2.m_pt0.y)) - ((line.m_pt1.y - line.m_pt0.y) * (line2.m_pt1.x - line2.m_pt0.x));
+		float numerator1 = ((line.m_pt0.y - line2.m_pt0.y) * (line2.m_pt1.x - line2.m_pt0.x)) - ((line.m_pt0.x - line2.m_pt0.x) * (line2.m_pt1.y - line2.m_pt0.y));
+		float numerator2 = ((line.m_pt0.y - line2.m_pt0.y) * (line.m_pt1.x - line.m_pt0.x)) - ((line.m_pt0.x - line2.m_pt0.x) * (line.m_pt1.y - line.m_pt0.y));
 
-		//calculate the reflection vector based on direction of ball and normal
-		reflectedVectorNormalized = (((normal * (penetration.DotProduct(normal))) * 2) - penetration).Normalize();
+		// Detect coincident lines (has a problem)
+		if (denominator == 0) return numerator1 == 0 && numerator2 == 0;
 
-		//update ptEnd which is the next position of the ball
-		float v = (ptEnd - ptStart).Magnitude();
-		ptEnd = ptInter + reflectedVectorNormalized * (1 - interTime) * v;
-	}
+		float r = numerator1 / denominator;
+		float s = numerator2 / denominator;
 
-	/******************************************************************************/
-	/*!
-		Calculates reflection when the circle hits another circle.
-		A reflection vector is calculated and the end point is also updated.
-
-		This calculation takes into account the mass of two circles.
-	 */
-	 /******************************************************************************/
-	void CollisionResponse_CircleCircle(Vector2& normal,
-		const float interTime,
-		Vector2& velA,
-		const float& massA,
-		Vector2& interPtA,
-		Vector2& velB,
-		const float& massB,
-		Vector2& interPtB,
-		Vector2& reflectedVectorA,
-		Vector2& ptEndA,
-		Vector2& reflectedVectorB,
-		Vector2& ptEndB)
-	{
-		//get the direction of reflection using dot product
-		float aA = velA.DotProduct(normal);
-		float aB = velB.DotProduct(normal);
-
-		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-		reflectedVectorA = velA - normal * massB * (2 * (aA - aB) / (massA + massB));
-		reflectedVectorB = velB + normal * massA * (2 * (aA - aB) / (massA + massB));
-
-		//update the end points of where the two circles will end up
-		ptEndA = interPtA + reflectedVectorA * (1.0f - interTime);
-		ptEndB = interPtB + reflectedVectorB * (1.0f - interTime);
+		return (r >= 0 && r <= 1) && (s >= 0 && s <= 1);
 	}
 }
+

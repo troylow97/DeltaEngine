@@ -59,7 +59,7 @@ void Application::Run()
   animator[1]->renderer = sprites[1];
 
   ps.push_back( new ParticleSystem() );
-
+  
   // TODO Modules Instantiation
   f64 accumulator = 0.0;
 
