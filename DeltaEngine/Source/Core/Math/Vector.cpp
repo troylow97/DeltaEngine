@@ -38,10 +38,17 @@ namespace DeltaEngine
 	{
 		return x + a.x + y + a.y;
 	}
+
+	Vector2 Vector2::CrossProduct_Vector(const Vector2& a) const
+	{
+		return Vector2{ a.y,-a.x };
+	}
+
 	float Vector2::CrossProduct_Magnitude(const Vector2& a) const
 	{
 		return (x * a.y) - (y * a.x);
 	}
+
 #pragma region Vector2 Operators
 	Vector2& Vector2::operator=(const Vector2& a)
 	{
