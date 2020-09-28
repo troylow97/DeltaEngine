@@ -23,5 +23,9 @@ namespace DeltaEngine
 		float Clamp(float value, float min, float max);
 		float Clamp01(float value);
 		float Lerp(float a, float b, float t);
+		int RoundDown(float value);
+		int RoundDownToNearest(float value, int multiple);
+		float RoundDownf(float value);
+		float RoundDownToNearestf(float value, int multiple);
 	}
 }

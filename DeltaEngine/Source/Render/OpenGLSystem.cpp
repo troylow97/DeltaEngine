@@ -2,7 +2,9 @@
 #include "OpenGLSystem.h"
 #include "Window.h"
 #include "Camera.h"
-#include "TextRenderer.h"
+#include "Mesh.h"
+#include "Font.h"
+#include "Core/Debugging/Gizmos.h"
 #include "Core/Debugging/Logger/Log.h"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
@@ -13,7 +15,9 @@ namespace DeltaEngine
 {
 	namespace RenderModule
 	{
-		TextRenderer* text;
+		OpenGLSystem* openGLSystem;
+		std::vector<Renderer*> allRenderers;
+
 		OpenGLSystem::OpenGLSystem()
 			: m_wglDC{}, m_windowDC{}
 		{
@@ -31,7 +35,7 @@ namespace DeltaEngine
 			//ImGui_ImplWin32_EnableDpiAwareness();
 			InitializeRenderingEnvironment();
 
-			glClearColor(0.2f, 0.2f, 0.2f, 1.0f);//RGBA
+			glClearColor(0, 0, 0, 1);//RGBA
 
 			if (glewInit() != GLEW_OK)
 				DeltaEngine_CORE_ERROR("glewInit() failed!");
@@ -51,14 +55,14 @@ namespace DeltaEngine
 			ImGuiIO& io = ImGui::GetIO();
 			io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 			// TODO: Set optional io.ConfigFlags values, e.g. 'io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard' to enable keyboard controls.
-			//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-			//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+			io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+			io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 			// TODO: Fill optional fields of the io structure later.
 			// TODO: Load TTF/OTF fonts if you don't want to use the default font.
 			ImGuiStyle& style = ImGui::GetStyle();
 
 			// Initialize helper Platform and Renderer bindings (here we are using imgui_impl_win32.cpp and imgui_impl_dx11.cpp)
-			ImGui_ImplWin32_Init(mainHWND);
+			ImGui_ImplWin32_Init(mainHWND, m_wglDC);
 			ImGui_ImplOpenGL3_Init("#version 410");
 
 			// ----------------
@@ -66,21 +70,30 @@ namespace DeltaEngine
 			// -----------------
 
 			// Initialize common meshes
-			Mesh::InitMesh();
+			Camera::Init();
+			Mesh::Init();
 			Font::Init();
-			text = new TextRenderer();
+			Gizmos::Init();
+
+			Camera* editorCam = new Camera(true);
+			editorCam->backgroundColor = Color(71 / 255.0f, 71 / 255.0f, 71 / 255.0f, 1);
 		}
 
 		void OpenGLSystem::Update()
 		{
 			//update opengl
+			glClearColor(0, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			RECT rect;
 			GetClientRect(mainHWND, &rect);
 			glViewport((GLint)0, (GLint)0, rect.right - rect.left, rect.bottom - rect.top);
+
+			Camera::editorCamera->Render();
+
+			::SwapBuffers(m_windowDC); //using double buffering
 		}
-		void OpenGLSystem::TestRender(std::vector<SpriteRenderer*> sprites, std::vector<ParticleSystem*> ps)
+		void OpenGLSystem::TestRender()
 		{
 			// ----------------
 			// ImGui render
@@ -90,50 +103,61 @@ namespace DeltaEngine
 			ImGui_ImplWin32_NewFrame();
 			ImGui::NewFrame();
 
-			// Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets automatically appears in a window called "Debug".
-			{
-				ImGui::Begin("Sprite");
-				static float f = 0.0f;
-				ImGui::Text("Edit Sprite Props");                           // Display some text (you can use a format string too)
-				ImGui::SliderFloat("rotate", &f, -180.0f, 180.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-				ps[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
-				ImGui::DragFloat3("pos", (float*)&ps[0]->transform.position, 0.01f);
-				ImGui::DragFloat3("scale", (float*)&ps[0]->transform.scale, 0.01f);
-				ImGui::ColorEdit3("clear color", (float*)&sprites[0]->color); // Edit 3 floats representing a color
-				ImGui::Text("Active particles: %u", ps[0]->GetActiveParticleCount());
-				ImGui::End();
-			}
+			//// Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets automatically appears in a window called "Debug".
+			//{
+			//	ImGui::Begin("Sprite");
+			//	static float f = 0.0f;
+			//	ImGui::Text("Edit Sprite Props");                           // Display some text (you can use a format string too)
+			//	ImGui::SliderFloat("rotate", &f, -180.0f, 180.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+			//	ps[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+			//	ImGui::DragFloat3("pos", (float*)&ps[0]->transform.position, 0.01f);
+			//	ImGui::DragFloat3("scale", (float*)&ps[0]->transform.scale, 0.01f);
+			//	ImGui::ColorEdit3("clear color", (float*)&sprites[0]->color); // Edit 3 floats representing a color
+			//	ImGui::Text("Active particles: %u", ps[0]->GetActiveParticleCount());
+			//	ImGui::End();
+			//}
 
 			{
 				ImGui::Begin("Camera");
 				static float f = 0.0f;
 				ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
-				ImGui::DragFloat3("pos", (float*)&Camera::allCameras[0]->transform.position, 0.01f);
-				ImGui::DragFloat("size", (float*)&Camera::allCameras[0]->_size, 0.01f);
+				ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
+				ImGui::DragFloat("size", (float*)&Camera::editorCamera->_size, 0.01f);
 				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 				ImGui::End();
 			}
 			//ImGui::ShowDemoWindow();
 			ImGui::Render();
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 			glViewport(0, 0, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
-			glClearColor(49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1);
+			glClearColor(0, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			Update();
-			std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::allCameras[0]); });
-			std::for_each(ps.begin(), ps.end(), [](ParticleSystem* p) { p->Update(); p->Render(*Camera::allCameras[0]); });
-			text->Render(*Camera::allCameras[0]);
-			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			//frameBuffer->Resize(width, height);
+			//frameBuffer->Bind();
+			//glClearColor(1.0f, 0.1f, 0.1f, 1.0f);
+			//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			//Gizmos::DrawWorldGrid();
+			//Gizmos::Draw2DWireBox();
+			//Gizmos::Draw2DWireCircle();
+			//std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::editorCamera); });
+			//std::for_each(ps.begin(), ps.end(), [](ParticleSystem* p) { p->Update(); p->Render(*Camera::editorCamera); });
+			//text->Render(*Camera::editorCamera);
+			//frameBuffer->Unbind();
+
+			Camera::editorCamera->Render();
 
 			// Update and Render additional Platform Windows
 			// (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
 			//  For this specific demo app we could also call glfwMakeContextCurrent(window) directly)
-			//if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-			//{
-			//	HDC backup_current_context = m_windowDC;
-			//	ImGui::UpdatePlatformWindows();
-			//	ImGui::RenderPlatformWindowsDefault();
-			//	wglMakeCurrent(backup_current_context, m_wglDC);
-			//}
+			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			{
+				HDC backup_current_context = m_windowDC;
+				ImGui::UpdatePlatformWindows();
+				ImGui::RenderPlatformWindowsDefault();
+				wglMakeCurrent(backup_current_context, m_wglDC);
+			}
 			// ----------------
 			// ImGui render end
 			// -----------------
@@ -143,9 +167,13 @@ namespace DeltaEngine
 
 		void OpenGLSystem::Exit()
 		{
+			Gizmos::Exit();
+			Mesh::Exit();
+			ImGui_ImplOpenGL3_Shutdown();
+			ImGui_ImplWin32_Shutdown();
+			ImGui::DestroyContext();
 			CleanRenderingEnvironment();
 			DeltaEngine_CORE_INFO("OpenGL system exited");
-			delete text;
 		}
 
 		bool OpenGLSystem::InitializeRenderingEnvironment()
