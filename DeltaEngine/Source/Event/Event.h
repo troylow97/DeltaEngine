@@ -96,7 +96,7 @@ namespace DeltaEngine
 			EventQueue.write(event);
 		}
 
-		Event resolveEvent()
+		Event& resolveEvent()
 		{
 			return EventQueue.read();
 		}
@@ -105,11 +105,27 @@ namespace DeltaEngine
 		{
 			EventQueue.printdetails();
 		}
+		
+		inline bool isEmpty()
+		{
+			return EventQueue.empty();
+		}
 
 	private:
 		RingBuffer<Event>EventQueue;
+		//Each event in the queue has a dispatcher
+
+		//some way to iterate through the queue
+
+		//if event manager is not empty
 
 
 
 	};
+
+	void test_event_function(Event& event)
+	{
+		(void)event;
+		std::cout << "TESTING EVENT" << std::endl;
+	}
 }

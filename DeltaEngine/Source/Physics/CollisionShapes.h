@@ -5,46 +5,28 @@
 namespace DeltaEngine
 {
 	// Ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1).
-	struct DE_API RayCastInput
-	{
-		Vector2 p1, p2;
-		float maxFraction;
-	};
-
-	/// Ray-cast output data. The ray hits at p1 + fraction * (p2 - p1), where p1 and p2 come from RayCastInput.
-	struct DE_API RayCastOutput
-	{
-		Vector2 normal;
-		float fraction;
-	};
+	//struct DE_API RayCastInput
+	//{
+	//	Vector2 p1, p2;
+	//	float maxFraction;
+	//};
+	//
+	///// Ray-cast output data. The ray hits at p1 + fraction * (p2 - p1), where p1 and p2 come from RayCastInput.
+	//struct DE_API RayCastOutput
+	//{
+	//	Vector2 normal;
+	//	float fraction;
+	//};
 
 	struct DE_API AABB
 	{
 	public:
 		Vector2 min;
 		Vector2 max;
-		AABB() :
-			min{ 0,0 },
-			max{ 1,1 }
-		{}
-		AABB(Vector2 center, Vector2 size) :
-			min{ center.x - size.x / 2, center.y - size.y / 2 },
-			max{ center.x + size.x / 2, center.y + size.y / 2 }
-		{}
-		void combine(const AABB& aabb)
-		{
-			if (min.x > aabb.min.x) { min.x = aabb.min.x; }
-			if (min.y > aabb.min.y) { min.y = aabb.min.y; }
-			if (max.x < aabb.max.x) { max.x = aabb.max.x; }
-			if (max.y < aabb.max.y) { max.y = aabb.max.y; }
-		}
-		void combine(const AABB& aabb1, const AABB& aabb2)
-		{
-			if (aabb1.min.x > aabb2.min.x) { min.x = aabb2.min.x; } else { min.x = aabb1.min.x; }
-			if (aabb1.min.y > aabb2.min.y) { min.y = aabb2.min.y; } else { min.y = aabb1.min.y; }
-			if (aabb1.max.x < aabb2.max.x) { max.x = aabb2.max.x; } else { max.x = aabb1.max.x; }
-			if (aabb1.max.y < aabb2.max.y) { max.y = aabb2.max.y; } else { max.y = aabb1.max.y; }
-		}
+		AABB();
+		AABB(Vector2 center, Vector2 size);
+		void combine(const AABB& aabb);
+		void combine(const AABB& aabb1, const AABB& aabb2);
 		//bool RayCast(RayCastOutput* output, const RayCastInput& input) const
 		//{
 		//	float tmin = -b2_maxFloat;
@@ -99,37 +81,16 @@ namespace DeltaEngine
 		//		}
 		//}
 	
-		bool contains(const AABB& aabb) const
-		{
-			bool result = true;
-			result = result && min.x <= aabb.min.x;
-			result = result && min.y <= aabb.min.y;
-			result = result && aabb.max.x <= max.x;
-			result = result && aabb.max.y <= max.y;
-			return result;
-		}
+		bool contains(const AABB& aabb) const;
 
 		/// Get the perimeter length
-		float GetPerimeter() const
-		{
-			float wx = max.x - min.x;
-			float wy = max.y - min.y;
-			return 2.0f * (wx + wy);
-		}
+		float GetPerimeter() const;
 	};
 
 	struct DE_API LineSegment
 	{
-		LineSegment() :
-			m_pt0{ 0,0 },
-			m_pt1{ 1,1 },
-			m_normal{ 1,0 }
-		{}
-		LineSegment(Vector2 pt0, Vector2 pt1) :
-			m_pt0{ pt0 },
-			m_pt1{ pt1 },
-			m_normal{ {pt1.x - pt0.x},{pt1.y - pt0.y} }
-		{}
+		LineSegment();
+		LineSegment(Vector2 pt0, Vector2 pt1);
 		Vector2	m_pt0;
 		Vector2	m_pt1;
 		Vector2	m_normal; //outward
@@ -142,16 +103,8 @@ namespace DeltaEngine
 			m_radius{ 1.0f },
 			m_mass{ 1.0f }
 		{}
-		Circle(Vector2 center, float radius, float mass) :
-			m_center{ center },
-			m_radius{ radius },
-			m_mass{ mass }
-		{}
-		Circle(Vector2 center, float radius) :
-			m_center{ center },
-			m_radius{ radius },
-			m_mass{ 1.0f }
-		{}
+		Circle(Vector2 center, float radius, float mass);
+		Circle(Vector2 center, float radius);
 		Vector2  m_center;
 		float	m_radius;
 		float   m_mass;

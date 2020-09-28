@@ -63,6 +63,17 @@ void Application::Run()
   // TODO Modules Instantiation
   f64 accumulator = 0.0;
 
+  EventManager event_manager;
+
+  event_manager.addEvent(WindowCloseEvent());
+
+  if (!event_manager.isEmpty())
+  {
+      auto& ref = event_manager.resolveEvent();
+      EventDispatcher d(ref);
+      d.Dispatch<WindowCloseEvent,void(*)(Event&)>(test_event_function(ref));
+  }
+
   MSG msg = {};
   while ( msg.message != WM_QUIT )
   {
