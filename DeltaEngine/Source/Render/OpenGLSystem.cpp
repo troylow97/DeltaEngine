@@ -152,6 +152,9 @@ namespace DeltaEngine
 		{
 			Gizmos::Exit();
 			Mesh::Exit();
+			ImGui_ImplOpenGL3_Shutdown();
+			ImGui_ImplWin32_Shutdown();
+			ImGui::DestroyContext();
 			CleanRenderingEnvironment();
 			DeltaEngine_CORE_INFO("OpenGL system exited");
 			delete text;
