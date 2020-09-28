@@ -1,4 +1,5 @@
 #include "TextRenderer.h"
+#include "OpenGLSystem.h"
 #include "Mesh.h"
 #include <GL/glew.h>
 
@@ -7,10 +8,11 @@ namespace DeltaEngine
     Mesh* textMesh;
 
     TextRenderer::TextRenderer() :
-        font{ new Font() },
-        shader{ new Shader("Shaders/DefaultText") },
-        transform{}, color{}, text{"New Text"}
+        font{ new Font() }, text{"Nomasaur - Metamorphosis"}
 	{
+        shader = new Shader("Shaders/DefaultText");
+        RenderModule::allRenderers.push_back(this);
+
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
         glBindVertexArray(VAO);

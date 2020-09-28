@@ -5,12 +5,13 @@
 #include "Core/Math/Vector.h"
 #include "Core/Math/Color.h"
 #include "Camera.h"
+#include "Renderer.h"
 #include "Shader.h"
 #include "Texture.h"
 
 namespace DeltaEngine
 {
-	class ParticleSystem
+	class ParticleSystem : public Renderer
 	{
 		class VertexBufferLayout;
 
@@ -110,8 +111,6 @@ namespace DeltaEngine
 			Local, World,
 		};
 
-		Transform transform;
-
 		//properties
 		float duration = 5;
 		bool looping = true;
@@ -135,14 +134,13 @@ namespace DeltaEngine
 		int shape = 0;
 
 		//rendering
-		Shader* shader;
 		Texture2D* texture;
 
 		//member functions
 		ParticleSystem();
 		~ParticleSystem();
 		void Update();
-		void Render(Camera& camera);
+		void Render(const Camera& camera) override;
 		void Emit(unsigned int count);
 		unsigned int GetActiveParticleCount();
 	};

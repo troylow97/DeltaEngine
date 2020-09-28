@@ -11,13 +11,9 @@
 #include "Core/Math/Transform.h"
 
 #include "Render/Window.h"
-#include "Render/ErrorCheck.h"
 #include "Render/Mesh.h"
 #include "Render/OpenGLSystem.h"
-#include "Render/Shader.h"
 #include "Render/SpriteRenderer.h"
-#include "Render/Texture.h"
-#include "Render/GraphicsManager.h"
+#include "Render/TextRenderer.h"
+#include "Render/ParticleSystem.h"
 
-
-#include "EntryPoint.h"

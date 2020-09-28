@@ -1,9 +1,7 @@
 #include "DEpch.h"
+#include "DeltaEngine.h"
 #include "Application.h"
-#include "Render/GraphicsManager.h"
-#include "Render/FrameAnimation.h"
-#include "Render/ParticleSystem.h"
-#include "Render/SpriteRenderer.h"
+#include "Render/OpenGLSystem.h"
 #include "Event/ApplicationEvent.h"
 #include "Physics/Collision.h"
 
@@ -13,10 +11,6 @@
 -----------------------------------*/
 namespace DeltaEngine
 {
-    std::vector<SpriteRenderer*> sprites;
-    std::vector<FrameAnimation*> animator;
-    std::vector<ParticleSystem*> ps;
-
     Application::Application() : m_interval(0.25)
     {
         DeltaEngine::Log::Init();
@@ -45,15 +39,12 @@ namespace DeltaEngine
     void Application::Run()
     {
         // a lot of this should be moved to a function in GraphicsManager later
-
         RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
         RenderModule::openGLSystem->Init();
 
-        sprites.push_back(new SpriteRenderer());
-        animator.push_back(new FrameAnimation());
-        animator[0]->renderer = sprites[0];
-
-        ps.push_back(new ParticleSystem());
+        SpriteRenderer* s = new SpriteRenderer();
+        TextRenderer* t = new TextRenderer();
+        ParticleSystem* p = new ParticleSystem();
 
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
@@ -73,16 +64,16 @@ namespace DeltaEngine
                     DispatchMessage(&msg);
                     continue;
                 }
-                animator[0]->Update();
-                RenderModule::openGLSystem->TestRender(sprites, ps);
+                RenderModule::openGLSystem->Update();
                 FixedUpdate();
                 accumulator -= m_gameclock.DeltaTime();
             }
             const f64 alpha = accumulator / m_interval;
-
-
         }
         RenderModule::openGLSystem->Exit();
+        delete s;
+        delete t;
+        delete p;
         delete RenderModule::openGLSystem;
     }
 
@@ -104,7 +95,5 @@ namespace DeltaEngine
         // Render Update
         // GUI Update
         // Memory Update
-
     }
-
 }
