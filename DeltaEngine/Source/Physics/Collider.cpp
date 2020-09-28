@@ -55,7 +55,6 @@ namespace DeltaEngine
     }
     bool CircleCollider::Intersection(const LineCollider& line)
     {
-        float temp;
         return CollisionIntersection_CircleLineSegment_Static(circle, line.line);
     }
     ColliderType CircleCollider::GetType() const

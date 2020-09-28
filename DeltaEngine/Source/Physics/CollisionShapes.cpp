@@ -60,6 +60,12 @@ namespace DeltaEngine
 		m_normal{ {pt1.x - pt0.x},{pt1.y - pt0.y} }
 	{}
 
+	Circle::Circle() :
+		m_center{ 0,0 },
+		m_radius{ 1 },
+		m_mass{ 1.0f }
+	{}
+
 	Circle::Circle(Vector2 center, float radius, float mass) :
 		m_center{ center },
 		m_radius{ radius },
@@ -71,6 +77,17 @@ namespace DeltaEngine
 		m_radius{ radius },
 		m_mass{ 1.0f }
 	{}
+
+	Ray::Ray() :
+		m_pt0{ 0,0 },
+		m_dir{ 0,0 }
+	{}
+
+	Ray::Ray(Vector2 pt, Vector2 dir) :
+		m_pt0{ pt },
+		m_dir{ dir }
+	{}
+
 }
 
 

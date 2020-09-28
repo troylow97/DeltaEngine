@@ -169,8 +169,8 @@ namespace DeltaEngine
 		Vector2 center;
 		size.x = aabb1.max.x - aabb1.min.x;
 		size.y = aabb1.max.y - aabb1.min.y;
-		center.x = aabb1.min.x + 0.5 * size.x;
-		center.y = aabb1.max.x + 0.5 * size.y;
+		center.x = static_cast<float>(aabb1.min.x + 0.5 * size.x);
+		center.y = static_cast<float>(aabb1.max.x + 0.5 * size.y);
 		Vector2 temp_vec = center;
 		// which edge is closest?
 		if (circle.m_center.x < center.x)         temp_vec.x = center.x;                  // left edge
@@ -566,7 +566,7 @@ namespace DeltaEngine
 
 		float dot = v2.DotProduct(v3);
 		if (abs(dot) < 0.000001)
-			return -1.0f;
+			return false;
 
 		float t1 = v2.CrossProduct_Magnitude(v1) / dot;
 		float t2 = v1.DotProduct(v3) / dot;
@@ -574,7 +574,7 @@ namespace DeltaEngine
 		if (t1 >= 0.0 && (t2 >= 0.0 && t2 <= 1.0))
 			return t1;
 
-		return -1.0f;
+		return false;
 	}
 
 	bool CollisionIntersection_LineLine_Static(const LineSegment& line, const LineSegment& line2)

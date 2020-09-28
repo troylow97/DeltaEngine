@@ -98,11 +98,7 @@ namespace DeltaEngine
 
 	struct DE_API Circle
 	{
-		Circle() :
-			m_center{ 0,0 },
-			m_radius{ 1.0f },
-			m_mass{ 1.0f }
-		{}
+		Circle();
 		Circle(Vector2 center, float radius, float mass);
 		Circle(Vector2 center, float radius);
 		Vector2  m_center;
@@ -112,14 +108,8 @@ namespace DeltaEngine
 
 	struct DE_API Ray
 	{
-		Ray() :
-			m_pt0{ 0,0 },
-			m_dir{ 0,0 }
-		{}
-		Ray(Vector2 pt, Vector2 dir) :
-			m_pt0{ pt },
-			m_dir{ dir }
-		{}
+		Ray();
+		Ray(Vector2 pt, Vector2 dir);
 		Vector2	m_pt0;
 		Vector2	m_dir;
 	};

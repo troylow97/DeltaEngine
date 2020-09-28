@@ -122,10 +122,4 @@ namespace DeltaEngine
 
 
 	};
-
-	void test_event_function(Event& event)
-	{
-		(void)event;
-		std::cout << "TESTING EVENT" << std::endl;
-	}
 }
