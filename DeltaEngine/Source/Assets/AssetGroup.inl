@@ -68,7 +68,6 @@ namespace DeltaEngine
       load( key );
     }
 
-
     return Asset(this, key);
   }
 
@@ -160,19 +159,19 @@ namespace DeltaEngine
   //****************************************************************************
 
   template <typename T1>
-  IAssetLoader<T1> *AssetGroup<T1>::loader()
+  AbstractLoader<T1> *AssetGroup<T1>::loader()
   {
     return _loader;
   }
 
   template <typename T1>
-  const IAssetLoader<T1> *AssetGroup<T1>::loader() const
+  const AbstractLoader<T1> *AssetGroup<T1>::loader() const
   {
     return _loader;
   }
 
   template <typename T1>
-  void AssetGroup<T1>::set_loader(IAssetLoader<T1> *const loader)
+  void AssetGroup<T1>::set_loader(AbstractLoader<T1> *const loader)
   {
     delete _loader;
 

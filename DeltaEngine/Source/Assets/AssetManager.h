@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Asset.h"
-#include "IAssetLoader.h"
+#include "AbstractLoader.h"
 
 namespace DeltaEngine
 {
@@ -51,6 +51,7 @@ namespace DeltaEngine
     template <typename T1>
     AssetManager<Ts...> &set(AssetKey key, T1 &&data);
 
+    // Data who's lifetime is managed
     template <typename T1>
     AssetManager<Ts...> &free();
 
@@ -76,13 +77,13 @@ namespace DeltaEngine
 
     // Loaders
     template <typename T1>
-    IAssetLoader<T1> *loader();
+    AbstractLoader<T1> *loader();
 
     template <typename T1>
-    const IAssetLoader<T1> *loader() const;
+    const AbstractLoader<T1> *loader() const;
 
     template <typename T1>
-    AssetManager<Ts...> &set_loader(IAssetLoader<T1> *loader);
+    AssetManager<Ts...> &set_loader(AbstractLoader<T1> *loader);
 
   private:
     template <typename T1, typename... T1s>

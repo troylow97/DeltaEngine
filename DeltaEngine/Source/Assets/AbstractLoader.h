@@ -6,7 +6,7 @@ namespace DeltaEngine
 {
 
   template <typename T1>
-  class IAssetLoader
+  class AbstractLoader
   {
     friend class AssetGroup<T1>;
 
@@ -16,9 +16,9 @@ namespace DeltaEngine
     size_t _notFound{0};
 
   public:
-    explicit IAssetLoader() = default;
+    explicit AbstractLoader() = default;
 
-    virtual ~IAssetLoader();
+    virtual ~AbstractLoader();
 
     size_t request_count() const;
     size_t loaded_count() const;
@@ -49,4 +49,4 @@ namespace DeltaEngine
   };
 } // namespace DeltaEngine
 
-#include "IAssetLoader.inl"
+#include "AbstractLoader.inl"

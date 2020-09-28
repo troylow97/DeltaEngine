@@ -1,4 +1,5 @@
 #include "FileUtils.h"
+#include "Core/Debugging/Logger/Log.h"
 #include <fstream>
 
 namespace DeltaEngine::FileUtils

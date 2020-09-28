@@ -141,21 +141,21 @@ namespace DeltaEngine
 
   template <typename... Ts>
   template <typename T1>
-  IAssetLoader<T1> *AssetManager<Ts...>::loader()
+  AbstractLoader<T1> *AssetManager<Ts...>::loader()
   {
     return AssetGroup<T1>::loader();
   }
 
   template <typename... Ts>
   template <typename T1>
-  const IAssetLoader<T1> *AssetManager<Ts...>::loader() const
+  const AbstractLoader<T1> *AssetManager<Ts...>::loader() const
   {
     return AssetGroup<T1>::loader();
   }
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::set_loader(IAssetLoader<T1> *loader)
+  AssetManager<Ts...> &AssetManager<Ts...>::set_loader(AbstractLoader<T1> *loader)
   {
     AssetGroup<T1>::set_loader(loader);
     return *this;

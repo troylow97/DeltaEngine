@@ -13,7 +13,8 @@ int main(int argc,char** argv)
 	auto app = DeltaEngine::CreateApplication();
 	app->Run();
 	delete app;
-
+	
+	DeltaEngine_CORE_TRACE( "EXIT" );
 	//RenderModule::openGLSystem->Exit();
 	//delete RenderModule::openGLSystem;
 

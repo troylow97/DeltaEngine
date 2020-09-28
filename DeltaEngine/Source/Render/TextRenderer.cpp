@@ -3,9 +3,9 @@
 
 namespace DeltaEngine
 {
-    TextRenderer::TextRenderer() :
-        font{ new Font() },
-        shader{ new Shader("Shaders/DefaultText") },
+    TextRenderer::TextRenderer(Font* font, Shader* shader) :
+        font{ font },
+        shader{ shader },
         transform{}, color{}, text{"New Text"}
 	{
         glGenVertexArrays(1, &VAO);

@@ -7,7 +7,7 @@ namespace DeltaEngine
 {
 
   template <typename>
-  class IAssetLoader;
+  class AbstractLoader;
 
   class AssetKey;
 
@@ -20,14 +20,14 @@ namespace DeltaEngine
     template <typename, typename>
     friend class Asset;
 
-    friend class IAssetLoader<T1>;
+    friend class AbstractLoader<T1>;
 
     void increment_reference_count(AssetKey key);
     void decrement_reference_count(AssetKey key);
 
     std::unordered_map<AssetKey, AssetData<T1>> _datas;
     T1 *_fallback {nullptr};
-    IAssetLoader<T1> *_loader{nullptr};
+    AbstractLoader<T1> *_loader{nullptr};
     size_t _timestamp{0};
 
   protected:
@@ -69,9 +69,9 @@ namespace DeltaEngine
     void set_fallback(T1 *data);
 
     // Loaders
-    IAssetLoader<T1> *loader();
-    const IAssetLoader<T1> *loader() const;
-    void set_loader(IAssetLoader<T1> *loader);
+    AbstractLoader<T1> *loader();
+    const AbstractLoader<T1> *loader() const;
+    void set_loader(AbstractLoader<T1> *loader);
     void free_loader();
 
   };

@@ -68,7 +68,6 @@ namespace DeltaEngine
 
 			// Initialize common meshes
 			Mesh::InitMesh();
-			Font::Init();
 			auto arial = env.pmanager->get<Font>( "Fail" );
 			text = new TextRenderer(arial);
 		}
