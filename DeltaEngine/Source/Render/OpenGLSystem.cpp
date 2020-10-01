@@ -81,6 +81,29 @@ namespace DeltaEngine
 
 		void OpenGLSystem::Update()
 		{
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplWin32_NewFrame();
+			ImGui::NewFrame();
+			{
+				ImGui::Begin("Camera");
+				static float f = 0.0f;
+				ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
+				ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
+				ImGui::DragFloat("size", (float*)&Camera::editorCamera->_size, 0.01f);
+				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+				ImGui::End();
+			}
+			ImGui::ShowDemoWindow();
+			ImGui::Render();
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			{
+				HDC backup_current_context = m_windowDC;
+				ImGui::UpdatePlatformWindows();
+				ImGui::RenderPlatformWindowsDefault();
+				wglMakeCurrent(backup_current_context, m_wglDC);
+			}
+
 			//update opengl
 			glClearColor(0, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -174,6 +197,14 @@ namespace DeltaEngine
 			ImGui::DestroyContext();
 			CleanRenderingEnvironment();
 			DeltaEngine_CORE_INFO("OpenGL system exited");
+		}
+		HDC OpenGLSystem::GetWindowContext()
+		{
+			return m_windowDC;
+		}
+		HGLRC OpenGLSystem::GetGLContext()
+		{
+			return m_wglDC;
 		}
 
 		bool OpenGLSystem::InitializeRenderingEnvironment()

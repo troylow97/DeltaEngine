@@ -4,7 +4,7 @@
 
 namespace DeltaEngine {
 
-	class Layer
+	class DE_API Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");
