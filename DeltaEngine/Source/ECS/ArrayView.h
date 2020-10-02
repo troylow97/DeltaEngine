@@ -1,5 +1,6 @@
 #pragma once
 #include "DE_API.h"
+#include "DataChunk.h"
 
 namespace DeltaEngine
 {
@@ -24,8 +25,6 @@ namespace DeltaEngine
     {
       return owner;
     }
-
-
 
     bool is_valid() const
     {

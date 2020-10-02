@@ -62,6 +62,7 @@ project "DeltaEngine"
     cppdialect "C++17"
     staticruntime "On"
     systemversion "latest"
+    warnings "Extra"
     
     defines
     {
@@ -75,7 +76,6 @@ project "DeltaEngine"
   postbuildcommands
   {
    ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-
   }
 
   filter "configurations:Debug"

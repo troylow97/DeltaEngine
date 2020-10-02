@@ -9,12 +9,12 @@ namespace DeltaEngine
 inline constexpr uint64_t hash_fnv1a( const char *key )
 {
   uint64_t hash = 0xcbf29ce484222325;
-  uint64_t prime = 0x100000001b3;
+  const uint64_t prime = 0x100000001b3;
 
   int i = 0;
   while ( key[i] )
   {
-    uint8_t value = key[i++];
+    const uint8_t value = key[i++];
     hash = hash ^ value;
     hash *= prime;
   }
@@ -51,7 +51,7 @@ struct Metatype
   unsigned size { 0 };
   unsigned align { 0 };
 
-  bool is_empty() const
+  [[nodiscard]] bool is_empty() const
   {
     return align == 0;
   }
@@ -99,10 +99,10 @@ struct Metatype
   static inline std::unordered_map<size_t, Metatype> metatype_map;
 
   template <typename T>
-  static inline const Metatype *get_metatype()
+  static const Metatype *get_metatype()
   {
     constexpr size_t digest = Metatype::build_hash<T>().digest;
-    auto type = Metatype::metatype_map.find( digest );
+    const auto type = Metatype::metatype_map.find( digest );
     if ( type == Metatype::metatype_map.end() )
     {
       constexpr Metatype new_type = Metatype::build<T>();

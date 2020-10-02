@@ -56,6 +56,7 @@ inline auto get_chunk_array( DataChunk *chunk )
     return ArrayView<T_Base>();
   }
 }
+
 } // namespace DeltaEngine::ECS_Internal
 
 namespace DeltaEngine
@@ -65,9 +66,9 @@ namespace DeltaEngine
   // EntityManager Public Methods
   //******************************************************************************
 
-EntityManager::EntityManager()
+inline EntityManager::EntityManager()
 {
-  Archetype *empty_arch = new Archetype();
+  auto *empty_arch = new Archetype();
 
   empty_arch->full_chunks = 0;
   empty_arch->components = build_component_list( nullptr, 0 );
@@ -80,7 +81,7 @@ EntityManager::EntityManager()
   create_chunk( empty_arch );
 }
 
-EntityManager::~EntityManager()
+inline EntityManager::~EntityManager()
 {
   for ( Archetype *arch : archetypes )
   {
@@ -122,7 +123,7 @@ template <typename C>
 bool EntityManager::has_component( EntityID id )
 {
   Entity &ref = entities[id.index];
-  auto c_array = get_chunk_array<C>( ref.chunk );
+  auto c_array = ECS_Internal::get_chunk_array<C>( ref.chunk );
   return c_array.owner != nullptr;
 }
 
@@ -179,8 +180,8 @@ void EntityManager::remove_component( EntityID id )
   const Metatype *temp_meta_array[32] { nullptr };
   const Metatype *type = Metatype::get_metatype<C>();
 
-  Archetype *arch = entities[id.index].chunk->header->owner;
-  ComponentList *list = old_arch->components;
+  Archetype *arch = entities[id.index].chunk->header.owner;
+  ComponentList *list = arch->components;
 
   bool found { false };
   size_t count = list->metatypes.size();
@@ -268,7 +269,7 @@ EntityID EntityManager::allocate_entity()
   return id;
 }
 
-void EntityManager::deallocate_entity( EntityID id )
+inline void EntityManager::deallocate_entity( EntityID id )
 {
   entities_deleted.push_back( id.index );
   entities[id.index].generation++;
@@ -279,7 +280,7 @@ void EntityManager::deallocate_entity( EntityID id )
   entities_dead++;
 }
 
-size_t EntityManager::insert_entity_chunk( DataChunk *chunk, EntityID id, bool initialize )
+inline size_t EntityManager::insert_entity_chunk( DataChunk *chunk, EntityID id, bool initialize )
 {
   size_t index { 0 };
 
@@ -313,7 +314,7 @@ size_t EntityManager::insert_entity_chunk( DataChunk *chunk, EntityID id, bool i
   return index;
 }
 
-EntityID EntityManager::erase_entity_chunk( DataChunk *chunk, size_t index )
+inline EntityID EntityManager::erase_entity_chunk( DataChunk *chunk, size_t index )
 {
   assert( chunk->header.index > index );
 
@@ -361,7 +362,7 @@ EntityID EntityManager::erase_entity_chunk( DataChunk *chunk, size_t index )
   return EntityID {};
 }
 
-void EntityManager::set_entity_archetype( EntityID id, Archetype *arch )
+inline void EntityManager::set_entity_archetype( EntityID id, Archetype *arch )
 {
   if ( !entities[id.index].chunk )
   {
@@ -375,7 +376,7 @@ void EntityManager::set_entity_archetype( EntityID id, Archetype *arch )
     move_entity_to_archetype( id, arch, false );
 }
 
-void EntityManager::move_entity_to_archetype( EntityID id, Archetype *arch, bool initialize )
+inline void EntityManager::move_entity_to_archetype( EntityID id, Archetype *arch, bool initialize )
 {
   DataChunk *current_chunk = entities[id.index].chunk;
   DataChunk *target_chunk = find_free_chunk( arch );
@@ -417,7 +418,7 @@ void EntityManager::move_entity_to_archetype( EntityID id, Archetype *arch, bool
   entities[id.index].chunk_index = target_index;
 }
 
-Archetype *EntityManager::find_or_create_archetype( const Metatype **types, size_t count )
+inline Archetype *EntityManager::find_or_create_archetype( const Metatype **types, size_t count )
 {
   assert( count < 32 );
 
@@ -489,7 +490,7 @@ void EntityManager::archetype_iterate( const Query &query, Func &&func )
   }
 }
 
-ComponentList *EntityManager::build_component_list( const Metatype **types, size_t count )
+inline ComponentList *EntityManager::build_component_list( const Metatype **types, size_t count )
 {
   ComponentList *list = new ComponentList();
 
@@ -527,7 +528,7 @@ ComponentList *EntityManager::build_component_list( const Metatype **types, size
   return list;
 }
 
-void EntityManager::reorder_chunk( Archetype *arch )
+inline void EntityManager::reorder_chunk( Archetype *arch )
 {
   size_t size = arch->components->capacity;
   std::partition( arch->chunks.begin(), arch->chunks.end(), [size]( DataChunk *chnk )
@@ -536,7 +537,7 @@ void EntityManager::reorder_chunk( Archetype *arch )
   } );
 }
 
-void EntityManager::set_chunk_full( DataChunk *chunk )
+inline void EntityManager::set_chunk_full( DataChunk *chunk )
 {
   Archetype *arch = chunk->header.owner;
   arch->full_chunks++;
@@ -544,7 +545,7 @@ void EntityManager::set_chunk_full( DataChunk *chunk )
   reorder_chunk( arch );
 }
 
-void EntityManager::set_chunk_partial( DataChunk *chunk )
+inline void EntityManager::set_chunk_partial( DataChunk *chunk )
 {
   Archetype *arch = chunk->header.owner;
   arch->full_chunks--;
@@ -552,7 +553,7 @@ void EntityManager::set_chunk_partial( DataChunk *chunk )
   reorder_chunk( arch );
 }
 
-DataChunk *EntityManager::find_free_chunk( Archetype *arch )
+inline DataChunk *EntityManager::find_free_chunk( Archetype *arch )
 {
   DataChunk *chunk { nullptr };
   if ( arch->chunks.size() == 0 )
@@ -566,7 +567,7 @@ DataChunk *EntityManager::find_free_chunk( Archetype *arch )
   return chunk;
 }
 
-DataChunk *EntityManager::create_chunk( Archetype *arch )
+inline DataChunk *EntityManager::create_chunk( Archetype *arch )
 {
   DataChunk *chunk = new DataChunk();
 
@@ -575,7 +576,7 @@ DataChunk *EntityManager::create_chunk( Archetype *arch )
   return chunk;
 }
 
-void EntityManager::delete_chunk( DataChunk *chunk )
+inline void EntityManager::delete_chunk( DataChunk *chunk )
 {
   Archetype *owner = chunk->header.owner;
   DataChunk *backChunk = owner->chunks.back();
