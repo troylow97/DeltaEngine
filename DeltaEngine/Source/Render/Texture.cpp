@@ -15,7 +15,7 @@ namespace DeltaEngine
 
 		int channels;
 
-		m_Data = stbi_load(filepath.c_str(), &m_Width, &m_Height, &channels, 0);;
+		m_Data = stbi_load(filepath.c_str(), &m_Width, &m_Height, &channels, 0);
 
 		if (!m_Data)
 			DeltaEngine_CORE_ERROR("ERROR: Couldn't create texture {}!", filepath);

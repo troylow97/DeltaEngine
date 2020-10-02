@@ -52,7 +52,6 @@ namespace DeltaEngine
 		virtual std::string ToString() const { return GetName(); } // for debugging to add more info when overrided 
 
 		inline bool IsInCategory(EventCategory category){ return GetCategoryFlags() & category;}
-	
 	};
 
 	class EventDispatcher
@@ -118,8 +117,6 @@ namespace DeltaEngine
 		//some way to iterate through the queue
 
 		//if event manager is not empty
-
-
 
 	};
 }

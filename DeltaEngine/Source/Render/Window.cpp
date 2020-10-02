@@ -5,13 +5,13 @@
 #include <examples/imgui_impl_win32.h>
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 namespace DeltaEngine
 {
     namespace RenderModule
     {
         HWND mainHWND;
         int width = 600, height = 600;
-
 
         LRESULT WINAPI Win32WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         {
@@ -51,6 +51,7 @@ namespace DeltaEngine
             }
             return DefWindowProc(hwnd, uMsg, wParam, lParam);
         }
+
         void CreateWin32Window()
         {
             // Register window class and create window

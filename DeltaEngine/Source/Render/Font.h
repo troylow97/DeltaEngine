@@ -15,11 +15,11 @@ namespace DeltaEngine
 
     class Font
     {
-        std::map<char, CharacterInfo> m_CharacterInfo;
+        std::unordered_map<char, CharacterInfo> m_CharacterInfo;
         unsigned int m_RendererID;
     public:
-        Font(std::string filepath = "Fonts/Arial.ttf");
-        std::map<char, CharacterInfo>& characterInfo();
+        Font(const std::string& filepath);
+        std::unordered_map<char, CharacterInfo>& characterInfo();
         unsigned int GetID() const;
         static void Init();
         static void Exit();

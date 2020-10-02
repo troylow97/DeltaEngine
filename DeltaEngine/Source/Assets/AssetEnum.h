@@ -16,7 +16,7 @@ namespace DeltaEngine
 
   enum class AssetLifetime : unsigned
   {
-    Persistant,
+    Persistent,
     ReferenceCounted,
     Managed
   };

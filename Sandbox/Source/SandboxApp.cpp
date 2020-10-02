@@ -20,4 +20,3 @@ DeltaEngine::Application* DeltaEngine::CreateApplication()
 {
 	return new Sandbox();
 }
-

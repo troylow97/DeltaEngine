@@ -6,7 +6,7 @@
 namespace DeltaEngine
 {
    class DE_API GameClock
-  {
+   {
 
     using Nanoseconds = std::chrono::nanoseconds;
     using HighResClock = std::chrono::high_resolution_clock;

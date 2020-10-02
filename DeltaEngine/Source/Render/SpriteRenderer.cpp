@@ -4,10 +4,10 @@
 
 namespace DeltaEngine
 {
-	SpriteRenderer::SpriteRenderer(std::string textureName) : sprite{ new Texture2D(textureName) },
+	SpriteRenderer::SpriteRenderer(Texture2D* t, Shader* s) : sprite{ t },
 		offset{ Vector2() }, tiling{ Vector2(1,1) }
 	{
-		shader = new Shader();
+		shader = s;
 		RenderModule::allRenderers.push_back(this);
 	}
 	SpriteRenderer::~SpriteRenderer()

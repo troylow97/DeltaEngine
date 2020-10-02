@@ -8,10 +8,10 @@ namespace DeltaEngine
 {
     Mesh* textMesh;
 
-    TextRenderer::TextRenderer() :
-        font{ new Font() }, text{"Nomasaur - Metamorphosis"}
+    TextRenderer::TextRenderer(Font* f, Shader* s) :
+        font{ f }, text{"Nomasaur - Metamorphosis"}
 	{
-        shader = new Shader("Shaders/DefaultText");
+        shader = s;
         RenderModule::allRenderers.push_back(this);
 
         glGenVertexArrays(1, &VAO);

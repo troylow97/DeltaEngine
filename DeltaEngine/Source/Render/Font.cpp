@@ -9,10 +9,10 @@ namespace DeltaEngine
 {
 	FT_Library ft;
 
-    Font::Font(std::string filepath) : m_RendererID{0}
+    Font::Font(const std::string& filepath) : m_RendererID{0}
 	{
 		FT_Face face;
-		if (FT_New_Face(ft, "Fonts/Arial.ttf", 0, &face))
+		if (FT_New_Face(ft, filepath.c_str(), 0, &face))
 		{
 			DeltaEngine_CORE_ERROR("Failed to load {0} font!", filepath);
 			return;
@@ -65,7 +65,7 @@ namespace DeltaEngine
         FT_Done_Face(face);
     }
 
-    std::map<char, CharacterInfo>& Font::characterInfo()
+    std::unordered_map<char, CharacterInfo>& Font::characterInfo()
     {
         return m_CharacterInfo;
     }

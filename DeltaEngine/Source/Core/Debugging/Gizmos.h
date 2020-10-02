@@ -6,7 +6,6 @@
 namespace DeltaEngine::Gizmos
 {
 	//Color color;
-
 	void Init();
 	void Exit();
 

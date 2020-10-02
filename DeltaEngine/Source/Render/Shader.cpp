@@ -9,21 +9,16 @@
 
 namespace DeltaEngine
 {
-	Shader::Shader()
-		: m_filepath{ "Shaders/Default.vs", "Shaders/Default.fs" }, m_RendererID{ 0 }
-	{
-		m_RendererID = CreateShader(LoadShader("Shaders/Default.vs"), LoadShader("Shaders/Default.fs"));
-	}
 	Shader::Shader(const std::string& filepath)
-		: m_filepath{ filepath + ".vs", filepath + ".fs" }, m_RendererID{ 0 }
+		: Shader( filepath + ".vs", filepath + ".fs" )
+	{}
+
+	Shader::Shader( const std::string& vsfilepath,  const std::string& fsfilepath)
+		: m_filepath{ vsfilepath, fsfilepath }, m_RendererID{ 0 }
 	{
-		m_RendererID = CreateShader(LoadShader(filepath + ".vs"), LoadShader(filepath + ".fs"));
+		m_RendererID = CreateShader(LoadShader(vsfilepath), LoadShader(fsfilepath));
 	}
-	Shader::Shader(const std::string& vsfilepath, const std::string& fsfilepath)
-		: m_filepath{ vsfilepath + ".vs", fsfilepath + ".fs" }, m_RendererID{ 0 }
-	{
-		m_RendererID = CreateShader(LoadShader(vsfilepath + ".vs"), LoadShader(fsfilepath + ".fs"));
-	}
+
 	Shader::~Shader()
 	{
 		DeltaEngine_CORE_INFO("Deleting Shader {0} and {1}", m_filepath.vertexSource, m_filepath.fragmentSource);
