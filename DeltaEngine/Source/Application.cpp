@@ -1,20 +1,23 @@
 #include "DEpch.h"
 #include "DeltaEngine.h"
-#include "Application.h"
 #include "Render/OpenGLSystem.h"
-#include "Event/ApplicationEvent.h"
 #include "Physics/Collision.h"
-
+#include <typeindex>
+#include <typeinfo>
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
 -----------------------------------*/
 namespace DeltaEngine
 {
+
+    std::unique_ptr<ECSModule> ecs{ nullptr };
+
     Application::Application() : m_interval(0.25), m_Running(true), m_Minimized(false)
     {
         DeltaEngine::Log::Init();
         DeltaEngine_CORE_INFO("Engine Start");
+        ecs = std::make_unique<ECSModule>();
         // Memory Manager
         // Window
         // Render
@@ -53,6 +56,7 @@ namespace DeltaEngine
         MSG msg = {};
         while (msg.message != WM_QUIT)
         {
+            Application::OnEvent();
             m_gameclock.Update(); // Update engine GameClock
 
             accumulator += m_gameclock.DeltaTime(); // Update accumulator using time-scaled dt
@@ -90,23 +94,22 @@ namespace DeltaEngine
         layer->OnAttach();
     }
 
-    void Application::OnEvent(Event& e)
+    void Application::OnEvent()
     {
-        EventManager event_manager;
-        
-        event_manager.addEvent(WindowCloseEvent());
-        
-        if (!event_manager.isEmpty())
-        {
-            auto& ref = event_manager.resolveEvent();
-            EventDispatcher d(ref);
-            d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
-        }
+        //if (!event_manager.isEmpty())
+        //{
+        //    auto& ref = event_manager.resolveEvent();
+        //
+        //    EventDispatcher d(ref);
+        //    d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
+        //}
 
         //below is how cherno does it
-        //EventDispatcher dispatcher(e);
-        //dispatcher.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
-        //dispatcher.Dispatch<WindowResizeEvent>(DE_BIND_EVENT_FN(Application::OnWindowResize));
+        WindowCloseEvent e;
+        EventDispatcher dispatcher(e);
+        dispatcher.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
+        dispatcher.Dispatch<WindowResizeEvent>(DE_BIND_EVENT_FN(Application::OnWindowResize));
+
         //
         //for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
         //{
@@ -119,6 +122,7 @@ namespace DeltaEngine
     bool Application::OnWindowClose(WindowCloseEvent& e)
     {
         m_Running = false;
+        std::cout << "Window Closing" << std::endl;
         return true;
     }
 

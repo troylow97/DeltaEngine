@@ -1,6 +1,7 @@
 #pragma once
 #include "Physics/Collision.h"
 #include "Core/Math/Vector.h"
+#include "Core/Debugging/Gizmos.h"
 
 namespace DeltaEngine
 {
@@ -35,10 +36,10 @@ namespace DeltaEngine
     Collider() : center{ 0,0 }, shape{ ColliderType::NONE } {}
     virtual ~Collider() = default;
     virtual ColliderType GetType() const = 0;
-    virtual bool Intersection(const BoxCollider& aabb) = 0;
-    virtual bool Intersection(const CircleCollider& circle) = 0;
-    virtual bool Intersection(const RayCollider& ray) = 0;
-    virtual bool Intersection(const LineCollider& line) = 0;
+    virtual bool Intersection(const BoxCollider* aabb) = 0;
+    virtual bool Intersection(const CircleCollider* circle) = 0;
+    virtual bool Intersection(const RayCollider* ray) = 0;
+    virtual bool Intersection(const LineCollider* line) = 0;
   };
 
   class DE_API BoxCollider : public Collider
@@ -48,10 +49,10 @@ namespace DeltaEngine
       Vector2 size; // Collider size
       BoxCollider();
       BoxCollider(Vector2, Vector2);
-      virtual bool Intersection(const BoxCollider& aabb);
-      virtual bool Intersection(const CircleCollider& circle);
-      virtual bool Intersection(const RayCollider& ray);
-      virtual bool Intersection(const LineCollider& linecollider);
+      virtual bool Intersection(const BoxCollider* aabb);
+      virtual bool Intersection(const CircleCollider* circle);
+      virtual bool Intersection(const RayCollider* ray);
+      virtual bool Intersection(const LineCollider* linecollider);
       virtual ColliderType GetType() const;
   };
 
@@ -62,10 +63,10 @@ namespace DeltaEngine
       CircleCollider();
       CircleCollider(Vector2,float);
       CircleCollider(Vector2, float,float);
-      virtual bool Intersection(const BoxCollider& aabb);
-      virtual bool Intersection(const CircleCollider& circle1);
-      virtual bool Intersection(const RayCollider& ray);
-      virtual bool Intersection(const LineCollider& line);
+      virtual bool Intersection(const BoxCollider* aabb);
+      virtual bool Intersection(const CircleCollider* circle1);
+      virtual bool Intersection(const RayCollider* ray);
+      virtual bool Intersection(const LineCollider* line);
       virtual ColliderType GetType() const;
   };
   
@@ -75,10 +76,10 @@ namespace DeltaEngine
       LineSegment line;
       LineCollider();
       LineCollider(Vector2, Vector2);
-      virtual bool Intersection(const BoxCollider& aabb);
-      virtual bool Intersection(const CircleCollider& circle);
-      virtual bool Intersection(const RayCollider& ray);
-      virtual bool Intersection(const LineCollider& line2);
+      virtual bool Intersection(const BoxCollider* aabb);
+      virtual bool Intersection(const CircleCollider* circle);
+      virtual bool Intersection(const RayCollider* ray);
+      virtual bool Intersection(const LineCollider* line2);
       virtual ColliderType GetType() const;
   };
   
@@ -88,11 +89,12 @@ namespace DeltaEngine
       Ray ray;
       RayCollider();
       RayCollider(Vector2, Vector2);
-      virtual bool Intersection(const BoxCollider& aabb);
-      virtual bool Intersection(const CircleCollider& circle);
-      virtual bool Intersection(const RayCollider& ray);
-      virtual bool Intersection(const LineCollider& line);
+      virtual bool Intersection(const BoxCollider* aabb);
+      virtual bool Intersection(const CircleCollider* circle);
+      virtual bool Intersection(const RayCollider* ray);
+      virtual bool Intersection(const LineCollider* line);
       virtual ColliderType GetType() const;
   };
+
 
 } // namespace DeltaEngine

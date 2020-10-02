@@ -4,14 +4,14 @@
 
 namespace DeltaEngine
 {
-	// Ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1).
+	//Ray-cast input data. The ray extends from p1 to p1 + maxFraction * (p2 - p1).
 	//struct DE_API RayCastInput
 	//{
 	//	Vector2 p1, p2;
 	//	float maxFraction;
 	//};
-	//
-	///// Ray-cast output data. The ray hits at p1 + fraction * (p2 - p1), where p1 and p2 come from RayCastInput.
+	
+	/// Ray-cast output data. The ray hits at p1 + fraction * (p2 - p1), where p1 and p2 come from RayCastInput.
 	//struct DE_API RayCastOutput
 	//{
 	//	Vector2 normal;
