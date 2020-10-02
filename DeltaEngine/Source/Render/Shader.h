@@ -19,7 +19,6 @@ namespace DeltaEngine
 		unsigned int m_RendererID;
 		std::unordered_map<std::string, int> m_uniformLocationCache;
 	public:
-		Shader();
 		Shader(const std::string& filepath);
 		Shader(const std::string& vsfilepath, const std::string& fsfilepath);
 		~Shader();

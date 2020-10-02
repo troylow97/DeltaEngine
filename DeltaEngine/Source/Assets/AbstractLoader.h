@@ -4,13 +4,12 @@
 
 namespace DeltaEngine
 {
-
   template <typename T1>
   class AbstractLoader
   {
     friend class AssetGroup<T1>;
 
-    AssetGroup<T1> *_group{nullptr};
+    AssetGroup<T1>* _group{nullptr};
     size_t _requests{0};
     size_t _loaded{0};
     size_t _notFound{0};
@@ -20,32 +19,32 @@ namespace DeltaEngine
 
     virtual ~AbstractLoader();
 
-    size_t request_count() const;
-    size_t loaded_count() const;
-    size_t notFound_count() const;
-    
+    [[nodiscard]] size_t request_count() const;
+    [[nodiscard]] size_t loaded_count() const;
+    [[nodiscard]] size_t notFound_count() const;
+
     void load(AssetKey key);
-    void load( AssetKey key, std::string_view str );
+    void load(AssetKey key, std::string_view str);
 
   protected:
-    void set(AssetKey key, T1 *data, AssetState state, AssetLifetime lifetime);
+    void set(AssetKey key, T1* data, AssetState state, AssetLifetime lifetime);
 
     template <typename T1s,
-              typename = typename std::enable_if_t<
-                  !std::is_same_v<typename std::decay_t<T1s>, std::nullptr_t>>>
-    void set(AssetKey key, T1s &&data, AssetState state, AssetLifetime lifetime);
+              typename = std::enable_if_t<
+                !std::is_same_v<std::decay_t<T1s>, std::nullptr_t>>>
+    void set(AssetKey key, T1s&& data, AssetState state, AssetLifetime lifetime);
 
-    void set(AssetKey key, T1 *data);
+    void set(AssetKey key, T1* data);
 
     template <typename T1s,
-              typename = typename std::enable_if_t<
-                  !std::is_same_v<typename std::decay_t<T1s>, std::nullptr_t>>>
-    void set(AssetKey key, T1s &&data);
+              typename = std::enable_if_t<
+                !std::is_same_v<std::decay_t<T1s>, std::nullptr_t>>>
+    void set(AssetKey key, T1s&& data);
 
-    void set_notFound(AssetKey key);
-    
+    void set_not_found(AssetKey key);
+
     virtual void doLoad(AssetKey key) = 0;
-    virtual void doLoad( AssetKey key, std::string_view str ) = 0;
+    virtual void doLoad(AssetKey key, std::string_view str) = 0;
   };
 } // namespace DeltaEngine
 

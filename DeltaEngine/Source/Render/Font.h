@@ -7,10 +7,10 @@ namespace DeltaEngine
 {
     struct CharacterInfo
     {
-        unsigned int textureID;
-        Vector2 size;
-        Vector2 bearing;
-        unsigned int advance;
+        unsigned int textureID = 0;
+        Vector2 size = Vector2();
+        Vector2 bearing = Vector2();
+        unsigned int advance = 0;
     };
 
     class Font
@@ -18,7 +18,7 @@ namespace DeltaEngine
         std::unordered_map<char, CharacterInfo> m_CharacterInfo;
         unsigned int m_RendererID;
     public:
-        Font(std::string filepath = "Fonts/Arial.ttf");
+        Font(const std::string& filepath);
         std::unordered_map<char, CharacterInfo>& characterInfo();
         unsigned int GetID() const;
         static void Init();

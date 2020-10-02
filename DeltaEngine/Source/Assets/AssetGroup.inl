@@ -30,7 +30,7 @@ namespace DeltaEngine
       if (it->second._lifetime == AssetLifetime::Managed)
         it = _datas.erase(it);
       else
-        it++;
+        ++it;
     }
   }
 
@@ -45,38 +45,38 @@ namespace DeltaEngine
   //****************************************************************************
 
   template <typename T1>
-  void AssetGroup<T1>::load( AssetKey key )
+  void AssetGroup<T1>::load(AssetKey key)
   {
-    if ( _loader )
-      _loader->load( key );
+    if (_loader)
+      _loader->load(key);
   }
 
   template <typename T1>
-  void AssetGroup<T1>::load( AssetKey key, std::string_view str )
+  void AssetGroup<T1>::load(AssetKey key, std::string_view str)
   {
-    if ( _loader )
-      _loader->load( key, str );
+    if (_loader)
+      _loader->load(key, str);
   }
 
   template <typename T1>
   template <typename T2>
-  Asset<T1, T2> AssetGroup<T1>::get( AssetKey key)
+  Asset<T1, T2> AssetGroup<T1>::get(AssetKey key)
   {
-    if ( auto it = _datas.find( key ); it == _datas.end() )
+    if (auto it = _datas.find(key); it == _datas.end())
     {
       set(key, nullptr, AssetState::NotFound, AssetLifetime::Managed);
-      load( key );
+      load(key);
     }
 
     return Asset(this, key);
   }
 
   template <typename T1>
-  void AssetGroup<T1>::set(const AssetKey key, T1 *const data, const AssetState state, const AssetLifetime lifetime)
+  void AssetGroup<T1>::set(const AssetKey key, T1* const data, const AssetState state, const AssetLifetime lifetime)
   {
     auto it = _datas.find(key);
 
-    assert((data == nullptr) == (state == AssetState::NotFound || state == AssetState::Loading));
+    assert(( data == nullptr ) == ( state == AssetState::NotFound || state == AssetState::Loading ));
 
     assert(it == _datas.end() || it->second._state != AssetState::Final);
 
@@ -109,8 +109,7 @@ namespace DeltaEngine
     {
       if (_fallback)
         return AssetState::NotLoadedFallback;
-      else
-        return AssetState::NotLoaded;
+      return AssetState::NotLoaded;
     }
 
     if (!it->second._data)
@@ -119,13 +118,11 @@ namespace DeltaEngine
       {
         if (it->second._state == AssetState::Loading)
           return AssetState::LoadingFallback;
-        else if (it->second._state == AssetState::NotFound)
+        if (it->second._state == AssetState::NotFound)
           return AssetState::NotFoundFallback;
-        else
-          return AssetState::NotLoadedFallback;
+        return AssetState::NotLoadedFallback;
       }
-      else
-        return AssetState::NotLoaded;
+      return AssetState::NotLoaded;
     }
 
     return it->second._state;
@@ -135,19 +132,19 @@ namespace DeltaEngine
   // Fallback
   //****************************************************************************
   template <typename T1>
-  T1 *AssetGroup<T1>::fallback()
+  T1* AssetGroup<T1>::fallback()
   {
     return _fallback;
   }
 
   template <typename T1>
-  const T1 *AssetGroup<T1>::fallback() const
+  const T1* AssetGroup<T1>::fallback() const
   {
     return _fallback;
   }
 
   template <typename T1>
-  void AssetGroup<T1>::set_fallback(T1 *const data)
+  void AssetGroup<T1>::set_fallback(T1* const data)
   {
     Internal::safe_delete(_fallback);
     _fallback = data;
@@ -159,19 +156,19 @@ namespace DeltaEngine
   //****************************************************************************
 
   template <typename T1>
-  AbstractLoader<T1> *AssetGroup<T1>::loader()
+  AbstractLoader<T1>* AssetGroup<T1>::loader()
   {
     return _loader;
   }
 
   template <typename T1>
-  const AbstractLoader<T1> *AssetGroup<T1>::loader() const
+  const AbstractLoader<T1>* AssetGroup<T1>::loader() const
   {
     return _loader;
   }
 
   template <typename T1>
-  void AssetGroup<T1>::set_loader(AbstractLoader<T1> *const loader)
+  void AssetGroup<T1>::set_loader(AbstractLoader<T1>* const loader)
   {
     delete _loader;
 
@@ -197,7 +194,7 @@ namespace DeltaEngine
   {
     auto it = _datas.find(key);
     if (it != _datas.end())
-      it->second._referenceCount++;
+      ++it->second._referenceCount;
   }
 
   template <typename T1>
@@ -206,8 +203,7 @@ namespace DeltaEngine
     auto it = _datas.find(key);
     if (it != _datas.end())
       if (--(it->second._referenceCount) == 0 &&
-          it->second._lifetime == AssetLifetime::ReferenceCounted)
+        it->second._lifetime == AssetLifetime::ReferenceCounted)
         _datas.erase(it);
   }
-
 } // namespace DeltaEngine

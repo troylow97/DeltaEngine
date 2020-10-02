@@ -1,6 +1,5 @@
 namespace DeltaEngine
 {
-
   template <typename T1>
   AbstractLoader<T1>::~AbstractLoader()
   {
@@ -34,14 +33,14 @@ namespace DeltaEngine
   }
 
   template <typename T1>
-  void AbstractLoader<T1>::load( AssetKey key, std::string_view str )
+  void AbstractLoader<T1>::load(AssetKey key, std::string_view str)
   {
     _requests++;
     doLoad(key, str);
   }
 
   template <typename T1>
-  void AbstractLoader<T1>::set(AssetKey key, T1 *data, AssetState state, AssetLifetime lifetime)
+  void AbstractLoader<T1>::set(AssetKey key, T1* data, AssetState state, AssetLifetime lifetime)
   {
     if (data)
       _loaded++;
@@ -54,28 +53,27 @@ namespace DeltaEngine
 
   template <typename T1>
   template <typename T1s, typename>
-  void AbstractLoader<T1>::set(AssetKey key, T1s &&data, AssetState state, AssetLifetime lifetime)
+  void AbstractLoader<T1>::set(AssetKey key, T1s&& data, AssetState state, AssetLifetime lifetime)
   {
     set(key, new std::decay_t<T1s>(std::forward<T1s>(data)), state, lifetime);
   }
 
   template <typename T1>
-  void AbstractLoader<T1>::set(AssetKey key, T1 *data)
+  void AbstractLoader<T1>::set(AssetKey key, T1* data)
   {
-    set(key, data, AssetState::Final, AssetLifetime::Persistant);
+    set(key, data, AssetState::Final, AssetLifetime::Persistent);
   }
 
   template <typename T1>
   template <typename T1s, typename>
-  void AbstractLoader<T1>::set(AssetKey key, T1s &&data)
+  void AbstractLoader<T1>::set(AssetKey key, T1s&& data)
   {
     set(key, new std::decay_t<T1s>(std::forward<T1s>(data)));
   }
 
   template <typename T1>
-  void AbstractLoader<T1>::set_notFound(AssetKey key)
+  void AbstractLoader<T1>::set_not_found(AssetKey key)
   {
-    set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistant);
+    set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
   }
-
 } // namespace DeltaEngine

@@ -1,11 +1,11 @@
 #pragma once
 #include <cassert>
 #include "Assets/AbstractLoader.h"
-#include "Render/Font.h"
+#include "Render/Texture.h"
 
 namespace DeltaEngine
 {
-  class FontLoader final : public AbstractLoader<Font>
+  class TextureLoader final : public AbstractLoader<Texture2D>
   {
     void doLoad(AssetKey key) override
     {
@@ -13,10 +13,11 @@ namespace DeltaEngine
 
     void doLoad(AssetKey key, std::string_view str) override
     {
-      Font data{std::string(str)};
-      if (data.characterInfo().empty())
-        set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
-      else
+      Texture2D data{std::string(str)};
+      // To define how to handle failed Texture loading
+      //if (data.characterInfo().empty())
+      //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
+      //else
         set(key, data, AssetState::Final, AssetLifetime::Persistent);
     }
   };

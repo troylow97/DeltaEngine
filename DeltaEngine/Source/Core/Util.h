@@ -1,20 +1,17 @@
 #pragma once
 
-#include "Assets/AssetManager.h"
-#include "Render/Font.h"
-
 namespace DeltaEngine
 {
 
 template <typename... Ts>
 class AssetManager;
 
-using AM = AssetManager<class Font>;
+using AM = AssetManager<class Font, class Texture2D, class Shader>;
 
 struct DeltaEngineGlobalEnvironment
 {
   class GameClock *pClock;
-  AM *pmanager;
+  AM *pManager;
 };
 
 extern DeltaEngineGlobalEnvironment env;

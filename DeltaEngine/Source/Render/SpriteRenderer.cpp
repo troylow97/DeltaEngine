@@ -1,18 +1,14 @@
 #include "SpriteRenderer.h"
-#include "Time.h"
+#include "OpenGLSystem.h"
 #include <iostream>
 
 namespace DeltaEngine
 {
-	SpriteRenderer::SpriteRenderer() : sprite{ new Texture2D("run.png") }, shader{ new Shader() },
+	SpriteRenderer::SpriteRenderer(Texture2D* t, Shader* s) : sprite{ t },
 		offset{ Vector2() }, tiling{ Vector2(1,1) }
 	{
-		
-	}
-	SpriteRenderer::SpriteRenderer(std::string textureName) : sprite{ new Texture2D(textureName) }, shader{ new Shader() },
-		offset{ Vector2() }, tiling{ Vector2(1,1) }
-	{
-		
+		shader = s;
+		RenderModule::allRenderers.push_back(this);
 	}
 	SpriteRenderer::~SpriteRenderer()
 	{

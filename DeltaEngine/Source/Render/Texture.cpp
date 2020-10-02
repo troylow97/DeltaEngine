@@ -5,7 +5,7 @@
 
 namespace DeltaEngine
 {
-	Texture2D::Texture2D(const std::string filepath) : m_RendererID{ 0 }, m_Data{ nullptr }, m_Width{ 0 }, m_Height{ 0 }
+	Texture2D::Texture2D(const std::string& filepath) : m_RendererID{ 0 }, m_Data{ nullptr }, m_Width{ 0 }, m_Height{ 0 }
 	{
 		stbi_set_flip_vertically_on_load(0);
 		
@@ -14,7 +14,7 @@ namespace DeltaEngine
 
 		int channels;
 
-		m_Data = stbi_load(filepath.c_str(), &m_Width, &m_Height, &channels, 0);;
+		m_Data = stbi_load(filepath.c_str(), &m_Width, &m_Height, &channels, 0);
 
 		if (!m_Data)
 			DeltaEngine_CORE_ERROR("ERROR: Couldn't create texture {}!", filepath);

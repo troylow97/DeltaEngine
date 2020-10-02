@@ -12,7 +12,7 @@ namespace DeltaEngine
 	public:
 		enum SpriteMode { Single, Multiple };
 
-		Texture2D(const std::string filepath);
+		Texture2D(const std::string& filepath);
 		~Texture2D();
 
 		void Bind(unsigned int slot = 0) const;

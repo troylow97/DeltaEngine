@@ -6,22 +6,19 @@
 #include "Texture.h"
 #include "Shader.h"
 #include "Camera.h"
+#include "Renderer.h"
 
 namespace DeltaEngine
 {
-	class SpriteRenderer
+	class SpriteRenderer : public Renderer
 	{
 	public:
 		Texture2D* sprite;
-		Shader* shader;
-		Transform transform;
-		Color color;
 
 		Vector2 offset, tiling;
 
-		SpriteRenderer();
-		SpriteRenderer(std::string textureName);
+		SpriteRenderer(Texture2D* t, Shader* s);
 		~SpriteRenderer();
-		void Render(const Camera& camera);
+		void Render(const Camera& camera) override;
 	};
 }

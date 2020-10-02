@@ -18,6 +18,8 @@
 // AssetManager
 #include "Assets/AssetManager.h"
 #include "Assets/Loaders/FontLoader.h"
+#include "Assets/Loaders/ShaderLoader.h"
+#include "Assets/Loaders/TextureLoader.h"
 
 
 #include "Physics/Collision.h"
@@ -29,12 +31,7 @@
 #include "Render/Shader.h"
 #include "Render/SpriteRenderer.h"
 #include "Render/Texture.h"
-#include "Render/GraphicsManager.h"
 #include "Render/FrameAnimation.h"
 #include "Render/ParticleSystem.h"
 
 #include "Event/ApplicationEvent.h"
-
-#include "Core/Util.h"
-
-#include "EntryPoint.h"

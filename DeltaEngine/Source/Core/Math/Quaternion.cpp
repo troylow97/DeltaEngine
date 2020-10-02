@@ -1,27 +1,26 @@
 #include "DEpch.h"
 #include "Quaternion.h"
 #include <cmath>
+#include "Math.h"
 
 namespace DeltaEngine
 {
-    const float pi = 3.14159265358979323846f;
-
     Quaternion::Quaternion()
         : x{ 0 }, y{ 0 }, z{ 0 }, w{ 1 } {}
     Quaternion::Quaternion(float q0, float q1, float q2, float q3)
         : x{ q0 }, y{ q1 }, z{ q2 }, w{ q3 } {}
 
-    Quaternion Quaternion::identity{ 0, 0, 0, 1 };
+    const Quaternion Quaternion::identity() { return { 0, 0, 0, 1 }; }
 
     Quaternion Quaternion::AngleAxis(const float angle, const Vector3 axis)
     {
         Quaternion q;
         Vector3 v = axis;
         v.Normalize();
-        v *= sinf(angle / 360 * pi);
+        v *= sinf(angle / 360 * Math::pi);
         //printf("%f, %f, %f, %f\n", q.x, q.y, q.z, q.w);
 
-        return Quaternion{ v.x, v.y, v.z, cosf(angle / 360 * pi) };
+        return Quaternion{ v.x, v.y, v.z, cosf(angle / 360 * Math::pi) };
     }
 
     //assumes rotation sequencing of yaw, pitch, then roll, or Body 3-2-1
@@ -60,7 +59,7 @@ namespace DeltaEngine
         // pitch (y-axis rotation)
         float sinp = 2 * (q.w * q.y - q.z * q.x);
         if (std::abs(sinp) >= 1)
-            eulerAngles.y = std::copysign(pi / 2, sinp); // use 90 degrees if out of range
+            eulerAngles.y = std::copysign(Math::pi / 2, sinp); // use 90 degrees if out of range
         else
             eulerAngles.y = std::asinf(sinp);
 
