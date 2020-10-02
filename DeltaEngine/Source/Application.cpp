@@ -6,7 +6,7 @@
 #include "Event/ApplicationEvent.h"
 #include "Physics/Collision.h"
 #include "Core/Utils/FileUtils.h"
-#include "Core/Util.h"
+#include "Core/GlobalStruct.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -46,6 +46,8 @@ namespace DeltaEngine
 
     env.pManager->set_loader<Texture2D>(new TextureLoader())
        .load<Texture2D>("Running", "run.png");
+
+    env.pECS = new ECSModule();
   }
 
   Application::~Application()

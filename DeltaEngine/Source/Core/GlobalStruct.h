@@ -14,6 +14,7 @@ struct DeltaEngineGlobalEnvironment
 {
   class GameClock *pClock;
   AM *pManager;
+  class ECSModule *pECS;
 };
 
 extern DeltaEngineGlobalEnvironment env;

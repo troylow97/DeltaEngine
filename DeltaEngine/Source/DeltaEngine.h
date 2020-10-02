@@ -7,6 +7,7 @@
 
 // Core
 #include "Core/GameClock/GameClock.h"
+#include "ECS/ECSModule.h"
 
 // Math
 #include "Core/Math/Vector.h"
