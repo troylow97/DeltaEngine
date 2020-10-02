@@ -106,23 +106,82 @@ namespace DeltaEngine
     delete RenderModule::openGLSystem;
   }
 
-  void Application::FixedUpdate()
-  {
-    // Collision Update
-    // Collision Resolution Update
-    // Collision Late Update
-    // Level Fixed Update
-  }
+    void Application::PushLayer(Layer* layer)
+    {
+        m_LayerStack.PushLayer(layer);
+        layer->OnAttach();
+    }
 
-  void Application::VariableUpdate()
-  {
-    // Input Update
-    // Level Update
-    // Events Update (Logics)
-    // Level Late Update
-    // Audio Update
-    // Render Update
-    // GUI Update
-    // Memory Update
-  }
+    void Application::PushOverlay(Layer* layer)
+    {
+        m_LayerStack.PushOverlay(layer);
+        layer->OnAttach();
+    }
+
+    void Application::OnEvent(Event& e)
+    {
+        EventManager event_manager;
+        
+        event_manager.addEvent(WindowCloseEvent());
+        
+        if (!event_manager.isEmpty())
+        {
+            auto& ref = event_manager.resolveEvent();
+            EventDispatcher d(ref);
+            d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
+        }
+
+        //below is how cherno does it
+        //EventDispatcher dispatcher(e);
+        //dispatcher.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
+        //dispatcher.Dispatch<WindowResizeEvent>(DE_BIND_EVENT_FN(Application::OnWindowResize));
+        //
+        //for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
+        //{
+        //    if (e.isHandled)
+        //        break;
+        //    (*it)->OnEvent(e);
+        //}
+    }
+
+    bool Application::OnWindowClose(WindowCloseEvent& e)
+    {
+        m_Running = false;
+        return true;
+    }
+
+    bool Application::OnWindowResize(WindowResizeEvent& e)
+    {
+        if (e.GetWidth() == 0 || e.GetHeight() == 0)
+        {
+            m_Minimized = true;
+            return false;
+        }
+
+        m_Minimized = false;
+        //Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+        return false;
+    }
+
+    void Application::FixedUpdate()
+    {
+        // Collision Update
+        // Collision Resolution Update
+        // Collision Late Update
+        // Level Fixed Update
+    }
+
+    void Application::VariableUpdate()
+    {
+        // Input Update
+        // Level Update
+        // Events Update (Logics)
+        // Level Late Update
+        // Audio Update
+        // Render Update
+        RenderModule::openGLSystem->Update();
+        // GUI Update
+        // Memory Update
+    }
 }

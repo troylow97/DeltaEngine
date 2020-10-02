@@ -21,7 +21,9 @@ namespace DeltaEngine
 
 	Shader::~Shader()
 	{
-		GLCall(glDeleteProgram(m_RendererID));
+		DeltaEngine_CORE_INFO("Deleting Shader {0} and {1}", m_filepath.vertexSource, m_filepath.fragmentSource);
+		glDeleteProgram(m_RendererID);
+		DeltaEngine_CORE_INFO("Shader {0} and {1} deleted", m_filepath.vertexSource, m_filepath.fragmentSource);
 	}
 
 	void Shader::Bind() const

@@ -29,7 +29,5 @@ namespace DeltaEngine
 		Vector3 Max() const;
 		Vector3 Min() const;
 		void Render();
-
-		static void Init();
 	};
 }

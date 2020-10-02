@@ -1,0 +1,93 @@
+#include "Physics/CollisionShapes.h"
+
+namespace DeltaEngine
+{
+	AABB::AABB() :
+		min{ 0,0 },
+		max{ 1,1 }
+	{}
+
+	AABB::AABB(Vector2 center, Vector2 size) :
+		min{ center.x - size.x / 2, center.y - size.y / 2 },
+		max{ center.x + size.x / 2, center.y + size.y / 2 }
+	{}
+
+	void AABB::combine(const AABB& aabb)
+	{
+		if (min.x > aabb.min.x) { min.x = aabb.min.x; }
+		if (min.y > aabb.min.y) { min.y = aabb.min.y; }
+		if (max.x < aabb.max.x) { max.x = aabb.max.x; }
+		if (max.y < aabb.max.y) { max.y = aabb.max.y; }
+	}
+
+	void AABB::combine(const AABB& aabb1, const AABB& aabb2)
+	{
+		if (aabb1.min.x > aabb2.min.x) { min.x = aabb2.min.x; }
+		else { min.x = aabb1.min.x; }
+		if (aabb1.min.y > aabb2.min.y) { min.y = aabb2.min.y; }
+		else { min.y = aabb1.min.y; }
+		if (aabb1.max.x < aabb2.max.x) { max.x = aabb2.max.x; }
+		else { max.x = aabb1.max.x; }
+		if (aabb1.max.y < aabb2.max.y) { max.y = aabb2.max.y; }
+		else { max.y = aabb1.max.y; }
+	}
+	bool AABB::contains(const AABB& aabb) const
+	{
+		bool result = true;
+		result = result && min.x <= aabb.min.x;
+		result = result && min.y <= aabb.min.y;
+		result = result && aabb.max.x <= max.x;
+		result = result && aabb.max.y <= max.y;
+		return result;
+	}
+
+	float AABB::GetPerimeter() const
+	{
+		float wx = max.x - min.x;
+		float wy = max.y - min.y;
+		return 2.0f * (wx + wy);
+	}
+
+	LineSegment::LineSegment() :
+		m_pt0{ 0,0 },
+		m_pt1{ 1,1 },
+		m_normal{ 1,0 }
+	{}
+
+	LineSegment::LineSegment(Vector2 pt0, Vector2 pt1) :
+		m_pt0{ pt0 },
+		m_pt1{ pt1 },
+		m_normal{ {pt1.x - pt0.x},{pt1.y - pt0.y} }
+	{}
+
+	Circle::Circle() :
+		m_center{ 0,0 },
+		m_radius{ 1 },
+		m_mass{ 1.0f }
+	{}
+
+	Circle::Circle(Vector2 center, float radius, float mass) :
+		m_center{ center },
+		m_radius{ radius },
+		m_mass{ mass }
+	{}
+
+	Circle::Circle(Vector2 center, float radius) :
+		m_center{ center },
+		m_radius{ radius },
+		m_mass{ 1.0f }
+	{}
+
+	Ray::Ray() :
+		m_pt0{ 0,0 },
+		m_dir{ 0,0 }
+	{}
+
+	Ray::Ray(Vector2 pt, Vector2 dir) :
+		m_pt0{ pt },
+		m_dir{ dir }
+	{}
+
+}
+
+

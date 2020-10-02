@@ -10,7 +10,7 @@
 
 namespace DeltaEngine
 {
-	class SpriteRenderer : public Renderer
+	class DE_API SpriteRenderer : public Renderer
 	{
 	public:
 		Texture2D* sprite;

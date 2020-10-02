@@ -2,6 +2,7 @@
 #include "OpenGLSystem.h"
 #include "Mesh.h"
 #include <GL/glew.h>
+#include "Core/Debugging/Logger/Log.h"
 
 namespace DeltaEngine
 {
@@ -23,6 +24,14 @@ namespace DeltaEngine
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
 	}
+    TextRenderer::~TextRenderer()
+    {
+        DeltaEngine_CORE_INFO("Deleting Text Renderer");
+        delete font;
+        delete shader;
+        DeltaEngine_CORE_INFO("Text Renderer deleted");
+    }
+
 	void TextRenderer::Render(const Camera& camera)
 	{
         Matrix4x4 proj = camera.GetProjectionMatrix();

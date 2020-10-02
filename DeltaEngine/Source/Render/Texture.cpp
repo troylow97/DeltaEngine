@@ -34,7 +34,9 @@ namespace DeltaEngine
 
 	Texture2D::~Texture2D()
 	{
-		GLCall(glDeleteTextures(1, &m_RendererID));
+		DeltaEngine_CORE_INFO("Deleting Texture");
+		glDeleteTextures(1, &m_RendererID);
+		DeltaEngine_CORE_INFO("Texture deleted");
 	}
 
 	void Texture2D::Bind(unsigned int slot) const

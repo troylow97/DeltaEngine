@@ -85,4 +85,8 @@ namespace DeltaEngine
 		}
 		DeltaEngine_CORE_INFO("FreeType was initialized successfully");
 	}
+    void Font::Exit()
+    {
+        FT_Done_FreeType(ft);
+    }
 }

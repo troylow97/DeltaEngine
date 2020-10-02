@@ -4,6 +4,13 @@
 
 namespace DeltaEngine
 {
+	Matrix2x2::Matrix2x2() :
+		m00{ 1 }, m01{ 0 },
+		m10{ 0 }, m11{ 1 } {}
+
+	Matrix2x2::Matrix2x2(float v00, float v01, float v02, float v03) :
+		m00{ v00 }, m01{ v01 }, m10{ v02 }, m11{ v03 } {}
+
 	Matrix4x4 Matrix4x4::identity
 	{
 		1, 0, 0, 0,
