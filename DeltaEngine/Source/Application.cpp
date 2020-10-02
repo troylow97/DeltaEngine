@@ -61,7 +61,7 @@ namespace DeltaEngine
     // Window
     // Memory Manager
   }
-
+  FrameAnimation *anim;
   void Application::Run()
   {
     auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("Running"),
@@ -69,6 +69,9 @@ namespace DeltaEngine
     auto* t = new TextRenderer(env.pManager->get<Font>("Fail"),
                                env.pManager->get<Shader>("DefaultText"));
     auto* p = new ParticleSystem();
+
+    anim = new FrameAnimation();
+    anim->renderer = s;
 
     // TODO Modules Instantiation
     f64 accumulator = 0.0;
@@ -95,7 +98,6 @@ namespace DeltaEngine
           continue;
         }
         VariableUpdate();
-
         FixedUpdate();
         accumulator -= env.pClock->DeltaTime();
       }

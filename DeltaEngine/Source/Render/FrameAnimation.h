@@ -6,12 +6,6 @@
 
 namespace DeltaEngine
 {
-	struct AnimationEvent
-	{
-		void* event;
-		unsigned int time;
-	};
-
 	// this class assumes the frames go from left to right, top to bottom
 	class FrameAnimation
 	{
@@ -22,7 +16,6 @@ namespace DeltaEngine
 		unsigned int rows, columns;
 		unsigned int fps;
 		float speed;
-		std::vector<AnimationEvent> events;
 
 		SpriteRenderer* renderer;
 
@@ -31,6 +24,6 @@ namespace DeltaEngine
 
 		FrameAnimation(unsigned int row = 3, unsigned int col = 2, unsigned int frames = 0);
 		~FrameAnimation();
-		void Update();
+		void Update(double frameTime);
 	};
 }

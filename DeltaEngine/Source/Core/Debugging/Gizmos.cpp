@@ -87,7 +87,7 @@ namespace DeltaEngine::Gizmos
 		}
 	}
 
-	void Draw2DBox(Vector3 position, Quaternion rotation, Vector3 scale)
+	void Draw2DBox(Vector3 position, Vector3 scale, Quaternion rotation)
 	{
 		Draw2DBox(Transform(position, rotation, scale));
 	}
@@ -108,7 +108,7 @@ namespace DeltaEngine::Gizmos
 		Mesh::DrawQuad();
 	}
 
-	void Draw2DWireBox(Vector3 position, Quaternion rotation, Vector3 scale)
+	void Draw2DWireBox(Vector3 position, Vector3 scale, Quaternion rotation)
 	{
 		Draw2DWireBox(Transform(position, rotation, scale));
 	}
@@ -135,7 +135,7 @@ namespace DeltaEngine::Gizmos
 		Mesh::DrawLines(startEndPair);
 	}
 
-	void Draw2DCircle(Vector3 position, Quaternion rotation, Vector3 scale)
+	void Draw2DCircle(Vector3 position, Vector3 scale, Quaternion rotation)
 	{
 		Draw2DCircle(Transform(position, rotation, scale));
 	}
@@ -156,7 +156,7 @@ namespace DeltaEngine::Gizmos
 		Mesh::DrawQuad();
 	}
 
-	void Draw2DWireCircle(Vector3 position, Quaternion rotation, Vector3 scale)
+	void Draw2DWireCircle(Vector3 position, Vector3 scale, Quaternion rotation)
 	{
 		Draw2DWireCircle(Transform(position, rotation, scale));
 	}

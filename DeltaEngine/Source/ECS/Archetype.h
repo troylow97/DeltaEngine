@@ -1,8 +1,7 @@
 #pragma once
 #include <vector>
-
-
-
+#include "DE_API.h"
+ 
 namespace DeltaEngine
 {
   struct ComponentList;
@@ -26,15 +25,6 @@ namespace ECS_Internal
 
     template <typename T>
     friend auto ECS_Internal::get_chunk_array(DataChunk *chunk);
-
-  public:
-    static void reorder_chunk(Archetype *arch);
-    static void set_chunk_full(DataChunk *chunk);
-    static void set_chunk_partial(DataChunk *chunk);
-
-    static DataChunk *find_free_chunk(Archetype *arch);
-    static DataChunk *create_chunk(Archetype *arch);
-    static void delete_chunk(DataChunk *chunk);
   };
 
 } // namespace DeltaEngine

@@ -34,5 +34,6 @@
 #include "Render/Texture.h"
 #include "Render/FrameAnimation.h"
 #include "Render/ParticleSystem.h"
+#include "Render/FrameAnimation.h"
 
 #include "Event/ApplicationEvent.h"

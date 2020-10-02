@@ -1,11 +1,12 @@
 #pragma once
+#include "DE_API.h"
 
 namespace DeltaEngine
 {
 
   struct EntityID;
 
-  class Query
+  class DE_API Query
   {
     std::vector<MetaHash> required;
     std::vector<MetaHash> excluded;

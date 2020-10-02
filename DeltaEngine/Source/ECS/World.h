@@ -7,7 +7,7 @@
 namespace DeltaEngine
 {
 
-  class World
+  class DE_API World
   {
     std::unique_ptr<EntityManager> em;
     std::unordered_map<size_t, std::unique_ptr<SystemBase>> systems_map;

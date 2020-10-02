@@ -26,13 +26,11 @@ namespace DeltaEngine
 			sprite ? (sprite->GetHeight() / 100.0f * tiling.y) : 1, 1 })
 			* transform.LocalToWorldMatrix();
 
-		static float t = 0;
-		t += 0.001f;
-
 		if (sprite)
 		{
 			sprite->Bind(0);
 		}
+
 		shader->SetUniformMatrix4f("_M", model);
 		shader->SetUniformMatrix4f("_V", view);
 		shader->SetUniformMatrix4f("_P", proj);

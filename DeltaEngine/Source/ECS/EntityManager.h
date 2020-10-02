@@ -13,11 +13,12 @@
 #include "ComponentList.h"
 #include "ArrayView.h"
 #include "DataChunk.h"
+#include "DE_API.h"
 
 namespace DeltaEngine
 {
 
-  class EntityManager
+  class DE_API EntityManager
   {
     std::vector<Entity> entities;
     std::vector<size_t> entities_deleted;
@@ -82,6 +83,13 @@ namespace DeltaEngine
     void archetype_iterate(const Query &query, Func &&func);
 
     ComponentList *build_component_list(const Metatype **types, size_t count);
+
+    void reorder_chunk(Archetype *arch);
+    void set_chunk_full(DataChunk *chunk);
+    void set_chunk_partial(DataChunk *chunk);
+    DataChunk *find_free_chunk(Archetype *arch);
+    DataChunk *create_chunk(Archetype *arch);
+    void delete_chunk(DataChunk *chunk);
   };
 
 } // namespace DeltaEngine

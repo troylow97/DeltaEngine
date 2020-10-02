@@ -1,23 +1,24 @@
 #pragma once
+#include "DE_API.h"
 
 #include "World.h"
 
 namespace DeltaEngine
 {
 
-  class ECSModule
+  class DE_API ECSModule
   {
-    std::vector<World> worlds;
+    std::vector<World*> worlds;
 
   public:
     ECSModule()
     {
-      worlds.push_back(World());
+      worlds.push_back(new World());
     }
 
     World &world()
     {
-      return worlds[0]; // default for now
+      return *worlds[0]; // default for now
     }
 
     // Multiple World Usage in the future

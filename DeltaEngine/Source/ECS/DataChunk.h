@@ -1,4 +1,5 @@
 #pragma once
+#include "DE_API.h"
 
 namespace DeltaEngine
 {
