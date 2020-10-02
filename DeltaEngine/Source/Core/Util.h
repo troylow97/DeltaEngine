@@ -8,6 +8,8 @@ class AssetManager;
 
 using AM = AssetManager<class Font, class Texture2D, class Shader>;
 
+class GameClock;
+
 struct DeltaEngineGlobalEnvironment
 {
   class GameClock *pClock;

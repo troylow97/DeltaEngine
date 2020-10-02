@@ -13,7 +13,7 @@ namespace DeltaEngine
 
     void doLoad(AssetKey key, std::string_view str) override
     {
-      Texture2D data{std::string(str)};
+      Texture2D* data = new Texture2D{std::string(str)};
       // To define how to handle failed Texture loading
       //if (data.characterInfo().empty())
       //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);

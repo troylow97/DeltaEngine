@@ -13,7 +13,7 @@ namespace DeltaEngine
 
     void doLoad(AssetKey key, std::string_view str) override
     {
-      Shader data{std::string(str)};
+      Shader* data = new Shader{std::string(str)};
       // To define how to handle failed loading
       //if (data.characterInfo().empty())
       //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);

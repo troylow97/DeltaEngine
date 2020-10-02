@@ -4,11 +4,11 @@ namespace DeltaEngine
 {
 	CollisionModule::CollisionModule()
 	{
-		main_char = new SpriteRenderer{};
-		main_char->transform.position.x = 5;
-		main_char->transform.position.y = 5;
-		main_char->transform.scale.x = 5;
-		main_char->transform.scale.y = 5;
+		//main_char = new SpriteRenderer{};
+		//main_char->transform.position.x = 5;
+		//main_char->transform.position.y = 5;
+		//main_char->transform.scale.x = 5;
+		//main_char->transform.scale.y = 5;
 		//main_char->collider._aabb.min.x = main_char->transform.position.x - main_char->transform.scale.x / 2;
 		//main_char->collider._aabb.min.y = main_char->transform.position.y - main_char->transform.scale.y / 2;
 		//main_char->collider._aabb.max.x = main_char->transform.position.x + main_char->transform.scale.x / 2;

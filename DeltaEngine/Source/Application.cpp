@@ -33,7 +33,6 @@ namespace DeltaEngine
     RenderModule::openGLSystem->Init();
 
     FileUtils::Root("Assets");
-
     env.pClock = new GameClock();
     env.pManager = new AM();
     env.pManager->set_loader<Font>(new FontLoader())
@@ -93,7 +92,8 @@ namespace DeltaEngine
           DispatchMessage(&msg);
           continue;
         }
-        RenderModule::openGLSystem->Update();
+        VariableUpdate();
+
         FixedUpdate();
         accumulator -= env.pClock->DeltaTime();
       }

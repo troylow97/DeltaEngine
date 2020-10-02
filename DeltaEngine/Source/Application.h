@@ -2,19 +2,18 @@
 #include "Core/LayerStack.h"
 #include "Event/ApplicationEvent.h"
 #include "DE_API.h"
-#include "Core/GameClock/GameClock.h"
-#include "Core/Debugging/Logger/Log.h"
 
 namespace DeltaEngine
 {
-	class DE_API Application
+  class ImGuiLayer;
+
+  class DE_API Application
 	{
 
 		bool m_Running;
 		bool m_Minimized;
 		LayerStack m_LayerStack;
 		ImGuiLayer* m_ImGuiLayer;
-		GameClock m_gameclock;
 		double m_interval;
 	public:
 		Application();
