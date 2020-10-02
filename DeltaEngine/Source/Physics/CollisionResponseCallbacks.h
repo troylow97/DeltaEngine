@@ -1,9 +1,11 @@
 #pragma once
 #include "Core/Math/Vector.h"
+#include "Collider.h"
 
 namespace DeltaEngine
 {
-	void AABB_CollisionResponse(const Vector3& obj1_pos,const Vector3& obj2_pos, Vector2& obj1_vel, Vector2& obj2_vel);
+	void AABB_CollisionResponse(Collider& obj1, Collider& obj2, Vector2& obj1_vel, Vector2& obj2_vel);
+	Vector2 CalculateDistanceTo(Collider& e1, Collider& e2); //Helper function
 	/******************************************************************************/
 	/*!
 		Calculates reflection when the circle hits another circle.

@@ -2,6 +2,7 @@
 #include "Physics/Collision.h"
 #include "Core/Math/Vector.h"
 #include "Core/Debugging/Gizmos.h"
+#include "../Application.h"
 
 namespace DeltaEngine
 {
@@ -26,8 +27,9 @@ namespace DeltaEngine
     // if doing trigger
     // bool isTrigger{false};
     Vector2 center;
+    Vector2 size; // Collider size
     ColliderType shape;
-
+    
     // If doing AABB Tree]
     // AABB FatAABB() = 0;
     // AABB AABB() = 0;
@@ -40,20 +42,23 @@ namespace DeltaEngine
     virtual bool Intersection(const CircleCollider* circle) = 0;
     virtual bool Intersection(const RayCollider* ray) = 0;
     virtual bool Intersection(const LineCollider* line) = 0;
+    virtual void OnDrawGizmos() = 0;
+    virtual void OnUpdate(Entity id) = 0;
   };
 
   class DE_API BoxCollider : public Collider
   {
   public:
       AABB _aabb;
-      Vector2 size; // Collider size
       BoxCollider();
       BoxCollider(Vector2, Vector2);
       virtual bool Intersection(const BoxCollider* aabb);
       virtual bool Intersection(const CircleCollider* circle);
       virtual bool Intersection(const RayCollider* ray);
       virtual bool Intersection(const LineCollider* linecollider);
+      virtual void OnDrawGizmos();
       virtual ColliderType GetType() const;
+      virtual void OnUpdate(Entity id);
   };
 
   class DE_API CircleCollider : public Collider
@@ -67,7 +72,9 @@ namespace DeltaEngine
       virtual bool Intersection(const CircleCollider* circle1);
       virtual bool Intersection(const RayCollider* ray);
       virtual bool Intersection(const LineCollider* line);
+      virtual void OnDrawGizmos();
       virtual ColliderType GetType() const;
+      virtual void OnUpdate(Entity id);
   };
   
   class DE_API LineCollider : public Collider
@@ -80,7 +87,9 @@ namespace DeltaEngine
       virtual bool Intersection(const CircleCollider* circle);
       virtual bool Intersection(const RayCollider* ray);
       virtual bool Intersection(const LineCollider* line2);
+      virtual void OnDrawGizmos();
       virtual ColliderType GetType() const;
+      virtual void OnUpdate(Entity id);
   };
   
   class DE_API RayCollider : public Collider
@@ -93,7 +102,9 @@ namespace DeltaEngine
       virtual bool Intersection(const CircleCollider* circle);
       virtual bool Intersection(const RayCollider* ray);
       virtual bool Intersection(const LineCollider* line);
+      virtual void OnDrawGizmos();
       virtual ColliderType GetType() const;
+      virtual void OnUpdate(Entity id);
   };
 
 

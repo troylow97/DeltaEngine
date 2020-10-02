@@ -1,7 +1,6 @@
 #pragma once
 #include "CollisionHandler.h"
 #include "OECS/Types.h"
-#include "DE_API.h"
 #include "OECS/System.h"
 
 namespace DeltaEngine

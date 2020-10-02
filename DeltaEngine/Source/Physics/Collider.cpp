@@ -29,6 +29,15 @@ namespace DeltaEngine
     {
         return ColliderType::BOX;
     }
+    void BoxCollider::OnDrawGizmos()
+    {
+        Gizmos::Draw2DWireBox(center);
+    }
+    void BoxCollider::OnUpdate(Entity id)
+    {
+        center = ecs->get_component<Transform>(id).position;
+        _aabb.calculate_position(center, size);
+    }
 
     //CircleColliders
     CircleCollider::CircleCollider() :
@@ -61,6 +70,16 @@ namespace DeltaEngine
     {
         return ColliderType::CIRCLE;
     }
+    void CircleCollider::OnDrawGizmos()
+    {
+        Gizmos::Draw2DCircle(center);
+    }
+    void CircleCollider::OnUpdate(Entity id)
+    {
+        center = ecs->get_component<Transform>(id).position;
+        circle.m_center = center;
+        circle.m_radius = size.x;
+    }
 
     //Line Colliders
     LineCollider::LineCollider() :
@@ -88,6 +107,15 @@ namespace DeltaEngine
     ColliderType LineCollider::GetType() const
     {
         return ColliderType::LINE;
+    }
+    void LineCollider::OnDrawGizmos()
+    {
+
+    }
+    void LineCollider::OnUpdate(Entity id)
+    {
+        center = ecs->get_component<Transform>(id).position;
+        line.m_pt0 = center;
     }
 
     //RayColliders
@@ -118,6 +146,15 @@ namespace DeltaEngine
     ColliderType RayCollider::GetType() const
     {
         return ColliderType::LINE;
+    }
+    void RayCollider::OnDrawGizmos()
+    {
+
+    }
+    void RayCollider::OnUpdate(Entity id)
+    {
+        center = ecs->get_component<Transform>(id).position;
+        ray.m_pt0 = center;
     }
 
 }

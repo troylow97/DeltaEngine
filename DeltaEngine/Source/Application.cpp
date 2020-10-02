@@ -1,7 +1,6 @@
 #include "DEpch.h"
 #include "DeltaEngine.h"
 #include "Render/OpenGLSystem.h"
-#include "Physics/Collision.h"
 #include <typeindex>
 #include <typeinfo>
 /*-----------------------------------
@@ -26,7 +25,7 @@ namespace DeltaEngine
         // GUI
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
-        // Physics
+        m_PhysicsSystem = new PhysicsSystem();
         // Audio
         // Events
     }
@@ -59,8 +58,9 @@ namespace DeltaEngine
         while (isRunning)
         {
             Application::OnEvent();
-            m_gameclock.Update(); // Update engine GameClock
 
+            m_gameclock.Update(); // Update engine GameClock
+            m_PhysicsSystem->OnUpdate(m_gameclock);
             accumulator += m_gameclock.DeltaTime(); // Update accumulator using time-scaled dt
 
             while (accumulator >= m_interval) // Update based on interval

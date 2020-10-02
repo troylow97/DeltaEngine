@@ -1,8 +1,6 @@
 #include "CollisionSystem.h"
-#include "../Application.h"
 #include "RigidBody.h"
 #include "Core/Math/Transform.h"
-#include "Collider.h"
 #include "CollisionResponseCallbacks.h"
 
 namespace DeltaEngine
@@ -29,6 +27,9 @@ namespace DeltaEngine
 		for (DeltaEngine::Entity ref1 : entities)
 		{
 			Collider* collider_1 = ecs->get_component<Collider*>(ref1);
+			Vector2 OldPos = ecs->get_component<Transform>(ref1).position;
+			ecs->get_component<Collider*>(ref1)->center = ecs->get_component<Transform>(ref1).position + ecs->get_component<RigidBody>(ref1).Velocity;
+			ecs->get_component<Collider*>(ref1)->OnUpdate(ref1);
 			for (DeltaEngine::Entity ref2 : entities)
 			{
 				Collider* collider_2 = ecs->get_component<Collider*>(ref2);
@@ -56,13 +57,15 @@ namespace DeltaEngine
 				CurrentPair.push_back(pair);
 
 			}
+			ecs->get_component<Collider*>(ref1)->center = OldPos;
+			ecs->get_component<Collider*>(ref1)->OnUpdate(ref1);
 		}
 
 	}
 
 	void CollisionSystem::CollisionHandling()
 	{
-		bool Handled;
+		bool Handled = false;
 
 		for (auto it1 = CurrentPair.begin(); it1 != CurrentPair.end();)
 		{
@@ -103,9 +106,11 @@ namespace DeltaEngine
 		{
 			RigidBody& rigid_1 = ecs->get_component<RigidBody>(it1->first);
 			Transform& trans_1 = ecs->get_component<Transform>(it1->first);
+			Collider* collider_1 = ecs->get_component<Collider*>(it1->first);
 			RigidBody& rigid_2 = ecs->get_component<RigidBody>(it1->second);
 			Transform& trans_2 = ecs->get_component<Transform>(it1->second);
-			AABB_CollisionResponse(trans_1.position, trans_2.position, rigid_1.Velocity, rigid_2.Velocity);
+			Collider* collider_2 = ecs->get_component<Collider*>(it1->second);
+			AABB_CollisionResponse(*collider_1, *collider_2, rigid_1.Velocity, rigid_2.Velocity);
 		}
 	}
 
