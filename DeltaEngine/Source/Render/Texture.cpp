@@ -5,7 +5,8 @@
 
 namespace DeltaEngine
 {
-	Texture2D::Texture2D(const std::string filepath) : m_RendererID{ 0 }, m_Data{ nullptr }, m_Width{ 0 }, m_Height{ 0 }
+	Texture2D::Texture2D(const std::string filepath)
+		: m_RendererID{ 0 }, m_Data{ nullptr }, m_Width{ 0 }, m_Height{ 0 }, texIndex{ 0 }
 	{
 		stbi_set_flip_vertically_on_load(0);
 		
@@ -30,6 +31,9 @@ namespace DeltaEngine
 
 		if (m_Data)
 			stbi_image_free(m_Data);
+
+		textureInfo.push_back({
+			Vector2(0, 0), Vector2(m_Width, m_Height), Vector2(0.5f, 0.5f)});
 	}
 
 	Texture2D::~Texture2D()
@@ -58,8 +62,25 @@ namespace DeltaEngine
 	{
 		return m_Height;
 	}
-	unsigned int Texture2D::GetID() const
+	unsigned int Texture2D::GetRendererID() const
 	{
 		return m_RendererID;
+	}
+
+	void Texture2D::Slice(TextureInfo info)
+	{
+		textureInfo.push_back(info);
+	}
+
+	void Texture2D::SliceAll(unsigned int row, unsigned int column)
+	{
+		for (size_t x = 0; x < row; ++x)
+		{
+			for (size_t y = 0; y < row; ++y)
+			{
+				textureInfo.push_back({
+					Vector2(0, 0), Vector2(m_Width / column, m_Height / row), Vector2(0.5f, 0.5f) });
+			}
+		}
 	}
 }

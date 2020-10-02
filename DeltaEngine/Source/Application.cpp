@@ -39,7 +39,7 @@ namespace DeltaEngine
         // Window
         // Memory Manager
     }
-
+    FrameAnimation* anim;
     void Application::Run()
     {
         m_Running = true;
@@ -48,7 +48,8 @@ namespace DeltaEngine
         SpriteRenderer* s = new SpriteRenderer();
         TextRenderer* t = new TextRenderer();
         ParticleSystem* p = new ParticleSystem();
-
+        anim = new FrameAnimation();
+        anim->renderer = s;
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
         bool isRunning = true;
@@ -152,6 +153,7 @@ namespace DeltaEngine
     {
         // Input Update
         // Level Update
+        anim->Update(m_gameclock.DeltaTime());
         // Events Update (Logics)
         // Level Late Update
         // Audio Update

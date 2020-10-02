@@ -102,11 +102,11 @@ namespace DeltaEngine
 			float time;
 			int count;
 		};
-		enum Shape
+		enum class Shape
 		{
 			None, Circle, Line
 		};
-		enum SimualationSpace
+		enum class SimualationSpace
 		{
 			Local, World,
 		};
@@ -121,7 +121,7 @@ namespace DeltaEngine
 		Color startColor[2] = { Color(), Color() };
 		float startRotation[2] = { 0, 0 };
 		float startSize[2] = { 1, 1 };
-		SimualationSpace simulationSpace = Local;
+		SimualationSpace simulationSpace = SimualationSpace::Local;
 
 		bool playOnAwake = true;
 		unsigned int maxParticles = 100;

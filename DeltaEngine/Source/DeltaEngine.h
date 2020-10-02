@@ -16,4 +16,5 @@
 #include "Render/SpriteRenderer.h"
 #include "Render/TextRenderer.h"
 #include "Render/ParticleSystem.h"
+#include "Render/FrameAnimation.h"
 
