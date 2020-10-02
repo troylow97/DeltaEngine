@@ -33,7 +33,7 @@ namespace DeltaEngine
 			stbi_image_free(m_Data);
 
 		textureInfo.push_back({
-			Vector2(0, 0), Vector2(m_Width, m_Height), Vector2(0.5f, 0.5f)});
+			Vector2(0, 0), Vector2(m_Width, m_Height), Vector2(0.5f, 0.5f), 0});
 	}
 
 	Texture2D::~Texture2D()
@@ -76,10 +76,13 @@ namespace DeltaEngine
 	{
 		for (size_t x = 0; x < row; ++x)
 		{
-			for (size_t y = 0; y < row; ++y)
+			for (size_t y = 0; y < column; ++y)
 			{
 				textureInfo.push_back({
-					Vector2(0, 0), Vector2(m_Width / column, m_Height / row), Vector2(0.5f, 0.5f) });
+					Vector2(m_Width / column * x, m_Height / row * y),
+					Vector2(m_Width / column, m_Height / row),
+					Vector2(0.5f, 0.5f),
+					static_cast<unsigned int>(textureInfo.size()) });
 			}
 		}
 	}

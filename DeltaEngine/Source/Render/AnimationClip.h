@@ -15,11 +15,14 @@ namespace DeltaEngine
 	{
 		std::vector<AnimationEvent> events;
 		unsigned int totalFrames;
-		float fps;
+		unsigned int fps;
 
 		Texture2D texture;
 		std::vector<unsigned int> textureIndices;
 
-		AnimationClip();
+		bool loop;
+	public:
+		AnimationClip(std::string filepath = "Example.anim");
+		void LoadAnimation();
 	};
 }

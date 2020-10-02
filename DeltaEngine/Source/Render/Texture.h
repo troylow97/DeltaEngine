@@ -10,6 +10,7 @@ namespace DeltaEngine
 		Vector2 offset;
 		Vector2 size;
 		Vector2 pivot;
+		unsigned int index;
 	};
 
 	class Texture2D
@@ -18,7 +19,7 @@ namespace DeltaEngine
 		unsigned char* m_Data;
 		int m_Width, m_Height;
 	public:
-		Texture2D(const std::string filepath);
+		Texture2D(const std::string filepath = "dog.png");
 		~Texture2D();
 
 		void Bind(unsigned int slot = 0) const;
