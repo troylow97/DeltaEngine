@@ -301,7 +301,6 @@ namespace DeltaEngine
 
 		vao.Bind();
 		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
-		//instancedVbo.InitData(Translations().data(), static_cast<unsigned int>(100 * 3 * sizeof(float)));
 		instancedVbo.InitData(ParticleDataFormat().data(), static_cast<unsigned int>(m_activeParticles * 12 * sizeof(float)));
 		ibo.InitData(indices.data(), 6);
 
@@ -331,7 +330,6 @@ namespace DeltaEngine
 		delete texture;
 		delete shader;
 		DeltaEngine_CORE_INFO("Particle System deleted");
-
 	}
 	void ParticleSystem::Update()
 	{
@@ -387,7 +385,7 @@ namespace DeltaEngine
 		shader->SetUniformMatrix4f("_P", proj);
 
 		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 		ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
@@ -398,7 +396,6 @@ namespace DeltaEngine
 
 		vbo.Unbind();
 
-		//instancedVbo.InitData(Translations().data(), static_cast<unsigned int>(100 * 3 * sizeof(float)));
 		instancedVbo.InitData(ParticleDataFormat().data(), static_cast<unsigned int>(m_activeParticles * 12 * sizeof(float)));
 		instancedVbo.Bind();
 

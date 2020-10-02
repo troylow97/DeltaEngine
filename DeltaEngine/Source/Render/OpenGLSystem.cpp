@@ -45,32 +45,7 @@ namespace DeltaEngine
 				DeltaEngine_CORE_INFO("OpenGL version: {0}", glGetString(GL_VERSION));
 			}
 
-
-			// ----------------
-			// ImGui setup
-			// -----------------
-
-			// Application init: create a dear imgui context, setup some options, load fonts
-			ImGui::CreateContext();
-			ImGuiIO& io = ImGui::GetIO();
-			io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
-			// TODO: Set optional io.ConfigFlags values, e.g. 'io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard' to enable keyboard controls.
-			io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-			io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
-			// TODO: Fill optional fields of the io structure later.
-			// TODO: Load TTF/OTF fonts if you don't want to use the default font.
-			ImGuiStyle& style = ImGui::GetStyle();
-
-			// Initialize helper Platform and Renderer bindings (here we are using imgui_impl_win32.cpp and imgui_impl_dx11.cpp)
-			ImGui_ImplWin32_Init(mainHWND, m_wglDC);
-			ImGui_ImplOpenGL3_Init("#version 410");
-
-			// ----------------
-			// ImGui setup end
-			// -----------------
-
 			// Initialize common meshes
-			Camera::Init();
 			Mesh::Init();
 			Font::Init();
 			Gizmos::Init();
@@ -81,28 +56,30 @@ namespace DeltaEngine
 
 		void OpenGLSystem::Update()
 		{
-			ImGui_ImplOpenGL3_NewFrame();
-			ImGui_ImplWin32_NewFrame();
-			ImGui::NewFrame();
-			{
-				ImGui::Begin("Camera");
-				static float f = 0.0f;
-				ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
-				ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
-				ImGui::DragFloat("size", (float*)&Camera::editorCamera->_size, 0.01f);
-				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-				ImGui::End();
-			}
-			ImGui::ShowDemoWindow();
-			ImGui::Render();
-			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-			{
-				HDC backup_current_context = m_windowDC;
-				ImGui::UpdatePlatformWindows();
-				ImGui::RenderPlatformWindowsDefault();
-				wglMakeCurrent(backup_current_context, m_wglDC);
-			}
+
+			//ImGui_ImplOpenGL3_NewFrame();
+			//ImGui_ImplWin32_NewFrame();
+			//ImGui::NewFrame();
+			//{
+			//	ImGui::Begin("Camera Props");
+			//	static float f = 0.0f;
+			//	ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
+			//	ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
+			//	ImGui::DragFloat("size", (float*)&Camera::editorCamera->_size, 0.01f);
+			//	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+			//	ImGui::End();
+			//}
+			//ImGui::ShowDemoWindow();
+			//ImGui::Render();
+			//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			//if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+			//{
+			//	HDC backup_current_context = m_windowDC;
+			//	ImGui::UpdatePlatformWindows();
+			//	ImGui::RenderPlatformWindowsDefault();
+			//	wglMakeCurrent(backup_current_context, m_wglDC);
+			//}
+
 
 			//update opengl
 			glClearColor(0, 0, 0, 1);
@@ -192,9 +169,6 @@ namespace DeltaEngine
 		{
 			Gizmos::Exit();
 			Mesh::Exit();
-			ImGui_ImplOpenGL3_Shutdown();
-			ImGui_ImplWin32_Shutdown();
-			ImGui::DestroyContext();
 			CleanRenderingEnvironment();
 			DeltaEngine_CORE_INFO("OpenGL system exited");
 		}

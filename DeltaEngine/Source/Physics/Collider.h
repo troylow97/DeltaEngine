@@ -39,6 +39,7 @@ namespace DeltaEngine
     virtual bool Intersection(const CircleCollider& circle) = 0;
     virtual bool Intersection(const RayCollider& ray) = 0;
     virtual bool Intersection(const LineCollider& line) = 0;
+    virtual void OnDrawGizmos() = 0;
   };
 
   class DE_API BoxCollider : public Collider

@@ -4,6 +4,7 @@
 #include "DE_API.h"
 #include "Core/GameClock/GameClock.h"
 #include "Core/Debugging/Logger/Log.h"
+#include "Imgui/ImGuiLayer.h"
 
 namespace DeltaEngine
 {
@@ -12,6 +13,7 @@ namespace DeltaEngine
 		bool m_Running;
 		bool m_Minimized;
 		LayerStack m_LayerStack;
+		ImGuiLayer* m_ImGuiLayer;
 		GameClock m_gameclock;
 		double m_interval;
 	public:

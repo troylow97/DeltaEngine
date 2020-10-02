@@ -18,7 +18,11 @@ namespace DeltaEngine
         // Memory Manager
         // Window
         // Render
+        RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
+        RenderModule::openGLSystem->Init();
         // GUI
+        m_ImGuiLayer = new ImGuiLayer();
+        PushOverlay(m_ImGuiLayer);
         // Physics
         // Audio
         // Events
@@ -40,8 +44,6 @@ namespace DeltaEngine
     {
         m_Running = true;
         // a lot of this should be moved to a function in GraphicsManager later
-        RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
-        RenderModule::openGLSystem->Init();
 
         SpriteRenderer* s = new SpriteRenderer();
         TextRenderer* t = new TextRenderer();
