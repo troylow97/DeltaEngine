@@ -86,7 +86,6 @@ namespace DeltaEngine
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-		//glClearColor(71 / 255.0f, 71 / 255.0f, 71 / 255.0f, 1);
 		shader->SetUniform1i("_MainTex", 0);
 		glBindVertexArray(quadVAO);
 		glBindTexture(GL_TEXTURE_2D, frameBuffer.GetColorAttachment());	// use the color attachment texture as the texture of the quad plane

@@ -15,6 +15,7 @@ namespace DeltaEngine
 
 		std::string text;
 		TextRenderer();
+		~TextRenderer();
 		void Render(const Camera& camera) override;
 	};
 }

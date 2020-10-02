@@ -26,7 +26,7 @@ namespace DeltaEngine
 
 		OpenGLSystem::~OpenGLSystem()
 		{
-
+			DeltaEngine_CORE_INFO("OpenGL system deleted");
 		}
 
 		void OpenGLSystem::Init()

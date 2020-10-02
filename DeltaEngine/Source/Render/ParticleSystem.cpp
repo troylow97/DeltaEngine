@@ -3,6 +3,7 @@
 #include "Core/Math/Random.h"
 #include "ErrorCheck.h"
 #include "OpenGLSystem.h"
+#include "Core/Debugging/Logger/Log.h"
 
 namespace DeltaEngine
 {
@@ -326,6 +327,10 @@ namespace DeltaEngine
 	}
 	ParticleSystem::~ParticleSystem()
 	{
+		DeltaEngine_CORE_INFO("Deleting Particle System");
+		delete texture;
+		delete shader;
+		DeltaEngine_CORE_INFO("Particle System deleted");
 
 	}
 	void ParticleSystem::Update()
