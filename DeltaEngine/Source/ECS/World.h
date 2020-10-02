@@ -26,7 +26,7 @@ namespace DeltaEngine
     {
     }
 
-    EntityManager &get_entity_manager()
+    EntityManager &get_entity_manager() const
     {
       return *em;
     }
@@ -41,8 +41,8 @@ namespace DeltaEngine
               typename = std::enable_if<std::is_base_of_v<SystemBase, System>>>
     SystemBase &find_or_create_system()
     {
-      MetaHash hash = Metatype::build_hash<System>();
-      auto it = systems_map.find(hash.digest);
+      const MetaHash hash = Metatype::build_hash<System>();
+      const auto it = systems_map.find(hash.digest);
       if (it == systems_map.end())
       {
         systems_map[hash.digest] = std::make_unique<System>(*em);

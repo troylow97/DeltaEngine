@@ -66,7 +66,7 @@ namespace DeltaEngine
       auto hash_matcher = [](const std::vector<MetaHash> &hashes) {
         size_t matcher{0};
 
-        for (auto hash : hashes)
+        for (const auto hash : hashes)
           matcher |= hash.matcher;
 
         return matcher;

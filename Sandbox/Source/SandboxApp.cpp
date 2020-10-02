@@ -13,7 +13,6 @@ public:
 	{
 
 	}
-
 };
 
 DeltaEngine::Application* DeltaEngine::CreateApplication()
