@@ -21,7 +21,11 @@ namespace DeltaEngine
         // Memory Manager
         // Window
         // Render
+        RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
+        RenderModule::openGLSystem->Init();
         // GUI
+        m_ImGuiLayer = new ImGuiLayer();
+        PushOverlay(m_ImGuiLayer);
         // Physics
         // Audio
         // Events
@@ -43,8 +47,6 @@ namespace DeltaEngine
     {
         m_Running = true;
         // a lot of this should be moved to a function in GraphicsManager later
-        RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
-        RenderModule::openGLSystem->Init();
 
         SpriteRenderer* s = new SpriteRenderer();
         TextRenderer* t = new TextRenderer();
@@ -52,9 +54,9 @@ namespace DeltaEngine
 
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
-
+        bool isRunning = true;
         MSG msg = {};
-        while (msg.message != WM_QUIT)
+        while (isRunning)
         {
             Application::OnEvent();
             m_gameclock.Update(); // Update engine GameClock
@@ -65,20 +67,22 @@ namespace DeltaEngine
             {
                 if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
                 {
+                    if (msg.message == WM_QUIT)
+                        isRunning = false;
                     TranslateMessage(&msg);
                     DispatchMessage(&msg);
                     continue;
                 }
-                RenderModule::openGLSystem->Update();
                 FixedUpdate();
+                VariableUpdate();
                 accumulator -= m_gameclock.DeltaTime();
             }
             const f64 alpha = accumulator / m_interval;
         }
-        RenderModule::openGLSystem->Exit();
-        delete s;
-        delete t;
         delete p;
+        delete t;
+        delete s;
+        RenderModule::openGLSystem->Exit();
         delete RenderModule::openGLSystem;
     }
 
@@ -156,6 +160,7 @@ namespace DeltaEngine
         // Level Late Update
         // Audio Update
         // Render Update
+        RenderModule::openGLSystem->Update();
         // GUI Update
         // Memory Update
     }

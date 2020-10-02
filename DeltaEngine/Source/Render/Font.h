@@ -22,6 +22,6 @@ namespace DeltaEngine
         std::map<char, CharacterInfo>& characterInfo();
         unsigned int GetID() const;
         static void Init();
-
+        static void Exit();
     };
 }

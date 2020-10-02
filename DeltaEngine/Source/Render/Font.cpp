@@ -63,7 +63,6 @@ namespace DeltaEngine
             glBindTexture(GL_TEXTURE_2D, 0);
         }
         FT_Done_Face(face);
-        FT_Done_FreeType(ft);
     }
 
     std::map<char, CharacterInfo>& Font::characterInfo()
@@ -86,4 +85,8 @@ namespace DeltaEngine
 		}
 		DeltaEngine_CORE_INFO("FreeType was initialized successfully");
 	}
+    void Font::Exit()
+    {
+        FT_Done_FreeType(ft);
+    }
 }

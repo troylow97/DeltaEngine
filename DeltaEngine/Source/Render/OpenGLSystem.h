@@ -25,6 +25,9 @@ namespace DeltaEngine
 			void Update();
 			void TestRender();
 			void Exit();
+
+			HDC GetWindowContext();
+			HGLRC GetGLContext();
 		};
 		extern OpenGLSystem* openGLSystem;
 		extern std::vector<Renderer*> allRenderers;
