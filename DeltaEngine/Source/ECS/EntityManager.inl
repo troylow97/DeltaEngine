@@ -33,7 +33,7 @@ Query &unpack_query_with( TypeList<Args...>, Query &query )
 }
 
 template <typename T>
-inline auto get_chunk_array( DataChunk *chunk )
+auto get_chunk_array( DataChunk *chunk )
 {
   using T_Base = std::remove_const_t<std::remove_reference_t<T>>;
 
@@ -244,7 +244,7 @@ bool EntityManager::is_entity_valid( EntityID id )
   return false;
 }
 
-EntityID EntityManager::allocate_entity()
+inline EntityID EntityManager::allocate_entity()
 {
   EntityID id;
   if ( entities_dead == 0 )

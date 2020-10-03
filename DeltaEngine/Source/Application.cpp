@@ -48,6 +48,7 @@ namespace DeltaEngine
        .load<Texture2D>("Running", "run.png");
 
     env.pECS = new ECSModule();
+    env.pECS->world();
   }
 
   Application::~Application()
