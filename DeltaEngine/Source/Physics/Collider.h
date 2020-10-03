@@ -1,8 +1,6 @@
 #pragma once
 #include "Physics/Collision.h"
-#include "Core/Math/Vector.h"
 #include "Core/Debugging/Gizmos.h"
-#include "../Application.h"
 
 namespace DeltaEngine
 {
@@ -33,7 +31,7 @@ namespace DeltaEngine
     // If doing AABB Tree]
     // AABB FatAABB() = 0;
     // AABB AABB() = 0;
-
+    virtual void update_collider() = 0;
   public:
     Collider() : center{ 0,0 }, shape{ ColliderType::NONE } {}
     virtual ~Collider() = default;
@@ -43,11 +41,11 @@ namespace DeltaEngine
     virtual bool Intersection(const RayCollider* ray) = 0;
     virtual bool Intersection(const LineCollider* line) = 0;
     virtual void OnDrawGizmos() = 0;
-    virtual void OnUpdate(Entity id) = 0;
   };
 
   class DE_API BoxCollider : public Collider
   {
+      virtual void update_collider() override;
   public:
       AABB _aabb;
       BoxCollider();
@@ -58,11 +56,11 @@ namespace DeltaEngine
       virtual bool Intersection(const LineCollider* linecollider);
       virtual void OnDrawGizmos();
       virtual ColliderType GetType() const;
-      virtual void OnUpdate(Entity id);
   };
 
   class DE_API CircleCollider : public Collider
   {
+      virtual void update_collider() override;
   public:
       Circle circle;
       CircleCollider();
@@ -74,11 +72,11 @@ namespace DeltaEngine
       virtual bool Intersection(const LineCollider* line);
       virtual void OnDrawGizmos();
       virtual ColliderType GetType() const;
-      virtual void OnUpdate(Entity id);
   };
   
   class DE_API LineCollider : public Collider
   {
+      virtual void update_collider() override;
   public:
       LineSegment line;
       LineCollider();
@@ -89,11 +87,11 @@ namespace DeltaEngine
       virtual bool Intersection(const LineCollider* line2);
       virtual void OnDrawGizmos();
       virtual ColliderType GetType() const;
-      virtual void OnUpdate(Entity id);
   };
   
   class DE_API RayCollider : public Collider
   {
+      virtual void update_collider() override;
   public:
       Ray ray;
       RayCollider();
@@ -104,7 +102,6 @@ namespace DeltaEngine
       virtual bool Intersection(const LineCollider* line);
       virtual void OnDrawGizmos();
       virtual ColliderType GetType() const;
-      virtual void OnUpdate(Entity id);
   };
 
 

@@ -1,26 +1,30 @@
 #pragma once
 #include "CollisionHandler.h"
-#include "OECS/Types.h"
-#include "OECS/System.h"
+#include "ECS/ECSModule.h"
+#include "RigidBody.h"
+#include "Core/Math/Transform.h"
 
 namespace DeltaEngine
 {
+    DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
 
-	class CollisionSystem : public System
-	{
-        using CollisionPair = std::pair<Entity, Entity>;
-        std::vector<CollisionPair> CurrentPair;
-        std::vector<CollisionPair> PreviousPair;
+    using CollisionPair = std::pair<EntityID, EntityID>;
+    std::vector<CollisionPair> CurrentPair;
+    std::vector<CollisionPair> PreviousPair;
+    void CollisionIntersectionCheck();
+    void CollisionHandling();
+    void CollisionResolution();
 
     public:
-        CollisionHandler collision_handler;
-        
-        void CollisionIntersectionCheck();
-        void CollisionHandling();
-        void CollisionResolution();
-        void Init();
-        void Update();
-	};
+    virtual void update() override;
+    virtual void late_update() override;
+    //CollisionSystem() = default;
+    //~CollisionSystem() = default;
+    CollisionHandler collision_handler;
+    void Init();
+
+
+    END_DEFINE_SYSTEM(CollisionSystem)
 }
 
 /*

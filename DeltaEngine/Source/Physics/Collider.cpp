@@ -11,18 +11,22 @@ namespace DeltaEngine
     {}
 	bool BoxCollider::Intersection(const BoxCollider* aabb)
 	{
+        update_collider();
         return CollisionIntersection_RectRect_Static(_aabb, aabb->_aabb);
 	}
     bool BoxCollider::Intersection(const CircleCollider* circle)
     {
+        update_collider();
         return CollisionIntersection_RectCircle_Static(_aabb, circle->circle);
     }
     bool BoxCollider::Intersection(const RayCollider* ray)
     {
+        update_collider();
         return CollisionIntersection_RectRay_Static(_aabb, ray->ray);
     }
     bool BoxCollider::Intersection(const LineCollider* linecollider)
     {
+        update_collider();
         return CollisionIntersection_RectLine_Static(_aabb, linecollider->line);
     }
     ColliderType BoxCollider::GetType() const
@@ -33,10 +37,10 @@ namespace DeltaEngine
     {
         Gizmos::Draw2DWireBox(center);
     }
-    void BoxCollider::OnUpdate(Entity id)
+    void BoxCollider::update_collider()
     {
-        center = ecs->get_component<Transform>(id).position;
-        _aabb.calculate_position(center, size);
+        _aabb.min = { center.x - size.x / 2, center.y - size.y / 2 };
+        _aabb.max = { center.x + size.x / 2, center.y + size.y / 2 };
     }
 
     //CircleColliders
@@ -51,19 +55,23 @@ namespace DeltaEngine
     {}
     bool CircleCollider::Intersection(const BoxCollider* aabb)
     {
+        update_collider();
         return CollisionIntersection_RectCircle_Static(aabb->_aabb, circle);
     }
     bool CircleCollider::Intersection(const CircleCollider* circle1)
     {
+        update_collider();
         return CollisionIntersecction_CircleCircle_Static(circle, circle1->circle);
     }
     bool CircleCollider::Intersection(const RayCollider* ray)
     {
+        update_collider();
         float temp;
         return CollisionIntersection_RayCircle(ray->ray, circle, temp);
     }
     bool CircleCollider::Intersection(const LineCollider* line)
     {
+        update_collider();
         return CollisionIntersection_CircleLineSegment_Static(circle, line->line);
     }
     ColliderType CircleCollider::GetType() const
@@ -74,9 +82,8 @@ namespace DeltaEngine
     {
         Gizmos::Draw2DCircle(center);
     }
-    void CircleCollider::OnUpdate(Entity id)
+    void CircleCollider::update_collider()
     {
-        center = ecs->get_component<Transform>(id).position;
         circle.m_center = center;
         circle.m_radius = size.x;
     }
@@ -90,18 +97,22 @@ namespace DeltaEngine
     {}
     bool LineCollider::Intersection(const BoxCollider* aabb)
     {
+        update_collider();
         return CollisionIntersection_RectLine_Static(aabb->_aabb, line);
     }
     bool LineCollider::Intersection(const CircleCollider* circle)
     {
+        update_collider();
         return CollisionIntersection_CircleLineSegment_Static(circle->circle, line);
     }
     bool LineCollider::Intersection(const RayCollider* ray)
     {
+        update_collider();
         return CollisionIntersection_RayLine_Static(ray->ray, line);
     }
     bool LineCollider::Intersection(const LineCollider* line2)
     {
+        update_collider();
         return CollisionIntersection_LineLine_Static(line, line2->line);
     }
     ColliderType LineCollider::GetType() const
@@ -112,10 +123,10 @@ namespace DeltaEngine
     {
 
     }
-    void LineCollider::OnUpdate(Entity id)
+    void LineCollider::update_collider()
     {
-        center = ecs->get_component<Transform>(id).position;
-        line.m_pt0 = center;
+
+       //need to do logic
     }
 
     //RayColliders
@@ -127,19 +138,23 @@ namespace DeltaEngine
     {}
     bool RayCollider::Intersection(const BoxCollider* aabb)
     {
+        update_collider();
         return CollisionIntersection_RectRay_Static(aabb->_aabb, ray);
     }
     bool RayCollider::Intersection(const CircleCollider* circle)
     {
+        update_collider();
         float temp;
         return CollisionIntersection_RayCircle(ray, circle->circle, temp);
     }
     bool RayCollider::Intersection(const RayCollider* ray)
     {
+        update_collider();
         return true; //not implemented yet, Ray to ray
     }
     bool RayCollider::Intersection(const LineCollider* line)
     {
+        update_collider();
         return CollisionIntersection_RayLine_Static(ray, line->line);
     }
 
@@ -151,10 +166,10 @@ namespace DeltaEngine
     {
 
     }
-    void RayCollider::OnUpdate(Entity id)
+    void RayCollider::update_collider()
     {
-        center = ecs->get_component<Transform>(id).position;
         ray.m_pt0 = center;
     }
+
 
 }

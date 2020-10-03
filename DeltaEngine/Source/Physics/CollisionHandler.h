@@ -1,8 +1,8 @@
 #pragma once
-#include "DEpch.h"
 #include "Core/TypeAlias.h"
 #include "Core/Containers/ActionList.h"
-#include "OECS/Types.h"
+#include "ECS/Entities.h"
+#include <map>
 //#include <unordered_map>
 
 //Every object has a collider and a collision handler
@@ -15,13 +15,13 @@ namespace DeltaEngine
   class CollisionHandler //think of this as a functor
   {
     // Possible to do 1 for Collision & 1 for Trigger Checking
-    Util::ActionList<Entity> _enter;
-    Util::ActionList<Entity> _stay;
-    Util::ActionList<Entity> _exit;
+    Util::ActionList<EntityID> _enter;
+    Util::ActionList<EntityID> _stay;
+    Util::ActionList<EntityID> _exit;
 
-    void OnEnter(Entity col);
-    void OnStay(Entity col);
-    void OnExit(Entity col);
+    void OnEnter(EntityID col);
+    void OnStay(EntityID col);
+    void OnExit(EntityID col);
 
   public:
     friend class CollisionSystem;
@@ -30,9 +30,9 @@ namespace DeltaEngine
     static CollisionCallbacks m_callbacks;
     static std::map<std::string, CollisionCallbacks> m_handlers;
 
-    size_t RegisterOnEnter(Action<Entity> action);
-    size_t RegisterOnStay(Action<Entity> action);
-    size_t RegisterOnExit(Action<Entity> action);
+    size_t RegisterOnEnter(Action<EntityID> action);
+    size_t RegisterOnStay(Action<EntityID> action);
+    size_t RegisterOnExit(Action<EntityID> action);
 
     void UnregisterOnEnter(size_t id);
     void UnregisterOnStay(size_t id);

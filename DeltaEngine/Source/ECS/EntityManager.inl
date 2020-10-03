@@ -1,3 +1,5 @@
+#pragma once
+
 namespace DeltaEngine::ECS_Internal
 {
 template <typename... Ts>
