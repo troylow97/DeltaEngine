@@ -11,17 +11,17 @@ namespace DeltaEngine
     using CollisionPair = std::pair<EntityID, EntityID>;
     std::vector<CollisionPair> CurrentPair;
     std::vector<CollisionPair> PreviousPair;
-    void CollisionIntersectionCheck();
-    void CollisionHandling();
-    void CollisionResolution();
+    void CollisionSystem::CollisionIntersectionCheck();
+    void CollisionSystem::CollisionHandling();
+    void CollisionSystem::CollisionResolution();
 
     public:
-    virtual void update() override;
-    virtual void late_update() override;
+    virtual void CollisionSystem::update() override;
+    virtual void CollisionSystem::late_update() override;
     //CollisionSystem() = default;
     //~CollisionSystem() = default;
     CollisionHandler collision_handler;
-    void Init();
+    void CollisionSystem::Init();
 
 
     END_DEFINE_SYSTEM(CollisionSystem)
