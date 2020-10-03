@@ -37,6 +37,7 @@ namespace DeltaEngine
         obj2_vel.x = 0;
         obj2_vel.y = 0;
 
+
 	}
 
    Vector2 CalculateAabbDistanceTo(Collider& e1,Collider& e2)

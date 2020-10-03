@@ -18,8 +18,8 @@ namespace DeltaEngine
     public:
     virtual void CollisionSystem::update() override;
     virtual void CollisionSystem::late_update() override;
-    //CollisionSystem() = default;
-    //~CollisionSystem() = default;
+    CollisionSystem::CollisionSystem() = default;
+    CollisionSystem::~CollisionSystem() = default;
     CollisionHandler collision_handler;
     void CollisionSystem::Init();
 

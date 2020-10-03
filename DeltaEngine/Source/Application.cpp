@@ -6,13 +6,17 @@
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "Physics/PhysicsSystem.h"
-
+#include "Physics/CollisionSystem.h"
+#include "ECS/World.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
 -----------------------------------*/
 namespace DeltaEngine
 {
+  ECSModule ecs;
+  World& world = ecs.world();
+  EntityManager& em = world.get_entity_manager();
   DeltaEngineGlobalEnvironment env;
 
   Application::Application() : m_interval(0.25)
@@ -24,8 +28,13 @@ namespace DeltaEngine
     // Render
     // GUI
     // Physics
+
     // Audio
     // Events
+
+    world.create_systems<PhysicsSystem,CollisionSystem>();
+    world.set_update_sequence<PhysicsSystem, CollisionSystem>();
+    world.set_late_update_sequence<>();
 
     // a lot of this should be moved to a function in GraphicsManager later
     RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
@@ -48,6 +57,21 @@ namespace DeltaEngine
 
     env.pECS = new ECSModule();
     env.pECS->world();
+
+    auto entity1 = em.create_entity<Transform,RigidBody,BoxCollider>();
+    auto entity2 = em.create_entity<Transform, RigidBody, BoxCollider>();
+    auto& t = em.get_component<Transform>(entity1);
+    auto& r = em.get_component<RigidBody>(entity1);
+
+    t.position = { 5,5,0 };
+    t.scale = { 7,7,0 };
+
+    auto& t2 = em.get_component<Transform>(entity2);
+    auto& r2 = em.get_component<RigidBody>(entity2);
+
+    t2.position = { 7,7,0 };
+    t2.scale = { 5,5,0 };
+
   }
 
   Application::~Application()
@@ -82,7 +106,7 @@ namespace DeltaEngine
     {
       // Update engine GameClock
       env.pClock->Update();
-
+      world.update();
       // Update accumulator using time-scaled dt
       accumulator += env.pClock->DeltaTime();
 
