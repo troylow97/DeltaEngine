@@ -16,12 +16,13 @@ namespace DeltaEngine
 
 	class DE_API Application
 	{
+
 		bool m_Running;
 		bool m_Minimized;
 		class PhysicsSystem* m_PhysicsSystem;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
-		GameClock m_gameclock;
+		ImGuiLayer* m_ImGuiLayer;
 		double m_interval;
 
 	public:

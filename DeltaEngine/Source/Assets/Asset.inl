@@ -6,11 +6,11 @@ namespace DeltaEngine
 
   // Copy Constructor
   template <typename T1, typename T2>
-  Asset<T1, T2>::Asset(const Asset &rhs) : _group{rhs._group},
-                                                    _data{rhs._data},
-                                                    _key{rhs._key},
-                                                    _timestamp{rhs._timestamp},
-                                                    _state{rhs._state}
+  Asset<T1, T2>::Asset(const Asset& rhs) : _group{rhs._group},
+                                           _data{rhs._data},
+                                           _key{rhs._key},
+                                           _timestamp{rhs._timestamp},
+                                           _state{rhs._state}
   {
     if (_group)
       _group->increment_reference_count(_key);
@@ -18,7 +18,7 @@ namespace DeltaEngine
 
   // Copy Assignment
   template <typename T1, typename T2>
-  Asset<T1, T2> &Asset<T1, T2>::operator=(const Asset &rhs)
+  Asset<T1, T2>& Asset<T1, T2>::operator=(const Asset& rhs)
   {
     if (_group)
       _group->decrement_reference_count(_key);
@@ -37,11 +37,11 @@ namespace DeltaEngine
 
   // Move Constructor
   template <typename T1, typename T2>
-  Asset<T1, T2>::Asset(Asset &&rhs) : _group{rhs._group},
-                                      _data{rhs._data},
-                                      _key{rhs._key},
-                                      _timestamp{rhs._timestamp},
-                                      _state{rhs._state}
+  Asset<T1, T2>::Asset(Asset&& rhs) noexcept : _group{rhs._group},
+                                               _data{rhs._data},
+                                               _key{rhs._key},
+                                               _timestamp{rhs._timestamp},
+                                               _state{rhs._state}
   {
     rhs._group = nullptr;
     rhs._data = nullptr;
@@ -52,7 +52,7 @@ namespace DeltaEngine
 
   // Move Assignment
   template <typename T1, typename T2>
-  Asset<T1, T2> &Asset<T1, T2>::operator=(Asset &&rhs)
+  Asset<T1, T2>& Asset<T1, T2>::operator=(Asset&& rhs) noexcept
   {
     std::swap(_group, rhs._group);
     std::swap(_data, rhs._data);
@@ -71,16 +71,17 @@ namespace DeltaEngine
   }
 
   template <typename T1, typename T2>
-  bool Asset<T1, T2>::operator==(const Asset &rhs) const
+  bool Asset<T1, T2>::operator==(const Asset& rhs) const
   {
     return _group == rhs._group && _key == rhs._key;
   }
 
   template <typename T1, typename T2>
-  bool Asset<T1, T2>::operator!=(const Asset &rhs) const
+  bool Asset<T1, T2>::operator!=(const Asset& rhs) const
   {
     return !operator==(rhs);
   }
+
   template <typename T1, typename T2>
   Asset<T1, T2>::operator bool()
   {
@@ -89,28 +90,28 @@ namespace DeltaEngine
   }
 
   template <typename T1, typename T2>
-  Asset<T1, T2>::operator T2 *()
+  Asset<T1, T2>::operator T2*()
   {
     acquire();
-    return static_cast<T2 *>(_data);
+    return static_cast<T2*>(_data);
   }
 
   template <typename T1, typename T2>
-  T2 &Asset<T1, T2>::operator*()
+  T2& Asset<T1, T2>::operator*()
   {
     acquire();
-    return *static_cast<T2 *>(_data);
+    return *static_cast<T2*>(_data);
   }
 
   template <typename T1, typename T2>
-  T2 *Asset<T1, T2>::operator->()
+  T2* Asset<T1, T2>::operator->()
   {
     acquire();
-    return static_cast<T2 *>(_data);
+    return static_cast<T2*>(_data);
   }
 
   template <typename T1, typename T2>
-  AssetKey Asset<T1, T2>::key()
+  AssetKey Asset<T1, T2>::key() const
   {
     return _key;
   }
@@ -124,7 +125,7 @@ namespace DeltaEngine
 
   // Private Constructor
   template <typename T1, typename T2>
-  Asset<T1, T2>::Asset(AssetGroup<T1> *group, AssetKey key) : _group{group},
+  Asset<T1, T2>::Asset(AssetGroup<T1>* group, AssetKey key) : _group{group},
                                                               _data{nullptr},
                                                               _key{key},
                                                               _timestamp{0},
@@ -146,7 +147,7 @@ namespace DeltaEngine
 
     _timestamp = _group->timestamp();
 
-    const DeltaEngine::AssetData<T1>& d = _group->_datas[_key];
+    const AssetData<T1>& d = _group->_datas[_key];
     _data = d._data;
     _state = d._state;
 
@@ -165,5 +166,4 @@ namespace DeltaEngine
         _state = AssetState::NotLoaded;
     }
   }
-
 } // namespace DeltaEngine

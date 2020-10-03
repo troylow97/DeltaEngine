@@ -17,7 +17,7 @@ namespace DeltaEngine
 
 		Vector2 offset, tiling;
 
-		SpriteRenderer(std::string textureName = "run.png");
+		SpriteRenderer(Texture2D* t, Shader* s);
 		~SpriteRenderer();
 		void Render(const Camera& camera) override;
 	};

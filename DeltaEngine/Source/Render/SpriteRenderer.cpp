@@ -4,10 +4,10 @@
 
 namespace DeltaEngine
 {
-	SpriteRenderer::SpriteRenderer(std::string textureName) : sprite{ new Texture2D(textureName) },
+	SpriteRenderer::SpriteRenderer(Texture2D* t, Shader* s) : sprite{ t },
 		offset{ Vector2() }, tiling{ Vector2(1,1) }
 	{
-		shader = new Shader();
+		shader = s;
 		RenderModule::allRenderers.push_back(this);
 	}
 	SpriteRenderer::~SpriteRenderer()
@@ -26,13 +26,11 @@ namespace DeltaEngine
 			sprite ? (sprite->GetHeight() / 100.0f * tiling.y) : 1, 1 })
 			* transform.LocalToWorldMatrix();
 
-		static float t = 0;
-		t += 0.001f;
-
 		if (sprite)
 		{
 			sprite->Bind(0);
 		}
+
 		shader->SetUniformMatrix4f("_M", model);
 		shader->SetUniformMatrix4f("_V", view);
 		shader->SetUniformMatrix4f("_P", proj);
