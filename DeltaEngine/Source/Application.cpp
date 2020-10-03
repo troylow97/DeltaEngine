@@ -5,6 +5,7 @@
 #include "Core/Utils/FileUtils.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
+#include "Physics/PhysicsSystem.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
