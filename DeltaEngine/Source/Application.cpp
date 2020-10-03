@@ -1,12 +1,10 @@
-#include "DEpch.h"
 #include "DeltaEngine.h"
 #include "Application.h"
 #include "Render/OpenGLSystem.h"
 #include "Render/TextRenderer.h"
-#include "Event/ApplicationEvent.h"
-#include "Physics/Collision.h"
 #include "Core/Utils/FileUtils.h"
 #include "Core/GlobalStruct.h"
+#include "ECS/ECSModule.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -123,7 +121,7 @@ namespace DeltaEngine
         layer->OnAttach();
     }
 
-    void Application::OnEvent(Event& e)
+    void Application::OnEvent()
     {
         EventManager event_manager;
         

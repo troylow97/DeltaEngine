@@ -12,6 +12,12 @@ namespace DeltaEngine
 		max{ center.x + size.x / 2, center.y + size.y / 2 }
 	{}
 
+	void AABB::calculate_position(Vector2 center, Vector2 size)
+	{
+		min = { center.x - size.x / 2, center.y - size.y / 2 };
+		max = { center.x + size.x / 2, center.y + size.y / 2 };
+	}
+
 	void AABB::combine(const AABB& aabb)
 	{
 		if (min.x > aabb.min.x) { min.x = aabb.min.x; }

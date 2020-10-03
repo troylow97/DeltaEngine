@@ -12,7 +12,7 @@ namespace DeltaEngine
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
-		virtual void OnEvent(Event& e) override;
+		virtual void OnEvent() override;
 
 		void Begin();
 		void End();

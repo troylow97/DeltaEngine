@@ -57,7 +57,7 @@ namespace DeltaEngine
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::OnEvent(Event& e)
+	void ImGuiLayer::OnEvent()
 	{
 
 	}

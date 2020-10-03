@@ -591,5 +591,6 @@ namespace DeltaEngine
 
 		return (r >= 0 && r <= 1) && (s >= 0 && s <= 1);
 	}
+
 }
 
