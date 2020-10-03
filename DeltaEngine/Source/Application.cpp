@@ -5,6 +5,7 @@
 #include "Core/Utils/FileUtils.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
+#include "Physics/PhysicsSystem.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -46,6 +47,7 @@ namespace DeltaEngine
        .load<Texture2D>("Running", "run.png");
 
     env.pECS = new ECSModule();
+    env.pECS->world();
   }
 
   Application::~Application()

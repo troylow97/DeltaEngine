@@ -2,7 +2,6 @@
 #include "RigidBody.h"
 #include "Core/Math/Transform.h"
 #include "CollisionResponseCallbacks.h"
-#include "ECS/ECSModule.h"
 
 namespace DeltaEngine
 {

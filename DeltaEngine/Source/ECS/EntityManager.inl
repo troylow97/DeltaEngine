@@ -35,7 +35,7 @@ Query &unpack_query_with( TypeList<Args...>, Query &query )
 }
 
 template <typename T>
-inline auto get_chunk_array( DataChunk *chunk )
+auto get_chunk_array( DataChunk *chunk )
 {
   using T_Base = std::remove_const_t<std::remove_reference_t<T>>;
 
@@ -94,7 +94,7 @@ inline EntityManager::~EntityManager()
 }
 
 template <typename... C>
-EntityID EntityManager::create_entity()
+inline EntityID EntityManager::create_entity()
 {
   Archetype *arch { nullptr };
 
@@ -114,7 +114,7 @@ EntityID EntityManager::create_entity()
   return id;
 }
 
-void EntityManager::destroy_entity( EntityID id )
+inline void EntityManager::destroy_entity( EntityID id )
 {
   assert( is_entity_valid( id ) );
   erase_entity_chunk( entities[id.index].chunk, entities[id.index].chunk_index );
@@ -229,7 +229,7 @@ void EntityManager::for_each( Query &query, Func &&func )
   } );
 }
 
-Archetype *EntityManager::get_empty_archetype()
+inline Archetype *EntityManager::get_empty_archetype()
 {
   return archetypes[0];
 }
@@ -238,7 +238,7 @@ Archetype *EntityManager::get_empty_archetype()
 // EntityManager Private Methods
 //******************************************************************************
 
-bool EntityManager::is_entity_valid( EntityID id )
+inline bool EntityManager::is_entity_valid( EntityID id )
 {
   if ( entities.size() > id.index )
     if ( entities[id.index].generation == id.generation )
@@ -246,7 +246,7 @@ bool EntityManager::is_entity_valid( EntityID id )
   return false;
 }
 
-EntityID EntityManager::allocate_entity()
+inline EntityID EntityManager::allocate_entity()
 {
   EntityID id;
   if ( entities_dead == 0 )
