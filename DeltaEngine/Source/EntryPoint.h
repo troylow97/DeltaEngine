@@ -6,8 +6,6 @@ extern DeltaEngine::Application* DeltaEngine::CreateApplication();
 
 int main(int argc,char** argv)
 {
-	RenderModule::CreateWin32Window();
-
 	//RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
 
 	auto app = DeltaEngine::CreateApplication();

@@ -6,6 +6,7 @@
 #include "Font.h"
 #include "Core/Debugging/Gizmos.h"
 #include "Core/Debugging/Logger/Log.h"
+#include "Core/GlobalStruct.h"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
@@ -86,7 +87,7 @@ namespace DeltaEngine
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			RECT rect;
-			GetClientRect(mainHWND, &rect);
+			GetClientRect(env.pWin->GetHandle(), &rect);
 			glViewport((GLint)0, (GLint)0, rect.right - rect.left, rect.bottom - rect.top);
 
 			Camera::editorCamera->Render();
@@ -184,7 +185,7 @@ namespace DeltaEngine
 		bool OpenGLSystem::InitializeRenderingEnvironment()
 		{
 			//create rendering window
-			m_windowDC = GetDC(mainHWND);
+			m_windowDC = GetDC(env.pWin->GetHandle());
 
 			DEVMODE devMode = { 0 };
 			devMode.dmSize = sizeof(DEVMODE);
@@ -207,7 +208,7 @@ namespace DeltaEngine
 			int pf = ChoosePixelFormat(m_windowDC, &pfdesc);//checks if the graphics card can support the pixel format requested
 			if (pf == 0)
 			{
-				ReleaseDC(mainHWND, m_windowDC);
+				ReleaseDC(env.pWin->GetHandle(), m_windowDC);
 				return false;
 			}
 
@@ -215,7 +216,7 @@ namespace DeltaEngine
 			BOOL ok = SetPixelFormat(m_windowDC, pf, &pfdesc);
 			if (!ok)
 			{
-				ReleaseDC(mainHWND, m_windowDC);
+				ReleaseDC(env.pWin->GetHandle(), m_windowDC);
 				return false;
 			}
 
@@ -224,7 +225,7 @@ namespace DeltaEngine
 			m_wglDC = wglCreateContext(m_windowDC);
 			if (!m_wglDC)
 			{
-				ReleaseDC(mainHWND, m_windowDC);
+				ReleaseDC(env.pWin->GetHandle(), m_windowDC);
 				return false;
 			}
 
@@ -233,7 +234,7 @@ namespace DeltaEngine
 			if (!ok)
 			{
 				wglDeleteContext(m_wglDC);
-				ReleaseDC(mainHWND, m_windowDC);
+				ReleaseDC(env.pWin->GetHandle(), m_windowDC);
 				return false;
 			}
 
@@ -256,7 +257,7 @@ namespace DeltaEngine
 			}
 			m_wglDC = NULL;
 
-			if (m_windowDC && !ReleaseDC(mainHWND, m_windowDC))
+			if (m_windowDC && !ReleaseDC(env.pWin->GetHandle(), m_windowDC))
 			{
 				m_windowDC = NULL;
 			}

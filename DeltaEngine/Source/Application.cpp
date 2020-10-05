@@ -26,6 +26,8 @@ namespace DeltaEngine
     // Physics
     // Audio
     // Events
+    env.pWin = new Window();
+    env.pWin->Init();
 
     // a lot of this should be moved to a function in GraphicsManager later
     RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
@@ -48,6 +50,8 @@ namespace DeltaEngine
 
     env.pECS = new ECSModule();
     env.pECS->world();
+
+
   }
 
   Application::~Application()
@@ -76,9 +80,7 @@ namespace DeltaEngine
     // TODO Modules Instantiation
     f64 accumulator = 0.0;
 
-    MSG msg = {};
-    bool isRunning{true};
-    while (isRunning)
+    while (env.pWin->Running())
     {
       // Update engine GameClock
       env.pClock->Update();
@@ -89,14 +91,7 @@ namespace DeltaEngine
       // Update based on interval
       while (accumulator >= m_interval)
       {
-        if (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
-        {
-          if (msg.message == WM_QUIT)
-            isRunning = false;
-          TranslateMessage(&msg);
-          DispatchMessage(&msg);
-          continue;
-        }
+        env.pWin->Update();
         VariableUpdate();
         FixedUpdate();
         accumulator -= env.pClock->DeltaTime();

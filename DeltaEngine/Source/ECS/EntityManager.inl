@@ -1,5 +1,3 @@
-#pragma once
-
 namespace DeltaEngine::ECS_Internal
 {
 template <typename... Ts>
@@ -94,7 +92,7 @@ inline EntityManager::~EntityManager()
 }
 
 template <typename... C>
-inline EntityID EntityManager::create_entity()
+EntityID EntityManager::create_entity()
 {
   Archetype *arch { nullptr };
 

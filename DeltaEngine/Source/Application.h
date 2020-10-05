@@ -4,7 +4,6 @@
 #include "DE_API.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "ImGui/ImGuiLayer.h"
-#include <memory>
 //#include "Physics/PhysicsSystem.h"
 
 namespace DeltaEngine
@@ -15,6 +14,7 @@ namespace DeltaEngine
 
 		bool m_Running;
 		bool m_Minimized;
+
 		//PhysicsSystem* m_PhysicsSystem;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
