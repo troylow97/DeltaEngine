@@ -61,7 +61,7 @@ namespace DeltaEngine
 
 	void Camera::Start()
 	{
-		frameBuffer.Resize(RenderModule::width, RenderModule::height);
+		frameBuffer.Resize(GetEnv().pWin->Width(), GetEnv().pWin->Height());
 
 		frameBuffer.Bind();
 
