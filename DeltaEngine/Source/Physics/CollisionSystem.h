@@ -1,6 +1,7 @@
 #pragma once
 #include "CollisionHandler.h"
 #include "ECS/ECSModule.h"
+#include "Collider.h"
 #include "RigidBody.h"
 #include "Core/Math/Transform.h"
 
@@ -8,20 +9,23 @@ namespace DeltaEngine
 {
     DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
 
-    using CollisionPair = std::pair<EntityID, EntityID>;
-    std::vector<CollisionPair> CurrentPair;
-    std::vector<CollisionPair> PreviousPair;
-    void CollisionIntersectionCheck();
-    void CollisionHandling();
-    void CollisionResolution();
+    using EntityPair = std::pair<EntityID, EntityID>;
+
+
+    std::vector<EntityPair> CurrentPair;
+    std::vector<EntityPair> PreviousPair;
+
+    void CollisionSystem::CollisionIntersectionCheck();
+    void CollisionSystem::CollisionHandling();
+    void CollisionSystem::CollisionResolution();
 
     public:
-    virtual void update() override;
-    virtual void late_update() override;
-    //CollisionSystem() = default;
-    //~CollisionSystem() = default;
+    virtual void CollisionSystem::update() override;
+    virtual void CollisionSystem::late_update() override;
+    CollisionSystem::CollisionSystem() = default;
+    CollisionSystem::~CollisionSystem() = default;
     CollisionHandler collision_handler;
-    void Init();
+    void CollisionSystem::Init();
 
 
     END_DEFINE_SYSTEM(CollisionSystem)
@@ -29,17 +33,17 @@ namespace DeltaEngine
 
 /*
 Collision System
-Members: Vector of collisionPair with current or previous.
+Members: Vector of EntityPair with current or previous.
 Pre Current
 1 0: Exit
 1 1: Stay
 0 1: Enter
- - Update loop through all the IDs with Colliders to check for collision once there is create a collision pair and pass into the vector of current collisionPair
+ - Update loop through all the IDs with Colliders to check for collision once there is create a collision pair and pass into the vector of current EntityPair
  - UpdateCheck -> Check with previous one.
 
  - UpdateLate -> CollisionHandling
 
- - CollisionPair -> Take in two Entity ID
+ - EntityPair -> Take in two Entity ID
 
 
 */

@@ -39,7 +39,7 @@ namespace DeltaEngine
       DeltaEngine::Query q;                                                       \
       q.with<struct __VA_ARGS__>();                                               \
       q.build();                                                                  \
-      e_query = q;                                                                \
+      e_query = q;                                                                       \
     }
 
 #define END_DEFINE_SYSTEM(TYPE) \

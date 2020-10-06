@@ -6,7 +6,10 @@
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "Physics/PhysicsSystem.h"
-
+#include "Physics/CollisionSystem.h"
+#include "ECS/World.h"
+#include "Input/InputSystem.h"
+#include "Input/Keys.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -59,6 +62,12 @@ namespace DeltaEngine
         env.pECS = new ECSModule();
         env.pECS->world();
     }
+    env.pECS = new ECSModule();
+    env.pECS->world();
+    env.pECS->world().create_systems<PhysicsSystem, CollisionSystem>();
+    env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem>();
+
+  }
 
     Application::~Application()
     {
@@ -86,19 +95,56 @@ namespace DeltaEngine
         //    env.pManager->get<Shader>("DefaultText"));
         //auto* p = new ParticleSystem();
 
+    anim = new FrameAnimation();
+    anim->renderer = s;
+    //physics test start init var
+    auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
+    auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform,RigidBody, Collider>();
+    auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
+    auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
         //anim = new FrameAnimation();
         //anim->renderer = s;
 
-        // TODO Modules Instantiation
-        f64 accumulator = 0.0;
+    trans.position = { 7,7,0 };
+    trans.scale = { 1,1,0 };
+    col.type = ColliderType::BOX;
 
-        while (env.pWin->Running())
-        {
-            // Update engine GameClock
-            env.pClock->Update();
+    auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
+    auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
+    auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
 
-            // Update accumulator using time-scaled dt
-            accumulator += env.pClock->DeltaTime();
+    t2.position = { 5,5,0 };
+    t2.scale = { 1,1,0 };
+    r2.Velocity = { 0,0 };
+    col2.type = ColliderType::BOX;
+    //physics test end
+    // TODO Modules Instantiation
+    f64 accumulator = 0.0;
+
+    MSG msg = {};
+    bool isRunning{true};
+    while (isRunning)
+    {
+      if (InputSystem::get()->isKeyTriggered(DEVK_D))
+      {
+          env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+          {
+                  r1.Velocity += {1, 0};
+          });
+      }
+      if (InputSystem::get()->isKeyPressed(DEVK_D))
+      {
+          env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+              {
+                  r1.Velocity += {0.2, 0};
+              });
+      }
+      InputSystem::get()->update();
+      // Update engine GameClock
+      env.pClock->Update();
+      env.pECS->world().update();
+      // Update accumulator using time-scaled dt
+      accumulator += env.pClock->DeltaTime();
 
             // Update based on interval
             while (accumulator >= m_interval)
