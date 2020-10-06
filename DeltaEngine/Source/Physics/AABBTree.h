@@ -1,4 +1,5 @@
 //#pragma once
+//#include "Core/TypeAlias.h"
 //#include "DEpch.h"
 //#include "CollisionShapes.h"
 //#include "Core/Math/Math.h"
@@ -6,7 +7,7 @@
 //namespace DeltaEngine
 //{
 //	#define NULL_NODE (-1)
-//	using int32 = int; //temporary
+//
 //	struct Node
 //	{
 //		bool IsLeaf() const
@@ -21,15 +22,15 @@
 //
 //		union
 //		{
-//			int32 parent;
-//			int32 next;
+//			i32 parent;
+//			i32 next;
 //		};
 //
-//		int32 child1;
-//		int32 child2;
+//		i32 child1;
+//		i32 child2;
 //
 //		// leaf = 0, free node = -1
-//		int32 height;
+//		i32 height;
 //
 //		bool moved;
 //	};
@@ -41,26 +42,26 @@
 //		~DynamicAABBTree();
 //
 //		// Create a proxy. Provide a tight fitting AABB and a userData pointer.
-//		int32 CreateProxy(const AABB& aabb, void* userData);
+//		i32 CreateProxy(const AABB& aabb, void* userData);
 //
 //		/// Destroy a proxy. This asserts if the id is invalid.
-//		void DestroyProxy(int32 proxyId);
+//		void DestroyProxy(i32 proxyId);
 //
 //		/// Move a proxy with a swepted AABB. If the proxy has moved outside of its fattened AABB,
 //		/// then the proxy is removed from the tree and re-inserted. Otherwise
 //		/// the function returns immediately.
 //		/// return true if the proxy was re-inserted.
-//		bool MoveProxy(int32 proxyId, const AABB& aabb1, const Vector2& displacement);
+//		bool MoveProxy(i32 proxyId, const AABB& aabb1, const Vector2& displacement);
 //
 //		/// Get proxy user data.
 //		/// return the proxy user data or 0 if the id is invalid.
-//		void* GetUserData(int32 proxyId) const;
+//		void* GetUserData(i32 proxyId) const;
 //
-//		bool WasMoved(int32 proxyId) const;
-//		void ClearMoved(int32 proxyId);
+//		bool WasMoved(i32 proxyId) const;
+//		void ClearMoved(i32 proxyId);
 //
 //		/// Get the fat AABB for a proxy.
-//		const AABB& GetFatAABB(int32 proxyId) const;
+//		const AABB& GetFatAABB(i32 proxyId) const;
 //
 //		/// Query an AABB for overlapping proxies. The callback class
 //		/// is called for each proxy that overlaps the supplied AABB.
@@ -82,11 +83,11 @@
 //
 //		/// Compute the height of the binary tree in O(N) time. Should not be
 //		/// called often.
-//		int32 GetHeight() const;
+//		i32 GetHeight() const;
 //
 //		/// Get the maximum balance of an node in the tree. The balance is the difference
 //		/// in height of the two children of a node.
-//		int32 GetMaxBalance() const;
+//		i32 GetMaxBalance() const;
 //
 //		/// Get the ratio of the sum of the node areas to the root area.
 //		float GetAreaRatio() const;
@@ -101,89 +102,89 @@
 //
 //	private:
 //
-//		int32 AllocateNode();
-//		void FreeNode(int32 node);
+//		i32 AllocateNode();
+//		void FreeNode(i32 node);
 //
-//		void InsertLeaf(int32 node);
-//		void RemoveLeaf(int32 node);
+//		void InsertLeaf(i32 node);
+//		void RemoveLeaf(i32 node);
 //
-//		int32 Balance(int32 index);
+//		i32 Balance(i32 index);
 //
-//		int32 ComputeHeight() const;
-//		int32 ComputeHeight(int32 nodeId) const;
+//		i32 ComputeHeight() const;
+//		i32 ComputeHeight(i32 nodeId) const;
 //
-//		void ValidateStructure(int32 index) const;
-//		void ValidateMetrics(int32 index) const;
+//		void ValidateStructure(i32 index) const;
+//		void ValidateMetrics(i32 index) const;
 //
-//		int32 m_root;
+//		i32 m_root;
 //
 //		Node* m_nodes;
-//		int32 m_nodeCount;
-//		int32 m_nodeCapacity;
+//		i32 m_nodeCount;
+//		i32 m_nodeCapacity;
 //
-//		int32 m_freeList;
+//		i32 m_freeList;
 //
-//		int32 m_insertionCount;
+//		i32 m_insertionCount;
 //	};
 //
-//	inline void* DynamicAABBTree::GetUserData(int32 proxyId) const
+//	inline void* DynamicAABBTree::GetUserData(i32 proxyId) const
 //	{
 //		//assert(0 <= proxyId && proxyId < m_nodeCapacity);
 //		return m_nodes[proxyId].userData;
 //	}
 //
-//	inline bool DynamicAABBTree::WasMoved(int32 proxyId) const
+//	inline bool DynamicAABBTree::WasMoved(i32 proxyId) const
 //	{
 //		//assert(0 <= proxyId && proxyId < m_nodeCapacity);
 //		return m_nodes[proxyId].moved;
 //	}
 //
-//	inline void DynamicAABBTree::ClearMoved(int32 proxyId)
+//	inline void DynamicAABBTree::ClearMoved(i32 proxyId)
 //	{
 //		//assert(0 <= proxyId && proxyId < m_nodeCapacity);
 //		m_nodes[proxyId].moved = false;
 //	}
 //
-//	inline const AABB& DynamicAABBTree::GetFatAABB(int32 proxyId) const
+//	inline const AABB& DynamicAABBTree::GetFatAABB(i32 proxyId) const
 //	{
 //		//assert(0 <= proxyId && proxyId < m_nodeCapacity);
 //		return m_nodes[proxyId].aabb;
 //	}
 //
-	template <typename T>
-	inline void DynamicAABBTree::Query(T* callback, const AABB& aabb) const
-	{
-		std::stack<int32, 256> stack; //should be a growable stack
-		stack.Push(m_root);
-
-		while (stack.GetCount() > 0)
-		{
-			int32 nodeId = stack.Pop();
-			if (nodeId == b2_nullNode)
-			{
-				continue;
-			}
-
-			const Node* node = m_nodes + nodeId;
-
-			if (CollisionIntersection_RectRect_Static(node->aabb, aabb))
-			{
-				if (node->IsLeaf())
-				{
-					bool proceed = callback->QueryCallback(nodeId);
-					if (proceed == false)
-					{
-						return;
-					}
-				}
-				else
-				{
-					stack.Push(node->child1);
-					stack.Push(node->child2);
-				}
-			}
-		}
-	}
+//	template <typename T>
+//	inline void DynamicAABBTree::Query(T* callback, const AABB& aabb) const
+//	{
+//		std::stack<i32, 256> stack; //should be a growable stack
+//		stack.Push(m_root);
+//
+//		while (stack.GetCount() > 0)
+//		{
+//			i32 nodeId = stack.Pop();
+//			if (nodeId == b2_nullNode)
+//			{
+//				continue;
+//			}
+//
+//			const Node* node = m_nodes + nodeId;
+//
+//			if (CollisionIntersection_RectRect_Static(node->aabb, aabb))
+//			{
+//				if (node->IsLeaf())
+//				{
+//					bool proceed = callback->QueryCallback(nodeId);
+//					if (proceed == false)
+//					{
+//						return;
+//					}
+//				}
+//				else
+//				{
+//					stack.Push(node->child1);
+//					stack.Push(node->child2);
+//				}
+//			}
+//		}
+//	}
 //
 //	template <typename T>
 //	inline void DynamicAABBTree::RayCast(T* callback, const RayCastInput& input) const
@@ -211,12 +212,12 @@
 //			segmentAABB.upperBound = b2Max(p1, t);
 //		}
 //
-//		std::stack<int32, 256> stack;
+//		std::stack<i32, 256> stack;
 //		stack.Push(m_root);
 //
 //		while (stack.GetCount() > 0)
 //		{
-//			int32 nodeId = stack.Pop();
+//			i32 nodeId = stack.Pop();
 //			if (nodeId == b2_nullNode)
 //			{
 //				continue;

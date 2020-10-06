@@ -21,6 +21,7 @@ struct DeltaEngineGlobalEnvironment
   class GameClock *pClock;
   AM *pManager;
   class ECSModule *pECS;
+  class Window *pWin;
 };
 
 extern DeltaEngineGlobalEnvironment env;

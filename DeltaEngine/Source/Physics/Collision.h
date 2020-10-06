@@ -14,6 +14,7 @@ prior written consent of DigiPen Institute of Technology is prohibited.
 #pragma once
 #include "Core/Math/Vector.h"
 #include "Physics/CollisionShapes.h"
+
 namespace DeltaEngine
 {
 	bool CollisionIntersection_RectRect(const AABB& aabb1, const Vector2& vel1,
@@ -67,4 +68,5 @@ namespace DeltaEngine
 	bool CollisionIntersection_RectRay_Static(const AABB& aabb, Ray r);
 
 	bool CollisionIntersection_RectRect_Static(const AABB& aabb1, const AABB& aabb2);
+
 }

@@ -5,7 +5,7 @@
 #include "OpenGLSystem.h"
 #include <GL/glew.h>
 #include "Core/Debugging/Gizmos.h"
-
+#include "Core/GlobalStruct.h"
 namespace DeltaEngine
 {
 	std::vector<Camera*> Camera::allCameras;
@@ -42,8 +42,8 @@ namespace DeltaEngine
 	Matrix4x4 Camera::GetProjectionMatrix() const
 	{
 		return Matrix4x4::Rotate(transform.rotation) * Matrix4x4::Ortho(
-			-_size / RenderModule::height * RenderModule::width,
-			_size / RenderModule::height * RenderModule::width,
+			-_size / env.pWin->Height() * env.pWin->Width(),
+			_size / env.pWin->Height() * env.pWin->Width(),
 			-_size, _size, _zNear, _zFar);
 	}
 	Matrix4x4 Camera::GetViewMatrix() const
@@ -52,11 +52,11 @@ namespace DeltaEngine
 	}
 	Vector3 Camera::Max() const
 	{
-		return Vector3(_size / RenderModule::height * RenderModule::width + transform.position.x, _size + transform.position.y);
+		return Vector3(_size / env.pWin->Height() * env.pWin->Width() + transform.position.x, _size + transform.position.y);
 	}
 	Vector3 Camera::Min() const
 	{
-		return Vector3(-_size / RenderModule::height * RenderModule::width + transform.position.x, -_size + transform.position.y);
+		return Vector3(-_size / env.pWin->Height() * env.pWin->Width() + transform.position.x, -_size + transform.position.y);
 	}
 
 	void Camera::Start()
@@ -87,7 +87,7 @@ namespace DeltaEngine
 	void Camera::Render()
 	{
 		Camera* thisCam = this;
-		frameBuffer.Resize(RenderModule::width, RenderModule::height);
+		frameBuffer.Resize(env.pWin->Width(), env.pWin->Height());
 
 		frameBuffer.Bind();
 

@@ -1,12 +1,11 @@
-#include "DEpch.h"
 #include "DeltaEngine.h"
 #include "Application.h"
 #include "Render/OpenGLSystem.h"
 #include "Render/TextRenderer.h"
-#include "Event/ApplicationEvent.h"
-#include "Physics/Collision.h"
 #include "Core/Utils/FileUtils.h"
 #include "Core/GlobalStruct.h"
+#include "ECS/ECSModule.h"
+#include "Physics/PhysicsSystem.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -16,17 +15,19 @@ namespace DeltaEngine
 {
     DeltaEngineGlobalEnvironment env;
 
-    Application::Application() : m_Running{ true }, m_Minimized{ false }, m_interval(0.25)
-    {
-        Log::Init();
-        DeltaEngine_CORE_INFO("Engine Start");
-        // Memory Manager
-        // Window
-        // Render
-        // GUI
-        // Physics
-        // Audio
-        // Events
+  Application::Application() : m_interval(0.25)
+  {
+    Log::Init();
+    DeltaEngine_CORE_INFO("Engine Start");
+    // Memory Manager
+    // Window
+    // Render
+    // GUI
+    // Physics
+    // Audio
+    // Events
+    env.pWin = new Window();
+    env.pWin->Init();
 
         // a lot of this should be moved to a function in GraphicsManager later
         RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
@@ -57,6 +58,11 @@ namespace DeltaEngine
 
         env.pECS = new ECSModule();
     }
+    env.pECS = new ECSModule();
+    env.pECS->world();
+
+
+  }
 
     Application::~Application()
     {
@@ -90,40 +96,44 @@ namespace DeltaEngine
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
 
-        MSG msg = {};
-
-        while (m_Running)
-        {
-            // Update engine GameClock
-            env.pClock->Update();
+    while (env.pWin->Running())
+    {
+      // Update engine GameClock
+      env.pClock->Update();
 
             // Update accumulator using time-scaled dt
             accumulator += env.pClock->DeltaTime();
 
-            // Update based on interval
-            while (accumulator >= m_interval)
-            {
-                if (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
-                {
-                    if (msg.message == WM_QUIT)
-                        m_Running = false;
-                    TranslateMessage(&msg);
-                    DispatchMessage(&msg);
-                    continue;
-                }
-                FixedUpdate();
-                //a->Update();
-                VariableUpdate();
-                accumulator -= env.pClock->DeltaTime();
-            }
-            const f64 alpha = accumulator / m_interval;
-        }
-        delete s;
-        //delete t;
-        //delete p;
+      // Update based on interval
+      while (accumulator >= m_interval)
+      {
+        env.pWin->Update();
+        VariableUpdate();
+        FixedUpdate();
+        accumulator -= env.pClock->DeltaTime();
+      }
+      const f64 alpha = accumulator / m_interval;
+    }
+    RenderModule::openGLSystem->Exit();
+    delete s;
+    delete t;
+    delete p;
+    delete RenderModule::openGLSystem;
+  }
+
+    void Application::PushLayer(Layer* layer)
+    {
+        m_LayerStack.PushLayer(layer);
+        layer->OnAttach();
     }
 
-    void Application::OnEvent(Event& e)
+    void Application::PushOverlay(Layer* layer)
+    {
+        m_LayerStack.PushOverlay(layer);
+        layer->OnAttach();
+    }
+
+    void Application::OnEvent()
     {
         EventManager event_manager;
 
