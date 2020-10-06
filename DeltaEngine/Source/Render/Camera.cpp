@@ -59,6 +59,31 @@ namespace DeltaEngine
 		return Vector3(-_size / RenderModule::height * RenderModule::width + transform.position.x, -_size + transform.position.y);
 	}
 
+	void Camera::Start()
+	{
+		frameBuffer.Resize(RenderModule::width, RenderModule::height);
+
+		frameBuffer.Bind();
+
+		glClearColor(
+			backgroundColor.r,
+			backgroundColor.g,
+			backgroundColor.b,
+			backgroundColor.a);
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
+	void Camera::End()
+	{
+		frameBuffer.Unbind();
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		glBindTexture(GL_TEXTURE_2D, frameBuffer.GetColorAttachment());	// use the color attachment texture as the texture of the quad plane
+		shader->SetUniform1i("_MainTex", 0);
+
+		Mesh::DrawQuad();
+	}
+
 	void Camera::Render()
 	{
 		Camera* thisCam = this;
@@ -73,8 +98,10 @@ namespace DeltaEngine
 			backgroundColor.a);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		std::for_each(RenderModule::allRenderers.begin(), RenderModule::allRenderers.end(), [thisCam](Renderer* s)
-			{ s->Render(*thisCam); });
+		std::for_each(RenderModule::allRenderers.begin(), RenderModule::allRenderers.end(), [thisCam](Renderer* r)
+			{
+				r->Render(*thisCam);
+			});
 
 		// Call all OnDrawGizmos() here
 

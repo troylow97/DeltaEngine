@@ -1,7 +1,7 @@
 #pragma once
 
 #include "DEpch.h"
-#include "Texture.h"
+#include "Sprite.h"
 
 struct AnimationEvent
 {
@@ -13,16 +13,22 @@ namespace DeltaEngine
 {
 	class AnimationClip
 	{
-		std::vector<AnimationEvent> events;
+		std::string m_Name;
 		unsigned int totalFrames;
 		unsigned int fps;
 
-		Texture2D texture;
-		std::vector<unsigned int> textureIndices;
+		std::vector<Sprite> m_Sprites;
+		std::vector<AnimationEvent> m_Events;
 
 		bool loop;
 	public:
-		AnimationClip(std::string filepath = "Example.anim");
-		void LoadAnimation();
+		AnimationClip(std::string filepath = "Example.clip");
+		unsigned int GetTotalFrames() const;
+		unsigned int GetFps() const;
+		Sprite GetSprite(unsigned int index) const;
+		std::string GetName() const;
+	private:
+		void LoadAnimation(std::string filepath);
+		void UpdateAnimation(std::string filepath);
 	};
 }

@@ -9,11 +9,8 @@ namespace DeltaEngine
 
   class DE_API Application
 	{
-
 		bool m_Running;
 		bool m_Minimized;
-		LayerStack m_LayerStack;
-		ImGuiLayer* m_ImGuiLayer;
 		double m_interval;
 	public:
 		Application();
@@ -21,8 +18,6 @@ namespace DeltaEngine
 
 		void Run();
 		void OnEvent(Event& e);
-		void PushLayer(Layer* layer);
-		void PushOverlay(Layer* layer);
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 

@@ -21,6 +21,8 @@
 #include "Assets/Loaders/FontLoader.h"
 #include "Assets/Loaders/ShaderLoader.h"
 #include "Assets/Loaders/TextureLoader.h"
+#include "Assets/Loaders/AnimationClipLoader.h"
+#include "Assets/Loaders/AnimatorLoader.h"
 
 
 #include "Physics/Collision.h"
@@ -34,6 +36,8 @@
 #include "Render/Texture.h"
 #include "Render/FrameAnimation.h"
 #include "Render/ParticleSystem.h"
-#include "Render/FrameAnimation.h"
+#include "Render/Animator.h"
 
 #include "Event/ApplicationEvent.h"
+
+#include "Core/GlobalStruct.h"

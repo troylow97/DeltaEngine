@@ -263,11 +263,6 @@ namespace DeltaEngine
 			}
 		}
 	}
-	bool ParticleSystem::SortParticles(Particle i, Particle j)
-	{
-		return
-			!i.active || (i.lifeTimer > j.lifeTimer);
-	}
 
 	ParticleSystem::ParticleSystem() : texture { new Texture2D("DefaultParticle.png") }
 	{

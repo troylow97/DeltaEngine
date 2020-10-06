@@ -14,14 +14,14 @@ namespace DeltaEngine
     {
     }
 
-    AssetKey(const std::string_view str) :
-      _digest(std::hash<std::string_view>{}(str))
+    AssetKey(const std::string str) :
+      _digest(std::hash<std::string>{}(str))
     {
     }
 
     template <size_t Size>
     constexpr AssetKey(const char ( &str )[Size]) :
-      _digest(std::hash<std::string_view>{}(std::string_view(str)))
+      _digest(std::hash<std::string>{}(std::string(str)))
     {
     }
 

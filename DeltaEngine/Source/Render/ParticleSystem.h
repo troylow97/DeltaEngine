@@ -89,7 +89,6 @@ namespace DeltaEngine
 
 			bool active = false;
 		};
-		static bool SortParticles(Particle, Particle);
 		std::vector<Particle> m_ParticlePool;
 		unsigned int m_activeParticles = 0;
 
