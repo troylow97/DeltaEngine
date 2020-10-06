@@ -48,104 +48,25 @@ namespace DeltaEngine
 		lineSegment.m_normal = lineSegment.m_normal.Normalize();
 	}
 
-	/**************************************************************************/
-	/*!
-	  \brief	Test for intersection between two rectangular bounded objects
-	  \param	aabb1 AABB of the first object
-	  \param	vel1  Velocity of the first object
-	  \param	aabb2 AABB of the second object
-	  \param	vel2  Velocity of the second object
-	*/
-	/**************************************************************************/
-	//bool CollisionIntersection_RectRect(const AABB& aabb1, const Vector2& vel1,
-	//	const AABB& aabb2, const Vector2& vel2)
-	//{
-	//	//Static Collision Check
-	//	if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
-	//		return true;
-	//
-	//	float tFirst = 0;
-	//	float tLast = g_dt;
-	//	Vector2 RelativeVel;
-	//	// getting relative velocity
-	//	RelativeVel.x = vel2.x - vel1.x;
-	//	RelativeVel.y = vel2.y - vel1.y;
-	//
-	//	if (RelativeVel.x == 0.0f && RelativeVel.y == 0.0f)
-	//		return false;
-	//
-	//	// checking for case 1
-	//	if (RelativeVel.x < 0.0f)
-	//	{
-	//		// checking for case 4
-	//		if (aabb1.min.x > aabb2.max.x) // check A min < B max
-	//			return false;
-	//		if (aabb1.max.x < aabb2.min.x) // check A max < B min
-	//			tFirst = std::max((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tFirst);
-	//		if (aabb1.min.x < aabb2.max.x) // check A min < B Max
-	//			tLast = std::min((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tLast);
-	//	}
-	//	else if (RelativeVel.x > 0.0f)  //caculate the x axis of the AABB when RelativeVel is < 0
-	//	{
-	//		// checking for case 2
-	//		if (aabb1.max.x < aabb2.min.x) //check A max < B min
-	//			return false;
-	//		if (aabb1.min.x > aabb2.max.x) //check A min > B max
-	//			tFirst = std::max((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tFirst);
-	//		if (aabb1.max.x > aabb2.min.x) //check A min > B min
-	//			tLast = std::min((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tLast);
-	//	}
-	//	// checking for case 3
-	//	else if ((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x))
-	//	{
-	//		return false;
-	//	}
-	//
-	//
-	//	// checking for case 1
-	//	if (RelativeVel.y < 0.0f)
-	//	{
-	//		// checking for case 4
-	//		if (aabb1.min.y > aabb2.max.y) // check A min < B max
-	//			return false;
-	//		if (aabb1.max.y < aabb2.min.y) // check A max < B min
-	//			tFirst = std::max((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tFirst);
-	//		if (aabb1.min.y < aabb2.max.y) // check A min < B Max
-	//			tLast = std::min((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tLast);
-	//	}
-	//	else if (RelativeVel.y > 0.0f)
-	//	{
-	//		// checking for case 2
-	//		if (aabb1.max.y < aabb2.min.y) //check A max < B min
-	//			return false;
-	//		if (aabb1.min.y > aabb2.max.y) //check A min > B max
-	//			tFirst = std::max((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tFirst);
-	//		if (aabb1.max.y > aabb2.min.y) //check A min > B min
-	//			tLast = std::min((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tLast);
-	//	}
-	//	// checking for case 3
-	//	else if ((aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y))
-	//	{
-	//		return false;
-	//	}
-	//
-	//	// checking for case 5
-	//	if (tFirst > tLast)
-	//		return false;
-	//	return true;
-	//}
-
-	bool CollisionIntersection_RectRect_Static(const AABB& aabb1, const AABB& aabb2)
+	bool CollisionIntersection_RectRect_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2)
 	{
-		if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
+		AABB aabb1{ Center1,Size1 };
+		AABB aabb2{ Center2, Size2 };
+
+		//if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
+		//	return true;
+
+		if (aabb1.max.x >= aabb2.min.x && aabb1.min.x <= aabb2.max.x || aabb1.max.y >= aabb2.min.y&& aabb1.min.y <= aabb2.max.y)
 			return true;
 
 		return false;
 	}
 
 	//need to test
-	bool CollisionIntersection_RectRay_Static(const AABB& aabb, Ray r)
+	bool CollisionIntersection_RectRay_Static(const Vector2 Center1,const Vector2 Size1,const Vector2 Center2,const Vector2 Size2)
 	{
+		AABB aabb{ Center1,Size1 };
+		Ray r{ Center2,Size2 };
 		float tx1 = (aabb.min.x - r.m_pt0.x) * r.m_dir.x;
 		float tx2 = (aabb.max.x - r.m_pt0.x) * r.m_dir.x;
 
@@ -161,9 +82,11 @@ namespace DeltaEngine
 		return tmax >= tmin;
 	}
 
-	bool CollisionIntersection_RectCircle_Static(const AABB& aabb1, const Circle& circle)
+	bool CollisionIntersection_RectCircle_Static(const Vector2 Center1,const Vector2 Size1,const Vector2 Center2,const Vector2 Size2)
 	{
 		// temporary variables to set edges for testing
+		AABB aabb1{ Center1,Size1 };
+		Circle circle{ Center2,Size2 };
 
 		Vector2 size;
 		Vector2 center;
@@ -189,8 +112,11 @@ namespace DeltaEngine
 		return false;
 	}
 
-	bool CollisionIntersection_RectLine_Static(const AABB& aabb, const LineSegment& line)
+	bool CollisionIntersection_RectLine_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2)
 	{
+		AABB aabb{ Center1,Size1 };
+		LineSegment line{ Center2,Size2 };
+
 		if (((line.m_pt0.x > aabb.min.x&& line.m_pt0.x < aabb.max.x) || (line.m_pt1.x > aabb.min.x&& line.m_pt1.x < aabb.max.x)) &&
 			((line.m_pt0.y > aabb.min.y&& line.m_pt0.y < aabb.max.y) || (line.m_pt1.y > aabb.min.y&& line.m_pt1.y < aabb.max.y)))
 		{
@@ -299,8 +225,11 @@ namespace DeltaEngine
 
 	}
 
-	bool CollisionIntersection_CircleLineSegment_Static(const Circle& circle, const LineSegment& line)
+	bool CollisionIntersection_CircleLineSegment_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2)
 	{
+		Circle circle{ Center1,Size1 };
+		LineSegment line{ Center2,Size2 };
+
 		if ((line.m_pt0.x - circle.m_center.x) * (line.m_pt0.x - circle.m_center.x) + (line.m_pt0.y - circle.m_center.y) * (line.m_pt0.y - circle.m_center.y) <=
 			(line.m_pt1.x - line.m_pt0.x) * (line.m_pt1.x - line.m_pt0.x) + (line.m_pt1.y - line.m_pt0.y) + (line.m_pt1.y - line.m_pt0.y))
 		{
@@ -486,8 +415,8 @@ namespace DeltaEngine
 
 		//Use a circles center with a combined radius of both circles
 		Circle newCircle{ circleB.m_center, circleB.m_radius + circleA.m_radius };
-
-		if (CollisionIntersection_RayCircle(ray, newCircle, interTime))
+		Vector2 temp{ circleB.m_radius + circleA.m_radius ,circleB.m_radius + circleA.m_radius };
+		if(CollisionIntersection_RayCircle(circleA.m_center, velA - velB,newCircle.m_center,temp,interTime))
 		{
 			//intersection when both circle collides
 			interPtA = circleA.m_center + velA * interTime;
@@ -497,8 +426,10 @@ namespace DeltaEngine
 		return 0;
 	}
 
-	bool CollisionIntersecction_CircleCircle_Static(const Circle& circle1, const Circle& circle2)
+	bool CollisionIntersection_CircleCircle_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2)
 	{
+		Circle circle1{ Center1,Size1 };
+		Circle circle2{ Center2,Size2 };
 		//(x2 - x1) ^ 2 + (y1 - y2) ^ 2 <= (r1 + r2) ^ 2
 		if
 			(
@@ -519,10 +450,10 @@ namespace DeltaEngine
 		If it does, it changes the interTime parameter
 	 */
 	 /******************************************************************************/
-	int CollisionIntersection_RayCircle(const Ray& ray,
-		const Circle& circle,
-		float& interTime)
+	int CollisionIntersection_RayCircle(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2, float& interTime)
 	{
+		Ray ray{ Center1,Size1 };
+		Circle circle{ Center2,Size2 };
 		//Calculate end point of ray
 		Vector2 Be = ray.m_pt0 + ray.m_dir;
 
@@ -558,8 +489,10 @@ namespace DeltaEngine
 		return 0;
 	}
 
-	bool CollisionIntersection_RayLine_Static(const Ray& ray, const LineSegment& line)
+	bool CollisionIntersection_RayLine_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2)
 	{
+		Ray ray{ Center1,Size1 };
+		LineSegment line{ Center2,Size2 };
 		Vector2 v1 = ray.m_pt0 - line.m_pt0;
 		Vector2 v2 = line.m_pt1 - line.m_pt0;
 		Vector2 v3 = Vector2(-ray.m_dir.y, ray.m_dir.x);
@@ -577,8 +510,10 @@ namespace DeltaEngine
 		return false;
 	}
 
-	bool CollisionIntersection_LineLine_Static(const LineSegment& line, const LineSegment& line2)
+	bool CollisionIntersection_LineLine_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2)
 	{
+		LineSegment line{ Center1,Size1 };
+		LineSegment line2{ Center2,Size2 };
 		float denominator = ((line.m_pt1.x - line.m_pt0.x) * (line2.m_pt1.y - line2.m_pt0.y)) - ((line.m_pt1.y - line.m_pt0.y) * (line2.m_pt1.x - line2.m_pt0.x));
 		float numerator1 = ((line.m_pt0.y - line2.m_pt0.y) * (line2.m_pt1.x - line2.m_pt0.x)) - ((line.m_pt0.x - line2.m_pt0.x) * (line2.m_pt1.y - line2.m_pt0.y));
 		float numerator2 = ((line.m_pt0.y - line2.m_pt0.y) * (line.m_pt1.x - line.m_pt0.x)) - ((line.m_pt0.x - line2.m_pt0.x) * (line.m_pt1.y - line.m_pt0.y));
@@ -592,5 +527,176 @@ namespace DeltaEngine
 		return (r >= 0 && r <= 1) && (s >= 0 && s <= 1);
 	}
 
+	bool CollisionIntersection_Main(const Collider& col1, const Collider& col2)
+	{
+		ColliderType type1 = col1.type;
+
+		switch (type1)
+		{
+		case ColliderType::BOX:
+				return CollisionIntersection_Sub_Box(col1, col2);
+		case ColliderType::CIRCLE:
+			return CollisionIntersection_Sub_Circle(col1, col2);
+		case ColliderType::LINE:
+			return CollisionIntersection_Sub_Line(col1, col2);
+		case ColliderType::RAY:
+			return CollisionIntersection_Sub_Ray(col1, col2);
+		default:
+			return CollisionIntersection_Sub_Box(col1, col2);
+		}
+	}
+
+	bool CollisionIntersection_Sub_Box(const Collider& col1, const Collider& col2)
+	{
+		ColliderType type2 = col2.type;
+		switch (type2)
+		{
+		case ColliderType::BOX:
+			return CollisionIntersection_RectRect_Static(col1.center, col1.size, col2.center, col2.size);
+		case ColliderType::CIRCLE:
+			return CollisionIntersection_RectCircle_Static(col1.center, col1.size, col2.center, col2.size);
+		case ColliderType::LINE:
+			return CollisionIntersection_RectLine_Static(col1.center, col1.size, col2.center, col2.size);
+		case ColliderType::RAY:
+			return CollisionIntersection_RectRay_Static(col1.center, col1.size, col2.center, col2.size);
+		}
+	}
+	bool CollisionIntersection_Sub_Circle(const Collider& col1, const Collider& col2)
+	{
+		float intertime = 0;
+		ColliderType type2 = col2.type;
+		switch (type2)
+		{
+		case ColliderType::BOX:
+			return CollisionIntersection_RectCircle_Static(col2.center, col2.size, col1.center, col1.size);
+		case ColliderType::CIRCLE:
+			return CollisionIntersection_CircleCircle_Static(col1.center, col1.size, col2.center, col2.size);
+		case ColliderType::LINE:
+			return CollisionIntersection_CircleLineSegment_Static(col1.center, col1.size, col2.center, col2.size);
+		case ColliderType::RAY:
+			return CollisionIntersection_RayCircle(col2.center, col2.size, col1.center, col1.size, intertime);
+		}
+	}
+	bool CollisionIntersection_Sub_Line(const Collider& col1, const Collider& col2)
+	{
+		ColliderType type2 = col2.type;
+		switch (type2)
+		{
+		case ColliderType::BOX:
+			return CollisionIntersection_RectLine_Static(col2.center, col2.size, col1.center, col1.size);
+		case ColliderType::CIRCLE:
+			return CollisionIntersection_CircleLineSegment_Static(col2.center, col2.size, col1.center, col1.size);
+		case ColliderType::LINE:
+			return CollisionIntersection_LineLine_Static(col1.center, col1.size, col2.center, col2.size);
+		case ColliderType::RAY:
+			return CollisionIntersection_RayLine_Static(col2.center, col2.size, col1.center, col1.size);
+		}
+	}
+	bool CollisionIntersection_Sub_Ray(const Collider& col1, const Collider& col2)
+	{
+		float intertime;
+		ColliderType type2 = col2.type;
+		switch (type2)
+		{
+		case ColliderType::BOX:
+			return CollisionIntersection_RectRay_Static(col2.center, col2.size, col1.center, col1.size);
+		case ColliderType::CIRCLE:
+			return CollisionIntersection_RayCircle(col1.center, col1.size, col2.center, col2.size, intertime);
+		case ColliderType::LINE:
+			return CollisionIntersection_RayLine_Static(col1.center, col1.size, col2.center, col2.size);
+		case ColliderType::RAY:
+			return false; //to be done?
+		}
+	}
+
 }
+
+//UNUSED FUNCTIONS
+
+	/**************************************************************************/
+	/*!
+	  \brief	Test for intersection between two rectangular bounded objects
+	  \param	aabb1 AABB of the first object
+	  \param	vel1  Velocity of the first object
+	  \param	aabb2 AABB of the second object
+	  \param	vel2  Velocity of the second object
+	*/
+	/**************************************************************************/
+	//bool CollisionIntersection_RectRect(const AABB& aabb1, const Vector2& vel1,
+	//	const AABB& aabb2, const Vector2& vel2)
+	//{
+	//	//Static Collision Check
+	//	if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
+	//		return true;
+	//
+	//	float tFirst = 0;
+	//	float tLast = g_dt;
+	//	Vector2 RelativeVel;
+	//	// getting relative velocity
+	//	RelativeVel.x = vel2.x - vel1.x;
+	//	RelativeVel.y = vel2.y - vel1.y;
+	//
+	//	if (RelativeVel.x == 0.0f && RelativeVel.y == 0.0f)
+	//		return false;
+	//
+	//	// checking for case 1
+	//	if (RelativeVel.x < 0.0f)
+	//	{
+	//		// checking for case 4
+	//		if (aabb1.min.x > aabb2.max.x) // check A min < B max
+	//			return false;
+	//		if (aabb1.max.x < aabb2.min.x) // check A max < B min
+	//			tFirst = std::max((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tFirst);
+	//		if (aabb1.min.x < aabb2.max.x) // check A min < B Max
+	//			tLast = std::min((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tLast);
+	//	}
+	//	else if (RelativeVel.x > 0.0f)  //caculate the x axis of the AABB when RelativeVel is < 0
+	//	{
+	//		// checking for case 2
+	//		if (aabb1.max.x < aabb2.min.x) //check A max < B min
+	//			return false;
+	//		if (aabb1.min.x > aabb2.max.x) //check A min > B max
+	//			tFirst = std::max((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tFirst);
+	//		if (aabb1.max.x > aabb2.min.x) //check A min > B min
+	//			tLast = std::min((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tLast);
+	//	}
+	//	// checking for case 3
+	//	else if ((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x))
+	//	{
+	//		return false;
+	//	}
+	//
+	//
+	//	// checking for case 1
+	//	if (RelativeVel.y < 0.0f)
+	//	{
+	//		// checking for case 4
+	//		if (aabb1.min.y > aabb2.max.y) // check A min < B max
+	//			return false;
+	//		if (aabb1.max.y < aabb2.min.y) // check A max < B min
+	//			tFirst = std::max((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tFirst);
+	//		if (aabb1.min.y < aabb2.max.y) // check A min < B Max
+	//			tLast = std::min((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tLast);
+	//	}
+	//	else if (RelativeVel.y > 0.0f)
+	//	{
+	//		// checking for case 2
+	//		if (aabb1.max.y < aabb2.min.y) //check A max < B min
+	//			return false;
+	//		if (aabb1.min.y > aabb2.max.y) //check A min > B max
+	//			tFirst = std::max((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tFirst);
+	//		if (aabb1.max.y > aabb2.min.y) //check A min > B min
+	//			tLast = std::min((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tLast);
+	//	}
+	//	// checking for case 3
+	//	else if ((aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y))
+	//	{
+	//		return false;
+	//	}
+	//
+	//	// checking for case 5
+	//	if (tFirst > tLast)
+	//		return false;
+	//	return true;
+	//}
 

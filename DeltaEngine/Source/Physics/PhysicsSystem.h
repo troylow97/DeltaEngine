@@ -7,7 +7,7 @@ namespace DeltaEngine
 {
     DEFINE_SYSTEM(PhysicsSystem, RigidBody, Transform, Collider)
     public:
-        PhysicsSystem() = default;
+        PhysicsSystem::PhysicsSystem() = default;
         ~PhysicsSystem() = default;
         //CollisionSystem collision_system();
 
@@ -15,15 +15,12 @@ namespace DeltaEngine
         virtual void PhysicsSystem::late_update() override;
         void PhysicsSystem::Init();
         void PhysicsSystem::UpdateComponents();
-        void PhysicsSystem::UpdateVelocity(Entity id)
-        {
-        	//ecs->get_component<Transform>(id).position = ecs->get_component<RigidBody>(id).Velocity;
-        }
-        void Gravity(Entity id)
-        {
-        	Vector2 Gravity = { 0,-2 };
-        	//ecs->get_component<RigidBody>(id).Velocity - Gravity;
-        }
+
+    private:
+        void PhysicsSystem::UpdateVelocity();
+        void PhysicsSystem::Gravity();
+
+        Vector2 GravityAmount;
 
     END_DEFINE_SYSTEM(PhysicsSystem)
 }

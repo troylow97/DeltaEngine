@@ -60,7 +60,7 @@ namespace DeltaEngine
 		m_normal{ 1,0 }
 	{}
 
-	LineSegment::LineSegment(Vector2 pt0, Vector2 pt1) :
+	LineSegment::LineSegment(const Vector2 pt0,const Vector2 pt1) :
 		m_pt0{ pt0 },
 		m_pt1{ pt1 },
 		m_normal{ {pt1.x - pt0.x},{pt1.y - pt0.y} }
@@ -72,15 +72,21 @@ namespace DeltaEngine
 		m_mass{ 1.0f }
 	{}
 
-	Circle::Circle(Vector2 center, float radius, float mass) :
+	Circle::Circle(const Vector2 center,const float radius,const float mass) :
 		m_center{ center },
 		m_radius{ radius },
 		m_mass{ mass }
 	{}
 
-	Circle::Circle(Vector2 center, float radius) :
+	Circle::Circle(const Vector2 center,const float radius) :
 		m_center{ center },
 		m_radius{ radius },
+		m_mass{ 1.0f }
+	{}
+
+	Circle::Circle(const Vector2 center, const Vector2 radius) :
+		m_center{ center },
+		m_radius{ radius.x },
 		m_mass{ 1.0f }
 	{}
 
@@ -89,7 +95,7 @@ namespace DeltaEngine
 		m_dir{ 0,0 }
 	{}
 
-	Ray::Ray(Vector2 pt, Vector2 dir) :
+	Ray::Ray(const Vector2 pt,const Vector2 dir) :
 		m_pt0{ pt },
 		m_dir{ dir }
 	{}

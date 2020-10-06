@@ -6,36 +6,31 @@ namespace DeltaEngine
 {
 	void AABB_CollisionResponse(Collider& obj1,Collider& obj2,Vector2& obj1_vel,Vector2& obj2_vel)
 	{
-        //Vector2 distance = CalculateAabbDistanceTo(obj1, obj2);
-        //float shortestTime = 0;
-        //float xAxisTimeToCollide = obj2_vel.x != 0 ? std::abs(distance.x/obj2_vel.x) : 0;
-        //float yAxisTimeToCollide = obj2_vel.x != 0 ? std::abs(distance.y / obj2_vel.y) : 0;
-        //
-        //if (obj2_vel.x != 0 && obj2_vel.y == 0)
-        //{
-        //    // Colliison on X-axis only
-        //    shortestTime = xAxisTimeToCollide;
-        //    obj1_vel.x = obj2_vel.x * shortestTime;
-        //}
-        //else if (obj2_vel.x == 0 && obj2_vel.y != 0)
-        //{
-        //    // Collision on Y-axis only
-        //    shortestTime = yAxisTimeToCollide;
-        //    obj1_vel.y = obj2_vel.y * shortestTime;
-        //}
-        //else
-        //{
-        //    // Collision on X and Y axis (eg. slide up against a wall)
-        //    shortestTime = Math::math_min(std::abs(xAxisTimeToCollide), std::abs(yAxisTimeToCollide));
-        //
-        //    obj1_vel.x = shortestTime * obj2_vel.x;
-        //    obj1_vel.y = shortestTime * obj2_vel.y;
-        //}
-
-        obj1_vel.x = 0;
-        obj1_vel.y = 0;
-        obj2_vel.x = 0;
-        obj2_vel.y = 0;
+        Vector2 distance = CalculateAabbDistanceTo(obj1, obj2);
+        float shortestTime = 0;
+        float xAxisTimeToCollide = obj2_vel.x != 0 ? std::abs(distance.x/obj2_vel.x) : 0;
+        float yAxisTimeToCollide = obj2_vel.x != 0 ? std::abs(distance.y / obj2_vel.y) : 0;
+        
+        if (obj2_vel.x != 0 && obj2_vel.y == 0)
+        {
+            // Colliison on X-axis only
+            shortestTime = xAxisTimeToCollide;
+            obj1_vel.x = obj2_vel.x * shortestTime;
+        }
+        else if (obj2_vel.x == 0 && obj2_vel.y != 0)
+        {
+            // Collision on Y-axis only
+            shortestTime = yAxisTimeToCollide;
+            obj1_vel.y = obj2_vel.y * shortestTime;
+        }
+        else
+        {
+            // Collision on X and Y axis (eg. slide up against a wall)
+            shortestTime = Math::math_min(std::abs(xAxisTimeToCollide), std::abs(yAxisTimeToCollide));
+        
+            obj1_vel.x = shortestTime * obj2_vel.x;
+            obj1_vel.y = shortestTime * obj2_vel.y;
+        }
 
 
 	}

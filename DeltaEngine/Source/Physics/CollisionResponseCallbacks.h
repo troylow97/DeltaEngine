@@ -5,7 +5,7 @@
 namespace DeltaEngine
 {
 	void AABB_CollisionResponse(Collider& obj1, Collider& obj2, Vector2& obj1_vel, Vector2& obj2_vel);
-	Vector2 CalculateDistanceTo(Collider& e1, Collider& e2); //Helper function
+	Vector2 CalculateAabbDistanceTo(Collider& e1, Collider& e2); //Helper
 	/******************************************************************************/
 	/*!
 		Calculates reflection when the circle hits another circle.

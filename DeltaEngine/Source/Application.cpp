@@ -8,15 +8,14 @@
 #include "Physics/PhysicsSystem.h"
 #include "Physics/CollisionSystem.h"
 #include "ECS/World.h"
+#include "Input/InputSystem.h"
+#include "Input/Keys.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
 -----------------------------------*/
 namespace DeltaEngine
 {
-  ECSModule ecs;
-  World& world = ecs.world();
-  EntityManager& em = world.get_entity_manager();
   DeltaEngineGlobalEnvironment env;
 
   Application::Application() : m_interval(0.25)
@@ -31,10 +30,6 @@ namespace DeltaEngine
 
     // Audio
     // Events
-
-    world.create_systems<PhysicsSystem,CollisionSystem>();
-    world.set_update_sequence<PhysicsSystem, CollisionSystem>();
-    world.set_late_update_sequence<>();
 
     // a lot of this should be moved to a function in GraphicsManager later
     RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
@@ -57,20 +52,8 @@ namespace DeltaEngine
 
     env.pECS = new ECSModule();
     env.pECS->world();
-
-    auto entity1 = em.create_entity<Transform,RigidBody,BoxCollider>();
-    auto entity2 = em.create_entity<Transform, RigidBody, BoxCollider>();
-    auto& t = em.get_component<Transform>(entity1);
-    auto& r = em.get_component<RigidBody>(entity1);
-
-    t.position = { 5,5,0 };
-    t.scale = { 7,7,0 };
-
-    auto& t2 = em.get_component<Transform>(entity2);
-    auto& r2 = em.get_component<RigidBody>(entity2);
-
-    t2.position = { 7,7,0 };
-    t2.scale = { 5,5,0 };
+    env.pECS->world().create_systems<PhysicsSystem, CollisionSystem>();
+    env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem>();
 
   }
 
@@ -96,7 +79,25 @@ namespace DeltaEngine
 
     anim = new FrameAnimation();
     anim->renderer = s;
+    //physics test start init var
+    auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
+    auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform,RigidBody, Collider>();
+    auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
+    auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
 
+    trans.position = { 7,7,0 };
+    trans.scale = { 1,1,0 };
+    col.type = ColliderType::BOX;
+
+    auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
+    auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
+    auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
+
+    t2.position = { 5,5,0 };
+    t2.scale = { 1,1,0 };
+    r2.Velocity = { 0,0 };
+    col2.type = ColliderType::BOX;
+    //physics test end
     // TODO Modules Instantiation
     f64 accumulator = 0.0;
 
@@ -104,9 +105,24 @@ namespace DeltaEngine
     bool isRunning{true};
     while (isRunning)
     {
+      if (InputSystem::get()->isKeyTriggered(DEVK_D))
+      {
+          env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+          {
+                  r1.Velocity += {1, 0};
+          });
+      }
+      if (InputSystem::get()->isKeyPressed(DEVK_D))
+      {
+          env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+              {
+                  r1.Velocity += {0.2, 0};
+              });
+      }
+      InputSystem::get()->update();
       // Update engine GameClock
       env.pClock->Update();
-      world.update();
+      env.pECS->world().update();
       // Update accumulator using time-scaled dt
       accumulator += env.pClock->DeltaTime();
 
