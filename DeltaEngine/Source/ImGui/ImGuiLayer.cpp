@@ -24,7 +24,7 @@ namespace DeltaEngine
 		ImGuiIO& io = ImGui::GetIO();
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 		// TODO: Set optional io.ConfigFlags values, e.g. 'io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard' to enable keyboard controls.
-		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+		//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons;
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
@@ -68,6 +68,16 @@ namespace DeltaEngine
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplWin32_Shutdown();
 		ImGui::NewFrame();
+
+		{
+			ImGui::Begin("Camera");
+			static float f = 0.0f;
+			ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
+			ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
+			ImGui::DragFloat("size", (float*)&Camera::editorCamera->_size, 0.01f);
+			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+			ImGui::End();
+		}
 	}
 
 	void ImGuiLayer::End()

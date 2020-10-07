@@ -35,10 +35,13 @@ namespace DeltaEngine
         env.pWin = new Window();
         env.pWin->Init();
 
-        // a lot of this should be moved to a function in GraphicsManager later
+        // Render + Imgui
         RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
         RenderModule::openGLSystem->Init();
+        m_ImGuiLayer = new ImGuiLayer();
+        m_ImGuiLayer->OnAttach();
 
+        // Asset Loading
         FileUtils::Root("Assets");
         env.pClock = new GameClock();
         env.pManager = new AM();
@@ -78,6 +81,7 @@ namespace DeltaEngine
         // Audio
         // Physics
         // GUI
+        m_ImGuiLayer->OnDetach();
         // Render
         RenderModule::openGLSystem->Exit();
         delete RenderModule::openGLSystem;
@@ -165,6 +169,8 @@ namespace DeltaEngine
             // Update engine GameClock
             env.pClock->Update();
             env.pECS->world().update();
+            //m_ImGuiLayer->Begin();
+            //m_ImGuiLayer->End();
             env.pECS->world().late_update();
             // Update accumulator using time-scaled dt
             accumulator += env.pClock->DeltaTime();

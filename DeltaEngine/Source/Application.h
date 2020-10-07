@@ -16,6 +16,7 @@ namespace DeltaEngine
 
 		double m_interval;
 
+		ImGuiLayer* m_ImGuiLayer;
 	public:
 		Application();
 		virtual ~Application();

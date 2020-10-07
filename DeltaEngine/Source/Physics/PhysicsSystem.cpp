@@ -12,7 +12,7 @@ namespace DeltaEngine
 
     void PhysicsSystem::update()
     {
-        //Gravity();
+        Gravity();
         UpdateVelocity();
     }
 
