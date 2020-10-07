@@ -109,6 +109,7 @@ namespace DeltaEngine
       {
           env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
           {
+                  UNREFERENCED_PARAMETER(id1);
                   r1.Velocity += {1, 0};
           });
       }
@@ -116,8 +117,13 @@ namespace DeltaEngine
       {
           env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
               {
-                  r1.Velocity += {0.2, 0};
+                  UNREFERENCED_PARAMETER(id1);
+                  r1.Velocity += {0.2f, 0};
               });
+      }
+      if (InputSystem::get()->isMousePressed(DEVK_LBUTTON))
+      {
+          std::cout << "Left mouse button pressed" << std::endl;
       }
       InputSystem::get()->update();
       // Update engine GameClock
@@ -190,6 +196,7 @@ namespace DeltaEngine
 
     bool Application::OnWindowClose(WindowCloseEvent& e)
     {
+        UNREFERENCED_PARAMETER(e);
         m_Running = false;
         return true;
     }

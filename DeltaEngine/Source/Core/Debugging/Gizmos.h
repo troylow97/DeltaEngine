@@ -2,6 +2,7 @@
 
 #include "Core/Math/Transform.h"
 #include "Core/Math/Color.h"
+#include "Physics/Collider.h"
 
 namespace DeltaEngine::Gizmos
 {
@@ -24,4 +25,7 @@ namespace DeltaEngine::Gizmos
 
 	void Draw2DWireCircle(Vector3 position, Vector3 scale = Vector3::one(), Quaternion rotation = Quaternion::identity());
 	void Draw2DWireCircle(Transform transform = Transform());
+
+    //ERROR: NEED TO FIX
+	//void OnDrawGizmos(Collider& col);
 }
