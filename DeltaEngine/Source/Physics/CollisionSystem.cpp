@@ -25,16 +25,17 @@ namespace DeltaEngine
 	{
 		PreviousPair.swap(CurrentPair);
 		CurrentPair.clear();
-		bool Intersected = false;
+
 		//Collision Intersection
 		em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
 		{
+				UNREFERENCED_PARAMETER(r1);
 			if (c1.isCollideable)
 			{
 				c1.center = t1.position;
 				c1.size = t1.scale;
 				Vector2 OldPos = t1.position;
-				em.for_each([&](EntityID id2, Transform& t2, Collider& c2)
+				em.for_each([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
 				{
 					if(c2.isCollideable)
 					{
@@ -42,14 +43,14 @@ namespace DeltaEngine
 						{
 							c2.center = t2.position;
 							c2.size = t2.scale;
-							if (CollisionIntersection_Main(c1, c2))
+							if (CollisionIntersection_Main(c1,r1, c2,r2))
 							{
-								DeltaEngine_CORE_TRACE("COLLISION");
+								//DeltaEngine_CORE_TRACE("COLLISION");
 								CurrentPair.push_back({ id1,id2 });
 							}
 							else
 							{
-								DeltaEngine_CORE_TRACE("NOT_COLLISION");
+								//DeltaEngine_CORE_TRACE("NOT_COLLISION");
 							}
 							t1.position = OldPos;
 						}
@@ -74,7 +75,7 @@ namespace DeltaEngine
 						collision_handler.OnStay(it1->first);
 						collision_handler.OnStay(it1->second);
 						Handled = true;
-						DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON STAY");
+						//DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON STAY");
 					}
 				}
 
@@ -82,7 +83,7 @@ namespace DeltaEngine
 				{
 					collision_handler.OnEnter(it1->first);
 					collision_handler.OnEnter(it1->second);
-					DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON ENTER");
+					//DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON ENTER");
 				}
 			}
 		}
@@ -96,7 +97,7 @@ namespace DeltaEngine
 			{
 				collision_handler.OnExit(it3->first);
 				collision_handler.OnExit(it3->second);
-				DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON EXIT");
+				//DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON EXIT");
 			}
 		}
 
@@ -109,10 +110,12 @@ namespace DeltaEngine
 		{
 			em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
 			{
+				UNREFERENCED_PARAMETER(c1);
 				if (it1->first.index == id1.index || it1->second.index == id1.index)
 				{
 					em.for_each([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
 					{
+						UNREFERENCED_PARAMETER(c2);
 						if (it1->first.index == id2.index || it1->second.index == id2.index)
 						{
 							//float CollidingObjectsMass = r1.Mass + r2.Mass;
@@ -124,7 +127,7 @@ namespace DeltaEngine
 							r1.Velocity -= r2.Velocity * 0.5f;
 							r2.Velocity -= r1.Velocity * 0.5f;
 
-							DeltaEngine_CORE_TRACE("RESOLVING COLLISION");
+							//DeltaEngine_CORE_TRACE("RESOLVING COLLISION");
 						}
 					});
 				}

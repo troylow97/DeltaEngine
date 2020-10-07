@@ -1,44 +1,14 @@
 #pragma once
 #include "Core/Math/Vector.h"
 #include "Collider.h"
+#include "RigidBody.h"
 
 namespace DeltaEngine
 {
 	void AABB_CollisionResponse(Collider& obj1, Collider& obj2, Vector2& obj1_vel, Vector2& obj2_vel);
 	Vector2 CalculateAabbDistanceTo(Collider& e1, Collider& e2); //Helper
-	/******************************************************************************/
-	/*!
-		Calculates reflection when the circle hits another circle.
-		A reflection vector is calculated and the end point is also updated.
 
-		This calculation takes into account the mass of two circles.
-	 */
-	 /******************************************************************************/
-	//void CollisionResponse_CircleCircle(Vector2& normal,
-	//	const float interTime,
-	//	Vector2& velA,
-	//	const float& massA,
-	//	Vector2& interPtA,
-	//	Vector2& velB,
-	//	const float& massB,
-	//	Vector2& interPtB,
-	//	Vector2& reflectedVectorA,
-	//	Vector2& ptEndA,
-	//	Vector2& reflectedVectorB,
-	//	Vector2& ptEndB)
-	//{
-	//	//get the direction of reflection using dot product
-	//	float aA = velA.DotProduct(normal);
-	//	float aB = velB.DotProduct(normal);
-	//
-	//	//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-	//	reflectedVectorA = velA - normal * massB * (2 * (aA - aB) / (massA + massB));
-	//	reflectedVectorB = velB + normal * massA * (2 * (aA - aB) / (massA + massB));
-	//
-	//	//update the end points of where the two circles will end up
-	//	ptEndA = interPtA + reflectedVectorA * (1.0f - interTime);
-	//	ptEndB = interPtB + reflectedVectorB * (1.0f - interTime);
-	//}
+	void CollisionResponse_CircleCircle(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2);
 
 	/******************************************************************************/
 	/*!

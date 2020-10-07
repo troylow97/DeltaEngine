@@ -3,6 +3,7 @@
 #include "Core/Math/Transform.h"
 #include "Core/Math/Color.h"
 
+
 namespace DeltaEngine::Gizmos
 {
 	//Color color;
@@ -26,4 +27,5 @@ namespace DeltaEngine::Gizmos
 
 	void Draw2DWireCircle(Vector3 position, Vector3 scale = Vector3::one(), Quaternion rotation = Quaternion::identity());
 	void Draw2DWireCircle(Transform transform = Transform());
+
 }

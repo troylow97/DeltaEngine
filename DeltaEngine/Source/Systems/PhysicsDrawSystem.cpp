@@ -1,5 +1,5 @@
 #include "PhysicsDrawSystem.h"
-
+#include "Physics/Collider.h"
 namespace DeltaEngine
 {
 
@@ -7,7 +7,7 @@ namespace DeltaEngine
     {
         em.for_each(e_query, [&](EntityID id, Collider& c)
             {
-                c.OnDrawGizmos();
+                OnDrawGizmos(c);
             });
     }
     void PhysicsDrawSystem::late_update()

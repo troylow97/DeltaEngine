@@ -223,6 +223,7 @@ namespace DeltaEngine
 
     bool Application::OnWindowClose(WindowCloseEvent& e)
     {
+        UNREFERENCED_PARAMETER(e);
         m_Running = false;
         return true;
     }

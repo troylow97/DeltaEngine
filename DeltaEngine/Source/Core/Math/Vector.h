@@ -38,6 +38,7 @@ namespace DeltaEngine
 		Vector2 operator*=(const float f);
 		Vector2 operator/(const float f) const;
 		Vector2 operator/=(const float f);
+		bool operator!=(const Vector2 v) const;
 #pragma endregion
 	};
 	struct DE_API Vector3
@@ -82,4 +83,7 @@ namespace DeltaEngine
 		Vector4(float, float, float);
 		Vector4(float, float, float, float);
 	};
+
+	float Vector2DotProduct(const Vector2& pVec0, const Vector2& pVec1);
+
 }
