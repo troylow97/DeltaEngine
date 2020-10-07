@@ -1,6 +1,5 @@
 #pragma once
 #include "Core/Math/Vector.h"
-#include "Core/Debugging/Gizmos.h"
 
 namespace DeltaEngine
 {
@@ -32,9 +31,6 @@ namespace DeltaEngine
           size{0,0},
           type{ColliderType::BOX}
       {}
-
   };
-
-  void OnDrawGizmos(const Collider& col);
 
 } // namespace DeltaEngine

@@ -124,7 +124,7 @@ namespace DeltaEngine
 
         auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
         auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
-        auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
+        auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity2);
 
         t2.position = Vector3(-0.55f, -0.55f);
         t2.scale = Vector3(1, 1);
