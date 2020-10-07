@@ -1,6 +1,5 @@
 namespace DeltaEngine
 {
-
   template <typename... Ts>
   AssetManager<Ts...>::~AssetManager()
   {
@@ -30,17 +29,17 @@ namespace DeltaEngine
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::load( AssetKey key )
+  AssetManager<Ts...>& AssetManager<Ts...>::load(AssetKey key)
   {
-    AssetGroup<T1>::load( key );
+    AssetGroup<T1>::load(key);
     return *this;
   }
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::load( AssetKey key, std::string_view str )
+  AssetManager<Ts...>& AssetManager<Ts...>::load(AssetKey key, std::string_view str)
   {
-    AssetGroup<T1>::load( key, str );
+    AssetGroup<T1>::load(key, str);
     return *this;
   }
 
@@ -53,7 +52,7 @@ namespace DeltaEngine
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::set(AssetKey key, T1 *data, AssetState state, AssetLifetime lifetime)
+  AssetManager<Ts...>& AssetManager<Ts...>::set(AssetKey key, T1* data, AssetState state, AssetLifetime lifetime)
   {
     AssetGroup<T1>::set(key, data, state, lifetime);
     return *this;
@@ -61,35 +60,35 @@ namespace DeltaEngine
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::set(AssetKey key, T1 &&data, AssetState state, AssetLifetime lifetime)
+  AssetManager<Ts...>& AssetManager<Ts...>::set(AssetKey key, T1&& data, AssetState state, AssetLifetime lifetime)
   {
     return set(key, new std::decay_t<T1>(std::forward<T1>(data)), state, lifetime);
   }
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::set(AssetKey key, T1 *data)
+  AssetManager<Ts...>& AssetManager<Ts...>::set(AssetKey key, T1* data)
   {
-    return set(key, data, AssetState::Final, AssetLifetime::Persistant);
+    return set(key, data, AssetState::Final, AssetLifetime::Persistent);
   }
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::set(AssetKey key, T1 &&data)
+  AssetManager<Ts...>& AssetManager<Ts...>::set(AssetKey key, T1&& data)
   {
     return set(key, new std::decay_t<T1>(std::forward<T1>(data)));
   }
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::free()
+  AssetManager<Ts...>& AssetManager<Ts...>::free()
   {
     AssetGroup<T1>::free();
     return *this;
   }
 
   template <typename... Ts>
-  AssetManager<Ts...> &AssetManager<Ts...>::free()
+  AssetManager<Ts...>& AssetManager<Ts...>::free()
   {
     free_internal(AssetTypePack<Ts...>{});
     return *this;
@@ -97,14 +96,14 @@ namespace DeltaEngine
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::clear()
+  AssetManager<Ts...>& AssetManager<Ts...>::clear()
   {
     AssetGroup<T1>::clear();
     return *this;
   }
 
   template <typename... Ts>
-  AssetManager<Ts...> &AssetManager<Ts...>::clear()
+  AssetManager<Ts...>& AssetManager<Ts...>::clear()
   {
     clear_internal(AssetTypePack<Ts...>{});
     return *this;
@@ -112,21 +111,21 @@ namespace DeltaEngine
 
   template <typename... Ts>
   template <typename T1>
-  T1 *AssetManager<Ts...>::fallback()
+  T1* AssetManager<Ts...>::fallback()
   {
     return AssetGroup<T1>::fallback();
   }
 
   template <typename... Ts>
   template <typename T1>
-  const T1 *AssetManager<Ts...>::fallback() const
+  const T1* AssetManager<Ts...>::fallback() const
   {
     return AssetGroup<T1>::fallback();
   }
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::set_fallback(T1 *data)
+  AssetManager<Ts...>& AssetManager<Ts...>::set_fallback(T1* data)
   {
     AssetGroup<T1>::set_fallback(data);
     return *this;
@@ -134,28 +133,28 @@ namespace DeltaEngine
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::set_fallback(T1 &&data)
+  AssetManager<Ts...>& AssetManager<Ts...>::set_fallback(T1&& data)
   {
     return set_fallback(new std::decay_t<T1>(std::forward<T1>(data)));
   }
 
   template <typename... Ts>
   template <typename T1>
-  IAssetLoader<T1> *AssetManager<Ts...>::loader()
+  AbstractLoader<T1>* AssetManager<Ts...>::loader()
   {
     return AssetGroup<T1>::loader();
   }
 
   template <typename... Ts>
   template <typename T1>
-  const IAssetLoader<T1> *AssetManager<Ts...>::loader() const
+  const AbstractLoader<T1>* AssetManager<Ts...>::loader() const
   {
     return AssetGroup<T1>::loader();
   }
 
   template <typename... Ts>
   template <typename T1>
-  AssetManager<Ts...> &AssetManager<Ts...>::set_loader(IAssetLoader<T1> *loader)
+  AssetManager<Ts...>& AssetManager<Ts...>::set_loader(AbstractLoader<T1>* loader)
   {
     AssetGroup<T1>::set_loader(loader);
     return *this;
@@ -199,5 +198,4 @@ namespace DeltaEngine
   void AssetManager<Ts...>::free_loaders(AssetTypePack<>) const
   {
   }
-
 } // namespace DeltaEngine

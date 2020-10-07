@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Event.h"
 
 namespace DeltaEngine 
@@ -61,5 +60,7 @@ namespace DeltaEngine
 		EVENT_CLASS_TYPE(AppRender)
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
+
+	
 
 }

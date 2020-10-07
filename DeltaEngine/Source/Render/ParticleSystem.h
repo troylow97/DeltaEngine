@@ -5,12 +5,13 @@
 #include "Core/Math/Vector.h"
 #include "Core/Math/Color.h"
 #include "Camera.h"
+#include "Renderer.h"
 #include "Shader.h"
 #include "Texture.h"
 
 namespace DeltaEngine
 {
-	class ParticleSystem
+	class ParticleSystem : public Renderer
 	{
 		class VertexBufferLayout;
 
@@ -88,7 +89,6 @@ namespace DeltaEngine
 
 			bool active = false;
 		};
-		static bool SortParticles(Particle, Particle);
 		std::vector<Particle> m_ParticlePool;
 		unsigned int m_activeParticles = 0;
 
@@ -101,16 +101,14 @@ namespace DeltaEngine
 			float time;
 			int count;
 		};
-		enum Shape
+		enum class Shape
 		{
 			None, Circle, Line
 		};
-		enum SimualationSpace
+		enum class SimualationSpace
 		{
 			Local, World,
 		};
-
-		Transform transform;
 
 		//properties
 		float duration = 5;
@@ -122,7 +120,7 @@ namespace DeltaEngine
 		Color startColor[2] = { Color(), Color() };
 		float startRotation[2] = { 0, 0 };
 		float startSize[2] = { 1, 1 };
-		SimualationSpace simulationSpace = Local;
+		SimualationSpace simulationSpace = SimualationSpace::Local;
 
 		bool playOnAwake = true;
 		unsigned int maxParticles = 100;
@@ -135,14 +133,13 @@ namespace DeltaEngine
 		int shape = 0;
 
 		//rendering
-		Shader* shader;
 		Texture2D* texture;
 
 		//member functions
 		ParticleSystem();
 		~ParticleSystem();
 		void Update();
-		void Render(Camera& camera);
+		void Render(const Camera& camera) override;
 		void Emit(unsigned int count);
 		unsigned int GetActiveParticleCount();
 	};

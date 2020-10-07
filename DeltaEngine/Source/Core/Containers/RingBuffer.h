@@ -8,7 +8,7 @@ class RingBuffer
 {
 
 public:
-    using Size = uint32_t;
+    using Size = uint32_t; 
     using Index = uint32_t;
 
     /***********************************************************************/
@@ -85,7 +85,7 @@ public:
     \brief Writes data to the ring buffer. Data is written to the tail.
     */
     /***********************************************************************/
-    bool write(T& data)
+    bool write(T data)
     {
         if (!full())
         {

@@ -11,6 +11,27 @@ namespace DeltaEngine
 #pragma warning( disable : 4201 )
 #endif
 
+	union DE_API Matrix2x2
+	{
+		struct
+		{
+			float m00, m01;
+			float m10, m11;
+		};
+
+		float m[4];
+		float m2[2][2];
+
+		static Matrix2x2 identity;
+
+		Matrix2x2();
+		Matrix2x2(
+			float, float,
+			float, float);
+	
+
+	};
+
 	union DE_API Matrix4x4
 	{
 		struct

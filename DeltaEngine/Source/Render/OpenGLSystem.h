@@ -1,9 +1,9 @@
 #pragma once
 
 #include "DE_API.h"
+#include "DEpch.h"
 #include <GL/glew.h>
-#include "SpriteRenderer.h"
-#include "ParticleSystem.h"
+#include "Renderer.h"
 
 namespace DeltaEngine
 {
@@ -23,8 +23,13 @@ namespace DeltaEngine
 
 			void Init();
 			void Update();
-			void TestRender(std::vector<SpriteRenderer*>, std::vector<ParticleSystem*>);
+			void TestRender();
 			void Exit();
+
+			HDC GetWindowContext();
+			HGLRC GetGLContext();
 		};
+		extern OpenGLSystem* openGLSystem;
+		extern std::vector<Renderer*> allRenderers;
 	}
 }

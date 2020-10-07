@@ -2,6 +2,8 @@
 #include "Core/Math/Math.h"
 #include "Core/Math/Random.h"
 #include "ErrorCheck.h"
+#include "OpenGLSystem.h"
+#include "Core/Debugging/Logger/Log.h"
 
 namespace DeltaEngine
 {
@@ -261,29 +263,11 @@ namespace DeltaEngine
 			}
 		}
 	}
-	bool ParticleSystem::SortParticles(Particle i, Particle j)
-	{
-		return
-			!i.active || (i.lifeTimer > j.lifeTimer);
-	}
-
-	Vector3 translations[100];
-
-	std::vector<float> Translations()
-	{
-		std::vector<float> coords;
-		for (unsigned int i = 0; i < 100; ++i)
-		{
-			//vertex position
-			coords.push_back(translations[i].x);
-			coords.push_back(translations[i].y);
-			coords.push_back(translations[i].z);
-		};
-		return coords;
-	}
 
 	ParticleSystem::ParticleSystem() : texture { new Texture2D("DefaultParticle.png") }
 	{
+		RenderModule::allRenderers.push_back(this);
+
 		m_ParticlePool.resize(maxParticles);
 
 		vertices.push_back(Vector3(-0.5f,  0.5f, 0.0f));
@@ -310,21 +294,8 @@ namespace DeltaEngine
 
 		AssertProperties();
 
-		int index = 0;
-		for (int y = 0; y < 10; ++y)
-		{
-			for (int x = 0; x < 10; ++x)
-			{
-				translations[index].x = x * 2.5f;
-				translations[index].y = y * 2.5f;
-				translations[index].z = 0;
-				++index;
-			}
-		}
-
 		vao.Bind();
 		vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
-		//instancedVbo.InitData(Translations().data(), static_cast<unsigned int>(100 * 3 * sizeof(float)));
 		instancedVbo.InitData(ParticleDataFormat().data(), static_cast<unsigned int>(m_activeParticles * 12 * sizeof(float)));
 		ibo.InitData(indices.data(), 6);
 
@@ -334,7 +305,6 @@ namespace DeltaEngine
 		layout.Push<float>(2);
 		vao.AddBuffer(vbo, layout);
 		layout.Clear();
-		//layout.Push<float>(3);
 		layout.Push<float>(4);
 		layout.Push<float>(4);
 		layout.Push<float>(4);
@@ -351,7 +321,10 @@ namespace DeltaEngine
 	}
 	ParticleSystem::~ParticleSystem()
 	{
-
+		DeltaEngine_CORE_INFO("Deleting Particle System");
+		delete texture;
+		delete shader;
+		DeltaEngine_CORE_INFO("Particle System deleted");
 	}
 	void ParticleSystem::Update()
 	{
@@ -389,8 +362,10 @@ namespace DeltaEngine
 		}
 		//std::sort(m_ParticlePool.begin(), m_ParticlePool.end(), SortParticles);
 	}
-	void ParticleSystem::Render(Camera& camera)
+	void ParticleSystem::Render(const Camera& camera)
 	{
+		Update();
+
 		Matrix4x4 proj = camera.GetProjectionMatrix();
 		Matrix4x4 view = camera.GetViewMatrix();
 		Matrix4x4 model = transform.LocalToWorldMatrix();
@@ -405,7 +380,8 @@ namespace DeltaEngine
 		shader->SetUniformMatrix4f("_P", proj);
 
 		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 		ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
 		ibo.Bind();
@@ -415,7 +391,6 @@ namespace DeltaEngine
 
 		vbo.Unbind();
 
-		//instancedVbo.InitData(Translations().data(), static_cast<unsigned int>(100 * 3 * sizeof(float)));
 		instancedVbo.InitData(ParticleDataFormat().data(), static_cast<unsigned int>(m_activeParticles * 12 * sizeof(float)));
 		instancedVbo.Bind();
 
@@ -446,7 +421,7 @@ namespace DeltaEngine
 			++m_activeParticles;
 			particle.active = true;
 			particle.transform.position = Vector3();
-			particle.transform.rotation = Quaternion::identity;
+			particle.transform.rotation = Quaternion::identity();
 
 			// Velocity
 			particle.velocity = Vector3::up();

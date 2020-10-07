@@ -3,19 +3,19 @@
 #include "Font.h"
 #include "Shader.h"
 #include "Camera.h"
+#include "Renderer.h"
 
 namespace DeltaEngine
 {
-	class TextRenderer
+	class TextRenderer : public Renderer
 	{
 		unsigned int VAO, VBO;
 	public:
 		Font* font;
-		Shader* shader;
-		Transform transform;
-		Color color;
+
 		std::string text;
-		TextRenderer();
-		void Render(const Camera& camera);
+		TextRenderer(Font* f = nullptr, Shader* s = nullptr);
+		~TextRenderer();
+		void Render(const Camera& camera) override;
 	};
 }

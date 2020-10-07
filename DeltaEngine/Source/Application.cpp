@@ -1,116 +1,252 @@
-#include "DEpch.h"
+#include "DeltaEngine.h"
 #include "Application.h"
-#include "Render/GraphicsManager.h"
-#include "Render/FrameAnimation.h"
-#include "Render/ParticleSystem.h"
-#include "Render/SpriteRenderer.h"
-#include "Event/ApplicationEvent.h"
-#include "Physics/Collision.h"
-
+#include "Render/OpenGLSystem.h"
+#include "Render/TextRenderer.h"
+#include "Core/Utils/FileUtils.h"
+#include "Core/GlobalStruct.h"
+#include "ECS/ECSModule.h"
+#include "Physics/PhysicsSystem.h"
+#include "Physics/CollisionSystem.h"
+#include "ECS/World.h"
+#include "Input/InputSystem.h"
+#include "Input/Keys.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
 -----------------------------------*/
 namespace DeltaEngine
 {
-std::vector<SpriteRenderer *> sprites;
-std::vector<FrameAnimation *> animator;
-std::vector<ParticleSystem *> ps;
+    DeltaEngineGlobalEnvironment env;
 
-Application::Application() : m_interval( 0.25 )
-{
-  DeltaEngine::Log::Init();
-  DeltaEngine_CORE_INFO( "Engine Start" );
-  // Memory Manager
-  // Window
-  // Render
-  // GUI
-  // Physics
-  // Audio
-  // Events
-}
-
-Application::~Application()
-{
-  DeltaEngine_CORE_INFO( "Engine Shutdown" );
-  // Events
-  // Audio
-  // Physics
-  // GUI
-  // Render
-  // Window
-  // Memory Manager
-}
-
-void Application::Run()
-{
-  // a lot of this should be moved to a function in GraphicsManager later
-
-  RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
-  RenderModule::openGLSystem->Init();
-
-  Camera *mainCamera = new Camera();
-
-  sprites.push_back( new SpriteRenderer() );
-  sprites.push_back( new SpriteRenderer() );
-  animator.push_back( new FrameAnimation() );
-  animator.push_back( new FrameAnimation() );
-  animator[0]->renderer = sprites[0];
-  animator[1]->renderer = sprites[1];
-
-  ps.push_back( new ParticleSystem() );
-
-  // TODO Modules Instantiation
-  f64 accumulator = 0.0;
-
-  MSG msg = {};
-  while ( msg.message != WM_QUIT )
-  {
-    m_gameclock.Update(); // Update engine GameClock
-
-    accumulator += m_gameclock.DeltaTime(); // Update accumulator using time-scaled dt
-
-    while ( accumulator >= m_interval ) // Update based on interval
+    Application::Application() : m_Running{ true }, m_Minimized{ true }, m_interval(0.25)
     {
-      if ( PeekMessage( &msg, NULL, 0U, 0U, PM_REMOVE ) )
-      {
-        TranslateMessage( &msg );
-        DispatchMessage( &msg );
-        continue;
-      }
-      animator[0]->Update();
-      animator[1]->Update();
-      RenderModule::openGLSystem->TestRender( sprites, ps );				
-      FixedUpdate();
-      accumulator -= m_gameclock.DeltaTime();
+        Log::Init();
+        DeltaEngine_CORE_INFO("Engine Start");
+        // Memory Manager
+        // Window
+        // Render
+        // GUI
+        // Physics
+        // Audio
+        // Events
+        env.pWin = new Window();
+        env.pWin->Init();
+
+        // a lot of this should be moved to a function in GraphicsManager later
+        RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
+        RenderModule::openGLSystem->Init();
+
+        FileUtils::Root("Assets");
+        env.pClock = new GameClock();
+        env.pManager = new AM();
+        env.pManager->set_loader<Font>(new FontLoader())
+            .load<Font>("Default", "Fonts/Arial.ttf")
+            .load<Font>("Fail", "Fonts/Arials.ttf")
+            .set_fallback<Font>(env.pManager->get<Font>("Default"));
+
+        env.pManager->set_loader<Shader>(new ShaderLoader())
+            .load<Shader>("Default", "Shaders/Default")
+            .load<Shader>("DefaultText", "Shaders/DefaultText");
+
+        env.pManager->set_loader<Texture2D>(new TextureLoader())
+            .load<Texture2D>("idle", "idle.png")
+            .load<Texture2D>("run", "run.png");
+
+        env.pManager->set_loader<AnimationClip>(new AnimationClipLoader())
+            .load<AnimationClip>("Idle", "Idle.clip")
+            .load<AnimationClip>("Running", "Running.clip");
+
+        env.pManager->set_loader<AnimationController>(new AnimationControllerLoader())
+            .load<AnimationController>("Player", "Player.anim");
+
+        env.pECS = new ECSModule();
+        env.pECS->world();
+        env.pECS = new ECSModule();
+        env.pECS->world();
+        env.pECS->world().create_systems<PhysicsSystem, CollisionSystem>();
+        env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem>();
     }
-    const f64 alpha = accumulator / m_interval;
 
+    Application::~Application()
+    {
+        DeltaEngine_CORE_INFO("Engine Shutdown");
+        // Events
+        // Audio
+        // Physics
+        // GUI
+        // Render
+        RenderModule::openGLSystem->Exit();
+        delete RenderModule::openGLSystem;
+        // Window
+        // Memory Manager
+    }
 
-  }
-  RenderModule::openGLSystem->Exit();
-  delete RenderModule::openGLSystem;
-}
+    void Application::Run()
+    {
+        DeltaEngine::World& world = env.pECS->world();
+        DeltaEngine::EntityManager& em = world.get_entity_manager();
+        env.pManager->get<Texture2D>("run")->SliceAll(2, 3);
 
-void Application::FixedUpdate()
-{
-  // Collision Update
-  // Collision Resolution Update
-  // Collision Late Update
-  // Level Fixed Update
-}
+        //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
+        //    env.pManager->get<Shader>("Default"));
+        //auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
+        //auto& spriteRenderer = env.pECS->world().get_entity_manager().get_component<SpriteRenderer>(entity1);
+        //auto& animator = env.pECS->world().get_entity_manager().get_component<Animator>(entity1);
 
-void Application::VariableUpdate()
-{
-  // Input Update
-  // Level Update
-  // Events Update (Logics)
-  // Level Late Update
-  // Audio Update
-  // Render Update
-  // GUI Update
-  // Memory Update
+        //spriteRenderer.shader = env.pManager->get<Shader>("Default");
+        //animator.m_Controller = env.pManager->get<AnimationController>("Player");
+        //animator.renderer = &spriteRenderer;
 
-}
+        //auto* a = new Animator(env.pManager->get<AnimationController>("Player"));
+        //a->renderer = s;
 
+        //auto* t = new TextRenderer(env.pManager->get<Font>("Fail"),
+        //    env.pManager->get<Shader>("DefaultText"));
+        //auto* p = new ParticleSystem();
+
+        //physics test start init var
+        auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
+        auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+        auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
+        auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
+
+        trans.position = { 7,7,0 };
+        trans.scale = { 1,1,0 };
+        col.type = ColliderType::BOX;
+
+        auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
+        auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
+        auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
+
+        t2.position = { 5,5,0 };
+        t2.scale = { 1,1,0 };
+        r2.Velocity = { 0,0 };
+        col2.type = ColliderType::BOX;
+        //physics test end
+        // TODO Modules Instantiation
+        f64 accumulator = 0.0;
+
+        MSG msg = {};
+        while (m_Running)
+        {
+            if (InputSystem::get()->isKeyTriggered(DEVK_D))
+            {
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+                    {
+                        r1.Velocity += {1, 0};
+                    });
+            }
+            if (InputSystem::get()->isKeyPressed(DEVK_D))
+            {
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+                    {
+                        r1.Velocity += {0.2, 0};
+                    });
+            }
+            InputSystem::get()->update();
+            // Update engine GameClock
+            env.pClock->Update();
+            env.pECS->world().update();
+            // Update accumulator using time-scaled dt
+            accumulator += env.pClock->DeltaTime();
+
+            // Update based on interval
+            while (accumulator >= m_interval)
+            {
+                if (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
+                {
+                    if (msg.message == WM_QUIT)
+                        m_Running = false;
+                    TranslateMessage(&msg);
+                    DispatchMessage(&msg);
+                    continue;
+                }
+                env.pWin->Update();
+                VariableUpdate();
+                FixedUpdate();
+                accumulator -= env.pClock->DeltaTime();
+            }
+            const f64 alpha = accumulator / m_interval;
+        }
+    }
+
+    void Application::PushLayer(Layer* layer)
+    {
+        m_LayerStack.PushLayer(layer);
+        layer->OnAttach();
+    }
+
+    void Application::PushOverlay(Layer* layer)
+    {
+        m_LayerStack.PushOverlay(layer);
+        layer->OnAttach();
+    }
+
+    void Application::OnEvent()
+    {
+        EventManager event_manager;
+
+        event_manager.addEvent(WindowCloseEvent());
+
+        if (!event_manager.isEmpty())
+        {
+            auto& ref = event_manager.resolveEvent();
+            EventDispatcher d(ref);
+            d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
+        }
+
+        //below is how cherno does it
+        //EventDispatcher dispatcher(e);
+        //dispatcher.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
+        //dispatcher.Dispatch<WindowResizeEvent>(DE_BIND_EVENT_FN(Application::OnWindowResize));
+        //
+        //for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
+        //{
+        //    if (e.isHandled)
+        //        break;
+        //    (*it)->OnEvent(e);
+        //}
+    }
+
+    bool Application::OnWindowClose(WindowCloseEvent& e)
+    {
+        m_Running = false;
+        return true;
+    }
+
+    bool Application::OnWindowResize(WindowResizeEvent& e)
+    {
+        if (e.GetWidth() == 0 || e.GetHeight() == 0)
+        {
+            m_Minimized = true;
+            return false;
+        }
+
+        m_Minimized = false;
+        //Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+        return false;
+    }
+
+    void Application::FixedUpdate()
+    {
+        // Collision Update
+        // Collision Resolution Update
+        // Collision Late Update
+        // Level Fixed Update
+    }
+
+    void Application::VariableUpdate()
+    {
+        // Input Update
+        // Level Update
+        // Events Update (Logics)
+        // Level Late Update
+        // Audio Update
+        // Render Update
+        //anim->Update(env.pClock->DeltaTime());
+        RenderModule::openGLSystem->Update();
+        // GUI Update
+        // Memory Update
+    }
 }

@@ -2,7 +2,6 @@
 #include "DE_API.h"
 #include <filesystem>
 #include <vector>
-#include "Core/Debugging/Logger/Log.h"
 
 
 namespace DeltaEngine::FileUtils

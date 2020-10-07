@@ -1,33 +1,49 @@
 #pragma once
-#include "Math/Vector.h"
-#include "Collision.h"
+#include "Core/Math/Vector.h"
+#include "Core/Debugging/Gizmos.h"
 
 namespace DeltaEngine
 {
-
   enum class ColliderType
   {
-    BOX
+    NONE,
+    BOX,
+    CIRCLE,
+    LINE,
+    RAY
   };
 
-  class Collider
+  struct Collider
   {
-  public:
-    // if doing trigger
-    // bool isTrigger{false};
-    Vector3 center{};
-
-    // If doing AABB Tree]
-    // AABB FatAABB() = 0;
-    // AABB AABB() = 0;
-
-  protected:
-    Collider() = default;
-    Collider(const Vector3 center) : center{center} {}
-    virtual ColliderType GetType() const = 0;
-    virtual bool Intersection(Collider *other) = 0;
-    AABB _aabb;
-    AABB _fatAABB;
+      bool isCollideable;
+      float interTime;
+      Vector2 center;
+      Vector2 size;
+      ColliderType type;
+      Collider() :
+          isCollideable{true},
+          interTime{0.0f},
+          center{0,0},
+          size{0,0},
+          type{ColliderType::BOX}
+      {}
   };
 
+  //ERROR: NEED TO FIX
+  //void OnDrawGizmos(Collider& col)
+  //{
+  //    ColliderType type = col.type;
+  //
+  //    switch (type)
+  //    {
+  //    case ColliderType::BOX:
+  //         Gizmos::Draw2DWireBox(col.center,col.size);
+  //    case ColliderType::CIRCLE:
+  //        Gizmos::Draw2DCircle(col.center, col.size);
+  //    case ColliderType::RAY:
+  //        Gizmos::Draw2DWireBox(col.center, col.size); //TO CHANGE
+  //    case ColliderType::LINE:
+  //        Gizmos::Draw2DWireBox(col.center, col.size); //TO CHANGE
+  //    }
+  //}
 } // namespace DeltaEngine

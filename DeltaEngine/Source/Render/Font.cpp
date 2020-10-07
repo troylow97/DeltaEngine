@@ -9,10 +9,10 @@ namespace DeltaEngine
 {
 	FT_Library ft;
 
-    Font::Font(std::string filepath) : m_RendererID{0}
+    Font::Font(const std::string& filepath) : m_RendererID{0}
 	{
 		FT_Face face;
-		if (FT_New_Face(ft, "Fonts/Arial.ttf", 0, &face))
+		if (FT_New_Face(ft, filepath.c_str(), 0, &face))
 		{
 			DeltaEngine_CORE_ERROR("Failed to load {0} font!", filepath);
 			return;
@@ -47,8 +47,8 @@ namespace DeltaEngine
                     face->glyph->bitmap.buffer
                 );
                 // set texture options
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
                 // now store character for later use
@@ -63,10 +63,9 @@ namespace DeltaEngine
             glBindTexture(GL_TEXTURE_2D, 0);
         }
         FT_Done_Face(face);
-        FT_Done_FreeType(ft);
     }
 
-    std::map<char, CharacterInfo>& Font::characterInfo()
+    std::unordered_map<char, CharacterInfo>& Font::characterInfo()
     {
         return m_CharacterInfo;
     }
@@ -86,4 +85,8 @@ namespace DeltaEngine
 		}
 		DeltaEngine_CORE_INFO("FreeType was initialized successfully");
 	}
+    void Font::Exit()
+    {
+        FT_Done_FreeType(ft);
+    }
 }

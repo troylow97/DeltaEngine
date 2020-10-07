@@ -1,13 +1,19 @@
 #include "TextRenderer.h"
+#include "OpenGLSystem.h"
+#include "Mesh.h"
 #include <GL/glew.h>
+#include "Core/Debugging/Logger/Log.h"
 
 namespace DeltaEngine
 {
-    TextRenderer::TextRenderer() :
-        font{ new Font() },
-        shader{ new Shader("Shaders/DefaultText") },
-        transform{}, color{}, text{"New Text"}
+    Mesh* textMesh;
+
+    TextRenderer::TextRenderer(Font* f, Shader* s) :
+        font{ f }, text{"Nomasaur - Metamorphosis"}
 	{
+        shader = s;
+        RenderModule::allRenderers.push_back(this);
+
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
         glBindVertexArray(VAO);
@@ -18,6 +24,14 @@ namespace DeltaEngine
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
 	}
+    TextRenderer::~TextRenderer()
+    {
+        DeltaEngine_CORE_INFO("Deleting Text Renderer");
+        delete font;
+        delete shader;
+        DeltaEngine_CORE_INFO("Text Renderer deleted");
+    }
+
 	void TextRenderer::Render(const Camera& camera)
 	{
         Matrix4x4 proj = camera.GetProjectionMatrix();
@@ -40,6 +54,9 @@ namespace DeltaEngine
         glActiveTexture(GL_TEXTURE0);
         glBindVertexArray(VAO);
 
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         // iterate through all characters
         std::string::const_iterator c;
         for (c = text.begin(); c != text.end(); c++)
@@ -53,13 +70,13 @@ namespace DeltaEngine
             float h = ch.size.y * transform.scale.y * scale;
             // update VBO for each character
             float vertices[6][4] = {
-                { xpos,     ypos + h,   0.0f, 0.0f },
-                { xpos,     ypos,       0.0f, 1.0f },
-                { xpos + w, ypos,       1.0f, 1.0f },
+                { xpos,     ypos + h, 0.0f, 0.0f },
+                { xpos,     ypos,     0.0f, 1.0f },
+                { xpos + w, ypos,     1.0f, 1.0f },
 
-                { xpos,     ypos + h,   0.0f, 0.0f },
-                { xpos + w, ypos,       1.0f, 1.0f },
-                { xpos + w, ypos + h,   1.0f, 0.0f }
+                { xpos,     ypos + h, 0.0f, 0.0f },
+                { xpos + w, ypos,     1.0f, 1.0f },
+                { xpos + w, ypos + h, 1.0f, 0.0f }
             };
             // render glyph texture over quad
             glBindTexture(GL_TEXTURE_2D, ch.textureID);
