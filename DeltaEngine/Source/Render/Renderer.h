@@ -12,8 +12,6 @@ namespace DeltaEngine
 		Transform transform;
 		Color color;
 
-		EntityID id;
-		
 		virtual ~Renderer() = default;
 		virtual void Render(const Camera& camera) = 0;
 	};

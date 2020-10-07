@@ -12,7 +12,7 @@ namespace DeltaEngine
 
     void PhysicsSystem::update()
     {
-        Gravity();
+        //Gravity();
         UpdateVelocity();
     }
 
@@ -36,10 +36,10 @@ namespace DeltaEngine
                 r1.Velocity *= 0.99f; //Apply Friction
                 //DeltaEngine_CORE_TRACE(("Position: " , t1.position.x , "__" , t1.position.y));
             });
-        em.for_each([&](EntityID id1, Transform& t1)
-            {
-                std::cout << "t1.x position: " << t1.position.x << "   t1.y position: " << t1.position.y << std::endl;
-            });
+        //em.for_each([&](EntityID id1, Transform& t1)
+        //    {
+        //        std::cout << "t1.x position: " << t1.position.x << "   t1.y position: " << t1.position.y << std::endl;
+        //    });
 
     }
 

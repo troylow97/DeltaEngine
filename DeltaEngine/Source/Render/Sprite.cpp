@@ -13,30 +13,42 @@ namespace DeltaEngine
 	}
 	unsigned int Sprite::GetWidth()
 	{
-		return static_cast<unsigned int>(GetTexture()->GetSize(m_Index).x);
+		if (GetTexture())
+			return static_cast<unsigned int>(GetTexture()->GetSize(m_Index).x);
+		return 0;
 	}
 	unsigned int Sprite::GetHeight()
 	{
-		return static_cast<unsigned int>(GetTexture()->GetSize(m_Index).y);
+		if (GetTexture())
+			return static_cast<unsigned int>(GetTexture()->GetSize(m_Index).y);
+		return 0;
 	}
 	Vector2 Sprite::GetTiling()
 	{
-		return Vector2(
-			1.0f * GetWidth() / GetTexture()->GetWidth(),
-			1.0f * GetHeight() / GetTexture()->GetHeight()
-		);
+		if (GetTexture())
+			return Vector2(
+				1.0f * GetWidth() / GetTexture()->GetWidth(),
+				1.0f * GetHeight() / GetTexture()->GetHeight()
+			);
+		return Vector2(1.0f, 1.0f);
 	}
 	Vector2 Sprite::GetOffset()
 	{
-		return GetTexture()->GetOffset(m_Index);
+		if (GetTexture())
+			return GetTexture()->GetOffset(m_Index);
+		return Vector2(0.0f, 0.0f);
 	}
 	Vector2 Sprite::GetPivot()
 	{
-		return GetTexture()->GetPivot(m_Index);
+		if (GetTexture())
+			return GetTexture()->GetPivot(m_Index);
+		return Vector2(0.5f, 0.5f);
 	}
 	Texture2D* Sprite::GetTexture()
 	{
-		return GetEnv().pManager->get<Texture2D>(m_Key);
+		if (m_Key.length() > 0)
+			return GetEnv().pManager->get<Texture2D>(m_Key);
+		return nullptr;
 	}
 
 	std::string Sprite::GetKey()

@@ -26,6 +26,8 @@ namespace DeltaEngine
 
 		float GetFloat(std::string paramName);
 		float SetFloat(std::string paramName, float value);
+		
+		unsigned int GetFrame() const;
 
 		void Update();
 	private:

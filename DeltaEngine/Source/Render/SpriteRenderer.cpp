@@ -2,27 +2,25 @@
 #include "OpenGLSystem.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/GlobalStruct.h"
+#include "Assets/AssetManager.h"
 
 namespace DeltaEngine
 {
-	SpriteRenderer::SpriteRenderer(Texture2D* t, Shader* s) : sprite{ t->GetName() },
+	SpriteRenderer::SpriteRenderer(Texture2D* t, Shader* s) : sprite{ t ? t->GetName() : "" },
 		m_Offset{ Vector2(0, 0) }, m_Tiling{ Vector2(1, 1) }, m_FlipX{ false }, m_FlipY{ false }
 	{
 		shader = s;
+		if (!shader)
+			shader = GetEnv().pManager->get<Shader>("Default");
 		RenderModule::allRenderers.push_back(this);
 	}
 	SpriteRenderer::~SpriteRenderer()
 	{
 		DeltaEngine_CORE_INFO("Deleting Sprite Renderer");
-		delete shader;
 		DeltaEngine_CORE_INFO("Sprite Renderer deleted");
 	}
 	void SpriteRenderer::Render(const Camera& camera)
 	{
-		//static float f = 0;
-		//f += DeltaTime();
-		//sprite.m_Index = (unsigned int)(f) % sprite.GetTexture()->textureInfo.size();
-
 		Vector2 offset = m_Offset + sprite.GetOffset();
 		Vector2 tiling = m_Tiling * sprite.GetTiling();
 		Vector2 pivot = sprite.GetPivot();

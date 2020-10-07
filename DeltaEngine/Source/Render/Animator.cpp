@@ -42,12 +42,21 @@ namespace DeltaEngine
 		CheckCondition();
 		return parameters[paramName].floatValue;
 	}
+	
+	unsigned int Animator::GetFrame() const
+	{
+		return m_Frame;
+	}
 
 	void Animator::Update()
 	{
 		if (!m_Controller)
 		{
 			return;
+		}
+		if (!m_Clip)
+		{
+			m_Clip = m_Controller->entryAnimation;
 		}
 
 		m_Timer += static_cast<float>(DeltaTime());
@@ -57,7 +66,7 @@ namespace DeltaEngine
 		m_Frame = (unsigned int)(m_Timer * m_Clip->GetFps());
 		m_Frame = Math::Clamp(m_Frame, 0, m_Clip->GetTotalFrames());
 
-		renderer->sprite = m_Clip->GetSprite(m_Frame);
+		//renderer->sprite = m_Clip->GetSprite(m_Frame);
 	}
 
 	void Animator::CheckCondition()

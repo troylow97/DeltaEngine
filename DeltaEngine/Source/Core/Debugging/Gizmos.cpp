@@ -7,7 +7,7 @@
 namespace DeltaEngine::Gizmos
 {
 	Shader* gizmoShader;
-	Color color = Color(0.0f, 1.0f, 0.0f, 0.5f);
+	Color color = Color(0.0f, 1.0f, 0.0f, 1.0f);
 
 	void Init()
 	{

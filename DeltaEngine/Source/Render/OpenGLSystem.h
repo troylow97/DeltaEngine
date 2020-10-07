@@ -23,7 +23,6 @@ namespace DeltaEngine
 
 			void Init();
 			void Update();
-			void TestRender();
 			void Exit();
 
 			HDC GetWindowContext();

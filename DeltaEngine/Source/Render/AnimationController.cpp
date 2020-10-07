@@ -87,7 +87,6 @@ namespace DeltaEngine
 
 				transitions.push_back({ startClip, endClip });
 				conditions.push_back(Condition());
-				std::cout << startClip << endClip << std::endl;
 
 				while ((file >> str), std::strcmp(str.c_str(), "condition") == 0)
 				{
@@ -113,7 +112,6 @@ namespace DeltaEngine
 					conditions.back().push_back(
 						{ paramName, { con, value } }
 					);
-					std::cout << paramName << condition[0] << value << std::endl << std::endl;
 				}
 			}
 			file.close();

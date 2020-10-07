@@ -4,8 +4,8 @@
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(AnimationSystem, Animator, SpriteRenderer)
+    DEFINE_SYSTEM(PhysicsDrawSystem, Transform, Collider)
     void update() override;
     void late_update() override;
-    END_DEFINE_SYSTEM(AnimationSystem)
+    END_DEFINE_SYSTEM(RenderSystem)
 }

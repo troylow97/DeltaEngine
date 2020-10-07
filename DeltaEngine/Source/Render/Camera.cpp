@@ -71,9 +71,21 @@ namespace DeltaEngine
 			backgroundColor.b,
 			backgroundColor.a);
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		Camera* thisCam = this;
+
+		std::for_each(RenderModule::allRenderers.begin(), RenderModule::allRenderers.end(), [thisCam](Renderer* r)
+			{
+				r->Render(*thisCam);
+			});
 	}
 	void Camera::End()
 	{
+		if (this == editorCamera)
+		{
+			Gizmos::DrawWorldGrid();
+		}
+
 		frameBuffer.Unbind();
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -107,9 +119,6 @@ namespace DeltaEngine
 
 		if (this == editorCamera)
 		{
-			Gizmos::Draw2DWireBox(Vector3(0,0));
-			Gizmos::DrawLine(Vector3(0,0), Vector3(1,1));
-
 			Gizmos::DrawWorldGrid();
 		}
 
