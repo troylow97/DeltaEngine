@@ -12,12 +12,13 @@ namespace DeltaEngine
 	{
 		int cameraIndex;
 		FrameBuffer frameBuffer;
+		float m_AspectRatio, m_ViewportSize;
 	public:
 		static std::vector<Camera*> allCameras;
 		// camera for editor mode only
 		static Camera* editorCamera;
-		float _size;
-		float _zNear, _zFar;
+		float m_Size;
+		float m_zNear, _zFar;
 		Color backgroundColor;
 		Shader* shader;
 
@@ -28,9 +29,12 @@ namespace DeltaEngine
 		Matrix4x4 GetViewMatrix() const;
 		Vector3 Max() const;
 		Vector3 Min() const;
+		FrameBuffer& GetFrameBuffer();
+		float GetAspectRatio();
+		float SetAspectRatio(float width, float height);
+		float SetViewportSize(float width);
 
 		void Start();
 		void End();
-		void Render();
 	};
 }

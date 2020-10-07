@@ -169,9 +169,10 @@ namespace DeltaEngine
             // Update engine GameClock
             env.pClock->Update();
             env.pECS->world().update();
-            //m_ImGuiLayer->Begin();
-            //m_ImGuiLayer->End();
             env.pECS->world().late_update();
+            m_ImGuiLayer->Begin();
+            m_ImGuiLayer->End();
+            ::SwapBuffers(RenderModule::openGLSystem->GetWindowContext());
             // Update accumulator using time-scaled dt
             accumulator += env.pClock->DeltaTime();
 

@@ -32,11 +32,16 @@ namespace DeltaEngine::Gizmos
 		Matrix4x4 model = Transform().LocalToWorldMatrix();
 		
 		int i = 0;
+		float size = Math::Abs(Camera::editorCamera->m_Size) ;
+		float minX = (Camera::editorCamera->Min().x) - Camera::editorCamera->m_Size * Camera::editorCamera->GetAspectRatio() / 2;
+		float minY = (Camera::editorCamera->Min().y) - Camera::editorCamera->m_Size / 2;
+		float maxX = (Camera::editorCamera->Max().x) + Camera::editorCamera->m_Size * Camera::editorCamera->GetAspectRatio() / 2;
+		float maxY = (Camera::editorCamera->Max().y) + Camera::editorCamera->m_Size / 2;
 
-		if (Camera::editorCamera->_size < 50)
+		if (size < 50)
 		{
 			Color col = Color(1.0f, 1.0f, 1.0f, 0.1f);
-			col.a = Math::Lerp(0.0f, 0.1f, Math::Clamp01((50 - Camera::editorCamera->_size) / 50));
+			col.a = Math::Lerp(0.0f, 0.1f, Math::Clamp01((50 - size) / 50));
 
 			gizmoShader->SetUniformMatrix4f("_M", model);
 			gizmoShader->SetUniformMatrix4f("_V", view);
@@ -45,25 +50,25 @@ namespace DeltaEngine::Gizmos
 			gizmoShader->SetUniform1i("_Circle", 0);
 
 			std::vector<std::pair<Vector3, Vector3>> startEndPair;
-			i = Math::RoundDown(Camera::editorCamera->Min().y);
-			for (; i <= Camera::editorCamera->Max().y; ++i)
+			i = Math::RoundDown(minY);
+			for (; i <= maxY; ++i)
 				startEndPair.push_back({
-					Vector3(Camera::editorCamera->Min().x, static_cast<float>(i), 0.0f),
-					Vector3(Camera::editorCamera->Max().x, static_cast<float>(i), 0.0f) });
-			i = Math::RoundDown(Camera::editorCamera->Min().x);
-			for (; i <= Camera::editorCamera->Max().x; ++i)
+					Vector3(minX, static_cast<float>(i), 0.0f),
+					Vector3(maxX, static_cast<float>(i), 0.0f) });
+			i = Math::RoundDown(minX);
+			for (; i <= maxX; ++i)
 				startEndPair.push_back({
-					Vector3(static_cast<float>(i), Camera::editorCamera->Min().y, 0.0f),
-					Vector3(static_cast<float>(i), Camera::editorCamera->Max().y, 0.0f) });
+					Vector3(static_cast<float>(i), minY, 0.0f),
+					Vector3(static_cast<float>(i), maxY, 0.0f) });
 
 			Mesh::DrawLines(startEndPair);
 		}
 
-		if (Camera::editorCamera->_size > 5)
+		if (size > 5)
 		{
 			Color col = Color(1.0f, 1.0f, 1.0f, 0.1f);
-			if (Camera::editorCamera->_size < 25)
-				col.a = Math::Lerp(0.1f, 0.0f, Math::Clamp01((25 - Camera::editorCamera->_size) / 25));
+			if (size < 25)
+				col.a = Math::Lerp(0.1f, 0.0f, Math::Clamp01((25 - size) / 25));
 
 			gizmoShader->SetUniformMatrix4f("_M", model);
 			gizmoShader->SetUniformMatrix4f("_V", view);
@@ -72,16 +77,16 @@ namespace DeltaEngine::Gizmos
 			gizmoShader->SetUniform1i("_Circle", 0);
 
 			std::vector<std::pair<Vector3, Vector3>> startEndPair;
-			i = Math::RoundDown(Camera::editorCamera->Min().y); i -= i % 10;
-			for (; i <= Camera::editorCamera->Max().y; i += 10)
+			i = Math::RoundDown(minY); i -= i % 10;
+			for (; i <= maxY; i += 10)
 				startEndPair.push_back({
-					Vector3(Camera::editorCamera->Min().x, static_cast<float>(i), 0.0f),
-					Vector3(Camera::editorCamera->Max().x, static_cast<float>(i), 0.0f) });
-			i = Math::RoundDown(Camera::editorCamera->Min().x); i -= i % 10;
-			for (; i <= Camera::editorCamera->Max().x; i += 10)
+					Vector3(minX, static_cast<float>(i), 0.0f),
+					Vector3(maxX, static_cast<float>(i), 0.0f) });
+			i = Math::RoundDown(minX); i -= i % 10;
+			for (; i <= maxX; i += 10)
 				startEndPair.push_back({
-					Vector3(static_cast<float>(i), Camera::editorCamera->Min().y, 0.0f),
-					Vector3(static_cast<float>(i), Camera::editorCamera->Max().y, 0.0f) });
+					Vector3(static_cast<float>(i), minY, 0.0f),
+					Vector3(static_cast<float>(i), maxY, 0.0f) });
 
 			Mesh::DrawLines(startEndPair);
 		}

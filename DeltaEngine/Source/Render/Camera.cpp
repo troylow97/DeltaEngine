@@ -12,7 +12,8 @@ namespace DeltaEngine
 	Camera* Camera::editorCamera;
 	Camera::Camera(bool editor) :
 		cameraIndex{ editor ? -1 : static_cast<int>(allCameras.size()) }, frameBuffer{},
-		_size{ 5 }, _zNear{ -10 }, _zFar{ 10 },
+		m_AspectRatio{ 1.0f * env.pWin->Width() / env.pWin->Height() }, m_ViewportSize{ 1.0f * env.pWin->Width() },
+		m_Size{ 5 }, m_zNear{ -10 }, _zFar{ 10 },
 		backgroundColor{ 49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1 },
 		shader{ new Shader("Shaders/DefaultScreen") }
 	{
@@ -42,9 +43,9 @@ namespace DeltaEngine
 	Matrix4x4 Camera::GetProjectionMatrix() const
 	{
 		return Matrix4x4::Rotate(transform.rotation) * Matrix4x4::Ortho(
-			-_size / env.pWin->Height() * env.pWin->Width(),
-			_size / env.pWin->Height() * env.pWin->Width(),
-			-_size, _size, _zNear, _zFar);
+			-m_Size * m_AspectRatio,
+			m_Size * m_AspectRatio,
+			-m_Size, m_Size, m_zNear, _zFar);
 	}
 	Matrix4x4 Camera::GetViewMatrix() const
 	{
@@ -52,16 +53,33 @@ namespace DeltaEngine
 	}
 	Vector3 Camera::Max() const
 	{
-		return Vector3(_size / env.pWin->Height() * env.pWin->Width() + transform.position.x, _size + transform.position.y);
+		return Vector3(m_Size * m_AspectRatio + transform.position.x, m_Size + transform.position.y);
 	}
 	Vector3 Camera::Min() const
 	{
-		return Vector3(-_size / env.pWin->Height() * env.pWin->Width() + transform.position.x, -_size + transform.position.y);
+		return Vector3(-m_Size * m_AspectRatio + transform.position.x, -m_Size + transform.position.y);
+	}
+	FrameBuffer& Camera::GetFrameBuffer()
+	{
+		return frameBuffer;
+	}
+	float Camera::GetAspectRatio()
+	{
+		return m_AspectRatio;
+	}
+	float Camera::SetAspectRatio(float width, float height)
+	{
+		return m_AspectRatio = width / height;
+	}
+	float Camera::SetViewportSize(float width)
+	{
+		return m_ViewportSize = width;
 	}
 
 	void Camera::Start()
 	{
-		frameBuffer.Resize(GetEnv().pWin->Width(), GetEnv().pWin->Height());
+		frameBuffer.Resize(static_cast<unsigned int>(m_ViewportSize),
+			static_cast<unsigned int>(m_ViewportSize / m_AspectRatio));
 
 		frameBuffer.Bind();
 
@@ -88,48 +106,12 @@ namespace DeltaEngine
 
 		frameBuffer.Unbind();
 
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-		glBindTexture(GL_TEXTURE_2D, frameBuffer.GetColorAttachment());	// use the color attachment texture as the texture of the quad plane
-		shader->SetUniform1i("_MainTex", 0);
+		//glBindTexture(GL_TEXTURE_2D, frameBuffer.GetColorAttachment());	// use the color attachment texture as the texture of the quad plane
+		//shader->SetUniform1i("_MainTex", 0);
 
-		Mesh::DrawQuad();
-	}
-
-	void Camera::Render()
-	{
-		Camera* thisCam = this;
-		frameBuffer.Resize(env.pWin->Width(), env.pWin->Height());
-
-		frameBuffer.Bind();
-
-		glClearColor(
-			backgroundColor.r,
-			backgroundColor.g,
-			backgroundColor.b,
-			backgroundColor.a);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		std::for_each(RenderModule::allRenderers.begin(), RenderModule::allRenderers.end(), [thisCam](Renderer* r)
-			{
-				r->Render(*thisCam);
-			});
-
-		// Call all OnDrawGizmos() here
-
-		if (this == editorCamera)
-		{
-			Gizmos::DrawWorldGrid();
-		}
-
-		frameBuffer.Unbind();
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-		glBindTexture(GL_TEXTURE_2D, frameBuffer.GetColorAttachment());	// use the color attachment texture as the texture of the quad plane
-		shader->SetUniform1i("_MainTex", 0);
-
-		Mesh::DrawQuad();
+		//Mesh::DrawQuad();
 	}
 }
 
