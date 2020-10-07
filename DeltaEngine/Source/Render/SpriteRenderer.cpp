@@ -6,7 +6,7 @@
 namespace DeltaEngine
 {
 	SpriteRenderer::SpriteRenderer(Texture2D* t, Shader* s) : sprite{ t->GetName() },
-		m_Offset{ Vector2(0, 0) }, m_Tiling{ Vector2(1, 1) }
+		m_Offset{ Vector2(0, 0) }, m_Tiling{ Vector2(1, 1) }, m_FlipX{ false }, m_FlipY{ false }
 	{
 		shader = s;
 		RenderModule::allRenderers.push_back(this);

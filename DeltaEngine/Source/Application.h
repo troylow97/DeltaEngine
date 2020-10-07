@@ -15,7 +15,7 @@ namespace DeltaEngine
 		bool m_Minimized;
 
 		//PhysicsSystem* m_PhysicsSystem;
-		ImGuiLayer* m_ImGuiLayer;
+		//ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 		double m_interval;
 

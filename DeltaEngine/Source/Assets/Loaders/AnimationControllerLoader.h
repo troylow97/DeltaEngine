@@ -1,11 +1,11 @@
 #pragma once
 #include <cassert>
 #include "Assets/AbstractLoader.h"
-#include "Render/Animator.h"
+#include "Render/AnimationController.h"
 
 namespace DeltaEngine
 {
-    class AnimatorLoader final : public AbstractLoader<Animator>
+    class AnimationControllerLoader final : public AbstractLoader<AnimationController>
     {
         void doLoad(AssetKey key) override
         {
@@ -13,7 +13,7 @@ namespace DeltaEngine
 
         void doLoad(AssetKey key, std::string_view str) override
         {
-            Animator* data = new Animator{ std::string(str) };
+            AnimationController* data = new AnimationController{ std::string(str) };
             // To define how to handle failed loading
             //if (data.characterInfo().empty())
             //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);

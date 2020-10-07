@@ -22,7 +22,7 @@
 #include "Assets/Loaders/ShaderLoader.h"
 #include "Assets/Loaders/TextureLoader.h"
 #include "Assets/Loaders/AnimationClipLoader.h"
-#include "Assets/Loaders/AnimatorLoader.h"
+#include "Assets/Loaders/AnimationControllerLoader.h"
 
 
 #include "Physics/Collision.h"
@@ -34,7 +34,6 @@
 #include "Render/Shader.h"
 #include "Render/SpriteRenderer.h"
 #include "Render/Texture.h"
-#include "Render/FrameAnimation.h"
 #include "Render/ParticleSystem.h"
 #include "Render/Animator.h"
 

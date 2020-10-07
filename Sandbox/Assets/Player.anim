@@ -7,10 +7,14 @@ Speed 0 0.0
 
 %Transitions:
 
-condition Speed > 0
 start Idle
 end Running
+condition Speed > 0
 
-condition Speed = 0
+%
+
 start Running
 end Idle
+condition Speed < 1
+
+%

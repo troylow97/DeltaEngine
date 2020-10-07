@@ -16,7 +16,7 @@ namespace DeltaEngine
 
 	unsigned int AnimationClip::GetTotalFrames() const
 	{
-		return totalFrames;
+		return m_Sprites.size();;
 	}
 	unsigned int AnimationClip::GetFps() const
 	{
@@ -45,6 +45,8 @@ namespace DeltaEngine
 			while (file.good())
 			{
 				file >> str;
+				if (str[0] == '%')
+					break;
 				file >> str >> spriteKey;
 				file >> str >> spriteIndex;
 				m_Sprites.push_back(Sprite(spriteKey, spriteIndex));
@@ -68,7 +70,7 @@ namespace DeltaEngine
 				file << m_Name << "_i_" << i << std::endl;
 				file << "key " << m_Sprites[i].GetKey() << std::endl;
 				file << "value " << m_Sprites[i].GetIndex() << std::endl;
-				file << std::endl;
+				file << std::endl << "%" << std::endl;
 			}
 			file.close();
 		}

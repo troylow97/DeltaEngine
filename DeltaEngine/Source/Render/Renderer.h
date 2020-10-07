@@ -5,7 +5,7 @@
 namespace DeltaEngine
 {
 	// interface class Renderer
-	class Renderer
+	class DE_API Renderer
 	{
 	public:
 		Shader* shader;

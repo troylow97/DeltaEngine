@@ -1,39 +1,25 @@
 #pragma once
 
 #include "AnimationClip.h"
+#include "AnimationController.h"
 #include "SpriteRenderer.h"
 
 namespace DeltaEngine
 {
 	class Animator
 	{
-		struct Parameter
-		{
-			bool boolValue;
-			float floatValue;
-		};
-		enum class Conditions
-		{
-			BoolEqual,
-			Equal,
-			NotEqual,
-			Greater,
-			Less,
-		};
-		std::unordered_map<std::string, Parameter> parameters;
-		std::vector<std::pair<std::string, std::string>> // name of clips
-				transitions;
-		std::vector<std::pair<std::string, std::pair<Conditions, float>>> // parameter name/key, and its conditions
-				conditions;
-		float timer;
-		unsigned int frame;
-	public:
-		float speed;
-		SpriteRenderer* renderer;
-		AnimationClip* animation;
-		bool playOnAwake;
+		using Parameters = AnimationController::Parameters;
+		Parameters parameters;
 
-		Animator(std::string filepath = "Player.anim");
+		float m_Timer;
+		unsigned int m_Frame;
+		float m_Speed;
+	public:
+		SpriteRenderer* renderer;
+		AnimationController* m_Controller;
+		AnimationClip* m_Clip;
+
+		Animator(AnimationController* controller = nullptr);
 
 		bool GetBool(std::string paramName);
 		bool SetBool(std::string paramName, bool value);
@@ -43,7 +29,6 @@ namespace DeltaEngine
 
 		void Update();
 	private:
-		void CheckCondition(std::string paramName);
-		void LoadFromFile(std::string filepath);
+		void CheckCondition();
 	};
 }

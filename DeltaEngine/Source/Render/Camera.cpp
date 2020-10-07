@@ -107,6 +107,9 @@ namespace DeltaEngine
 
 		if (this == editorCamera)
 		{
+			Gizmos::Draw2DWireBox(Vector3(0,0));
+			Gizmos::DrawLine(Vector3(0,0), Vector3(1,1));
+
 			Gizmos::DrawWorldGrid();
 		}
 

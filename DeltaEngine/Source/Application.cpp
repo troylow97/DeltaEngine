@@ -18,7 +18,7 @@ namespace DeltaEngine
 {
     DeltaEngineGlobalEnvironment env;
 
-    Application::Application() : m_interval(0.25)
+    Application::Application() : m_Running{ true }, m_Minimized{ true }, m_interval(0.25)
     {
         Log::Init();
         DeltaEngine_CORE_INFO("Engine Start");
@@ -56,18 +56,16 @@ namespace DeltaEngine
             .load<AnimationClip>("Idle", "Idle.clip")
             .load<AnimationClip>("Running", "Running.clip");
 
-        env.pManager->set_loader<Animator>(new AnimatorLoader())
-            .load<Animator>("Player", "Player.anim");
+        env.pManager->set_loader<AnimationController>(new AnimationControllerLoader())
+            .load<AnimationController>("Player", "Player.anim");
 
         env.pECS = new ECSModule();
         env.pECS->world();
+        env.pECS = new ECSModule();
+        env.pECS->world();
+        env.pECS->world().create_systems<PhysicsSystem, CollisionSystem>();
+        env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem>();
     }
-    env.pECS = new ECSModule();
-    env.pECS->world();
-    env.pECS->world().create_systems<PhysicsSystem, CollisionSystem>();
-    env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem>();
-
-  }
 
     Application::~Application()
     {
@@ -89,77 +87,87 @@ namespace DeltaEngine
         DeltaEngine::EntityManager& em = world.get_entity_manager();
         env.pManager->get<Texture2D>("run")->SliceAll(2, 3);
 
-        auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
-            env.pManager->get<Shader>("Default"));
+        //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
+        //    env.pManager->get<Shader>("Default"));
+        //auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
+        //auto& spriteRenderer = env.pECS->world().get_entity_manager().get_component<SpriteRenderer>(entity1);
+        //auto& animator = env.pECS->world().get_entity_manager().get_component<Animator>(entity1);
+
+        //spriteRenderer.shader = env.pManager->get<Shader>("Default");
+        //animator.m_Controller = env.pManager->get<AnimationController>("Player");
+        //animator.renderer = &spriteRenderer;
+
+        //auto* a = new Animator(env.pManager->get<AnimationController>("Player"));
+        //a->renderer = s;
+
         //auto* t = new TextRenderer(env.pManager->get<Font>("Fail"),
         //    env.pManager->get<Shader>("DefaultText"));
         //auto* p = new ParticleSystem();
 
-    anim = new FrameAnimation();
-    anim->renderer = s;
-    //physics test start init var
-    auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
-    auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform,RigidBody, Collider>();
-    auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
-    auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
-        //anim = new FrameAnimation();
-        //anim->renderer = s;
+        //physics test start init var
+        auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
+        auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+        auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
+        auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
 
-    trans.position = { 7,7,0 };
-    trans.scale = { 1,1,0 };
-    col.type = ColliderType::BOX;
+        trans.position = { 7,7,0 };
+        trans.scale = { 1,1,0 };
+        col.type = ColliderType::BOX;
 
-    auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
-    auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
-    auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
+        auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
+        auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
+        auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
 
-    t2.position = { 5,5,0 };
-    t2.scale = { 1,1,0 };
-    r2.Velocity = { 0,0 };
-    col2.type = ColliderType::BOX;
-    //physics test end
-    // TODO Modules Instantiation
-    f64 accumulator = 0.0;
+        t2.position = { 5,5,0 };
+        t2.scale = { 1,1,0 };
+        r2.Velocity = { 0,0 };
+        col2.type = ColliderType::BOX;
+        //physics test end
+        // TODO Modules Instantiation
+        f64 accumulator = 0.0;
 
-    MSG msg = {};
-    bool isRunning{true};
-    while (isRunning)
-    {
-      if (InputSystem::get()->isKeyTriggered(DEVK_D))
-      {
-          env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
-          {
-                  r1.Velocity += {1, 0};
-          });
-      }
-      if (InputSystem::get()->isKeyPressed(DEVK_D))
-      {
-          env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
-              {
-                  r1.Velocity += {0.2, 0};
-              });
-      }
-      InputSystem::get()->update();
-      // Update engine GameClock
-      env.pClock->Update();
-      env.pECS->world().update();
-      // Update accumulator using time-scaled dt
-      accumulator += env.pClock->DeltaTime();
+        MSG msg = {};
+        while (m_Running)
+        {
+            if (InputSystem::get()->isKeyTriggered(DEVK_D))
+            {
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+                    {
+                        r1.Velocity += {1, 0};
+                    });
+            }
+            if (InputSystem::get()->isKeyPressed(DEVK_D))
+            {
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+                    {
+                        r1.Velocity += {0.2, 0};
+                    });
+            }
+            InputSystem::get()->update();
+            // Update engine GameClock
+            env.pClock->Update();
+            env.pECS->world().update();
+            // Update accumulator using time-scaled dt
+            accumulator += env.pClock->DeltaTime();
 
             // Update based on interval
             while (accumulator >= m_interval)
             {
+                if (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
+                {
+                    if (msg.message == WM_QUIT)
+                        m_Running = false;
+                    TranslateMessage(&msg);
+                    DispatchMessage(&msg);
+                    continue;
+                }
                 env.pWin->Update();
                 VariableUpdate();
                 FixedUpdate();
                 accumulator -= env.pClock->DeltaTime();
             }
             const f64 alpha = accumulator / m_interval;
-            std::cout << "aA";
         }
-        delete s;
-        //delete t;
-        //delete p;
     }
 
     void Application::PushLayer(Layer* layer)
