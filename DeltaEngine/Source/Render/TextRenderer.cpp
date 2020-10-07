@@ -27,8 +27,6 @@ namespace DeltaEngine
     TextRenderer::~TextRenderer()
     {
         DeltaEngine_CORE_INFO("Deleting Text Renderer");
-        delete font;
-        delete shader;
         DeltaEngine_CORE_INFO("Text Renderer deleted");
     }
 

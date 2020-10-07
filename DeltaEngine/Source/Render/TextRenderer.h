@@ -14,7 +14,7 @@ namespace DeltaEngine
 		Font* font;
 
 		std::string text;
-		TextRenderer(Font* f, Shader* s);
+		TextRenderer(Font* f = nullptr, Shader* s = nullptr);
 		~TextRenderer();
 		void Render(const Camera& camera) override;
 	};

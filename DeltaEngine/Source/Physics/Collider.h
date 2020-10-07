@@ -32,6 +32,24 @@ namespace DeltaEngine
           size{0,0},
           type{ColliderType::BOX}
       {}
+      void OnDrawGizmos()
+      {
+          switch (type)
+          {
+          case ColliderType::BOX:
+              Gizmos::Draw2DWireBox(center, size);
+              break;
+          case ColliderType::CIRCLE:
+              Gizmos::Draw2DCircle(center, size);
+              break;
+          case ColliderType::RAY:
+              Gizmos::Draw2DWireBox(center, size); //TO CHANGE
+              break;
+          case ColliderType::LINE:
+              Gizmos::Draw2DWireBox(center, size); //TO CHANGE
+              break;
+          }
+      }
 
   };
 

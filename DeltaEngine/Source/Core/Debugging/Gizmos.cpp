@@ -7,7 +7,7 @@
 namespace DeltaEngine::Gizmos
 {
 	Shader* gizmoShader;
-	Color color = Color(0.0f, 1.0f, 0.0f, 0.5f);
+	Color color = Color(0.0f, 1.0f, 0.0f, 1.0f);
 
 	void Init()
 	{
@@ -85,6 +85,23 @@ namespace DeltaEngine::Gizmos
 
 			Mesh::DrawLines(startEndPair);
 		}
+	}
+
+	void DrawLine(Vector3 start, Vector3 end)
+	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
+		Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+		Matrix4x4 model = Transform().LocalToWorldMatrix();
+
+		gizmoShader->SetUniformMatrix4f("_M", model);
+		gizmoShader->SetUniformMatrix4f("_V", view);
+		gizmoShader->SetUniformMatrix4f("_P", proj);
+		gizmoShader->SetUniformColor4f("_Color", color);
+		gizmoShader->SetUniform1i("_Circle", 0);
+		
+		Mesh::DrawLine(start, end);
 	}
 
 	void Draw2DBox(Vector3 position, Vector3 scale, Quaternion rotation)

@@ -4,6 +4,7 @@
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
 #include <examples/imgui_impl_opengl3.h>
+#include "Core/GlobalStruct.h"
 
 namespace DeltaEngine
 {
@@ -42,7 +43,7 @@ namespace DeltaEngine
 		}
 
 		// Initialize helper Platform and Renderer bindings (here we are using imgui_impl_win32.cpp and imgui_impl_dx11.cpp)
-		ImGui_ImplWin32_Init(RenderModule::mainHWND, RenderModule::openGLSystem->GetGLContext());
+		ImGui_ImplWin32_Init(env.pWin->GetHandle(), RenderModule::openGLSystem->GetGLContext());
 		ImGui_ImplOpenGL3_Init("#version 410");
 
 		// ----------------

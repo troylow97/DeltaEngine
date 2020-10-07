@@ -6,6 +6,7 @@
 #include "Font.h"
 #include "Core/Debugging/Gizmos.h"
 #include "Core/Debugging/Logger/Log.h"
+#include "Core/GlobalStruct.h"
 #define IMGUI_IMPL_OPENGL_LOADER_GLEW
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
@@ -56,113 +57,13 @@ namespace DeltaEngine
 
 		void OpenGLSystem::Update()
 		{
-
-			//ImGui_ImplOpenGL3_NewFrame();
-			//ImGui_ImplWin32_NewFrame();
-			//ImGui::NewFrame();
-			//{
-			//	ImGui::Begin("Camera Props");
-			//	static float f = 0.0f;
-			//	ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
-			//	ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
-			//	ImGui::DragFloat("size", (float*)&Camera::editorCamera->_size, 0.01f);
-			//	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-			//	ImGui::End();
-			//}
-			//ImGui::ShowDemoWindow();
-			//ImGui::Render();
-			//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-			//if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-			//{
-			//	HDC backup_current_context = m_windowDC;
-			//	ImGui::UpdatePlatformWindows();
-			//	ImGui::RenderPlatformWindowsDefault();
-			//	wglMakeCurrent(backup_current_context, m_wglDC);
-			//}
-
-
 			//update opengl
 			glClearColor(0, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			RECT rect;
-			GetClientRect(mainHWND, &rect);
+			GetClientRect(env.pWin->GetHandle(), &rect);
 			glViewport((GLint)0, (GLint)0, rect.right - rect.left, rect.bottom - rect.top);
-
-			Camera::editorCamera->Render();
-
-			::SwapBuffers(m_windowDC); //using double buffering
-		}
-		void OpenGLSystem::TestRender()
-		{
-			// ----------------
-			// ImGui render
-			// -----------------
-
-			ImGui_ImplOpenGL3_NewFrame();
-			ImGui_ImplWin32_NewFrame();
-			ImGui::NewFrame();
-
-			//// Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets automatically appears in a window called "Debug".
-			//{
-			//	ImGui::Begin("Sprite");
-			//	static float f = 0.0f;
-			//	ImGui::Text("Edit Sprite Props");                           // Display some text (you can use a format string too)
-			//	ImGui::SliderFloat("rotate", &f, -180.0f, 180.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-			//	ps[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
-			//	ImGui::DragFloat3("pos", (float*)&ps[0]->transform.position, 0.01f);
-			//	ImGui::DragFloat3("scale", (float*)&ps[0]->transform.scale, 0.01f);
-			//	ImGui::ColorEdit3("clear color", (float*)&sprites[0]->color); // Edit 3 floats representing a color
-			//	ImGui::Text("Active particles: %u", ps[0]->GetActiveParticleCount());
-			//	ImGui::End();
-			//}
-
-			{
-				ImGui::Begin("Camera");
-				static float f = 0.0f;
-				ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
-				ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
-				ImGui::DragFloat("size", (float*)&Camera::editorCamera->_size, 0.01f);
-				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-				ImGui::End();
-			}
-			//ImGui::ShowDemoWindow();
-			ImGui::Render();
-			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-			glViewport(0, 0, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
-			glClearColor(0, 0, 0, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
-			Update();
-			//frameBuffer->Resize(width, height);
-			//frameBuffer->Bind();
-			//glClearColor(1.0f, 0.1f, 0.1f, 1.0f);
-			//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			//Gizmos::DrawWorldGrid();
-			//Gizmos::Draw2DWireBox();
-			//Gizmos::Draw2DWireCircle();
-			//std::for_each(sprites.begin(), sprites.end(), [](SpriteRenderer* s) { s->Render(*Camera::editorCamera); });
-			//std::for_each(ps.begin(), ps.end(), [](ParticleSystem* p) { p->Update(); p->Render(*Camera::editorCamera); });
-			//text->Render(*Camera::editorCamera);
-			//frameBuffer->Unbind();
-
-			Camera::editorCamera->Render();
-
-			// Update and Render additional Platform Windows
-			// (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
-			//  For this specific demo app we could also call glfwMakeContextCurrent(window) directly)
-			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-			{
-				HDC backup_current_context = m_windowDC;
-				ImGui::UpdatePlatformWindows();
-				ImGui::RenderPlatformWindowsDefault();
-				wglMakeCurrent(backup_current_context, m_wglDC);
-			}
-			// ----------------
-			// ImGui render end
-			// -----------------
-
-			::SwapBuffers(m_windowDC); //using double buffering
 		}
 
 		void OpenGLSystem::Exit()
@@ -184,7 +85,7 @@ namespace DeltaEngine
 		bool OpenGLSystem::InitializeRenderingEnvironment()
 		{
 			//create rendering window
-			m_windowDC = GetDC(mainHWND);
+			m_windowDC = GetDC(env.pWin->GetHandle());
 
 			DEVMODE devMode = { 0 };
 			devMode.dmSize = sizeof(DEVMODE);
@@ -207,7 +108,7 @@ namespace DeltaEngine
 			int pf = ChoosePixelFormat(m_windowDC, &pfdesc);//checks if the graphics card can support the pixel format requested
 			if (pf == 0)
 			{
-				ReleaseDC(mainHWND, m_windowDC);
+				ReleaseDC(env.pWin->GetHandle(), m_windowDC);
 				return false;
 			}
 
@@ -215,7 +116,7 @@ namespace DeltaEngine
 			BOOL ok = SetPixelFormat(m_windowDC, pf, &pfdesc);
 			if (!ok)
 			{
-				ReleaseDC(mainHWND, m_windowDC);
+				ReleaseDC(env.pWin->GetHandle(), m_windowDC);
 				return false;
 			}
 
@@ -224,7 +125,7 @@ namespace DeltaEngine
 			m_wglDC = wglCreateContext(m_windowDC);
 			if (!m_wglDC)
 			{
-				ReleaseDC(mainHWND, m_windowDC);
+				ReleaseDC(env.pWin->GetHandle(), m_windowDC);
 				return false;
 			}
 
@@ -233,7 +134,7 @@ namespace DeltaEngine
 			if (!ok)
 			{
 				wglDeleteContext(m_wglDC);
-				ReleaseDC(mainHWND, m_windowDC);
+				ReleaseDC(env.pWin->GetHandle(), m_windowDC);
 				return false;
 			}
 
@@ -256,7 +157,7 @@ namespace DeltaEngine
 			}
 			m_wglDC = NULL;
 
-			if (m_windowDC && !ReleaseDC(mainHWND, m_windowDC))
+			if (m_windowDC && !ReleaseDC(env.pWin->GetHandle(), m_windowDC))
 			{
 				m_windowDC = NULL;
 			}

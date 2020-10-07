@@ -14,6 +14,8 @@ namespace DeltaEngine::Gizmos
 
 	void DrawWorldGrid();
 
+	void DrawLine(Vector3 start, Vector3 end);
+
 	void Draw2DBox(Vector3 position, Vector3 scale = Vector3::one(), Quaternion rotation = Quaternion::identity());
 	void Draw2DBox(Transform transform = Transform());
 

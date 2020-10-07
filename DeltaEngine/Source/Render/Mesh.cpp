@@ -420,6 +420,10 @@ namespace DeltaEngine
 
 	void Mesh::DrawQuad()
 	{
+		quad->vertices[0] = Vector3(-0.5f,  0.5f, 0.0f);
+		quad->vertices[1] = Vector3( 0.5f,  0.5f, 0.0f);
+		quad->vertices[2] = Vector3( 0.5f, -0.5f, 0.0f);
+		quad->vertices[3] = Vector3(-0.5f, -0.5f, 0.0f);
 		quad->texCoords[0] = Vector2(0, 0);
 		quad->texCoords[1] = Vector2(1, 0);
 		quad->texCoords[2] = Vector2(1, 1);
@@ -427,12 +431,16 @@ namespace DeltaEngine
 		quad->Draw();
 	}
 
-	void Mesh::DrawQuad(float offsetX, float offsetY, float tileX, float tileY)
+	void Mesh::DrawQuad(Vector2 offset, Vector2 tiling, Vector2 pivot)
 	{
-		quad->texCoords[0] = Vector2(offsetX, offsetY);
-		quad->texCoords[1] = Vector2(offsetX + tileX, offsetY);
-		quad->texCoords[2] = Vector2(offsetX + tileX, offsetY + tileY);
-		quad->texCoords[3] = Vector2(offsetX, offsetY + tileY);
+		quad->vertices[0] = Vector3(0.0f, 1.0f, 0.0f) - pivot;
+		quad->vertices[1] = Vector3(1.0f, 1.0f, 0.0f) - pivot;
+		quad->vertices[2] = Vector3(1.0f, 0.0f, 0.0f) - pivot;
+		quad->vertices[3] = Vector3(0.0f, 0.0f, 0.0f) - pivot;
+		quad->texCoords[0] = Vector2(offset.x, offset.y);
+		quad->texCoords[1] = Vector2(offset.x + tiling.x, offset.y);
+		quad->texCoords[2] = Vector2(offset.x + tiling.x, offset.y + tiling.y);
+		quad->texCoords[3] = Vector2(offset.x, offset.y + tiling.y);
 		quad->Draw();
 	}
 

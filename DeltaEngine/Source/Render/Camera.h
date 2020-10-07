@@ -28,6 +28,9 @@ namespace DeltaEngine
 		Matrix4x4 GetViewMatrix() const;
 		Vector3 Max() const;
 		Vector3 Min() const;
+
+		void Start();
+		void End();
 		void Render();
 	};
 }
