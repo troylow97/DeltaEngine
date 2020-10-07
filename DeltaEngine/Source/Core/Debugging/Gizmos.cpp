@@ -204,20 +204,4 @@ namespace DeltaEngine::Gizmos
 		Mesh::DrawLines(startEndPair);
 	}
 
-	//void OnDrawGizmos(Collider& col)
-	//{
-	//	ColliderType type = col.type;
-	//
-	//	switch (type)
-	//	{
-	//	case ColliderType::BOX:
-	//		Gizmos::Draw2DWireBox(col.center, col.size);
-	//	case ColliderType::CIRCLE:
-	//		Gizmos::Draw2DCircle(col.center, col.size);
-	//	case ColliderType::RAY:
-	//		Gizmos::Draw2DWireBox(col.center, col.size); //TO CHANGE
-	//	case ColliderType::LINE:
-	//		Gizmos::Draw2DWireBox(col.center, col.size); //TO CHANGE
-	//	}
-	//}
 }

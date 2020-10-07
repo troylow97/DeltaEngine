@@ -1,11 +1,12 @@
 #pragma once
-
-#include "DeltaEngine.h"
+#include "ECS/ECSModule.h"
+#include "Physics/Collider.h"
+#include "Core/Math/Transform.h"
 
 namespace DeltaEngine
 {
     DEFINE_SYSTEM(PhysicsDrawSystem, Transform, Collider)
-    void update() override;
-    void late_update() override;
-    END_DEFINE_SYSTEM(RenderSystem)
+    void PhysicsDrawSystem::update() override;
+    void PhysicsDrawSystem::late_update() override;
+    END_DEFINE_SYSTEM(PhysicsDrawSystem)
 }
