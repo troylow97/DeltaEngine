@@ -74,10 +74,10 @@ namespace DeltaEngine
 
 		Camera* thisCam = this;
 
-		std::for_each(RenderModule::allRenderers.begin(), RenderModule::allRenderers.end(), [thisCam](Renderer* r)
-			{
-				r->Render(*thisCam);
-			});
+		//std::for_each(RenderModule::allRenderers.begin(), RenderModule::allRenderers.end(), [thisCam](Renderer* r)
+		//	{
+		//		r->Render(*thisCam);
+		//	});
 	}
 	void Camera::End()
 	{

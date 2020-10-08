@@ -132,6 +132,13 @@ namespace DeltaEngine
 	bool Vector2::operator!=(const Vector2 v) const
 	{
 		if (x == v.x && y == v.y)
+			return false;
+
+		return true;
+	}
+	bool Vector2::operator==(const Vector2 v) const
+	{
+		if (x == v.x && y == v.y)
 			return true;
 
 		return false;

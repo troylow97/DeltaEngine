@@ -5,10 +5,6 @@
 
 namespace DeltaEngine
 {
-    void PhysicsSystem::Init()
-    {
-        GravityAmount = { 0, -1 };
-    }
 
     void PhysicsSystem::update()
     {
@@ -31,9 +27,9 @@ namespace DeltaEngine
         em.for_each([&](EntityID id1, RigidBody& r1,Transform& t1)
             {
                 t1.old_position = t1.position;
-                r1.Velocity += r1.Acceleration * env.pClock->DeltaTime(); //Apply Acceleration
+                r1.Velocity +=  r1.Acceleration * env.pClock->DeltaTime(); //Apply Acceleration
                 t1.position += r1.Velocity * env.pClock->DeltaTime(); //Update Position
-                r1.Velocity *= 0.99f; //Apply Friction
+                r1.Velocity *= 0.96f; //Apply Friction
                 //DeltaEngine_CORE_TRACE(("Position: " , t1.position.x , "__" , t1.position.y));
             });
         //em.for_each([&](EntityID id1, Transform& t1)
@@ -45,6 +41,7 @@ namespace DeltaEngine
 
     void PhysicsSystem::Gravity()
     {
+        Vector2 GravityAmount{ 0,-0.6 };
         em.for_each([&](EntityID id1, RigidBody& r1,Transform& t1)
         {
             if(r1.hasGravity)

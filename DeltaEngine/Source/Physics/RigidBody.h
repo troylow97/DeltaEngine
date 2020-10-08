@@ -8,6 +8,7 @@ namespace DeltaEngine
 		float Mass;
 		Vector2 Velocity;
 		Vector2 Acceleration;
+		float Restituition;
 		bool hasGravity;
 
 		RigidBody() :

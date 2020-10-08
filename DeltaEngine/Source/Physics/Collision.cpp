@@ -55,10 +55,7 @@ namespace DeltaEngine
 		AABB aabb1{ Center1,Size1 };
 		AABB aabb2{ Center2, Size2 };
 
-		//if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
-		//	return true;
-
-		if (aabb1.max.x >= aabb2.min.x && aabb1.min.x <= aabb2.max.x || aabb1.max.y >= aabb2.min.y&& aabb1.min.y <= aabb2.max.y)
+		if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y)))
 			return true;
 
 		return false;
@@ -165,8 +162,6 @@ namespace DeltaEngine
 		
 		//Use a circles center with a combined radius of both circles
 		Circle newCircle{ col2.center, col2.size + col1.size };
-
-		Vector2 temp{ col2.size.x + col1.size.x ,col2.size.y + col1.size.y };
 
 		if(CollisionIntersection_RayCircle(ray,col2))
 		{
@@ -383,11 +378,7 @@ namespace DeltaEngine
 		{
 		case ColliderType::BOX:
 		{
-			Vector2 zero_vec{ 0,0 };
-			if (r1.Velocity != zero_vec || r2.Velocity != zero_vec)
-				return CollisionIntersection_RectRect(col1, col1.size, col2, col2.size);
-			else
-				return CollisionIntersection_RectRect_Static(col1.center, col1.size, col2.center, col2.size);
+			return CollisionIntersection_RectRect(col1, r1.Velocity, col2, r2.Velocity);
 		}
 		case ColliderType::CIRCLE:
 			return CollisionIntersection_RectCircle_Static(col1.center, col1.size, col2.center, col2.size);
@@ -409,11 +400,8 @@ namespace DeltaEngine
 			return CollisionIntersection_RectCircle_Static(col2.center, col2.size, col1.center, col1.size);
 		case ColliderType::CIRCLE:
 		{
-			Vector2 zero_vec{ 0,0 };
-			if (r1.Velocity != zero_vec || r2.Velocity != zero_vec)
-				return CollisionIntersection_CircleCircle(col1, r1.Velocity, col2, r2.Velocity);
-			else
-				return CollisionIntersection_CircleCircle_Static(col1.center, col1.size, col2.center, col2.size);
+			return CollisionIntersection_CircleCircle(col1, r1.Velocity, col2, r2.Velocity);
+
 		}
 		case ColliderType::LINE:
 			return CollisionIntersection_CircleLineSegment_Static(col1.center, col1.size, col2.center, col2.size);

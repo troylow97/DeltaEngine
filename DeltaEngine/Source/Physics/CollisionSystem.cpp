@@ -2,7 +2,10 @@
 #include "CollisionResponseCallbacks.h"
 #include "Collision.h"
 #include "Core/Debugging/Logger/Log.h"
-
+#include "Core/Math/Math.h"
+#include <cmath>
+#include "Core/GlobalStruct.h"
+#include "Core/GameClock/GameClock.h"
 namespace DeltaEngine
 {
 	void CollisionSystem::update()
@@ -29,12 +32,11 @@ namespace DeltaEngine
 		//Collision Intersection
 		em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
 		{
-				UNREFERENCED_PARAMETER(r1);
 			if (c1.isCollideable)
 			{
 				c1.center = t1.position;
 				c1.size = t1.scale;
-				Vector2 OldPos = t1.position;
+
 				em.for_each([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
 				{
 					if(c2.isCollideable)
@@ -45,14 +47,14 @@ namespace DeltaEngine
 							c2.size = t2.scale;
 							if (CollisionIntersection_Main(c1,r1, c2,r2))
 							{
-								//DeltaEngine_CORE_TRACE("COLLISION");
+								DeltaEngine_CORE_TRACE("COLLISION");
 								CurrentPair.push_back({ id1,id2 });
 							}
 							else
 							{
 								//DeltaEngine_CORE_TRACE("NOT_COLLISION");
 							}
-							t1.position = OldPos;
+
 						}
 					}
 				});
@@ -105,7 +107,6 @@ namespace DeltaEngine
 
 	void CollisionSystem::CollisionResolution()
 	{
-		int counter = 0;
 		for (auto it1 = CurrentPair.begin(); it1 != CurrentPair.end(); it1++)
 		{
 			em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
@@ -114,24 +115,36 @@ namespace DeltaEngine
 				if (it1->first.index == id1.index || it1->second.index == id1.index)
 				{
 					em.for_each([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
-					{
-						UNREFERENCED_PARAMETER(c2);
-						if (it1->first.index == id2.index || it1->second.index == id2.index)
 						{
-							//float CollidingObjectsMass = r1.Mass + r2.Mass;
-							//Vector2 CollidingObjectsVelocity = r1.Velocity + r2.Velocity;
-							//r1.Velocity += (CollidingObjectsVelocity * CollidingObjectsMass) / (r1.Mass + CollidingObjectsMass);
-							//r2.Velocity += (CollidingObjectsVelocity * CollidingObjectsMass) / (r2.Mass + CollidingObjectsMass);
-							t1.position = t1.old_position;
-							t2.position = t2.old_position;
-							r1.Velocity -= r2.Velocity * 0.5f;
-							r2.Velocity -= r1.Velocity * 0.5f;
+							UNREFERENCED_PARAMETER(c2);
+							if (it1->first.index == id2.index || it1->second.index == id2.index)
+							{
+								//float CollidingObjectsMass = r1.Mass + r2.Mass;
+								//Vector2 CollidingObjectsVelocity = r1.Velocity + r2.Velocity;
+								//r1.Velocity += (CollidingObjectsVelocity * CollidingObjectsMass) / (r1.Mass + CollidingObjectsMass);
+								//r2.Velocity += (CollidingObjectsVelocity * CollidingObjectsMass) / (r2.Mass + CollidingObjectsMass);
 
+								float r1Magnitude = (r1.Velocity.x * r1.Velocity.x + r1.Velocity.y * r1.Velocity.y);
+								float r2Magnitude = (r2.Velocity.x * r2.Velocity.x + r2.Velocity.y * r2.Velocity.y);
+								float r1MagSqrRoot = std::sqrt(r1Magnitude);
+								float r2MagSqrRoot = std::sqrt(r2Magnitude);
+								Vector2 ResultVec;
+								ResultVec.x = r1.Velocity.x + r2.Velocity.x;
+								ResultVec.y = r1.Velocity.y + r2.Velocity.y;
+								
+								r1.Velocity = ResultVec * (r2.Mass / (r1.Mass + r2.Mass));
+								r2.Velocity = ResultVec * (r1.Mass / (r1.Mass + r2.Mass));
+
+
+							//r1.Velocity = -r1.Velocity;
+							//r2.Velocity = -r2.Velocity;
+							//AABB_CollisionResponse(c1, c2, r1.Velocity, r2.Velocity);
+							//CollisionResponse_CircleCircle(c1, r1, c2, r2);
 							//DeltaEngine_CORE_TRACE("RESOLVING COLLISION");
+
 						}
 					});
 				}
-				counter++;
 			});
 
 		}
