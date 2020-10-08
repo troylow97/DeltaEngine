@@ -25,13 +25,7 @@ namespace DeltaEngine
     {
         Log::Init();
         DeltaEngine_CORE_INFO("Engine Start");
-        // Memory Manager
-        // Window
-        // Render
-        // GUI
-        // Physics
-        // Audio
-        // Events
+
         env.pWin = new Window();
         env.pWin->Init();
 
@@ -67,8 +61,6 @@ namespace DeltaEngine
 
         env.pECS = new ECSModule();
         env.pECS->world();
-        env.pECS = new ECSModule();
-        env.pECS->world();
         env.pECS->world().create_systems<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
         env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
         env.pECS->world().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
@@ -101,16 +93,7 @@ namespace DeltaEngine
         //auto& spriteRenderer = env.pECS->world().get_entity_manager().get_component<SpriteRenderer>(entity1);
         auto& animator = env.pECS->world().get_entity_manager().get_component<Animator>(entityss);
 
-        //spriteRenderer.shader = env.pManager->get<Shader>("Default");
         animator.m_Controller = env.pManager->get<AnimationController>("Player");
-        //animator.renderer = &spriteRenderer;
-
-        //auto* a = new Animator(env.pManager->get<AnimationController>("Player"));
-        //a->renderer = s;
-
-        //auto* t = new TextRenderer(env.pManager->get<Font>("Fail"),
-        //    env.pManager->get<Shader>("DefaultText"));
-        //auto* p = new ParticleSystem();
 
         //physics test start init var
         auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
@@ -134,8 +117,7 @@ namespace DeltaEngine
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
 
-        MSG msg = {};
-        while (m_Running)
+        while (env.pWin->Running())
         {
             if (InputSystem::get()->isKeyPressed(DEVK_A))
             {
@@ -173,26 +155,19 @@ namespace DeltaEngine
             m_ImGuiLayer->Begin();
             m_ImGuiLayer->End();
             ::SwapBuffers(RenderModule::openGLSystem->GetWindowContext());
-            // Update accumulator using time-scaled dt
-            accumulator += env.pClock->DeltaTime();
 
-            // Update based on interval
-            while (accumulator >= m_interval)
-            {
-                if (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
-                {
-                    if (msg.message == WM_QUIT)
-                        m_Running = false;
-                    TranslateMessage(&msg);
-                    DispatchMessage(&msg);
-                    continue;
-                }
-                env.pWin->Update();
-                VariableUpdate();
-                FixedUpdate();
-                accumulator -= env.pClock->DeltaTime();
-            }
-            const f64 alpha = accumulator / m_interval;
+
+            //// Accumulator not used yet
+            //// Update accumulator using time-scaled dt
+            //accumulator += env.pClock->DeltaTime();
+
+            //// Update based on interval
+            //while (accumulator >= m_interval)
+            //{
+            //    env.pWin->Update();
+            //    accumulator -= env.pClock->DeltaTime();
+            //}
+            //const f64 alpha = accumulator / m_interval;
         }
     }
 
@@ -208,18 +183,6 @@ namespace DeltaEngine
             EventDispatcher d(ref);
             d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
         }
-
-        //below is how cherno does it
-        //EventDispatcher dispatcher(e);
-        //dispatcher.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
-        //dispatcher.Dispatch<WindowResizeEvent>(DE_BIND_EVENT_FN(Application::OnWindowResize));
-        //
-        //for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
-        //{
-        //    if (e.isHandled)
-        //        break;
-        //    (*it)->OnEvent(e);
-        //}
     }
 
     bool Application::OnWindowClose(WindowCloseEvent& e)
@@ -241,25 +204,5 @@ namespace DeltaEngine
         //Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
 
         return false;
-    }
-
-    void Application::FixedUpdate()
-    {
-        // Collision Update
-        // Collision Resolution Update
-        // Collision Late Update
-        // Level Fixed Update
-    }
-
-    void Application::VariableUpdate()
-    {
-        // Input Update
-        // Level Update
-        // Events Update (Logics)
-        // Level Late Update
-        // Audio Update
-        // Render Update
-        // GUI Update
-        // Memory Update
     }
 }

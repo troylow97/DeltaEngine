@@ -26,9 +26,6 @@ namespace DeltaEngine
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
-	private:
-		void FixedUpdate();
-		void VariableUpdate();
 	};
 
 	Application* CreateApplication();

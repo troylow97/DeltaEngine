@@ -3,7 +3,7 @@
 #include "ECS/ECSModule.h"
 #include "Collider.h"
 #include "RigidBody.h"
-#include "Core/Math/Transform.h"
+#include "ECS/Components/Transform.h"
 
 namespace DeltaEngine
 {
