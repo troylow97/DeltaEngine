@@ -263,11 +263,6 @@ namespace DeltaEngine
 			}
 		}
 	}
-	bool ParticleSystem::SortParticles(Particle i, Particle j)
-	{
-		return
-			!i.active || (i.lifeTimer > j.lifeTimer);
-	}
 
 	ParticleSystem::ParticleSystem() : texture { new Texture2D("DefaultParticle.png") }
 	{
@@ -327,8 +322,6 @@ namespace DeltaEngine
 	ParticleSystem::~ParticleSystem()
 	{
 		DeltaEngine_CORE_INFO("Deleting Particle System");
-		delete texture;
-		delete shader;
 		DeltaEngine_CORE_INFO("Particle System deleted");
 	}
 	void ParticleSystem::Update()

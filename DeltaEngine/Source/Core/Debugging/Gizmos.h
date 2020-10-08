@@ -3,6 +3,7 @@
 #include "ECS/Components/Transform.h"
 #include "Core/Math/Color.h"
 
+
 namespace DeltaEngine::Gizmos
 {
 	//Color color;
@@ -12,6 +13,8 @@ namespace DeltaEngine::Gizmos
 	void SetColor(Color color = Color::green());
 
 	void DrawWorldGrid();
+
+	void DrawLine(Vector3 start, Vector3 end);
 
 	void Draw2DBox(Vector3 position, Vector3 scale = Vector3::one(), Quaternion rotation = Quaternion::identity());
 	void Draw2DBox(Transform transform = Transform());
@@ -24,4 +27,5 @@ namespace DeltaEngine::Gizmos
 
 	void Draw2DWireCircle(Vector3 position, Vector3 scale = Vector3::one(), Quaternion rotation = Quaternion::identity());
 	void Draw2DWireCircle(Transform transform = Transform());
+
 }

@@ -26,18 +26,19 @@ struct DE_API Vector2
   float Vector2::CrossProduct_Magnitude( const Vector2 &a ) const;
   Vector2 Vector2::CrossProduct_Vector( const Vector2 &a ) const;
 #pragma region Vector2 Operators
-  Vector2 &operator=( const Vector2 &a );
-  Vector2 operator+( const Vector2 a ) const;
-  Vector2 operator+=( const Vector2 a );
-  Vector2 operator-( const Vector2 a ) const;
-  Vector2 operator-=( const Vector2 a );
-  Vector2 operator-() const;
-  Vector2 operator*( const Vector2 f ) const;
-  Vector2 operator*( const float f ) const;
-  Vector2 operator*=( const Vector2 f );
-  Vector2 operator*=( const float f );
-  Vector2 operator/( const float f ) const;
-  Vector2 operator/=( const float f );
+		Vector2& operator=(const Vector2& a);
+		Vector2 operator+(const Vector2 a) const;
+		Vector2 operator+=(const Vector2 a);
+		Vector2 operator-(const Vector2 a) const;
+		Vector2 operator-=(const Vector2 a);
+		Vector2 operator-() const;
+		Vector2 operator*(const Vector2 f) const;
+		Vector2 operator*(const float f) const;
+		Vector2 operator*=(const Vector2 f);
+		Vector2 operator*=(const float f);
+		Vector2 operator/(const float f) const;
+		Vector2 operator/=(const float f);
+		bool operator!=(const Vector2 v) const;
 #pragma endregion
 };
 
@@ -75,14 +76,15 @@ struct DE_API Vector3
   Vector3 operator/( const float f ) const;
   Vector3 operator/=( const float f );
 #pragma endregion
-};
+	};
+	struct DE_API Vector4
+	{
+		float x, y, z, w;
+		Vector4();
+		Vector4(float, float, float);
+		Vector4(float, float, float, float);
+	};
 
-struct DE_API Vector4
-{
-  float x, y, z, w;
-  Vector4();
-  Vector4( float, float, float );
-  Vector4( float, float, float, float );
-};
+	float Vector2DotProduct(const Vector2& pVec0, const Vector2& pVec1);
 
 }

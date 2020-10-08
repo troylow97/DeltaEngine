@@ -7,17 +7,20 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "Renderer.h"
+#include "Sprite.h"
 
 namespace DeltaEngine
 {
 	class DE_API SpriteRenderer : public Renderer
 	{
 	public:
-		Texture2D* sprite;
+		Sprite sprite;
 
-		Vector2 offset, tiling;
+		Vector2 m_Offset, m_Tiling;
 
-		SpriteRenderer(Texture2D* t, Shader* s);
+		bool m_FlipX, m_FlipY;
+
+		SpriteRenderer(Texture2D* t = nullptr, Shader* s = nullptr);
 		~SpriteRenderer();
 		void Render(const Camera& camera) override;
 	};

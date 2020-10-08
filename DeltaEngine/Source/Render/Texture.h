@@ -17,8 +17,9 @@ namespace DeltaEngine
 		unsigned int m_RendererID;
 		unsigned char* m_Data;
 		int m_Width, m_Height;
+		std::string m_Filepath, m_Name;
 	public:
-		Texture2D(const std::string filepath);
+		Texture2D(std::string filepath = "dog.png");
 		~Texture2D();
 
 		void Bind(unsigned int slot = 0) const;
@@ -30,9 +31,16 @@ namespace DeltaEngine
 		unsigned int GetRendererID() const;
 
 		void Slice(TextureInfo info);
-		void SliceAll(unsigned int row, unsigned int column);
-	private:
+		void SliceAll(unsigned int columns, unsigned int rows);
+
+		Vector2 GetOffset(unsigned int index);
+		Vector2 GetSize(unsigned int index);
+		Vector2 GetPivot(unsigned int index);
+
+		std::string GetName();
 		std::vector<TextureInfo> textureInfo;
-		unsigned int texIndex;
+	private:
+		void LoadMetaFile(std::string filepath);
+		void UpdateMetaFile(std::string filepath);
 	};
 }

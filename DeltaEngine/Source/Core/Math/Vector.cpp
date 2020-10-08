@@ -103,6 +103,7 @@ namespace DeltaEngine
 		v.y = y * f;
 		return v;
 	}
+
 	Vector2 Vector2::operator*=(const Vector2 a)
 	{
 		x *= a.x;
@@ -127,6 +128,13 @@ namespace DeltaEngine
 		x /= f;
 		y /= f;
 		return *this;
+	}
+	bool Vector2::operator!=(const Vector2 v) const
+	{
+		if (x == v.x && y == v.y)
+			return true;
+
+		return false;
 	}
 #pragma endregion
 
@@ -267,4 +275,9 @@ namespace DeltaEngine
 	Vector4::Vector4() : x{ 0 }, y{ 0 }, z{ 0 }, w{ 0 } {}
 	Vector4::Vector4(float v0, float v1, float v2) : x{ v0 }, y{ v1 }, z{ v2 }, w{ 0 } {}
 	Vector4::Vector4(float v0, float v1, float v2, float v3) : x{ v0 }, y{ v1 }, z{ v2 }, w{ v3 } {}
+
+	float Vector2DotProduct(const Vector2& pVec0, const Vector2& pVec1)
+	{
+		return pVec0.x * pVec1.x + pVec0.y * pVec1.y;
+	}
 }

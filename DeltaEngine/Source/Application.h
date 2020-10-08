@@ -4,29 +4,25 @@
 #include "DE_API.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "ImGui/ImGuiLayer.h"
-//#include "Physics/PhysicsSystem.h"
+#include <memory>
+
 namespace DeltaEngine
 {
 
 	class DE_API Application
 	{
-
 		bool m_Running;
 		bool m_Minimized;
 
-		//PhysicsSystem* m_PhysicsSystem;
-		ImGuiLayer* m_ImGuiLayer;
-		LayerStack m_LayerStack;
 		double m_interval;
 
+		ImGuiLayer* m_ImGuiLayer;
 	public:
 		Application();
 		virtual ~Application();
 
 		void Run();
 		void OnEvent();
-		void PushLayer(Layer* layer);
-		void PushOverlay(Layer* layer);
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
