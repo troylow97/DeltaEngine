@@ -20,6 +20,8 @@ namespace DeltaEngine
 
 		bool m_FlipX, m_FlipY;
 
+		bool m_Shaded, m_Wireframe;
+
 		SpriteRenderer(Texture2D* t = nullptr, Shader* s = nullptr);
 		~SpriteRenderer();
 		void Render(const Camera& camera) override;

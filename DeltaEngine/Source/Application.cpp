@@ -52,7 +52,9 @@ namespace DeltaEngine
 
         env.pManager->set_loader<Shader>(new ShaderLoader())
             .load<Shader>("Default", "Shaders/Default")
-            .load<Shader>("DefaultText", "Shaders/DefaultText");
+            .load<Shader>("DefaultText", "Shaders/DefaultText")
+            .load<Shader>("Error", "Shaders/ErrorShader")
+            .set_fallback<Shader>(env.pManager->get<Shader>("Error"));
 
         env.pManager->set_loader<Texture2D>(new TextureLoader())
             .load<Texture2D>("idle", "idle.png")
@@ -98,22 +100,14 @@ namespace DeltaEngine
         //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
         //    env.pManager->get<Shader>("Default"));
         auto entitysr = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
-        //auto& spriteRenderer = env.pECS->world().get_entity_manager().get_component<SpriteRenderer>(entity1);
         auto& animator = env.pECS->world().get_entity_manager().get_component<Animator>(entitysr);
         auto entitytr = env.pECS->world().get_entity_manager().create_entity<Transform, TextRenderer>();
         auto& textrender = env.pECS->world().get_entity_manager().get_component<TextRenderer>(entitytr);
+        auto entityps = env.pECS->world().get_entity_manager().create_entity<Transform, ParticleSystem>();
+
         textrender.font = env.pManager->get<Font>("Default");
         textrender.shader = env.pManager->get<Shader>("DefaultText");
-        //spriteRenderer.shader = env.pManager->get<Shader>("Default");
         animator.m_Controller = env.pManager->get<AnimationController>("Player");
-        //animator.renderer = &spriteRenderer;
-
-        //auto* a = new Animator(env.pManager->get<AnimationController>("Player"));
-        //a->renderer = s;
-
-        //auto* t = new TextRenderer(env.pManager->get<Font>("Fail"),
-        //    env.pManager->get<Shader>("DefaultText"));
-        //auto* p = new ParticleSystem();
 
         //physics test start init var
         auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
@@ -123,7 +117,7 @@ namespace DeltaEngine
 
         trans.position = Vector3(0.55f, 0.55f);
         trans.scale = Vector3(1, 1);
-        col.type = ColliderType::BOX;
+        col.type = ColliderType::CIRCLE;
 
         auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
         auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
@@ -132,7 +126,7 @@ namespace DeltaEngine
         t2.position = Vector3(-0.55f, -0.55f);
         t2.scale = Vector3(1, 1);
         r2.Velocity = Vector2(0, 0);
-        col2.type = ColliderType::BOX;
+        col2.type = ColliderType::CIRCLE;
         //physics test end
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
@@ -146,12 +140,42 @@ namespace DeltaEngine
                     {
                         r1.Velocity = {-1, 0};
                     });
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
+                    {
+                        a.SetFloat("Speed", 1.0f);
+                    });
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, SpriteRenderer& s)
+                    {
+                        s.m_FlipX = true;
+                    });
+            }
+            else if (InputSystem::get()->isKeyReleased(DEVK_A))
+            {
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
+                    {
+                        a.SetFloat("Speed", 0.0f);
+                    });
             }
             if (InputSystem::get()->isKeyPressed(DEVK_D))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
                     {
                         r1.Velocity = {1, 0};
+                    });
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
+                    {
+                        a.SetFloat("Speed", 1.0f);
+                    });
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, SpriteRenderer& s)
+                    {
+                        s.m_FlipX = false;
+                    });
+            }
+            else if (InputSystem::get()->isKeyReleased(DEVK_D))
+            {
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
+                    {
+                        a.SetFloat("Speed", 0.0f);
                     });
             }
             if (InputSystem::get()->isKeyPressed(DEVK_W))
@@ -191,8 +215,6 @@ namespace DeltaEngine
                     continue;
                 }
                 env.pWin->Update();
-                VariableUpdate();
-                FixedUpdate();
                 accumulator -= env.pClock->DeltaTime();
             }
             const f64 alpha = accumulator / m_interval;
@@ -211,18 +233,6 @@ namespace DeltaEngine
             EventDispatcher d(ref);
             d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
         }
-
-        //below is how cherno does it
-        //EventDispatcher dispatcher(e);
-        //dispatcher.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
-        //dispatcher.Dispatch<WindowResizeEvent>(DE_BIND_EVENT_FN(Application::OnWindowResize));
-        //
-        //for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
-        //{
-        //    if (e.isHandled)
-        //        break;
-        //    (*it)->OnEvent(e);
-        //}
     }
 
     bool Application::OnWindowClose(WindowCloseEvent& e)
@@ -244,25 +254,5 @@ namespace DeltaEngine
         //Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
 
         return false;
-    }
-
-    void Application::FixedUpdate()
-    {
-        // Collision Update
-        // Collision Resolution Update
-        // Collision Late Update
-        // Level Fixed Update
-    }
-
-    void Application::VariableUpdate()
-    {
-        // Input Update
-        // Level Update
-        // Events Update (Logics)
-        // Level Late Update
-        // Audio Update
-        // Render Update
-        // GUI Update
-        // Memory Update
     }
 }

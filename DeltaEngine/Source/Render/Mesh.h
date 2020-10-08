@@ -85,7 +85,7 @@ namespace DeltaEngine
 
 		static void Init();
 		static void Exit();
-		static void DrawQuad();
+		static void DrawQuad(bool wireframe = false);
 		static void DrawQuad(Vector2 offset, Vector2 tiling, Vector2 pivot);
 		static void DrawLine(Vector3 start, Vector3 end);
 		static void DrawLines(std::vector<std::pair<Vector3, Vector3>> startEndPair);
