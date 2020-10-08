@@ -5,6 +5,9 @@
 #include <algorithm>
 #include <cassert>
 #include <tuple>
+#include <rapidjson/filewritestream.h>
+#include <rapidjson/prettywriter.h>
+
 
 #include "Metatype.h"
 #include "Query.h"
@@ -18,6 +21,11 @@
 namespace DeltaEngine
 {
 
+  namespace Serialize
+  {
+    void WriteEntities( class DeltaEngine::EntityManager &em, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer );
+  }
+
   class DE_API EntityManager
   {
     std::vector<Entity> entities;
@@ -28,7 +36,8 @@ namespace DeltaEngine
 
     size_t entities_live{0};
     size_t entities_dead{0};
-
+    friend class World;
+    friend void DeltaEngine::Serialize::WriteEntities( class DeltaEngine::EntityManager &em, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer );
   public:
     EntityManager();
 

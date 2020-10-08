@@ -1,27 +1,29 @@
 #pragma once
-#include "Vector.h"
 #include "DE_API.h"
-
 namespace DeltaEngine
 {
-	class DE_API Quaternion
-	{
-	public:
-		float x, y, z, w;
 
-		Quaternion();
-		Quaternion(float, float, float, float);
-		static const Quaternion identity();
-		static Quaternion AngleAxis(const float angle, const Vector3 axis);
+struct Vector3;
 
-		//assumes rotation sequencing of yaw, pitch, then roll, or Body 3-2-1
-		static Quaternion EulerAnglesToQuaternion(Vector3 eulerAngles);
+class DE_API Quaternion
+{
+public:
+  float x, y, z, w;
 
-		static Quaternion EulerAnglesToQuaternion(float x, float y, float z);
+  Quaternion();
+  Quaternion( float, float, float, float );
+  static const Quaternion identity();
+  static Quaternion AngleAxis( const float angle, const Vector3 axis );
 
-		static Vector3 QuaternionToEulerAngles(Quaternion q);
+  //assumes rotation sequencing of yaw, pitch, then roll, or Body 3-2-1
+  static Quaternion EulerAnglesToQuaternion( Vector3 eulerAngles );
 
-		Quaternion operator*=(Quaternion rhs);
-	};
-	Quaternion operator*(Quaternion lhs, Quaternion rhs);
+  static Quaternion EulerAnglesToQuaternion( float x, float y, float z );
+
+  static Vector3 QuaternionToEulerAngles( Quaternion q );
+
+  Quaternion operator*=( Quaternion rhs );
+};
+Quaternion operator*( Quaternion lhs, Quaternion rhs );
+
 }

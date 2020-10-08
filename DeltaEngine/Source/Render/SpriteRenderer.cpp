@@ -13,8 +13,6 @@ namespace DeltaEngine
 	SpriteRenderer::~SpriteRenderer()
 	{
 		DeltaEngine_CORE_INFO("Deleting Sprite Renderer");
-		delete sprite;
-		delete shader;
 		DeltaEngine_CORE_INFO("Sprite Renderer deleted");
 	}
 	void SpriteRenderer::Render(const Camera& camera)

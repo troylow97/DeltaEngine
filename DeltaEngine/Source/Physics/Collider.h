@@ -19,7 +19,7 @@ namespace DeltaEngine
   class DE_API RayCollider;
   class DE_API LineCollider;
 
-  class DE_API Collider
+  struct DE_API Collider
   {
   public:
     // if doing trigger

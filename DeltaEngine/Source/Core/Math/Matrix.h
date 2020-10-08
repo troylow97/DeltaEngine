@@ -1,11 +1,13 @@
 #pragma once
 
 #include "DE_API.h"
-#include "Vector.h"
-#include "Quaternion.h"
 
 namespace DeltaEngine
 {
+
+struct Vector3;
+class Quaternion;
+
 #ifdef _MSC_VER
 	// Supress warning: nonstandard extension used : nameless struct/union
 #pragma warning( disable : 4201 )

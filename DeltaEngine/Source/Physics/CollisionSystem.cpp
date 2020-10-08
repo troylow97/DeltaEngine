@@ -1,6 +1,5 @@
 #include "CollisionSystem.h"
 #include "RigidBody.h"
-#include "Core/Math/Transform.h"
 #include "CollisionResponseCallbacks.h"
 
 namespace DeltaEngine
@@ -133,4 +132,3 @@ namespace DeltaEngine
 	}
 
 }
-

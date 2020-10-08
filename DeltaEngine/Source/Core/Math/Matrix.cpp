@@ -1,5 +1,7 @@
 #include "DEpch.h"
 #include "Matrix.h"
+#include "Vector.h"
+#include "Quaternion.h"
 #include <cmath>
 
 namespace DeltaEngine

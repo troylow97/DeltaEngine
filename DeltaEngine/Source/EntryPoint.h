@@ -11,7 +11,7 @@ int main(int argc,char** argv)
 	auto app = DeltaEngine::CreateApplication();
 	app->Run();
 	delete app;
-	
+	std::cout << "Destry" << std::endl;
 	DeltaEngine_CORE_TRACE( "EXIT" );
 	//RenderModule::openGLSystem->Exit();
 	//delete RenderModule::openGLSystem;

@@ -6,6 +6,7 @@
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "Physics/PhysicsSystem.h"
+#include "Reflect/Reflect.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -36,10 +37,8 @@ namespace DeltaEngine
     FileUtils::Root("Assets");
     env.pClock = new GameClock();
     env.pManager = new AM();
-    env.pManager->set_loader<Font>(new FontLoader())
-       .load<Font>("Default", "Fonts/Arial.ttf")
-       .load<Font>("Fail", "Fonts/Arials.ttf")
-       .set_fallback<Font>(env.pManager->get<Font>("Default"));
+    env.pManager->set_loader<Font>( new FontLoader() )
+      .load<Font>( "Default", "Fonts/Arial.ttf" );
 
     env.pManager->set_loader<Shader>(new ShaderLoader())
        .load<Shader>("Default", "Shaders/Default")
@@ -49,7 +48,7 @@ namespace DeltaEngine
        .load<Texture2D>("Running", "run.png");
 
     env.pECS = new ECSModule();
-    env.pECS->world();
+    env.pECS->world().update();
 
 
   }
@@ -57,20 +56,20 @@ namespace DeltaEngine
   Application::~Application()
   {
     DeltaEngine_CORE_INFO("Engine Shutdown");
-    // Events
-    // Audio
-    // Physics
-    // GUI
-    // Render
-    // Window
-    // Memory Manager
+    delete env.pECS;
+    delete env.pManager;
+
+    delete env.pClock;
+    RenderModule::openGLSystem->Exit();
+    delete RenderModule::openGLSystem;
+    delete env.pWin;
   }
   FrameAnimation *anim;
   void Application::Run()
   {
     auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("Running"),
                                  env.pManager->get<Shader>("Default"));
-    auto* t = new TextRenderer(env.pManager->get<Font>("Fail"),
+    auto* t = new TextRenderer(env.pManager->get<Font>("Default"),
                                env.pManager->get<Shader>("DefaultText"));
     auto* p = new ParticleSystem();
 
@@ -98,11 +97,12 @@ namespace DeltaEngine
       }
       const f64 alpha = accumulator / m_interval;
     }
-    RenderModule::openGLSystem->Exit();
-    delete s;
-    delete t;
+    delete anim;
     delete p;
-    delete RenderModule::openGLSystem;
+    delete t;
+
+    delete s;
+    std::cout << "ENDING" << std::endl;
   }
 
     void Application::PushLayer(Layer* layer)

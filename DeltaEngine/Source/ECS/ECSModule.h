@@ -6,29 +6,30 @@
 namespace DeltaEngine
 {
 
-  class DE_API ECSModule
+class DE_API ECSModule
+{
+  std::vector<World *> worlds;
+
+public:
+  ECSModule()
   {
-    std::vector<World*> worlds;
+    worlds.push_back( new World() );
+  }
 
-  public:
-    ECSModule()
-    {
-      worlds.push_back(new World());
-    }
+  World &world()
+  {
+    return *worlds[0]; // default for now
+  }
 
-    World &world()
-    {
-      return *worlds[0]; // default for now
-    }
+  // Multiple World Usage in the future
+  // Get Entities Component Data from other world
+  // Copy Entities Component Data to another world
+  // Move Entities Component Data to another world
 
-    // Multiple World Usage in the future
-    // Get Entities Component Data from other world
-    // Copy Entities Component Data to another world
-    // Move Entities Component Data to another world
+  // Rendering World
+  // Simulation World
+};
 
-    // Rendering World
-    // Simulation World
-  };
 } // namespace DeltaEngine
 
 #define DEFINE_SYSTEM(TYPE, ...)                                                  \
@@ -40,7 +41,7 @@ namespace DeltaEngine
       q.with<struct __VA_ARGS__>();                                               \
       q.build();                                                                  \
       e_query = q;                                                                \
-    }
+    }                                                                     
 
 #define END_DEFINE_SYSTEM(TYPE) \
   }                             \

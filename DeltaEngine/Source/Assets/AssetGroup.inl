@@ -3,6 +3,7 @@ namespace DeltaEngine
   template <typename T1>
   AssetGroup<T1>::~AssetGroup()
   {
+    if (_fallback )
     Internal::safe_delete(_fallback);
   }
 

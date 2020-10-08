@@ -1,5 +1,6 @@
 #include "DEpch.h"
 #include "Quaternion.h"
+#include "Vector.h"
 #include <cmath>
 #include "Math.h"
 
