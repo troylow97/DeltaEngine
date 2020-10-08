@@ -97,10 +97,13 @@ namespace DeltaEngine
 
         //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
         //    env.pManager->get<Shader>("Default"));
-        auto entityss = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
+        auto entitysr = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
         //auto& spriteRenderer = env.pECS->world().get_entity_manager().get_component<SpriteRenderer>(entity1);
-        auto& animator = env.pECS->world().get_entity_manager().get_component<Animator>(entityss);
-
+        auto& animator = env.pECS->world().get_entity_manager().get_component<Animator>(entitysr);
+        auto entitytr = env.pECS->world().get_entity_manager().create_entity<Transform, TextRenderer>();
+        auto& textrender = env.pECS->world().get_entity_manager().get_component<TextRenderer>(entitytr);
+        textrender.font = env.pManager->get<Font>("Default");
+        textrender.shader = env.pManager->get<Shader>("DefaultText");
         //spriteRenderer.shader = env.pManager->get<Shader>("Default");
         animator.m_Controller = env.pManager->get<AnimationController>("Player");
         //animator.renderer = &spriteRenderer;

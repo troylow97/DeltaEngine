@@ -128,7 +128,7 @@ namespace DeltaEngine
 
 			ImGui::EndMenuBar();
 		}
-
+		// camera properties
 		{
 			ImGui::Begin("Camera");
 			static float f = 0.0f;
@@ -140,16 +140,17 @@ namespace DeltaEngine
 			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 			ImGui::End();
 		}
+		// viewport
+		{
+			ImGui::Begin("Viewport");
 
-		ImGui::Begin("Viewport");
-
-		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-		Camera::editorCamera->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
-		Camera::editorCamera->SetViewportSize(viewportPanelSize.x);
-		uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
-		ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-		ImGui::End();
-
+			ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+			Camera::editorCamera->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
+			Camera::editorCamera->SetViewportSize(viewportPanelSize.x);
+			uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
+			ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+			ImGui::End();
+		}
 
 		ImGui::End();
 	}

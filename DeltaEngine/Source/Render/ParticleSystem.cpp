@@ -225,10 +225,10 @@ namespace DeltaEngine
 		std::vector<float> coords;
 		for (auto& particle : m_ParticlePool)
 		{
-			if (simulationSpace == SimualationSpace::Local)
-				particle.transform.parent = &transform;
-			if (simulationSpace == SimualationSpace::World)
-				particle.transform.parent = nullptr;
+			//if (simulationSpace == SimualationSpace::Local)
+			//	particle.transform.parent = &transform;
+			//if (simulationSpace == SimualationSpace::World)
+			//	particle.transform.parent = nullptr;
 
 			if (!particle.active)
 				continue;

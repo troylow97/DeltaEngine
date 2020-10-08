@@ -20,6 +20,7 @@ namespace DeltaEngine
 		Vector2 GetTiling();
 		Vector2 GetPivot();
 		Texture2D* GetTexture();
+		std::string GetName();
 		std::string GetKey();
 		unsigned int GetIndex();
 	};
