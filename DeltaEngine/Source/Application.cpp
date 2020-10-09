@@ -61,7 +61,8 @@ namespace DeltaEngine
 
         env.pManager->set_loader<Texture2D>(new TextureLoader())
             .load<Texture2D>("idle", "idle.png")
-            .load<Texture2D>("run", "run.png");
+            .load<Texture2D>("run", "run.png")
+            .load<Texture2D>("bg", "bg.png");
 
         env.pManager->set_loader<AnimationClip>(new AnimationClipLoader())
             .load<AnimationClip>("Idle", "Idle.clip")
@@ -77,6 +78,7 @@ namespace DeltaEngine
         env.pECS->world().create_systems<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
         env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
         env.pECS->world().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+        env.pECS->world().Load("Entities.json"); 
     }
 
     Application::~Application()
@@ -103,12 +105,15 @@ namespace DeltaEngine
 
       //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
       //    env.pManager->get<Shader>("Default"));
+      auto entitybg = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer>();
+      auto& spriterender = env.pECS->world().get_entity_manager().get_component<SpriteRenderer>(entitybg);
       auto entitysr = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
       auto &animator = env.pECS->world().get_entity_manager().get_component<Animator>( entitysr );
       auto entitytr = env.pECS->world().get_entity_manager().create_entity<Transform, TextRenderer>();
       auto &textrender = env.pECS->world().get_entity_manager().get_component<TextRenderer>( entitytr );
       auto entityps = env.pECS->world().get_entity_manager().create_entity<Transform, ParticleSystem>();
 
+      spriterender.sprite = {"bg"};
       textrender.font = env.pManager->get<Font>( "Default" );
       textrender.shader = env.pManager->get<Shader>( "DefaultText" );
       textrender.transform.scale = Vector3( 0.75, 0.75 );
