@@ -16,28 +16,22 @@ enum class ColliderType
 
 struct Collider
 {
-  Vector2 interPoint;
-  Vector2 DirectionVector;
-  Vector2 ReflectionVector;
-  Vector2 PointEnd;
-  Vector2 normal;
   Vector2 center;
   Vector2 size;
+  Vector2 interPoint;
   ColliderType type;
-  float interTime;
   bool isCollideable;
 
   Collider() :
-    interPoint { 0,0 },
-    DirectionVector { 0,0 },
-    ReflectionVector { 0,0 },
-    PointEnd { 0,0 },
-    normal { 0,0 },
-    center { 0,0 },
-    size { 0,0 },
-    type { ColliderType::BOX },
-    interTime { 0.0f },
-    isCollideable { true }
+    isCollideable{true},
+    center{0,0},
+    size{0,0},
+    type{ColliderType::BOX}
+  {}
+  Collider(Vector2 new_center,Vector2 new_size,ColliderType col_type) :
+    center(new_center),
+    size(new_size),
+    type(col_type)
   {}
 
   REGISTER_COMPONENT( Collider )

@@ -11,6 +11,7 @@
 #include "Systems/RenderSystem.h"
 #include "Systems/PhysicsDrawSystem.h"
 #include "ECS/World.h"
+#include "ECS/Components/Character.h"
 #include "Input/InputSystem.h"
 #include "Input/Keys.h"
 /*-----------------------------------
@@ -72,6 +73,8 @@ namespace DeltaEngine
         env.pECS->world().create_systems<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
         env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
         env.pECS->world().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+
+        env.pECS->world().Load( "Entities.json" );
     }
 
     Application::~Application()
@@ -89,234 +92,155 @@ namespace DeltaEngine
         // Memory Manager
     }
 
+
     void Application::Run()
     {
-        DeltaEngine::World& world = env.pECS->world();
-        DeltaEngine::EntityManager& em = world.get_entity_manager();
-        env.pManager->get<Texture2D>("run")->SliceAll(2, 3);
+      DeltaEngine::World &world = env.pECS->world();
+      DeltaEngine::EntityManager &em = world.get_entity_manager();
+      env.pManager->get<Texture2D>( "run" )->SliceAll( 2, 3 );
 
-        //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
-        //    env.pManager->get<Shader>("Default"));
-        auto entitysr = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
-        auto& animator = env.pECS->world().get_entity_manager().get_component<Animator>(entitysr);
-        auto entitytr = env.pECS->world().get_entity_manager().create_entity<Transform, TextRenderer>();
-        auto& textrender = env.pECS->world().get_entity_manager().get_component<TextRenderer>(entitytr);
-        auto entityps = env.pECS->world().get_entity_manager().create_entity<Transform, ParticleSystem>();
+      //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
+      //    env.pManager->get<Shader>("Default"));
+      auto entitysr = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
+      auto &animator = env.pECS->world().get_entity_manager().get_component<Animator>( entitysr );
+      auto entitytr = env.pECS->world().get_entity_manager().create_entity<Transform, TextRenderer>();
+      auto &textrender = env.pECS->world().get_entity_manager().get_component<TextRenderer>( entitytr );
+      auto entityps = env.pECS->world().get_entity_manager().create_entity<Transform, ParticleSystem>();
 
-        textrender.font = env.pManager->get<Font>("Default");
-        textrender.shader = env.pManager->get<Shader>("DefaultText");
-        textrender.transform.scale = Vector3(0.75, 0.75);
-        animator.m_Controller = env.pManager->get<AnimationController>("Player");
+      textrender.font = env.pManager->get<Font>( "Default" );
+      textrender.shader = env.pManager->get<Shader>( "DefaultText" );
+      textrender.transform.scale = Vector3( 0.75, 0.75 );
+      animator.m_Controller = env.pManager->get<AnimationController>( "Player" );
 
-        //physics test start init var
-        auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
-        auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider, Input>();
-        auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
-        auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
+      // FPS Limiter
+      using frames = std::chrono::duration<i32, std::ratio<1, 60>>;
+      auto nextFrame = std::chrono::system_clock::now() + frames{ 0 };
+      auto lastFrame = nextFrame - frames{ 1 };
 
-        t1.position = Vector3(2.85f, 0.55f);
-        t1.scale = Vector3(0.5, 0.5);
-        col.type = ColliderType::BOX;
-        r1.Mass = 25;
-        r1.Restituition = 0.15f;
-        r1.Movespeed = 3.0f;
-        r1.hasGravity = true;
-        r1.inherentAcceleration = 1.1f;
-
-        auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
-        auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
-        auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity2);
-
-        t2.position = Vector3(-0.55f, -0.55f);
-        t2.scale = Vector3(0.25, 0.25);
-        r2.Velocity = Vector2(0, 0);
-        r2.Mass = 25;
-        r2.Restituition = 0.5f;
-        r2.Movespeed = 4.0f;
-        r2.inherentAcceleration = 3.5f;
-        col2.type = ColliderType::BOX;
-        //r2.hasGravity = true;
-
-        auto& t3 = env.pECS->world().get_entity_manager().get_component<Transform>(entity3);
-        auto& r3 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity3);
-        auto& col3 = env.pECS->world().get_entity_manager().get_component<Collider>(entity3);
-
-        t3.position = Vector3(-0.85f, -2.605f);
-        t3.scale = Vector3(5, 1);
-        col3.size = t3.scale;
-        r3.Velocity = Vector2(0, 0);
-        r3.Mass = 100000;
-        r3.Movespeed = 0.15f;
-        r3.isMoveable = false;
-        col3.type = ColliderType::BOX;
-
-        // TODO Modules Instantiation
-        f64 accumulator = 0.0;
-
-        // FPS Limiter
-        using frames = std::chrono::duration<i32, std::ratio<1, 60>>;
-        auto nextFrame = std::chrono::system_clock::now() + frames{ 0 };
-        auto lastFrame = nextFrame - frames{ 1 };
-
-        t4.position = Vector3(-0.65f, 1.605f);
-        t4.scale = Vector3(1, 1);
-        col4.size = t4.scale;
-        r4.Velocity = Vector2(0, 0);
-        r4.Mass = 10;
-        r4.hasGravity = true;
-        col4.type = ColliderType::BOX;
-        while (env.pWin->Running())
+        while ( env.pWin->Running() )
         {
-            // FPS Limiter
-            std::this_thread::sleep_until(nextFrame);
-            lastFrame = nextFrame;
-            nextFrame += frames{ 1 };
+          // FPS Limiter
+          std::this_thread::sleep_until( nextFrame );
+          lastFrame = nextFrame;
+          nextFrame += frames { 1 };
 
-            env.pClock->Update();
+          env.pClock->Update();
 
-            textrender.text = "FPS: " + std::to_string(static_cast<u32>(env.pClock->FrameRate()));
-            textrender.transform.position = Vector3((Camera::editorCamera->Max().x - Camera::editorCamera->Min().x) * -0.28, (Camera::editorCamera->Max().y - Camera::editorCamera->Min().y) * 0.27f);
+          textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
+          textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
 
-        auto entity6 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
-        auto& t6 = env.pECS->world().get_entity_manager().get_component<Transform>(entity6);
-        auto& r6 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity6);
-        auto& col6 = env.pECS->world().get_entity_manager().get_component<Collider>(entity6);
-
-        t6.position = Vector3(3.65f, 2.705f);
-        t6.scale = Vector3(2, 2);
-        col6.size = t6.scale;
-        r6.Velocity = Vector2(0, 0);
-        r6.Mass = 10;
-        col6.type = ColliderType::BOX;
-
-        auto entity7 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
-        auto& t7 = env.pECS->world().get_entity_manager().get_component<Transform>(entity7);
-        auto& r7 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity7);
-        auto& col7 = env.pECS->world().get_entity_manager().get_component<Collider>(entity7);
-
-        t7.position = Vector3(-4.65f, -2.305f);
-        t7.scale = Vector3(1, 1);
-        col7.size = t7.scale;
-        r7.Velocity = Vector2(0, 0);
-        r7.Mass = 10;
-        col7.type = ColliderType::CIRCLE;
-        r7.hasGravity = false;
-
-        MSG msg = {};
-        while (m_Running)
-        {
-            InputSystem::get()->update();
-            if (InputSystem::get()->isKeyPressed(DEVK_A))
+          InputSystem::get()->update();
+          if ( InputSystem::get()->isKeyPressed( DEVK_A ) )
+          {
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, RigidBody &r1, Input &i1 )
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
-                    {
-                        i1.previousKey = DEVK_A;
-                        r1.Velocity = {-1, 0};
-                    });
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
-                    {
-                        a.SetFloat("Speed", 1.0f);
-                    });
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, SpriteRenderer& s)
-                    {
-                        s.m_FlipX = true;
-                    });
-            }
-            else if (InputSystem::get()->isKeyReleased(DEVK_A))
+              i1.previousKey = DEVK_A;
+              r1.Velocity = { -1, 0 };
+            } );
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, Animator &a )
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
-                    {
-                        a.SetFloat("Speed", 0.0f);
-                    });
-            }
-            if (InputSystem::get()->isKeyPressed(DEVK_D))
+              a.SetFloat( "Speed", 1.0f );
+            } );
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, SpriteRenderer &s )
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
-                    {
-                        i1.previousKey = DEVK_D;
-                        r1.Velocity = {1, 0};
-                    });
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
-                    {
-                        a.SetFloat("Speed", 1.0f);
-                    });
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, SpriteRenderer& s)
-                    {
-                        s.m_FlipX = false;
-                    });
-            }
-            else if (InputSystem::get()->isKeyReleased(DEVK_D))
+              s.m_FlipX = true;
+            } );
+          }
+          else if ( InputSystem::get()->isKeyReleased( DEVK_A ) )
+          {
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, Animator &a )
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
-                    {
-                        a.SetFloat("Speed", 0.0f);
-                    });
-            }
-            if (InputSystem::get()->isKeyPressed(DEVK_W))
+              a.SetFloat( "Speed", 0.0f );
+            } );
+          }
+          if ( InputSystem::get()->isKeyPressed( DEVK_D ) )
+          {
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, RigidBody &r1, Input &i1 )
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
-                    {
-                        i1.previousKey = DEVK_W;
-                        r1.Velocity = {0, 1};
-                    });
-            }
-            if (InputSystem::get()->isKeyPressed(DEVK_S))
+              i1.previousKey = DEVK_D;
+              r1.Velocity = { 1, 0 };
+            } );
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, Animator &a )
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
-                    {
-                        i1.previousKey = DEVK_S;
-                        r1.Velocity = {0, -1};
-                    });
-            }
-            if (InputSystem::get()->isKeyTriggered(DEVK_BACKSLASH)) // '\'
+              a.SetFloat( "Speed", 1.0f );
+            } );
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, SpriteRenderer &s )
             {
-                if (InputSystem::get()->getShowLine() == false)
-                {
-                    //std::cout << "V is triggered and line is shown" << std::endl;
-                    InputSystem::get()->setShowLine(true);
-                }
-                else if (InputSystem::get()->getShowLine() == true)
-                {
-                    //std::cout << "V is triggered and line is NOT shown" << std::endl;
-                    InputSystem::get()->setShowLine(false);
-                }
+              s.m_FlipX = false;
+            } );
+          }
+          else if ( InputSystem::get()->isKeyReleased( DEVK_D ) )
+          {
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, Animator &a )
+            {
+              a.SetFloat( "Speed", 0.0f );
+            } );
+          }
+          if ( InputSystem::get()->isKeyPressed( DEVK_W ) )
+          {
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, RigidBody &r1, Input &i1 )
+            {
+              i1.previousKey = DEVK_W;
+              r1.Velocity = { 0, 1 };
+            } );
+          }
+          if ( InputSystem::get()->isKeyPressed( DEVK_S ) )
+          {
+            env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, RigidBody &r1, Input &i1 )
+            {
+              i1.previousKey = DEVK_S;
+              r1.Velocity = { 0, -1 };
+            } );
+          }
+          if ( InputSystem::get()->isKeyTriggered( DEVK_BACKSLASH ) ) // '\'
+          {
+            if ( InputSystem::get()->getShowLine() == false )
+            {
+                //std::cout << "V is triggered and line is shown" << std::endl;
+              InputSystem::get()->setShowLine( true );
             }
+            else if ( InputSystem::get()->getShowLine() == true )
+            {
+                //std::cout << "V is triggered and line is NOT shown" << std::endl;
+              InputSystem::get()->setShowLine( false );
+            }
+          }
 
-            if (InputSystem::get()->isKeyTriggered(DEVK_P))
-            {
-                auto circleEntity = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
-                auto& circleT = env.pECS->world().get_entity_manager().get_component<Transform>(circleEntity);
-                auto& circleR = env.pECS->world().get_entity_manager().get_component<RigidBody>(circleEntity);
-                auto& circleC = env.pECS->world().get_entity_manager().get_component<Collider>(circleEntity);
+          if ( InputSystem::get()->isKeyTriggered( DEVK_P ) )
+          {
+            auto circleEntity = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+            auto &circleT = env.pECS->world().get_entity_manager().get_component<Transform>( circleEntity );
+            auto &circleR = env.pECS->world().get_entity_manager().get_component<RigidBody>( circleEntity );
+            auto &circleC = env.pECS->world().get_entity_manager().get_component<Collider>( circleEntity );
 
-                circleT.position = Vector3(t2.position.x, t2.position.y - 0.25f);
-                circleT.scale = Vector3(0.1, 0.1);
-                circleR.hasGravity = true;
-                circleC.type = ColliderType::CIRCLE;
-            }
+            circleT.scale = Vector3( 0.1, 0.1 );
+            circleR.hasGravity = true;
+            circleC.type = ColliderType::CIRCLE;
+          }
 
-            // gets the coordinates of the mouse, good for debugging
-            if (InputSystem::get()->onMouseMove())
-                InputSystem::get()->currentPosition();
+          // gets the coordinates of the mouse, good for debugging
+          if ( InputSystem::get()->onMouseMove() )
+            InputSystem::get()->currentPosition();
 
-            InputSystem::get()->update();
-            env.pWin->Update();
-            // Update engine GameClock
-            env.pECS->world().update();
-            env.pECS->world().late_update();
-            m_ImGuiLayer->Begin();
-            m_ImGuiLayer->End();
-            ::SwapBuffers(RenderModule::openGLSystem->GetWindowContext());
-            // Update accumulator using time-scaled dt
-            // accumulator += env.pClock->DeltaTime();
-            //// Update based on interval
-            //while (accumulator >= m_interval)
-            //{
-            //    accumulator -= env.pClock->DeltaTime();
-            //}
-            //const f64 alpha = accumulator / m_interval;
+          InputSystem::get()->update();
+          env.pWin->Update();
+          // Update engine GameClock
+          env.pECS->world().update();
+          env.pECS->world().late_update();
+          m_ImGuiLayer->Begin();
+          m_ImGuiLayer->End();
+          ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
+          // Update accumulator using time-scaled dt
+          // accumulator += env.pClock->DeltaTime();
+          //// Update based on interval
+          //while (accumulator >= m_interval)
+          //{
+          //    accumulator -= env.pClock->DeltaTime();
+          //}
+          //const f64 alpha = accumulator / m_interval;
         }
-    }
+      }
+    
 
     void Application::OnEvent()
     {

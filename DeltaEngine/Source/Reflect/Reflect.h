@@ -5,6 +5,7 @@
 #include "ECS/Components/Transform.h"
 #include "ECS/Components/Collider.h"
 #include "ECS/Components/RigidBody.h"
+#include "ECS/Components/Character.h"
 #include <rttr/registration>
 
 namespace DeltaEngine
@@ -66,10 +67,16 @@ RTTR_REGISTRATION
   rttr::registration::class_<RigidBody>( "rigidbody" )
     ( rttr::metadata( "hash", Metatype::get_metatype<RigidBody>()->hash.digest ) )
     .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "direction", &RigidBody::Direction)
     .property( "velocity", &RigidBody::Velocity )
+    .property( "reflected_vector", &RigidBody::ReflectedVector)
     .property( "acceleration", &RigidBody::Acceleration )
     .property( "mass", &RigidBody::Mass )
+    .property("friction", &RigidBody::Friction)
+    .property( "movespeed", &RigidBody::Movespeed)
+    .property("inherent_acceleration", &RigidBody::inherentAcceleration)
     .property( "has_gravity", &RigidBody::hasGravity )
+    .property("is_moveable", &RigidBody::isMoveable)
     .method( "serialize", &RigidBody::Serialize )
     .method( "deserialize", &RigidBody::Deserialize );
 
@@ -77,17 +84,22 @@ RTTR_REGISTRATION
     ( rttr::metadata( "hash", Metatype::get_metatype<Collider>()->hash.digest ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "inter_point", &Collider::interPoint )
-    .property( "direction_vector", &Collider::DirectionVector )
-    .property( "reflection_vector", &Collider::ReflectionVector )
-    .property( "point_end", &Collider::PointEnd )
-    .property( "normal", &Collider::normal )
     .property( "center", &Collider::center )
     .property( "size", &Collider::size )
+    .property( "inter_point", &Collider::interPoint )
     .property( "type", &Collider::type )
-    .property( "inter_time", &Collider::interTime )
     .property( "is_collideable", &Collider::isCollideable )
     .method( "serialize", &Collider::Serialize )
     .method( "deserialize", &Collider::Deserialize );
+
+
+  rttr::registration::class_<Input>( "input" )
+    ( rttr::metadata( "hash", Metatype::get_metatype<Input>()->hash.digest ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "prev", &Input::previousKey )
+    .property("curr", &Input::currentKey)
+    .method( "serialize", &Input::Serialize )
+    .method( "deserialize", &Input::Deserialize );
 
 }
 
@@ -101,6 +113,8 @@ RTTR_REGISTRATION
       return rttr::type::get_by_name( "collider" );
     else if ( rttr::type::get_by_name( "rigidbody" ).get_metadata( "hash" ).to_uint64() == hash )
       return rttr::type::get_by_name( "rigidbody" );
+    else if ( rttr::type::get_by_name( "input" ).get_metadata( "hash" ).to_uint64() == hash )
+      return rttr::type::get_by_name( "input" );
     return rttr::type::get<int>();
   }
 }

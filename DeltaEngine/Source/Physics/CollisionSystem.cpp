@@ -6,7 +6,8 @@
 #include <cmath>
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
-#include "../MainCharacterComponent.h"
+#include "ECS/Components/Character.h"
+#include "Manifold.h"
 
 namespace DeltaEngine
 {

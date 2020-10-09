@@ -16,10 +16,4 @@ namespace DeltaEngine
     size_t capacity;
   };
 
-  struct Input
-  {
-      int previousKey;
-      int currentKey;
-  };
-
 } // namespace DeltaEngine
