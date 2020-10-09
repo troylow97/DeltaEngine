@@ -21,7 +21,7 @@ namespace DeltaEngine
 {
     DeltaEngineGlobalEnvironment env;
 
-    Application::Application() : m_Running{ true }, m_Minimized{ true }, m_interval(0.25)
+    Application::Application() : m_Minimized{ true }, m_interval(0.25)
     {
         Log::Init();
         DeltaEngine_CORE_INFO("Engine Start");
@@ -67,8 +67,6 @@ namespace DeltaEngine
         env.pManager->set_loader<AnimationController>(new AnimationControllerLoader())
             .load<AnimationController>("Player", "Player.anim");
 
-        env.pECS = new ECSModule();
-        env.pECS->world();
         env.pECS = new ECSModule();
         env.pECS->world();
         env.pECS->world().create_systems<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
@@ -137,8 +135,7 @@ namespace DeltaEngine
         auto nextFrame = std::chrono::system_clock::now() + frames{ 0 };
         auto lastFrame = nextFrame - frames{ 1 };
 
-        MSG msg = {};
-        while (m_Running)
+        while (env.pWin->Running())
         {
             // FPS Limiter
             std::this_thread::sleep_until(nextFrame);
@@ -239,11 +236,10 @@ namespace DeltaEngine
 
             // gets the coordinates of the mouse, good for debugging
             if (InputSystem::get()->onMouseMove())
-            {
                 InputSystem::get()->currentPosition();
-            }
 
             InputSystem::get()->update();
+            env.pWin->Update();
             // Update engine GameClock
             env.pClock->Update();
             env.pECS->world().update();
@@ -252,46 +248,30 @@ namespace DeltaEngine
             m_ImGuiLayer->End();
             ::SwapBuffers(RenderModule::openGLSystem->GetWindowContext());
             // Update accumulator using time-scaled dt
-            accumulator += env.pClock->DeltaTime();
-
-            // Update based on interval
-            while (accumulator >= m_interval)
-            {
-                if (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
-                {
-                    if (msg.message == WM_QUIT)
-                        m_Running = false;
-                    TranslateMessage(&msg);
-                    DispatchMessage(&msg);
-                    continue;
-                }
-                env.pWin->Update();
-                accumulator -= env.pClock->DeltaTime();
-            }
-            const f64 alpha = accumulator / m_interval;
+            // accumulator += env.pClock->DeltaTime();
+            //// Update based on interval
+            //while (accumulator >= m_interval)
+            //{
+            //    accumulator -= env.pClock->DeltaTime();
+            //}
+            //const f64 alpha = accumulator / m_interval;
         }
     }
 
     void Application::OnEvent()
     {
-        EventManager event_manager;
+        //EventManager event_manager;
 
-        event_manager.addEvent(WindowCloseEvent());
+        //event_manager.addEvent(WindowCloseEvent());
 
-        if (!event_manager.isEmpty())
-        {
-            auto& ref = event_manager.resolveEvent();
-            EventDispatcher d(ref);
-            d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
-        }
+        //if (!event_manager.isEmpty())
+        //{
+        //    auto& ref = event_manager.resolveEvent();
+        //    EventDispatcher d(ref);
+        //    d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
+        //}
     }
 
-    bool Application::OnWindowClose(WindowCloseEvent& e)
-    {
-        UNREFERENCED_PARAMETER(e);
-        m_Running = false;
-        return true;
-    }
 
     bool Application::OnWindowResize(WindowResizeEvent& e)
     {

@@ -6,7 +6,6 @@
 
 namespace DeltaEngine
 {
-
 class DE_API GameClock
 {
 
@@ -16,15 +15,15 @@ class DE_API GameClock
 
 public:
   /*************************************************************
- * Constructor / Destructor
- *************************************************************/
+  * Constructor / Destructor
+  *************************************************************/
 
   GameClock();
   ~GameClock() = default;
 
   /*************************************************************
- * Interface
- *************************************************************/
+  * Interface
+  *************************************************************/
 
   // timescale setter / getter
   f32 TimeScale() const;
@@ -37,31 +36,30 @@ public:
   // called at start of loop
   void Update();
 
+  // framecount
+  u64 FrameCount() const;
+
   // getter for timescaled / real dt / fixed dt
-  f32 DeltaTime() const;
-  f32 UnscaledDeltaTime() const;
+  f64 DeltaTime() const;
+  f64 RealDeltaTime() const;
 
   // ElapsedTime / Unscaled ElapsedTime
-  f32 ElapsedTime() const;
-  f32 UnscaledElapsedTime() const;
+  f64 ElapsedTime() const;
+  f64 UnscaledElapsedTime() const;
 
   // FPS
-  u32 FrameRate() const;
+  f64 FrameRate() const;
 
-  bool update {false};
 private:
-  TimePoint m_current;
-  u32 m_fps;
-  u32 m_frame;
-  f32 m_dt;
-  f32 m_g_dt;
-  f32 m_elapsed;
-  f32 m_g_elapsed;
-  f32 m_timescale;
-  f32 m_accumulator;
-  f32 m_frameDuration;
-  f32 m_interval;
-  bool m_paused;
+  TimePoint _start;
+  TimePoint _current;
+  u64 _frame;
+  f64 _elapsed;
+  f64 _dt;
+  f64 _g_elapsed;
+  f64 _g_dt;
+  f32 _timescale;
+  bool _paused;
+  // memory size - 64
 };
-
 } // namespace DeltaEngine
