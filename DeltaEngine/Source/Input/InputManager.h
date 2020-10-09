@@ -7,16 +7,15 @@
 
 namespace DeltaEngine
 {
-
-    class DE_API InputSystem //: public InputListener
+    class DE_API InputManager //: public InputListener
     {
 
         KeyboardInput _keyboard;
         MouseInput _mouse;
 
     public:
-        InputSystem();
-        ~InputSystem();
+        InputManager();
+        ~InputManager();
 
         void reset();
         // to get the input events
@@ -25,9 +24,9 @@ namespace DeltaEngine
         //void addListener(InputListener* listener);
         //void removeListener(InputListener* listener);
 
-        // get static method as InputSystem is a singleton class
+        // get static method as InputManager is a singleton class
         // returns a pointer to an only instance of the class
-        static InputSystem* get();
+        static InputManager* get();
 
         bool isKeyTriggered(int key);
         bool isKeyPressed(int key);

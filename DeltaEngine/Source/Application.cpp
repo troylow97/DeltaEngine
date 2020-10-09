@@ -12,10 +12,10 @@
 #include "Systems/AnimationSystem.h"
 #include "Systems/RenderSystem.h"
 #include "Systems/PhysicsDrawSystem.h"
+#include "Systems/InputSystem.h"
 #include "ECS/World.h"
+#include "Input/InputManager.h"
 #include "ECS/Components/Character.h"
-#include "Input/InputSystem.h"
-#include "Input/Keys.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -33,7 +33,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   JsonFile f;
   EngineConfig c;
   f.StartReader( "config.json" ).LoadObject( c ).EndReader();
-  env.pClock = new GameClock(c.fps);
+  env.pClock = new GameClock( c.fps );
 
   env.pWin = new Window( c.win_name, c.width, c.height );
   env.pWin->Init();
@@ -47,15 +47,13 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   // Asset Loading
   env.pManager = new AM();
   env.pManager->set_loader<Font>( new FontLoader() )
-    .load<Font>( "Default", "Fonts/Arial.ttf" )
     .load<Font>( "Fail", "Fonts/Arials.ttf" )
-    .set_fallback<Font>( env.pManager->get<Font>( "Default" ) );
+    .set_fallback<Font>( new Font("Fonts/Arial.ttf") );
 
   env.pManager->set_loader<Shader>( new ShaderLoader() )
     .load<Shader>( "Default", "Shaders/Default" )
     .load<Shader>( "DefaultText", "Shaders/DefaultText" )
-    .load<Shader>( "Error", "Shaders/ErrorShader" )
-    .set_fallback<Shader>( env.pManager->get<Shader>( "Error" ) );
+    .set_fallback<Shader>( new Shader("Shaders/ErrorShader") );
 
   env.pManager->set_loader<Texture2D>( new TextureLoader() )
     .load<Texture2D>( "idle", "idle.png" )
@@ -70,10 +68,9 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   env.pECS = new ECSModule();
   env.pECS->world();
-  env.pECS->world().create_systems<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->world().create_systems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->world().set_update_sequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->world().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-
   env.pECS->world().Load( "World/Entities.json" );
 }
 
@@ -112,102 +109,11 @@ void Application::Run()
 
   while ( env.pWin->Running() )
   {
+    textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
+    textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
     if ( env.pClock->Update() )
     {
-      InputSystem::get()->update();
-      if ( InputSystem::get()->isKeyPressed( DEVK_A ) )
-      {
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, RigidBody &r1, Input &i1 )
-        {
-          i1.previousKey = DEVK_A;
-          r1.Velocity = { -1, 0 };
-        } );
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, Animator &a )
-        {
-          a.SetFloat( "Speed", 1.0f );
-        } );
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, SpriteRenderer &s )
-        {
-          s.m_FlipX = true;
-        } );
-      }
-      else if ( InputSystem::get()->isKeyReleased( DEVK_A ) )
-      {
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, Animator &a )
-        {
-          a.SetFloat( "Speed", 0.0f );
-        } );
-      }
-      if ( InputSystem::get()->isKeyPressed( DEVK_D ) )
-      {
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, RigidBody &r1, Input &i1 )
-        {
-          i1.previousKey = DEVK_D;
-          r1.Velocity = { 1, 0 };
-        } );
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, Animator &a )
-        {
-          a.SetFloat( "Speed", 1.0f );
-        } );
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, SpriteRenderer &s )
-        {
-          s.m_FlipX = false;
-        } );
-      }
-      else if ( InputSystem::get()->isKeyReleased( DEVK_D ) )
-      {
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, Animator &a )
-        {
-          a.SetFloat( "Speed", 0.0f );
-        } );
-      }
-      if ( InputSystem::get()->isKeyPressed( DEVK_W ) )
-      {
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, RigidBody &r1, Input &i1 )
-        {
-          i1.previousKey = DEVK_W;
-          r1.Velocity = { 0, 1 };
-        } );
-      }
-      if ( InputSystem::get()->isKeyPressed( DEVK_S ) )
-      {
-        env.pECS->world().get_entity_manager().for_each( [&]( EntityID id1, RigidBody &r1, Input &i1 )
-        {
-          i1.previousKey = DEVK_S;
-          r1.Velocity = { 0, -1 };
-        } );
-      }
-      if ( InputSystem::get()->isKeyTriggered( DEVK_BACKSLASH ) ) // '\'
-      {
-        if ( InputSystem::get()->getShowLine() == false )
-        {
-          //std::cout << "V is triggered and line is shown" << std::endl;
-          InputSystem::get()->setShowLine( true );
-        }
-        else if ( InputSystem::get()->getShowLine() == true )
-        {
-          //std::cout << "V is triggered and line is NOT shown" << std::endl;
-          InputSystem::get()->setShowLine( false );
-        }
-      }
-
-      if ( InputSystem::get()->isKeyTriggered( DEVK_P ) )
-      {
-        auto circleEntity = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
-        auto &circleT = env.pECS->world().get_entity_manager().get_component<Transform>( circleEntity );
-        auto &circleR = env.pECS->world().get_entity_manager().get_component<RigidBody>( circleEntity );
-        auto &circleC = env.pECS->world().get_entity_manager().get_component<Collider>( circleEntity );
-
-        circleT.scale = Vector3( 0.1, 0.1 );
-        circleR.hasGravity = true;
-        circleC.type = ColliderType::CIRCLE;
-      }
-
-      // gets the coordinates of the mouse, good for debugging
-      if ( InputSystem::get()->onMouseMove() )
-        InputSystem::get()->currentPosition();
-
-      InputSystem::get()->update();
+      InputManager::get()->update();
       env.pWin->Update();
       // Update engine GameClock
       env.pECS->world().update();
@@ -216,8 +122,6 @@ void Application::Run()
       m_ImGuiLayer->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
     }
-    textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
-    textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
   }
 }
 

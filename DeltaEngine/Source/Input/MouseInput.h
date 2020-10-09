@@ -20,7 +20,7 @@ namespace DeltaEngine
 		bool _moveEvent;
 		bool _firstTime = true;
 
-		friend class InputSystem;
+		friend class InputManager;
 
 		void reset();
 		void update();
