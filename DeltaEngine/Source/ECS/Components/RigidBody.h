@@ -9,6 +9,9 @@ namespace DeltaEngine
 {
 	struct RigidBody
 	{
+		bool isMoveable;
+		float Mass;
+		Vector2 Direction;
 		Vector2 Velocity;
 		Vector2 Acceleration;
 		float Mass;
@@ -17,8 +20,10 @@ namespace DeltaEngine
 		RigidBody() :
 			Velocity{0,0},
 			Acceleration{0,0},
-			Mass{50.0f},
-			hasGravity{false}
+			hasGravity{false},
+			Friction{0.97},
+			inherentAcceleration{3.0f},
+			isMoveable{true}
 		{}
 
 		REGISTER_COMPONENT(RigidBody)

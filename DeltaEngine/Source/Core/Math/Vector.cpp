@@ -319,8 +319,28 @@ Vector4::Vector4() : x { 0 }, y { 0 }, z { 0 }, w { 0 } {}
 Vector4::Vector4( float v0, float v1, float v2 ) : x { v0 }, y { v1 }, z { v2 }, w { 0 } {}
 Vector4::Vector4( float v0, float v1, float v2, float v3 ) : x { v0 }, y { v1 }, z { v2 }, w { v3 } {}
 
-float Vector2DotProduct( const Vector2 &pVec0, const Vector2 &pVec1 )
-{
-  return pVec0.x * pVec1.x + pVec0.y * pVec1.y;
-}
+	float Vector2DotProduct(const Vector2& pVec0, const Vector2& pVec1)
+	{
+		return pVec0.x * pVec1.x + pVec0.y * pVec1.y;
+	}
+
+	float Vector2Length(const Vector2& pVec0)
+	{
+		return sqrt(pVec0.x * pVec0.x + pVec0.y * pVec0.y);
+	}
+
+	Vector2 Normalise(Vector2& v)
+	{
+		float magnitude = Vector2Length(v);
+		Vector2 pResult{ 0,0 };
+
+		if (magnitude != 1 && magnitude != 0)
+		{
+			pResult.x = v.x / magnitude;
+			pResult.y = v.y / magnitude;
+		}
+
+		return pResult;
+	}
+
 }

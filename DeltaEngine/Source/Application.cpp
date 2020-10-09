@@ -114,9 +114,14 @@ namespace DeltaEngine
         auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
         auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
 
-        trans.position = Vector3(0.55f, 0.55f);
-        trans.scale = Vector3(1, 1);
-        col.type = ColliderType::CIRCLE;
+        t1.position = Vector3(2.85f, 0.55f);
+        t1.scale = Vector3(0.5, 0.5);
+        col.type = ColliderType::BOX;
+        r1.Mass = 25;
+        r1.Restituition = 0.15f;
+        r1.Movespeed = 3.0f;
+        r1.hasGravity = true;
+        r1.inherentAcceleration = 1.1f;
 
         auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
         auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
@@ -125,8 +130,26 @@ namespace DeltaEngine
         t2.position = Vector3(-0.55f, -0.55f);
         t2.scale = Vector3(0.25, 0.25);
         r2.Velocity = Vector2(0, 0);
+        r2.Mass = 25;
+        r2.Restituition = 0.5f;
+        r2.Movespeed = 4.0f;
+        r2.inherentAcceleration = 3.5f;
         col2.type = ColliderType::BOX;
-        //physics test end
+        //r2.hasGravity = true;
+
+        auto& t3 = env.pECS->world().get_entity_manager().get_component<Transform>(entity3);
+        auto& r3 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity3);
+        auto& col3 = env.pECS->world().get_entity_manager().get_component<Collider>(entity3);
+
+        t3.position = Vector3(-0.85f, -2.605f);
+        t3.scale = Vector3(5, 1);
+        col3.size = t3.scale;
+        r3.Velocity = Vector2(0, 0);
+        r3.Mass = 100000;
+        r3.Movespeed = 0.15f;
+        r3.isMoveable = false;
+        col3.type = ColliderType::BOX;
+
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
 
@@ -135,6 +158,13 @@ namespace DeltaEngine
         auto nextFrame = std::chrono::system_clock::now() + frames{ 0 };
         auto lastFrame = nextFrame - frames{ 1 };
 
+        t4.position = Vector3(-0.65f, 1.605f);
+        t4.scale = Vector3(1, 1);
+        col4.size = t4.scale;
+        r4.Velocity = Vector2(0, 0);
+        r4.Mass = 10;
+        r4.hasGravity = true;
+        col4.type = ColliderType::BOX;
         while (env.pWin->Running())
         {
             // FPS Limiter
@@ -147,6 +177,35 @@ namespace DeltaEngine
             textrender.text = "FPS: " + std::to_string(static_cast<u32>(env.pClock->FrameRate()));
             textrender.transform.position = Vector3((Camera::editorCamera->Max().x - Camera::editorCamera->Min().x) * -0.28, (Camera::editorCamera->Max().y - Camera::editorCamera->Min().y) * 0.27f);
 
+        auto entity6 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+        auto& t6 = env.pECS->world().get_entity_manager().get_component<Transform>(entity6);
+        auto& r6 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity6);
+        auto& col6 = env.pECS->world().get_entity_manager().get_component<Collider>(entity6);
+
+        t6.position = Vector3(3.65f, 2.705f);
+        t6.scale = Vector3(2, 2);
+        col6.size = t6.scale;
+        r6.Velocity = Vector2(0, 0);
+        r6.Mass = 10;
+        col6.type = ColliderType::BOX;
+
+        auto entity7 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+        auto& t7 = env.pECS->world().get_entity_manager().get_component<Transform>(entity7);
+        auto& r7 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity7);
+        auto& col7 = env.pECS->world().get_entity_manager().get_component<Collider>(entity7);
+
+        t7.position = Vector3(-4.65f, -2.305f);
+        t7.scale = Vector3(1, 1);
+        col7.size = t7.scale;
+        r7.Velocity = Vector2(0, 0);
+        r7.Mass = 10;
+        col7.type = ColliderType::CIRCLE;
+        r7.hasGravity = false;
+
+        MSG msg = {};
+        while (m_Running)
+        {
+            InputSystem::get()->update();
             if (InputSystem::get()->isKeyPressed(DEVK_A))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
