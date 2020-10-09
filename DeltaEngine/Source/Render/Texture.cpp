@@ -41,7 +41,7 @@ namespace DeltaEngine
 		if (pos != std::string::npos)
 			m_Name.erase(pos);
 
-		LoadMetaFile(filepath + ".meta");
+		LoadMetaFile(filepath + ".info");
 	}
 
 	Texture2D::~Texture2D()
@@ -78,7 +78,7 @@ namespace DeltaEngine
 	void Texture2D::Slice(TextureInfo info)
 	{
 		textureInfo.push_back(info);
-		UpdateMetaFile(m_Filepath + ".meta");
+		UpdateMetaFile(m_Filepath + ".info");
 	}
 
 	void Texture2D::SliceAll(unsigned int columns, unsigned int rows)
@@ -94,7 +94,7 @@ namespace DeltaEngine
 					Vector2(0.5f, 0.5f) });
 			}
 		}
-		UpdateMetaFile(m_Filepath + ".meta");
+		UpdateMetaFile(m_Filepath + ".info");
 	}
 
 	Vector2 Texture2D::GetOffset(unsigned int index)
@@ -117,7 +117,7 @@ namespace DeltaEngine
 	void Texture2D::LoadMetaFile(std::string filepath)
 	{
 		std::ifstream file;
-		DeltaEngine_CORE_TRACE("Loading Texture meta file \"{}\"...", filepath.c_str());
+		DeltaEngine_CORE_TRACE("Loading Texture info file \"{}\"...", filepath.c_str());
 		file.open((filepath).c_str());
 
 		std::string str;
@@ -137,7 +137,7 @@ namespace DeltaEngine
 		}
 		else
 		{
-			DeltaEngine_CORE_WARN("Texture meta file \"{}\" doesn't exist, creating automatically", filepath.c_str());
+			DeltaEngine_CORE_WARN("Texture info file \"{}\" doesn't exist, creating automatically", filepath.c_str());
 			textureInfo.push_back({
 				Vector2(0, 0), Vector2(static_cast<float>(m_Width), static_cast<float>(m_Height)), Vector2(0.5f, 0.5f) });
 			UpdateMetaFile(filepath);
@@ -160,7 +160,7 @@ namespace DeltaEngine
 		}
 		else
 		{
-			DeltaEngine_CORE_ERROR("Failed to create meta file for texture \"{}\"!", filepath);
+			DeltaEngine_CORE_ERROR("Failed to create info file for texture \"{}\"!", filepath);
 		}
 	}
 }

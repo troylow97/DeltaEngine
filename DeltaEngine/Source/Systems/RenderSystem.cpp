@@ -12,6 +12,5 @@ namespace DeltaEngine
     {
         Camera::editorCamera->End();
 
-        ::SwapBuffers(RenderModule::openGLSystem->GetWindowContext());
     }
 }

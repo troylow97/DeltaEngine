@@ -54,16 +54,6 @@ namespace DeltaEngine
 		return 2.0f * (wx + wy);
 	}
 
-	float AABB::getWidth() const
-	{
-		return max.x - min.x;
-	}
-
-	float AABB::getHeight() const
-	{
-		return max.y - min.y;
-	}
-
 	LineSegment::LineSegment() :
 		m_pt0{ 0,0 },
 		m_pt1{ 1,1 },

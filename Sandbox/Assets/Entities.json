@@ -1,0 +1,463 @@
+{
+    "Entities": [
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 2.8499999046325685,
+                    "y": 0.550000011920929,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "direction": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "velocity": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "reflected_vector": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "acceleration": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "mass": 25.0,
+                "friction": 0.9700000286102295,
+                "movespeed": 3.0,
+                "inherent_acceleration": 1.100000023841858,
+                "has_gravity": true,
+                "is_moveable": true
+            },
+            "collider": {
+                "inter_point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_collideable": true
+            },
+            "input": {
+                "prev": 0,
+                "curr": 0
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": -0.550000011920929,
+                    "y": -0.550000011920929,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "direction": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "velocity": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "reflected_vector": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "acceleration": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "mass": 25.0,
+                "friction": 0.9700000286102295,
+                "movespeed": 4.0,
+                "inherent_acceleration": 3.5,
+                "has_gravity": false,
+                "is_moveable": true
+            },
+            "collider": {
+                "inter_point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_collideable": true
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": -0.8500000238418579,
+                    "y": -2.6050000190734865,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 5.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "direction": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "velocity": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "reflected_vector": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "acceleration": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "mass": 100000.0,
+                "friction": 0.9700000286102295,
+                "movespeed": 0.15000000596046449,
+                "inherent_acceleration": 3.0,
+                "has_gravity": false,
+                "is_moveable": false
+            },
+            "collider": {
+                "inter_point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 5.0,
+                    "y": 1.0
+                },
+                "type": "box",
+                "is_collideable": true
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": -0.6499999761581421,
+                    "y": 1.6050000190734864,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "direction": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "velocity": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "reflected_vector": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "acceleration": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "mass": 10.0,
+                "friction": 0.9700000286102295,
+                "movespeed": 0.0,
+                "inherent_acceleration": 3.0,
+                "has_gravity": true,
+                "is_moveable": true
+            },
+            "collider": {
+                "inter_point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "type": "box",
+                "is_collideable": true
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 3.6500000953674318,
+                    "y": -1.6050000190734864,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 3.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "direction": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "velocity": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "reflected_vector": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "acceleration": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "mass": 10.0,
+                "friction": 0.9700000286102295,
+                "movespeed": 0.0,
+                "inherent_acceleration": 3.0,
+                "has_gravity": false,
+                "is_moveable": true
+            },
+            "collider": {
+                "inter_point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 3.0,
+                    "y": 1.0
+                },
+                "type": "box",
+                "is_collideable": true
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 3.6500000953674318,
+                    "y": 2.7049999237060549,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 2.0,
+                    "y": 2.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "direction": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "velocity": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "reflected_vector": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "acceleration": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "mass": 10.0,
+                "friction": 0.9700000286102295,
+                "movespeed": 0.0,
+                "inherent_acceleration": 3.0,
+                "has_gravity": false,
+                "is_moveable": true
+            },
+            "collider": {
+                "inter_point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 2.0,
+                    "y": 2.0
+                },
+                "type": "box",
+                "is_collideable": true
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": -4.650000095367432,
+                    "y": -2.305000066757202,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "direction": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "velocity": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "reflected_vector": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "acceleration": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "mass": 10.0,
+                "friction": 0.9700000286102295,
+                "movespeed": 0.0,
+                "inherent_acceleration": 3.0,
+                "has_gravity": false,
+                "is_moveable": true
+            },
+            "collider": {
+                "inter_point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "type": "circle",
+                "is_collideable": true
+            }
+        }
+    ]
+}

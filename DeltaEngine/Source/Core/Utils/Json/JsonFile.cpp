@@ -14,96 +14,96 @@ namespace DeltaEngine
 
 JsonFile &JsonFile::StartWriter( std::string filename )
 {
-  assert( fp == nullptr );
-  fopen_s( &fp, filename.c_str(), "wb" );
-  buffer = new char[65536] {};
-  wstream = new FileWriteStream( fp, buffer, 65536 );
-  writer = new PrettyWriter<FileWriteStream>( *wstream );
+  assert( m_fp == nullptr );
+  fopen_s( &m_fp, filename.c_str(), "wb" );
+  m_buffer = new char[65536] {};
+  m_wstream = new FileWriteStream( m_fp, m_buffer, 65536 );
+  m_writer = new PrettyWriter<FileWriteStream>( *m_wstream );
   return *this;
 }
 
 JsonFile &JsonFile::EndWriter()
 {
-  delete writer;
-  delete wstream;
-  delete buffer;
-  fclose( fp );
-  fp = nullptr;
+  delete m_writer;
+  delete m_wstream;
+  delete m_buffer;
+  fclose( m_fp );
+  m_fp = nullptr;
   return *this;
 }
 
 JsonFile &JsonFile::StartObject()
 {
-  writer->StartObject();
+  m_writer->StartObject();
   return *this;
 }
 
 JsonFile &JsonFile::EndObject()
 {
-  writer->EndObject();
+  m_writer->EndObject();
   return *this;
 }
 
 JsonFile &JsonFile::StartArray()
 {
-  writer->StartArray();
+  m_writer->StartArray();
   return *this;
 }
 
 JsonFile &JsonFile::EndArray()
 {
-  writer->EndArray();
+  m_writer->EndArray();
   return *this;
 }
 
 JsonFile &JsonFile::WriteKey( std::string str )
 {
-  writer->String( str );
+  m_writer->String( str );
   return *this;
 }
 
-JsonFile &JsonFile::Write( instance object )
+JsonFile &JsonFile::WriteObject( instance object )
 {
-  Serialize::Write( object, *writer );
+  Serialize::WriteObject( object, *m_writer );
   return *this;
 }
 
 JsonFile &JsonFile::WriteArray( const variant_sequential_view &view )
 {
-  Serialize::WriteArray( view, *writer );
+  Serialize::WriteArray( view, *m_writer );
   return *this;
 }
 
-JsonFile &JsonFile::WriteAssociativeContainer( const variant_associative_view &view )
+JsonFile &JsonFile::WriteAssociative( const variant_associative_view &view )
 {
-  Serialize::Write( view, *writer );
+  Serialize::WriteObject( view, *m_writer );
   return *this;
 }
 
 JsonFile &JsonFile::WriteEntities( class EntityManager& em )
 {
-  Serialize::WriteEntities( em, *writer );
+  Serialize::WriteEntities( em, *m_writer );
   return *this;
 }
 
 JsonFile &JsonFile::StartReader( std::string filename )
 {
-  assert( fp == nullptr );
-  fopen_s( &fp, filename.c_str(), "rb" );
-  buffer = new char[65536];
-  rstream = new FileReadStream( fp, buffer, 65536 );
-  doc = new Document();
-  assert( !doc->ParseStream( *rstream ).HasParseError() );
+  assert( m_fp == nullptr );
+  fopen_s( &m_fp, filename.c_str(), "rb" );
+  m_buffer = new char[65536];
+  m_rstream = new FileReadStream( m_fp, m_buffer, 65536 );
+  m_doc = new Document();
+  assert( !m_doc->ParseStream( *m_rstream ).HasParseError() );
   return *this;
 }
 
 JsonFile &JsonFile::EndReader()
 {
-  delete doc;
-  delete rstream;
-  delete buffer;
-  fclose( fp );
-  fp = nullptr;
+  delete m_doc;
+  delete m_rstream;
+  delete m_buffer;
+  fclose( m_fp );
+  m_fp = nullptr;
   return *this;
 }
 
@@ -121,15 +121,15 @@ JsonFile &JsonFile::LoadAssociative( variant_associative_view &view, Value &json
 
 JsonFile &JsonFile::LoadEntities(class EntityManager& em)
 {
-  Value::MemberIterator it = doc->FindMember( "Entities" );
-  if ( it != doc->MemberEnd() )
+  Value::MemberIterator it = m_doc->FindMember( "Entities" );
+  if ( it != m_doc->MemberEnd() )
     Deserialize::ReadEntities( em, it );
   return *this;
 }
 
 JsonFile &JsonFile::LoadObject( instance object )
 {
-  Deserialize::ReadObject( object, *doc );
+  Deserialize::ReadObject( object, *m_doc );
   return *this;
 }
 

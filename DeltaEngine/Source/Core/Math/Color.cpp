@@ -3,43 +3,43 @@
 
 namespace DeltaEngine
 {
-	const Color Color::red()
+	const Color Color::Red()
 	{
 		return Color{ 1, 0, 0, 1 };
 	}
-	const Color Color::green()
+	const Color Color::Green()
 	{
 		return Color{ 0, 1, 0, 1 };
 	}
-	const Color Color::blue()
+	const Color Color::Blue()
 	{
 		return Color{ 0, 0, 1, 1 };
 	}
-	const Color Color::yellow()
+	const Color Color::Yellow()
 	{
 		return Color{ 1, 0.92f, 0.016f, 1 };
 	}
-	const Color Color::magenta()
+	const Color Color::Magenta()
 	{
 		return Color{ 1, 0, 1, 1 };
 	}
-	const Color Color::cyan()
+	const Color Color::Cyan()
 	{
 		return Color{ 0, 1, 1, 1 };
 	}
-	const Color Color::white()
+	const Color Color::White()
 	{
 		return Color{ 1, 1, 1, 1 };
 	}
-	const Color Color::gray()
+	const Color Color::Gray()
 	{
 		return Color{ 0.5f, 0.5f, 0.5f, 1 };
 	}
-	const Color Color::black()
+	const Color Color::Black()
 	{
 		return Color{ 0, 0, 0, 1 };
 	}
-	const Color Color::clear()
+	const Color Color::Clear()
 	{
 		return Color{ 0, 0, 0, 0 };
 	}

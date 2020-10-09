@@ -6,7 +6,7 @@ namespace DeltaEngine
 {
 
 struct Vector3;
-class Quaternion;
+struct Quaternion;
 
 #ifdef _MSC_VER
 	// Supress warning: nonstandard extension used : nameless struct/union

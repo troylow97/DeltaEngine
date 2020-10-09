@@ -1,6 +1,7 @@
 #pragma once
 #include "Physics/CollisionShapes.h"
 #include "Manifold.h"
+#include "ECS/Components/RigidBody.h"
 
 namespace DeltaEngine
 {

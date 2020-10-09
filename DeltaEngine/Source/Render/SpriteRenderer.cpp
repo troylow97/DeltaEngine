@@ -7,7 +7,8 @@
 namespace DeltaEngine
 {
 	SpriteRenderer::SpriteRenderer(Texture2D* t, Shader* s) : sprite{ t ? t->GetName() : "" },
-		m_Offset{ Vector2(0, 0) }, m_Tiling{ Vector2(1, 1) }, m_FlipX{ false }, m_FlipY{ false }
+		m_Offset{ Vector2(0, 0) }, m_Tiling{ Vector2(1, 1) }, m_FlipX{ false }, m_FlipY{ false },
+		m_Shaded{ true }, m_Wireframe{ true }
 	{
 		shader = s;
 		if (!shader)
@@ -28,25 +29,35 @@ namespace DeltaEngine
 		Matrix4x4 proj = camera.GetProjectionMatrix();
 		Matrix4x4 view = camera.GetViewMatrix();
 		Matrix4x4 model = Matrix4x4::Scale(Vector3{
-			sprite ? (sprite.GetWidth() / 200.0f) : 1,
-			sprite ? (sprite.GetHeight() / 200.0f) : 1, 1 })
+			(sprite ? (sprite.GetWidth() / 200.0f) : 1) * (m_FlipX ? -1 : 1),
+			(sprite ? (sprite.GetHeight() / 200.0f) : 1) * (m_FlipY ? -1 : 1), 1 })
 			* transform.LocalToWorldMatrix();
 
-		if (sprite)
+		if (m_Shaded)
 		{
-			sprite.GetTexture()->Bind(0);
-		}
+			if (sprite)
+			{
+				sprite.GetTexture()->Bind(0);
+			}
 
-		shader->SetUniformMatrix4f("_M", model);
-		shader->SetUniformMatrix4f("_V", view);
-		shader->SetUniformMatrix4f("_P", proj);
-		shader->SetUniformColor4f("_Color", color);
-		shader->SetUniform1i("_MainTex", 0);
-		//shader->SetUniform1i("_DistTex", 1);
-		//shader->SetUniform1f("_Magnitude", 0.03f);
-		//shader->SetUniform1f("_Time", t);
-		//shader->SetUniform1f("_Radius", 0.4f);
-		//shader->SetUniformVector3f("_Center", Vector3(0,0,0));
-		Mesh::DrawQuad(offset, tiling, pivot);
+			shader->SetUniformMatrix4f("_M", model);
+			shader->SetUniformMatrix4f("_V", view);
+			shader->SetUniformMatrix4f("_P", proj);
+			shader->SetUniformColor4f("_Color", color);
+			shader->SetUniform1i("_MainTex", 0);
+			Mesh::DrawQuad(offset, tiling, pivot);
+
+			if (sprite)
+			{
+				sprite.GetTexture()->Unbind();
+			}
+		}
+		if (m_Wireframe)
+		{
+			shader->SetUniformMatrix4f("_M", model);
+			shader->SetUniformMatrix4f("_V", view);
+			shader->SetUniformMatrix4f("_P", proj);
+			Mesh::DrawQuad(true);
+		}
 	}
 }

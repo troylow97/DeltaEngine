@@ -51,6 +51,10 @@ namespace DeltaEngine
 		return nullptr;
 	}
 
+	std::string Sprite::GetName()
+	{
+		return m_Key + "_" + std::to_string(m_Index);
+	}
 	std::string Sprite::GetKey()
 	{
 		return m_Key;
