@@ -16,7 +16,7 @@ void main()
 	{
 		float dist = distance(vertexPosition, vec3(0,0,0));
 
-		if (dist > 0.5 || dist < 0.495)
+		if (dist > 0.5)
 			discard;
 
 		//color.a = smoothstep(0.5, 0.495, dist) * smoothstep(0.495, 0.5, dist);

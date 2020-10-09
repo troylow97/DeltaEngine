@@ -225,11 +225,6 @@ namespace DeltaEngine
 		std::vector<float> coords;
 		for (auto& particle : m_ParticlePool)
 		{
-			//if (simulationSpace == SimualationSpace::Local)
-			//	particle.transform.parent = &transform;
-			//if (simulationSpace == SimualationSpace::World)
-			//	particle.transform.parent = nullptr;
-
 			if (!particle.active)
 				continue;
 			Matrix4x4 pMat = Matrix4x4::Transpose(particle.transform.LocalToWorldMatrix());
@@ -275,10 +270,10 @@ namespace DeltaEngine
 		vertices.push_back(Vector3( 0.5f, -0.5f, 0.0f));
 		vertices.push_back(Vector3(-0.5f, -0.5f, 0.0f));
 
-		colors.push_back(Color::White());
-		colors.push_back(Color::White());
-		colors.push_back(Color::White());
-		colors.push_back(Color::White());
+		colors.push_back(Color::white());
+		colors.push_back(Color::white());
+		colors.push_back(Color::white());
+		colors.push_back(Color::white());
 
 		texCoords.push_back(Vector2(0.0f, 0.0f));
 		texCoords.push_back(Vector2(1.0f, 0.0f));
@@ -327,6 +322,7 @@ namespace DeltaEngine
 	void ParticleSystem::Update()
 	{
 		durationTimer += 0.001f;
+		rateOverTime = Math::Clamp(rateOverTime, 0, 100);
 
 		while (durationTimer > 1.0f / rateOverTime)
 		{
@@ -353,12 +349,12 @@ namespace DeltaEngine
 
 			particle.lifeTimer += 0.001f;
 			particle.transform.position += particle.velocity * 0.001f;
+			particle.transform.scale += -Vector3(1,1,1) * 0.001f;
 
 			particle.transform.rotation = Quaternion::AngleAxis(particle.lifeTimer * index / 50, Vector3::forward());
 
 			++index;
 		}
-		//std::sort(m_ParticlePool.begin(), m_ParticlePool.end(), SortParticles);
 	}
 	void ParticleSystem::Render(const Camera& camera)
 	{
@@ -419,10 +415,11 @@ namespace DeltaEngine
 			++m_activeParticles;
 			particle.active = true;
 			particle.transform.position = Vector3();
-			particle.transform.rotation = Quaternion::Identity();
+			particle.transform.scale = Vector3::one();
+			particle.transform.rotation = Quaternion::identity();
 
 			// Velocity
-			particle.velocity = Vector3::up();
+			particle.velocity = Vector3::up() + Vector3::right() * (2 * Random::RandomFloat() - 1);
 			particle.lifeTime = startLifetime[0];
 			particle.lifeTimer = 0;
 		}

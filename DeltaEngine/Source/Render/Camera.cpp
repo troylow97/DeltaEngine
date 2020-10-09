@@ -6,6 +6,7 @@
 #include <GL/glew.h>
 #include "Core/Debugging/Gizmos.h"
 #include "Core/GlobalStruct.h"
+
 namespace DeltaEngine
 {
 	std::vector<Camera*> Camera::allCameras;
@@ -94,7 +95,8 @@ namespace DeltaEngine
 
 		std::for_each(RenderModule::allRenderers.begin(), RenderModule::allRenderers.end(), [thisCam](Renderer* r)
 			{
-				r->Render(*thisCam);
+				if (r->m_Active)
+					r->Render(*thisCam);
 			});
 	}
 	void Camera::End()
@@ -105,13 +107,6 @@ namespace DeltaEngine
 		}
 
 		frameBuffer.Unbind();
-
-		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-		//glBindTexture(GL_TEXTURE_2D, frameBuffer.GetColorAttachment());	// use the color attachment texture as the texture of the quad plane
-		//shader->SetUniform1i("_MainTex", 0);
-
-		//Mesh::DrawQuad();
 	}
 }
 

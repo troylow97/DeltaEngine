@@ -7,9 +7,9 @@ namespace DeltaEngine
 {
 	void CollisionSystem::update()
 	{
-	  CollisionIntersectionCheck();
-	  CollisionHandling();
-	  CollisionResolution();
+	  //CollisionIntersectionCheck();
+	  //CollisionHandling();
+	  //CollisionResolution();
 
 	}
 

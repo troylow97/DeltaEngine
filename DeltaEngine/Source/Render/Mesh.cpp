@@ -418,7 +418,7 @@ namespace DeltaEngine
 		delete quad;
 	}
 
-	void Mesh::DrawQuad()
+	void Mesh::DrawQuad(bool wireframe)
 	{
 		quad->vertices[0] = Vector3(-0.5f,  0.5f, 0.0f);
 		quad->vertices[1] = Vector3( 0.5f,  0.5f, 0.0f);
@@ -428,7 +428,10 @@ namespace DeltaEngine
 		quad->texCoords[1] = Vector2(1, 0);
 		quad->texCoords[2] = Vector2(1, 1);
 		quad->texCoords[3] = Vector2(0, 1);
-		quad->Draw();
+		if (wireframe)
+			quad->DrawWireframe();
+		else
+			quad->Draw();
 	}
 
 	void Mesh::DrawQuad(Vector2 offset, Vector2 tiling, Vector2 pivot)

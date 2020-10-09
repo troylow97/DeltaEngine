@@ -45,6 +45,7 @@ namespace DeltaEngine
 
     void PhysicsSystem::Gravity()
     {
+        Vector2 GravityAmount{ 0.0, -0.5f };
         em.for_each([&](EntityID id1, RigidBody& r1,Transform& t1)
         {
             if(r1.hasGravity)

@@ -1,6 +1,8 @@
 #include "ImGuiLayer.h"
 #include "Render/Window.h"
 #include "Render/OpenGLSystem.h"
+#include "Render/TextRenderer.h"
+#include "Render/ParticleSystem.h"
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
 #include <examples/imgui_impl_opengl3.h>
@@ -149,6 +151,57 @@ namespace DeltaEngine
 			Camera::editorCamera->SetViewportSize(viewportPanelSize.x);
 			uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
 			ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+			ImGui::End();
+		}
+		// renderers
+		if (RenderModule::allRenderers.size() > 0)
+		{
+			ImGui::Begin("SpriteRenderer");
+
+			static float f = 0.0f;
+			ImGui::Text("Edit Sprite Props");                           // Display some text (you can use a format string too)
+			ImGui::Checkbox("Active", &RenderModule::allRenderers[0]->m_Active);
+			ImGui::DragFloat3("pos", (float*)&RenderModule::allRenderers[0]->transform.position, 0.01f);
+			ImGui::DragFloat3("size", (float*)&RenderModule::allRenderers[0]->transform.scale, 0.01f);
+			ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
+			RenderModule::allRenderers[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+			ImGui::Text("Sprite Name: %s", dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->sprite.GetName().c_str());
+			ImGui::Checkbox("Flip X", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->m_FlipX);
+			ImGui::Checkbox("Flip Y", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->m_FlipY);
+			ImGui::Checkbox("Shaded", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->m_Shaded);
+			ImGui::Checkbox("Wireframe", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->m_Wireframe);
+
+			ImGui::End();
+		}
+		if (RenderModule::allRenderers.size() > 1)
+		{
+			ImGui::Begin("TextRenderer");
+
+			static float f = 0.0f;
+			//static char str[128];
+			ImGui::Text("Edit Text Props");                           // Display some text (you can use a format string too)
+			ImGui::Checkbox("Active", &RenderModule::allRenderers[1]->m_Active);
+			ImGui::DragFloat3("pos", (float*)&RenderModule::allRenderers[1]->transform.position, 0.01f);
+			ImGui::DragFloat3("size", (float*)&RenderModule::allRenderers[1]->transform.scale, 0.01f);
+			ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
+			//ImGui::InputText("display text", str, 128);
+			RenderModule::allRenderers[1]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+			//dynamic_cast<TextRenderer*>(RenderModule::allRenderers[1])->text = str;
+
+			ImGui::End();
+		}
+		if (RenderModule::allRenderers.size() > 2)
+		{
+			ImGui::Begin("Particle System");
+
+			static float f = 0.0f;
+			ImGui::Checkbox("Active", &RenderModule::allRenderers[2]->m_Active);
+			ImGui::Text("Edit Particle System Props");                           // Display some text (you can use a format string too)
+			ImGui::DragFloat3("pos", (float*)&RenderModule::allRenderers[2]->transform.position, 0.01f);
+			ImGui::DragFloat3("size", (float*)&RenderModule::allRenderers[2]->transform.scale, 0.01f);
+			ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
+			RenderModule::allRenderers[2]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+
 			ImGui::End();
 		}
 

@@ -30,6 +30,12 @@ namespace DeltaEngine
 		POINT _currentPosition = {};
 		::GetCursorPos(&_currentPosition);
 
+		if (_firstTime)
+		{
+			_previousMousePosition = Point(_currentPosition.x, _currentPosition.y);
+			_firstTime = false;
+		}
+
 		// allows us to retrieve the entire sequence of state of each key of the keyboard
 		if (::GetKeyboardState(_currentKeyState))
 		{
@@ -74,9 +80,9 @@ namespace DeltaEngine
 			}
 			::memcpy(_previousKeyState, _currentKeyState, (sizeof(unsigned char) * 256));
 		}
-		if (_currentMousePosition.point_x != _previousMousePosition.point_x || _currentMousePosition.point_y != _previousMousePosition.point_y)
+		if (_currentPosition.x != _previousMousePosition.point_x || _currentPosition.y != _previousMousePosition.point_y)
 		{
-			_previousMousePosition = Point(_currentMousePosition.point_x, _currentMousePosition.point_y);
+			_previousMousePosition = Point(_currentPosition.x, _currentPosition.y);
 			_currentMousePosition = Point(_currentPosition.x, _currentPosition.y);
 			_moveEvent = true;
 		}
