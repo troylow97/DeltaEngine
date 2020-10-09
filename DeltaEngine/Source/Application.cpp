@@ -16,6 +16,8 @@
 #include "ECS/World.h"
 #include "Input/InputManager.h"
 #include "ECS/Components/Character.h"
+#include "Input/InputManager.h"
+#include "Input/Keys.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -48,20 +50,22 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pManager = new AM();
   env.pManager->set_loader<Font>( new FontLoader() )
     .load<Font>( "Fail", "Fonts/Arials.ttf" )
-    .set_fallback<Font>( new Font("Fonts/Arial.ttf") );
+    .set_fallback<Font>( new Font( "Fonts/Arial.ttf" ) );
 
   env.pManager->set_loader<Shader>( new ShaderLoader() )
     .load<Shader>( "Default", "Shaders/Default" )
     .load<Shader>( "DefaultText", "Shaders/DefaultText" )
-    .set_fallback<Shader>( new Shader("Shaders/ErrorShader") );
+    .set_fallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
 
   env.pManager->set_loader<Texture2D>( new TextureLoader() )
     .load<Texture2D>( "idle", "idle.png" )
-    .load<Texture2D>( "run", "run.png" );
+    .load<Texture2D>( "run", "run.png" )
+    .load<Texture2D>( "bg", "bg.png" );
 
   env.pManager->set_loader<AnimationClip>( new AnimationClipLoader() )
     .load<AnimationClip>( "Idle", "Idle.clip" )
     .load<AnimationClip>( "Running", "Running.clip" );
+
 
   env.pManager->set_loader<AnimationController>( new AnimationControllerLoader() )
     .load<AnimationController>( "Player", "Player.anim" );
@@ -94,14 +98,17 @@ void Application::Run()
   DeltaEngine::EntityManager &em = world.get_entity_manager();
   env.pManager->get<Texture2D>( "run" )->SliceAll( 2, 3 );
 
-  //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
-  //    env.pManager->get<Shader>("Default"));
+      //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
+      //    env.pManager->get<Shader>("Default"));
+  auto entitybg = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer>();
+  auto &spriterender = env.pECS->world().get_entity_manager().get_component<SpriteRenderer>( entitybg );
   auto entitysr = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
   auto &animator = env.pECS->world().get_entity_manager().get_component<Animator>( entitysr );
   auto entitytr = env.pECS->world().get_entity_manager().create_entity<Transform, TextRenderer>();
   auto &textrender = env.pECS->world().get_entity_manager().get_component<TextRenderer>( entitytr );
   auto entityps = env.pECS->world().get_entity_manager().create_entity<Transform, ParticleSystem>();
 
+  spriterender.sprite = { "bg" };
   textrender.font = env.pManager->get<Font>( "Default" );
   textrender.shader = env.pManager->get<Shader>( "DefaultText" );
   textrender.transform.scale = Vector3( 0.75, 0.75 );

@@ -54,7 +54,6 @@ bool GameClock::Update()
 
   if(m_accumulator >= 1.0f / m_interval )
   {
-    m_frame++;
 
     if(m_seconds >= 1.0f)
     {
@@ -62,6 +61,8 @@ bool GameClock::Update()
       m_seconds = 0.0f;
       m_frame = 0;
     }
+
+    m_frame++;
 
     if ( !m_paused )
     {

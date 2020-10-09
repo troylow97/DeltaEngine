@@ -4,6 +4,7 @@
 #include "ErrorCheck.h"
 #include "OpenGLSystem.h"
 #include "Core/Debugging/Logger/Log.h"
+#include "Core/GlobalStruct.h"
 
 namespace DeltaEngine
 {
@@ -321,7 +322,7 @@ namespace DeltaEngine
 	}
 	void ParticleSystem::Update()
 	{
-		durationTimer += 0.001f;
+		durationTimer += static_cast<float>(DeltaTime());
 		rateOverTime = Math::Clamp(rateOverTime, 0, 100);
 
 		while (durationTimer > 1.0f / rateOverTime)
@@ -347,9 +348,9 @@ namespace DeltaEngine
 				continue;
 			}
 
-			particle.lifeTimer += 0.001f;
-			particle.transform.position += particle.velocity * 0.001f;
-			particle.transform.scale += -Vector3(1,1,1) * 0.001f;
+			particle.lifeTimer += static_cast<float>(DeltaTime());
+			particle.transform.position += particle.velocity * static_cast<float>(DeltaTime());
+			particle.transform.scale += -Vector3(1,1,1) * static_cast<float>(DeltaTime());
 
 			particle.transform.rotation = Quaternion::AngleAxis(particle.lifeTimer * index / 50, Vector3::forward());
 

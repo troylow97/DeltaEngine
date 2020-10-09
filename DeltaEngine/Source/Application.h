@@ -12,6 +12,7 @@ namespace DeltaEngine
 	class DE_API Application
 	{
 		bool m_Minimized;
+		bool m_Running;
 
 		double m_interval;
 
