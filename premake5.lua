@@ -122,7 +122,7 @@ project "Sandbox"
     "DeltaEngine/Dep/freetype/include",
     "DeltaEngine/Dep/stb_image",
     "DeltaEngine/Dep/rttr/include",
-    "DeltaEngine/Dep/rapidjson"
+    "DeltaEngine/Dep/rapidjson",
     "DeltaEngine/Source"
   }
   
