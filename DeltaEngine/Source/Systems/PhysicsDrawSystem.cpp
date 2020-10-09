@@ -1,5 +1,5 @@
 #include "PhysicsDrawSystem.h"
-#include "Physics/Collider.h"
+#include "ECS/Components/Collider.h"
 #include "Core/Debugging/Gizmos.h"
 
 namespace DeltaEngine

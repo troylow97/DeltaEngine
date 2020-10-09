@@ -1,6 +1,6 @@
 #pragma once
 #include "ECS/ECSModule.h"
-#include "Physics/Collider.h"
+#include "ECS/Components/Collider.h"
 #include "ECS/Components/Transform.h"
 namespace DeltaEngine
 {

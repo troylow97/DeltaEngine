@@ -1,20 +1,26 @@
 #pragma once
+
 #include "Core/Math/Vector.h"
+#include "Components.h"
+#include <rapidjson/prettywriter.h>
+#include <rapidjson/filewritestream.h>
 
 namespace DeltaEngine
 {
 	struct RigidBody
 	{
-		float Mass;
 		Vector2 Velocity;
 		Vector2 Acceleration;
+		float Mass;
 		bool hasGravity;
 
 		RigidBody() :
-			Mass{50.0f},
 			Velocity{0,0},
 			Acceleration{0,0},
+			Mass{50.0f},
 			hasGravity{false}
 		{}
+
+		REGISTER_COMPONENT(RigidBody)
 	};
 }

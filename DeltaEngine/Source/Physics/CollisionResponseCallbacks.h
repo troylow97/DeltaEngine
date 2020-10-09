@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/Math/Vector.h"
-#include "Collider.h"
-#include "RigidBody.h"
+#include "ECS/Components/Collider.h"
+#include "ECS/Components/RigidBody.h"
 
 namespace DeltaEngine
 {

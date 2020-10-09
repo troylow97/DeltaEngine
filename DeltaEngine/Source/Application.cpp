@@ -4,6 +4,7 @@
 #include "Render/TextRenderer.h"
 #include "Core/Utils/FileUtils.h"
 #include "Core/GlobalStruct.h"
+#include "Core/Debugging/Assert.h"
 #include "ECS/ECSModule.h"
 #include "Physics/PhysicsSystem.h"
 #include "Physics/CollisionSystem.h"
@@ -13,6 +14,7 @@
 #include "ECS/World.h"
 #include "Input/InputSystem.h"
 #include "Input/Keys.h"
+#include "Reflect/Reflect.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -34,7 +36,6 @@ namespace DeltaEngine
         RenderModule::openGLSystem->Init();
         m_ImGuiLayer = new ImGuiLayer();
         m_ImGuiLayer->OnAttach();
-
         // Asset Loading
         FileUtils::Root("Assets");
         env.pClock = new GameClock();
@@ -64,6 +65,8 @@ namespace DeltaEngine
         env.pECS->world().create_systems<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
         env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
         env.pECS->world().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+        
+        env.pECS->world().Load("World.json");
     }
 
     Application::~Application()
@@ -99,66 +102,58 @@ namespace DeltaEngine
         //spriteRenderer.shader = env.pManager->get<Shader>("Default");
         animator.m_Controller = env.pManager->get<AnimationController>("Player");
 
-        //physics test start init var
-        auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
-        auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
-        auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
-        auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
-
-        trans.position = Vector3(0.55f, 0.55f);
-        trans.scale = Vector3(1, 1);
-        col.type = ColliderType::BOX;
-
-        auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
-        auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
-        auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity2);
-
-        t2.position = Vector3(-0.55f, -0.55f);
-        t2.scale = Vector3(1, 1);
-        r2.Velocity = Vector2(0, 0);
-        col2.type = ColliderType::BOX;
         //physics test end
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
 
         while (env.pWin->Running())
         {
+
+          env.pClock->Update();
+          InputSystem::get()->update();
+
+          if(env.pClock->update)
+          {
+            std::cout << env.pClock->FrameRate() << std::endl;;
+            accumulator = 0.0;
+
             if (InputSystem::get()->isKeyPressed(DEVK_A))
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
-                    {
-                        r1.Velocity = {-1, 0};
-                    });
+              env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+              {
+                r1.Velocity = {-1, 0};
+              });
             }
             if (InputSystem::get()->isKeyPressed(DEVK_D))
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
-                    {
-                        r1.Velocity = {1, 0};
-                    });
+              env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+              {
+                r1.Velocity = {1, 0};
+              });
             }
             if (InputSystem::get()->isKeyPressed(DEVK_W))
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
-                    {
-                        r1.Velocity = {0, 1};
-                    });
+              env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+              {
+                r1.Velocity = {0, 1};
+              });
             }
             if (InputSystem::get()->isKeyPressed(DEVK_S))
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
-                    {
-                        r1.Velocity = {0, -1};
-                    });
+              env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+              {
+                r1.Velocity = {0, -1};
+              });
             }
-            InputSystem::get()->update();
             // Update engine GameClock
-            env.pClock->Update();
+            env.pWin->Update();
             env.pECS->world().update();
             env.pECS->world().late_update();
             m_ImGuiLayer->Begin();
             m_ImGuiLayer->End();
             ::SwapBuffers(RenderModule::openGLSystem->GetWindowContext());
+          }
+            
 
 
             //// Accumulator not used yet
@@ -172,6 +167,7 @@ namespace DeltaEngine
             //    accumulator -= env.pClock->DeltaTime();
             //}
             //const f64 alpha = accumulator / m_interval;
+            
         }
     }
 

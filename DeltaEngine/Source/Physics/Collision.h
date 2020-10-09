@@ -1,8 +1,8 @@
 #pragma once
 #include "Core/Math/Vector.h"
 #include "Physics/CollisionShapes.h"
-#include "Collider.h"
-#include "RigidBody.h"
+#include "ECS/Components/Collider.h"
+#include "ECS/Components/RigidBody.h"
 namespace DeltaEngine
 {
 	void BuildLineSegment(LineSegment& lineSegment,

@@ -275,10 +275,10 @@ namespace DeltaEngine
 		vertices.push_back(Vector3( 0.5f, -0.5f, 0.0f));
 		vertices.push_back(Vector3(-0.5f, -0.5f, 0.0f));
 
-		colors.push_back(Color::white());
-		colors.push_back(Color::white());
-		colors.push_back(Color::white());
-		colors.push_back(Color::white());
+		colors.push_back(Color::White());
+		colors.push_back(Color::White());
+		colors.push_back(Color::White());
+		colors.push_back(Color::White());
 
 		texCoords.push_back(Vector2(0.0f, 0.0f));
 		texCoords.push_back(Vector2(1.0f, 0.0f));
@@ -419,7 +419,7 @@ namespace DeltaEngine
 			++m_activeParticles;
 			particle.active = true;
 			particle.transform.position = Vector3();
-			particle.transform.rotation = Quaternion::identity();
+			particle.transform.rotation = Quaternion::Identity();
 
 			// Velocity
 			particle.velocity = Vector3::up();

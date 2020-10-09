@@ -1,6 +1,5 @@
 #pragma once
-#include "Vector.h"
-#include "Matrix.h"
+
 namespace DeltaEngine::Math
 {
 	const float pi = 3.14159265358979323846f;

@@ -15,7 +15,8 @@ project "DeltaEngine"
   location "DeltaEngine"
   kind "SharedLib"
   language "C++"
-  
+  buildoptions "/NODEFAULTLIB:library"
+
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
   

@@ -5,60 +5,62 @@
 
 namespace DeltaEngine
 {
-   class DE_API GameClock
-   {
 
-    using Nanoseconds = std::chrono::nanoseconds;
-    using HighResClock = std::chrono::high_resolution_clock;
-    using TimePoint = std::chrono::time_point<HighResClock>;
+class DE_API GameClock
+{
 
-  public:
-    /*************************************************************
-   * Constructor / Destructor
-   *************************************************************/
+  using Nanoseconds = std::chrono::nanoseconds;
+  using HighResClock = std::chrono::high_resolution_clock;
+  using TimePoint = std::chrono::time_point<HighResClock>;
 
-    GameClock();
-    ~GameClock() = default;
+public:
+  /*************************************************************
+ * Constructor / Destructor
+ *************************************************************/
 
-    /*************************************************************
-   * Interface
-   *************************************************************/
+  GameClock();
+  ~GameClock() = default;
 
-    // timescale setter / getter
-    f32 TimeScale() const;
-    void TimeScale(const f32 scale);
+  /*************************************************************
+ * Interface
+ *************************************************************/
 
-    // GameClock state
-    void Pause();
-    void Resume();
+  // timescale setter / getter
+  f32 TimeScale() const;
+  void TimeScale( const f32 scale );
 
-    // called at start of loop
-    void Update();
+  // GameClock state
+  void Pause();
+  void Resume();
 
-    // framecount
-    u64 FrameCount() const;
+  // called at start of loop
+  void Update();
 
-    // getter for timescaled / real dt / fixed dt
-    f64 DeltaTime() const;
-    f64 RealDeltaTime() const;
+  // getter for timescaled / real dt / fixed dt
+  f32 DeltaTime() const;
+  f32 UnscaledDeltaTime() const;
 
-    // ElapsedTime / Unscaled ElapsedTime
-    f64 ElapsedTime() const;
-    f64 UnscaledElapsedTime() const;
+  // ElapsedTime / Unscaled ElapsedTime
+  f32 ElapsedTime() const;
+  f32 UnscaledElapsedTime() const;
 
-    // FPS
-    f64 FrameRate() const;
+  // FPS
+  u32 FrameRate() const;
 
-  private:
-    TimePoint _start;
-    TimePoint _current;
-    u64 _frame;
-    f64 _elapsed;
-    f64 _dt;
-    f64 _g_elapsed;
-    f64 _g_dt;
-    f32 _timescale;
-    bool _paused; 
-    // memory size - 64
-  };
+  bool update {false};
+private:
+  TimePoint m_current;
+  u32 m_fps;
+  u32 m_frame;
+  f32 m_dt;
+  f32 m_g_dt;
+  f32 m_elapsed;
+  f32 m_g_elapsed;
+  f32 m_timescale;
+  f32 m_accumulator;
+  f32 m_frameDuration;
+  f32 m_interval;
+  bool m_paused;
+};
+
 } // namespace DeltaEngine

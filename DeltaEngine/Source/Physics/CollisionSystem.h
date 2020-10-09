@@ -1,8 +1,8 @@
 #pragma once
 #include "CollisionHandler.h"
 #include "ECS/ECSModule.h"
-#include "Collider.h"
-#include "RigidBody.h"
+#include "ECS/Components/Collider.h"
+#include "ECS/Components/RigidBody.h"
 #include "ECS/Components/Transform.h"
 
 namespace DeltaEngine
