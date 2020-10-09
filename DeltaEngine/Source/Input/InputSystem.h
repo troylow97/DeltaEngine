@@ -8,35 +8,36 @@
 namespace DeltaEngine
 {
 
-    class DE_API InputSystem //: public InputListener
-    {
-        KeyboardInput _keyboard;
-        MouseInput _mouse;
+class DE_API InputSystem //: public InputListener
+{
 
-    public:
-        InputSystem();
-        ~InputSystem();
+  KeyboardInput _keyboard;
+  MouseInput _mouse;
 
-        void reset();
-        // to get the input events
-        void update();
+public:
+  InputSystem();
+  ~InputSystem();
 
-        //void addListener(InputListener* listener);
-        //void removeListener(InputListener* listener);
+  void reset();
+  // to get the input events
+  void update();
 
-        // get static method as InputSystem is a singleton class
-        // returns a pointer to an only instance of the class
-        static InputSystem *get();
-        
-        bool isKeyTriggered( int key );
-        bool isKeyPressed( int key );
-        bool isKeyReleased( int key );
+  //void addListener(InputListener* listener);
+  //void removeListener(InputListener* listener);
 
-        bool onMouseMove();
+  // get static method as InputSystem is a singleton class
+  // returns a pointer to an only instance of the class
+  static InputSystem *get();
 
-        bool isMouseTriggered( int key );
-        bool isMousePressed( int key );
-        bool isMouseReleased( int key );
-    };
+  bool isKeyTriggered( int key );
+  bool isKeyPressed( int key );
+  bool isKeyReleased( int key );
+
+  bool onMouseMove();
+
+  bool isMouseTriggered( int key );
+  bool isMousePressed( int key );
+  bool isMouseReleased( int key );
+};
 
 }
