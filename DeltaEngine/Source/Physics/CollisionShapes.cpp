@@ -73,8 +73,17 @@ namespace DeltaEngine
 	LineSegment::LineSegment(const Vector2 pt0,const Vector2 pt1) :
 		m_pt0{ pt0 },
 		m_pt1{ pt1 },
-		m_normal{ {pt1.x - pt0.x},{pt1.y - pt0.y} }
+		m_normal{ {pt1.y - pt0.y},{-(pt1.x - pt0.x)} }
 	{}
+	LineSegment::LineSegment(const Vector2& pos, const Vector2& scale, const Vector2& dir) 
+	{
+		m_pt0 = pos;
+		Vector2 normalised_dir = dir;
+		normalised_dir = Normalise(normalised_dir);
+		normalised_dir *= scale;
+		m_pt1 = m_pt0 + normalised_dir;
+		m_normal = { m_pt1.y - m_pt0.y, -(m_pt1.x - m_pt0.x) };
+	}
 
 	Circle::Circle() :
 		m_center{ 0,0 },

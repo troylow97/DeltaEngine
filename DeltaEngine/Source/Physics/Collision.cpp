@@ -15,7 +15,7 @@ prior written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Math/Math.h"
 #include "Core/GameClock/GameClock.h"
 #include "Core/GlobalStruct.h"
-
+#define EPSILON 4.94065645841247E-324;
 namespace DeltaEngine
 {
 	/******************************************************************************/
@@ -81,8 +81,17 @@ namespace DeltaEngine
 		return tmax >= tmin;
 	}
 
-	bool CollisionIntersection_RectCircle_Static(const Vector2 Center1, const Vector2 Size1, RigidBody& r1, const Vector2 Center2, const Vector2 Size2, RigidBody& r2, Manifold& m)
+	bool CollisionIntersection_RectCircle(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& m)
 	{
+		//Not complete
+		if (col1.type != ColliderType::BOX)
+			std::cout << "WRONG!";
+		if (col2.type != ColliderType::CIRCLE)
+			std::cout << "WRONG!";
+		Vector2 Center1 = col1.center;
+		Vector2 Size1 = col1.size;
+		Vector2 Center2 = col2.center;
+		Vector2 Size2 = col2.size;
 		Vector2 TopLeft, TopRight, BotLeft, BotRight, TopMiddle, BotMiddle, LeftMiddle, RightMiddle;
 		float HalfWidth = Size1.x / 2;
 		float HalfHeight = Size1.y / 2;
@@ -90,31 +99,58 @@ namespace DeltaEngine
 		TopLeft = { Center1.x - HalfWidth, Center1.y + HalfHeight };
 		TopRight = { Center1.x + HalfWidth, Center1.y + HalfHeight };
 		BotLeft = { Center1.x - HalfWidth ,Center1.y - HalfHeight };
-		BotRight = { Center1.x + HalfWidth , Center1.y - HalfWidth };
+		BotRight = { Center1.x + HalfWidth , Center1.y - HalfHeight };
 
-		Vector2 dist(Center1 - Center2);
+		LineSegment Top{ TopRight, TopLeft};
+		LineSegment Right{ TopRight,BotRight };
+		LineSegment Left{ TopLeft,BotLeft };
+		LineSegment Bot{ BotRight,BotLeft };
+
+		//if (CollisionIntersection_CircleLineSegment(col2, r2.Velocity, Top, m))
+		//{
+		//	//r2.ReflectedVector = Top.m_normal;
+		//	std::cout << "A" << std::endl;
+		//	return true;
+		//}
+		//if (CollisionIntersection_CircleLineSegment(col1, r1.Velocity, Bot, m))
+		//{
+		//	r2.ReflectedVector = Bot.m_normal;
+		//	std::cout << "B" << std::endl;
+		//	return true;
+		//}
+		//if (CollisionIntersection_CircleLineSegment(col1, r1.Velocity, Left, m))
+		//{
+		//	r2.ReflectedVector = Left.m_normal;
+		//	std::cout << "C" << std::endl;
+		//	return true;
+		//}
+		//if (CollisionIntersection_CircleLineSegment(col1,r1.Velocity,Right,m))
+		//{
+		//	r2.ReflectedVector = Right.m_normal;
+		//	std::cout << "D" << std::endl;
+		//	return true;
+		//}
+		Vector2 rel_vel = r2.Velocity - r1.Velocity;
+		Vector2 rect_center = Center1;
+		Vector2 circle_center = Center2;
+		rect_center += rel_vel;
+		circle_center += rel_vel;
+		
+		Vector2 dist(rect_center - circle_center);
 		Vector2 CircleTip;
 		CircleTip = Normalise(dist);
 		CircleTip *= Size2.x;
-		CircleTip += Center2;
-
-		//if (   CollisionIntersection_CirclePoint(Center2, Size2, TopRight)
-		//	|| CollisionIntersection_CirclePoint(Center2, Size2, TopLeft)
-		//	|| CollisionIntersection_CirclePoint(Center2, Size2, BotLeft)
-		//	|| CollisionIntersection_CirclePoint(Center2, Size2, BotRight))
-		//{
-		//	r2.Ref
-		//}
-		//
-		if (CollisionIntersection_RectPoint(Center1, Size1, CircleTip))
+		CircleTip += circle_center;
+		
+		if (CollisionIntersection_RectPoint(rect_center, Size1, CircleTip))
 		{
 			Vector2 ReflectVec;
 			Vector2 ReflectVecTip;
-			ReflectVecTip.x = Center2.x + 2 * (Center2.x - CircleTip.x);
-			ReflectVecTip.y = Center2.y + -CircleTip.y;
+			ReflectVecTip.x = circle_center.x + 2 * (circle_center.x - CircleTip.x);
+			ReflectVecTip.y = circle_center.y - CircleTip.y;
 			
-			ReflectVec = CircleTip - ReflectVecTip;
-			//r1.ReflectedVector = CircleTip;
+			ReflectVec = ReflectVecTip - CircleTip;
+			r1.ReflectedVector = Normalise(dist);
 			r2.ReflectedVector = ReflectVec;
 			return true;
 		}
@@ -154,34 +190,329 @@ namespace DeltaEngine
 		return false;
 	}
 
-	bool CollisionIntersection_CircleLineSegment_Static(const Vector2 Center1, const Vector2 Size1, LineSegment line)
+	bool CollisionIntersection_CircleLineSegment(Collider& col1, const Vector2& vel1, Collider& col2, const Vector2& vel2,Manifold& m)
 	{
-		Circle circle{ Center1,Size1 };
+		Circle circle{ col1.center,col1.size.x };
+		LineSegment line{ col2.center,col2.size,vel2 };
+		Vector2 posNext;
+		posNext = col1.center + vel1 * env.pClock->DeltaTime();
+		float DP_FirstPoint = Vector2DotProduct(line.m_normal, circle.m_center); //N.Bs
+		float DP_LineSeg = Vector2DotProduct(line.m_normal, line.m_pt0);		//N.P0
 
-		if ((line.m_pt0.x - circle.m_center.x) * (line.m_pt0.x - circle.m_center.x) + (line.m_pt0.y - circle.m_center.y) * (line.m_pt0.y - circle.m_center.y) <=
-			(line.m_pt1.x - line.m_pt0.x) * (line.m_pt1.x - line.m_pt0.x) + (line.m_pt1.y - line.m_pt0.y) + (line.m_pt1.y - line.m_pt0.y))
+		//Circle hits body of Line Segment opposite the direction of the normal
+		if (DP_FirstPoint - DP_LineSeg <= -circle.m_radius)
 		{
-			return true;
+			Vector2 newP0 = line.m_normal * line.m_pt0 - circle.m_radius;
+			Vector2 newP1 = line.m_normal * line.m_pt1 - circle.m_radius;
+
+			//Find velocity of the ball
+			Vector2 V = (posNext - circle.m_center);
+
+			//Find Outward Normal
+			Vector2 M;
+			M.x = V.y;
+			M.y = -V.x;
+
+			//Checks the distance of the ball to the line segment
+			if (Vector2DotProduct(M, newP0 - circle.m_center) * Vector2DotProduct(M, newP1 - circle.m_center) < 0)
+			{
+				//Calculate time of intersection
+				m.interTime = (DP_LineSeg - DP_FirstPoint - circle.m_radius) /
+					(Vector2DotProduct(line.m_normal, V));
+
+				if (m.interTime >= 0 && m.interTime <= 1)
+				{
+					//Ball has collided, set intersection point, calculate normal and return true
+					col1.interPoint = circle.m_center + V * m.interTime;
+					m.normal = -line.m_normal;
+					return 1;
+				}
+			}
+			else
+			{
+					return CheckMovingCircleToLineEdge(false, circle, posNext, line, col1.interPoint, m.normal, m.interTime);
+			}
 		}
-		if ((line.m_pt1.x - circle.m_center.x) * (line.m_pt1.x - circle.m_center.x) + (line.m_pt1.y - circle.m_center.y) * (line.m_pt1.y - circle.m_center.y) <=
-			(line.m_pt1.x - line.m_pt0.x) * (line.m_pt1.x - line.m_pt0.x) + (line.m_pt1.y - line.m_pt0.y) + (line.m_pt1.y - line.m_pt0.y))
+
+		//Circle hits body of Line Segment in the direction of the normal
+		else if (DP_FirstPoint - DP_LineSeg >= circle.m_radius)
 		{
-			return true;
+			Vector2 newP0 = line.m_normal * line.m_pt0 + circle.m_radius;
+			Vector2 newP1 = line.m_normal * line.m_pt1 + circle.m_radius;
+
+			//Find Outward Normal
+			Vector2 V = (posNext - circle.m_center);
+
+			//Find Outward Normal
+			Vector2 M;
+			M.x = V.y;
+			M.y = -V.x;
+
+			//Checks the distance of the ball to the line segment
+			if (Vector2DotProduct(M, newP0 - circle.m_center) * Vector2DotProduct(M, newP1 - circle.m_center) < 0)
+			{
+				//Calculate time of intersection
+				m.interTime = (DP_LineSeg - DP_FirstPoint + circle.m_radius) /
+					(Vector2DotProduct(line.m_normal, V));
+
+				if (m.interTime >= 0 && m.interTime <= 1)
+				{
+					//Ball has collided, set intersection point, calculate normal and return true
+					col1.interPoint = circle.m_center + V * m.interTime;
+					m.normal = line.m_normal;
+					return 1;
+				}
+			}
+			else
+			{
+				//Ball is NOT within both lines
+					return CheckMovingCircleToLineEdge(false,circle, posNext, line, col1.interPoint, m.normal, m.interTime);
+			}
+		}
+		else
+		{
+			//Ball is within both lines
+				return CheckMovingCircleToLineEdge(true,circle, posNext, line, col1.interPoint, m.normal, m.interTime);
+		}
+		// no intersection
+		return 0;
+
+	}
+
+	bool CollisionIntersection_CircleLineSegment(Collider& col1, const Vector2& vel1, LineSegment line, Manifold& m)
+	{
+		if (col1.type != ColliderType::CIRCLE)
+			std::cout << "WRONG!";
+		Circle circle{ col1.center,col1.size.x };
+		Vector2 posNext;
+		posNext = col1.center + vel1 * env.pClock->DeltaTime();
+		float DP_FirstPoint = Vector2DotProduct(line.m_normal, circle.m_center); //N.Bs
+		float DP_LineSeg = Vector2DotProduct(line.m_normal, line.m_pt0);		//N.P0
+
+		//Circle hits body of Line Segment opposite the direction of the normal
+		if (DP_FirstPoint - DP_LineSeg <= -circle.m_radius)
+		{
+			Vector2 newP0 = line.m_normal * line.m_pt0 - circle.m_radius;
+			Vector2 newP1 = line.m_normal * line.m_pt1 - circle.m_radius;
+
+			//Find velocity of the ball
+			Vector2 V = (posNext - circle.m_center);
+
+			//Find Outward Normal
+			Vector2 M;
+			M.x = V.y;
+			M.y = -V.x;
+
+			//Checks the distance of the ball to the line segment
+			if (Vector2DotProduct(M, newP0 - circle.m_center) * Vector2DotProduct(M, newP1 - circle.m_center) < 0)
+			{
+				//Calculate time of intersection
+				m.interTime = (DP_LineSeg - DP_FirstPoint - circle.m_radius) /
+					(Vector2DotProduct(line.m_normal, V));
+
+				if (m.interTime >= 0 && m.interTime <= 1)
+				{
+					//Ball has collided, set intersection point, calculate normal and return true
+					col1.interPoint = circle.m_center + V * m.interTime;
+					m.normal = -line.m_normal;
+					return 1;
+				}
+			}
+			else
+			{
+				return CheckMovingCircleToLineEdge(false, circle, posNext, line, col1.interPoint, m.normal, m.interTime);
+			}
+		}
+
+		//Circle hits body of Line Segment in the direction of the normal
+		else if (DP_FirstPoint - DP_LineSeg >= circle.m_radius)
+		{
+			Vector2 newP0 = line.m_normal * line.m_pt0 + circle.m_radius;
+			Vector2 newP1 = line.m_normal * line.m_pt1 + circle.m_radius;
+
+			//Find Outward Normal
+			Vector2 V = (posNext - circle.m_center);
+
+			//Find Outward Normal
+			Vector2 M;
+			M.x = V.y;
+			M.y = -V.x;
+
+			//Checks the distance of the ball to the line segment
+			if (Vector2DotProduct(M, newP0 - circle.m_center) * Vector2DotProduct(M, newP1 - circle.m_center) < 0)
+			{
+				//Calculate time of intersection
+				m.interTime = (DP_LineSeg - DP_FirstPoint + circle.m_radius) /
+					(Vector2DotProduct(line.m_normal, V));
+
+				if (m.interTime >= 0 && m.interTime <= 1)
+				{
+					//Ball has collided, set intersection point, calculate normal and return true
+					col1.interPoint = circle.m_center + V * m.interTime;
+					m.normal = line.m_normal;
+					return 1;
+				}
+			}
+			else
+			{
+				//Ball is NOT within both lines
+				return CheckMovingCircleToLineEdge(false, circle, posNext, line, col1.interPoint, m.normal, m.interTime);
+			}
+		}
+		else
+		{
+			//Ball is within both lines
+			return CheckMovingCircleToLineEdge(true, circle, posNext, line, col1.interPoint, m.normal, m.interTime);
+		}
+		// no intersection
+		return 0;
+
+	}
+
+	bool CheckMovingCircleToLineEdge(
+		bool withinBothLines,
+		const Circle& circle,
+		const Vector2& ptEnd,
+		const LineSegment& lineSeg,
+		Vector2& interPt,
+		Vector2& normalAtCollision,
+		float& interTime)
+	{
+		//Find velocity of the ball
+		Vector2 V = (ptEnd - circle.m_center);
+		Vector2 Vnormalised = Normalise(V);
+
+		//Find Outward Normal
+		Vector2 M;
+		M.x = V.y;
+		M.y = -V.x;
+		M = Normalise(M);
+		float m0 = Vector2DotProduct(lineSeg.m_pt0 - circle.m_center, Vnormalised); //BsP0.v
+		float m1 = Vector2DotProduct(lineSeg.m_pt1 - circle.m_center, Vnormalised); //BsP1.v
+
+		//is the center of circle within both lines
+		if (withinBothLines == true)
+		{
+			if (Vector2DotProduct(lineSeg.m_pt0 - circle.m_center, lineSeg.m_pt1 - lineSeg.m_pt0) > 0) //P0 Side
+			{
+				float dist0 = Vector2DotProduct(lineSeg.m_pt0 - circle.m_center, M); //BsP0.M
+				if (m0 > 0) //otherwise no collision
+				{
+					if (abs(dist0) > circle.m_radius)
+					{
+						return 0;
+					}
+
+					float H = sqrtf(circle.m_radius * circle.m_radius - dist0 * dist0);
+					interTime = (m0 - H) / Vector2Length(V);
+					if (interTime <= 1)
+					{
+						//Calculate intersection and normal for reflection
+						interPt = circle.m_center + V * interTime;
+						normalAtCollision = interPt - lineSeg.m_pt0;
+						normalAtCollision = Normalise(normalAtCollision);
+						return true;
+					}
+				}
+
+			}
+			else //P1 Side
+			{
+				if (m1 > 0)
+				{
+					float dist1 = Vector2DotProduct(lineSeg.m_pt1 - circle.m_center, M); //BsP1.M
+					if (abs(dist1) > circle.m_radius)
+					{
+						return 0;
+					}
+					float H = sqrt(circle.m_radius * circle.m_radius - dist1 * dist1);
+					interTime = (m1 - H) / Vector2Length(V);
+					if (interTime <= 1)
+					{
+						//Calculate intersection and normal for reflection
+						interPt = circle.m_center + V * interTime;
+						normalAtCollision = interPt - lineSeg.m_pt1;
+						normalAtCollision = Normalise(normalAtCollision);
+						return 1;
+					}
+				}
+			}
+
+		}
+		else //if not within both lines
+		{
+			//check to see if it is P0 side or P1 side
+			bool P0side = false;
+			float dist0 = abs(Vector2DotProduct(lineSeg.m_pt0 - circle.m_center, M));
+			float dist1 = abs(Vector2DotProduct(lineSeg.m_pt1 - circle.m_center, M));
+
+			if (dist0 > circle.m_radius&& dist1 > circle.m_radius)
+			{
+				return 0;
+			}
+
+			if (dist0 <= circle.m_radius && dist1 <= circle.m_radius)
+			{
+				float dist2 = abs(Vector2DotProduct(lineSeg.m_pt0 - circle.m_center, Vnormalised));
+				float dist3 = abs(Vector2DotProduct(lineSeg.m_pt1 - circle.m_center, Vnormalised));
+				P0side = (dist2 < dist3) ? true : false;
+			}
+			else if (dist0 <= circle.m_radius)
+			{
+				P0side = true;
+			}
+			else
+			{
+				P0side = false;
+			}
+			//-----------------------------------------
+
+			if (P0side)//if on P0 side
+			{
+				if (m0 < 0)
+				{
+					return false;
+				}
+				else
+				{
+					float H = sqrt(circle.m_radius * circle.m_radius - dist0 * dist0);
+					interTime = (m0 - H) / Vector2Length(V);
+					if (interTime <= 1)
+					{
+						//Calculate intersection and normal for reflection
+						interPt = circle.m_center + V * interTime;
+						normalAtCollision = interPt - lineSeg.m_pt0;
+						normalAtCollision = Normalise(normalAtCollision);
+						return true;
+					}
+				}
+			}
+			else //if on P1 side
+			{
+				if (m1 < 0)
+				{
+					return false;
+				}
+				else
+				{
+					float H = sqrt(circle.m_radius * circle.m_radius - dist1 * dist1);
+					interTime = (m1 - H) / Vector2Length(V);
+					if (interTime <= 1)
+					{
+						//Calculate intersection and normal for reflection
+						interPt = circle.m_center + V * interTime;
+						normalAtCollision = interPt - lineSeg.m_pt1;
+						normalAtCollision = Normalise(normalAtCollision);
+						return true;
+					}
+				}
+			}
 		}
 
 		return false;
 	}
 
-	/******************************************************************************/
-	/*!
-		Tests for collision between a circle to another circle
-		This is done through ray intersection.
-		One ray uses circle's A center as a point and gets the relative velocity
-		by making circleB non-moving.
 
-		A new circle is made with the combined radius of both circles
-	 */
-	 /******************************************************************************/
 	bool CollisionIntersection_CircleCircle(Collider& col1, const Vector2& v1,Collider& col2, const Vector2& v2,Manifold& m)
 	{
 		//Get relative velocity by considering circleB as non-moving by taking velA - velB
@@ -373,74 +704,32 @@ namespace DeltaEngine
 
 	bool CollisionIntersection_RayCircle(const Ray& ray, Collider& col2,Manifold& manifold)
 	{
-		Circle circle{ col2.center,col2.size };
-		//Calculate end point of ray
-		Vector2 Be = ray.m_pt0 + ray.m_dir;
+		Circle circle{ col2.center,col2.size.x };
+		float a = Vector2DotProduct(ray.m_dir, ray.m_dir);
+		float b = Vector2DotProduct((circle.m_center - ray.m_pt0) * -2, ray.m_dir);
+		float c = Vector2DotProduct(circle.m_center - ray.m_pt0, circle.m_center - ray.m_pt0) - circle.m_radius * circle.m_radius;
+		float det = b * b - (4 * a * c); // b^2 - 4ac
+		
+		// If b^2-4ac < 0, no collision
+		if (det < -std::numeric_limits<float>::epsilon())
+			return false;
 
-		//ray.m_dir is the velocity, use it to get its normalised version
-		Vector2 temp = ray.m_dir;
-		Vector2 normalisedVelocity = Normalise(temp);
-		float t0, t1;
-		float radius_sqr = circle.m_radius * circle.m_radius;
-		// geometric solution
-		Vector2 L = circle.m_center - ray.m_pt0;
-		float tca = Vector2DotProduct(L, ray.m_dir);
-		if (tca < 0) return false;
-		float d2 = Vector2DotProduct(L,L) - tca * tca;
-		if (d2 > (radius_sqr)) return false;
-		float thc = sqrt(radius_sqr - d2);
-		t0 = tca - thc;
-		t1 = tca + thc;
-
-		if (t0 > t1) std::swap(t0, t1);
-
-		if (t0 < 0) {
-			t0 = t1; // if t0 is negative, let's use t1 instead 
-			if (t0 < 0) return false; // both t0 and t1 are negative 
+		// If b^2-4ac = 0, circle graze past each other
+		if (det > -(std::numeric_limits<float>::epsilon()) && det < std::numeric_limits<float>::epsilon())
+			manifold.interTime = -b / (2 * a);
+		else // b^2-4ac > 0
+		{
+			// Calculate the collision time
+			float ti0 = (-b - sqrt(b * b - (4.0f * a * c))) / (2.0f * a);
+			float ti1 = (-b + sqrt(b * b - (4.0f * a * c))) / (2.0f * a);
+			manifold.interTime = Math::math_min(ti0, ti1);
 		}
-
-		t1 = t0;
-
-		return true;
-
-		//Calculate end point of ray
-		//Vector2 Be = ray.m_pt0 + ray.m_dir;
-
-		//ray.m_dir is the velocity, use it to get its normalised version
-	//	Vector2 temp = ray.m_dir;
-	//	Vector2 normalisedVelocity = Normalise(temp);
-	//
-	//	Vector2 BsC = circle.m_center - ray.m_pt0;
-	//
-	//	// check if circle is behind ray origin
-	//	float m = Vector2DotProduct(BsC, normalisedVelocity);
-	//	if ((m < 0) && (Vector2Length(BsC) >= circle.m_radius))
-	//	{
-	//		return false;
-	//	}
-	//
-	//	// check if ray within circle radius range
-	//	float n2 = Vector2Length(BsC)- (m * m);
-	//	if (n2 <= (circle.m_radius * circle.m_radius))
-	//	{
-	//		float s2 = sqrtf((circle.m_radius * circle.m_radius) - n2);
-	//		float rayLength = Vector2Length(temp);
-	//		float ti0 = (m - s2) / rayLength;
-	//		float ti1 = (m + s2) / rayLength;
-	//
-	//		if (ti0 > ti1)
-	//		{
-	//			manifold.interTime = ti1;
-	//		}
-	//		else
-	//		{
-	//			manifold.interTime = ti0;
-	//		}
-	//
-	//		if (manifold.interTime > 0 && manifold.interTime < 1)
-	//			return true;
-	//	}
-	//	return false;
+		if (manifold.interTime >= 0.0f && manifold.interTime <= 1.0f) // within 0 and 1 seconds
+		{
+			std::cout << "INTERSECT!" << std::endl;
+			return true;
+		}
+		return false;
 	}
 //------------
 
@@ -478,7 +767,7 @@ namespace DeltaEngine
 			return false;
 		}
 		case ColliderType::CIRCLE:
-			return CollisionIntersection_RectCircle_Static(col1.center, col1.size,r1, col2.center, col2.size,r1, manifold);
+			return CollisionIntersection_RectCircle(col1, r1, col2, r1, manifold);
 		case ColliderType::LINE:
 			return CollisionIntersection_RectLine_Static(col1.center, col1.size, col2.center, col2.size);
 		case ColliderType::RAY:
@@ -496,7 +785,7 @@ namespace DeltaEngine
 		switch (type2)
 		{
 		case ColliderType::BOX:
-			return CollisionIntersection_RectCircle_Static(col1.center, col1.size, r1, col2.center, col2.size, r1, manifold);
+			return CollisionIntersection_RectCircle(col2, r2, col1, r1, manifold);
 		case ColliderType::CIRCLE:
 		{
 			//return CollisionIntersection_CircleCircle_Static(col1.center, col1.size, col2.center, col2.size);
@@ -510,7 +799,7 @@ namespace DeltaEngine
 			return CollisionIntersection_RayCircle(ray, col2,manifold);
 		}
 		default:
-			return CollisionIntersection_RectCircle_Static(col1.center, col1.size, r1, col2.center, col2.size, r1, manifold);
+			return CollisionIntersection_RectCircle(col2, r2, col1, r1, manifold);
 		}
 	}
 	bool CollisionIntersection_Sub_Line(Collider& col1,Collider& col2, Manifold& manifold)

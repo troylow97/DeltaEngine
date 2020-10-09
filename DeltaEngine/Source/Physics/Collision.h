@@ -15,7 +15,7 @@ namespace DeltaEngine
 
 	bool CollisionIntersection_RectRay_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2);
 
-	bool CollisionIntersection_RectCircle_Static(const Vector2, const Vector2,RigidBody&, const Vector2, const Vector2,RigidBody&, Manifold&);
+	bool CollisionIntersection_RectCircle(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& m);
 
 	bool CollisionIntersection_RectLine_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2);
 
@@ -23,7 +23,11 @@ namespace DeltaEngine
 
 	bool CollisionIntersection_CircleLineSegment_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2);
 
-	bool CollisionIntersection_CircleLineSegment_Static(const Vector2 Center1, const Vector2 Size1, LineSegment line);
+	bool CollisionIntersection_CircleLineSegment(Collider& col1, const Vector2& vel1, Collider& col2, const Vector2& vel2, Manifold& m);
+
+	bool CollisionIntersection_CircleLineSegment(Collider& col1, const Vector2& vel1, LineSegment line, Manifold& m);
+
+	bool CheckMovingCircleToLineEdge(bool withinlines,const Circle& circle, const Vector2& ptEnd, const LineSegment& lineSeg, Vector2& interPt, Vector2& normalAtCollision, float& interTime);
 
 	bool CollisionIntersection_RayLine_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2);
 

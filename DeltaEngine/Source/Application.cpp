@@ -131,7 +131,6 @@ namespace DeltaEngine
         t1.scale = Vector3(0.5, 0.5);
         col.type = ColliderType::BOX;
         r1.Mass = 25;
-        r1.hasGravity = true;
         r1.Restituition = 0.15f;
         r1.Movespeed = 3.0f;
         r1.inherentAcceleration = 1.1f;
@@ -143,10 +142,10 @@ namespace DeltaEngine
         t2.position = Vector3(-0.55f, -0.55f);
         t2.scale = Vector3(0.5, 0.5);
         r2.Velocity = Vector2(0, 0);
-        r2.Mass = 55;
+        r2.Mass = 25;
         r2.Restituition = 0.5f;
-        r2.Movespeed = 5.0f;
-        r2.inherentAcceleration = 4.5f;
+        r2.Movespeed = 4.0f;
+        r2.inherentAcceleration = 3.5f;
         col2.type = ColliderType::CIRCLE;
         //r2.hasGravity = true;
 
@@ -170,12 +169,12 @@ namespace DeltaEngine
         auto& r4 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity4);
         auto& col4 = env.pECS->world().get_entity_manager().get_component<Collider>(entity4);
 
-        t4.position = Vector3(-0.65f, -1.605f);
+        t4.position = Vector3(-0.65f, 1.605f);
         t4.scale = Vector3(1, 1);
         col4.size = t4.scale;
         r4.Velocity = Vector2(0, 0);
         r4.Mass = 10;
-        r4.hasGravity = true;
+        r4.hasGravity = false;
         col4.type = ColliderType::BOX;
 
         auto entity5 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
@@ -201,6 +200,19 @@ namespace DeltaEngine
         r6.Velocity = Vector2(0, 0);
         r6.Mass = 10;
         col6.type = ColliderType::BOX;
+
+        auto entity7 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+        auto& t7 = env.pECS->world().get_entity_manager().get_component<Transform>(entity7);
+        auto& r7 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity7);
+        auto& col7 = env.pECS->world().get_entity_manager().get_component<Collider>(entity7);
+
+        t7.position = Vector3(-4.65f, -2.305f);
+        t7.scale = Vector3(1, 1);
+        col7.size = t7.scale;
+        r7.Velocity = Vector2(0, 0);
+        r7.Mass = 10;
+        col7.type = ColliderType::CIRCLE;
+        r7.hasGravity = false;
 
         MSG msg = {};
         while (m_Running)

@@ -331,7 +331,7 @@ namespace DeltaEngine
 	Vector2 Normalise(Vector2& v)
 	{
 		float magnitude = Vector2Length(v);
-		Vector2 pResult;
+		Vector2 pResult{ 0,0 };
 
 		if (magnitude != 1 && magnitude != 0)
 		{
