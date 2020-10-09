@@ -1,5 +1,4 @@
 #pragma once
-#include "Core/Math/Vector.h"
 #include "Physics/CollisionShapes.h"
 #include "Manifold.h"
 #include "ECS/Components/RigidBody.h"
