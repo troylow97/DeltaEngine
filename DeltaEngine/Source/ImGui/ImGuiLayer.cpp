@@ -196,7 +196,7 @@ namespace DeltaEngine
 
 			static float f = 0.0f;
 			ImGui::Checkbox("Active", &RenderModule::allRenderers[2]->m_Active);
-			ImGui::Text("Edit Text Props");                           // Display some text (you can use a format string too)
+			ImGui::Text("Edit Particle System Props");                           // Display some text (you can use a format string too)
 			ImGui::DragFloat3("pos", (float*)&RenderModule::allRenderers[2]->transform.position, 0.01f);
 			ImGui::DragFloat3("size", (float*)&RenderModule::allRenderers[2]->transform.scale, 0.01f);
 			ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
