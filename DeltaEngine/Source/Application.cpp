@@ -146,7 +146,7 @@ namespace DeltaEngine
         r2.Restituition = 0.5f;
         r2.Movespeed = 4.0f;
         r2.inherentAcceleration = 3.5f;
-        col2.type = ColliderType::CIRCLE;
+        col2.type = ColliderType::BOX;
         //r2.hasGravity = true;
 
         auto& t3 = env.pECS->world().get_entity_manager().get_component<Transform>(entity3);
