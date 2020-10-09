@@ -24,8 +24,12 @@
 #include "Assets/Loaders/AnimationClipLoader.h"
 #include "Assets/Loaders/AnimationControllerLoader.h"
 
+// input
+#include "Input/InputManager.h"
 
+// physics
 #include "Physics/Collision.h"
+
 // Render
 #include "Render/Window.h"
 #include "Render/ErrorCheck.h"
