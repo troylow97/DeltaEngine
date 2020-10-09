@@ -26,6 +26,7 @@ namespace DeltaEngine
 
     Application::Application() : m_Running{ true }, m_Minimized{ true }, m_interval(0.25)
     {
+        FileUtils::Root("Assets");
         Log::Init();
         DeltaEngine_CORE_INFO("Engine Start");
         // Memory Manager
@@ -45,7 +46,6 @@ namespace DeltaEngine
         m_ImGuiLayer->OnAttach();
 
         // Asset Loading
-        FileUtils::Root("Assets");
         env.pClock = new GameClock();
         env.pManager = new AM();
         env.pManager->set_loader<Font>(new FontLoader())
