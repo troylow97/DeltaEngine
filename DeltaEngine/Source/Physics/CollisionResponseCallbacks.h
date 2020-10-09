@@ -1,8 +1,8 @@
 #pragma once
 #include "Core/Math/Vector.h"
-#include "Collider.h"
-#include "RigidBody.h"
-#include "Core/Math/Transform.h"
+#include "ECS/Components/Collider.h"
+#include "ECS/Components/Transform.h"
+#include "ECS/Components/RigidBody.h"
 #include "Manifold.h"
 namespace DeltaEngine
 {
