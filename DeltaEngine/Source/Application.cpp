@@ -131,7 +131,7 @@ namespace DeltaEngine
         t1.scale = Vector3(0.5, 0.5);
         col.type = ColliderType::CIRCLE;
         r1.Mass = 25;
-        r1.hasGravity = false;
+        r1.hasGravity = true;
         r1.Restituition = 0.5f;
         r1.Movespeed = 0.15f;
 

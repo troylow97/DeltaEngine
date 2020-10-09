@@ -81,16 +81,39 @@ namespace DeltaEngine
 		return tmax >= tmin;
 	}
 
-	bool CollisionIntersection_RectCircle_Static(const Vector2 Center1,const Vector2 Size1,const Vector2 Center2,const Vector2 Size2,Manifold& m)
+	bool CollisionIntersection_RectCircle_Static(const Vector2 Center1, const Vector2 Size1, RigidBody& r1, const Vector2 Center2, const Vector2 Size2, RigidBody& r2, Manifold& m)
 	{
+		Vector2 TopLeft, TopRight, BotLeft, BotRight, TopMiddle, BotMiddle, LeftMiddle, RightMiddle;
+		float HalfWidth = Size1.x / 2;
+		float HalfHeight = Size1.y / 2;
+		float radius = Size2.x;
+		TopLeft = { Center1.x - HalfWidth, Center1.y + HalfHeight };
+		TopRight = { Center1.x + HalfWidth, Center1.y + HalfHeight };
+		BotLeft = { Center1.x - HalfWidth ,Center1.y - HalfHeight };
+		BotRight = { Center1.x + HalfWidth , Center1.y - HalfWidth };
+
 		Vector2 dist(Center1 - Center2);
 		Vector2 CircleTip;
 		CircleTip = Normalise(dist);
 		CircleTip *= Size2.x;
 		CircleTip += Center2;
-		//m.normal = 
-		if (CollisionIntersection_RectPoint(Center1, Size1, CircleTip))
+
+		if (CollisionIntersection_RectPoint(Center1, Size1, CircleTip)
+			|| CollisionIntersection_CirclePoint(Center2, Size2, TopRight)
+			|| CollisionIntersection_CirclePoint(Center2, Size2, BotLeft)
+			|| CollisionIntersection_CirclePoint(Center2, Size2, BotRight))
+		{
+			Vector2 ReflectVec;
+			Vector2 ReflectVecTip;
+			ReflectVecTip.x = Center2.x + 2 * (Center2.x - CircleTip.x);
+			ReflectVecTip.y = Center2.y + -CircleTip.y;
+			
+			ReflectVec = CircleTip - ReflectVecTip;
+			//r1.ReflectedVector = CircleTip;
+			r2.ReflectedVector = ReflectVec;
 			return true;
+		}
+		return false;
 	}
 
 	bool CollisionIntersection_RectLine_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2)
@@ -416,7 +439,7 @@ namespace DeltaEngine
 	}
 //------------
 
-	bool CollisionIntersection_Main(Collider& col1,const RigidBody& r1,Collider& col2,const RigidBody& r2,Manifold& m)
+	bool CollisionIntersection_Main(Collider& col1,RigidBody& r1,Collider& col2,RigidBody& r2,Manifold& m)
 	{
 		ColliderType type1 = col1.type;
 
@@ -435,7 +458,7 @@ namespace DeltaEngine
 		}
 	}
 
-	bool CollisionIntersection_Sub_Box(Collider& col1, const RigidBody& r1,Collider& col2, const RigidBody& r2, Manifold& manifold)
+	bool CollisionIntersection_Sub_Box(Collider& col1, RigidBody& r1,Collider& col2, RigidBody& r2, Manifold& manifold)
 	{
 		ColliderType type2 = col2.type;
 		switch (type2)
@@ -450,7 +473,7 @@ namespace DeltaEngine
 			return false;
 		}
 		case ColliderType::CIRCLE:
-			return CollisionIntersection_RectCircle_Static(col1.center, col1.size, col2.center, col2.size,manifold);
+			return CollisionIntersection_RectCircle_Static(col1.center, col1.size,r1, col2.center, col2.size,r1, manifold);
 		case ColliderType::LINE:
 			return CollisionIntersection_RectLine_Static(col1.center, col1.size, col2.center, col2.size);
 		case ColliderType::RAY:
@@ -459,7 +482,7 @@ namespace DeltaEngine
 			return CollisionIntersection_RectRect_Static(col1.center, col1.size, col2.center, col2.size);
 		}
 	}
-	bool CollisionIntersection_Sub_Circle(Collider& col1, const RigidBody& r1,Collider& col2, const RigidBody& r2,Manifold& manifold)
+	bool CollisionIntersection_Sub_Circle(Collider& col1, RigidBody& r1,Collider& col2, RigidBody& r2,Manifold& manifold)
 	{
 		UNREFERENCED_PARAMETER(r1);
 		UNREFERENCED_PARAMETER(r2);
@@ -468,7 +491,7 @@ namespace DeltaEngine
 		switch (type2)
 		{
 		case ColliderType::BOX:
-			return CollisionIntersection_RectCircle_Static(col2.center, col2.size, col1.center, col1.size,manifold);
+			return CollisionIntersection_RectCircle_Static(col1.center, col1.size, r1, col2.center, col2.size, r1, manifold);
 		case ColliderType::CIRCLE:
 		{
 			//return CollisionIntersection_CircleCircle_Static(col1.center, col1.size, col2.center, col2.size);
@@ -482,7 +505,7 @@ namespace DeltaEngine
 			return CollisionIntersection_RayCircle(ray, col2,manifold);
 		}
 		default:
-			return CollisionIntersection_RectCircle_Static(col2.center, col2.size, col1.center, col1.size,manifold);
+			return CollisionIntersection_RectCircle_Static(col1.center, col1.size, r1, col2.center, col2.size, r1, manifold);
 		}
 	}
 	bool CollisionIntersection_Sub_Line(Collider& col1,Collider& col2, Manifold& manifold)
@@ -503,7 +526,7 @@ namespace DeltaEngine
 			return CollisionIntersection_RectLine_Static(col2.center, col2.size, col1.center, col1.size);
 		}
 	}
-	bool CollisionIntersection_Sub_Ray(Collider& col1,const RigidBody& r1,Collider& col2,const RigidBody& r2,Manifold& m)
+	bool CollisionIntersection_Sub_Ray(Collider& col1,RigidBody& r1,Collider& col2,RigidBody& r2,Manifold& m)
 	{
 		UNREFERENCED_PARAMETER(r1);
 		UNREFERENCED_PARAMETER(r2);

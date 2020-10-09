@@ -15,7 +15,7 @@ namespace DeltaEngine
 
 	bool CollisionIntersection_RectRay_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2);
 
-	bool CollisionIntersection_RectCircle_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2, Manifold& m);
+	bool CollisionIntersection_RectCircle_Static(const Vector2, const Vector2,RigidBody&, const Vector2, const Vector2,RigidBody&, Manifold&);
 
 	bool CollisionIntersection_RectLine_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2);
 
@@ -41,13 +41,13 @@ namespace DeltaEngine
 	bool CollisionIntersection_RayCircle(const Ray& ray, Collider& col2,Manifold& m);
 
 //Main
-	bool CollisionIntersection_Main(Collider&,const RigidBody&,Collider&,const RigidBody&, Manifold& m);
+	bool CollisionIntersection_Main(Collider&,RigidBody&,Collider&,RigidBody&, Manifold& m);
 
-	bool CollisionIntersection_Sub_Box(Collider&, const RigidBody&,Collider&, const RigidBody&, Manifold& m);
+	bool CollisionIntersection_Sub_Box(Collider&, RigidBody&,Collider&, RigidBody&, Manifold& m);
 
-	bool CollisionIntersection_Sub_Circle(Collider&, const RigidBody&,Collider&, const RigidBody&, Manifold& m);
+	bool CollisionIntersection_Sub_Circle(Collider&, RigidBody&,Collider&, RigidBody&, Manifold& m);
 
-	bool CollisionIntersection_Sub_Ray(Collider&, const RigidBody&, Collider&, const RigidBody&, Manifold& m);
+	bool CollisionIntersection_Sub_Ray(Collider&,RigidBody&, Collider&, RigidBody&, Manifold& m);
 
 	bool CollisionIntersection_Sub_Line(Collider&,Collider&,Manifold& m);
 

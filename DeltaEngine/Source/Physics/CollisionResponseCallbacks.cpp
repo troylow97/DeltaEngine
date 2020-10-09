@@ -62,6 +62,11 @@ namespace DeltaEngine
 	 //  r2.Velocity = r2.ReflectedVector * env.pClock->DeltaTime();
    }
 
+   void CollisionResponse_RectvsCircle(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m)
+   {
+	   r2.Velocity = r2.ReflectedVector;
+   }
+
    void CollisionResponse_Main(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m)
    {
 	   ColliderType type1 = col1.type;
@@ -94,6 +99,7 @@ namespace DeltaEngine
 		   CollisionResponse_AABBvsAABB(col1, r1,col2, r2);
 		   return;
 	   case ColliderType::CIRCLE:
+		   CollisionResponse_RectvsCircle(col1, r1, t1, col2, r2, t2, m);
 		   return;
 	   case ColliderType::LINE:
 		   return;

@@ -53,11 +53,11 @@ namespace DeltaEngine
 
     void PhysicsSystem::Gravity()
     {
-        Vector2 GravityAmount{ 0,-0.2 };
+        Vector2 GravityAmount{ 0,-1.0f };
         em.for_each([&](EntityID id1, RigidBody& r1,Transform& t1)
         {
             if(r1.hasGravity)
-                r1.Velocity += GravityAmount;
+                r1.Velocity += GravityAmount * 1/r1.Mass;
         });
     }
 
