@@ -1,7 +1,5 @@
 #pragma once
-#include "Core/Math/Vector.h"
 #include "Physics/CollisionShapes.h"
-#include "RigidBody.h"
 #include "Manifold.h"
 
 namespace DeltaEngine

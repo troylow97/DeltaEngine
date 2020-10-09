@@ -28,8 +28,11 @@ struct DE_API Vector2
 #pragma region Vector2 Operators
   Vector2 &operator=( const Vector2 &a );
   Vector2 operator+( const Vector2 a ) const;
+  Vector2 operator+(const float f);
+  Vector2 operator+=(const Vector2 a);
   Vector2 operator+=( const Vector2 a );
   Vector2 operator-( const Vector2 a ) const;
+  Vector2 operator-(const float f);
   Vector2 operator-=( const Vector2 a );
   Vector2 operator-() const;
   Vector2 operator*( const Vector2 f ) const;
@@ -38,6 +41,8 @@ struct DE_API Vector2
   Vector2 operator*=( const float f );
   Vector2 operator/( const float f ) const;
   Vector2 operator/=( const float f );
+  bool Vector2::operator!=(const Vector2 v) const;
+  bool Vector2::operator==(const Vector2 v) const;
 #pragma endregion
 };
 
