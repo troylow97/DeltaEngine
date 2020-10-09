@@ -33,6 +33,8 @@ project "DeltaEngine"
     "%{prj.name}/Dep/stb_image/stb_image.cpp",
     "%{prj.name}/Dep/rttr/include/*.h",
     "%{prj.name}/Dep/rttr/include/*.cpp",
+    "%{prj.name}/Dep/rapidjson/*.cpp",
+    "%{prj.name}/Dep/rapidjson/*.h",
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp",
     "%{prj.name}/Source/**.inl"
@@ -46,6 +48,7 @@ project "DeltaEngine"
     "%{prj.name}/Dep/freetype/include",
     "%{prj.name}/Dep/stb_image",
     "%{prj.name}/Dep/rttr/include",
+    "%{prj.name}/Dep/rapidjson",
     "%{prj.name}/Source"
   }
 
