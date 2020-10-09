@@ -18,6 +18,7 @@ namespace DeltaEngine
 		Point _currentMousePosition;                // the coordinate of current mouse position 
 		Point _previousMousePosition;               // the coordinate of previous mouse position 
 		bool _moveEvent;
+		bool _firstTime = true;
 
 		friend class InputSystem;
 

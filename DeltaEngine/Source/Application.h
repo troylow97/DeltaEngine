@@ -11,7 +11,6 @@ namespace DeltaEngine
 
 	class DE_API Application
 	{
-		bool m_Running;
 		bool m_Minimized;
 
 		double m_interval;
@@ -23,12 +22,8 @@ namespace DeltaEngine
 
 		void Run();
 		void OnEvent();
-		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
-	private:
-		void FixedUpdate();
-		void VariableUpdate();
 	};
 
 	Application* CreateApplication();

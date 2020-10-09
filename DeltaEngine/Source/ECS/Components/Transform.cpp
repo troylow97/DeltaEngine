@@ -1,4 +1,3 @@
-#include "DEpch.h"
 #include "Transform.h"
 
 namespace DeltaEngine

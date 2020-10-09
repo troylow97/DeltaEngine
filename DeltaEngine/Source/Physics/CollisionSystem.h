@@ -1,14 +1,26 @@
 #pragma once
-#include "Collider.h"
 #include "CollisionHandler.h"
 #include "RigidBody.h"
 #include "ECS/Components/Transform.h"
-#include "ECS/ECSModule.h"
-
+#include "Manifold.h"
+#include "ECS/Components/RigidBody.h"
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
+struct CollisionPairInfo
+{
+  Manifold m;
+  EntityID id1;
+  EntityID id2;
+
+  CollisionPairInfo(Manifold man,EntityID i1,EntityID i2) :
+    m{man},
+    id1{i1},
+    id2{i2}
+  {}
+};
+
+DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
 
     using CollisionPair = std::pair<EntityID, EntityID>;
     std::vector<CollisionPair> CurrentPair;
@@ -26,7 +38,7 @@ namespace DeltaEngine
     void Init();
 
 
-    END_DEFINE_SYSTEM(CollisionSystem)
+  END_DEFINE_SYSTEM(CollisionSystem)
 }
 
 /*

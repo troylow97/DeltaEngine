@@ -22,6 +22,7 @@ namespace DeltaEngine
 	{
 		LineSegment();
 		LineSegment(const Vector2 pt0,const Vector2 pt1);
+		LineSegment(const Vector2& pos,const Vector2& scale,const Vector2& dir);
 		Vector2	m_pt0;
 		Vector2	m_pt1;
 		Vector2	m_normal; //outward

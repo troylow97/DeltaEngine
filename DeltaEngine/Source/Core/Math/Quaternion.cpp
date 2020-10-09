@@ -11,7 +11,7 @@ namespace DeltaEngine
     Quaternion::Quaternion(float q0, float q1, float q2, float q3)
         : x{ q0 }, y{ q1 }, z{ q2 }, w{ q3 } {}
 
-    const Quaternion Quaternion::identity() { return { 0, 0, 0, 1 }; }
+    const Quaternion Quaternion::Identity() { return { 0, 0, 0, 1 }; }
 
     Quaternion Quaternion::AngleAxis(const float angle, const Vector3 axis)
     {

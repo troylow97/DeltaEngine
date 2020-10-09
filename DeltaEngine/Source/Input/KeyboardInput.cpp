@@ -84,4 +84,13 @@ namespace DeltaEngine
 	{
 		return _isReleased[key];
 	}
+
+	bool KeyboardInput::getShowLine()
+	{
+		return _showLine;
+	}
+	void KeyboardInput::setShowLine(bool showLine)
+	{
+		_showLine = showLine;
+	}
 }
