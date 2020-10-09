@@ -8,7 +8,7 @@ namespace DeltaEngine
   constexpr size_t MEMORY_BLOCK_16K = 16384;
 
   struct ComponentList;
-  class Archetype;
+  struct Archetype;
   struct EntityID;
 
   struct DataChunkHeader

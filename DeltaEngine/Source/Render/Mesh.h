@@ -1,7 +1,7 @@
 #pragma once
 
 #include <GL/glew.h>
-#include "Core/Math/Color.h"
+#include "Core/Math/DE_Math.h"
 #include <vector>
 
 namespace DeltaEngine

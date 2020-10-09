@@ -41,6 +41,7 @@ namespace DeltaEngine
     ~AssetData()
     {
       assert(_referenceCount == 0);
+      if (_data)
       Internal::safe_delete(_data);
     }
   };

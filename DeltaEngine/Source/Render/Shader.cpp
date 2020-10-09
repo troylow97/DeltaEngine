@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include "Core/Debugging/Logger/Log.h"
+#include "Core/Math/DE_Math.h"
 
 namespace DeltaEngine
 {
