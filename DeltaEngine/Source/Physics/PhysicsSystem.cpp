@@ -3,6 +3,8 @@
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
 #include "Collision.h"
+#include <stdlib.h> 
+
 namespace DeltaEngine
 {
 
@@ -19,7 +21,7 @@ namespace DeltaEngine
         em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1,Collider& c1)
             {
                     t1.position += r1.Velocity * env.pClock->DeltaTime(); //Update Position
-                    r1.Velocity *= 0.97f; //Apply Friction
+                    r1.Velocity *= r1.Friction; //Apply Friction
 
                 //DeltaEngine_CORE_TRACE(("Position: " , t1.position.x , "__" , t1.position.y));
             });
@@ -39,9 +41,11 @@ namespace DeltaEngine
     {
         em.for_each([&](EntityID id1, RigidBody& r1,Transform& t1)
             {
-                r1.Velocity += r1.Direction * r1.Movespeed;
+                r1.Velocity += ((r1.Direction * (r1.Movespeed)) / r1.Mass);
                 r1.Velocity +=  r1.Acceleration * env.pClock->DeltaTime(); //Apply Acceleration
+                r1.Acceleration = (r1.Direction * r1.inherentAcceleration);
 
+                std::cout << r1.Velocity.x << std::endl;
                 //DeltaEngine_CORE_TRACE(("Position: " , t1.position.x , "__" , t1.position.y));
             });
         //em.for_each([&](EntityID id1, Transform& t1)
@@ -53,11 +57,15 @@ namespace DeltaEngine
 
     void PhysicsSystem::Gravity()
     {
-        Vector2 GravityAmount{ 0,-1.0f };
+        Vector2 GravityAmount{ 0,-5.0f };
         em.for_each([&](EntityID id1, RigidBody& r1,Transform& t1)
         {
-            if(r1.hasGravity)
-                r1.Velocity += GravityAmount * 1/r1.Mass;
+            if (r1.hasGravity)
+            {
+                r1.Velocity += GravityAmount * 1 / r1.Mass;
+                r1.Acceleration = (GravityAmount * r1.inherentAcceleration) / r1.Mass;
+            }
+;
         });
     }
 

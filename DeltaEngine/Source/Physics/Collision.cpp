@@ -98,10 +98,15 @@ namespace DeltaEngine
 		CircleTip *= Size2.x;
 		CircleTip += Center2;
 
-		if (CollisionIntersection_RectPoint(Center1, Size1, CircleTip)
-			|| CollisionIntersection_CirclePoint(Center2, Size2, TopRight)
-			|| CollisionIntersection_CirclePoint(Center2, Size2, BotLeft)
-			|| CollisionIntersection_CirclePoint(Center2, Size2, BotRight))
+		//if (   CollisionIntersection_CirclePoint(Center2, Size2, TopRight)
+		//	|| CollisionIntersection_CirclePoint(Center2, Size2, TopLeft)
+		//	|| CollisionIntersection_CirclePoint(Center2, Size2, BotLeft)
+		//	|| CollisionIntersection_CirclePoint(Center2, Size2, BotRight))
+		//{
+		//	r2.Ref
+		//}
+		//
+		if (CollisionIntersection_RectPoint(Center1, Size1, CircleTip))
 		{
 			Vector2 ReflectVec;
 			Vector2 ReflectVecTip;

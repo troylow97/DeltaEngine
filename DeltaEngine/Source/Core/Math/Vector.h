@@ -41,6 +41,8 @@ namespace DeltaEngine
 		Vector2 operator*=(const float f);
 		Vector2 operator/(const float f) const;
 		Vector2 operator/=(const float f);
+		bool operator>(const Vector2 v) const;
+		bool operator>(const float f) const;
 		bool operator==(const Vector2 v) const;
 		bool operator!=(const Vector2 v) const;
 #pragma endregion

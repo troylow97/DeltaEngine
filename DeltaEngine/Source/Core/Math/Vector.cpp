@@ -162,6 +162,22 @@ namespace DeltaEngine
 
 		return false;
 	}
+	bool Vector2::operator>(const Vector2 v) const
+	{
+		if (this->x > v.x && this->y > v.y)
+		{
+			return true;
+		}
+		return false;
+	}
+	bool Vector2::operator>(const float f) const
+	{
+		if (this->x > f && this->y > f)
+		{
+			return true;
+		}
+		return false;
+	}
 #pragma endregion
 
 	Vector3::Vector3() : x{ 0 }, y{ 0 }, z{ 0 } {}

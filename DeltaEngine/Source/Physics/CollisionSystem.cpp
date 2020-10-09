@@ -38,8 +38,8 @@ namespace DeltaEngine
 			{
 				c1.center = t1.position;
 				c1.size = t1.scale;
-				//Vector2 oldpos = t1.position;
-				//t1.position = t1.position + r1.Velocity;
+				Vector2 oldpos = t1.position;
+				t1.position = t1.position + r1.Velocity;
 				em.for_each([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
 				{
 					if(c2.isCollideable)
@@ -61,7 +61,7 @@ namespace DeltaEngine
 
 					}
 				});
-				//t1.position = oldpos;
+				t1.position = oldpos;
 			}
 		});
 

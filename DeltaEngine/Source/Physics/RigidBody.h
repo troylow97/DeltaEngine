@@ -9,16 +9,20 @@ namespace DeltaEngine
 		Vector2 Direction;
 		Vector2 Velocity;
 		Vector2 ReflectedVector;
+		float Friction;
 		float Movespeed;
+		float inherentAcceleration;
 		Vector2 Acceleration;
-		float Restituition;
+		float Restituition; //not used
 		bool hasGravity;
 
 		RigidBody() :
 			Mass{50.0f},
 			Velocity{0,0},
 			Acceleration{0,0},
-			hasGravity{false}
+			hasGravity{false},
+			Friction{0.97},
+			inherentAcceleration{3.0f}
 		{}
 	};
 }
