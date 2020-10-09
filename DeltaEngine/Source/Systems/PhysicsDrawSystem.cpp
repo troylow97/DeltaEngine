@@ -1,7 +1,7 @@
 #include "PhysicsDrawSystem.h"
 #include "Physics/Collider.h"
 #include "Core/Debugging/Gizmos.h"
-#include "Input/InputSystem.h"
+#include "Input/InputManager.h"
 
 namespace DeltaEngine
 {
@@ -13,7 +13,7 @@ namespace DeltaEngine
                 switch (c.type)
                 {
                 case ColliderType::BOX:
-                    if (InputSystem::get()->getShowLine() == true)
+                    if (InputManager::get()->getShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
@@ -21,7 +21,7 @@ namespace DeltaEngine
                     break;
                 case ColliderType::CIRCLE:
                 {
-                    if (InputSystem::get()->getShowLine() == true)
+                    if (InputManager::get()->getShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
@@ -31,21 +31,21 @@ namespace DeltaEngine
                     break;
                 }
                 case ColliderType::RAY:
-                    if (InputSystem::get()->getShowLine() == true)
+                    if (InputManager::get()->getShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
                     Gizmos::Draw2DWireBox(t); //TO CHANGE
                     break;
                 case ColliderType::LINE:
-                    if (InputSystem::get()->getShowLine() == true)
+                    if (InputManager::get()->getShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
                     Gizmos::Draw2DWireBox(t); //TO CHANGE
                     break;
                 case ColliderType::NONE:
-                    if (InputSystem::get()->getShowLine() == true)
+                    if (InputManager::get()->getShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }

@@ -16,7 +16,7 @@ namespace DeltaEngine
 		unsigned char _currentKeyState[256] = { };  // an array of key states
 		unsigned char _previousKeyState[256] = { }; // an array of old key states
 
-		friend class InputSystem;
+		friend class InputManager;
 
 		bool _showLine = false;
 

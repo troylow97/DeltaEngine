@@ -11,7 +11,7 @@
 #include "Systems/RenderSystem.h"
 #include "Systems/PhysicsDrawSystem.h"
 #include "ECS/World.h"
-#include "Input/InputSystem.h"
+#include "Input/InputManager.h"
 #include "Input/Keys.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -148,7 +148,7 @@ namespace DeltaEngine
             textrender.text = "FPS: " + std::to_string(static_cast<u32>(env.pClock->FrameRate()));
             textrender.transform.position = Vector3((Camera::editorCamera->Max().x - Camera::editorCamera->Min().x) * -0.28, (Camera::editorCamera->Max().y - Camera::editorCamera->Min().y) * 0.27f);
 
-            if (InputSystem::get()->isKeyPressed(DEVK_A))
+            if (InputManager::get()->isKeyPressed(DEVK_A))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
                     {
@@ -164,14 +164,14 @@ namespace DeltaEngine
                         s.m_FlipX = true;
                     });
             }
-            else if (InputSystem::get()->isKeyReleased(DEVK_A))
+            else if (InputManager::get()->isKeyReleased(DEVK_A))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
                     {
                         a.SetFloat("Speed", 0.0f);
                     });
             }
-            if (InputSystem::get()->isKeyPressed(DEVK_D))
+            if (InputManager::get()->isKeyPressed(DEVK_D))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
                     {
@@ -187,14 +187,14 @@ namespace DeltaEngine
                         s.m_FlipX = false;
                     });
             }
-            else if (InputSystem::get()->isKeyReleased(DEVK_D))
+            else if (InputManager::get()->isKeyReleased(DEVK_D))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
                     {
                         a.SetFloat("Speed", 0.0f);
                     });
             }
-            if (InputSystem::get()->isKeyPressed(DEVK_W))
+            if (InputManager::get()->isKeyPressed(DEVK_W))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
                     {
@@ -202,7 +202,7 @@ namespace DeltaEngine
                         r1.Velocity = {0, 1};
                     });
             }
-            if (InputSystem::get()->isKeyPressed(DEVK_S))
+            if (InputManager::get()->isKeyPressed(DEVK_S))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
                     {
@@ -210,21 +210,21 @@ namespace DeltaEngine
                         r1.Velocity = {0, -1};
                     });
             }
-            if (InputSystem::get()->isKeyTriggered(DEVK_BACKSLASH)) // '\'
+            if (InputManager::get()->isKeyTriggered(DEVK_BACKSLASH)) // '\'
             {
-                if (InputSystem::get()->getShowLine() == false)
+                if (InputManager::get()->getShowLine() == false)
                 {
                     //std::cout << "V is triggered and line is shown" << std::endl;
-                    InputSystem::get()->setShowLine(true);
+                    InputManager::get()->setShowLine(true);
                 }
-                else if (InputSystem::get()->getShowLine() == true)
+                else if (InputManager::get()->getShowLine() == true)
                 {
                     //std::cout << "V is triggered and line is NOT shown" << std::endl;
-                    InputSystem::get()->setShowLine(false);
+                    InputManager::get()->setShowLine(false);
                 }
             }
 
-            if (InputSystem::get()->isKeyTriggered(DEVK_P))
+            if (InputManager::get()->isKeyTriggered(DEVK_P))
             {
                 auto circleEntity = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
                 auto& circleT = env.pECS->world().get_entity_manager().get_component<Transform>(circleEntity);
@@ -238,12 +238,12 @@ namespace DeltaEngine
             }
 
             // gets the coordinates of the mouse, good for debugging
-            if (InputSystem::get()->onMouseMove())
+            if (InputManager::get()->onMouseMove())
             {
-                InputSystem::get()->currentPosition();
+                InputManager::get()->currentPosition();
             }
 
-            InputSystem::get()->update();
+            InputManager::get()->update();
             // Update engine GameClock
             env.pClock->Update();
             env.pECS->world().update();
