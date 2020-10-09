@@ -107,6 +107,7 @@ namespace DeltaEngine
 
         textrender.font = env.pManager->get<Font>("Default");
         textrender.shader = env.pManager->get<Shader>("DefaultText");
+        textrender.transform.scale = Vector3(0.75, 0.75);
         animator.m_Controller = env.pManager->get<AnimationController>("Player");
 
         //physics test start init var
@@ -131,9 +132,22 @@ namespace DeltaEngine
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
 
+        // FPS Limiter
+        using frames = std::chrono::duration<i32, std::ratio<1, 60>>;
+        auto nextFrame = std::chrono::system_clock::now() + frames{ 0 };
+        auto lastFrame = nextFrame - frames{ 1 };
+
         MSG msg = {};
         while (m_Running)
         {
+            // FPS Limiter
+            std::this_thread::sleep_until(nextFrame);
+            lastFrame = nextFrame;
+            nextFrame += frames{ 1 };
+
+            textrender.text = "FPS: " + std::to_string(static_cast<u32>(env.pClock->FrameRate()));
+            textrender.transform.position = Vector3((Camera::editorCamera->Max().x - Camera::editorCamera->Min().x) * -0.28, (Camera::editorCamera->Max().y - Camera::editorCamera->Min().y) * 0.27f);
+
             if (InputSystem::get()->isKeyPressed(DEVK_A))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
@@ -192,6 +206,20 @@ namespace DeltaEngine
                         r1.Velocity = {0, -1};
                     });
             }
+            if (InputSystem::get()->isKeyTriggered(DEVK_BACKSLASH)) // '\'
+            {
+                if (InputSystem::get()->getShowLine() == false)
+                {
+                    //std::cout << "V is triggered and line is shown" << std::endl;
+                    InputSystem::get()->setShowLine(true);
+                }
+                else if (InputSystem::get()->getShowLine() == true)
+                {
+                    //std::cout << "V is triggered and line is NOT shown" << std::endl;
+                    InputSystem::get()->setShowLine(false);
+                }
+            }
+
             InputSystem::get()->update();
             // Update engine GameClock
             env.pClock->Update();

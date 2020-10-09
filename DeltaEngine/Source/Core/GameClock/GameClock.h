@@ -2,6 +2,7 @@
 #include "Core/TypeAlias.h"
 
 #include <chrono>
+#include <thread>
 
 namespace DeltaEngine
 {
