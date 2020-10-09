@@ -27,5 +27,7 @@ namespace DeltaEngine
 		int RoundDownToNearest(float value, int multiple);
 		float RoundDownf(float value);
 		float RoundDownToNearestf(float value, int multiple);
+		bool solveQuadratic(const float& a, const float& b, const float& c, float& x0, float& x1);
+		float sqrt1(const float x);
 	}
 }

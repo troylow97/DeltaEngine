@@ -15,21 +15,20 @@ namespace DeltaEngine
   struct Collider
   {
       bool isCollideable;
-      float interTime;
-      Vector2 interPoint;
-      Vector2 DirectionVector;
-      Vector2 ReflectionVector;
-      Vector2 PointEnd;
-      Vector2 normal;
       Vector2 center;
       Vector2 size;
       ColliderType type;
+      Vector2 interPoint;
       Collider() :
           isCollideable{true},
-          interTime{0.0f},
           center{0,0},
           size{0,0},
           type{ColliderType::BOX}
+      {}
+      Collider(Vector2 new_center,Vector2 new_size,ColliderType col_type) :
+          center(new_center),
+          size(new_size),
+          type(col_type)
       {}
   };
 

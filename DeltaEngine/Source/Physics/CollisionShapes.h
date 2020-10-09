@@ -15,6 +15,8 @@ namespace DeltaEngine
 		void combine(const AABB& aabb);
 		void combine(const AABB& aabb1, const AABB& aabb2);	
 		bool contains(const AABB& aabb) const;
+		float getWidth() const;
+		float getHeight() const;
 		float GetPerimeter() const;
 	};
 

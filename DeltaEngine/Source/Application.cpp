@@ -70,7 +70,7 @@ namespace DeltaEngine
         env.pECS->world();
         env.pECS->world().create_systems<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
         env.pECS->world().set_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-        env.pECS->world().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+        env.pECS->world().set_late_update_sequence<CollisionSystem, PhysicsSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
     }
 
     Application::~Application()
@@ -107,34 +107,45 @@ namespace DeltaEngine
         //auto* a = new Animator(env.pManager->get<AnimationController>("Player"));
         //a->renderer = s;
 
-        //auto* t = new TextRenderer(env.pManager->get<Font>("Fail"),
-        //    env.pManager->get<Shader>("DefaultText"));
+
+        auto text_entity = env.pECS->world().get_entity_manager().create_entity<TextRenderer, Transform>();
+        auto& text_component = env.pECS->world().get_entity_manager().get_component<TextRenderer>(text_entity);
+        auto& text_trans_component = env.pECS->world().get_entity_manager().get_component<Transform>(text_entity);
+
+        text_component.text = "HELLO WORLD";
+        text_component.shader = env.pManager->get<Shader>("DefaultText");
+        text_component.font = env.pManager->get<Font>("Default");
+        text_trans_component.position = Vector3(0.55f, 0.55f);
+
         //auto* p = new ParticleSystem();
 
         //physics test start init var
-        auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform,RigidBody, Collider,MainCharacter2>();
-        auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider,MainCharacter1>();
+        auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider, MainCharacter2>();
+        auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider, MainCharacter1>();
         auto entity3 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
-        auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
+        auto& t1 = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
         auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
         auto& r1 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity1);
 
-        trans.position = Vector3(0.55f, 0.55f);
-        trans.scale = Vector3(1, 1);
-        col.type = ColliderType::BOX;
-        r1.Mass = 2;
+        t1.position = Vector3(1.85f, 0.55f);
+        t1.scale = Vector3(0.5, 0.5);
+        col.type = ColliderType::CIRCLE;
+        r1.Mass = 25;
+        r1.hasGravity = false;
         r1.Restituition = 0.5f;
+        r1.Movespeed = 0.15f;
 
         auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
         auto& r2 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity2);
         auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity2);
 
         t2.position = Vector3(-0.55f, -0.55f);
-        t2.scale = Vector3(1, 1);
+        t2.scale = Vector3(0.5, 0.5);
         r2.Velocity = Vector2(0, 0);
-        r2.Mass = 2;
+        r2.Mass = 25;
         r2.Restituition = 0.5f;
-        col2.type = ColliderType::BOX;
+        r2.Movespeed = 0.15f;
+        col2.type = ColliderType::CIRCLE;
         //r2.hasGravity = true;
 
         auto& t3 = env.pECS->world().get_entity_manager().get_component<Transform>(entity3);
@@ -143,73 +154,128 @@ namespace DeltaEngine
 
         t3.position = Vector3(-0.85f, -2.605f);
         t3.scale = Vector3(5, 1);
+        col3.size = t3.scale;
         r3.Velocity = Vector2(0, 0);
-        r3.Mass = 30;
+        r3.Mass = 10;
+        r3.Movespeed = 0.15f;
         col3.type = ColliderType::BOX;
-        //physics test end
+
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
+
+        auto entity4 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+        auto& t4 = env.pECS->world().get_entity_manager().get_component<Transform>(entity4);
+        auto& r4 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity4);
+        auto& col4 = env.pECS->world().get_entity_manager().get_component<Collider>(entity4);
+
+        t4.position = Vector3(-0.65f, -1.605f);
+        t4.scale = Vector3(1, 1);
+        col4.size = t4.scale;
+        r4.Velocity = Vector2(0, 0);
+        r4.Mass = 10;
+        r4.hasGravity = true;
+        col4.type = ColliderType::BOX;
+
+        auto entity5 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+        auto& t5 = env.pECS->world().get_entity_manager().get_component<Transform>(entity5);
+        auto& r5 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity5);
+        auto& col5 = env.pECS->world().get_entity_manager().get_component<Collider>(entity5);
+
+        t5.position = Vector3(3.65f, -1.605f);
+        t5.scale = Vector3(3, 1);
+        col5.size = t5.scale;
+        r5.Velocity = Vector2(0, 0);
+        r5.Mass = 10;
+        col5.type = ColliderType::BOX;
+
+        auto entity6 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+        auto& t6 = env.pECS->world().get_entity_manager().get_component<Transform>(entity6);
+        auto& r6 = env.pECS->world().get_entity_manager().get_component<RigidBody>(entity6);
+        auto& col6 = env.pECS->world().get_entity_manager().get_component<Collider>(entity6);
+
+        t6.position = Vector3(3.65f, 2.705f);
+        t6.scale = Vector3(2, 2);
+        col6.size = t6.scale;
+        r6.Velocity = Vector2(0, 0);
+        r6.Mass = 10;
+        col6.type = ColliderType::BOX;
 
         MSG msg = {};
         while (m_Running)
         {
+            InputSystem::get()->update();
             if (InputSystem::get()->isKeyPressed(DEVK_A))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter1)
                     {
-                        r1.Velocity += {-0.12, 0};
+                        r1.Direction = { -1, 0 };
                     });
             }
-            if (InputSystem::get()->isKeyPressed(DEVK_D))
+            else if (InputSystem::get()->isKeyPressed(DEVK_D))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter1)
                     {
-                        r1.Velocity += { 0.12, 0};
+                        r1.Direction = { 1, 0 };
                     });
             }
-            if (InputSystem::get()->isKeyPressed(DEVK_W))
+            else if (InputSystem::get()->isKeyPressed(DEVK_W))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter1)
                     {
-                        r1.Velocity += {0, 0.12 };
+                        r1.Direction = { 0, 1 };
                     });
             }
-            if (InputSystem::get()->isKeyPressed(DEVK_S))
+            else if (InputSystem::get()->isKeyPressed(DEVK_S))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter1)
                     {
-                        r1.Velocity += {0, -0.12 };
+                        r1.Direction = { 0, -1 };
                     });
             }
+            else
+            {
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter1)
+                    {
+                        r1.Direction = { 0, 0 };
+                    });
+            }
+
             if (InputSystem::get()->isKeyPressed(DEVK_J))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter2)
                     {
-                        r1.Velocity += { -0.1, 0 };
+                        r1.Direction = { -1, 0 };
                     });
             }
-            if (InputSystem::get()->isKeyPressed(DEVK_L))
+            else if (InputSystem::get()->isKeyPressed(DEVK_L))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter2)
                     {
-                        r1.Velocity += { 0.1, 0 };
+                        r1.Direction = { 1, 0 };
                     });
             }
-            if (InputSystem::get()->isKeyPressed(DEVK_I))
+            else if (InputSystem::get()->isKeyPressed(DEVK_I))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter2)
                     {
-                        r1.Velocity += { 0, 0.1 };
+                        r1.Direction = { 0, 1 };
                     });
             }
-            if (InputSystem::get()->isKeyPressed(DEVK_K))
+            else if (InputSystem::get()->isKeyPressed(DEVK_K))
             {
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter2)
                     {
-                        r1.Velocity += { 0, -0.1 };
+                        r1.Direction = { 0, -1 };
                     });
             }
-            InputSystem::get()->update();
+            else
+            {
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, MainCharacter2)
+                    {
+                        r1.Direction = { 0, 0 };
+                    });
+            }
+
             // Update engine GameClock
             env.pClock->Update();
             env.pECS->world().update();
@@ -236,6 +302,8 @@ namespace DeltaEngine
                 accumulator -= env.pClock->DeltaTime();
             }
             const f64 alpha = accumulator / m_interval;
+
+            InputSystem::get()->reset();
         }
     }
 

@@ -23,15 +23,18 @@ namespace DeltaEngine
 		float Magnitude() const;
 		float SqrMagnitude() const;
 		float DotProduct(const Vector2& a) const;
-		float Vector2::CrossProduct_Magnitude(const Vector2& a) const;
-		Vector2 Vector2::CrossProduct_Vector(const Vector2& a) const;
+		float CrossProduct_Magnitude(const Vector2& a) const;
+		Vector2 CrossProduct_Vector(const Vector2& a) const;
+		Vector2 Square();
 #pragma region Vector2 Operators
 		Vector2& operator=(const Vector2& a);
 		Vector2 operator+(const Vector2 a) const;
+		Vector2 operator+(const float f);
 		Vector2 operator+=(const Vector2 a);
 		Vector2 operator-(const Vector2 a) const;
 		Vector2 operator-=(const Vector2 a);
 		Vector2 operator-() const;
+		Vector2 operator-(const float f);
 		Vector2 operator*(const Vector2 f) const;
 		Vector2 operator*(const float f) const;
 		Vector2 operator*=(const Vector2 f);
@@ -42,6 +45,7 @@ namespace DeltaEngine
 		bool operator!=(const Vector2 v) const;
 #pragma endregion
 	};
+
 	struct DE_API Vector3
 	{
 		float x, y, z;
@@ -86,5 +90,6 @@ namespace DeltaEngine
 	};
 
 	float Vector2DotProduct(const Vector2& pVec0, const Vector2& pVec1);
-
+	float Vector2Length(const Vector2& pVec0);
+	Vector2 Normalise(Vector2& v);
 }

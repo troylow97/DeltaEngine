@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/TypeAlias.h"
 #include "Core/Containers/ActionList.h"
-#include "ECS/Entities.h"
+#include "Collider.h"
 #include <map>
 //#include <unordered_map>
 
@@ -15,13 +15,13 @@ namespace DeltaEngine
   class CollisionHandler //think of this as a functor
   {
     // Possible to do 1 for Collision & 1 for Trigger Checking
-    Util::ActionList<EntityID> _enter;
-    Util::ActionList<EntityID> _stay;
-    Util::ActionList<EntityID> _exit;
+    Util::ActionList<Collider&> _enter;
+    Util::ActionList<Collider&> _stay;
+    Util::ActionList<Collider&> _exit;
 
-    void OnEnter(EntityID col);
-    void OnStay(EntityID col);
-    void OnExit(EntityID col);
+    void OnEnter(Collider& col);
+    void OnStay(Collider& col);
+    void OnExit(Collider& col);
 
   public:
     friend class CollisionSystem;
@@ -30,9 +30,9 @@ namespace DeltaEngine
     static CollisionCallbacks m_callbacks;
     static std::map<std::string, CollisionCallbacks> m_handlers;
 
-    size_t RegisterOnEnter(Action<EntityID> action);
-    size_t RegisterOnStay(Action<EntityID> action);
-    size_t RegisterOnExit(Action<EntityID> action);
+    size_t RegisterOnEnter(Action<Collider&> action);
+    size_t RegisterOnStay(Action<Collider&> action);
+    size_t RegisterOnExit(Action<Collider&> action);
 
     void UnregisterOnEnter(size_t id);
     void UnregisterOnStay(size_t id);

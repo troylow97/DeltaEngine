@@ -6,7 +6,10 @@ namespace DeltaEngine
 	struct RigidBody
 	{
 		float Mass;
+		Vector2 Direction;
 		Vector2 Velocity;
+		Vector2 ReflectedVector;
+		float Movespeed;
 		Vector2 Acceleration;
 		float Restituition;
 		bool hasGravity;

@@ -2,14 +2,16 @@
 #include "Core/Math/Vector.h"
 #include "Collider.h"
 #include "RigidBody.h"
-
+#include "Core/Math/Transform.h"
+#include "Manifold.h"
 namespace DeltaEngine
 {
-	void AABB_CollisionResponse(Collider& obj1, Collider& obj2, Vector2& obj1_vel, Vector2& obj2_vel);
-	Vector2 CalculateAabbDistanceTo(Collider& e1, Collider& e2); //Helper
+	void CollisionResponse_AABBvsAABB(Collider& obj1, RigidBody& r1, Collider& obj2, RigidBody& r2);
+	void CollisionResponse_CirclevsCircle(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m);
 
-	void CollisionResponse_CircleCircle(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2);
-
+	void CollisionResponse_Main(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m);
+	void CollisionResponse_Box(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m);
+	void CollisionResponse_Circle(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m);
 	/******************************************************************************/
 	/*!
 		Calculates reflection when the circle hits a pillar.

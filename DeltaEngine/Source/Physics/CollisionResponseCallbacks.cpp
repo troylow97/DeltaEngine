@@ -1,79 +1,126 @@
 #include "CollisionResponseCallbacks.h"
 #include "Core/Math/Math.h"
-#include <algorithm>
+#include "Core/GlobalStruct.h"
+#include "Core/GameClock/GameClock.h"
 
 namespace DeltaEngine
 {
-	void AABB_CollisionResponse(Collider& obj1,Collider& obj2,Vector2& obj1_vel,Vector2& obj2_vel)
+	void CollisionResponse_AABBvsAABB(Collider& obj1, RigidBody& r1,Collider& obj2,RigidBody& r2)
 	{
-        Vector2 distance = CalculateAabbDistanceTo(obj1, obj2);
-        float shortestTime = 0;
-        float xAxisTimeToCollide = obj2_vel.x != 0 ? std::abs(distance.x/obj2_vel.x) : 0;
-        float yAxisTimeToCollide = obj2_vel.x != 0 ? std::abs(distance.y / obj2_vel.y) : 0;
-        
-        if (obj2_vel.x != 0 && obj2_vel.y == 0)
-        {
-            // Colliison on X-axis only
-            shortestTime = xAxisTimeToCollide;
-            obj1_vel.x = obj2_vel.x * shortestTime;
-        }
-        else if (obj2_vel.x == 0 && obj2_vel.y != 0)
-        {
-            // Collision on Y-axis only
-            shortestTime = yAxisTimeToCollide;
-            obj1_vel.y = obj2_vel.y * shortestTime;
-        }
-        else
-        {
-            // Collision on X and Y axis (eg. slide up against a wall)
-            shortestTime = Math::math_min(std::abs(xAxisTimeToCollide), std::abs(yAxisTimeToCollide));
-        
-            obj1_vel.x = shortestTime * obj2_vel.x;
-            obj1_vel.y = shortestTime * obj2_vel.y;
-        }
+		Vector2 zero_vec = { 0,0 };
+		Vector2 normalised_r1 = Normalise(r1.Velocity);
+		Vector2 normalised_r2 = Normalise(r2.Velocity);
+		//float r1Magnitude = (r1.Velocity.x * r1.Velocity.x + r1.Velocity.y * r1.Velocity.y);
+		//float r2Magnitude = (r2.Velocity.x * r2.Velocity.x + r2.Velocity.y * r2.Velocity.y);
+
+		if (normalised_r1 != zero_vec)
+		{
+			r1.Velocity = -r1.Direction * 2.0f; //multiply this for knockback, bugged in one case
+			r2.Velocity = r1.Direction;
+		}
+		else if (normalised_r2 != zero_vec)
+		{
+			r2.Velocity = -r2.Direction * 2.0f; //multiply this for knockback, bugged in one case
+			r1.Velocity = r2.Direction;
+		}
+		else
+		{
+			r1.Velocity = -r1.Direction * 2.0f;
+			r2.Velocity = -r2.Direction * 2.0f;
+		}
 
 
 	}
 
-   Vector2 CalculateAabbDistanceTo(Collider& e1,Collider& e2)
-    {
-        float dx = 0;
-        float dy = 0;
-
-        if (e1.center.x < e2.center.x)
-        {
-            dx = e2.center.x - (e1.center.x + e1.size.x);
-        }
-        else if (e1.center.x > e2.center.x)
-        {
-            dx = e1.center.x - (e2.center.x + e2.size.x);
-        }
-
-        if (e1.center.y < e2.center.y)
-        {
-            dy = e2.center.y - (e1.center.y + e1.size.y);
-        }
-        else if (e1.center.y > e2.center.y)
-        {
-            dy = e1.center.y - (e2.center.y + e2.size.y);
-        }
-
-        return { dx,dy };
-    }
-
-   void CollisionResponse_CircleCircle(Collider& col1,RigidBody& r1,Collider& col2, RigidBody& r2)
+   void CollisionResponse_CirclevsCircle(Collider& col1,RigidBody& r1,Transform& t1,Collider& col2, RigidBody& r2,Transform& t2,Manifold& m)
    {
-       
-       //get the direction of reflection using dot product
-       float aA = Vector2DotProduct(r1.Velocity, col1.normal);
-       float aB = Vector2DotProduct(r2.Velocity, col2.normal);
+	 //  m.normal = col1.interPoint - col2.interPoint;
+	 //  Normalise(m.normal);
+	 //
+     //  //get the direction of reflection using dot product
+     //  float aA = Vector2DotProduct(r1.Velocity, m.normal);
+     //  float aB = Vector2DotProduct(r2.Velocity, m.normal);
+	 //
+     //  //calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
+	 //  r1.ReflectedVector = r1.Velocity - (2 * (aA - aB) / (r1.Mass + r2.Mass));
+	 //  r1.ReflectedVector = r1.ReflectedVector * r2.Mass * m.normal;
+	 //
+	 //  r2.ReflectedVector = r2.Velocity - (2 * (aA - aB) / (r1.Mass + r2.Mass));
+	 //  r2.ReflectedVector = r2.ReflectedVector * r1.Mass * m.normal;
+     //  //update the end points of where the two circles will end up
+     //  t1.end_point =  r1.ReflectedVector * (1.0f - m.interTime) + col1.interPoint;
+     //  t2.end_point = r2.ReflectedVector * (1.0f - m.interTime) + col2.interPoint;
+	 //
+	 //  //r1.Movespeed = Vector2Length(r1.ReflectedVector) / env.pClock->DeltaTime();
+	 //  Normalise(r1.ReflectedVector);//A: new speed direction
+	 //
+	 //  r1.Velocity = r1.ReflectedVector * env.pClock->DeltaTime();
+	 //
+	 // //r2.Movespeed = Vector2Length(r2.ReflectedVector) / env.pClock->DeltaTime();//B: new speed
+	 //  Normalise(r2.ReflectedVector);//B: new speed direction
+	 //
+	 //  r2.Velocity = r2.ReflectedVector * env.pClock->DeltaTime();
+   }
 
-       //calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-       //col1.ReflectionVector = r1.Velocity - (2 * (aA - aB) / ((r1.Mass + r2.Mass)) * r2.Mass) * col1.normal;
-       //col2.ReflectionVector = (r2.Velocity + (2 * (aA - aB)) / col2.normal * ((r1.Mass + r2.Mass)) * r1.Mass);
-       //
-       ////update the end points of where the two circles will end up
-       //col1.PointEnd = col1.interPoint + col1.ReflectionVector * (1.0f - col1.interTime);
-       //col2.PointEnd = col2.interPoint + col2.ReflectionVector * (1.0f - col2.interTime);
+   void CollisionResponse_Main(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m)
+   {
+	   ColliderType type1 = col1.type;
+
+	   switch (type1)
+	   {
+	   case ColliderType::BOX:
+		   CollisionResponse_Box(col1, r1, t1, col2, r2, t2, m);
+		   return;
+	   case ColliderType::CIRCLE:
+		   CollisionResponse_Circle(col1, r1, t1, col2, r2, t2, m);
+		   return;
+	   case ColliderType::LINE:
+		   return;
+	   case ColliderType::RAY:
+		   return;
+	   default:
+		   CollisionResponse_Box(col1,r1,t1,col2,r2,t2,m);
+		   return;
+	   }
+   }
+
+   void CollisionResponse_Box(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m)
+   {
+	   ColliderType type2 = col2.type;
+
+	   switch (type2)
+	   {
+	   case ColliderType::BOX:
+		   CollisionResponse_AABBvsAABB(col1, r1,col2, r2);
+		   return;
+	   case ColliderType::CIRCLE:
+		   return;
+	   case ColliderType::LINE:
+		   return;
+	   case ColliderType::RAY:
+		   return;
+	   default:
+		   return;
+	   }
+   }
+
+   void CollisionResponse_Circle(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m)
+   {
+	   ColliderType type2 = col2.type;
+
+	   switch (type2)
+	   {
+	   case ColliderType::BOX:
+		   return;
+	   case ColliderType::CIRCLE:
+		   CollisionResponse_CirclevsCircle(col1, r1, t1, col2, r2, t2, m);
+		   return;
+	   case ColliderType::LINE:
+		   return;
+	   case ColliderType::RAY:
+		   return;
+	   default:
+		   return;
+	   }
    }
 }

@@ -15,8 +15,12 @@ namespace DeltaEngine
                     Gizmos::Draw2DWireBox(t);
                     break;
                 case ColliderType::CIRCLE:
-                    Gizmos::Draw2DCircle(t);
+                {
+                    Transform temp = t;
+                    temp.scale *= 2;
+                    Gizmos::Draw2DCircle(temp);
                     break;
+                }
                 case ColliderType::RAY:
                     Gizmos::Draw2DWireBox(t); //TO CHANGE
                     break;

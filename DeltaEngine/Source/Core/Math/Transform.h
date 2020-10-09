@@ -10,7 +10,7 @@ namespace DeltaEngine
 	{
 	public:
 		Transform* parent;
-		Vector3 old_position;
+		Vector3 end_point;
 		Vector3 position;
 		Quaternion rotation;
 		Vector3 scale;

@@ -48,6 +48,13 @@ namespace DeltaEngine
 	{
 		return (x * a.y) - (y * a.x);
 	}
+	Vector2 Vector2::Square()
+	{
+		x *= x;
+		y *= y;
+
+		return *this;
+	}
 
 #pragma region Vector2 Operators
 	Vector2& Vector2::operator=(const Vector2& a)
@@ -62,6 +69,12 @@ namespace DeltaEngine
 		v.x = x + a.x;
 		v.y = y + a.y;
 		return v;
+	}
+	Vector2 Vector2::operator+(const float f)
+	{
+		x += f;
+		y += f;
+		return *this;
 	}
 	Vector2 Vector2::operator+=(const Vector2 a)
 	{
@@ -88,6 +101,12 @@ namespace DeltaEngine
 		v.x = -x;
 		v.y = -y;
 		return v;
+	}
+	Vector2 Vector2::operator-(const float f)
+	{
+		x -= f;
+		y -= f;
+		return *this;
 	}
 	Vector2 Vector2::operator*(const Vector2 a) const
 	{
@@ -287,4 +306,24 @@ namespace DeltaEngine
 	{
 		return pVec0.x * pVec1.x + pVec0.y * pVec1.y;
 	}
+
+	float Vector2Length(const Vector2& pVec0)
+	{
+		return sqrt(pVec0.x * pVec0.x + pVec0.y * pVec0.y);
+	}
+
+	Vector2 Normalise(Vector2& v)
+	{
+		float magnitude = Vector2Length(v);
+		Vector2 pResult;
+
+		if (magnitude != 1 && magnitude != 0)
+		{
+			pResult.x = v.x / magnitude;
+			pResult.y = v.y / magnitude;
+		}
+
+		return pResult;
+	}
+
 }

@@ -81,34 +81,16 @@ namespace DeltaEngine
 		return tmax >= tmin;
 	}
 
-	bool CollisionIntersection_RectCircle_Static(const Vector2 Center1,const Vector2 Size1,const Vector2 Center2,const Vector2 Size2)
+	bool CollisionIntersection_RectCircle_Static(const Vector2 Center1,const Vector2 Size1,const Vector2 Center2,const Vector2 Size2,Manifold& m)
 	{
-		// temporary variables to set edges for testing
-		AABB aabb1{ Center1,Size1 };
-		Circle circle{ Center2,Size2 };
-
-		Vector2 size;
-		Vector2 center;
-		size.x = aabb1.max.x - aabb1.min.x;
-		size.y = aabb1.max.y - aabb1.min.y;
-		center.x = static_cast<float>(aabb1.min.x + 0.5 * size.x);
-		center.y = static_cast<float>(aabb1.max.x + 0.5 * size.y);
-		Vector2 temp_vec = center;
-		// which edge is closest?
-		if (circle.m_center.x < center.x)         temp_vec.x = center.x;                  // left edge
-		else if (circle.m_center.x > center.x + size.x) temp_vec.x = center.x + size.x;   // right edge
-		if (circle.m_center.y < center.y)         temp_vec.y = center.y;                  // top edge
-		else if (circle.m_center.y > center.y + size.y) temp_vec.y = center.y + size.y;   // bottom edge
-
-		// get distance from closest edges
-		Vector2 dist = { center.x - temp_vec.x,center.y - temp_vec.y };
-		float distance = sqrt((dist.x * dist.x) + (dist.y * dist.y));
-
-		// if the distance is less than the radius, collision!
-		if (distance <= circle.m_radius)
+		Vector2 dist(Center1 - Center2);
+		Vector2 CircleTip;
+		CircleTip = Normalise(dist);
+		CircleTip *= Size2.x;
+		CircleTip += Center2;
+		//m.normal = 
+		if (CollisionIntersection_RectPoint(Center1, Size1, CircleTip))
 			return true;
-
-		return false;
 	}
 
 	bool CollisionIntersection_RectLine_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2)
@@ -144,6 +126,24 @@ namespace DeltaEngine
 		return false;
 	}
 
+	bool CollisionIntersection_CircleLineSegment_Static(const Vector2 Center1, const Vector2 Size1, LineSegment line)
+	{
+		Circle circle{ Center1,Size1 };
+
+		if ((line.m_pt0.x - circle.m_center.x) * (line.m_pt0.x - circle.m_center.x) + (line.m_pt0.y - circle.m_center.y) * (line.m_pt0.y - circle.m_center.y) <=
+			(line.m_pt1.x - line.m_pt0.x) * (line.m_pt1.x - line.m_pt0.x) + (line.m_pt1.y - line.m_pt0.y) + (line.m_pt1.y - line.m_pt0.y))
+		{
+			return true;
+		}
+		if ((line.m_pt1.x - circle.m_center.x) * (line.m_pt1.x - circle.m_center.x) + (line.m_pt1.y - circle.m_center.y) * (line.m_pt1.y - circle.m_center.y) <=
+			(line.m_pt1.x - line.m_pt0.x) * (line.m_pt1.x - line.m_pt0.x) + (line.m_pt1.y - line.m_pt0.y) + (line.m_pt1.y - line.m_pt0.y))
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	/******************************************************************************/
 	/*!
 		Tests for collision between a circle to another circle
@@ -154,20 +154,21 @@ namespace DeltaEngine
 		A new circle is made with the combined radius of both circles
 	 */
 	 /******************************************************************************/
-	bool CollisionIntersection_CircleCircle(Collider& col1, const Vector2& v1,Collider& col2, const Vector2& v2)
+	bool CollisionIntersection_CircleCircle(Collider& col1, const Vector2& v1,Collider& col2, const Vector2& v2,Manifold& m)
 	{
 		//Get relative velocity by considering circleB as non-moving by taking velA - velB
 		//Use the circle as a point for the ray
 		Ray ray{col1.center, v1 - v2};
 		
 		//Use a circles center with a combined radius of both circles
-		Circle newCircle{ col2.center, col2.size + col1.size };
+		Collider col3{ col2.center,col2.size + col1.size, ColliderType::CIRCLE };
 
-		if(CollisionIntersection_RayCircle(ray,col2))
+		if(CollisionIntersection_RayCircle(ray, col3,m))
 		{
 			//intersection when both circle collides
-			col1.interPoint = col1.center + v1 * col1.interTime;
-			col2.interPoint = col2.center + v2 * col2.interTime;
+			col1.interPoint = col1.center + v1 * m.interTime;
+			col2.interPoint = col2.center + v2 * m.interTime;
+
 			return true;
 		}
 		return false;
@@ -177,7 +178,7 @@ namespace DeltaEngine
 	{
 		Circle circle1{ Center1,Size1 };
 		Circle circle2{ Center2,Size2 };
-		//(x2 - x1) ^ 2 + (y1 - y2) ^ 2 <= (r1 + r2) ^ 2
+
 		if
 			(
 			(circle2.m_center.x - circle1.m_center.x) * (circle2.m_center.x - circle1.m_center.x) +
@@ -187,7 +188,7 @@ namespace DeltaEngine
 		{
 			return true;
 		}
-
+		
 		return false;
 	}
 
@@ -227,6 +228,39 @@ namespace DeltaEngine
 		float s = numerator2 / denominator;
 
 		return (r >= 0 && r <= 1) && (s >= 0 && s <= 1);
+	}
+
+	bool CollisionIntersection_RectPoint(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2)
+	{
+		Vector2 TopLeft, TopRight, BotLeft, BotRight;
+		float HalfWidth = Size1.x / 2;
+		float HalfHeight = Size1.y / 2;
+		TopLeft.x = Center1.x - HalfWidth;
+		TopLeft.y = Center1.y + HalfHeight;
+		TopRight.x = Center1.x + HalfWidth;
+		TopRight.y = Center1.y + HalfHeight;
+		BotLeft.x = Center1.x - HalfWidth;
+		BotLeft.y = Center1.y - HalfHeight;
+		BotRight.x = Center1.x + HalfWidth;
+		BotRight.y = Center1.y - HalfWidth;
+
+		if (Center2.x < TopLeft.x) return false;
+		if (Center2.x > TopRight.x) return false;
+		if (Center2.y < BotLeft.y) return false;
+		if (Center2.y > TopLeft.y) return false;
+		return true;
+	}
+
+	bool CollisionIntersection_CirclePoint(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2)
+	{
+		if ((Center2.x - Center1.x) * (Center2.x - Center1.x) + (Center2.y - Center1.y) * (Center2.y - Center1.y) <= (Size1.x * Size1.x))
+		{
+			return true;
+		}
+
+		return false;
+
+
 	}
 
 //DYNAMIC COLLISION CHECKS
@@ -309,79 +343,114 @@ namespace DeltaEngine
 		return true;
 	}
 
-	bool CollisionIntersection_RayCircle(const Ray& ray, Collider& col2)
+	bool CollisionIntersection_RayCircle(const Ray& ray, Collider& col2,Manifold& manifold)
 	{
 		Circle circle{ col2.center,col2.size };
 		//Calculate end point of ray
 		Vector2 Be = ray.m_pt0 + ray.m_dir;
 
 		//ray.m_dir is the velocity, use it to get its normalised version
-		Vector2 normalisedVelocity = ray.m_dir.normalized(); //CHECK
+		Vector2 temp = ray.m_dir;
+		Vector2 normalisedVelocity = Normalise(temp);
+		float t0, t1;
+		float radius_sqr = circle.m_radius * circle.m_radius;
+		// geometric solution
+		Vector2 L = circle.m_center - ray.m_pt0;
+		float tca = Vector2DotProduct(L, ray.m_dir);
+		if (tca < 0) return false;
+		float d2 = Vector2DotProduct(L,L) - tca * tca;
+		if (d2 > (radius_sqr)) return false;
+		float thc = sqrt(radius_sqr - d2);
+		t0 = tca - thc;
+		t1 = tca + thc;
 
-		Vector2 BsC = circle.m_center - ray.m_pt0;
+		if (t0 > t1) std::swap(t0, t1);
 
-		// check if circle is behind ray origin
-		float m = BsC.DotProduct(normalisedVelocity);
-		if ((m < 0) && (BsC.Magnitude() >= circle.m_radius))
-		{
-			return 0;
+		if (t0 < 0) {
+			t0 = t1; // if t0 is negative, let's use t1 instead 
+			if (t0 < 0) return false; // both t0 and t1 are negative 
 		}
 
-		// check if ray within circle radius range
-		float n2 = BsC.Magnitude() - (m * m);
-		if (n2 <= (circle.m_radius * circle.m_radius))
-		{
-			float s2 = sqrtf((circle.m_radius * circle.m_radius) - n2);
-			float rayLength = ray.m_dir.Magnitude();
-			float ti0 = (m - s2) / rayLength;
-			float ti1 = (m + s2) / rayLength;
+		t1 = t0;
 
-			if (ti0 > ti1)
-			{
-				col2.interTime = ti1;
-			}
-			else
-			{
-				col2.interTime = ti0;
-			}
+		return true;
 
-			if (col2.interTime > 0 && col2.interTime < 1)
-				return true;
-		}
-		return false;
+		//Calculate end point of ray
+		//Vector2 Be = ray.m_pt0 + ray.m_dir;
+
+		//ray.m_dir is the velocity, use it to get its normalised version
+	//	Vector2 temp = ray.m_dir;
+	//	Vector2 normalisedVelocity = Normalise(temp);
+	//
+	//	Vector2 BsC = circle.m_center - ray.m_pt0;
+	//
+	//	// check if circle is behind ray origin
+	//	float m = Vector2DotProduct(BsC, normalisedVelocity);
+	//	if ((m < 0) && (Vector2Length(BsC) >= circle.m_radius))
+	//	{
+	//		return false;
+	//	}
+	//
+	//	// check if ray within circle radius range
+	//	float n2 = Vector2Length(BsC)- (m * m);
+	//	if (n2 <= (circle.m_radius * circle.m_radius))
+	//	{
+	//		float s2 = sqrtf((circle.m_radius * circle.m_radius) - n2);
+	//		float rayLength = Vector2Length(temp);
+	//		float ti0 = (m - s2) / rayLength;
+	//		float ti1 = (m + s2) / rayLength;
+	//
+	//		if (ti0 > ti1)
+	//		{
+	//			manifold.interTime = ti1;
+	//		}
+	//		else
+	//		{
+	//			manifold.interTime = ti0;
+	//		}
+	//
+	//		if (manifold.interTime > 0 && manifold.interTime < 1)
+	//			return true;
+	//	}
+	//	return false;
 	}
 //------------
 
-	bool CollisionIntersection_Main(Collider& col1,const RigidBody& r1,Collider& col2,const RigidBody& r2)
+	bool CollisionIntersection_Main(Collider& col1,const RigidBody& r1,Collider& col2,const RigidBody& r2,Manifold& m)
 	{
 		ColliderType type1 = col1.type;
 
 		switch (type1)
 		{
 		case ColliderType::BOX:
-			return CollisionIntersection_Sub_Box(col1, r1, col2, r2);
+			return CollisionIntersection_Sub_Box(col1, r1, col2, r2, m);
 		case ColliderType::CIRCLE:
-			return CollisionIntersection_Sub_Circle(col1,r1, col2,r2);
+			return CollisionIntersection_Sub_Circle(col1,r1, col2,r2,m);
 		case ColliderType::LINE:
-			return CollisionIntersection_Sub_Line(col1, col2);
+			return CollisionIntersection_Sub_Line(col1, col2, m);
 		case ColliderType::RAY:
-			return CollisionIntersection_Sub_Ray(col1, r1, col2, r2);
+			return CollisionIntersection_Sub_Ray(col1, r1, col2, r2, m);
 		default:
-			return CollisionIntersection_Sub_Box(col1, r1, col2, r2);
+			return CollisionIntersection_Sub_Box(col1, r1, col2, r2, m);
 		}
 	}
 
-	bool CollisionIntersection_Sub_Box(Collider& col1, const RigidBody& r1,Collider& col2, const RigidBody& r2)
+	bool CollisionIntersection_Sub_Box(Collider& col1, const RigidBody& r1,Collider& col2, const RigidBody& r2, Manifold& manifold)
 	{
 		ColliderType type2 = col2.type;
 		switch (type2)
 		{
 		case ColliderType::BOX:
 		{
-			return CollisionIntersection_RectRect(col1, r1.Velocity, col2, r2.Velocity);
+			if (CollisionIntersection_RectRect(col1, r1.Velocity, col2, r2.Velocity))
+			{
+				AABBvsAABB_Manifold(manifold);
+				return true;
+			}
+			return false;
 		}
 		case ColliderType::CIRCLE:
-			return CollisionIntersection_RectCircle_Static(col1.center, col1.size, col2.center, col2.size);
+			return CollisionIntersection_RectCircle_Static(col1.center, col1.size, col2.center, col2.size,manifold);
 		case ColliderType::LINE:
 			return CollisionIntersection_RectLine_Static(col1.center, col1.size, col2.center, col2.size);
 		case ColliderType::RAY:
@@ -390,32 +459,35 @@ namespace DeltaEngine
 			return CollisionIntersection_RectRect_Static(col1.center, col1.size, col2.center, col2.size);
 		}
 	}
-	bool CollisionIntersection_Sub_Circle(Collider& col1, const RigidBody& r1,Collider& col2, const RigidBody& r2)
+	bool CollisionIntersection_Sub_Circle(Collider& col1, const RigidBody& r1,Collider& col2, const RigidBody& r2,Manifold& manifold)
 	{
+		UNREFERENCED_PARAMETER(r1);
+		UNREFERENCED_PARAMETER(r2);
 		float intertime = 0;
 		ColliderType type2 = col2.type;
 		switch (type2)
 		{
 		case ColliderType::BOX:
-			return CollisionIntersection_RectCircle_Static(col2.center, col2.size, col1.center, col1.size);
+			return CollisionIntersection_RectCircle_Static(col2.center, col2.size, col1.center, col1.size,manifold);
 		case ColliderType::CIRCLE:
 		{
-			return CollisionIntersection_CircleCircle(col1, r1.Velocity, col2, r2.Velocity);
-
+			//return CollisionIntersection_CircleCircle_Static(col1.center, col1.size, col2.center, col2.size);
+			return CollisionIntersection_CircleCircle(col1, r1.Velocity, col2, r2.Velocity,manifold);
 		}
 		case ColliderType::LINE:
 			return CollisionIntersection_CircleLineSegment_Static(col1.center, col1.size, col2.center, col2.size);
 		case ColliderType::RAY:
 		{
 			Ray ray{ col1.center,r1.Velocity };
-			return CollisionIntersection_RayCircle(ray, col2);
+			return CollisionIntersection_RayCircle(ray, col2,manifold);
 		}
 		default:
-			return CollisionIntersection_RectCircle_Static(col2.center, col2.size, col1.center, col1.size);
+			return CollisionIntersection_RectCircle_Static(col2.center, col2.size, col1.center, col1.size,manifold);
 		}
 	}
-	bool CollisionIntersection_Sub_Line(Collider& col1,Collider& col2)
+	bool CollisionIntersection_Sub_Line(Collider& col1,Collider& col2, Manifold& manifold)
 	{
+		UNREFERENCED_PARAMETER(manifold);
 		ColliderType type2 = col2.type;
 		switch (type2)
 		{
@@ -431,9 +503,10 @@ namespace DeltaEngine
 			return CollisionIntersection_RectLine_Static(col2.center, col2.size, col1.center, col1.size);
 		}
 	}
-	bool CollisionIntersection_Sub_Ray(Collider& col1,const RigidBody& r1,Collider& col2,const RigidBody& r2)
+	bool CollisionIntersection_Sub_Ray(Collider& col1,const RigidBody& r1,Collider& col2,const RigidBody& r2,Manifold& m)
 	{
-		float intertime;
+		UNREFERENCED_PARAMETER(r1);
+		UNREFERENCED_PARAMETER(r2);
 		ColliderType type2 = col2.type;
 		switch (type2)
 		{
@@ -442,7 +515,7 @@ namespace DeltaEngine
 		case ColliderType::CIRCLE:
 		{
 			Ray ray{ col1.center,r1.Velocity };
-			return CollisionIntersection_RayCircle(ray, col2);
+			return CollisionIntersection_RayCircle(ray, col2,m);
 		}
 		case ColliderType::LINE:
 			return CollisionIntersection_RayLine_Static(col1.center, col1.size, col2.center, col2.size);
@@ -451,6 +524,63 @@ namespace DeltaEngine
 		default:
 			return CollisionIntersection_RectRay_Static(col2.center, col2.size, col1.center, col1.size);
 		}
+	}
+
+	bool AABBvsAABB_Manifold(Manifold& m)
+	{
+		Collider A = m.A;
+		Collider B = m.B;
+
+		// Vector from A to B
+		Vector2 n = A.center - B.center;
+
+		AABB abox{ A.center,A.size };
+		AABB bbox{ B.center,B.size };
+
+		// Calculate half extents along x axis for each object
+		float a_extent = (abox.max.x - abox.min.x) / 2;
+		float b_extent = (bbox.max.x - bbox.min.x) / 2;
+
+		// Calculate overlap on x axis
+		float x_overlap = a_extent + b_extent - abs(n.x);
+
+		// SAT test on x axis
+		if (x_overlap > 0)
+		{
+			// Calculate half extents along x axis for each object
+			float a_extent2 = (abox.max.y - abox.min.y) / 2;
+			float b_extent2 = (bbox.max.y - bbox.min.y) / 2;
+
+			// Calculate overlap on y axis
+			float y_overlap = a_extent2 + b_extent2 - abs(n.y);
+
+				// SAT test on y axis
+				if (y_overlap > 0)
+				{
+					// Find out which axis is axis of least penetration
+					if (x_overlap > y_overlap)
+					{
+						// Point towards B knowing that n points from A to B
+						if (n.x < 0)
+							m.normal = Vector2{ -1,0 };
+						else
+							m.normal = Vector2{ 0,0 };
+							m.penetration = x_overlap;
+							return true;
+					}
+					else
+					{
+						// Point toward B knowing that n points from A to B
+						if (n.y < 0)
+							m.normal = Vector2{ 0,-1 };
+						else
+							m.normal = Vector2{ 0, 1 };
+							m.penetration = y_overlap;
+							return true;
+					}
+				}
+		}
+		return false;
 	}
 
 }
