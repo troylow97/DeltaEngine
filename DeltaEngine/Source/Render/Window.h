@@ -1,7 +1,7 @@
 #pragma once
 #include "DEpch.h"
 #include "Core/Debugging/Logger/Log.h"
-
+#include <string>
 #define MAX_LOADSTRING 100
  
 namespace DeltaEngine
@@ -9,17 +9,18 @@ namespace DeltaEngine
 
 class Window
 {
-  std::wstring m_title { L"Metamorphosis" };
   HWND m_hwndl;
-  bool m_running;
+  std::wstring m_title;
   int m_width;
   int m_height;
+  bool m_running;
   bool m_fullscreen;
   bool m_cursor;
 
 public:
 
   Window() = default;
+  Window( std::string title, int width, int height );
   ~Window() = default;
 
   void Init();

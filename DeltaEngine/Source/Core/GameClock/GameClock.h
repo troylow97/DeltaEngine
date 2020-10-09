@@ -2,7 +2,6 @@
 #include "Core/TypeAlias.h"
 
 #include <chrono>
-#include <thread>
 
 namespace DeltaEngine
 {
@@ -18,7 +17,7 @@ public:
   * Constructor / Destructor
   *************************************************************/
 
-  GameClock();
+  GameClock(f32 fps);
   ~GameClock() = default;
 
   /*************************************************************
@@ -34,32 +33,33 @@ public:
   void Resume();
 
   // called at start of loop
-  void Update();
-
-  // framecount
-  u64 FrameCount() const;
+  bool Update();
 
   // getter for timescaled / real dt / fixed dt
-  f64 DeltaTime() const;
-  f64 RealDeltaTime() const;
+  f32 DeltaTime() const;
+  f32 RealDeltaTime() const;
 
   // ElapsedTime / Unscaled ElapsedTime
-  f64 ElapsedTime() const;
-  f64 UnscaledElapsedTime() const;
+  f32 ElapsedTime() const;
+  f32 UnscaledElapsedTime() const;
 
   // FPS
-  f64 FrameRate() const;
+  f32 FrameRate() const;
 
 private:
-  TimePoint _start;
-  TimePoint _current;
-  u64 _frame;
-  f64 _elapsed;
-  f64 _dt;
-  f64 _g_elapsed;
-  f64 _g_dt;
-  f32 _timescale;
-  bool _paused;
+  TimePoint m_start;
+  TimePoint m_current;
+  f32 m_interval;
+  f32 m_elapsed;
+  f32 m_dt;
+  f32 m_g_elapsed;
+  f32 m_g_dt;
+  f32 m_timescale;
+  f32 m_accumulator;
+  f32 m_seconds;
+  u16 m_frame;
+  u16 m_fps;
+  bool m_paused;
   // memory size - 64
 };
 } // namespace DeltaEngine

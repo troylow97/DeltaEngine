@@ -87,6 +87,7 @@ inline EntityManager::~EntityManager()
   {
     for ( DataChunk *chunk : arch->chunks )
       delete chunk;
+    delete arch->components;
     delete arch;
   }
 }

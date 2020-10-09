@@ -2,85 +2,106 @@
 
 namespace DeltaEngine
 {
-GameClock::GameClock()
-  : _start(HighResClock::now()),
-  _current(HighResClock::now()),
-  _frame(0),
-  _elapsed(0.0),
-  _dt(0.0),
-  _g_elapsed(0.0),
-  _g_dt(0.0),
-  _timescale(1.0f),
-  _paused(false)
+GameClock::GameClock(f32 fps)
+  : m_start(HighResClock::now()),
+  m_current(HighResClock::now()),
+  m_interval(fps),
+  m_elapsed(0.0),
+  m_dt(0.0),
+  m_g_elapsed(0.0),
+  m_g_dt(0.0),
+  m_timescale(1.0f),
+  m_accumulator(0.0f),
+  m_seconds(0.0f),
+  m_frame(0),
+  m_fps(0),
+  m_paused(false)
 {
 }
 
 f32 GameClock::TimeScale() const
 {
-  return _timescale;
+  return m_timescale;
 }
 
 void GameClock::TimeScale(const f32 scale)
 {
-  _timescale = scale;
+  m_timescale = scale;
 }
 
 void GameClock::Pause()
 {
-  _paused = true;
+  m_paused = true;
 }
 
 void GameClock::Resume()
 {
-  _paused = false;
+  m_paused = false;
 }
 
-void GameClock::Update()
+bool GameClock::Update()
 {
-  _frame++;
 
   TimePoint now = HighResClock::now();
-  Nanoseconds delta = std::chrono::duration_cast<Nanoseconds>(now - _current);
-  _current = now;
+  Nanoseconds delta = std::chrono::duration_cast<Nanoseconds>(now - m_current);
+  m_current = now;
 
-  _dt = delta.count() * 1e-9;
-  _elapsed += _dt;
+  m_dt = delta.count() * 1e-9;
+  m_elapsed += m_dt;
 
-  if (!_paused)
+  m_accumulator += m_dt;
+  m_seconds += m_dt;
+
+  if(m_accumulator >= 1.0f / m_interval )
   {
-    _g_dt = _dt * _timescale;
-    _g_elapsed += _g_dt;
+    m_frame++;
+
+    if(m_seconds >= 1.0f)
+    {
+      m_fps = m_frame;
+      m_seconds = 0.0f;
+      m_frame = 0;
+    }
+
+    if ( !m_paused )
+    {
+      m_g_dt = m_accumulator * m_timescale;
+      m_g_elapsed += m_g_dt;
+    }
+    else
+      m_g_dt = 0.0f;
+
+    m_accumulator = 0.0f;
+
+    return true;
   }
+
+  return false;
 }
 
-u64 GameClock::FrameCount() const
+f32 GameClock::DeltaTime() const
 {
-  return _frame;
+  return m_g_dt;
 }
 
-f64 GameClock::DeltaTime() const
+f32 GameClock::RealDeltaTime() const
 {
-  return _g_dt;
+  return m_dt;
 }
 
-f64 GameClock::RealDeltaTime() const
+f32 GameClock::ElapsedTime() const
 {
-  return _dt;
+  return m_g_elapsed;
 }
 
-f64 GameClock::ElapsedTime() const
+f32 GameClock::UnscaledElapsedTime() const
 {
-  return _g_elapsed;
+  return m_elapsed;
 }
 
-f64 GameClock::UnscaledElapsedTime() const
+f32 GameClock::FrameRate() const
 {
-  return _elapsed;
-}
-
-f64 GameClock::FrameRate() const
-{
-  return 1.0 / _dt;
+  return m_fps;
 }
 
 } // namespace DeltaEngine

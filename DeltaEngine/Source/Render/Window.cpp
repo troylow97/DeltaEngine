@@ -4,6 +4,18 @@
 #include "Core/Debugging/Logger/Log.h"
 #include <examples/imgui_impl_win32.h>
 #include "Core/GlobalStruct.h"
+
+#include <codecvt>
+#include <locale>
+
+using convert_t = std::codecvt_utf8<wchar_t>;
+std::wstring_convert<convert_t, wchar_t> strconverter;
+
+std::wstring to_wstring(std::string str)
+{
+  return strconverter.from_bytes( str );
+}
+
 extern LRESULT ImGui_ImplWin32_WndProcHandler( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );
 
 namespace DeltaEngine
@@ -49,10 +61,15 @@ LRESULT WINAPI Win32WindowProc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
   return DefWindowProc( hwnd, uMsg, wParam, lParam );
 }
 
+Window::Window(std::string title, int width, int height) :
+  m_title { to_wstring( title ) }, m_width { width }, m_height { height }
+{
+  
+}
+
+
 void Window::Init()
 {
-  m_width = 1024;
-  m_height = 768;
   m_running = true;
   m_fullscreen = m_cursor = false;
   InitWindow();
@@ -137,14 +154,14 @@ void Window::InitWindow()
   windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
   windowClass.lpfnWndProc = Win32WindowProc;
   windowClass.hInstance = GetModuleHandle( NULL );
-  windowClass.lpszClassName = L"Delta Engine";
+  windowClass.lpszClassName = L"DeltaEngine";
   windowClass.hCursor = LoadCursor( NULL, IDC_ARROW );
   windowClass.lpszMenuName = MAKEINTRESOURCEW( IDR_MENU1 );
 
   if ( !RegisterClass( &windowClass ) )
     DeltaEngine_CORE_ERROR( "ERROR: Couldn't register window class!" );
 
-  m_hwndl = CreateWindowEx( 0, windowClass.lpszClassName, L"Delta Engine",
+  m_hwndl = CreateWindowEx( 0, windowClass.lpszClassName, m_title.c_str(),
                             WS_OVERLAPPEDWINDOW | WS_VISIBLE, 100, 100, m_width, m_height,
                             0, 0, windowClass.hInstance, 0 );
 
@@ -153,4 +170,5 @@ void Window::InitWindow()
 
   ShowWindow( GetConsoleWindow(), SW_SHOW );
 }
+
 }

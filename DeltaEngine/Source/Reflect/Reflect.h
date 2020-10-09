@@ -6,6 +6,7 @@
 #include "ECS/Components/Collider.h"
 #include "ECS/Components/RigidBody.h"
 #include "ECS/Components/Character.h"
+#include "EngineConfig.h"
 #include <rttr/registration>
 
 namespace DeltaEngine
@@ -13,6 +14,12 @@ namespace DeltaEngine
 
 RTTR_REGISTRATION
 {
+
+  rttr::registration::class_<EngineConfig>( "config" )
+    .property( "window", &EngineConfig::win_name )
+    .property( "width", &EngineConfig::width )
+    .property( "height", &EngineConfig::height )
+    .property( "fps", &EngineConfig::fps );
 
   rttr::registration::class_<Vector2>( "vector2" )
     .property( "x", &Vector2::x )
