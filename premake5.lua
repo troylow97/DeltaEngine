@@ -33,8 +33,8 @@ project "DeltaEngine"
     "%{prj.name}/Dep/stb_image/stb_image.cpp",
     "%{prj.name}/Dep/rttr/include/*.h",
     "%{prj.name}/Dep/rttr/include/*.cpp",
-    "%{prj.name}/Dep/rapidjson/include/*.cpp",
-    "%{prj.name}/Dep/rapidjson/include/*.h",
+    "%{prj.name}/Dep/rapidjson-master/include/*.cpp",
+    "%{prj.name}/Dep/rapidjson-master/include*.h",
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp",
     "%{prj.name}/Source/**.inl"
@@ -48,7 +48,7 @@ project "DeltaEngine"
     "%{prj.name}/Dep/freetype/include",
     "%{prj.name}/Dep/stb_image",
     "%{prj.name}/Dep/rttr/include",
-    "%{prj.name}/Dep/rapidjson/include",
+    "%{prj.name}/Dep/rapidjson-master/include",
     "%{prj.name}/Source"
   }
 
@@ -122,7 +122,7 @@ project "Sandbox"
     "DeltaEngine/Dep/freetype/include",
     "DeltaEngine/Dep/stb_image",
     "DeltaEngine/Dep/rttr/include",
-    "DeltaEngine/Dep/rapidjson/include",
+    "DeltaEngine/Dep/rapidjson-master/include",
     "DeltaEngine/Source"
   }
   
