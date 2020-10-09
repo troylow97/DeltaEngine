@@ -13,6 +13,8 @@ namespace DeltaEngine
 	void CollisionResponse_Main(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m);
 	void CollisionResponse_Box(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m);
 	void CollisionResponse_Circle(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m);
+
+	Vector2 AABBvsAABBoverlap(const Collider& obj1, const Collider& obj2);
 	/******************************************************************************/
 	/*!
 		Calculates reflection when the circle hits a pillar.

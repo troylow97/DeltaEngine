@@ -14,7 +14,7 @@ namespace DeltaEngine
 		float Movespeed;
 		float inherentAcceleration;
 		Vector2 Acceleration;
-		float Restituition; //not used
+		float Restituition; //Bounciness
 		bool hasGravity;
 
 		RigidBody() :
@@ -24,6 +24,7 @@ namespace DeltaEngine
 			hasGravity{false},
 			Friction{0.97},
 			inherentAcceleration{3.0f},
+			Restituition{1.0f},
 			isMoveable{true}
 		{}
 	};
