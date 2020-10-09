@@ -90,4 +90,13 @@ namespace DeltaEngine
         return _mouse._isReleased[key];
     }
 
+    const Point& InputSystem::currentPosition()
+    {
+        return _mouse._currentMousePosition;
+    }
+
+    const Point& InputSystem::previousPosition()
+    {
+        return _mouse._previousMousePosition;
+    }
 }

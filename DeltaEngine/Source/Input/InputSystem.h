@@ -40,6 +40,8 @@ namespace DeltaEngine
         bool isMouseTriggered(int key);
         bool isMousePressed(int key);
         bool isMouseReleased(int key);
+        const Point& currentPosition();
+        const Point& previousPosition();
     };
 
 }

@@ -20,12 +20,16 @@ namespace DeltaEngine
                     Gizmos::Draw2DWireBox(t);
                     break;
                 case ColliderType::CIRCLE:
+                {
                     if (InputSystem::get()->getShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
-                    Gizmos::Draw2DCircle(t);
+                    Transform temp = t;
+                    temp.scale *= 2;
+                    Gizmos::Draw2DCircle(temp);
                     break;
+                }
                 case ColliderType::RAY:
                     if (InputSystem::get()->getShowLine() == true)
                     {

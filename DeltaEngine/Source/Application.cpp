@@ -112,7 +112,7 @@ namespace DeltaEngine
 
         //physics test start init var
         auto entity1 = env.pECS->world().get_entity_manager().create_entity<Transform, Collider>();
-        auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+        auto entity2 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider, Input>();
         auto& trans = env.pECS->world().get_entity_manager().get_component<Transform>(entity1);
         auto& col = env.pECS->world().get_entity_manager().get_component<Collider>(entity1);
 
@@ -125,9 +125,9 @@ namespace DeltaEngine
         auto& col2 = env.pECS->world().get_entity_manager().get_component<Collider>(entity2);
 
         t2.position = Vector3(-0.55f, -0.55f);
-        t2.scale = Vector3(1, 1);
+        t2.scale = Vector3(0.25, 0.25);
         r2.Velocity = Vector2(0, 0);
-        col2.type = ColliderType::CIRCLE;
+        col2.type = ColliderType::BOX;
         //physics test end
         // TODO Modules Instantiation
         f64 accumulator = 0.0;
@@ -150,8 +150,9 @@ namespace DeltaEngine
 
             if (InputSystem::get()->isKeyPressed(DEVK_A))
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
                     {
+                        i1.previousKey = DEVK_A;
                         r1.Velocity = {-1, 0};
                     });
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
@@ -172,8 +173,9 @@ namespace DeltaEngine
             }
             if (InputSystem::get()->isKeyPressed(DEVK_D))
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
                     {
+                        i1.previousKey = DEVK_D;
                         r1.Velocity = {1, 0};
                     });
                 env.pECS->world().get_entity_manager().for_each([&](EntityID id1, Animator& a)
@@ -194,15 +196,17 @@ namespace DeltaEngine
             }
             if (InputSystem::get()->isKeyPressed(DEVK_W))
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
                     {
+                        i1.previousKey = DEVK_W;
                         r1.Velocity = {0, 1};
                     });
             }
             if (InputSystem::get()->isKeyPressed(DEVK_S))
             {
-                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1)
+                env.pECS->world().get_entity_manager().for_each([&](EntityID id1, RigidBody& r1, Input& i1)
                     {
+                        i1.previousKey = DEVK_S;
                         r1.Velocity = {0, -1};
                     });
             }
@@ -218,6 +222,25 @@ namespace DeltaEngine
                     //std::cout << "V is triggered and line is NOT shown" << std::endl;
                     InputSystem::get()->setShowLine(false);
                 }
+            }
+
+            if (InputSystem::get()->isKeyTriggered(DEVK_P))
+            {
+                auto circleEntity = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
+                auto& circleT = env.pECS->world().get_entity_manager().get_component<Transform>(circleEntity);
+                auto& circleR = env.pECS->world().get_entity_manager().get_component<RigidBody>(circleEntity);
+                auto& circleC = env.pECS->world().get_entity_manager().get_component<Collider>(circleEntity);
+
+                circleT.position = Vector3(t2.position.x, t2.position.y - 0.25f);
+                circleT.scale = Vector3(0.1, 0.1);
+                circleR.hasGravity = true;
+                circleC.type = ColliderType::CIRCLE;
+            }
+
+            // gets the coordinates of the mouse, good for debugging
+            if (InputSystem::get()->onMouseMove())
+            {
+                InputSystem::get()->currentPosition();
             }
 
             InputSystem::get()->update();
