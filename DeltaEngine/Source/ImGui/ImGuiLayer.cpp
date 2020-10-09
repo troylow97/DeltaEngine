@@ -178,15 +178,15 @@ namespace DeltaEngine
 			ImGui::Begin("TextRenderer");
 
 			static float f = 0.0f;
-			static char str[128];
+			//static char str[128];
 			ImGui::Text("Edit Text Props");                           // Display some text (you can use a format string too)
 			ImGui::Checkbox("Active", &RenderModule::allRenderers[1]->m_Active);
 			ImGui::DragFloat3("pos", (float*)&RenderModule::allRenderers[1]->transform.position, 0.01f);
 			ImGui::DragFloat3("size", (float*)&RenderModule::allRenderers[1]->transform.scale, 0.01f);
 			ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
-			ImGui::InputText("display text", str, 128);
+			//ImGui::InputText("display text", str, 128);
 			RenderModule::allRenderers[1]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
-			dynamic_cast<TextRenderer*>(RenderModule::allRenderers[1])->text = str;
+			//dynamic_cast<TextRenderer*>(RenderModule::allRenderers[1])->text = str;
 
 			ImGui::End();
 		}
