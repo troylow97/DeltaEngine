@@ -5,6 +5,7 @@ namespace DeltaEngine
 {
 	struct RigidBody
 	{
+		bool isMoveable;
 		float Mass;
 		Vector2 Direction;
 		Vector2 Velocity;
@@ -22,7 +23,8 @@ namespace DeltaEngine
 			Acceleration{0,0},
 			hasGravity{false},
 			Friction{0.97},
-			inherentAcceleration{3.0f}
+			inherentAcceleration{3.0f},
+			isMoveable{true}
 		{}
 	};
 }

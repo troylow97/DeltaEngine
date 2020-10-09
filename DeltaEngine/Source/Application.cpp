@@ -133,6 +133,7 @@ namespace DeltaEngine
         r1.Mass = 25;
         r1.Restituition = 0.15f;
         r1.Movespeed = 3.0f;
+        r1.hasGravity = true;
         r1.inherentAcceleration = 1.1f;
 
         auto& t2 = env.pECS->world().get_entity_manager().get_component<Transform>(entity2);
@@ -159,6 +160,7 @@ namespace DeltaEngine
         r3.Velocity = Vector2(0, 0);
         r3.Mass = 10;
         r3.Movespeed = 0.15f;
+        r3.isMoveable = false;
         col3.type = ColliderType::BOX;
 
         // TODO Modules Instantiation
@@ -174,7 +176,7 @@ namespace DeltaEngine
         col4.size = t4.scale;
         r4.Velocity = Vector2(0, 0);
         r4.Mass = 10;
-        r4.hasGravity = false;
+        r4.hasGravity = true;
         col4.type = ColliderType::BOX;
 
         auto entity5 = env.pECS->world().get_entity_manager().create_entity<Transform, RigidBody, Collider>();
