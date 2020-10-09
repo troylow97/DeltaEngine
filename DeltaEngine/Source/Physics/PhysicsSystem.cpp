@@ -18,7 +18,7 @@ namespace DeltaEngine
     void PhysicsSystem::late_update()
     {
         // Codes
-        em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1,Collider& c1)
+        em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
             {
                 if (r1.isMoveable)
                 {
@@ -32,15 +32,15 @@ namespace DeltaEngine
     void PhysicsSystem::UpdateComponents()
     {
         em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
-        {
-            c1.size = t1.scale;
-            c1.center = t1.position;
-        });
+            {
+                c1.size = t1.scale;
+                c1.center = t1.position;
+            });
     }
 
     void PhysicsSystem::UpdateVelocity()
     {
-        em.for_each([&](EntityID id1, RigidBody& r1,Transform& t1)
+        em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1)
             {
                 if (r1.isMoveable)
                 {
@@ -56,15 +56,15 @@ namespace DeltaEngine
     void PhysicsSystem::Gravity()
     {
         Vector2 GravityAmount{ 0,-1.0f };
-        em.for_each([&](EntityID id1, RigidBody& r1,Transform& t1)
-        {
-            if ((r1.hasGravity == true))
+        em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1)
             {
-                r1.Velocity += GravityAmount * 1 / r1.Mass;
-                r1.Acceleration = (GravityAmount * r1.inherentAcceleration) / r1.Mass;
-            }
-;
-        });
+                if ((r1.hasGravity == true))
+                {
+                    r1.Velocity += GravityAmount * 1 / r1.Mass;
+                    r1.Acceleration = (GravityAmount * r1.inherentAcceleration) / r1.Mass;
+                }
+                ;
+            });
     }
 
 }

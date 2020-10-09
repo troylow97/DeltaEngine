@@ -5,8 +5,8 @@
 #include <algorithm>
 #include <cassert>
 #include <tuple>
-#include <rapidjson/filewritestream.h>
-#include <rapidjson/prettywriter.h>
+#include <filewritestream.h>
+#include <prettywriter.h>
 
 
 #include "Metatype.h"

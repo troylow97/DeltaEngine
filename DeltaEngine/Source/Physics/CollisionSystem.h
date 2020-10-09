@@ -1,6 +1,7 @@
 #pragma once
 #include "CollisionHandler.h"
-#include "RigidBody.h"
+#include "ECS/ECSModule.h"
+#include "ECS/Components/RigidBody.h"
 #include "ECS/Components/Transform.h"
 #include "Manifold.h"
 #include "ECS/Components/RigidBody.h"
@@ -22,20 +23,22 @@ struct CollisionPairInfo
 
 DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
 
-    using CollisionPair = std::pair<EntityID, EntityID>;
-    std::vector<CollisionPair> CurrentPair;
-    std::vector<CollisionPair> PreviousPair;
-    void CollisionIntersectionCheck();
-    void CollisionHandling();
-    void CollisionResolution();
 
-    public:
-    virtual void update() override;
-    virtual void late_update() override;
-    //CollisionSystem() = default;
-    //~CollisionSystem() = default;
-    CollisionHandler collision_handler;
-    void Init();
+
+std::vector<CollisionPairInfo> CurrentManifoldVector;
+std::vector<CollisionPairInfo> OldManifoldVector;
+
+void CollisionSystem::CollisionIntersectionCheck();
+void CollisionSystem::CollisionHandling();
+void CollisionSystem::CollisionResolution();
+
+public:
+  virtual void CollisionSystem::update() override;
+  virtual void CollisionSystem::late_update() override;
+  CollisionSystem::CollisionSystem() = default;
+  CollisionSystem::~CollisionSystem() = default;
+  CollisionHandler collision_handler;
+  void CollisionSystem::Init();
 
 
   END_DEFINE_SYSTEM(CollisionSystem)
@@ -43,17 +46,13 @@ DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
 
 /*
 Collision System
-Members: Vector of collisionPair with current or previous.
+Members: Vector of EntityPair with current or previous.
 Pre Current
 1 0: Exit
 1 1: Stay
 0 1: Enter
- - Update loop through all the IDs with Colliders to check for collision once there is create a collision pair and pass into the vector of current collisionPair
- - UpdateCheck -> Check with previous one.
-
- - UpdateLate -> CollisionHandling
-
- - CollisionPair -> Take in two Entity ID
-
-
+- Update loop through all the IDs with Colliders to check for collision once there is create a collision pair and pass into the vector of current EntityPair
+- UpdateCheck -> Check with previous one.
+- UpdateLate -> CollisionHandling
+- EntityPair -> Take in two Entity ID
 */

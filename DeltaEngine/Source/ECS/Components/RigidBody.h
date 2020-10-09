@@ -2,8 +2,8 @@
 
 #include "Core/Math/Vector.h"
 #include "Components.h"
-#include <rapidjson/prettywriter.h>
-#include <rapidjson/filewritestream.h>
+#include <prettywriter.h>
+#include <filewritestream.h>
 
 namespace DeltaEngine
 {

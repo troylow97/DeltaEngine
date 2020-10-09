@@ -25,5 +25,7 @@ int RoundDown( float value );
 int RoundDownToNearest( float value, int multiple );
 float RoundDownf( float value );
 float RoundDownToNearestf( float value, int multiple );
+int Abs(int value);
+float Abs(float value);
 
 }
