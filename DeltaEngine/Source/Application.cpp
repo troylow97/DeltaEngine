@@ -142,6 +142,8 @@ namespace DeltaEngine
             lastFrame = nextFrame;
             nextFrame += frames{ 1 };
 
+            env.pClock->Update();
+
             textrender.text = "FPS: " + std::to_string(static_cast<u32>(env.pClock->FrameRate()));
             textrender.transform.position = Vector3((Camera::editorCamera->Max().x - Camera::editorCamera->Min().x) * -0.28, (Camera::editorCamera->Max().y - Camera::editorCamera->Min().y) * 0.27f);
 
@@ -241,7 +243,6 @@ namespace DeltaEngine
             InputSystem::get()->update();
             env.pWin->Update();
             // Update engine GameClock
-            env.pClock->Update();
             env.pECS->world().update();
             env.pECS->world().late_update();
             m_ImGuiLayer->Begin();
