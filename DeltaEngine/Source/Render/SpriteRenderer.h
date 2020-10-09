@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Mesh.h"
-#include "Core/Math/Transform.h"
+#include "ECS/Components/Transform.h"
 #include "Core/Math/Color.h"
 #include "Texture.h"
 #include "Shader.h"

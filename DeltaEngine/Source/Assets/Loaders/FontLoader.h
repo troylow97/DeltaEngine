@@ -13,8 +13,8 @@ namespace DeltaEngine
 
     void doLoad(AssetKey key, std::string_view str) override
     {
-      Font data{std::string(str)};
-      if (data.characterInfo().empty())
+      Font* data = new Font{std::string(str)};
+      if (data->characterInfo().empty())
         set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
       else
         set(key, data, AssetState::Final, AssetLifetime::Persistent);

@@ -2,8 +2,7 @@
 
 #include <string>
 #include <unordered_map>
-#include "Core/Math/Color.h"
-#include "Core/Math/Matrix.h"
+#include "Core/Math/DE_Math.h"
 
 namespace DeltaEngine
 {

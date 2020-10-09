@@ -13,6 +13,8 @@
 #include "ECS/World.h"
 #include "Input/InputSystem.h"
 #include "Input/Keys.h"
+#include "Reflect/Reflect.h"
+
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -63,6 +65,8 @@ namespace DeltaEngine
         env.pManager->set_loader<AnimationClip>(new AnimationClipLoader())
             .load<AnimationClip>("Idle", "Idle.clip")
             .load<AnimationClip>("Running", "Running.clip");
+    env.pECS = new ECSModule();
+    env.pECS->world().update();
 
         env.pManager->set_loader<AnimationController>(new AnimationControllerLoader())
             .load<AnimationController>("Player", "Player.anim");

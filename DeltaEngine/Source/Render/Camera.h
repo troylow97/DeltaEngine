@@ -3,7 +3,7 @@
 #include "DEpch.h"
 #include "FrameBuffer.h"
 #include "Shader.h"
-#include "Core/Math/Transform.h"
+#include "ECS/Components/Transform.h"
 #include "Core/Math/Color.h"
 
 namespace DeltaEngine

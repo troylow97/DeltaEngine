@@ -10,11 +10,10 @@
 #include "ECS/ECSModule.h"
 
 // Math
-#include "Core/Math/Vector.h"
-#include "Core/Math/Color.h"
-#include "Core/Math/Quaternion.h"
-#include "Core/Math/Matrix.h"
-#include "Core/Math/Transform.h"
+#include "Core/Math/DE_Math.h"
+
+// Components
+#include "ECS/Components/Transform.h"
 
 // AssetManager
 #include "Assets/AssetManager.h"

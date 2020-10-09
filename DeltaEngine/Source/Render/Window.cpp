@@ -41,13 +41,8 @@ LRESULT WINAPI Win32WindowProc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
     break;
     case WM_DESTROY:
     {
+      env.pWin->Running( false );
       PostQuitMessage( 0 );
-    }
-    break;
-    case WM_QUIT:
-    {
-      auto window = (Window *) GetWindowLongPtr( hwnd, GWLP_USERDATA );
-      window->Running( false );
     }
     break;
   }
@@ -104,7 +99,7 @@ int Window::Width() const
   return m_width;
 }
 
-void Window::Fullscreen(const bool f)
+void Window::Fullscreen( const bool f )
 {
   m_fullscreen = f;
 }
@@ -142,7 +137,7 @@ void Window::InitWindow()
   windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
   windowClass.lpfnWndProc = Win32WindowProc;
   windowClass.hInstance = GetModuleHandle( NULL );
-  windowClass.lpszClassName = L"Delta Engine" ;
+  windowClass.lpszClassName = L"Delta Engine";
   windowClass.hCursor = LoadCursor( NULL, IDC_ARROW );
   windowClass.lpszMenuName = MAKEINTRESOURCEW( IDR_MENU1 );
 

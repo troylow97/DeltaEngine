@@ -30,6 +30,8 @@ project "DeltaEngine"
     "%{prj.name}/Dep/freetype/include/ft2build.h",
     "%{prj.name}/Dep/stb_image/stb_image.h",
     "%{prj.name}/Dep/stb_image/stb_image.cpp",
+    "%{prj.name}/Dep/rttr/include/*.h",
+    "%{prj.name}/Dep/rttr/include/*.cpp",
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp",
     "%{prj.name}/Source/**.inl"
@@ -42,6 +44,7 @@ project "DeltaEngine"
     "%{prj.name}/Dep/spdlog/include",
     "%{prj.name}/Dep/freetype/include",
     "%{prj.name}/Dep/stb_image",
+    "%{prj.name}/Dep/rttr/include",
     "%{prj.name}/Source"
   }
 
@@ -49,13 +52,15 @@ project "DeltaEngine"
   {
     "%{prj.name}/Dep/glew/GL",
     "%{prj.name}/Dep/freetype/objs",
+    "%{prj.name}/Dep/rttr/lib",
   }
 
   links
   {
     "glew32s.lib",
     "OpenGL32.lib",
-    "freetype.lib"
+    "freetype.lib",
+    "rttr_core_lib_s_d.lib"
   }
 
   filter "system:windows" 
@@ -112,6 +117,7 @@ project "Sandbox"
     "DeltaEngine/Dep/spdlog/include",
     "DeltaEngine/Dep/freetype/include",
     "DeltaEngine/Dep/stb_image",
+    "DeltaEngine/Dep/rttr/include",
     "DeltaEngine/Source"
   }
   
@@ -132,6 +138,7 @@ project "Sandbox"
   
   filter "configurations:Debug"
     defines "DE_DEBUG"
+    defines "DEBUG"
     symbols "On"
     
   filter "configurations:Release"
