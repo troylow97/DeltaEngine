@@ -44,6 +44,8 @@ namespace DeltaEngine
 			{
 				r1.Velocity = { 0, -1 };
 				r2.Velocity = { 0, 1 };
+				//r1.Velocity *= 1 / r2.Mass;
+				//r2.Velocity *= 1 / r1.Mass;
 				return;
 			}
 			else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Right))

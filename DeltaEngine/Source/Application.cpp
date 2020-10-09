@@ -158,7 +158,7 @@ namespace DeltaEngine
         t3.scale = Vector3(5, 1);
         col3.size = t3.scale;
         r3.Velocity = Vector2(0, 0);
-        r3.Mass = 10;
+        r3.Mass = 100000;
         r3.Movespeed = 0.15f;
         r3.isMoveable = false;
         col3.type = ColliderType::BOX;
