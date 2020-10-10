@@ -14,7 +14,9 @@ void Root( fs::path path )
   if ( DirExists( path ) )
     fs::current_path( path );
   else
+  {
     DeltaEngine_CORE_ERROR( "Invalid File:Path" );
+  }
 }
 
 fs::path Root()
@@ -45,7 +47,9 @@ void CopyDir( fs::path source, fs::path dest )
     fs::copy( source, dest, options );
   }
   else
+  {
     DeltaEngine_CORE_ERROR( "Source directory cannot be found" );
+  }
 }
 
 bool DeleteDir( fs::path dir_name )
@@ -55,7 +59,9 @@ bool DeleteDir( fs::path dir_name )
     std::error_code ec;
     bool result = fs::remove( dir_name, ec );
     if ( ec )
+    {
       DeltaEngine_CORE_ERROR( "{}", ec.message() );
+    }
     return result;
   }
   DeltaEngine_CORE_ERROR( "Directory cannot be found" );
@@ -69,7 +75,9 @@ size_t DeleteAllDir( fs::path dir_name )
     std::error_code ec;
     size_t result = fs::remove_all( dir_name, ec );
     if ( ec )
+    {
       DeltaEngine_CORE_ERROR( "{}", ec.message() );
+    }
     return result;
   }
   DeltaEngine_CORE_ERROR( "Directory cannot be found" );
@@ -128,7 +136,9 @@ void CopyFile( fs::path source, fs::path dest )
     fs::copy_file( source, dest, options );
   }
   else
+  {
     DeltaEngine_CORE_ERROR( "Source file cannot be found" );
+  }
 }
 
 bool FileExists( fs::path filename )
