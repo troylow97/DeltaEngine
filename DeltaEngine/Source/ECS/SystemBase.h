@@ -14,9 +14,9 @@ namespace DeltaEngine
 
     explicit SystemBase(EntityManager &ref) : em{ref} {}
 
-    virtual void update() = 0;
+    virtual void Update() = 0;
 
-    virtual void late_update() = 0;
+    virtual void LateUpdate() = 0;
 
     virtual ~SystemBase() = default;
   };

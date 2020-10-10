@@ -58,7 +58,7 @@ namespace DeltaEngine
 	{
 	public:
 		EventDispatcher(Event& event) : 
-			_Event(event)
+			m_event(event)
 			{}
 
 		template<typename T, typename F>
@@ -67,15 +67,15 @@ namespace DeltaEngine
 			//checks to see which event type the current event 
 			//that we are currently dispatching is and whether it matches this template argument
 			//There is no type-safety to see if its an event
-			if (_Event.GetEventType() == T::GetStaticType())
+			if (m_event.GetEventType() == T::GetStaticType())
 			{
-				_Event.isHandled = func(static_cast<T&>(_Event));
+				m_event.isHandled = func(static_cast<T&>(m_event));
 				return true;
 			}
 			return false;
 		}
 	private:
-		Event& _Event;
+		Event& m_event;
 	};
 
 	inline std::ostream& operator<<(std::ostream& os, const Event& e)
@@ -90,24 +90,24 @@ namespace DeltaEngine
 			EventQueue{ 1000 }
 			{}
 
-		void addEvent(Event& event)
+		void AddEvent(Event& event)
 		{
-			EventQueue.write(event);
+			EventQueue.Write(event);
 		}
 
-		Event& resolveEvent()
+		Event& ResolveEvent()
 		{
-			return EventQueue.read();
+			return EventQueue.Read();
 		}
 
-		void getStatus()
+		void GetStatus()
 		{
-			EventQueue.printdetails();
+			EventQueue.Printdetails();
 		}
 		
-		inline bool isEmpty()
-		{
-			return EventQueue.empty();
+		inline bool IsEmpty() const
+    {
+			return EventQueue.Empty();
 		}
 
 	private:

@@ -2,10 +2,10 @@
 
 #include "Core/Math/DE_Math.h"
 #include "ECS/Metatype.h"
-#include "ECS/Components/Transform.h"
-#include "ECS/Components/Collider.h"
-#include "ECS/Components/RigidBody.h"
-#include "ECS/Components/Character.h"
+#include "Components/Transform.h"
+#include "Components/Collider.h"
+#include "Components/RigidBody.h"
+#include "Components/Character.h"
 #include "EngineConfig.h"
 #include <rttr/registration>
 
@@ -62,7 +62,7 @@ RTTR_REGISTRATION
   );
 
   rttr::registration::class_<Transform>( "transform" )
-    ( rttr::metadata( "hash", Metatype::get_metatype<Transform>()->hash.digest ) )
+    ( rttr::metadata( "hash", Metatype::GetMetatype<Transform>()->hash.digest ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "old_position", &Transform::old_position)
     .property( "position", &Transform::position )
@@ -72,7 +72,7 @@ RTTR_REGISTRATION
     .method( "deserialize", &Transform::Deserialize );
 
   rttr::registration::class_<RigidBody>( "rigidbody" )
-    ( rttr::metadata( "hash", Metatype::get_metatype<RigidBody>()->hash.digest ) )
+    ( rttr::metadata( "hash", Metatype::GetMetatype<RigidBody>()->hash.digest ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "direction", &RigidBody::Direction)
     .property( "velocity", &RigidBody::Velocity )
@@ -88,7 +88,7 @@ RTTR_REGISTRATION
     .method( "deserialize", &RigidBody::Deserialize );
 
   rttr::registration::class_<Collider>( "collider" )
-    ( rttr::metadata( "hash", Metatype::get_metatype<Collider>()->hash.digest ) )
+    ( rttr::metadata( "hash", Metatype::GetMetatype<Collider>()->hash.digest ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "inter_point", &Collider::interPoint )
     .property( "center", &Collider::center )
@@ -101,7 +101,7 @@ RTTR_REGISTRATION
 
 
   rttr::registration::class_<Input>( "input" )
-    ( rttr::metadata( "hash", Metatype::get_metatype<Input>()->hash.digest ) )
+    ( rttr::metadata( "hash", Metatype::GetMetatype<Input>()->hash.digest ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "prev", &Input::previousKey )
     .property("curr", &Input::currentKey)

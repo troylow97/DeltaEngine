@@ -1,3 +1,4 @@
+#include "Core/Debugging/Assert.h"
 namespace DeltaEngine
 {
   //*******************************************************************
@@ -6,59 +7,59 @@ namespace DeltaEngine
 
   // Copy Constructor
   template <typename T1, typename T2>
-  Asset<T1, T2>::Asset(const Asset& rhs) : _group{rhs._group},
-                                           _data{rhs._data},
-                                           _key{rhs._key},
-                                           _timestamp{rhs._timestamp},
-                                           _state{rhs._state}
+  Asset<T1, T2>::Asset(const Asset& rhs) : m_group{rhs.m_group},
+                                           m_data{rhs.m_data},
+                                           m_key{rhs.m_key},
+                                           m_timestamp{rhs.m_timestamp},
+                                           m_state{rhs.m_state}
   {
-    if (_group)
-      _group->increment_reference_count(_key);
+    if (m_group)
+      m_group->IncrementReferenceCount(m_key);
   }
 
   // Copy Assignment
   template <typename T1, typename T2>
   Asset<T1, T2>& Asset<T1, T2>::operator=(const Asset& rhs)
   {
-    if (_group)
-      _group->decrement_reference_count(_key);
+    if (m_group)
+      m_group->DecrementReferenceCount(m_key);
 
-    _group = rhs._group;
-    _data = rhs._data;
-    _key = rhs._key;
-    _timestamp = rhs._timestamp;
-    _state = rhs._state;
+    m_group = rhs.m_group;
+    m_data = rhs.m_data;
+    m_key = rhs.m_key;
+    m_timestamp = rhs.m_timestamp;
+    m_state = rhs.m_state;
 
-    if (_group)
-      _group->increment_reference_count(_key);
+    if (m_group)
+      m_group->IncrementReferenceCount(m_key);
 
     return *this;
   }
 
   // Move Constructor
   template <typename T1, typename T2>
-  Asset<T1, T2>::Asset(Asset&& rhs) noexcept : _group{rhs._group},
-                                               _data{rhs._data},
-                                               _key{rhs._key},
-                                               _timestamp{rhs._timestamp},
-                                               _state{rhs._state}
+  Asset<T1, T2>::Asset(Asset&& rhs) noexcept : m_group{rhs.m_group},
+                                               m_data{rhs.m_data},
+                                               m_key{rhs.m_key},
+                                               m_timestamp{rhs.m_timestamp},
+                                               m_state{rhs.m_state}
   {
-    rhs._group = nullptr;
-    rhs._data = nullptr;
-    rhs._key = {};
-    rhs._timestamp = 0;
-    rhs._state = AssetState::Final;
+    rhs.m_group = nullptr;
+    rhs.m_data = nullptr;
+    rhs.m_key = {};
+    rhs.m_timestamp = 0;
+    rhs.m_state = AssetState::Final;
   }
 
   // Move Assignment
   template <typename T1, typename T2>
   Asset<T1, T2>& Asset<T1, T2>::operator=(Asset&& rhs) noexcept
   {
-    std::swap(_group, rhs._group);
-    std::swap(_data, rhs._data);
-    std::swap(_key, rhs._key);
-    std::swap(_timestamp, rhs._timestamp);
-    std::swap(_state, rhs._state);
+    std::swap(m_group, rhs.m_group);
+    std::swap(m_data, rhs.m_data);
+    std::swap(m_key, rhs.m_key);
+    std::swap(m_timestamp, rhs.m_timestamp);
+    std::swap(m_state, rhs.m_state);
     return *this;
   }
 
@@ -66,14 +67,14 @@ namespace DeltaEngine
   template <typename T1, typename T2>
   Asset<T1, T2>::~Asset()
   {
-    if (_group)
-      _group->decrement_reference_count(_key);
+    if (m_group)
+      m_group->DecrementReferenceCount(m_key);
   }
 
   template <typename T1, typename T2>
   bool Asset<T1, T2>::operator==(const Asset& rhs) const
   {
-    return _group == rhs._group && _key == rhs._key;
+    return m_group == rhs.m_group && m_key == rhs.m_key;
   }
 
   template <typename T1, typename T2>
@@ -85,85 +86,87 @@ namespace DeltaEngine
   template <typename T1, typename T2>
   Asset<T1, T2>::operator bool()
   {
-    acquire();
-    return _data;
+    Acquire();
+    return m_data;
   }
 
   template <typename T1, typename T2>
   Asset<T1, T2>::operator T2*()
   {
-    acquire();
-    return static_cast<T2*>(_data);
+    Acquire();
+    return static_cast<T2*>(m_data);
   }
 
   template <typename T1, typename T2>
   T2& Asset<T1, T2>::operator*()
   {
-    acquire();
-    return *static_cast<T2*>(_data);
+    Acquire();
+    ASSERT_ERROR( m_data, "Asset: accessing not loaded data with key" )
+    return *static_cast<T2*>(m_data);
   }
 
   template <typename T1, typename T2>
   T2* Asset<T1, T2>::operator->()
   {
-    acquire();
-    return static_cast<T2*>(_data);
+    Acquire();
+    ASSERT_ERROR( m_data, "Asset: accessing not loaded data with key" )
+    return static_cast<T2*>(m_data);
   }
 
   template <typename T1, typename T2>
-  AssetKey Asset<T1, T2>::key() const
+  AssetKey Asset<T1, T2>::Key() const
   {
-    return _key;
+    return m_key;
   }
 
   template <typename T1, typename T2>
-  AssetState Asset<T1, T2>::state()
+  AssetState Asset<T1, T2>::State()
   {
-    acquire();
-    return _state;
+    Acquire();
+    return m_state;
   }
 
   // Private Constructor
   template <typename T1, typename T2>
-  Asset<T1, T2>::Asset(AssetGroup<T1>* group, AssetKey key) : _group{group},
-                                                              _data{nullptr},
-                                                              _key{key},
-                                                              _timestamp{0},
-                                                              _state{AssetState::NotLoaded}
+  Asset<T1, T2>::Asset(AssetGroup<T1>* group, AssetKey key) : m_group{group},
+                                                              m_data{nullptr},
+                                                              m_key{key},
+                                                              m_timestamp{0},
+                                                              m_state{AssetState::NotLoaded}
   {
-    if (_group)
-      _group->increment_reference_count(_key);
+    if (m_group)
+      m_group->IncrementReferenceCount(m_key);
   }
 
   // Internal Acquire Asset
   template <typename T1, typename T2>
-  void Asset<T1, T2>::acquire()
+  void Asset<T1, T2>::Acquire()
   {
-    if (_state == AssetState::Final)
+    if (m_state == AssetState::Final)
       return;
 
-    if (_group->timestamp() <= _timestamp)
+    if (m_group->Timestamp() <= m_timestamp)
       return;
 
-    _timestamp = _group->timestamp();
+    m_timestamp = m_group->Timestamp();
 
-    const AssetData<T1>& d = _group->_datas[_key];
-    _data = d._data;
-    _state = d._state;
+    const AssetData<T1>& d = m_group->m_datas[m_key];
+    m_data = d.data;
+    m_state = d.state;
 
-    if (!_data)
+    if (!m_data)
     {
-      if (_data = _group->fallback(), _data)
+      if (m_data = m_group->Fallback(), m_data)
       {
-        if (_state == AssetState::Loading)
-          _state = AssetState::LoadingFallback;
-        else if (_state == AssetState::NotFound)
-          _state = AssetState::NotFoundFallback;
+        if (m_state == AssetState::Loading)
+          m_state = AssetState::LoadingFallback;
+        else if (m_state == AssetState::NotFound)
+          m_state = AssetState::NotFoundFallback;
         else
-          _state = AssetState::NotLoadedFallback;
+          m_state = AssetState::NotLoadedFallback;
       }
-      else if (_state != AssetState::Loading && _state != AssetState::NotFound)
-        _state = AssetState::NotLoaded;
+      else if (m_state != AssetState::Loading && m_state != AssetState::NotFound)
+        m_state = AssetState::NotLoaded;
     }
   }
 } // namespace DeltaEngine

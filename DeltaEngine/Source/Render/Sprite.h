@@ -9,7 +9,10 @@ namespace DeltaEngine
 {
 	class DE_API Sprite
 	{
+#pragma warning(disable:4251)
 		std::string m_Key;
+#pragma warning(default:4251)
+
 	public:
 		unsigned int m_Index;
 		Sprite(std::string textureName = "", unsigned int index = 0);

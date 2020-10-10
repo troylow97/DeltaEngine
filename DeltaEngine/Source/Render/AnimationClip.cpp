@@ -16,7 +16,7 @@ namespace DeltaEngine
 
 	unsigned int AnimationClip::GetTotalFrames() const
 	{
-		return m_Sprites.size();;
+		return static_cast<unsigned int>(m_Sprites.size());
 	}
 	unsigned int AnimationClip::GetFps() const
 	{

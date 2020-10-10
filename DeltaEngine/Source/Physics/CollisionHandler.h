@@ -3,7 +3,7 @@
 #include "Core/Containers/ActionList.h"
 #include <map>
 
-#include "ECS/Components/Collider.h"
+#include "Components/Collider.h"
 //#include <unordered_map>
 
 //Every object has a collider and a collision handler
@@ -16,16 +16,15 @@ using CollisionCallbacks = std::map<std::string, Action<>>;
 class CollisionHandler //think of this as a functor
 {
   // Possible to do 1 for Collision & 1 for Trigger Checking
-  Util::ActionList<Collider&> _enter;
-  Util::ActionList<Collider&> _stay;
-  Util::ActionList<Collider&> _exit;
+  Util::ActionList<Collider&> m_enter;
+  Util::ActionList<Collider&> m_stay;
+  Util::ActionList<Collider&> m_exit;
 
   void OnEnter(Collider& col);
   void OnStay(Collider& col);
   void OnExit(Collider& col);
-
+  friend struct CollisionSystem;
 public:
-  friend class CollisionSystem;
   CollisionHandler() = default;
 
   static CollisionCallbacks m_callbacks;

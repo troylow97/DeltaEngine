@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Core/Debugging/Assert.h"
 namespace DeltaEngine
 {
   namespace Internal
@@ -7,7 +7,7 @@ namespace DeltaEngine
     template <typename T>
     void safe_delete(T* data)
     {
-      assert(sizeof( T ) > 0);
+      static_assert(sizeof( T ) > 0);
       delete data;
     }
   } // namespace Internal
@@ -15,10 +15,10 @@ namespace DeltaEngine
   template <typename T1>
   struct AssetData
   {
-    T1* _data{nullptr};
-    AssetState _state{AssetState::Mutable};
-    AssetLifetime _lifetime{AssetLifetime::Managed};
-    size_t _referenceCount{0};
+    T1* data{nullptr};
+    AssetState state{AssetState::Mutable};
+    AssetLifetime lifetime{AssetLifetime::Managed};
+    size_t reference_count{0};
 
     explicit AssetData() = default;
 
@@ -27,22 +27,22 @@ namespace DeltaEngine
     AssetData& operator=(const AssetData&) = delete;
 
     // Move Construction, no move assignment
-    AssetData(AssetData&& rhs) noexcept : _data{rhs._data},
-                                          _state{rhs._state},
-                                          _lifetime{rhs._lifetime},
-                                          _referenceCount{rhs._referenceCount}
+    AssetData(AssetData&& rhs) noexcept : data{rhs.data},
+                                          state{rhs.state},
+                                          lifetime{rhs.lifetime},
+                                          reference_count{rhs.reference_count}
     {
-      rhs._data = nullptr;
-      rhs._referenceCount = 0;
+      rhs.data = nullptr;
+      rhs.reference_count = 0;
     }
 
     AssetData& operator=(AssetData&&) = delete;
 
     ~AssetData()
     {
-      assert(_referenceCount == 0);
-      if (_data)
-      Internal::safe_delete(_data);
+      ASSERT_ERROR(reference_count == 0, "AssetData: Destroying data while referenced")
+      if (data)
+      Internal::safe_delete(data);
     }
   };
 } // namespace DeltaEngine

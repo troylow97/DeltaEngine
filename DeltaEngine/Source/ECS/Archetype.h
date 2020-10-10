@@ -8,12 +8,6 @@ namespace DeltaEngine
   class EntityManager;
   struct DataChunk;
 
-namespace ECS_Internal
-{
-  template <typename T>
-  auto get_chunk_array(DataChunk *chunk);
-}
-
   struct Archetype
   {
     ComponentList *components{nullptr};
@@ -21,8 +15,6 @@ namespace ECS_Internal
     size_t component_hash{0};
     size_t full_chunks{0};
     std::vector<DataChunk *> chunks;
-    friend class EntityManager;
-
   };
 
 } // namespace DeltaEngine

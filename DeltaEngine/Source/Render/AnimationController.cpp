@@ -47,7 +47,7 @@ namespace DeltaEngine
 				}
 				// change the clip
 				if (conditionPass)
-					return GetEnv().pManager->get<AnimationClip>(transitions[i].second);
+					return GetEnv().pManager->Get<AnimationClip>(transitions[i].second);
 			}
 		}
 		return nullptr;
@@ -64,7 +64,7 @@ namespace DeltaEngine
 		if (file.is_open())
 		{
 			file >> str >> defaultClip;
-			entryAnimation = GetEnv().pManager->get<AnimationClip>(defaultClip);
+			entryAnimation = GetEnv().pManager->Get<AnimationClip>(defaultClip);
 			file >> str;
 			while (file.good()) // parameters
 			{

@@ -11,10 +11,10 @@ namespace DeltaEngine
 		Vector2 max;
 		AABB();
 		AABB(Vector2 center, Vector2 size);
-		void calculate_position(Vector2 center, Vector2 size);
-		void combine(const AABB& aabb);
-		void combine(const AABB& aabb1, const AABB& aabb2);	
-		bool contains(const AABB& aabb) const;
+		void CalculatePosition(Vector2 center, Vector2 size);
+		void Combine(const AABB& aabb);
+		void Combine(const AABB& aabb1, const AABB& aabb2);	
+		bool Contains(const AABB& aabb) const;
 		float GetPerimeter() const;
 	};
 

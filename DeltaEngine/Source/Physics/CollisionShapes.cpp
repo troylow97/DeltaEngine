@@ -12,13 +12,13 @@ namespace DeltaEngine
 		max{ center.x + size.x / 2, center.y + size.y / 2 }
 	{}
 
-	void AABB::calculate_position(Vector2 center, Vector2 size)
+	void AABB::CalculatePosition(Vector2 center, Vector2 size)
 	{
 		min = { center.x - size.x / 2, center.y - size.y / 2 };
 		max = { center.x + size.x / 2, center.y + size.y / 2 };
 	}
 
-	void AABB::combine(const AABB& aabb)
+	void AABB::Combine(const AABB& aabb)
 	{
 		if (min.x > aabb.min.x) { min.x = aabb.min.x; }
 		if (min.y > aabb.min.y) { min.y = aabb.min.y; }
@@ -26,7 +26,7 @@ namespace DeltaEngine
 		if (max.y < aabb.max.y) { max.y = aabb.max.y; }
 	}
 
-	void AABB::combine(const AABB& aabb1, const AABB& aabb2)
+	void AABB::Combine(const AABB& aabb1, const AABB& aabb2)
 	{
 		if (aabb1.min.x > aabb2.min.x) { min.x = aabb2.min.x; }
 		else { min.x = aabb1.min.x; }
@@ -37,7 +37,7 @@ namespace DeltaEngine
 		if (aabb1.max.y < aabb2.max.y) { max.y = aabb2.max.y; }
 		else { max.y = aabb1.max.y; }
 	}
-	bool AABB::contains(const AABB& aabb) const
+	bool AABB::Contains(const AABB& aabb) const
 	{
 		bool result = true;
 		result = result && min.x <= aabb.min.x;

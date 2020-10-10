@@ -10,33 +10,33 @@ namespace DeltaEngine
     AssetKey() = default;
 
     explicit AssetKey(const size_t digest) :
-      _digest(digest)
+      m_digest(digest)
     {
     }
 
     AssetKey(const std::string str) :
-      _digest(std::hash<std::string>{}(str))
+      m_digest(std::hash<std::string>{}(str))
     {
     }
 
     template <size_t Size>
     constexpr AssetKey(const char ( &str )[Size]) :
-      _digest(std::hash<std::string>{}(std::string(str)))
+      m_digest(std::hash<std::string>{}(std::string(str)))
     {
     }
 
     bool operator==(const AssetKey& rhs) const
     {
-      return _digest == rhs._digest;
+      return m_digest == rhs.m_digest;
     }
 
     size_t operator()() const
     {
-      return _digest;
+      return m_digest;
     }
 
   private:
-    size_t _digest{0};
+    size_t m_digest{0};
   };
 } // namespace DeltaEngine
 

@@ -8,8 +8,8 @@ namespace DeltaEngine
   template <typename T>
   class DE_API ArrayView
   {
-    T *data{nullptr};
-    DataChunk *owner{nullptr};
+    T *m_data{nullptr};
+    DataChunk *m_owner{nullptr};
 
   public:
 
@@ -17,43 +17,43 @@ namespace DeltaEngine
 
     ArrayView(T *data_ptr, DataChunk *data_owner)
     {
-      data = data_ptr;
-      owner = data_owner;
+      m_data = data_ptr;
+      m_owner = data_owner;
     }
 
-    const DataChunk* chunk_owner() const
+    [[nodiscard]] const DataChunk* ChunkOwner() const
     {
-      return owner;
+      return m_owner;
     }
 
-    bool is_valid() const
+    [[nodiscard]] bool IsValid() const
     {
-      return data != nullptr;
+      return m_data != nullptr;
     }
 
-    unsigned size()
+    [[nodiscard]] unsigned Size() const
     {
-      return owner->header.last;
+      return m_owner->header.index;
     }
 
     const T &operator[](size_t index) const
     {
-      return data[index];
+      return m_data[index];
     }
 
     T &operator[](size_t index)
     {
-      return data[index];
+      return m_data[index];
     }
 
     T *begin()
     {
-      return data;
+      return m_data;
     }
 
     T *end()
     {
-      return data + owner->header.index;
+      return m_data + m_owner->header.index;
     }
   };
 } // namespace DeltaEngine

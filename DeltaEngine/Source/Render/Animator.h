@@ -6,8 +6,9 @@
 
 namespace DeltaEngine
 {
-	class Animator
+	struct Animator
 	{
+	private:
 		using Parameters = AnimationController::Parameters;
 		Parameters parameters;
 

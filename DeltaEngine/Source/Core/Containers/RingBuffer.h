@@ -8,21 +8,21 @@ class RingBuffer
 {
 
 public:
-    using Size = uint32_t; 
+    using Size_u32 = uint32_t; 
     using Index = uint32_t;
 
     /***********************************************************************/
     /*!
-    \fn RingBuffer(Size size)
+    \fn RingBuffer(Size_u32 size)
 
     \brief Constructor for RIng Buffer
 
     */
     /***********************************************************************/
-    explicit RingBuffer(Size size) :
+    explicit RingBuffer(Size_u32 size) :
         head{ 0 },
         tail{ 0 },
-        max_size{ upper_power_of_two(size) },
+        max_size{ UpperPowerOfTwo(size) },
         mask_val{ max_size - 1 },
         array{ std::make_unique<T[]>(max_size) }
     {
@@ -44,12 +44,12 @@ public:
 
     /***********************************************************************/
     /*!
-    \fn Size size()
+    \fn Size_u32 size()
 
     \brief Returns the current size of the Ring Buffer
     */
     /***********************************************************************/
-    Size size()
+    Size_u32 Size()
     {
         return mask(tail - head);
     }
@@ -61,7 +61,7 @@ public:
     \brief Check if the Ring Buffer is full
     */
     /***********************************************************************/
-    bool full()
+    bool Full()
     {
         return inc(tail) == head;
     }
@@ -73,7 +73,7 @@ public:
     \brief Check if the Ring Buffer is empty
     */
     /***********************************************************************/
-    bool empty() const
+    bool Empty() const
     {
         return head == tail;
     }
@@ -85,9 +85,9 @@ public:
     \brief Writes data to the ring buffer. Data is written to the tail.
     */
     /***********************************************************************/
-    bool write(T data)
+    bool Write(T data)
     {
-        if (!full())
+        if (!Full())
         {
             array[tail] = data;
             tail = inc(tail);
@@ -106,9 +106,9 @@ public:
     \brief Writes data to the ring buffer. Data is written to the tail.
     */
     /***********************************************************************/
-    bool write(T&& data)
+    bool Write(T&& data)
     {
-        if (!full())
+        if (!Full())
         {
             array[tail] = data;
             tail = inc(tail);
@@ -127,9 +127,9 @@ public:
     \brief Reads data from the ring buffer. Data is read from the head.
     */
     /***********************************************************************/
-    T& read()
+    T& Read()
     {
-        if (!empty())
+        if (!Empty())
         {
             T& temp = array[head];
             head = inc(head);
@@ -149,15 +149,15 @@ public:
     \brief Gives detail about the Ring Buffer
     */
     /***********************************************************************/
-    void printdetails()
+    void Printdetails()
     {
         std::cout << std::endl;
-        std::cout << "Current size is " << size() << std::endl;
+        std::cout << "Current size is " << Size() << std::endl;
         std::cout << "Max size is " << max_size << std::endl;
         std::cout << "Current head index is " << head << std::endl;
         std::cout << "Current tail index is " << tail << std::endl;
         std::cout << "Mask value is " << mask_val << std::endl;
-        for (Size i = 0; i < max_size; i++)
+        for (Size_u32 i = 0; i < max_size; i++)
         {
             std::cout << "ring[" << i << "] is: " << array[i] << std::endl;
         }
@@ -170,7 +170,7 @@ public:
     \brief Clears the Ring Buffer, resetting its head and tail.
     */
     /***********************************************************************/
-    void clear()
+    void Clear()
     {
         head = 0;
         tail = 0;
@@ -183,7 +183,7 @@ public:
     \brief Gets the maximum size the Ring Buffer can hold
     */
     /***********************************************************************/
-    inline Size getMaxSize() const { return max_size; }
+    inline Size_u32 GetMaxSize() const { return max_size; }
 
     /***********************************************************************/
     /*!
@@ -230,7 +230,7 @@ public:
 private:
     Index head;
     Index tail;
-    Size max_size;
+    Size_u32 max_size;
     Index mask_val;
     std::unique_ptr<T[]> array;
 
@@ -241,7 +241,7 @@ private:
     \brief Index would round up the value to a power of 2.
     */
     /***********************************************************************/
-    Index upper_power_of_two(Index num)
+    Index UpperPowerOfTwo(Index num)
     {
         num--;
         num |= num >> 1;

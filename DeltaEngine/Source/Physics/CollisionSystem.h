@@ -1,10 +1,10 @@
 #pragma once
 #include "CollisionHandler.h"
 #include "ECS/ECSModule.h"
-#include "ECS/Components/RigidBody.h"
-#include "ECS/Components/Transform.h"
+#include "Components/RigidBody.h"
+#include "Components/Transform.h"
+#include "Components/RigidBody.h"
 #include "Manifold.h"
-#include "ECS/Components/RigidBody.h"
 
 namespace DeltaEngine
 {
@@ -25,16 +25,16 @@ DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
 
 
 
-std::vector<CollisionPairInfo> CurrentManifoldVector;
-std::vector<CollisionPairInfo> OldManifoldVector;
+std::vector<CollisionPairInfo> current_manifold_vector;
+std::vector<CollisionPairInfo> old_manifold_vector;
 
 void CollisionSystem::CollisionIntersectionCheck();
 void CollisionSystem::CollisionHandling();
 void CollisionSystem::CollisionResolution();
 
 public:
-  virtual void CollisionSystem::update() override;
-  virtual void CollisionSystem::late_update() override;
+  virtual void CollisionSystem::Update() override;
+  virtual void CollisionSystem::LateUpdate() override;
   CollisionSystem::CollisionSystem() = default;
   CollisionSystem::~CollisionSystem() = default;
   CollisionHandler collision_handler;

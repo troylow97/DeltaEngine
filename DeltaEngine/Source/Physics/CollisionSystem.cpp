@@ -6,12 +6,12 @@
 #include <cmath>
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
-#include "ECS/Components/Character.h"
+#include "Components/Character.h"
 #include "Manifold.h"
 
 namespace DeltaEngine
 {
-	void CollisionSystem::update()
+	void CollisionSystem::Update()
 	{
 	  CollisionIntersectionCheck();
 	  CollisionHandling();
@@ -19,7 +19,7 @@ namespace DeltaEngine
 
 	}
 
-	void CollisionSystem::late_update()
+	void CollisionSystem::LateUpdate()
 	{
 	}
 
@@ -29,17 +29,17 @@ namespace DeltaEngine
 
 	void CollisionSystem::CollisionIntersectionCheck()
 	{
-		OldManifoldVector.swap(CurrentManifoldVector);
-		CurrentManifoldVector.clear();
+		old_manifold_vector.swap(current_manifold_vector);
+		current_manifold_vector.clear();
 
 		//Collision Intersection
-		em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
+		em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
 		{
 			if (c1.isCollideable)
 			{
 				c1.center = t1.position;
 				c1.size = t1.scale;
-				em.for_each([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
+				em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
 				{
 					if(c2.isCollideable)
 					{
@@ -52,7 +52,7 @@ namespace DeltaEngine
 							{
 								CollisionPairInfo temp{ m,id1,id2 };
 								//DeltaEngine_CORE_TRACE("COLLISION");
-								CurrentManifoldVector.push_back(temp);
+								current_manifold_vector.push_back(temp);
 								//if(c1.type == ColliderType::CIRCLE && c2.type == ColliderType::CIRCLE)
 								//	std::cout << "Collided" << std::endl;
 							}
@@ -68,11 +68,11 @@ namespace DeltaEngine
 	void CollisionSystem::CollisionHandling()
 	{
 		bool Handled = false;
-		if (!CurrentManifoldVector.empty())
+		if (!current_manifold_vector.empty())
 		{
-			for (std::vector<CollisionPairInfo>::iterator it1 = CurrentManifoldVector.begin(); it1 != CurrentManifoldVector.end(); it1++)
+			for (std::vector<CollisionPairInfo>::iterator it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
 			{
-				for (std::vector<CollisionPairInfo>::iterator it2 = OldManifoldVector.begin(); it2 != OldManifoldVector.end(); it2++)
+				for (std::vector<CollisionPairInfo>::iterator it2 = old_manifold_vector.begin(); it2 != old_manifold_vector.end(); it2++)
 				{
 					if (it1->id1.index == it2->id1.index && it1->id2.index == it2->id2.index)
 					{
@@ -94,10 +94,10 @@ namespace DeltaEngine
 
 
 
-		if (!Handled && !OldManifoldVector.empty())
+		if (!Handled && !old_manifold_vector.empty())
 		{
 			//handle previous pair exit
-			for (auto it3 = OldManifoldVector.begin(); it3 != OldManifoldVector.end(); it3++)
+			for (auto it3 = old_manifold_vector.begin(); it3 != old_manifold_vector.end(); it3++)
 			{
 				collision_handler.OnExit(it3->m.A);
 				collision_handler.OnExit(it3->m.B);
@@ -109,11 +109,11 @@ namespace DeltaEngine
 
 	void CollisionSystem::CollisionResolution()
 	{
-		for (auto it1 = CurrentManifoldVector.begin(); it1 != CurrentManifoldVector.end(); it1++)
+		for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
 		{
-			em.for_each([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
+			em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
 			{
-				em.for_each([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
+				em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
 					{
 						if (it1->id1.index == id1.index && it1->id2.index == id2.index)
 						{

@@ -15,9 +15,8 @@
 #include "Systems/InputSystem.h"
 #include "ECS/World.h"
 #include "Input/InputManager.h"
-#include "ECS/Components/Character.h"
-#include "Input/InputManager.h"
-#include "Input/Keys.h"
+#include "Components/Character.h"
+
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -32,6 +31,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   DeltaEngine_CORE_INFO( "Engine Start" );
   FileUtils::Root( "Assets" );
 
+  // Load Engine Configuration
   JsonFile f;
   EngineConfig c;
   f.StartReader( "config.json" ).LoadObject( c ).EndReader();
@@ -48,34 +48,34 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   // Asset Loading
   env.pManager = new AM();
-  env.pManager->set_loader<Font>( new FontLoader() )
-    .load<Font>( "Fail", "Fonts/Arials.ttf" )
-    .set_fallback<Font>( new Font( "Fonts/Arial.ttf" ) );
+  env.pManager->SetLoader<Font>( new FontLoader() )
+    .Load<Font>( "Fail", "Fonts/Arials.ttf" )
+    .SetFallback<Font>( new Font( "Fonts/Arial.ttf" ) );
 
-  env.pManager->set_loader<Shader>( new ShaderLoader() )
-    .load<Shader>( "Default", "Shaders/Default" )
-    .load<Shader>( "DefaultText", "Shaders/DefaultText" )
-    .set_fallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
+  env.pManager->SetLoader<Shader>( new ShaderLoader() )
+    .Load<Shader>( "Default", "Shaders/Default" )
+    .Load<Shader>( "DefaultText", "Shaders/DefaultText" )
+    .SetFallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
 
-  env.pManager->set_loader<Texture2D>( new TextureLoader() )
-    .load<Texture2D>( "idle", "idle.png" )
-    .load<Texture2D>( "run", "run.png" )
-    .load<Texture2D>( "bg", "bg.png" );
+  env.pManager->SetLoader<Texture2D>( new TextureLoader() )
+    .Load<Texture2D>( "idle", "idle.png" )
+    .Load<Texture2D>( "run", "run.png" )
+    .Load<Texture2D>( "bg", "bg.png" );
 
-  env.pManager->set_loader<AnimationClip>( new AnimationClipLoader() )
-    .load<AnimationClip>( "Idle", "Idle.clip" )
-    .load<AnimationClip>( "Running", "Running.clip" );
+  env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() )
+    .Load<AnimationClip>( "Idle", "Idle.clip" )
+    .Load<AnimationClip>( "Running", "Running.clip" );
 
 
-  env.pManager->set_loader<AnimationController>( new AnimationControllerLoader() )
-    .load<AnimationController>( "Player", "Player.anim" );
+  env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() )
+    .Load<AnimationController>( "Player", "Player.anim" );
 
   env.pECS = new ECSModule();
-  env.pECS->world();
-  env.pECS->world().create_systems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->world().set_update_sequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->world().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->world().Load( "World/Entities.json" );
+  env.pECS->GetWorld();
+  env.pECS->GetWorld().create_systems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().set_update_sequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().Load( "World/Entities.json" );
 }
 
 Application::~Application()
@@ -94,37 +94,37 @@ Application::~Application()
 
 void Application::Run()
 {
-  DeltaEngine::World &world = env.pECS->world();
+  DeltaEngine::World &world = env.pECS->GetWorld();
   DeltaEngine::EntityManager &em = world.get_entity_manager();
-  env.pManager->get<Texture2D>( "run" )->SliceAll( 2, 3 );
+  env.pManager->Get<Texture2D>( "run" )->SliceAll( 2, 3 );
 
       //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
       //    env.pManager->get<Shader>("Default"));
-  auto entitybg = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer>();
-  auto &spriterender = env.pECS->world().get_entity_manager().get_component<SpriteRenderer>( entitybg );
-  auto entitysr = env.pECS->world().get_entity_manager().create_entity<Transform, SpriteRenderer, Animator>();
-  auto &animator = env.pECS->world().get_entity_manager().get_component<Animator>( entitysr );
-  auto entitytr = env.pECS->world().get_entity_manager().create_entity<Transform, TextRenderer>();
-  auto &textrender = env.pECS->world().get_entity_manager().get_component<TextRenderer>( entitytr );
-  auto entityps = env.pECS->world().get_entity_manager().create_entity<Transform, ParticleSystem>();
+  auto entitybg = em.CreateEntity<Transform, SpriteRenderer>();
+  auto &spriterender = em.GetComponent<SpriteRenderer>( entitybg );
+  auto entitysr = em.CreateEntity<Transform, SpriteRenderer, Animator>();
+  auto &animator = em.GetComponent<Animator>( entitysr );
+  auto entitytr = em.CreateEntity<Transform, TextRenderer>();
+  auto &textrender = em.GetComponent<TextRenderer>( entitytr );
+  auto entityps = em.CreateEntity<Transform, ParticleSystem>();
 
   spriterender.sprite = { "bg" };
-  textrender.font = env.pManager->get<Font>( "Default" );
-  textrender.shader = env.pManager->get<Shader>( "DefaultText" );
+  textrender.font = env.pManager->Get<Font>( "Default" );
+  textrender.shader = env.pManager->Get<Shader>( "DefaultText" );
   textrender.transform.scale = Vector3( 0.75, 0.75 );
-  animator.m_Controller = env.pManager->get<AnimationController>( "Player" );
+  animator.m_Controller = env.pManager->Get<AnimationController>( "Player" );
 
   while ( env.pWin->Running() )
   {
     textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
-    textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
+    textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28f, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
     if ( env.pClock->Update() )
     {
-      InputManager::get()->update();
+      InputManager::Get()->Update();
       env.pWin->Update();
       // Update engine GameClock
-      env.pECS->world().update();
-      env.pECS->world().late_update();
+      env.pECS->GetWorld().update();
+      env.pECS->GetWorld().late_update();
       m_ImGuiLayer->Begin();
       m_ImGuiLayer->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );

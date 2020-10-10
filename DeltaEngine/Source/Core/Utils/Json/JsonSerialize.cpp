@@ -100,7 +100,7 @@ void WriteEntities( EntityManager &em, PrettyWriter<FileWriteStream> &writer )
   writer.String( "Entities" );
   writer.StartArray();
 
-  for ( auto arch : em.archetypes )
+  for ( auto arch : em.m_archetypes )
     for ( auto chunk : arch->chunks )
       for ( size_t i = 0; i < chunk->header.index; i++ )
       {

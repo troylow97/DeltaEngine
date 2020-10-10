@@ -69,14 +69,14 @@ namespace DeltaEngine
 		float tx1 = (aabb.min.x - r.m_pt0.x) * r.m_dir.x;
 		float tx2 = (aabb.max.x - r.m_pt0.x) * r.m_dir.x;
 
-		float tmin = Math::math_max(tx1, tx2);
-		float tmax = Math::math_min(tx1, tx2);
+		float tmin = Math::MathMax(tx1, tx2);
+		float tmax = Math::MathMin(tx1, tx2);
 
 		float ty1 = (aabb.min.y - r.m_pt0.y) * r.m_dir.y;
 		float ty2 = (aabb.max.y - r.m_pt0.y) * r.m_dir.y;
 
-		tmin = Math::math_max(tmin, Math::math_min(ty1, ty2));
-		tmax = Math::math_min(tmax, Math::math_max(ty1, ty2));
+		tmin = Math::MathMax(tmin, Math::MathMin(ty1, ty2));
+		tmax = Math::MathMin(tmax, Math::MathMax(ty1, ty2));
 
 		return tmax >= tmin;
 	}
@@ -95,7 +95,7 @@ namespace DeltaEngine
 		Vector2 TopLeft, TopRight, BotLeft, BotRight, TopMiddle, BotMiddle, LeftMiddle, RightMiddle;
 		float HalfWidth = Size1.x / 2;
 		float HalfHeight = Size1.y / 2;
-		float radius = Size2.x;
+		//float radius = Size2.x;
 		TopLeft = { Center1.x - HalfWidth, Center1.y + HalfHeight };
 		TopRight = { Center1.x + HalfWidth, Center1.y + HalfHeight };
 		BotLeft = { Center1.x - HalfWidth ,Center1.y - HalfHeight };
@@ -648,9 +648,9 @@ namespace DeltaEngine
 			if (aabb1.min.x > aabb2.max.x) // check A min < B max
 				return false;
 			if (aabb1.max.x < aabb2.min.x) // check A max < B min
-				tFirst = Math::math_max((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tFirst);
+				tFirst = Math::MathMax((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tFirst);
 			if (aabb1.min.x < aabb2.max.x) // check A min < B Max
-				tLast = Math::math_min((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tLast);
+				tLast = Math::MathMin((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tLast);
 		}
 		else if (RelativeVel.x > 0.0f)  //caculate the x axis of the AABB when RelativeVel is < 0
 		{
@@ -658,9 +658,9 @@ namespace DeltaEngine
 			if (aabb1.max.x < aabb2.min.x) //check A max < B min
 				return false;
 			if (aabb1.min.x > aabb2.max.x) //check A min > B max
-				tFirst = Math::math_max((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tFirst);
+				tFirst = Math::MathMax((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tFirst);
 			if (aabb1.max.x > aabb2.min.x) //check A min > B min
-				tLast = Math::math_min((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tLast);
+				tLast = Math::MathMin((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tLast);
 		}
 		// checking for case 3
 		else if ((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x))
@@ -676,9 +676,9 @@ namespace DeltaEngine
 			if (aabb1.min.y > aabb2.max.y) // check A min < B max
 				return false;
 			if (aabb1.max.y < aabb2.min.y) // check A max < B min
-				tFirst = Math::math_max((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tFirst);
+				tFirst = Math::MathMax((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tFirst);
 			if (aabb1.min.y < aabb2.max.y) // check A min < B Max
-				tLast = Math::math_min((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tLast);
+				tLast = Math::MathMin((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tLast);
 		}
 		else if (RelativeVel.y > 0.0f)
 		{
@@ -686,9 +686,9 @@ namespace DeltaEngine
 			if (aabb1.max.y < aabb2.min.y) //check A max < B min
 				return false;
 			if (aabb1.min.y > aabb2.max.y) //check A min > B max
-				tFirst = Math::math_max((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tFirst);
+				tFirst = Math::MathMax((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tFirst);
 			if (aabb1.max.y > aabb2.min.y) //check A min > B min
-				tLast = Math::math_min((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tLast);
+				tLast = Math::MathMin((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tLast);
 		}
 		// checking for case 3
 		else if ((aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y))
@@ -722,7 +722,7 @@ namespace DeltaEngine
 			// Calculate the collision time
 			float ti0 = (-b - sqrt(b * b - (4.0f * a * c))) / (2.0f * a);
 			float ti1 = (-b + sqrt(b * b - (4.0f * a * c))) / (2.0f * a);
-			manifold.interTime = Math::math_min(ti0, ti1);
+			manifold.interTime = Math::MathMin(ti0, ti1);
 		}
 		if (manifold.interTime >= 0.0f && manifold.interTime <= 1.0f) // within 0 and 1 seconds
 		{
@@ -781,6 +781,7 @@ namespace DeltaEngine
 		UNREFERENCED_PARAMETER(r1);
 		UNREFERENCED_PARAMETER(r2);
 		float intertime = 0;
+		(void) intertime;
 		ColliderType type2 = col2.type;
 		switch (type2)
 		{

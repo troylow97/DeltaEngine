@@ -16,4 +16,16 @@ Point::Point( const Point &point ) :
   point_y( point.point_y )
 {}
 
+bool Point::operator==( const Point &rhs )
+{
+  if ( point_x == rhs.point_x && point_y == rhs.point_y )
+    return true;
+  return false;
+}
+
+bool Point::operator!=( const Point &rhs )
+{
+  return !( *this == rhs );
+}
+
 }

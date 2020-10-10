@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ECS/Components/Transform.h"
+#include "Components/Transform.h"
 #include "Core/Math/Color.h"
 
 

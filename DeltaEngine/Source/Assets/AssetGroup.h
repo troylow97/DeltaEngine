@@ -21,13 +21,13 @@ namespace DeltaEngine
 
     friend class AbstractLoader<T1>;
 
-    void increment_reference_count(AssetKey key);
-    void decrement_reference_count(AssetKey key);
+    void IncrementReferenceCount(AssetKey key);
+    void DecrementReferenceCount(AssetKey key);
 
-    std::unordered_map<AssetKey, AssetData<T1>> _datas;
-    T1* _fallback{nullptr};
-    AbstractLoader<T1>* _loader{nullptr};
-    size_t _timestamp{0};
+    std::unordered_map<AssetKey, AssetData<T1>> m_datas;
+    T1* m_fallback{nullptr};
+    AbstractLoader<T1>* m_loader{nullptr};
+    size_t m_timestamp{0};
 
   protected:
     AssetGroup() = default;
@@ -46,32 +46,32 @@ namespace DeltaEngine
     virtual ~AssetGroup();
 
     // Asset group
-    [[nodiscard]] size_t size() const;
-    [[nodiscard]] size_t timestamp() const;
-    void free();
-    void clear();
+    [[nodiscard]] size_t Size() const;
+    [[nodiscard]] size_t Timestamp() const;
+    void Free();
+    void Clear();
 
     // Asset data
-    void load(AssetKey key);
-    void load(AssetKey key, std::string_view str);
+    void Load(AssetKey key);
+    void Load(AssetKey key, std::string_view str);
 
     template <typename T2>
-    Asset<T1, T2> get(AssetKey key);
+    Asset<T1, T2> Get(AssetKey key);
 
-    void set(AssetKey key, T1* data, AssetState state, AssetLifetime lifetime);
-    [[nodiscard]] size_t reference_count(AssetKey key) const;
-    [[nodiscard]] AssetState state(AssetKey key) const;
+    void Set(AssetKey key, T1* data, AssetState state, AssetLifetime lifetime);
+    [[nodiscard]] size_t ReferenceCount(AssetKey key) const;
+    [[nodiscard]] AssetState State(AssetKey key) const;
 
     // Fallback
-    T1* fallback();
-    [[nodiscard]] const T1* fallback() const;
-    void set_fallback(T1* data);
+    T1* Fallback();
+    [[nodiscard]] const T1* Fallback() const;
+    void SetFallback(T1* data);
 
     // Loaders
-    AbstractLoader<T1>* loader();
-    [[nodiscard]] const AbstractLoader<T1>* loader() const;
-    void set_loader(AbstractLoader<T1>* loader);
-    void free_loader();
+    AbstractLoader<T1>* Loader();
+    [[nodiscard]] const AbstractLoader<T1>* Loader() const;
+    void SetLoader(AbstractLoader<T1>* loader);
+    void FreeLoader();
   };
 } // namespace DeltaEngine
 

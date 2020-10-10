@@ -8,17 +8,19 @@ namespace DeltaEngine
 
 class DE_API ECSModule
 {
-  std::vector<World *> worlds;
+#pragma warning(disable:4251)
+  std::vector<World *> m_worlds;
+#pragma warning(default:4251)
 
 public:
   ECSModule()
   {
-    worlds.push_back( new World() );
+    m_worlds.push_back( new World() );
   }
 
-  World &world()
+  World &GetWorld()
   {
-    return *worlds[0]; // default for now
+    return *m_worlds[0]; // default for now
   }
 
   // Multiple World Usage in the future
@@ -38,8 +40,8 @@ public:
     explicit TYPE(DeltaEngine::EntityManager &ref) : DeltaEngine::SystemBase(ref) \
     {                                                                             \
       DeltaEngine::Query q;                                                       \
-      q.with<struct __VA_ARGS__>();                                               \
-      q.build();                                                                  \
+      q.With<struct __VA_ARGS__>();                                               \
+      q.Build();                                                                  \
       e_query = q;                                                                \
     }                                                                     
 

@@ -8,12 +8,23 @@
 #include <codecvt>
 #include <locale>
 
-using convert_t = std::codecvt_utf8<wchar_t>;
-std::wstring_convert<convert_t, wchar_t> strconverter;
-
 std::wstring to_wstring(std::string str)
 {
-  return strconverter.from_bytes( str );
+  if (str.empty())
+  {
+    return std::wstring();
+  }
+  int num_chars = MultiByteToWideChar(CP_ACP, MB_ERR_INVALID_CHARS, str.c_str(), static_cast<int>(str.length()), NULL, 0);
+  std::wstring wstrTo;
+  if (num_chars)
+  {
+    wstrTo.resize(num_chars);
+    if (MultiByteToWideChar(CP_ACP, MB_ERR_INVALID_CHARS, str.c_str(), static_cast<int>(str.length()), &wstrTo[0], num_chars))
+    {
+      return wstrTo;
+    }
+  }
+  return std::wstring();
 }
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );

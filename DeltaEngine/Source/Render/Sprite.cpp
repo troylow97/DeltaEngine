@@ -47,7 +47,7 @@ namespace DeltaEngine
 	Texture2D* Sprite::GetTexture()
 	{
 		if (m_Key.length() > 0)
-			return GetEnv().pManager->get<Texture2D>(m_Key);
+			return GetEnv().pManager->Get<Texture2D>(m_Key);
 		return nullptr;
 	}
 

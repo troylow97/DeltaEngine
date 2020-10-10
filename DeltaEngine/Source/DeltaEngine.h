@@ -12,9 +12,6 @@
 // Math
 #include "Core/Math/DE_Math.h"
 
-// Components
-#include "ECS/Components/Transform.h"
-
 // AssetManager
 #include "Assets/AssetManager.h"
 #include "Assets/Loaders/FontLoader.h"

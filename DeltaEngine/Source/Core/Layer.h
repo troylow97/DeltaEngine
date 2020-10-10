@@ -18,7 +18,9 @@ namespace DeltaEngine {
 
 		const std::string& GetName() const { return m_DebugName; }
 	protected:
+#pragma warning(disable:4251)
 		std::string m_DebugName;
+#pragma warning(default:4251)
 	};
 
 }

@@ -1,7 +1,10 @@
 #pragma once
 
 #include "DE_API.h"
-#include "spdlog/spdlog.h"
+#pragma warning(push, 0)
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
+#pragma warning(pop)
 #include "DEpch.h"
 #include <fstream>
 
@@ -13,13 +16,15 @@ namespace DeltaEngine
 	public:
 		static void Init();
 
-		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger()   { return _coreLogger; }
-		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return _clientLogger; }
+		static std::shared_ptr<spdlog::logger>& GetCoreLogger()   { return _coreLogger; }
+		static std::shared_ptr<spdlog::logger>& GetClientLogger() { return _clientLogger; }
 
 	private:
+#pragma warning(disable:4251)
 		static std::shared_ptr<spdlog::logger> _coreLogger;
 		static std::shared_ptr<spdlog::logger> _clientLogger;
 		static std::shared_ptr<spdlog::logger> core_file_logger;
+#pragma warning(default:4251)
 	};
 }
 

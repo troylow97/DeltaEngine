@@ -15,16 +15,16 @@ namespace DeltaEngine
 
     }
 
-    void InputManager::reset()
+    void InputManager::Reset()
     {
-        _keyboard.reset();
-        _mouse.reset();
+        m_keyboard.Reset();
+        m_mouse.Reset();
     }
 
-    void InputManager::update()
+    void InputManager::Update()
     {
-        _keyboard.update();
-        _mouse.update();
+        m_keyboard.Update();
+        m_mouse.Update();
     }
 
     //void InputManager::addListener(InputListener* listener)
@@ -37,7 +37,7 @@ namespace DeltaEngine
     //	_listenerSet.erase(listener);
     //}
 
-    InputManager* InputManager::get() // might change in the wei lai
+    InputManager* InputManager::Get() // might change in the wei lai
     {
         // returns the address of the InputManager object
         static InputManager _InputManager;
@@ -45,58 +45,58 @@ namespace DeltaEngine
         return &_InputManager;
     }
 
-    bool InputManager::isKeyTriggered(int key)
+    bool InputManager::IsKeyTriggered(int key)
     {
-        return _keyboard._isTriggered[key];
+        return m_keyboard.m_is_triggered[key];
     }
 
-    bool InputManager::isKeyPressed(int key)
+    bool InputManager::IsKeyPressed(int key)
     {
-        return _keyboard._isPressed[key];
+        return m_keyboard.m_is_pressed[key];
     }
 
-    bool InputManager::isKeyReleased(int key)
+    bool InputManager::IsKeyReleased(int key)
     {
-        return _keyboard._isReleased[key];
+        return m_keyboard.m_is_released[key];
     }
 
-    bool InputManager::getShowLine()
+    bool InputManager::GetShowLine()
     {
-        return _keyboard._showLine;
+        return m_keyboard.m_show_line;
     }
 
-    void InputManager::setShowLine(bool showLine)
+    void InputManager::SetShowLine(bool showLine)
     {
-        _keyboard._showLine = showLine;
+        m_keyboard.m_show_line = showLine;
     }
 
-    bool InputManager::onMouseMove()
+    bool InputManager::OnMouseMove()
     {
-        return _mouse._moveEvent;
+        return m_mouse.m_move_event;
     }
 
-    bool InputManager::isMouseTriggered(int key)
+    bool InputManager::IsMouseTriggered(int key)
     {
-        return _mouse._isTriggered[key];
+        return m_mouse.m_is_triggered[key];
     }
 
-    bool InputManager::isMousePressed(int key)
+    bool InputManager::IsMousePressed(int key)
     {
-        return _mouse._isPressed[key];
+        return m_mouse.m_is_pressed[key];
     }
 
-    bool InputManager::isMouseReleased(int key)
+    bool InputManager::IsMouseReleased(int key)
     {
-        return _mouse._isReleased[key];
+        return m_mouse.m_is_released[key];
     }
 
-    const Point& InputManager::currentPosition()
+    const Point& InputManager::CurrentPosition()
     {
-        return _mouse._currentMousePosition;
+        return m_mouse.m_current_mouse_position;
     }
 
-    const Point& InputManager::previousPosition()
+    const Point& InputManager::PreviousPosition()
     {
-        return _mouse._previousMousePosition;
+        return m_mouse.m_previous_mouse_position;
     }
 }

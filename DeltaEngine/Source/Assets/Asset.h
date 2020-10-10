@@ -31,19 +31,19 @@ namespace DeltaEngine
     T2& operator*();
     T2* operator->();
 
-    AssetKey key() const;
-    AssetState state();
+    AssetKey Key() const;
+    AssetState State();
 
   private:
     Asset(AssetGroup<T1>* group, AssetKey key);
-    void acquire();
+    void Acquire();
 
     friend AssetGroup<T1>;
-    AssetGroup<T1>* _group{nullptr};
-    T1* _data{nullptr};
-    AssetKey _key{};
-    size_t _timestamp{0};
-    AssetState _state{AssetState::Final};
+    AssetGroup<T1>* m_group{nullptr};
+    T1* m_data{nullptr};
+    AssetKey m_key{};
+    size_t m_timestamp{0};
+    AssetState m_state{AssetState::Final};
   };
 } // namespace DeltaEngine
 

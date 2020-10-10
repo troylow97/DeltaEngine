@@ -12,7 +12,7 @@ namespace DeltaEngine
 	{
 		shader = s;
 		if (!shader)
-			shader = GetEnv().pManager->get<Shader>("Default");
+			shader = GetEnv().pManager->Get<Shader>("Default");
 		RenderModule::allRenderers.push_back(this);
 	}
 	SpriteRenderer::~SpriteRenderer()

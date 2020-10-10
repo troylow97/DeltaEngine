@@ -1,19 +1,19 @@
 #include "PhysicsDrawSystem.h"
-#include "ECS/Components/Collider.h"
+#include "Components/Collider.h"
 #include "Core/Debugging/Gizmos.h"
 #include "Input/InputManager.h"
 
 namespace DeltaEngine
 {
 
-    void PhysicsDrawSystem::update()
+    void PhysicsDrawSystem::Update()
     {
-        em.for_each(e_query, [&](EntityID id, Collider& c, Transform& t, RigidBody& r)
+        em.ForEach(e_query, [&](EntityID id, Collider& c, Transform& t, RigidBody& r)
             {
                 switch (c.type)
                 {
                 case ColliderType::BOX:
-                    if (InputManager::get()->getShowLine() == true)
+                    if (InputManager::Get()->GetShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
@@ -21,7 +21,7 @@ namespace DeltaEngine
                     break;
                 case ColliderType::CIRCLE:
                 {
-                    if (InputManager::get()->getShowLine() == true)
+                    if (InputManager::Get()->GetShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
@@ -31,21 +31,21 @@ namespace DeltaEngine
                     break;
                 }
                 case ColliderType::RAY:
-                    if (InputManager::get()->getShowLine() == true)
+                    if (InputManager::Get()->GetShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
                     Gizmos::Draw2DWireBox(t); //TO CHANGE
                     break;
                 case ColliderType::LINE:
-                    if (InputManager::get()->getShowLine() == true)
+                    if (InputManager::Get()->GetShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
                     Gizmos::Draw2DWireBox(t); //TO CHANGE
                     break;
                 case ColliderType::NONE:
-                    if (InputManager::get()->getShowLine() == true)
+                    if (InputManager::Get()->GetShowLine() == true)
                     {
                         Gizmos::DrawLine(t.position, t.position + r.Velocity);
                     }
@@ -53,7 +53,7 @@ namespace DeltaEngine
                 }
             });
     }
-    void PhysicsDrawSystem::late_update()
+    void PhysicsDrawSystem::LateUpdate()
     {
 
     }

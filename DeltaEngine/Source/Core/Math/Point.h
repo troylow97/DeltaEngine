@@ -13,6 +13,9 @@ struct DE_API Point
   Point();
   Point( int x, int y );
   Point( const Point &point );
+  bool operator== ( const Point &rhs );
+  bool operator!= ( const Point &rhs );
+
 };
 
 }

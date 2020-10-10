@@ -15,7 +15,6 @@ project "DeltaEngine"
   location "DeltaEngine"
   kind "SharedLib"
   language "C++"
-  buildoptions "/NODEFAULTLIB:library"
 
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -63,8 +62,6 @@ project "DeltaEngine"
   {
     "glew32s.lib",
     "OpenGL32.lib",
-    "freetype.lib",
-    "rttr_core_lib_s_d.lib"
   }
 
   filter "system:windows" 
@@ -90,10 +87,14 @@ project "DeltaEngine"
   filter "configurations:Debug"
     defines "DE_DEBUG"
     symbols "On"
+    links {"rttr_core_lib_s_d.lib", "freetype_d"}
+
     
   filter "configurations:Release"
     defines "DE_RELEASE"
     optimize "On"
+    links {"rttr_core_lib_s.lib", "freetype"}
+
 
   filter "configurations:Dist"
     defines "DE_DIST"

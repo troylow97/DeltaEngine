@@ -37,7 +37,7 @@ namespace Util
 
     void Unsubscribe(HandleID id)
     {
-      auto &result = std::find_if(_handleList.begin(),
+      auto result = std::find_if(_handleList.begin(),
                                   _handleList.end(),
                                   [id](const Handle &handle) {
                                     return handle.first == id;

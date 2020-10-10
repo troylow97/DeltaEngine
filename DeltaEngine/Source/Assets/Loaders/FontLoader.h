@@ -7,17 +7,17 @@ namespace DeltaEngine
 {
   class FontLoader final : public AbstractLoader<Font>
   {
-    void doLoad(AssetKey key) override
+    void DoLoad(AssetKey key) override
     {
     }
 
-    void doLoad(AssetKey key, std::string_view str) override
+    void DoLoad(AssetKey key, std::string_view str) override
     {
       Font* data = new Font{std::string(str)};
       if (data->characterInfo().empty())
-        set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
+        Set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
       else
-        set(key, data, AssetState::Final, AssetLifetime::Persistent);
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
     }
   };
 } // namespace DeltaEngine

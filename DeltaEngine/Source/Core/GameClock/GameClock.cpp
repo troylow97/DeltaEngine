@@ -46,7 +46,7 @@ bool GameClock::Update()
   Nanoseconds delta = std::chrono::duration_cast<Nanoseconds>(now - m_current);
   m_current = now;
 
-  m_dt = delta.count() * 1e-9;
+  m_dt = static_cast<f32>(delta.count() * 1e-9);
   m_elapsed += m_dt;
 
   m_accumulator += m_dt;

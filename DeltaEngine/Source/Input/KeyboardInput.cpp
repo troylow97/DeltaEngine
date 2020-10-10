@@ -3,17 +3,17 @@
 
 namespace DeltaEngine
 {
-	void KeyboardInput::reset()
+	void KeyboardInput::Reset()
 	{
-		for (auto& it : _isTriggered)
+		for (auto& it : m_is_triggered)
 		{
 			if (it.second)
 			{
-				_isPressed[it.first] = true;
+				m_is_pressed[it.first] = true;
 				it.second = false;
 			}
 		}
-		for (auto& it : _isReleased)
+		for (auto& it : m_is_released)
 		{
 			if (it.second)
 			{
@@ -22,75 +22,75 @@ namespace DeltaEngine
 		}
 	}
 
-	void KeyboardInput::update()
+	void KeyboardInput::Update()
 	{
 		// allows us to retrieve the entire sequence of state of each key of the keyboard
-		if (::GetKeyboardState(_currentKeyState))
+		if (::GetKeyboardState(m_current_key_state))
 		{
 			// checks the state of each key 
 			for (unsigned int i = 0; i < 256; ++i)
 			{
 				// bitmasking, only the higher bits of the value are being evaluated 
 				// key is pressed if the value is 1 or 2
-				if (_currentKeyState[i] & 0x80)
+				if (m_current_key_state[i] & 0x80)
 				{
 					// if triggered
-					if (_currentKeyState[i] != _previousKeyState[i])
+					if (m_current_key_state[i] != m_previous_key_state[i])
 					{
-						_isTriggered[i] = true;
-						_isPressed[i] = false;
-						_isReleased[i] = false;
+						m_is_triggered[i] = true;
+						m_is_pressed[i] = false;
+						m_is_released[i] = false;
 					}
 					// if pressed
 					else
 					{
-						_isTriggered[i] = false;
-						_isPressed[i] = true;
-						_isReleased[i] = false;
+						m_is_triggered[i] = false;
+						m_is_pressed[i] = true;
+						m_is_released[i] = false;
 					}
 				}
 				// if released
 				else
 				{
-					if (_currentKeyState[i] != _previousKeyState[i])
+					if (m_current_key_state[i] != m_previous_key_state[i])
 					{
-						_isTriggered[i] = false;
-						_isPressed[i] = false;
-						_isReleased[i] = true;
+						m_is_triggered[i] = false;
+						m_is_pressed[i] = false;
+						m_is_released[i] = true;
 					}
 					else
 					{
-						_isTriggered[i] = false;
-						_isPressed[i] = false;
-						_isReleased[i] = false;
+						m_is_triggered[i] = false;
+						m_is_pressed[i] = false;
+						m_is_released[i] = false;
 					}
 				}
 			}
-			::memcpy(_previousKeyState, _currentKeyState, (sizeof(unsigned char) * 256));
+			::memcpy(m_previous_key_state, m_current_key_state, (sizeof(unsigned char) * 256));
 		}
 	}
 
-	bool KeyboardInput::isKeyTriggered(int key)
+	bool KeyboardInput::IsKeyTriggered(int key)
 	{
-		return _isTriggered[key];
+		return m_is_triggered[key];
 	}
 
-	bool KeyboardInput::isKeyPressed(int key)
+	bool KeyboardInput::IsKeyPressed(int key)
 	{
-		return _isPressed[key];
+		return m_is_pressed[key];
 	}
 
-	bool KeyboardInput::isKeyReleased(int key)
+	bool KeyboardInput::IsKeyReleased(int key)
 	{
-		return _isReleased[key];
+		return m_is_released[key];
 	}
 
-	bool KeyboardInput::getShowLine()
+	bool KeyboardInput::GetShowLine()
 	{
-		return _showLine;
+		return m_show_line;
 	}
-	void KeyboardInput::setShowLine(bool showLine)
+	void KeyboardInput::SetShowLine(bool showLine)
 	{
-		_showLine = showLine;
+		m_show_line = showLine;
 	}
 }

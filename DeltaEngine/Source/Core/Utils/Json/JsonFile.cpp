@@ -4,8 +4,7 @@
 #include "JsonSerialize.h"
 #include "JsonDeserialize.h"
 #include <string>
-#include <iostream>
-
+#include "Core/Debugging/Assert.h"
 using namespace rttr;
 using namespace rapidjson;
 
@@ -14,7 +13,7 @@ namespace DeltaEngine
 
 JsonFile &JsonFile::StartWriter( std::string filename )
 {
-  assert( m_fp == nullptr );
+  ASSERT_ERROR( m_fp == nullptr, "JsonFile: Another file is currently opened, close current operation" )
   fopen_s( &m_fp, filename.c_str(), "wb" );
   m_buffer = new char[65536] {};
   m_wstream = new FileWriteStream( m_fp, m_buffer, 65536 );
@@ -88,12 +87,12 @@ JsonFile &JsonFile::WriteEntities( class EntityManager& em )
 
 JsonFile &JsonFile::StartReader( std::string filename )
 {
-  assert( m_fp == nullptr );
-  fopen_s( &m_fp, filename.c_str(), "rb" );
+  ASSERT_ERROR( m_fp == nullptr, "JsonFile: Another file is currently opened, close current operation" )
+    fopen_s( &m_fp, filename.c_str(), "rb" );
   m_buffer = new char[65536];
   m_rstream = new FileReadStream( m_fp, m_buffer, 65536 );
   m_doc = new Document();
-  assert( !m_doc->ParseStream( *m_rstream ).HasParseError() );
+  ASSERT_ERROR( !m_doc->ParseStream( *m_rstream ).HasParseError(), "JsonFile: Document parsing have failed" );
   return *this;
 }
 

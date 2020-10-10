@@ -47,8 +47,10 @@ public:
   f32 FrameRate() const;
 
 private:
+#pragma warning(disable:4251)
   TimePoint m_start;
   TimePoint m_current;
+#pragma warning(default:4251)
   f32 m_interval;
   f32 m_elapsed;
   f32 m_dt;

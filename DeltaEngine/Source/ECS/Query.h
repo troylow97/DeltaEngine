@@ -8,74 +8,74 @@ struct EntityID;
 
 class DE_API Query
 {
-  std::vector<MetaHash> required;
-  std::vector<MetaHash> excluded;
+  std::vector<MetaHash> m_required;
+  std::vector<MetaHash> m_excluded;
 
-  size_t required_matcher_hash { 0 };
-  size_t excluded_matcher_hash { 0 };
+  size_t m_required_matcher_hash { 0 };
+  size_t m_excluded_matcher_hash { 0 };
 
   friend class EntityManager;
 
-  void initialize()
+  void Initialize()
   {
-    required.clear();
-    excluded.clear();
-    required_matcher_hash = 0;
-    excluded_matcher_hash = 0;
+    m_required.clear();
+    m_excluded.clear();
+    m_required_matcher_hash = 0;
+    m_excluded_matcher_hash = 0;
   }
 
 public:
 
   template <typename... C>
-  Query &with()
+  Query &With()
   {
-    ( required.push_back( Metatype::build_hash<C>() ), ... );
+    ( m_required.push_back( Metatype::BuildHash<C>() ), ... );
     return *this;
   }
 
-  Query &with( MetaHash hash )
+  Query &With( MetaHash hash )
   {
-    required.push_back( hash );
+    m_required.push_back( hash );
     return *this;
   }
 
   template <typename... C>
-  Query &exclude()
+  Query &Exclude()
   {
-    ( excluded.push_back( Metatype::build_hash<C>() ), ... );
+    ( m_excluded.push_back( Metatype::BuildHash<C>() ), ... );
     return *this;
   }
 
-  Query &exclude( MetaHash hash )
+  Query &Exclude( MetaHash hash )
   {
-    excluded.push_back( hash );
+    m_excluded.push_back( hash );
     return *this;
   }
 
-  Query &clear()
+  Query &Clear()
   {
-    initialize();
+    Initialize();
     return *this;
   }
 
-  Query &build()
+  Query &Build()
   {
 
     auto hash_remove_entityID = []( const MetaHash &type )
     {
-      return type == Metatype::build_hash<EntityID>();
+      return type == Metatype::BuildHash<EntityID>();
     };
 
-    required.erase( std::remove_if( required.begin(), required.end(), hash_remove_entityID ), required.end() );
-    excluded.erase( std::remove_if( excluded.begin(), excluded.end(), hash_remove_entityID ), excluded.end() );
+    m_required.erase( std::remove_if( m_required.begin(), m_required.end(), hash_remove_entityID ), m_required.end() );
+    m_excluded.erase( std::remove_if( m_excluded.begin(), m_excluded.end(), hash_remove_entityID ), m_excluded.end() );
 
     auto hash_compare = []( const MetaHash &lhs, const MetaHash &rhs )
     {
       return lhs.digest < rhs.digest;
     };
 
-    std::sort( required.begin(), required.end(), hash_compare );
-    std::sort( excluded.begin(), excluded.end(), hash_compare );
+    std::sort( m_required.begin(), m_required.end(), hash_compare );
+    std::sort( m_excluded.begin(), m_excluded.end(), hash_compare );
 
     auto hash_matcher = []( const std::vector<MetaHash> &hashes )
     {
@@ -87,8 +87,8 @@ public:
       return matcher;
     };
 
-    required_matcher_hash = hash_matcher( required );
-    excluded_matcher_hash = hash_matcher( excluded );
+    m_required_matcher_hash = hash_matcher( m_required );
+    m_excluded_matcher_hash = hash_matcher( m_excluded );
 
     return *this;
   }

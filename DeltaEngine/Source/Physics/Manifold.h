@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/Math/Vector.h"
-#include "ECS/Components/Collider.h"
+#include "Components/Collider.h"
 
 namespace DeltaEngine
 {

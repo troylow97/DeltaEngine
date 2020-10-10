@@ -20,82 +20,82 @@ namespace DeltaEngine
 
     // Assets Group
     template <typename T1>
-    [[nodiscard]] size_t size() const;
+    [[nodiscard]] size_t Size() const;
 
     template <typename T1>
-    [[nodiscard]] size_t reference_count(AssetKey key) const;
+    [[nodiscard]] size_t ReferenceCount(AssetKey key) const;
 
     template <typename T1>
-    [[nodiscard]] AssetState state(AssetKey key) const;
+    [[nodiscard]] AssetState State(AssetKey key) const;
 
     // Assets
     template <typename T1>
-    AssetManager<Ts...>& load(AssetKey key);
+    AssetManager<Ts...>& Load(AssetKey key);
 
     template <typename T1>
-    AssetManager<Ts...>& load(AssetKey key, std::string_view str);
+    AssetManager<Ts...>& Load(AssetKey key, std::string_view str);
 
     template <typename T1, typename T2 = T1>
-    Asset<T1, T2> get(AssetKey key);
+    Asset<T1, T2> Get(AssetKey key);
 
     template <typename T1>
-    AssetManager<Ts...>& set(AssetKey key, T1* data, AssetState state, AssetLifetime lifetime);
+    AssetManager<Ts...>& Set(AssetKey key, T1* data, AssetState state, AssetLifetime lifetime);
 
     template <typename T1>
-    AssetManager<Ts...>& set(AssetKey key, T1&& data, AssetState state, AssetLifetime lifetime);
+    AssetManager<Ts...>& Set(AssetKey key, T1&& data, AssetState state, AssetLifetime lifetime);
 
     template <typename T1>
-    AssetManager<Ts...>& set(AssetKey key, T1* data);
+    AssetManager<Ts...>& Set(AssetKey key, T1* data);
 
     template <typename T1>
-    AssetManager<Ts...>& set(AssetKey key, T1&& data);
+    AssetManager<Ts...>& Set(AssetKey key, T1&& data);
 
     // Data whose lifetime is managed
     template <typename T1>
-    AssetManager<Ts...>& free();
+    AssetManager<Ts...>& Free();
 
-    AssetManager<Ts...>& free();
+    AssetManager<Ts...>& Free();
 
     template <typename T1>
-    AssetManager<Ts...>& clear();
+    AssetManager<Ts...>& Clear();
 
-    AssetManager<Ts...>& clear();
+    AssetManager<Ts...>& Clear();
 
     // Fallbacks
     template <typename T1>
-    T1* fallback();
+    T1* Fallback();
 
     template <typename T1>
-    const T1* fallback() const;
+    const T1* Fallback() const;
 
     template <typename T1>
-    AssetManager<Ts...>& set_fallback(T1* data);
+    AssetManager<Ts...>& SetFallback(T1* data);
 
     template <typename T1>
-    AssetManager<Ts...>& set_fallback(T1&& data);
+    AssetManager<Ts...>& SetFallback(T1&& data);
 
     // Loaders
     template <typename T1>
-    AbstractLoader<T1>* loader();
+    AbstractLoader<T1>* Loader();
 
     template <typename T1>
-    const AbstractLoader<T1>* loader() const;
+    const AbstractLoader<T1>* Loader() const;
 
     template <typename T1>
-    AssetManager<Ts...>& set_loader(AbstractLoader<T1>* loader);
+    AssetManager<Ts...>& SetLoader(AbstractLoader<T1>* loader);
 
   private:
     template <typename T1, typename... T1s>
-    void free_internal(AssetTypePack<T1, T1s...>);
-    void free_internal(AssetTypePack<>) const;
+    void FreeInternal(AssetTypePack<T1, T1s...>);
+    void FreeInternal(AssetTypePack<>) const;
 
     template <typename T1, typename... T1s>
-    void clear_internal(AssetTypePack<T1, T1s...>);
-    void clear_internal(AssetTypePack<>) const;
+    void ClearInternal(AssetTypePack<T1, T1s...>);
+    void ClearInternal(AssetTypePack<>) const;
 
     template <typename T1, typename... T1s>
-    void free_loaders(AssetTypePack<T1, T1s...>);
-    void free_loaders(AssetTypePack<>) const;
+    void FreeLoaders(AssetTypePack<T1, T1s...>);
+    void FreeLoaders(AssetTypePack<>) const;
   };
 } // namespace DeltaEngine
 

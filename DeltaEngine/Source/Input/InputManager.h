@@ -10,37 +10,37 @@ namespace DeltaEngine
     class DE_API InputManager //: public InputListener
     {
 
-        KeyboardInput _keyboard;
-        MouseInput _mouse;
+        KeyboardInput m_keyboard;
+        MouseInput m_mouse;
 
     public:
         InputManager();
         ~InputManager();
 
-        void reset();
+        void Reset();
         // to get the input events
-        void update();
+        void Update();
 
         //void addListener(InputListener* listener);
         //void removeListener(InputListener* listener);
 
         // get static method as InputManager is a singleton class
         // returns a pointer to an only instance of the class
-        static InputManager* get();
+        static InputManager* Get();
 
-        bool isKeyTriggered(int key);
-        bool isKeyPressed(int key);
-        bool isKeyReleased(int key);
-        bool getShowLine();
-        void setShowLine(bool showLine);
+        bool IsKeyTriggered(int key);
+        bool IsKeyPressed(int key);
+        bool IsKeyReleased(int key);
+        bool GetShowLine();
+        void SetShowLine(bool showLine);
 
-        bool onMouseMove();
+        bool OnMouseMove();
 
-        bool isMouseTriggered(int key);
-        bool isMousePressed(int key);
-        bool isMouseReleased(int key);
-        const Point& currentPosition();
-        const Point& previousPosition();
+        bool IsMouseTriggered(int key);
+        bool IsMousePressed(int key);
+        bool IsMouseReleased(int key);
+        const Point& CurrentPosition();
+        const Point& PreviousPosition();
     };
 
 }
