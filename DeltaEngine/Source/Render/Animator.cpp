@@ -36,8 +36,6 @@ namespace DeltaEngine
 	{
 		if (parameters[paramName].floatValue == value)
 			return parameters.at(paramName).floatValue;
-		std::cout << paramName << value << std::endl;
-
 		parameters[paramName].floatValue = value;
 		CheckCondition();
 		return parameters[paramName].floatValue;

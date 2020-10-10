@@ -19,7 +19,7 @@ namespace DeltaEngine
 
   struct alignas(64) DataChunk
   {
-    byte data[MEMORY_BLOCK_16K - sizeof(DataChunkHeader)];
+    byte data[MEMORY_BLOCK_16K - sizeof(DataChunkHeader)] {0};
     DataChunkHeader header;
   };
 
