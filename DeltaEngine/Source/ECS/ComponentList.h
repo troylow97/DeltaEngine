@@ -13,7 +13,7 @@ namespace DeltaEngine
       size_t offset;
     };
     std::vector<ComponentMeta> metatypes;
-    size_t capacity;
+    size_t capacity {0};
   };
 
 } // namespace DeltaEngine

@@ -53,7 +53,6 @@ project "DeltaEngine"
 
   libdirs
   {
-    "%{prj.name}/Dep/glew/GL",
     "%{prj.name}/Dep/freetype/objs",
     "%{prj.name}/Dep/rttr/lib",
   }
@@ -61,6 +60,7 @@ project "DeltaEngine"
   links
   {
     "glew32s.lib",
+    "freetype.lib",
     "OpenGL32.lib",
   }
 
@@ -76,7 +76,6 @@ project "DeltaEngine"
       "GLEW_STATIC",
       "DE_PLATFORM_WINDOWS",
       "DE_BUILD_DLL",
-      "FT2_BUILD_LIBRARY"
     }
   
   postbuildcommands
@@ -87,13 +86,23 @@ project "DeltaEngine"
   filter "configurations:Debug"
     defines "DE_DEBUG"
     symbols "On"
-    links {"rttr_core_lib_s_d.lib", "freetype_d"}
+    libdirs 
+    {
+      "%{prj.name}/Dep/glew/GL/lib/Debug/x64",
+      "%{prj.name}/Dep/freetype/objs/x64/Debug Static"
+    }
+    links {"rttr_core_lib_s_d.lib"}
 
     
   filter "configurations:Release"
     defines "DE_RELEASE"
     optimize "On"
-    links {"rttr_core_lib_s.lib", "freetype"}
+    libdirs 
+    {
+      "%{prj.name}/Dep/glew/GL/lib/Release/x64",
+      "%{prj.name}/Dep/freetype/objs/x64/Release Static"
+    }
+    links {"rttr_core_lib_s.lib"}
 
 
   filter "configurations:Dist"

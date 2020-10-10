@@ -8,7 +8,7 @@ namespace DeltaEngine
 	class DE_API Renderer
 	{
 	public:
-		Shader* shader;
+		Shader* shader = nullptr;
 		Transform transform;
 		Color color;
 		bool m_Active = true;
