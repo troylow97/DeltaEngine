@@ -1,6 +1,5 @@
 #pragma once
 #include "AssetData.h"
-#include <cassert>
 #include <unordered_map>
 
 namespace DeltaEngine

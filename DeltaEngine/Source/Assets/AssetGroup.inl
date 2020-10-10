@@ -181,9 +181,6 @@ void AssetGroup<T1>::SetLoader( AbstractLoader<T1> *const loader )
 template <typename T1>
 void AssetGroup<T1>::FreeLoader()
 {
-  if ( !m_loader )
-    return;
-
   delete m_loader;
 }
 
@@ -204,7 +201,7 @@ void AssetGroup<T1>::DecrementReferenceCount( AssetKey key )
 {
   auto it = m_datas.find( key );
   ASSERT_ERROR( it != m_datas.end(),
-                "AssetGroup: Decrementing reference with key {} that does not exist" )
+                "AssetGroup: Decrementing reference with key that does not exist" )
   if ( --( it->second.reference_count ) == 0 &&
        it->second.lifetime == AssetLifetime::ReferenceCounted )
     m_datas.erase( it );

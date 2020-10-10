@@ -1,5 +1,4 @@
 #pragma once
-#include <cassert>
 #include "AssetKey.h"
 #include "AssetEnum.h"
 #include "AssetGroup.h"

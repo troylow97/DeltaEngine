@@ -33,7 +33,7 @@ namespace DeltaEngine
 #define DeltaEngine_CORE_TRACE(...) ::DeltaEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define DeltaEngine_CORE_INFO(...)  ::DeltaEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define DeltaEngine_CORE_WARN(...)  ::DeltaEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define DeltaEngine_CORE_ERROR(...) ::DeltaEngine::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define DeltaEngine_CORE_ERROR(...) ::DeltaEngine::Log::GetCoreLogger()->error(__VA_ARGS__);spdlog::get("core_file_logger")->error(__VA_ARGS__) 
 #define DeltaEngine_CORE_FATAL(...) ::DeltaEngine::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 //eg -> //DeltaEngine_CORE_TRACE("Loading shader \"{}\"...", filepath.c_str());

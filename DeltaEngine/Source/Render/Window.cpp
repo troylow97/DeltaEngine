@@ -170,14 +170,18 @@ void Window::InitWindow()
   windowClass.lpszMenuName = MAKEINTRESOURCEW( IDR_MENU1 );
 
   if ( !RegisterClass( &windowClass ) )
+  {
     DeltaEngine_CORE_ERROR( "ERROR: Couldn't register window class!" );
+  }
 
   m_hwndl = CreateWindowEx( 0, windowClass.lpszClassName, m_title.c_str(),
                             WS_OVERLAPPEDWINDOW | WS_VISIBLE, 100, 100, m_width, m_height,
                             0, 0, windowClass.hInstance, 0 );
 
   if ( !m_hwndl )
+  {
     DeltaEngine_CORE_ERROR( "ERROR: Couldn't create window!" );
+  }
 
   ShowWindow( GetConsoleWindow(), SW_SHOW );
 }
