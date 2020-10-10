@@ -90,10 +90,10 @@ void ReadEntities( EntityManager &em, Value::MemberIterator it )
   for ( Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++ )
   {
     EntityID id = em.CreateEntity();
-    #pragma push_macro("GetObject")
-    #undef GetObject
-    auto ref = (itr->GetObject());
-    #pragma pop_macro("GetObject")
+#pragma push_macro("GetObject")
+#undef GetObject
+    auto ref = ( itr->GetObject() );
+#pragma pop_macro("GetObject")
 
     for ( Value::MemberIterator mitr = itr->MemberBegin(); mitr != itr->MemberEnd(); mitr++ )
     {

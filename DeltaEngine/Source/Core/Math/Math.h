@@ -3,7 +3,7 @@
 #include "Matrix.h"
 namespace DeltaEngine::Math
 {
-	const float pi = 3.14159265358979323846f;
+const float pi = 3.14159265358979323846f;
 
 template <typename T>
 const T &MathMax( const T &a, const T &b )
@@ -25,7 +25,7 @@ int RoundDown( float value );
 int RoundDownToNearest( float value, int multiple );
 float RoundDownf( float value );
 float RoundDownToNearestf( float value, int multiple );
-int Abs(int value);
-float Abs(float value);
+int Abs( int value );
+float Abs( float value );
 
 }

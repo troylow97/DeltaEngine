@@ -7,30 +7,30 @@
 
 namespace DeltaEngine
 {
-	struct RigidBody
-	{
-		Vector2 Direction;
-		Vector2 Velocity;
-		Vector2 ReflectedVector;
-		Vector2 Acceleration;
-		float Mass;
-		float Friction;
-		float Movespeed;
-		float inherentAcceleration;
-		float Restituition; //not used
-		bool hasGravity;
-		bool isMoveable;
+struct RigidBody
+{
+  Vector2 Direction;
+  Vector2 Velocity;
+  Vector2 ReflectedVector;
+  Vector2 Acceleration;
+  float Mass;
+  float Friction;
+  float Movespeed;
+  float inherentAcceleration;
+  float Restituition; //not used
+  bool hasGravity;
+  bool isMoveable;
 
 
-		RigidBody() :
-			Velocity{0,0},
-			Acceleration{0,0},
-			Friction{0.97f},
-			inherentAcceleration{3.0f},
-			hasGravity{false},
-			isMoveable{true}
-		{}
+  RigidBody() :
+    Velocity { 0,0 },
+    Acceleration { 0,0 },
+    Friction { 0.97f },
+    inherentAcceleration { 3.0f },
+    hasGravity { false },
+    isMoveable { true }
+  {}
 
-		REGISTER_COMPONENT(RigidBody)
-	};
+  REGISTER_COMPONENT( RigidBody )
+};
 }

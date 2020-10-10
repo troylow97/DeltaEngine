@@ -64,7 +64,7 @@ RTTR_REGISTRATION
   rttr::registration::class_<Transform>( "transform" )
     ( rttr::metadata( "hash", Metatype::GetMetatype<Transform>()->hash.digest ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "old_position", &Transform::old_position)
+    .property( "old_position", &Transform::old_position )
     .property( "position", &Transform::position )
     .property( "scale", &Transform::scale )
     .property( "rotation", &Transform::rotation )
@@ -74,16 +74,16 @@ RTTR_REGISTRATION
   rttr::registration::class_<RigidBody>( "rigidbody" )
     ( rttr::metadata( "hash", Metatype::GetMetatype<RigidBody>()->hash.digest ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "direction", &RigidBody::Direction)
+    .property( "direction", &RigidBody::Direction )
     .property( "velocity", &RigidBody::Velocity )
-    .property( "reflected_vector", &RigidBody::ReflectedVector)
+    .property( "reflected_vector", &RigidBody::ReflectedVector )
     .property( "acceleration", &RigidBody::Acceleration )
     .property( "mass", &RigidBody::Mass )
-    .property("friction", &RigidBody::Friction)
-    .property( "movespeed", &RigidBody::Movespeed)
-    .property("inherent_acceleration", &RigidBody::inherentAcceleration)
+    .property( "friction", &RigidBody::Friction )
+    .property( "movespeed", &RigidBody::Movespeed )
+    .property( "inherent_acceleration", &RigidBody::inherentAcceleration )
     .property( "has_gravity", &RigidBody::hasGravity )
-    .property("is_moveable", &RigidBody::isMoveable)
+    .property( "is_moveable", &RigidBody::isMoveable )
     .method( "serialize", &RigidBody::Serialize )
     .method( "deserialize", &RigidBody::Deserialize );
 
@@ -104,26 +104,26 @@ RTTR_REGISTRATION
     ( rttr::metadata( "hash", Metatype::GetMetatype<Input>()->hash.digest ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "prev", &Input::previousKey )
-    .property("curr", &Input::currentKey)
+    .property( "curr", &Input::currentKey )
     .method( "serialize", &Input::Serialize )
     .method( "deserialize", &Input::Deserialize );
 
 }
 
-  namespace reflect
+namespace reflect
 {
-  inline rttr::type checker(size_t hash)
-  {
-    if ( rttr::type::get_by_name( "transform" ).get_metadata( "hash" ).to_uint64() == hash )
-      return rttr::type::get_by_name( "transform" );
-    else if ( rttr::type::get_by_name( "collider" ).get_metadata( "hash" ).to_uint64() == hash )
-      return rttr::type::get_by_name( "collider" );
-    else if ( rttr::type::get_by_name( "rigidbody" ).get_metadata( "hash" ).to_uint64() == hash )
-      return rttr::type::get_by_name( "rigidbody" );
-    else if ( rttr::type::get_by_name( "input" ).get_metadata( "hash" ).to_uint64() == hash )
-      return rttr::type::get_by_name( "input" );
-    return rttr::type::get<int>();
-  }
+inline rttr::type checker( size_t hash )
+{
+  if ( rttr::type::get_by_name( "transform" ).get_metadata( "hash" ).to_uint64() == hash )
+    return rttr::type::get_by_name( "transform" );
+  else if ( rttr::type::get_by_name( "collider" ).get_metadata( "hash" ).to_uint64() == hash )
+    return rttr::type::get_by_name( "collider" );
+  else if ( rttr::type::get_by_name( "rigidbody" ).get_metadata( "hash" ).to_uint64() == hash )
+    return rttr::type::get_by_name( "rigidbody" );
+  else if ( rttr::type::get_by_name( "input" ).get_metadata( "hash" ).to_uint64() == hash )
+    return rttr::type::get_by_name( "input" );
+  return rttr::type::get<int>();
+}
 }
 
 }

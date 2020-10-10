@@ -10,22 +10,28 @@
 
 namespace DeltaEngine
 {
-	class DE_API Log
-	{
+class DE_API Log
+{
 
-	public:
-		static void Init();
+public:
+  static void Init();
 
-		static std::shared_ptr<spdlog::logger>& GetCoreLogger()   { return _coreLogger; }
-		static std::shared_ptr<spdlog::logger>& GetClientLogger() { return _clientLogger; }
+  static std::shared_ptr<spdlog::logger> &GetCoreLogger()
+  {
+    return _coreLogger;
+  }
+  static std::shared_ptr<spdlog::logger> &GetClientLogger()
+  {
+    return _clientLogger;
+  }
 
-	private:
+private:
 #pragma warning(disable:4251)
-		static std::shared_ptr<spdlog::logger> _coreLogger;
-		static std::shared_ptr<spdlog::logger> _clientLogger;
-		static std::shared_ptr<spdlog::logger> core_file_logger;
+  static std::shared_ptr<spdlog::logger> _coreLogger;
+  static std::shared_ptr<spdlog::logger> _clientLogger;
+  static std::shared_ptr<spdlog::logger> core_file_logger;
 #pragma warning(default:4251)
-	};
+};
 }
 
 

@@ -17,7 +17,7 @@ public:
   * Constructor / Destructor
   *************************************************************/
 
-  GameClock(f32 fps);
+  GameClock( f32 fps );
   ~GameClock() = default;
 
   /*************************************************************

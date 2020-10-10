@@ -23,15 +23,15 @@ struct Collider
   bool isCollideable;
 
   Collider() :
-    isCollideable{true},
-    center{0,0},
-    size{0,0},
-    type{ColliderType::BOX}
+    isCollideable { true },
+    center { 0,0 },
+    size { 0,0 },
+    type { ColliderType::BOX }
   {}
-  Collider(Vector2 new_center,Vector2 new_size,ColliderType col_type) :
-    center(new_center),
-    size(new_size),
-    type(col_type)
+  Collider( Vector2 new_center, Vector2 new_size, ColliderType col_type ) :
+    center( new_center ),
+    size( new_size ),
+    type( col_type )
   {}
 
   REGISTER_COMPONENT( Collider )

@@ -4,8 +4,8 @@
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(InputSystem, Input)
-    void Update() override;
-    void LateUpdate() override;
-    END_DEFINE_SYSTEM(InputSystem)
+DEFINE_SYSTEM( InputSystem, Input )
+void Update() override;
+void LateUpdate() override;
+END_DEFINE_SYSTEM( InputSystem )
 }

@@ -9,22 +9,22 @@
 namespace DeltaEngine
 {
 
-	class DE_API Application
-	{
-		bool m_Minimized;
+class DE_API Application
+{
+  bool m_Minimized;
 
-		double m_interval;
+  double m_interval;
 
-		ImGuiLayer* m_ImGuiLayer;
-	public:
-		Application();
-		virtual ~Application();
+  ImGuiLayer *m_ImGuiLayer;
+public:
+  Application();
+  virtual ~Application();
 
-		void Run();
-		void OnEvent();
-		bool OnWindowResize(WindowResizeEvent& e);
+  void Run();
+  void OnEvent();
+  bool OnWindowResize( WindowResizeEvent &e );
 
-	};
+};
 
-	Application* CreateApplication();
+Application *CreateApplication();
 }

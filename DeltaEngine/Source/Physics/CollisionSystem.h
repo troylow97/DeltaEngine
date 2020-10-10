@@ -14,14 +14,14 @@ struct CollisionPairInfo
   EntityID id1;
   EntityID id2;
 
-  CollisionPairInfo(Manifold man,EntityID i1,EntityID i2) :
-    m{man},
-    id1{i1},
-    id2{i2}
+  CollisionPairInfo( Manifold man, EntityID i1, EntityID i2 ) :
+    m { man },
+    id1 { i1 },
+    id2 { i2 }
   {}
 };
 
-DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
+DEFINE_SYSTEM( CollisionSystem, Collider, RigidBody, Transform )
 
 
 
@@ -41,7 +41,7 @@ public:
   void CollisionSystem::Init();
 
 
-  END_DEFINE_SYSTEM(CollisionSystem)
+  END_DEFINE_SYSTEM( CollisionSystem )
 }
 
 /*

@@ -93,13 +93,13 @@ public:
   void Save( std::string filename )
   {
     JsonFile file;
-    file.StartWriter( filename ).WriteEntities(*em).EndWriter();
+    file.StartWriter( filename ).WriteEntities( *em ).EndWriter();
   }
 
   void Load( std::string filename )
   {
     JsonFile file;
-    file.StartReader(filename).LoadEntities(*em).EndReader();
+    file.StartReader( filename ).LoadEntities( *em ).EndReader();
   }
 };
 

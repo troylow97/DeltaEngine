@@ -202,9 +202,9 @@ void AssetGroup<T1>::DecrementReferenceCount( AssetKey key )
   auto it = m_datas.find( key );
   ASSERT_ERROR( it != m_datas.end(),
                 "AssetGroup: Decrementing reference with key that does not exist" )
-  if ( --( it->second.reference_count ) == 0 &&
-       it->second.lifetime == AssetLifetime::ReferenceCounted )
-    m_datas.erase( it );
+    if ( --( it->second.reference_count ) == 0 &&
+         it->second.lifetime == AssetLifetime::ReferenceCounted )
+      m_datas.erase( it );
 }
 
 } // namespace DeltaEngine

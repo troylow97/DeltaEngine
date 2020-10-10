@@ -11,136 +11,139 @@
 
 namespace DeltaEngine
 {
-	class ParticleSystem : public Renderer
-	{
-		class VertexBufferLayout;
+class ParticleSystem : public Renderer
+{
+  class VertexBufferLayout;
 
-		class VertexBuffer
-		{
-		public:
-			unsigned int m_RendererID;
-			VertexBuffer();
-			~VertexBuffer();
+  class VertexBuffer
+  {
+  public:
+    unsigned int m_RendererID;
+    VertexBuffer();
+    ~VertexBuffer();
 
-			void InitData(const float* data, unsigned int size);
+    void InitData( const float *data, unsigned int size );
 
-			void Bind() const;
-			void Unbind() const;
-		};
+    void Bind() const;
+    void Unbind() const;
+  };
 
-		class VertexArray
-		{
-			unsigned int vertexAttribArrayCount = 0;
-		public:
-			unsigned int m_RendererID;
-			VertexArray();
-			~VertexArray();
+  class VertexArray
+  {
+    unsigned int vertexAttribArrayCount = 0;
+  public:
+    unsigned int m_RendererID;
+    VertexArray();
+    ~VertexArray();
 
-			void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
+    void AddBuffer( const VertexBuffer &vb, const VertexBufferLayout &layout );
 
-			void Bind() const;
-			void Unbind() const;
-		};
+    void Bind() const;
+    void Unbind() const;
+  };
 
-		class IndexBuffer
-		{
-		public:
-			unsigned int m_RendererID;
-			unsigned int m_Count;
-			IndexBuffer();
-			~IndexBuffer();
+  class IndexBuffer
+  {
+  public:
+    unsigned int m_RendererID;
+    unsigned int m_Count;
+    IndexBuffer();
+    ~IndexBuffer();
 
-			void InitData(const unsigned int* data, unsigned int count);
+    void InitData( const unsigned int *data, unsigned int count );
 
-			void Bind() const;
-			void Unbind() const;
+    void Bind() const;
+    void Unbind() const;
 
-			inline unsigned int GetCount() const { return m_Count; }
-		};
+    inline unsigned int GetCount() const
+    {
+      return m_Count;
+    }
+  };
 
-		VertexArray vao;
-		VertexBuffer vbo, instancedVbo;
-		IndexBuffer ibo;
+  VertexArray vao;
+  VertexBuffer vbo, instancedVbo;
+  IndexBuffer ibo;
 
-		const unsigned int MAX_VERTICES = 65534;
-		const unsigned int MAX_PARTICLES = 1000;
+  const unsigned int MAX_VERTICES = 65534;
+  const unsigned int MAX_PARTICLES = 1000;
 
-		unsigned int verticesCount = 0;
+  unsigned int verticesCount = 0;
 
-		std::vector<Vector3> vertices;
-		std::vector<Color> colors;
-		std::vector<Vector2> texCoords;
-		//std::vector<Vector3> normals;
-		std::vector<unsigned int> indices;
+  std::vector<Vector3> vertices;
+  std::vector<Color> colors;
+  std::vector<Vector2> texCoords;
+  //std::vector<Vector3> normals;
+  std::vector<unsigned int> indices;
 
-		std::vector<float> VerticesDataFormat();
-		std::vector<float> ParticleDataFormat();
-		void AssertProperties();
+  std::vector<float> VerticesDataFormat();
+  std::vector<float> ParticleDataFormat();
+  void AssertProperties();
 
-		struct Particle
-		{
-			float lifeTime = 1.0f;
-			float lifeTimer = 0.0f;
+  struct Particle
+  {
+    float lifeTime = 1.0f;
+    float lifeTimer = 0.0f;
 
-			Transform transform;
+    Transform transform;
 
-			Vector3 velocity;
-			Color color;
+    Vector3 velocity;
+    Color color;
 
-			bool active = false;
-		};
-		std::vector<Particle> m_ParticlePool;
-		unsigned int m_activeParticles = 0;
+    bool active = false;
+  };
+  std::vector<Particle> m_ParticlePool;
+  unsigned int m_activeParticles = 0;
 
-		float durationTimer = 0;
+  float durationTimer = 0;
 
-		unsigned int FindInactiveParticle();
-	public:
-		struct Burst
-		{
-			float time;
-			int count;
-		};
-		enum class Shape
-		{
-			None, Circle, Line
-		};
-		enum class SimualationSpace
-		{
-			Local, World,
-		};
+  unsigned int FindInactiveParticle();
+public:
+  struct Burst
+  {
+    float time;
+    int count;
+  };
+  enum class Shape
+  {
+    None, Circle, Line
+  };
+  enum class SimualationSpace
+  {
+    Local, World,
+  };
 
-		//properties
-		float duration = 5;
-		bool looping = true;
-		bool prewarm = false;
-		float startDelay = 0;
-		float startLifetime[2] = { 1.0f, 1.0f };
-		Vector3 startVelocity[2] = { Vector3(), Vector3() };
-		Color startColor[2] = { Color(), Color() };
-		float startRotation[2] = { 0, 0 };
-		float startSize[2] = { 1, 1 };
-		SimualationSpace simulationSpace = SimualationSpace::Local;
+  //properties
+  float duration = 5;
+  bool looping = true;
+  bool prewarm = false;
+  float startDelay = 0;
+  float startLifetime[2] = { 1.0f, 1.0f };
+  Vector3 startVelocity[2] = { Vector3(), Vector3() };
+  Color startColor[2] = { Color(), Color() };
+  float startRotation[2] = { 0, 0 };
+  float startSize[2] = { 1, 1 };
+  SimualationSpace simulationSpace = SimualationSpace::Local;
 
-		bool playOnAwake = true;
-		unsigned int maxParticles = 100;
+  bool playOnAwake = true;
+  unsigned int maxParticles = 100;
 
-		//emission
-		int rateOverTime = 30;
-		std::vector<Burst> bursts;
+  //emission
+  int rateOverTime = 30;
+  std::vector<Burst> bursts;
 
-		//shape
-		int shape = 0;
+  //shape
+  int shape = 0;
 
-		//rendering
-		Texture2D* texture;
+  //rendering
+  Texture2D *texture;
 
-		//member functions
-		ParticleSystem();
-		~ParticleSystem();
-		void Update();
-		void Render(const Camera& camera) override;
-		void Emit(unsigned int count);
-		unsigned int GetActiveParticleCount();
-	};
+  //member functions
+  ParticleSystem();
+  ~ParticleSystem();
+  void Update();
+  void Render( const Camera &camera ) override;
+  void Emit( unsigned int count );
+  unsigned int GetActiveParticleCount();
+};
 }

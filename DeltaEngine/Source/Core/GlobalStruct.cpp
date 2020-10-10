@@ -4,14 +4,14 @@
 namespace DeltaEngine
 {
 
-    DeltaEngineGlobalEnvironment& GetEnv()
-    {
-        return env;
-    }
+DeltaEngineGlobalEnvironment &GetEnv()
+{
+  return env;
+}
 
-    double DeltaTime()
-    {
-        return env.pClock->DeltaTime();
-    }
+double DeltaTime()
+{
+  return env.pClock->DeltaTime();
+}
 
 }

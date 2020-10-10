@@ -3,7 +3,7 @@
 #include "Core/Debugging/Logger/Log.h"
 #include <string>
 #define MAX_LOADSTRING 100
- 
+
 namespace DeltaEngine
 {
 
@@ -38,7 +38,7 @@ public:
   void Fullscreen( bool f );
   [[nodiscard]] bool Fullscreen() const;
 
-  void Cursor(bool c);
+  void Cursor( bool c );
   [[nodiscard]] bool Cursor() const;
 
   void Running( bool r );

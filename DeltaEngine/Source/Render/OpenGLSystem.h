@@ -7,28 +7,28 @@
 
 namespace DeltaEngine
 {
-	namespace RenderModule
-	{
-		class DE_API OpenGLSystem
-		{
-			HDC m_windowDC;//global Window-device context
-			HGLRC m_wglDC;//OpenGL-device context
+namespace RenderModule
+{
+class DE_API OpenGLSystem
+{
+  HDC m_windowDC;//global Window-device context
+  HGLRC m_wglDC;//OpenGL-device context
 
-			bool InitializeRenderingEnvironment();
-			void CleanRenderingEnvironment();
+  bool InitializeRenderingEnvironment();
+  void CleanRenderingEnvironment();
 
-		public:
-			OpenGLSystem();
-			~OpenGLSystem();
+public:
+  OpenGLSystem();
+  ~OpenGLSystem();
 
-			void Init();
-			void Update();
-			void Exit();
+  void Init();
+  void Update();
+  void Exit();
 
-			HDC GetWindowContext();
-			HGLRC GetGLContext();
-		};
-		extern OpenGLSystem* openGLSystem;
-		extern std::vector<Renderer*> allRenderers;
-	}
+  HDC GetWindowContext();
+  HGLRC GetGLContext();
+};
+extern OpenGLSystem *openGLSystem;
+extern std::vector<Renderer *> allRenderers;
+}
 }

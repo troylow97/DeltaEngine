@@ -5,22 +5,22 @@
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(PhysicsSystem, RigidBody, Transform, Collider)
+DEFINE_SYSTEM( PhysicsSystem, RigidBody, Transform, Collider )
 public:
-    PhysicsSystem::PhysicsSystem() = default;
-    ~PhysicsSystem() = default;
-    //CollisionSystem collision_system();
+  PhysicsSystem::PhysicsSystem() = default;
+  ~PhysicsSystem() = default;
+  //CollisionSystem collision_system();
 
-    virtual void PhysicsSystem::Update() override;
-    virtual void PhysicsSystem::LateUpdate() override;
-    void PhysicsSystem::Init();
-    void PhysicsSystem::UpdateComponents();
+  virtual void PhysicsSystem::Update() override;
+  virtual void PhysicsSystem::LateUpdate() override;
+  void PhysicsSystem::Init();
+  void PhysicsSystem::UpdateComponents();
 
 private:
-    void PhysicsSystem::UpdateVelocity();
-    void PhysicsSystem::Gravity();
+  void PhysicsSystem::UpdateVelocity();
+  void PhysicsSystem::Gravity();
 
-    Vector2 m_gravity_amount;
+  Vector2 m_gravity_amount;
 
-    END_DEFINE_SYSTEM(PhysicsSystem)
+  END_DEFINE_SYSTEM( PhysicsSystem )
 }
