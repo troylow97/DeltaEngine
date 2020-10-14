@@ -63,7 +63,7 @@ struct Metatype
 
     MetaHash hash;
     hash.digest = MetaHash::Hash<T_Base>();
-    hash.matcher |= 0x1ULL << hash.digest % 63ULL;
+    hash.matcher = 1ULL << hash.digest % 63ULL;
     return hash;
   }
 
@@ -71,6 +71,7 @@ struct Metatype
   static constexpr Metatype Build()
   {
     Metatype meta;
+    static_assert( BuildHash<T>().digest != 0 );
     meta.hash = BuildHash<T>();
 
     if constexpr ( std::is_empty_v<T> )
@@ -106,6 +107,7 @@ struct Metatype
     if ( type == Metatype::metatype_map.end() )
     {
       constexpr Metatype new_type = Metatype::Build<T>();
+      static_assert( new_type.hash.digest );
       Metatype::metatype_map[digest] = new_type;
     }
 
