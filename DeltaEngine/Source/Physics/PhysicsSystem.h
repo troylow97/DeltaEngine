@@ -1,26 +1,26 @@
 #pragma once
 #include "Core/Math/Vector.h"
 #include "CollisionSystem.h"
-#include "ECS/Components/Collider.h"
+#include "Components/Collider.h"
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(PhysicsSystem, RigidBody, Transform, Collider)
-    public:
-        PhysicsSystem::PhysicsSystem() = default;
-        ~PhysicsSystem() = default;
-        //CollisionSystem collision_system();
+DEFINE_SYSTEM( PhysicsSystem, RigidBody, Transform, Collider )
+public:
+  PhysicsSystem::PhysicsSystem() = default;
+  ~PhysicsSystem() = default;
+  //CollisionSystem collision_system();
 
-        virtual void PhysicsSystem::update() override;
-        virtual void PhysicsSystem::late_update() override;
-        void PhysicsSystem::Init();
-        void PhysicsSystem::UpdateComponents();
+  virtual void PhysicsSystem::Update() override;
+  virtual void PhysicsSystem::LateUpdate() override;
+  void PhysicsSystem::Init();
+  void PhysicsSystem::UpdateComponents();
 
-    private:
-        void PhysicsSystem::UpdateVelocity();
-        void PhysicsSystem::Gravity();
+private:
+  void PhysicsSystem::UpdateVelocity();
+  void PhysicsSystem::Gravity();
 
-        Vector2 GravityAmount;
+  Vector2 m_gravity_amount;
 
-    END_DEFINE_SYSTEM(PhysicsSystem)
+  END_DEFINE_SYSTEM( PhysicsSystem )
 }

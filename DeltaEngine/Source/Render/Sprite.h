@@ -7,21 +7,24 @@
 
 namespace DeltaEngine
 {
-	class DE_API Sprite
-	{
-		std::string m_Key;
-	public:
-		unsigned int m_Index;
-		Sprite(std::string textureName = "", unsigned int index = 0);
-		operator bool() const;
-		unsigned int GetWidth();
-		unsigned int GetHeight();
-		Vector2 GetOffset();
-		Vector2 GetTiling();
-		Vector2 GetPivot();
-		Texture2D* GetTexture();
-		std::string GetName();
-		std::string GetKey();
-		unsigned int GetIndex();
-	};
+class DE_API Sprite
+{
+#pragma warning(disable:4251)
+  std::string m_Key;
+#pragma warning(default:4251)
+
+public:
+  unsigned int m_Index;
+  Sprite( std::string textureName = "", unsigned int index = 0 );
+  operator bool() const;
+  unsigned int GetWidth();
+  unsigned int GetHeight();
+  Vector2 GetOffset();
+  Vector2 GetTiling();
+  Vector2 GetPivot();
+  Texture2D *GetTexture();
+  std::string GetName();
+  std::string GetKey();
+  unsigned int GetIndex();
+};
 }

@@ -1,28 +1,20 @@
 #pragma once
 #include <vector>
 #include "DE_API.h"
- 
+
 namespace DeltaEngine
 {
-  struct ComponentList;
-  class EntityManager;
-  struct DataChunk;
+struct ComponentList;
+class EntityManager;
+struct DataChunk;
 
-namespace ECS_Internal
+struct Archetype
 {
-  template <typename T>
-  auto get_chunk_array(DataChunk *chunk);
-}
-
-  struct Archetype
-  {
-    ComponentList *components{nullptr};
-    EntityManager *owner{nullptr};
-    size_t component_hash{0};
-    size_t full_chunks{0};
-    std::vector<DataChunk *> chunks;
-    friend class EntityManager;
-
-  };
+  ComponentList *components { nullptr };
+  EntityManager *owner { nullptr };
+  size_t component_hash { 0 };
+  size_t full_chunks { 0 };
+  std::vector<DataChunk *> chunks;
+};
 
 } // namespace DeltaEngine

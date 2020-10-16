@@ -3,51 +3,48 @@
 
 namespace DeltaEngine
 {
-  class AssetKey
+class AssetKey
+{
+public:
+
+  AssetKey() = default;
+
+  explicit AssetKey( const size_t digest ) :
+    m_digest( digest )
+  {}
+
+  AssetKey( const std::string str ) :
+    m_digest( std::hash<std::string>{}( str ) )
+  {}
+
+  template <size_t Size>
+  constexpr AssetKey( const char( &str )[Size] ) :
+    m_digest( std::hash<std::string>{}( std::string( str ) ) )
+  {}
+
+  bool operator==( const AssetKey &rhs ) const
   {
-  public:
+    return m_digest == rhs.m_digest;
+  }
 
-    AssetKey() = default;
+  size_t operator()() const
+  {
+    return m_digest;
+  }
 
-    explicit AssetKey(const size_t digest) :
-      _digest(digest)
-    {
-    }
-
-    AssetKey(const std::string str) :
-      _digest(std::hash<std::string>{}(str))
-    {
-    }
-
-    template <size_t Size>
-    constexpr AssetKey(const char ( &str )[Size]) :
-      _digest(std::hash<std::string>{}(std::string(str)))
-    {
-    }
-
-    bool operator==(const AssetKey& rhs) const
-    {
-      return _digest == rhs._digest;
-    }
-
-    size_t operator()() const
-    {
-      return _digest;
-    }
-
-  private:
-    size_t _digest{0};
-  };
+private:
+  size_t m_digest { 0 };
+};
 } // namespace DeltaEngine
 
 namespace std
 {
-  template <>
-  struct hash<DeltaEngine::AssetKey>
+template <>
+struct hash<DeltaEngine::AssetKey>
+{
+  std::size_t operator()( const DeltaEngine::AssetKey key ) const noexcept
   {
-    std::size_t operator()(const DeltaEngine::AssetKey key) const noexcept
-    {
-      return key();
-    }
-  };
+    return key();
+  }
+};
 } // namespace std

@@ -842,8 +842,10 @@ static void ImGui_ImplWin32_RenderWindow(ImGuiViewport* viewport, void*)
         data->HgLrc = wglCreateContext(data->Hdc);
 
     ImDrawList* list = ImGui::GetBackgroundDrawList(viewport);
+    (void) list;
 
     bool isMadeCurrent = wglMakeCurrent(data->Hdc, data->HgLrc);
+    (void) isMadeCurrent;
 
     return;
 }

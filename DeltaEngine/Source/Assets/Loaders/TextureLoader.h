@@ -5,20 +5,19 @@
 
 namespace DeltaEngine
 {
-  class TextureLoader final : public AbstractLoader<Texture2D>
-  {
-    void doLoad(AssetKey key) override
-    {
-    }
+class TextureLoader final : public AbstractLoader<Texture2D>
+{
+  void DoLoad( AssetKey key ) override
+  {}
 
-    void doLoad(AssetKey key, std::string_view str) override
-    {
-      Texture2D* data = new Texture2D{std::string(str)};
-      // To define how to handle failed Texture loading
-      //if (data.characterInfo().empty())
-      //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
-      //else
-        set(key, data, AssetState::Final, AssetLifetime::Persistent);
-    }
-  };
+  void DoLoad( AssetKey key, std::string_view str ) override
+  {
+    Texture2D *data = new Texture2D { std::string( str ) };
+    // To define how to handle failed Texture loading
+    //if (data.characterInfo().empty())
+    //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
+    //else
+    Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+  }
+};
 } // namespace DeltaEngine

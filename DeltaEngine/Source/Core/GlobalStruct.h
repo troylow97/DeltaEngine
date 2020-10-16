@@ -26,7 +26,7 @@ struct DeltaEngineGlobalEnvironment
 
 extern DeltaEngineGlobalEnvironment env;
 
-DeltaEngineGlobalEnvironment& GetEnv();
+DeltaEngineGlobalEnvironment &GetEnv();
 double DeltaTime();
 
 }

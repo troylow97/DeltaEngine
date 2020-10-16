@@ -1,26 +1,37 @@
 #pragma once
 
 #include "DE_API.h"
-#include "spdlog/spdlog.h"
+#pragma warning(push, 0)
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
+#pragma warning(pop)
 #include "DEpch.h"
 #include <fstream>
 
 namespace DeltaEngine
 {
-	class DE_API Log
-	{
+class DE_API Log
+{
 
-	public:
-		static void Init();
+public:
+  static void Init();
 
-		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger()   { return _coreLogger; }
-		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return _clientLogger; }
+  static std::shared_ptr<spdlog::logger> &GetCoreLogger()
+  {
+    return _coreLogger;
+  }
+  static std::shared_ptr<spdlog::logger> &GetClientLogger()
+  {
+    return _clientLogger;
+  }
 
-	private:
-		static std::shared_ptr<spdlog::logger> _coreLogger;
-		static std::shared_ptr<spdlog::logger> _clientLogger;
-		static std::shared_ptr<spdlog::logger> core_file_logger;
-	};
+private:
+#pragma warning(disable:4251)
+  static std::shared_ptr<spdlog::logger> _coreLogger;
+  static std::shared_ptr<spdlog::logger> _clientLogger;
+  static std::shared_ptr<spdlog::logger> core_file_logger;
+#pragma warning(default:4251)
+};
 }
 
 
@@ -28,7 +39,7 @@ namespace DeltaEngine
 #define DeltaEngine_CORE_TRACE(...) ::DeltaEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define DeltaEngine_CORE_INFO(...)  ::DeltaEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define DeltaEngine_CORE_WARN(...)  ::DeltaEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define DeltaEngine_CORE_ERROR(...) ::DeltaEngine::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define DeltaEngine_CORE_ERROR(...) ::DeltaEngine::Log::GetCoreLogger()->error(__VA_ARGS__);spdlog::get("core_file_logger")->error(__VA_ARGS__) 
 #define DeltaEngine_CORE_FATAL(...) ::DeltaEngine::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 //eg -> //DeltaEngine_CORE_TRACE("Loading shader \"{}\"...", filepath.c_str());

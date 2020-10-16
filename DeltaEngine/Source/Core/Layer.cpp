@@ -1,11 +1,11 @@
 #include "DEpch.h"
 #include "Layer.h"
 
-namespace DeltaEngine {
+namespace DeltaEngine
+{
 
-	Layer::Layer(const std::string& debugName)
-		: m_DebugName(debugName)
-	{
-	}
-	
+Layer::Layer( const std::string &debugName )
+  : m_DebugName( debugName )
+{}
+
 }

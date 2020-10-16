@@ -5,20 +5,19 @@
 
 namespace DeltaEngine
 {
-    class AnimationClipLoader final : public AbstractLoader<AnimationClip>
-    {
-        void doLoad(AssetKey key) override
-        {
-        }
+class AnimationClipLoader final : public AbstractLoader<AnimationClip>
+{
+  void DoLoad( AssetKey key ) override
+  {}
 
-        void doLoad(AssetKey key, std::string_view str) override
-        {
-            AnimationClip* data = new AnimationClip{ std::string(str) };
-            // To define how to handle failed loading
-            //if (data.characterInfo().empty())
-            //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
-            //else
-            set(key, data, AssetState::Final, AssetLifetime::Persistent);
-        }
-    };
+  void DoLoad( AssetKey key, std::string_view str ) override
+  {
+    AnimationClip *data = new AnimationClip { std::string( str ) };
+    // To define how to handle failed loading
+    //if (data.characterInfo().empty())
+    //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
+    //else
+    Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+  }
+};
 } // namespace DeltaEngine

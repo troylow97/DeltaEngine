@@ -4,44 +4,44 @@ namespace DeltaEngine
 {
 std::map<std::string, CollisionCallbacks> CollisionHandler::m_handlers; //m_handlers["ReduceHP"] = &ReduceHP;
 
-void CollisionHandler::OnEnter(Collider& col)
+void CollisionHandler::OnEnter( Collider &col )
 {
-  _enter.Invoke(col);
+  m_enter.Invoke( col );
 }
-void CollisionHandler::OnStay(Collider& col)
+void CollisionHandler::OnStay( Collider &col )
 {
-  _stay.Invoke(col);
+  m_stay.Invoke( col );
 }
-void CollisionHandler::OnExit(Collider& col)
+void CollisionHandler::OnExit( Collider &col )
 {
 
-  _exit.Invoke(col);
+  m_exit.Invoke( col );
 }
 
-size_t CollisionHandler::RegisterOnEnter(Action<Collider&> action)
+size_t CollisionHandler::RegisterOnEnter( Action<Collider &> action )
 {
-  return _enter.Subscribe(action);
+  return m_enter.Subscribe( action );
 }
-size_t CollisionHandler::RegisterOnStay(Action<Collider&> action)
+size_t CollisionHandler::RegisterOnStay( Action<Collider &> action )
 {
-  return _stay.Subscribe(action);
+  return m_stay.Subscribe( action );
 }
-size_t CollisionHandler::RegisterOnExit(Action<Collider&> action)
+size_t CollisionHandler::RegisterOnExit( Action<Collider &> action )
 {
-  return _exit.Subscribe(action);
+  return m_exit.Subscribe( action );
 }
 
-void CollisionHandler::UnregisterOnEnter(size_t id)
+void CollisionHandler::UnregisterOnEnter( size_t id )
 {
-  _enter.Unsubscribe(id);
+  m_enter.Unsubscribe( id );
 }
-void CollisionHandler::UnregisterOnStay(size_t id)
+void CollisionHandler::UnregisterOnStay( size_t id )
 {
-  _stay.Unsubscribe(id);
+  m_stay.Unsubscribe( id );
 }
-void CollisionHandler::UnregisterOnExit(size_t id)
+void CollisionHandler::UnregisterOnExit( size_t id )
 {
-  _exit.Unsubscribe(id);
+  m_exit.Unsubscribe( id );
 }
 
 } // namespace DeltaEngine

@@ -1,210 +1,210 @@
+#include "Core/Debugging/Assert.h"
 namespace DeltaEngine
 {
-  template <typename T1>
-  AssetGroup<T1>::~AssetGroup()
-  {
-    if (_fallback )
-    Internal::safe_delete(_fallback);
-  }
+template <typename T1>
+AssetGroup<T1>::~AssetGroup()
+{
+  if ( m_fallback )
+    Internal::safe_delete( m_fallback );
+}
 
-  //****************************************************************************
-  // Asset Group
-  //****************************************************************************
+//****************************************************************************
+// Asset Group
+//****************************************************************************
 
-  template <typename T1>
-  size_t AssetGroup<T1>::size() const
-  {
-    return _datas.size();
-  }
+template <typename T1>
+size_t AssetGroup<T1>::Size() const
+{
+  return m_datas.size();
+}
 
-  template <typename T1>
-  size_t AssetGroup<T1>::timestamp() const
-  {
-    return _timestamp;
-  }
+template <typename T1>
+size_t AssetGroup<T1>::Timestamp() const
+{
+  return m_timestamp;
+}
 
-  template <typename T1>
-  void AssetGroup<T1>::free()
-  {
-    for (auto it = _datas.begin(); it != _datas.end();)
-    {
-      if (it->second._lifetime == AssetLifetime::Managed)
-        it = _datas.erase(it);
-      else
-        ++it;
-    }
-  }
-
-  template <typename T1>
-  void AssetGroup<T1>::clear()
-  {
-    _datas.clear();
-  }
-
-  //****************************************************************************
-  // Asset Data
-  //****************************************************************************
-
-  template <typename T1>
-  void AssetGroup<T1>::load(AssetKey key)
-  {
-    if (_loader)
-      _loader->load(key);
-  }
-
-  template <typename T1>
-  void AssetGroup<T1>::load(AssetKey key, std::string_view str)
-  {
-    if (_loader)
-      _loader->load(key, str);
-  }
-
-  template <typename T1>
-  template <typename T2>
-  Asset<T1, T2> AssetGroup<T1>::get(AssetKey key)
-  {
-    if (auto it = _datas.find(key); it == _datas.end())
-    {
-      set(key, nullptr, AssetState::NotFound, AssetLifetime::Managed);
-      load(key);
-    }
-
-    return Asset(this, key);
-  }
-
-  template <typename T1>
-  void AssetGroup<T1>::set(const AssetKey key, T1* const data, const AssetState state, const AssetLifetime lifetime)
-  {
-    auto it = _datas.find(key);
-
-    assert(( data == nullptr ) == ( state == AssetState::NotFound || state == AssetState::Loading ));
-
-    assert(it == _datas.end() || it->second._state != AssetState::Final);
-
-    if (it == _datas.end())
-      it = _datas.emplace(key, AssetData<T1>()).first;
+template <typename T1>
+void AssetGroup<T1>::Free()
+{
+  for ( auto it = m_datas.begin(); it != m_datas.end();)
+    if ( it->second._lifetime == AssetLifetime::Managed )
+      it = m_datas.erase( it );
     else
-      Internal::safe_delete(it->second._data);
+      ++it;
+}
 
-    it->second._data = data;
-    it->second._state = state;
-    it->second._lifetime = lifetime;
-    ++_timestamp;
+template <typename T1>
+void AssetGroup<T1>::Clear()
+{
+  m_datas.clear();
+}
+
+//****************************************************************************
+// Asset Data
+//****************************************************************************
+
+template <typename T1>
+void AssetGroup<T1>::Load( AssetKey key )
+{
+  if ( m_loader )
+    m_loader->Load( key );
+}
+
+template <typename T1>
+void AssetGroup<T1>::Load( AssetKey key, std::string_view str )
+{
+  if ( m_loader )
+    m_loader->Load( key, str );
+}
+
+template <typename T1>
+template <typename T2>
+Asset<T1, T2> AssetGroup<T1>::Get( AssetKey key )
+{
+  if ( auto it = m_datas.find( key ); it == m_datas.end() )
+  {
+    Set( key, nullptr, AssetState::NotFound, AssetLifetime::Managed );
+    Load( key );
   }
 
-  template <typename T1>
-  size_t AssetGroup<T1>::reference_count(const AssetKey key) const
+  return Asset( this, key );
+}
+
+template <typename T1>
+void AssetGroup<T1>::Set( const AssetKey key, T1 *const data, const AssetState state, const AssetLifetime lifetime )
+{
+  auto it = m_datas.find( key );
+
+  ASSERT_ERROR( ( data == nullptr ) == ( state == AssetState::NotFound || state == AssetState::Loading ),
+                "AssetGroup: data should be null only if state is NotFound or Loading" );
+
+  ASSERT_ERROR( ( it == m_datas.end() || it->second.state != AssetState::Final ),
+                "AssertGroup: cannot change data set as final" );
+
+  if ( it == m_datas.end() )
+    it = m_datas.emplace( key, AssetData<T1>() ).first;
+  else
+    Internal::safe_delete( it->second.data );
+
+  it->second.data = data;
+  it->second.state = state;
+  it->second.lifetime = lifetime;
+  ++m_timestamp;
+}
+
+template <typename T1>
+size_t AssetGroup<T1>::ReferenceCount( const AssetKey key ) const
+{
+  const auto it = m_datas.find( key );
+  if ( it == m_datas.end() )
+    return 0;
+  return it->second._referenceCount;
+}
+
+template <typename T1>
+AssetState AssetGroup<T1>::State( const AssetKey key ) const
+{
+  const auto it = m_datas.find( key );
+
+  if ( it == m_datas.end() )
   {
-    const auto it = _datas.find(key);
-    if (it == _datas.end())
-      return 0;
-    return it->second._referenceCount;
+    if ( m_fallback )
+      return AssetState::NotLoadedFallback;
+    return AssetState::NotLoaded;
   }
 
-  template <typename T1>
-  AssetState AssetGroup<T1>::state(const AssetKey key) const
+  if ( !it->second._data )
   {
-    const auto it = _datas.find(key);
-
-    if (it == _datas.end())
+    if ( m_fallback )
     {
-      if (_fallback)
-        return AssetState::NotLoadedFallback;
-      return AssetState::NotLoaded;
+      if ( it->second._state == AssetState::Loading )
+        return AssetState::LoadingFallback;
+      if ( it->second._state == AssetState::NotFound )
+        return AssetState::NotFoundFallback;
+      return AssetState::NotLoadedFallback;
     }
-
-    if (!it->second._data)
-    {
-      if (_fallback)
-      {
-        if (it->second._state == AssetState::Loading)
-          return AssetState::LoadingFallback;
-        if (it->second._state == AssetState::NotFound)
-          return AssetState::NotFoundFallback;
-        return AssetState::NotLoadedFallback;
-      }
-      return AssetState::NotLoaded;
-    }
-
-    return it->second._state;
+    return AssetState::NotLoaded;
   }
 
-  //****************************************************************************
-  // Fallback
-  //****************************************************************************
-  template <typename T1>
-  T1* AssetGroup<T1>::fallback()
-  {
-    return _fallback;
-  }
+  return it->second._state;
+}
 
-  template <typename T1>
-  const T1* AssetGroup<T1>::fallback() const
-  {
-    return _fallback;
-  }
+//****************************************************************************
+// Fallback
+//****************************************************************************
+template <typename T1>
+T1 *AssetGroup<T1>::Fallback()
+{
+  return m_fallback;
+}
 
-  template <typename T1>
-  void AssetGroup<T1>::set_fallback(T1* const data)
-  {
-    Internal::safe_delete(_fallback);
-    _fallback = data;
-    ++_timestamp;
-  }
+template <typename T1>
+const T1 *AssetGroup<T1>::Fallback() const
+{
+  return m_fallback;
+}
 
-  //****************************************************************************
-  // Loaders
-  //****************************************************************************
+template <typename T1>
+void AssetGroup<T1>::SetFallback( T1 *const data )
+{
+  Internal::safe_delete( m_fallback );
+  m_fallback = data;
+  ++m_timestamp;
+}
 
-  template <typename T1>
-  AbstractLoader<T1>* AssetGroup<T1>::loader()
-  {
-    return _loader;
-  }
+//****************************************************************************
+// Loaders
+//****************************************************************************
 
-  template <typename T1>
-  const AbstractLoader<T1>* AssetGroup<T1>::loader() const
-  {
-    return _loader;
-  }
+template <typename T1>
+AbstractLoader<T1> *AssetGroup<T1>::Loader()
+{
+  return m_loader;
+}
 
-  template <typename T1>
-  void AssetGroup<T1>::set_loader(AbstractLoader<T1>* const loader)
-  {
-    delete _loader;
+template <typename T1>
+const AbstractLoader<T1> *AssetGroup<T1>::Loader() const
+{
+  return m_loader;
+}
 
-    if (_loader = loader; _loader)
-      _loader->_group = this;
-  }
+template <typename T1>
+void AssetGroup<T1>::SetLoader( AbstractLoader<T1> *const loader )
+{
+  delete m_loader;
 
-  template <typename T1>
-  void AssetGroup<T1>::free_loader()
-  {
-    if (!_loader)
-      return;
+  if ( m_loader = loader; m_loader )
+    m_loader->m_group = this;
+}
 
-    delete _loader;
-  }
+template <typename T1>
+void AssetGroup<T1>::FreeLoader()
+{
+  delete m_loader;
+}
 
-  //****************************************************************************
-  // Reference Counting
-  //****************************************************************************
+//****************************************************************************
+// Reference Counting
+//****************************************************************************
 
-  template <typename T1>
-  void AssetGroup<T1>::increment_reference_count(AssetKey key)
-  {
-    auto it = _datas.find(key);
-    if (it != _datas.end())
-      ++it->second._referenceCount;
-  }
+template <typename T1>
+void AssetGroup<T1>::IncrementReferenceCount( AssetKey key )
+{
+  auto it = m_datas.find( key );
+  if ( it != m_datas.end() )
+    ++it->second.reference_count;
+}
 
-  template <typename T1>
-  void AssetGroup<T1>::decrement_reference_count(AssetKey key)
-  {
-    auto it = _datas.find(key);
-    if (it != _datas.end())
-      if (--(it->second._referenceCount) == 0 &&
-        it->second._lifetime == AssetLifetime::ReferenceCounted)
-        _datas.erase(it);
-  }
+template <typename T1>
+void AssetGroup<T1>::DecrementReferenceCount( AssetKey key )
+{
+  auto it = m_datas.find( key );
+  ASSERT_ERROR( it != m_datas.end(),
+                "AssetGroup: Decrementing reference with key that does not exist" )
+    if ( --( it->second.reference_count ) == 0 &&
+         it->second.lifetime == AssetLifetime::ReferenceCounted )
+      m_datas.erase( it );
+}
+
 } // namespace DeltaEngine

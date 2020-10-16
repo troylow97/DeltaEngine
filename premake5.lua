@@ -15,7 +15,6 @@ project "DeltaEngine"
   location "DeltaEngine"
   kind "SharedLib"
   language "C++"
-  buildoptions "/NODEFAULTLIB:library"
 
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -33,8 +32,8 @@ project "DeltaEngine"
     "%{prj.name}/Dep/stb_image/stb_image.cpp",
     "%{prj.name}/Dep/rttr/include/*.h",
     "%{prj.name}/Dep/rttr/include/*.cpp",
-    "%{prj.name}/Dep/rapidjson/include/*.cpp",
-    "%{prj.name}/Dep/rapidjson/include/*.h",
+    "%{prj.name}/Dep/rapidjson-master/include/*.cpp",
+    "%{prj.name}/Dep/rapidjson-master/include*.h",
     "%{prj.name}/Source/**.h",
     "%{prj.name}/Source/**.cpp",
     "%{prj.name}/Source/**.inl"
@@ -48,13 +47,12 @@ project "DeltaEngine"
     "%{prj.name}/Dep/freetype/include",
     "%{prj.name}/Dep/stb_image",
     "%{prj.name}/Dep/rttr/include",
-    "%{prj.name}/Dep/rapidjson/include",
+    "%{prj.name}/Dep/rapidjson-master/include",
     "%{prj.name}/Source"
   }
 
   libdirs
   {
-    "%{prj.name}/Dep/glew/GL",
     "%{prj.name}/Dep/freetype/objs",
     "%{prj.name}/Dep/rttr/lib",
   }
@@ -62,9 +60,8 @@ project "DeltaEngine"
   links
   {
     "glew32s.lib",
-    "OpenGL32.lib",
     "freetype.lib",
-    "rttr_core_lib_s_d.lib"
+    "OpenGL32.lib",
   }
 
   filter "system:windows" 
@@ -79,7 +76,6 @@ project "DeltaEngine"
       "GLEW_STATIC",
       "DE_PLATFORM_WINDOWS",
       "DE_BUILD_DLL",
-      "FT2_BUILD_LIBRARY"
     }
   
   postbuildcommands
@@ -90,10 +86,24 @@ project "DeltaEngine"
   filter "configurations:Debug"
     defines "DE_DEBUG"
     symbols "On"
+    libdirs 
+    {
+      "%{prj.name}/Dep/glew/GL/lib/Debug/x64",
+      "%{prj.name}/Dep/freetype/objs/x64/Debug Static"
+    }
+    links {"rttr_core_lib_s_d.lib"}
+
     
   filter "configurations:Release"
     defines "DE_RELEASE"
     optimize "On"
+    libdirs 
+    {
+      "%{prj.name}/Dep/glew/GL/lib/Release/x64",
+      "%{prj.name}/Dep/freetype/objs/x64/Release Static"
+    }
+    links {"rttr_core_lib_s.lib"}
+
 
   filter "configurations:Dist"
     defines "DE_DIST"
@@ -122,7 +132,7 @@ project "Sandbox"
     "DeltaEngine/Dep/freetype/include",
     "DeltaEngine/Dep/stb_image",
     "DeltaEngine/Dep/rttr/include",
-    "DeltaEngine/Dep/rapidjson/include",
+    "DeltaEngine/Dep/rapidjson-master/include",
     "DeltaEngine/Source"
   }
   

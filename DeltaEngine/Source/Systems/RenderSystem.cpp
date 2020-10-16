@@ -2,15 +2,15 @@
 
 namespace DeltaEngine
 {
-    void RenderSystem::update()
-    {
-        RenderModule::openGLSystem->Update();
+void RenderSystem::Update()
+{
+  RenderModule::openGLSystem->Update();
 
-        Camera::editorCamera->Start();
-    }
-    void RenderSystem::late_update()
-    {
-        Camera::editorCamera->End();
+  Camera::editorCamera->Start();
+}
+void RenderSystem::LateUpdate()
+{
+  Camera::editorCamera->End();
 
-    }
+}
 }

@@ -5,42 +5,42 @@
 
 namespace DeltaEngine
 {
-	struct TextureInfo
-	{
-		Vector2 offset;
-		Vector2 size;
-		Vector2 pivot;
-	};
+struct TextureInfo
+{
+  Vector2 offset;
+  Vector2 size;
+  Vector2 pivot;
+};
 
-	class Texture2D
-	{
-		unsigned int m_RendererID;
-		unsigned char* m_Data;
-		int m_Width, m_Height;
-		std::string m_Filepath, m_Name;
-	public:
-		Texture2D(std::string filepath = "dog.png");
-		~Texture2D();
+class Texture2D
+{
+  unsigned int m_RendererID;
+  unsigned char *m_Data;
+  int m_Width, m_Height;
+  std::string m_Filepath, m_Name;
+public:
+  Texture2D( std::string filepath = "dog.png" );
+  ~Texture2D();
 
-		void Bind(unsigned int slot = 0) const;
-		void Unbind() const;
+  void Bind( unsigned int slot = 0 ) const;
+  void Unbind() const;
 
-		int GetWidth() const;
-		int GetHeight() const;
+  int GetWidth() const;
+  int GetHeight() const;
 
-		unsigned int GetRendererID() const;
+  unsigned int GetRendererID() const;
 
-		void Slice(TextureInfo info);
-		void SliceAll(unsigned int columns, unsigned int rows);
+  void Slice( TextureInfo info );
+  void SliceAll( unsigned int columns, unsigned int rows );
 
-		Vector2 GetOffset(unsigned int index);
-		Vector2 GetSize(unsigned int index);
-		Vector2 GetPivot(unsigned int index);
+  Vector2 GetOffset( unsigned int index );
+  Vector2 GetSize( unsigned int index );
+  Vector2 GetPivot( unsigned int index );
 
-		std::string GetName();
-		std::vector<TextureInfo> textureInfo;
-	private:
-		void LoadMetaFile(std::string filepath);
-		void UpdateMetaFile(std::string filepath);
-	};
+  std::string GetName();
+  std::vector<TextureInfo> textureInfo;
+private:
+  void LoadMetaFile( std::string filepath );
+  void UpdateMetaFile( std::string filepath );
+};
 }

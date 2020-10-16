@@ -33,7 +33,7 @@ struct MetaHash
   }
 
   template <typename T>
-  static constexpr size_t hash()
+  static constexpr size_t Hash()
   {
     return hash_fnv1a( __FUNCSIG__ );
   }
@@ -51,27 +51,28 @@ struct Metatype
   unsigned size { 0 };
   unsigned align { 0 };
 
-  [[nodiscard]] bool is_empty() const
+  [[nodiscard]] bool IsEmpty() const
   {
     return align == 0;
   }
 
   template <typename T>
-  static constexpr MetaHash build_hash()
+  static constexpr MetaHash BuildHash()
   {
     using T_Base = std::remove_const_t<std::remove_reference_t<T>>;
 
     MetaHash hash;
-    hash.digest = MetaHash::hash<T_Base>();
-    hash.matcher |= 0x1ULL << hash.digest % 63ULL;
+    hash.digest = MetaHash::Hash<T_Base>();
+    hash.matcher = 1ULL << hash.digest % 63ULL;
     return hash;
   }
 
   template <typename T>
-  static constexpr Metatype build()
+  static constexpr Metatype Build()
   {
     Metatype meta;
-    meta.hash = build_hash<T>();
+    static_assert( BuildHash<T>().digest != 0 );
+    meta.hash = BuildHash<T>();
 
     if constexpr ( std::is_empty_v<T> )
     {
@@ -99,20 +100,21 @@ struct Metatype
   static inline std::unordered_map<size_t, Metatype> metatype_map;
 
   template <typename T>
-  static const Metatype *get_metatype()
+  static const Metatype *GetMetatype()
   {
-    constexpr size_t digest = Metatype::build_hash<T>().digest;
+    constexpr size_t digest = Metatype::BuildHash<T>().digest;
     const auto type = Metatype::metatype_map.find( digest );
     if ( type == Metatype::metatype_map.end() )
     {
-      constexpr Metatype new_type = Metatype::build<T>();
+      constexpr Metatype new_type = Metatype::Build<T>();
+      static_assert( new_type.hash.digest );
       Metatype::metatype_map[digest] = new_type;
     }
 
     return &Metatype::metatype_map[digest];
   }
 
-  static inline size_t build_signature( const Metatype **types, size_t count )
+  static size_t BuildSignature( const Metatype **types, size_t count )
   {
     size_t hash { 0 };
 

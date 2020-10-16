@@ -3,117 +3,117 @@
 
 namespace DeltaEngine
 {
-	void MouseInput::reset()
-	{
-		_moveEvent = false;
+void MouseInput::Reset()
+{
+  m_move_event = false;
 
-		for (auto& it : _isTriggered)
-		{
-			if (it.second)
-			{
-				_isPressed[it.first] = true;
-				it.second = false;
-			}
-		}
-		for (auto& it : _isReleased)
-		{
-			if (it.second)
-			{
-				it.second = false;
-			}
-		}
-		// scroll event maybe
-	}
+  for ( auto &it : m_is_triggered )
+  {
+    if ( it.second )
+    {
+      m_is_pressed[it.first] = true;
+      it.second = false;
+    }
+  }
+  for ( auto &it : m_is_released )
+  {
+    if ( it.second )
+    {
+      it.second = false;
+    }
+  }
+  // scroll event maybe
+}
 
-	void MouseInput::update()
-	{
-		POINT _currentPosition = {};
-		::GetCursorPos(&_currentPosition);
+void MouseInput::Update()
+{
+  POINT _currentPosition = {};
+  ::GetCursorPos( &_currentPosition );
 
-		if (_firstTime)
-		{
-			_previousMousePosition = Point(_currentPosition.x, _currentPosition.y);
-			_firstTime = false;
-		}
+  if ( m_first_time )
+  {
+    m_previous_mouse_position = Point( _currentPosition.x, _currentPosition.y );
+    m_first_time = false;
+  }
 
-		// allows us to retrieve the entire sequence of state of each key of the keyboard
-		if (::GetKeyboardState(_currentKeyState))
-		{
-			// checks the state of each key 
-			for (unsigned int i = 0; i < 256; ++i)
-			{
-				// bitmasking, only the higher bits of the value are being evaluated 
-				// key is pressed if the value is 1 or 2
-				if (_currentKeyState[i] & 0x80)
-				{
-					// if triggered
-					if (_currentKeyState[i] != _previousKeyState[i])
-					{
-						_isTriggered[i] = true;
-						_isPressed[i] = false;
-						_isReleased[i] = false;
-					}
-					// if pressed
-					else
-					{
-						_isTriggered[i] = false;
-						_isPressed[i] = true;
-						_isReleased[i] = false;
-					}
-				}
-				// if released
-				else
-				{
-					if (_currentKeyState[i] != _previousKeyState[i])
-					{
-						_isTriggered[i] = false;
-						_isPressed[i] = false;
-						_isReleased[i] = true;
-					}
-					else
-					{
-						_isTriggered[i] = false;
-						_isPressed[i] = false;
-						_isReleased[i] = false;
-					}
-				}
-			}
-			::memcpy(_previousKeyState, _currentKeyState, (sizeof(unsigned char) * 256));
-		}
-		if (_currentPosition.x != _previousMousePosition.point_x || _currentPosition.y != _previousMousePosition.point_y)
-		{
-			_previousMousePosition = Point(_currentPosition.x, _currentPosition.y);
-			_currentMousePosition = Point(_currentPosition.x, _currentPosition.y);
-			_moveEvent = true;
-		}
-	}
+  // allows us to retrieve the entire sequence of state of each key of the keyboard
+  if ( ::GetKeyboardState( m_current_key_state ) )
+  {
+    // checks the state of each key 
+    for ( unsigned int i = 0; i < 256; ++i )
+    {
+      // bitmasking, only the higher bits of the value are being evaluated 
+      // key is pressed if the value is 1 or 2
+      if ( m_current_key_state[i] & 0x80 )
+      {
+        // if triggered
+        if ( m_current_key_state[i] != m_previous_key_state[i] )
+        {
+          m_is_triggered[i] = true;
+          m_is_pressed[i] = false;
+          m_is_released[i] = false;
+        }
+        // if pressed
+        else
+        {
+          m_is_triggered[i] = false;
+          m_is_pressed[i] = true;
+          m_is_released[i] = false;
+        }
+      }
+      // if released
+      else
+      {
+        if ( m_current_key_state[i] != m_previous_key_state[i] )
+        {
+          m_is_triggered[i] = false;
+          m_is_pressed[i] = false;
+          m_is_released[i] = true;
+        }
+        else
+        {
+          m_is_triggered[i] = false;
+          m_is_pressed[i] = false;
+          m_is_released[i] = false;
+        }
+      }
+    }
+    ::memcpy( m_previous_key_state, m_current_key_state, ( sizeof( unsigned char ) * 256 ) );
+  }
+  if ( _currentPosition.x != m_previous_mouse_position.point_x || _currentPosition.y != m_previous_mouse_position.point_y )
+  {
+    m_current_mouse_position = Point( m_previous_mouse_position.point_x, m_previous_mouse_position.point_y );
+    m_previous_mouse_position = Point( _currentPosition.x, _currentPosition.y );
+    m_move_event = true;
+  }
+}
 
-	bool MouseInput::isMouseTriggered(int key)
-	{
-		return _isTriggered[key];
-	}
+bool MouseInput::IsMouseTriggered( int key )
+{
+  return m_is_triggered[key];
+}
 
-	bool MouseInput::isMousePressed(int key)
-	{
-		return _isPressed[key];
-	}
+bool MouseInput::IsMousePressed( int key )
+{
+  return m_is_pressed[key];
+}
 
-	bool MouseInput::isMouseReleased(int key)
-	{
-		return _isReleased[key];
-	}
+bool MouseInput::IsMouseReleased( int key )
+{
+  return m_is_released[key];
+}
 
-	bool MouseInput::isMouseMoved()
-	{
-		return _moveEvent;
-	}
+bool MouseInput::IsMouseMoved()
+{
+  return m_move_event;
+}
 
-	const Point& MouseInput::currentPosition()
-	{
-		return _currentMousePosition;
-	}
-	const Point& MouseInput::previousPosition()
-	{
-		return _previousMousePosition;
-	}
+const Point &MouseInput::CurrentPosition()
+{
+  return m_current_mouse_position;
+}
+const Point &MouseInput::PreviousPosition()
+{
+  return m_previous_mouse_position;
+}
 }

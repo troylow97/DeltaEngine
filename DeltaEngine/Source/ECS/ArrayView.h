@@ -5,55 +5,55 @@
 namespace DeltaEngine
 {
 
-  template <typename T>
-  class DE_API ArrayView
+template <typename T>
+class DE_API ArrayView
+{
+  T *m_data { nullptr };
+  DataChunk *m_owner { nullptr };
+
+public:
+
+  ArrayView() = default;
+
+  ArrayView( T *data_ptr, DataChunk *data_owner )
   {
-    T *data{nullptr};
-    DataChunk *owner{nullptr};
+    m_data = data_ptr;
+    m_owner = data_owner;
+  }
 
-  public:
+  [[nodiscard]] const DataChunk *ChunkOwner() const
+  {
+    return m_owner;
+  }
 
-    ArrayView() = default;
+  [[nodiscard]] bool IsValid() const
+  {
+    return m_data != nullptr;
+  }
 
-    ArrayView(T *data_ptr, DataChunk *data_owner)
-    {
-      data = data_ptr;
-      owner = data_owner;
-    }
+  [[nodiscard]] unsigned Size() const
+  {
+    return m_owner->header.index;
+  }
 
-    const DataChunk* chunk_owner() const
-    {
-      return owner;
-    }
+  const T &operator[]( size_t index ) const
+  {
+    return m_data[index];
+  }
 
-    bool is_valid() const
-    {
-      return data != nullptr;
-    }
+  T &operator[]( size_t index )
+  {
+    return m_data[index];
+  }
 
-    unsigned size()
-    {
-      return owner->header.last;
-    }
+  T *begin()
+  {
+    return m_data;
+  }
 
-    const T &operator[](size_t index) const
-    {
-      return data[index];
-    }
-
-    T &operator[](size_t index)
-    {
-      return data[index];
-    }
-
-    T *begin()
-    {
-      return data;
-    }
-
-    T *end()
-    {
-      return data + owner->header.index;
-    }
-  };
+  T *end()
+  {
+    return m_data + m_owner->header.index;
+  }
+};
 } // namespace DeltaEngine
