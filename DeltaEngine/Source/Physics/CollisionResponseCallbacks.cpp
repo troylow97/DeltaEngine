@@ -5,174 +5,181 @@
 #include "Collision.h"
 namespace DeltaEngine
 {
-	void CollisionResponse_AABBvsAABB(Collider& obj1, RigidBody& r1,Collider& obj2,RigidBody& r2)
+	void CollisionResponse_AABBvsAABB(Collider& obj1, RigidBody& r1,Collider& obj2,RigidBody& r2,Manifold& m)
 	{
-			Vector2 obj1Top, obj1Right, obj1Left, obj1Bot, obj1TopLeft, obj1TopRight, obj1BotLeft, obj1BotRight;
-			Vector2 obj2Top, obj2Right, obj2Left, obj2Bot, obj2TopLeft, obj2TopRight, obj2BotLeft, obj2BotRight;
-			float obj1HalfWidth, obj1HalfHeight, obj2HalfWidth, obj2HalfHeight;
-			obj1HalfWidth = obj1.size.x / 2;
-			obj1HalfHeight = obj1.size.y / 2;
-			obj2HalfWidth = obj2.size.x / 2;
-			obj2HalfHeight = obj2.size.y / 2;
-			obj1Top = { obj1.center.x,obj1.center.y + obj1HalfHeight };
-			obj1Bot = { obj1.center.x,obj1.center.y - obj1HalfHeight };
-			obj1Right = { obj1.center.x + obj1HalfWidth, obj1.center.y };
-			obj1Left = { obj1.center.x - obj1HalfWidth, obj1.center.y };
+		r2.Velocity = m.normal * 1/m.penetration;
+		r1.Velocity = -m.normal * 1/m.penetration;
 
-			obj2Top = { obj2.center.x,obj2.center.y + obj2HalfHeight };
-			obj2Bot = { obj2.center.x,obj2.center.y - obj2HalfHeight };
-			obj2Right = { obj2.center.x + obj2HalfWidth, obj2.center.y };
-			obj2Left = { obj2.center.x - obj2HalfWidth, obj2.center.y };
-
-			obj2TopLeft = { obj2.center.x - obj2HalfWidth,obj2.center.y + obj2HalfHeight };
-			obj2BotLeft = { obj2.center.x - obj2HalfWidth,obj2.center.y - obj2HalfHeight };
-			obj2TopRight = { obj2.center.x + obj2HalfWidth, obj2.center.y + obj2HalfHeight };
-			obj2BotRight = { obj2.center.x - obj2HalfWidth, obj2.center.y - obj2HalfHeight };
-
-			obj1TopLeft = { obj1.center.x - obj1HalfWidth,obj1.center.y + obj1HalfHeight };
-			obj1BotLeft = { obj1.center.x - obj1HalfWidth,obj1.center.y - obj1HalfHeight };
-			obj1TopRight = { obj1.center.x + obj1HalfWidth, obj1.center.y + obj1HalfHeight };
-			obj1BotRight = { obj1.center.x - obj1HalfWidth, obj1.center.y - obj1HalfHeight };
-			float temp_mag1 = r1.Velocity.Magnitude() * 1/AABBvsAABBoverlap(obj1,obj2).Magnitude();
-			float temp_mag2 = r2.Velocity.Magnitude() * 1/AABBvsAABBoverlap(obj1,obj2).Magnitude();
-			if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Top))
-			{
-				r1.Velocity *= { 0, 1 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= { 0, -1 };
-				r2.Velocity *= temp_mag2;
-
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Bot))
-			{
-				r1.Velocity = { 0, -1 };
-				r2.Velocity = { 0, 1 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Right))
-			{
-				r1.Velocity = { 1,0 };
-				r2.Velocity = { -1,0 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Left))
-			{
-				r1.Velocity = { -1,0 };
-				r2.Velocity = { 1, 0 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2TopLeft) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Bot)
-				|| CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2TopRight) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Bot))
-			{
-				r1.Velocity = { 0, 1 };
-				r2.Velocity = { 0, -1 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2TopLeft) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Right)
-				|| CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2BotLeft) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Right))
-			{
-				r1.Velocity = { -1, 0 };
-				r2.Velocity = { 1,0 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2BotLeft) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Top)
-				|| CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2BotRight) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Top))
-			{
-				r1.Velocity = { 0, -1 };
-				r2.Velocity = { 0,1 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2TopRight) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Left)
-				|| CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2BotRight) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Left))
-			{
-				r1.Velocity = { 1, 0 };
-				r2.Velocity = { -1,0 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-
-			if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Top))
-			{
-				r2.Velocity = { 0, 1 };
-				r1.Velocity = { 0, -1 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Bot))
-			{
-				r2.Velocity = { 0, -1 };
-				r1.Velocity = { 0, 1 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Right))
-			{
-				r2.Velocity = { 1, 0 };
-				r1.Velocity = { -1, 0 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Left))
-			{
-				r2.Velocity = { -1, 0 };
-				r1.Velocity = { 1, 0 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1TopLeft) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Bot)
-				|| CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1TopRight) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Bot))
-			{
-				r2.Velocity = { 0, 1 };
-				r1.Velocity = { 0, -1 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1TopLeft) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Right)
-				|| CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1BotLeft) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Right))
-			{
-				r2.Velocity = { -1,0 };
-				r1.Velocity = { 1,0 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1BotLeft) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Top)
-				|| CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1BotRight) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Top))
-			{
-				r2.Velocity = { 0,-1 };
-				r1.Velocity = { 0,1 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
-			else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1TopRight) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Left)
-				|| CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1BotRight) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Left))
-			{
-				r1.Velocity = { -1,0 };
-				r1.Velocity = { -1,0 };
-				r1.Velocity *= temp_mag1;
-				r2.Velocity *= temp_mag2;
-				return;
-			}
+		return;
+			//Vector2 obj1Top, obj1Right, obj1Left, obj1Bot, obj1TopLeft, obj1TopRight, obj1BotLeft, obj1BotRight;
+			//Vector2 obj2Top, obj2Right, obj2Left, obj2Bot, obj2TopLeft, obj2TopRight, obj2BotLeft, obj2BotRight;
+			//float obj1HalfWidth, obj1HalfHeight, obj2HalfWidth, obj2HalfHeight;
+			//obj1HalfWidth = obj1.size.x / 2;
+			//obj1HalfHeight = obj1.size.y / 2;
+			//obj2HalfWidth = obj2.size.x / 2;
+			//obj2HalfHeight = obj2.size.y / 2;
+			//obj1Top = { obj1.center.x,obj1.center.y + obj1HalfHeight };
+			//obj1Bot = { obj1.center.x,obj1.center.y - obj1HalfHeight };
+			//obj1Right = { obj1.center.x + obj1HalfWidth, obj1.center.y };
+			//obj1Left = { obj1.center.x - obj1HalfWidth, obj1.center.y };
+			//
+			//obj2Top = { obj2.center.x,obj2.center.y + obj2HalfHeight };
+			//obj2Bot = { obj2.center.x,obj2.center.y - obj2HalfHeight };
+			//obj2Right = { obj2.center.x + obj2HalfWidth, obj2.center.y };
+			//obj2Left = { obj2.center.x - obj2HalfWidth, obj2.center.y };
+			//
+			//obj2TopLeft = { obj2.center.x - obj2HalfWidth,obj2.center.y + obj2HalfHeight };
+			//obj2BotLeft = { obj2.center.x - obj2HalfWidth,obj2.center.y - obj2HalfHeight };
+			//obj2TopRight = { obj2.center.x + obj2HalfWidth, obj2.center.y + obj2HalfHeight };
+			//obj2BotRight = { obj2.center.x - obj2HalfWidth, obj2.center.y - obj2HalfHeight };
+			//
+			//obj1TopLeft = { obj1.center.x - obj1HalfWidth,obj1.center.y + obj1HalfHeight };
+			//obj1BotLeft = { obj1.center.x - obj1HalfWidth,obj1.center.y - obj1HalfHeight };
+			//obj1TopRight = { obj1.center.x + obj1HalfWidth, obj1.center.y + obj1HalfHeight };
+			//obj1BotRight = { obj1.center.x - obj1HalfWidth, obj1.center.y - obj1HalfHeight };
+			//float temp_mag1 = r1.Velocity.Magnitude() * 1/AABBvsAABBoverlap(obj1,obj2).Magnitude();
+			//float temp_mag2 = r2.Velocity.Magnitude() * 1/AABBvsAABBoverlap(obj1,obj2).Magnitude();
+			//
+			//
+			//
+			//if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Top))
+			//{
+			//	r1.Velocity *= { 0, 1 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= { 0, -1 };
+			//	r2.Velocity *= temp_mag2;
+			//
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Bot))
+			//{
+			//	r1.Velocity = { 0, -1 };
+			//	r2.Velocity = { 0, 1 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Right))
+			//{
+			//	r1.Velocity = { 1,0 };
+			//	r2.Velocity = { -1,0 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Left))
+			//{
+			//	r1.Velocity = { -1,0 };
+			//	r2.Velocity = { 1, 0 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2TopLeft) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Bot)
+			//	|| CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2TopRight) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Bot))
+			//{
+			//	r1.Velocity = { 0, 1 };
+			//	r2.Velocity = { 0, -1 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2TopLeft) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Right)
+			//	|| CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2BotLeft) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Right))
+			//{
+			//	r1.Velocity = { -1, 0 };
+			//	r2.Velocity = { 1,0 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2BotLeft) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Top)
+			//	|| CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2BotRight) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Top))
+			//{
+			//	r1.Velocity = { 0, -1 };
+			//	r2.Velocity = { 0,1 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2TopRight) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Left)
+			//	|| CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2BotRight) && CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Left))
+			//{
+			//	r1.Velocity = { 1, 0 };
+			//	r2.Velocity = { -1,0 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//
+			//if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Top))
+			//{
+			//	r2.Velocity = { 0, 1 };
+			//	r1.Velocity = { 0, -1 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Bot))
+			//{
+			//	r2.Velocity = { 0, -1 };
+			//	r1.Velocity = { 0, 1 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Right))
+			//{
+			//	r2.Velocity = { 1, 0 };
+			//	r1.Velocity = { -1, 0 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1Left))
+			//{
+			//	r2.Velocity = { -1, 0 };
+			//	r1.Velocity = { 1, 0 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1TopLeft) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Bot)
+			//	|| CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1TopRight) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Bot))
+			//{
+			//	r2.Velocity = { 0, 1 };
+			//	r1.Velocity = { 0, -1 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1TopLeft) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Right)
+			//	|| CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1BotLeft) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Right))
+			//{
+			//	r2.Velocity = { -1,0 };
+			//	r1.Velocity = { 1,0 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1BotLeft) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Top)
+			//	|| CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1BotRight) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Top))
+			//{
+			//	r2.Velocity = { 0,-1 };
+			//	r1.Velocity = { 0,1 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
+			//else if (CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1TopRight) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Left)
+			//	|| CollisionIntersection_RectPoint(obj2.center, obj2.size, obj1BotRight) && CollisionIntersection_RectPoint(obj1.center, obj1.size, obj2Left))
+			//{
+			//	r1.Velocity = { -1,0 };
+			//	r1.Velocity = { -1,0 };
+			//	r1.Velocity *= temp_mag1;
+			//	r2.Velocity *= temp_mag2;
+			//	return;
+			//}
 
 			//Vector2 zero_vec = { 0,0 };
 			//Vector2 normalised_r1 = Normalise(r1.Velocity);
@@ -280,7 +287,7 @@ namespace DeltaEngine
 	   switch (type2)
 	   {
 	   case ColliderType::BOX:
-		   CollisionResponse_AABBvsAABB(col1, r1,col2, r2);
+		   CollisionResponse_AABBvsAABB(col1, r1,col2, r2,m);
 		   return;
 	   case ColliderType::CIRCLE:
 		   CollisionResponse_RectvsCircle(col1, r1, t1, col2, r2, t2, m);

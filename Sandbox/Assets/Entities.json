@@ -113,7 +113,7 @@
                 "mass": 25.0,
                 "friction": 0.9700000286102295,
                 "movespeed": 4.0,
-                "inherent_acceleration": 3.5,
+                "inherent_acceleration": 4.5,
                 "has_gravity": false,
                 "is_moveable": true
             },
@@ -177,7 +177,7 @@
                 },
                 "mass": 100000.0,
                 "friction": 0.9700000286102295,
-                "movespeed": 0.15000000596046449,
+                "movespeed": 3.000000596046449,
                 "inherent_acceleration": 3.0,
                 "has_gravity": false,
                 "is_moveable": false
@@ -242,7 +242,7 @@
                 },
                 "mass": 10.0,
                 "friction": 0.9700000286102295,
-                "movespeed": 0.0,
+                "movespeed": 100.0,
                 "inherent_acceleration": 3.0,
                 "has_gravity": true,
                 "is_moveable": true
@@ -372,7 +372,7 @@
                 },
                 "mass": 10.0,
                 "friction": 0.9700000286102295,
-                "movespeed": 0.0,
+                "movespeed": 5.0,
                 "inherent_acceleration": 3.0,
                 "has_gravity": false,
                 "is_moveable": true

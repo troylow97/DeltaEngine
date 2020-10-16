@@ -22,8 +22,9 @@ namespace DeltaEngine
             {
                 if (r1.isMoveable)
                 {
-                    r1.Velocity *= r1.Friction; //Apply Friction
-                    t1.position += r1.Velocity * env.pClock->DeltaTime(); //Update Position
+
+
+
                 }
             });
 
@@ -44,11 +45,23 @@ namespace DeltaEngine
             {
                 if (r1.isMoveable)
                 {
-                    r1.Velocity += ((r1.Direction * (r1.Movespeed)) / r1.Mass); //Update Velocity
-                    r1.Velocity += r1.Acceleration * env.pClock->DeltaTime();  //Apply Acceleration
-                    r1.Acceleration = (r1.Direction * r1.inherentAcceleration); //Increase Acceleration
-                }
+                    r1.Movespeed = 105.0f;
+                    r1.inherentAcceleration = 3.0f;
 
+
+
+                    r1.Direction *= r1.Movespeed;
+                    r1.Acceleration *= r1.Direction;
+                    r1.Velocity += r1.Acceleration;
+                    r1.Velocity *= r1.Friction; 
+
+                    r1.Acceleration *= env.pClock->DeltaTime();
+                    r1.Velocity += r1.Acceleration;
+                    r1.Velocity *= env.pClock->DeltaTime();
+                   // r1.Velocity += ((r1.Direction * (r1.Movespeed)) / r1.Mass); //Update Velocity
+                    t1.position += r1.Velocity; //Update Position
+                    std::cout << "Velocity: " << r1.Velocity.x << "," << r1.Velocity.y << std::endl;
+                }
             });
 
     }

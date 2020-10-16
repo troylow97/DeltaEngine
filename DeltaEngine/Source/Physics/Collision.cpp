@@ -850,6 +850,7 @@ namespace DeltaEngine
 
 		// Vector from A to B
 		Vector2 n = A.center - B.center;
+		Vector2 normalised_n = Normalise(n);
 
 		AABB abox{ A.center,A.size };
 		AABB bbox{ B.center,B.size };
@@ -861,16 +862,16 @@ namespace DeltaEngine
 		// Calculate overlap on x axis
 		float x_overlap = a_extent + b_extent - abs(n.x);
 
+		// Calculate half extents along y axis for each object
+		float a_extent2 = (abox.max.y - abox.min.y) / 2;
+		float b_extent2 = (bbox.max.y - bbox.min.y) / 2;
+
+		// Calculate overlap on y axis
+		float y_overlap = a_extent2 + b_extent2 - abs(n.y);
+
 		// SAT test on x axis
 		if (x_overlap > 0)
 		{
-			// Calculate half extents along x axis for each object
-			float a_extent2 = (abox.max.y - abox.min.y) / 2;
-			float b_extent2 = (bbox.max.y - bbox.min.y) / 2;
-
-			// Calculate overlap on y axis
-			float y_overlap = a_extent2 + b_extent2 - abs(n.y);
-
 				// SAT test on y axis
 				if (y_overlap > 0)
 				{
@@ -896,6 +897,23 @@ namespace DeltaEngine
 							return true;
 					}
 				}
+				else
+				{
+					std::cout << "Case 1" << std::endl;
+					m.normal = Vector2{ normalised_n.x,0 };
+					m.penetration = x_overlap;
+				}
+		}
+		// SAT test on y axis
+		if (y_overlap > 0)
+		{
+			// Point toward B knowing that n points from A to B
+			if (n.y < 0)
+				m.normal = Vector2{ 0,-1 };
+			else
+				m.normal = Vector2{ 0, 1 };
+			m.penetration = y_overlap;
+			return true;
 		}
 		return false;
 	}
