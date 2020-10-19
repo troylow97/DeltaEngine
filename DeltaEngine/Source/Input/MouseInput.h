@@ -32,7 +32,9 @@ public:
   bool IsMousePressed( int key );
   bool IsMouseReleased( int key );
   bool IsMouseMoved();
-  const Point &CurrentPosition();
-  const Point &PreviousPosition();
+  const Point &CurrentPosition();                    // getter 
+  const Point &PreviousPosition();                   // getter
+  void SetCurrentPosition(Point _currentPosition);   // setter
+  void SetPreviousPosition(Point _previousPosition); // setter
 };
 }

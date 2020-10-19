@@ -99,4 +99,14 @@ const Point &InputManager::PreviousPosition()
 {
   return m_mouse.m_previous_mouse_position;
 }
+void InputManager::SetCurrentPosition(Point _currentPosition)
+{
+    m_mouse.m_current_mouse_position.point_x = _currentPosition.point_x;
+    m_mouse.m_current_mouse_position.point_y = _currentPosition.point_y;
+}
+void InputManager::SetPreviousPosition(Point _previousPositon)
+{
+    m_mouse.m_previous_mouse_position.point_x = _previousPositon.point_x;
+    m_mouse.m_previous_mouse_position.point_y = _previousPositon.point_y;
+}
 }

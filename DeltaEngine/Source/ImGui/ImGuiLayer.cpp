@@ -7,9 +7,18 @@
 #include <examples/imgui_impl_win32.h>
 #include <examples/imgui_impl_opengl3.h>
 #include "Core/GlobalStruct.h"
+#include "ECS/ECSModule.h"
+#include "Components/RigidBody.h"
+#include "Components/Collider.h"
+#include "Components/Character.h"
+#include "Input/InputManager.h"
+
+//#include "DeltaEngine.h"
 
 namespace DeltaEngine
 {
+    //DeltaEngineGlobalEnvironment env;
+
 ImGuiLayer::ImGuiLayer()
   : Layer( "ImGuiLayer" )
 {}
@@ -146,6 +155,28 @@ void ImGuiLayer::Begin()
     ImGui::Begin( "Viewport" );
 
     ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ImVec2 renderPos = ImGui::GetCursorScreenPos();     // gives top left of the window
+    ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
+    float height = renderPos.y + renderSize.y;          // gets bottom right of the screen
+    float width = renderPos.x + renderSize.x;           // gets bottom right of the screen
+    // check if cursor is in the viewport
+    if (InputManager::Get()->CurrentPosition().point_x >= renderPos.x && InputManager::Get()->CurrentPosition().point_x <= width
+        && InputManager::Get()->CurrentPosition().point_y >= renderPos.y && InputManager::Get()->CurrentPosition().point_y <= height)
+    {
+        //std::cout << "inside viewport" << std::endl;
+
+        float cameraWidth = Camera::editorCamera->Max().x - Camera::editorCamera->Min().x;
+        float cameraHeight = Camera::editorCamera->Max().y - Camera::editorCamera->Min().y;
+        float cursorViewPortDistanceX = InputManager::Get()->CurrentPosition().point_x - renderPos.x;
+        float cursorViewPortDistanceY = InputManager::Get()->CurrentPosition().point_y - renderPos.y;
+        float newCursorX = (cursorViewPortDistanceX / renderSize.x) * cameraWidth + Camera::editorCamera->Min().x;
+        float newCursorY = Camera::editorCamera->Max().y - (cursorViewPortDistanceY / renderSize.y) * cameraWidth;
+
+        InputManager::Get()->SetCurrentPosition(Point(newCursorX, newCursorY));
+        //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     Camera::editorCamera->SetAspectRatio( viewportPanelSize.x, viewportPanelSize.y );
     Camera::editorCamera->SetViewportSize( viewportPanelSize.x );
     uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
@@ -175,7 +206,7 @@ void ImGuiLayer::Begin()
   if ( RenderModule::allRenderers.size() > 1 )
   {
     ImGui::Begin( "SpriteRenderer2" );
-
+  
     static float f = 0.0f;
     ImGui::Text( "Edit Sprite Props" );                           // Display some text (you can use a format string too)
     ImGui::Checkbox( "Active", &RenderModule::allRenderers[1]->m_Active );
@@ -188,7 +219,7 @@ void ImGuiLayer::Begin()
     ImGui::Checkbox( "Flip Y", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_FlipY );
     ImGui::Checkbox( "Shaded", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Shaded );
     ImGui::Checkbox( "Wireframe", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Wireframe );
-
+  
     ImGui::End();
   }
   if ( RenderModule::allRenderers.size() > 2 )
@@ -218,6 +249,94 @@ void ImGuiLayer::Begin()
     RenderModule::allRenderers[3]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
 
     ImGui::End();
+  }
+  // entities' properties
+  {
+      ImGui::Begin( "Entities" );
+
+      //ImVec2 renderPos = ImGui::GetCursorScreenPos(); // gives top left of the window
+      //ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
+      //// gets bottom right of the screen
+      //float height = ImGui::GetCursorScreenPos().y + ImGui::GetContentRegionAvail().y;
+      //float width = ImGui::GetCursorScreenPos().x + ImGui::GetContentRegionAvail().x;
+      
+      //std::cout << "imgui x is " << renderPos.x << ", while imgui y is " << renderPos.y << std::endl;
+      //std::cout << "top right of imgui x is " << width << ", while top right of imgui y is " << height << std::endl;
+
+
+      ImGui::Text( "Edit Entities' Properties" );
+      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, Collider c1, Transform t1, RigidBody r1)
+      {
+
+              
+              //std::cout << Camera::editorCamera->Max().x << ", " << Camera::editorCamera->Max().y << std::endl;
+              rttr::type t = rttr::type::get_by_name( "DeltaEngine::Transform" );
+              ImGui::Text("ENTITY'S NAME");
+              ImGui::Text("-------------------");
+              //ImGui::Checkbox("Moveable", &(r1.hasGravity));
+              ImGui::DragFloat3("Position", (float*)(&(t1.position)), 0.01f);
+              
+              //ImGui::Checkbox("size", &dynamic_cast<RigidBody*>(&RigidBody::isMoveable));
+
+      } );
+      /* 
+         Vector2 Center1 = col1.center;
+         Vector2 Size1 = col1.size;
+         Vector2 Center2 = col2.center;
+         Vector2 Size2 = col2.size;
+         ////////////////////////////////////////////////
+         rttr tutorial
+         https://www.rttr.org/doc/master/five_minute_tutorial_page.html
+         
+         type t = type::get_by_name("ns_3d::node");
+
+         // will create an instance of ns_3d::node as std::shared_ptr<ns_3d::node>
+         variant var = t.create({std::string("MyNode")});
+         std::cout << var.get_type().get_name() << "\n";
+
+         // sets/gets a property
+         property prop = t.get_property("name");
+
+         // remark: you can also set a member, although the instance is of type: 'std::shared_ptr<T>'
+         prop.set_value(var, std::string("A New Name"));
+         std::cout << prop.get_value(var).to_string() << "\n";
+
+         // retrieve the stored meta data of the property
+         std::cout << "MetaData TOOL_TIP: " << prop.get_metadata("TOOL_TIP").to_string() << "\n";
+
+         // invoke a method
+         method meth = t.get_method("set_visible");
+
+         // remark: the 2nd argument will be provided automatically, because it has a default argument
+         variant ret = meth.invoke(var, true);
+
+         // a valid return value indicates a successful invoke
+         std::cout << std::boolalpha << "invoke of method 'set_visible' was successfully: " << ret.is_valid() << "\n\n";
+
+         // retrieve all properties
+         std::cout << "'node' properties:" << "\n";
+         for (auto& prop : t.get_properties())
+         {
+             std::cout << "  name: " << prop.get_name() << "\n";
+             std::cout << "    type: " << prop.get_type().get_name() << "\n";
+         }
+         std::cout << "\n";
+
+         // retrieve all methods
+         std::cout << "'node' methods:" << "\n";
+         for (auto& meth : t.get_methods())
+         {
+             std::cout << "  name: " << meth.get_name();
+             std::cout << "  signature: " << meth.get_signature() << "\n";
+             for (auto& info : meth.get_parameter_infos())
+             {
+                 std::cout << "    param " << info.get_index() << ": name: "<< info.get_name() << "\n";
+             }
+         }
+         return 0;
+      */
+
+      ImGui::End();
   }
 
   ImGui::End();
