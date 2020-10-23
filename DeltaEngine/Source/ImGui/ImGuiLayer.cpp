@@ -174,6 +174,7 @@ void ImGuiLayer::Begin()
         float newCursorY = Camera::editorCamera->Max().y - (cursorViewPortDistanceY / renderSize.y) * cameraWidth;
 
         InputManager::Get()->SetCurrentPosition(Point(newCursorX, newCursorY));
+        //std::cout << "camera min x is " << Camera::editorCamera->Min().x << " and camera min y is " << Camera::editorCamera->Min().y << std::endl;
         //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -253,30 +254,51 @@ void ImGuiLayer::Begin()
   // entities' properties
   {
       ImGui::Begin( "Entities" );
-
-      //ImVec2 renderPos = ImGui::GetCursorScreenPos(); // gives top left of the window
-      //ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
-      //// gets bottom right of the screen
-      //float height = ImGui::GetCursorScreenPos().y + ImGui::GetContentRegionAvail().y;
-      //float width = ImGui::GetCursorScreenPos().x + ImGui::GetContentRegionAvail().x;
-      
-      //std::cout << "imgui x is " << renderPos.x << ", while imgui y is " << renderPos.y << std::endl;
-      //std::cout << "top right of imgui x is " << width << ", while top right of imgui y is " << height << std::endl;
-
-
       ImGui::Text( "Edit Entities' Properties" );
-      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, Collider c1, Transform t1, RigidBody r1)
-      {
 
-              
-              //std::cout << Camera::editorCamera->Max().x << ", " << Camera::editorCamera->Max().y << std::endl;
-              rttr::type t = rttr::type::get_by_name( "DeltaEngine::Transform" );
-              ImGui::Text("ENTITY'S NAME");
-              ImGui::Text("-------------------");
-              //ImGui::Checkbox("Moveable", &(r1.hasGravity));
-              ImGui::DragFloat3("Position", (float*)(&(t1.position)), 0.01f);
-              
-              //ImGui::Checkbox("size", &dynamic_cast<RigidBody*>(&RigidBody::isMoveable));
+      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
+      {  
+         /*
+         static ImGuiComboFlags flags = 0;
+         //ImGui::CheckboxFlags("ImGuiComboFlags_PopupAlignLeft", (unsigned int*)&flags, ImGuiComboFlags_PopupAlignLeft);
+         //ImGui::SameLine(); 
+         //if (ImGui::CheckboxFlags("ImGuiComboFlags_NoArrowButton", (unsigned int*)&flags, ImGuiComboFlags_NoArrowButton))
+         //    flags &= ~ImGuiComboFlags_NoPreview;     // Clear the other flag, as we cannot combine both
+         //if (ImGui::CheckboxFlags("ImGuiComboFlags_NoPreview", (unsigned int*)&flags, ImGuiComboFlags_NoPreview))
+         //    flags &= ~ImGuiComboFlags_NoArrowButton; // Clear the other flag, as we cannot combine both
+
+      
+         const char* entityList[] = { "entity 0", "entity 1", "entity 2", "entity 3", "entity 4", "entity 5", "entity 6" };
+         static int entityIndex = 0;                    // Here our selection data is an index.
+         const char* entityLabel = entityList[entityIndex];  // Label to preview before opening the combo (technically it could be anything)
+         if (ImGui::BeginCombo("entity", entityLabel, flags))
+         {
+             for (int n = 0; n < IM_ARRAYSIZE(entityList); n++)
+             {
+                 const bool is_selected = (entityIndex == n);
+                 if (ImGui::Selectable(entityList[n], is_selected))
+                     entityIndex = n;
+
+                 // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
+                 if (is_selected)
+                     ImGui::SetItemDefaultFocus();
+             }
+             ImGui::EndCombo();
+         }*/
+
+
+         rttr::type t = rttr::type::get_by_name( "DeltaEngine::Transform" ); 
+         std::string text = "ENTITY ";
+         text += std::to_string(id1.index);
+         ImGui::Text("");
+         ImGui::Text(text.c_str());
+         ImGui::DragFloat3("pos", (float*)(&(t1.position)), 0.01f);         
+         ImGui::DragFloat3("old pos", (float*)(&(t1.old_position)), 0.01f);
+         ImGui::DragFloat3("size", (float*)(&(t1.scale)), 0.01f);
+         ImGui::DragFloat3("rot", (float*)(&(t1.rotation)), 0.01f);
+         ImGui::Checkbox("gravity", &(r1.hasGravity));
+         
+         //ImGui::Checkbox("size", &dynamic_cast<RigidBody*>(&RigidBody::isMoveable));
 
       } );
       /* 
