@@ -256,49 +256,64 @@ void ImGuiLayer::Begin()
       ImGui::Begin( "Entities" );
       ImGui::Text( "Edit Entities' Properties" );
 
+	  static ImGuiComboFlags flags = 0;
+	  const char* entityList[] = { "entity 0", "entity 1", "entity 2", "entity 3", "entity 4", "entity 5", "entity 6" };
+	  static int entityIndex = 0;                         
+	  const char* entityLabel = entityList[entityIndex];  // label for preview before selecting from combo
+
+	  if (ImGui::BeginCombo("entity", entityLabel, flags))
+	  {
+		  for (int n = 0; n < IM_ARRAYSIZE(entityList); n++)
+		  {
+			  const bool is_selected = (entityIndex == n);
+			  if (ImGui::Selectable(entityList[n], is_selected))
+			  {
+				  entityIndex = n;
+			  }
+			  // set the initial focus when opening the combo (scrolling + keyboard navigation focus)
+			  if (is_selected)
+			  {
+				  ImGui::SetItemDefaultFocus();
+			  }
+		  }
+		  ImGui::EndCombo();
+	  }
+
+	  ImGui::Text("");
+
       env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
       {  
-         /*
-         static ImGuiComboFlags flags = 0;
-         //ImGui::CheckboxFlags("ImGuiComboFlags_PopupAlignLeft", (unsigned int*)&flags, ImGuiComboFlags_PopupAlignLeft);
-         //ImGui::SameLine(); 
-         //if (ImGui::CheckboxFlags("ImGuiComboFlags_NoArrowButton", (unsigned int*)&flags, ImGuiComboFlags_NoArrowButton))
-         //    flags &= ~ImGuiComboFlags_NoPreview;     // Clear the other flag, as we cannot combine both
-         //if (ImGui::CheckboxFlags("ImGuiComboFlags_NoPreview", (unsigned int*)&flags, ImGuiComboFlags_NoPreview))
-         //    flags &= ~ImGuiComboFlags_NoArrowButton; // Clear the other flag, as we cannot combine both
+         //rttr::type t = rttr::type::get_by_name( "DeltaEngine::Transform" ); 
+         //std::string text = "ENTITY ";
+         //text += std::to_string(id1.index);
+         //ImGui::Text("");
+         //ImGui::Text(text.c_str());
+		 if (id1.index == entityIndex)
+		 {
+			 ImGui::Text("transform");
+			 ImGui::DragFloat3("old pos", (float*)(&(t1.old_position)), 0.01f);
+			 ImGui::DragFloat3("pos", (float*)(&(t1.position)), 0.01f);
+			 ImGui::DragFloat3("size", (float*)(&(t1.scale)), 0.01f);
+			 ImGui::DragFloat3("rot", (float*)(&(t1.rotation)), 0.01f);
 
-      
-         const char* entityList[] = { "entity 0", "entity 1", "entity 2", "entity 3", "entity 4", "entity 5", "entity 6" };
-         static int entityIndex = 0;                    // Here our selection data is an index.
-         const char* entityLabel = entityList[entityIndex];  // Label to preview before opening the combo (technically it could be anything)
-         if (ImGui::BeginCombo("entity", entityLabel, flags))
-         {
-             for (int n = 0; n < IM_ARRAYSIZE(entityList); n++)
-             {
-                 const bool is_selected = (entityIndex == n);
-                 if (ImGui::Selectable(entityList[n], is_selected))
-                     entityIndex = n;
+			 ImGui::Text("rigidbody");
+			 ImGui::DragFloat2("direction", (float*)(&(r1.Direction)), 0.01f);
+			 ImGui::DragFloat2("velocity", (float*)(&(r1.Velocity)), 0.01f);
+			 ImGui::DragFloat2("reflected vector", (float*)(&(r1.ReflectedVector)), 0.01f);
+			 ImGui::DragFloat2("acceleration", (float*)(&(r1.Acceleration)), 0.01f);
+			 ImGui::DragFloat("mass", (float*)(&(r1.Mass)), 0.01f);
+			 ImGui::DragFloat("friction", (float*)(&(r1.Friction)), 0.01f);
+			 ImGui::DragFloat("movespeed", (float*)(&(r1.Movespeed)), 0.01f);
+			 ImGui::DragFloat("inherent acceleration", (float*)(&(r1.inherentAcceleration)), 0.01f);
+			 ImGui::Checkbox("gravity", &(r1.hasGravity));
+			 ImGui::Checkbox("moveable", &(r1.isMoveable));
 
-                 // Set the initial focus when opening the combo (scrolling + keyboard navigation focus)
-                 if (is_selected)
-                     ImGui::SetItemDefaultFocus();
-             }
-             ImGui::EndCombo();
-         }*/
-
-
-         rttr::type t = rttr::type::get_by_name( "DeltaEngine::Transform" ); 
-         std::string text = "ENTITY ";
-         text += std::to_string(id1.index);
-         ImGui::Text("");
-         ImGui::Text(text.c_str());
-         ImGui::DragFloat3("pos", (float*)(&(t1.position)), 0.01f);         
-         ImGui::DragFloat3("old pos", (float*)(&(t1.old_position)), 0.01f);
-         ImGui::DragFloat3("size", (float*)(&(t1.scale)), 0.01f);
-         ImGui::DragFloat3("rot", (float*)(&(t1.rotation)), 0.01f);
-         ImGui::Checkbox("gravity", &(r1.hasGravity));
-         
-         //ImGui::Checkbox("size", &dynamic_cast<RigidBody*>(&RigidBody::isMoveable));
+			 ImGui::Text("collider");
+			 ImGui::DragFloat2("inter point", (float*)(&(c1.interPoint)), 0.01f);
+			 ImGui::DragFloat2("center", (float*)(&(c1.center)), 0.01f);
+			 ImGui::DragFloat2("size", (float*)(&(c1.size)), 0.01f);
+			 ImGui::Checkbox("collidable", &(c1.isCollideable));
+		 }
 
       } );
       /* 
