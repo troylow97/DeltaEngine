@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core/Math/Vector.h"
+#include "Core/Math/Point.h"
 #include "Components.h"
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/filewritestream.h>

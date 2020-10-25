@@ -112,18 +112,53 @@ const Point& MouseInput::CurrentPosition()
 {
     return m_current_mouse_position;
 }
+
 const Point& MouseInput::PreviousPosition()
 {
     return m_previous_mouse_position;
 }
+
+const Point& MouseInput::CurrentCameraPosition()
+{
+	return m_current_camera_mouse_position;
+}
+
 void MouseInput::SetCurrentPosition(Point _currentPosition)
 {
     m_current_mouse_position.point_x = _currentPosition.point_x;
     m_current_mouse_position.point_y = _currentPosition.point_y;
 }
+
 void MouseInput::SetPreviousPosition(Point _previousPositon)
 {
     m_previous_mouse_position.point_x = _previousPositon.point_x;
     m_previous_mouse_position.point_y = _previousPositon.point_y;
 }
+
+void MouseInput::SetCurrentCameraPosition(Point _currentCameraPosition)
+{
+	m_current_camera_mouse_position.point_x = _currentCameraPosition.point_x;
+	m_current_camera_mouse_position.point_y = _currentCameraPosition.point_y;
+}
+
+bool MouseInput::EntitySelected()
+{
+	return m_entity_selected;
+}
+
+void MouseInput::SetEntitySelected(bool _setEntitySelected)
+{
+	m_entity_selected = _setEntitySelected;
+}
+
+size_t MouseInput::EntityIDSelected()
+{
+	return m_entityid_selected;
+}
+
+void MouseInput::SetEntityIDSelected(size_t _setEntityIDSelected)
+{
+	m_entityid_selected = _setEntityIDSelected;
+}
+
 }

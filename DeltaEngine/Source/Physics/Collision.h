@@ -34,7 +34,11 @@ bool CollisionIntersection_LineLine_Static( const Vector2 Center1, const Vector2
 
 bool CollisionIntersection_RectPoint( const Vector2 Center1, const Vector2 Size1, const Vector2 Center2 );
 
+bool CollisionIntersection_RectMouse( const Vector2 Center1, const Vector2 Size1, Point Center2 );
+
 bool CollisionIntersection_CirclePoint( const Vector2 Center1, const Vector2 Size1, const Vector2 Center2 );
+
+bool CollisionIntersection_CircleMouse( const Vector2 Center1, const Vector2 Size1, Point Center2 );
 
 //Dynamic Collision Checks
 bool CollisionIntersection_RectRect( const Collider &, const Vector2 &, const Collider &, const Vector2 & );

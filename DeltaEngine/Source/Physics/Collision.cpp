@@ -610,6 +610,27 @@ bool CollisionIntersection_RectPoint( const Vector2 Center1, const Vector2 Size1
   return true;
 }
 
+bool CollisionIntersection_RectMouse( const Vector2 Center1, const Vector2 Size1, Point Center2 )
+{
+	Vector2 TopLeft, TopRight, BotLeft, BotRight;
+	float HalfWidth = Size1.x / 2;
+	float HalfHeight = Size1.y / 2;
+	TopLeft.x = Center1.x - HalfWidth;
+	TopLeft.y = Center1.y + HalfHeight;
+	TopRight.x = Center1.x + HalfWidth;
+	TopRight.y = Center1.y + HalfHeight;
+	BotLeft.x = Center1.x - HalfWidth;
+	BotLeft.y = Center1.y - HalfHeight;
+	BotRight.x = Center1.x + HalfWidth;
+	BotRight.y = Center1.y - HalfWidth;
+
+	if (Center2.point_x < TopLeft.x) return false;
+	if (Center2.point_x > TopRight.x) return false;
+	if (Center2.point_y < BotLeft.y) return false;
+	if (Center2.point_y > TopLeft.y) return false;
+	return true;
+}
+
 bool CollisionIntersection_CirclePoint( const Vector2 Center1, const Vector2 Size1, const Vector2 Center2 )
 {
   if ( ( Center2.x - Center1.x ) * ( Center2.x - Center1.x ) + ( Center2.y - Center1.y ) * ( Center2.y - Center1.y ) <= ( Size1.x * Size1.x ) )
@@ -618,8 +639,16 @@ bool CollisionIntersection_CirclePoint( const Vector2 Center1, const Vector2 Siz
   }
 
   return false;
+}
 
-
+bool CollisionIntersection_CircleMouse( const Vector2 Center1, const Vector2 Size1, Point Center2 )
+{
+  if ((Center2.point_x - Center1.x) * (Center2.point_x - Center1.x) + (Center2.point_y - Center1.y) * (Center2.point_y - Center1.y) <= (Size1.x * Size1.x))
+  {
+  	return true;
+  }
+  
+  return false;
 }
 
 //DYNAMIC COLLISION CHECKS

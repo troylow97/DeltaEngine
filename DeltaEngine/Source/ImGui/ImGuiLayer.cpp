@@ -12,6 +12,7 @@
 #include "Components/Collider.h"
 #include "Components/Character.h"
 #include "Input/InputManager.h"
+#include "Physics/Collision.h"
 
 //#include "DeltaEngine.h"
 
@@ -83,6 +84,9 @@ void ImGuiLayer::Begin()
   static bool opt_fullscreen_persistant = true;
   bool opt_fullscreen = opt_fullscreen_persistant;
   static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
+
+  bool selectingBoxEntity = false;
+  bool selectingCircleEntity = false;
 
   // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
   // because it would be confusing to have two docking targets within each others.
@@ -164,8 +168,6 @@ void ImGuiLayer::Begin()
     if (InputManager::Get()->CurrentPosition().point_x >= renderPos.x && InputManager::Get()->CurrentPosition().point_x <= width
         && InputManager::Get()->CurrentPosition().point_y >= renderPos.y && InputManager::Get()->CurrentPosition().point_y <= height)
     {
-        //std::cout << "inside viewport" << std::endl;
-
         float cameraWidth = Camera::editorCamera->Max().x - Camera::editorCamera->Min().x;
         float cameraHeight = Camera::editorCamera->Max().y - Camera::editorCamera->Min().y;
         float cursorViewPortDistanceX = InputManager::Get()->CurrentPosition().point_x - renderPos.x;
@@ -173,8 +175,8 @@ void ImGuiLayer::Begin()
         float newCursorX = (cursorViewPortDistanceX / renderSize.x) * cameraWidth + Camera::editorCamera->Min().x;
         float newCursorY = Camera::editorCamera->Max().y - (cursorViewPortDistanceY / renderSize.y) * cameraWidth;
 
-        InputManager::Get()->SetCurrentPosition(Point(newCursorX, newCursorY));
-        //std::cout << "camera min x is " << Camera::editorCamera->Min().x << " and camera min y is " << Camera::editorCamera->Min().y << std::endl;
+        InputManager::Get()->SetCurrentCameraPosition(Point(newCursorX, newCursorY));
+
         //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -261,7 +263,7 @@ void ImGuiLayer::Begin()
 	  static int entityIndex = 0;                         
 	  const char* entityLabel = entityList[entityIndex];  // label for preview before selecting from combo
 
-	  if (ImGui::BeginCombo("entity", entityLabel, flags))
+	  if (ImGui::BeginCombo("select entity", entityLabel, flags))
 	  {
 		  for (int n = 0; n < IM_ARRAYSIZE(entityList); n++)
 		  {
@@ -374,6 +376,52 @@ void ImGuiLayer::Begin()
       */
 
       ImGui::End();
+  }
+  // selecting entities to edit their properties
+  {
+	  if (InputManager::Get()->EntitySelected())
+	  {
+		  ImGui::Begin("Edit Entity's Properties");
+		  ImGui::Text("");
+
+		  env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
+		  {
+			  if (id1.index == InputManager::Get()->EntityIDSelected())
+			  {
+				  std::string text = "edit entity ";
+				  text += std::to_string(id1.index);
+				  text += "'s properties";
+				  ImGui::Text(text.c_str());
+				  ImGui::Text("");
+
+				  ImGui::Text("transform");
+				  ImGui::DragFloat3("old pos", (float*)(&(t1.old_position)), 0.01f);
+				  ImGui::DragFloat3("pos", (float*)(&(t1.position)), 0.01f);
+				  ImGui::DragFloat3("size", (float*)(&(t1.scale)), 0.01f);
+				  ImGui::DragFloat3("rot", (float*)(&(t1.rotation)), 0.01f);
+
+				  ImGui::Text("rigidbody");
+				  ImGui::DragFloat2("direction", (float*)(&(r1.Direction)), 0.01f);
+				  ImGui::DragFloat2("velocity", (float*)(&(r1.Velocity)), 0.01f);
+				  ImGui::DragFloat2("reflected vector", (float*)(&(r1.ReflectedVector)), 0.01f);
+				  ImGui::DragFloat2("acceleration", (float*)(&(r1.Acceleration)), 0.01f);
+				  ImGui::DragFloat("mass", (float*)(&(r1.Mass)), 0.01f);
+				  ImGui::DragFloat("friction", (float*)(&(r1.Friction)), 0.01f);
+				  ImGui::DragFloat("movespeed", (float*)(&(r1.Movespeed)), 0.01f);
+				  ImGui::DragFloat("inherent acceleration", (float*)(&(r1.inherentAcceleration)), 0.01f);
+				  ImGui::Checkbox("gravity", &(r1.hasGravity));
+				  ImGui::Checkbox("moveable", &(r1.isMoveable));
+
+				  ImGui::Text("collider");
+				  ImGui::DragFloat2("inter point", (float*)(&(c1.interPoint)), 0.01f);
+				  ImGui::DragFloat2("center", (float*)(&(c1.center)), 0.01f);
+				  ImGui::DragFloat2("size", (float*)(&(c1.size)), 0.01f);
+				  ImGui::Checkbox("collidable", &(c1.isCollideable));
+			  }
+
+		  });
+		  ImGui::End();
+	  }
   }
 
   ImGui::End();
