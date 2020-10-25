@@ -381,16 +381,15 @@ void ImGuiLayer::Begin()
   {
 	  if (InputManager::Get()->EntitySelected())
 	  {
-		  ImGui::Begin("Edit Entity's Properties");
-		  ImGui::Text("");
+		  ImGui::Begin("Properties Inspector");
 
 		  env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
 		  {
 			  if (id1.index == InputManager::Get()->EntityIDSelected())
 			  {
-				  std::string text = "edit entity ";
+				  std::string text = "Edit Entity ";
 				  text += std::to_string(id1.index);
-				  text += "'s properties";
+				  text += "'s Properties";
 				  ImGui::Text(text.c_str());
 				  ImGui::Text("");
 
