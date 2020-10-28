@@ -2,6 +2,7 @@
 #include "Core/Math/Vector.h"
 #include "CollisionSystem.h"
 #include "Components/Collider.h"
+#include "ECS/ECSModule.h"
 
 namespace DeltaEngine
 {

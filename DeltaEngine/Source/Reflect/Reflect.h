@@ -84,6 +84,7 @@ RTTR_REGISTRATION
     .property( "inherent_acceleration", &RigidBody::inherentAcceleration )
     .property( "has_gravity", &RigidBody::hasGravity )
     .property( "is_moveable", &RigidBody::isMoveable )
+    .property( "Restitution", &RigidBody::Restitution )
     .method( "serialize", &RigidBody::Serialize )
     .method( "deserialize", &RigidBody::Deserialize );
 

@@ -1,8 +1,8 @@
 #pragma once
-#include <prettywriter.h> // for stringify JSON
-#include <filewritestream.h>
-#include <filereadstream.h>
-#include <document.h>
+#include <rapidjson/prettywriter.h> // for stringify JSON
+#include <rapidjson/filewritestream.h>
+#include <rapidjson/filereadstream.h>
+#include <rapidjson/document.h>
 #include <rttr/type>
 
 namespace DeltaEngine

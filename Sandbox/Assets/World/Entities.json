@@ -41,11 +41,12 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "mass": 25.0,
+                "mass": 1.0,
                 "friction": 0.9700000286102295,
-                "movespeed": 3.0,
-                "inherent_acceleration": 1.100000023841858,
-                "has_gravity": true,
+                "movespeed": 2.0,
+                "inherent_acceleration": 1.200000023841858,
+                "Restitution": 2.0,
+                "has_gravity": false,
                 "is_moveable": true
             },
             "collider": {
@@ -61,7 +62,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "type": "box",
+                "type": "circle",
                 "is_collideable": true
             },
             "input": {
@@ -110,10 +111,11 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "mass": 25.0,
+                "mass": 1.0,
                 "friction": 0.9700000286102295,
                 "movespeed": 4.0,
                 "inherent_acceleration": 4.5,
+                "Restitution": 1.0,
                 "has_gravity": false,
                 "is_moveable": true
             },
@@ -130,7 +132,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "type": "box",
+                "type": "circle",
                 "is_collideable": true
             }
         },
@@ -175,10 +177,11 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "mass": 100000.0,
+                "mass": 10.0,
                 "friction": 0.9700000286102295,
                 "movespeed": 3.000000596046449,
                 "inherent_acceleration": 3.0,
+                "Restitution": 1.0,
                 "has_gravity": false,
                 "is_moveable": false
             },
@@ -240,12 +243,13 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "mass": 10.0,
+                "mass": 100.0,
                 "friction": 0.9700000286102295,
-                "movespeed": 100.0,
+                "movespeed": 3.0,
                 "inherent_acceleration": 3.0,
-                "has_gravity": true,
-                "is_moveable": true
+                "Restitution": 1.0,
+                "has_gravity": false,
+                "is_moveable": false
             },
             "collider": {
                 "inter_point": {
@@ -309,6 +313,7 @@
                 "friction": 0.9700000286102295,
                 "movespeed": 0.0,
                 "inherent_acceleration": 3.0,
+                "Restitution": 2.0,
                 "has_gravity": false,
                 "is_moveable": true
             },
@@ -374,6 +379,7 @@
                 "friction": 0.9700000286102295,
                 "movespeed": 5.0,
                 "inherent_acceleration": 3.0,
+                "Restitution": 1.0,
                 "has_gravity": false,
                 "is_moveable": true
             },

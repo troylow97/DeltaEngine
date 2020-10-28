@@ -12,7 +12,7 @@ void InputSystem::Update()
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
       i1.previousKey = DEVK_A;
-      r1.Velocity = { -1, 0 };
+      r1.Direction = Vector2::left();
     } );
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
     {
@@ -23,7 +23,19 @@ void InputSystem::Update()
       s.m_FlipX = true;
     } );
   }
-  else if ( InputManager::Get()->IsKeyReleased( DEVK_A ) )
+  else
+  {
+      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+      {
+            if (i1.previousKey = DEVK_A && r1.Direction.x < 0)
+            {
+                r1.Direction *= 0.90f;
+            }
+      });
+  }
+
+
+  if ( InputManager::Get()->IsKeyReleased( DEVK_A ) )
   {
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
     {
@@ -35,7 +47,7 @@ void InputSystem::Update()
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
       i1.previousKey = DEVK_D;
-      r1.Velocity = { 1, 0 };
+      r1.Direction = Vector2::right();
     } );
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
     {
@@ -46,7 +58,18 @@ void InputSystem::Update()
       s.m_FlipX = false;
     } );
   }
-  else if ( InputManager::Get()->IsKeyReleased( DEVK_D ) )
+  else
+  {
+      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+          {
+              if (i1.previousKey = DEVK_D && r1.Direction.x > 0)
+              {
+                  r1.Direction *= 0.90f;
+              }
+          });
+  }
+
+  if ( InputManager::Get()->IsKeyReleased( DEVK_D ) )
   {
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
     {
@@ -58,17 +81,39 @@ void InputSystem::Update()
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
       i1.previousKey = DEVK_W;
-      r1.Velocity = { 0, 1 };
+      r1.Direction = Vector2::up();
     } );
   }
+  else
+  {
+      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+          {
+              if (i1.previousKey = DEVK_D && r1.Direction.y > 0)
+              {
+                  r1.Direction *= 0.90f;
+              }
+          });
+  }
+
   if ( InputManager::Get()->IsKeyPressed( DEVK_S ) )
   {
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
       i1.previousKey = DEVK_S;
-      r1.Velocity = { 0, -1 };
+      r1.Direction = Vector2::down();
     } );
   }
+  else
+  {
+      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+          {
+              if (i1.previousKey = DEVK_D && r1.Direction.y < 0)
+              {
+                  r1.Direction *= 0.90f;
+              }
+          });
+  }
+
   if ( InputManager::Get()->IsKeyTriggered( DEVK_BACKSLASH ) ) // '\'
   {
     if ( InputManager::Get()->GetShowLine() == false )

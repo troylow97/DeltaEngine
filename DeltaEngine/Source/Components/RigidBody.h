@@ -4,20 +4,21 @@
 #include "Components.h"
 #include <rapidjson/prettywriter.h>
 #include <rapidjson/filewritestream.h>
+#include  "Physics/Force.h"
 
 namespace DeltaEngine
 {
 struct RigidBody
 {
+  Force Friction;
   Vector2 Direction;
   Vector2 Velocity;
   Vector2 ReflectedVector;
   Vector2 Acceleration;
   float Mass;
-  float Friction;
   float Movespeed;
   float inherentAcceleration;
-  float Restituition; //not used
+  float Restitution; //not used
   bool hasGravity;
   bool isMoveable;
 
@@ -25,7 +26,6 @@ struct RigidBody
   RigidBody() :
     Velocity { 0,0 },
     Acceleration { 0,0 },
-    Friction { 0.97f },
     inherentAcceleration { 3.0f },
     hasGravity { false },
     isMoveable { true }

@@ -69,89 +69,35 @@ namespace DeltaEngine
 		float tx1 = (aabb.min.x - r.m_pt0.x) * r.m_dir.x;
 		float tx2 = (aabb.max.x - r.m_pt0.x) * r.m_dir.x;
 
-		float tmin = Math::math_max(tx1, tx2);
-		float tmax = Math::math_min(tx1, tx2);
+		float tmin = Math::MathMax(tx1, tx2);
+		float tmax = Math::MathMin(tx1, tx2);
 
 		float ty1 = (aabb.min.y - r.m_pt0.y) * r.m_dir.y;
 		float ty2 = (aabb.max.y - r.m_pt0.y) * r.m_dir.y;
 
-		tmin = Math::math_max(tmin, Math::math_min(ty1, ty2));
-		tmax = Math::math_min(tmax, Math::math_max(ty1, ty2));
+		tmin = Math::MathMax(tmin, Math::MathMin(ty1, ty2));
+		tmax = Math::MathMin(tmax, Math::MathMax(ty1, ty2));
 
 		return tmax >= tmin;
 	}
 
 	bool CollisionIntersection_RectCircle(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& m)
 	{
-		//Not complete
-		if (col1.type != ColliderType::BOX)
-			std::cout << "WRONG!";
-		if (col2.type != ColliderType::CIRCLE)
-			std::cout << "WRONG!";
-		Vector2 Center1 = col1.center;
-		Vector2 Size1 = col1.size;
-		Vector2 Center2 = col2.center;
-		Vector2 Size2 = col2.size;
-		Vector2 TopLeft, TopRight, BotLeft, BotRight, TopMiddle, BotMiddle, LeftMiddle, RightMiddle;
-		float HalfWidth = Size1.x / 2;
-		float HalfHeight = Size1.y / 2;
-		float radius = Size2.x;
-		TopLeft = { Center1.x - HalfWidth, Center1.y + HalfHeight };
-		TopRight = { Center1.x + HalfWidth, Center1.y + HalfHeight };
-		BotLeft = { Center1.x - HalfWidth ,Center1.y - HalfHeight };
-		BotRight = { Center1.x + HalfWidth , Center1.y - HalfHeight };
-
-		LineSegment Top{ TopRight, TopLeft};
-		LineSegment Right{ TopRight,BotRight };
-		LineSegment Left{ TopLeft,BotLeft };
-		LineSegment Bot{ BotRight,BotLeft };
-
-		//if (CollisionIntersection_CircleLineSegment(col2, r2.Velocity, Top, m))
-		//{
-		//	//r2.ReflectedVector = Top.m_normal;
-		//	std::cout << "A" << std::endl;
-		//	return true;
-		//}
-		//if (CollisionIntersection_CircleLineSegment(col1, r1.Velocity, Bot, m))
-		//{
-		//	r2.ReflectedVector = Bot.m_normal;
-		//	std::cout << "B" << std::endl;
-		//	return true;
-		//}
-		//if (CollisionIntersection_CircleLineSegment(col1, r1.Velocity, Left, m))
-		//{
-		//	r2.ReflectedVector = Left.m_normal;
-		//	std::cout << "C" << std::endl;
-		//	return true;
-		//}
-		//if (CollisionIntersection_CircleLineSegment(col1,r1.Velocity,Right,m))
-		//{
-		//	r2.ReflectedVector = Right.m_normal;
-		//	std::cout << "D" << std::endl;
-		//	return true;
-		//}
-		Vector2 rel_vel = r2.Velocity - r1.Velocity;
-		Vector2 rect_center = Center1;
-		Vector2 circle_center = Center2;
-		rect_center += rel_vel;
-		circle_center += rel_vel;
+		Vector2 rect_center = col1.center;
+		Vector2 circle_center = col2.center;
+		//rect_center += rel_vel;
+		//circle_center += rel_vel;
+		Vector2 dist = Normalise(rect_center - circle_center);
+		Vector2 distNorm;
+		Vector2 CircleTip = col2.center + (distNorm) * col2.size;
 		
-		Vector2 dist(rect_center - circle_center);
-		Vector2 CircleTip;
-		CircleTip = Normalise(dist);
-		CircleTip *= Size2.x;
-		CircleTip += circle_center;
-		
-		if (CollisionIntersection_RectPoint(rect_center, Size1, CircleTip))
+		if (CollisionIntersection_RectPoint(rect_center, col1.size, CircleTip))
 		{
-			Vector2 ReflectVec;
-			Vector2 ReflectVecTip;
-			ReflectVecTip.x = circle_center.x + 2 * (circle_center.x - CircleTip.x);
-			ReflectVecTip.y = circle_center.y - CircleTip.y;
-			
-			ReflectVec = ReflectVecTip - CircleTip;
-			r1.ReflectedVector = Normalise(dist);
-			r2.ReflectedVector = ReflectVec;
+			//col1.collided_spot = { -10,-10 };
+			//col2.collided_spot = { -10,-10 };
+			r1.ReflectedVector = distNorm;
+			r2.ReflectedVector = -distNorm;
+			std::cout << "Intersect rect circle!\n";
 			return true;
 		}
 		return false;
@@ -527,7 +473,8 @@ namespace DeltaEngine
 			//intersection when both circle collides
 			col1.interPoint = col1.center + v1 * m.interTime;
 			col2.interPoint = col2.center + v2 * m.interTime;
-
+			m.normal = col1.interPoint - col2.interPoint;
+			m.normal = Normalise(m.normal);
 			return true;
 		}
 		return false;
@@ -596,12 +543,15 @@ namespace DeltaEngine
 		float HalfHeight = Size1.y / 2;
 		TopLeft.x = Center1.x - HalfWidth;
 		TopLeft.y = Center1.y + HalfHeight;
+
 		TopRight.x = Center1.x + HalfWidth;
 		TopRight.y = Center1.y + HalfHeight;
+
 		BotLeft.x = Center1.x - HalfWidth;
 		BotLeft.y = Center1.y - HalfHeight;
+
 		BotRight.x = Center1.x + HalfWidth;
-		BotRight.y = Center1.y - HalfWidth;
+		BotRight.y = Center1.y - HalfHeight;
 
 		if (Center2.x < TopLeft.x) return false;
 		if (Center2.x > TopRight.x) return false;
@@ -648,9 +598,9 @@ namespace DeltaEngine
 			if (aabb1.min.x > aabb2.max.x) // check A min < B max
 				return false;
 			if (aabb1.max.x < aabb2.min.x) // check A max < B min
-				tFirst = Math::math_max((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tFirst);
+				tFirst = Math::MathMax((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tFirst);
 			if (aabb1.min.x < aabb2.max.x) // check A min < B Max
-				tLast = Math::math_min((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tLast);
+				tLast = Math::MathMin((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tLast);
 		}
 		else if (RelativeVel.x > 0.0f)  //caculate the x axis of the AABB when RelativeVel is < 0
 		{
@@ -658,9 +608,9 @@ namespace DeltaEngine
 			if (aabb1.max.x < aabb2.min.x) //check A max < B min
 				return false;
 			if (aabb1.min.x > aabb2.max.x) //check A min > B max
-				tFirst = Math::math_max((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tFirst);
+				tFirst = Math::MathMax((aabb1.min.x - aabb2.max.x) / RelativeVel.x, tFirst);
 			if (aabb1.max.x > aabb2.min.x) //check A min > B min
-				tLast = Math::math_min((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tLast);
+				tLast = Math::MathMin((aabb1.max.x - aabb2.min.x) / RelativeVel.x, tLast);
 		}
 		// checking for case 3
 		else if ((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x))
@@ -676,9 +626,9 @@ namespace DeltaEngine
 			if (aabb1.min.y > aabb2.max.y) // check A min < B max
 				return false;
 			if (aabb1.max.y < aabb2.min.y) // check A max < B min
-				tFirst = Math::math_max((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tFirst);
+				tFirst = Math::MathMax((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tFirst);
 			if (aabb1.min.y < aabb2.max.y) // check A min < B Max
-				tLast = Math::math_min((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tLast);
+				tLast = Math::MathMin((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tLast);
 		}
 		else if (RelativeVel.y > 0.0f)
 		{
@@ -686,9 +636,9 @@ namespace DeltaEngine
 			if (aabb1.max.y < aabb2.min.y) //check A max < B min
 				return false;
 			if (aabb1.min.y > aabb2.max.y) //check A min > B max
-				tFirst = Math::math_max((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tFirst);
+				tFirst = Math::MathMax((aabb1.min.y - aabb2.max.y) / RelativeVel.y, tFirst);
 			if (aabb1.max.y > aabb2.min.y) //check A min > B min
-				tLast = Math::math_min((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tLast);
+				tLast = Math::MathMin((aabb1.max.y - aabb2.min.y) / RelativeVel.y, tLast);
 		}
 		// checking for case 3
 		else if ((aabb1.max.y < aabb2.min.y) || (aabb1.min.y > aabb2.max.y))
@@ -705,31 +655,42 @@ namespace DeltaEngine
 	bool CollisionIntersection_RayCircle(const Ray& ray, Collider& col2,Manifold& manifold)
 	{
 		Circle circle{ col2.center,col2.size.x };
-		float a = Vector2DotProduct(ray.m_dir, ray.m_dir);
-		float b = Vector2DotProduct((circle.m_center - ray.m_pt0) * -2, ray.m_dir);
-		float c = Vector2DotProduct(circle.m_center - ray.m_pt0, circle.m_center - ray.m_pt0) - circle.m_radius * circle.m_radius;
-		float det = b * b - (4 * a * c); // b^2 - 4ac
-		
-		// If b^2-4ac < 0, no collision
-		if (det < -std::numeric_limits<float>::epsilon())
-			return false;
+	//Calculate end point of ray
+	Vector2 Be = ray.m_pt0 + ray.m_dir;
 
-		// If b^2-4ac = 0, circle graze past each other
-		if (det > -(std::numeric_limits<float>::epsilon()) && det < std::numeric_limits<float>::epsilon())
-			manifold.interTime = -b / (2 * a);
-		else // b^2-4ac > 0
-		{
-			// Calculate the collision time
-			float ti0 = (-b - sqrt(b * b - (4.0f * a * c))) / (2.0f * a);
-			float ti1 = (-b + sqrt(b * b - (4.0f * a * c))) / (2.0f * a);
-			manifold.interTime = Math::math_min(ti0, ti1);
-		}
-		if (manifold.interTime >= 0.0f && manifold.interTime <= 1.0f) // within 0 and 1 seconds
+	//ray.m_dir is the velocity, use it to get its normalised version
+	Vector2 dir = ray.m_dir;
+	Vector2 normalisedVelocity = Normalise(dir);
+	Vector2 BsC = circle.m_center - ray.m_pt0;
+
+	// check if circle is behind ray origin
+	float m = Vector2DotProduct(BsC, normalisedVelocity);
+	if ((m < 0) && (Vector2Length(BsC) >= circle.m_radius))
+	{
+		return 0;
+	}
+
+	// check if ray within circle radius range
+	float n2 = (BsC.x * BsC.x + BsC.y * BsC.y) - (m * m);
+	if (n2 <= (circle.m_radius * circle.m_radius))
+	{
+		float s2 = sqrtf((circle.m_radius * circle.m_radius) - n2);
+		float rayLength = Vector2Length(ray.m_dir);
+		float ti0 = (m - s2) / rayLength;
+		float ti1 = (m + s2) / rayLength;
+
+		if (ti0 > ti1)
+			manifold.interTime = ti1;
+		else
+			manifold.interTime = ti0;
+
+		if (manifold.interTime > 0 && manifold.interTime < 1)
 		{
 			std::cout << "INTERSECT!" << std::endl;
 			return true;
 		}
-		return false;
+	}
+	return false;
 	}
 //------------
 
@@ -761,7 +722,7 @@ namespace DeltaEngine
 		{
 			if (CollisionIntersection_RectRect(col1, r1.Velocity, col2, r2.Velocity))
 			{
-				AABBvsAABB_Manifold(manifold);
+				AABBvsAABB_Manifold(col1,r1,col2,r2,manifold);
 				return true;
 			}
 			return false;
@@ -778,9 +739,6 @@ namespace DeltaEngine
 	}
 	bool CollisionIntersection_Sub_Circle(Collider& col1, RigidBody& r1,Collider& col2, RigidBody& r2,Manifold& manifold)
 	{
-		UNREFERENCED_PARAMETER(r1);
-		UNREFERENCED_PARAMETER(r2);
-		float intertime = 0;
 		ColliderType type2 = col2.type;
 		switch (type2)
 		{
@@ -843,11 +801,8 @@ namespace DeltaEngine
 		}
 	}
 
-	bool AABBvsAABB_Manifold(Manifold& m)
+	bool AABBvsAABB_Manifold(Collider& A,RigidBody& r1, Collider& B, RigidBody& r2, Manifold& m)
 	{
-		Collider A = m.A;
-		Collider B = m.B;
-
 		// Vector from A to B
 		Vector2 n = A.center - B.center;
 		Vector2 normalised_n = Normalise(n);
@@ -862,59 +817,78 @@ namespace DeltaEngine
 		// Calculate overlap on x axis
 		float x_overlap = a_extent + b_extent - abs(n.x);
 
-		// Calculate half extents along y axis for each object
-		float a_extent2 = (abox.max.y - abox.min.y) / 2;
-		float b_extent2 = (bbox.max.y - bbox.min.y) / 2;
-
-		// Calculate overlap on y axis
-		float y_overlap = a_extent2 + b_extent2 - abs(n.y);
-
 		// SAT test on x axis
 		if (x_overlap > 0)
 		{
+			// Calculate half extents along y axis for each object
+			float a_extent2 = (abox.max.y - abox.min.y) / 2;
+			float b_extent2 = (bbox.max.y - bbox.min.y) / 2;
+
+			// Calculate overlap on y axis
+			float y_overlap = a_extent2 + b_extent2 - abs(n.y);
+			//SAT Test on Y axis
+			if (y_overlap > 0) 
+			{
 				// SAT test on y axis
 				if (y_overlap > 0)
 				{
 					// Find out which axis is axis of least penetration
-					if (x_overlap > y_overlap)
+					//if (x_overlap > y_overlap) // TC: Suspect this logic was wrong implementation of comment above
+					if (x_overlap < y_overlap)
 					{
-						// Point towards B knowing that n points from A to B
 						if (n.x < 0)
-							m.normal = Vector2{ -1,0 };
+							m.normal = { -1,0 };
 						else
-							m.normal = Vector2{ 0,0 };
-							m.penetration = x_overlap;
-							return true;
+							m.normal = { 1,0 };
+
+						if (!r1.isMoveable || !r2.isMoveable)
+						{
+							if (A.center.x > B.center.x)
+							{
+								A.collided_spot = { -1, 0 };
+								B.collided_spot = { 1, 0 };
+							}
+							else
+							{
+								A.collided_spot = { 1, 0 };
+								B.collided_spot = { -1, 0 };
+							}
+						}
+
+						m.penetration = x_overlap;
+						return true;
 					}
-					else
+					else // x overlap is greater, so assume is a Y-Axis collision
 					{
 						// Point toward B knowing that n points from A to B
+						// TC: Create either an up or a down vector.
 						if (n.y < 0)
-							m.normal = Vector2{ 0,-1 };
+							m.normal = { 0,-1 };
 						else
-							m.normal = Vector2{ 0, 1 };
-							m.penetration = y_overlap;
-							return true;
+							m.normal = { 0,1 };
+
+						if (!r1.isMoveable || !r2.isMoveable)
+						{
+							if (A.center.y > B.center.y)
+							{
+								A.collided_spot = { 0,-1 };
+								B.collided_spot = { 0, 1 };
+							}
+							else
+							{
+								A.collided_spot = { 0, 1 };
+								B.collided_spot = { 0,-1 };
+							}
+						}
+
+						m.penetration = y_overlap;
+						return true;
 					}
 				}
-				else
-				{
-					std::cout << "Case 1" << std::endl;
-					m.normal = Vector2{ normalised_n.x,0 };
-					m.penetration = x_overlap;
-				}
+			}
 		}
-		// SAT test on y axis
-		if (y_overlap > 0)
-		{
-			// Point toward B knowing that n points from A to B
-			if (n.y < 0)
-				m.normal = Vector2{ 0,-1 };
-			else
-				m.normal = Vector2{ 0, 1 };
-			m.penetration = y_overlap;
-			return true;
-		}
+		A.collided_spot = Vector2::zero();
+		B.collided_spot = Vector2::zero();
 		return false;
 	}
 
