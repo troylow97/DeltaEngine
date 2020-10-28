@@ -170,18 +170,16 @@ void ImGuiLayer::Begin()
         float cursorViewPortDistanceX = InputManager::Get()->CurrentPosition().point_x - renderPos.x;
         float cursorViewPortDistanceY = InputManager::Get()->CurrentPosition().point_y - renderPos.y;
         float newCursorX = (cursorViewPortDistanceX / renderSize.x) * cameraWidth + Camera::editorCamera->Min().x;
-        //float newCursorY = (cursorViewPortDistanceY / renderSize.y) * cameraHeight + Camera::editorCamera->Min().y;
-        //std::cout << "rendorPosY is " << renderPos.y << std::endl;
-        //std::cout << "InputManager::Get()->CurrentPosition().point_y is " << InputManager::Get()->CurrentPosition().point_y << std::endl;
-        //std::cout << "cursorViewPortDistanceY is " << cursorViewPortDistanceY << std::endl;
-        //std::cout << "renderSizeY is " << renderSize.y << std::endl;
-        //std::cout << "renderSizeY is " << renderSize.y << std::endl;
         float newCursorY = Camera::editorCamera->Max().y - (cursorViewPortDistanceY / renderSize.y) * cameraHeight;
 
         InputManager::Get()->SetCurrentCameraPosition(Point(newCursorX, newCursorY));
-        //std::cout << "max y is " << Camera::editorCamera->Max().y << " min y is " << Camera::editorCamera->Min().y << std::endl;
         //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
     }   
+    else
+    {
+        InputManager::Get()->SetCurrentCameraPosition(InputManager::Get()->CurrentPosition());
+        //std::cout << "x is " << InputManager::Get()->CurrentCameraPosition().point_x << " and y is " << InputManager::Get()->CurrentCameraPosition().point_y << std::endl;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     Camera::editorCamera->SetAspectRatio( viewportPanelSize.x, viewportPanelSize.y );
     Camera::editorCamera->SetViewportSize( viewportPanelSize.x );
