@@ -85,9 +85,6 @@ void ImGuiLayer::Begin()
   bool opt_fullscreen = opt_fullscreen_persistant;
   static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
 
-  bool selectingBoxEntity = false;
-  bool selectingCircleEntity = false;
-
   // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
   // because it would be confusing to have two docking targets within each others.
   ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
@@ -173,12 +170,18 @@ void ImGuiLayer::Begin()
         float cursorViewPortDistanceX = InputManager::Get()->CurrentPosition().point_x - renderPos.x;
         float cursorViewPortDistanceY = InputManager::Get()->CurrentPosition().point_y - renderPos.y;
         float newCursorX = (cursorViewPortDistanceX / renderSize.x) * cameraWidth + Camera::editorCamera->Min().x;
-        float newCursorY = Camera::editorCamera->Max().y - (cursorViewPortDistanceY / renderSize.y) * cameraWidth;
+        //float newCursorY = (cursorViewPortDistanceY / renderSize.y) * cameraHeight + Camera::editorCamera->Min().y;
+        //std::cout << "rendorPosY is " << renderPos.y << std::endl;
+        //std::cout << "InputManager::Get()->CurrentPosition().point_y is " << InputManager::Get()->CurrentPosition().point_y << std::endl;
+        //std::cout << "cursorViewPortDistanceY is " << cursorViewPortDistanceY << std::endl;
+        //std::cout << "renderSizeY is " << renderSize.y << std::endl;
+        //std::cout << "renderSizeY is " << renderSize.y << std::endl;
+        float newCursorY = Camera::editorCamera->Max().y - (cursorViewPortDistanceY / renderSize.y) * cameraHeight;
 
         InputManager::Get()->SetCurrentCameraPosition(Point(newCursorX, newCursorY));
-
+        //std::cout << "max y is " << Camera::editorCamera->Max().y << " min y is " << Camera::editorCamera->Min().y << std::endl;
         //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
-    }
+    }   
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     Camera::editorCamera->SetAspectRatio( viewportPanelSize.x, viewportPanelSize.y );
     Camera::editorCamera->SetViewportSize( viewportPanelSize.x );
@@ -255,125 +258,105 @@ void ImGuiLayer::Begin()
   }
   // entities' properties
   {
-      ImGui::Begin( "Entities" );
-      ImGui::Text( "Edit Entities' Properties" );
+      ImGui::Begin( "Hierarchy" );
 
-	  static ImGuiComboFlags flags = 0;
-	  const char* entityList[] = { "entity 0", "entity 1", "entity 2", "entity 3", "entity 4", "entity 5", "entity 6" };
-	  static int entityIndex = 0;                         
-	  const char* entityLabel = entityList[entityIndex];  // label for preview before selecting from combo
+      if (ImGui::TreeNode("Entities"))
+      {
+          env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
+              {
+                  static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
+                  
+                  ImGuiTreeNodeFlags node_flags = base_flags;
+                  node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
 
-	  if (ImGui::BeginCombo("select entity", entityLabel, flags))
-	  {
-		  for (int n = 0; n < IM_ARRAYSIZE(entityList); n++)
-		  {
-			  const bool is_selected = (entityIndex == n);
-			  if (ImGui::Selectable(entityList[n], is_selected))
-			  {
-				  entityIndex = n;
-			  }
-			  // set the initial focus when opening the combo (scrolling + keyboard navigation focus)
-			  if (is_selected)
-			  {
-				  ImGui::SetItemDefaultFocus();
-			  }
-		  }
-		  ImGui::EndCombo();
-	  }
+                  ImGui::TreeNodeEx((void*)(intptr_t)id1.index, node_flags, "entity %d", id1.index);
+                  if (ImGui::IsItemClicked())
+                  {
+                      InputManager::Get()->SetEntitySelected(true);
+                      InputManager::Get()->SetEntityIDSelected(id1.index);
+                  }
+              });
+          ImGui::TreePop();
+      }
+      if (ImGui::TreeNode("Environment"))
+      {
+          if (ImGui::TreeNode("NOTHING HERE"))
+          {
+              ImGui::Text("i told you there's nothing already lol");
+              ImGui::TextColored(ImVec4(1.0f, 0.0f, 1.0f, 1.0f), "pink");
+              ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "yellow");
+              ImGui::TextColored(ImVec4(0.25f, 0.875f, 0.8125f, 1.0f), "clara's fav color is turquoise");
+              ImGui::TreePop();
+          }
+          ImGui::TreePop();
+      }
+      if (ImGui::TreeNode("Segments"))
+      {
+          for (int i = 0; i < 6; i++)
+          {
+              static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
 
-	  ImGui::Text("");
+              ImGuiTreeNodeFlags node_flags = base_flags;
+              node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
 
-      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
-      {  
-         //rttr::type t = rttr::type::get_by_name( "DeltaEngine::Transform" ); 
-         //std::string text = "ENTITY ";
-         //text += std::to_string(id1.index);
-         //ImGui::Text("");
-         //ImGui::Text(text.c_str());
-		 if (id1.index == entityIndex)
-		 {
-			 ImGui::Text("transform");
-			 ImGui::DragFloat3("old pos", (float*)(&(t1.old_position)), 0.01f);
-			 ImGui::DragFloat3("pos", (float*)(&(t1.position)), 0.01f);
-			 ImGui::DragFloat3("size", (float*)(&(t1.scale)), 0.01f);
-			 ImGui::DragFloat3("rot", (float*)(&(t1.rotation)), 0.01f);
-
-			 ImGui::Text("rigidbody");
-			 ImGui::DragFloat2("direction", (float*)(&(r1.Direction)), 0.01f);
-			 ImGui::DragFloat2("velocity", (float*)(&(r1.Velocity)), 0.01f);
-			 ImGui::DragFloat2("reflected vector", (float*)(&(r1.ReflectedVector)), 0.01f);
-			 ImGui::DragFloat2("acceleration", (float*)(&(r1.Acceleration)), 0.01f);
-			 ImGui::DragFloat("mass", (float*)(&(r1.Mass)), 0.01f);
-			 ImGui::DragFloat("friction", (float*)(&(r1.Friction)), 0.01f);
-			 ImGui::DragFloat("movespeed", (float*)(&(r1.Movespeed)), 0.01f);
-			 ImGui::DragFloat("inherent acceleration", (float*)(&(r1.inherentAcceleration)), 0.01f);
-			 ImGui::Checkbox("gravity", &(r1.hasGravity));
-			 ImGui::Checkbox("moveable", &(r1.isMoveable));
-
-			 ImGui::Text("collider");
-			 ImGui::DragFloat2("inter point", (float*)(&(c1.interPoint)), 0.01f);
-			 ImGui::DragFloat2("center", (float*)(&(c1.center)), 0.01f);
-			 ImGui::DragFloat2("size", (float*)(&(c1.size)), 0.01f);
-			 ImGui::Checkbox("collidable", &(c1.isCollideable));
-		 }
-
-      } );
-      /* 
-         Vector2 Center1 = col1.center;
-         Vector2 Size1 = col1.size;
-         Vector2 Center2 = col2.center;
-         Vector2 Size2 = col2.size;
+              ImGui::TreeNodeEx((void*)(intptr_t)i, node_flags, "fake one sike %d", i);
+          }
+          ImGui::TreePop();
+      }
+         //Vector2 Center1 = col1.center;
+         //Vector2 Size1 = col1.size;
+         //Vector2 Center2 = col2.center;
+         //Vector2 Size2 = col2.size;
          ////////////////////////////////////////////////
-         rttr tutorial
-         https://www.rttr.org/doc/master/five_minute_tutorial_page.html
-         
-         type t = type::get_by_name("ns_3d::node");
-
-         // will create an instance of ns_3d::node as std::shared_ptr<ns_3d::node>
-         variant var = t.create({std::string("MyNode")});
-         std::cout << var.get_type().get_name() << "\n";
-
-         // sets/gets a property
-         property prop = t.get_property("name");
-
-         // remark: you can also set a member, although the instance is of type: 'std::shared_ptr<T>'
-         prop.set_value(var, std::string("A New Name"));
-         std::cout << prop.get_value(var).to_string() << "\n";
-
-         // retrieve the stored meta data of the property
-         std::cout << "MetaData TOOL_TIP: " << prop.get_metadata("TOOL_TIP").to_string() << "\n";
-
-         // invoke a method
-         method meth = t.get_method("set_visible");
-
-         // remark: the 2nd argument will be provided automatically, because it has a default argument
-         variant ret = meth.invoke(var, true);
-
-         // a valid return value indicates a successful invoke
-         std::cout << std::boolalpha << "invoke of method 'set_visible' was successfully: " << ret.is_valid() << "\n\n";
-
-         // retrieve all properties
-         std::cout << "'node' properties:" << "\n";
-         for (auto& prop : t.get_properties())
-         {
-             std::cout << "  name: " << prop.get_name() << "\n";
-             std::cout << "    type: " << prop.get_type().get_name() << "\n";
-         }
-         std::cout << "\n";
-
-         // retrieve all methods
-         std::cout << "'node' methods:" << "\n";
-         for (auto& meth : t.get_methods())
-         {
-             std::cout << "  name: " << meth.get_name();
-             std::cout << "  signature: " << meth.get_signature() << "\n";
-             for (auto& info : meth.get_parameter_infos())
-             {
-                 std::cout << "    param " << info.get_index() << ": name: "<< info.get_name() << "\n";
-             }
-         }
-         return 0;
-      */
+         //rttr tutorial
+         //https://www.rttr.org/doc/master/five_minute_tutorial_page.html
+         //
+         //type t = type::get_by_name("ns_3d::node");
+         //
+         //// will create an instance of ns_3d::node as std::shared_ptr<ns_3d::node>
+         //variant var = t.create({std::string("MyNode")});
+         //std::cout << var.get_type().get_name() << "\n";
+         //
+         //// sets/gets a property
+         //property prop = t.get_property("name");
+         //
+         //// remark: you can also set a member, although the instance is of type: 'std::shared_ptr<T>'
+         //prop.set_value(var, std::string("A New Name"));
+         //std::cout << prop.get_value(var).to_string() << "\n";
+         //
+         //// retrieve the stored meta data of the property
+         //std::cout << "MetaData TOOL_TIP: " << prop.get_metadata("TOOL_TIP").to_string() << "\n";
+         //
+         //// invoke a method
+         //method meth = t.get_method("set_visible");
+         //
+         //// remark: the 2nd argument will be provided automatically, because it has a default argument
+         //variant ret = meth.invoke(var, true);
+         //
+         //// a valid return value indicates a successful invoke
+         //std::cout << std::boolalpha << "invoke of method 'set_visible' was successfully: " << ret.is_valid() << "\n\n";
+         //
+         //// retrieve all properties
+         //std::cout << "'node' properties:" << "\n";
+         //for (auto& prop : t.get_properties())
+         //{
+         //    std::cout << "  name: " << prop.get_name() << "\n";
+         //    std::cout << "    type: " << prop.get_type().get_name() << "\n";
+         //}
+         //std::cout << "\n";
+         //
+         //// retrieve all methods
+         //std::cout << "'node' methods:" << "\n";
+         //for (auto& meth : t.get_methods())
+         //{
+         //    std::cout << "  name: " << meth.get_name();
+         //    std::cout << "  signature: " << meth.get_signature() << "\n";
+         //    for (auto& info : meth.get_parameter_infos())
+         //    {
+         //        std::cout << "    param " << info.get_index() << ": name: "<< info.get_name() << "\n";
+         //    }
+         //}
+         //return 0;
 
       ImGui::End();
   }
@@ -385,44 +368,124 @@ void ImGuiLayer::Begin()
 
 		  env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
 		  {
-			  if (id1.index == InputManager::Get()->EntityIDSelected())
-			  {
-				  std::string text = "Edit Entity ";
-				  text += std::to_string(id1.index);
-				  text += "'s Properties";
-				  ImGui::Text(text.c_str());
-				  ImGui::Text("");
-
-				  ImGui::Text("transform");
-				  ImGui::DragFloat3("old pos", (float*)(&(t1.old_position)), 0.01f);
-				  ImGui::DragFloat3("pos", (float*)(&(t1.position)), 0.01f);
-				  ImGui::DragFloat3("size", (float*)(&(t1.scale)), 0.01f);
-				  ImGui::DragFloat3("rot", (float*)(&(t1.rotation)), 0.01f);
-
-				  ImGui::Text("rigidbody");
-				  ImGui::DragFloat2("direction", (float*)(&(r1.Direction)), 0.01f);
-				  ImGui::DragFloat2("velocity", (float*)(&(r1.Velocity)), 0.01f);
-				  ImGui::DragFloat2("reflected vector", (float*)(&(r1.ReflectedVector)), 0.01f);
-				  ImGui::DragFloat2("acceleration", (float*)(&(r1.Acceleration)), 0.01f);
-				  ImGui::DragFloat("mass", (float*)(&(r1.Mass)), 0.01f);
-				  ImGui::DragFloat("friction", (float*)(&(r1.Friction)), 0.01f);
-				  ImGui::DragFloat("movespeed", (float*)(&(r1.Movespeed)), 0.01f);
-				  ImGui::DragFloat("inherent acceleration", (float*)(&(r1.inherentAcceleration)), 0.01f);
-				  ImGui::Checkbox("gravity", &(r1.hasGravity));
-				  ImGui::Checkbox("moveable", &(r1.isMoveable));
-
-				  ImGui::Text("collider");
-				  ImGui::DragFloat2("inter point", (float*)(&(c1.interPoint)), 0.01f);
-				  ImGui::DragFloat2("center", (float*)(&(c1.center)), 0.01f);
-				  ImGui::DragFloat2("size", (float*)(&(c1.size)), 0.01f);
-				  ImGui::Checkbox("collidable", &(c1.isCollideable));
-			  }
+                  if (id1.index == InputManager::Get()->EntityIDSelected())
+                  {
+                      std::string text = "Edit Entity ";
+                      text += std::to_string(id1.index);
+                      text += "'s Properties";
+                      ImGui::Text(text.c_str());
+                      ImGui::Text("");
+                  
+                      ImGui::Text("transform");
+                      ImGui::DragFloat3("old pos", (float*)(&(t1.old_position)), 0.01f);
+                      ImGui::DragFloat3("pos", (float*)(&(t1.position)), 0.01f);
+                      ImGui::DragFloat3("size", (float*)(&(t1.scale)), 0.01f);
+                      ImGui::DragFloat3("rot", (float*)(&(t1.rotation)), 0.01f);
+                  
+                      ImGui::Text("rigidbody");
+                      ImGui::DragFloat2("direction", (float*)(&(r1.Direction)), 0.01f);
+                      ImGui::DragFloat2("velocity", (float*)(&(r1.Velocity)), 0.01f);
+                      ImGui::DragFloat2("reflected vector", (float*)(&(r1.ReflectedVector)), 0.01f);
+                      ImGui::DragFloat2("acceleration", (float*)(&(r1.Acceleration)), 0.01f);
+                      ImGui::DragFloat("mass", (float*)(&(r1.Mass)), 0.01f);
+                      ImGui::DragFloat("friction", (float*)(&(r1.Friction)), 0.01f);
+                      ImGui::DragFloat("movespeed", (float*)(&(r1.Movespeed)), 0.01f);
+                      ImGui::DragFloat("inherent acceleration", (float*)(&(r1.inherentAcceleration)), 0.01f);
+                      ImGui::Checkbox("gravity", &(r1.hasGravity));
+                      ImGui::Checkbox("moveable", &(r1.isMoveable));
+                  
+                      ImGui::Text("collider");
+                      ImGui::DragFloat2("inter point", (float*)(&(c1.interPoint)), 0.01f);
+                      ImGui::DragFloat2("center", (float*)(&(c1.center)), 0.01f);
+                      ImGui::DragFloat2("size", (float*)(&(c1.size)), 0.01f);
+                      ImGui::Checkbox("collidable", &(c1.isCollideable));
+                  }
 
 		  });
 		  ImGui::End();
 	  }
   }
 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //{
+  //    ImGui::Begin("image test");
+  //
+  //    if (ImGui::TreeNode("Images"))
+  //    {
+  //        ImGuiIO& io = ImGui::GetIO();
+  //        ImGui::TextWrapped(
+  //            "Below we are displaying the font texture (which is the only texture we have access to in this demo). "
+  //            "Use the 'ImTextureID' type as storage to pass pointers or identifier to your own texture data. "
+  //            "Hover the texture for a zoomed view!");
+  //
+  //        // Below we are displaying the font texture because it is the only texture we have access to inside the demo!
+  //        // Remember that ImTextureID is just storage for whatever you want it to be. It is essentially a value that
+  //        // will be passed to the rendering backend via the ImDrawCmd structure.
+  //        // If you use one of the default imgui_impl_XXXX.cpp rendering backend, they all have comments at the top
+  //        // of their respective source file to specify what they expect to be stored in ImTextureID, for example:
+  //        // - The imgui_impl_dx11.cpp renderer expect a 'ID3D11ShaderResourceView*' pointer
+  //        // - The imgui_impl_opengl3.cpp renderer expect a GLuint OpenGL texture identifier, etc.
+  //        // More:
+  //        // - If you decided that ImTextureID = MyEngineTexture*, then you can pass your MyEngineTexture* pointers
+  //        //   to ImGui::Image(), and gather width/height through your own functions, etc.
+  //        // - You can use ShowMetricsWindow() to inspect the draw data that are being passed to your renderer,
+  //        //   it will help you debug issues if you are confused about it.
+  //        // - Consider using the lower-level ImDrawList::AddImage() API, via ImGui::GetWindowDrawList()->AddImage().
+  //        // - Read https://github.com/ocornut/imgui/blob/master/docs/FAQ.md
+  //        // - Read https://github.com/ocornut/imgui/wiki/Image-Loading-and-Displaying-Examples
+  //        ImTextureID my_tex_id = io.Fonts->TexID;
+  //        float my_tex_w = (float)io.Fonts->TexWidth;
+  //        float my_tex_h = (float)io.Fonts->TexHeight;
+  //        {
+  //            ImGui::Text("%.0fx%.0f", my_tex_w, my_tex_h);
+  //            ImVec2 pos = ImGui::GetCursorScreenPos();
+  //            ImVec2 uv_min = ImVec2(0.0f, 0.0f);                 // Top-left
+  //            ImVec2 uv_max = ImVec2(1.0f, 1.0f);                 // Lower-right
+  //            ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
+  //            ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white
+  //            ImGui::Image(my_tex_id, ImVec2(my_tex_w, my_tex_h), uv_min, uv_max, tint_col, border_col);
+  //            if (ImGui::IsItemHovered())
+  //            {
+  //                ImGui::BeginTooltip();
+  //                float region_sz = 32.0f;
+  //                float region_x = io.MousePos.x - pos.x - region_sz * 0.5f;
+  //                float region_y = io.MousePos.y - pos.y - region_sz * 0.5f;
+  //                float zoom = 4.0f;
+  //                if (region_x < 0.0f) { region_x = 0.0f; }
+  //                else if (region_x > my_tex_w - region_sz) { region_x = my_tex_w - region_sz; }
+  //                if (region_y < 0.0f) { region_y = 0.0f; }
+  //                else if (region_y > my_tex_h - region_sz) { region_y = my_tex_h - region_sz; }
+  //                ImGui::Text("Min: (%.2f, %.2f)", region_x, region_y);
+  //                ImGui::Text("Max: (%.2f, %.2f)", region_x + region_sz, region_y + region_sz);
+  //                ImVec2 uv0 = ImVec2((region_x) / my_tex_w, (region_y) / my_tex_h);
+  //                ImVec2 uv1 = ImVec2((region_x + region_sz) / my_tex_w, (region_y + region_sz) / my_tex_h);
+  //                ImGui::Image(my_tex_id, ImVec2(region_sz * zoom, region_sz * zoom), uv0, uv1, tint_col, border_col);
+  //                ImGui::EndTooltip();
+  //            }
+  //        }
+  //        ImGui::TextWrapped("And now some textured buttons..");
+  //        static int pressed_count = 0;
+  //        for (int i = 0; i < 8; i++)
+  //        {
+  //            ImGui::PushID(i);
+  //            int frame_padding = -1 + i;                             // -1 == uses default padding (style.FramePadding)
+  //            ImVec2 size = ImVec2(32.0f, 32.0f);                     // Size of the image we want to make visible
+  //            ImVec2 uv0 = ImVec2(0.0f, 0.0f);                        // UV coordinates for lower-left
+  //            ImVec2 uv1 = ImVec2(32.0f / my_tex_w, 32.0f / my_tex_h);// UV coordinates for (32,32) in our texture
+  //            ImVec4 bg_col = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);         // Black background
+  //            ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);       // No tint
+  //            if (ImGui::ImageButton(my_tex_id, size, uv0, uv1, frame_padding, bg_col, tint_col))
+  //                pressed_count += 1;
+  //            ImGui::PopID();
+  //            ImGui::SameLine();
+  //        }
+  //        ImGui::NewLine();
+  //        ImGui::Text("Pressed %d times.", pressed_count);
+  //        ImGui::TreePop();
+  //    }
+  //
+  //    ImGui::End();
+  //}
   ImGui::End();
 }
 
