@@ -5,137 +5,102 @@
 #include "Collision.h"
 namespace DeltaEngine
 {
-	void CollisionResponse_AABBvsAABB(Collider& obj1, RigidBody& r1,Collider& obj2,RigidBody& r2,Manifold& m)
+	void CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
 	{
-		float e = Math::MathMin(r1.Restitution, r2.Restitution);
-		//float accumulated_inverse_mass = 1 / r1.Mass + 1 / r2.Mass;
+		//float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+		//float seperating_velocity = Vector2DotProduct(r1.Velocity - r2.Velocity, m.normal);
+		//if (seperating_velocity > 0)
+		//	return;
 
-		//std::cout << "accumulated_inverse_mass IS " << accumulated_inverse_mass << std::endl;
-		r1.Velocity += (m.normal * m.penetration) * e;
-		r2.Velocity -= (m.normal * m.penetration) * e;
+
+		// Apply impulses: they are applied in the direction of the contact,
+		// and in proportion to inverse mass.
+		//r1.Velocity = r1.Velocity + impulsePerIMass * 1 / r1.Mass;
+		//// The other body goes in the opposite direction
+		//r2.Velocity = r2.Velocity + impulsePerIMass * -1/r2.Mass;
+
+		r1.Velocity += (m.normal * m.penetration);
+		r2.Velocity -= (m.normal * m.penetration);
 
 
 	}
 
-   void CollisionResponse_CirclevsCircle(Collider& col1,RigidBody& r1,Transform& t1,Collider& col2, RigidBody& r2,Transform& t2,Manifold& m)
-   {
+	void ResolveContactVelocity(RigidBody& r1, RigidBody& r2,Manifold& m)
+	{
+		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+		float seperating_velocity = Vector2DotProduct(r1.Velocity - r2.Velocity,m.normal);
+		if (seperating_velocity > 0)
+			return;
 
-	   //get the direction of reflection using dot product	
-		float a1{ Vector2DotProduct(r1.Velocity, m.normal) };
-		float a2{ Vector2DotProduct(r2.Velocity, m.normal) };
+		//r1.Velocity += (m.normal * m.penetration);
+		//r2.Velocity -= (m.normal * m.penetration);
+		float newSepVelocity = -seperating_velocity * restitution;
+
+		const bool AccelerationBuildUp = true;
+		//When an object is resting on the ground it is constantly falling
+		//due to gravity. This acceleration need be removed or objects will
+		//jitter on the ground.
+
+		if (AccelerationBuildUp)
+		{
+			// Check the velocity build-up due to acceleration only
+			Vector2 accCausedVelocity = r1.Acceleration - r2.Acceleration;
+			float accCausedSepVelocity = Vector2DotProduct(accCausedVelocity, m.normal) * env.pClock->DeltaTime();
+
+			// If we've got a closing velocity due to acceleration build-up,
+			// remove it from the new separating velocity
+			if (accCausedSepVelocity < 0)
+			{
+				newSepVelocity += restitution * accCausedSepVelocity;
+
+				// Make sure we haven't removed more than was
+				// there to remove.
+				if (newSepVelocity < 0) newSepVelocity = 0;
+			}
+		}
+
+		//What is the total change in velocity for the contact?
+		float deltaVelocity = newSepVelocity - seperating_velocity;
+
+		//The delta velocity is applied to each object proportional to inverse
+		//mass. So the more massive an object is the less of the change
+		//in velocity it will receive.
+		float totalInverseMass = 1 / r1.Mass + 1 / r2.Mass;
+
+		// Calculate the impulse to apply
+		float impulse = deltaVelocity / totalInverseMass;
+
+		// Find the amount of impulse per unit of inverse mass
+		Vector2 impulsePerIMass = m.normal * impulse;
+
+		// Apply impulses: they are applied in the direction of the contact,
+		// and in proportion to inverse mass.
+		//r1.Velocity = r1.Velocity + impulsePerIMass * 1 / r1.Mass;
+		//// The other body goes in the opposite direction
+		//r2.Velocity = r2.Velocity + impulsePerIMass * -1/r2.Mass;
+
+	}
+
+	void ResolvePenetration(RigidBody& r1,Transform& t1, RigidBody& r2, Transform& t2, Manifold& m)
+	{
+		// The movement of each object is based on their inverse mass, so
+		// total that.
+		float totalInverseMass = 1 / r1.Mass + 1 / r2.Mass;
 		
-		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-		Vector2 reflectedVectorA = m.normal * (r1.Velocity - (2 * (a1 - a2) / (r1.Mass + r2.Mass)) * r2.Mass);
-		Vector2 reflectedVectorB = m.normal * (r2.Velocity + (2 * (a1 - a2) / (r1.Mass + r2.Mass)) * r1.Mass);
-
-		t1.position = col1.interPoint + reflectedVectorA * (1.0f - m.interTime);
-		t2.position = col2.interPoint + reflectedVectorB * (1.0f - m.interTime);
+		// Find the amount of penetration resolution per unit of inverse mass
+		Vector2 movePerIMass = m.normal * (m.penetration / totalInverseMass);
 		
-		col1.collided_spot = { -10,-10 };
-		col2.collided_spot = { -10,-10 };
+		//If stack stability can be increased by not resolving all the penetrations
+		//in one step
+		movePerIMass *= 0.8f;
+		
+		// Calculate the the movement amounts
+		m.Movement[0] = movePerIMass * 1/r1.Mass;
+		m.Movement[1] = movePerIMass * -1/r2.Mass;
+		
+		// Apply the penetration resolution
+		t1.position += m.Movement[0];
+		t2.position += m.Movement[1];
+	}
 
-		float speed = Vector2Length(reflectedVectorA) / env.pClock->DeltaTime();
-		reflectedVectorA = Normalise(reflectedVectorA);
-
-		r1.Velocity = reflectedVectorA * speed;
-
-		speed = Vector2Length(reflectedVectorB) / env.pClock->DeltaTime();
-		reflectedVectorB = Normalise(reflectedVectorB);
-
-		r2.Velocity = reflectedVectorB * speed;
-   }
-
-   void CollisionResponse_RectvsCircle(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m)
-   {
-	   t1.position += r1.ReflectedVector;
-	   t2.position += r2.ReflectedVector;
-   }
-
-   void CollisionResponse_Main(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m)
-   {
-	   ColliderType type1 = col1.type;
-
-	   switch (type1)
-	   {
-	   case ColliderType::BOX:
-		   CollisionResponse_Box(col1, r1, t1, col2, r2, t2, m);
-		   return;
-	   case ColliderType::CIRCLE:
-		   CollisionResponse_Circle(col1, r1, t1, col2, r2, t2, m);
-		   return;
-	   case ColliderType::LINE:
-		   return;
-	   case ColliderType::RAY:
-		   return;
-	   default:
-		   CollisionResponse_Box(col1,r1,t1,col2,r2,t2,m);
-		   return;
-	   }
-   }
-
-   void CollisionResponse_Box(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m)
-   {
-	   ColliderType type2 = col2.type;
-
-	   switch (type2)
-	   {
-	   case ColliderType::BOX:
-		   CollisionResponse_AABBvsAABB(col1, r1,col2, r2,m);
-		   return;
-	   case ColliderType::CIRCLE:
-		   CollisionResponse_RectvsCircle(col1, r1, t1, col2, r2, t2, m);
-		   return;
-	   case ColliderType::LINE:
-		   return;
-	   case ColliderType::RAY:
-		   return;
-	   default:
-		   return;
-	   }
-   }
-
-   void CollisionResponse_Circle(Collider& col1, RigidBody& r1, Transform& t1, Collider& col2, RigidBody& r2, Transform& t2, Manifold& m)
-   {
-	   ColliderType type2 = col2.type;
-
-	   switch (type2)
-	   {
-	   case ColliderType::BOX:
-		   CollisionResponse_RectvsCircle(col1, r1, t1, col2, r2, t2, m);
-		   return;
-	   case ColliderType::CIRCLE:
-		   CollisionResponse_CirclevsCircle(col1, r1, t1, col2, r2, t2, m);
-		   return;
-	   case ColliderType::LINE:
-		   return;
-	   case ColliderType::RAY:
-		   return;
-	   default:
-		   return;
-	   }
-   }
-
-   Vector2 AABBvsAABBoverlap(const Collider& obj1, const Collider& obj2)
-   {
-	   float TotalWidth = obj1.size.x + obj2.size.x;
-	   float ActualWidth = abs(obj2.size.x - obj1.size.x);
-
-	   float TotalHeight = obj1.size.y + obj2.size.y;
-	   float ActualHeight= abs(obj2.size.y - obj1.size.y);
-
-	   Vector2 overlap = { 0,0 };
-
-	   if (ActualWidth < TotalWidth)
-	   {
-		   overlap.x = TotalWidth - ActualWidth;
-	   }
-
-	   if (ActualHeight < TotalHeight)
-	   {
-		   overlap.y = TotalHeight - ActualHeight;
-	   }
-
-	   return overlap;
-
-   }
 }

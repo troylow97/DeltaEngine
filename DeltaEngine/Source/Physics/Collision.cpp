@@ -722,7 +722,7 @@ namespace DeltaEngine
 		{
 			if (CollisionIntersection_RectRect(col1, r1.Velocity, col2, r2.Velocity))
 			{
-				AABBvsAABB_Manifold(col1,r1,col2,r2,manifold);
+				AABBvsAABB_Manifold(col1,col2,manifold);
 				return true;
 			}
 			return false;
@@ -801,7 +801,7 @@ namespace DeltaEngine
 		}
 	}
 
-	bool AABBvsAABB_Manifold(Collider& A,RigidBody& r1, Collider& B, RigidBody& r2, Manifold& m)
+	bool AABBvsAABB_Manifold(Collider& A, Collider& B, Manifold& m)
 	{
 		// Vector from A to B
 		Vector2 n = A.center - B.center;
@@ -841,7 +841,7 @@ namespace DeltaEngine
 						else
 							m.normal = { 1,0 };
 
-						if (!r1.isMoveable || !r2.isMoveable)
+						if (A.isWall || B.isWall)
 						{
 							if (A.center.x > B.center.x)
 							{
@@ -867,7 +867,7 @@ namespace DeltaEngine
 						else
 							m.normal = { 0,1 };
 
-						if (!r1.isMoveable || !r2.isMoveable)
+						if (A.isWall || B.isWall)
 						{
 							if (A.center.y > B.center.y)
 							{

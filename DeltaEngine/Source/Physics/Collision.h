@@ -56,7 +56,7 @@ bool CollisionIntersection_Sub_Line( Collider &, Collider &, Manifold &m );
 
 //Calculate Manifold
 
-bool AABBvsAABB_Manifold(Collider& A, RigidBody& r1, Collider& B, RigidBody& r2, Manifold &m);
+bool AABBvsAABB_Manifold(Collider& A,Collider& B,Manifold &m);
 //UNUSED FUNCTIONS
 
   //int CollisionIntersection_CircleLineSegment(const Circle& circle,

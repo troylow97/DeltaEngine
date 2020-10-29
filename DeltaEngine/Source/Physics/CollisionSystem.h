@@ -16,7 +16,7 @@ struct CollisionPairInfo
   EntityID id1;
   EntityID id2;
 
-  CollisionPairInfo(Collider col1,Collider col2, Manifold man, EntityID i1, EntityID i2 ) :
+  CollisionPairInfo(Collider col1,Collider col2, Manifold man, EntityID i1, EntityID i2) :
    a{col1},
     b{col2},
     m { man },

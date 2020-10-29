@@ -46,7 +46,7 @@
                 "movespeed": 2.0,
                 "inherent_acceleration": 1.200000023841858,
                 "Restitution": 2.0,
-                "has_gravity": false,
+                "has_gravity": true,
                 "is_moveable": true
             },
             "collider": {
@@ -62,7 +62,8 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "type": "circle",
+                "type": "box",
+                "is_wall": false,
                 "is_collideable": true
             },
             "input": {
@@ -116,8 +117,7 @@
                 "movespeed": 4.0,
                 "inherent_acceleration": 4.5,
                 "Restitution": 1.0,
-                "has_gravity": false,
-                "is_moveable": true
+                "has_gravity": false
             },
             "collider": {
                 "inter_point": {
@@ -132,8 +132,9 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "type": "circle",
-                "is_collideable": true
+                "type": "box",
+                "is_collideable": true,
+                "is_wall": false
             }
         },
         {
@@ -182,8 +183,7 @@
                 "movespeed": 3.000000596046449,
                 "inherent_acceleration": 3.0,
                 "Restitution": 1.0,
-                "has_gravity": false,
-                "is_moveable": false
+                "has_gravity": false
             },
             "collider": {
                 "inter_point": {
@@ -199,7 +199,8 @@
                     "y": 1.0
                 },
                 "type": "box",
-                "is_collideable": true
+                "is_collideable": true,
+                "is_wall": true
             }
         },
         {
@@ -248,8 +249,7 @@
                 "movespeed": 3.0,
                 "inherent_acceleration": 3.0,
                 "Restitution": 1.0,
-                "has_gravity": false,
-                "is_moveable": false
+                "has_gravity": false
             },
             "collider": {
                 "inter_point": {
@@ -265,7 +265,8 @@
                     "y": 1.0
                 },
                 "type": "box",
-                "is_collideable": true
+                "is_collideable": true,
+                "is_wall": false
             }
         },
         {
@@ -276,8 +277,8 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": 3.6500000953674318,
-                    "y": -1.6050000190734864,
+                    "x": 2.6500000953674318,
+                    "y": 1.6050000190734864,
                     "z": 0.0
                 },
                 "scale": {
@@ -314,8 +315,7 @@
                 "movespeed": 0.0,
                 "inherent_acceleration": 3.0,
                 "Restitution": 2.0,
-                "has_gravity": false,
-                "is_moveable": true
+                "has_gravity": false
             },
             "collider": {
                 "inter_point": {
@@ -331,7 +331,8 @@
                     "y": 1.0
                 },
                 "type": "box",
-                "is_collideable": true
+                "is_collideable": true,
+                "is_wall": false
             }
         },
         {
@@ -380,8 +381,7 @@
                 "movespeed": 5.0,
                 "inherent_acceleration": 3.0,
                 "Restitution": 1.0,
-                "has_gravity": false,
-                "is_moveable": true
+                "has_gravity": false
             },
             "collider": {
                 "inter_point": {
@@ -397,7 +397,8 @@
                     "y": 2.0
                 },
                 "type": "box",
-                "is_collideable": true
+                "is_collideable": true,
+                "is_wall": false
             }
         },
         {

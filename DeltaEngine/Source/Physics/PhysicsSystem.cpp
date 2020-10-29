@@ -20,30 +20,39 @@ namespace DeltaEngine
         em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
             {
 
-                if (r1.isMoveable)
+                if (!c1.isWall)
                 {
                     Vector2 move;
                     move = (r1.Direction * r1.Movespeed);
                     r1.Velocity += move * env.pClock->DeltaTime();
                     Vector2 norm_vel = Normalise(r1.Velocity);
+                    c1.center += r1.Velocity;
+                    em.ForEach([&](EntityID id2, Collider& c2)
+                        {
+                                if (id1.index != id2.index && CollisionIntersection_RectRect_Static(c1.center, c1.size, c2.center, c2.size))
+                                {
+                                    if (c2.isWall)
+                                    {
+                                        Manifold m;
+                                        AABBvsAABB_Manifold(c1, c2, m);
+                                        if (norm_vel == c1.collided_spot)
+                                        {
+                                            r1.Velocity = Vector2::zero();
+                                            return;
+                                        }
+                                    }
+                                }
+                    
+                        });
+                    if (norm_vel == c1.collided_spot && c1.collided_spot != Vector2::zero())
+                    {
+                        c1.collided_spot = Vector2::zero();
+                        return;
+                    }
 
-                    //If object is colliding onto something do not add to its position
-                    if (c1.collided_spot == Vector2{ -10,-10 })
-                    {
-                        c1.collided_spot = Vector2::zero();
-                    }
-                    else if (norm_vel != c1.collided_spot)
-                    {
-                        c1.collided_spot = Vector2::zero();
-                        t1.position += r1.Velocity;
-                    }
-                    else if (norm_vel == Vector2::zero())
-                    {
-                        t1.position += r1.Velocity;
-                    }
+                    t1.position += r1.Velocity;
 
                 }
-
             });
     }
 
@@ -76,7 +85,7 @@ namespace DeltaEngine
     {
         em.ForEach([&](EntityID id1, RigidBody& r1,Transform& t1,Collider& c1)
         {
-            if (r1.isMoveable)
+            if (!c1.isWall)
             {
                 r1.Acceleration = r1.Direction;
                 r1.Acceleration *= r1.inherentAcceleration;
@@ -94,12 +103,12 @@ namespace DeltaEngine
 
     void PhysicsSystem::Gravity()
     {
-        Vector2 GravityAmount{ 0,-10.0f };
+        Vector2 GravityAmount{ 0,-1.0f };
         em.ForEach([&](EntityID id1, RigidBody& r1,Transform& t1)
         {
             if ((r1.hasGravity == true))
             {
-                r1.Velocity += GravityAmount / r1.Mass;
+                r1.Velocity += GravityAmount;
             }
 ;
         });

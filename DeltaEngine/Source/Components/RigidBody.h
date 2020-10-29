@@ -20,15 +20,13 @@ struct RigidBody
   float inherentAcceleration;
   float Restitution; //not used
   bool hasGravity;
-  bool isMoveable;
 
 
   RigidBody() :
     Velocity { 0,0 },
     Acceleration { 0,0 },
     inherentAcceleration { 3.0f },
-    hasGravity { false },
-    isMoveable { true }
+    hasGravity { false }
   {}
 
   REGISTER_COMPONENT( RigidBody )
