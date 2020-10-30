@@ -65,34 +65,33 @@ RTTR_REGISTRATION
   rttr::registration::class_<Transform>( "transform" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Transform>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "old_position", &Transform::old_position )
-    .property( "position", &Transform::position )
-    .property( "scale", &Transform::scale )
-    .property( "rotation", &Transform::rotation );
+    .property( "old_position", &Transform::old_position )(rttr::policy::prop::bind_as_ptr)
+    .property( "position", &Transform::position )(rttr::policy::prop::bind_as_ptr)
+    .property( "scale", &Transform::scale )(rttr::policy::prop::bind_as_ptr)
+    .property( "rotation", &Transform::rotation )(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<RigidBody>( "rigidbody" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "direction", &RigidBody::Direction )
-    .property( "velocity", &RigidBody::Velocity )
-    .property( "reflected_vector", &RigidBody::ReflectedVector )
-    .property( "acceleration", &RigidBody::Acceleration )
+    .property( "direction", &RigidBody::Direction )(rttr::policy::prop::bind_as_ptr)
+    .property( "velocity", &RigidBody::Velocity )(rttr::policy::prop::bind_as_ptr)
+    .property( "reflected_vector", &RigidBody::ReflectedVector )(rttr::policy::prop::bind_as_ptr)
+    .property( "acceleration", &RigidBody::Acceleration )(rttr::policy::prop::bind_as_ptr)
     .property( "mass", &RigidBody::Mass )
-    .property( "friction", &RigidBody::Friction )
-    .property( "movespeed", &RigidBody::Movespeed )
-    .property( "inherent_acceleration", &RigidBody::inherentAcceleration )
+    .property( "friction", &RigidBody::Friction )(rttr::policy::prop::bind_as_ptr)
+    .property( "movespeed", &RigidBody::Movespeed )(rttr::policy::prop::bind_as_ptr)
+    .property( "inherent_acceleration", &RigidBody::inherentAcceleration )(rttr::policy::prop::bind_as_ptr)
     .property( "has_gravity", &RigidBody::hasGravity )
-    .property( "is_moveable", &RigidBody::isMoveable );
+    .property( "is_moveable", &RigidBody::isMoveable )(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Collider>( "collider" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Collider>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "inter_point", &Collider::interPoint )
-    .property( "center", &Collider::center )
-    .property( "size", &Collider::size )
-    .property( "inter_point", &Collider::interPoint )
-    .property( "type", &Collider::type )
-    .property( "is_collideable", &Collider::isCollideable );
+    .property( "inter_point", &Collider::interPoint )(rttr::policy::prop::bind_as_ptr)
+    .property( "center", &Collider::center )(rttr::policy::prop::bind_as_ptr)
+    .property( "size", &Collider::size )(rttr::policy::prop::bind_as_ptr)
+    .property( "type", &Collider::type )(rttr::policy::prop::bind_as_ptr)
+    .property( "is_collideable", &Collider::isCollideable )(rttr::policy::prop::bind_as_ptr);
 
 
   rttr::registration::class_<Input>( "input" )

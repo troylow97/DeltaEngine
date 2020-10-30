@@ -2,9 +2,15 @@
 
 #include "Core/Layer.h"
 
+namespace rttr {
+  class instance;
+}
+
 namespace DeltaEngine
 {
-class ImGuiLayer : public Layer
+  struct EntityID;
+
+  class ImGuiLayer : public Layer
 {
 public:
   ImGuiLayer();
@@ -24,5 +30,6 @@ public:
 private:
   bool m_BlockEvents = true;
   float m_Time = 0.0f;
+
 };
 }

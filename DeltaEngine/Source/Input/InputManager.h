@@ -39,8 +39,18 @@ public:
   bool IsMouseTriggered( int key );
   bool IsMousePressed( int key );
   bool IsMouseReleased( int key );
-  const Point &CurrentPosition();
-  const Point &PreviousPosition();
+  const Point &CurrentPosition();                              // getter 
+  const Point &PreviousPosition();                             // getter
+  const Point &CurrentCameraPosition();                        // getter
+  void SetCurrentPosition(Point _currentPosition);             // setter
+  void SetPreviousPosition(Point _previousPosition);           // setter
+  void SetCurrentCameraPosition(Point _currentCameraPosition); // setter
+															    
+  bool EntitySelected();                                       // getter
+  void SetEntitySelected(bool _setEntitySelected);             // setter
+
+  size_t EntityIDSelected();                                   // getter
+  void SetEntityIDSelected(size_t _setEntityIDSelected);       // setter
 };
 
 }

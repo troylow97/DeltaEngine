@@ -112,6 +112,12 @@ EntityID EntityManager::CreateEntity()
   return id;
 }
 
+inline const std::vector<Entity>& EntityManager::GetEntities()
+{
+  return m_entities;
+}
+
+
 inline void EntityManager::DestroyEntity( EntityID id )
 {
   ASSERT_ERROR( IsEntityValid( id ), "EntityManager: destroying invalid entity" );
@@ -131,7 +137,7 @@ template <typename C>
 C &EntityManager::GetComponent( EntityID id )
 {
   Entity &ref = m_entities[id.index];
-
+  
   auto c_array = ECS_Internal::get_chunk_array<C>( ref.chunk );
   assert( c_array.ChunkOwner() != nullptr );
   return c_array[ref.chunk_index];
@@ -223,6 +229,11 @@ void EntityManager::ForEach( Query &query, Func &&func )
 inline Archetype *EntityManager::GetEmptyArchetype()
 {
   return m_archetypes[0];
+}
+
+inline const std::vector<Description::Details> &EntityManager::GetEntityArchetype(size_t id)
+{
+  return m_entities[id].chunk->header.owner->components_desc->metalist;
 }
 
 //******************************************************************************

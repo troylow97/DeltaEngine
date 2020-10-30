@@ -40,6 +40,8 @@ public:
   template <typename... C>
   EntityID CreateEntity();
 
+  const std::vector<Entity> &GetEntities();
+
   void DestroyEntity( EntityID id );
 
   template <typename C>
@@ -66,6 +68,8 @@ public:
   void ForEach( Query &query, Func &&function );
 
   Archetype *GetEmptyArchetype();
+
+  const std::vector<Description::Details> &GetEntityArchetype(size_t id);
 
 private:
   bool IsEntityValid( EntityID id );
