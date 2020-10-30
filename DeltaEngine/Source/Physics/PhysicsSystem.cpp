@@ -34,16 +34,15 @@ namespace DeltaEngine
                     }
 
                     
-                   em.ForEach([&](EntityID id2, RigidBody& r2, Collider& c2)
-                   {
-                       c1.center = NewPos;
-                       if (id1.index != id2.index && CollisionIntersection_RectRect(c1,r1.Velocity,c2,Vector2::zero()))
-                       {
-                           r1.Velocity = Vector2::zero();
-                           r1.PointEnd = Vector2::zero();
-                           return;
-                       }
-                   });
+                   //em.ForEach([&](EntityID id2, RigidBody& r2, Collider& c2)
+                   //{
+                   //    c1.center = NewPos;
+                   //    if (id1.index != id2.index && CollisionIntersection_RectRect(c1,r1.Velocity,c2,Vector2::zero()))
+                   //    {
+                   //        r1.PointEnd = Vector2::zero();
+                   //        return;
+                   //    }
+                   //});
 
                     t1.position = NewPos;
 
