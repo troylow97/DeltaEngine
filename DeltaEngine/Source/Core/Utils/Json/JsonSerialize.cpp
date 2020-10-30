@@ -105,15 +105,15 @@ void WriteEntities( EntityManager &em, PrettyWriter<FileWriteStream> &writer )
       for ( size_t i = 0; i < chunk->header.index; i++ )
       {
         writer.StartObject();
-        for ( auto comp : arch->components->metatypes )
+        for ( auto comp : arch->components_desc->metalist )
         {
-          rttr::type t = reflect::checker( comp.type->hash.digest );
+          rttr::type t = RT_Reflect::RT_Checker( comp.meta->bits );
           if ( !t.is_arithmetic() )
           {
             writer.String( t.get_name().to_string() );
             writer.StartObject();
-            void *ptr = reinterpret_cast<void *>( reinterpret_cast<byte *>( chunk ) + comp.offset + ( i * comp.type->size ) );
-            t.get_method( "serialize" ).invoke( rttr::instance(), writer, ptr );
+            void *ptr = reinterpret_cast<void *>( reinterpret_cast<byte *>( chunk ) + comp.offset + ( i * comp.meta->size ) );
+            RT_Reflect::SerializeType( t.get_name().to_string(), writer, ptr );
             writer.EndObject();
           }
         }

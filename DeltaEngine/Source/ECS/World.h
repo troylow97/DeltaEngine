@@ -2,9 +2,8 @@
 #include "Core/Utils/Json/JsonFile.h"
 #include "EntityManager.h"
 #include "SystemBase.h"
+#include "Core/Typelist/CHash.h"
 #include <memory>
-
-#include "Components/Transform.h"
 
 namespace DeltaEngine
 {
@@ -13,17 +12,18 @@ class DE_API World
 {
 #pragma warning(disable:4251)
   std::unique_ptr<EntityManager> em;
-  std::unordered_map<size_t, std::unique_ptr<SystemBase>> systems_map;
+  std::unordered_map<size_t, std::unique_ptr<SystemBase>> systems;
   std::vector<size_t> update_sequence;
   std::vector<size_t> late_update_sequence;
 #pragma warning(default:4251)
 
   bool system_exist( size_t digest )
   {
-    if ( systems_map.find( digest ) == systems_map.end() )
+    if ( systems.find( digest ) == systems.end() )
       return false;
     return true;
   }
+
 
 public:
   World() : em( std::make_unique<EntityManager>() )
@@ -44,12 +44,12 @@ public:
     typename = std::enable_if<std::is_base_of_v<SystemBase, System>>>
     SystemBase &find_or_create_system()
   {
-    const MetaHash hash = Metatype::BuildHash<System>();
-    const auto it = systems_map.find( hash.digest );
-    if ( it == systems_map.end() )
+    constexpr CHash hash = CHash::Hash<System>();
+    const auto it = systems.find( hash.digest );
+    if ( it == systems.end() )
     {
-      systems_map[hash.digest] = std::make_unique<System>( *em );
-      return *( systems_map[hash.digest] );
+      systems[hash.digest] = std::make_unique<System>( *em );
+      return *( systems[hash.digest] );
     }
     return *( it->second );
   }
@@ -57,20 +57,20 @@ public:
   void update()
   {
     for ( auto hash : update_sequence )
-      systems_map[hash]->Update();
+      systems[hash]->Update();
   }
 
   void late_update()
   {
     for ( auto hash : late_update_sequence )
-      systems_map[hash]->LateUpdate();
+      systems[hash]->LateUpdate();
   }
 
   template <typename... Systems>
   void set_update_sequence()
   {
     update_sequence.clear();
-    std::vector<MetaHash> vec_hash = { Metatype::BuildHash<Systems>()... };
+    std::vector<CHash> vec_hash = { CHash::Hash<Systems>()... };
     for ( auto hash : vec_hash )
     {
       assert( system_exist( hash.digest ) );
@@ -78,11 +78,11 @@ public:
     }
   }
 
-  template <typename... System>
+  template <typename... Systems>
   void set_late_update_sequence()
   {
     late_update_sequence.clear();
-    std::vector<MetaHash> vec_hash = { Metatype::BuildHash<System>()... };
+    std::vector<CHash> vec_hash = { CHash::Hash<Systems>()... };
     for ( auto hash : vec_hash )
     {
       assert( system_exist( hash.digest ) );

@@ -5,11 +5,11 @@
 #include <rapidjson/prettywriter.h>
 
 
-#include "Metatype.h"
+#include "ComponentMeta.h"
 #include "Query.h"
 #include "Entities.h"
 #include "Archetype.h"
-#include "ComponentList.h"
+#include "Description.h"
 #include "ArrayView.h"
 #include "DataChunk.h"
 #include "DE_API.h"
@@ -26,14 +26,12 @@ class DE_API EntityManager
 {
   std::vector<Entity> m_entities;
   std::vector<size_t> m_entities_deleted;
-
-  std::vector<size_t> m_archetypes_signature;
   std::vector<Archetype *> m_archetypes;
 
   size_t m_entities_live { 0 };
-  size_t m_entities_dead { 0 };
+
   friend class World;
-  friend void DeltaEngine::Serialize::WriteEntities( class DeltaEngine::EntityManager &em, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer );
+  friend void Serialize::WriteEntities( class EntityManager &em, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer );
 public:
   EntityManager();
 
@@ -49,6 +47,8 @@ public:
 
   template <typename C>
   C &GetComponent( EntityID id );
+
+  rttr::instance GetComponent( EntityID id, size_t bits );
 
   template <typename C>
   void AddComponent( EntityID id, C &comp );
@@ -76,18 +76,18 @@ private:
 
   size_t InsertEntityChunk( DataChunk *chunk, EntityID id, bool initialize = true );
 
-  EntityID EraseEntityChunk( DataChunk *chunk, size_t index );
+  void EraseEntityChunk( DataChunk *chunk, size_t index );
 
   void SetEntityArchetype( EntityID id, Archetype *arch );
 
-  void MoveEntityToArchetype( EntityID id, Archetype *arch, bool initialize = true );
+  void MoveEntityToArchetype( EntityID id, Archetype *arch );
 
-  Archetype *FindOrCreateArchetype( const Metatype **types, size_t count );
+  Archetype *FindOrCreateArchetype( const std::vector<const ComponentMeta *>& meta_vec);
 
   template <typename Func>
   void ArchetypeIterate( const Query &query, Func &&func );
 
-  ComponentList *BuildComponentList( const Metatype **types, size_t count );
+  Description *BuildDescription( const std::vector<const ComponentMeta *>& meta_vec);
 
   void ReorderChunk( Archetype *arch );
   void SetChunkFull( DataChunk *chunk );
