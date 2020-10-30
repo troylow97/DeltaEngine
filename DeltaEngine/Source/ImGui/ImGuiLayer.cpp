@@ -85,6 +85,7 @@ void ImGuiLayer::Begin()
   bool opt_fullscreen = opt_fullscreen_persistant;
   static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
 
+
   // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
   // because it would be confusing to have two docking targets within each others.
   ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
@@ -254,9 +255,72 @@ void ImGuiLayer::Begin()
 
     ImGui::End();
   }
-  // entities' properties
+  // selection
   {
-      ImGui::Begin( "Hierarchy" );
+      if (ImGui::BeginMainMenuBar())
+      {
+          if (ImGui::BeginMenu("main"))
+          {
+              if (ImGui::MenuItem("new scene"))
+              {
+                  /* Do stuff */
+              }
+              if (ImGui::MenuItem("load scene"))
+              {
+                  /* Do stuff */
+              }
+              if (ImGui::MenuItem("save scene"))
+              {
+                  /* Do stuff */
+              }
+              if (ImGui::MenuItem("quit"))
+              {
+                  /* Do stuff */
+              }
+
+              ImGui::EndMenu();
+          }
+          if (ImGui::BeginMenu("entity"))
+          {
+              if (ImGui::MenuItem("add entity"))
+              {
+                  /* Do stuff */
+              }
+              if (ImGui::MenuItem("clone entity"))
+              {
+                  /* Do stuff */
+              }
+              if (ImGui::MenuItem("save entity"))
+              {
+                  /* Do stuff */
+              }
+              if (ImGui::MenuItem("delete entity"))
+              {
+                  /* Do stuff */
+              }
+
+              ImGui::EndMenu();
+          }
+          if (ImGui::BeginMenu("view"))
+          {
+              if (ImGui::MenuItem("hierarchy"))
+              {
+                  /* Do stuff */
+              }
+              if (ImGui::MenuItem("world"))
+              {
+                  /* Do stuff */
+              }
+
+              ImGui::EndMenu();
+          }
+
+          ImGui::EndMainMenuBar();
+      }
+  }
+  // world
+  {
+      ImGui::Begin( "World" );
 
       if (ImGui::TreeNode("Entities"))
       {
@@ -366,124 +430,181 @@ void ImGuiLayer::Begin()
 
 		  env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
 		  {
-                  if (id1.index == InputManager::Get()->EntityIDSelected())
-                  {
-                      std::string text = "Edit Entity ";
-                      text += std::to_string(id1.index);
-                      text += "'s Properties";
-                      ImGui::Text(text.c_str());
-                      ImGui::Text("");
-                  
-                      ImGui::Text("transform");
-                      ImGui::DragFloat3("old pos", (float*)(&(t1.old_position)), 0.01f);
-                      ImGui::DragFloat3("pos", (float*)(&(t1.position)), 0.01f);
-                      ImGui::DragFloat3("size", (float*)(&(t1.scale)), 0.01f);
-                      ImGui::DragFloat3("rot", (float*)(&(t1.rotation)), 0.01f);
-                  
-                      ImGui::Text("rigidbody");
-                      ImGui::DragFloat2("direction", (float*)(&(r1.Direction)), 0.01f);
-                      ImGui::DragFloat2("velocity", (float*)(&(r1.Velocity)), 0.01f);
-                      ImGui::DragFloat2("reflected vector", (float*)(&(r1.ReflectedVector)), 0.01f);
-                      ImGui::DragFloat2("acceleration", (float*)(&(r1.Acceleration)), 0.01f);
-                      ImGui::DragFloat("mass", (float*)(&(r1.Mass)), 0.01f);
-                      ImGui::DragFloat("friction", (float*)(&(r1.Friction)), 0.01f);
-                      ImGui::DragFloat("movespeed", (float*)(&(r1.Movespeed)), 0.01f);
-                      ImGui::DragFloat("inherent acceleration", (float*)(&(r1.inherentAcceleration)), 0.01f);
-                      ImGui::Checkbox("gravity", &(r1.hasGravity));
-                      ImGui::Checkbox("moveable", &(r1.isMoveable));
-                  
-                      ImGui::Text("collider");
-                      ImGui::DragFloat2("inter point", (float*)(&(c1.interPoint)), 0.01f);
-                      ImGui::DragFloat2("center", (float*)(&(c1.center)), 0.01f);
-                      ImGui::DragFloat2("size", (float*)(&(c1.size)), 0.01f);
-                      ImGui::Checkbox("collidable", &(c1.isCollideable));
-                  }
+             if (id1.index == InputManager::Get()->EntityIDSelected())
+             {
+                 std::string text = "Edit Entity ";
+                 text += std::to_string(id1.index);
+                 text += "'s Properties";
+                 ImGui::Text(text.c_str());
+                 ImGui::Text("");
+
+                 static char str1[128] = "";
+                 ImGui::SetNextItemWidth(100);
+                 ImGui::InputTextWithHint("texture", "texture name", str1, IM_ARRAYSIZE(str1));
+                 ImGui::SameLine();
+                 static int clicked = 0;
+                 ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4(0.0f, 0.775f, 0.4125f, 1.0f)));
+                 ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4(0.0f, 0.825f, 0.4125f, 1.0f)));
+                 ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4(0.0f, 0.875f, 0.4125f, 1.0f)));
+                 if (ImGui::Button("Browse"))
+                 {
+                     clicked++;
+                 }
+                 ImGui::PopStyleColor(3);
+                 if (clicked & 1)
+                 {
+                     ImGui::Begin("Sprite Selection");
+                     {
+                         ImGui::Text("Character");
+
+                         std::vector<Sprite> spritelist;
+                         uint64_t textureID;
+                         Sprite running = { "run", 5 };
+                         Sprite idling = { "idle", 0 };
+
+                         spritelist.push_back(running);
+                         spritelist.push_back(idling);
+
+                         for (int i = 0; i < spritelist.size(); ++i)
+                         {
+                             textureID = spritelist[i].GetTexture()->GetRendererID();
+
+                             if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
+                                 ImVec2{ 32,32 },
+                                 ImVec2{ spritelist[i].GetOffset().x, spritelist[i].GetOffset().y },
+                                 ImVec2{ spritelist[i].GetOffset().x + spritelist[i].GetTiling().x, spritelist[i].GetOffset().y + spritelist[i].GetTiling().y }))
+                             {
+                                 static int textureClicked = 0;
+                                 textureClicked++;
+                                 std::cout << "textureclicked is " << textureClicked << std::endl;
+
+                                 if (textureClicked & 1)
+                                 {
+                                     strcpy(str1, spritelist[i].GetName().c_str());
+                                 }
+                             }
+                             ImGui::SameLine();
+                         }
+                     }
+                     ImGui::Text("");
+                     ImGui::Text("");
+                     {
+                         // to show examples for more only
+                         ImGui::Text("Background");
+
+                         Sprite bg = { "bg", 0 };
+                         uint64_t textureID = bg.GetTexture()->GetRendererID();
+
+                         if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
+                             ImVec2{ 32,32 },
+                             ImVec2{ bg.GetOffset().x, bg.GetOffset().y },
+                             ImVec2{ bg.GetOffset().x + bg.GetTiling().x, bg.GetOffset().y + bg.GetTiling().y }))
+                         {
+                             static int textureClicked = 0;
+                             textureClicked++;
+
+                             if (textureClicked & 1)
+                             {
+                                 strcpy(str1, bg.GetName().c_str());
+                             }
+                         }
+                         ImGui::SameLine();
+                     }
+                     ImGui::Text("");
+                     ImGui::Text("");
+
+                     ImGui::End();
+                 }
+                 ImGui::Text("");
+             
+                 ImGui::Text("transform");
+                 ImGui::DragFloat3("old pos", (float*)(&(t1.old_position)), 0.01f);
+                 ImGui::DragFloat3("pos", (float*)(&(t1.position)), 0.01f);
+                 ImGui::DragFloat3("size", (float*)(&(t1.scale)), 0.01f);
+                 ImGui::DragFloat3("rot", (float*)(&(t1.rotation)), 0.01f);
+             
+                 ImGui::Text("rigidbody");
+                 ImGui::DragFloat2("direction", (float*)(&(r1.Direction)), 0.01f);
+                 ImGui::DragFloat2("velocity", (float*)(&(r1.Velocity)), 0.01f);
+                 ImGui::DragFloat2("reflected vector", (float*)(&(r1.ReflectedVector)), 0.01f);
+                 ImGui::DragFloat2("acceleration", (float*)(&(r1.Acceleration)), 0.01f);
+                 ImGui::DragFloat("mass", (float*)(&(r1.Mass)), 0.01f);
+                 ImGui::DragFloat("friction", (float*)(&(r1.Friction)), 0.01f);
+                 ImGui::DragFloat("movespeed", (float*)(&(r1.Movespeed)), 0.01f);
+                 ImGui::DragFloat("inherent acceleration", (float*)(&(r1.inherentAcceleration)), 0.01f);
+                 ImGui::Checkbox("gravity", &(r1.hasGravity));
+                 ImGui::Checkbox("moveable", &(r1.isMoveable));
+             
+                 ImGui::Text("collider");
+                 ImGui::DragFloat2("inter point", (float*)(&(c1.interPoint)), 0.01f);
+                 ImGui::DragFloat2("center", (float*)(&(c1.center)), 0.01f);
+                 ImGui::DragFloat2("size", (float*)(&(c1.size)), 0.01f);
+                 ImGui::Checkbox("collidable", &(c1.isCollideable));
+             }
 
 		  });
 		  ImGui::End();
 	  }
   }
+  // selection panel 
+  {
+      ImGui::Begin("Panel Selection");
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //{
-  //    ImGui::Begin("image test");
-  //
-  //    if (ImGui::TreeNode("Images"))
-  //    {
-  //        ImGuiIO& io = ImGui::GetIO();
-  //        ImGui::TextWrapped(
-  //            "Below we are displaying the font texture (which is the only texture we have access to in this demo). "
-  //            "Use the 'ImTextureID' type as storage to pass pointers or identifier to your own texture data. "
-  //            "Hover the texture for a zoomed view!");
-  //
-  //        // Below we are displaying the font texture because it is the only texture we have access to inside the demo!
-  //        // Remember that ImTextureID is just storage for whatever you want it to be. It is essentially a value that
-  //        // will be passed to the rendering backend via the ImDrawCmd structure.
-  //        // If you use one of the default imgui_impl_XXXX.cpp rendering backend, they all have comments at the top
-  //        // of their respective source file to specify what they expect to be stored in ImTextureID, for example:
-  //        // - The imgui_impl_dx11.cpp renderer expect a 'ID3D11ShaderResourceView*' pointer
-  //        // - The imgui_impl_opengl3.cpp renderer expect a GLuint OpenGL texture identifier, etc.
-  //        // More:
-  //        // - If you decided that ImTextureID = MyEngineTexture*, then you can pass your MyEngineTexture* pointers
-  //        //   to ImGui::Image(), and gather width/height through your own functions, etc.
-  //        // - You can use ShowMetricsWindow() to inspect the draw data that are being passed to your renderer,
-  //        //   it will help you debug issues if you are confused about it.
-  //        // - Consider using the lower-level ImDrawList::AddImage() API, via ImGui::GetWindowDrawList()->AddImage().
-  //        // - Read https://github.com/ocornut/imgui/blob/master/docs/FAQ.md
-  //        // - Read https://github.com/ocornut/imgui/wiki/Image-Loading-and-Displaying-Examples
-  //        ImTextureID my_tex_id = io.Fonts->TexID;
-  //        float my_tex_w = (float)io.Fonts->TexWidth;
-  //        float my_tex_h = (float)io.Fonts->TexHeight;
-  //        {
-  //            ImGui::Text("%.0fx%.0f", my_tex_w, my_tex_h);
-  //            ImVec2 pos = ImGui::GetCursorScreenPos();
-  //            ImVec2 uv_min = ImVec2(0.0f, 0.0f);                 // Top-left
-  //            ImVec2 uv_max = ImVec2(1.0f, 1.0f);                 // Lower-right
-  //            ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
-  //            ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white
-  //            ImGui::Image(my_tex_id, ImVec2(my_tex_w, my_tex_h), uv_min, uv_max, tint_col, border_col);
-  //            if (ImGui::IsItemHovered())
-  //            {
-  //                ImGui::BeginTooltip();
-  //                float region_sz = 32.0f;
-  //                float region_x = io.MousePos.x - pos.x - region_sz * 0.5f;
-  //                float region_y = io.MousePos.y - pos.y - region_sz * 0.5f;
-  //                float zoom = 4.0f;
-  //                if (region_x < 0.0f) { region_x = 0.0f; }
-  //                else if (region_x > my_tex_w - region_sz) { region_x = my_tex_w - region_sz; }
-  //                if (region_y < 0.0f) { region_y = 0.0f; }
-  //                else if (region_y > my_tex_h - region_sz) { region_y = my_tex_h - region_sz; }
-  //                ImGui::Text("Min: (%.2f, %.2f)", region_x, region_y);
-  //                ImGui::Text("Max: (%.2f, %.2f)", region_x + region_sz, region_y + region_sz);
-  //                ImVec2 uv0 = ImVec2((region_x) / my_tex_w, (region_y) / my_tex_h);
-  //                ImVec2 uv1 = ImVec2((region_x + region_sz) / my_tex_w, (region_y + region_sz) / my_tex_h);
-  //                ImGui::Image(my_tex_id, ImVec2(region_sz * zoom, region_sz * zoom), uv0, uv1, tint_col, border_col);
-  //                ImGui::EndTooltip();
-  //            }
-  //        }
-  //        ImGui::TextWrapped("And now some textured buttons..");
-  //        static int pressed_count = 0;
-  //        for (int i = 0; i < 8; i++)
-  //        {
-  //            ImGui::PushID(i);
-  //            int frame_padding = -1 + i;                             // -1 == uses default padding (style.FramePadding)
-  //            ImVec2 size = ImVec2(32.0f, 32.0f);                     // Size of the image we want to make visible
-  //            ImVec2 uv0 = ImVec2(0.0f, 0.0f);                        // UV coordinates for lower-left
-  //            ImVec2 uv1 = ImVec2(32.0f / my_tex_w, 32.0f / my_tex_h);// UV coordinates for (32,32) in our texture
-  //            ImVec4 bg_col = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);         // Black background
-  //            ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);       // No tint
-  //            if (ImGui::ImageButton(my_tex_id, size, uv0, uv1, frame_padding, bg_col, tint_col))
-  //                pressed_count += 1;
-  //            ImGui::PopID();
-  //            ImGui::SameLine();
-  //        }
-  //        ImGui::NewLine();
-  //        ImGui::Text("Pressed %d times.", pressed_count);
-  //        ImGui::TreePop();
-  //    }
-  //
-  //    ImGui::End();
-  //}
+      if (ImGui::TreeNode("Images"))
+      {
+          //ImGuiIO& io = ImGui::GetIO();
+          //
+          //// Below we are displaying the font texture because it is the only texture we have access to inside the demo!
+          //// Remember that ImTextureID is just storage for whatever you want it to be. It is essentially a value that
+          //// will be passed to the rendering backend via the ImDrawCmd structure.
+          //// If you use one of the default imgui_impl_XXXX.cpp rendering backend, they all have comments at the top
+          //// of their respective source file to specify what they expect to be stored in ImTextureID, for example:
+          //// - The imgui_impl_dx11.cpp renderer expect a 'ID3D11ShaderResourceView*' pointer
+          //// - The imgui_impl_opengl3.cpp renderer expect a GLuint OpenGL texture identifier, etc.
+          //// More:
+          //// - If you decided that ImTextureID = MyEngineTexture*, then you can pass your MyEngineTexture* pointers
+          ////   to ImGui::Image(), and gather width/height through your own functions, etc.
+          //// - You can use ShowMetricsWindow() to inspect the draw data that are being passed to your renderer,
+          ////   it will help you debug issues if you are confused about it.
+          //// - Consider using the lower-level ImDrawList::AddImage() API, via ImGui::GetWindowDrawList()->AddImage().
+          //// - Read https://github.com/ocornut/imgui/blob/master/docs/FAQ.md
+          //// - Read https://github.com/ocornut/imgui/wiki/Image-Loading-and-Displaying-Examples
+          //ImTextureID my_tex_id = io.Fonts->TexID;
+          //float my_tex_w = (float)io.Fonts->TexWidth;
+          //float my_tex_h = (float)io.Fonts->TexHeight;
+          //{
+          //    ImGui::Text("%.0fx%.0f", my_tex_w, my_tex_h);
+          //    ImVec2 pos = ImGui::GetCursorScreenPos();
+          //    ImVec2 uv_min = ImVec2(0.0f, 0.0f);                 // Top-left
+          //    ImVec2 uv_max = ImVec2(1.0f, 1.0f);                 // Lower-right
+          //    ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);   // No tint
+          //    ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white
+          //    ImGui::Image(my_tex_id, ImVec2(my_tex_w, my_tex_h), uv_min, uv_max, tint_col, border_col);
+          //    if (ImGui::IsItemHovered())
+          //    {
+          //        ImGui::BeginTooltip();
+          //        float region_sz = 32.0f;
+          //        float region_x = io.MousePos.x - pos.x - region_sz * 0.5f;
+          //        float region_y = io.MousePos.y - pos.y - region_sz * 0.5f;
+          //        float zoom = 4.0f;
+          //        if (region_x < 0.0f) { region_x = 0.0f; }
+          //        else if (region_x > my_tex_w - region_sz) { region_x = my_tex_w - region_sz; }
+          //        if (region_y < 0.0f) { region_y = 0.0f; }
+          //        else if (region_y > my_tex_h - region_sz) { region_y = my_tex_h - region_sz; }
+          //        ImGui::Text("Min: (%.2f, %.2f)", region_x, region_y);
+          //        ImGui::Text("Max: (%.2f, %.2f)", region_x + region_sz, region_y + region_sz);
+          //        ImVec2 uv0 = ImVec2((region_x) / my_tex_w, (region_y) / my_tex_h);
+          //        ImVec2 uv1 = ImVec2((region_x + region_sz) / my_tex_w, (region_y + region_sz) / my_tex_h);
+          //        ImGui::Image(my_tex_id, ImVec2(region_sz * zoom, region_sz * zoom), uv0, uv1, tint_col, border_col);
+          //        ImGui::EndTooltip();
+          //    }
+          //}
+          ImGui::TreePop();
+      }
+      ImGui::End();
+  }
+
+
   ImGui::End();
 }
 
