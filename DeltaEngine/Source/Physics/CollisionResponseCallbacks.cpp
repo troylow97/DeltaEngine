@@ -7,22 +7,24 @@ namespace DeltaEngine
 {
 	void CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
 	{
-		//float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
-		//float seperating_velocity = Vector2DotProduct(r1.Velocity - r2.Velocity, m.normal);
-		//if (seperating_velocity > 0)
-		//	return;
+		float seperating_velocity = Vector2DotProduct(r1.Velocity - r2.Velocity, m.normal);
+		if (seperating_velocity > 0)
+			return;
+		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+		float totalInverseMass = 1 / r1.Mass + 1 / r2.Mass;
 
+		//get the direction of reflection using dot product
+		float aA = Vector2DotProduct(r1.Velocity, m.normal);
+		float aB = Vector2DotProduct(r2.Velocity, m.normal);
 
-		// Apply impulses: they are applied in the direction of the contact,
-		// and in proportion to inverse mass.
-		//r1.Velocity = r1.Velocity + impulsePerIMass * 1 / r1.Mass;
-		//// The other body goes in the opposite direction
-		//r2.Velocity = r2.Velocity + impulsePerIMass * -1/r2.Mass;
+		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
+		Vector2 reflectedVectorA = r1.Velocity + m.normal * r2.Mass * (2 * m.penetration / (r1.Mass + r2.Mass));
+		Vector2 reflectedVectorB = r2.Velocity - m.normal * r1.Mass * (2 * m.penetration / (r1.Mass + r2.Mass));
 
-		r1.Velocity += (m.normal * m.penetration);
-		r2.Velocity -= (m.normal * m.penetration);
-
-
+		//update the end points of where the two objects will end up
+		r1.PointEnd = c1.center + reflectedVectorA;
+		r2.PointEnd = c2.center + reflectedVectorB;
+		
 	}
 
 	void ResolveContactVelocity(RigidBody& r1, RigidBody& r2,Manifold& m)

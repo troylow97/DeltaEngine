@@ -76,7 +76,7 @@ RTTR_REGISTRATION
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "direction", &RigidBody::Direction )
     .property( "velocity", &RigidBody::Velocity )
-    .property( "reflected_vector", &RigidBody::ReflectedVector )
+    .property("accumulated_force", &RigidBody::AccumulatedForce)
     .property( "acceleration", &RigidBody::Acceleration )
     .property( "mass", &RigidBody::Mass )
     .property( "friction", &RigidBody::Friction )

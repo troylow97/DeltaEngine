@@ -10,6 +10,7 @@ struct Manifold
   float penetration;
   Vector2 normal;
   Vector2 Movement[2];
+  Vector2 ContactPoint;
   float FrictionCof;
 
   Manifold::Manifold() :

@@ -43,8 +43,8 @@
                 },
                 "mass": 1.0,
                 "friction": 0.9700000286102295,
-                "movespeed": 2.0,
-                "inherent_acceleration": 1.200000023841858,
+                "movespeed": 0.2,
+                "inherent_acceleration": 5.200000023841858,
                 "Restitution": 2.0,
                 "has_gravity": true,
                 "is_moveable": true
@@ -178,11 +178,11 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "mass": 10.0,
+                "mass": 1.0,
                 "friction": 0.9700000286102295,
                 "movespeed": 3.000000596046449,
                 "inherent_acceleration": 3.0,
-                "Restitution": 1.0,
+                "Restitution": 0.0,
                 "has_gravity": false
             },
             "collider": {
@@ -310,7 +310,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "mass": 10.0,
+                "mass": 1.0,
                 "friction": 0.9700000286102295,
                 "movespeed": 0.0,
                 "inherent_acceleration": 3.0,
@@ -340,11 +340,11 @@
                 "old_position": {
                     "x": 0.0,
                     "y": 0.0,
-                    "z": 0.0
+                    "z": 0.0  
                 },
                 "position": {
-                    "x": 3.6500000953674318,
-                    "y": 2.7049999237060549,
+                    "x": 2.6500000953674318,
+                    "y": -1.7049999237060549,
                     "z": 0.0
                 },
                 "scale": {
@@ -376,7 +376,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "mass": 10.0,
+                "mass": 1.0,
                 "friction": 0.9700000286102295,
                 "movespeed": 5.0,
                 "inherent_acceleration": 3.0,
@@ -410,7 +410,7 @@
                 },
                 "position": {
                     "x": -4.650000095367432,
-                    "y": -2.305000066757202,
+                    "y": -3.305000066757202,
                     "z": 0.0
                 },
                 "scale": {

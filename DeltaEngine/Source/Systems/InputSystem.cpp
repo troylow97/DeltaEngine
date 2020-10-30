@@ -23,16 +23,6 @@ void InputSystem::Update()
       s.m_FlipX = true;
     } );
   }
-  else
-  {
-      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
-      {
-            if (i1.previousKey = DEVK_A && r1.Direction.x < 0)
-            {
-                r1.Direction *= 0.90f;
-            }
-      });
-  }
 
 
   if ( InputManager::Get()->IsKeyReleased( DEVK_A ) )
@@ -58,16 +48,7 @@ void InputSystem::Update()
       s.m_FlipX = false;
     } );
   }
-  else
-  {
-      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
-          {
-              if (i1.previousKey = DEVK_D && r1.Direction.x > 0)
-              {
-                  r1.Direction *= 0.90f;
-              }
-          });
-  }
+
 
   if ( InputManager::Get()->IsKeyReleased( DEVK_D ) )
   {
@@ -103,16 +84,7 @@ void InputSystem::Update()
       r1.Direction = Vector2::down();
     } );
   }
-  else
-  {
-      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
-          {
-              if (i1.previousKey = DEVK_D && r1.Direction.y < 0)
-              {
-                  r1.Direction *= 0.90f;
-              }
-          });
-  }
+
 
   if ( InputManager::Get()->IsKeyTriggered( DEVK_BACKSLASH ) ) // '\'
   {
@@ -128,22 +100,14 @@ void InputSystem::Update()
     }
   }
 
-  //if ( InputManager::Get()->IsKeyTriggered( DEVK_P ) )
-  //{
-  //  em.ForEach( [&]( EntityID &id, Input &input )
-  //  {
-  //    auto t2 = em.GetComponent<Transform>( id );
-  //    auto circleEntity = env.pECS->GetWorld().get_entity_manager().CreateEntity<Transform, RigidBody, Collider>();
-  //    auto &circleT = env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>( circleEntity );
-  //    auto &circleR = env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>( circleEntity );
-  //    auto &circleC = env.pECS->GetWorld().get_entity_manager().GetComponent<Collider>( circleEntity );
-
-  //    circleT.position = Vector3( t2.position.x, t2.position.y - 0.25f );
-  //    circleT.scale = Vector3( 0.1, 0.1 );
-  //    circleR.hasGravity = true;
-  //    circleC.type = ColliderType::CIRCLE;
-  //  } );
-  //}
+  if (InputManager::Get()->IsKeyReleased(DEVK_A) || InputManager::Get()->IsKeyReleased(DEVK_D)
+      || InputManager::Get()->IsKeyReleased(DEVK_W) || InputManager::Get()->IsKeyReleased(DEVK_S))
+  {
+      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+          {
+              r1.Direction = Vector2::zero();
+          });
+  }
 
 
   // gets the coordinates of the mouse, good for debugging

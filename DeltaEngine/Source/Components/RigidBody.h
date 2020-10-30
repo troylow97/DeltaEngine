@@ -13,8 +13,9 @@ struct RigidBody
   Force Friction;
   Vector2 Direction;
   Vector2 Velocity;
-  Vector2 ReflectedVector;
+  Vector2 AccumulatedForce;
   Vector2 Acceleration;
+  Vector2 PointEnd;
   float Mass;
   float Movespeed;
   float inherentAcceleration;

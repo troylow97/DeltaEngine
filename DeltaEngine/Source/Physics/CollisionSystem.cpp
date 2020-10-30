@@ -48,7 +48,17 @@ void CollisionSystem::CollisionIntersectionCheck()
             Manifold m;
             if (CollisionIntersection_Main(c1, r1, c2, r2, m))
             {
-                current_manifold_vector.push_back({ c1,c2, m,id1,id2});
+                bool already_added = false;
+                for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
+                {
+                    if (it1->id1.index == id1.index && it1->id2.index == id2.index || it1->id1.index == id2.index && it1->id2.index == id1.index)
+                    {
+                        already_added = true;
+                    }
+                }
+
+                if(!already_added)
+                    current_manifold_vector.push_back({ c1,c2, m,id1,id2});
             }
 
           }
@@ -104,7 +114,11 @@ void CollisionSystem::CollisionHandling()
 
 void CollisionSystem::CollisionResolution()
 {
-
+    //resolve lowest contact point first
+    std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
+    {
+    return a.m.ContactPoint.y < b.m.ContactPoint.y;
+    });
 
     for ( auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++ )
     {
@@ -115,119 +129,14 @@ void CollisionSystem::CollisionResolution()
           if ( it1->id1.index == id1.index && it1->id2.index == id2.index )
           {
               CollisionResponse(c1,r1,c2, r2, it1->m);
+              c1.center = r1.PointEnd;
+              c2.center = r2.PointEnd;
           }
     
         } );
       } );
     }
-//        //Resolving penetrations is a tricky problem with large stacks. The only real way to get 
-//        //good results is by considering all contacts at once at solving them together. This method basically 
-//        //just keeps poking the bodies until the penetrations are below the penetration slop epsilon. 
-//        //Better solutions involve building contact graphs, shock propagation and constraint based
-//        //solvers.
-//    unsigned iterationsRun = 0;
-//    unsigned maxIterations = current_manifold_vector.size() * 5;
-//    const float positionEpsilon = 0.8f;
-//
-//    while (iterationsRun < maxIterations)
-//    {
-//        // Find biggest penetration greater than
-//        //the correction epsilon
-//        float maxPenetration = positionEpsilon;
-//        unsigned contactIndex = current_manifold_vector.size();
-//        for (unsigned int i = 0; i < current_manifold_vector.size(); i++)
-//        {
-//            if (current_manifold_vector[i].m.penetration > maxPenetration)
-//            {
-//                maxPenetration = current_manifold_vector[i].m.penetration;
-//                contactIndex = i;
-//            }
-//        }
-//        if (contactIndex == current_manifold_vector.size()) break;
-//
-//         for (unsigned int i = 0; i < current_manifold_vector.size(); i++)
-//         {
-//             if (current_manifold_vector[i].m.penetration == maxPenetration )
-//             {
-//                 em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
-//                     {
-//                         em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
-//                             {
-//                                 if (id1.index == current_manifold_vector[i].id1.index && id2.index == current_manifold_vector[i].id2.index)
-//                                 {
-//                                     ResolvePenetration(r1, t1, r2, t2, current_manifold_vector[i].m);
-//                                     contactIndex = i;
-//                                 }
-//
-//                             });
-//                     });
-//                 break;
-//             }
-//         }
-//
-//        // Update the penetrations for all related contacts
-//        Vector2* movement = current_manifold_vector[contactIndex].m.Movement;
-//        for (unsigned int i = 0; i < current_manifold_vector.size(); i++)
-//        {
-//            if (current_manifold_vector[i].id1.index == current_manifold_vector[contactIndex].id1.index)
-//                current_manifold_vector[i].m.penetration -= Vector2DotProduct(movement[0], current_manifold_vector[i].m.normal);
-//            else if (current_manifold_vector[i].id1.index == current_manifold_vector[contactIndex].id2.index)
-//                current_manifold_vector[i].m.penetration -= Vector2DotProduct(movement[1], current_manifold_vector[i].m.normal);
-//
-//
-//            if (current_manifold_vector[i].id2.index == current_manifold_vector[contactIndex].id1.index)
-//                current_manifold_vector[i].m.penetration += Vector2DotProduct(movement[0], current_manifold_vector[i].m.normal);
-//            else if (current_manifold_vector[i].id2.index == current_manifold_vector[contactIndex].id2.index)
-//                current_manifold_vector[i].m.penetration += Vector2DotProduct(movement[1], current_manifold_vector[i].m.normal);
-//
-//        }
-//        ++iterationsRun;
-//    }
-//   iterationsRun = 0;
-//   while (iterationsRun < maxIterations)
-//   {
-//       // Find the contact with the largest closing velocity;
-//       float maxVelocity = FLT_MAX;
-//       unsigned contactIndex = current_manifold_vector.size();
-//           for (unsigned int i = 0; i < current_manifold_vector.size(); i++)
-//           {
-//               em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
-//                   {
-//                       em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
-//                           {
-//                               float sepVel = Vector2DotProduct(r1.Velocity - r2.Velocity, current_manifold_vector[i].m.normal);
-//                               if (sepVel < 0 && sepVel < maxVelocity)
-//                               {
-//                                   maxVelocity = sepVel;
-//                                   contactIndex = i;
-//                               }
-//   
-//                           });
-//                   });
-//           }
-//
-//           // Do we have anything worth resolving?
-//           if (contactIndex == current_manifold_vector.size()) break;
-//
-//       // Resolve this contact velocity
-//       for (unsigned int i = 0; i < current_manifold_vector.size(); i++)
-//       {
-//           if (contactIndex == i)
-//           {
-//               em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
-//                   {
-//                       em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
-//                           {
-//                               ResolveContactVelocity(r1, r2, current_manifold_vector[i].m);
-//                           });
-//                   });
-//           }
-//   
-//       }
-//   
-//   
-//       ++iterationsRun;
-//   }
+    
 }
 
 }

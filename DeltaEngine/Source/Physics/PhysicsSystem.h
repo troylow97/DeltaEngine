@@ -14,14 +14,12 @@ public:
 
   virtual void PhysicsSystem::Update() override;
   virtual void PhysicsSystem::LateUpdate() override;
-  void PhysicsSystem::Init();
   void PhysicsSystem::UpdateComponents();
 
 private:
   void PhysicsSystem::UpdateVelocity();
-  void PhysicsSystem::Gravity();
 
-  Vector2 m_gravity_amount;
-
+  Vector2 m_gravity_amount = { 0,-0.1};
+  float m_max_velocity = 1000.0f;
   END_DEFINE_SYSTEM( PhysicsSystem )
 }

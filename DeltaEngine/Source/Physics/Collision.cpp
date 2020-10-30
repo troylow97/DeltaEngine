@@ -95,9 +95,9 @@ namespace DeltaEngine
 		{
 			//col1.collided_spot = { -10,-10 };
 			//col2.collided_spot = { -10,-10 };
-			r1.ReflectedVector = distNorm;
-			r2.ReflectedVector = -distNorm;
-			std::cout << "Intersect rect circle!\n";
+			//r1.ReflectedVector = distNorm;
+			//r2.ReflectedVector = -distNorm;
+			//std::cout << "Intersect rect circle!\n";
 			return true;
 		}
 		return false;
@@ -826,6 +826,18 @@ namespace DeltaEngine
 
 			// Calculate overlap on y axis
 			float y_overlap = a_extent2 + b_extent2 - abs(n.y);
+
+			//Get Contact Point
+			if(A.center.x > B.center.x)
+				m.ContactPoint.x = bbox.max.x;
+			else
+				m.ContactPoint.x = bbox.min.x;
+
+			if (A.center.y > B.center.y)
+				m.ContactPoint.y = abox.min.x;
+			else
+				m.ContactPoint.y = bbox.min.x;
+
 			//SAT Test on Y axis
 			if (y_overlap > 0) 
 			{
@@ -833,7 +845,6 @@ namespace DeltaEngine
 				if (y_overlap > 0)
 				{
 					// Find out which axis is axis of least penetration
-					//if (x_overlap > y_overlap) // TC: Suspect this logic was wrong implementation of comment above
 					if (x_overlap < y_overlap)
 					{
 						if (n.x < 0)
@@ -841,7 +852,7 @@ namespace DeltaEngine
 						else
 							m.normal = { 1,0 };
 
-						if (A.isWall || B.isWall)
+						//if (A.isWall || B.isWall)
 						{
 							if (A.center.x > B.center.x)
 							{
@@ -867,7 +878,7 @@ namespace DeltaEngine
 						else
 							m.normal = { 0,1 };
 
-						if (A.isWall || B.isWall)
+						//if (A.isWall || B.isWall)
 						{
 							if (A.center.y > B.center.y)
 							{
