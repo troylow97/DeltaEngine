@@ -96,7 +96,6 @@ RTTR_REGISTRATION
     .property( "inter_point", &Collider::interPoint )
     .property( "type", &Collider::type )
     .property( "is_collideable", &Collider::isCollideable )
-    .property("is_wall", &Collider::isWall)
     .method( "serialize", &Collider::Serialize )
     .method( "deserialize", &Collider::Deserialize );
 

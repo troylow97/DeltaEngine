@@ -853,18 +853,18 @@ namespace DeltaEngine
 							m.normal = { 1,0 };
 
 						//if (A.isWall || B.isWall)
-						{
-							if (A.center.x > B.center.x)
-							{
-								A.collided_spot = { -1, 0 };
-								B.collided_spot = { 1, 0 };
-							}
-							else
-							{
-								A.collided_spot = { 1, 0 };
-								B.collided_spot = { -1, 0 };
-							}
-						}
+						//{
+						//	if (A.center.x > B.center.x)
+						//	{
+						//		A.collided_spot = { -1, 0 };
+						//		B.collided_spot = { 1, 0 };
+						//	}
+						//	else
+						//	{
+						//		A.collided_spot = { 1, 0 };
+						//		B.collided_spot = { -1, 0 };
+						//	}
+						//}
 
 						m.penetration = x_overlap;
 						return true;
@@ -879,18 +879,18 @@ namespace DeltaEngine
 							m.normal = { 0,1 };
 
 						//if (A.isWall || B.isWall)
-						{
-							if (A.center.y > B.center.y)
-							{
-								A.collided_spot = { 0,-1 };
-								B.collided_spot = { 0, 1 };
-							}
-							else
-							{
-								A.collided_spot = { 0, 1 };
-								B.collided_spot = { 0,-1 };
-							}
-						}
+						//{
+						//	if (A.center.y > B.center.y)
+						//	{
+						//		A.collided_spot = { 0,-1 };
+						//		B.collided_spot = { 0, 1 };
+						//	}
+						//	else
+						//	{
+						//		A.collided_spot = { 0, 1 };
+						//		B.collided_spot = { 0,-1 };
+						//	}
+						//}
 
 						m.penetration = y_overlap;
 						return true;
@@ -898,8 +898,6 @@ namespace DeltaEngine
 				}
 			}
 		}
-		A.collided_spot = Vector2::zero();
-		B.collided_spot = Vector2::zero();
 		return false;
 	}
 

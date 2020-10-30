@@ -10,7 +10,7 @@ namespace DeltaEngine
 
     void PhysicsSystem::Update()
     {
-        UpdateComponents();
+        //UpdateComponents();
         UpdateVelocity();
     }
 
@@ -18,8 +18,8 @@ namespace DeltaEngine
     {
         em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
             {
-                Vector2 NewPos = Vector2::zero();
-                if (!c1.isWall)
+                Vector2 NewPos = t1.position;
+                //if (!c1.isWall)
                 {
                     if (r1.PointEnd != Vector2::zero())
                     {
@@ -33,18 +33,19 @@ namespace DeltaEngine
                         NewPos = t1.position + r1.Velocity;
                     }
 
-                    //em.ForEach([&](EntityID id2, RigidBody& r2, Collider& c2)
-                    //{
-                    //    if (c2.isWall && id1.index != id2.index && CollisionIntersection_RectPoint(c2.center,c2.size,NewPos))
-                    //    {
-                    //        r1.Velocity = Vector2::zero();
-                    //        r1.PointEnd = Vector2::zero();
-                    //        return;
-                    //    }
-                    //});
+                    
+                   em.ForEach([&](EntityID id2, RigidBody& r2, Collider& c2)
+                   {
+                       c1.center = NewPos;
+                       if (id1.index != id2.index && CollisionIntersection_RectRect(c1,r1.Velocity,c2,Vector2::zero()))
+                       {
+                           r1.Velocity = Vector2::zero();
+                           r1.PointEnd = Vector2::zero();
+                           return;
+                       }
+                   });
 
                     t1.position = NewPos;
-
 
                 }
             });
@@ -64,7 +65,7 @@ namespace DeltaEngine
     {
         em.ForEach([&](EntityID id1, RigidBody& r1,Transform& t1,Collider& c1)
         {
-            if (!c1.isWall)
+            //if (!c1.isWall)
             {
                 //Player movement
                 Vector2 move;
@@ -72,12 +73,12 @@ namespace DeltaEngine
                 r1.AccumulatedForce += move;
 
                 //set Euler
-                t1.position += r1.Velocity * env.pClock->DeltaTime();
+                //t1.position += r1.Velocity * env.pClock->DeltaTime();
 
                 //Apply gravity
                 if (r1.hasGravity && r1.Direction.y != 1)
                 {
-                    //r1.Acceleration = m_gravity_amount;
+                    r1.Acceleration = m_gravity_amount;
                 }
 
                 Vector2 newAcceleration = r1.AccumulatedForce * 1 / r1.Mass + r1.Acceleration;

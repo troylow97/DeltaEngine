@@ -63,7 +63,6 @@
                     "y": 0.0
                 },
                 "type": "box",
-                "is_wall": false,
                 "is_collideable": true
             },
             "input": {
@@ -133,8 +132,7 @@
                     "y": 0.0
                 },
                 "type": "box",
-                "is_collideable": true,
-                "is_wall": false
+                "is_collideable": true
             }
         },
         {
@@ -178,11 +176,11 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "mass": 1.0,
+                "mass": 10000.0,
                 "friction": 0.9700000286102295,
                 "movespeed": 3.000000596046449,
                 "inherent_acceleration": 3.0,
-                "Restitution": 0.0,
+                "Restitution": 0.5,
                 "has_gravity": false
             },
             "collider": {
@@ -199,8 +197,7 @@
                     "y": 1.0
                 },
                 "type": "box",
-                "is_collideable": true,
-                "is_wall": true
+                "is_collideable": true
             }
         },
         {
@@ -265,8 +262,7 @@
                     "y": 1.0
                 },
                 "type": "box",
-                "is_collideable": true,
-                "is_wall": false
+                "is_collideable": true
             }
         },
         {
@@ -331,8 +327,7 @@
                     "y": 1.0
                 },
                 "type": "box",
-                "is_collideable": true,
-                "is_wall": false
+                "is_collideable": true
             }
         },
         {
@@ -397,8 +392,7 @@
                     "y": 2.0
                 },
                 "type": "box",
-                "is_collideable": true,
-                "is_wall": false
+                "is_collideable": true
             }
         },
         {
