@@ -519,15 +519,12 @@ void ImGuiLayer::Begin()
 
           for ( auto &ref : em.GetEntityArchetype( InputManager::Get()->EntityIDSelected() ) )
           {
-            auto& instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
-            DeltaEngine_CORE_TRACE( "Instance Type: {}", instance.get_type().get_name().to_string() );
+            rttr::instance& instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
 
             ImGui::Text( instance.get_type().get_name().to_string().c_str() );
             auto properties = instance.get_type().get_properties();
             for ( auto property : properties )
             {
-              DeltaEngine_CORE_TRACE( "Property Type: {}", property.get_type().get_name().to_string() );
-
               rttr::variant value = property.get_value( instance );
               if ( !value )
                 continue;
