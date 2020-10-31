@@ -3,14 +3,12 @@
 #include "Core/Math/Vector.h"
 #include "Components.h"
 #include <rapidjson/prettywriter.h>
-#include <rapidjson/filewritestream.h>
-#include  "Physics/Force.h"
+#include <rapidjson/filewritestream.h>"
 
 namespace DeltaEngine
 {
 struct RigidBody
 {
-  Force Friction;
   Vector2 Direction;
   Vector2 Velocity;
   Vector2 AccumulatedForce;
@@ -18,15 +16,19 @@ struct RigidBody
   Vector2 PointEnd;
   float Mass;
   float Movespeed;
-  float inherentAcceleration;
-  float Restitution; //not used
+  float Restitution;
   bool hasGravity;
 
 
   RigidBody() :
+    Direction {0,0},
     Velocity { 0,0 },
+    AccumulatedForce{0,0},
     Acceleration { 0,0 },
-    inherentAcceleration { 3.0f },
+    PointEnd{0,0},
+    Mass{1.0f},
+    Movespeed{0.5f},
+    Restitution{1.0f},
     hasGravity { false }
   {}
 

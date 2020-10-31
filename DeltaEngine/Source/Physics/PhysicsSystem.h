@@ -17,6 +17,7 @@ public:
   void PhysicsSystem::UpdateComponents();
 
 private:
+    void PhysicsSystem::MoveInput();
   void PhysicsSystem::UpdateVelocity();
 
   Vector2 m_gravity_amount = { 0,-0.1};

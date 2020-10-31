@@ -31,8 +31,9 @@ struct Collider
   Collider( Vector2 new_center, Vector2 new_size, ColliderType col_type ) :
     center( new_center ),
     size( new_size ),
-      interPoint{ 0,0 },
-      isCollideable{ true }
+    interPoint{ 0,0 },
+    isCollideable{ true },
+    type{ColliderType::BOX}
   {}
 
   REGISTER_COMPONENT( Collider )

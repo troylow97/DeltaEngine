@@ -10,6 +10,7 @@ namespace DeltaEngine
 
     void PhysicsSystem::Update()
     {
+        MoveInput();
         //UpdateComponents();
         UpdateVelocity();
     }
@@ -56,20 +57,59 @@ namespace DeltaEngine
         {
             c1.size = t1.scale;
             c1.center = t1.position;
-
         });
+    }
+
+    void PhysicsSystem::MoveInput()
+    {
+        em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
+            {
+                {
+                    //Player movement
+                    Vector2 move;
+                    move = (r1.Direction * r1.Movespeed);
+                    //r1.AccumulatedForce += move;
+                    if (c1.isCollideable)
+                    {
+                        c1.center = t1.position + move * env.pClock->DeltaTime();
+                        c1.size = t1.scale;
+                        em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
+                            {
+                                if (c2.isCollideable)
+                                {
+                                    if (id1.index != id2.index)
+                                    {
+                                        c2.center = t2.position;
+                                        c2.size = t2.scale;
+                                        Manifold m;
+                                        if (CollisionIntersection_Main(c1, r1, c2, r2, m))
+                                        {
+                                            std::cout << "COLLIDING!" << std::endl;
+                                            r1.Velocity = Vector2::zero();
+                                        }
+
+                                    }
+
+                                }
+                            });
+                    }
+
+                    r1.AccumulatedForce += move;
+                }
+            });
     }
 
     void PhysicsSystem::UpdateVelocity()
     {
         em.ForEach([&](EntityID id1, RigidBody& r1,Transform& t1,Collider& c1)
         {
+                std::cout << "ID IS " << id1.index << std::endl;
             //if (!c1.isWall)
             {
                 //Player movement
-                Vector2 move;
-                move = (r1.Direction * r1.Movespeed);
-                r1.AccumulatedForce += move;
+                //Vector2 move;
+                //move = (r1.Direction * r1.Movespeed);
+                //r1.AccumulatedForce += move;
 
                 //set Euler
                 //t1.position += r1.Velocity * env.pClock->DeltaTime();
