@@ -15,7 +15,7 @@ prior written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Math/Math.h"
 #include "Core/GameClock/GameClock.h"
 #include "Core/GlobalStruct.h"
-#define EPSILON 4.94065645841247E-324;
+
 namespace DeltaEngine
 {
 	/******************************************************************************/

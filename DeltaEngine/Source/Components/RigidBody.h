@@ -14,7 +14,8 @@ struct RigidBody
   Vector2 PointEnd;
   float Mass;
   float Movespeed;
-  float Restitution; //not used
+  float Restitution;
+  float FrictionCoeff;
   bool hasGravity;
   bool isMoveable;
 
@@ -29,6 +30,7 @@ struct RigidBody
     Mass{1.0f},
     Movespeed{0.1f},
     Restitution{1.0f},
+    FrictionCoeff{0.03f},
     hasGravity { false },
     isMoveable { true }
   {}

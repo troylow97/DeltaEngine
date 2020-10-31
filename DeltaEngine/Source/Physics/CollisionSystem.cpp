@@ -20,9 +20,7 @@ void CollisionSystem::Update()
 }
 
 void CollisionSystem::LateUpdate()
-{
-
-}
+{}
 
 void CollisionSystem::Init()
 {}
@@ -53,15 +51,18 @@ void CollisionSystem::CollisionIntersectionCheck()
                 bool already_added = false;
                 for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
                 {
-                    if (it1->id1.index == id1.index && it1->id2.index == id2.index || it1->id1.index == id2.index && it1->id2.index == id1.index)
+                    if ((it1->id1.index == id1.index && it1->id2.index == id2.index) || (it1->id1.index == id2.index && it1->id2.index == id1.index))
                     {
                         already_added = true;
-                        break;
                     }
                 }
 
-                if(!already_added)
-                    current_manifold_vector.push_back({ c1,c2, m,id1,id2});
+                if (!already_added)
+                {
+                    AABBvsAABB_Manifold(c1, c2, m);
+                    current_manifold_vector.push_back({ c1,c2, m,id1,id2 });
+                }
+
             }
 
           }
@@ -118,10 +119,10 @@ void CollisionSystem::CollisionHandling()
 void CollisionSystem::CollisionResolution()
 {
     //resolve lowest contact point first
-    std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
-    {
-        return a.m.ContactPoint.y < b.m.ContactPoint.y;
-    });
+    //std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
+    //{
+    //return a.m.ContactPoint.y < b.m.ContactPoint.y;
+    //});
 
     for ( auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++ )
     {
@@ -131,9 +132,14 @@ void CollisionSystem::CollisionResolution()
         {
           if ( it1->id1.index == id1.index && it1->id2.index == id2.index )
           {
-              CollisionResponse(c1,r1,c2, r2, it1->m);
-              c1.center = r1.PointEnd;
-              c2.center = r2.PointEnd;
+              if (CollisionResponse(c1, r1, c2, r2, it1->m))
+              {
+                  t1.position = r1.PointEnd;
+                  t2.position = r2.PointEnd;
+                  c1.center = r1.PointEnd;
+                  c2.center = r2.PointEnd;
+              }
+
           }
     
         } );

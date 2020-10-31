@@ -3,29 +3,87 @@
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
 #include "Collision.h"
+#include <cmath>
+
 namespace DeltaEngine
 {
-	void CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
+	bool CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
 	{
-		//float seperating_velocity = Vector2DotProduct(r1.Velocity - r2.Velocity, m.normal);
-		//if (seperating_velocity > 0)
-		//	return;
-		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+		{		
+			//// Relative velocity from a to b
+			//float rx = r2.Velocity.x - r1.Velocity.x;
+			//float ry = r2.Velocity.y - r1.Velocity.y;
+			//
+			//float velAlongNormal = rx * m.normal.x + ry * m.normal.y;
+			//
+			//// If the velocities are separating do nothing
+			//if (velAlongNormal > 0)
+			//{
+			//	return false;
+			//}
+			//
+			//// Correct penetration
+			//float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+			//float j = -(1.0 + restitution) * velAlongNormal;
+			//j /= (1/r1.Mass + 1/r2.Mass);
+			////
+			////// Apply the impulse each box gets a impulse based on its mass
+			////// ratio
+			//r1.AccumulatedForce += (1/r1.Mass * -j * m.normal, 1 / r1.Mass * -j * m.normal);
+			//r2.AccumulatedForce += (1 / r2.Mass * j * m.normal, 1 / r2.Mass * j * m.normal);
+			//
+			//// Apply Friction
+			//float tx = rx - (m.normal.x * velAlongNormal);
+			//float ty = ry - (m.normal.y * velAlongNormal);
+			//float tl = std::sqrt(tx * tx + ty * ty);
+			//
+			//if (tl > std::numeric_limits<float>::epsilon()) 
+			//{
+			//	tx /= tl;
+			//	ty /= tl;
+			//}
+			//
+			//float jt = -(rx * tx + ry * ty);
+			//jt /= (1 / r1.Mass + 1 / r2.Mass);
+			//
+			//// Don't apply tiny friction impulses
+			//if (std::abs(jt) < std::numeric_limits<float>::epsilon()) 
+			//{
+			//	return false;
+			//}
+			//
+			//if (std::abs(jt) < j * 1.0) {
+			//	tx = tx * jt;
+			//	ty = ty * jt;
+			//
+			//}
+			//else {
+			//	tx = tx * -j * 0.3;
+			//	ty = ty * -j * 0.3;
+			//}
+			//
+			//r1.AccumulatedForce += {1 / r1.Mass * -tx, 1 / r1.Mass * -ty};
+			//r2.AccumulatedForce += {1 / r2.Mass * tx, 1 / r2.Mass * ty};
 
-		//get the direction of reflection using dot product
-		float aA = Vector2DotProduct(r1.Velocity, m.normal);
-		float aB = Vector2DotProduct(r2.Velocity, m.normal);
-
-		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-		Vector2 reflectedVectorA = r1.Velocity + m.normal * r2.Mass * (2 * m.penetration / (r1.Mass + r2.Mass)) * restitution;
-		Vector2 reflectedVectorB = r2.Velocity - m.normal * r1.Mass * (2 * m.penetration / (r1.Mass + r2.Mass)) * restitution;
-
-		//update the end points of where the two objects will end up
-		//if (!(c1.isWall || c2.isWall))
-		{
-			r1.PointEnd = c1.center + reflectedVectorA;
-			r2.PointEnd = c2.center + reflectedVectorB;
+			float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+			
+			//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
+			Vector2 reflectedVectorA = m.normal/(r1.Mass + r2.Mass) * r2.Mass * (100 * m.penetration) * env.pClock->DeltaTime();
+			Vector2 reflectedVectorB = -m.normal/(r1.Mass + r2.Mass) * r1.Mass * (100 * m.penetration) * env.pClock->DeltaTime();
+			
+			//Vector2 reflectedVectorA = m.normal * (100 * m.penetration) * env.pClock->DeltaTime();
+			//Vector2 reflectedVectorB = -m.normal * (100 * m.penetration) * env.pClock->DeltaTime();
+			reflectedVectorA += 2 * m.normal * restitution * env.pClock->DeltaTime() * 1/r1.Mass;
+			reflectedVectorB += 2 * -m.normal * restitution * env.pClock->DeltaTime() * 1/r2.Mass;
+			//update the end points of where the two objects will end up
+			//if (!(c1.isWall || c2.isWall))
+			//{
+				r1.PointEnd = c1.center + reflectedVectorA;
+				r2.PointEnd = c2.center + reflectedVectorB;
+			//}
+			return true;
 		}
+
 
 		
 	}

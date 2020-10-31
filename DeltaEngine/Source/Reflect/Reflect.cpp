@@ -82,6 +82,7 @@ RTTR_REGISTRATION
     .property( "mass", &RigidBody::Mass )
     .property( "movespeed", &RigidBody::Movespeed )
     .property("restitution", &RigidBody::Restitution)
+    .property("friction_coeff", &RigidBody::FrictionCoeff)
     .property( "has_gravity", &RigidBody::hasGravity )
     .property( "is_moveable", &RigidBody::isMoveable );
 
