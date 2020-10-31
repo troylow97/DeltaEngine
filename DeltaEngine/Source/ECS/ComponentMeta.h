@@ -96,7 +96,8 @@ const ComponentMeta *ComponentMeta::GetComponentMeta()
 {
   using T_Base = std::remove_const_t<std::remove_reference_t<T>>;
 
-  static constexpr std::array<ComponentMeta, ComponentList::size> c_meta_vec = ComponentMeta::Init();
+  static constexpr auto c_meta_vec = ComponentMeta::Init();
+  static_assert( c_meta_vec[0].bits == 1 );
 /*if (!load)
 {
   constexpr auto arr = ComponentMeta::Init();

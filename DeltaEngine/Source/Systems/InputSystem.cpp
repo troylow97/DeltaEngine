@@ -93,7 +93,6 @@ void InputSystem::Update()
 	    {
 		  InputManager::Get()->SetEntitySelected(true);
 		  InputManager::Get()->SetEntityIDSelected(id1.index);
-		  //std::cout << "entity selected is " << InputManager::Get()->EntityIDSelected() << std::endl;
 	    }
 	  }
 	  else if (c1.type == ColliderType::CIRCLE)
