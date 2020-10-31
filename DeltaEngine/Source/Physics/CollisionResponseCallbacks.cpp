@@ -21,8 +21,12 @@ namespace DeltaEngine
 		Vector2 reflectedVectorB = r2.Velocity - m.normal * r1.Mass * (2 * m.penetration / (r1.Mass + r2.Mass)) * restitution;
 
 		//update the end points of where the two objects will end up
-		r1.PointEnd = c1.center + reflectedVectorA;
-		r2.PointEnd = c2.center + reflectedVectorB;
+		//if (!(c1.isWall || c2.isWall))
+		{
+			r1.PointEnd = c1.center + reflectedVectorA;
+			r2.PointEnd = c2.center + reflectedVectorB;
+		}
+
 		
 	}
 

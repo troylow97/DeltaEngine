@@ -10,20 +10,25 @@ struct RigidBody
   Vector2 Velocity;
   Vector2 ReflectedVector;
   Vector2 Acceleration;
+  Vector2 AccumulatedForce;
+  Vector2 PointEnd;
   float Mass;
-  float Friction;
   float Movespeed;
-  float inherentAcceleration;
-  float Restituition; //not used
+  float Restitution; //not used
   bool hasGravity;
   bool isMoveable;
 
 
   RigidBody() :
+    Direction{0,0},
     Velocity { 0,0 },
+    ReflectedVector{0,0},
     Acceleration { 0,0 },
-    Friction { 0.97f },
-    inherentAcceleration { 3.0f },
+    AccumulatedForce{0,0},
+    PointEnd{0,0},
+    Mass{1.0f},
+    Movespeed{0.1f},
+    Restitution{1.0f},
     hasGravity { false },
     isMoveable { true }
   {}

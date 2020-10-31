@@ -66,34 +66,7 @@ namespace DeltaEngine
             {
                 {
                     //Player movement
-                    Vector2 move;
-                    move = (r1.Direction * r1.Movespeed);
-                    //r1.AccumulatedForce += move;
-                    if (c1.isCollideable)
-                    {
-                        c1.center = t1.position + move * env.pClock->DeltaTime();
-                        c1.size = t1.scale;
-                        em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
-                            {
-                                if (c2.isCollideable)
-                                {
-                                    if (id1.index != id2.index)
-                                    {
-                                        c2.center = t2.position;
-                                        c2.size = t2.scale;
-                                        Manifold m;
-                                        if (CollisionIntersection_Main(c1, r1, c2, r2, m))
-                                        {
-                                            std::cout << "COLLIDING!" << std::endl;
-                                            r1.Velocity = Vector2::zero();
-                                        }
-
-                                    }
-
-                                }
-                            });
-                    }
-
+                    Vector2 move = (r1.Direction * r1.Movespeed);
                     r1.AccumulatedForce += move;
                 }
             });
@@ -103,14 +76,8 @@ namespace DeltaEngine
     {
         em.ForEach([&](EntityID id1, RigidBody& r1,Transform& t1,Collider& c1)
         {
-                std::cout << "ID IS " << id1.index << std::endl;
-            //if (!c1.isWall)
+            if (!c1.isWall)
             {
-                //Player movement
-                //Vector2 move;
-                //move = (r1.Direction * r1.Movespeed);
-                //r1.AccumulatedForce += move;
-
                 //set Euler
                 //t1.position += r1.Velocity * env.pClock->DeltaTime();
 
@@ -122,6 +89,32 @@ namespace DeltaEngine
 
                 Vector2 newAcceleration = r1.AccumulatedForce * 1 / r1.Mass + r1.Acceleration;
                 r1.Velocity += newAcceleration * env.pClock->DeltaTime();
+
+                //if (c1.isCollideable)
+                //{
+                //    c1.center = t1.position + r1.Velocity;
+                //    c1.size = t1.scale;
+                //    em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
+                //        {
+                //            if (c2.isCollideable && c2.isWall)
+                //            {
+                //                if (id1.index != id2.index)
+                //                {
+                //                    c2.center = t2.position;
+                //                    c2.size = t2.scale;
+                //                    Manifold m;
+                //                    if (CollisionIntersection_Main(c1, r1, c2, r2, m))
+                //                    {
+                //                        r1.AccumulatedForce = { -1,-1 };
+                //                        r1.Velocity = Vector2::zero();
+                //                        
+                //                    }
+                //
+                //                }
+                //
+                //            }
+                //        });
+                //}
 
                 //Apply Friction
                 r1.Velocity *= std::pow(0.05f, env.pClock->DeltaTime());

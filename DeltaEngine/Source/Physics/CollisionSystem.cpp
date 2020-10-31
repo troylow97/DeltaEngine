@@ -20,7 +20,9 @@ void CollisionSystem::Update()
 }
 
 void CollisionSystem::LateUpdate()
-{}
+{
+
+}
 
 void CollisionSystem::Init()
 {}
@@ -54,6 +56,7 @@ void CollisionSystem::CollisionIntersectionCheck()
                     if (it1->id1.index == id1.index && it1->id2.index == id2.index || it1->id1.index == id2.index && it1->id2.index == id1.index)
                     {
                         already_added = true;
+                        break;
                     }
                 }
 
@@ -117,7 +120,7 @@ void CollisionSystem::CollisionResolution()
     //resolve lowest contact point first
     std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
     {
-    return a.m.ContactPoint.y < b.m.ContactPoint.y;
+        return a.m.ContactPoint.y < b.m.ContactPoint.y;
     });
 
     for ( auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++ )

@@ -75,7 +75,15 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().create_systems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_update_sequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-    //env.pECS->GetWorld().Load( "World/Entities.json" );
+  env.pECS->GetWorld().Load( "World/Entities.json" );
+
+  //EntityID first = env.pECS->GetWorld().get_entity_manager().CreateEntity();
+  //env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(first);
+  //env.pECS->GetWorld().get_entity_manager().AddComponent<Collider>(first);
+  //env.pECS->GetWorld().get_entity_manager().AddComponent<RigidBody>(first);  
+  //env.pECS->GetWorld().get_entity_manager().AddComponent<Input>(first);
+  //env.pECS->GetWorld().Save("World/Entities.json");
+
 }
 
 Application::~Application()
