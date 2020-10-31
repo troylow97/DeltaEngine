@@ -121,13 +121,13 @@ void Application::Run()
     if ( env.pClock->Update() )
     {
       InputManager::Get()->Update();
-      env.pWin->Update();
       // Update engine GameClock
       env.pECS->GetWorld().update();
       env.pECS->GetWorld().late_update();
       m_ImGuiLayer->Begin();
       m_ImGuiLayer->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
+      env.pWin->Update();
     }
   }
 }

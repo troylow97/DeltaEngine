@@ -6,7 +6,7 @@ namespace DeltaEngine
 Point::Point() : Point( 0, 0 )
 {}
 
-Point::Point( int x, int y ) :
+Point::Point( float x, float y ) :
   point_x( x ),
   point_y( y )
 {}

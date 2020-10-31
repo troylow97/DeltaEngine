@@ -41,7 +41,6 @@ public:
     {                                                                             \
       DeltaEngine::Query q;                                                       \
       q.With<struct __VA_ARGS__>();                                               \
-      q.Build();                                                                  \
       e_query = q;                                                                \
     }                                                                     
 

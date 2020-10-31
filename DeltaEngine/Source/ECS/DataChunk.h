@@ -1,5 +1,4 @@
 #pragma once
-#include "DE_API.h"
 
 namespace DeltaEngine
 {
@@ -7,9 +6,7 @@ namespace DeltaEngine
 using byte = unsigned char;
 constexpr size_t MEMORY_BLOCK_16K = 16384;
 
-struct ComponentList;
 struct Archetype;
-struct EntityID;
 
 struct DataChunkHeader
 {

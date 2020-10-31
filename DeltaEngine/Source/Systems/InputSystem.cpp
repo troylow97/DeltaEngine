@@ -12,7 +12,7 @@ void InputSystem::Update()
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
       i1.previousKey = DEVK_A;
-      r1.Direction = Vector2::left();
+      r1.Velocity = { -1, 0 };
     } );
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
     {
@@ -23,9 +23,7 @@ void InputSystem::Update()
       s.m_FlipX = true;
     } );
   }
-
-
-  if ( InputManager::Get()->IsKeyReleased( DEVK_A ) )
+  else if ( InputManager::Get()->IsKeyReleased( DEVK_A ) )
   {
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
     {
@@ -37,7 +35,7 @@ void InputSystem::Update()
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
       i1.previousKey = DEVK_D;
-      r1.Direction = Vector2::right();
+      r1.Velocity = { 1, 0 };
     } );
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
     {
@@ -48,9 +46,7 @@ void InputSystem::Update()
       s.m_FlipX = false;
     } );
   }
-
-
-  if ( InputManager::Get()->IsKeyReleased( DEVK_D ) )
+  else if ( InputManager::Get()->IsKeyReleased( DEVK_D ) )
   {
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
     {
@@ -62,30 +58,17 @@ void InputSystem::Update()
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
       i1.previousKey = DEVK_W;
-      r1.Direction = Vector2::up();
+      r1.Velocity = { 0, 1 };
     } );
   }
-  else
-  {
-      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
-          {
-              if (i1.previousKey = DEVK_D && r1.Direction.y > 0)
-              {
-                  r1.Direction *= 0.90f;
-              }
-          });
-  }
-
   if ( InputManager::Get()->IsKeyPressed( DEVK_S ) )
   {
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
       i1.previousKey = DEVK_S;
-      r1.Direction = Vector2::down();
+      r1.Velocity = { 0, -1 };
     } );
   }
-
-
   if ( InputManager::Get()->IsKeyTriggered( DEVK_BACKSLASH ) ) // '\'
   {
     if ( InputManager::Get()->GetShowLine() == false )
@@ -100,14 +83,46 @@ void InputSystem::Update()
     }
   }
 
-  if (InputManager::Get()->IsKeyReleased(DEVK_A) || InputManager::Get()->IsKeyReleased(DEVK_D)
-      || InputManager::Get()->IsKeyReleased(DEVK_W) || InputManager::Get()->IsKeyReleased(DEVK_S))
+  if (InputManager::Get()->IsMouseTriggered(DEVK_LBUTTON))
   {
-      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
-          {
-              r1.Direction = Vector2::zero();
-          });
+    env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
+	{
+	  if (c1.type == ColliderType::BOX)
+	  {
+	    if (CollisionIntersection_RectMouse(c1.center, c1.size, InputManager::Get()->CurrentCameraPosition()))
+	    {
+		  InputManager::Get()->SetEntitySelected(true);
+		  InputManager::Get()->SetEntityIDSelected(id1.index);
+	    }
+	  }
+	  else if (c1.type == ColliderType::CIRCLE)
+	  {
+        if (CollisionIntersection_RectMouse(c1.center, c1.size, InputManager::Get()->CurrentCameraPosition()))
+        {
+		  InputManager::Get()->SetEntitySelected(true);
+		  InputManager::Get()->SetEntityIDSelected(id1.index);
+		  //std::cout << "entity selected is " << InputManager::Get()->EntityIDSelected() << std::endl;
+        }
+	  }
+	});
   }
+
+  //if ( InputManager::Get()->IsKeyTriggered( DEVK_P ) )
+  //{
+  //  em.ForEach( [&]( EntityID &id, Input &input )
+  //  {
+  //    auto t2 = em.GetComponent<Transform>( id );
+  //    auto circleEntity = env.pECS->GetWorld().get_entity_manager().CreateEntity<Transform, RigidBody, Collider>();
+  //    auto &circleT = env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>( circleEntity );
+  //    auto &circleR = env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>( circleEntity );
+  //    auto &circleC = env.pECS->GetWorld().get_entity_manager().GetComponent<Collider>( circleEntity );
+
+  //    circleT.position = Vector3( t2.position.x, t2.position.y - 0.25f );
+  //    circleT.scale = Vector3( 0.1, 0.1 );
+  //    circleR.hasGravity = true;
+  //    circleC.type = ColliderType::CIRCLE;
+  //  } );
+  //}
 
 
   // gets the coordinates of the mouse, good for debugging

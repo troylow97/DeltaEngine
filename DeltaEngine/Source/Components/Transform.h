@@ -1,6 +1,5 @@
 #pragma once
 #include "Core/Math/DE_Math.h"
-#include "Components.h"
 
 namespace DeltaEngine
 {
@@ -15,7 +14,6 @@ public:
   Transform( Vector3 position, Quaternion rotation, Vector3 scale );
   Matrix4x4 LocalToWorldMatrix();
 
-  REGISTER_COMPONENT( Transform )
 };
 
 }

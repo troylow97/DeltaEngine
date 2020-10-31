@@ -1,13 +1,14 @@
 #include "Core/Debugging/Assert.h"
+#include "Reflect/Reflect.h"
 
 namespace DeltaEngine::ECS_Internal
 {
 template <typename... Ts>
-struct TypeList
+struct ArgList
 {};
 
 template <typename T, typename Ret, typename... Args>
-TypeList<Args...> args( Ret( T:: * )( Args... ) const );
+ArgList<Args...> args( Ret( T:: * )( Args... ) const );
 
 template <typename T>
 auto get_chunk_array( DataChunk *chunk )
@@ -21,15 +22,15 @@ auto get_chunk_array( DataChunk *chunk )
   }
   else
   {
-    constexpr MetaHash hash = Metatype::BuildHash<T_Base>();
+    constexpr ComponentMeta meta = ComponentMeta::Build<T_Base>();
 
-    for ( auto comp : chunk->header.owner->components->metatypes )
-      if ( comp.type->hash == hash )
+    for ( auto comp : chunk->header.owner->components_desc->metalist )
+      if ( comp.meta->bits & meta.bits )
       {
         T_Base *ptr = reinterpret_cast<T_Base *>( reinterpret_cast<byte *>( chunk ) + comp.offset );
         return ArrayView<T_Base>( ptr, chunk );
       }
-    return ArrayView<T_Base>();
+    return ArrayView<T_Base>( nullptr, chunk );
   }
 }
 
@@ -47,13 +48,13 @@ void chunk_iterate( DataChunk *chunk, Func &&func )
 }
 
 template <typename... Args, typename Func>
-void unpack_chunk( TypeList<Args...>, DataChunk *chunk, Func &&func )
+void unpack_chunk( ArgList<Args...>, DataChunk *chunk, Func &&func )
 {
   chunk_iterate<Args...>( chunk, func );
 }
 
 template <typename... Args>
-Query &unpack_query_with( TypeList<Args...>, Query &query )
+Query &unpack_query_with( ArgList<Args...>, Query &query )
 {
   return query.With<Args...>();
 }
@@ -70,12 +71,11 @@ namespace DeltaEngine
 inline EntityManager::EntityManager()
 {
   auto *empty_arch = new Archetype();
-
-  empty_arch->components = BuildComponentList( nullptr, 0 );
+  std::vector<const ComponentMeta *> empty_vec;
+  empty_arch->components_desc = BuildDescription( empty_vec );
   empty_arch->owner = this;
 
   m_archetypes.push_back( empty_arch );
-  m_archetypes_signature.push_back( 0 );
 
   CreateChunk( empty_arch );
 }
@@ -86,7 +86,7 @@ inline EntityManager::~EntityManager()
   {
     for ( DataChunk *chunk : arch->chunks )
       delete chunk;
-    delete arch->components;
+    delete arch->components_desc;
     delete arch;
   }
 }
@@ -98,10 +98,10 @@ EntityID EntityManager::CreateEntity()
 
   if constexpr ( sizeof...( C ) != 0 )
   {
-    static const Metatype *types[] = { Metatype::GetMetatype<C>()... };
-    constexpr size_t count = ( sizeof( types ) / sizeof( *types ) );
-
-    arch = FindOrCreateArchetype( types, count );
+    static std::vector<const ComponentMeta *> meta_vec;
+    if ( meta_vec.empty() )
+      ( meta_vec.push_back( ComponentMeta::GetComponentMeta<C>() ), ... );
+    arch = FindOrCreateArchetype( meta_vec );
   }
   else
     arch = GetEmptyArchetype();
@@ -111,6 +111,12 @@ EntityID EntityManager::CreateEntity()
 
   return id;
 }
+
+inline const std::vector<Entity>& EntityManager::GetEntities()
+{
+  return m_entities;
+}
+
 
 inline void EntityManager::DestroyEntity( EntityID id )
 {
@@ -131,76 +137,69 @@ template <typename C>
 C &EntityManager::GetComponent( EntityID id )
 {
   Entity &ref = m_entities[id.index];
-
+  
   auto c_array = ECS_Internal::get_chunk_array<C>( ref.chunk );
   assert( c_array.ChunkOwner() != nullptr );
   return c_array[ref.chunk_index];
 }
+
+inline rttr::instance EntityManager::GetComponent(EntityID id, size_t bits)
+{
+  auto instance = RT_Reflect::RT_Getter( *this, id, bits );
+  assert(instance.is_valid());
+  return instance;
+}
+
+
 
 template <typename C>
 void EntityManager::AddComponent( EntityID id, C &comp )
 {
   AddComponent<C>( id );
 
-  if ( !Metatype::GetMetatype<C>()->IsEmpty() )
+  if ( !ComponentMeta::GetComponentMeta<C>()->IsEmpty() )
     GetComponent<C>( id ) = comp;
 }
 
 template <typename C>
 void EntityManager::AddComponent( EntityID id )
 {
-  const Metatype *temp_meta_array[32];
-  const Metatype *type = Metatype::GetMetatype<C>();
+  std::vector<const ComponentMeta *> meta_vec;
+  const ComponentMeta *meta = ComponentMeta::GetComponentMeta<C>();
 
   Archetype *arch = m_entities[id.index].chunk->header.owner;
-  ComponentList *list = arch->components;
+  Description *desc = arch->components_desc;
 
-  bool found { false };
-  size_t count = list->metatypes.size();
-
-  for ( size_t i = 0; i < count; i++ )
+  for ( auto &details : desc->metalist )
   {
-    temp_meta_array[i] = list->metatypes[i].type;
-
-    if ( temp_meta_array[i] == type )
-      found = true;
+    if ( details.meta->bits & meta->bits )
+      return;
+    meta_vec.push_back( details.meta );
   }
 
-  if ( !found )
-  {
-    temp_meta_array[count] = type;
-    arch = FindOrCreateArchetype( temp_meta_array, ++count );
-    SetEntityArchetype( id, arch );
-  }
+  meta_vec.push_back( meta );
+  arch = FindOrCreateArchetype( meta_vec );
+  SetEntityArchetype( id, arch );
 }
 
 template <typename C>
 void EntityManager::RemoveComponent( EntityID id )
 {
-  const Metatype *temp_meta_array[32] { nullptr };
-  const Metatype *type = Metatype::GetMetatype<C>();
+  std::vector<const ComponentMeta *> meta_vec;
+  const ComponentMeta *meta = ComponentMeta::GetComponentMeta<C>();
 
   Archetype *arch = m_entities[id.index].chunk->header.owner;
-  ComponentList *list = arch->components;
 
-  bool found { false };
-  size_t count = list->metatypes.size();
-
-  for ( size_t i = 0; i < count; i++ )
+  if ( arch->bits_signature & meta->bits )
   {
-    temp_meta_array[i] = list->metatypes[i].type;
+    Description *desc = arch->components_desc;
 
-    if ( temp_meta_array[i] == type )
-    {
-      found = true;
-      temp_meta_array[i] = list->metatypes[count - 1].type;
-    }
-  }
+    for ( auto &ref : desc->metalist )
+      if ( !( ref.meta->bits & meta->bits ) )
+        meta_vec.push_back( ref.meta );
 
-  if ( found )
-  {
-    arch = FindOrCreateArchetype( *this, temp_meta_array, --count );
-    SetEntityArchetype( arch, id );
+    arch = FindOrCreateArchetype( meta_vec );
+    SetEntityArchetype( id, arch );
   }
 }
 
@@ -210,7 +209,7 @@ void EntityManager::ForEach( Func &&func )
   using params = decltype( ECS_Internal::args( &Func::operator() ) );
 
   Query query;
-  ECS_Internal::unpack_query_with( params {}, query ).Build();
+  ECS_Internal::unpack_query_with( params {}, query );
 
   ForEach<Func>( query, std::move( func ) );
 }
@@ -232,6 +231,11 @@ inline Archetype *EntityManager::GetEmptyArchetype()
   return m_archetypes[0];
 }
 
+inline const std::vector<Description::Details> &EntityManager::GetEntityArchetype(size_t id)
+{
+  return m_entities[id].chunk->header.owner->components_desc->metalist;
+}
+
 //******************************************************************************
 // EntityManager Private Methods
 //******************************************************************************
@@ -247,22 +251,16 @@ inline bool EntityManager::IsEntityValid( EntityID id )
 inline EntityID EntityManager::AllocateEntity()
 {
   EntityID id;
-  if ( m_entities_dead == 0 )
+  if ( m_entities_deleted.empty() )
   {
-    size_t index = m_entities.size();
-
-    Entity new_entity;
-    m_entities.push_back( new_entity );
-
-    id.index = index;
+    id.index = m_entities.size();
+    m_entities.emplace_back();
   }
   else
   {
-    size_t index = m_entities_deleted.back();
+    id.index = m_entities_deleted.back();
     m_entities_deleted.pop_back();
-    id.generation = m_entities[index].generation;
-    id.index = index;
-    m_entities_dead--;
+    id.generation = m_entities[id.index].generation;
   }
 
   m_entities_live++;
@@ -277,24 +275,23 @@ inline void EntityManager::DeallocateEntity( EntityID id )
   m_entities[id.index].chunk_index = 0;
 
   m_entities_live--;
-  m_entities_dead++;
 }
 
 inline size_t EntityManager::InsertEntityChunk( DataChunk *chunk, EntityID id, bool initialize )
 {
   size_t index { 0 };
 
-  ComponentList *list = chunk->header.owner->components;
+  Description *desc = chunk->header.owner->components_desc;
 
-  if ( chunk->header.index < list->capacity )
+  if ( chunk->header.index < desc->capacity )
   {
     index = chunk->header.index++;
 
     if ( initialize )
     {
-      for ( auto &ref : list->metatypes )
+      for ( auto &ref : desc->metalist )
       {
-        const Metatype *type = ref.type;
+        const ComponentMeta *type = ref.meta;
 
         if ( !type->IsEmpty() )
         {
@@ -307,27 +304,26 @@ inline size_t EntityManager::InsertEntityChunk( DataChunk *chunk, EntityID id, b
     EntityID *id_ptr = reinterpret_cast<EntityID *>( chunk );
     id_ptr[index] = id;
 
-    if ( chunk->header.index == list->capacity )
+    if ( chunk->header.index == desc->capacity )
       SetChunkFull( chunk );
   }
 
   return index;
 }
 
-inline EntityID EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
+inline void EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
 {
   assert( chunk->header.index > index );
 
-  ComponentList *list = chunk->header.owner->components;
+  Description *desc = chunk->header.owner->components_desc;
 
-  bool full = chunk->header.index == list->capacity;
+  bool full = chunk->header.index == desc->capacity;
   bool pop = chunk->header.index > 1 && index != ( chunk->header.index - 1 );
 
   size_t pop_index = chunk->header.index - 1;
 
-  chunk->header.index--;
 
-  for ( auto &ref : list->metatypes )
+  for ( auto &ref : desc->metalist )
   {
     const auto [type, offset] = ref;
 
@@ -347,6 +343,8 @@ inline EntityID EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index 
   EntityID *id_ptr = reinterpret_cast<EntityID *>( chunk );
   id_ptr[index] = EntityID {};
 
+  chunk->header.index--;
+
   if ( chunk->header.index == 0 )
     DeleteChunk( chunk );
   else if ( full )
@@ -356,10 +354,7 @@ inline EntityID EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index 
   {
     m_entities[id_ptr[pop_index].index].chunk_index = index;
     id_ptr[index] = id_ptr[pop_index];
-    return id_ptr[index];
   }
-
-  return EntityID {};
 }
 
 inline void EntityManager::SetEntityArchetype( EntityID id, Archetype *arch )
@@ -373,27 +368,27 @@ inline void EntityManager::SetEntityArchetype( EntityID id, Archetype *arch )
     m_entities[id.index].chunk_index = index;
   }
   else
-    MoveEntityToArchetype( id, arch, false );
+    MoveEntityToArchetype( id, arch );
 }
 
-inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch, bool initialize )
+inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
 {
   DataChunk *current_chunk = m_entities[id.index].chunk;
   DataChunk *target_chunk = FindFreeChunk( arch );
 
   size_t current_index = m_entities[id.index].chunk_index;
-  size_t target_index = InsertEntityChunk( target_chunk, id, initialize );
+  size_t target_index = InsertEntityChunk( target_chunk, id, false );
 
-  ComponentList *current_list = current_chunk->header.owner->components;
-  ComponentList *target_list = target_chunk->header.owner->components;
+  Description *current_desc = current_chunk->header.owner->components_desc;
+  Description *target_desc = target_chunk->header.owner->components_desc;
 
-  for ( size_t i = 0; i < current_list->metatypes.size(); i++ )
+  for ( size_t i = 0; i < current_desc->metalist.size(); i++ )
   {
-    auto [current_type, current_offset] = current_list->metatypes[i];
+    auto [current_type, current_offset] = current_desc->metalist[i];
     if ( !current_type->IsEmpty() )
-      for ( size_t j = 0; j < target_list->metatypes.size(); j++ )
+      for ( size_t j = 0; j < target_desc->metalist.size(); j++ )
       {
-        auto [target_type, target_offset] = target_list->metatypes[j];
+        auto [target_type, target_offset] = target_desc->metalist[j];
 
         if ( current_type == target_type )
         {
@@ -418,35 +413,24 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch, 
   m_entities[id.index].chunk_index = target_index;
 }
 
-inline Archetype *EntityManager::FindOrCreateArchetype( const Metatype **types, size_t count )
+inline Archetype *EntityManager::FindOrCreateArchetype( const std::vector<const ComponentMeta *> &meta_vec )
 {
-  assert( count < 32 );
+  ASSERT_ERROR( meta_vec.size() <= 64, "Support up to 64 components_desc only" );
 
-  const size_t signature = Metatype::BuildSignature( types, count );
+  const size_t signature = ComponentMeta::BuildSignature( meta_vec );
 
-  for ( size_t i = 0; i < m_archetypes_signature.size(); i++ )
-    if ( m_archetypes_signature[i] == signature )
-    {
-      ComponentList *list = m_archetypes[i]->components;
-      if ( list->metatypes.size() == count )
-      {
-        for ( size_t j = 0; j < count; j++ )
-          if ( list->metatypes[j].type != types[j] )
-            break;
+  for ( auto &archetype : m_archetypes )
+    if ( archetype->bits_signature == signature )
+      return archetype;
 
-        return m_archetypes[i];
-      }
-    }
-
-  // else
+// else
 
   Archetype *new_arch = new Archetype();
-  new_arch->components = BuildComponentList( types, count );
-  new_arch->component_hash = signature;
+  new_arch->components_desc = BuildDescription( meta_vec );
+  new_arch->bits_signature = signature;
   new_arch->owner = this;
 
   m_archetypes.push_back( new_arch );
-  m_archetypes_signature.push_back( signature );
 
   CreateChunk( new_arch );
   return new_arch;
@@ -455,82 +439,52 @@ inline Archetype *EntityManager::FindOrCreateArchetype( const Metatype **types, 
 template <typename Func>
 void EntityManager::ArchetypeIterate( const Query &query, Func &&func )
 {
-  for ( size_t i = 0; i < m_archetypes_signature.size(); i++ )
-  {
-    if ( m_archetypes_signature[i] & query.m_required_matcher_hash )
-    {
-      ComponentList *list = m_archetypes[i]->components;
-      if ( m_archetypes_signature[i] & query.m_excluded_matcher_hash )
-      {
-        bool skip { false };
-        [&]()
-        {
-          for ( auto excluded : query.m_excluded )
-            for ( auto types : list->metatypes )
-              if ( types.type->hash == excluded )
-              {
-                skip = true;
-                return;
-              }
-        }( );
-        if ( skip )
-          continue;
-      }
-      size_t match = std::count_if( query.m_required.begin(), query.m_required.end(), [&]( MetaHash hash )
-      {
-        for ( auto types : list->metatypes )
-          if ( hash == types.type->hash )
-            return true;
-        return false;
-      } );
-
-      if ( match == query.m_required.size() )
-        func( m_archetypes[i] );
-    }
-  }
+  for ( auto &archetype : m_archetypes )
+    if ( !( archetype->bits_signature & query.m_excluded_bits ) )
+      if ( !( ~archetype->bits_signature & query.m_required_bits ) )
+        func( archetype );
 }
 
-inline ComponentList *EntityManager::BuildComponentList( const Metatype **types, size_t count )
+inline Description *EntityManager::BuildDescription( const std::vector<const ComponentMeta *> &meta_vec )
 {
-  ComponentList *list = new ComponentList();
+  Description *desc = new Description();
 
-  size_t size = sizeof( EntityID );
-  for ( size_t i = 0; i < count; i++ )
-    size += types[i]->size;
+  size_t total_size = sizeof( EntityID );
+  for ( auto &meta : meta_vec )
+    total_size += meta->size;
 
   size_t storage_space = sizeof( DataChunk::data );
 
-  size_t slots = ( storage_space / size ) - 1;
+  size_t slots = ( storage_space / total_size ) - 1;
 
-  size_t offset = sizeof( DataChunkHeader );
+  size_t offset { 0 };
   offset += sizeof( EntityID ) * slots;
 
-  for ( size_t i = 0; i < count; i++ )
+  for ( auto &meta : meta_vec )
   {
-    const Metatype *type = types[i];
-    if ( type->align != 0 )
+    if ( meta->align != 0 )
     {
-      size_t r = offset % type->align;
-      size_t type_offset = type->align - r;
+      size_t r = offset % meta->align;
+      size_t type_offset = meta->align - r;
       offset += type_offset;
     }
 
-    list->metatypes.push_back( { type, offset } );
+    desc->metalist.push_back( { meta, offset } );
 
-    if ( type->align != 0 )
-      offset += type->size * slots;
+    if ( meta->align != 0 )
+      offset += meta->size * slots;
   }
 
   assert( offset <= MEMORY_BLOCK_16K );
 
-  list->capacity = slots;
+  desc->capacity = slots;
 
-  return list;
+  return desc;
 }
 
 inline void EntityManager::ReorderChunk( Archetype *arch )
 {
-  size_t size = arch->components->capacity;
+  size_t size = arch->components_desc->capacity;
   std::partition( arch->chunks.begin(), arch->chunks.end(), [size]( DataChunk *chnk )
   {
     return ( chnk->header.index == size );
@@ -561,7 +515,7 @@ inline DataChunk *EntityManager::FindFreeChunk( Archetype *arch )
   else
   {
     chunk = arch->chunks[arch->chunks.size() - 1];
-    if ( chunk->header.index == arch->components->capacity )
+    if ( chunk->header.index == arch->components_desc->capacity )
       chunk = CreateChunk( arch );
   }
   return chunk;
@@ -582,9 +536,9 @@ inline void EntityManager::DeleteChunk( DataChunk *chunk )
   DataChunk *backChunk = owner->chunks.back();
 
   if ( backChunk != chunk )
-    for ( int i = 0; i < owner->chunks.size(); i++ )
-      if ( owner->chunks[i] == chunk )
-        owner->chunks[i] = backChunk;
+    for ( auto &ref : owner->chunks )
+      if ( ref == chunk )
+        ref = backChunk;
 
   owner->chunks.pop_back();
   delete chunk;

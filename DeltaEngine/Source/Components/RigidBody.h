@@ -1,9 +1,6 @@
 #pragma once
 
 #include "Core/Math/Vector.h"
-#include "Components.h"
-#include <rapidjson/prettywriter.h>
-#include <rapidjson/filewritestream.h>"
 
 namespace DeltaEngine
 {
@@ -11,27 +8,25 @@ struct RigidBody
 {
   Vector2 Direction;
   Vector2 Velocity;
-  Vector2 AccumulatedForce;
+  Vector2 ReflectedVector;
   Vector2 Acceleration;
-  Vector2 PointEnd;
   float Mass;
+  float Friction;
   float Movespeed;
-  float Restitution;
+  float inherentAcceleration;
+  float Restituition; //not used
   bool hasGravity;
+  bool isMoveable;
 
 
   RigidBody() :
-    Direction {0,0},
     Velocity { 0,0 },
-    AccumulatedForce{0,0},
     Acceleration { 0,0 },
-    PointEnd{0,0},
-    Mass{1.0f},
-    Movespeed{0.5f},
-    Restitution{1.0f},
-    hasGravity { false }
+    Friction { 0.97f },
+    inherentAcceleration { 3.0f },
+    hasGravity { false },
+    isMoveable { true }
   {}
 
-  REGISTER_COMPONENT( RigidBody )
 };
 }

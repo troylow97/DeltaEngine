@@ -15,6 +15,11 @@ project "DeltaEngine"
   location "DeltaEngine"
   kind "SharedLib"
   language "C++"
+  flags 
+  {
+    "MultiProcessorCompile",
+    "NoPCH",
+  }
 
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -113,6 +118,11 @@ project "Sandbox"
   location "Sandbox"
   language "C++"
   kind "ConsoleApp"
+  flags 
+  {
+    "MultiProcessorCompile",
+    "NoPCH",
+  }
   
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")

@@ -1,17 +1,18 @@
 #pragma once
 
-#include <rttr/registration>
-#include "Core/Utils/Json/JsonSerialize.h"
-#include "ECS/EntityManager.h"
-#include <iostream>
+#include "ECS/Entities.h"
+#include "Components/Transform.h"
+#include "Components/Character.h"
+#include "Components/Collider.h"
+#include "Components/RigidBody.h"
+#include "Render/SpriteRenderer.h"
+#include "Render/Animator.h"
+#include "Render/Renderer.h"
+#include "Render/TextRenderer.h"
+#include "Render/ParticleSystem.h"
+#include "Core/Typelist/Typelist.h"
 
-#define REGISTER_COMPONENT(TYPE) static void Serialize(rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer , void* ptr)\
-{\
-    TYPE t = *static_cast<TYPE *>(ptr);\
-	  Serialize::WriteObject( t, writer );\
-}\
-static void Deserialize(EntityManager& em, EntityID id, rttr::variant var)\
-{\
-	TYPE t = var.get_value<TYPE>();\
-	em.AddComponent<TYPE>( id, t );\
+namespace DeltaEngine
+{
+using ComponentList = Typelist< EntityID, Input,  Collider,  Transform,  RigidBody, SpriteRenderer, Animator, TextRenderer, ParticleSystem>;
 }
