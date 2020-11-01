@@ -1,5 +1,4 @@
-#ifndef _DROPMANAGER_H
-#define _DROPMANAGER_H
+#pragma once
 
 #include <oleidl.h>
 #include <shellapi.h>
@@ -7,61 +6,32 @@
 
 namespace DeltaEngine
 {
-    /**/
     class DropManager : public IDropTarget
     {
     private:
-        //LONG m_cRef;
-        //bool _isDragged = false;
-        //bool _isDropped = false;
-        //bool _isInImGui = false;
-        //bool _isInPanel = false;
-        //bool _isReleased = false;
-        //bool IsInPanel()
-        //{
-        //    return _isInPanel;
-        //}
-        /////////////////////////////////////////////////////////////////////////////
-        // handling drop targets, letting others know
+        bool _isDragged = false;
+        bool _isDropped = false;
+        bool _isInImGui = false;
+        bool _isInPanel = false;
+        bool _isReleased = false;
+
     public:
-        //DropManager() : m_cRef{ 1 }
-        //{
-        //    AddRef();
-        //}
-        //~DropManager()
-        //{
-        //    Release();
-        //}
+        // handling drop targets, letting others know
         HRESULT QueryInterface(REFIID riid, void** ppvObject)
         {
             return S_OK;
-            //if (riid == IID_IDropTarget || riid == IID_IUnknown)
-            //{
-            //    *ppvObject = static_cast<IUnknown*>(this);
-            //    AddRef();
-            //    return S_OK;
-            //}
-            //
-            //*ppvObject = NULL;
-            //return E_NOINTERFACE;
         }
         unsigned long AddRef(void)
         {
             return 1;
-            //return InterlockedIncrement(&m_cRef);
         }
         unsigned long Release(void)
         {
             return 0;
-            //LONG cRef = InterlockedDecrement(&m_cRef);
-            //if (cRef == 0)
-            //{
-            //    delete this;
-            //}
-            //return cRef;
         }
 
-        // implementing the IDropTarget parts ----------------------------------------
+        // implementing the IDropTarget parts --------------------------------------------------------------------------------
+
         // when dragging the files into imgui view
         // indicates whether a drop can be accepted
         HRESULT DragEnter(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
@@ -71,9 +41,15 @@ namespace DeltaEngine
                 return E_INVALIDARG;
             }
             // TODO: check whether we can handle this type of object at all and set *pdwEffect &= DROPEFFECT_NONE if not;
+            /*
+            if can handlle()
+            {
 
-            // do something useful to flag to our application that files have been dragged from the OS into our application
-            //_isInImGui = true;
+            }
+            */
+
+            // flagging the application that files have been dragged from the OS into imgui
+            _isInImGui = true;
 
             // trigger MouseDown for button 1 within ImGui
 
@@ -81,7 +57,7 @@ namespace DeltaEngine
             return S_OK;
         }
         // when cursor is on imgui with the file
-        // provides target feedback to the user
+        //  provides target feedback to the user
         //  communicates the drop's effect to the DoDragDrop function 
         //  so it can communicate the effect of the drop back to the source
         HRESULT DragOver(DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
@@ -91,11 +67,13 @@ namespace DeltaEngine
                 return E_INVALIDARG;
             }
             // trigger MouseMove within ImGui, position is within pt.x and pt.y
-            //if (InputManager::Get()->CurrentCameraPosition().point_x >= Camera::editorCamera->Min().x && InputManager::Get()->CurrentCameraPosition().point_x <= Camera::editorCamera->Max().x
-            //    && InputManager::Get()->CurrentCameraPosition().point_y >= Camera::editorCamera->Min().y && InputManager::Get()->CurrentCameraPosition().point_y <= Camera::editorCamera->Max().y)
-            //{
-            //    _isInPanel = true;
-            //}
+            if (InputManager::Get()->CurrentCameraPosition().point_x >= Camera::editorCamera->Min().x && InputManager::Get()->CurrentCameraPosition().point_x <= Camera::editorCamera->Max().x
+                && InputManager::Get()->CurrentCameraPosition().point_y >= Camera::editorCamera->Min().y && InputManager::Get()->CurrentCameraPosition().point_y <= Camera::editorCamera->Max().y)
+            {
+                _isInPanel = true;
+                std::cout << "it is in camera panel!!!" << std::endl;
+            }
+
             // grfKeyState contains flags for control, alt, shift etc
 
             *pdwEffect |= DROPEFFECT_COPY;
@@ -105,8 +83,9 @@ namespace DeltaEngine
         // removes target feedback and releases the data object
         HRESULT DragLeave(void)
         {
-            //_isInPanel = false;
-            //_isInImGui = false;
+            _isInPanel = false;
+            _isInImGui = false;
+
             return S_OK;
         }
         // when releasing the mouse button so files drop into imgui
@@ -165,16 +144,17 @@ namespace DeltaEngine
             // releasing the data once done
             ReleaseStgMedium(&medium);
 
-            // notify our application somehow that we've finished dragging the files (provide the data somehow)
-            //_isReleased = true; 
-            //_isDragged = false;
-            //_isDropped = false;
-            //_isInImGui = false;
-            //_isInPanel = false;
+            // notify imgui that dragging of the files is done
+            _isReleased = true;
+            _isDragged = false;
+            _isDropped = true;
+            _isInImGui = false;
+            _isInPanel = false;
+            // provide data of files !!!!!!!!!!!!!!!!!!!!!
+
             // trigger MouseUp for button 1 within ImGui
 
             return S_OK;
         }
     };
 }
-#endif
