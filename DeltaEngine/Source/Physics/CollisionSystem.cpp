@@ -54,13 +54,17 @@ void CollisionSystem::CollisionIntersectionCheck()
                     if ((it1->id1.index == id1.index && it1->id2.index == id2.index) || (it1->id1.index == id2.index && it1->id2.index == id1.index))
                     {
                         already_added = true;
+                        break;
                     }
                 }
 
                 if (!already_added)
                 {
+                    bool has_non_moveable = false;
+                    if (!r1.isMoveable || !r2.isMoveable)
+                        has_non_moveable = true;
                     AABBvsAABB_Manifold(c1, c2, m);
-                    current_manifold_vector.push_back({ c1,c2, m,id1,id2 });
+                    current_manifold_vector.push_back({ c1,c2, m,id1,id2,has_non_moveable });
                 }
 
             }
@@ -119,10 +123,7 @@ void CollisionSystem::CollisionHandling()
 void CollisionSystem::CollisionResolution()
 {
     //resolve lowest contact point first
-    //std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
-    //{
-    //return a.m.ContactPoint.y < b.m.ContactPoint.y;
-    //});
+    std::partition(std::begin(current_manifold_vector), std::end(current_manifold_vector), [](const CollisionPairInfo& a) {return a.has_non_moveable; });
 
     for ( auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++ )
     {
@@ -134,10 +135,16 @@ void CollisionSystem::CollisionResolution()
           {
               if (CollisionResponse(c1, r1, c2, r2, it1->m))
               {
-                  t1.position = r1.PointEnd;
-                  t2.position = r2.PointEnd;
-                  c1.center = r1.PointEnd;
-                  c2.center = r2.PointEnd;
+                  if (r1.isMoveable)
+                  {
+                      t1.position = r1.PointEnd;
+                      c1.center = r1.PointEnd;
+                  }
+                  if (r2.isMoveable)
+                  {
+                      t2.position = r2.PointEnd;
+                      c2.center = r2.PointEnd;
+                  }
               }
 
           }

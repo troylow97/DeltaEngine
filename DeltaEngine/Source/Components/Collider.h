@@ -20,22 +20,19 @@ struct Collider
   Vector2 interPoint;
   ColliderType type;
   bool isCollideable;
-  bool isWall;
 
   Collider() :
     center { 0,0 },
     size { 0,0 },
     interPoint{0,0},
     type { ColliderType::BOX },
-    isCollideable{ true },
-    isWall{false}
+    isCollideable{ true }
   {}
   Collider( Vector2 new_center, Vector2 new_size, ColliderType col_type ) :
     center( new_center ),
     size( new_size ),
     interPoint{ 0,0 },
     isCollideable{ true },
-    isWall{ false },
     type{ColliderType::BOX}
   {}
 

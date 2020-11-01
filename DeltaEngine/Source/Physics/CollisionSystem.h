@@ -15,13 +15,15 @@ struct CollisionPairInfo
   Manifold m;
   EntityID id1;
   EntityID id2;
+  bool has_non_moveable;
 
-  CollisionPairInfo(Collider col1,Collider col2, Manifold man, EntityID i1, EntityID i2) :
+  CollisionPairInfo(Collider col1,Collider col2, Manifold man, EntityID i1, EntityID i2,bool moveable) :
    a{col1},
     b{col2},
     m { man },
     id1 { i1 },
-    id2 { i2 }
+    id2 { i2 },
+    has_non_moveable{ moveable }
   {}
 };
 

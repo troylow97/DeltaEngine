@@ -851,74 +851,38 @@ namespace DeltaEngine
 			// Calculate overlap on y axis
 			float y_overlap = a_extent2 + b_extent2 - abs(n.y);
 
-			//Get Contact Point
-			if(A.center.x > B.center.x)
-				m.ContactPoint.x = bbox.max.x;
-			else
-				m.ContactPoint.x = bbox.min.x;
-
-			if (A.center.y > B.center.y)
-				m.ContactPoint.y = abox.min.x;
-			else
-				m.ContactPoint.y = bbox.min.x;
-
-			//SAT Test on Y axis
-			if (y_overlap > 0) 
+			// SAT test on y axis
+			if (y_overlap > 0)
 			{
-				// SAT test on y axis
-				if (y_overlap > 0)
+				if (x_overlap < y_overlap)
 				{
-					// Find out which axis is axis of least penetration
-					if (x_overlap < y_overlap)
+					if (n.x < 0)
 					{
-						if (n.x < 0)
-							m.normal = { -1,0 };
-						else
-							m.normal = { 1,0 };
-
-						//if (A.isWall || B.isWall)
-						//{
-						//	if (A.center.x > B.center.x)
-						//	{
-						//		A.collided_spot = { -1, 0 };
-						//		B.collided_spot = { 1, 0 };
-						//	}
-						//	else
-						//	{
-						//		A.collided_spot = { 1, 0 };
-						//		B.collided_spot = { -1, 0 };
-						//	}
-						//}
-
-						m.penetration = x_overlap;
-						return true;
+						m.normal = { -1,0 };
 					}
-					else // x overlap is greater, so assume is a Y-Axis collision
+					else
 					{
-						// Point toward B knowing that n points from A to B
-						// TC: Create either an up or a down vector.
-						if (n.y < 0)
-							m.normal = { 0,-1 };
-						else
-							m.normal = { 0,1 };
-
-						//if (A.isWall || B.isWall)
-						//{
-						//	if (A.center.y > B.center.y)
-						//	{
-						//		A.collided_spot = { 0,-1 };
-						//		B.collided_spot = { 0, 1 };
-						//	}
-						//	else
-						//	{
-						//		A.collided_spot = { 0, 1 };
-						//		B.collided_spot = { 0,-1 };
-						//	}
-						//}
-
-						m.penetration = y_overlap;
-						return true;
+						m.normal = { 1,0 };
 					}
+
+
+					m.penetration = x_overlap;
+					return true;
+				}
+				else 
+				{
+					if (n.y < 0)
+					{
+						m.normal = { 0,-1 };
+					}
+					else
+					{
+						m.normal = { 0,1 };
+					}
+
+
+					m.penetration = y_overlap;
+					return true;
 				}
 			}
 		}
