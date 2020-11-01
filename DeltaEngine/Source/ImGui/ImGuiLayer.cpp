@@ -14,6 +14,7 @@
 #include "Input/InputManager.h"
 #include "Physics/Collision.h"
 #include "ImGui/DropManager.h"
+#include "Core/Utils/FileUtils.h"
 
 //#include "DeltaEngine.h"
 
@@ -660,4 +661,50 @@ void ImGuiLayer::End()
   // ImGui render end
   // -----------------
 }
+
+std::wstring to_wstring( std::string str )
+{
+  if ( str.empty() )
+  {
+    return std::wstring();
+  }
+  int num_chars = MultiByteToWideChar( CP_ACP, MB_ERR_INVALID_CHARS, str.c_str(), static_cast<int>( str.length() ), NULL, 0 );
+  std::wstring wstrTo;
+  if ( num_chars )
+  {
+    wstrTo.resize( num_chars );
+    if ( MultiByteToWideChar( CP_ACP, MB_ERR_INVALID_CHARS, str.c_str(), static_cast<int>( str.length() ), &wstrTo[0], num_chars ) )
+    {
+      return wstrTo;
+    }
+  }
+  return std::wstring();
+}
+
+//void AssetPanel()
+//{
+//  ImGui::Begin("Asset Menu");
+//
+//  float width = ImGui::GetContentRegionAvailWidth();
+//  float height = ImGui::GetContentRegionAvail().y;
+//
+//  ImGui::BeginChild( "##Asset Menu Content", { width, height }, true );
+//
+//  const float size = 128;
+//
+//  int index = 0;
+//  int columns = width / size;
+//  columns = columns < 1 ? 1 : columns;
+//
+//  ImGui::Columns( columns, nullptr, false );
+//
+//  for ( auto &path : FileUtils::FileList())
+//  {
+//    ImGui::BeginGroup();
+//    ImGui::ImageButton()
+//  }
+//}
+
+
+
 }
