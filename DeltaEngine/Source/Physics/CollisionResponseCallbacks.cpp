@@ -65,6 +65,15 @@ namespace DeltaEngine
 			//r1.AccumulatedForce += {1 / r1.Mass * -tx, 1 / r1.Mass * -ty};
 			//r2.AccumulatedForce += {1 / r2.Mass * tx, 1 / r2.Mass * ty};
 
+			// Relative velocity from a to b
+			//Vector2 rel_vel = r2.Velocity - r1.Velocity;
+			//
+			//float velAlongNormal = Vector2DotProduct(rel_vel, m.normal);
+			//
+			//// If the velocities are separating do nothing
+			//if (velAlongNormal > 0)
+			//	return false;
+
 			float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
 			
 			//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
@@ -73,11 +82,12 @@ namespace DeltaEngine
 			
 			//Vector2 reflectedVectorA = m.normal * (100 * m.penetration) * env.pClock->DeltaTime();
 			//Vector2 reflectedVectorB = -m.normal * (100 * m.penetration) * env.pClock->DeltaTime();
-			//r1.Velocity += restitution * 100 * m.normal * 1/r2.Mass * env.pClock->DeltaTime();
-			//r2.Velocity += restitution * 100 * -m.normal * 1/r1.Mass * env.pClock->DeltaTime();
+			r1.Velocity += restitution * 100 * m.normal * 1/r2.Mass * env.pClock->DeltaTime();
+			r2.Velocity += restitution * 100 * -m.normal * 1/r1.Mass * env.pClock->DeltaTime();
 			//update the end points of where the two objects will end up
 			//if (!(c1.isWall || c2.isWall))
 			//{
+
 				r1.PointEnd = c1.center + reflectedVectorA;
 				r2.PointEnd = c2.center + reflectedVectorB;
 			//}

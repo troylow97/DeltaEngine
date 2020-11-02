@@ -93,7 +93,8 @@ RTTR_REGISTRATION
     .property("size", &Collider::size)
     .property( "inter_point", &Collider::interPoint )
     .property( "type", &Collider::type )
-    .property( "is_collideable", &Collider::isCollideable );
+    .property( "is_collideable", &Collider::isCollideable )
+    .property("is_collideable", &Collider::isCollided);
 
 
   rttr::registration::class_<Input>( "input" )

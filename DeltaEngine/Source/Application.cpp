@@ -70,6 +70,8 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() )
     .Load<AnimationController>( "Player", "Player.anim" );
 
+  env.eventManager = new EventManager;
+
   env.pECS = new ECSModule();
   env.pECS->GetWorld();
   env.pECS->GetWorld().create_systems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
@@ -97,6 +99,7 @@ Application::~Application()
   delete RenderModule::openGLSystem;
   delete env.pWin;
   delete env.pClock;
+  delete env.eventManager;
 }
 
 
@@ -143,16 +146,14 @@ void Application::Run()
 
 void Application::OnEvent()
 {
-    //EventManager event_manager;
+    env.eventManager->AddEvent(WindowCloseEvent());
 
-    //event_manager.addEvent(WindowCloseEvent());
-
-    //if (!event_manager.isEmpty())
-    //{
-    //    auto& ref = event_manager.resolveEvent();
-    //    EventDispatcher d(ref);
-    //    d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
-    //}
+    if (!env.eventManager->IsEmpty())
+    {
+        auto& ref = env.eventManager->ResolveEvent();
+        EventDispatcher d(ref);
+        d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
+    }
 }
 
 

@@ -68,6 +68,17 @@ public:
     EVENT_CLASS_CATEGORY( EventCategoryApplication )
 };
 
+class ImGuiFileDragEvent : public Event
+{
+
+public:
+    ImGuiFileDragEvent() = default;
+
+    EVENT_CLASS_TYPE(ImGuiFileDragEvent)
+    EVENT_CLASS_CATEGORY(ImGuiCategory)
+
+};
+
 
 
 }

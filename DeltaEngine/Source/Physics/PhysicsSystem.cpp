@@ -11,6 +11,7 @@ namespace DeltaEngine
     void PhysicsSystem::Update()
     {
         //MoveInput();
+        UpdateComponents();
         UpdateVelocity();
     }
 
@@ -39,11 +40,7 @@ namespace DeltaEngine
 
     void PhysicsSystem::UpdateComponents()
     {
-        em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
-        {
-            c1.size = t1.scale;
-            c1.center = t1.position;
-        });
+
     }
 
     void PhysicsSystem::MoveInput()
@@ -67,18 +64,26 @@ namespace DeltaEngine
                 //
                 //}
                 //set Euler
-                t1.position += r1.Velocity * env.pClock->DeltaTime();
-                //Player movement
-                Vector2 move = (r1.Direction * r1.Movespeed);
-                r1.AccumulatedForce += move;
+                if (!c1.isCollided)
+                {
+                    t1.position += r1.Velocity * env.pClock->DeltaTime();                
+                }
+
+
+                {
+                    //Player movement
+                    Vector2 move = (r1.Direction * r1.Movespeed);
+                    r1.AccumulatedForce += move;
+                }
+
 
                 //Apply gravity
-                if (r1.hasGravity && r1.Direction.y != 1)
+                if (r1.hasGravity)
                 {
                     r1.Acceleration = m_gravity_amount;
                 }
 
-                Vector2 newAcceleration = r1.AccumulatedForce * 1 / r1.Mass + r1.Acceleration;
+                Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
                 r1.Velocity += newAcceleration * env.pClock->DeltaTime();
 
                 //Apply Friction
