@@ -5,6 +5,9 @@
 #include "ImGui/Panels/IPanel.h"
 #include "ECS/EntityManager.h"
 #include "Core/GlobalStruct.h"
+#include "ImGui\Panels\MainMenuBar.h"
+#include "ImGui\Panels\PropertyInspectorPanel.h"
+#include "ImGui\Panels\TilemapPanel.h"
 
 namespace DeltaEngine
 {
@@ -19,6 +22,9 @@ namespace DeltaEngine
 
         Editor(EntityManager& ref) : m_em{ ref }
         {
+            m_panels.push_back(std::make_unique<MainMenuBar>("MainMenu"));
+            //m_panels.push_back(std::make_unique<PropertyInspectorPanel>("Property Inspector"));
+            m_panels.push_back(std::make_unique<TilemapPanel>("Tilemap"));
             m_panels.push_back(std::make_unique<WorldPanel>("World"));
         }
 
@@ -34,26 +40,8 @@ namespace DeltaEngine
         static void OnDragDrop(Event* e)
         {
             drag = true;
-            
-            //for (size_t i = 0; i < m_panels.size(); ++i)
-            //{
-            //
-            //}
-            //
-            //
-            //
-            //
-            //if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
-            //    && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
-            //{
-            //    std::cout << "it is in world panel!!!" << std::endl;
-            //    drag = true;
-            //}
-            //drag = false;
 
         }
 
     };
-
-    //bool Editor::drag = false;
 }

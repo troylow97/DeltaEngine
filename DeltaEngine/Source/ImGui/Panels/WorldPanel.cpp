@@ -19,6 +19,17 @@ namespace DeltaEngine
         m_enabled = false;
     }
 
+    bool WorldPanel::DraggedFileIn()
+    {
+        if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
+            && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
+        {
+            std::cout << "it is in world panel!!!" << std::endl;
+            return true;
+        }
+        return false;
+    }
+
     bool WorldPanel::Render(bool isdragged)
     {
         ImGui::Begin( m_name.c_str());
@@ -87,17 +98,6 @@ namespace DeltaEngine
         ImGui::End();
 
         return m_enabled;
-    }
-
-    bool WorldPanel::DraggedFileIn()
-    {
-        if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
-            && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
-        {
-            std::cout << "it is in world panel!!!" << std::endl;
-            return true;
-        }
-        return false;
     }
 
     float WorldPanel::GetHeight()

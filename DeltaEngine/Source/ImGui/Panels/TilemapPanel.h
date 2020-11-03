@@ -4,11 +4,11 @@
 
 namespace DeltaEngine
 {
-	class WorldPanel : public IPanel
+	class TilemapPanel : public IPanel
 	{
 	public:
-		WorldPanel(std::string str);
-		~WorldPanel();
+		TilemapPanel(std::string str);
+		~TilemapPanel();
 		bool DraggedFileIn();
 		virtual bool Render(bool) override;
 		virtual float GetHeight() override;

@@ -22,7 +22,7 @@ namespace DeltaEngine
 
     bool MainMenuBar::Render(bool)
     {
-        ImGui::Begin(m_name.c_str());
+        //ImGui::Begin(m_name.c_str());
 
         ImVec2 renderSize = ImGui::GetContentRegionAvail();
         width = topLeft.x + renderSize.x;

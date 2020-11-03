@@ -2,6 +2,10 @@
 
 #include "ImGui/Panels/IPanel.h"
 
+namespace rttr {
+	class instance;
+}
+
 namespace DeltaEngine
 {
 	class PropertyInspectorPanel : public IPanel

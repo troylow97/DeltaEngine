@@ -23,8 +23,8 @@ namespace DeltaEngine
     //DeltaEngineGlobalEnvironment env;
 
 ImGuiLayer::ImGuiLayer()
-  : Layer( "ImGuiLayer" ),
-    wp {"World"}
+  : Layer( "ImGuiLayer" )/*,
+    wp {"World"}*/
 {}
 
 void ImGuiLayer::OnAttach()
@@ -555,7 +555,7 @@ void ImGuiLayer::Begin()
 
 // selection panel 
   {
-    ImGui::Begin( "Panel Selection" );
+    //ImGui::Begin( "Panel Selection" );
 
       //DropManager dm;
       //if (dm.IsInPanel())
@@ -638,7 +638,7 @@ void ImGuiLayer::Begin()
       //    //}
       //    ImGui::TreePop();
       //}
-    ImGui::End();
+    //ImGui::End();
   }
 
 
