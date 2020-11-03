@@ -77,13 +77,17 @@ namespace DeltaEngine
 			float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
 			
 			//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-			Vector2 reflectedVectorA = m.normal/(r1.Mass + r2.Mass) * r2.Mass * (60 * m.penetration) * env.pClock->DeltaTime();
-			Vector2 reflectedVectorB = -m.normal/(r1.Mass + r2.Mass) * r1.Mass * (60 * m.penetration) * env.pClock->DeltaTime();
-			
+			Vector2 reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
+			Vector2 reflectedVectorB =  - m.normal / (r1.Mass + r2.Mass) * r1.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
+
 			//Vector2 reflectedVectorA = m.normal * (100 * m.penetration) * env.pClock->DeltaTime();
 			//Vector2 reflectedVectorB = -m.normal * (100 * m.penetration) * env.pClock->DeltaTime();
-			r1.Velocity += restitution * 100 * m.normal * 1/r2.Mass * env.pClock->DeltaTime();
-			r2.Velocity += restitution * 100 * -m.normal * 1/r1.Mass * env.pClock->DeltaTime();
+			//r1.Velocity += (2 * m.penetration * m.normal) + 150 * m.normal * 1/r2.Mass * env.pClock->DeltaTime();
+			//r2.Velocity += (2 * m.penetration * -m.normal) + 150 * -m.normal * 1/r1.Mass * env.pClock->DeltaTime();
+
+			r1.Velocity += (((m.normal * m.penetration) + 0.10 * m.normal) / (r1.Mass + r2.Mass)) * r2.Mass;
+			r2.Velocity -= (((m.normal * m.penetration) + 0.10 * m.normal) / (r1.Mass + r2.Mass)) * r1.Mass;
+
 			//update the end points of where the two objects will end up
 			//if (!(c1.isWall || c2.isWall))
 			//{

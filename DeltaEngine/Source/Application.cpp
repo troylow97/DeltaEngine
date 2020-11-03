@@ -46,7 +46,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   m_ImGuiLayer = new ImGuiLayer();
   m_ImGuiLayer->OnAttach();
 
-  //m_Editor = new Editor(env.pECS->GetWorld().get_entity_manager());
+  m_Editor = new Editor(EntityManager());
 
   // Asset Loading
   env.pManager = new AM();
@@ -102,7 +102,7 @@ Application::~Application()
   delete env.pWin;
   delete env.pClock;
   delete env.eventManager;
-  //delete m_Editor;
+  delete m_Editor;
 }
 
 
@@ -143,7 +143,7 @@ void Application::Run()
       m_ImGuiLayer->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       env.pWin->Update();
-      OnEvent();
+      //OnEvent();
     }
   }
 }

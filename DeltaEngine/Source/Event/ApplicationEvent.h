@@ -71,6 +71,7 @@ public:
 class ImGuiFileDragEvent : public Event
 {
 public:
+
     ImGuiFileDragEvent() = default;
 
     std::string ToString() const override

@@ -64,7 +64,7 @@ namespace DeltaEngine
                 //
                 //}
                 //set Euler
-                if (!c1.isCollided)
+                //if (!c1.isCollided)
                 {
                     t1.position += r1.Velocity * env.pClock->DeltaTime();                
                 }
@@ -78,7 +78,7 @@ namespace DeltaEngine
 
 
                 //Apply gravity
-                if (r1.hasGravity)
+                if (r1.hasGravity && !c1.isCollided)
                 {
                     r1.Acceleration = m_gravity_amount;
                 }
