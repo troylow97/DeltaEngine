@@ -10,7 +10,7 @@ namespace DeltaEngine
 		PropertyInspectorPanel(std::string str);
 		~PropertyInspectorPanel();
 		virtual bool Render() override;
-		virtual bool DraggedFileIn() override;
+		//virtual bool DraggedFileIn() override;
 		virtual float GetHeight() override;
 		virtual float GetWidth() override;
 		virtual ImVec2 GetTopLeft() override;

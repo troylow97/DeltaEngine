@@ -95,16 +95,16 @@ namespace DeltaEngine
         return m_enabled;
     }
 
-    bool MainMenuBar::DraggedFileIn()
-    {
-        if (InputManager::Get()->CurrentPosition().point_x >= topLeft.x && InputManager::Get()->CurrentPosition().point_x <= bottomRight.x
-            && InputManager::Get()->CurrentPosition().point_y >= topLeft.y && InputManager::Get()->CurrentPosition().point_y <= bottomRight.y)
-        {
-            std::cout << "it is in mainmenubar panel!!!" << std::endl;
-            return true;
-        }
-        return false;
-    }
+    //bool MainMenuBar::DraggedFileIn()
+    //{
+    //    if (InputManager::Get()->CurrentPosition().point_x >= topLeft.x && InputManager::Get()->CurrentPosition().point_x <= bottomRight.x
+    //        && InputManager::Get()->CurrentPosition().point_y >= topLeft.y && InputManager::Get()->CurrentPosition().point_y <= bottomRight.y)
+    //    {
+    //        std::cout << "it is in mainmenubar panel!!!" << std::endl;
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
     float MainMenuBar::GetHeight()
     {

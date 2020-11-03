@@ -15,7 +15,7 @@
 #include "Physics/Collision.h"
 #include "ImGui/DropManager.h"
 #include "ImGui/Panels/WorldPanel.h"
-
+#include "Event/ApplicationEvent.h"
 //#include "DeltaEngine.h"
 
 namespace DeltaEngine
@@ -23,7 +23,8 @@ namespace DeltaEngine
     //DeltaEngineGlobalEnvironment env;
 
 ImGuiLayer::ImGuiLayer()
-  : Layer( "ImGuiLayer" )
+  : Layer( "ImGuiLayer" ),
+    wp {"World"}
 {}
 
 void ImGuiLayer::OnAttach()
@@ -70,9 +71,9 @@ void ImGuiLayer::OnDetach()
   ImGui::DestroyContext();
 }
 
-void ImGuiLayer::OnEvent()
+void ImGuiLayer::OnEvent(Event* e)
 {
-
+    //wp.DraggedFileIn();
 }
 
 void ImGuiLayer::Begin()
@@ -324,9 +325,9 @@ void ImGuiLayer::Begin()
   //}
   // world
   
-  WorldPanel wp{ "World" };
   wp.Render();
-  wp.DraggedFileIn();
+
+  //wp.DraggedFileIn();
   ////////////////////////////{
   ////////////////////////////  ImGui::Begin( "World" );
   ////////////////////////////

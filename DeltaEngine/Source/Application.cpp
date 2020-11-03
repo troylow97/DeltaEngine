@@ -16,7 +16,7 @@
 #include "ECS/World.h"
 #include "Input/InputManager.h"
 #include "Components/Character.h"
-
+#include "ImGui/Editor.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -45,6 +45,8 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   RenderModule::openGLSystem->Init();
   m_ImGuiLayer = new ImGuiLayer();
   m_ImGuiLayer->OnAttach();
+
+  //m_Editor = new Editor(env.pECS->GetWorld().get_entity_manager());
 
   // Asset Loading
   env.pManager = new AM();
@@ -100,6 +102,7 @@ Application::~Application()
   delete env.pWin;
   delete env.pClock;
   delete env.eventManager;
+  //delete m_Editor;
 }
 
 
@@ -136,24 +139,39 @@ void Application::Run()
       env.pECS->GetWorld().update();
       env.pECS->GetWorld().late_update();
       m_ImGuiLayer->Begin();
+      m_Editor->Render();
       m_ImGuiLayer->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       env.pWin->Update();
+      OnEvent();
     }
   }
 }
 
 
+
 void Application::OnEvent()
 {
-    env.eventManager->AddEvent(WindowCloseEvent());
+    //if (!env.eventManager->IsEmpty())
+    //{
+    //    auto ref = env.eventManager->ResolveEvent();
+    //    EventDispatcher d(ref);
+    //
+    //    if (ref != nullptr)
+    //    {
+    //        EventType type = ref->GetEventType();
+    //        switch (type)
+    //        {
+    //        case EventType::ImGuiDragFile:
+    //        {
+    //            d.Dispatch<ImGuiFileDragEvent>(DE_BIND_EVENT_FN(Editor::OnDragDrop));
+    //            break;
+    //        }
+    //        }
+    //    }
+    //}
 
-    if (!env.eventManager->IsEmpty())
-    {
-        auto& ref = env.eventManager->ResolveEvent();
-        EventDispatcher d(ref);
-        d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
-    }
+
 }
 
 

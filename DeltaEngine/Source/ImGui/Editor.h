@@ -4,6 +4,7 @@
 
 #include "ImGui/Panels/IPanel.h"
 #include "ECS/EntityManager.h"
+#include "Core/GlobalStruct.h"
 
 namespace DeltaEngine
 {
@@ -11,6 +12,7 @@ namespace DeltaEngine
     {
         std::vector<DeltaEngine::IPanel*> m_panels;
         const EntityManager& m_em;
+        inline static bool drag;
     public:
 
         Editor() = delete;
@@ -22,10 +24,22 @@ namespace DeltaEngine
 
         void Render()
         {
-            for (auto& ref : m_panels)
-            {
-                ref->Render(); // Update all the panels
-            }
+            //for (auto& ref : m_panels)
+            //{
+            //    ref->Render(); // Update all the panels
+            //    if (drag)
+            //    {
+            //        std::cout << "yes!" << std::endl;
+            //    }
+            //}
         }
+
+        static void OnDragDrop(Event* e)
+        {
+            drag = true;
+        }
+
     };
+
+    //bool Editor::drag = false;
 }

@@ -65,7 +65,7 @@ public:
 class EventDispatcher
 {
 public:
-  EventDispatcher( Event &event ) :
+  EventDispatcher( Event* event ) :
     m_event( event )
   {}
 
@@ -75,15 +75,16 @@ public:
     //checks to see which event type the current event 
     //that we are currently dispatching is and whether it matches this template argument
     //There is no type-safety to see if its an event
-    if ( m_event.GetEventType() == T::GetStaticType() )
+    if ( m_event->GetEventType() == T::GetStaticType() )
     {
-      m_event.isHandled = func( static_cast<T &>( m_event ) );
+      //m_event.isHandled = func( static_cast<T &>( m_event ) );
+      func(static_cast<T*>(m_event));
       return true;
     }
     return false;
   }
 private:
-  Event &m_event;
+  Event* m_event;
 };
 
 inline std::ostream &operator<<( std::ostream &os, const Event &e )
@@ -98,13 +99,15 @@ public:
     EventQueue { 1000 }
   {}
 
-  void AddEvent( Event &event )
+  void AddEvent( Event* event )
   {
     EventQueue.Write( event );
   }
 
-  Event &ResolveEvent()
+  Event* ResolveEvent()
   {
+      //Event* e = EventQueue.Read();
+
     return EventQueue.Read();
   }
 
@@ -118,8 +121,13 @@ public:
     return EventQueue.Empty();
   }
 
+  size_t getEventSize() const
+  {
+      return EventQueue.GetMaxSize();
+  }
+
 private:
-  RingBuffer<Event>EventQueue;
+  RingBuffer<Event*>EventQueue;
   //Each event in the queue has a dispatcher
 
   //some way to iterate through the queue

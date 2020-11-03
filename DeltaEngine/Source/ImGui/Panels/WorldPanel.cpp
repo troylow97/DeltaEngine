@@ -83,16 +83,16 @@ namespace DeltaEngine
         return m_enabled;
     }
 
-    bool WorldPanel::DraggedFileIn()
-    {
-        if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
-            && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
-        {
-            std::cout << "it is in world panel!!!" << std::endl;
-            return true;
-        }
-        return false;
-    }
+    //bool WorldPanel::DraggedFileIn(Event* e)
+    //{
+    //    if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
+    //        && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
+    //    {
+    //        std::cout << "it is in world panel!!!" << std::endl;
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
     float WorldPanel::GetHeight()
     {
@@ -112,5 +112,10 @@ namespace DeltaEngine
     ImVec2 WorldPanel::GetBottomRight()
     {
         return bottomRight;
+    }
+
+    void WorldPanel::DragDrop()
+    {
+       
     }
 }

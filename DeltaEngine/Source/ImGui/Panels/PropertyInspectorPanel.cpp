@@ -150,16 +150,16 @@ namespace DeltaEngine
         return m_enabled;
     }
 
-    bool PropertyInspectorPanel::DraggedFileIn()
-    {
-        if (InputManager::Get()->CurrentPosition().point_x >= topLeft.x && InputManager::Get()->CurrentPosition().point_x <= bottomRight.x
-            && InputManager::Get()->CurrentPosition().point_y >= topLeft.y && InputManager::Get()->CurrentPosition().point_y <= bottomRight.y)
-        {
-            std::cout << "it is in propertyinspector panel!!!" << std::endl;
-            return true;
-        }
-        return false;
-    }
+    //bool PropertyInspectorPanel::DraggedFileIn()
+    //{
+    //    if (InputManager::Get()->CurrentPosition().point_x >= topLeft.x && InputManager::Get()->CurrentPosition().point_x <= bottomRight.x
+    //        && InputManager::Get()->CurrentPosition().point_y >= topLeft.y && InputManager::Get()->CurrentPosition().point_y <= bottomRight.y)
+    //    {
+    //        std::cout << "it is in propertyinspector panel!!!" << std::endl;
+    //        return true;
+    //    }
+    //    return false;
+    //}
 
     float PropertyInspectorPanel::GetHeight()
     {

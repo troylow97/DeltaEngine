@@ -10,7 +10,7 @@ namespace DeltaEngine
 		MainMenuBar(std::string str);
 		~MainMenuBar();
 		virtual bool Render() override;
-		virtual bool DraggedFileIn() override;
+		//virtual bool DraggedFileIn() override;
 		virtual float GetHeight() override;
 		virtual float GetWidth() override;
 		virtual ImVec2 GetTopLeft() override;

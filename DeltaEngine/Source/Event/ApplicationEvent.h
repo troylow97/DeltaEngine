@@ -70,11 +70,17 @@ public:
 
 class ImGuiFileDragEvent : public Event
 {
-
 public:
     ImGuiFileDragEvent() = default;
 
-    EVENT_CLASS_TYPE(ImGuiFileDragEvent)
+    std::string ToString() const override
+    {
+        std::stringstream ss;
+        ss << "ImGuiDragFileEvent" << std::endl;
+        return ss.str();
+    }
+
+    EVENT_CLASS_TYPE(ImGuiDragFile)
     EVENT_CLASS_CATEGORY(ImGuiCategory)
 
 };

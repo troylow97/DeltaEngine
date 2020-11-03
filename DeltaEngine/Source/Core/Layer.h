@@ -19,7 +19,7 @@ public:
   {}
   virtual void OnImGuiRender()
   {}
-  virtual void OnEvent()
+  virtual void OnEvent(Event* e)
   {}
 
   const std::string &GetName() const

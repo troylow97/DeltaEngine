@@ -3,6 +3,7 @@
 #include <oleidl.h>
 #include <shellapi.h>
 #include "Input/InputManager.h"
+#include "Event/ApplicationEvent.h"
 
 namespace DeltaEngine
 {
@@ -73,6 +74,8 @@ namespace DeltaEngine
                 _isInPanel = true;
                 std::cout << "it is in camera panel!!!" << std::endl;
             }
+
+            env.eventManager->AddEvent(new ImGuiFileDragEvent);
 
             // grfKeyState contains flags for control, alt, shift etc
 

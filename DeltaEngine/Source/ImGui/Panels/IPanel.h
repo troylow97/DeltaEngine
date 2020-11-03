@@ -17,7 +17,7 @@ namespace DeltaEngine
 		bool IsEnabled() const { return m_enabled; }
 		std::string Name() const { return m_name; }
 
-		virtual bool DraggedFileIn() = 0;
+		//virtual bool DraggedFileIn(Event* e) = 0;
 
 
 
