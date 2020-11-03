@@ -83,6 +83,30 @@ void InputSystem::Update()
     }
   }
 
+  if (InputManager::Get()->IsMouseTriggered(DEVK_LBUTTON))
+  {
+    env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
+	{
+	  if (c1.type == ColliderType::BOX)
+	  {
+	    if (CollisionIntersection_RectMouse(c1.center, c1.size, InputManager::Get()->CurrentCameraPosition()))
+	    {
+		  InputManager::Get()->SetEntitySelected(true);
+		  InputManager::Get()->SetEntityIDSelected(id1.index);
+	    }
+	  }
+	  else if (c1.type == ColliderType::CIRCLE)
+	  {
+        if (CollisionIntersection_RectMouse(c1.center, c1.size, InputManager::Get()->CurrentCameraPosition()))
+        {
+		  InputManager::Get()->SetEntitySelected(true);
+		  InputManager::Get()->SetEntityIDSelected(id1.index);
+		  //std::cout << "entity selected is " << InputManager::Get()->EntityIDSelected() << std::endl;
+        }
+	  }
+	});
+  }
+
   //if ( InputManager::Get()->IsKeyTriggered( DEVK_P ) )
   //{
   //  em.ForEach( [&]( EntityID &id, Input &input )

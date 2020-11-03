@@ -101,7 +101,7 @@ void ReadEntities( EntityManager &em, Value::MemberIterator it )
       variant obj = type.get_constructor().invoke();
       auto &value = mitr->value;
       ReadRecursive( obj, value );
-      obj.get_type().get_method( "deserialize" ).invoke( instance(), em, id, obj );
+      RT_Reflect::DeserializeType( type.get_name().to_string(), em, id, obj );
     }
   }
 }

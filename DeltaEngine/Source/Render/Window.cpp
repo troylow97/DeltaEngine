@@ -4,6 +4,7 @@
 #include "Core/Debugging/Logger/Log.h"
 #include <examples/imgui_impl_win32.h>
 #include "Core/GlobalStruct.h"
+#include "ImGui/DropManager.h"
 
 #include <codecvt>
 #include <locale>
@@ -89,7 +90,7 @@ void Window::Init()
 void Window::Update()
 {
   MSG msg = {};
-
+  
   if ( PeekMessage( &msg, nullptr, 0U, 0U, PM_REMOVE ) )
   {
     TranslateMessage( &msg );
@@ -100,6 +101,8 @@ void Window::Update()
 void Window::ShutDown()
 {
   DestroyWindow( m_hwndl );
+  //RevokeDragDrop(m_hwndl);
+  //OleUninitialize();
 }
 
 HWND Window::GetHandle() const
@@ -157,6 +160,8 @@ bool Window::Running() const
   return m_running;
 }
 
+DropManager dropManager;
+
 void Window::InitWindow()
 {
 
@@ -174,6 +179,8 @@ void Window::InitWindow()
     DeltaEngine_CORE_ERROR( "ERROR: Couldn't register window class!" );
   }
 
+  HRESULT oleResult = OleInitialize(NULL);
+
   m_hwndl = CreateWindowEx( 0, windowClass.lpszClassName, m_title.c_str(),
                             WS_OVERLAPPEDWINDOW | WS_VISIBLE, 100, 100, m_width, m_height,
                             0, 0, windowClass.hInstance, 0 );
@@ -184,6 +191,9 @@ void Window::InitWindow()
   }
 
   ShowWindow( GetConsoleWindow(), SW_SHOW );
+
+  RegisterDragDrop(m_hwndl, &dropManager);
+  
 }
 
 }

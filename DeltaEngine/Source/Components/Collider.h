@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Core/Math/Vector.h"
-#include "Components.h"
 
 namespace DeltaEngine
 {
@@ -34,7 +33,6 @@ struct Collider
     type( col_type )
   {}
 
-  REGISTER_COMPONENT( Collider )
 };
 
 } // namespace DeltaEngine

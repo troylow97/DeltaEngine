@@ -15,6 +15,11 @@ project "DeltaEngine"
   location "DeltaEngine"
   kind "SharedLib"
   language "C++"
+  flags 
+  {
+    "MultiProcessorCompile",
+    "NoPCH",
+  }
 
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -48,6 +53,8 @@ project "DeltaEngine"
     "%{prj.name}/Dep/stb_image",
     "%{prj.name}/Dep/rttr/include",
     "%{prj.name}/Dep/rapidjson-master/include",
+    "%{prj.name}/Dep/fmod/core/inc",
+    "%{prj.name}/Dep/fmod/studio/inc",
     "%{prj.name}/Source"
   }
 
@@ -55,6 +62,8 @@ project "DeltaEngine"
   {
     "%{prj.name}/Dep/freetype/objs",
     "%{prj.name}/Dep/rttr/lib",
+    "%{prj.name}/Dep/fmod/core/lib/x64",
+    "%{prj.name}/Dep/fmod/studio/lib/x64"
   }
 
   links
@@ -80,7 +89,7 @@ project "DeltaEngine"
   
   postbuildcommands
   {
-   ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+    "{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox",   
   }
 
   filter "configurations:Debug"
@@ -91,7 +100,12 @@ project "DeltaEngine"
       "%{prj.name}/Dep/glew/GL/lib/Debug/x64",
       "%{prj.name}/Dep/freetype/objs/x64/Debug Static"
     }
-    links {"rttr_core_lib_s_d.lib"}
+    links 
+    {
+      "rttr_core_lib_s_d.lib",
+      "fmodL_vc.lib",
+      "fmodL.dll"
+    }
 
     
   filter "configurations:Release"
@@ -102,7 +116,12 @@ project "DeltaEngine"
       "%{prj.name}/Dep/glew/GL/lib/Release/x64",
       "%{prj.name}/Dep/freetype/objs/x64/Release Static"
     }
-    links {"rttr_core_lib_s.lib"}
+    links 
+    {
+      "rttr_core_lib_s.lib",
+      "fmod_vc.lib",
+      "fmod.dll"
+    }
 
 
   filter "configurations:Dist"
@@ -113,6 +132,11 @@ project "Sandbox"
   location "Sandbox"
   language "C++"
   kind "ConsoleApp"
+  flags 
+  {
+    "MultiProcessorCompile",
+    "NoPCH",
+  }
   
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -133,6 +157,8 @@ project "Sandbox"
     "DeltaEngine/Dep/stb_image",
     "DeltaEngine/Dep/rttr/include",
     "DeltaEngine/Dep/rapidjson-master/include",
+    "DeltaEngine/Dep/fmod/core/inc",
+    "DeltaEngine/Dep/fmod/studio/inc",
     "DeltaEngine/Source"
   }
   

@@ -1,9 +1,6 @@
 #pragma once
 
 #include "Core/Math/Vector.h"
-#include "Components.h"
-#include <rapidjson/prettywriter.h>
-#include <rapidjson/filewritestream.h>
 
 namespace DeltaEngine
 {
@@ -31,6 +28,5 @@ struct RigidBody
     isMoveable { true }
   {}
 
-  REGISTER_COMPONENT( RigidBody )
 };
 }

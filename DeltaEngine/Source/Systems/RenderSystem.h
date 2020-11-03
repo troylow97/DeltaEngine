@@ -4,7 +4,7 @@
 
 namespace DeltaEngine
 {
-DEFINE_SYSTEM( RenderSystem, Transform, Renderer )
+DEFINE_SYSTEM( RenderSystem, Transform )
 void Update() override;
 void LateUpdate() override;
 END_DEFINE_SYSTEM( RenderSystem )
