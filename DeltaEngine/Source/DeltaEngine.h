@@ -32,6 +32,7 @@
 #include "Render/Texture.h"
 #include "Render/ParticleSystem.h"
 #include "Render/Animator.h"
+#include "Render/Material.h"
 
 #include "Event/ApplicationEvent.h"
 

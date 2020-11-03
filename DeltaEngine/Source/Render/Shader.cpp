@@ -12,7 +12,9 @@ namespace DeltaEngine
 {
 Shader::Shader( const std::string &filepath )
   : Shader( filepath + ".vs", filepath + ".fs" )
-{}
+{
+  m_Name = filepath;
+}
 
 Shader::Shader( const std::string &vsfilepath, const std::string &fsfilepath )
   : m_filepath { vsfilepath, fsfilepath }, m_RendererID { 0 }
@@ -112,6 +114,10 @@ unsigned int Shader::CreateShader( const std::string &vertexShader, const std::s
 unsigned int Shader::GetShaderID()
 {
   return m_RendererID;
+}
+std::string Shader::GetName()
+{
+  return m_Name;
 }
 
 void Shader::SetUniform1i( const std::string &name, int i0 )

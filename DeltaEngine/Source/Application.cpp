@@ -117,7 +117,7 @@ void Application::Run()
   while ( env.pWin->Running() )
   {
     textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
-    textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28f, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
+    //textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28f, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
     if ( env.pClock->Update() )
     {
       InputManager::Get()->Update();

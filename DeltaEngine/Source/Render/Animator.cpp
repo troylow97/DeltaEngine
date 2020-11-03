@@ -8,7 +8,7 @@ namespace DeltaEngine
 {
 Animator::Animator( AnimationController *controller )
   : m_Controller { controller }, m_Clip { m_Controller ? m_Controller->entryAnimation : nullptr },
-  m_Timer { 0.0f }, m_Frame { 0 }, m_Speed { 1 }, renderer { nullptr }
+  m_Timer { 0.0f }, m_Frame { 0 }, m_Speed { 1 }
 {
 
 }
@@ -63,8 +63,6 @@ void Animator::Update()
 
   m_Frame = (unsigned int) ( m_Timer * m_Clip->GetFps() );
   m_Frame = Math::Clamp( m_Frame, 0, m_Clip->GetTotalFrames() );
-
-  //renderer->sprite = m_Clip->GetSprite(m_Frame);
 }
 
 void Animator::CheckCondition()

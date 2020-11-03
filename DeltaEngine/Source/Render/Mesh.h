@@ -2,7 +2,8 @@
 
 #include <GL/glew.h>
 #include "Core/Math/DE_Math.h"
-#include <vector>
+#include "DEpch.h"
+#include "Font.h"
 
 namespace DeltaEngine
 {
@@ -18,6 +19,7 @@ class Mesh
     ~VertexBuffer();
 
     void InitData( const float *data, unsigned int size, bool dynamic = false );
+    void InitSubData( const float *data, unsigned int offset, unsigned int size );
 
     void Bind() const;
     void Unbind() const;
@@ -44,7 +46,7 @@ class Mesh
     IndexBuffer();
     ~IndexBuffer();
 
-    void InitData( const unsigned int *data, unsigned int count );
+    void InitData( const unsigned int *data, unsigned int count, bool dynamic = false );
 
     void Bind() const;
     void Unbind() const;
@@ -69,19 +71,18 @@ class Mesh
   //std::vector<Vector3> normals;
   std::vector<unsigned int> indices;
 
-  bool dynamic = false;
+  bool isDynamic = false;
   bool useSubdata = false;
 
   std::vector<float> VerticesDataFormat();
   void AssertProperties();
 public:
-  Mesh();
+  Mesh(bool dynamic = false);
 
   void SetVertices( std::vector<Vector3> vertices );
   void SetColors( std::vector<Color> colors );
   void SetUVs( std::vector<Vector2> uvs );
   void SetIndices( std::vector<unsigned int> indices );
-  void MarkDynamic();
 
   void Draw();
   void DrawWireframe();
@@ -92,5 +93,6 @@ public:
   static void DrawQuad( Vector2 offset, Vector2 tiling, Vector2 pivot );
   static void DrawLine( Vector3 start, Vector3 end );
   static void DrawLines( std::vector<std::pair<Vector3, Vector3>> startEndPair );
+  static void DrawTextMesh( Font* font, std::string text, float size, bool wireframe = false );
 };
 }

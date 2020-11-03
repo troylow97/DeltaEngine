@@ -15,16 +15,17 @@ class DE_API Sprite
 
 public:
   unsigned int m_Index;
+  bool m_Valid;
   Sprite( std::string textureName = "", unsigned int index = 0 );
   operator bool() const;
-  unsigned int GetWidth();
-  unsigned int GetHeight();
-  Vector2 GetOffset();
-  Vector2 GetTiling();
-  Vector2 GetPivot();
-  Texture2D *GetTexture();
-  std::string GetName();
-  std::string GetKey();
-  unsigned int GetIndex();
+  unsigned int GetWidth() const;
+  unsigned int GetHeight() const;
+  Vector2 GetOffset() const;
+  Vector2 GetTiling() const;
+  Vector2 GetPivot() const;
+  Texture2D *GetTexture() const;
+  std::string GetName() const;
+  std::string GetKey() const;
+  unsigned int GetIndex() const;
 };
 }

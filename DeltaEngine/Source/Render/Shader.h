@@ -15,6 +15,7 @@ struct ShaderProgramSource
 class Shader
 {
   ShaderProgramSource m_filepath;
+  std::string m_Name;
   unsigned int m_RendererID;
   std::unordered_map<std::string, int> m_uniformLocationCache;
 public:
@@ -26,6 +27,7 @@ public:
   void Unbind() const;
 
   unsigned int GetShaderID();
+  std::string GetName();
   // Set uniforms
   void SetUniform1i( const std::string &name, int i0 );
   void SetUniform1f( const std::string &name, float f0 );
