@@ -10,13 +10,14 @@ namespace DeltaEngine
 
     void PhysicsSystem::Update()
     {
-        //MoveInput();
-        UpdateComponents();
         UpdateVelocity();
     }
 
     void PhysicsSystem::LateUpdate()
     {
+        //Apply Friction
+
+
         //em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
         //    {
         //        Vector2 NewPos = t1.position;
@@ -38,47 +39,27 @@ namespace DeltaEngine
         //    });
     }
 
-    void PhysicsSystem::UpdateComponents()
-    {
-
-    }
-
-    void PhysicsSystem::MoveInput()
-    {
-
-    }
-
     void PhysicsSystem::UpdateVelocity()
     {
         em.ForEach([&](EntityID id1, RigidBody& r1,Transform& t1,Collider& c1)
         {
             if (r1.isMoveable)
             {
-                //if (r1.PointEnd.x >= std::numeric_limits<float>::epsilon() && r1.PointEnd.y >= std::numeric_limits<float>::epsilon())
+                //if (r1.Direction == Vector2{ 0,-1 } && c1.isCollidingOnFloor)
                 //{
-                //    t1.position = r1.PointEnd;
-                //    r1.PointEnd = { std::numeric_limits<float>::epsilon() ,std::numeric_limits<float>::epsilon() };
+                //    return;
                 //}
-                //else
-                //{
-                //
-                //}
-                //set Euler
-                //if (!c1.isCollided)
-                {
-                    t1.position += r1.Velocity * env.pClock->DeltaTime();                
-                }
 
+                //Set Euler
+                t1.position += r1.Velocity * env.pClock->DeltaTime();                
 
-                {
-                    //Player movement
-                    Vector2 move = (r1.Direction * r1.Movespeed);
-                    r1.AccumulatedForce += move;
-                }
+                //Player movement
+                Vector2 move = (r1.Direction * r1.Movespeed);
+                r1.AccumulatedForce += move;
 
 
                 //Apply gravity
-                if (r1.hasGravity && !c1.isCollided)
+                if (r1.hasGravity && !c1.isCollidingOnFloor)
                 {
                     r1.Acceleration = m_gravity_amount;
                 }
@@ -86,10 +67,9 @@ namespace DeltaEngine
                 Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
                 r1.Velocity += newAcceleration * env.pClock->DeltaTime();
 
-                //Apply Friction
+                //Apply Soft Drag
                 r1.Velocity -= r1.Velocity * r1.FrictionCoeff;
-                r1.AccumulatedForce.x = std::numeric_limits<float>::epsilon();
-                r1.AccumulatedForce.y = std::numeric_limits<float>::epsilon();
+                r1.AccumulatedForce = Vector2::zero();
             }
         });
 

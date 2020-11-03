@@ -20,7 +20,7 @@ namespace DeltaEngine
         m_enabled = false;
     }
 
-    bool PropertyInspectorPanel::Render()
+    bool PropertyInspectorPanel::Render(bool)
     {
         if (InputManager::Get()->EntitySelected())
         {

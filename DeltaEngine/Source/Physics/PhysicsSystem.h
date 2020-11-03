@@ -14,10 +14,8 @@ public:
 
   virtual void PhysicsSystem::Update() override;
   virtual void PhysicsSystem::LateUpdate() override;
-  void PhysicsSystem::UpdateComponents();
 
 private:
-    void PhysicsSystem::MoveInput();
   void PhysicsSystem::UpdateVelocity();
 
   Vector2 m_gravity_amount = { 0,-5.0f };

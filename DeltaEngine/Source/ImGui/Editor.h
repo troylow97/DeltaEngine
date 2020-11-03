@@ -26,11 +26,8 @@ namespace DeltaEngine
         {
             for (auto& ref : m_panels)
             {
-                ref->Render(); // Update all the panels
-                if (drag)
-                {
-                    std::cout << "yes!" << std::endl;
-                }
+                ref->Render(drag); // Update all the panels
+
             }
         }
 

@@ -21,6 +21,7 @@ struct Collider
   ColliderType type;
   bool isCollideable;
   bool isCollided;
+  bool isCollidingOnFloor;
 
   Collider() :
     center { 0,0 },

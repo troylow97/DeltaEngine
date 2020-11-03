@@ -8,98 +8,48 @@
 namespace DeltaEngine
 {
 	bool CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
-	{
-		{		
-			//// Relative velocity from a to b
-			//float rx = r2.Velocity.x - r1.Velocity.x;
-			//float ry = r2.Velocity.y - r1.Velocity.y;
-			//
-			//float velAlongNormal = rx * m.normal.x + ry * m.normal.y;
-			//
-			//// If the velocities are separating do nothing
-			//if (velAlongNormal > 0)
-			//{
-			//	return false;
-			//}
-			//
-			//// Correct penetration
-			//float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
-			//float j = -(1.0 + restitution) * velAlongNormal;
-			//j /= (1/r1.Mass + 1/r2.Mass);
-			////
-			////// Apply the impulse each box gets a impulse based on its mass
-			////// ratio
-			//r1.AccumulatedForce += (1/r1.Mass * -j * m.normal, 1 / r1.Mass * -j * m.normal);
-			//r2.AccumulatedForce += (1 / r2.Mass * j * m.normal, 1 / r2.Mass * j * m.normal);
-			//
-			//// Apply Friction
-			//float tx = rx - (m.normal.x * velAlongNormal);
-			//float ty = ry - (m.normal.y * velAlongNormal);
-			//float tl = std::sqrt(tx * tx + ty * ty);
-			//
-			//if (tl > std::numeric_limits<float>::epsilon()) 
-			//{
-			//	tx /= tl;
-			//	ty /= tl;
-			//}
-			//
-			//float jt = -(rx * tx + ry * ty);
-			//jt /= (1 / r1.Mass + 1 / r2.Mass);
-			//
-			//// Don't apply tiny friction impulses
-			//if (std::abs(jt) < std::numeric_limits<float>::epsilon()) 
-			//{
-			//	return false;
-			//}
-			//
-			//if (std::abs(jt) < j * 1.0) {
-			//	tx = tx * jt;
-			//	ty = ty * jt;
-			//
-			//}
-			//else {
-			//	tx = tx * -j * 0.3;
-			//	ty = ty * -j * 0.3;
-			//}
-			//
-			//r1.AccumulatedForce += {1 / r1.Mass * -tx, 1 / r1.Mass * -ty};
-			//r2.AccumulatedForce += {1 / r2.Mass * tx, 1 / r2.Mass * ty};
+	{		
+		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+		
+		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
+		Vector2 reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
+		Vector2 reflectedVectorB =  - m.normal / (r1.Mass + r2.Mass) * r1.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
 
-			// Relative velocity from a to b
-			//Vector2 rel_vel = r2.Velocity - r1.Velocity;
-			//
-			//float velAlongNormal = Vector2DotProduct(rel_vel, m.normal);
-			//
-			//// If the velocities are separating do nothing
-			//if (velAlongNormal > 0)
-			//	return false;
-
-			float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
-			
-			//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-			Vector2 reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
-			Vector2 reflectedVectorB =  - m.normal / (r1.Mass + r2.Mass) * r1.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
-
-			//Vector2 reflectedVectorA = m.normal * (100 * m.penetration) * env.pClock->DeltaTime();
-			//Vector2 reflectedVectorB = -m.normal * (100 * m.penetration) * env.pClock->DeltaTime();
-			//r1.Velocity += (2 * m.penetration * m.normal) + 150 * m.normal * 1/r2.Mass * env.pClock->DeltaTime();
-			//r2.Velocity += (2 * m.penetration * -m.normal) + 150 * -m.normal * 1/r1.Mass * env.pClock->DeltaTime();
-
-			r1.Velocity += (((m.normal * m.penetration) + 0.10 * m.normal) / (r1.Mass + r2.Mass)) * r2.Mass;
-			r2.Velocity -= (((m.normal * m.penetration) + 0.10 * m.normal) / (r1.Mass + r2.Mass)) * r1.Mass;
-
-			//update the end points of where the two objects will end up
-			//if (!(c1.isWall || c2.isWall))
-			//{
-
+		Vector2 impulse;
+		if (restitution > std::numeric_limits<float>::epsilon())
+		{
+			if (r1.isMoveable)
+			{
+				float knockback_amt = 1 / r1.Mass * 20;
+				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution) + 0.10 * m.normal);
+				r1.Velocity += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
 				r1.PointEnd = c1.center + reflectedVectorA;
+			}
+
+			if (r2.isMoveable)
+			{
+				float knockback_amt = 1 / r2.Mass * 20;
+				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution) + 0.10 * m.normal);
+				r2.Velocity -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
 				r2.PointEnd = c2.center + reflectedVectorB;
-			//}
-			return true;
+			}
+		}
+
+		impulse = ((m.normal * m.penetration) + 0.10 * m.normal);
+		if (r1.isMoveable)
+		{
+			r1.Velocity += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
+			r1.PointEnd = c1.center + reflectedVectorA;
+		}
+
+		if (r2.isMoveable)
+		{
+			r2.Velocity -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
+			r2.PointEnd = c2.center + reflectedVectorB;
 		}
 
 
-		
+		return true;		
 	}
 
 	void ResolveContactVelocity(RigidBody& r1, RigidBody& r2,Manifold& m)

@@ -11,7 +11,7 @@ namespace DeltaEngine
 	class IPanel
 	{
 	public:
-		virtual bool Render() = 0;
+		virtual bool Render(bool) = 0;
 		IPanel(std::string str) : m_name(str) { }
 		void Enable(bool = true) { m_enabled; }
 		bool IsEnabled() const { return m_enabled; }

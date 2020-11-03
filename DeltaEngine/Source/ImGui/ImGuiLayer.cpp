@@ -325,7 +325,7 @@ void ImGuiLayer::Begin()
   //}
   // world
   
-  wp.Render();
+  //wp.Render(false);
 
   //wp.DraggedFileIn();
   ////////////////////////////{

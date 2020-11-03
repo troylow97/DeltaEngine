@@ -35,7 +35,7 @@ void CollisionSystem::CollisionIntersectionCheck()
   {
     if ( c1.isCollideable )
     {
-      c1.isCollided = false;
+      c1.isCollidingOnFloor = false;
       c1.center = t1.position;
       c1.size = t1.scale;
       em.ForEach( [&]( EntityID id2, RigidBody &r2, Transform &t2, Collider &c2 )
@@ -44,7 +44,7 @@ void CollisionSystem::CollisionIntersectionCheck()
         {
           if ( id1.index != id2.index )
           {
-            c2.isCollided = false;
+            c2.isCollidingOnFloor = false;
             c2.center = t2.position;
             c2.size = t2.scale;
             Manifold m;
@@ -64,13 +64,8 @@ void CollisionSystem::CollisionIntersectionCheck()
                 if (!already_added)
                 {
                     AABBvsAABB_Manifold(c1, c2, m);
-                    c1.isCollided = true;
-                    c2.isCollided = true;
-                    bool non_moveable = false;
-                    if (!r1.isMoveable || !r2.isMoveable)
-                        non_moveable = true;
 
-                    current_manifold_vector.push_back({ c1,c2, m,id1,id2,non_moveable});
+                    current_manifold_vector.push_back({ c1,c2, m,id1,id2});
                 }
 
             }
@@ -134,7 +129,7 @@ void CollisionSystem::CollisionResolution()
    //     });
 
     //resolve lowest contact point first
-    std::partition(std::begin(current_manifold_vector), std::end(current_manifold_vector), [](const CollisionPairInfo& a) {return !a.has_non_moveable; });
+    //std::partition(std::begin(current_manifold_vector), std::end(current_manifold_vector), [](const CollisionPairInfo& a) {return !a.has_non_moveable; });
 
     for ( auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++ )
     {

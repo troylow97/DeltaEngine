@@ -9,14 +9,12 @@ namespace DeltaEngine
 	public:
 		WorldPanel(std::string str);
 		~WorldPanel();
-		virtual bool Render() override;
-		//bool DraggedFileIn(Event* e);
+		virtual bool Render(bool) override;
+		bool DraggedFileIn();
 		virtual float GetHeight() override;
 		virtual float GetWidth() override;
 		virtual ImVec2 GetTopLeft() override;
 		virtual ImVec2 GetBottomRight() override;
-
-		void DragDrop();
 
 	private:
 

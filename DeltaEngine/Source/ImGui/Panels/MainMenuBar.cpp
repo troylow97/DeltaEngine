@@ -20,7 +20,7 @@ namespace DeltaEngine
         m_enabled = false;
     }
 
-    bool MainMenuBar::Render()
+    bool MainMenuBar::Render(bool)
     {
         ImGui::Begin(m_name.c_str());
 
