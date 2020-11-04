@@ -23,7 +23,7 @@ namespace DeltaEngine
         Editor(EntityManager& ref) : m_em{ ref }
         {
             m_panels.push_back(std::make_unique<MainMenuBar>("MainMenu"));
-            //m_panels.push_back(std::make_unique<PropertyInspectorPanel>("Property Inspector"));
+            m_panels.push_back(std::make_unique<PropertyInspectorPanel>("Property Inspector"));
             m_panels.push_back(std::make_unique<TilemapPanel>("Tilemap"));
             m_panels.push_back(std::make_unique<WorldPanel>("World"));
         }
@@ -32,16 +32,23 @@ namespace DeltaEngine
         {
             for (auto& ref : m_panels)
             {
-                ref->Render(drag); // Update all the panels
-
+                ref->Render(drag); // update all the panels
             }
         }
 
         static void OnDragDrop(Event* e)
         {
             drag = true;
-
         }
 
+        static void OnRemovingDragDrop(Event* e)
+        {
+            drag = false;
+        }
+
+        static void OnDragDropDone(Event* e)
+        {
+            drag = false;
+        }
     };
 }

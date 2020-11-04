@@ -167,6 +167,16 @@ void Application::OnEvent()
                 d.Dispatch<ImGuiFileDragEvent>(DE_BIND_EVENT_FN(Editor::OnDragDrop));
                 break;
             }
+            case EventType::ImGuiRemovingDragFile:
+            {
+                d.Dispatch<ImGuiFileRemovingDragEvent>(DE_BIND_EVENT_FN(Editor::OnRemovingDragDrop));
+                break;
+            }
+            case EventType::ImGuiFileDragDone:
+            {
+                d.Dispatch<ImGuiFileDragEventDone>(DE_BIND_EVENT_FN(Editor::OnDragDropDone));
+                break;
+            }
             }
         }
     }

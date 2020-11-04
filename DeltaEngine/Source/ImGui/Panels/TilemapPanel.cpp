@@ -7,9 +7,7 @@
 namespace DeltaEngine
 {
     TilemapPanel::TilemapPanel(std::string str) :
-        IPanel(str),
-        height{ 0 },
-        width{ 0 }
+        IPanel(str)
     {
 
     }
@@ -24,7 +22,7 @@ namespace DeltaEngine
         if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
             && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
         {
-            std::cout << "it is in world panel!!!" << std::endl;
+            std::cout << "it is in tileset panel!!!" << std::endl;
             return true;
         }
         return false;
@@ -35,12 +33,17 @@ namespace DeltaEngine
         ImGui::Begin(m_name.c_str());
         auto& em = env.pECS->GetWorld().get_entity_manager();
 
-        ImVec2 renderSize = ImGui::GetContentRegionAvail();
-        width = topLeft.x + renderSize.x;
-        height = topLeft.y + renderSize.y;
-        topLeft = ImGui::GetCursorScreenPos();
-        bottomRight.x = topLeft.x + width;
-        bottomRight.y = topLeft.y + height;
+        topLeft = ImGui::GetWindowContentRegionMin();
+        bottomRight = ImGui::GetWindowContentRegionMax();
+
+        topLeft.x += ImGui::GetWindowPos().x;
+        topLeft.y += ImGui::GetWindowPos().y;
+        bottomRight.x += ImGui::GetWindowPos().x;
+        bottomRight.y += ImGui::GetWindowPos().y;
+
+        //std::cout << "x is " << InputManager::Get()->CurrentPosition().point_x << " y is " << InputManager::Get()->CurrentPosition().point_y << std::endl;
+        //std::cout << "render                   topLeft is " << topLeft.x << ", " << topLeft.y << std::endl;
+        //std::cout << "render                   bottomRight is " << bottomRight.x << ", " << bottomRight.y << std::endl;
 
         if (isdragged)
         {
@@ -54,16 +57,6 @@ namespace DeltaEngine
         ImGui::End();
 
         return m_enabled;
-    }
-
-    float TilemapPanel::GetHeight()
-    {
-        return height;
-    }
-
-    float TilemapPanel::GetWidth()
-    {
-        return width;
     }
 
     ImVec2 TilemapPanel::GetTopLeft()

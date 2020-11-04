@@ -8,9 +8,7 @@ namespace DeltaEngine
 {
 
     MainMenuBar::MainMenuBar(std::string str) :
-        IPanel(str),
-        height{ 0 },
-        width{ 0 }
+        IPanel(str)
     {
 
     }
@@ -24,12 +22,13 @@ namespace DeltaEngine
     {
         //ImGui::Begin(m_name.c_str());
 
-        ImVec2 renderSize = ImGui::GetContentRegionAvail();
-        width = topLeft.x + renderSize.x;
-        height = topLeft.y + renderSize.y;
-        topLeft = ImGui::GetCursorScreenPos();
-        bottomRight.x = topLeft.x + width;
-        bottomRight.y = topLeft.y + height;
+        topLeft = ImGui::GetWindowContentRegionMin();
+        bottomRight = ImGui::GetWindowContentRegionMax();
+
+        topLeft.x += ImGui::GetWindowPos().x;
+        topLeft.y += ImGui::GetWindowPos().y;
+        bottomRight.x += ImGui::GetWindowPos().x;
+        bottomRight.y += ImGui::GetWindowPos().y;
 
         if (ImGui::BeginMainMenuBar())
         {
@@ -105,16 +104,6 @@ namespace DeltaEngine
     //    }
     //    return false;
     //}
-
-    float MainMenuBar::GetHeight()
-    {
-        return height;
-    }
-
-    float MainMenuBar::GetWidth()
-    {
-        return width;
-    }
 
     ImVec2 MainMenuBar::GetTopLeft()
     {
