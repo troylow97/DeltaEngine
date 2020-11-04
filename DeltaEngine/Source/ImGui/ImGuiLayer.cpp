@@ -15,12 +15,33 @@
 #include "Physics/Collision.h"
 #include "ImGui/DropManager.h"
 #include "Core/Utils/FileUtils.h"
+#include <commdlg.h>
 
 //#include "DeltaEngine.h"
 
 namespace DeltaEngine
 {
     //DeltaEngineGlobalEnvironment env;
+
+std::string OpenFile(const char* filter)
+{
+  OPENFILENAMEA ofn;
+  CHAR szFile[260] = { 0 };
+  ZeroMemory(&ofn, sizeof(OPENFILENAME));
+  ofn.lStructSize = sizeof(OPENFILENAME);
+  ofn.hwndOwner = GetEnv().pWin->GetHandle();
+  ofn.lpstrFile = szFile;
+  ofn.nMaxFile = sizeof(szFile);
+  ofn.lpstrFilter = filter;
+  ofn.nFilterIndex = 1;
+  ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
+  if (GetOpenFileNameA(&ofn) == TRUE)
+  {
+    return ofn.lpstrFile;
+  }
+  return std::string();
+}
+
 
 ImGuiLayer::ImGuiLayer()
   : Layer( "ImGuiLayer" )
@@ -72,7 +93,7 @@ void ImGuiLayer::OnDetach()
 
 void ImGuiLayer::OnEvent()
 {
-
+  
 }
 
 void ImGuiLayer::Begin()
@@ -158,7 +179,11 @@ void ImGuiLayer::Begin()
   // viewport
   {
     ImGui::Begin( "Viewport" );
-
+    if (ImGui::IsKeyPressed(DEVK_LCTRL) && ImGui::IsKeyReleased(DEVK_S))
+    {
+      DeltaEngine_CORE_ERROR( "PRINT LCTRL + S" );
+      OpenFile( "World File (*.json)\0*.json\0" );
+    }
     ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ImVec2 renderPos = ImGui::GetCursorScreenPos();     // gives top left of the window

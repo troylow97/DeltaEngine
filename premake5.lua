@@ -104,7 +104,14 @@ project "DeltaEngine"
     {
       "rttr_core_lib_s_d.lib",
       "fmodL_vc.lib",
-      "fmodL.dll"
+      "fmodL.dll",
+      "fmodstudioL.dll",
+      "fmodstudioL_vc.lib"
+    }
+    postbuildcommands
+    {
+      "{COPY} Dep/fmod/core/lib/x64/fmodL.dll ../bin/" .. outputdir .. "/Sandbox",
+      "{COPY} Dep/fmod/studio/lib/x64/fmodstudioL.dll ../bin/" .. outputdir .. "/Sandbox"
     }
 
     
@@ -120,7 +127,14 @@ project "DeltaEngine"
     {
       "rttr_core_lib_s.lib",
       "fmod_vc.lib",
-      "fmod.dll"
+      "fmod.dll",
+      "fmodstudio.dll",
+      "fmodstudio_vc.lib"
+    }
+    postbuildcommands
+    {
+      "{COPY} Dep/fmod/core/lib/x64/fmod.dll ../bin/" .. outputdir .. "/Sandbox",
+      "{COPY} Dep/fmod/studio/lib/x64/fmodstudio.dll ../bin/" .. outputdir .. "/Sandbox"
     }
 
 
