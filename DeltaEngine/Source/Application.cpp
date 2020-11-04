@@ -155,23 +155,11 @@ void Application::OnEvent()
     if (!env.eventManager->IsEmpty())
     {
         auto ref = env.eventManager->ResolveEvent();
+
         EventDispatcher d(ref);
-    
-        if (ref != nullptr)
-        {
-            EventType type = ref->GetEventType();
-            switch (type)
-            {
-            case EventType::ImGuiDragFile:
-            {
-                d.Dispatch<ImGuiFileDragEvent>(DE_BIND_EVENT_FN(Editor::OnDragDrop));
-                break;
-            }
-            }
-        }
+        d.Dispatch<ImGuiFileDragEvent>(DE_BIND_EVENT_FN(Editor::OnDragDrop));
+        delete ref;
     }
-
-
 }
 
 

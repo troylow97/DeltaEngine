@@ -15,7 +15,7 @@ prior written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Math/Math.h"
 #include "Core/GameClock/GameClock.h"
 #include "Core/GlobalStruct.h"
-
+#include <cmath>
 namespace DeltaEngine
 {
 	/******************************************************************************/
@@ -88,16 +88,19 @@ namespace DeltaEngine
 		//rect_center += rel_vel;
 		//circle_center += rel_vel;
 		Vector2 dist = Normalise(rect_center - circle_center);
-		Vector2 distNorm;
-		Vector2 CircleTip = col2.center + (distNorm) * col2.size;
+		Vector2 CircleTip = col2.center + (dist * col2.size);
 		
 		if (CollisionIntersection_RectPoint(rect_center, col1.size, CircleTip))
 		{
-			//col1.collided_spot = { -10,-10 };
-			//col2.collided_spot = { -10,-10 };
-			//r1.ReflectedVector = distNorm;
-			//r2.ReflectedVector = -distNorm;
-			//std::cout << "Intersect rect circle!\n";
+			float DistanceBetweenCircleTipAndRectCenter = std::sqrt(((CircleTip.x - rect_center.x)* (CircleTip.x - rect_center.x)) +
+																	((CircleTip.y - rect_center.y) * (CircleTip.y - rect_center.y)));
+
+			float xDiff = col1.size.x/2 - DistanceBetweenCircleTipAndRectCenter;
+			float yDiff = col1.size.y/2 - DistanceBetweenCircleTipAndRectCenter;
+
+			m.penetration = Math::MathMax(xDiff, yDiff);
+
+			m.normal = dist;
 			return true;
 		}
 		return false;
@@ -463,7 +466,7 @@ namespace DeltaEngine
 	{
 		//Get relative velocity by considering circleB as non-moving by taking velA - velB
 		//Use the circle as a point for the ray
-		Ray ray{col1.center, v1 - v2};
+		Ray ray{col1.center, v1 - v2 };
 		
 		//Use a circles center with a combined radius of both circles
 		Collider col3{ col2.center,col2.size + col1.size, ColliderType::CIRCLE };
@@ -480,18 +483,20 @@ namespace DeltaEngine
 		return false;
 	}
 
-	bool CollisionIntersection_CircleCircle_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2)
+	bool CollisionIntersection_CircleCircle_Static(const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2,Manifold& m)
 	{
 		Circle circle1{ Center1,Size1 };
 		Circle circle2{ Center2,Size2 };
 
+		float xDiff = (circle2.m_center.x - circle1.m_center.x) * (circle2.m_center.x - circle1.m_center.x);
+		float yDiff = (circle2.m_center.y - circle1.m_center.y) * (circle2.m_center.y - circle1.m_center.y);
+		float combined_radius = (circle1.m_radius + circle2.m_radius) * (circle1.m_radius + circle2.m_radius);
+
 		if
-			(
-			(circle2.m_center.x - circle1.m_center.x) * (circle2.m_center.x - circle1.m_center.x) +
-				(circle2.m_center.y - circle1.m_center.y) * (circle2.m_center.y - circle1.m_center.y) <=
-				(circle1.m_radius + circle2.m_radius) * (circle1.m_radius + circle2.m_radius)
-				)
+		((xDiff + yDiff) <= (combined_radius))
 		{
+			m.penetration = combined_radius - (xDiff + yDiff);
+			m.normal = Normalise(Center1 - Center2);
 			return true;
 		}
 		
@@ -678,7 +683,7 @@ namespace DeltaEngine
 
 	bool CollisionIntersection_RayCircle(const Ray& ray, Collider& col2,Manifold& manifold)
 	{
-		Circle circle{ col2.center,col2.size.x };
+	Circle circle{ col2.center,col2.size.x };
 	//Calculate end point of ray
 	Vector2 Be = ray.m_pt0 + ray.m_dir;
 
@@ -710,7 +715,7 @@ namespace DeltaEngine
 
 		if (manifold.interTime > 0 && manifold.interTime < 1)
 		{
-			std::cout << "INTERSECT!" << std::endl;
+
 			return true;
 		}
 	}
@@ -770,8 +775,8 @@ namespace DeltaEngine
 			return CollisionIntersection_RectCircle(col2, r2, col1, r1, manifold);
 		case ColliderType::CIRCLE:
 		{
-			//return CollisionIntersection_CircleCircle_Static(col1.center, col1.size, col2.center, col2.size);
-			return CollisionIntersection_CircleCircle(col1, r1.Velocity, col2, r2.Velocity,manifold);
+			return CollisionIntersection_CircleCircle_Static(col1.center, col1.size, col2.center, col2.size,manifold);
+			//return CollisionIntersection_CircleCircle(col1, r1.Velocity, col2, r2.Velocity,manifold);
 		}
 		case ColliderType::LINE:
 			return CollisionIntersection_CircleLineSegment_Static(col1.center, col1.size, col2.center, col2.size);

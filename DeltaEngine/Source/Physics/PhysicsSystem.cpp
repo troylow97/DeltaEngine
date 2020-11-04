@@ -15,28 +15,7 @@ namespace DeltaEngine
 
     void PhysicsSystem::LateUpdate()
     {
-        //Apply Friction
-
-
-        //em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
-        //    {
-        //        Vector2 NewPos = t1.position;
-        //        if (!c1.isWall)
-        //        {
-        //            if (r1.PointEnd != Vector2::zero())
-        //            {
-        //                NewPos = r1.PointEnd;
-        //                r1.PointEnd = Vector2::zero();
-        //            }
-        //            else
-        //            {
-        //                NewPos = t1.position + r1.Velocity;
-        //            }
-        //
-        //            t1.position = NewPos;
-        //
-        //        }
-        //    });
+        
     }
 
     void PhysicsSystem::UpdateVelocity()
@@ -53,9 +32,16 @@ namespace DeltaEngine
                 //Set Euler
                 t1.position += r1.Velocity * env.pClock->DeltaTime();                
 
-                //Player movement
-                Vector2 move = (r1.Direction * r1.Movespeed);
-                r1.AccumulatedForce += move;
+                if (r1.Direction == Vector2{ 0,-1 } && c1.isCollidingOnFloor)
+                {
+
+                }
+                else
+                {
+                    //Player movement
+                    Vector2 move = (r1.Direction * r1.Movespeed);
+                    r1.AccumulatedForce += move;
+                }
 
 
                 //Apply gravity
@@ -70,6 +56,8 @@ namespace DeltaEngine
                 //Apply Soft Drag
                 r1.Velocity -= r1.Velocity * r1.FrictionCoeff;
                 r1.AccumulatedForce = Vector2::zero();
+
+                c1.isCollidingOnFloor = false;
             }
         });
 

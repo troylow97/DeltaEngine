@@ -20,8 +20,9 @@ struct Collider
   Vector2 interPoint;
   ColliderType type;
   bool isCollideable;
-  bool isCollided;
+  bool isTrigger;
   bool isCollidingOnFloor;
+
 
   Collider() :
     center { 0,0 },
@@ -29,7 +30,8 @@ struct Collider
     interPoint{0,0},
     type { ColliderType::BOX },
     isCollideable{ true },
-    isCollided{false}
+    isTrigger{false},
+    isCollidingOnFloor{false}
   {}
   Collider( Vector2 new_center, Vector2 new_size, ColliderType col_type ) :
     center( new_center ),
@@ -37,7 +39,8 @@ struct Collider
     interPoint{ 0,0 },
     isCollideable{ true },
     type{ColliderType::BOX},
-    isCollided{ false }
+    isTrigger{false},
+    isCollidingOnFloor{ false }
   {}
 
 };
