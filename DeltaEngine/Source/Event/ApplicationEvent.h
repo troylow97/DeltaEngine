@@ -68,6 +68,57 @@ public:
     EVENT_CLASS_CATEGORY( EventCategoryApplication )
 };
 
+class ImGuiFileDragEvent : public Event
+{
+public:
 
+    ImGuiFileDragEvent() = default;
 
+    std::string ToString() const override
+    {
+        std::stringstream ss;
+        ss << "ImGuiDragFileEvent" << std::endl;
+        return ss.str();
+    }
+
+    EVENT_CLASS_TYPE(ImGuiDragFile)
+        EVENT_CLASS_CATEGORY(ImGuiCategory)
+
+};
+
+class ImGuiFileRemovingDragEvent : public Event
+{
+public:
+
+    ImGuiFileRemovingDragEvent() = default;
+
+    std::string ToString() const override
+    {
+        std::stringstream ss;
+        ss << "ImGuiFileRemovingDragEvent" << std::endl;
+        return ss.str();
+    }
+
+    EVENT_CLASS_TYPE(ImGuiRemovingDragFile)
+        EVENT_CLASS_CATEGORY(ImGuiCategory)
+
+};
+
+class ImGuiFileDragEventDone : public Event
+{
+public:
+
+    ImGuiFileDragEventDone() = default;
+
+    std::string ToString() const override
+    {
+        std::stringstream ss;
+        ss << "ImGuiFileDragEventDone" << std::endl;
+        return ss.str();
+    }
+
+    EVENT_CLASS_TYPE(ImGuiFileDragDone)
+        EVENT_CLASS_CATEGORY(ImGuiCategory)
+
+};
 }

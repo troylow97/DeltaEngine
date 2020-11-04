@@ -91,6 +91,7 @@ struct DE_API Vector4
   Vector4( float, float, float, float );
 };
 
+Vector2 operator*(const float f,const Vector2 v);
 float Vector2DotProduct( const Vector2 &pVec0, const Vector2 &pVec1 );
 float Vector2Length( const Vector2 &pVec0 );
 Vector2 Normalise( Vector2 &v );

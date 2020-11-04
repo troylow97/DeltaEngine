@@ -384,4 +384,12 @@ Vector2 Normalise( Vector2 &v )
   return pResult;
 }
 
+Vector2 operator*(const float f, const Vector2 v)
+{
+    Vector2 temp;
+    temp.x = v.x * f;
+    temp.y = v.y * f;
+    return temp;
+}
+
 }

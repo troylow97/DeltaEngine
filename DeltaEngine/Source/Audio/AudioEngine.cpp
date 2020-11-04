@@ -100,7 +100,7 @@ bool AudioEngine::IsChannelPlaying( const ChannelID id )
   bool isPlaying { false };
 
   if ( auto result = fmod->channels.find( id ); result != fmod->channels.end() )
-    FMODWrapper::ErrorChecker( result->second->isPlaying( &isPlaying ) );
+     result->second->isPlaying( &isPlaying ) ;
 
   return isPlaying;
 }

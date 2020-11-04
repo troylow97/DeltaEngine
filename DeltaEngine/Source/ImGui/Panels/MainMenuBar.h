@@ -1,0 +1,20 @@
+#pragma once
+
+#include "ImGui/Panels/IPanel.h"
+
+namespace DeltaEngine
+{
+	class MainMenuBar : public IPanel
+	{
+	public:
+		MainMenuBar(std::string str);
+		~MainMenuBar();
+		virtual bool Render(bool) override;
+		//virtual bool DraggedFileIn() override;
+		virtual ImVec2 GetTopLeft() override;
+		virtual ImVec2 GetBottomRight() override;
+	private:
+		ImVec2 topLeft;
+		ImVec2 bottomRight;
+	};
+}

@@ -14,37 +14,17 @@
 #include "Input/InputManager.h"
 #include "Physics/Collision.h"
 #include "ImGui/DropManager.h"
-#include "Core/Utils/FileUtils.h"
-#include <commdlg.h>
-
+#include "ImGui/Panels/WorldPanel.h"
+#include "Event/ApplicationEvent.h"
 //#include "DeltaEngine.h"
 
 namespace DeltaEngine
 {
     //DeltaEngineGlobalEnvironment env;
 
-std::string OpenFile(const char* filter)
-{
-  OPENFILENAMEA ofn;
-  CHAR szFile[260] = { 0 };
-  ZeroMemory(&ofn, sizeof(OPENFILENAME));
-  ofn.lStructSize = sizeof(OPENFILENAME);
-  ofn.hwndOwner = GetEnv().pWin->GetHandle();
-  ofn.lpstrFile = szFile;
-  ofn.nMaxFile = sizeof(szFile);
-  ofn.lpstrFilter = filter;
-  ofn.nFilterIndex = 1;
-  ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
-  if (GetOpenFileNameA(&ofn) == TRUE)
-  {
-    return ofn.lpstrFile;
-  }
-  return std::string();
-}
-
-
 ImGuiLayer::ImGuiLayer()
-  : Layer( "ImGuiLayer" )
+  : Layer( "ImGuiLayer" )/*,
+    wp {"World"}*/
 {}
 
 void ImGuiLayer::OnAttach()
@@ -91,9 +71,9 @@ void ImGuiLayer::OnDetach()
   ImGui::DestroyContext();
 }
 
-void ImGuiLayer::OnEvent()
+void ImGuiLayer::OnEvent(Event* e)
 {
-  
+    //wp.DraggedFileIn();
 }
 
 void ImGuiLayer::Begin()
@@ -179,11 +159,7 @@ void ImGuiLayer::Begin()
   // viewport
   {
     ImGui::Begin( "Viewport" );
-    if (ImGui::IsKeyPressed(DEVK_LCTRL) && ImGui::IsKeyReleased(DEVK_S))
-    {
-      DeltaEngine_CORE_ERROR( "PRINT LCTRL + S" );
-      OpenFile( "World File (*.json)\0*.json\0" );
-    }
+
     ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ImVec2 renderPos = ImGui::GetCursorScreenPos();     // gives top left of the window
@@ -284,295 +260,302 @@ void ImGuiLayer::Begin()
     ImGui::End();
   }
   // selection
-  {
-    if ( ImGui::BeginMainMenuBar() )
-    {
-      if ( ImGui::BeginMenu( "main" ) )
-      {
-        if ( ImGui::MenuItem( "new scene" ) )
-        {
-            /* Do stuff */
-        }
-        if ( ImGui::MenuItem( "load scene" ) )
-        {
-            /* Do stuff */
-        }
-        if ( ImGui::MenuItem( "save scene" ) )
-        {
-            /* Do stuff */
-        }
-        if ( ImGui::MenuItem( "quit" ) )
-        {
-            /* Do stuff */
-        }
 
-        ImGui::EndMenu();
-      }
-      if ( ImGui::BeginMenu( "entity" ) )
-      {
-        if ( ImGui::MenuItem( "add entity" ) )
-        {
-            /* Do stuff */
-        }
-        if ( ImGui::MenuItem( "clone entity" ) )
-        {
-            /* Do stuff */
-        }
-        if ( ImGui::MenuItem( "save entity" ) )
-        {
-            /* Do stuff */
-        }
-        if ( ImGui::MenuItem( "delete entity" ) )
-        {
-            /* Do stuff */
-        }
-
-        ImGui::EndMenu();
-      }
-      if ( ImGui::BeginMenu( "view" ) )
-      {
-        if ( ImGui::MenuItem( "hierarchy" ) )
-        {
-            /* Do stuff */
-        }
-        if ( ImGui::MenuItem( "world" ) )
-        {
-            /* Do stuff */
-        }
-
-        ImGui::EndMenu();
-      }
-
-      ImGui::EndMainMenuBar();
-    }
-  }
+  //{
+  //  if ( ImGui::BeginMainMenuBar() )
+  //  {
+  //    if ( ImGui::BeginMenu( "main" ) )
+  //    {
+  //      if ( ImGui::MenuItem( "new scene" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //      if ( ImGui::MenuItem( "load scene" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //      if ( ImGui::MenuItem( "save scene" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //      if ( ImGui::MenuItem( "quit" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //
+  //      ImGui::EndMenu();
+  //    }
+  //    if ( ImGui::BeginMenu( "entity" ) )
+  //    {
+  //      if ( ImGui::MenuItem( "add entity" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //      if ( ImGui::MenuItem( "clone entity" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //      if ( ImGui::MenuItem( "save entity" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //      if ( ImGui::MenuItem( "delete entity" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //
+  //      ImGui::EndMenu();
+  //    }
+  //    if ( ImGui::BeginMenu( "view" ) )
+  //    {
+  //      if ( ImGui::MenuItem( "hierarchy" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //      if ( ImGui::MenuItem( "world" ) )
+  //      {
+  //          /* Do stuff */
+  //      }
+  //
+  //      ImGui::EndMenu();
+  //    }
+  //
+  //    ImGui::EndMainMenuBar();
+  //  }
+  //}
   // world
-  {
-    ImGui::Begin( "World" );
+  
+  //wp.Render(false);
 
-    if ( ImGui::TreeNode( "Entities" ) )
-    {
-
-      for ( size_t e_id = 0; e_id < em.GetEntities().size(); e_id++ )
-      {
-        static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
-
-        ImGuiTreeNodeFlags node_flags = base_flags;
-        node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
-
-        ImGui::TreeNodeEx( (void *) (intptr_t) e_id, node_flags, "entity %d", e_id );
-        if ( ImGui::IsItemClicked() )
-        {
-          InputManager::Get()->SetEntitySelected( true );
-          InputManager::Get()->SetEntityIDSelected( e_id );
-        }
-      }
-      ImGui::TreePop();
-    }
-    if ( ImGui::TreeNode( "Environment" ) )
-    {
-      if ( ImGui::TreeNode( "NOTHING HERE" ) )
-      {
-        ImGui::Text( "i told you there's nothing already lol" );
-        ImGui::TextColored( ImVec4( 1.0f, 0.0f, 1.0f, 1.0f ), "pink" );
-        ImGui::TextColored( ImVec4( 1.0f, 1.0f, 0.0f, 1.0f ), "yellow" );
-        ImGui::TextColored( ImVec4( 0.25f, 0.875f, 0.8125f, 1.0f ), "clara's fav color is turquoise" );
-        ImGui::TreePop();
-      }
-      ImGui::TreePop();
-    }
-    if ( ImGui::TreeNode( "Segments" ) )
-    {
-      for ( int i = 0; i < 6; i++ )
-      {
-        static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
-
-        ImGuiTreeNodeFlags node_flags = base_flags;
-        node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
-
-        ImGui::TreeNodeEx( (void *) (intptr_t) i, node_flags, "fake one sike %d", i );
-      }
-      ImGui::TreePop();
-    }
-       //Vector2 Center1 = col1.center;
-       //Vector2 Size1 = col1.size;
-       //Vector2 Center2 = col2.center;
-       //Vector2 Size2 = col2.size;
-       ////////////////////////////////////////////////
-       //rttr tutorial
-       //https://www.rttr.org/doc/master/five_minute_tutorial_page.html
-       //
-       //type t = type::get_by_name("ns_3d::node");
-       //
-       //// will create an instance of ns_3d::node as std::shared_ptr<ns_3d::node>
-       //variant var = t.create({std::string("MyNode")});
-       //std::cout << var.get_type().get_name() << "\n";
-       //
-       //// sets/gets a property
-       //property prop = t.get_property("name");
-       //
-       //// remark: you can also set a member, although the instance is of type: 'std::shared_ptr<T>'
-       //prop.set_value(var, std::string("A New Name"));
-       //std::cout << prop.get_value(var).to_string() << "\n";
-       //
-       //// retrieve the stored meta data of the property
-       //std::cout << "MetaData TOOL_TIP: " << prop.get_metadata("TOOL_TIP").to_string() << "\n";
-       //
-       //// invoke a method
-       //method meth = t.get_method("set_visible");
-       //
-       //// remark: the 2nd argument will be provided automatically, because it has a default argument
-       //variant ret = meth.invoke(var, true);
-       //
-       //// a valid return value indicates a successful invoke
-       //std::cout << std::boolalpha << "invoke of method 'set_visible' was successfully: " << ret.is_valid() << "\n\n";
-       //
-       //// retrieve all properties
-       //std::cout << "'node' properties:" << "\n";
-       //for (auto& prop : t.get_properties())
-       //{
-       //    std::cout << "  name: " << prop.get_name() << "\n";
-       //    std::cout << "    type: " << prop.get_type().get_name() << "\n";
-       //}
-       //std::cout << "\n";
-       //
-       //// retrieve all methods
-       //std::cout << "'node' methods:" << "\n";
-       //for (auto& meth : t.get_methods())
-       //{
-       //    std::cout << "  name: " << meth.get_name();
-       //    std::cout << "  signature: " << meth.get_signature() << "\n";
-       //    for (auto& info : meth.get_parameter_infos())
-       //    {
-       //        std::cout << "    param " << info.get_index() << ": name: "<< info.get_name() << "\n";
-       //    }
-       //}
-       //return 0;
-
-    ImGui::End();
-  }
+  //wp.DraggedFileIn();
+  ////////////////////////////{
+  ////////////////////////////  ImGui::Begin( "World" );
+  ////////////////////////////
+  ////////////////////////////  if ( ImGui::TreeNode( "Entities" ) )
+  ////////////////////////////  {
+  ////////////////////////////
+  ////////////////////////////    for ( size_t e_id = 0; e_id < em.GetEntities().size(); e_id++ )
+  ////////////////////////////    {
+  ////////////////////////////      static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
+  ////////////////////////////
+  ////////////////////////////      ImGuiTreeNodeFlags node_flags = base_flags;
+  ////////////////////////////      node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
+  ////////////////////////////
+  ////////////////////////////      ImGui::TreeNodeEx( (void *) (intptr_t) e_id, node_flags, "entity %d", e_id );
+  ////////////////////////////      if ( ImGui::IsItemClicked() )
+  ////////////////////////////      {
+  ////////////////////////////        InputManager::Get()->SetEntitySelected( true );
+  ////////////////////////////        InputManager::Get()->SetEntityIDSelected( e_id );
+  ////////////////////////////      }
+  ////////////////////////////    }
+  ////////////////////////////    ImGui::TreePop();
+  ////////////////////////////  }
+  ////////////////////////////  if ( ImGui::TreeNode( "Environment" ) )
+  ////////////////////////////  {
+  ////////////////////////////    if ( ImGui::TreeNode( "NOTHING HERE" ) )
+  ////////////////////////////    {
+  ////////////////////////////      ImGui::Text( "i told you there's nothing already lol" );
+  ////////////////////////////      ImGui::TextColored( ImVec4( 1.0f, 0.0f, 1.0f, 1.0f ), "pink" );
+  ////////////////////////////      ImGui::TextColored( ImVec4( 1.0f, 1.0f, 0.0f, 1.0f ), "yellow" );
+  ////////////////////////////      ImGui::TextColored( ImVec4( 0.25f, 0.875f, 0.8125f, 1.0f ), "clara's fav color is turquoise" );
+  ////////////////////////////      ImGui::TreePop();
+  ////////////////////////////    }
+  ////////////////////////////    ImGui::TreePop();
+  ////////////////////////////  }
+  ////////////////////////////  if ( ImGui::TreeNode( "Segments" ) )
+  ////////////////////////////  {
+  ////////////////////////////    for ( int i = 0; i < 6; i++ )
+  ////////////////////////////    {
+  ////////////////////////////      static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
+  ////////////////////////////
+  ////////////////////////////      ImGuiTreeNodeFlags node_flags = base_flags;
+  ////////////////////////////      node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
+  ////////////////////////////
+  ////////////////////////////      ImGui::TreeNodeEx( (void *) (intptr_t) i, node_flags, "fake one sike %d", i );
+  ////////////////////////////    }
+  ////////////////////////////    ImGui::TreePop();
+  ////////////////////////////  }
+  ////////////////////////////     //Vector2 Center1 = col1.center;
+  ////////////////////////////     //Vector2 Size1 = col1.size;
+  ////////////////////////////     //Vector2 Center2 = col2.center;
+  ////////////////////////////     //Vector2 Size2 = col2.size;
+  ////////////////////////////     ////////////////////////////////////////////////
+  ////////////////////////////     //rttr tutorial
+  ////////////////////////////     //https://www.rttr.org/doc/master/five_minute_tutorial_page.html
+  ////////////////////////////     //
+  ////////////////////////////     //type t = type::get_by_name("ns_3d::node");
+  ////////////////////////////     //
+  ////////////////////////////     //// will create an instance of ns_3d::node as std::shared_ptr<ns_3d::node>
+  ////////////////////////////     //variant var = t.create({std::string("MyNode")});
+  ////////////////////////////     //std::cout << var.get_type().get_name() << "\n";
+  ////////////////////////////     //
+  ////////////////////////////     //// sets/gets a property
+  ////////////////////////////     //property prop = t.get_property("name");
+  ////////////////////////////     //
+  ////////////////////////////     //// remark: you can also set a member, although the instance is of type: 'std::shared_ptr<T>'
+  ////////////////////////////     //prop.set_value(var, std::string("A New Name"));
+  ////////////////////////////     //std::cout << prop.get_value(var).to_string() << "\n";
+  ////////////////////////////     //
+  ////////////////////////////     //// retrieve the stored meta data of the property
+  ////////////////////////////     //std::cout << "MetaData TOOL_TIP: " << prop.get_metadata("TOOL_TIP").to_string() << "\n";
+  ////////////////////////////     //
+  ////////////////////////////     //// invoke a method
+  ////////////////////////////     //method meth = t.get_method("set_visible");
+  ////////////////////////////     //
+  ////////////////////////////     //// remark: the 2nd argument will be provided automatically, because it has a default argument
+  ////////////////////////////     //variant ret = meth.invoke(var, true);
+  ////////////////////////////     //
+  ////////////////////////////     //// a valid return value indicates a successful invoke
+  ////////////////////////////     //std::cout << std::boolalpha << "invoke of method 'set_visible' was successfully: " << ret.is_valid() << "\n\n";
+  ////////////////////////////     //
+  ////////////////////////////     //// retrieve all properties
+  ////////////////////////////     //std::cout << "'node' properties:" << "\n";
+  ////////////////////////////     //for (auto& prop : t.get_properties())
+  ////////////////////////////     //{
+  ////////////////////////////     //    std::cout << "  name: " << prop.get_name() << "\n";
+  ////////////////////////////     //    std::cout << "    type: " << prop.get_type().get_name() << "\n";
+  ////////////////////////////     //}
+  ////////////////////////////     //std::cout << "\n";
+  ////////////////////////////     //
+  ////////////////////////////     //// retrieve all methods
+  ////////////////////////////     //std::cout << "'node' methods:" << "\n";
+  ////////////////////////////     //for (auto& meth : t.get_methods())
+  ////////////////////////////     //{
+  ////////////////////////////     //    std::cout << "  name: " << meth.get_name();
+  ////////////////////////////     //    std::cout << "  signature: " << meth.get_signature() << "\n";
+  ////////////////////////////     //    for (auto& info : meth.get_parameter_infos())
+  ////////////////////////////     //    {
+  ////////////////////////////     //        std::cout << "    param " << info.get_index() << ": name: "<< info.get_name() << "\n";
+  ////////////////////////////     //    }
+  ////////////////////////////     //}
+  ////////////////////////////     //return 0;
+  ////////////////////////////
+  ////////////////////////////  ImGui::End();
+  ////////////////////////////}
   // selecting entities to edit their properties
+    
+ // inspector
 
-  if ( InputManager::Get()->EntitySelected() )
-  {
-    ImGui::Begin( "Properties Inspector" );
-
-    size_t index = InputManager::Get()->EntityIDSelected();
-
-    std::string text = "Edit Entity ";
-    text += std::to_string( index );
-    text += "'s Properties";
-    ImGui::Text( text.c_str() );
-    ImGui::Text( "" );
-
-    static char str1[128] = "";
-    ImGui::SetNextItemWidth( 100 );
-    ImGui::InputTextWithHint( "texture", "texture name", str1, IM_ARRAYSIZE( str1 ) );
-    ImGui::SameLine();
-    static int clicked = 0;
-    ImGui::PushStyleColor( ImGuiCol_Button, ( ImVec4( 0.0f, 0.775f, 0.4125f, 1.0f ) ) );
-    ImGui::PushStyleColor( ImGuiCol_ButtonHovered, ( ImVec4( 0.0f, 0.825f, 0.4125f, 1.0f ) ) );
-    ImGui::PushStyleColor( ImGuiCol_ButtonActive, ( ImVec4( 0.0f, 0.875f, 0.4125f, 1.0f ) ) );
-    if ( ImGui::Button( "Browse" ) )
-    {
-      clicked++;
-    }
-    ImGui::PopStyleColor( 3 );
-    if ( clicked & 1 )
-    {
-      ImGui::Begin( "Sprite Selection" );
-      {
-        ImGui::Text( "Character" );
-
-        std::vector<Sprite> spritelist;
-        uint64_t textureID;
-        Sprite running = { "run", 5 };
-        Sprite idling = { "idle", 0 };
-
-        spritelist.push_back( running );
-        spritelist.push_back( idling );
-
-        for ( int i = 0; i < spritelist.size(); ++i )
-        {
-          textureID = spritelist[i].GetTexture()->GetRendererID();
-
-          if ( ImGui::ImageButton( reinterpret_cast<void *>( textureID ),
-               ImVec2 { 32,32 },
-               ImVec2 { spritelist[i].GetOffset().x, spritelist[i].GetOffset().y },
-               ImVec2 { spritelist[i].GetOffset().x + spritelist[i].GetTiling().x, spritelist[i].GetOffset().y + spritelist[i].GetTiling().y } ) )
-          {
-            static int textureClicked = 0;
-            textureClicked++;
-            std::cout << "textureclicked is " << textureClicked << std::endl;
-
-            if ( textureClicked & 1 )
-            {
-              strcpy( str1, spritelist[i].GetName().c_str() );
-            }
-          }
-          ImGui::SameLine();
-        }
-      }
-      ImGui::Text( "" );
-      ImGui::Text( "" );
-      {
-          // to show examples for more only
-        ImGui::Text( "Background" );
-
-        Sprite bg = { "bg", 0 };
-        uint64_t textureID = bg.GetTexture()->GetRendererID();
-
-        if ( ImGui::ImageButton( reinterpret_cast<void *>( textureID ),
-             ImVec2 { 32,32 },
-             ImVec2 { bg.GetOffset().x, bg.GetOffset().y },
-             ImVec2 { bg.GetOffset().x + bg.GetTiling().x, bg.GetOffset().y + bg.GetTiling().y } ) )
-        {
-          static int textureClicked = 0;
-          textureClicked++;
-
-          if ( textureClicked & 1 )
-          {
-            strcpy( str1, bg.GetName().c_str() );
-          }
-        }
-        ImGui::SameLine();
-      }
-      ImGui::Text( "" );
-      ImGui::Text( "" );
-
-      ImGui::End();
-    }
-    ImGui::Text( "" );
-
-    for ( auto &ref : em.GetEntityArchetype( InputManager::Get()->EntityIDSelected() ) )
-    {
-      rttr::instance &instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
-
-      ImGui::Text( instance.get_type().get_name().to_string().c_str() );
-      auto properties = instance.get_type().get_properties();
-      for ( auto property : properties )
-      {
-        rttr::variant value = property.get_value( instance );
-        if ( !value )
-          continue;
-
-        if ( property.get_type().get_name() == "float*" )
-          ImGui::DragFloat( property.get_name().to_string().c_str(), ( value.get_value<float *>() ), 0.01f );
-        else if ( property.get_type().get_name() == "vector2*" )
-          ImGui::DragFloat2( property.get_name().to_string().c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
-        else if ( property.get_type().get_name() == "vector3*" )
-          ImGui::DragFloat3( property.get_name().to_string().c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
-        else if ( property.get_type().get_name() == "bool*" )
-          ImGui::Checkbox( property.get_name().to_string().c_str(), ( value.get_value<bool *>() ) );
-      }
-    }
-
-    ImGui::End();
-  }
+ //if ( InputManager::Get()->EntitySelected() )
+ //{
+ //  ImGui::Begin( "Properties Inspector" );
+ //
+ //  size_t index = InputManager::Get()->EntityIDSelected();
+ //
+ //  std::string text = "Edit Entity ";
+ //  text += std::to_string( index );
+ //  text += "'s Properties";
+ //  ImGui::Text( text.c_str() );
+ //  ImGui::Text( "" );
+ //
+ //  static char str1[128] = "";
+ //  ImGui::SetNextItemWidth( 100 );
+ //  ImGui::InputTextWithHint( "texture", "texture name", str1, IM_ARRAYSIZE( str1 ) );
+ //  ImGui::SameLine();
+ //  static int clicked = 0;
+ //  ImGui::PushStyleColor( ImGuiCol_Button, ( ImVec4( 0.0f, 0.775f, 0.4125f, 1.0f ) ) );
+ //  ImGui::PushStyleColor( ImGuiCol_ButtonHovered, ( ImVec4( 0.0f, 0.825f, 0.4125f, 1.0f ) ) );
+ //  ImGui::PushStyleColor( ImGuiCol_ButtonActive, ( ImVec4( 0.0f, 0.875f, 0.4125f, 1.0f ) ) );
+ //  if ( ImGui::Button( "Browse" ) )
+ //  {
+ //    clicked++;
+ //  }
+ //  ImGui::PopStyleColor( 3 );
+ //  if ( clicked & 1 )
+ //  {
+ //    ImGui::Begin( "Sprite Selection" );
+ //    {
+ //      ImGui::Text( "Character" );
+ //
+ //      std::vector<Sprite> spritelist;
+ //      uint64_t textureID;
+ //      Sprite running = { "run", 5 };
+ //      Sprite idling = { "idle", 0 };
+ //
+ //      spritelist.push_back( running );
+ //      spritelist.push_back( idling );
+ //
+ //      for ( int i = 0; i < spritelist.size(); ++i )
+ //      {
+ //        textureID = spritelist[i].GetTexture()->GetRendererID();
+ //
+ //        if ( ImGui::ImageButton( reinterpret_cast<void *>( textureID ),
+ //             ImVec2 { 32,32 },
+ //             ImVec2 { spritelist[i].GetOffset().x, spritelist[i].GetOffset().y },
+ //             ImVec2 { spritelist[i].GetOffset().x + spritelist[i].GetTiling().x, spritelist[i].GetOffset().y + spritelist[i].GetTiling().y } ) )
+ //        {
+ //          static int textureClicked = 0;
+ //          textureClicked++;
+ //          std::cout << "textureclicked is " << textureClicked << std::endl;
+ //
+ //          if ( textureClicked & 1 )
+ //          {
+ //            strcpy( str1, spritelist[i].GetName().c_str() );
+ //          }
+ //        }
+ //        ImGui::SameLine();
+ //      }
+ //    }
+ //    ImGui::Text( "" );
+ //    ImGui::Text( "" );
+ //    {
+ //        // to show examples for more only
+ //      ImGui::Text( "Background" );
+ //
+ //      Sprite bg = { "bg", 0 };
+ //      uint64_t textureID = bg.GetTexture()->GetRendererID();
+ //
+ //      if ( ImGui::ImageButton( reinterpret_cast<void *>( textureID ),
+ //           ImVec2 { 32,32 },
+ //           ImVec2 { bg.GetOffset().x, bg.GetOffset().y },
+ //           ImVec2 { bg.GetOffset().x + bg.GetTiling().x, bg.GetOffset().y + bg.GetTiling().y } ) )
+ //      {
+ //        static int textureClicked = 0;
+ //        textureClicked++;
+ //
+ //        if ( textureClicked & 1 )
+ //        {
+ //          strcpy( str1, bg.GetName().c_str() );
+ //        }
+ //      }
+ //      ImGui::SameLine();
+ //    }
+ //    ImGui::Text( "" );
+ //    ImGui::Text( "" );
+ //
+ //    ImGui::End();
+ //  }
+ //  ImGui::Text( "" );
+ //
+ //  for ( auto &ref : em.GetEntityArchetype( InputManager::Get()->EntityIDSelected() ) )
+ //  {
+ //    rttr::instance &instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
+ //
+ //    ImGui::Text( instance.get_type().get_name().to_string().c_str() );
+ //    auto properties = instance.get_type().get_properties();
+ //    for ( auto property : properties )
+ //    {
+ //      rttr::variant value = property.get_value( instance );
+ //      if ( !value )
+ //        continue;
+ //
+ //      if ( property.get_type().get_name() == "float*" )
+ //        ImGui::DragFloat( property.get_name().to_string().c_str(), ( value.get_value<float *>() ), 0.01f );
+ //      else if ( property.get_type().get_name() == "vector2*" )
+ //        ImGui::DragFloat2( property.get_name().to_string().c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
+ //      else if ( property.get_type().get_name() == "vector3*" )
+ //        ImGui::DragFloat3( property.get_name().to_string().c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
+ //      else if ( property.get_type().get_name() == "bool*" )
+ //        ImGui::Checkbox( property.get_name().to_string().c_str(), ( value.get_value<bool *>() ) );
+ //    }
+ //  }
+ //
+ //  ImGui::End();
+ //}
 
 // selection panel 
   {
-    ImGui::Begin( "Panel Selection" );
+    //ImGui::Begin( "Panel Selection" );
 
       //DropManager dm;
       //if (dm.IsInPanel())
@@ -655,7 +638,7 @@ void ImGuiLayer::Begin()
       //    //}
       //    ImGui::TreePop();
       //}
-    ImGui::End();
+    //ImGui::End();
   }
 
 
@@ -686,50 +669,4 @@ void ImGuiLayer::End()
   // ImGui render end
   // -----------------
 }
-
-std::wstring to_wstring( std::string str )
-{
-  if ( str.empty() )
-  {
-    return std::wstring();
-  }
-  int num_chars = MultiByteToWideChar( CP_ACP, MB_ERR_INVALID_CHARS, str.c_str(), static_cast<int>( str.length() ), NULL, 0 );
-  std::wstring wstrTo;
-  if ( num_chars )
-  {
-    wstrTo.resize( num_chars );
-    if ( MultiByteToWideChar( CP_ACP, MB_ERR_INVALID_CHARS, str.c_str(), static_cast<int>( str.length() ), &wstrTo[0], num_chars ) )
-    {
-      return wstrTo;
-    }
-  }
-  return std::wstring();
-}
-
-//void AssetPanel()
-//{
-//  ImGui::Begin("Asset Menu");
-//
-//  float width = ImGui::GetContentRegionAvailWidth();
-//  float height = ImGui::GetContentRegionAvail().y;
-//
-//  ImGui::BeginChild( "##Asset Menu Content", { width, height }, true );
-//
-//  const float size = 128;
-//
-//  int index = 0;
-//  int columns = width / size;
-//  columns = columns < 1 ? 1 : columns;
-//
-//  ImGui::Columns( columns, nullptr, false );
-//
-//  for ( auto &path : FileUtils::FileList())
-//  {
-//    ImGui::BeginGroup();
-//    ImGui::ImageButton()
-//  }
-//}
-
-
-
 }

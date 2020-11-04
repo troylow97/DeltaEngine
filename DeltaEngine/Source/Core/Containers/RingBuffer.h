@@ -85,7 +85,7 @@ public:
   \brief Writes data to the ring buffer. Data is written to the tail.
   */
   /***********************************************************************/
-  bool Write( T data )
+  bool Write( T& data )
   {
     if ( !Full() )
     {
@@ -106,19 +106,19 @@ public:
   \brief Writes data to the ring buffer. Data is written to the tail.
   */
   /***********************************************************************/
-  bool Write( T &&data )
-  {
-    if ( !Full() )
-    {
-      array[tail] = data;
-      tail = inc( tail );
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  }
+ //bool Write( T &&data )
+ //{
+ //  if ( !Full() )
+ //  {
+ //    array[tail] = data;
+ //    tail = inc( tail );
+ //    return true;
+ //  }
+ //  else
+ //  {
+ //    return false;
+ //  }
+ //}
 
   /***********************************************************************/
   /*!
@@ -127,11 +127,11 @@ public:
   \brief Reads data from the ring buffer. Data is read from the head.
   */
   /***********************************************************************/
-  T &Read()
+  T Read()
   {
     if ( !Empty() )
     {
-      T &temp = array[head];
+      T temp = array[head];
       head = inc( head );
       return temp;
     }

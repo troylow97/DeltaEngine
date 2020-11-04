@@ -5,6 +5,7 @@
 #include "Render/Texture.h"
 #include "Render/Shader.h"
 #include "Render/Font.h"
+#include "Event/Event.h"
 
 namespace DeltaEngine
 {
@@ -20,6 +21,7 @@ struct DeltaEngineGlobalEnvironment
 {
   class GameClock *pClock;
   AM *pManager;
+  EventManager* eventManager;
   class ECSModule *pECS;
   class Window *pWin;
 };
