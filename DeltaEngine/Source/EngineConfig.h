@@ -7,4 +7,5 @@ struct EngineConfig
   int width;
   int height;
   float fps;
+
 };

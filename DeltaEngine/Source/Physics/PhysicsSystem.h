@@ -2,6 +2,7 @@
 #include "Core/Math/Vector.h"
 #include "CollisionSystem.h"
 #include "Components/Collider.h"
+#include "ECS/ECSModule.h"
 
 namespace DeltaEngine
 {
@@ -13,14 +14,11 @@ public:
 
   virtual void PhysicsSystem::Update() override;
   virtual void PhysicsSystem::LateUpdate() override;
-  void PhysicsSystem::Init();
-  void PhysicsSystem::UpdateComponents();
 
 private:
   void PhysicsSystem::UpdateVelocity();
-  void PhysicsSystem::Gravity();
 
-  Vector2 m_gravity_amount;
-
+  Vector2 m_gravity_amount = { 0,-5.0f };
+  float m_max_velocity = 1000.0f;
   END_DEFINE_SYSTEM( PhysicsSystem )
 }

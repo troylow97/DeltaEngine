@@ -1,5 +1,4 @@
 #pragma once
-
 #include <rapidjson/prettywriter.h> // for stringify JSON
 #include <rapidjson/filewritestream.h>
 #include <rttr/type>

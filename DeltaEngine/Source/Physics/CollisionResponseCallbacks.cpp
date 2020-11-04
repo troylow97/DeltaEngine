@@ -3,338 +3,131 @@
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
 #include "Collision.h"
+#include <cmath>
+
 namespace DeltaEngine
 {
-void CollisionResponse_AABBvsAABB( Collider &obj1, RigidBody &r1, Collider &obj2, RigidBody &r2 )
-{
-  Vector2 obj1Top, obj1Right, obj1Left, obj1Bot, obj1TopLeft, obj1TopRight, obj1BotLeft, obj1BotRight;
-  Vector2 obj2Top, obj2Right, obj2Left, obj2Bot, obj2TopLeft, obj2TopRight, obj2BotLeft, obj2BotRight;
-  float obj1HalfWidth, obj1HalfHeight, obj2HalfWidth, obj2HalfHeight;
-  obj1HalfWidth = obj1.size.x / 2;
-  obj1HalfHeight = obj1.size.y / 2;
-  obj2HalfWidth = obj2.size.x / 2;
-  obj2HalfHeight = obj2.size.y / 2;
-  obj1Top = { obj1.center.x,obj1.center.y + obj1HalfHeight };
-  obj1Bot = { obj1.center.x,obj1.center.y - obj1HalfHeight };
-  obj1Right = { obj1.center.x + obj1HalfWidth, obj1.center.y };
-  obj1Left = { obj1.center.x - obj1HalfWidth, obj1.center.y };
+	bool CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
+	{		
+		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+		
+		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
+		Vector2 reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
+		Vector2 reflectedVectorB =  - m.normal / (r1.Mass + r2.Mass) * r1.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
 
-  obj2Top = { obj2.center.x,obj2.center.y + obj2HalfHeight };
-  obj2Bot = { obj2.center.x,obj2.center.y - obj2HalfHeight };
-  obj2Right = { obj2.center.x + obj2HalfWidth, obj2.center.y };
-  obj2Left = { obj2.center.x - obj2HalfWidth, obj2.center.y };
+		Vector2 impulse;
+		if (restitution > std::numeric_limits<float>::epsilon())
+		{
+			if (r1.isMoveable)
+			{
+				float knockback_amt = 1 / r1.Mass * 20;
+				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution) + 0.10 * m.normal);
+				r1.Velocity += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
+				r1.PointEnd = c1.center + reflectedVectorA;
+			}
 
-  obj2TopLeft = { obj2.center.x - obj2HalfWidth,obj2.center.y + obj2HalfHeight };
-  obj2BotLeft = { obj2.center.x - obj2HalfWidth,obj2.center.y - obj2HalfHeight };
-  obj2TopRight = { obj2.center.x + obj2HalfWidth, obj2.center.y + obj2HalfHeight };
-  obj2BotRight = { obj2.center.x - obj2HalfWidth, obj2.center.y - obj2HalfHeight };
+			if (r2.isMoveable)
+			{
+				float knockback_amt = 1 / r2.Mass * 20;
+				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution) + 0.10 * m.normal);
+				r2.Velocity -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
+				r2.PointEnd = c2.center + reflectedVectorB;
+			}
+		}
 
-  obj1TopLeft = { obj1.center.x - obj1HalfWidth,obj1.center.y + obj1HalfHeight };
-  obj1BotLeft = { obj1.center.x - obj1HalfWidth,obj1.center.y - obj1HalfHeight };
-  obj1TopRight = { obj1.center.x + obj1HalfWidth, obj1.center.y + obj1HalfHeight };
-  obj1BotRight = { obj1.center.x - obj1HalfWidth, obj1.center.y - obj1HalfHeight };
-  float temp_mag1 = r1.Velocity.Magnitude() * 1 / AABBvsAABBoverlap( obj1, obj2 ).Magnitude();
-  float temp_mag2 = r2.Velocity.Magnitude() * 1 / AABBvsAABBoverlap( obj1, obj2 ).Magnitude();
-  if ( CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Top ) )
-  {
-    r1.Velocity *= { 0, 1 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= { 0, -1 };
-    r2.Velocity *= temp_mag2;
+		impulse = ((m.normal * m.penetration) + 0.10 * m.normal);
+		if (r1.isMoveable)
+		{
+			r1.Velocity += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
+			r1.PointEnd = c1.center + reflectedVectorA;
+		}
 
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Bot ) )
-  {
-    r1.Velocity = { 0, -1 };
-    r2.Velocity = { 0, 1 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Right ) )
-  {
-    r1.Velocity = { 1,0 };
-    r2.Velocity = { -1,0 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Left ) )
-  {
-    r1.Velocity = { -1,0 };
-    r2.Velocity = { 1, 0 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2TopLeft ) && CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Bot )
-            || CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2TopRight ) && CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Bot ) )
-  {
-    r1.Velocity = { 0, 1 };
-    r2.Velocity = { 0, -1 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2TopLeft ) && CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Right )
-            || CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2BotLeft ) && CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Right ) )
-  {
-    r1.Velocity = { -1, 0 };
-    r2.Velocity = { 1,0 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2BotLeft ) && CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Top )
-            || CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2BotRight ) && CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Top ) )
-  {
-    r1.Velocity = { 0, -1 };
-    r2.Velocity = { 0,1 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2TopRight ) && CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Left )
-            || CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2BotRight ) && CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Left ) )
-  {
-    r1.Velocity = { 1, 0 };
-    r2.Velocity = { -1,0 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-
-  if ( CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Top ) )
-  {
-    r2.Velocity = { 0, 1 };
-    r1.Velocity = { 0, -1 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Bot ) )
-  {
-    r2.Velocity = { 0, -1 };
-    r1.Velocity = { 0, 1 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Right ) )
-  {
-    r2.Velocity = { 1, 0 };
-    r1.Velocity = { -1, 0 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1Left ) )
-  {
-    r2.Velocity = { -1, 0 };
-    r1.Velocity = { 1, 0 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1TopLeft ) && CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Bot )
-            || CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1TopRight ) && CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Bot ) )
-  {
-    r2.Velocity = { 0, 1 };
-    r1.Velocity = { 0, -1 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1TopLeft ) && CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Right )
-            || CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1BotLeft ) && CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Right ) )
-  {
-    r2.Velocity = { -1,0 };
-    r1.Velocity = { 1,0 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1BotLeft ) && CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Top )
-            || CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1BotRight ) && CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Top ) )
-  {
-    r2.Velocity = { 0,-1 };
-    r1.Velocity = { 0,1 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-  else if ( CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1TopRight ) && CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Left )
-            || CollisionIntersection_RectPoint( obj2.center, obj2.size, obj1BotRight ) && CollisionIntersection_RectPoint( obj1.center, obj1.size, obj2Left ) )
-  {
-    r1.Velocity = { -1,0 };
-    r1.Velocity = { -1,0 };
-    r1.Velocity *= temp_mag1;
-    r2.Velocity *= temp_mag2;
-    return;
-  }
-
-  //Vector2 zero_vec = { 0,0 };
-  //Vector2 normalised_r1 = Normalise(r1.Velocity);
-  //Vector2 normalised_r2 = Normalise(r2.Velocity);
-  ////float r1Magnitude = (r1.Velocity.x * r1.Velocity.x + r1.Velocity.y * r1.Velocity.y);
-  ////float r2Magnitude = (r2.Velocity.x * r2.Velocity.x + r2.Velocity.y * r2.Velocity.y);
-  //
-  //if (normalised_r1 != zero_vec)
-  //{
-  //	r1.Velocity = -r1.Direction * 2.0f; //multiply this for knockback, bugged in one case
-  //	r2.Velocity = r1.Direction;
-  //}
-  //else if (normalised_r2 != zero_vec)
-  //{
-  //	r2.Velocity = -r2.Direction * 2.0f; //multiply this for knockback, bugged in one case
-  //	r1.Velocity = r2.Direction;
-  //}
-  //else
-  //{
-  //	r1.Velocity = -r1.Direction * 2.0f;
-  //	r2.Velocity = -r2.Direction * 2.0f;
-  //}
+		if (r2.isMoveable)
+		{
+			r2.Velocity -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
+			r2.PointEnd = c2.center + reflectedVectorB;
+		}
 
 
+		return true;		
+	}
 
+	void ResolveContactVelocity(RigidBody& r1, RigidBody& r2,Manifold& m)
+	{
+		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+		float seperating_velocity = Vector2DotProduct(r1.Velocity - r2.Velocity,m.normal);
+		if (seperating_velocity > 0)
+			return;
 
-}
+		//r1.Velocity += (m.normal * m.penetration);
+		//r2.Velocity -= (m.normal * m.penetration);
+		float newSepVelocity = -seperating_velocity * restitution;
 
-void CollisionResponse_CirclevsCircle( Collider &col1, RigidBody &r1, Transform &t1, Collider &col2, RigidBody &r2, Transform &t2, Manifold &m )
-{
-     // Calculate a1 & a2 magnitude
-     //float a1{ Vector2DotProduct(r1.Velocity, m.normal) };
-     //float a2{ Vector2DotProduct(r2.Velocity, m.normal) };
-     //
-     //// Calculate P
-     //float p{ (2 * (a1 - a2) / (r1.Mass + r2.Mass)) };
-     //
-     //// Calculate reflected vector
-     //Vector2 reflectedVectorA = r1.Velocity - (m.normal * p * r2.Mass);
-     //Vector2 reflectedVectorB = r2.Velocity -(m.normal * p * r1.Mass);
-     //
-     //// Calculate final position
-     //r1.Velocity = col1.interPoint + reflectedVectorA * (1.0f - m.interTime);
-     //r2.Velocity = col2.interPoint + reflectedVectorB * (1.0f - m.interTime);
- //m.normal = col1.interPoint - col2.interPoint;
- //Normalise(m.normal);
- //
-   ////get the direction of reflection using dot product
-   //float aA = Vector2DotProduct(r1.Velocity, m.normal);
-   //float aB = Vector2DotProduct(r2.Velocity, m.normal);
- //
-   ////calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
- //r1.ReflectedVector = r1.Velocity - (2 * (aA - aB) / (r1.Mass + r2.Mass));
- //r1.ReflectedVector = r1.ReflectedVector * r2.Mass * m.normal;
- //
- //r2.ReflectedVector = r2.Velocity - (2 * (aA - aB) / (r1.Mass + r2.Mass));
- //r2.ReflectedVector = r2.ReflectedVector * r1.Mass * m.normal;
-   ////update the end points of where the two circles will end up
-   //t1.end_point =  r1.ReflectedVector * (1.0f - m.interTime) + col1.interPoint;
-   //t2.end_point = r2.ReflectedVector * (1.0f - m.interTime) + col2.interPoint;
- //
- ////r1.Movespeed = Vector2Length(r1.ReflectedVector) / env.pClock->DeltaTime();
- //Normalise(r1.ReflectedVector);//A: new speed direction
- //
- //r1.Velocity = r1.ReflectedVector * env.pClock->DeltaTime();
- //
-////r2.Movespeed = Vector2Length(r2.ReflectedVector) / env.pClock->DeltaTime();//B: new speed
- //Normalise(r2.ReflectedVector);//B: new speed direction
- //
- //r2.Velocity = r2.ReflectedVector * env.pClock->DeltaTime();
-}
+		const bool AccelerationBuildUp = true;
+		//When an object is resting on the ground it is constantly falling
+		//due to gravity. This acceleration need be removed or objects will
+		//jitter on the ground.
 
-void CollisionResponse_RectvsCircle( Collider &col1, RigidBody &r1, Transform &t1, Collider &col2, RigidBody &r2, Transform &t2, Manifold &m )
-{
-  r1.Velocity -= r1.ReflectedVector; //r1 is the Rect
-  r2.Velocity = -r2.ReflectedVector;
-}
+		if (AccelerationBuildUp)
+		{
+			// Check the velocity build-up due to acceleration only
+			Vector2 accCausedVelocity = r1.Acceleration - r2.Acceleration;
+			float accCausedSepVelocity = Vector2DotProduct(accCausedVelocity, m.normal) * env.pClock->DeltaTime();
 
-void CollisionResponse_Main( Collider &col1, RigidBody &r1, Transform &t1, Collider &col2, RigidBody &r2, Transform &t2, Manifold &m )
-{
-  ColliderType type1 = col1.type;
+			// If we've got a closing velocity due to acceleration build-up,
+			// remove it from the new separating velocity
+			if (accCausedSepVelocity < 0)
+			{
+				newSepVelocity += restitution * accCausedSepVelocity;
 
-  switch ( type1 )
-  {
-    case ColliderType::BOX:
-      CollisionResponse_Box( col1, r1, t1, col2, r2, t2, m );
-      return;
-    case ColliderType::CIRCLE:
-      CollisionResponse_Circle( col1, r1, t1, col2, r2, t2, m );
-      return;
-    case ColliderType::LINE:
-      return;
-    case ColliderType::RAY:
-      return;
-    default:
-      CollisionResponse_Box( col1, r1, t1, col2, r2, t2, m );
-      return;
-  }
-}
+				// Make sure we haven't removed more than was
+				// there to remove.
+				if (newSepVelocity < 0) newSepVelocity = 0;
+			}
+		}
 
-void CollisionResponse_Box( Collider &col1, RigidBody &r1, Transform &t1, Collider &col2, RigidBody &r2, Transform &t2, Manifold &m )
-{
-  ColliderType type2 = col2.type;
+		//What is the total change in velocity for the contact?
+		float deltaVelocity = newSepVelocity - seperating_velocity;
 
-  switch ( type2 )
-  {
-    case ColliderType::BOX:
-      CollisionResponse_AABBvsAABB( col1, r1, col2, r2 );
-      return;
-    case ColliderType::CIRCLE:
-      CollisionResponse_RectvsCircle( col1, r1, t1, col2, r2, t2, m );
-      return;
-    case ColliderType::LINE:
-      return;
-    case ColliderType::RAY:
-      return;
-    default:
-      return;
-  }
-}
+		//The delta velocity is applied to each object proportional to inverse
+		//mass. So the more massive an object is the less of the change
+		//in velocity it will receive.
+		float totalInverseMass = 1 / r1.Mass + 1 / r2.Mass;
 
-void CollisionResponse_Circle( Collider &col1, RigidBody &r1, Transform &t1, Collider &col2, RigidBody &r2, Transform &t2, Manifold &m )
-{
-  ColliderType type2 = col2.type;
+		// Calculate the impulse to apply
+		float impulse = deltaVelocity / totalInverseMass;
 
-  switch ( type2 )
-  {
-    case ColliderType::BOX:
-      return;
-    case ColliderType::CIRCLE:
-      CollisionResponse_CirclevsCircle( col1, r1, t1, col2, r2, t2, m );
-      return;
-    case ColliderType::LINE:
-      return;
-    case ColliderType::RAY:
-      return;
-    default:
-      return;
-  }
-}
+		// Find the amount of impulse per unit of inverse mass
+		Vector2 impulsePerIMass = m.normal * impulse;
 
-Vector2 AABBvsAABBoverlap( const Collider &obj1, const Collider &obj2 )
-{
-  float TotalWidth = obj1.size.x + obj2.size.x;
-  float ActualWidth = abs( obj2.size.x - obj1.size.x );
+		// Apply impulses: they are applied in the direction of the contact,
+		// and in proportion to inverse mass.
+		//r1.Velocity = r1.Velocity + impulsePerIMass * 1 / r1.Mass;
+		//// The other body goes in the opposite direction
+		//r2.Velocity = r2.Velocity + impulsePerIMass * -1/r2.Mass;
 
-  float TotalHeight = obj1.size.y + obj2.size.y;
-  float ActualHeight = abs( obj2.size.y - obj1.size.y );
+	}
 
-  Vector2 overlap = { 0,0 };
+	void ResolvePenetration(RigidBody& r1,Transform& t1, RigidBody& r2, Transform& t2, Manifold& m)
+	{
+		// The movement of each object is based on their inverse mass, so
+		// total that.
+		float totalInverseMass = 1 / r1.Mass + 1 / r2.Mass;
+		
+		// Find the amount of penetration resolution per unit of inverse mass
+		Vector2 movePerIMass = m.normal * (m.penetration / totalInverseMass);
+		
+		//If stack stability can be increased by not resolving all the penetrations
+		//in one step
+		movePerIMass *= 0.8f;
+		
+		// Calculate the the movement amounts
+		m.Movement[0] = movePerIMass * 1/r1.Mass;
+		m.Movement[1] = movePerIMass * -1/r2.Mass;
+		
+		// Apply the penetration resolution
+		t1.position += m.Movement[0];
+		t2.position += m.Movement[1];
+	}
 
-  if ( ActualWidth < TotalWidth )
-  {
-    overlap.x = TotalWidth - ActualWidth;
-  }
-
-  if ( ActualHeight < TotalHeight )
-  {
-    overlap.y = TotalHeight - ActualHeight;
-  }
-
-  return overlap;
-
-}
 }

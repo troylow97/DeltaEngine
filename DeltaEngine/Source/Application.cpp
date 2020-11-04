@@ -15,8 +15,8 @@
 #include "Systems/InputSystem.h"
 #include "ECS/World.h"
 #include "Input/InputManager.h"
-#include "Components/Character.h"
-
+#include "Audio/AudioEngine.h"
+#include "ImGui/Editor.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -35,6 +35,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   JsonFile f;
   EngineConfig c;
   f.StartReader( "config.json" ).LoadObject( c ).EndReader();
+  AudioEngine::Initialize();
   env.pClock = new GameClock( c.fps );
 
   env.pWin = new Window( c.win_name, c.width, c.height );
@@ -45,6 +46,8 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   RenderModule::openGLSystem->Init();
   m_ImGuiLayer = new ImGuiLayer();
   m_ImGuiLayer->OnAttach();
+
+  m_Editor = new Editor(EntityManager());
 
   // Asset Loading
   env.pManager = new AM();
@@ -70,12 +73,21 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() )
     .Load<AnimationController>( "Player", "Player.anim" );
 
+  env.eventManager = new EventManager;
+
   env.pECS = new ECSModule();
-  env.pECS->GetWorld();
   env.pECS->GetWorld().create_systems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_update_sequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().Load( "World/Entities.json" );
+
+  //EntityID first = env.pECS->GetWorld().get_entity_manager().CreateEntity();
+  //env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(first);
+  //env.pECS->GetWorld().get_entity_manager().AddComponent<Collider>(first);
+  //env.pECS->GetWorld().get_entity_manager().AddComponent<RigidBody>(first);  
+  //env.pECS->GetWorld().get_entity_manager().AddComponent<Input>(first);
+ // env.pECS->GetWorld().Save("World/Entities.json");
+
 }
 
 Application::~Application()
@@ -89,6 +101,9 @@ Application::~Application()
   delete RenderModule::openGLSystem;
   delete env.pWin;
   delete env.pClock;
+  delete env.eventManager;
+  delete m_Editor;
+  AudioEngine::Shutdown();
 }
 
 
@@ -114,6 +129,8 @@ void Application::Run()
   textrender.transform.scale = Vector3( 0.75, 0.75 );
   animator.m_Controller = env.pManager->Get<AnimationController>( "Player" );
 
+  size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
+
   while ( env.pWin->Running() )
   {
     textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
@@ -125,26 +142,52 @@ void Application::Run()
       env.pECS->GetWorld().update();
       env.pECS->GetWorld().late_update();
       m_ImGuiLayer->Begin();
+      m_Editor->Render();
       m_ImGuiLayer->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       env.pWin->Update();
+      if (!AudioEngine::IsChannelPlaying(i))
+        i = AudioEngine::PlaySound( "Audio/jump.wav" );
+      AudioEngine::Update();
+      OnEvent();
     }
   }
 }
 
 
+
 void Application::OnEvent()
 {
-    //EventManager event_manager;
+    if (!env.eventManager->IsEmpty())
+    {
+        auto ref = env.eventManager->ResolveEvent();
+        EventDispatcher d(ref);
+    
+        if (ref != nullptr)
+        {
+            EventType type = ref->GetEventType();
+            switch (type)
+            {
+            case EventType::ImGuiDragFile:
+            {
+                d.Dispatch<ImGuiFileDragEvent>(DE_BIND_EVENT_FN(Editor::OnDragDrop));
+                break;
+            }
+            case EventType::ImGuiRemovingDragFile:
+            {
+                d.Dispatch<ImGuiFileRemovingDragEvent>(DE_BIND_EVENT_FN(Editor::OnRemovingDragDrop));
+                break;
+            }
+            case EventType::ImGuiFileDragDone:
+            {
+                d.Dispatch<ImGuiFileDragEventDone>(DE_BIND_EVENT_FN(Editor::OnDragDropDone));
+                break;
+            }
+            }
+        }
+    }
 
-    //event_manager.addEvent(WindowCloseEvent());
 
-    //if (!event_manager.isEmpty())
-    //{
-    //    auto& ref = event_manager.resolveEvent();
-    //    EventDispatcher d(ref);
-    //    d.Dispatch<WindowCloseEvent>(DE_BIND_EVENT_FN(Application::OnWindowClose));
-    //}
 }
 
 
