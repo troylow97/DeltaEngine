@@ -19,7 +19,7 @@ bool CollisionIntersection_RectCircle( Collider &col1, RigidBody &r1, Collider &
 
 bool CollisionIntersection_RectLine_Static( const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2 );
 
-bool CollisionIntersection_CircleCircle_Static( const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2 );
+bool CollisionIntersection_CircleCircle_Static( const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2,Manifold& m );
 
 bool CollisionIntersection_CircleLineSegment_Static( const Vector2 Center1, const Vector2 Size1, const Vector2 Center2, const Vector2 Size2 );
 

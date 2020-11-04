@@ -37,6 +37,11 @@ Vector2 Vector2::Normalize()
     return *this;
   return *this /= Magnitude();
 }
+float Vector2::Length() const
+{
+    return x * x + y * y;
+}
+
 Vector2 Vector2::normalized() const
 {
   if ( SqrMagnitude() < ( 1 << 8 ) )

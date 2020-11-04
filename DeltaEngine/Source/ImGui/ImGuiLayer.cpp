@@ -8,14 +8,10 @@
 #include <examples/imgui_impl_opengl3.h>
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
-#include "Components/RigidBody.h"
-#include "Components/Collider.h"
-#include "Components/Character.h"
+
 #include "Input/InputManager.h"
-#include "Physics/Collision.h"
-#include "ImGui/DropManager.h"
-#include "ImGui/Panels/WorldPanel.h"
-#include "Event/ApplicationEvent.h"
+
+#include "Core/Utils/FileDialog.h"
 //#include "DeltaEngine.h"
 
 namespace DeltaEngine
@@ -89,6 +85,11 @@ void ImGuiLayer::Begin()
   static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
 
   auto &em = env.pECS->GetWorld().get_entity_manager();
+  auto &ref = ImGui::GetIO();
+  std::memcpy( &ref.KeysDown[0], InputManager::Get()->GetKeys(), 256 );
+
+  //if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_N ) )
+  //  GetEnv().pECS->GetWorld().get_entity_manager().Clear();
 
   // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
   // because it would be confusing to have two docking targets within each others.

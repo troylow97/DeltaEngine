@@ -9,9 +9,7 @@ struct Manifold
   float interTime;
   float penetration;
   Vector2 normal;
-  Vector2 Movement[2];
-  Vector2 ContactPoint;
-  float FrictionCof;
+  float FrictionCof; //not used for now
 
   Manifold::Manifold() :
     interTime { 0.0f },

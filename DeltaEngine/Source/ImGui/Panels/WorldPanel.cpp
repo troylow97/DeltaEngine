@@ -50,6 +50,8 @@ namespace DeltaEngine
         {
             for (size_t e_id = 0; e_id < em.GetEntities().size(); e_id++)
             {
+              if (em.GetEntities()[e_id].chunk )
+              {
                 static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
 
                 ImGuiTreeNodeFlags node_flags = base_flags;
@@ -58,9 +60,11 @@ namespace DeltaEngine
                 ImGui::TreeNodeEx((void*)(intptr_t)e_id, node_flags, "entity %d", e_id);
                 if (ImGui::IsItemClicked())
                 {
-                    InputManager::Get()->SetEntitySelected(true);
-                    InputManager::Get()->SetEntityIDSelected(e_id);
+                  InputManager::Get()->SetEntitySelected(true);
+                  InputManager::Get()->SetEntityIDSelected(e_id);
                 }
+              }
+               
             }
             ImGui::TreePop();
         }

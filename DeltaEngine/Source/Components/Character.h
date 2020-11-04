@@ -2,11 +2,9 @@
 
 namespace DeltaEngine
 {
-
-struct Input
-{
-  int previousKey;
-  int currentKey;
-};
-
+  struct Input
+  {
+    int previousKey;
+    int currentKey;
+  };
 }
