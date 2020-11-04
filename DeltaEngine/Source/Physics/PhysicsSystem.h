@@ -10,7 +10,6 @@ DEFINE_SYSTEM( PhysicsSystem, RigidBody, Transform, Collider )
 public:
   PhysicsSystem::PhysicsSystem() = default;
   ~PhysicsSystem() = default;
-  //CollisionSystem collision_system();
 
   virtual void PhysicsSystem::Update() override;
   virtual void PhysicsSystem::LateUpdate() override;

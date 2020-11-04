@@ -2,7 +2,12 @@
 
 namespace DeltaEngine
 {
-Transform::Transform() : position {}, rotation {}, scale { 1, 1, 1 } {}
+Transform::Transform() :
+		old_position{ 0.0,0.0 },
+		position{ 0.0,0.0 },
+		scale{ 0.5,0.5 },
+	rotation{ 0,0,0,1 }{};
+
 Transform::Transform( Vector3 pos, Quaternion rot, Vector3 sca )
   : position { pos }, rotation { rot }, scale { sca } {}
 

@@ -7,7 +7,6 @@
 
 namespace DeltaEngine
 {
-
     void PhysicsSystem::Update()
     {
         UpdateVelocity();

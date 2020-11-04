@@ -27,10 +27,10 @@ struct RigidBody
     Acceleration { 0,0 },
     AccumulatedForce{0,0},
     PointEnd{0,0},
-    Mass{1.0f},
-    Movespeed{0.1f},
+    Mass{10.0f},
+    Movespeed{100.0f},
     Restitution{1.0f},
-    FrictionCoeff{0.03f},
+    FrictionCoeff{0.35f},
     hasGravity { false },
     isMoveable { true }
   {}
