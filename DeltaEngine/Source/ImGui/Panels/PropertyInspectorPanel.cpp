@@ -132,6 +132,9 @@ namespace DeltaEngine
                     if (!value)
                         continue;
 
+                    if ( property.get_metadata( "NO_EDITOR" ) )
+                      continue;
+
                     if (property.get_type().get_name() == "float*")
                         ImGui::DragFloat(property.get_name().to_string().c_str(), (value.get_value<float*>()), 0.01f);
                     else if (property.get_type().get_name() == "vector2*")
