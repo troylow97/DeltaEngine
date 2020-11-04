@@ -60,7 +60,6 @@ namespace DeltaEngine
 		reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (60 * m.penetration) * env.pClock->DeltaTime();
 		reflectedVectorB = -m.normal / (r1.Mass + r2.Mass) * r1.Mass * (60 * m.penetration) * env.pClock->DeltaTime();
 
-
 		if (restitution > std::numeric_limits<float>::epsilon())
 		{
 			if (r1.isMoveable)
@@ -68,7 +67,7 @@ namespace DeltaEngine
 				float knockback_amt = 1 / r1.Mass * 20;
 				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution) + 1 * m.normal);
 				r1.Velocity += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
-				r1.PointEnd = c1.center + reflectedVectorA;
+
 			}
 
 			if (r2.isMoveable)
@@ -76,7 +75,6 @@ namespace DeltaEngine
 				float knockback_amt = 1 / r2.Mass * 20;
 				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution) + 1 * m.normal);
 				r2.Velocity -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
-				r2.PointEnd = c2.center + reflectedVectorB;
 			}
 		}
 		else
@@ -85,16 +83,24 @@ namespace DeltaEngine
 			{
 				impulse = ((m.normal * m.penetration) + 0.20 * m.normal);
 				r1.Velocity += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
-				r1.PointEnd = c1.center + reflectedVectorA;
 			}
 
 			if (r2.isMoveable)
 			{
 				impulse = ((m.normal * m.penetration) + 0.20 * m.normal);
 				r2.Velocity -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
-				r2.PointEnd = c2.center + reflectedVectorB;
 			}
 		}	
+		r1.PointEnd = c1.center + reflectedVectorA;
+		r2.PointEnd = c2.center + reflectedVectorB;
+		//if (reflectedVectorA.Magnitude() > std::numeric_limits<float>::epsilon())
+		//	r1.PointEnd = c1.center + reflectedVectorA;
+		//else
+		//	r1.PointEnd = c1.center;
+		//if (reflectedVectorB.Magnitude() > std::numeric_limits<float>::epsilon())
+		//	r2.PointEnd = c2.center + reflectedVectorB;
+		//else
+		//	r2.PointEnd = c2.center;
 	}
 
 	void CollisionResponse_BoxCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)

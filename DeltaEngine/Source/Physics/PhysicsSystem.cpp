@@ -24,11 +24,6 @@ namespace DeltaEngine
         {
             if (r1.isMoveable)
             {
-                //if (r1.Direction == Vector2{ 0,-1 } && c1.isCollidingOnFloor)
-                //{
-                //    return;
-                //}
-
                 //Set Euler
                 t1.position += r1.Velocity * env.pClock->DeltaTime();                
 
@@ -38,25 +33,33 @@ namespace DeltaEngine
                 }
                 else
                 {
-                    //Player movement
+                    //Player Movement
                     Vector2 move = (r1.Direction * r1.Movespeed);
                     r1.AccumulatedForce += move;
                 }
 
 
-                //Apply gravity
+                //Apply Gravity
                 if (r1.hasGravity && !c1.isCollidingOnFloor)
                 {
                     r1.Acceleration = m_gravity_amount;
                 }
 
+                //Apply Friction
+                float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
+                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
+
+                if(dragForceVector.Magnitude() > std::numeric_limits<float>::epsilon())
+                    r1.Velocity += dragForceVector;
+
+                //Apply Acceleration
                 Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
                 r1.Velocity += newAcceleration * env.pClock->DeltaTime();
 
                 //Apply Soft Drag
-                r1.Velocity -= r1.Velocity * r1.FrictionCoeff;
-                r1.AccumulatedForce = Vector2::zero();
+                r1.Velocity *= 0.97f;
 
+                r1.AccumulatedForce = Vector2::zero();
                 c1.isCollidingOnFloor = false;
             }
         });

@@ -68,7 +68,7 @@
                 "mass": 10.0,  
                 "movespeed": 100.0,
                 "restitution": 1.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.95,
                 "has_gravity": false,
                 "is_moveable": true
             },
@@ -145,7 +145,7 @@
                 "mass": 100.0,  
                 "movespeed": 1.0,
                 "restitution": 0.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.35,
                 "has_gravity": false,
                 "is_moveable": false
             }
@@ -218,7 +218,7 @@
                 "mass": 10.0,  
                 "movespeed": 1.0,
                 "restitution": 1.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.35,
                 "has_gravity": false,
                 "is_moveable": true
             }
@@ -291,7 +291,7 @@
                 "mass": 10.0,  
                 "movespeed": 1.0,
                 "restitution": 0.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.35,
                 "has_gravity": false,
                 "is_moveable": false
             }
@@ -364,7 +364,7 @@
                 "mass": 10.0,  
                 "movespeed": 1.0,
                 "restitution": 0.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.35,
                 "has_gravity": true,
                 "is_moveable": true
             }
@@ -437,7 +437,7 @@
                 "mass": 10.0,  
                 "movespeed": 1.0,
                 "restitution": 0.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.35,
                 "has_gravity": true,
                 "is_moveable": true
             }
@@ -510,7 +510,7 @@
                 "mass": 10.0,  
                 "movespeed": 1.0,
                 "restitution": 0.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.35,
                 "has_gravity": true,
                 "is_moveable": true
             }
@@ -583,7 +583,7 @@
                 "mass": 10.0,  
                 "movespeed": 1.0,
                 "restitution": 0.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.35,
                 "has_gravity": true,
                 "is_moveable": true
             }
@@ -656,7 +656,7 @@
                 "mass": 10.0,  
                 "movespeed": 1.0,
                 "restitution": 0.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.35,
                 "has_gravity": true,
                 "is_moveable": true
             }
@@ -682,7 +682,7 @@
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0,
-                    "w": 0.0
+                    "w": 1.0
                 }
             },
             "collider": {
@@ -729,7 +729,7 @@
                 "mass": 100.0,  
                 "movespeed": 1.0,
                 "restitution": 0.0,
-                "friction_coeff": 0.03,
+                "friction_coeff": 0.35,
                 "has_gravity": true,
                 "is_moveable": false
             }
