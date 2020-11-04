@@ -65,10 +65,10 @@ RTTR_REGISTRATION
   rttr::registration::class_<Transform>( "transform" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Transform>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "old_position", &Transform::old_position )
-    .property( "position", &Transform::position )
-    .property( "scale", &Transform::scale )
-    .property( "rotation", &Transform::rotation );
+    .property( "old_position", &Transform::old_position )(rttr::policy::prop::bind_as_ptr)
+    .property( "position", &Transform::position )(rttr::policy::prop::bind_as_ptr)
+    .property( "scale", &Transform::scale )(rttr::policy::prop::bind_as_ptr)
+    .property( "rotation", &Transform::rotation )(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<RigidBody>( "rigidbody" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits ) )
@@ -79,12 +79,12 @@ RTTR_REGISTRATION
     .property( "acceleration", &RigidBody::Acceleration )
     .property("accumulated_force", &RigidBody::AccumulatedForce)
     .property("point_end", &RigidBody::PointEnd)
-    .property( "mass", &RigidBody::Mass )
-    .property( "movespeed", &RigidBody::Movespeed )
-    .property("restitution", &RigidBody::Restitution)
-    .property("friction_coeff", &RigidBody::FrictionCoeff)
-    .property( "has_gravity", &RigidBody::hasGravity )
-    .property( "is_moveable", &RigidBody::isMoveable );
+    .property( "mass", &RigidBody::Mass )(rttr::policy::prop::bind_as_ptr)
+    .property( "movespeed", &RigidBody::Movespeed )(rttr::policy::prop::bind_as_ptr)
+    .property("restitution", &RigidBody::Restitution)(rttr::policy::prop::bind_as_ptr)
+    .property("friction_coeff", &RigidBody::FrictionCoeff)(rttr::policy::prop::bind_as_ptr)
+    .property( "has_gravity", &RigidBody::hasGravity )(rttr::policy::prop::bind_as_ptr)
+    .property( "is_moveable", &RigidBody::isMoveable )(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Collider>( "collider" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Collider>()->bits ) )

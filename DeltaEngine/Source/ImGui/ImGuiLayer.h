@@ -11,7 +11,7 @@ namespace DeltaEngine
   struct EntityID;
   class ImGuiLayer : public Layer
 {
-   WorldPanel wp;
+   //WorldPanel wp;
 public:
   ImGuiLayer();
   ~ImGuiLayer() = default;

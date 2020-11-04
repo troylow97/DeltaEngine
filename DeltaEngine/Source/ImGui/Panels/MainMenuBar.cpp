@@ -1,16 +1,13 @@
 #include "ImGui/Panels/MainMenuBar.h"
-#include "Input/InputManager.h"
-
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
+#include "Core/Utils/FileDialog.h"
 
 namespace DeltaEngine
 {
 
     MainMenuBar::MainMenuBar(std::string str) :
-        IPanel(str),
-        height{ 0 },
-        width{ 0 }
+        IPanel(str)
     {
 
     }
@@ -22,30 +19,37 @@ namespace DeltaEngine
 
     bool MainMenuBar::Render(bool)
     {
-        ImGui::Begin(m_name.c_str());
+        //ImGui::Begin(m_name.c_str());
 
-        ImVec2 renderSize = ImGui::GetContentRegionAvail();
-        width = topLeft.x + renderSize.x;
-        height = topLeft.y + renderSize.y;
-        topLeft = ImGui::GetCursorScreenPos();
-        bottomRight.x = topLeft.x + width;
-        bottomRight.y = topLeft.y + height;
+        topLeft = ImGui::GetWindowContentRegionMin();
+        bottomRight = ImGui::GetWindowContentRegionMax();
+
+        topLeft.x += ImGui::GetWindowPos().x;
+        topLeft.y += ImGui::GetWindowPos().y;
+        bottomRight.x += ImGui::GetWindowPos().x;
+        bottomRight.y += ImGui::GetWindowPos().y;
 
         if (ImGui::BeginMainMenuBar())
         {
-            if (ImGui::BeginMenu("main"))
+            if (ImGui::BeginMenu("File"))
             {
-                if (ImGui::MenuItem("new scene"))
+                if (ImGui::MenuItem("New", "Ctrl+N"))
                 {
-                    /* Do stuff */
+                    
                 }
-                if (ImGui::MenuItem("load scene"))
+                if (ImGui::MenuItem("Open...", "Ctrl+O"))
                 {
-                    /* Do stuff */
+                  std::optional<std::string> path = FileDialogs::OpenFile( "DeltaEngine Scene (*.json)\0*.json\0" );
+
+                  if ( path )
+                    GetEnv().pECS->GetWorld().Load( *path );
                 }
                 if (ImGui::MenuItem("save scene"))
                 {
-                    /* Do stuff */
+                  std::optional<std::string> path = FileDialogs::SaveFile( "DeltaEngine Scene (*.json)\0*\0" );
+
+                  if ( path )
+                    GetEnv().pECS->GetWorld().Load( *path );
                 }
                 if (ImGui::MenuItem("quit"))
                 {
@@ -105,16 +109,6 @@ namespace DeltaEngine
     //    }
     //    return false;
     //}
-
-    float MainMenuBar::GetHeight()
-    {
-        return height;
-    }
-
-    float MainMenuBar::GetWidth()
-    {
-        return width;
-    }
 
     ImVec2 MainMenuBar::GetTopLeft()
     {

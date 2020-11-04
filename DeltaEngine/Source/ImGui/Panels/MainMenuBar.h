@@ -11,12 +11,9 @@ namespace DeltaEngine
 		~MainMenuBar();
 		virtual bool Render(bool) override;
 		//virtual bool DraggedFileIn() override;
-		virtual float GetHeight() override;
-		virtual float GetWidth() override;
 		virtual ImVec2 GetTopLeft() override;
 		virtual ImVec2 GetBottomRight() override;
 	private:
-		float height, width;
 		ImVec2 topLeft;
 		ImVec2 bottomRight;
 	};

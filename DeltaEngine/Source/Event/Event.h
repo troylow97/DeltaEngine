@@ -12,7 +12,7 @@ enum class EventType
   AppTick, AppUpdate, AppRender,
   KeyPressed, KeyReleased, KeyTyped,
   MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled,
-  ImGuiDragFile
+  ImGuiDragFile, ImGuiRemovingDragFile, ImGuiFileDragDone
 };
 
 enum EventCategory

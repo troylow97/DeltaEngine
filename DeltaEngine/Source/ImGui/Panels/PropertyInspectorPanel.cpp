@@ -8,9 +8,7 @@ namespace DeltaEngine
 {
 
     PropertyInspectorPanel::PropertyInspectorPanel(std::string str) :
-        IPanel(str),
-        height{ 0 },
-        width{ 0 }
+        IPanel(str)
     {
 
     }
@@ -27,12 +25,13 @@ namespace DeltaEngine
             ImGui::Begin(m_name.c_str());
             auto& em = env.pECS->GetWorld().get_entity_manager();
 
-            ImVec2 renderSize = ImGui::GetContentRegionAvail();
-            width = topLeft.x + renderSize.x;
-            height = topLeft.y + renderSize.y;
-            topLeft = ImGui::GetCursorScreenPos();
-            bottomRight.x = topLeft.x + width;
-            bottomRight.y = topLeft.y + height;
+            topLeft = ImGui::GetWindowContentRegionMin();
+            bottomRight = ImGui::GetWindowContentRegionMax();
+
+            topLeft.x += ImGui::GetWindowPos().x;
+            topLeft.y += ImGui::GetWindowPos().y;
+            bottomRight.x += ImGui::GetWindowPos().x;
+            bottomRight.y += ImGui::GetWindowPos().y;
 
             size_t index = InputManager::Get()->EntityIDSelected();
 
@@ -160,16 +159,6 @@ namespace DeltaEngine
     //    }
     //    return false;
     //}
-
-    float PropertyInspectorPanel::GetHeight()
-    {
-        return height;
-    }
-
-    float PropertyInspectorPanel::GetWidth()
-    {
-        return width;
-    }
 
     ImVec2 PropertyInspectorPanel::GetTopLeft()
     {

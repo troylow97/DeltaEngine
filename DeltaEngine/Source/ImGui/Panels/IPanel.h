@@ -19,10 +19,6 @@ namespace DeltaEngine
 
 		//virtual bool DraggedFileIn(Event* e) = 0;
 
-
-
-		virtual float GetHeight() = 0;
-		virtual float GetWidth() = 0;
 		virtual ImVec2 GetTopLeft() = 0;
 		virtual ImVec2 GetBottomRight() = 0;
 

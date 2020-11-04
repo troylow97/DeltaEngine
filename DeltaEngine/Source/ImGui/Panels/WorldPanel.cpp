@@ -7,9 +7,7 @@
 namespace DeltaEngine
 {
     WorldPanel::WorldPanel(std::string str) :
-        IPanel(str),
-        height{ 0 },
-        width{ 0 }
+        IPanel(str)
     {
 
     }
@@ -19,27 +17,34 @@ namespace DeltaEngine
         m_enabled = false;
     }
 
+    bool WorldPanel::DraggedFileIn()
+    {
+        if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
+            && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
+        {
+            std::cout << "it is in world panel!!!" << std::endl;
+            return true;
+        }
+        return false;
+    }
+
     bool WorldPanel::Render(bool isdragged)
     {
         ImGui::Begin( m_name.c_str());
         auto& em = env.pECS->GetWorld().get_entity_manager();
 
-        ImVec2 renderSize = ImGui::GetContentRegionAvail();
-        width = topLeft.x + renderSize.x;
-        height = topLeft.y + renderSize.y;
-        topLeft = ImGui::GetCursorScreenPos();
-        bottomRight.x = topLeft.x + width;
-        bottomRight.y = topLeft.y + height;
+        topLeft = ImGui::GetWindowContentRegionMin();
+        bottomRight = ImGui::GetWindowContentRegionMax();
+
+        topLeft.x += ImGui::GetWindowPos().x;
+        topLeft.y += ImGui::GetWindowPos().y;
+        bottomRight.x += ImGui::GetWindowPos().x;
+        bottomRight.y += ImGui::GetWindowPos().y;
 
         if (isdragged)
         {
             DraggedFileIn();
         }
-
-
-        //std::cout << "x is " << InputManager::Get()->CurrentPosition().point_x << " y is " << InputManager::Get()->CurrentPosition().point_y << std::endl;
-        //std::cout << "render                   topLeft is " << topLeft.x << ", " << topLeft.y << std::endl;
-        //std::cout << "render                   bottomRight is " << bottomRight.x << ", " << bottomRight.y << std::endl;
 
         if (ImGui::TreeNode("Entities"))
         {
@@ -87,27 +92,6 @@ namespace DeltaEngine
         ImGui::End();
 
         return m_enabled;
-    }
-
-    bool WorldPanel::DraggedFileIn()
-    {
-        if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
-            && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
-        {
-            std::cout << "it is in world panel!!!" << std::endl;
-            return true;
-        }
-        return false;
-    }
-
-    float WorldPanel::GetHeight()
-    {
-        return height;
-    }
-
-    float WorldPanel::GetWidth()
-    {
-        return width;
     }
 
     ImVec2 WorldPanel::GetTopLeft()

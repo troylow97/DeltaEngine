@@ -15,12 +15,20 @@ namespace DeltaEngine
         bool _isInImGui = false;
         bool _isInPanel = false;
         bool _isReleased = false;
+        bool _passingToPanel = false;
 
     public:
         // handling drop targets, letting others know
         HRESULT QueryInterface(REFIID riid, void** ppvObject)
         {
-            return S_OK;
+            if (riid == IID_IDropTarget)
+            {
+                *ppvObject = static_cast<IUnknown*>(this);
+                return S_OK;
+            }
+            *ppvObject = NULL;
+            return E_NOINTERFACE;
+            //return S_OK;
         }
         unsigned long AddRef(void)
         {
@@ -89,6 +97,8 @@ namespace DeltaEngine
             _isInPanel = false;
             _isInImGui = false;
 
+            env.eventManager->AddEvent(new ImGuiFileRemovingDragEvent);
+
             return S_OK;
         }
         // when releasing the mouse button so files drop into imgui
@@ -114,7 +124,7 @@ namespace DeltaEngine
             medium.tymed = TYMED_HGLOBAL;
 
             HRESULT res = pDataObj->GetData(&format, &medium);
-            HDROP drop = (HDROP)medium.hGlobal; // reinterpret_cast<HDROP>
+            HDROP drop = reinterpret_cast<HDROP>(medium.hGlobal); // 
             wchar_t* fileName = NULL;
 
             // 0xFFFFFFFF returns the count of files dropped
@@ -148,6 +158,8 @@ namespace DeltaEngine
             ReleaseStgMedium(&medium);
 
             // notify imgui that dragging of the files is done
+
+            env.eventManager->AddEvent(new ImGuiFileDragEventDone);
             _isReleased = true;
             _isDragged = false;
             _isDropped = true;
