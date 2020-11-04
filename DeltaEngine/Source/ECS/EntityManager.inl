@@ -91,6 +91,21 @@ inline EntityManager::~EntityManager()
   }
 }
 
+inline void EntityManager::Clear()
+{
+  for ( Archetype *arch : m_archetypes )
+  {
+    for ( DataChunk *chunk : arch->chunks )
+      delete chunk;
+    delete arch->components_desc;
+    delete arch;
+  }
+
+  m_entities.clear();
+  m_entities_deleted.clear();
+  m_entities_live = 0;
+}
+
 template <typename... C>
 EntityID EntityManager::CreateEntity()
 {

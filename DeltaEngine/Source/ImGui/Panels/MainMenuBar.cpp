@@ -35,7 +35,7 @@ namespace DeltaEngine
             {
                 if (ImGui::MenuItem("New", "Ctrl+N"))
                 {
-                    
+                  GetEnv().pECS->GetWorld().get_entity_manager().Clear();
                 }
                 if (ImGui::MenuItem("Open...", "Ctrl+O"))
                 {
@@ -49,7 +49,7 @@ namespace DeltaEngine
                   std::optional<std::string> path = FileDialogs::SaveFile( "DeltaEngine Scene (*.json)\0*\0" );
 
                   if ( path )
-                    GetEnv().pECS->GetWorld().Load( *path );
+                    GetEnv().pECS->GetWorld().Save( *path );
                 }
                 if (ImGui::MenuItem("quit"))
                 {

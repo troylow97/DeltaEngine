@@ -37,6 +37,8 @@ public:
 
   ~EntityManager();
 
+  void Clear();
+
   template <typename... C>
   EntityID CreateEntity();
 
