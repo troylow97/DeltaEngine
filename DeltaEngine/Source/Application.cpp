@@ -86,7 +86,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   //env.pECS->GetWorld().get_entity_manager().AddComponent<Collider>(first);
   //env.pECS->GetWorld().get_entity_manager().AddComponent<RigidBody>(first);  
   //env.pECS->GetWorld().get_entity_manager().AddComponent<Input>(first);
- // env.pECS->GetWorld().Save("World/Entities.json");
+  //env.pECS->GetWorld().Save("World/Entities.json");
 
 }
 

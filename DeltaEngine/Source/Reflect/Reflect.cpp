@@ -73,12 +73,12 @@ RTTR_REGISTRATION
   rttr::registration::class_<RigidBody>( "rigidbody" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "direction", &RigidBody::Direction )
-    .property( "velocity", &RigidBody::Velocity )
-    .property( "reflected_vector", &RigidBody::ReflectedVector )
-    .property( "acceleration", &RigidBody::Acceleration )
-    .property("accumulated_force", &RigidBody::AccumulatedForce)
-    .property("point_end", &RigidBody::PointEnd)
+    .property( "direction", &RigidBody::Direction )(rttr::metadata("NO_SERIALIZE", true))
+    .property( "velocity", &RigidBody::Velocity )(rttr::metadata("NO_SERIALIZE", true))
+    .property( "reflected_vector", &RigidBody::ReflectedVector )(rttr::metadata("NO_SERIALIZE", true))
+    .property( "acceleration", &RigidBody::Acceleration )(rttr::metadata("NO_SERIALIZE", true))
+    .property("accumulated_force", &RigidBody::AccumulatedForce)(rttr::metadata("NO_SERIALIZE", true))
+    .property("point_end", &RigidBody::PointEnd)(rttr::metadata("NO_SERIALIZE", true))
     .property( "mass", &RigidBody::Mass )(rttr::policy::prop::bind_as_ptr)
     .property( "movespeed", &RigidBody::Movespeed )(rttr::policy::prop::bind_as_ptr)
     .property("restitution", &RigidBody::Restitution)(rttr::policy::prop::bind_as_ptr)
@@ -91,9 +91,11 @@ RTTR_REGISTRATION
     .constructor<>()( rttr::policy::ctor::as_object )
     .property("center", &Collider::center)
     .property("size", &Collider::size)
-    .property( "inter_point", &Collider::interPoint )
+    .property( "inter_point", &Collider::interPoint )(rttr::metadata("NO_SERIALIZE", true))
     .property( "type", &Collider::type )
-    .property( "is_collideable", &Collider::isCollideable );
+    .property( "is_collideable", &Collider::isCollideable )
+    .property("is_trigger", &Collider::isTrigger)
+    .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true));
 
 
   rttr::registration::class_<Input>( "input" )
