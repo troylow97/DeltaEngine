@@ -103,6 +103,13 @@ RTTR_REGISTRATION
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "prev", &Input::previousKey )
     .property( "curr", &Input::currentKey );
+
+  rttr::registration::class_<AI>("ai")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("state", &AI::key)
+      .property("index", &AI::index);
+
 }
 
 }

@@ -15,17 +15,38 @@
 
 namespace DeltaEngine
 {
-	namespace AI
+	class AIState
 	{
-		class IState
+	public:
+		std::unordered_map<std::string, Transition*> TransitionEdges;
+		virtual void onEnter() = 0;
+		virtual void onExit() = 0;
+		virtual void Update() = 0;
+	};
+
+	class Idle : public AIState
+	{
+	public:
+		std::unordered_map<std::string, Transition*> TransitionEdges;
+		virtual void onEnter() override
 		{
-		public:
-			std::unordered_map<std::string, Transition*> TransitionEdges;
-			virtual void onEnter() = 0;
-			virtual void onExit() = 0;
-			virtual void Update() = 0;
-		};
-	}
+
+		}
+		virtual void onExit() override
+		{
+
+		}
+		virtual void Update() override
+		{
+
+		}
+
+		Idle()
+		{
+			//TransitionEdges["saw_enemy"] = new SawEnemy;
+		}
+	};
+
 }
 
 

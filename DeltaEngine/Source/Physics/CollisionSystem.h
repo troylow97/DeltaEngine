@@ -36,7 +36,16 @@ void CollisionSystem::CollisionIntersectionCheck();
 void CollisionSystem::CollisionHandling();
 void CollisionSystem::CollisionResolution();
 
+void CollisionSystem::CollisionResponseMain(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+void CollisionSystem::CollisionResponse_Sub_Box(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+void CollisionSystem::CollisionResponse_Sub_Circle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+
+void CollisionSystem::CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+void CollisionSystem::CollisionResponse_BoxCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+void CollisionSystem::CollisionResponse_CircleCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+
 public:
+  float knockback_amt = 500.0f;
   virtual void CollisionSystem::Update() override;
   virtual void CollisionSystem::LateUpdate() override;
   CollisionSystem::CollisionSystem() = default;

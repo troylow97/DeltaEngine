@@ -9,57 +9,7 @@
                 },
                 "position": {
                     "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 0.0
-                }
-            },
-            "collider": {
-                "center": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "size": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "type": "box",
-                "is_collideable": true,
-                "is_trigger": false
-            },
-            "rigidbody": {
-                "mass": 10.0,
-                "movespeed": 100,
-                "restitution": 1.0,
-                "friction_coeff": 0.45,
-                "has_gravity": false,
-                "is_moveable": true
-            },
-            "input": {
-                "prev": 0,
-                "curr": 0
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": -2.0,
+                    "y": -2.4047789573669435,
                     "z": 0.0
                 },
                 "scale": {
@@ -75,25 +25,235 @@
                 }
             },
             "collider": {
-                "center": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "size": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
                 "type": "box",
-                "is_collideable": true,
-                "is_trigger": false
+                "is_collideable": "",
+                "is_trigger": ""
             },
             "rigidbody": {
-                "mass": 100.0,
-                "movespeed": 0,
-                "restitution": 0.0,
-                "friction_coeff": 0.45,
-                "has_gravity": true,
-                "is_moveable": false
+                "mass": "",
+                "movespeed": "",
+                "restitution": "",
+                "friction_coeff": "",
+                "has_gravity": "",
+                "is_moveable": ""
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 3.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 4.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                }
+            },
+            "collider": {
+                "type": "box",
+                "is_collideable": "",
+                "is_trigger": ""
+            },
+            "rigidbody": {
+                "mass": "",
+                "movespeed": "",
+                "restitution": "",
+                "friction_coeff": "",
+                "has_gravity": "",
+                "is_moveable": ""
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": -1.904680609703064,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                }
+            },
+            "collider": {
+                "type": "box",
+                "is_collideable": "",
+                "is_trigger": ""
+            },
+            "rigidbody": {
+                "mass": "",
+                "movespeed": "",
+                "restitution": "",
+                "friction_coeff": "",
+                "has_gravity": "",
+                "is_moveable": ""
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 2.1218249797821047,
+                    "y": -2.74651888985085e-16,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                }
+            },
+            "collider": {
+                "type": "box",
+                "is_collideable": "",
+                "is_trigger": ""
+            },
+            "rigidbody": {
+                "mass": "",
+                "movespeed": "",
+                "restitution": "",
+                "friction_coeff": "",
+                "has_gravity": "",
+                "is_moveable": ""
+            },
+            "input": {
+                "prev": 83,
+                "curr": 0
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
             }
         }
     ]

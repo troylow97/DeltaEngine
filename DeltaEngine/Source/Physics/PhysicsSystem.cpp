@@ -33,6 +33,7 @@ namespace DeltaEngine
                 else if (r1.Direction == Vector2::up())
                 {
                     r1.AccumulatedForce += {0, Jump_Force};
+                    r1.Direction = Vector2::zero();
                 }
                 else
                 {
@@ -65,6 +66,13 @@ namespace DeltaEngine
 
                 //Apply Soft Drag
                 r1.Velocity *= 0.97f;
+
+                //Clamp to velocity max for numerical stability
+                if (Vector2DotProduct(r1.Velocity, r1.Velocity) > m_max_velocity)
+                {
+                    Normalise(r1.Velocity);
+                    r1.Velocity = r1.Velocity * m_max_velocity;
+                }
 
                 r1.AccumulatedForce = { 0,0 };
                 c1.isCollidingOnFloor = false;

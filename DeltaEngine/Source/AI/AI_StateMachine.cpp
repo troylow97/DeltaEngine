@@ -11,24 +11,54 @@
 				written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "AI_StateMachine.h"
-
+#define STATE_ENTER 0;
+#define STATE_UPDATE 1;
+#define STATE_EXIT 2;
 
 namespace DeltaEngine
 {
-	namespace AI
+	void AISystem::Init()
 	{
-		void AISystem::Update()
-		{
-            em.ForEach([&](EntityID id)
-            {
-                
+		StateList["idle"] = new Idle();
+	}
 
-            });
-		}
+	void AISystem::Update()
+	{
+		Init();
+		//Check and apply transitions
+        em.ForEach([&](EntityID id,AI ai)
+        {
+			bool isChanged{ false };
+			AIState* ai_state = StateList[ai.key];
+			[&]()
+			{
+				for (std::pair<std::string, Transition*> ref : ai_state->TransitionEdges)
+				{
+					if (ref.second->isTriggered)
+					{
+						ai_state->onExit();
+						ai.key = ref.first;
+						ai_state = StateList[ref.first];
+						ai_state->onEnter();
+						isChanged = true;
+					}
+				}
 
-		void AISystem::LateUpdate()
-		{
+			}();
 
-		}
+		//No transitions occured, AI updates its current state
+			if (!isChanged)
+			{
+				ai_state->Update();
+			}
+
+
+
+        });
+	}
+
+	void AISystem::LateUpdate()
+	{
+
 	}
 }

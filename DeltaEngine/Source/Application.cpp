@@ -17,6 +17,7 @@
 #include "Input/InputManager.h"
 #include "Audio/AudioEngine.h"
 #include "ImGui/Editor.h"
+#include "AI/AI_StateMachine.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -76,10 +77,10 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.eventManager = new EventManager;
 
   env.pECS = new ECSModule();
-  env.pECS->GetWorld().create_systems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().set_update_sequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().create_systems<InputSystem,AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().set_update_sequence<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  //env.pECS->GetWorld().Load( "World/Entities.json" );
+  env.pECS->GetWorld().Load( "World/Entities.json" );
 
   //EntityID first = env.pECS->GetWorld().get_entity_manager().CreateEntity();
   //env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(first);
@@ -129,7 +130,7 @@ void Application::Run()
   textrender.transform.scale = Vector3( 0.75, 0.75 );
   animator.m_Controller = env.pManager->Get<AnimationController>( "Player" );
 
-  size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
+  //size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
 
   while ( env.pWin->Running() )
   {
@@ -147,8 +148,8 @@ void Application::Run()
       m_ImGuiLayer->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       env.pWin->Update();
-      if (!AudioEngine::IsChannelPlaying(i))
-        i = AudioEngine::PlaySound( "Audio/jump.wav" );
+      //if (!AudioEngine::IsChannelPlaying(i))
+      //  i = AudioEngine::PlaySound( "Audio/jump.wav" );
       AudioEngine::Update();
       OnEvent();
     }

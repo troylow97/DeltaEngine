@@ -15,16 +15,12 @@
 
 namespace DeltaEngine
 {
-	namespace AI
+	class Transition
 	{
-		class IState;
-
-		class Transition
-		{
-			bool isTriggered;
-			virtual IState* getTargetState() = 0;
-			virtual Action<> getAction() = 0;
-		};
-	}
+	public:
+		bool isTriggered;
+		virtual std::string getTargetState() = 0;
+		virtual Action<> getAction() = 0;
+	};
 
 }
