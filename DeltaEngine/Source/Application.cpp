@@ -79,7 +79,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().create_systems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_update_sequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().Load( "World/Entities.json" );
+  //env.pECS->GetWorld().Load( "World/Entities.json" );
 
   //EntityID first = env.pECS->GetWorld().get_entity_manager().CreateEntity();
   //env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(first);
@@ -133,8 +133,9 @@ void Application::Run()
 
   while ( env.pWin->Running() )
   {
-    textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
+    /*textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
     textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28f, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
+    */
     if ( env.pClock->Update() )
     {
       InputManager::Get()->Update();

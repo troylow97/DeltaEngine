@@ -93,8 +93,8 @@ RTTR_REGISTRATION
     .property("size", &Collider::size)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
     .property( "inter_point", &Collider::interPoint )(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
     .property( "type", &Collider::type )
-    .property( "is_collideable", &Collider::isCollideable )
-    .property("is_trigger", &Collider::isTrigger)
+    .property( "is_collideable", &Collider::isCollideable )(rttr::policy::prop::bind_as_ptr)
+    .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
     .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
 
@@ -121,6 +121,18 @@ rttr::type RT_Checker( size_t bits )
   if ( rttr::type::get_by_name( "input" ).get_metadata( "bits" ).to_uint64() == bits )
     return rttr::type::get_by_name( "input" );
   return rttr::type::get<int>();
+}
+
+void RT_Setter (EntityManager& em, EntityID id, size_t bits)
+{
+  if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Transform>(id, Transform());
+  if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Collider>(id, Collider());
+  if ( rttr::type::get_by_name( "rigidbody" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<RigidBody>(id, RigidBody());
+  if ( rttr::type::get_by_name( "input" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Input>(id, Input());
 }
 
 rttr::instance RT_Getter (EntityManager& em, EntityID& id, size_t bits)
