@@ -73,7 +73,7 @@ LRESULT WINAPI Win32WindowProc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
   return DefWindowProc( hwnd, uMsg, wParam, lParam );
 }
 
-Window::Window( std::string title, int width, int height ) :
+Window::Window( const std::string& title, int width, int height ) :
   m_title { to_wstring( title ) }, m_width { width }, m_height { height }
 {
 

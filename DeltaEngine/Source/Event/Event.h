@@ -106,8 +106,6 @@ public:
 
   Event* ResolveEvent()
   {
-      //Event* e = EventQueue.Read();
-
     return EventQueue.Read();
   }
 
@@ -124,6 +122,15 @@ public:
   size_t getEventSize() const
   {
       return EventQueue.GetMaxSize();
+  }
+
+  ~EventManager()
+  {
+      while (!EventQueue.Empty())
+      {
+          auto ref = EventQueue.Read();
+          delete ref;
+      }
   }
 
 private:

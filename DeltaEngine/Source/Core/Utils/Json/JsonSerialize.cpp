@@ -27,6 +27,9 @@ void WriteObject( instance object, PrettyWriter<FileWriteStream> &writer )
   auto prop_list = obj.get_derived_type().get_properties();
   for ( auto prop : prop_list )
   {
+    if (prop.get_metadata("NO_SERIALIZE"))
+      continue;
+
     variant prop_value = prop.get_value( obj );
     if ( !prop_value )
       continue; // cannot serialize, because we cannot retrieve the value

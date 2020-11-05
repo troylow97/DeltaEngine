@@ -7,8 +7,11 @@
 
 namespace DeltaEngine
 {
-	bool CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
-	void ResolveContactVelocity(RigidBody& r1, RigidBody& r2, Manifold& m);
-	void ResolvePenetration(RigidBody& r1, Transform& t1, RigidBody& r2, Transform& t2, Manifold& m);
+	void CollisionResponseMain(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+	void CollisionResponse_Sub_Box(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+	void CollisionResponse_Sub_Circle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
 
+	void CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+	void CollisionResponse_BoxCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+	void CollisionResponse_CircleCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
 }

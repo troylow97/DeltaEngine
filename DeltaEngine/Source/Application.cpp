@@ -15,7 +15,7 @@
 #include "Systems/InputSystem.h"
 #include "ECS/World.h"
 #include "Input/InputManager.h"
-#include "Components/Character.h"
+#include "Audio/AudioEngine.h"
 #include "ImGui/Editor.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -35,6 +35,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   JsonFile f;
   EngineConfig c;
   f.StartReader( "config.json" ).LoadObject( c ).EndReader();
+  AudioEngine::Initialize();
   env.pClock = new GameClock( c.fps );
 
   env.pWin = new Window( c.win_name, c.width, c.height );
@@ -75,18 +76,17 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.eventManager = new EventManager;
 
   env.pECS = new ECSModule();
-  env.pECS->GetWorld();
   env.pECS->GetWorld().create_systems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_update_sequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().Load( "World/Entities.json" );
+  //env.pECS->GetWorld().Load( "World/Entities.json" );
 
   //EntityID first = env.pECS->GetWorld().get_entity_manager().CreateEntity();
   //env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(first);
   //env.pECS->GetWorld().get_entity_manager().AddComponent<Collider>(first);
   //env.pECS->GetWorld().get_entity_manager().AddComponent<RigidBody>(first);  
   //env.pECS->GetWorld().get_entity_manager().AddComponent<Input>(first);
- // env.pECS->GetWorld().Save("World/Entities.json");
+  //env.pECS->GetWorld().Save("World/Entities.json");
 
 }
 
@@ -103,6 +103,7 @@ Application::~Application()
   delete env.pClock;
   delete env.eventManager;
   delete m_Editor;
+  AudioEngine::Shutdown();
 }
 
 
@@ -128,10 +129,13 @@ void Application::Run()
   textrender.transform.scale = Vector3( 0.75, 0.75 );
   animator.m_Controller = env.pManager->Get<AnimationController>( "Player" );
 
+  size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
+
   while ( env.pWin->Running() )
   {
-    textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
+    /*textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
     textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28f, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
+    */
     if ( env.pClock->Update() )
     {
       InputManager::Get()->Update();
@@ -143,6 +147,9 @@ void Application::Run()
       m_ImGuiLayer->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       env.pWin->Update();
+      if (!AudioEngine::IsChannelPlaying(i))
+        i = AudioEngine::PlaySound( "Audio/jump.wav" );
+      AudioEngine::Update();
       OnEvent();
     }
   }
@@ -181,8 +188,6 @@ void Application::OnEvent()
         }
         delete ref;
     }
-
-
 }
 
 

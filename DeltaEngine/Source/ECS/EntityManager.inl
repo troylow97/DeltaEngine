@@ -91,6 +91,21 @@ inline EntityManager::~EntityManager()
   }
 }
 
+inline void EntityManager::Clear()
+{
+  for ( Archetype *arch : m_archetypes )
+  {
+    for ( DataChunk *chunk : arch->chunks )
+      delete chunk;
+    delete arch->components_desc;
+    delete arch;
+  }
+
+  m_entities.clear();
+  m_entities_deleted.clear();
+  m_entities_live = 0;
+}
+
 template <typename... C>
 EntityID EntityManager::CreateEntity()
 {
@@ -153,7 +168,7 @@ inline rttr::instance EntityManager::GetComponent(EntityID id, size_t bits)
 
 
 template <typename C>
-void EntityManager::AddComponent( EntityID id, C &comp )
+void EntityManager::AddComponent( EntityID id, C comp )
 {
   AddComponent<C>( id );
 
@@ -231,9 +246,11 @@ inline Archetype *EntityManager::GetEmptyArchetype()
   return m_archetypes[0];
 }
 
-inline const std::vector<Description::Details> &EntityManager::GetEntityArchetype(size_t id)
+inline const std::vector<Description::Details> *EntityManager::GetEntityArchetype(size_t id)
 {
-  return m_entities[id].chunk->header.owner->components_desc->metalist;
+  if ( m_entities[id].chunk)
+    return &m_entities[id].chunk->header.owner->components_desc->metalist;
+  return nullptr;
 }
 
 //******************************************************************************

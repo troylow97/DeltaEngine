@@ -5,20 +5,16 @@ namespace DeltaEngine
 {
 void KeyboardInput::Reset()
 {
-  for ( auto &it : m_is_triggered )
+  for (size_t i = 0; i < 256; i ++ )
   {
-    if ( it.second )
+    if ( m_is_triggered[i] )
     {
-      m_is_pressed[it.first] = true;
-      it.second = false;
+      m_is_pressed[i] = true;
+      m_is_triggered[i] = false;
     }
-  }
-  for ( auto &it : m_is_released )
-  {
-    if ( it.second )
-    {
-      it.second = false;
-    }
+
+    if ( m_is_released[i] )
+      m_is_released[i] = false;
   }
 }
 

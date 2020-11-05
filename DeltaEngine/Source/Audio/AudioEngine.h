@@ -1,0 +1,78 @@
+#pragma once
+
+#include <unordered_map>
+#include "DE_API.h"
+#include "Core/Math/Vector.h"
+
+using AUDIOENGINE_LOAD_BANK_FLAGS = unsigned;
+#define AUDIOENGINE_LOAD_BANK_NORMAL             0x00000000
+#define AUDIOENGINE_LOAD_BANK_NONBLOCKING        0x00000001
+#define AUDIOENGINE_LOAD_BANK_DECOMPRESS_SAMPLES 0x00000002
+#define AUDIOENGINE_LOAD_BANK_UNENCRYPTED        0x00000004
+
+namespace DeltaEngine
+{
+
+struct DE_API Audio3DAttributes
+{
+  Vector3 pos;
+  Vector3 vel;
+  Vector3 forward;
+  Vector3 up;
+};
+
+class DE_API AudioEngine
+{
+  using EventID = size_t;
+  using ChannelID = size_t;
+
+public:
+  using ParametersMap = std::unordered_map<std::string, float>;
+
+  static void Initialize();
+  static void Shutdown();
+  static void Update();
+
+  // Core 
+  static void LoadSound( const std::string &name, bool loop = false, bool stream = false, bool is3D = false );
+  static void UnloadSound( const std::string &name );
+
+  static ChannelID PlaySound( const std::string &name, float dB = 0.0f, Vector3 pos = { 0.0f,0.0f,0.0f } );
+  static bool IsChannelPlaying( ChannelID id );
+  static void SetChannelPause( ChannelID id, bool pause = true );
+  static void SetChannelPitch( ChannelID id, float pitch );
+  static void SetChannelVolume( ChannelID id, float dB );
+  static void StopChannel( ChannelID id );
+  static void StopChannels();
+
+  static void SetChannel3DPosition( ChannelID id, Vector3 attributes );
+
+  // Studio
+  static void LoadBank( const std::string &name, AUDIOENGINE_LOAD_BANK_FLAGS flags );
+  static void UnloadBank( const std::string &name );
+
+  static EventID Play3DEvent( const std::string &name, Audio3DAttributes attributes, ParametersMap = ParametersMap() );
+  static EventID Play2DEvent( const std::string &name, ParametersMap = ParametersMap() );
+  static bool IsEventPlaying( EventID id );
+  static void SetEventPause( EventID id, bool pause = true );
+  static void SetEventPitch( EventID id, float pitch );
+  static void SetEventVolume( EventID id, float dB );
+  static void StopEvent( EventID id, bool fade = true );
+
+  static void SetEvent3DAttribute( EventID id, Audio3DAttributes attributes );
+  static float GetEventParameterByName( EventID id, const std::string &parameter );
+  static void SetEventParameterByName( EventID id, const std::string &parameter, float value );
+
+  static void SetBusMute( const std::string &name, bool mute = true );
+  static void SetBusPause( const std::string &name, bool pause = true );
+  static void SetBusVolume( const std::string &name, float dB );
+  static void StopAllBusEvents( const std::string &name, bool fade = true );
+
+  // Misc
+  static void Set3DListenerAttributes( Audio3DAttributes attributes );
+  static float GetGlobalParameterByName( const std::string &parameter );
+  static void SetGlobalParameterByName( const std::string &parameter, float value );
+  static float dBToVolume( float dB );
+  static float VolumeTodB( float volume );
+};
+}

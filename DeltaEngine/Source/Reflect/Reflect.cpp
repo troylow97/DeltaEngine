@@ -65,36 +65,37 @@ RTTR_REGISTRATION
   rttr::registration::class_<Transform>( "transform" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Transform>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "old_position", &Transform::old_position )
-    .property( "position", &Transform::position )
-    .property( "scale", &Transform::scale )
-    .property( "rotation", &Transform::rotation );
+    .property( "old_position", &Transform::old_position )(rttr::policy::prop::bind_as_ptr)
+    .property( "position", &Transform::position )(rttr::policy::prop::bind_as_ptr)
+    .property( "scale", &Transform::scale )(rttr::policy::prop::bind_as_ptr)
+    .property( "rotation", &Transform::rotation )(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<RigidBody>( "rigidbody" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "direction", &RigidBody::Direction )
-    .property( "velocity", &RigidBody::Velocity )
-    .property( "reflected_vector", &RigidBody::ReflectedVector )
-    .property( "acceleration", &RigidBody::Acceleration )
-    .property("accumulated_force", &RigidBody::AccumulatedForce)
-    .property("point_end", &RigidBody::PointEnd)
-    .property( "mass", &RigidBody::Mass )
-    .property( "movespeed", &RigidBody::Movespeed )
-    .property("restitution", &RigidBody::Restitution)
-    .property("friction_coeff", &RigidBody::FrictionCoeff)
-    .property( "has_gravity", &RigidBody::hasGravity )
-    .property( "is_moveable", &RigidBody::isMoveable );
+    .property( "direction", &RigidBody::Direction )(rttr::metadata("NO_SERIALIZE", true),(rttr::metadata("NO_EDITOR", true)) )
+    .property( "velocity", &RigidBody::Velocity )(rttr::metadata("NO_SERIALIZE", true))
+    .property( "reflected_vector", &RigidBody::ReflectedVector )(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+    .property( "acceleration", &RigidBody::Acceleration )(rttr::metadata("NO_SERIALIZE", true),(rttr::metadata("NO_EDITOR", true)) )
+    .property("accumulated_force", &RigidBody::AccumulatedForce)(rttr::metadata("NO_SERIALIZE", true))
+    .property("point_end", &RigidBody::PointEnd)(rttr::metadata("NO_SERIALIZE", true))
+    .property( "mass", &RigidBody::Mass )(rttr::policy::prop::bind_as_ptr)
+    .property( "movespeed", &RigidBody::Movespeed )(rttr::policy::prop::bind_as_ptr)
+    .property("restitution", &RigidBody::Restitution)(rttr::policy::prop::bind_as_ptr)
+    .property("friction_coeff", &RigidBody::FrictionCoeff)(rttr::policy::prop::bind_as_ptr)
+    .property( "has_gravity", &RigidBody::hasGravity )(rttr::policy::prop::bind_as_ptr)
+    .property( "is_moveable", &RigidBody::isMoveable )(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Collider>( "collider" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Collider>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property("center", &Collider::center)
-    .property("size", &Collider::size)
-    .property( "inter_point", &Collider::interPoint )
+    .property("center", &Collider::center)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+    .property("size", &Collider::size)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+    .property( "inter_point", &Collider::interPoint )(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
     .property( "type", &Collider::type )
-    .property( "is_collideable", &Collider::isCollideable )
-    .property("is_collideable", &Collider::isCollided);
+    .property( "is_collideable", &Collider::isCollideable )(rttr::policy::prop::bind_as_ptr)
+    .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
+    .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
 
   rttr::registration::class_<Input>( "input" )
@@ -120,6 +121,18 @@ rttr::type RT_Checker( size_t bits )
   if ( rttr::type::get_by_name( "input" ).get_metadata( "bits" ).to_uint64() == bits )
     return rttr::type::get_by_name( "input" );
   return rttr::type::get<int>();
+}
+
+void RT_Setter (EntityManager& em, EntityID id, size_t bits)
+{
+  if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Transform>(id, Transform());
+  if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Collider>(id, Collider());
+  if ( rttr::type::get_by_name( "rigidbody" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<RigidBody>(id, RigidBody());
+  if ( rttr::type::get_by_name( "input" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Input>(id, Input());
 }
 
 rttr::instance RT_Getter (EntityManager& em, EntityID& id, size_t bits)
