@@ -18,11 +18,11 @@ PropertyInspectorPanel::~PropertyInspectorPanel()
   m_enabled = false;
 }
 
-bool PropertyInspectorPanel::Render( bool )
+void PropertyInspectorPanel::Render( bool )
 {
+  ImGui::Begin( m_name.c_str(), &m_enabled );
   if ( InputManager::Get()->EntitySelected() )
   {
-    ImGui::Begin( m_name.c_str() );
     auto &em = env.pECS->GetWorld().get_entity_manager();
 
     topLeft = ImGui::GetWindowContentRegionMin();
@@ -122,7 +122,7 @@ bool PropertyInspectorPanel::Render( bool )
     ImGui::Text( "" );
     ImGui::Text( "" );
 
-    static const char *components[] {  " ", "transform", "rigidbody", "collider", "input" };
+    static const char *components[] { " ", "transform", "rigidbody", "collider", "input" };
     static int selected = 0;
     ImGui::Combo( "Components", &selected, components, IM_ARRAYSIZE( components ) );
     if ( ImGui::Button( "Add Component" ) )
@@ -162,10 +162,8 @@ bool PropertyInspectorPanel::Render( bool )
         }
       }
 
-    ImGui::End();
   }
-
-  return m_enabled;
+  ImGui::End();
 }
 
 //bool PropertyInspectorPanel::DraggedFileIn()

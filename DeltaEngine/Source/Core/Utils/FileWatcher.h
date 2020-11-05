@@ -7,7 +7,6 @@
 #include <memory>
 namespace DeltaEngine
 {
-
   struct IFileWatcherListener;
 
   class FileWatcher

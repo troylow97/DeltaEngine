@@ -10,9 +10,9 @@ namespace DeltaEngine
 		WorldPanel(std::string str);
 		~WorldPanel();
 		bool DraggedFileIn();
-		virtual bool Render(bool) override;
-		virtual ImVec2 GetTopLeft() override;
-		virtual ImVec2 GetBottomRight() override;
+		void Render(bool) override;
+		ImVec2 GetTopLeft() override;
+		ImVec2 GetBottomRight() override;
 
 	private:
 		ImVec2 topLeft;

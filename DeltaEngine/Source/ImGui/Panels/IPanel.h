@@ -1,19 +1,16 @@
 #pragma once
 
 #include <string>
-
 #include <imgui.h>
-#include <examples/imgui_impl_win32.h>
-#include <examples/imgui_impl_opengl3.h>
 
 namespace DeltaEngine
 {
 	class IPanel
 	{
 	public:
-		virtual bool Render(bool) = 0;
+		virtual void Render(bool) = 0;
 		IPanel(std::string str) : m_name(str) { }
-		void Enable(bool = true) { m_enabled; }
+		void Enable() { m_enabled = !m_enabled; }
 		bool IsEnabled() const { return m_enabled; }
 		std::string Name() const { return m_name; }
 

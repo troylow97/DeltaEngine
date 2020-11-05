@@ -2,53 +2,29 @@
 
 #include <vector>
 #include <memory>
-#include "ImGui/Panels/IPanel.h"
-#include "ECS/EntityManager.h"
-#include "Core/GlobalStruct.h"
-#include "ImGui\Panels\MainMenuBar.h"
-#include "ImGui\Panels\PropertyInspectorPanel.h"
-#include "ImGui\Panels\TilemapPanel.h"
 
 namespace DeltaEngine
 {
-    class Editor
-    {
-        std::vector<std::unique_ptr<IPanel>> m_panels;
-        const EntityManager& m_em;
-        inline static bool drag;
-    public:
+  struct Event;
+  class EntityManager;
+  class IPanel;
 
-        Editor() = delete;
+  class Editor
+{
+  std::vector<std::unique_ptr<IPanel>> m_panels;
+  inline static bool drag;
+  void MenuBar();
 
-        Editor(EntityManager& ref) : m_em{ ref }
-        {
-            m_panels.push_back(std::make_unique<MainMenuBar>("MainMenu"));
-            m_panels.push_back(std::make_unique<PropertyInspectorPanel>("Property Inspector"));
-            m_panels.push_back(std::make_unique<TilemapPanel>("Tilemap"));
-            m_panels.push_back(std::make_unique<WorldPanel>("World"));
-        }
+public:
 
-        void Render()
-        {
-            for (auto& ref : m_panels)
-            {
-                ref->Render(drag); // update all the panels
-            }
-        }
+  Editor();
+  ~Editor();
+  void Begin();
+  void Render();
+  void End();
 
-        static void OnDragDrop(Event* e)
-        {
-            drag = true;
-        }
-
-        static void OnRemovingDragDrop(Event* e)
-        {
-            drag = false;
-        }
-
-        static void OnDragDropDone(Event* e)
-        {
-            drag = false;
-        }
-    };
+  static void OnDragDrop( Event *e );
+  static void OnRemovingDragDrop( Event *e );
+  static void OnDragDropDone( Event *e );
+};
 }

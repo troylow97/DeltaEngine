@@ -28,9 +28,9 @@ namespace DeltaEngine
         return false;
     }
 
-    bool WorldPanel::Render(bool isdragged)
+    void WorldPanel::Render(bool isdragged)
     {
-        ImGui::Begin( m_name.c_str());
+        ImGui::Begin( m_name.c_str(), &m_enabled);
         auto& em = env.pECS->GetWorld().get_entity_manager();
 
         topLeft = ImGui::GetWindowContentRegionMin();
@@ -94,8 +94,6 @@ namespace DeltaEngine
             ImGui::TreePop();
         }
         ImGui::End();
-
-        return m_enabled;
     }
 
     ImVec2 WorldPanel::GetTopLeft()

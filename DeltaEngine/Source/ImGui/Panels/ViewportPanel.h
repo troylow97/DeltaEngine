@@ -1,16 +1,16 @@
 #pragma once
 
-#include "ImGui/Panels/IPanel.h"
+#include "IPanel.h"
 
 namespace DeltaEngine
 {
-	class TilemapPanel : public IPanel
+	class ViewportPanel : public IPanel
 	{
 	public:
-		TilemapPanel(std::string str);
-		~TilemapPanel();
+		ViewportPanel(std::string str);
+		~ViewportPanel();
 		bool DraggedFileIn();
-		void Render(bool) override;
+    void Render(bool) override;
 		ImVec2 GetTopLeft() override;
 		ImVec2 GetBottomRight() override;
 
