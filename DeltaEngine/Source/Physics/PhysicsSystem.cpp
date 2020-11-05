@@ -30,6 +30,10 @@ namespace DeltaEngine
                 {
 
                 }
+                else if (r1.Direction == Vector2::up())
+                {
+                    r1.AccumulatedForce += {0, Jump_Force};
+                }
                 else
                 {
                     //Player Movement
@@ -42,6 +46,10 @@ namespace DeltaEngine
                 if (r1.hasGravity && !c1.isCollidingOnFloor)
                 {
                     r1.Acceleration = m_gravity_amount;
+                }
+                else
+                {
+                    r1.Acceleration = { 0,0 };
                 }
 
                 //Apply Friction
@@ -58,7 +66,7 @@ namespace DeltaEngine
                 //Apply Soft Drag
                 r1.Velocity *= 0.97f;
 
-                r1.AccumulatedForce = Vector2::zero();
+                r1.AccumulatedForce = { 0,0 };
                 c1.isCollidingOnFloor = false;
             }
         });

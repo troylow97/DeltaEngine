@@ -87,8 +87,8 @@ void CollisionSystem::CollisionHandling()
       {
         if ( it1->id1.index == it2->id1.index && it1->id2.index == it2->id2.index )
         {
-          collision_handler.OnStay( it1->a );
-          collision_handler.OnStay( it1->b );
+          collision_handler.OnStay( it1->id1 );
+          collision_handler.OnStay( it1->id2 );
           Handled = true;
           //DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON STAY");
         }
@@ -96,8 +96,8 @@ void CollisionSystem::CollisionHandling()
 
       if ( !Handled )
       {
-        collision_handler.OnEnter( it1->a );
-        collision_handler.OnEnter( it1->b );
+        collision_handler.OnEnter( it1->id1);
+        collision_handler.OnEnter( it1->id2);
         //DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON ENTER");
       }
     }
@@ -110,8 +110,8 @@ void CollisionSystem::CollisionHandling()
     //handle previous pair exit
     for ( auto it3 = old_manifold_vector.begin(); it3 != old_manifold_vector.end(); it3++ )
     {
-      collision_handler.OnExit( it3->a );
-      collision_handler.OnExit( it3->b );
+      collision_handler.OnExit( it3->id1 );
+      collision_handler.OnExit( it3->id2 );
       //DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON EXIT");
     }
   }
