@@ -1,6 +1,6 @@
 #include "ViewportPanel.h"
 #include "Input/InputManager.h"
-
+#include "Render/Camera.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 

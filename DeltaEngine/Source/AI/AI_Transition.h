@@ -22,13 +22,13 @@ namespace DeltaEngine
 
 	};
 
-	class SawEnemy : public Transition
-	{
-	public:
-		bool isTriggered;
-		virtual std::string getTargetState()
-		{
-			return "idle";
-		}
-	};
+	//class SawEnemy : public Transition
+	//{
+	//public:
+	//	bool isTriggered;
+	//	virtual std::string getTargetState()
+	//	{
+	//		return "idle";
+	//	}
+	//};
 }

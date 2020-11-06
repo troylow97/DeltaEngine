@@ -23,7 +23,7 @@ namespace DeltaEngine
         {
             if (r1.isMoveable)
             {
-                //Check for infinitemass
+                //Check for infinite-mass
                 if (r1.Mass <= 0)
                 {
                     r1.Mass = 1.0f;
@@ -49,6 +49,7 @@ namespace DeltaEngine
                 }
 
 
+
                 //Apply Gravity
                 if (r1.hasGravity && !c1.isCollidingOnFloor)
                 {
@@ -60,14 +61,10 @@ namespace DeltaEngine
                 }
 
                 //Apply Friction
-                if (c1.isCollided)
-                {
-
-                    float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-                    Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
-                    if (dragForceVector.Magnitude() > std::numeric_limits<float>::epsilon())
-                        r1.Velocity += dragForceVector;
-                }
+                float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
+                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
+                if (dragForceVector.Magnitude() > std::numeric_limits<float>::epsilon())
+                    r1.Velocity += dragForceVector;
 
 
                 //Apply Acceleration

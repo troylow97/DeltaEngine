@@ -34,7 +34,6 @@ void CollisionSystem::CollisionIntersectionCheck()
   {
     if ( c1.isCollideable )
     {
-      c1.isCollided = false;
       c1.center = t1.position;
       c1.size = t1.scale;
       em.ForEach( [&]( EntityID id2, RigidBody &r2, Transform &t2, Collider &c2 )
@@ -43,7 +42,6 @@ void CollisionSystem::CollisionIntersectionCheck()
         {
           if ( id1.index != id2.index )
           {
-            c2.isCollided = false;
             c2.center = t2.position;
             c2.size = t2.scale;
             Manifold m;
@@ -64,8 +62,6 @@ void CollisionSystem::CollisionIntersectionCheck()
 
                 if (!already_added)
                 {
-                    c1.isCollided = true;
-                    c2.isCollided = true;
                     AABBvsAABB_Manifold(c1, c2, m);
                     current_manifold_vector.push_back({ c1,c2, m,id1,id2});
                 }
@@ -147,13 +143,11 @@ void CollisionSystem::CollisionResolution()
               {
                   t1.position = r1.PointEnd;
                   c1.center = r1.PointEnd;
-                  r1.PointEnd = { 0,0 };
               }
               if (r2.isMoveable)
               {
                   t2.position = r2.PointEnd;
                   c2.center = r2.PointEnd;
-                  r2.PointEnd = { 0,0 };
               }
 
           }

@@ -14,5 +14,5 @@
 #include "AI.h"
 namespace DeltaEngine
 {
-using ComponentList = Typelist< EntityID, Input,  Collider,  Transform,  RigidBody, Animator, State, Image, Text, Renderer2D>;
+using ComponentList = Typelist< EntityID, Input,  Collider,  Transform,  RigidBody, Animator, State, Image, Text, Renderer2D, AI>;
 }

@@ -22,7 +22,6 @@ namespace DeltaEngine
     bool isCollideable;
     bool isTrigger;
     bool isCollidingOnFloor;
-    bool isCollided;
 
 
     Collider() :

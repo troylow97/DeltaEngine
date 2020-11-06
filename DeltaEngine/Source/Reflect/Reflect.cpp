@@ -86,18 +86,16 @@ RTTR_REGISTRATION
     .property( "has_gravity", &RigidBody::hasGravity )(rttr::policy::prop::bind_as_ptr)
     .property( "is_moveable", &RigidBody::isMoveable )(rttr::policy::prop::bind_as_ptr);
 
-  rttr::registration::class_<Collider>( "collider" )
-    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Collider>()->bits ) )
-    .constructor<>()( rttr::policy::ctor::as_object )
-    .property("center", &Collider::center)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-    .property("size", &Collider::size)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-    .property( "inter_point", &Collider::interPoint )(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-    .property( "type", &Collider::type )
-    .property( "is_collideable", &Collider::isCollideable )(rttr::policy::prop::bind_as_ptr)
-    .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
-    .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-    .property("is_collided", &Collider::isCollided)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
-
+  rttr::registration::class_<Collider>("collider")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Collider>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("center", &Collider::center)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("size", &Collider::size)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("inter_point", &Collider::interPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("type", &Collider::type)
+      .property("is_collideable", &Collider::isCollideable)(rttr::policy::prop::bind_as_ptr)
+      .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
+      .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
   rttr::registration::class_<Input>( "input" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Input>()->bits ) )

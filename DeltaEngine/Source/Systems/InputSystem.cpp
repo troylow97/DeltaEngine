@@ -80,7 +80,7 @@ void InputSystem::Update()
   }
 
   if (InputManager::Get()->IsKeyReleased(DEVK_A) || InputManager::Get()->IsKeyReleased(DEVK_D)
-      || InputManager::Get()->IsKeyReleased(DEVK_S))
+      || InputManager::Get()->IsKeyReleased(DEVK_S) || InputManager::Get()->IsKeyReleased(DEVK_W))
   {
       env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
           {
