@@ -5,9 +5,27 @@
 #include "ECS/ECSModule.h"
 
 #include "Core/Utils/FileUtils.h"
+#include "Core/Utils/FileDialog.h"
+#include "Core/Utils/IFileWatcherListener.h"
+#include "Assets/AssetManager.h"
 
 namespace DeltaEngine
 {
+
+struct AssetDirectoryListener : public IFileWatcherListener
+{
+  void OnFileAdded(std::filesystem::path path) override
+  {
+    //if(path.extension() == ".png" || path.extension() == ".jpg")
+
+    //GetEnv()->pManager->Get<>()
+  }
+  void OnFileChanged(std::filesystem::path path) override;
+  void OnFileDeleted(std::filesystem::path path) override;
+  void OnFileRenamed(std::filesystem::path path) override;
+};
+
+
 
 std::filesystem::path selection;
 

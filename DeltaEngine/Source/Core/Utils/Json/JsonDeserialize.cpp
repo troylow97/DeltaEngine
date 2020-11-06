@@ -16,6 +16,7 @@ namespace DeltaEngine::Deserialize
 void ReadRecursive( instance obj, Value &json_object );
 variant extract_value( Value::MemberIterator &itr, const type &t );
 variant ExtractBasicType( Value &json_value );
+void ExtractPointerType( variant& obj_dat, variant& extracted );
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -151,8 +152,11 @@ void ReadRecursive( instance obj2, Value &json_object )
       default:
       {
         variant extracted_value = ExtractBasicType( json_value );
+
         if ( extracted_value.convert( value_t ) )
           prop.set_value( obj, extracted_value );
+        else if ( value_t.is_pointer() )
+          ExtractPointerType( prop.get_value( obj ), extracted_value );
       }
     }
   }
@@ -221,5 +225,14 @@ variant ExtractBasicType( Value &json_value )
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+void ExtractPointerType( variant& obj_dat, variant& extracted )
+{
+  if (obj_dat.get_type() == type::get<bool*>())
+    *obj_dat.get_value<bool *>() =  extracted.get_value<bool>();
+  else if (obj_dat.get_type() == type::get<float*>())
+    *obj_dat.get_value<float *>() =  extracted.get_value<double>();
+}
+
 
 }

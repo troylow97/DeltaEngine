@@ -15,6 +15,10 @@ public:
   explicit SystemBase( EntityManager &ref ) : em { ref }
   {}
 
+  virtual void Init() {}
+
+  virtual void Deinit() {}
+
   virtual void Update() = 0;
 
   virtual void LateUpdate() = 0;

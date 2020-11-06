@@ -221,19 +221,13 @@ bool WriteAtomic( const type &t, const variant &var, PrettyWriter<FileWriteStrea
 
     return true;
   }
-  if ( t.is_pointer() )
+  if ( t.is_pointer() && t.get_raw_type().is_arithmetic() )
   {
-      if (t == type::get<bool*>())
-      {
-          writer.Double(*var.get_value<bool*>());
-          return  true;
-    }
-      else if (t == type::get<float*>())
-      {
+    if ( t == type::get<bool *>() )
+      writer.Bool( *var.get_value<bool *>() );
+    else if ( t == type::get<float *>() )
       writer.Double( *var.get_value<float *>() );
-      return true;
-      }
-    return false;
+    return true;
   }
 
 
