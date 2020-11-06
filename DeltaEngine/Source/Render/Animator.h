@@ -9,16 +9,18 @@ namespace DeltaEngine
 struct Animator
 {
 private:
+
+  unsigned int m_Frame;
+public:
   using Parameters = AnimationController::Parameters;
   Parameters parameters;
 
   float m_Timer;
-  unsigned int m_Frame;
   float m_Speed;
-public:
-  SpriteRenderer *renderer;
   AnimationController *m_Controller;
   AnimationClip *m_Clip;
+
+  std::string m_ControllerKey, m_ClipKey;
 
   Animator( AnimationController *controller = nullptr );
 
