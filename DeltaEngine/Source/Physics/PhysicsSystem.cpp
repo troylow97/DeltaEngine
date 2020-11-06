@@ -23,12 +23,18 @@ namespace DeltaEngine
         {
             if (r1.isMoveable)
             {
+                //Check for infinitemass
+                if (r1.Mass <= 0)
+                {
+                    r1.Mass = 1.0f;
+                }
+
                 //Set Euler
                 t1.position += r1.Velocity * env.pClock->DeltaTime();                
 
                 if (r1.Direction == Vector2{ 0,-1 } && c1.isCollidingOnFloor)
                 {
-
+                
                 }
                 else if (r1.Direction == Vector2{ 0, 2 })
                 {
@@ -54,11 +60,15 @@ namespace DeltaEngine
                 }
 
                 //Apply Friction
-                float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
+                if (c1.isCollided)
+                {
 
-                if(dragForceVector.Magnitude() > std::numeric_limits<float>::epsilon())
-                    r1.Velocity += dragForceVector;
+                    float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
+                    Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
+                    if (dragForceVector.Magnitude() > std::numeric_limits<float>::epsilon())
+                        r1.Velocity += dragForceVector;
+                }
+
 
                 //Apply Acceleration
                 Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;

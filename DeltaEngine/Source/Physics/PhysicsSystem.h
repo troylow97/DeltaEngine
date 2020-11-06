@@ -17,7 +17,7 @@ public:
 private:
   void PhysicsSystem::UpdateVelocity();
 
-  Vector2 m_gravity_amount = { 0,-10.0f };
+  Vector2 m_gravity_amount = { 0,-12.0f };
   float Jump_Force = 5000.0f;
   float m_max_velocity = 1000.0f;
   END_DEFINE_SYSTEM( PhysicsSystem )

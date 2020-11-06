@@ -54,51 +54,48 @@ namespace DeltaEngine
 	void CollisionSystem::CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
 	{		
 		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+		restitution = 0;
 		Vector2 impulse, reflectedVectorA, reflectedVectorB;
+		impulse = ((m.normal * m.penetration));
 		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
 
-		reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
-		reflectedVectorB = -m.normal / (r1.Mass + r2.Mass) * r1.Mass * (70 * m.penetration) * env.pClock->DeltaTime();
-
+		reflectedVectorA = (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
+		reflectedVectorB = (-impulse / (r1.Mass + r2.Mass)) * r1.Mass;
+		r1.AccumulatedForce += impulse * restitution;
+		r2.AccumulatedForce += -impulse * restitution;
+		//r1.Velocity += (m.normal) * env.pClock->DeltaTime();
+		//r2.Velocity -= (m.normal) * env.pClock->DeltaTime();
+		//r1.Velocity += (m.normal * m.penetration) * env.pClock->DeltaTime();
+		//r2.Velocity += (-m.normal * m.penetration) * env.pClock->DeltaTime();
 		//if (restitution > std::numeric_limits<float>::epsilon())
-		{
-			if (r1.isMoveable)
-			{
-				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution));
-				r1.AccumulatedForce += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
-
-			}
-
-			if (r2.isMoveable)
-			{
-				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution));
-				r2.AccumulatedForce -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
-			}
-		}
-		//else
 		//{
 		//	if (r1.isMoveable)
 		//	{
-		//		impulse = ((m.normal * m.penetration));
+		//		impulse = ((m.normal * m.penetration) + (knockback_amt/r1.Mass * m.normal * restitution));
 		//		r1.AccumulatedForce += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
+		//
 		//	}
 		//
 		//	if (r2.isMoveable)
 		//	{
-		//		impulse = ((m.normal * m.penetration));
+		//		impulse = ((m.normal * m.penetration) + (knockback_amt/r2.Mass * m.normal * restitution));
 		//		r2.AccumulatedForce -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
+		//	}
+		//}
+		//else
+		//{
+		//	if (r1.isMoveable)
+		//	{			
+		//		r1.AccumulatedForce += (impulse / (r1.Mass + r2.Mass)) * r2.Mass * env.pClock->DeltaTime();
+		//	}
+		//
+		//	if (r2.isMoveable)
+		//	{
+		//		r2.AccumulatedForce -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass * env.pClock->DeltaTime();
 		//	}
 		//}	
 		r1.PointEnd = c1.center + reflectedVectorA;
 		r2.PointEnd = c2.center + reflectedVectorB;
-		//if (reflectedVectorA.Magnitude() > std::numeric_limits<float>::epsilon())
-		//	r1.PointEnd = c1.center + reflectedVectorA;
-		//else
-		//	r1.PointEnd = c1.center;
-		//if (reflectedVectorB.Magnitude() > std::numeric_limits<float>::epsilon())
-		//	r2.PointEnd = c2.center + reflectedVectorB;
-		//else
-		//	r2.PointEnd = c2.center;
 	}
 
 	void CollisionSystem::CollisionResponse_BoxCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)

@@ -95,7 +95,8 @@ RTTR_REGISTRATION
     .property( "type", &Collider::type )
     .property( "is_collideable", &Collider::isCollideable )(rttr::policy::prop::bind_as_ptr)
     .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
-    .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+    .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+    .property("is_collided", &Collider::isCollided)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
 
   rttr::registration::class_<Input>( "input" )
