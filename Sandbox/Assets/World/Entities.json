@@ -9,121 +9,7 @@
                 },
                 "position": {
                     "x": 0.0,
-                    "y": -2.4047789573669435,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 6.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
                     "y": 0.0,
-                    "z": 0.0,
-                    "w": 0.0
-                }
-            },
-            "collider": {
-                "type": "box",
-                "is_collideable": "",
-                "is_trigger": ""
-            },
-            "rigidbody": {
-                "mass": "",
-                "movespeed": "",
-                "restitution": "",
-                "friction_coeff": "",
-                "has_gravity": "",
-                "is_moveable": ""
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 3.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 4.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 0.0
-                }
-            },
-            "collider": {
-                "type": "box",
-                "is_collideable": "",
-                "is_trigger": ""
-            },
-            "rigidbody": {
-                "mass": "",
-                "movespeed": "",
-                "restitution": "",
-                "friction_coeff": "",
-                "has_gravity": "",
-                "is_moveable": ""
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": -1.904680609703064,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 1.0,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 0.0
-                }
-            },
-            "collider": {
-                "type": "box",
-                "is_collideable": "",
-                "is_trigger": ""
-            },
-            "rigidbody": {
-                "mass": "",
-                "movespeed": "",
-                "restitution": "",
-                "friction_coeff": "",
-                "has_gravity": "",
-                "is_moveable": ""
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 2.1218249797821047,
-                    "y": -2.74651888985085e-16,
                     "z": 0.0
                 },
                 "scale": {
@@ -152,7 +38,7 @@
                 "is_moveable": ""
             },
             "input": {
-                "prev": 83,
+                "prev": 0,
                 "curr": 0
             }
         },
@@ -164,96 +50,34 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": 0.0,
-                    "y": 0.0,
+                    "x": 2.0,
+                    "y": 3.0,
                     "z": 0.0
                 },
                 "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
+                    "x": 0.0,
+                    "y": 0.0,
                     "z": 0.0
                 },
                 "rotation": {
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0,
-                    "w": 1.0
+                    "w": 0.0
                 }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
+            },
+            "collider": {
+                "type": "box",
+                "is_collideable": "",
+                "is_trigger": ""
+            },
+            "rigidbody": {
+                "mass": "",
+                "movespeed": "",
+                "restitution": "",
+                "friction_coeff": "",
+                "has_gravity": "",
+                "is_moveable": ""
             }
         }
     ]

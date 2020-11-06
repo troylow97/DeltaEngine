@@ -14,13 +14,21 @@
 #include "Core/TypeAlias.h"
 
 namespace DeltaEngine
-{
-	class Transition
+{	class Transition
 	{
 	public:
 		bool isTriggered;
 		virtual std::string getTargetState() = 0;
-		virtual Action<> getAction() = 0;
+
 	};
 
+	class SawEnemy : public Transition
+	{
+	public:
+		bool isTriggered;
+		virtual std::string getTargetState()
+		{
+			return "idle";
+		}
+	};
 }

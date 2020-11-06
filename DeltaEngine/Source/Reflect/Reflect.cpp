@@ -107,8 +107,8 @@ RTTR_REGISTRATION
   rttr::registration::class_<AI>("ai")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("state", &AI::key)
-      .property("index", &AI::index);
+      .property("state", &AI::key)(rttr::policy::prop::bind_as_ptr)
+      .property("index", &AI::index)(rttr::policy::prop::bind_as_ptr);
 
 }
 

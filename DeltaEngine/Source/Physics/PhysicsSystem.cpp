@@ -30,7 +30,7 @@ namespace DeltaEngine
                 {
 
                 }
-                else if (r1.Direction == Vector2::up())
+                else if (r1.Direction == Vector2{ 0, 2 })
                 {
                     r1.AccumulatedForce += {0, Jump_Force};
                     r1.Direction = Vector2::zero();

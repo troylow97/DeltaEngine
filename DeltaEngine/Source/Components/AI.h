@@ -4,7 +4,7 @@
 struct AI
 {
 	std::string key;	// "guard"
-	unsigned int index;
+	unsigned int index; //Not used
 
 	AI() :
 		key{"idle"},

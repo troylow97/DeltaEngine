@@ -38,7 +38,7 @@ namespace DeltaEngine
 		}
 		virtual void Update() override
 		{
-
+			std::cout << "smth" << std::endl;
 		}
 
 		Idle()

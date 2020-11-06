@@ -20,41 +20,53 @@ namespace DeltaEngine
 	void AISystem::Init()
 	{
 		StateList["idle"] = new Idle();
+		em.ForEach([&](EntityID id, AI ai)
+			{
+				ai.key = "idle";
+			});
 	}
 
 	void AISystem::Update()
 	{
 		Init();
 		//Check and apply transitions
-        em.ForEach([&](EntityID id,AI ai)
-        {
+       em.ForEach([&](EntityID id,AI ai)
+       {
 			bool isChanged{ false };
 			AIState* ai_state = StateList[ai.key];
-			[&]()
+
+			if (ai_state != nullptr)
 			{
-				for (std::pair<std::string, Transition*> ref : ai_state->TransitionEdges)
+				[&]()
 				{
-					if (ref.second->isTriggered)
+					for (std::pair<std::string, Transition*> ref : ai_state->TransitionEdges)
 					{
-						ai_state->onExit();
-						ai.key = ref.first;
-						ai_state = StateList[ref.first];
-						ai_state->onEnter();
-						isChanged = true;
+						if (ref.second->isTriggered)
+						{
+							ai_state->onExit();
+							ai.key = ref.first;
+							ai_state = StateList[ref.first];
+							ai_state->onEnter();
+							isChanged = true;
+						}
 					}
+
+				}();
+
+				//No transitions occured, AI updates its current state
+				if (!isChanged)
+				{
+					ai_state->Update();
 				}
 
-			}();
-
-		//No transitions occured, AI updates its current state
-			if (!isChanged)
-			{
-				ai_state->Update();
 			}
 
+		
 
-
-        });
+		
+		
+		
+       });
 	}
 
 	void AISystem::LateUpdate()

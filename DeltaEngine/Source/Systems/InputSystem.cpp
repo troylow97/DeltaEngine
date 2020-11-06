@@ -53,14 +53,14 @@ void InputSystem::Update()
       a.SetFloat( "Speed", 0.0f );
     } );
   }
-  //if ( InputManager::Get()->IsKeyPressed( DEVK_W ) )
-  //{
-  //  env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
-  //  {
-  //    i1.previousKey = DEVK_W;
-  //    r1.Direction = Vector2::up();
-  //  } );
-  //}
+  if ( InputManager::Get()->IsKeyPressed( DEVK_W ) )
+  {
+    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
+    {
+      i1.previousKey = DEVK_W;
+      r1.Direction = Vector2::up();
+    } );
+  }
   if ( InputManager::Get()->IsKeyPressed( DEVK_S ) )
   {
     env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
@@ -75,7 +75,7 @@ void InputSystem::Update()
       env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
           {
               i1.previousKey = DEVK_SPACE;
-              r1.Direction = Vector2::up();
+              r1.Direction = { 0,2 };
           });
   }
 
