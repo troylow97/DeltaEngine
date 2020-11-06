@@ -33,7 +33,7 @@ namespace DeltaEngine
 
     bool TilemapPanel::Render(bool isdragged)
     {
-        ImGui::Begin(m_name.c_str());
+        ImGui::Begin(m_name.c_str()/*, (bool*)true, ImGuiWindowFlags_AlwaysAutoResize*/);
         auto& em = env.pECS->GetWorld().get_entity_manager();
 
         topLeft = ImGui::GetWindowContentRegionMin();
@@ -64,9 +64,10 @@ namespace DeltaEngine
             std::string fileName;
             for (size_t i = index + 1; i < filePath.length(); ++i)
             {
-                fileName += filePath[i];
+                fileName += filePath[i]; // get fileName as XXX.png
             }
 
+            // only files that end with .png will be loaded as texture 
             if (tileInfo.find(fileName) == tileInfo.end())
             {
                 size_t n = std::count(fileName.begin(), fileName.end(), '.');
@@ -84,30 +85,68 @@ namespace DeltaEngine
                 }
             }
             
-            std::vector<Sprite> spritelist;
             uint64_t textureID;
             Sprite _sprite = { fileName, 0 };
-            spritelist.push_back(_sprite);
 
-            for (int i = 0; i < spritelist.size(); ++i)
+            // setting all png files as ImageButton 
+            textureID = _sprite.GetTexture()->GetRendererID();
+            if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
+                ImVec2{ 32,32 },
+                ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y }))
             {
-                textureID = spritelist[i].GetTexture()->GetRendererID();
+                //std::cout << "clicking tiles" << std::endl;
+            }
+            ImGui::SameLine();
 
-                if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
+            ImGuiDragDropFlags src_flags = 0;
+            src_flags |= ImGuiDragDropFlags_SourceNoDisableHover;     // Keep the source displayed as hovered
+            src_flags |= ImGuiDragDropFlags_SourceAllowNullID; // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
+
+            if (ImGui::BeginDragDropSource(src_flags))
+            {
+                ImGui::SetDragDropPayload("TILES", &textureID, sizeof(int));
+                std::cout << "dragging tiles" << std::endl;
+                // display preview (decide whether to display the filename or preview the texture)
+                ImGui::Image(reinterpret_cast<void*>(textureID),
                     ImVec2{ 32,32 },
-                    ImVec2{ spritelist[i].GetOffset().x, spritelist[i].GetOffset().y },
-                    ImVec2{ spritelist[i].GetOffset().x + spritelist[i].GetTiling().x, spritelist[i].GetOffset().y + spritelist[i].GetTiling().y }))
-                {
-                    //static int textureClicked = 0;
-                    //textureClicked++;
-                    //std::cout << "textureclicked is " << textureClicked << std::endl;
-                    //
-                    //if (textureClicked & 1)
-                    //{
-                    //    //strcpy(str1, spritelist[i].GetName().c_str());
-                    //}
-                }
-                ImGui::SameLine();
+                    ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                    ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
+                ImGui::Text(fileName.c_str());
+                ImGui::EndDragDropSource();
+            }
+
+            ImGui::Begin("test");
+            {
+                //ImGui::Image(reinterpret_cast<void*>(textureID),
+                //    ImVec2{ 32,32 },
+                //    ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                //    ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
+                //ImGui::SameLine();
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //if (ImGui::BeginDragDropTarget())
+                //{
+                //    ImGuiDragDropFlags target_flags = 0;
+                //    target_flags |= ImGuiDragDropFlags_AcceptBeforeDelivery;    // Don't wait until the delivery (release mouse button on a target) to do something
+                //    target_flags |= ImGuiDragDropFlags_AcceptNoDrawDefaultRect; // Don't display the yellow rectangle
+                //
+                //    if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("TILES", target_flags))
+                //    {
+                //        uint64_t payload_n = *(const uint64_t*)payload->Data;
+                //        // do the tiling
+                //        std::cout << "dropped tiles" << std::endl;
+                //
+                //        std::cout << "payload_n is " << payload_n << std::endl;
+                //
+                //        ImGui::Image(reinterpret_cast<void*>(payload_n),
+                //            ImVec2{ 32,32 },
+                //            ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                //            ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
+                //    }
+                //    ImGui::EndDragDropTarget();
+                //}
+
+                ImGui::End();
             }
         }
 

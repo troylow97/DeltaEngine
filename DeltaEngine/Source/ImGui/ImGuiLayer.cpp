@@ -74,194 +74,217 @@ void ImGuiLayer::OnEvent(Event* e)
 
 void ImGuiLayer::Begin()
 {
-  ImGui_ImplOpenGL3_NewFrame();
-  ImGui_ImplWin32_NewFrame();
-  ImGui::NewFrame();
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    ImGui::NewFrame();
 
-  // Note: Switch this to true to enable dockspace
-  static bool dockspaceOpen = true;
-  static bool opt_fullscreen_persistant = true;
-  bool opt_fullscreen = opt_fullscreen_persistant;
-  static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
+    // Note: Switch this to true to enable dockspace
+    static bool dockspaceOpen = true;
+    static bool opt_fullscreen_persistant = true;
+    bool opt_fullscreen = opt_fullscreen_persistant;
+    static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
 
-  auto &em = env.pECS->GetWorld().get_entity_manager();
-  auto &ref = ImGui::GetIO();
-  std::memcpy( &ref.KeysDown[0], InputManager::Get()->GetKeys(), 256 );
+    auto& em = env.pECS->GetWorld().get_entity_manager();
+    auto& ref = ImGui::GetIO();
+    std::memcpy(&ref.KeysDown[0], InputManager::Get()->GetKeys(), 256);
 
-  //if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_N ) )
-  //  GetEnv().pECS->GetWorld().get_entity_manager().Clear();
+    //if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_N ) )
+    //  GetEnv().pECS->GetWorld().get_entity_manager().Clear();
 
-  // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
-  // because it would be confusing to have two docking targets within each others.
-  ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
-  if ( opt_fullscreen )
-  {
-    ImGuiViewport *viewport = ImGui::GetMainViewport();
-    ImGui::SetNextWindowPos( viewport->Pos );
-    ImGui::SetNextWindowSize( viewport->Size );
-    ImGui::SetNextWindowViewport( viewport->ID );
-    ImGui::PushStyleVar( ImGuiStyleVar_WindowRounding, 0.0f );
-    ImGui::PushStyleVar( ImGuiStyleVar_WindowBorderSize, 0.0f );
-    window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-    window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
-  }
-
-  // When using ImGuiDockNodeFlags_PassthruCentralNode, DockSpace() will render our background and handle the pass-thru hole, so we ask Begin() to not render a background.
-  if ( dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode )
-    window_flags |= ImGuiWindowFlags_NoBackground;
-
-  // Important: note that we proceed even if Begin() returns false (aka window is collapsed).
-  // This is because we want to keep our DockSpace() active. If a DockSpace() is inactive, 
-  // all active windows docked into it will lose their parent and become undocked.
-  // We cannot preserve the docking relationship between an active window and an inactive docking, otherwise 
-  // any change of dockspace/settings would lead to windows being stuck in limbo and never being visible.
-  ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, ImVec2( 0.0f, 0.0f ) );
-  ImGui::Begin( "DockSpace Demo", &dockspaceOpen, window_flags );
-  ImGui::PopStyleVar();
-
-  if ( opt_fullscreen )
-    ImGui::PopStyleVar( 2 );
-
-  // DockSpace
-  ImGuiIO &io = ImGui::GetIO();
-  if ( io.ConfigFlags & ImGuiConfigFlags_DockingEnable )
-  {
-    ImGuiID dockspace_id = ImGui::GetID( "MyDockSpace" );
-    ImGui::DockSpace( dockspace_id, ImVec2( 0.0f, 0.0f ), dockspace_flags );
-  }
-
-  if ( ImGui::BeginMenuBar() )
-  {
-    if ( ImGui::BeginMenu( "File" ) )
+    // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
+    // because it would be confusing to have two docking targets within each others.
+    ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
+    if (opt_fullscreen)
     {
-      // Disabling fullscreen would allow the window to be moved to the front of other windows, 
-      // which we can't undo at the moment without finer window depth/z control.
-      //ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
-
-      if ( ImGui::MenuItem( "Print" ) )
-        std::cout << "This is a test print" << std::endl;
-      ImGui::EndMenu();
+        ImGuiViewport* viewport = ImGui::GetMainViewport();
+        ImGui::SetNextWindowPos(viewport->Pos);
+        ImGui::SetNextWindowSize(viewport->Size);
+        ImGui::SetNextWindowViewport(viewport->ID);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+        window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+        window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
     }
 
-    ImGui::EndMenuBar();
-  }
-  // camera properties
-  {
-    ImGui::Begin( "Camera" );
-    static float f = 0.0f;
-    ImGui::Text( "Edit Camera Props" );                           // Display some text (you can use a format string too)
-    ImGui::DragFloat3( "pos", (float *) &Camera::editorCamera->transform.position, 0.01f );
-    ImGui::DragFloat( "size", (float *) &Camera::editorCamera->m_Size, 0.01f );
-    ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
-    Camera::editorCamera->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
-    ImGui::Text( "Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate );
-    ImGui::End();
-  }
-  // viewport
-  {
-    ImGui::Begin( "Viewport" );
+    // When using ImGuiDockNodeFlags_PassthruCentralNode, DockSpace() will render our background and handle the pass-thru hole, so we ask Begin() to not render a background.
+    if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode)
+        window_flags |= ImGuiWindowFlags_NoBackground;
 
-    ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ImVec2 renderPos = ImGui::GetCursorScreenPos();     // gives top left of the window
-    ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
-    float height = renderPos.y + renderSize.y;          // gets bottom right of the screen
-    float width = renderPos.x + renderSize.x;           // gets bottom right of the screen
-    // check if cursor is in the viewport
-    if ( InputManager::Get()->CurrentPosition().point_x >= renderPos.x && InputManager::Get()->CurrentPosition().point_x <= width
-         && InputManager::Get()->CurrentPosition().point_y >= renderPos.y && InputManager::Get()->CurrentPosition().point_y <= height )
+    // Important: note that we proceed even if Begin() returns false (aka window is collapsed).
+    // This is because we want to keep our DockSpace() active. If a DockSpace() is inactive, 
+    // all active windows docked into it will lose their parent and become undocked.
+    // We cannot preserve the docking relationship between an active window and an inactive docking, otherwise 
+    // any change of dockspace/settings would lead to windows being stuck in limbo and never being visible.
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+    ImGui::Begin("DockSpace Demo", &dockspaceOpen, window_flags);
+    ImGui::PopStyleVar();
+
+    if (opt_fullscreen)
+        ImGui::PopStyleVar(2);
+
+    // DockSpace
+    ImGuiIO& io = ImGui::GetIO();
+    if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
     {
-      float cameraWidth = Camera::editorCamera->Max().x - Camera::editorCamera->Min().x;
-      float cameraHeight = Camera::editorCamera->Max().y - Camera::editorCamera->Min().y;
-      float cursorViewPortDistanceX = InputManager::Get()->CurrentPosition().point_x - renderPos.x;
-      float cursorViewPortDistanceY = InputManager::Get()->CurrentPosition().point_y - renderPos.y;
-      float newCursorX = ( cursorViewPortDistanceX / renderSize.x ) * cameraWidth + Camera::editorCamera->Min().x;
-      float newCursorY = Camera::editorCamera->Max().y - ( cursorViewPortDistanceY / renderSize.y ) * cameraHeight;
-
-      InputManager::Get()->SetCurrentCameraPosition( Point( newCursorX, newCursorY ) );
-      //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
+        ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+        ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
     }
-    else
+
+    if (ImGui::BeginMenuBar())
     {
-      InputManager::Get()->SetCurrentCameraPosition( InputManager::Get()->CurrentPosition() );
-      //std::cout << "x is " << InputManager::Get()->CurrentCameraPosition().point_x << " and y is " << InputManager::Get()->CurrentCameraPosition().point_y << std::endl;
+        if (ImGui::BeginMenu("File"))
+        {
+            // Disabling fullscreen would allow the window to be moved to the front of other windows, 
+            // which we can't undo at the moment without finer window depth/z control.
+            //ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
+
+            if (ImGui::MenuItem("Print"))
+                std::cout << "This is a test print" << std::endl;
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMenuBar();
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Camera::editorCamera->SetAspectRatio( viewportPanelSize.x, viewportPanelSize.y );
-    Camera::editorCamera->SetViewportSize( viewportPanelSize.x );
-    uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
-    ImGui::Image( reinterpret_cast<void *>( textureID ), viewportPanelSize, ImVec2 { 0, 1 }, ImVec2 { 1, 0 } );
-    ImGui::End();
-  }
-  // renderers
-  if ( RenderModule::allRenderers.size() > 0 )
-  {
-    ImGui::Begin( "SpriteRenderer1" );
+    // camera properties
+    {
+        ImGui::Begin("Camera");
+        static float f = 0.0f;
+        ImGui::Text("Edit Camera Props");                           // Display some text (you can use a format string too)
+        ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
+        ImGui::DragFloat("size", (float*)&Camera::editorCamera->m_Size, 0.01f);
+        ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
+        Camera::editorCamera->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        ImGui::End();
+    }
+    // viewport
+    {
+        ImGui::Begin("Viewport");
 
-    static float f = 0.0f;
-    ImGui::Text( "Edit Background Props" );                           // Display some text (you can use a format string too)
-    ImGui::Checkbox( "Active", &RenderModule::allRenderers[0]->m_Active );
-    ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[0]->transform.position, 0.01f );
-    ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[0]->transform.scale, 0.01f );
-    ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
-    RenderModule::allRenderers[0]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
-    ImGui::Text( "Sprite Name: %s", dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->sprite.GetName().c_str() );
-    ImGui::Checkbox( "Flip X", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_FlipX );
-    ImGui::Checkbox( "Flip Y", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_FlipY );
-    ImGui::Checkbox( "Shaded", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_Shaded );
-    ImGui::Checkbox( "Wireframe", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_Wireframe );
+        ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ImVec2 renderPos = ImGui::GetCursorScreenPos();     // gives top left of the window
+        ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
+        float height = renderPos.y + renderSize.y;          // gets bottom right of the screen
+        float width = renderPos.x + renderSize.x;           // gets bottom right of the screen
+        // check if cursor is in the viewport
+        if (InputManager::Get()->CurrentPosition().point_x >= renderPos.x && InputManager::Get()->CurrentPosition().point_x <= width
+            && InputManager::Get()->CurrentPosition().point_y >= renderPos.y && InputManager::Get()->CurrentPosition().point_y <= height)
+        {
+            float cameraWidth = Camera::editorCamera->Max().x - Camera::editorCamera->Min().x;
+            float cameraHeight = Camera::editorCamera->Max().y - Camera::editorCamera->Min().y;
+            float cursorViewPortDistanceX = InputManager::Get()->CurrentPosition().point_x - renderPos.x;
+            float cursorViewPortDistanceY = InputManager::Get()->CurrentPosition().point_y - renderPos.y;
+            float newCursorX = (cursorViewPortDistanceX / renderSize.x) * cameraWidth + Camera::editorCamera->Min().x;
+            float newCursorY = Camera::editorCamera->Max().y - (cursorViewPortDistanceY / renderSize.y) * cameraHeight;
 
-    ImGui::End();
-  }
-  if ( RenderModule::allRenderers.size() > 1 )
-  {
-    ImGui::Begin( "SpriteRenderer2" );
+            InputManager::Get()->SetCurrentCameraPosition(Point(newCursorX, newCursorY));
+            //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
+        }
+        else
+        {
+            InputManager::Get()->SetCurrentCameraPosition(InputManager::Get()->CurrentPosition());
+            //std::cout << "x is " << InputManager::Get()->CurrentCameraPosition().point_x << " and y is " << InputManager::Get()->CurrentCameraPosition().point_y << std::endl;
+        }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Camera::editorCamera->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
+        Camera::editorCamera->SetViewportSize(viewportPanelSize.x);
+        uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
+        ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
-    static float f = 0.0f;
-    ImGui::Text( "Edit Sprite Props" );                           // Display some text (you can use a format string too)
-    ImGui::Checkbox( "Active", &RenderModule::allRenderers[1]->m_Active );
-    ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[1]->transform.position, 0.01f );
-    ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[1]->transform.scale, 0.01f );
-    ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
-    RenderModule::allRenderers[1]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
-    ImGui::Text( "Sprite Name: %s", dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->sprite.GetName().c_str() );
-    ImGui::Checkbox( "Flip X", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_FlipX );
-    ImGui::Checkbox( "Flip Y", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_FlipY );
-    ImGui::Checkbox( "Shaded", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Shaded );
-    ImGui::Checkbox( "Wireframe", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Wireframe );
 
-    ImGui::End();
-  }
-  if ( RenderModule::allRenderers.size() > 2 )
-  {
-    ImGui::Begin( "TextRenderer" );
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////if (ImGui::BeginDragDropTarget())
+        //////{
+        //////    ImGuiDragDropFlags target_flags = 0;
+        //////    target_flags |= ImGuiDragDropFlags_AcceptBeforeDelivery;    // Don't wait until the delivery (release mouse button on a target) to do something
+        //////    target_flags |= ImGuiDragDropFlags_AcceptNoDrawDefaultRect; // Don't display the yellow rectangle
+        //////
+        //////    if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("TILES", target_flags))
+        //////    {
+        //////        uint64_t payload_n = *(const uint64_t*)payload->Data;
+        //////        // do the tiling
+        //////        std::cout << "dropped tiles" << std::endl;
+        //////
+        //////        std::cout << "payload_n is " << payload_n << std::endl;
+        //////
+        //////        ImGui::Image(reinterpret_cast<void*>(payload_n),
+        //////            ImVec2{ 32,32 },
+        //////            ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+        //////            ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
+        //////    }
+        //////    ImGui::EndDragDropTarget();
+        //////}
+        ImGui::End();
+    }
+    // renderers
+    if (RenderModule::allRenderers.size() > 0)
+    {
+        ImGui::Begin("SpriteRenderer1");
 
-    static float f = 0.0f;
-    ImGui::Text( "Edit Text Props" );                           // Display some text (you can use a format string too)
-    ImGui::Checkbox( "Active", &RenderModule::allRenderers[2]->m_Active );
-    ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[2]->transform.position, 0.01f );
-    ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[2]->transform.scale, 0.01f );
-    ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
-    RenderModule::allRenderers[2]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+        static float f = 0.0f;
+        ImGui::Text("Edit Background Props");                           // Display some text (you can use a format string too)
+        ImGui::Checkbox("Active", &RenderModule::allRenderers[0]->m_Active);
+        ImGui::DragFloat3("pos", (float*)&RenderModule::allRenderers[0]->transform.position, 0.01f);
+        ImGui::DragFloat3("size", (float*)&RenderModule::allRenderers[0]->transform.scale, 0.01f);
+        ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
+        RenderModule::allRenderers[0]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+        ImGui::Text("Sprite Name: %s", dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->sprite.GetName().c_str());
+        ImGui::Checkbox("Flip X", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->m_FlipX);
+        ImGui::Checkbox("Flip Y", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->m_FlipY);
+        ImGui::Checkbox("Shaded", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->m_Shaded);
+        ImGui::Checkbox("Wireframe", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[0])->m_Wireframe);
 
-    ImGui::End();
-  }
-  if ( RenderModule::allRenderers.size() > 3 )
-  {
-    ImGui::Begin( "Particle System" );
+        ImGui::End();
+    }
+    if (RenderModule::allRenderers.size() > 1)
+    {
+        ImGui::Begin("SpriteRenderer2");
 
-    static float f = 0.0f;
-    ImGui::Checkbox( "Active", &RenderModule::allRenderers[3]->m_Active );
-    ImGui::Text( "Edit Particle System Props" );                           // Display some text (you can use a format string too)
-    ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[3]->transform.position, 0.01f );
-    ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[3]->transform.scale, 0.01f );
-    ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
-    RenderModule::allRenderers[3]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+        static float f = 0.0f;
+        ImGui::Text("Edit Sprite Props");                           // Display some text (you can use a format string too)
+        ImGui::Checkbox("Active", &RenderModule::allRenderers[1]->m_Active);
+        ImGui::DragFloat3("pos", (float*)&RenderModule::allRenderers[1]->transform.position, 0.01f);
+        ImGui::DragFloat3("size", (float*)&RenderModule::allRenderers[1]->transform.scale, 0.01f);
+        ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
+        RenderModule::allRenderers[1]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+        ImGui::Text("Sprite Name: %s", dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[1])->sprite.GetName().c_str());
+        ImGui::Checkbox("Flip X", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[1])->m_FlipX);
+        ImGui::Checkbox("Flip Y", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[1])->m_FlipY);
+        ImGui::Checkbox("Shaded", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[1])->m_Shaded);
+        ImGui::Checkbox("Wireframe", &dynamic_cast<SpriteRenderer*>(RenderModule::allRenderers[1])->m_Wireframe);
 
-    ImGui::End();
-  }
-  // selection
+        ImGui::End();
+    }
+    if (RenderModule::allRenderers.size() > 2)
+    {
+        ImGui::Begin("TextRenderer");
 
+        static float f = 0.0f;
+        ImGui::Text("Edit Text Props");                           // Display some text (you can use a format string too)
+        ImGui::Checkbox("Active", &RenderModule::allRenderers[2]->m_Active);
+        ImGui::DragFloat3("pos", (float*)&RenderModule::allRenderers[2]->transform.position, 0.01f);
+        ImGui::DragFloat3("size", (float*)&RenderModule::allRenderers[2]->transform.scale, 0.01f);
+        ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
+        RenderModule::allRenderers[2]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+
+        ImGui::End();
+    }
+    if (RenderModule::allRenderers.size() > 3)
+    {
+        ImGui::Begin("Particle System");
+
+        static float f = 0.0f;
+        ImGui::Checkbox("Active", &RenderModule::allRenderers[3]->m_Active);
+        ImGui::Text("Edit Particle System Props");                           // Display some text (you can use a format string too)
+        ImGui::DragFloat3("pos", (float*)&RenderModule::allRenderers[3]->transform.position, 0.01f);
+        ImGui::DragFloat3("size", (float*)&RenderModule::allRenderers[3]->transform.scale, 0.01f);
+        ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
+        RenderModule::allRenderers[3]->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+
+        ImGui::End();
+    }
+    // selection
   //{
   //  if ( ImGui::BeginMainMenuBar() )
   //  {

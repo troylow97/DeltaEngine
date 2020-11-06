@@ -147,9 +147,9 @@ void Application::Run()
       m_ImGuiLayer->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       env.pWin->Update();
-      if (!AudioEngine::IsChannelPlaying(i))
-        i = AudioEngine::PlaySound( "Audio/jump.wav" );
-      AudioEngine::Update();
+      //if (!AudioEngine::IsChannelPlaying(i))
+      //  i = AudioEngine::PlaySound( "Audio/jump.wav" );
+      //AudioEngine::Update();
       OnEvent();
     }
   }
