@@ -10,7 +10,6 @@ DEFINE_SYSTEM( PhysicsSystem, RigidBody, Transform, Collider )
 public:
   PhysicsSystem::PhysicsSystem() = default;
   ~PhysicsSystem() = default;
-  //CollisionSystem collision_system();
 
   virtual void PhysicsSystem::Update() override;
   virtual void PhysicsSystem::LateUpdate() override;
@@ -18,7 +17,7 @@ public:
 private:
   void PhysicsSystem::UpdateVelocity();
 
-  Vector2 m_gravity_amount = { 0,-5.0f };
+  Vector2 m_gravity_amount = { 0,-10.0f };
   float m_max_velocity = 1000.0f;
   END_DEFINE_SYSTEM( PhysicsSystem )
 }

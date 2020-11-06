@@ -51,6 +51,8 @@ public:
 
   size_t EntityIDSelected();                                   // getter
   void SetEntityIDSelected(size_t _setEntityIDSelected);       // setter
+
+  bool *GetKeys();
 };
 
 }

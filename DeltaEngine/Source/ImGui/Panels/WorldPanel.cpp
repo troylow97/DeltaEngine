@@ -28,9 +28,9 @@ namespace DeltaEngine
         return false;
     }
 
-    bool WorldPanel::Render(bool isdragged)
+    void WorldPanel::Render(bool isdragged)
     {
-        ImGui::Begin( m_name.c_str());
+        ImGui::Begin( m_name.c_str(), &m_enabled);
         auto& em = env.pECS->GetWorld().get_entity_manager();
 
         topLeft = ImGui::GetWindowContentRegionMin();
@@ -50,6 +50,8 @@ namespace DeltaEngine
         {
             for (size_t e_id = 0; e_id < em.GetEntities().size(); e_id++)
             {
+              if (em.GetEntities()[e_id].chunk )
+              {
                 static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
 
                 ImGuiTreeNodeFlags node_flags = base_flags;
@@ -58,9 +60,11 @@ namespace DeltaEngine
                 ImGui::TreeNodeEx((void*)(intptr_t)e_id, node_flags, "entity %d", e_id);
                 if (ImGui::IsItemClicked())
                 {
-                    InputManager::Get()->SetEntitySelected(true);
-                    InputManager::Get()->SetEntityIDSelected(e_id);
+                  InputManager::Get()->SetEntitySelected(true);
+                  InputManager::Get()->SetEntityIDSelected(e_id);
                 }
+              }
+               
             }
             ImGui::TreePop();
         }
@@ -90,8 +94,6 @@ namespace DeltaEngine
             ImGui::TreePop();
         }
         ImGui::End();
-
-        return m_enabled;
     }
 
     ImVec2 WorldPanel::GetTopLeft()

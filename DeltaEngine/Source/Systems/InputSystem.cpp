@@ -70,6 +70,15 @@ void InputSystem::Update()
     } );
   }
 
+  if (InputManager::Get()->IsKeyTriggered(DEVK_SPACE))
+  {
+      env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+          {
+              i1.previousKey = DEVK_S;
+              r1.AccumulatedForce += Vector2{0, 5000};
+          });
+  }
+
   if (InputManager::Get()->IsKeyReleased(DEVK_A) || InputManager::Get()->IsKeyReleased(DEVK_D)
       || InputManager::Get()->IsKeyReleased(DEVK_W) || InputManager::Get()->IsKeyReleased(DEVK_S))
   {

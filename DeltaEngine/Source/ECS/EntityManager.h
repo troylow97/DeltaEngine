@@ -37,6 +37,8 @@ public:
 
   ~EntityManager();
 
+  void Clear();
+
   template <typename... C>
   EntityID CreateEntity();
 
@@ -53,7 +55,7 @@ public:
   rttr::instance GetComponent( EntityID id, size_t bits );
 
   template <typename C>
-  void AddComponent( EntityID id, C &comp );
+  void AddComponent( EntityID id, C comp );
 
   template <typename C>
   void AddComponent( EntityID id );
@@ -69,7 +71,7 @@ public:
 
   Archetype *GetEmptyArchetype();
 
-  const std::vector<Description::Details> &GetEntityArchetype(size_t id);
+  const std::vector<Description::Details> *GetEntityArchetype(size_t id);
 
 private:
   bool IsEntityValid( EntityID id );

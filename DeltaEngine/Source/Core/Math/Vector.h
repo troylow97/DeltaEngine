@@ -19,6 +19,7 @@ struct DE_API Vector2
   static const Vector2 left();
   static const Vector2 right();
   Vector2 Normalize();
+  float Length() const;
   Vector2 normalized() const;
   float Magnitude() const;
   float SqrMagnitude() const;
