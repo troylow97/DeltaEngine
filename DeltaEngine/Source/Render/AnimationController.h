@@ -1,29 +1,18 @@
 #pragma once
 
 #include "AnimationClip.h"
-#include "SpriteRenderer.h"
+#include "Components/State.h"
 
 namespace DeltaEngine
 {
 class AnimationController
 {
 public:
-  struct Parameter
-  {
-    bool boolValue;
-    float floatValue;
-  };
-  enum class Conditions
-  {
-    BoolEqual,
-    Equal,
-    NotEqual,
-    Greater,
-    Less,
-  };
-  using Parameters = std::unordered_map<std::string, Parameter>;
-  using Transition = std::pair<std::string, std::string>;
-  using Condition = std::vector<std::pair<std::string, std::pair<Conditions, float>>>;
+  using Parameter = State::Parameter;
+  using Parameters = State::Parameters;
+  using Transition = State::Transition;
+  using Conditions = State::Conditions;
+  using Condition = State::Condition;
 
   Parameters startingParameters;
   std::vector<Transition> // possible animation transitions

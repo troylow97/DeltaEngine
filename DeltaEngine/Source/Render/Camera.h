@@ -2,7 +2,7 @@
 
 #include "DEpch.h"
 #include "FrameBuffer.h"
-#include "Shader.h"
+#include "Material.h"
 #include "Components/Transform.h"
 #include "Core/Math/Color.h"
 

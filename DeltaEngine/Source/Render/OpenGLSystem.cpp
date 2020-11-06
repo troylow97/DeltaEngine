@@ -17,7 +17,6 @@ namespace DeltaEngine
 namespace RenderModule
 {
 OpenGLSystem *openGLSystem;
-std::vector<Renderer *> allRenderers;
 
 OpenGLSystem::OpenGLSystem()
   : m_wglDC {}, m_windowDC {}
@@ -62,6 +61,7 @@ void OpenGLSystem::Update()
   //update opengl
   glClearColor( 0, 0, 0, 1 );
   glClear( GL_COLOR_BUFFER_BIT );
+  //glEnable( GL_DEPTH_TEST );
 
   RECT rect;
   GetClientRect( env.pWin->GetHandle(), &rect );

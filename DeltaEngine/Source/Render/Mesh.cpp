@@ -95,6 +95,11 @@ void Mesh::VertexBuffer::InitData( const float *data, unsigned int size, bool dy
   GLCall( glBufferData( GL_ARRAY_BUFFER, size, data, dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW ) );
 }
 
+void Mesh::VertexBuffer::InitSubData( const float *data, unsigned int offset, unsigned int size )
+{
+  GLCall( glBufferSubData( GL_ARRAY_BUFFER, offset, size, data ) );
+}
+
 void Mesh::VertexBuffer::Bind() const
 {
   GLCall( glBindBuffer( GL_ARRAY_BUFFER, m_RendererID ) );
@@ -135,6 +140,7 @@ void Mesh::VertexArray::AddBuffer( const VertexBuffer &vb, const VertexBufferLay
     GLCall( glVertexAttribPointer( i, element.count, element.type, element.normalized, layout.GetStride(), (const void *) pointer ) );
     offset += element.count * VertexBufferLayout::VertexBufferElement::GetSizeOfType( element.type );
   }
+  std::cerr << layout.GetStride() <<std::endl;
 }
 
 void Mesh::VertexArray::Bind() const
@@ -166,12 +172,12 @@ Mesh::IndexBuffer::~IndexBuffer()
   GLCall( glDeleteBuffers( 1, &m_RendererID ) );
 }
 
-void Mesh::IndexBuffer::InitData( const unsigned int *data, unsigned int count )
+void Mesh::IndexBuffer::InitData( const unsigned int *data, unsigned int count, bool dynamic )
 {
   m_Count = count;
 
   GLCall( glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_RendererID ) );
-  GLCall( glBufferData( GL_ELEMENT_ARRAY_BUFFER, count * sizeof( unsigned int ), data, GL_STATIC_DRAW ) );
+  GLCall( glBufferData( GL_ELEMENT_ARRAY_BUFFER, count * sizeof( unsigned int ), data, dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW ) );
 }
 
 void Mesh::IndexBuffer::Bind() const
@@ -191,6 +197,7 @@ void Mesh::IndexBuffer::Unbind() const
 #pragma region Mesh class
 std::vector<float> Mesh::VerticesDataFormat()
 {
+  AssertProperties();
   std::vector<float> coords;
   for ( unsigned int i = 0; i < verticesCount; ++i )
   {
@@ -233,36 +240,16 @@ void Mesh::AssertProperties()
 }
 
 // default mesh is a unit square (quad)
-Mesh::Mesh()
+Mesh::Mesh(bool dynamic)
 {
-  //vertices.push_back(Vector3(-0.5f,  0.5f, 0.0f));
-  //vertices.push_back(Vector3( 0.5f,  0.5f, 0.0f));
-  //vertices.push_back(Vector3( 0.5f, -0.5f, 0.0f));
-  //vertices.push_back(Vector3(-0.5f, -0.5f, 0.0f));
-
-  //colors.push_back(Color::white());
-  //colors.push_back(Color::white());
-  //colors.push_back(Color::white());
-  //colors.push_back(Color::white());
-
-  //texCoords.push_back(Vector2(0.0f, 0.0f));
-  //texCoords.push_back(Vector2(1.0f, 0.0f));
-  //texCoords.push_back(Vector2(1.0f, 1.0f));
-  //texCoords.push_back(Vector2(0.0f, 1.0f));
-
-  //indices.push_back(0);
-  //indices.push_back(1);
-  //indices.push_back(2);
-  //indices.push_back(2);
-  //indices.push_back(3);
-  //indices.push_back(0);
-
   AssertProperties();
 
+  isDynamic = dynamic;
+
   vao.Bind();
-  vbo.InitData( VerticesDataFormat().data(), static_cast<unsigned int>( vertices.size() * 9 * sizeof( float ) ) );
+  vbo.InitData( VerticesDataFormat().data(), static_cast<unsigned int>( vertices.size() * 9 * sizeof( float ) ), isDynamic );
   if ( indices.size() )
-    ibo.InitData( indices.data(), static_cast<unsigned int>( indices.size() ) );
+    ibo.InitData( indices.data(), static_cast<unsigned int>( indices.size() ), isDynamic );
 
   VertexBufferLayout layout;
   layout.Push<float>( 3 );
@@ -312,10 +299,6 @@ void Mesh::SetIndices( std::vector<unsigned int> i )
   if ( indices.size() )
     ibo.Bind();
 }
-void Mesh::MarkDynamic()
-{
-  dynamic = true;
-}
 
 void Mesh::Draw()
 {
@@ -325,11 +308,11 @@ void Mesh::Draw()
 
   if ( indices.size() )
   {
-    ibo.InitData( indices.data(), static_cast<unsigned int>( indices.size() ) );
+    ibo.InitData( indices.data(), static_cast<unsigned int>( indices.size() ), isDynamic );
     ibo.Bind();
   }
 
-  vbo.InitData( VerticesDataFormat().data(), static_cast<unsigned int>( vertices.size() * 9 * sizeof( float ) ), dynamic );
+  vbo.InitData( VerticesDataFormat().data(), static_cast<unsigned int>( vertices.size() * 9 * sizeof( float ) ), isDynamic );
   vbo.Bind();
 
   vbo.Unbind();
@@ -361,7 +344,7 @@ void Mesh::DrawWireframe()
     ibo.Bind();
   }
 
-  vbo.InitData( VerticesDataFormat().data(), static_cast<unsigned int>( vertices.size() * 9 * sizeof( float ) ), dynamic );
+  vbo.InitData( VerticesDataFormat().data(), static_cast<unsigned int>( vertices.size() * 9 * sizeof( float ) ), isDynamic );
   vbo.Bind();
 
   vbo.Unbind();
@@ -384,6 +367,7 @@ void Mesh::DrawWireframe()
 
 Mesh *quad;
 Mesh *line;
+Mesh *txtm;
 
 void Mesh::Init()
 {
@@ -395,17 +379,25 @@ void Mesh::Init()
   // init quad
   quad = new Mesh();
 
+  // init line with empty static mesh
+  line = new Mesh();
+
+  // init text with empty dynamic mesh
+  txtm = new Mesh(true);
+
   verts.push_back( Vector3( -0.5f, 0.5f, 0.0f ) );
   verts.push_back( Vector3( 0.5f, 0.5f, 0.0f ) );
   verts.push_back( Vector3( 0.5f, -0.5f, 0.0f ) );
   verts.push_back( Vector3( -0.5f, -0.5f, 0.0f ) );
   quad->SetVertices( verts );
+  txtm->SetVertices( verts );
 
   uvs.push_back( Vector2( 0.0f, 0.0f ) );
   uvs.push_back( Vector2( 1.0f, 0.0f ) );
   uvs.push_back( Vector2( 1.0f, 1.0f ) );
   uvs.push_back( Vector2( 0.0f, 1.0f ) );
   quad->SetUVs( uvs );
+  txtm->SetUVs( uvs );
 
   inds.push_back( 0 );
   inds.push_back( 1 );
@@ -414,18 +406,14 @@ void Mesh::Init()
   inds.push_back( 3 );
   inds.push_back( 0 );
   quad->SetIndices( inds );
-
-  verts.clear();
-  uvs.clear();
-  inds.clear();
-
-  // init line and circle with empty meshes, they should be called for debug purposes only
-  line = new Mesh();
+  txtm->SetIndices( inds );
 }
 
 void Mesh::Exit()
 {
   delete quad;
+  delete line;
+  delete txtm;
 }
 
 void Mesh::DrawQuad( bool wireframe )
@@ -481,7 +469,7 @@ void Mesh::DrawLine( Vector3 start, Vector3 end )
 void Mesh::DrawLines( std::vector<std::pair<Vector3, Vector3>> startEndPair )
 {
   std::vector<Vector3> verts;
-  for ( auto a : startEndPair )
+  for ( const auto& a : startEndPair )
   {
     verts.push_back( a.first );
     verts.push_back( a.second );
@@ -501,5 +489,55 @@ void Mesh::DrawLines( std::vector<std::pair<Vector3, Vector3>> startEndPair )
 
   line->vao.Unbind();
 }
+void Mesh::DrawTextMesh( Font* font, std::string text, float size, bool wireframe)
+{
+  float x = 0;
+  float y = 0;
+
+  float scale = 0.01f * size;
+
+  glActiveTexture(GL_TEXTURE0);
+  txtm->vao.Bind();
+
+  wireframe ? glDisable(GL_BLEND) : glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glPolygonMode(GL_FRONT_AND_BACK, wireframe ? GL_LINE : GL_FILL);
+  // iterate through all characters
+  std::string::const_iterator c;
+  for (c = text.begin(); c != text.end(); c++)
+  {
+    CharacterInfo ch = font->characterInfo()[*c];
+
+    float xpos = x + ch.bearing.x * scale;
+    float ypos = y - (ch.size.y - ch.bearing.y) * scale;
+
+    float w = ch.size.x * scale;
+    float h = ch.size.y * scale;
+    // update VBO for each character
+    txtm->vertices[0] = Vector3(xpos, ypos + h, 0.0f);
+    txtm->vertices[1] = Vector3(xpos + w, ypos + h, 0.0f);
+    txtm->vertices[2] = Vector3(xpos + w, ypos, 0.0f);
+    txtm->vertices[3] = Vector3(xpos, ypos, 0.0f);
+
+    std::vector<float> v = txtm->VerticesDataFormat();
+
+    // render glyph texture over quad
+    if (!wireframe)
+      glBindTexture(GL_TEXTURE_2D, ch.textureID);
+    // update content of vbo memory
+    txtm->vbo.Bind();
+    glBufferSubData(GL_ARRAY_BUFFER, 0, v.size() * sizeof(float), v.data());
+
+    txtm->vbo.Unbind();
+    // render quad
+    GLCall( glDrawElements( GL_TRIANGLES, txtm->ibo.GetCount(), GL_UNSIGNED_INT, nullptr ) );
+    // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+    x += (ch.advance >> 6)* scale; // bitshift by 6 to get value in pixels (2^6 = 64)
+  }
+  txtm->vao.Unbind();
+  if (!wireframe)
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 #pragma endregion
 }

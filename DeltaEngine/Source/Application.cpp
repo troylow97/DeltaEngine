@@ -3,7 +3,6 @@
 
 #include "EngineConfig.h"
 #include "Render/OpenGLSystem.h"
-#include "Render/TextRenderer.h"
 #include "Core/Utils/FileUtils.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
@@ -130,27 +129,24 @@ void Application::Run()
 
       //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
       //    env.pManager->get<Shader>("Default"));
-  auto entitybg = em.CreateEntity<Transform, SpriteRenderer>();
-  auto &spriterender = em.GetComponent<SpriteRenderer>( entitybg );
-  auto entitysr = em.CreateEntity<Transform, SpriteRenderer, Animator>();
+  auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
+  auto &spriterender = em.GetComponent<Image>( entitybg );
+  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
   auto &animator = em.GetComponent<Animator>( entitysr );
-  auto entitytr = em.CreateEntity<Transform, TextRenderer>();
-  auto &textrender = em.GetComponent<TextRenderer>( entitytr );
-  auto entityps = em.CreateEntity<Transform, ParticleSystem>();
+  auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
+  auto &textrender = em.GetComponent<Text>( entitytr );
+  auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
 
-  spriterender.sprite = { "bg" };
-  textrender.font = env.pManager->Get<Font>( "Default" );
-  textrender.shader = env.pManager->Get<Shader>( "DefaultText" );
-  textrender.transform.scale = Vector3( 0.75, 0.75 );
-  animator.m_Controller = env.pManager->Get<AnimationController>( "Player" );
+  spriterender.m_Sprite = { "bg" };
+  textrender.m_FontKey = "Default";
+  textrenderer.m_Material = { "DefaultText" } ;
+  animator.m_ControllerKey = "Player";
 
   //size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
 
   while ( env.pWin->Running() )
   {
-    /*textrender.text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
-    textrender.transform.position = Vector3( ( Camera::editorCamera->Max().x - Camera::editorCamera->Min().x ) * -0.28f, ( Camera::editorCamera->Max().y - Camera::editorCamera->Min().y ) * 0.27f );
-    */
+    textrender.m_Text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
     if ( env.pClock->Update() )
     {
       InputManager::Get()->Update();

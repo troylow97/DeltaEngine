@@ -9,6 +9,8 @@ bin-int/
 *.user
 *.userosscache
 *.sln.docstates
+loop.bat
+scc.exe
 
 # Build results
 [Dd]ebug/

@@ -1,7 +1,17 @@
 #version 330 core
-layout (location = 0) in vec4 vertex; // <vec2 pos, vec2 tex>
+//layout (location = 0) in vec4 vertex; // <vec2 pos, vec2 tex>
+//layout (location = 1) in vec4 other; // <vec2 pos, vec2 tex>
 
-out vec2 TexCoords;
+//layout (location = 0) in vec2 position;
+//layout (location = 1) in vec2 texCoord;
+
+layout (location = 0) in vec3 position;
+layout (location = 1) in vec4 color;
+layout (location = 2) in vec2 texCoord;
+
+out vec3 vertexPosition;
+out vec4 vertexColor;
+out vec2 vertexTexCoord;
 
 uniform mat4 _M; //ModelMatrix
 uniform mat4 _V; //ViewMatrix
@@ -9,11 +19,13 @@ uniform mat4 _P; //ProjectionMatrix
 
 void main()
 {
-	vec4 v = vec4(vertex.xy, 0.0, 1.0); 
+	vec4 v = vec4(position.xy, 0.0, 1.0); 
 	vec4 v1 = _M * v;
 	vec4 v2 = _V * v1;
 	vec4 v3 = _P * v2;
 	gl_Position = v3;
 
-    TexCoords = vertex.zw;
+	vertexPosition = v1.xyz;
+	vertexColor = color;
+	vertexTexCoord = texCoord;
 }  

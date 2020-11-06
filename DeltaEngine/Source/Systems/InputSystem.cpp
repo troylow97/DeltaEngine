@@ -14,18 +14,18 @@ void InputSystem::Update()
       i1.previousKey = DEVK_A;
       r1.Direction = Vector2::left();
     } );
-    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
+    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, State &a )
     {
       a.SetFloat( "Speed", 1.0f );
     } );
-    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, SpriteRenderer &s )
+    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Image &s )
     {
       s.m_FlipX = true;
     } );
   }
   else if ( InputManager::Get()->IsKeyReleased( DEVK_A ) )
   {
-    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
+    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, State &a )
     {
       a.SetFloat( "Speed", 0.0f );
     } );
@@ -37,18 +37,18 @@ void InputSystem::Update()
       i1.previousKey = DEVK_D;
       r1.Direction = Vector2::right();
     } );
-    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
+    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, State &a )
     {
       a.SetFloat( "Speed", 1.0f );
     } );
-    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, SpriteRenderer &s )
+    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Image &s )
     {
       s.m_FlipX = false;
     } );
   }
   else if ( InputManager::Get()->IsKeyReleased( DEVK_D ) )
   {
-    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Animator &a )
+    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, State &a )
     {
       a.SetFloat( "Speed", 0.0f );
     } );
