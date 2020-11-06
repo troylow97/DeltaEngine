@@ -116,7 +116,7 @@ void Application::Run()
       //    env.pManager->get<Shader>("Default"));
   auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
   auto &spriterender = em.GetComponent<Image>( entitybg );
-  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator>();
+  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
   auto &animator = em.GetComponent<Animator>( entitysr );
   auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
   auto &textrender = em.GetComponent<Text>( entitytr );
@@ -125,7 +125,7 @@ void Application::Run()
   spriterender.m_Sprite = { "bg" };
   textrender.m_FontKey = "Default";
   textrenderer.m_Material = { "DefaultText" } ;
-  animator.m_Controller = env.pManager->Get<AnimationController>( "Player" );
+  animator.m_ControllerKey = "Player";
 
   size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
 

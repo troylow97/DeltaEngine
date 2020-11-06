@@ -8,10 +8,11 @@
 #include "Components/Renderer.h"
 #include "Components/Text.h"
 #include "Components/Image.h"
-#include "Render/Animator.h"
+#include "Components/Animator.h"
+#include "Components/State.h"
 #include "Core/Typelist/Typelist.h"
 
 namespace DeltaEngine
 {
-using ComponentList = Typelist< EntityID, Input,  Collider,  Transform,  RigidBody, Animator, Image, Text, Renderer2D>;
+using ComponentList = Typelist< EntityID, Input,  Collider,  Transform,  RigidBody, Animator, State, Image, Text, Renderer2D>;
 }
