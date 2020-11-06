@@ -43,11 +43,9 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   // Render + Imgui
   RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
   RenderModule::openGLSystem->Init();
-  m_ImGuiLayer = new ImGuiLayer();
-  m_ImGuiLayer->OnAttach();
 
-  m_Editor = new Editor(EntityManager());
-
+  m_Editor = new Editor();
+  
   // Asset Loading
   env.pManager = new AM();
   env.pManager->SetLoader<Font>( new FontLoader() )
@@ -95,7 +93,6 @@ Application::~Application()
 
   delete env.pECS;
   delete env.pManager;
-  m_ImGuiLayer->OnDetach();
   RenderModule::openGLSystem->Exit();
   delete RenderModule::openGLSystem;
   delete env.pWin;
@@ -108,49 +105,48 @@ Application::~Application()
 
 void Application::Run()
 {
-  DeltaEngine::World &world = env.pECS->GetWorld();
-  DeltaEngine::EntityManager &em = world.get_entity_manager();
-  env.pManager->Get<Texture2D>( "run" )->SliceAll( 2, 3 );
+  DeltaEngine::World& world = env.pECS->GetWorld();
+  DeltaEngine::EntityManager& em = world.get_entity_manager();
+  env.pManager->Get<Texture2D>("run")->SliceAll(2, 3);
 
-      //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
-      //    env.pManager->get<Shader>("Default"));
+  //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
+  //    env.pManager->get<Shader>("Default"));
   auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
-  auto &spriterender = em.GetComponent<Image>( entitybg );
+  auto& spriterender = em.GetComponent<Image>(entitybg);
   auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
-  auto &animator = em.GetComponent<Animator>( entitysr );
+  auto& animator = em.GetComponent<Animator>(entitysr);
   auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
-  auto &textrender = em.GetComponent<Text>( entitytr );
-  auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
+  auto& textrender = em.GetComponent<Text>(entitytr);
+  auto& textrenderer = em.GetComponent<Renderer2D>(entitytr);
 
   spriterender.m_Sprite = { "bg" };
   textrender.m_FontKey = "Default";
-  textrenderer.m_Material = { "DefaultText" } ;
+  textrenderer.m_Material = { "DefaultText" };
   animator.m_ControllerKey = "Player";
 
-  size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
+  size_t i = AudioEngine::PlaySound("Audio/jump.wav");
 
-  while ( env.pWin->Running() )
+  while (env.pWin->Running())
   {
-    textrender.m_Text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
-    if ( env.pClock->Update() )
+    textrender.m_Text = "FPS: " + std::to_string(static_cast<u32>(env.pClock->FrameRate()));
+    if (env.pClock->Update())
     {
       InputManager::Get()->Update();
       // Update engine GameClock
       env.pECS->GetWorld().update();
       env.pECS->GetWorld().late_update();
-      m_ImGuiLayer->Begin();
+      m_Editor->Begin();
       m_Editor->Render();
-      m_ImGuiLayer->End();
-      ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
+      m_Editor->End();
+      ::SwapBuffers(RenderModule::openGLSystem->GetWindowContext());
       env.pWin->Update();
       if (!AudioEngine::IsChannelPlaying(i))
-        i = AudioEngine::PlaySound( "Audio/jump.wav" );
+        i = AudioEngine::PlaySound("Audio/jump.wav");
       AudioEngine::Update();
       OnEvent();
     }
   }
 }
-
 
 
 void Application::OnEvent()
