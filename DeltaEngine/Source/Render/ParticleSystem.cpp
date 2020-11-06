@@ -273,8 +273,6 @@ void ParticleSystem::AssertProperties()
 
 ParticleSystem::ParticleSystem() : texture { new Texture2D( "DefaultParticle.png" ) }
 {
-  RenderModule::allRenderers.push_back( this );
-
   m_ParticlePool.resize( maxParticles );
 
   vertices.push_back( Vector3( -0.5f, 0.5f, 0.0f ) );

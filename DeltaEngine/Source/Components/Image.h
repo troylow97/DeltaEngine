@@ -13,8 +13,5 @@ namespace DeltaEngine
 
     bool m_FlipX = false;
     bool m_FlipY = false;
-
-    bool m_Shaded = true;
-    bool m_Wireframe = true;
   };
 }

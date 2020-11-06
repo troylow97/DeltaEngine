@@ -2,7 +2,6 @@
 
 #include "AnimationClip.h"
 #include "AnimationController.h"
-#include "SpriteRenderer.h"
 
 namespace DeltaEngine
 {

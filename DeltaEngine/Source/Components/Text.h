@@ -10,5 +10,14 @@ namespace DeltaEngine
     std::string m_FontKey = "Default";
 
     std::string m_Text = "";
+
+    enum class Alignment
+    {
+      AlignLeft,
+      AlignRight,
+      Centralize,
+    };
+
+    Alignment alignment = Alignment::AlignLeft;
   };
 }

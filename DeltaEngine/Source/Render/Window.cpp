@@ -1,5 +1,6 @@
 #include "DEpch.h"
-#include "Render/Window.h"
+#include "Window.h"
+#include "Camera.h"
 #include "../resource.h"
 #include "Core/Debugging/Logger/Log.h"
 #include <examples/imgui_impl_win32.h>

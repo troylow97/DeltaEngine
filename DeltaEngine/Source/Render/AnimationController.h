@@ -1,7 +1,6 @@
 #pragma once
 
 #include "AnimationClip.h"
-#include "SpriteRenderer.h"
 
 namespace DeltaEngine
 {

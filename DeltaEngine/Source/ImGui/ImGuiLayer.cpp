@@ -1,7 +1,6 @@
 #include "ImGuiLayer.h"
 #include "Render/Window.h"
 #include "Render/OpenGLSystem.h"
-#include "Render/TextRenderer.h"
 #include "Render/ParticleSystem.h"
 #include <imgui.h>
 #include <examples/imgui_impl_win32.h>
@@ -192,73 +191,73 @@ void ImGuiLayer::Begin()
     ImGui::Image( reinterpret_cast<void *>( textureID ), viewportPanelSize, ImVec2 { 0, 1 }, ImVec2 { 1, 0 } );
     ImGui::End();
   }
-  // renderers
-  if ( RenderModule::allRenderers.size() > 0 )
-  {
-    ImGui::Begin( "SpriteRenderer1" );
+  //// renderers
+  //if ( RenderModule::allRenderers.size() > 0 )
+  //{
+  //  ImGui::Begin( "SpriteRenderer1" );
 
-    static float f = 0.0f;
-    ImGui::Text( "Edit Background Props" );                           // Display some text (you can use a format string too)
-    ImGui::Checkbox( "Active", &RenderModule::allRenderers[0]->m_Active );
-    ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[0]->transform.position, 0.01f );
-    ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[0]->transform.scale, 0.01f );
-    ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
-    RenderModule::allRenderers[0]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
-    ImGui::Text( "Sprite Name: %s", dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->sprite.GetName().c_str() );
-    ImGui::Checkbox( "Flip X", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_FlipX );
-    ImGui::Checkbox( "Flip Y", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_FlipY );
-    ImGui::Checkbox( "Shaded", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_Shaded );
-    ImGui::Checkbox( "Wireframe", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_Wireframe );
+  //  static float f = 0.0f;
+  //  ImGui::Text( "Edit Background Props" );                           // Display some text (you can use a format string too)
+  //  ImGui::Checkbox( "Active", &RenderModule::allRenderers[0]->m_Active );
+  //  ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[0]->transform.position, 0.01f );
+  //  ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[0]->transform.scale, 0.01f );
+  //  ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
+  //  RenderModule::allRenderers[0]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+  //  ImGui::Text( "Sprite Name: %s", dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->sprite.GetName().c_str() );
+  //  ImGui::Checkbox( "Flip X", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_FlipX );
+  //  ImGui::Checkbox( "Flip Y", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_FlipY );
+  //  ImGui::Checkbox( "Shaded", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_Shaded );
+  //  ImGui::Checkbox( "Wireframe", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_Wireframe );
 
-    ImGui::End();
-  }
-  if ( RenderModule::allRenderers.size() > 1 )
-  {
-    ImGui::Begin( "SpriteRenderer2" );
+  //  ImGui::End();
+  //}
+  //if ( RenderModule::allRenderers.size() > 1 )
+  //{
+  //  ImGui::Begin( "SpriteRenderer2" );
 
-    static float f = 0.0f;
-    ImGui::Text( "Edit Sprite Props" );                           // Display some text (you can use a format string too)
-    ImGui::Checkbox( "Active", &RenderModule::allRenderers[1]->m_Active );
-    ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[1]->transform.position, 0.01f );
-    ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[1]->transform.scale, 0.01f );
-    ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
-    RenderModule::allRenderers[1]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
-    ImGui::Text( "Sprite Name: %s", dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->sprite.GetName().c_str() );
-    ImGui::Checkbox( "Flip X", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_FlipX );
-    ImGui::Checkbox( "Flip Y", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_FlipY );
-    ImGui::Checkbox( "Shaded", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Shaded );
-    ImGui::Checkbox( "Wireframe", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Wireframe );
+  //  static float f = 0.0f;
+  //  ImGui::Text( "Edit Sprite Props" );                           // Display some text (you can use a format string too)
+  //  ImGui::Checkbox( "Active", &RenderModule::allRenderers[1]->m_Active );
+  //  ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[1]->transform.position, 0.01f );
+  //  ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[1]->transform.scale, 0.01f );
+  //  ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
+  //  RenderModule::allRenderers[1]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+  //  ImGui::Text( "Sprite Name: %s", dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->sprite.GetName().c_str() );
+  //  ImGui::Checkbox( "Flip X", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_FlipX );
+  //  ImGui::Checkbox( "Flip Y", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_FlipY );
+  //  ImGui::Checkbox( "Shaded", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Shaded );
+  //  ImGui::Checkbox( "Wireframe", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Wireframe );
 
-    ImGui::End();
-  }
-  if ( RenderModule::allRenderers.size() > 2 )
-  {
-    ImGui::Begin( "TextRenderer" );
+  //  ImGui::End();
+  //}
+  //if ( RenderModule::allRenderers.size() > 2 )
+  //{
+  //  ImGui::Begin( "TextRenderer" );
 
-    static float f = 0.0f;
-    ImGui::Text( "Edit Text Props" );                           // Display some text (you can use a format string too)
-    ImGui::Checkbox( "Active", &RenderModule::allRenderers[2]->m_Active );
-    ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[2]->transform.position, 0.01f );
-    ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[2]->transform.scale, 0.01f );
-    ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
-    RenderModule::allRenderers[2]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+  //  static float f = 0.0f;
+  //  ImGui::Text( "Edit Text Props" );                           // Display some text (you can use a format string too)
+  //  ImGui::Checkbox( "Active", &RenderModule::allRenderers[2]->m_Active );
+  //  ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[2]->transform.position, 0.01f );
+  //  ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[2]->transform.scale, 0.01f );
+  //  ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
+  //  RenderModule::allRenderers[2]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
 
-    ImGui::End();
-  }
-  if ( RenderModule::allRenderers.size() > 3 )
-  {
-    ImGui::Begin( "Particle System" );
+  //  ImGui::End();
+  //}
+  //if ( RenderModule::allRenderers.size() > 3 )
+  //{
+  //  ImGui::Begin( "Particle System" );
 
-    static float f = 0.0f;
-    ImGui::Checkbox( "Active", &RenderModule::allRenderers[3]->m_Active );
-    ImGui::Text( "Edit Particle System Props" );                           // Display some text (you can use a format string too)
-    ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[3]->transform.position, 0.01f );
-    ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[3]->transform.scale, 0.01f );
-    ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
-    RenderModule::allRenderers[3]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+  //  static float f = 0.0f;
+  //  ImGui::Checkbox( "Active", &RenderModule::allRenderers[3]->m_Active );
+  //  ImGui::Text( "Edit Particle System Props" );                           // Display some text (you can use a format string too)
+  //  ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[3]->transform.position, 0.01f );
+  //  ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[3]->transform.scale, 0.01f );
+  //  ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
+  //  RenderModule::allRenderers[3]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
 
-    ImGui::End();
-  }
+  //  ImGui::End();
+  //}
   // selection
 
   //{

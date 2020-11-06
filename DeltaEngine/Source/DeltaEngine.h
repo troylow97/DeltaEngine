@@ -28,7 +28,6 @@
 #include "Render/Mesh.h"
 #include "Render/OpenGLSystem.h"
 #include "Render/Shader.h"
-#include "Render/SpriteRenderer.h"
 #include "Render/Texture.h"
 #include "Render/ParticleSystem.h"
 #include "Render/Animator.h"

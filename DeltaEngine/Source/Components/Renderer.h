@@ -7,7 +7,7 @@ namespace DeltaEngine
 {
   struct DE_API Renderer2D
   {
-    Material material;
+    Material m_Material;
     Color color;
     bool m_Active = true;
 

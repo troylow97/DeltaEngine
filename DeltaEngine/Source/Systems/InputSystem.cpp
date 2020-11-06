@@ -18,7 +18,7 @@ void InputSystem::Update()
     {
       a.SetFloat( "Speed", 1.0f );
     } );
-    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, SpriteRenderer &s )
+    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Image &s )
     {
       s.m_FlipX = true;
     } );
@@ -41,7 +41,7 @@ void InputSystem::Update()
     {
       a.SetFloat( "Speed", 1.0f );
     } );
-    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, SpriteRenderer &s )
+    env.pECS->GetWorld().get_entity_manager().ForEach( [&]( EntityID id1, Image &s )
     {
       s.m_FlipX = false;
     } );
