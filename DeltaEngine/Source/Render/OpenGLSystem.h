@@ -3,7 +3,6 @@
 #include "DE_API.h"
 #include "DEpch.h"
 #include <GL/glew.h>
-#include "Renderer.h"
 
 namespace DeltaEngine
 {
@@ -29,6 +28,5 @@ public:
   HGLRC GetGLContext();
 };
 extern OpenGLSystem *openGLSystem;
-extern std::vector<Renderer *> allRenderers;
 }
 }

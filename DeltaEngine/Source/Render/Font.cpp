@@ -14,7 +14,7 @@ Font::Font( const std::string &filepath ) : m_RendererID { 0 }
   FT_Face face;
   if ( FT_New_Face( ft, filepath.c_str(), 0, &face ) )
   {
-    DeltaEngine_CORE_ERROR( "Failed to load {0} font!", filepath );
+    DeltaEngine_CORE_ERROR( "FREETYTPE: Failed to load {0} font!", filepath );
     return;
   }
   else
@@ -29,7 +29,7 @@ Font::Font( const std::string &filepath ) : m_RendererID { 0 }
         // load character glyph 
       if ( FT_Load_Char( face, c, FT_LOAD_RENDER ) )
       {
-        std::cout << "ERROR::FREETYTPE: Failed to load Glyph: " << c << std::endl;
+        DeltaEngine_CORE_ERROR( "FREETYTPE: Failed to load Glyph: {0} ", c );
         continue;
       }
       // generate texture

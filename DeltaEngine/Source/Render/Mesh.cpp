@@ -469,7 +469,7 @@ void Mesh::DrawLine( Vector3 start, Vector3 end )
 void Mesh::DrawLines( std::vector<std::pair<Vector3, Vector3>> startEndPair )
 {
   std::vector<Vector3> verts;
-  for ( auto a : startEndPair )
+  for ( const auto& a : startEndPair )
   {
     verts.push_back( a.first );
     verts.push_back( a.second );
@@ -530,7 +530,6 @@ void Mesh::DrawTextMesh( Font* font, std::string text, float size, bool wirefram
 
     txtm->vbo.Unbind();
     // render quad
-    //glDrawArrays(GL_TRIANGLES, 0, 6);
     GLCall( glDrawElements( GL_TRIANGLES, txtm->ibo.GetCount(), GL_UNSIGNED_INT, nullptr ) );
     // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
     x += (ch.advance >> 6)* scale; // bitshift by 6 to get value in pixels (2^6 = 64)

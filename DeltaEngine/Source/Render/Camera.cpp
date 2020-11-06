@@ -92,12 +92,6 @@ void Camera::Start()
   glClear( GL_COLOR_BUFFER_BIT );
 
   Camera *thisCam = this;
-
-  std::for_each( RenderModule::allRenderers.begin(), RenderModule::allRenderers.end(), [thisCam]( Renderer *r )
-  {
-    if ( r->m_Active )
-      r->Render( *thisCam );
-  } );
 }
 void Camera::End()
 {

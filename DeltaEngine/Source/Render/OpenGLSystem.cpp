@@ -17,7 +17,6 @@ namespace DeltaEngine
 namespace RenderModule
 {
 OpenGLSystem *openGLSystem;
-std::vector<Renderer *> allRenderers;
 
 OpenGLSystem::OpenGLSystem()
   : m_wglDC {}, m_windowDC {}
