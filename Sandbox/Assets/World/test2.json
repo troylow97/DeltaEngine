@@ -113,8 +113,8 @@
                     "z": 0.0
                 },
                 "scale": {
-                    "x": 5.480000019073486,
-                    "y": 4.699999809265137,
+                    "x": 8.069999694824219,
+                    "y": 2.4200000762939455,
                     "z": 0.0
                 },
                 "rotation": {
@@ -125,17 +125,17 @@
                 }
             },
             "rigidbody": {
-                "mass": 14.289999961853028,
-                "movespeed": 105.16000366210938,
-                "restitution": 8.760000228881836,
-                "friction_coeff": 14.710000038146973,
+                "mass": 10.0,
+                "movespeed": 100.0,
+                "restitution": 1.0,
+                "friction_coeff": 8.010000228881836,
                 "has_gravity": false,
                 "is_moveable": true
             },
             "collider": {
                 "type": "box",
                 "is_collideable": true,
-                "is_trigger": false
+                "is_trigger": true
             }
         }
     ]
