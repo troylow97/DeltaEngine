@@ -14,6 +14,5 @@
 
 namespace DeltaEngine
 {
-  using ComponentList = Typelist<EntityID, Input, Collider, Transform, RigidBody, SpriteRenderer, Animator, TextRenderer
-                                 , ParticleSystem>;
+  using ComponentList = Typelist<EntityID, Input, Collider, Transform, RigidBody, SpriteRenderer, Animator, TextRenderer, ParticleSystem>;
 }

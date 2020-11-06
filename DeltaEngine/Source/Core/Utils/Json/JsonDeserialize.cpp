@@ -231,7 +231,7 @@ void ExtractPointerType( variant& obj_dat, variant& extracted )
   if (obj_dat.get_type() == type::get<bool*>())
     *obj_dat.get_value<bool *>() =  extracted.get_value<bool>();
   else if (obj_dat.get_type() == type::get<float*>())
-    *obj_dat.get_value<float *>() =  extracted.get_value<double>();
+    *obj_dat.get_value<float *>() =  static_cast<float>(extracted.get_value<double>());
 }
 
 
