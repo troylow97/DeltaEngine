@@ -28,9 +28,9 @@ namespace DeltaEngine
         return false;
     }
 
-    bool TilemapPanel::Render(bool isdragged)
+    void TilemapPanel::Render(bool isdragged)
     {
-        ImGui::Begin(m_name.c_str());
+        ImGui::Begin(m_name.c_str(), &m_enabled);
         auto& em = env.pECS->GetWorld().get_entity_manager();
 
         topLeft = ImGui::GetWindowContentRegionMin();
@@ -52,11 +52,7 @@ namespace DeltaEngine
 
         ImGui::Text("Current tiles available:");
 
-
-
         ImGui::End();
-
-        return m_enabled;
     }
 
     ImVec2 TilemapPanel::GetTopLeft()

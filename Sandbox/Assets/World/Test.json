@@ -1,0 +1,47 @@
+{
+    "Entities": [
+        {
+            "transform": {
+                "old_position": "position",
+                "scale": "rotation"
+            }
+        },
+        {
+            "transform": {
+                "old_position": "position",
+                "scale": "rotation"
+            }
+        },
+        {
+            "transform": {
+                "old_position": "position",
+                "scale": "rotation"
+            }
+        },
+        {
+            "transform": {
+                "old_position": "position",
+                "scale": "rotation"
+            }
+        },
+        {
+            "transform": {
+                "old_position": "position",
+                "scale": "rotation"
+            },
+            "rigidbody": {
+                "mass": 10.0,
+                "movespeed": 100.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.3499999940395355,
+                "has_gravity": 0.0,
+                "is_moveable": 1.0
+            },
+            "collider": {
+                "type": "box",
+                "is_collideable": 1.0,
+                "is_trigger": 0.0
+            }
+        }
+    ]
+}

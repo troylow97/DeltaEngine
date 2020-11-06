@@ -45,10 +45,8 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   // Render + Imgui
   RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
   RenderModule::openGLSystem->Init();
-  m_ImGuiLayer = new ImGuiLayer();
-  m_ImGuiLayer->OnAttach();
 
-  m_Editor = new Editor(EntityManager());
+  m_Editor = new Editor();
 
   // Asset Loading
   env.pManager = new AM();
@@ -112,14 +110,14 @@ Application::~Application()
   DeltaEngine_CORE_INFO( "Engine Shutdown" );
 
   delete env.pECS;
+  delete env.eventManager;
   delete env.pManager;
-  m_ImGuiLayer->OnDetach();
   RenderModule::openGLSystem->Exit();
   delete RenderModule::openGLSystem;
+  delete m_Editor;
   delete env.pWin;
   delete env.pClock;
-  delete env.eventManager;
-  delete m_Editor;
+
   AudioEngine::Shutdown();
 }
 
@@ -159,9 +157,9 @@ void Application::Run()
       // Update engine GameClock
       env.pECS->GetWorld().update();
       env.pECS->GetWorld().late_update();
-      m_ImGuiLayer->Begin();
+      m_Editor->Begin();
       m_Editor->Render();
-      m_ImGuiLayer->End();
+      m_Editor->End();
       ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       env.pWin->Update();
       //if (!AudioEngine::IsChannelPlaying(i))
@@ -216,7 +214,6 @@ bool Application::OnWindowResize( WindowResizeEvent &e )
   }
 
   m_Minimized = false;
-  //Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
 
   return false;
 }
