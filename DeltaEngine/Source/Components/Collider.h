@@ -44,6 +44,7 @@ namespace DeltaEngine
       isTrigger{false},
       isCollidingOnFloor{false}
     {
+      (void) col_type;
     }
   };
 } // namespace DeltaEngine

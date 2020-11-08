@@ -160,7 +160,6 @@ void Editor::Begin()
   static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_AutoHideTabBar;
 
   // Update ImGui with Custom Input
-  auto &em = env.pECS->GetWorld().GetEntityManager();
   auto &ref = ImGui::GetIO();
   std::memcpy( &ref.KeysDown[0], InputManager::Get()->GetKeys(), 256 );
 

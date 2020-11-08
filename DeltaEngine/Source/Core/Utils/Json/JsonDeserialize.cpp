@@ -156,7 +156,10 @@ void ReadRecursive( instance obj2, Value &json_object )
         if ( extracted_value.convert( value_t ) )
           prop.set_value( obj, extracted_value );
         else if ( value_t.is_pointer() )
-          ExtractPointerType( prop.get_value( obj ), extracted_value );
+        {
+          auto val = prop.get_value( obj );
+          ExtractPointerType( val, extracted_value );
+        }
       }
     }
   }

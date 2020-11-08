@@ -83,7 +83,7 @@ void PropertyInspectorPanel::Render( bool )
 
             if ( textureClicked & 1 )
             {
-              strcpy( str1, spritelist[i].GetName().c_str() );
+              strcpy_s( str1, spritelist[i].GetName().c_str() );
             }
           }
           ImGui::SameLine();
@@ -108,7 +108,7 @@ void PropertyInspectorPanel::Render( bool )
 
           if ( textureClicked & 1 )
           {
-            strcpy( str1, bg.GetName().c_str() );
+            strcpy_s( str1, bg.GetName().c_str() );
           }
         }
         ImGui::SameLine();
@@ -136,7 +136,7 @@ void PropertyInspectorPanel::Render( bool )
     if ( auto result = em.GetEntityArchetype( InputManager::Get()->EntityIDSelected() ); result != nullptr )
       for ( auto &ref : *result )
       {
-        rttr::instance &instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
+        rttr::instance instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
 
         ImGui::Text( instance.get_type().get_name().to_string().c_str() );
         auto properties = instance.get_type().get_properties();

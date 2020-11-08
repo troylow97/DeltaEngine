@@ -66,7 +66,7 @@ void ViewportPanel::Render( bool isdragged )
     float newCursorX = ( cursorViewPortDistanceX / renderSize.x ) * cameraWidth + Camera::editorCamera->Min().x;
     float newCursorY = Camera::editorCamera->Max().y - ( cursorViewPortDistanceY / renderSize.y ) * cameraHeight;
 
-    InputManager::Get()->SetCurrentCameraPosition( Point( newCursorX, newCursorY ) );
+    InputManager::Get()->SetCurrentCameraPosition( Point( (int) newCursorX, (int)newCursorY ) );
     //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
   }
   else
