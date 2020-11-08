@@ -149,14 +149,14 @@ namespace DeltaEngine
 		{
 			if (r1.isMoveable)
 			{
-				impulse = ((m.normal * m.penetration) + 0.20 * m.normal);
+				impulse = ((m.normal * m.penetration) + 0.20f * m.normal);
 				r1.Velocity += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
 				r1.PointEnd = c1.center + reflectedVectorA;
 			}
 
 			if (r2.isMoveable)
 			{
-				impulse = ((m.normal * m.penetration) + 0.20 * m.normal);
+				impulse = ((m.normal * m.penetration) + 0.20f * m.normal);
 				r2.Velocity -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
 				r2.PointEnd = c2.center + reflectedVectorB;
 			}

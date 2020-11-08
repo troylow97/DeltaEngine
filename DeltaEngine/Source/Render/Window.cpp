@@ -181,7 +181,7 @@ void Window::InitWindow()
   }
 
   HRESULT oleResult = OleInitialize(NULL);
-
+  (void) oleResult;
   m_hwndl = CreateWindowEx( 0, windowClass.lpszClassName, m_title.c_str(),
                             WS_OVERLAPPEDWINDOW | WS_VISIBLE, 100, 100, m_width, m_height,
                             0, 0, windowClass.hInstance, 0 );

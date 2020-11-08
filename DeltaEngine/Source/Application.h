@@ -1,11 +1,10 @@
 #pragma once
 #include "Event/ApplicationEvent.h"
-#include "DE_API.h"
 #include "ImGui/Editor.h"
 namespace DeltaEngine
 {
 
-class DE_API Application
+class Application
 {
   bool m_Minimized;
 

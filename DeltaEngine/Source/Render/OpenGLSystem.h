@@ -1,6 +1,5 @@
 #pragma once
 
-#include "DE_API.h"
 #include "DEpch.h"
 #include <GL/glew.h>
 
@@ -8,7 +7,7 @@ namespace DeltaEngine
 {
 namespace RenderModule
 {
-class DE_API OpenGLSystem
+class OpenGLSystem
 {
   HDC m_windowDC;//global Window-device context
   HGLRC m_wglDC;//OpenGL-device context

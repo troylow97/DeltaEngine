@@ -1,11 +1,10 @@
-#include "DE_API.h"
 #include "Core/TypeAlias.h"
 
 #include <chrono>
 
 namespace DeltaEngine
 {
-class DE_API GameClock
+class GameClock
 {
 
   using Nanoseconds = std::chrono::nanoseconds;

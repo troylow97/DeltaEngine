@@ -1,10 +1,8 @@
 #pragma once
 
-#include "DE_API.h"
-
 namespace DeltaEngine
 {
-struct DE_API Color
+struct Color
 {
   float r, g, b, a;
 

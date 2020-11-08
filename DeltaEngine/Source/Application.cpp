@@ -21,6 +21,7 @@
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
 -----------------------------------*/
+
 namespace DeltaEngine
 {
 DeltaEngineGlobalEnvironment env;
@@ -109,12 +110,16 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().set_update_sequence<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
 
+  env.pECS->GetWorld().CreateSystems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().SetUpdateSequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().SetLateUpdateSequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().InitSystems();
 }
 
 Application::~Application()
 {
   DeltaEngine_CORE_INFO( "Engine Shutdown" );
-
+  env.pECS->GetWorld().ShutdownSystems();
   delete env.pECS;
   delete env.eventManager;
   delete env.pManager;
@@ -131,7 +136,7 @@ Application::~Application()
 void Application::Run()
 {
   DeltaEngine::World &world = env.pECS->GetWorld();
-  DeltaEngine::EntityManager &em = world.get_entity_manager();
+  DeltaEngine::EntityManager &em = world.GetEntityManager();
   env.pManager->Get<Texture2D>( "run" )->SliceAll( 2, 3 );
 
       //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
@@ -158,8 +163,8 @@ void Application::Run()
     {
       InputManager::Get()->Update();
       // Update engine GameClock
-      env.pECS->GetWorld().update();
-      env.pECS->GetWorld().late_update();
+      env.pECS->GetWorld().Update();
+      env.pECS->GetWorld().LateUpdate();
       m_Editor->Begin();
       m_Editor->Render();
       m_Editor->End();
@@ -205,7 +210,7 @@ void Application::OnEvent()
             }
             delete ref;
         }
-        
+        delete ref;
     }
 }
 

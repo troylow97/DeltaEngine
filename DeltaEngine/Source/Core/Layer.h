@@ -1,11 +1,10 @@
 #pragma once
-#include "DE_API.h"
 #include "Event/Event.h"
 
 namespace DeltaEngine
 {
 
-class DE_API Layer
+class Layer
 {
 public:
   Layer( const std::string &name = "Layer" );

@@ -83,11 +83,14 @@ namespace DeltaEngine
 
 	bool CollisionIntersection_RectCircle(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& m)
 	{
+		(void) r1;
+		(void) r2;
 		Vector2 rect_center = col1.center;
 		Vector2 circle_center = col2.center;
 		//rect_center += rel_vel;
 		//circle_center += rel_vel;
-		Vector2 dist = Normalise(rect_center - circle_center);
+		Vector2 diff = rect_center - circle_center;
+		Vector2 dist = Normalise(diff);
 		Vector2 CircleTip = col2.center + (dist * col2.size);
 		
 		if (CollisionIntersection_RectPoint(rect_center, col1.size, CircleTip))
@@ -496,7 +499,8 @@ namespace DeltaEngine
 		((xDiff + yDiff) <= (combined_radius))
 		{
 			m.penetration = combined_radius - (xDiff + yDiff);
-			m.normal = Normalise(Center1 - Center2);
+			Vector2 diff = Center1 - Center2;
+			m.normal = Normalise( diff );
 			return true;
 		}
 		

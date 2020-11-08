@@ -9,16 +9,29 @@ workspace "DeltaEngine"
     "Dist"
   }
 
+  flags 
+  {
+    "MultiProcessorCompile",
+    "OmitDefaultLibrary"
+  }
+
+  linkoptions { "-IGNORE:4099", "-IGNORE:4098", "-IGNORE:4006" }
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
   
 project "DeltaEngine"
   location "DeltaEngine"
-  kind "SharedLib"
+  kind "StaticLib"
   language "C++"
+  cppdialect "C++17"
+  staticruntime "On"
   flags 
   {
-    "MultiProcessorCompile",
-    "NoPCH",
+    "NoPCH"
+  }
+  buildoptions
+  {
+    "/bigobj"
   }
 
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -74,7 +87,6 @@ project "DeltaEngine"
   }
 
   filter "system:windows" 
-    cppdialect "C++17"
     staticruntime "On"
     systemversion "latest"
     warnings "Extra"
@@ -98,7 +110,7 @@ project "DeltaEngine"
     libdirs 
     {
       "%{prj.name}/Dep/glew/GL/lib/Debug/x64",
-      "%{prj.name}/Dep/freetype/objs/x64/Debug Static"
+      "%{prj.name}/Dep/freetype/objs/x64/DebugStatic"
     }
     links 
     {
@@ -111,7 +123,9 @@ project "DeltaEngine"
     postbuildcommands
     {
       "{COPY} Dep/fmod/core/lib/x64/fmodL.dll ../bin/" .. outputdir .. "/Sandbox",
-      "{COPY} Dep/fmod/studio/lib/x64/fmodstudioL.dll ../bin/" .. outputdir .. "/Sandbox"
+      "{COPY} Dep/fmod/studio/lib/x64/fmodstudioL.dll ../bin/" .. outputdir .. "/Sandbox",
+      "{COPY} Dep/freetype/objs/x64/DebugStatic/freetype.lib.pdb ../bin/" .. outputdir .. "/Sandbox",
+      "{COPY} Dep/rttr/lib/rttr_core_lib_s.pdb ../bin/" .. outputdir .. "/Sandbox",
     }
 
     
@@ -121,7 +135,7 @@ project "DeltaEngine"
     libdirs 
     {
       "%{prj.name}/Dep/glew/GL/lib/Release/x64",
-      "%{prj.name}/Dep/freetype/objs/x64/Release Static"
+      "%{prj.name}/Dep/freetype/objs/x64/ReleaseStatic"
     }
     links 
     {
@@ -135,6 +149,7 @@ project "DeltaEngine"
     {
       "{COPY} Dep/fmod/core/lib/x64/fmod.dll ../bin/" .. outputdir .. "/Sandbox",
       "{COPY} Dep/fmod/studio/lib/x64/fmodstudio.dll ../bin/" .. outputdir .. "/Sandbox"
+      
     }
 
 
@@ -144,12 +159,13 @@ project "DeltaEngine"
     
 project "Sandbox"
   location "Sandbox"
-  language "C++"
   kind "ConsoleApp"
+  language "C++"
+  cppdialect "C++17"
+  staticruntime "On"
   flags 
   {
-    "MultiProcessorCompile",
-    "NoPCH",
+    "NoPCH"
   }
   
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -176,14 +192,20 @@ project "Sandbox"
     "DeltaEngine/Source"
   }
   
+  libdirs
+  {
+    "DeltaEngine/Dep/freetype/objs",
+    "DeltaEngine/Dep/rttr/lib",
+    "DeltaEngine/Dep/fmod/core/lib/x64",
+    "DeltaEngine/Dep/fmod/studio/lib/x64"
+  }
+  
   links
   {
     "DeltaEngine"
   }
   
   filter "system:windows" 
-    cppdialect "C++17"
-    staticruntime "On"
     systemversion "latest"
     
     defines

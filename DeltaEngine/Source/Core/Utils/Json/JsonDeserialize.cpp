@@ -156,7 +156,10 @@ void ReadRecursive( instance obj2, Value &json_object )
         if ( extracted_value.convert( value_t ) )
           prop.set_value( obj, extracted_value );
         else if ( value_t.is_pointer() )
-          ExtractPointerType( prop.get_value( obj ), extracted_value );
+        {
+          auto val = prop.get_value( obj );
+          ExtractPointerType( val, extracted_value );
+        }
       }
     }
   }
@@ -231,7 +234,7 @@ void ExtractPointerType( variant& obj_dat, variant& extracted )
   if (obj_dat.get_type() == type::get<bool*>())
     *obj_dat.get_value<bool *>() =  extracted.get_value<bool>();
   else if (obj_dat.get_type() == type::get<float*>())
-    *obj_dat.get_value<float *>() =  extracted.get_value<double>();
+    *obj_dat.get_value<float *>() =  static_cast<float>(extracted.get_value<double>());
 }
 
 

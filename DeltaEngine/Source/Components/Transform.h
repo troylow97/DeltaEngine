@@ -3,7 +3,7 @@
 
 namespace DeltaEngine
 {
-  struct DE_API Transform
+  struct Transform
   {
   public:
     Vector3 old_position;

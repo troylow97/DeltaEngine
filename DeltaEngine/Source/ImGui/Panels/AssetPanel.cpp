@@ -29,11 +29,7 @@ struct AssetDirectoryListener : public IFileWatcherListener
 
 std::filesystem::path selection;
 
-void RecursiveDirectoryNodes( std::filesystem::directory_entry dir ) //before recurse store if that thing is clicked then u resolve the click at the end.
-                                                                     //only the last thing that was selected is the folder tht u need to print out
-
-    //1) recursively display all directories
-    //2)
+void RecursiveDirectoryNodes( std::filesystem::directory_entry dir )
 {
   bool flag = false;
   for ( auto &ref : FileUtils::DirList( dir ) )
@@ -52,13 +48,11 @@ void RecursiveDirectoryNodes( std::filesystem::directory_entry dir ) //before re
     node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
 
     ImGui::TreeNodeEx( dir.path().filename().generic_string().c_str(), node_flags );
-    //DeltaEngine_CORE_TRACE(">>START---------------------------------------------------");
-    if ( ImGui::IsItemClicked ) //read all the file and create it as individual but-ons. Use imgui image button
+    if ( ImGui::IsItemClicked() )
     {
       selection = dir;
       DeltaEngine_CORE_TRACE( "Folder {} clicked", dir.path().filename().generic_string() );
     }
-    //DeltaEngine_CORE_TRACE(">>END---------------------------------------------------");
   }
 }
 

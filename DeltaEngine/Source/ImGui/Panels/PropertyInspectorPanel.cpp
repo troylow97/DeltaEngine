@@ -23,7 +23,7 @@ void PropertyInspectorPanel::Render( bool )
   ImGui::Begin( m_name.c_str(), &m_enabled );
   if ( InputManager::Get()->EntitySelected() )
   {
-    auto &em = env.pECS->GetWorld().get_entity_manager();
+    auto &em = env.pECS->GetWorld().GetEntityManager();
 
     topLeft = ImGui::GetWindowContentRegionMin();
     bottomRight = ImGui::GetWindowContentRegionMax();
@@ -83,7 +83,7 @@ void PropertyInspectorPanel::Render( bool )
 
             if ( textureClicked & 1 )
             {
-              strcpy( str1, spritelist[i].GetName().c_str() );
+              strcpy_s( str1, spritelist[i].GetName().c_str() );
             }
           }
           ImGui::SameLine();
@@ -108,7 +108,7 @@ void PropertyInspectorPanel::Render( bool )
 
           if ( textureClicked & 1 )
           {
-            strcpy( str1, bg.GetName().c_str() );
+            strcpy_s( str1, bg.GetName().c_str() );
           }
         }
         ImGui::SameLine();
@@ -136,7 +136,7 @@ void PropertyInspectorPanel::Render( bool )
     if ( auto result = em.GetEntityArchetype( InputManager::Get()->EntityIDSelected() ); result != nullptr )
       for ( auto &ref : *result )
       {
-        rttr::instance &instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
+        rttr::instance instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
 
         ImGui::Text( instance.get_type().get_name().to_string().c_str() );
         auto properties = instance.get_type().get_properties();
@@ -149,14 +149,18 @@ void PropertyInspectorPanel::Render( bool )
           if ( property.get_metadata( "NO_EDITOR" ) )
             continue;
 
-          if ( property.get_type().get_name() == "float*" )
-            ImGui::DragFloat( property.get_name().to_string().c_str(), ( value.get_value<float *>() ), 0.01f );
-          else if ( property.get_type().get_name() == "vector2*" )
-            ImGui::DragFloat2( property.get_name().to_string().c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
-          else if ( property.get_type().get_name() == "vector3*" )
-            ImGui::DragFloat3( property.get_name().to_string().c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
-          else if ( property.get_type().get_name() == "bool*" )
-            ImGui::Checkbox( property.get_name().to_string().c_str(), ( value.get_value<bool *>() ) );
+          auto prop_type = property.get_type();
+          auto prop_name = property.get_name().to_string();
+
+          if ( prop_type == rttr::type::get<float*>() )
+            ImGui::DragFloat( prop_name.c_str(), ( value.get_value<float *>() ), 0.01f );
+          else if ( prop_type == rttr::type::get<Vector2*>())
+            ImGui::DragFloat2( prop_name.c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
+          else if ( prop_type == rttr::type::get<Vector3*>())
+            ImGui::DragFloat3( prop_name.c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
+          else if ( prop_type == rttr::type::get<bool*>() )
+            ImGui::Checkbox( prop_name.c_str(),  value.get_value<bool *>()  );
+
         }
       }
 
