@@ -74,15 +74,22 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.eventManager = new EventManager;
 
   env.pECS = new ECSModule();
-  env.pECS->GetWorld().create_systems<InputSystem,AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().set_update_sequence<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+
   //env.pECS->GetWorld().Load("World/Entities.json");
-  //EntityID first = env.pECS->GetWorld().get_entity_manager().CreateEntity();
-  //env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(first);
-  //env.pECS->GetWorld().get_entity_manager().AddComponent<Collider>(first);
-  //env.pECS->GetWorld().get_entity_manager().AddComponent<RigidBody>(first);  
-  //env.pECS->GetWorld().get_entity_manager().AddComponent<Input>(first);
+  EntityID first = env.pECS->GetWorld().get_entity_manager().CreateEntity();
+  env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(first);
+  env.pECS->GetWorld().get_entity_manager().AddComponent<Collider>(first);
+  env.pECS->GetWorld().get_entity_manager().AddComponent<RigidBody>(first);
+  env.pECS->GetWorld().get_entity_manager().AddComponent<Input>(first);
+  env.pECS->GetWorld().get_entity_manager().AddComponent<AI>(first);
+
+  env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>(first).position = { 0,0,0 };
+  env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>(first).scale = { 0.5,0.5,0 };
+  env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(first).isMoveable = false;
+  env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(first).Mass = 10.0f;
+  env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(first).Movespeed = 100.0f;
+  env.pECS->GetWorld().get_entity_manager().GetComponent<Collider>(first).type = ColliderType::BOX;
+  env.pECS->GetWorld().get_entity_manager().GetComponent<AI>(first).key = "idle";
   //
   //EntityID second = env.pECS->GetWorld().get_entity_manager().CreateEntity();
   //env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(second);
@@ -90,17 +97,17 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   //env.pECS->GetWorld().get_entity_manager().AddComponent<RigidBody>(second);
   //env.pECS->GetWorld().get_entity_manager().AddComponent<AI>(second);
   //
-  //env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>(first).position = { 0,0,0 };
-  //env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>(first).scale = { 0.5,0.5,0 };
-  //env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(first).isMoveable = false;
-  //env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(first).Mass = 10.0f;
-  //env.pECS->GetWorld().get_entity_manager().GetComponent<Collider>(first).type = ColliderType::BOX;
+
   //
   //env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>(second).position = { 2,3,0 };
   //env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(second).isMoveable = false;
   //env.pECS->GetWorld().get_entity_manager().GetComponent<Collider>(second).type = ColliderType::BOX;    
   //env.pECS->GetWorld().get_entity_manager().GetComponent<AI>(second).key = "idle";
   //env.pECS->GetWorld().Save("World/Entities.json");
+
+  env.pECS->GetWorld().create_systems<InputSystem,AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().set_update_sequence<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
 
 }
 
@@ -196,7 +203,9 @@ void Application::OnEvent()
                 break;
             }
             }
+            delete ref;
         }
+        
     }
 }
 

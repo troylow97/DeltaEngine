@@ -12,38 +12,40 @@
 **********************************************************************************/
 #include <unordered_map>
 #include "AI_Transition.h"
-
+#include "Core/GlobalStruct.h"
 namespace DeltaEngine
 {
 	class AIState
 	{
 	public:
 		std::unordered_map<std::string, Transition*> TransitionEdges;
-		virtual void onEnter() = 0;
-		virtual void onExit() = 0;
-		virtual void Update() = 0;
+		virtual void onEnter(EntityID& id) = 0;
+		virtual void onExit(EntityID& id) = 0;
+		virtual void Update(EntityID& id) = 0;
 	};
 
 	class Idle : public AIState
 	{
 	public:
 		std::unordered_map<std::string, Transition*> TransitionEdges;
-		virtual void onEnter() override
+		virtual void onEnter(EntityID& id) override
 		{
 
 		}
-		virtual void onExit() override
+		virtual void onExit(EntityID& id) override
 		{
 
 		}
-		virtual void Update() override
+		virtual void Update(EntityID& id) override
 		{
-			std::cout << "smth" << std::endl;
-		}
+			env.pECS->GetWorld().get_entity_manager().ForEach([&](EntityID id1, AI ai)
+			{
+				if (id.index != id1.index)
+				{
 
-		Idle()
-		{
-			//TransitionEdges["saw_enemy"] = new SawEnemy;
+				}
+			});
+
 		}
 	};
 

@@ -8,9 +8,10 @@ namespace DeltaEngine
 {
 	DEFINE_SYSTEM(AISystem, AI)
 	public:
+		bool isInit = false;
 		AISystem::AISystem() = default;
 		AISystem::~AISystem() = default;
-		void AISystem::Init();
+		//void AISystem::Init();
 		virtual void AISystem::Update() override;
 		virtual void AISystem::LateUpdate() override;
 		std::unordered_map<std::string, AIState*> StateList; //All possible states AI can be in

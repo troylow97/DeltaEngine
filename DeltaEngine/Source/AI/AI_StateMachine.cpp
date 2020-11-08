@@ -17,36 +17,55 @@
 
 namespace DeltaEngine
 {
-	void AISystem::Init()
-	{
-		StateList["idle"] = new Idle();
-		em.ForEach([&](EntityID id, AI ai)
-			{
-				ai.key = "idle";
-			});
-	}
+	//void AISystem::Init()
+	//{
+	//	StateList["idle"] = new Idle();
+	//	em.ForEach([&](EntityID id, AI ai)
+	//		{
+	//			ai.key = "idle";
+	//		});
+	//}
 
 	void AISystem::Update()
 	{
-		Init();
+		if (!isInit)
+		{
+			std::cout << "here0" << std::endl;
+			StateList.insert({ "idle", new Idle() });
+			em.ForEach([&](EntityID id, AI ai)
+			{
+				ai.key = "idle";
+			});
+
+			isInit = true;
+		}
 		//Check and apply transitions
        em.ForEach([&](EntityID id,AI ai)
        {
+			ai.key = "idle";
 			bool isChanged{ false };
-			AIState* ai_state = StateList[ai.key];
+			AIState* ai_state = nullptr;
 
+			auto it = StateList.find(ai.key);
+			if (it != StateList.end())
+				ai_state = it->second;
+
+			std::cout << ai.key << std::endl;
+			std::cout << "here1" << std::endl;
 			if (ai_state != nullptr)
 			{
+				std::cout << "here2" << std::endl;
 				[&]()
 				{
 					for (std::pair<std::string, Transition*> ref : ai_state->TransitionEdges)
 					{
 						if (ref.second->isTriggered)
 						{
-							ai_state->onExit();
+							std::cout << "here3" << std::endl;
+							ai_state->onExit(id);
 							ai.key = ref.first;
 							ai_state = StateList[ref.first];
-							ai_state->onEnter();
+							ai_state->onEnter(id);
 							isChanged = true;
 						}
 					}
@@ -56,16 +75,11 @@ namespace DeltaEngine
 				//No transitions occured, AI updates its current state
 				if (!isChanged)
 				{
-					ai_state->Update();
+					std::cout << "here4" << std::endl;
+					ai_state->Update(id);
 				}
 
 			}
-
-		
-
-		
-		
-		
        });
 	}
 

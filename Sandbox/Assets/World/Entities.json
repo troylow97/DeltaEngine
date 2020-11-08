@@ -13,8 +13,58 @@
                     "z": 0.0
                 },
                 "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
                     "z": 0.0
                 },
                 "rotation": {
@@ -257,7 +307,7 @@
             "rigidbody": {
                 "mass": 100.0,
                 "movespeed": 10.0,
-                "restitution": 1.0,
+                "restitution": 0.0,
                 "friction_coeff": 0.0,
                 "has_gravity": false,
                 "is_moveable": false
@@ -272,7 +322,7 @@
                 },
                 "position": {
                     "x": -2.0,
-                    "y": -14668.33203125,
+                    "y": -1.000000238418579,
                     "z": 0.0
                 },
                 "scale": {
@@ -309,8 +359,8 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": -2.0,
-                    "y": -14667.6669921875,
+                    "x": -2.8767471313476564,
+                    "y": -1.500000238418579,
                     "z": 0.0
                 },
                 "scale": {
@@ -347,8 +397,8 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": -3.625060558319092,
-                    "y": -0.25044694542884829,
+                    "x": -3.8767471313476564,
+                    "y": -0.25114938616752627,
                     "z": 0.0
                 },
                 "scale": {
@@ -371,7 +421,7 @@
             "rigidbody": {
                 "mass": 100.0,
                 "movespeed": 10.0,
-                "restitution": 1.0,
+                "restitution": 0.0,
                 "friction_coeff": 0.0,
                 "has_gravity": true,
                 "is_moveable": true
@@ -385,8 +435,46 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": -1.9922850131988526,
-                    "y": 0.7840451598167419,
+                    "x": -2.1267471313476564,
+                    "y": -1.5,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "collider": {
+                "type": "box",
+                "is_collideable": true,
+                "is_trigger": false
+            },
+            "rigidbody": {
+                "mass": 10.0,
+                "movespeed": 100.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.3499999940395355,
+                "has_gravity": false,
+                "is_moveable": true
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.4340546429157257,
+                    "y": 2.4827022552490236,
                     "z": 0.0
                 },
                 "scale": {
@@ -415,7 +503,7 @@
                 "is_moveable": true
             },
             "input": {
-                "prev": 68,
+                "prev": 65,
                 "curr": 0
             }
         }
