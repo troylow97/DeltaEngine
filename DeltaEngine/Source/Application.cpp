@@ -173,6 +173,7 @@ void Application::OnEvent()
             }
             }
         }
+        delete ref;
     }
 }
 
