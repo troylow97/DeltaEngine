@@ -23,7 +23,7 @@ void PropertyInspectorPanel::Render( bool )
   ImGui::Begin( m_name.c_str(), &m_enabled );
   if ( InputManager::Get()->EntitySelected() )
   {
-    auto &em = env.pECS->GetWorld().get_entity_manager();
+    auto &em = env.pECS->GetWorld().GetEntityManager();
 
     topLeft = ImGui::GetWindowContentRegionMin();
     bottomRight = ImGui::GetWindowContentRegionMax();

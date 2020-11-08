@@ -12,6 +12,7 @@ namespace DeltaEngine
     TilemapPanel::TilemapPanel(std::string str) :
         IPanel(str)
     {
+      m_enabled = true;
 
     }
 
@@ -34,7 +35,7 @@ namespace DeltaEngine
     void TilemapPanel::Render(bool isdragged)
     {
         ImGui::Begin(m_name.c_str(), &m_enabled);
-        auto& em = env.pECS->GetWorld().get_entity_manager();
+        auto& em = env.pECS->GetWorld().GetEntityManager();
 
         topLeft = ImGui::GetWindowContentRegionMin();
         bottomRight = ImGui::GetWindowContentRegionMax();

@@ -17,7 +17,7 @@ class World
   std::vector<size_t> late_update_sequence;
 #pragma warning(default:4251)
 
-  bool system_exist( size_t digest )
+  bool SystemExist( size_t digest )
   {
     if ( systems.find( digest ) == systems.end() )
       return false;
@@ -29,20 +29,20 @@ public:
   World() : em( std::make_unique<EntityManager>() )
   {}
 
-  EntityManager &get_entity_manager() const
+  EntityManager &GetEntityManager() const
   {
     return *em;
   }
 
   template <typename... Systems>
-  void create_systems()
+  void CreateSystems()
   {
-    ( find_or_create_system<Systems>(), ... );
+    ( FindOrCreateSystem<Systems>(), ... );
   }
 
   template <typename System,
     typename = std::enable_if<std::is_base_of_v<SystemBase, System>>>
-    SystemBase &find_or_create_system()
+    SystemBase &FindOrCreateSystem()
   {
     constexpr CHash hash = CHash::Hash<System>();
     const auto it = systems.find( hash.digest );
@@ -54,38 +54,50 @@ public:
     return *( it->second );
   }
 
-  void update()
+  void InitSystems()
+  {
+    for ( auto &[hash, system] : systems )
+      system->Initialize();
+  }
+
+  void ShutdownSystems()
+  {
+    for ( auto &[hash, system] : systems )
+      system->Shutdown();
+  }
+
+  void Update()
   {
     for ( auto hash : update_sequence )
       systems[hash]->Update();
   }
 
-  void late_update()
+  void LateUpdate()
   {
     for ( auto hash : late_update_sequence )
       systems[hash]->LateUpdate();
   }
 
   template <typename... Systems>
-  void set_update_sequence()
+  void SetUpdateSequence()
   {
     update_sequence.clear();
     std::vector<CHash> vec_hash = { CHash::Hash<Systems>()... };
     for ( auto hash : vec_hash )
     {
-      assert( system_exist( hash.digest ) );
+      assert( SystemExist( hash.digest ) );
       update_sequence.push_back( hash.digest );
     }
   }
 
   template <typename... Systems>
-  void set_late_update_sequence()
+  void SetLateUpdateSequence()
   {
     late_update_sequence.clear();
     std::vector<CHash> vec_hash = { CHash::Hash<Systems>()... };
     for ( auto hash : vec_hash )
     {
-      assert( system_exist( hash.digest ) );
+      assert( SystemExist( hash.digest ) );
       late_update_sequence.push_back( hash.digest );
     }
   }
