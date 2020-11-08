@@ -1,5 +1,6 @@
 #include "Core/Debugging/Assert.h"
 #include "Reflect/Reflect.h"
+#include "ArrayView.h"
 
 namespace DeltaEngine::ECS_Internal
 {
@@ -193,6 +194,12 @@ void EntityManager::AddComponent( EntityID id )
   }
 
   meta_vec.push_back( meta );
+
+  std::sort( meta_vec.begin(), meta_vec.end(), []( const ComponentMeta *lhs, const ComponentMeta *rhs )
+  {
+    return lhs->bits < rhs->bits;
+  } );
+
   arch = FindOrCreateArchetype( meta_vec );
   SetEntityArchetype( id, arch );
 }

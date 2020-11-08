@@ -1,10 +1,9 @@
 #pragma once
 #include "DEpch.h"
-#include "DE_API.h"
 
 namespace DeltaEngine
 {
-  struct DE_API State
+  struct State
   {
     struct Parameter
     {
@@ -30,6 +29,8 @@ namespace DeltaEngine
 
     std::vector<Condition> // their conditions
       conditions;
+
+    State() = default;
 
     bool GetBool(std::string paramName);
     bool SetBool(std::string paramName, bool value);

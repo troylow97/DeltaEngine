@@ -11,6 +11,16 @@ struct EntityID
   size_t generation { 1 };
 };
 
+struct EntityName
+{
+  std::string name {"entity"};
+};
+
+struct EntityParent
+{
+  size_t p_id;
+};
+
 struct Entity
 {
   DataChunk *chunk { nullptr };

@@ -3,6 +3,7 @@
 
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
+#include "Render/Camera.h"
 
 namespace DeltaEngine
 {

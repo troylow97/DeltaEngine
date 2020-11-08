@@ -1,12 +1,11 @@
 #pragma once
-#include "DE_API.h"
 
 #include "World.h"
 
 namespace DeltaEngine
 {
 
-class DE_API ECSModule
+class ECSModule
 {
 #pragma warning(disable:4251)
   std::vector<World *> m_worlds;

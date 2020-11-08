@@ -1,13 +1,12 @@
 #pragma once
 
-#include "DE_API.h"
 #include "MouseInput.h"
 #include "KeyboardInput.h"
 #include "Keys.h"
 
 namespace DeltaEngine
 {
-class DE_API InputManager //: public InputListener
+class InputManager //: public InputListener
 {
 
   KeyboardInput m_keyboard;

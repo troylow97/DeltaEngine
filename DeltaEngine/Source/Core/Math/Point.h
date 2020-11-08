@@ -1,11 +1,9 @@
 #pragma once
 
-#include "DE_API.h"
-
 namespace DeltaEngine
 {
 
-struct DE_API Point
+struct Point
 {
   float point_x = 0;
   float point_y = 0;

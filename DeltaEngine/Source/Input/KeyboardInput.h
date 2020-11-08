@@ -1,12 +1,10 @@
 #pragma once
 
-#include "DE_API.h"
-
 #include <unordered_map>
 
 namespace DeltaEngine
 {
-class DE_API KeyboardInput
+class KeyboardInput
 {
 private:
 #pragma warning(disable:4251)

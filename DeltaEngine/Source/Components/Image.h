@@ -4,7 +4,7 @@
 
 namespace DeltaEngine
 {
-  struct DE_API Image
+  struct Image
   {
     Sprite m_Sprite;
 

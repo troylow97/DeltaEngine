@@ -149,14 +149,18 @@ void PropertyInspectorPanel::Render( bool )
           if ( property.get_metadata( "NO_EDITOR" ) )
             continue;
 
-          if ( property.get_type().get_name() == "float*" )
-            ImGui::DragFloat( property.get_name().to_string().c_str(), ( value.get_value<float *>() ), 0.01f );
-          else if ( property.get_type().get_name() == "vector2*" )
-            ImGui::DragFloat2( property.get_name().to_string().c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
-          else if ( property.get_type().get_name() == "vector3*" )
-            ImGui::DragFloat3( property.get_name().to_string().c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
-          else if ( property.get_type().get_name() == "bool*" )
-            ImGui::Checkbox( property.get_name().to_string().c_str(), ( value.get_value<bool *>() ) );
+          auto prop_type = property.get_type();
+          auto prop_name = property.get_name().to_string();
+
+          if ( prop_type == rttr::type::get<float*>() )
+            ImGui::DragFloat( prop_name.c_str(), ( value.get_value<float *>() ), 0.01f );
+          else if ( prop_type == rttr::type::get<Vector2*>())
+            ImGui::DragFloat2( prop_name.c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
+          else if ( prop_type == rttr::type::get<Vector3*>())
+            ImGui::DragFloat3( prop_name.c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
+          else if ( prop_type == rttr::type::get<bool*>() )
+            ImGui::Checkbox( prop_name.c_str(),  value.get_value<bool *>()  );
+
         }
       }
 

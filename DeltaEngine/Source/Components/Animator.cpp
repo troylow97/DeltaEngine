@@ -6,12 +6,7 @@
 
 namespace DeltaEngine
 {
-Animator::Animator( AnimationController *controller )
-  : m_ControllerKey { "" }, m_ClipKey { "" },
-  m_Timer { 0.0f }, m_Frame { 0 }, m_Speed { 1 }
-{
 
-}
 
 unsigned int Animator::GetFrame() const
 {

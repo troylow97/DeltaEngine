@@ -1,12 +1,11 @@
 #pragma once
-#include "DE_API.h"
 #include "DataChunk.h"
 
 namespace DeltaEngine
 {
 
 template <typename T>
-class DE_API ArrayView
+class ArrayView
 {
   T *m_data { nullptr };
   DataChunk *m_owner { nullptr };

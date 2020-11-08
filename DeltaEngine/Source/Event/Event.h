@@ -1,7 +1,8 @@
 #pragma once
 #include <sstream>
-#include "DE_API.h"
 #include "Core/Containers/RingBuffer.h"
+
+#define BIT(x) (1 << x)
 
 namespace DeltaEngine
 {

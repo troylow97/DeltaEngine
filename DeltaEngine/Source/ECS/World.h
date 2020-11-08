@@ -8,7 +8,7 @@
 namespace DeltaEngine
 {
 
-class DE_API World
+class World
 {
 #pragma warning(disable:4251)
   std::unique_ptr<EntityManager> em;

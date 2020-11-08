@@ -1,10 +1,9 @@
 #pragma once
-#include "DE_API.h"
 
 namespace DeltaEngine
 {
 
-class DE_API SystemBase
+class SystemBase
 {
 protected:
   class EntityManager &em;

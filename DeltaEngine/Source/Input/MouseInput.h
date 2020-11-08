@@ -1,12 +1,11 @@
 #pragma once
 
-#include "DE_API.h"
 #include "Core/Math/Point.h"
 #include <unordered_map>
 
 namespace DeltaEngine
 {
-class DE_API MouseInput
+class MouseInput
 {
 private:
 #pragma warning(disable:4251)
