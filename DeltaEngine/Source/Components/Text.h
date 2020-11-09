@@ -6,7 +6,7 @@
 namespace DeltaEngine
 {
 
-enum class Alignment
+enum class Alignment : unsigned
 {
   AlignLeft,
   AlignRight,

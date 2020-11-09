@@ -146,7 +146,7 @@ bool EntityManager::HasComponent( EntityID id )
 {
   Entity &ref = m_entities[id.index];
   auto c_array = ECS_Internal::get_chunk_array<C>( ref.chunk );
-  return c_array.owner != nullptr;
+  return c_array.ChunkOwner() != nullptr;
 }
 
 template <typename C>
