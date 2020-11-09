@@ -10,9 +10,7 @@
 #include "Entities.h"
 #include "Archetype.h"
 #include "Description.h"
-#include "ArrayView.h"
 #include "DataChunk.h"
-#include "DE_API.h"
 
 namespace DeltaEngine
 {
@@ -22,7 +20,7 @@ namespace Serialize
 void WriteEntities( class DeltaEngine::EntityManager &em, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer );
 }
 
-class DE_API EntityManager
+class EntityManager
 {
   std::vector<Entity> m_entities;
   std::vector<size_t> m_entities_deleted;

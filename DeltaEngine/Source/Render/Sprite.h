@@ -3,17 +3,17 @@
 #include "DEpch.h"
 #include "Core/Math/Vector.h"
 #include "Texture.h"
-#include "DE_API.h"
 
 namespace DeltaEngine
 {
-class DE_API Sprite
+class  Sprite
 {
+
+
+public:
 #pragma warning(disable:4251)
   std::string m_Key;
 #pragma warning(default:4251)
-
-public:
   unsigned int m_Index;
   bool m_Valid;
   Sprite( std::string textureName = "", unsigned int index = 0 );

@@ -2,13 +2,17 @@
 #include "Input/InputManager.h"
 
 #include "Core/GlobalStruct.h"
+#include "Render/Texture.h"
+#include "Assets/AssetManager.h"
 #include "ECS/ECSModule.h"
+#include "Core/Utils/FileUtils.h"
 
 namespace DeltaEngine
 {
     TilemapPanel::TilemapPanel(std::string str) :
         IPanel(str)
     {
+      m_enabled = true;
 
     }
 
@@ -31,7 +35,6 @@ namespace DeltaEngine
     void TilemapPanel::Render(bool isdragged)
     {
         ImGui::Begin(m_name.c_str(), &m_enabled);
-        auto& em = env.pECS->GetWorld().get_entity_manager();
 
         topLeft = ImGui::GetWindowContentRegionMin();
         bottomRight = ImGui::GetWindowContentRegionMax();
@@ -45,12 +48,107 @@ namespace DeltaEngine
         //std::cout << "render                   topLeft is " << topLeft.x << ", " << topLeft.y << std::endl;
         //std::cout << "render                   bottomRight is " << bottomRight.x << ", " << bottomRight.y << std::endl;
 
+        ImGui::Text("Current tiles available:");
+
         if (isdragged)
         {
             DraggedFileIn();
         }
+        std::string path = "Tilemap/";
 
-        ImGui::Text("Current tiles available:");
+        for (const auto& entry : std::filesystem::directory_iterator(path))
+        { 
+            std::string filePath = entry.path().string();
+
+            std::size_t index = filePath.find_last_of("/");
+            std::string fileName;
+            for (size_t i = index + 1; i < filePath.length(); ++i)
+            {
+                fileName += filePath[i]; // get fileName as XXX.png
+            }
+
+            // only files that end with .png will be loaded as texture 
+            if (tileInfo.find(fileName) == tileInfo.end())
+            {
+                size_t n = std::count(fileName.begin(), fileName.end(), '.');
+                size_t temp_position = fileName.find_last_of(".png");
+
+                if (temp_position == std::string::npos || n > 1)
+                {
+                    continue;
+                }
+                else
+                {
+                    tileInfo.insert(std::pair<std::string, std::string>(fileName, filePath));
+                    env.pManager->Load<Texture2D>(fileName, filePath);
+                    tileInfo[fileName] = env.pManager->Get<Texture2D>(fileName);
+                }
+            }
+            
+            uint64_t textureID;
+            Sprite _sprite = { fileName, 0 };
+
+            // setting all png files as ImageButton 
+            textureID = _sprite.GetTexture()->GetRendererID();
+            if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
+                ImVec2{ 32,32 },
+                ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y }))
+            {
+                //std::cout << "clicking tiles" << std::endl;
+            }
+            ImGui::SameLine();
+
+            ImGuiDragDropFlags src_flags = 0;
+            src_flags |= ImGuiDragDropFlags_SourceNoDisableHover;     // Keep the source displayed as hovered
+            src_flags |= ImGuiDragDropFlags_SourceAllowNullID; // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
+
+            if (ImGui::BeginDragDropSource(src_flags))
+            {
+                ImGui::SetDragDropPayload("TILES", &textureID, sizeof(int));
+                std::cout << "dragging tiles" << std::endl;
+                // display preview (decide whether to display the filename or preview the texture)
+                ImGui::Image(reinterpret_cast<void*>(textureID),
+                    ImVec2{ 32,32 },
+                    ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                    ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
+                ImGui::Text(fileName.c_str());
+                ImGui::EndDragDropSource();
+            }
+
+            ImGui::Begin("test");
+            {
+                //ImGui::Image(reinterpret_cast<void*>(textureID),
+                //    ImVec2{ 32,32 },
+                //    ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                //    ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
+                //ImGui::SameLine();
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //if (ImGui::BeginDragDropTarget())
+                //{
+                //    ImGuiDragDropFlags target_flags = 0;
+                //    target_flags |= ImGuiDragDropFlags_AcceptBeforeDelivery;    // Don't wait until the delivery (release mouse button on a target) to do something
+                //    target_flags |= ImGuiDragDropFlags_AcceptNoDrawDefaultRect; // Don't display the yellow rectangle
+                //
+                //    if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("TILES", target_flags))
+                //    {
+                //        uint64_t payload_n = *(const uint64_t*)payload->Data;
+                //        // do the tiling
+                //        std::cout << "dropped tiles" << std::endl;
+                //
+                //        std::cout << "payload_n is " << payload_n << std::endl;
+                //
+                //        ImGui::Image(reinterpret_cast<void*>(payload_n),
+                //            ImVec2{ 32,32 },
+                //            ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                //            ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
+                //    }
+                //    ImGui::EndDragDropTarget();
+                //}
+
+                ImGui::End();
+            }
+        }
 
         ImGui::End();
     }

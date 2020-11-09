@@ -1,6 +1,5 @@
 #pragma once
 
-#include "DE_API.h"
 
 namespace DeltaEngine
 {
@@ -13,7 +12,7 @@ struct Quaternion;
 #pragma warning( disable : 4201 )
 #endif
 
-union DE_API Matrix2x2
+union Matrix2x2
 {
   struct
   {
@@ -34,7 +33,7 @@ union DE_API Matrix2x2
 
 };
 
-union DE_API Matrix4x4
+union Matrix4x4
 {
   struct
   {

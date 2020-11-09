@@ -22,7 +22,7 @@ bool WriteAtomic( const type &t, const variant &var, PrettyWriter<FileWriteStrea
 
 void WriteObject( instance object, PrettyWriter<FileWriteStream> &writer )
 {
-  instance &obj = object.get_type().get_raw_type().is_wrapper() ? object.get_wrapped_instance() : object;
+  instance obj = object.get_type().get_raw_type().is_wrapper() ? object.get_wrapped_instance() : object;
 
   auto prop_list = obj.get_derived_type().get_properties();
   for ( auto prop : prop_list )

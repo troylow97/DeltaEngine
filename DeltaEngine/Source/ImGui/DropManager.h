@@ -2,8 +2,11 @@
 
 #include <oleidl.h>
 #include <shellapi.h>
+#include <locale> 
+#include <codecvt>
 #include "Input/InputManager.h"
 #include "Event/ApplicationEvent.h"
+#include "Core/Utils/FileUtils.h"
 
 namespace DeltaEngine
 {
@@ -76,12 +79,12 @@ namespace DeltaEngine
                 return E_INVALIDARG;
             }
             // trigger MouseMove within ImGui, position is within pt.x and pt.y
-            if (InputManager::Get()->CurrentCameraPosition().point_x >= Camera::editorCamera->Min().x && InputManager::Get()->CurrentCameraPosition().point_x <= Camera::editorCamera->Max().x
-                && InputManager::Get()->CurrentCameraPosition().point_y >= Camera::editorCamera->Min().y && InputManager::Get()->CurrentCameraPosition().point_y <= Camera::editorCamera->Max().y)
-            {
-                _isInPanel = true;
-                std::cout << "it is in camera panel!!!" << std::endl;
-            }
+            //if (InputManager::Get()->CurrentCameraPosition().point_x >= Camera::editorCamera->Min().x && InputManager::Get()->CurrentCameraPosition().point_x <= Camera::editorCamera->Max().x
+            //    && InputManager::Get()->CurrentCameraPosition().point_y >= Camera::editorCamera->Min().y && InputManager::Get()->CurrentCameraPosition().point_y <= Camera::editorCamera->Max().y)
+            //{
+            //    _isInPanel = true;
+            //    std::cout << "it is in camera panel!!!" << std::endl;
+            //}
 
             env.eventManager->AddEvent(new ImGuiFileDragEvent);
 
@@ -149,23 +152,42 @@ namespace DeltaEngine
                 DragQueryFile(drop, i, fileName, fileNameLength);
 
                 std::wcout << fileName << std::endl;
+             
+                // provide data of files !!!!!!!!!!!!!!!!!!!!!
+                std::wstring fileNamePath = fileName;
+                std::replace(fileNamePath.begin(), fileNamePath.end(), '\\', '/'); // replace all '\' to '/'
+
+                std::size_t index = fileNamePath.find_last_of(L"/\\"); 
+                std::wstring newFileName;
+                std::wstring newPathName = L"Tilemap/";
+                for (size_t i = index; i < fileNamePath.length(); ++i)
+                {
+                    newFileName += fileNamePath[i];
+                }
+                newPathName += newFileName;
+                FileUtils::CreateDir("Tilemap");
+                FileUtils::CopyFileW(fileNamePath, newPathName);
+
+                //env.pManager->load<Texture2D>(newFileName, newPathName);
+
+                //env.pManager->SetLoader<Texture2D>(new ImGuiFileDragEventDone);
             }
             if (fileName != NULL)
             {
                 free(fileName);
             }
+
             // releasing the data once done
             ReleaseStgMedium(&medium);
 
             // notify imgui that dragging of the files is done
-
             env.eventManager->AddEvent(new ImGuiFileDragEventDone);
             _isReleased = true;
             _isDragged = false;
             _isDropped = true;
             _isInImGui = false;
             _isInPanel = false;
-            // provide data of files !!!!!!!!!!!!!!!!!!!!!
+
 
             // trigger MouseUp for button 1 within ImGui
 

@@ -5,7 +5,7 @@
 
 namespace DeltaEngine
 {
-  struct DE_API Renderer2D
+  struct Renderer2D
   {
     Material m_Material;
     Color m_Color;
@@ -16,5 +16,7 @@ namespace DeltaEngine
 
     bool m_Shaded = true;
     bool m_Wireframe = true;
+
+    Renderer2D(): m_Material(), color(), m_Active{true}, m_Shaded{true}, m_Wireframe{true} {};
   };
 }

@@ -1,12 +1,10 @@
 #pragma once
 
-#include "DE_API.h"
-
 namespace DeltaEngine
 {
-struct DE_API Vector3;
+struct Vector3;
 
-struct DE_API Vector2
+struct Vector2
 {
   float x, y;
   Vector2();
@@ -49,7 +47,7 @@ struct DE_API Vector2
 #pragma endregion
 };
 
-struct DE_API Vector3
+struct Vector3
 {
   float x, y, z;
   Vector3();
@@ -84,7 +82,7 @@ struct DE_API Vector3
   Vector3 operator/=( const float f );
 #pragma endregion
 };
-struct DE_API Vector4
+struct Vector4
 {
   float x, y, z, w;
   Vector4();

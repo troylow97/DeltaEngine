@@ -44,10 +44,10 @@ void Editor::MenuBar()
   if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_S ) )
     SaveFile();
   if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyDown( DEVK_LSHIFT ) && ImGui::IsKeyReleased( DEVK_A ) )
-    GetEnv().pECS->GetWorld().get_entity_manager().CreateEntity();
+    GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity();
   if ( InputManager::Get()->EntitySelected() && ImGui::IsKeyReleased( DEVK_DELETE ) )
   {
-    GetEnv().pECS->GetWorld().get_entity_manager().DestroyEntity( { InputManager::Get()->EntityIDSelected() } );
+    GetEnv().pECS->GetWorld().GetEntityManager().DestroyEntity( { InputManager::Get()->EntityIDSelected() } );
     InputManager::Get()->SetEntitySelected( false );
     InputManager::Get()->SetEntityIDSelected( 0 );
     DeltaEngine_CORE_TRACE( "DELETED ENTITIES" );
@@ -69,7 +69,7 @@ void Editor::MenuBar()
     {
       if ( ImGui::MenuItem( "New", " Ctrl+N" ) )
       {
-        GetEnv().pECS->GetWorld().get_entity_manager().Clear();
+        GetEnv().pECS->GetWorld().GetEntityManager().Clear();
       }
       if ( ImGui::MenuItem( "Open", " Ctrl+O" ) )
       {
@@ -85,7 +85,7 @@ void Editor::MenuBar()
     {
       if ( ImGui::MenuItem( "Add Entity", " Ctrl+Shift+A" ) )
       {
-        GetEnv().pECS->GetWorld().get_entity_manager().CreateEntity();
+        GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity();
       }
       if ( ImGui::MenuItem( "clone entity" ) )
       {
@@ -93,7 +93,7 @@ void Editor::MenuBar()
       }
       if ( ImGui::MenuItem( "Delete Entity", " Del" ) )
       {
-        GetEnv().pECS->GetWorld().get_entity_manager().DestroyEntity( { InputManager::Get()->EntityIDSelected() } );
+        GetEnv().pECS->GetWorld().GetEntityManager().DestroyEntity( { InputManager::Get()->EntityIDSelected() } );
       }
 
       ImGui::EndMenu();
@@ -160,7 +160,6 @@ void Editor::Begin()
   static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_AutoHideTabBar;
 
   // Update ImGui with Custom Input
-  auto &em = env.pECS->GetWorld().get_entity_manager();
   auto &ref = ImGui::GetIO();
   std::memcpy( &ref.KeysDown[0], InputManager::Get()->GetKeys(), 256 );
 
@@ -208,8 +207,6 @@ void Editor::Render()
 {
 
   MenuBar();
-
-  // renderers
 
   for ( auto &ref : m_panels )
   {

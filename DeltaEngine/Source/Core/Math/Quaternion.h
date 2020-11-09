@@ -1,11 +1,11 @@
 #pragma once
-#include "DE_API.h"
+
 namespace DeltaEngine
 {
 
 struct Vector3;
 
-struct DE_API Quaternion
+struct Quaternion
 {
 public:
   float x, y, z, w;

@@ -48,7 +48,7 @@ void RecursiveDirectoryNodes( std::filesystem::directory_entry dir )
     node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
 
     ImGui::TreeNodeEx( dir.path().filename().generic_string().c_str(), node_flags );
-    if ( ImGui::IsItemClicked )
+    if ( ImGui::IsItemClicked() )
     {
       selection = dir;
       DeltaEngine_CORE_TRACE( "Folder {} clicked", dir.path().filename().generic_string() );

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "DE_API.h"
 #pragma warning(push, 0)
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
@@ -10,7 +9,7 @@
 
 namespace DeltaEngine
 {
-class DE_API Log
+class Log
 {
 
 public:

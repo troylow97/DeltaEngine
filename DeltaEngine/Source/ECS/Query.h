@@ -1,10 +1,9 @@
 #pragma once
-#include "DE_API.h"
 
 namespace DeltaEngine
 {
 
-class DE_API Query
+class Query
 {
   size_t m_required_bits { 0 };
   size_t m_excluded_bits { 0 };

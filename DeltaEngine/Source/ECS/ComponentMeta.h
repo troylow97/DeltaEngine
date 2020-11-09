@@ -1,6 +1,5 @@
 #pragma once
 
-#include "DE_API.h"
 #include <array>
 #include "Components/Components.h"
 

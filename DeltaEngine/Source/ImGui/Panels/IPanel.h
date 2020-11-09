@@ -10,6 +10,7 @@ namespace DeltaEngine
 	public:
 		virtual void Render(bool) = 0;
 		IPanel(std::string str) : m_name(str) { }
+		virtual ~IPanel() = default;
 		void Enable() { m_enabled = !m_enabled; }
 		bool IsEnabled() const { return m_enabled; }
 		std::string Name() const { return m_name; }

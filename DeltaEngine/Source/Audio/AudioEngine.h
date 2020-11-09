@@ -1,7 +1,6 @@
 #pragma once
 
 #include <unordered_map>
-#include "DE_API.h"
 #include "Core/Math/Vector.h"
 
 using AUDIOENGINE_LOAD_BANK_FLAGS = unsigned;
@@ -13,7 +12,7 @@ using AUDIOENGINE_LOAD_BANK_FLAGS = unsigned;
 namespace DeltaEngine
 {
 
-struct DE_API Audio3DAttributes
+struct Audio3DAttributes
 {
   Vector3 pos;
   Vector3 vel;
@@ -21,7 +20,7 @@ struct DE_API Audio3DAttributes
   Vector3 up;
 };
 
-class DE_API AudioEngine
+class AudioEngine
 {
   using EventID = size_t;
   using ChannelID = size_t;

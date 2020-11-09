@@ -4,7 +4,7 @@
 
 namespace DeltaEngine
 {
-struct DE_API AABB
+struct AABB
 {
 public:
   Vector2 min;
@@ -18,7 +18,7 @@ public:
   float GetPerimeter() const;
 };
 
-struct DE_API LineSegment
+struct LineSegment
 {
   LineSegment();
   LineSegment( const Vector2 pt0, const Vector2 pt1 );
@@ -28,7 +28,7 @@ struct DE_API LineSegment
   Vector2	m_normal; //outward
 };
 
-struct DE_API Circle //Does not support circle with non equal radius
+struct Circle //Does not support circle with non equal radius
 {
   Circle();
   Circle( const Vector2 center, const float radius, const float mass );
@@ -39,7 +39,7 @@ struct DE_API Circle //Does not support circle with non equal radius
   float   m_mass;
 };
 
-struct DE_API Ray
+struct Ray
 {
   Ray();
   Ray( const Vector2 pt, const Vector2 dir );

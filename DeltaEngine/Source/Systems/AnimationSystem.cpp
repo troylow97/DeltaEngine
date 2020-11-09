@@ -13,13 +13,13 @@ void AnimationSystem::Update()
       s.parameters.insert(controller->startingParameters.begin(), controller->startingParameters.end());
       if (a.m_ClipKey.size() == 0)
       {
-        AnimationClip* newClip = controller->entryAnimation;
+        newClip = controller->entryAnimation;
         a.m_ClipKey = newClip->GetName();
         i.m_Sprite = newClip->GetSprite(a.GetFrame());
       }
       else
       {
-        AnimationClip* newClip = controller->CheckCondition(a.m_ClipKey, s.parameters);
+        newClip = controller->CheckCondition(a.m_ClipKey, s.parameters);
         if (newClip)
         {
           a.m_ClipKey = newClip->GetName();
