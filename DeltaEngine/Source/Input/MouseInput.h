@@ -25,6 +25,8 @@ private:
   bool m_entity_selected = false;
   size_t m_entityid_selected;
 
+  bool m_tileset_dragged = false;
+
   friend class InputManager;
 
   void Reset();
@@ -47,5 +49,8 @@ public:
 
   size_t EntityIDSelected();                                   // getter
   void SetEntityIDSelected(size_t _setEntityIDSelected);       // setter
+
+  bool TilesetDragged();                                       // getter
+  void SetTilesetDragged(bool _setTilesetDragged);             // setter
 };
 }

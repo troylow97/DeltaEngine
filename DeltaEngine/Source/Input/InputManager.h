@@ -51,6 +51,9 @@ public:
   size_t EntityIDSelected();                                   // getter
   void SetEntityIDSelected(size_t _setEntityIDSelected);       // setter
 
+  bool TilesetDragged();                                       // getter
+  void SetTilesetDragged(bool _setTilesetDragged);             // setter
+
   bool *GetKeys();
 };
 

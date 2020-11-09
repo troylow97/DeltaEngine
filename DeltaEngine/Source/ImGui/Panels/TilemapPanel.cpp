@@ -34,7 +34,7 @@ namespace DeltaEngine
 
     void TilemapPanel::Render(bool isdragged)
     {
-        ImGui::Begin(m_name.c_str(), &m_enabled);
+        ImGui::Begin(m_name.c_str(), &m_enabled/*, ImGuiWindowFlags_AlwaysAutoResize*/);
 
         topLeft = ImGui::GetWindowContentRegionMin();
         bottomRight = ImGui::GetWindowContentRegionMax();
@@ -106,6 +106,7 @@ namespace DeltaEngine
             if (ImGui::BeginDragDropSource(src_flags))
             {
                 ImGui::SetDragDropPayload("TILES", &textureID, sizeof(int));
+                InputManager::Get()->SetTilesetDragged(true);
                 std::cout << "dragging tiles" << std::endl;
                 // display preview (decide whether to display the filename or preview the texture)
                 ImGui::Image(reinterpret_cast<void*>(textureID),
@@ -114,39 +115,6 @@ namespace DeltaEngine
                     ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
                 ImGui::Text(fileName.c_str());
                 ImGui::EndDragDropSource();
-            }
-
-            ImGui::Begin("test");
-            {
-                //ImGui::Image(reinterpret_cast<void*>(textureID),
-                //    ImVec2{ 32,32 },
-                //    ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
-                //    ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
-                //ImGui::SameLine();
-                //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //if (ImGui::BeginDragDropTarget())
-                //{
-                //    ImGuiDragDropFlags target_flags = 0;
-                //    target_flags |= ImGuiDragDropFlags_AcceptBeforeDelivery;    // Don't wait until the delivery (release mouse button on a target) to do something
-                //    target_flags |= ImGuiDragDropFlags_AcceptNoDrawDefaultRect; // Don't display the yellow rectangle
-                //
-                //    if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("TILES", target_flags))
-                //    {
-                //        uint64_t payload_n = *(const uint64_t*)payload->Data;
-                //        // do the tiling
-                //        std::cout << "dropped tiles" << std::endl;
-                //
-                //        std::cout << "payload_n is " << payload_n << std::endl;
-                //
-                //        ImGui::Image(reinterpret_cast<void*>(payload_n),
-                //            ImVec2{ 32,32 },
-                //            ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
-                //            ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
-                //    }
-                //    ImGui::EndDragDropTarget();
-                //}
-
-                ImGui::End();
             }
         }
 
