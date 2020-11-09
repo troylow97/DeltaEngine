@@ -10,13 +10,13 @@
 
 namespace DeltaEngine
 {
-Shader::Shader( const std::string &filepath )
+Shader::Shader( std::string filepath )
   : Shader( filepath + ".vs", filepath + ".fs" )
 {
   m_Name = filepath;
 }
 
-Shader::Shader( const std::string &vsfilepath, const std::string &fsfilepath )
+Shader::Shader( std::string vsfilepath, std::string fsfilepath )
   : m_filepath { vsfilepath, fsfilepath }, m_RendererID { 0 }
 {
   m_RendererID = CreateShader( LoadShader( vsfilepath ), LoadShader( fsfilepath ) );
@@ -41,7 +41,7 @@ void Shader::Unbind() const
   GLCall( glUseProgram( 0 ) );
 }
 
-std::string Shader::LoadShader( const std::string &filepath )
+std::string Shader::LoadShader( std::string filepath )
 {
   std::ifstream file;
   DeltaEngine_CORE_TRACE( "Loading shader \"{}\"...", filepath.c_str() );
@@ -66,7 +66,7 @@ std::string Shader::LoadShader( const std::string &filepath )
 
   return output;
 }
-unsigned int Shader::CompileShader( unsigned int type, const std::string &source )
+unsigned int Shader::CompileShader( unsigned int type, std::string source )
 {
   unsigned int id = glCreateShader( type );
   const char *src = source.c_str();
@@ -90,7 +90,7 @@ unsigned int Shader::CompileShader( unsigned int type, const std::string &source
 
   return id;
 }
-unsigned int Shader::CreateShader( const std::string &vertexShader, const std::string &fragmentShader )
+unsigned int Shader::CreateShader( std::string vertexShader, std::string fragmentShader )
 {
   unsigned int program = glCreateProgram();
   unsigned int vs = CompileShader( GL_VERTEX_SHADER, vertexShader );
@@ -120,42 +120,42 @@ std::string Shader::GetName()
   return m_Name;
 }
 
-void Shader::SetUniform1i( const std::string &name, int i0 )
+void Shader::SetUniform1i( std::string name, int i0 )
 {
   Bind();
   glUniform1i( GetUniformLocation( name ), i0 );
 }
-void Shader::SetUniform1f( const std::string &name, float f0 )
+void Shader::SetUniform1f( std::string name, float f0 )
 {
   Bind();
   glUniform1f( GetUniformLocation( name ), f0 );
 }
-void Shader::SetUniformMatrix4f( const std::string &name, const Matrix4x4 &matrix )
+void Shader::SetUniformMatrix4f( std::string name, Matrix4x4 matrix )
 {
   Bind();
   glUniformMatrix4fv( GetUniformLocation( name ), 1, GL_FALSE, matrix.m );
 }
-void Shader::SetUniformColor4f( const std::string &name, Color &c )
+void Shader::SetUniformColor4f( std::string name, Color c )
 {
   Bind();
   GLCall( glUniform4f( GetUniformLocation( name ), c.r, c.g, c.b, c.a ) );
 }
-void Shader::SetUniformVector3f( const std::string &name, Vector3 &v )
+void Shader::SetUniformVector3f( std::string name, Vector3 v )
 {
   Bind();
   GLCall( glUniform3f( GetUniformLocation( name ), v.x, v.y, v.z ) );
 }
-void Shader::SetUniformVector4f( const std::string &name, Vector4 &v )
+void Shader::SetUniformVector4f( std::string name, Vector4 v )
 {
   Bind();
   GLCall( glUniform4f( GetUniformLocation( name ), v.x, v.y, v.z, v.w ) );
 }
-void Shader::SetUniformVector4f( const std::string &name, float v0, float v1, float v2, float v3 )
+void Shader::SetUniformVector4f( std::string name, float v0, float v1, float v2, float v3 )
 {
   Bind();
   GLCall( glUniform4f( GetUniformLocation( name ), v0, v1, v2, v3 ) );
 }
-int Shader::GetUniformLocation( const std::string &name )
+int Shader::GetUniformLocation( std::string name )
 {
   if ( m_uniformLocationCache.find( name ) != m_uniformLocationCache.end() )
     return m_uniformLocationCache[name];

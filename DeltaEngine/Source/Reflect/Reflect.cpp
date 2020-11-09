@@ -122,9 +122,7 @@ RTTR_REGISTRATION
   rttr::registration::class_<State>( "state" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<State>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "parameters", &State::parameters )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "transition", &State::transitions )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "conditions", &State::conditions )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
+    .property( "parameters", &State::parameters )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
 
   rttr::registration::class_<Image>( "image" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Image>()->bits ) )
@@ -146,7 +144,7 @@ RTTR_REGISTRATION
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "material", &Renderer2D::m_Material )( rttr::policy::prop::bind_as_ptr )
-    .property( "color", &Renderer2D::color )( rttr::policy::prop::bind_as_ptr )
+    .property( "color", &Renderer2D::m_Color )( rttr::policy::prop::bind_as_ptr )
     .property( "active", &Renderer2D::m_Active )( rttr::policy::prop::bind_as_ptr )
     .property( "shaded", &Renderer2D::m_Shaded )( rttr::policy::prop::bind_as_ptr )
     .property( "wireframe", &Renderer2D::m_Wireframe )( rttr::policy::prop::bind_as_ptr );

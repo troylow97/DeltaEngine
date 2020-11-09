@@ -28,9 +28,13 @@ void DrawWorldGrid()
   glClear(GL_DEPTH_BUFFER_BIT);
   glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
+  Transform t = Camera::editorCamera->transform;
+  t.position.x = 0;
+  t.position.y = 0;
+
   Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
   Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
-  Matrix4x4 model = Transform().LocalToWorldMatrix();
+  Matrix4x4 model = t.LocalToWorldMatrix();
 
   int i = 0;
   float size = Math::Abs( Camera::editorCamera->m_Size );

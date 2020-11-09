@@ -1,10 +1,9 @@
 #pragma once
 #include "DEpch.h"
-#include "DE_API.h"
 
 namespace DeltaEngine
 {
-  struct DE_API State
+  struct State
   {
     struct Parameter
     {
