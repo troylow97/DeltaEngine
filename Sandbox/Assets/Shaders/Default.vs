@@ -11,10 +11,11 @@ out vec2 vertexTexCoord;
 uniform mat4 _M; //ModelMatrix
 uniform mat4 _V; //ViewMatrix
 uniform mat4 _P; //ProjectionMatrix
+uniform float _Layer = 0; // Priority Layer
 
 void main()
 {
-	vec4 v = vec4(position, 1.0); 
+	vec4 v = vec4(position + vec3(0, 0, _Layer), 1.0); 
 	vec4 v1 = _M * v;
 	vec4 v2 = _V * v1;
 	vec4 v3 = _P * v2;

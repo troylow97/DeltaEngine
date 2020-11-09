@@ -8,6 +8,8 @@ void RenderSystem::Update()
 
   Camera::editorCamera->Start();
 
+  float cameraZpos = Camera::editorCamera->transform.position.z;
+
   em.ForEach([&](EntityID id, Transform& t, Image& i, Renderer2D& r)
     {
       if (r.m_Active)
@@ -33,8 +35,9 @@ void RenderSystem::Update()
         r.m_Material.SetUniformMatrix4f("_M", model);
         r.m_Material.SetUniformMatrix4f("_V", view);
         r.m_Material.SetUniformMatrix4f("_P", proj);
-        r.m_Material.SetUniformColor4f("_Color", r.color);
+        r.m_Material.SetUniformColor4f("_Color", r.m_Color);
         r.m_Material.SetUniform1i("_MainTex", 0);
+        r.m_Material.SetUniform1i("_Layer", r.m_SortingLayer);
         Mesh::DrawQuad(offset, tiling, pivot);
 
         if (i.m_Sprite)
@@ -47,6 +50,7 @@ void RenderSystem::Update()
         r.m_Material.SetUniformMatrix4f("_M", model);
         r.m_Material.SetUniformMatrix4f("_V", view);
         r.m_Material.SetUniformMatrix4f("_P", proj);
+        r.m_Material.SetUniform1i("_Layer", 0);
         Mesh::DrawQuad(true);
       }
       }
@@ -63,8 +67,9 @@ void RenderSystem::Update()
       r.m_Material.SetUniformMatrix4f("_M", model);
       r.m_Material.SetUniformMatrix4f("_V", view);
       r.m_Material.SetUniformMatrix4f("_P", proj);
-      r.m_Material.SetUniformColor4f("_Color", r.color);
+      r.m_Material.SetUniformColor4f("_Color", r.m_Color);
       r.m_Material.SetUniform1i("_MainTex", 0);
+      r.m_Material.SetUniform1i("_Layer", r.m_SortingLayer);
 
       if (r.m_Shaded)
         Mesh::DrawTextMesh(GetEnv().pManager->Get<Font>(i.m_FontKey), i.m_Text, 1, false);

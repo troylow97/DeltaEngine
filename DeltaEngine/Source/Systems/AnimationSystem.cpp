@@ -29,7 +29,7 @@ void AnimationSystem::Update()
         {
           newClip = GetEnv().pManager->Get<AnimationClip>(a.m_ClipKey);
 
-          a.m_Timer += static_cast<float>(DeltaTime());
+          a.m_Timer += static_cast<float>(DeltaTime()) * a.m_Speed;
           while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
             a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
         }

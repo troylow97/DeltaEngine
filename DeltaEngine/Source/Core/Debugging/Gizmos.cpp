@@ -25,6 +25,7 @@ void SetColor( Color c )
 
 void DrawWorldGrid()
 {
+  glClear(GL_DEPTH_BUFFER_BIT);
   glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
   Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
@@ -94,6 +95,7 @@ void DrawWorldGrid()
 
 void DrawLine( Vector3 start, Vector3 end )
 {
+  glClear(GL_DEPTH_BUFFER_BIT);
   glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
   Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
@@ -115,6 +117,7 @@ void Draw2DBox( Vector3 position, Vector3 scale, Quaternion rotation )
 }
 void Draw2DBox( Transform transform )
 {
+  glClear(GL_DEPTH_BUFFER_BIT);
   glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 
   Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
@@ -136,6 +139,7 @@ void Draw2DWireBox( Vector3 position, Vector3 scale, Quaternion rotation )
 }
 void Draw2DWireBox( Transform transform )
 {
+  glClear(GL_DEPTH_BUFFER_BIT);
   glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
   Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
@@ -163,6 +167,7 @@ void Draw2DCircle( Vector3 position, Vector3 scale, Quaternion rotation )
 }
 void Draw2DCircle( Transform transform )
 {
+  glClear(GL_DEPTH_BUFFER_BIT);
   glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 
   Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
@@ -180,10 +185,12 @@ void Draw2DCircle( Transform transform )
 
 void Draw2DWireCircle( Vector3 position, Vector3 scale, Quaternion rotation )
 {
+  glClear(GL_DEPTH_BUFFER_BIT);
   Draw2DWireCircle( Transform( position, rotation, scale ) );
 }
 void Draw2DWireCircle( Transform transform )
 {
+  glClear(GL_DEPTH_BUFFER_BIT);
   glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
   Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
