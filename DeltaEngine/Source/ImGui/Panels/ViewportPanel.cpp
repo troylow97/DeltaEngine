@@ -104,7 +104,7 @@ void ViewportPanel::Render( bool isdragged )
               env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).scale = { 0.5, 0.5, 0.0 };
           }
       }
-      InputManager::Get()->SetTilesetDragged(false);
+      //InputManager::Get()->SetTilesetDragged(false);
       ImGui::EndDragDropTarget();
   }
 
