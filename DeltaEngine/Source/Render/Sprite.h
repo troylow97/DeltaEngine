@@ -17,6 +17,7 @@ public:
   unsigned int m_Index;
   bool m_Valid;
   Sprite( std::string textureName = "", unsigned int index = 0 );
+  Sprite &operator=( const Sprite & );
   operator bool() const;
   unsigned int GetWidth() const;
   unsigned int GetHeight() const;

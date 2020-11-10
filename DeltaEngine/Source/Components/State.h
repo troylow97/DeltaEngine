@@ -22,13 +22,13 @@ namespace DeltaEngine
     using Transition = std::pair<std::string, std::string>;
     using Condition = std::vector<std::pair<std::string, std::pair<Conditions, float>>>;
 
-    Parameters parameters;
+    Parameters parameters{};
 
     std::vector<Transition> // possible animation transitions
-      transitions;
+      transitions{};
 
     std::vector<Condition> // their conditions
-      conditions;
+      conditions{};
 
     State() = default;
 

@@ -94,7 +94,7 @@
                 "flip_y": false
             },
             "animator": {
-                "timer": 0.29815733432769778,
+                "timer": 0.2833341360092163,
                 "speed": 1.0,
                 "controller_key": "Player",
                 "clip_key": "Idle"

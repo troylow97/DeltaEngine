@@ -51,7 +51,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   // Asset Loading
   env.pManager = new AM();
   env.pManager->SetLoader<Font>( new FontLoader() )
-    .Load<Font>( "Fail", "Fonts/Arials.ttf" )
+    .Load<Font>( "Arial", "Fonts/Arial.ttf" )
     .SetFallback<Font>( new Font( "Fonts/Arial.ttf" ) );
 
   env.pManager->SetLoader<Shader>( new ShaderLoader() )
@@ -79,7 +79,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().SetUpdateSequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().SetLateUpdateSequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().InitSystems();
-  //env.pECS->GetWorld().Load( "Base.json" );
+  env.pECS->GetWorld().Load( "Base.json" );
 }
 
 Application::~Application()
@@ -103,25 +103,28 @@ Application::~Application()
 
 void Application::Run()
 {
+  env.pManager->Get<Texture2D>( "run" )->SliceAll( 2, 3 );
   DeltaEngine::World &world = env.pECS->GetWorld();
   DeltaEngine::EntityManager &em = world.GetEntityManager();
-  env.pManager->Get<Texture2D>( "run" )->SliceAll( 2, 3 );
 
-  auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
-  auto &spriterender = em.GetComponent<Image>( entitybg );
-  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
-  auto &animator = em.GetComponent<Animator>( entitysr );
-  auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
-  auto &textrender = em.GetComponent<Text>( entitytr );
-  auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
+  //auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
+  //auto &spriterender = em.GetComponent<Image>( entitybg );
+  //auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
+  //auto &animator = em.GetComponent<Animator>( entitysr );
+  //auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
+  //auto &textrender = em.GetComponent<Text>( entitytr );
+  //auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
 
-  spriterender.m_Sprite = { "bg" };
-  textrender.m_FontKey = "Default";
-  textrenderer.m_Material = { "DefaultText" };
-  animator.m_ControllerKey = "Player";
-  textrender.m_Text = "Welcome to DELTA";
-  textrender.alignment = Alignment::AlignRight;
-  //size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
+  //spriterender.m_Sprite = { "bg" };
+  //textrender.m_FontKey = "Default";
+  //textrenderer.m_Material = { "DefaultText" };
+  //animator.m_ControllerKey = "Player";
+  //textrender.m_Text = "Welcome to DELTA";
+  //textrender.alignment = Alignment::AlignRight;
+  //env.pECS->GetWorld().Save("Base.json");
+
+  auto &render = em.GetComponent<Renderer2D>( EntityID { 1 } );
+  DeltaEngine_CORE_TRACE( "Entity ID 1 Material Key - {}", render.m_Material.m_ShaderKey );
 
   while ( env.pWin->Running() )
   {
@@ -135,9 +138,7 @@ void Application::Run()
     m_Editor->End();
     ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
     env.pWin->Update();
-    //if (!AudioEngine::IsChannelPlaying(i))
-    //  i = AudioEngine::PlaySound( "Audio/jump.wav" );
-    AudioEngine::Update();
+
     OnEvent();
   }
 }

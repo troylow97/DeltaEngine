@@ -13,5 +13,15 @@ namespace DeltaEngine
 
     bool m_FlipX = false;
     bool m_FlipY = false;
+
+    Image& operator= (const Image& rhs)
+    {
+      m_Sprite = rhs.m_Sprite;
+      m_Offset = rhs.m_Offset;
+      m_Tiling = rhs.m_Tiling;
+      m_FlipX = rhs.m_FlipX;
+      m_FlipY = rhs.m_FlipY;
+      return *this;
+    }
   };
 }

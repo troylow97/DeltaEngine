@@ -7,6 +7,14 @@ namespace DeltaEngine
 Sprite::Sprite( std::string textureName, unsigned int index )
   : m_Key { textureName }, m_Index { index }, m_Valid{ GetTexture() != nullptr } {}
 
+Sprite& Sprite::operator=(const Sprite& rhs)
+{
+  m_Key = std::string( rhs.m_Key );
+  m_Index = rhs.m_Index;
+  m_Valid = rhs.m_Valid;
+  return *this;
+}
+
 Sprite::operator bool() const
 {
   return m_Valid;

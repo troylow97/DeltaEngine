@@ -1,5 +1,4 @@
 #include "RenderSystem.h"
-
 namespace DeltaEngine
 {
 void RenderSystem::Update()
@@ -10,6 +9,9 @@ void RenderSystem::Update()
 
   em.ForEach([&](EntityID id, Transform& t, Image& i, Renderer2D& r)
     {
+    DeltaEngine_CORE_TRACE( "Shader Key - {}", r.m_Material.m_ShaderKey );
+    DeltaEngine_CORE_TRACE( "Sprite Key - {}", i.m_Sprite.m_Key);
+
       if (r.m_Active)
       {
       Vector2 offset = i.m_Offset + i.m_Sprite.GetOffset();
@@ -55,6 +57,7 @@ void RenderSystem::Update()
 
   em.ForEach([&](EntityID id, Transform& t, Text& i, Renderer2D& r)
     {
+
       Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
       Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
       Matrix4x4 model = t.LocalToWorldMatrix();
