@@ -12,26 +12,26 @@ template <typename T, typename Ret, typename... Args>
 ArgList<Args...> args( Ret( T:: * )( Args... ) const );
 
 template <typename T>
-auto get_chunk_array(DataChunk* chunk)
+auto get_chunk_array( DataChunk *chunk )
 {
   using T_Base = std::remove_const_t<std::remove_reference_t<T>>;
 
-  if constexpr (std::is_same_v<T_Base, EntityID>)
+  if constexpr ( std::is_same_v<T_Base, EntityID> )
   {
-    EntityID* ptr = reinterpret_cast<EntityID*>(chunk);
-    return ArrayView<EntityID>(ptr, chunk);
+    EntityID *ptr = reinterpret_cast<EntityID *>( chunk );
+    return ArrayView<EntityID>( ptr, chunk );
   }
   else
   {
     constexpr ComponentMeta meta = ComponentMeta::Build<T_Base>();
 
-    for (auto comp : chunk->header.owner->components_desc->metalist)
-      if (comp.meta->bits & meta.bits)
+    for ( auto comp : chunk->header.owner->components_desc->metalist )
+      if ( comp.meta->bits & meta.bits )
       {
-        T_Base* ptr = reinterpret_cast<T_Base*>(reinterpret_cast<byte*>(chunk) + comp.offset);
-        return ArrayView<T_Base>(ptr, chunk);
+        T_Base *ptr = reinterpret_cast<T_Base *>( reinterpret_cast<byte *>( chunk ) + comp.offset );
+        return ArrayView<T_Base>( ptr, chunk );
       }
-    return ArrayView<T_Base>();
+    return ArrayView<T_Base>( nullptr, chunk );
   }
 }
 
@@ -142,12 +142,11 @@ inline void EntityManager::DestroyEntity( EntityID id )
 }
 
 template <typename C>
-bool EntityManager::HasComponent(EntityID id)
+bool EntityManager::HasComponent( EntityID id )
 {
-  Entity& ref = m_entities[id.index];
-  if (ref.chunk)
-    return ref.chunk->header.owner->bits_signature & ComponentMeta::GetComponentMeta<C>()->bits;
-  return false;
+  Entity &ref = m_entities[id.index];
+  auto c_array = ECS_Internal::get_chunk_array<C>( ref.chunk );
+  return c_array.ChunkOwner() != nullptr;
 }
 
 template <typename C>

@@ -32,11 +32,12 @@ public:
   void Resume();
 
   // called at start of loop
-  bool Update();
+  void Update();
 
   // getter for timescaled / real dt / fixed dt
   f32 DeltaTime() const;
   f32 RealDeltaTime() const;
+  f32 FixedDeltaTime() const;
 
   // ElapsedTime / Unscaled ElapsedTime
   f32 ElapsedTime() const;
@@ -45,22 +46,20 @@ public:
   // FPS
   f32 FrameRate() const;
 
+  // TimeStep
+  u32 Timesteps() const;
+
 private:
-#pragma warning(disable:4251)
   TimePoint m_start;
   TimePoint m_current;
-#pragma warning(default:4251)
-  f32 m_interval;
+  f32 m_fixed_dt;
   f32 m_elapsed;
   f32 m_dt;
   f32 m_g_elapsed;
   f32 m_g_dt;
   f32 m_timescale;
   f32 m_accumulator;
-  f32 m_seconds;
-  u16 m_frame;
-  u16 m_fps;
+  u32 m_timesteps;
   bool m_paused;
-  // memory size - 64
 };
 } // namespace DeltaEngine

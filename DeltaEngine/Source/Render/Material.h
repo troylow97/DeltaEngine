@@ -11,7 +11,7 @@ namespace DeltaEngine
   public:
 
     std::string m_ShaderKey;
-    std::unordered_map<std::string, std::string> m_Uniforms;
+    //std::unordered_map<std::string, std::string> m_Uniforms;
 
     Material( std::string shaderName = "Default" );
     void ChangeShader(Shader* shaderRef);

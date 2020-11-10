@@ -5,16 +5,13 @@ namespace DeltaEngine
 GameClock::GameClock( f32 fps )
   : m_start( HighResClock::now() ),
   m_current( HighResClock::now() ),
-  m_interval( fps ),
+  m_fixed_dt( 1.0f / fps ),
   m_elapsed( 0.0 ),
   m_dt( 0.0 ),
   m_g_elapsed( 0.0 ),
   m_g_dt( 0.0 ),
   m_timescale( 1.0f ),
   m_accumulator( 0.0f ),
-  m_seconds( 0.0f ),
-  m_frame( 0 ),
-  m_fps( 0 ),
   m_paused( false )
 {}
 
@@ -38,7 +35,7 @@ void GameClock::Resume()
   m_paused = false;
 }
 
-bool GameClock::Update()
+void GameClock::Update()
 {
 
   TimePoint now = HighResClock::now();
@@ -49,34 +46,21 @@ bool GameClock::Update()
   m_elapsed += m_dt;
 
   m_accumulator += m_dt;
-  m_seconds += m_dt;
+  m_timesteps = 0;
 
-  if ( m_accumulator >= 1.0f / m_interval )
+  while ( m_accumulator >= m_fixed_dt )
   {
-
-    if ( m_seconds >= 1.0f )
-    {
-      m_fps = m_frame;
-      m_seconds = 0.0f;
-      m_frame = 0;
-    }
-
-    m_frame++;
-
-    if ( !m_paused )
-    {
-      m_g_dt = m_accumulator * m_timescale;
-      m_g_elapsed += m_g_dt;
-    }
-    else
-      m_g_dt = 0.0f;
-
-    m_accumulator = 0.0f;
-
-    return true;
+    m_accumulator -= m_fixed_dt;
+    ++m_timesteps;
   }
 
-  return false;
+  if ( !m_paused )
+  {
+    m_g_dt = m_dt * m_timescale;
+    m_g_elapsed += m_g_dt;
+  }
+  else
+    m_g_dt = 0.0f;
 }
 
 f32 GameClock::DeltaTime() const
@@ -84,9 +68,15 @@ f32 GameClock::DeltaTime() const
   return m_g_dt;
 }
 
+
 f32 GameClock::RealDeltaTime() const
 {
   return m_dt;
+}
+
+f32 GameClock::FixedDeltaTime() const
+{
+  return m_fixed_dt;
 }
 
 f32 GameClock::ElapsedTime() const
@@ -101,7 +91,13 @@ f32 GameClock::UnscaledElapsedTime() const
 
 f32 GameClock::FrameRate() const
 {
-  return m_fps;
+  return 1.0f / m_dt;
 }
+
+u32 GameClock::Timesteps() const
+{
+  return m_timesteps;
+}
+
 
 } // namespace DeltaEngine

@@ -9,9 +9,9 @@ DeltaEngineGlobalEnvironment &GetEnv()
   return env;
 }
 
-double DeltaTime()
+double FixedDeltaTime()
 {
-  return env.pClock->DeltaTime();
+  return env.pClock->FixedDeltaTime();
 }
 
 }

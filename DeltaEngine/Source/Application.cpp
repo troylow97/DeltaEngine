@@ -79,11 +79,14 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().SetUpdateSequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().SetLateUpdateSequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().InitSystems();
+  //env.pECS->GetWorld().Load( "Base.json" );
 }
 
 Application::~Application()
 {
   DeltaEngine_CORE_INFO( "Engine Shutdown" );
+  //env.pECS->GetWorld().Save("Base.json");
+
   env.pECS->GetWorld().ShutdownSystems();
   delete env.pECS;
   delete env.eventManager;
@@ -104,8 +107,6 @@ void Application::Run()
   DeltaEngine::EntityManager &em = world.GetEntityManager();
   env.pManager->Get<Texture2D>( "run" )->SliceAll( 2, 3 );
 
-      //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
-      //    env.pManager->get<Shader>("Default"));
   auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
   auto &spriterender = em.GetComponent<Image>( entitybg );
   auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
@@ -116,66 +117,62 @@ void Application::Run()
 
   spriterender.m_Sprite = { "bg" };
   textrender.m_FontKey = "Default";
-  textrenderer.m_Material = { "DefaultText" } ;
+  textrenderer.m_Material = { "DefaultText" };
   animator.m_ControllerKey = "Player";
-
+  textrender.m_Text = "Welcome to DELTA";
+  textrender.alignment = Alignment::AlignRight;
   //size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
 
   while ( env.pWin->Running() )
   {
-    textrender.m_Text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
-    if ( env.pClock->Update() )
-    {
+    env.pClock->Update();
       InputManager::Get()->Update();
       // Update engine GameClock
-      env.pECS->GetWorld().Update();
-      env.pECS->GetWorld().LateUpdate();
-      m_Editor->Begin();
-      m_Editor->Render();
-      m_Editor->End();
-      ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
-      env.pWin->Update();
-      //if (!AudioEngine::IsChannelPlaying(i))
-      //  i = AudioEngine::PlaySound( "Audio/jump.wav" );
-      AudioEngine::Update();
-      OnEvent();
-    }
+    env.pECS->GetWorld().Update();
+    env.pECS->GetWorld().LateUpdate();
+    m_Editor->Begin();
+    m_Editor->Render();
+    m_Editor->End();
+    ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
+    env.pWin->Update();
+    //if (!AudioEngine::IsChannelPlaying(i))
+    //  i = AudioEngine::PlaySound( "Audio/jump.wav" );
+    AudioEngine::Update();
+    OnEvent();
   }
 }
 
-
-
 void Application::OnEvent()
 {
-    if (!env.eventManager->IsEmpty())
+  if ( !env.eventManager->IsEmpty() )
+  {
+    auto ref = env.eventManager->ResolveEvent();
+    EventDispatcher d( ref );
+
+    if ( ref != nullptr )
     {
-        auto ref = env.eventManager->ResolveEvent();
-        EventDispatcher d(ref);
-    
-        if (ref != nullptr)
+      EventType type = ref->GetEventType();
+      switch ( type )
+      {
+        case EventType::ImGuiDragFile:
         {
-            EventType type = ref->GetEventType();
-            switch (type)
-            {
-            case EventType::ImGuiDragFile:
-            {
-                d.Dispatch<ImGuiFileDragEvent>(DE_BIND_EVENT_FN(Editor::OnDragDrop));
-                break;
-            }
-            case EventType::ImGuiRemovingDragFile:
-            {
-                d.Dispatch<ImGuiFileRemovingDragEvent>(DE_BIND_EVENT_FN(Editor::OnRemovingDragDrop));
-                break;
-            }
-            case EventType::ImGuiFileDragDone:
-            {
-                d.Dispatch<ImGuiFileDragEventDone>(DE_BIND_EVENT_FN(Editor::OnDragDropDone));
-                break;
-            }
-            }
+          d.Dispatch<ImGuiFileDragEvent>( DE_BIND_EVENT_FN( Editor::OnDragDrop ) );
+          break;
         }
-        delete ref;
+        case EventType::ImGuiRemovingDragFile:
+        {
+          d.Dispatch<ImGuiFileRemovingDragEvent>( DE_BIND_EVENT_FN( Editor::OnRemovingDragDrop ) );
+          break;
+        }
+        case EventType::ImGuiFileDragDone:
+        {
+          d.Dispatch<ImGuiFileDragEventDone>( DE_BIND_EVENT_FN( Editor::OnDragDropDone ) );
+          break;
+        }
+      }
     }
+    delete ref;
+  }
 }
 
 

@@ -9,6 +9,7 @@ namespace DeltaEngine
 {
     void PhysicsSystem::Update()
     {
+      for ( size_t step = 0; step < env.pClock->Timesteps(); ++step )
         UpdateVelocity();
     }
 
@@ -24,7 +25,7 @@ namespace DeltaEngine
             if (r1.isMoveable)
             {
                 //Set Euler
-                t1.position += r1.Velocity * env.pClock->DeltaTime();                
+                t1.position += r1.Velocity * env.pClock->FixedDeltaTime();                
 
                 if (r1.Direction == Vector2{ 0,-1 } && c1.isCollidingOnFloor)
                 {
@@ -48,14 +49,14 @@ namespace DeltaEngine
 
                 //Apply Friction
                 float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
+                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
 
                 if(dragForceVector.Magnitude() > std::numeric_limits<float>::epsilon())
                     r1.Velocity += dragForceVector;
 
                 //Apply Acceleration
                 Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
-                r1.Velocity += newAcceleration * env.pClock->DeltaTime();
+                r1.Velocity += newAcceleration * env.pClock->FixedDeltaTime();
 
                 //Apply Soft Drag
                 r1.Velocity *= 0.97f;

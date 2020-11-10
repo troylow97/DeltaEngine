@@ -16,7 +16,6 @@ void CollisionSystem::Update()
   CollisionIntersectionCheck();
   CollisionHandling();
   CollisionResolution();
-
 }
 
 void CollisionSystem::LateUpdate()
