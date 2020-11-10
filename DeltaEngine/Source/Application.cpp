@@ -107,20 +107,20 @@ void Application::Run()
   DeltaEngine::World &world = env.pECS->GetWorld();
   DeltaEngine::EntityManager &em = world.GetEntityManager();
 
-  //auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
-  //auto &spriterender = em.GetComponent<Image>( entitybg );
-  //auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
-  //auto &animator = em.GetComponent<Animator>( entitysr );
-  //auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
-  //auto &textrender = em.GetComponent<Text>( entitytr );
-  //auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
+  auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
+  auto &spriterender = em.GetComponent<Image>( entitybg );
+  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
+  auto &animator = em.GetComponent<Animator>( entitysr );
+  auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
+  auto &textrender = em.GetComponent<Text>( entitytr );
+  auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
 
-  //spriterender.m_Sprite = { "bg" };
-  //textrender.m_FontKey = "Default";
-  //textrenderer.m_Material = { "DefaultText" };
-  //animator.m_ControllerKey = "Player";
-  //textrender.m_Text = "Welcome to DELTA";
-  //textrender.alignment = Alignment::AlignRight;
+  spriterender.m_Sprite = { "bg" };
+  textrender.m_FontKey = "Default";
+  textrenderer.m_Material = { "DefaultText" };
+  animator.m_ControllerKey = "Player";
+  textrender.m_Text = "Welcome to DELTA";
+  textrender.alignment = Alignment::AlignRight;
   //env.pECS->GetWorld().Save("Base.json");
 
   auto &render = em.GetComponent<Renderer2D>( EntityID { 1 } );

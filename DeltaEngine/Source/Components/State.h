@@ -14,13 +14,13 @@ namespace DeltaEngine
 
     Parameters parameters{};
 
-    std::vector<Transition> // possible animation transitions
-      transitions{};
+    State() : parameters{} {};
 
-    std::vector<Condition> // their conditions
-      conditions{};
-
-    State() = default;
+    State& operator= (const State& rhs)
+    {
+      parameters.insert(rhs.parameters.begin(), rhs.parameters.end());
+      return *this;
+    }
 
     bool GetBool(std::string paramName);
     bool SetBool(std::string paramName, bool value);

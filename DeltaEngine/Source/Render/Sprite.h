@@ -6,10 +6,8 @@
 
 namespace DeltaEngine
 {
-class  Sprite
+class Sprite
 {
-
-
 public:
 #pragma warning(disable:4251)
   std::string m_Key;

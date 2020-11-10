@@ -9,7 +9,7 @@ namespace DeltaEngine
     WorldPanel::WorldPanel(std::string str) :
         IPanel(str)
     {
-
+      m_enabled = true;
     }
 
     WorldPanel::~WorldPanel()

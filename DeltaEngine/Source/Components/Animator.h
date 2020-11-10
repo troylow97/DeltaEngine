@@ -22,14 +22,13 @@ struct Animator
 
   Animator& operator=(const Animator& rhs)
   {
-    m_ControllerKey = std::string( rhs.m_ControllerKey.empty() ? "" : rhs.m_ControllerKey );
-    m_ClipKey = std::string( rhs.m_ClipKey.empty() ? "" : rhs.m_ClipKey );
-    m_Timer = rhs.m_Timer;
-    m_Frame = rhs.m_Frame;
+    m_ControllerKey = std::string( rhs.m_ControllerKey );
+    m_ClipKey = std::string( rhs.m_ClipKey );
+    m_Timer = 0;
+    m_Frame = 0;
     m_Speed = rhs.m_Speed;
     return *this;
   }
-  //Animator( AnimationController *controller );
 
   unsigned int GetFrame() const;
 

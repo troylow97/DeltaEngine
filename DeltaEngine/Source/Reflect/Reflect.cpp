@@ -266,8 +266,8 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
     em.AddComponent<Input>( id, var.get_value<Input>() );
   else if ( str == "animator" )
     em.AddComponent<Animator>( id, var.get_value<Animator>() );
-  else if ( str == "state" )
-    em.AddComponent<State>( id );
+  //else if ( str == "state" )
+  //  em.AddComponent<State>( id );
   else if ( str == "image" )
     em.AddComponent<Image>( id, var.get_value<Image>() );
   else if ( str == "text" )

@@ -3,6 +3,8 @@
 
 namespace DeltaEngine
 {
+  Color wireframeColor = Color::Black();
+
 bool SortSprites(EntityID a, EntityID b)
 {
   Renderer2D& i = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(a);
@@ -37,8 +39,8 @@ void RenderSystem::Update()
     {
       Image& i = em.GetComponent<Image>(ID);
       glClear(GL_DEPTH_BUFFER_BIT);
-    DeltaEngine_CORE_TRACE( "Shader Key - {}", r.m_Material.m_ShaderKey );
-    DeltaEngine_CORE_TRACE( "Sprite Key - {}", i.m_Sprite.m_Key);
+      DeltaEngine_CORE_TRACE( "Shader Key - {}", r.m_Material.m_ShaderKey );
+      DeltaEngine_CORE_TRACE( "Sprite Key - {}", i.m_Sprite.m_Key);
 
       if (r.m_Active)
       {
@@ -65,6 +67,16 @@ void RenderSystem::Update()
           r.m_Material.SetUniformMatrix4f("_P", proj);
           r.m_Material.SetUniformColor4f("_Color", r.m_Color);
           r.m_Material.SetUniform1i("_MainTex", 0);
+          r.m_Material.SetUniform1i("_FillType", static_cast<int>(i.m_FillType));
+          r.m_Material.SetUniform1f("_FillAmount", i.m_FillAmount);
+          r.m_Material.SetUniform1f("_RRot", i.m_OverallAngle);
+          r.m_Material.SetUniform1f("_RStart", i.m_StartAngle);
+          r.m_Material.SetUniform1f("_REnd", i.m_EndAngle);
+          r.m_Material.SetUniformVector4f("_SpriteUV", Vector4(
+            i.m_Sprite.GetOffset().x,
+            i.m_Sprite.GetOffset().y,
+            i.m_Sprite.GetOffset().x + i.m_Sprite.GetTiling().x,
+            i.m_Sprite.GetOffset().y + i.m_Sprite.GetTiling().y));
           Mesh::DrawQuad(offset, tiling, pivot);
     
           if (i.m_Sprite)
@@ -77,6 +89,8 @@ void RenderSystem::Update()
           r.m_Material.SetUniformMatrix4f("_M", model);
           r.m_Material.SetUniformMatrix4f("_V", view);
           r.m_Material.SetUniformMatrix4f("_P", proj);
+          r.m_Material.SetUniform1i("_FillType", 0);
+          r.m_Material.SetUniformColor4f("_Color", wireframeColor);
           Mesh::DrawQuad(true);
         }
       }
@@ -93,13 +107,18 @@ void RenderSystem::Update()
       r.m_Material.SetUniformMatrix4f("_M", model);
       r.m_Material.SetUniformMatrix4f("_V", view);
       r.m_Material.SetUniformMatrix4f("_P", proj);
-      r.m_Material.SetUniformColor4f("_Color", r.m_Color);
       r.m_Material.SetUniform1i("_MainTex", 0);
     
       if (r.m_Shaded)
+      {
+        r.m_Material.SetUniformColor4f("_Color", r.m_Color);
         Mesh::DrawTextMesh(GetEnv().pManager->Get<Font>(x.m_FontKey), x.m_Text, 1, false);
+      }
       if (r.m_Wireframe)
+      {
+        r.m_Material.SetUniformColor4f("_Color", wireframeColor);
         Mesh::DrawTextMesh(GetEnv().pManager->Get<Font>(x.m_FontKey), x.m_Text, 1, true);
+      }
     }
   }
 }

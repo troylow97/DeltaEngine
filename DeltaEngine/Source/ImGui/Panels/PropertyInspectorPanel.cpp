@@ -10,7 +10,7 @@ namespace DeltaEngine
 PropertyInspectorPanel::PropertyInspectorPanel( std::string str ) :
   IPanel( str )
 {
-
+  m_enabled = true;
 }
 
 PropertyInspectorPanel::~PropertyInspectorPanel()
