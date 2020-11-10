@@ -9,8 +9,11 @@
 #include "ECS/EntityManager.h"
 
 #include <rttr/registration>
-#include "Core/Utils/Json/JsonSerialize.h"
 
+#include "Assets/AssetKey.h"
+#include "Core/Utils/Json/JsonSerialize.h"
+#include "Core/GlobalStruct.h"
+#include "Assets/AssetManager.h"
 namespace DeltaEngine
 {
 
@@ -272,5 +275,4 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
   else if ( str == "renderer2D" )
     em.AddComponent<Renderer2D>( id, var.get_value<Renderer2D>() );
 }
-
 }

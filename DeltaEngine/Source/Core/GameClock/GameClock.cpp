@@ -76,7 +76,7 @@ f32 GameClock::RealDeltaTime() const
 
 f32 GameClock::FixedDeltaTime() const
 {
-  return m_fixed_dt;
+  return m_fixed_dt * m_timescale;
 }
 
 f32 GameClock::ElapsedTime() const

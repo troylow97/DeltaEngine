@@ -31,7 +31,7 @@ auto get_chunk_array( DataChunk *chunk )
         T_Base *ptr = reinterpret_cast<T_Base *>( reinterpret_cast<byte *>( chunk ) + comp.offset );
         return ArrayView<T_Base>( ptr, chunk );
       }
-    return ArrayView<T_Base>( nullptr, chunk );
+    return ArrayView<T_Base>();
   }
 }
 
@@ -128,7 +128,7 @@ EntityID EntityManager::CreateEntity()
   return id;
 }
 
-inline const std::vector<Entity>& EntityManager::GetEntities()
+inline const std::vector<Entity> &EntityManager::GetEntities()
 {
   return m_entities;
 }
@@ -145,24 +145,25 @@ template <typename C>
 bool EntityManager::HasComponent( EntityID id )
 {
   Entity &ref = m_entities[id.index];
-  auto c_array = ECS_Internal::get_chunk_array<C>( ref.chunk );
-  return c_array.ChunkOwner() != nullptr;
+  if ( ref.chunk )
+    return ref.chunk->header.owner->bits_signature & ComponentMeta::GetComponentMeta<C>()->bits;
+  return false;
 }
 
 template <typename C>
 C &EntityManager::GetComponent( EntityID id )
 {
   Entity &ref = m_entities[id.index];
-  
+
   auto c_array = ECS_Internal::get_chunk_array<C>( ref.chunk );
   assert( c_array.ChunkOwner() != nullptr );
   return c_array[ref.chunk_index];
 }
 
-inline rttr::instance EntityManager::GetComponent(EntityID id, size_t bits)
+inline rttr::instance EntityManager::GetComponent( EntityID id, size_t bits )
 {
   auto instance = RT_Reflect::RT_Getter( *this, id, bits );
-  assert(instance.is_valid());
+  assert( instance.is_valid() );
   return instance;
 }
 
@@ -253,9 +254,9 @@ inline Archetype *EntityManager::GetEmptyArchetype()
   return m_archetypes[0];
 }
 
-inline const std::vector<Description::Details> *EntityManager::GetEntityArchetype(size_t id)
+inline const std::vector<Description::Details> *EntityManager::GetEntityArchetype( size_t id )
 {
-  if ( m_entities[id].chunk)
+  if ( m_entities[id].chunk )
     return &m_entities[id].chunk->header.owner->components_desc->metalist;
   return nullptr;
 }

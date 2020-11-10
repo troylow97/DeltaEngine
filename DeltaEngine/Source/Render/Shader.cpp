@@ -162,7 +162,7 @@ int Shader::GetUniformLocation( std::string name )
 
   GLCall( int location = glGetUniformLocation( m_RendererID, name.c_str() ) );
   if ( location == -1 )
-    DeltaEngine_CORE_WARN( "Warning: uniform '{}' doesn't exist!", name );
+    DeltaEngine_CORE_WARN( "Warning: uniform '{}' doesn't exist! shader '{}'", name,m_Name  );
   m_uniformLocationCache[name] = location;
   return location;
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include <string_view>
-
+#include "Core/Debugging/Logger/Log.h"
 namespace DeltaEngine
 {
 class AssetKey
@@ -11,16 +11,19 @@ public:
 
   explicit AssetKey( const size_t digest ) :
     m_digest( digest )
-  {}
+  {
+  }
 
-  AssetKey( const std::string str ) :
+  AssetKey( const std::string& str ) :
     m_digest( std::hash<std::string>{}( str ) )
-  {}
+  {
+  }
 
   template <size_t Size>
   constexpr AssetKey( const char( &str )[Size] ) :
     m_digest( std::hash<std::string>{}( std::string( str ) ) )
-  {}
+  {
+  }
 
   bool operator==( const AssetKey &rhs ) const
   {

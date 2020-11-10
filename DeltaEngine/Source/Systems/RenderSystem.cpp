@@ -37,6 +37,9 @@ void RenderSystem::Update()
     {
       Image& i = em.GetComponent<Image>(ID);
       glClear(GL_DEPTH_BUFFER_BIT);
+    DeltaEngine_CORE_TRACE( "Shader Key - {}", r.m_Material.m_ShaderKey );
+    DeltaEngine_CORE_TRACE( "Sprite Key - {}", i.m_Sprite.m_Key);
+
       if (r.m_Active)
       {
         Vector2 offset = i.m_Offset + i.m_Sprite.GetOffset();

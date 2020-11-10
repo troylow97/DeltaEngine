@@ -7,8 +7,15 @@ namespace DeltaEngine
   Material::Material( std::string shaderName )
     : m_ShaderKey{ shaderName }
   {
-
   }
+
+  Material& Material::operator=(const Material& mat)
+  {
+    m_ShaderKey = std::string( mat.m_ShaderKey );
+    return *this;
+  }
+
+
   void Material::ChangeShader(Shader* shader)
   {
     if (shader)
