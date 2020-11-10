@@ -40,87 +40,87 @@ void PropertyInspectorPanel::Render( bool )
     text += "'s Properties";
     ImGui::Text( text.c_str() );
     ImGui::Text( "" );
-
-    static char str1[128] = "";
-    ImGui::SetNextItemWidth( 100 );
-    ImGui::InputTextWithHint( "texture", "texture name", str1, IM_ARRAYSIZE( str1 ) );
-    ImGui::SameLine();
-    static int clicked = 0;
-    ImGui::PushStyleColor( ImGuiCol_Button, ( ImVec4( 0.0f, 0.775f, 0.4125f, 1.0f ) ) );
-    ImGui::PushStyleColor( ImGuiCol_ButtonHovered, ( ImVec4( 0.0f, 0.825f, 0.4125f, 1.0f ) ) );
-    ImGui::PushStyleColor( ImGuiCol_ButtonActive, ( ImVec4( 0.0f, 0.875f, 0.4125f, 1.0f ) ) );
-    if ( ImGui::Button( "Browse" ) )
-    {
-      clicked++;
-    }
-    ImGui::PopStyleColor( 3 );
-    if ( clicked & 1 )
-    {
-      ImGui::Begin( "Sprite Selection" );
-      {
-        ImGui::Text( "Character" );
-
-        std::vector<Sprite> spritelist;
-        uint64_t textureID;
-        Sprite running = { "run", 5 };
-        Sprite idling = { "idle", 0 };
-
-        spritelist.push_back( running );
-        spritelist.push_back( idling );
-
-        for ( int i = 0; i < spritelist.size(); ++i )
-        {
-          textureID = spritelist[i].GetTexture()->GetRendererID();
-
-          if ( ImGui::ImageButton( reinterpret_cast<void *>( textureID ),
-               ImVec2 { 32,32 },
-               ImVec2 { spritelist[i].GetOffset().x, spritelist[i].GetOffset().y },
-               ImVec2 { spritelist[i].GetOffset().x + spritelist[i].GetTiling().x, spritelist[i].GetOffset().y + spritelist[i].GetTiling().y } ) )
-          {
-            static int textureClicked = 0;
-            textureClicked++;
-            std::cout << "textureclicked is " << textureClicked << std::endl;
-
-            if ( textureClicked & 1 )
-            {
-              strcpy_s( str1, spritelist[i].GetName().c_str() );
-            }
-          }
-          ImGui::SameLine();
-        }
-      }
-      ImGui::Text( "" );
-      ImGui::Text( "" );
-      {
-          // to show examples for more only
-        ImGui::Text( "Background" );
-
-        Sprite bg = { "bg", 0 };
-        uint64_t textureID = bg.GetTexture()->GetRendererID();
-
-        if ( ImGui::ImageButton( reinterpret_cast<void *>( textureID ),
-             ImVec2 { 32,32 },
-             ImVec2 { bg.GetOffset().x, bg.GetOffset().y },
-             ImVec2 { bg.GetOffset().x + bg.GetTiling().x, bg.GetOffset().y + bg.GetTiling().y } ) )
-        {
-          static int textureClicked = 0;
-          textureClicked++;
-
-          if ( textureClicked & 1 )
-          {
-            strcpy_s( str1, bg.GetName().c_str() );
-          }
-        }
-        ImGui::SameLine();
-      }
-      ImGui::Text( "" );
-      ImGui::Text( "" );
-
-      ImGui::End();
-    }
-
-    ImGui::Text( "" );
-    ImGui::Text( "" );
+    //44-124
+    //static char str1[128] = "";
+    //ImGui::SetNextItemWidth( 100 );
+    //ImGui::InputTextWithHint( "texture", "texture name", str1, IM_ARRAYSIZE( str1 ) );
+    //ImGui::SameLine();
+    //static int clicked = 0;
+    //ImGui::PushStyleColor( ImGuiCol_Button, ( ImVec4( 0.0f, 0.775f, 0.4125f, 1.0f ) ) );
+    //ImGui::PushStyleColor( ImGuiCol_ButtonHovered, ( ImVec4( 0.0f, 0.825f, 0.4125f, 1.0f ) ) );
+    //ImGui::PushStyleColor( ImGuiCol_ButtonActive, ( ImVec4( 0.0f, 0.875f, 0.4125f, 1.0f ) ) );
+    //if ( ImGui::Button( "Browse" ) )
+    //{
+    //  clicked++;
+    //}
+    //ImGui::PopStyleColor( 3 );
+    //if ( clicked & 1 )
+    //{
+    //  ImGui::Begin( "Sprite Selection" );
+    //  {
+    //    ImGui::Text( "Character" );
+    //
+    //    std::vector<Sprite> spritelist;
+    //    uint64_t textureID;
+    //    Sprite running = { "run", 5 };
+    //    Sprite idling = { "idle", 0 };
+    //
+    //    spritelist.push_back( running );
+    //    spritelist.push_back( idling );
+    //
+    //    for ( int i = 0; i < spritelist.size(); ++i )
+    //    {
+    //      textureID = spritelist[i].GetTexture()->GetRendererID();
+    //
+    //      if ( ImGui::ImageButton( reinterpret_cast<void *>( textureID ),
+    //           ImVec2 { 32,32 },
+    //           ImVec2 { spritelist[i].GetOffset().x, spritelist[i].GetOffset().y },
+    //           ImVec2 { spritelist[i].GetOffset().x + spritelist[i].GetTiling().x, spritelist[i].GetOffset().y + spritelist[i].GetTiling().y } ) )
+    //      {
+    //        static int textureClicked = 0;
+    //        textureClicked++;
+    //        std::cout << "textureclicked is " << textureClicked << std::endl;
+    //
+    //        if ( textureClicked & 1 )
+    //        {
+    //          strcpy_s( str1, spritelist[i].GetName().c_str() );
+    //        }
+    //      }
+    //      ImGui::SameLine();
+    //    }
+    //  }
+    //  ImGui::Text( "" );
+    //  ImGui::Text( "" );
+    //  {
+    //      // to show examples for more only
+    //    ImGui::Text( "Background" );
+    //
+    //    Sprite bg = { "bg", 0 };
+    //    uint64_t textureID = bg.GetTexture()->GetRendererID();
+    //
+    //    if ( ImGui::ImageButton( reinterpret_cast<void *>( textureID ),
+    //         ImVec2 { 32,32 },
+    //         ImVec2 { bg.GetOffset().x, bg.GetOffset().y },
+    //         ImVec2 { bg.GetOffset().x + bg.GetTiling().x, bg.GetOffset().y + bg.GetTiling().y } ) )
+    //    {
+    //      static int textureClicked = 0;
+    //      textureClicked++;
+    //
+    //      if ( textureClicked & 1 )
+    //      {
+    //        strcpy_s( str1, bg.GetName().c_str() );
+    //      }
+    //    }
+    //    ImGui::SameLine();
+    //  }
+    //  ImGui::Text( "" );
+    //  ImGui::Text( "" );
+    //
+    //  ImGui::End();
+    //}
+    //
+    //ImGui::Text( "" );
+    //ImGui::Text( "" );
 
     static const char *components[] { " ", "transform", "rigidbody", "collider", "input" };
     static int selected = 0;
@@ -132,13 +132,33 @@ void PropertyInspectorPanel::Render( bool )
     }
 
     ImGui::Text( "" );
-    ImGui::Text( "" );
     if ( auto result = em.GetEntityArchetype( InputManager::Get()->EntityIDSelected() ); result != nullptr )
       for ( auto &ref : *result )
       {
         rttr::instance instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
 
         ImGui::Text( instance.get_type().get_name().to_string().c_str() );
+
+        // remove 'x' button
+        ImGui::PushID(instance.get_type().get_name().to_string().c_str()); // ImGui uses the button's text as its identifier, thus need to create new ID stack
+        ImGui::SameLine(ImGui::GetWindowWidth() - 30);
+        ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4(0.73f, 0.25f, 0.25f, 1.0f)));        // dull red
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4(0.85f, 0.33f, 0.35f, 1.0f))); // pale red
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4(0.86f, 0.35f, 0.34f, 1.0f)));  // pastel red
+        if (ImGui::Button("x"))
+        {
+            if (strcmp(instance.get_type().get_name().to_string().c_str(), "transform") == 0)
+                em.RemoveComponent<Transform>({ InputManager::Get()->EntityIDSelected() });
+            if (strcmp(instance.get_type().get_name().to_string().c_str(), "input") == 0)
+                em.RemoveComponent<Input>({ InputManager::Get()->EntityIDSelected() });
+            if (strcmp(instance.get_type().get_name().to_string().c_str(), "rigidbody") == 0)
+                em.RemoveComponent<RigidBody>({ InputManager::Get()->EntityIDSelected() });
+            if (strcmp(instance.get_type().get_name().to_string().c_str(), "collider") == 0)
+                em.RemoveComponent<Collider>({ InputManager::Get()->EntityIDSelected() });
+        }
+        ImGui::PopStyleColor(3);
+        ImGui::PopID();
+
         auto properties = instance.get_type().get_properties();
         for ( auto property : properties )
         {

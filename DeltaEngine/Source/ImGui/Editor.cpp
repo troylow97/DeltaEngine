@@ -43,8 +43,15 @@ void Editor::MenuBar()
     OpenFile();
   if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_S ) )
     SaveFile();
-  if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyDown( DEVK_LSHIFT ) && ImGui::IsKeyReleased( DEVK_A ) )
-    GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity();
+  if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyDown(DEVK_LSHIFT) && ImGui::IsKeyReleased(DEVK_A))
+  {
+      EntityID new_entity = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity();
+      env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(new_entity);
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(new_entity).old_position = { 0.0, 0.0, 0.0 };
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(new_entity).position = { 0.0, 0.0, 0.0 };
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(new_entity).rotation = { 0.0, 0.0, 0.0, 0.0 };
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(new_entity).scale = { 0.0, 0.0, 0.0 };
+  }
   if ( InputManager::Get()->EntitySelected() && ImGui::IsKeyReleased( DEVK_DELETE ) )
   {
     GetEnv().pECS->GetWorld().GetEntityManager().DestroyEntity( { InputManager::Get()->EntityIDSelected() } );
@@ -85,7 +92,12 @@ void Editor::MenuBar()
     {
       if ( ImGui::MenuItem( "Add Entity", " Ctrl+Shift+A" ) )
       {
-        GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity();
+        EntityID new_entity = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity();
+        env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(new_entity);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(new_entity).old_position = { 0.0, 0.0, 0.0 };
+        env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(new_entity).position = { 0.0, 0.0, 0.0 };
+        env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(new_entity).rotation = { 0.0, 0.0, 0.0, 0.0 };
+        env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(new_entity).scale = { 0.0, 0.0, 0.0 };
       }
       if ( ImGui::MenuItem( "clone entity" ) )
       {
