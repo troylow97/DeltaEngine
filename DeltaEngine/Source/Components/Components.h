@@ -12,10 +12,12 @@
 #include "State.h"
 #include "EntityInfo.h"
 #include "Core/Typelist/Typelist.h"
+#include "AI.h"
+#include "EntityType.h"
 
 namespace DeltaEngine
 {
-using CoreBase = Typelist<EntityID, Name, Parent, Input>;
+using CoreBase = Typelist<EntityID, Name, Parent, Input,EntityType,AI>;
 using PhysicsBase = CoreBase::Append<Transform, RigidBody, Collider>;
 using RenderBase = PhysicsBase::Append<Image, Renderer2D, Text, Animator, State>;
 using ComponentList = RenderBase;

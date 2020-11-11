@@ -847,7 +847,14 @@ namespace DeltaEngine
 		float a_extent = (abox.max.x - abox.min.x) / 2;
 		float b_extent = (bbox.max.x - bbox.min.x) / 2;
 
-		//m.ContactPoint = n;
+		if (A.center.y > B.center.y)
+		{
+			m.ContactPoint = B.center;
+		}
+		else
+		{
+			m.ContactPoint = A.center;
+		}
 
 		// Calculate overlap on x axis
 		float x_overlap = a_extent + b_extent - abs(n.x);

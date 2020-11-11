@@ -1,13 +1,12 @@
-#include "CollisionResponseCallbacks.h"
+#include "CollisionSystem.h"
 #include "Core/Math/Math.h"
-#include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
 #include "Collision.h"
 #include <cmath>
-
+#include "Core/GlobalStruct.h"
 namespace DeltaEngine
 {
-	void CollisionResponseMain(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
+	void CollisionSystem::CollisionResponseMain(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
 	{
 		ColliderType type1 = c1.type;
 
@@ -22,7 +21,7 @@ namespace DeltaEngine
 		}
 	}
 
-	void CollisionResponse_Sub_Box(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
+	void CollisionSystem::CollisionResponse_Sub_Box(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
 	{
 		ColliderType type2 = c2.type;
 
@@ -37,7 +36,7 @@ namespace DeltaEngine
 		}
 	}
 
-	void CollisionResponse_Sub_Circle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
+	void CollisionSystem::CollisionResponse_Sub_Circle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
 	{
 		ColliderType type2 = c2.type;
 
@@ -52,58 +51,64 @@ namespace DeltaEngine
 		}
 	}
 
-	void CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
-	{		
+	void CollisionSystem::CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
+	{
+		//////////////////////////////////////////////////////////////////////////////////////
 		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
-		Vector2 impulse, reflectedVectorA, reflectedVectorB;
-		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-		reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (70 * m.penetration) * env.pClock->FixedDeltaTime();
-		reflectedVectorB = -m.normal / (r1.Mass + r2.Mass) * r1.Mass * (70 * m.penetration) * env.pClock->FixedDeltaTime();
 
-		if (restitution > std::numeric_limits<float>::epsilon())
+		//if (m.penetration < 0.01f)
+		//{
+		//	m.penetration = 0.01f;
+		//}
+
+		Vector2 impulse = (m.normal * m.penetration);
+
+		if (c1.isCollidingOnFloor && !r1.isJumping)
 		{
-			if (r1.isMoveable)
-			{
-				float knockback_amt = 1 / r1.Mass * 20;
-				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution) + 1 * m.normal);
-				r1.Velocity += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
-
-			}
-
-			if (r2.isMoveable)
-			{
-				float knockback_amt = 1 / r2.Mass * 20;
-				impulse = ((m.normal * m.penetration) + (knockback_amt * m.normal * restitution) + 1 * m.normal);
-				r2.Velocity -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
-			}
+			r1.Velocity.y = 0.0f;
 		}
-		else
-		{
-			if (r1.isMoveable)
-			{
-				impulse = ((m.normal * m.penetration) + 0.5 * m.normal);
-				r1.Velocity += (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
-			}
 
-			if (r2.isMoveable)
-			{
-				impulse = ((m.normal * m.penetration) + 0.5 * m.normal);
-				r2.Velocity -= (impulse / (r1.Mass + r2.Mass)) * r1.Mass;
-			}
-		}	
+		if (c2.isCollidingOnFloor && !r2.isJumping)
+		{
+			r2.Velocity.y = 0.0f;
+		}
+
+		r1.AccumulatedForce += m.normal * knockback_amt * restitution;
+		r2.AccumulatedForce += -m.normal * knockback_amt * restitution;
+
+		Vector2 reflectedVectorA = ((impulse) / (r1.Mass + r2.Mass)) * r2.Mass;
+		Vector2 reflectedVectorB = ((-impulse) / (r1.Mass + r2.Mass)) * r1.Mass;
 		r1.PointEnd = c1.center + reflectedVectorA;
 		r2.PointEnd = c2.center + reflectedVectorB;
-		//if (reflectedVectorA.Magnitude() > std::numeric_limits<float>::epsilon())
+
+		//if (m.penetration > std::numeric_limits<float>::epsilon())
+		//{
+		//	Vector2 impulse = (m.normal * m.penetration);
+		//
+		//	//Negate Gravity
+		//	if (c1.isCollidingOnFloor)
+		//	{
+		//		r1.Velocity += Vector2(0, 10.0f) * env.pClock->DeltaTime();
+		//	}
+		//	
+		//	if (c2.isCollidingOnFloor)
+		//	{
+		//		r2.Velocity += Vector2(0, 10.0f) * env.pClock->DeltaTime();
+		//	}
+		//
+		//	Vector2 reflectedVectorA = ((impulse) / (r1.Mass + r2.Mass)) * r2.Mass;
+		//	Vector2 reflectedVectorB = ((-impulse) / (r1.Mass + r2.Mass)) * r1.Mass;
+		//
+		//	//r1.AccumulatedForce += m.normal * knockback_amt * restitution;
+		//	//r2.AccumulatedForce += -m.normal * knockback_amt * restitution;
+		//
 		//	r1.PointEnd = c1.center + reflectedVectorA;
-		//else
-		//	r1.PointEnd = c1.center;
-		//if (reflectedVectorB.Magnitude() > std::numeric_limits<float>::epsilon())
 		//	r2.PointEnd = c2.center + reflectedVectorB;
-		//else
-		//	r2.PointEnd = c2.center;
+		//}
+
 	}
 
-	void CollisionResponse_BoxCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
+	void CollisionSystem::CollisionResponse_BoxCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
 	{
 		r1.PointEnd = c1.center;
 		r2.PointEnd = c2.center;
@@ -154,13 +159,13 @@ namespace DeltaEngine
 
 	}
 
-	void CollisionResponse_CircleCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
+	void CollisionSystem::CollisionResponse_CircleCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
 	{
 		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
 		Vector2 impulse, reflectedVectorA, reflectedVectorB;
 		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-		reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (60 * m.penetration) * env.pClock->FixedDeltaTime();
-		reflectedVectorB = -m.normal / (r1.Mass + r2.Mass) * r1.Mass * (60 * m.penetration) * env.pClock->FixedDeltaTime();
+		reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (60 * m.penetration) * env.pClock->DeltaTime();
+		reflectedVectorB = -m.normal / (r1.Mass + r2.Mass) * r1.Mass * (60 * m.penetration) * env.pClock->DeltaTime();
 
 
 		if (restitution > std::numeric_limits<float>::epsilon())
