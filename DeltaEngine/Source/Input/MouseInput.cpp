@@ -161,4 +161,13 @@ void MouseInput::SetEntityIDSelected(size_t _setEntityIDSelected)
 	m_entityid_selected = _setEntityIDSelected;
 }
 
+bool MouseInput::TilesetDragged()
+{
+    return m_tileset_dragged;
+}
+void MouseInput::SetTilesetDragged(bool _setTilesetDragged)
+{
+    m_tileset_dragged = _setTilesetDragged;
+}
+
 }
