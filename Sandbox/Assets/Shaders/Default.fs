@@ -51,8 +51,8 @@ void main()
 	if (_FillType == 5)
 	{
 		float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, _FillAmount)));
-		float startAngle = _RRot - _REnd - rotAngle;
-        float endAngle = _RRot + _RStart;
+		float startAngle = _RRot - _REnd;
+        float endAngle = _RRot + _REnd + rotAngle;
 
         // check offsets
         float offset0 = clamp(0, 360, startAngle + 360);
@@ -73,9 +73,9 @@ void main()
 	}
 	if (_FillType == 6)
 	{
-		float rotAngle = clamp(0, 360, 360 * (1 - _FillAmount));
-		float startAngle = _RRot - _RStart;
-        float endAngle = _RRot + _REnd + rotAngle;
+		float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, _FillAmount)));
+		float startAngle = _RRot - _RStart - rotAngle;
+        float endAngle = _RRot + _REnd;
 
         // check offsets
         float offset0 = clamp(0, 360, startAngle + 360);

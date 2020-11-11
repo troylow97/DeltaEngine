@@ -13,6 +13,6 @@ namespace DeltaEngine
 		void Render(bool) override;
 
 	private:
-		std::string textureName;
+		std::string textureName = "Textures/idle";
 	};
 }
