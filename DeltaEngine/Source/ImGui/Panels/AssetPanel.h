@@ -11,11 +11,5 @@ namespace DeltaEngine
 		~AssetPanel();
 		bool DraggedFileIn();
     void Render(bool) override;
-		ImVec2 GetTopLeft() override;
-		ImVec2 GetBottomRight() override;
-
-	private:
-		ImVec2 topLeft;
-		ImVec2 bottomRight;
 	};
 }

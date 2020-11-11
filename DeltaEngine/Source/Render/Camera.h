@@ -18,7 +18,7 @@ public:
   // camera for editor mode only
   static Camera *editorCamera;
   float m_Size;
-  float m_zNear, _zFar;
+  float m_zNear, m_zFar;
   Color backgroundColor;
   Shader *shader;
 

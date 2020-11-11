@@ -10,21 +10,17 @@ namespace DeltaEngine
       bool boolValue {false};
       float floatValue { 0.0f };
     };
-    enum class Conditions
-    {
-      BoolEqual,
-      Equal,
-      NotEqual,
-      Greater,
-      Less,
-    };
     using Parameters = std::unordered_map<std::string, Parameter>;
-    using Transition = std::pair<std::string, std::string>;
-    using Condition = std::vector<std::pair<std::string, std::pair<Conditions, float>>>;
 
     Parameters parameters{};
 
-    State() = default;
+    State() : parameters{} {};
+
+    State& operator= (const State& rhs)
+    {
+      parameters.insert(rhs.parameters.begin(), rhs.parameters.end());
+      return *this;
+    }
 
     bool GetBool(std::string paramName);
     bool SetBool(std::string paramName, bool value);

@@ -10,7 +10,7 @@ namespace DeltaEngine
 PropertyInspectorPanel::PropertyInspectorPanel( std::string str ) :
   IPanel( str )
 {
-
+  m_enabled = true;
 }
 
 PropertyInspectorPanel::~PropertyInspectorPanel()
@@ -176,14 +176,4 @@ void PropertyInspectorPanel::Render( bool )
 //    }
 //    return false;
 //}
-
-ImVec2 PropertyInspectorPanel::GetTopLeft()
-{
-  return topLeft;
-}
-
-ImVec2 PropertyInspectorPanel::GetBottomRight()
-{
-  return bottomRight;
-}
 }

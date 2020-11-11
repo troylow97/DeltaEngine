@@ -156,7 +156,7 @@ RTTR_REGISTRATION
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "material", &Renderer2D::m_Material )( rttr::policy::prop::bind_as_ptr )
-    .property( "color", &Renderer2D::color )( rttr::policy::prop::bind_as_ptr )
+    .property( "color", &Renderer2D::m_Color )( rttr::policy::prop::bind_as_ptr )
     .property( "active", &Renderer2D::m_Active )( rttr::policy::prop::bind_as_ptr )
     .property( "shaded", &Renderer2D::m_Shaded )( rttr::policy::prop::bind_as_ptr )
     .property( "wireframe", &Renderer2D::m_Wireframe )( rttr::policy::prop::bind_as_ptr );

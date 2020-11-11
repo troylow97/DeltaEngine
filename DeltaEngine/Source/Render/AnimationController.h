@@ -8,17 +8,27 @@ namespace DeltaEngine
 class AnimationController
 {
 public:
+  enum class Conditions
+  {
+    BoolEqual,
+    Equal,
+    NotEqual,
+    Greater,
+    Less,
+  };
+
   using Parameter = State::Parameter;
   using Parameters = State::Parameters;
-  using Transition = State::Transition;
-  using Conditions = State::Conditions;
-  using Condition = State::Condition;
+  // actual condition
+  using Condition = std::vector < std::tuple<std::string, Conditions, float > >;
+
+  // start state, end state, parameter name, parameter condition type, parameter condition value
+  using Transition = std::tuple<std::string, std::string, Condition>;
 
   Parameters startingParameters;
   std::vector<Transition> // possible animation transitions
     transitions;
-  std::vector<Condition> // their conditions
-    conditions;
+
   AnimationClip *entryAnimation;
 
   AnimationController( std::string filepath = "Player.anim" );

@@ -1,5 +1,6 @@
 #include "ViewportPanel.h"
 #include "Input/InputManager.h"
+#include "Render/Camera.h"
 
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
@@ -80,15 +81,5 @@ void ViewportPanel::Render( bool isdragged )
   uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
   ImGui::Image( reinterpret_cast<void *>( textureID ), viewportPanelSize, ImVec2 { 0, 1 }, ImVec2 { 1, 0 } );
   ImGui::End();
-}
-
-ImVec2 ViewportPanel::GetTopLeft()
-{
-  return topLeft;
-}
-
-ImVec2 ViewportPanel::GetBottomRight()
-{
-  return bottomRight;
 }
 }

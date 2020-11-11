@@ -13,17 +13,22 @@ struct Animator
   unsigned m_Frame{0};
   float m_Speed{1.0f};
 
-  //Animator& operator=(const Animator& rhs)
-  //{
-  //  m_ControllerKey =  rhs.m_ControllerKey ;
-  //  m_ClipKey = rhs.m_ClipKey ;
-  //  m_Timer = rhs.m_Timer;
-  //  m_Frame = rhs.m_Frame;
-  //  m_Speed = rhs.m_Speed;
-  //  return *this;
-  //}
+  Animator()
+    : m_ControllerKey { "" }, m_ClipKey { "" },
+    m_Timer { 0.0f }, m_Frame { 0 }, m_Speed { 1 }
+  {
 
-  //Animator( AnimationController *controller );
+  }
+
+  Animator& operator=(const Animator& rhs)
+  {
+    m_ControllerKey = std::string( rhs.m_ControllerKey );
+    m_ClipKey = std::string( rhs.m_ClipKey );
+    m_Timer = 0;
+    m_Frame = 0;
+    m_Speed = rhs.m_Speed;
+    return *this;
+  }
 
   unsigned int GetFrame() const;
 
