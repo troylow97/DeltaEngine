@@ -10,15 +10,11 @@ namespace DeltaEngine
 {
 struct CollisionPairInfo
 {
-  Collider a;
-  Collider b;
   Manifold m;
   EntityID id1;
   EntityID id2;
 
-  CollisionPairInfo(Collider col1,Collider col2, Manifold man, EntityID i1, EntityID i2) :
-   a{col1},
-    b{col2},
+  CollisionPairInfo(Manifold man, EntityID i1, EntityID i2) :
     m { man },
     id1 { i1 },
     id2 { i2 }

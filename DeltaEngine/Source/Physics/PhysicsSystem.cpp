@@ -7,6 +7,16 @@
 
 namespace DeltaEngine
 {
+    void PhysicsSystem::Initialize()
+    {
+        m_gravity_amount = { 0,-60.0f };
+        CurrentJumpTicks = 0;
+        MaxJumpTicks = 10;
+        InitialJumpForce = 5000.0f;
+        JumpForce = InitialJumpForce;
+        m_max_velocity = 1000.0f;
+    }
+
     void PhysicsSystem::Update()
     {
         UpdateVelocity();
@@ -29,29 +39,53 @@ namespace DeltaEngine
                     r1.Mass = 1.0f;
                 }
 
+                if (r1.FrictionCoeff <= 0)
+                {
+                    r1.FrictionCoeff = 0.01f;
+                }
+
                 //Set Euler
                 t1.position += r1.Velocity * env.pClock->DeltaTime();                
 
+                //Jumping
+                if (r1.isJumping == true && c1.isCollidingOnFloor)
+                {
+                    CurrentJumpTicks = 1;
+                    JumpForce = InitialJumpForce;
+                }
+
+                if (CurrentJumpTicks >= 1 && r1.isJumping == true)
+                {
+                    std::cout << "CurrentJumpTicks: " << CurrentJumpTicks << std::endl;
+                    r1.AccumulatedForce += Vector2{ 0, JumpForce + r1.Mass * 100 };
+                    JumpForce *= 0.8f;
+
+                    if(CurrentJumpTicks < MaxJumpTicks)
+                        CurrentJumpTicks++;
+                    else
+                    {
+                        r1.isJumping = false;
+                        CurrentJumpTicks = 0;
+                        JumpForce = InitialJumpForce;
+                    }
+                }
+
+
+                //
                 if (r1.Direction == Vector2{ 0,-1 } && c1.isCollidingOnFloor)
                 {
                 
                 }
-                else if (r1.Direction == Vector2{ 0, 2 })
-                {
-                    r1.AccumulatedForce += {0, Jump_Force};
-                    r1.Direction = Vector2::zero();
-                }
                 else
                 {
                     //Player Movement
-                    Vector2 move = (r1.Direction * r1.Movespeed);
-                    r1.AccumulatedForce += move;
-                }
+                    Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
 
-
+                    r1.AccumulatedForce += move * r1.Mass* 0.5f;
+                }      
 
                 //Apply Gravity
-                if (r1.hasGravity && !c1.isCollidingOnFloor)
+                if (r1.hasGravity)
                 {
                     r1.Acceleration = m_gravity_amount;
                 }
@@ -78,12 +112,14 @@ namespace DeltaEngine
                 if (Vector2DotProduct(r1.Velocity, r1.Velocity) > m_max_velocity)
                 {
                     Normalise(r1.Velocity);
-                    r1.Velocity = r1.Velocity * m_max_velocity;
+                    r1.Velocity = r1.Velocity + m_max_velocity;
                 }
 
                 r1.AccumulatedForce = { 0,0 };
                 c1.isCollidingOnFloor = false;
             }
+            else
+                r1.Velocity = { 0,0 };
         });
 
     }

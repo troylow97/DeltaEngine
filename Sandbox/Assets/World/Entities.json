@@ -9,86 +9,11 @@
                 },
                 "position": {
                     "x": 0.0,
-                    "y": 0.0,
+                    "y": -3.0,
                     "z": 0.0
                 },
                 "scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
+                    "x": 15.0,
                     "y": 0.5,
                     "z": 0.0
                 },
@@ -98,371 +23,23 @@
                     "z": 0.0,
                     "w": 1.0
                 }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.0,
-                    "y": -2.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 8.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 0.0
-                }
-            },
-            "collider": {
-                "type": "box",
-                "is_collideable": true,
-                "is_trigger": false
             },
             "rigidbody": {
                 "mass": 100.0,
-                "movespeed": 10.0,
+                "movespeed": 0.0,
                 "restitution": 0.0,
-                "friction_coeff": 0.0,
-                "has_gravity": false,
-                "is_moveable": false
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": -2.0,
-                    "y": -1.000000238418579,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 1.0,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 0.0
-                }
-            },
-            "collider": {
-                "type": "box",
-                "is_collideable": true,
-                "is_trigger": false
-            },
-            "rigidbody": {
-                "mass": 100.0,
-                "movespeed": 10.0,
-                "restitution": 0.0,
-                "friction_coeff": 0.0,
-                "has_gravity": true,
-                "is_moveable": true
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": -2.8767471313476564,
-                    "y": -1.500000238418579,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 1.0,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 0.0
-                }
-            },
-            "collider": {
-                "type": "box",
-                "is_collideable": true,
-                "is_trigger": false
-            },
-            "rigidbody": {
-                "mass": 100.0,
-                "movespeed": 10.0,
-                "restitution": 0.0,
-                "friction_coeff": 0.0,
-                "has_gravity": true,
-                "is_moveable": true
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": -3.8767471313476564,
-                    "y": -0.25114938616752627,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 1.0,
-                    "y": 3.0,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 0.0
-                }
-            },
-            "collider": {
-                "type": "box",
-                "is_collideable": true,
-                "is_trigger": false
-            },
-            "rigidbody": {
-                "mass": 100.0,
-                "movespeed": 10.0,
-                "restitution": 0.0,
-                "friction_coeff": 0.0,
-                "has_gravity": true,
-                "is_moveable": true
-            }
-        },
-        {
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": -2.1267471313476564,
-                    "y": -1.5,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "collider": {
-                "type": "box",
-                "is_collideable": true,
-                "is_trigger": false
-            },
-            "rigidbody": {
-                "mass": 10.0,
-                "movespeed": 100.0,
-                "restitution": 1.0,
                 "friction_coeff": 0.3499999940395355,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 0.0,
+                "acceleration_pickup": 0.0,
                 "has_gravity": false,
-                "is_moveable": true
+                "is_moveable": false,
+                "is_jumping": false
+            },
+            "collider": {
+                "type": "box",
+                "is_collideable": true,
+                "is_trigger": false
             }
         },
         {
@@ -473,8 +50,54 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": 0.4340546429157257,
-                    "y": 2.4827022552490236,
+                    "x": 3.5529118978373029e32,
+                    "y": 1.8663075093542937e34,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 5.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 100.0,
+                "movespeed": 0.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.009999999776482582,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 0.0,
+                "acceleration_pickup": 0.0,
+                "has_gravity": false,
+                "is_moveable": false,
+                "is_jumping": false
+            },
+            "collider": {
+                "type": "box",
+                "is_collideable": true,
+                "is_trigger": false
+            }
+        },
+        {
+            "input": {
+                "prev": 32,
+                "curr": 0
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 2.0,
                     "z": 0.0
                 },
                 "scale": {
@@ -486,25 +109,81 @@
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0,
-                    "w": 0.0
+                    "w": 1.0
                 }
+            },
+            "rigidbody": {
+                "mass": 10.0,
+                "movespeed": 2.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 2.0,
+                "has_gravity": false,
+                "is_moveable": false,
+                "is_jumping": false
             },
             "collider": {
                 "type": "box",
                 "is_collideable": true,
                 "is_trigger": false
             },
+            "ai": {
+                "state": "",
+                "transition": ""
+            },
+            "entity_type": {
+                "type": "player"
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": -1.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
             "rigidbody": {
                 "mass": 10.0,
-                "movespeed": 100.0,
-                "restitution": 1.0,
-                "friction_coeff": 2.0,
+                "movespeed": 10.0,
+                "restitution": 0.0,
+                "friction_coeff": 0.3499999940395355,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 0.0,
+                "acceleration_pickup": 0.0,
                 "has_gravity": false,
-                "is_moveable": true
+                "is_moveable": false,
+                "is_jumping": false
             },
-            "input": {
-                "prev": 65,
-                "curr": 0
+            "collider": {
+                "type": "box",
+                "is_collideable": true,
+                "is_trigger": false
+            },
+            "ai": {
+                "state": "chase_enemy_lancer",
+                "transition": "null"
+            },
+            "entity_type": {
+                "type": "monster"
             }
         }
     ]

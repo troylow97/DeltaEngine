@@ -17,6 +17,7 @@
 #include "Audio/AudioEngine.h"
 #include "ImGui/Editor.h"
 #include "AI/AI_StateMachine.h"
+#include "Core/Utils/Random.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -48,6 +49,8 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   m_Editor = new Editor();
 
+  Random::Init();
+
   // Asset Loading
   env.pManager = new AM();
   env.pManager->SetLoader<Font>( new FontLoader() )
@@ -76,43 +79,47 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   env.pECS = new ECSModule();
 
-  //env.pECS->GetWorld().Load("World/Entities.json");
-  EntityID first = env.pECS->GetWorld().get_entity_manager().CreateEntity();
-  env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(first);
-  env.pECS->GetWorld().get_entity_manager().AddComponent<Collider>(first);
-  env.pECS->GetWorld().get_entity_manager().AddComponent<RigidBody>(first);
-  env.pECS->GetWorld().get_entity_manager().AddComponent<Input>(first);
-  env.pECS->GetWorld().get_entity_manager().AddComponent<AI>(first);
-
-  env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>(first).position = { 0,0,0 };
-  env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>(first).scale = { 0.5,0.5,0 };
-  env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(first).isMoveable = false;
-  env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(first).Mass = 10.0f;
-  env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(first).Movespeed = 100.0f;
-  env.pECS->GetWorld().get_entity_manager().GetComponent<Collider>(first).type = ColliderType::BOX;
-  env.pECS->GetWorld().get_entity_manager().GetComponent<AI>(first).key = "idle";
+  //EntityID first = env.pECS->GetWorld().GetEntityManager().CreateEntity();
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(first);
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(first);
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(first);
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(first);
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<Input>(first);
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(first).type = "player";
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).size = { 0.5,0.5 };
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).type = ColliderType::BOX;
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(first).position = { 0.5,0.5,0 };
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(first).scale = { 0.5,0.5,0 };
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).Movespeed = 100.0f;
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).Mass = 15.0f;
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).isMoveable = true;
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).FrictionCoeff = 0.9f;
   //
-  //EntityID second = env.pECS->GetWorld().get_entity_manager().CreateEntity();
-  //env.pECS->GetWorld().get_entity_manager().AddComponent<Transform>(second);
-  //env.pECS->GetWorld().get_entity_manager().AddComponent<Collider>(second);
-  //env.pECS->GetWorld().get_entity_manager().AddComponent<RigidBody>(second);
-  //env.pECS->GetWorld().get_entity_manager().AddComponent<AI>(second);
-  //
+  //EntityID sec = env.pECS->GetWorld().GetEntityManager().CreateEntity();
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<AI>(sec);
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(sec);
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(sec);
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(sec);
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(sec);
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).key = "idle_monster";
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).transition = "null";
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(sec).type = "monster";
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(sec).size = { 0.5,0.5 };
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(sec).type = ColliderType::BOX;
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sec).position = { 5,0,0 };
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sec).scale = { 0.5,0.5,0 };
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Movespeed = 50.0f;
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Mass = 20.0f;
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).isMoveable = true;
+  //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).FrictionCoeff = 0.9f;
 
-  //
-  //env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>(second).position = { 2,3,0 };
-  //env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>(second).isMoveable = false;
-  //env.pECS->GetWorld().get_entity_manager().GetComponent<Collider>(second).type = ColliderType::BOX;    
-  //env.pECS->GetWorld().get_entity_manager().GetComponent<AI>(second).key = "idle";
-  //env.pECS->GetWorld().Save("World/Entities.json");
-
-  env.pECS->GetWorld().create_systems<InputSystem,AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().set_update_sequence<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().set_late_update_sequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-
-  env.pECS->GetWorld().CreateSystems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().SetUpdateSequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().SetUpdateSequence<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().SetLateUpdateSequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+
+
+
+
   env.pECS->GetWorld().InitSystems();
 }
 

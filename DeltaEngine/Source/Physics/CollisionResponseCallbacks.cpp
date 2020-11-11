@@ -52,19 +52,42 @@ namespace DeltaEngine
 	}
 
 	void CollisionSystem::CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
-	{		
+	{
+		//////////////////////////////////////////////////////////////////////////////////////
 		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+		
+		//if (m.penetration > std::numeric_limits<float>::epsilon())
+		{
+			Vector2 impulse = (m.normal * m.penetration);
 
-		Vector2 impulse = ((m.normal * m.penetration));
+			//Negate Gravity
+			if (c1.isCollidingOnFloor)
+			{
+				r1.Velocity /= env.pClock->DeltaTime();
+				r1.Velocity += Vector2(0, 60.0f);
+				r1.Velocity *= env.pClock->DeltaTime();
+			}
 
-		Vector2 reflectedVectorA = (impulse / (r1.Mass + r2.Mass)) * r2.Mass;
-		Vector2 reflectedVectorB = (-impulse / (r1.Mass + r2.Mass)) * r1.Mass;
+			if (c2.isCollidingOnFloor)
+			{
+				r2.Velocity /= env.pClock->DeltaTime();
+				r2.Velocity += Vector2(0, 60.0f);
+				r2.Velocity *= env.pClock->DeltaTime();
+			}
 
-		r1.AccumulatedForce += m.normal * knockback_amt * restitution;
-		r2.AccumulatedForce += -m.normal * knockback_amt * restitution;
+			//r1.Velocity += (m.normal * m.penetration) * env.pClock->DeltaTime();
+			//r2.Velocity -= (m.normal * m.penetration) * env.pClock->DeltaTime();
 
-		r1.PointEnd = c1.center + reflectedVectorA;
-		r2.PointEnd = c2.center + reflectedVectorB;
+			Vector2 reflectedVectorA = ((impulse) / (r1.Mass + r2.Mass)) * r2.Mass;
+			Vector2 reflectedVectorB = ((-impulse) / (r1.Mass + r2.Mass)) * r1.Mass;
+
+			r1.AccumulatedForce += m.normal * knockback_amt * restitution;
+			r2.AccumulatedForce += -m.normal * knockback_amt * restitution;
+
+			r1.PointEnd = c1.center + reflectedVectorA;
+			r2.PointEnd = c2.center + reflectedVectorB;
+		}
+
 	}
 
 	void CollisionSystem::CollisionResponse_BoxCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)

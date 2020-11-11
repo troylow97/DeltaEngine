@@ -10,25 +10,104 @@
 				or disclosure of this file or its contents without the prior
 				written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
-//#include "Core/Containers/ActionList.h"
-#include "Core/TypeAlias.h"
-
+#include <string>
+#include "Core/GlobalStruct.h"
+#include "ECS/Entities.h"
+#include "AITools.h"
 namespace DeltaEngine
-{	class Transition
+{	
+	class Transition
 	{
 	public:
-		bool isTriggered;
+		virtual bool TestEdge(EntityID&) = 0;
 		virtual std::string getTargetState() = 0;
-
 	};
 
-	class SawEnemy : public Transition
+	class DetectEnemyLancer : public Transition
 	{
 	public:
-		bool isTriggered;
+		virtual bool TestEdge(EntityID& monster) override
+		{
+			auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+			env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+			{
+				if (et.type == "player" && AITools::EntityisWithinDetectionRange(monster,player,3.0f,5.0f))
+				{
+				    ref.transition = getTargetState();
+				}
+			});
+			if (ref.transition == getTargetState()) { return true; }
+			return false;
+		}
 		virtual std::string getTargetState()
 		{
-			return "idle";
+			return "chase_enemy_lancer";
+		}
+	};
+
+	class LostEnemyLancer : public Transition
+	{
+	public:
+		virtual bool TestEdge(EntityID& monster) override
+		{
+			auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+			env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+				{
+					if (et.type == "player" && !AITools::EntityisWithinDetectionRange(monster, player, 5.0f, 5.0f))
+					{
+						ref.transition = getTargetState();
+					}
+				});
+			if (ref.transition == getTargetState()) { return true; }
+			return false;
+		}
+		virtual std::string getTargetState()
+		{
+			return "idle_lancer";
+		}
+	};
+
+	class DetectEnemyFiddler : public Transition
+	{
+	public:
+		virtual bool TestEdge(EntityID& monster) override
+		{
+			auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+			env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+				{
+					if (et.type == "player" && AITools::EntityisWithinDetectionRange(monster, player, 3.0f, 5.0f))
+					{
+						ref.transition = getTargetState();
+					}
+				});
+			if (ref.transition == getTargetState()) { return true; }
+			return false;
+		}
+		virtual std::string getTargetState()
+		{
+			return "chase_enemy_fiddler";
+		}
+	};
+
+	class LostEnemyFiddler : public Transition
+	{
+	public:
+		virtual bool TestEdge(EntityID& monster) override
+		{
+			auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+			env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+				{
+					if (et.type == "player" && !AITools::EntityisWithinDetectionRange(monster, player, 5.0f, 5.0f))
+					{
+						ref.transition = getTargetState();
+					}
+				});
+			if (ref.transition == getTargetState()) { return true; }
+			return false;
+		}
+		virtual std::string getTargetState()
+		{
+			return "idle_fiddler";
 		}
 	};
 }

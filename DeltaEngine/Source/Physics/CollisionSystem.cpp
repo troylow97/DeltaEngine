@@ -63,7 +63,7 @@ void CollisionSystem::CollisionIntersectionCheck()
                 if (!already_added)
                 {
                     AABBvsAABB_Manifold(c1, c2, m);
-                    current_manifold_vector.push_back({ c1,c2, m,id1,id2});
+                    current_manifold_vector.push_back({ m,id1,id2});
                 }
 
             }
@@ -121,13 +121,12 @@ void CollisionSystem::CollisionHandling()
 
 void CollisionSystem::CollisionResolution()
 {
-   //std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
-   //{
-   //     return a.m.ContactPoint.y < b.m.ContactPoint.y;
-   //});
-
-   //resolve lowest contact point first
-  // std::partition(std::begin(current_manifold_vector), std::end(current_manifold_vector), [](const CollisionPairInfo& a) {return a.has_non_moveable; });
+   //Resolve Lowest Contact First
+   std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
+   {
+        return a.m.ContactPoint.y < b.m.ContactPoint.y;
+   });
+   
 
     for ( auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++ )
     {
@@ -141,20 +140,42 @@ void CollisionSystem::CollisionResolution()
 
               if (r1.isMoveable)
               {
-                  t1.position = r1.PointEnd;
                   c1.center = r1.PointEnd;
               }
               if (r2.isMoveable)
               {
-                  t2.position = r2.PointEnd;
                   c2.center = r2.PointEnd;
               }
-
           }
     
         } );
       } );
     }
+
+    for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
+    {
+        em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
+            {
+                em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
+                    {
+                        if (it1->id1.index == id1.index && it1->id2.index == id2.index && !c1.isTrigger && !c2.isTrigger)
+                        {
+                            if (r1.isMoveable)
+                            {
+                                t1.position = r1.PointEnd;
+                                c1.center = r1.PointEnd;
+                            }
+                            if (r2.isMoveable)
+                            {
+                                t2.position = r2.PointEnd;
+                                c2.center = r2.PointEnd;
+                            }
+                        }
+
+                    });
+            });
+    }
+
     
 }
 

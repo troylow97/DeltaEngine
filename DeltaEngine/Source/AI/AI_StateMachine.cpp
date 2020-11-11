@@ -17,67 +17,83 @@
 
 namespace DeltaEngine
 {
-	//void AISystem::Init()
-	//{
-	//	StateList["idle"] = new Idle();
-	//	em.ForEach([&](EntityID id, AI ai)
-	//		{
-	//			ai.key = "idle";
-	//		});
-	//}
+	void AISystem::Initialize()
+	{
+		StateList["idle_lancer"] = new IdleLancer();
+		StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
+		StateList["idle_fiddler"] = new IdleFiddler(Vector2{0,0}, Vector2{5,0});
+		StateList["chase_enemy_fiddler"] = new ChaseEnemyFiddler();
+		//Temporary Init
+		//em.ForEach([&](EntityID id, AI ai)
+		//{
+		//	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).key = "idle_lancer";
+		//	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).transition = "null";
+		//	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "monster";
+		//});
+
+
+		//em.ForEach([&](EntityID id,Input i)
+		//{
+		//	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "player";
+		//});
+
+
+
+
+	}
+
+	void AISystem::Shutdown()
+	{
+		for (auto it : StateList)
+		{
+			delete it.second;
+		}
+	}
 
 	void AISystem::Update()
 	{
-		if (!isInit)
-		{
-			std::cout << "here0" << std::endl;
-			StateList.insert({ "idle", new Idle() });
-			em.ForEach([&](EntityID id, AI ai)
-			{
-				ai.key = "idle";
-			});
-
-			isInit = true;
-		}
 		//Check and apply transitions
-       em.ForEach([&](EntityID id,AI ai)
+       em.ForEach([&](EntityID& id,AI& ai)
        {
-			ai.key = "idle";
 			bool isChanged{ false };
 			AIState* ai_state = nullptr;
 
 			auto it = StateList.find(ai.key);
 			if (it != StateList.end())
+			{
 				ai_state = it->second;
+			}
+			else
+			{
+				return;
+			}
 
-			std::cout << ai.key << std::endl;
-			std::cout << "here1" << std::endl;
+			
 			if (ai_state != nullptr)
 			{
-				std::cout << "here2" << std::endl;
-				[&]()
+				if (ai.transition == "null")
 				{
-					for (std::pair<std::string, Transition*> ref : ai_state->TransitionEdges)
-					{
-						if (ref.second->isTriggered)
-						{
-							std::cout << "here3" << std::endl;
-							ai_state->onExit(id);
-							ai.key = ref.first;
-							ai_state = StateList[ref.first];
-							ai_state->onEnter(id);
-							isChanged = true;
-						}
-					}
-
-				}();
-
-				//No transitions occured, AI updates its current state
-				if (!isChanged)
-				{
-					std::cout << "here4" << std::endl;
 					ai_state->Update(id);
+					return;
 				}
+
+				ai_state->onExit(id);
+
+				ai.key = ai.transition;
+				ai.transition = "null";
+
+				auto it = StateList.find(ai.key);
+				if (it != StateList.end())
+				{
+					ai_state = it->second;
+				}
+				else
+				{
+					return;
+				}
+				
+				ai_state->onEnter(id);
+
 
 			}
        });

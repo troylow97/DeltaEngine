@@ -122,7 +122,7 @@ void PropertyInspectorPanel::Render( bool )
     ImGui::Text( "" );
     ImGui::Text( "" );
 
-    static const char *components[] { " ", "transform", "rigidbody", "collider", "input" };
+    static const char *components[] { " ", "transform", "rigidbody", "collider", "input","ai","entity_type"};
     static int selected = 0;
     ImGui::Combo( "Components", &selected, components, IM_ARRAYSIZE( components ) );
     if ( ImGui::Button( "Add Component" ) )
@@ -160,6 +160,16 @@ void PropertyInspectorPanel::Render( bool )
             ImGui::DragFloat3( prop_name.c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
           else if ( prop_type == rttr::type::get<bool*>() )
             ImGui::Checkbox( prop_name.c_str(),  value.get_value<bool *>()  );
+          else if (prop_type == rttr::type::get<std::string*>() && instance.get_type()==rttr::type::get<AI>() || instance.get_type() == rttr::type::get<EntityType>())
+          {
+              auto& str = *value.get_value<std::string*>();
+              char buffer[256]{};
+              strcpy_s(buffer, sizeof(buffer), str.c_str());
+              if (ImGui::InputText(prop_name.c_str(), buffer, sizeof(buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+              {
+                  str = std::string(buffer);
+              }
+          }
 
         }
       }
