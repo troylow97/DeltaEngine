@@ -15,10 +15,10 @@ class FontLoader final : public AbstractLoader<Font>
       if (file.extension() == ".ttf" )
       {
         Font *data = new Font( file.generic_string() );
-        Set( file.filename().generic_string().substr(0, file.filename().generic_string().find_last_of( '.' )),
+        Set( file.generic_string(),
              data, AssetState::Final, AssetLifetime::Persistent );
 
-        DeltaEngine_CORE_TRACE( "Font Key: {}", file.filename().generic_string().substr(0, file.filename().generic_string().find_last_of( '.' )));
+        DeltaEngine_CORE_TRACE( "Font Key: {}", file.generic_string());
 
       }
   }

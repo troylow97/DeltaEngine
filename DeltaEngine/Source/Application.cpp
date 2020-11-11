@@ -69,7 +69,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().SetUpdateSequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().SetLateUpdateSequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().InitSystems();
-  env.pECS->GetWorld().Load( "Base.json" );
+  //env.pECS->GetWorld().Load( "Base.json" );
 }
 
 Application::~Application()
@@ -93,9 +93,9 @@ Application::~Application()
 
 void Application::Run()
 {
- /* DeltaEngine::World &world = env.pECS->GetWorld();
-  DeltaEngine::EntityManager &em = world.GetEntityManager();
 
+  DeltaEngine::World &world = env.pECS->GetWorld();
+  DeltaEngine::EntityManager &em = world.GetEntityManager();
   auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
   auto &spriterender = em.GetComponent<Image>( entitybg );
   auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator>();
@@ -104,13 +104,12 @@ void Application::Run()
   auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
   auto &textrender = em.GetComponent<Text>( entitytr );
   auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
-
-  spriterender.m_Sprite = { "bg", 0 };
-  textrender.m_FontKey = "Arial";
+  spriterender.m_Sprite = { "Textures/bg.png", 0 };
+  textrender.m_FontKey = "Default";
   textrenderer.m_Material = { "DefaultText" };
-  animator.m_ControllerKey = "Player";
+  animator.m_ControllerKey = "Animation/Player.anim";
   textrender.m_Text = "Welcome to DELTA";
-  textrender.alignment = Alignment::AlignRight;*/
+  textrender.alignment = Alignment::AlignRight;
 
   while ( env.pWin->Running() )
   {

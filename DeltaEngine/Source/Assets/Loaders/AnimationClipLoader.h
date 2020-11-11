@@ -14,10 +14,10 @@ class AnimationClipLoader final : public AbstractLoader<AnimationClip>
       if (file.extension() == ".clip" )
       {
         AnimationClip *data = new AnimationClip( file.generic_string() );
-        Set( file.filename().generic_string().substr(0, file.generic_string().find_last_of( '.' )),
+        Set( file.generic_string(),
              data, AssetState::Final, AssetLifetime::Persistent );
 
-        DeltaEngine_CORE_TRACE( "AnimationClip Key: {}", file.filename().generic_string().substr(0, file.filename().generic_string().find_last_of( '.' )));
+        DeltaEngine_CORE_TRACE( "AnimationClip Key: {}", file.generic_string());
       }
   }
 
