@@ -12,9 +12,12 @@ namespace DeltaEngine
 {
 void CollisionSystem::Update()
 {
-  CollisionIntersectionCheck();
-  CollisionHandling();
-  CollisionResolution();
+    for (size_t step = 0; step < env.pClock->Timesteps(); ++step)
+    {
+        CollisionIntersectionCheck();
+        CollisionHandling();
+        CollisionResolution();
+    }
 }
 
 void CollisionSystem::LateUpdate()
@@ -33,6 +36,7 @@ void CollisionSystem::CollisionIntersectionCheck()
   {
     if ( c1.isCollideable )
     {
+      c1.isCollidingOnFloor = false;
       c1.center = t1.position;
       c1.size = t1.scale;
       em.ForEach( [&]( EntityID id2, RigidBody &r2, Transform &t2, Collider &c2 )
@@ -41,6 +45,7 @@ void CollisionSystem::CollisionIntersectionCheck()
         {
           if ( id1.index != id2.index )
           {
+            c2.isCollidingOnFloor = false;
             c2.center = t2.position;
             c2.size = t2.scale;
             Manifold m;

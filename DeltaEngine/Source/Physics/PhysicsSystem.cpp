@@ -86,7 +86,7 @@ namespace DeltaEngine
                 }      
 
                 //Apply Gravity
-                if (r1.hasGravity)
+                if (r1.hasGravity && !c1.isCollidingOnFloor)
                 {
                     r1.Acceleration = m_gravity_amount;
                 }
