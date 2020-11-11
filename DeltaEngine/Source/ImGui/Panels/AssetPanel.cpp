@@ -27,6 +27,7 @@ struct AssetDirectoryListener : public IFileWatcherListener
 
 
 std::filesystem::path selection;
+std::string selection_file;
 
 void RecursiveDirectoryNodes( std::filesystem::directory_entry dir )
 {
@@ -114,15 +115,10 @@ void AssetPanel::Render( bool isdragged )
 
               if (ImGui::BeginDragDropSource(src_flags))
               {
-                  std::filesystem::path fullpath = std::filesystem::absolute(ref);
-                  std::wstring path = fullpath;
-                  std::string spath(path.begin(), path.end());
-                  strpath = std::make_unique<std::string>(spath);
-                  // set payload to carry the fullpath of the file dragged
-                  ImGui::SetDragDropPayload("ASSETFILES", strpath.get(), sizeof(std::string));
-                  // display preview of filename
-                  ImGui::Text(fullpath.filename().generic_string().c_str());
-                  ImGui::EndDragDropSource();
+                selection_file.assign( ref.generic_string().c_str());
+                ImGui::SetDragDropPayload("ASSETFILES", &selection_file, sizeof(std::string));
+                ImGui::Text(ref.filename().generic_string().c_str());
+                ImGui::EndDragDropSource();
               }
               /*
                 if (ImGui::BeginDragDropTarget())

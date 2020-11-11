@@ -223,9 +223,9 @@ rttr::type RT_Checker( size_t bits )
 void RT_Setter( EntityManager &em, EntityID id, size_t bits )
 {
   if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Name>( id, Name() );
+    em.AddComponent<Name>( id);
   if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Parent>( id, Parent() );
+    em.AddComponent<Parent>( id );
   if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
     em.AddComponent<Transform>( id );
   if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
