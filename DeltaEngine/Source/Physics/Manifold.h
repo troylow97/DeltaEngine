@@ -7,9 +7,10 @@ namespace DeltaEngine
 struct Manifold
 {
   float interTime;
-  float penetration;
+  double penetration;
   Vector2 normal;
   float FrictionCof{0.1f}; //not used for now
+  Vector2 ContactPoint;
 
   Manifold::Manifold() :
     interTime { 0.0f },

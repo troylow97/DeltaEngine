@@ -10,15 +10,11 @@ namespace DeltaEngine
 {
 struct CollisionPairInfo
 {
-  Collider a;
-  Collider b;
   Manifold m;
   EntityID id1;
   EntityID id2;
 
-  CollisionPairInfo(Collider col1,Collider col2, Manifold man, EntityID i1, EntityID i2) :
-   a{col1},
-    b{col2},
+  CollisionPairInfo(Manifold man, EntityID i1, EntityID i2) :
     m { man },
     id1 { i1 },
     id2 { i2 }
@@ -36,7 +32,16 @@ void CollisionSystem::CollisionIntersectionCheck();
 void CollisionSystem::CollisionHandling();
 void CollisionSystem::CollisionResolution();
 
+void CollisionSystem::CollisionResponseMain(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+void CollisionSystem::CollisionResponse_Sub_Box(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+void CollisionSystem::CollisionResponse_Sub_Circle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+
+void CollisionSystem::CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+void CollisionSystem::CollisionResponse_BoxCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+void CollisionSystem::CollisionResponse_CircleCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
+
 public:
+  float knockback_amt = 500.0f;
   virtual void CollisionSystem::Update() override;
   virtual void CollisionSystem::LateUpdate() override;
   CollisionSystem::CollisionSystem() = default;

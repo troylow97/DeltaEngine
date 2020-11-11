@@ -14,7 +14,6 @@
 
 namespace DeltaEngine
 {
-
 namespace Serialize
 {
 void WriteEntities( class DeltaEngine::EntityManager &em, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer );

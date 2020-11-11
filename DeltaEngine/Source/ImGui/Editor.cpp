@@ -68,9 +68,6 @@ void Editor::MenuBar()
   if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_T ) )
     m_panels[0]->Enable();
 
-
-
-
   if ( ImGui::BeginMainMenuBar() )
   {
     if ( ImGui::BeginMenu( "Scene" ) )
@@ -78,6 +75,8 @@ void Editor::MenuBar()
       if ( ImGui::MenuItem( "New", " Ctrl+N" ) )
       {
         GetEnv().pECS->GetWorld().GetEntityManager().Clear();
+        InputManager::Get()->SetEntityIDSelected( 0 );
+        InputManager::Get()->SetEntitySelected( false );
       }
       if ( ImGui::MenuItem( "Open", " Ctrl+O" ) )
       {
@@ -102,7 +101,6 @@ void Editor::MenuBar()
       }
       if ( ImGui::MenuItem( "clone entity" ) )
       {
-
       }
       if ( ImGui::MenuItem( "Delete Entity", " Del" ) )
       {
@@ -119,10 +117,8 @@ void Editor::MenuBar()
         m_panels[1]->Enable();
       if ( ImGui::MenuItem( "Tiles", " Ctrl+T") )
         m_panels[0]->Enable();
-
       ImGui::EndMenu();
     }
-
     ImGui::EndMainMenuBar();
   }
 }
@@ -135,7 +131,6 @@ Editor::Editor()
   m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );
   m_panels.push_back( std::make_unique<AssetPanel>( "Assets" ) );
   m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor" ) );
-
 
   ImGui::CreateContext();
   ImGuiIO &io = ImGui::GetIO();
@@ -221,6 +216,74 @@ void Editor::Render()
 
   MenuBar();
 
+  // renderers
+ // if ( RenderModule::allRenderers.size() > 0 )
+ // {
+ //   ImGui::Begin( "SpriteRenderer1" );
+ //
+ //   static float f = 0.0f;
+ //   ImGui::Text( "Edit Background Props" );                           // Display some text (you can use a format string too)
+ //   ImGui::Checkbox( "Active", &RenderModule::allRenderers[0]->m_Active );
+ //   ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[0]->transform.position, 0.01f );
+ //   ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[0]->transform.scale, 0.01f );
+ //   ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
+ //   RenderModule::allRenderers[0]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+ //   ImGui::Text( "Sprite Name: %s", dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->sprite.GetName().c_str() );
+ //   ImGui::Checkbox( "Flip X", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_FlipX );
+ //   ImGui::Checkbox( "Flip Y", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_FlipY );
+ //   ImGui::Checkbox( "Shaded", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_Shaded );
+ //   ImGui::Checkbox( "Wireframe", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[0] )->m_Wireframe );
+ //
+ //   ImGui::End();
+ // }
+ // if ( RenderModule::allRenderers.size() > 1 )
+ // {
+ //   ImGui::Begin( "SpriteRenderer2" );
+ //
+ //   static float f = 0.0f;
+ //   ImGui::Text( "Edit Sprite Props" );                           // Display some text (you can use a format string too)
+ //   ImGui::Checkbox( "Active", &RenderModule::allRenderers[1]->m_Active );
+ //   ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[1]->transform.position, 0.01f );
+ //   ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[1]->transform.scale, 0.01f );
+ //   ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
+ //   RenderModule::allRenderers[1]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+ //   ImGui::Text( "Sprite Name: %s", dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->sprite.GetName().c_str() );
+ //   ImGui::Checkbox( "Flip X", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_FlipX );
+ //   ImGui::Checkbox( "Flip Y", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_FlipY );
+ //   ImGui::Checkbox( "Shaded", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Shaded );
+ //   ImGui::Checkbox( "Wireframe", &dynamic_cast<SpriteRenderer *>( RenderModule::allRenderers[1] )->m_Wireframe );
+ //
+ //   ImGui::End();
+ // }
+ // if ( RenderModule::allRenderers.size() > 2 )
+ // {
+ //   ImGui::Begin( "TextRenderer" );
+ //
+ //   static float f = 0.0f;
+ //   ImGui::Text( "Edit Text Props" );                           // Display some text (you can use a format string too)
+ //   ImGui::Checkbox( "Active", &RenderModule::allRenderers[2]->m_Active );
+ //   ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[2]->transform.position, 0.01f );
+ //   ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[2]->transform.scale, 0.01f );
+ //   ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
+ //   RenderModule::allRenderers[2]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+ //
+ //   ImGui::End();
+ // }
+ // if ( RenderModule::allRenderers.size() > 3 )
+ // {
+ //   ImGui::Begin( "Particle System" );
+ //
+ //   static float f = 0.0f;
+ //   ImGui::Checkbox( "Active", &RenderModule::allRenderers[3]->m_Active );
+ //   ImGui::Text( "Edit Particle System Props" );                           // Display some text (you can use a format string too)
+ //   ImGui::DragFloat3( "pos", (float *) &RenderModule::allRenderers[3]->transform.position, 0.01f );
+ //   ImGui::DragFloat3( "size", (float *) &RenderModule::allRenderers[3]->transform.scale, 0.01f );
+ //   ImGui::SliderFloat( "rot", &f, -180.0f, 180.0f, "%.1f", 1.0f );
+ //   RenderModule::allRenderers[3]->transform.rotation = Quaternion::AngleAxis( f, Vector3::forward() );
+ //
+ //   ImGui::End();
+ // }
+ //
   for ( auto &ref : m_panels )
   {
     if ( ref->IsEnabled() )
