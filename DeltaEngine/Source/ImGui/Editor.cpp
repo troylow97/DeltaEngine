@@ -67,9 +67,6 @@ void Editor::MenuBar()
   if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_T ) )
     m_panels[0]->Enable();
 
-
-
-
   if ( ImGui::BeginMainMenuBar() )
   {
     if ( ImGui::BeginMenu( "Scene" ) )
@@ -77,6 +74,8 @@ void Editor::MenuBar()
       if ( ImGui::MenuItem( "New", " Ctrl+N" ) )
       {
         GetEnv().pECS->GetWorld().GetEntityManager().Clear();
+        InputManager::Get()->SetEntityIDSelected( 0 );
+        InputManager::Get()->SetEntitySelected( false );
       }
       if ( ImGui::MenuItem( "Open", " Ctrl+O" ) )
       {
@@ -101,7 +100,6 @@ void Editor::MenuBar()
       }
       if ( ImGui::MenuItem( "clone entity" ) )
       {
-
       }
       if ( ImGui::MenuItem( "Delete Entity", " Del" ) )
       {
@@ -118,10 +116,8 @@ void Editor::MenuBar()
         m_panels[1]->Enable();
       if ( ImGui::MenuItem( "Tiles", " Ctrl+T") )
         m_panels[0]->Enable();
-
       ImGui::EndMenu();
     }
-
     ImGui::EndMainMenuBar();
   }
 }
@@ -133,7 +129,6 @@ Editor::Editor()
   m_panels.push_back( std::make_unique<WorldPanel>( "World" ) );
   m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );
   m_panels.push_back( std::make_unique<AssetPanel>( "Assets" ) );
-
 
   ImGui::CreateContext();
   ImGuiIO &io = ImGui::GetIO();

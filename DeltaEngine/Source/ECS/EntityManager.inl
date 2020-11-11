@@ -436,6 +436,8 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
             std::swap( *static_cast<EntityType *>( current ), *static_cast<EntityType *>( target ) );
           else if ( current_type->bits == ComponentMeta::GetComponentMeta<AI>()->bits )
             std::swap( *static_cast<AI *>( current ), *static_cast<AI *>( target ) );
+          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Text>()->bits )
+            std::swap( *static_cast<Text *>( current ), *static_cast<Text *>( target ) );
           else
             std::memcpy( target, current, current_type->size );
         }

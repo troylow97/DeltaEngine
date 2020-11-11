@@ -122,7 +122,7 @@ void PropertyInspectorPanel::Render( bool )
     //ImGui::Text( "" );
     //ImGui::Text( "" );
 
-    static const char *components[] { " ", "transform", "rigidbody", "collider", "input","ai","entity_type"};
+    static const char *components[] { " ", "transform", "rigidbody", "collider", "input","ai","entity_type" };
     static int selected = 0;
     ImGui::Combo( "Components", &selected, components, IM_ARRAYSIZE( components ) );
     if ( ImGui::Button( "Add Component" ) )
@@ -141,23 +141,23 @@ void PropertyInspectorPanel::Render( bool )
         ImGui::Text( instance.get_type().get_name().to_string().c_str() );
 
         // 'x' button to remove component individually
-        ImGui::PushID(instance.get_type().get_name().to_string().c_str()); // ImGui uses the button's text as its identifier, thus need to create new ID stack
-        ImGui::SameLine(ImGui::GetWindowWidth() - 30);
-        ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4(0.73f, 0.25f, 0.25f, 1.0f)));        // dull red
-        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4(0.85f, 0.33f, 0.35f, 1.0f))); // pale red
-        ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4(0.86f, 0.35f, 0.34f, 1.0f)));  // pastel red
-        if (ImGui::Button("x"))
+        ImGui::PushID( instance.get_type().get_name().to_string().c_str() ); // ImGui uses the button's text as its identifier, thus need to create new ID stack
+        ImGui::SameLine( ImGui::GetWindowWidth() - 30 );
+        ImGui::PushStyleColor( ImGuiCol_Button, ( ImVec4( 0.73f, 0.25f, 0.25f, 1.0f ) ) );        // dull red
+        ImGui::PushStyleColor( ImGuiCol_ButtonHovered, ( ImVec4( 0.85f, 0.33f, 0.35f, 1.0f ) ) ); // pale red
+        ImGui::PushStyleColor( ImGuiCol_ButtonActive, ( ImVec4( 0.86f, 0.35f, 0.34f, 1.0f ) ) );  // pastel red
+        if ( ImGui::Button( "x" ) )
         {
-            if (strcmp(instance.get_type().get_name().to_string().c_str(), "transform") == 0)
-                em.RemoveComponent<Transform>({ InputManager::Get()->EntityIDSelected() });
-            if (strcmp(instance.get_type().get_name().to_string().c_str(), "input") == 0)
-                em.RemoveComponent<Input>({ InputManager::Get()->EntityIDSelected() });
-            if (strcmp(instance.get_type().get_name().to_string().c_str(), "rigidbody") == 0)
-                em.RemoveComponent<RigidBody>({ InputManager::Get()->EntityIDSelected() });
-            if (strcmp(instance.get_type().get_name().to_string().c_str(), "collider") == 0)
-                em.RemoveComponent<Collider>({ InputManager::Get()->EntityIDSelected() });
+          if ( strcmp( instance.get_type().get_name().to_string().c_str(), "transform" ) == 0 )
+            em.RemoveComponent<Transform>( { InputManager::Get()->EntityIDSelected() } );
+          if ( strcmp( instance.get_type().get_name().to_string().c_str(), "input" ) == 0 )
+            em.RemoveComponent<Input>( { InputManager::Get()->EntityIDSelected() } );
+          if ( strcmp( instance.get_type().get_name().to_string().c_str(), "rigidbody" ) == 0 )
+            em.RemoveComponent<RigidBody>( { InputManager::Get()->EntityIDSelected() } );
+          if ( strcmp( instance.get_type().get_name().to_string().c_str(), "collider" ) == 0 )
+            em.RemoveComponent<Collider>( { InputManager::Get()->EntityIDSelected() } );
         }
-        ImGui::PopStyleColor(3);
+        ImGui::PopStyleColor( 3 );
         ImGui::PopID();
 
         auto properties = instance.get_type().get_properties();
@@ -173,23 +173,34 @@ void PropertyInspectorPanel::Render( bool )
           auto prop_type = property.get_type();
           auto prop_name = property.get_name().to_string();
 
-          if ( prop_type == rttr::type::get<float*>() )
+          if ( prop_type == rttr::type::get<float *>() )
             ImGui::DragFloat( prop_name.c_str(), ( value.get_value<float *>() ), 0.01f );
-          else if ( prop_type == rttr::type::get<Vector2*>())
+          else if ( prop_type == rttr::type::get<Vector2 *>() )
             ImGui::DragFloat2( prop_name.c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
-          else if ( prop_type == rttr::type::get<Vector3*>())
+          else if ( prop_type == rttr::type::get<Vector3 *>() )
             ImGui::DragFloat3( prop_name.c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
-          else if ( prop_type == rttr::type::get<bool*>() )
-            ImGui::Checkbox( prop_name.c_str(),  value.get_value<bool *>()  );
-          else if (prop_type == rttr::type::get<std::string*>() && instance.get_type()==rttr::type::get<AI>() || instance.get_type() == rttr::type::get<EntityType>())
+          else if ( prop_type == rttr::type::get<bool *>() )
+            ImGui::Checkbox( prop_name.c_str(), value.get_value<bool *>() );
+          else if ( prop_type == rttr::type::get<std::string *>() && instance.get_type() == rttr::type::get<AI>() || instance.get_type() == rttr::type::get<EntityType>() )
           {
-              auto& str = *value.get_value<std::string*>();
-              char buffer[256]{};
-              strcpy_s(buffer, sizeof(buffer), str.c_str());
-              if (ImGui::InputText(prop_name.c_str(), buffer, sizeof(buffer), ImGuiInputTextFlags_EnterReturnsTrue))
-              {
-                  str = std::string(buffer);
-              }
+            auto &str = *value.get_value<std::string *>();
+            char buffer[256] {};
+            strcpy_s( buffer, sizeof( buffer ), str.c_str() );
+            if ( ImGui::InputText( prop_name.c_str(), buffer, sizeof( buffer ), ImGuiInputTextFlags_EnterReturnsTrue ) )
+            {
+              str = std::string( buffer );
+            }
+          }
+          else if ( prop_type.get_raw_type().is_enumeration() )
+          {
+            rttr::enumeration enum_prop = prop_type.get_raw_type().get_enumeration();
+            auto enum_list = enum_prop.get_names();
+            std::vector<const char *> c_ptr_vec;
+            for ( auto &e_name : enum_list )
+              c_ptr_vec.push_back( e_name.data() );
+            int current = value.get_wrapped_value<unsigned>();
+            ImGui::Combo( prop_name.c_str(), &current, c_ptr_vec.data(), c_ptr_vec.size() );
+            const_cast<unsigned &>( value.get_wrapped_value<unsigned>() ) = current;
           }
 
         }

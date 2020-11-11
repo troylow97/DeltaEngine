@@ -22,27 +22,28 @@ namespace DeltaEngine
     Vector2 m_Offset;
     Vector2 m_Tiling;
 
-    bool m_FlipX;
-    bool m_FlipY;
-
     FillType m_FillType;
     float m_FillAmount;
     float m_OverallAngle;
     float m_StartAngle, m_EndAngle;
+    bool m_FlipX;
+    bool m_FlipY;
 
     Image()
-      : m_Sprite{ "" },
-      m_Offset{ 0, 0 },
-      m_Tiling{ 1, 1 },
-      m_FlipX{ false },
-      m_FlipY{ false },
-      m_FillType{ FillType::None },
-      m_FillAmount{ 1 },
-      m_OverallAngle{ 0 },
-      m_StartAngle{ 0 },
-      m_EndAngle{ 0 } {}
+      : m_Sprite{""},
+        m_Offset{0, 0},
+        m_Tiling{1, 1},
+        m_FillType{FillType::None},
+        m_FillAmount{1},
+        m_OverallAngle{0},
+        m_StartAngle{0},
+        m_EndAngle{0},
+        m_FlipX{false},
+        m_FlipY{false}
+    {
+    }
 
-    Image& operator= (const Image& rhs)
+    Image& operator=(const Image& rhs)
     {
       m_Sprite = rhs.m_Sprite;
       m_Offset = rhs.m_Offset;
