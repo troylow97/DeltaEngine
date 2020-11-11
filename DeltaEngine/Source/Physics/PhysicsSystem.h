@@ -18,7 +18,7 @@ public:
 private:
   void PhysicsSystem::UpdateVelocity();
 
-  Vector2 m_gravity_amount = { 0,-12.0f };
+  Vector2 m_gravity_amount;
   float JumpForce;
   float InitialJumpForce;
   int CurrentJumpTicks;

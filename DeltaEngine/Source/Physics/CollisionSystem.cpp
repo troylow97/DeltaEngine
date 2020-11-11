@@ -49,28 +49,32 @@ void CollisionSystem::CollisionIntersectionCheck()
             c2.center = t2.position;
             c2.size = t2.scale;
             Manifold m;
-            if (CollisionIntersection_Main(c1, r1, c2, r2, m))
+            if (r1.isMoveable || r2.isMoveable)
             {
-                bool already_added = false;
-                //Check if there was already collision between the two 
-                for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
+                if (CollisionIntersection_Main(c1, r1, c2, r2, m))
                 {
-                    if ((it1->id1.index == id1.index && it1->id2.index == id2.index) || (it1->id1.index == id2.index && it1->id2.index == id1.index))
+                    bool already_added = false;
+                    //Check if there was already collision between the two 
+                    for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
                     {
-                        already_added = true;
-                        break;
+                        if ((it1->id1.index == id1.index && it1->id2.index == id2.index) || (it1->id1.index == id2.index && it1->id2.index == id1.index))
+                        {
+                            already_added = true;
+                            break;
+                        }
                     }
+
+
+
+                    if (!already_added)
+                    {
+                        AABBvsAABB_Manifold(c1, c2, m);
+                        current_manifold_vector.push_back({ m,id1,id2 });
+                    }
+
                 }
-
-
-
-                if (!already_added)
-                {
-                    AABBvsAABB_Manifold(c1, c2, m);
-                    current_manifold_vector.push_back({ m,id1,id2});
-                }
-
             }
+
 
           }
 
@@ -125,60 +129,56 @@ void CollisionSystem::CollisionHandling()
 
 void CollisionSystem::CollisionResolution()
 {
-   //Resolve Lowest Contact First
+   //Resolve LowestPenetrationFirst
    std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
    {
-        return a.m.ContactPoint.y < b.m.ContactPoint.y;
+           return a.m.penetration < b.m.penetration;
    });
    
 
     for ( auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++ )
     {
-      em.ForEach( [&]( EntityID id1, RigidBody &r1, Transform &t1, Collider &c1 )
-      {
-        em.ForEach( [&]( EntityID id2, RigidBody &r2, Transform &t2, Collider &c2 )
+        RigidBody& r1 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id1);
+        RigidBody& r2 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id2);
+        Transform& t1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id1);
+        Transform& t2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id2);
+        Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
+        Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
+
+        if (!c1.isTrigger && !c2.isTrigger)
         {
-          if ( it1->id1.index == id1.index && it1->id2.index == id2.index && !c1.isTrigger && !c2.isTrigger)
-          {
-              CollisionResponseMain(c1, r1, c2, r2, it1->m);
+            CollisionResponseMain(c1, r1, c2, r2, it1->m);
 
-              if (r1.isMoveable)
-              {
-                  c1.center = r1.PointEnd;
-              }
-              if (r2.isMoveable)
-              {
-                  c2.center = r2.PointEnd;
-              }
-          }
-    
-        } );
-      } );
-    }
-
-    for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
-    {
-        em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
+            if (r1.isMoveable)
             {
-                em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
-                    {
-                        if (it1->id1.index == id1.index && it1->id2.index == id2.index && !c1.isTrigger && !c2.isTrigger)
-                        {
-                            if (r1.isMoveable)
-                            {
-                                t1.position = r1.PointEnd;
-                                c1.center = r1.PointEnd;
-                            }
-                            if (r2.isMoveable)
-                            {
-                                t2.position = r2.PointEnd;
-                                c2.center = r2.PointEnd;
-                            }
-                        }
-
-                    });
-            });
+                t1.position = r1.PointEnd;
+                c1.center = r1.PointEnd;
+            }
+            if (r2.isMoveable)
+            {
+                t2.position = r2.PointEnd;
+                c2.center = r2.PointEnd;
+            }
+            AABBvsAABB_Manifold(c1, c2, it1->m);
+        }
     }
+
+    //for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
+    //{
+    //    RigidBody& r1 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id1);
+    //    RigidBody& r2 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id2);
+    //    Transform& t1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id1);
+    //    Transform& t2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id2);
+    //    Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
+    //    Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
+    //
+    //    if (!c1.isTrigger && !c2.isTrigger && it1->m.penetration > 0.01f)
+    //    {
+    //        t1.position += it1->m.normal * 0.01f;
+    //        t1.position -= it1->m.normal * 0.01f;
+    //    }
+    //
+    //}
 
     
 }
