@@ -72,7 +72,7 @@ namespace DeltaEngine
             {
                 size_t n = std::count(fileName.begin(), fileName.end(), '.');
                 size_t temp_position = fileName.find_last_of(".png");
-
+                
                 if (temp_position == std::string::npos || n > 1)
                 {
                     continue;
@@ -82,7 +82,7 @@ namespace DeltaEngine
                     tileInfo.insert(std::pair<std::string, std::string>(fileName, filePath));
                     env.pManager->Load<Texture2D>(fileName, filePath);
                     tileInfo[fileName] = env.pManager->Get<Texture2D>(fileName);
-                }
+                } 
             }
             
             uint64_t textureID;
@@ -100,14 +100,14 @@ namespace DeltaEngine
             ImGui::SameLine();
 
             ImGuiDragDropFlags src_flags = 0;
-            src_flags |= ImGuiDragDropFlags_SourceNoDisableHover;     // Keep the source displayed as hovered
-            src_flags |= ImGuiDragDropFlags_SourceAllowNullID; // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
+            src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
+            src_flags |= ImGuiDragDropFlags_SourceAllowNullID;    // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
 
             if (ImGui::BeginDragDropSource(src_flags))
             {
                 ImGui::SetDragDropPayload("TILES", &textureID, sizeof(int));
                 InputManager::Get()->SetTilesetDragged(true);
-                std::cout << "dragging tiles" << std::endl;
+                //std::cout << "dragging tiles" << std::endl;
                 // display preview (decide whether to display the filename or preview the texture)
                 ImGui::Image(reinterpret_cast<void*>(textureID),
                     ImVec2{ 32,32 },
@@ -116,6 +116,31 @@ namespace DeltaEngine
                 ImGui::Text(fileName.c_str());
                 ImGui::EndDragDropSource();
             }
+        }
+
+        if (ImGui::BeginDragDropTarget())
+        {
+            ImGuiDragDropFlags target_flags = 0;
+
+            const ImGuiPayload* assetpayload = ImGui::AcceptDragDropPayload("ASSETFILES", target_flags);
+            if (assetpayload)
+            {
+                std::string assetpayload_n = *(std::string*)(assetpayload->Data);
+                std::wstring assetpayload_nws(assetpayload_n.begin(), assetpayload_n.end());
+                std::wcout << "assetpayload_nws is " << assetpayload_nws << std::endl;
+                // assetpayload_nws is C:\Users\Clara\Documents\digipen\sem 3\GAM200\DeltaEngine\Sandbox\Assets\Audio\jump.wav
+                std::size_t index = assetpayload_nws.find_last_of(L"/\\");
+                std::wstring newFileName;
+                std::wstring newPathName = L"Tilemap/";
+                for (size_t i = index; i < assetpayload_nws.length(); ++i)
+                {
+                    newFileName += assetpayload_nws[i];
+                }
+                newPathName += newFileName;
+
+                FileUtils::CopyFileW(assetpayload_nws, newPathName);
+            }
+            ImGui::EndDragDropTarget();
         }
 
         ImGui::End();

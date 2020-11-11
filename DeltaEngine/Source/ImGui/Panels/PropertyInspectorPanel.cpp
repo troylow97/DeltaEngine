@@ -136,10 +136,13 @@ void PropertyInspectorPanel::Render( bool )
       for ( auto &ref : *result )
       {
         rttr::instance instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
-
+        /*
+        auto& ref = em.GetComponent<Texture2D>(id);
+        ref.key = dragged.file.key;
+        */
         ImGui::Text( instance.get_type().get_name().to_string().c_str() );
 
-        // remove 'x' button
+        // 'x' button to remove component individually
         ImGui::PushID(instance.get_type().get_name().to_string().c_str()); // ImGui uses the button's text as its identifier, thus need to create new ID stack
         ImGui::SameLine(ImGui::GetWindowWidth() - 30);
         ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4(0.73f, 0.25f, 0.25f, 1.0f)));        // dull red
@@ -183,7 +186,6 @@ void PropertyInspectorPanel::Render( bool )
 
         }
       }
-
   }
   ImGui::End();
 }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include "IPanel.h"
 
 namespace DeltaEngine
@@ -15,6 +16,7 @@ namespace DeltaEngine
 		ImVec2 GetBottomRight() override;
 
 	private:
+		std::unique_ptr<std::string> strpath;
 		ImVec2 topLeft;
 		ImVec2 bottomRight;
 	};
