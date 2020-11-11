@@ -7,17 +7,12 @@ void AnimationSystem::Update()
   for ( size_t step = 0; step < env.pClock->Timesteps(); ++step )
     em.ForEach( [&]( EntityID id, Animator &a, State &s, Image &i )
     {
-    DeltaEngine_CORE_TRACE( "EntityID - {}",id.index );
-    DeltaEngine_CORE_TRACE( "Animation Controller Key - {}", a.m_ControllerKey );
-    DeltaEngine_CORE_TRACE( "Animation Sprite Key - {}", i.m_Sprite.m_Key);
 
       AnimationController *controller = GetEnv().pManager->Get<AnimationController>( a.m_ControllerKey );
       AnimationClip *newClip = nullptr;
       if ( controller )
       {
-        s.parameters.insert( controller->startingParameters.begin(), controller->startingParameters.end() );
-        DeltaEngine_CORE_TRACE( "Crash here");
-        
+        s.parameters.insert( controller->startingParameters.begin(), controller->startingParameters.end() );        
         if( a.m_ClipKey.empty() )
         {
           newClip = controller->entryAnimation;

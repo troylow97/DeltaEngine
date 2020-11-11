@@ -85,7 +85,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 Application::~Application()
 {
   DeltaEngine_CORE_INFO( "Engine Shutdown" );
-  //env.pECS->GetWorld().Save("Base.json");
+  env.pECS->GetWorld().Save("Base.json");
 
   env.pECS->GetWorld().ShutdownSystems();
   delete env.pECS;
@@ -104,27 +104,36 @@ Application::~Application()
 void Application::Run()
 {
   env.pManager->Get<Texture2D>( "run" )->SliceAll( 2, 3 );
-  DeltaEngine::World &world = env.pECS->GetWorld();
+  /*DeltaEngine::World &world = env.pECS->GetWorld();
   DeltaEngine::EntityManager &em = world.GetEntityManager();
 
   auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
   auto &spriterender = em.GetComponent<Image>( entitybg );
-  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
+  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator>();
+  em.AddComponent<State>(entitysr);
   auto &animator = em.GetComponent<Animator>( entitysr );
   auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
   auto &textrender = em.GetComponent<Text>( entitytr );
   auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
 
-  spriterender.m_Sprite = { "bg" };
+  spriterender.m_Sprite = { "bg", 0 };
   textrender.m_FontKey = "Default";
   textrenderer.m_Material = { "DefaultText" };
   animator.m_ControllerKey = "Player";
   textrender.m_Text = "Welcome to DELTA";
-  textrender.alignment = Alignment::AlignRight;
-  //env.pECS->GetWorld().Save("Base.json");
+  textrender.alignment = Alignment::AlignRight;*/
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<Name>()->size, sizeof( Name ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<Parent>()->size, sizeof( Parent ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<Input>()->size, sizeof( Input ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<Transform>()->size, sizeof( Transform ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<RigidBody>()->size, sizeof( RigidBody ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<Collider>()->size, sizeof( Collider ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<Image>()->size, sizeof( Image ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<Renderer2D>()->size, sizeof( Renderer2D ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<Text>()->size, sizeof( Text ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<Animator>()->size, sizeof( Animator ) );
+  //DeltaEngine_CORE_WARN( "ComponentMeta Size: {}, Object Size: {}", ComponentMeta::GetComponentMeta<State>()->size, sizeof( State ) );
 
-  auto &render = em.GetComponent<Renderer2D>( EntityID { 1 } );
-  DeltaEngine_CORE_TRACE( "Entity ID 1 Material Key - {}", render.m_Material.m_ShaderKey );
 
   while ( env.pWin->Running() )
   {

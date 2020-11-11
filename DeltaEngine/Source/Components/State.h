@@ -7,8 +7,8 @@ namespace DeltaEngine
   {
     struct Parameter
     {
-      bool boolValue;
-      float floatValue;
+      bool boolValue {false};
+      float floatValue { 0.0f };
     };
     using Parameters = std::unordered_map<std::string, Parameter>;
 

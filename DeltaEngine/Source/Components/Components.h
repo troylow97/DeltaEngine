@@ -1,18 +1,22 @@
 #pragma once
 
 #include "ECS/Entities.h"
-#include "Components/Transform.h"
-#include "Components/Character.h"
-#include "Components/Collider.h"
-#include "Components/RigidBody.h"
-#include "Components/Renderer.h"
-#include "Components/Text.h"
-#include "Components/Image.h"
-#include "Components/Animator.h"
-#include "Components/State.h"
+#include "Transform.h"
+#include "Character.h"
+#include "Collider.h"
+#include "RigidBody.h"
+#include "Renderer.h"
+#include "Text.h"
+#include "Image.h"
+#include "Animator.h"
+#include "State.h"
+#include "EntityInfo.h"
 #include "Core/Typelist/Typelist.h"
 
 namespace DeltaEngine
 {
-using ComponentList = Typelist< EntityID, Input,Transform,RigidBody, Collider, Image, Renderer2D,  Text, Animator, State  >;
+using CoreBase = Typelist<EntityID, Name, Parent, Input>;
+using PhysicsBase = CoreBase::Append<Transform, RigidBody, Collider>;
+using RenderBase = PhysicsBase::Append<Image, Renderer2D, Text, Animator, State>;
+using ComponentList = RenderBase;
 }

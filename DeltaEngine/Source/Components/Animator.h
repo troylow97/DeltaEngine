@@ -9,9 +9,9 @@ struct Animator
   std::string m_ControllerKey;
   std::string m_ClipKey;
 
-  float m_Timer;
-  unsigned m_Frame;
-  float m_Speed;
+  float m_Timer { 0.0f };
+  unsigned m_Frame{0};
+  float m_Speed{1.0f};
 
   Animator()
     : m_ControllerKey { "" }, m_ClipKey { "" },

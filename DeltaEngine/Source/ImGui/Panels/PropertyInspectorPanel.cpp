@@ -126,10 +126,8 @@ void PropertyInspectorPanel::Render( bool )
     static int selected = 0;
     ImGui::Combo( "Components", &selected, components, IM_ARRAYSIZE( components ) );
     if ( ImGui::Button( "Add Component" ) )
-    {
-      if ( selected != 0 )
+      if ( selected )
         RT_Reflect::RT_Setter( em, { index }, rttr::type::get_by_name( components[selected] ).get_metadata( "bits" ).to_uint64() );
-    }
 
     ImGui::Text( "" );
     ImGui::Text( "" );

@@ -9,11 +9,11 @@ namespace DeltaEngine
   {
   }
 
-  Material& Material::operator=(const Material& mat)
-  {
-    m_ShaderKey = std::string( mat.m_ShaderKey );
-    return *this;
-  }
+  //Material& Material::operator=(const Material& mat)
+  //{
+  //  m_ShaderKey = std::string( mat.m_ShaderKey );
+  //  return *this;
+  //}
 
 
   void Material::ChangeShader(Shader* shader)

@@ -15,6 +15,8 @@ public:
 
   ArrayView() = default;
 
+  ~ArrayView() = default;
+
   ArrayView( T *data_ptr, DataChunk *data_owner )
   {
     m_data = data_ptr;
