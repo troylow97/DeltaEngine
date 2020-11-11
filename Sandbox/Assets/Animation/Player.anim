@@ -1,4 +1,4 @@
-entry Idle
+entry Clip/Idle
 
 %Parameters:
 
@@ -7,14 +7,14 @@ Speed 0 0.0
 
 %Transitions:
 
-start Idle
-end Running
+start Clip/Idle
+end Clip/Running
 condition Speed > 0
 
 %
 
-start Running
-end Idle
+start Clip/Running
+end Clip/Idle
 condition Speed < 1
 
 %

@@ -104,10 +104,10 @@ void Application::Run()
   auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
   auto &textrender = em.GetComponent<Text>( entitytr );
   auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
-  spriterender.m_Sprite = { "Textures/bg.png", 0 };
+  spriterender.m_Sprite = { "Textures/bg", 0 };
   textrender.m_FontKey = "Default";
   textrenderer.m_Material = { "DefaultText" };
-  animator.m_ControllerKey = "Animation/Player.anim";
+  animator.m_ControllerKey = "Animation/Player";
   textrender.m_Text = "Welcome to DELTA";
   textrender.alignment = Alignment::AlignRight;
 

@@ -13,7 +13,7 @@ class TextureLoader final : public AbstractLoader<Texture2D>
       if (file.extension() == ".png" || file.extension() == ".jpg")
       {
         Texture2D *data = new Texture2D( file.generic_string() );
-        Set( file.generic_string(), data, AssetState::Final, AssetLifetime::Persistent );
+        Set( file.generic_string().substr(0, file.generic_string().find_last_of('.')), data, AssetState::Final, AssetLifetime::Persistent );
 
         DeltaEngine_CORE_TRACE( "Texture Key: {}", file.generic_string());
 
