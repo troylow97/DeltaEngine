@@ -95,14 +95,4 @@ namespace DeltaEngine
         }
         ImGui::End();
     }
-
-    ImVec2 WorldPanel::GetTopLeft()
-    {
-        return topLeft;
-    }
-
-    ImVec2 WorldPanel::GetBottomRight()
-    {
-        return bottomRight;
-    }
 }

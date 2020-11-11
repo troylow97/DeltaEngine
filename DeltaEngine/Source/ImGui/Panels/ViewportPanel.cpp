@@ -82,14 +82,4 @@ void ViewportPanel::Render( bool isdragged )
   ImGui::Image( reinterpret_cast<void *>( textureID ), viewportPanelSize, ImVec2 { 0, 1 }, ImVec2 { 1, 0 } );
   ImGui::End();
 }
-
-ImVec2 ViewportPanel::GetTopLeft()
-{
-  return topLeft;
-}
-
-ImVec2 ViewportPanel::GetBottomRight()
-{
-  return bottomRight;
-}
 }

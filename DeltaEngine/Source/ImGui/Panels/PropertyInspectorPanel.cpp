@@ -176,14 +176,4 @@ void PropertyInspectorPanel::Render( bool )
 //    }
 //    return false;
 //}
-
-ImVec2 PropertyInspectorPanel::GetTopLeft()
-{
-  return topLeft;
-}
-
-ImVec2 PropertyInspectorPanel::GetBottomRight()
-{
-  return bottomRight;
-}
 }

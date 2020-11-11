@@ -17,11 +17,13 @@ namespace DeltaEngine
 
 		//virtual bool DraggedFileIn(Event* e) = 0;
 
-		virtual ImVec2 GetTopLeft() = 0;
-		virtual ImVec2 GetBottomRight() = 0;
+		ImVec2 GetTopLeft() { return topLeft; }
+		ImVec2 GetBottomRight() { return topLeft; }
 
 	protected:
 		bool m_enabled{ false };
 		std::string m_name;
+		ImVec2 topLeft;
+		ImVec2 bottomRight;
 	};
 }
