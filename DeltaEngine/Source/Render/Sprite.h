@@ -13,7 +13,6 @@ public:
   std::string m_Key;
 #pragma warning(default:4251)
   unsigned int m_Index;
-  bool m_Valid;
   Sprite( std::string textureName = "", unsigned int index = 0 );
   Sprite &operator=( const Sprite & );
   operator bool() const;
