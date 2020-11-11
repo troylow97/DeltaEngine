@@ -85,6 +85,8 @@ private:
 
   void MoveEntityToArchetype( EntityID id, Archetype *arch );
 
+  Archetype *CreateEmptyArchetype();
+
   Archetype *FindOrCreateArchetype( const std::vector<const ComponentMeta *>& meta_vec);
 
   template <typename Func>

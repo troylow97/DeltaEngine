@@ -53,27 +53,17 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   // Asset Loading
   env.pManager = new AM();
-  env.pManager->SetLoader<Font>( new FontLoader() )
-    .Load<Font>( "Fail", "Fonts/Arials.ttf" )
+  env.pManager->SetLoader<Font>( new FontLoader() ).Load<Font>()
     .SetFallback<Font>( new Font( "Fonts/Arial.ttf" ) );
 
-  env.pManager->SetLoader<Shader>( new ShaderLoader() )
-    .Load<Shader>( "Default", "Shaders/Default" )
-    .Load<Shader>( "DefaultText", "Shaders/DefaultText" )
+  env.pManager->SetLoader<Shader>( new ShaderLoader() ).Load<Shader>()
     .SetFallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
 
-  env.pManager->SetLoader<Texture2D>( new TextureLoader() )
-    .Load<Texture2D>( "idle", "idle.png" )
-    .Load<Texture2D>( "run", "run.png" )
-    .Load<Texture2D>( "bg", "bg.png" );
+  env.pManager->SetLoader<Texture2D>( new TextureLoader() ).Load<Texture2D>();
 
-  env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() )
-    .Load<AnimationClip>( "Idle", "Idle.clip" )
-    .Load<AnimationClip>( "Running", "Running.clip" );
+  env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() ).Load<AnimationClip>();
 
-
-  env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() )
-    .Load<AnimationController>( "Player", "Player.anim" );
+  env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() ).Load<AnimationController>();
 
   env.eventManager = new EventManager;
 
@@ -121,11 +111,14 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
 
   env.pECS->GetWorld().InitSystems();
+  //env.pECS->GetWorld().Load( "Base.json" );
 }
 
 Application::~Application()
 {
   DeltaEngine_CORE_INFO( "Engine Shutdown" );
+  //env.pECS->GetWorld().Save("Base.json");
+
   env.pECS->GetWorld().ShutdownSystems();
   delete env.pECS;
   delete env.eventManager;
@@ -142,83 +135,76 @@ Application::~Application()
 
 void Application::Run()
 {
+
   DeltaEngine::World &world = env.pECS->GetWorld();
   DeltaEngine::EntityManager &em = world.GetEntityManager();
-  env.pManager->Get<Texture2D>( "run" )->SliceAll( 2, 3 );
-
-      //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
-      //    env.pManager->get<Shader>("Default"));
   auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
   auto &spriterender = em.GetComponent<Image>( entitybg );
-  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
+  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator>();
+  em.AddComponent<State>(entitysr);
   auto &animator = em.GetComponent<Animator>( entitysr );
   auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
   auto &textrender = em.GetComponent<Text>( entitytr );
   auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
-
-  spriterender.m_Sprite = { "bg" };
+  spriterender.m_Sprite = { "Textures/bg", 0 };
   textrender.m_FontKey = "Default";
-  textrenderer.m_Material = { "DefaultText" } ;
-  animator.m_ControllerKey = "Player";
-
-  //size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
+  textrenderer.m_Material = { "DefaultText" };
+  animator.m_ControllerKey = "Animation/Player";
+  textrender.m_Text = "Welcome to DELTA";
+  textrender.alignment = Alignment::AlignRight;
 
   while ( env.pWin->Running() )
   {
-    textrender.m_Text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
-    if ( env.pClock->Update() )
-    {
-      InputManager::Get()->Update();
-      // Update engine GameClock
-      env.pECS->GetWorld().Update();
-      env.pECS->GetWorld().LateUpdate();
-      m_Editor->Begin();
-      m_Editor->Render();
-      m_Editor->End();
-      ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
-      env.pWin->Update();
-      //if (!AudioEngine::IsChannelPlaying(i))
-      //  i = AudioEngine::PlaySound( "Audio/jump.wav" );
-      AudioEngine::Update();
-      OnEvent();
-    }
+    env.pClock->Update();
+    InputManager::Get()->Update();
+    // Logic Update()
+    // Physics Update()
+    // Animation Update()
+    // Render Update()
+    // Physics Update()
+    env.pECS->GetWorld().Update();
+    env.pECS->GetWorld().LateUpdate();
+    m_Editor->Begin();
+    m_Editor->Render();
+    m_Editor->End();
+    ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
+    env.pWin->Update();
+
+    OnEvent();
   }
 }
 
-
-
 void Application::OnEvent()
 {
-    if (!env.eventManager->IsEmpty())
+  if ( !env.eventManager->IsEmpty() )
+  {
+    auto ref = env.eventManager->ResolveEvent();
+    EventDispatcher d( ref );
+
+    if ( ref != nullptr )
     {
-        auto ref = env.eventManager->ResolveEvent();
-        EventDispatcher d(ref);
-    
-        if (ref != nullptr)
+      EventType type = ref->GetEventType();
+      switch ( type )
+      {
+        case EventType::ImGuiDragFile:
         {
-            EventType type = ref->GetEventType();
-            switch (type)
-            {
-            case EventType::ImGuiDragFile:
-            {
-                d.Dispatch<ImGuiFileDragEvent>(DE_BIND_EVENT_FN(Editor::OnDragDrop));
-                break;
-            }
-            case EventType::ImGuiRemovingDragFile:
-            {
-                d.Dispatch<ImGuiFileRemovingDragEvent>(DE_BIND_EVENT_FN(Editor::OnRemovingDragDrop));
-                break;
-            }
-            case EventType::ImGuiFileDragDone:
-            {
-                d.Dispatch<ImGuiFileDragEventDone>(DE_BIND_EVENT_FN(Editor::OnDragDropDone));
-                break;
-            }
-            }
-            delete ref;
+          d.Dispatch<ImGuiFileDragEvent>( DE_BIND_EVENT_FN( Editor::OnDragDrop ) );
+          break;
         }
-        delete ref;
+        case EventType::ImGuiRemovingDragFile:
+        {
+          d.Dispatch<ImGuiFileRemovingDragEvent>( DE_BIND_EVENT_FN( Editor::OnRemovingDragDrop ) );
+          break;
+        }
+        case EventType::ImGuiFileDragDone:
+        {
+          d.Dispatch<ImGuiFileDragEventDone>( DE_BIND_EVENT_FN( Editor::OnDragDropDone ) );
+          break;
+        }
+      }
     }
+    delete ref;
+  }
 }
 
 

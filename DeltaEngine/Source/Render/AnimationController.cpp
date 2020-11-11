@@ -14,41 +14,44 @@ AnimationController::AnimationController( std::string filepath )
 
 AnimationClip *AnimationController::CheckCondition( std::string currentAnim, Parameters &parameters )
 {
-  //loop through all possible transitions
-  for ( size_t i = 0; i < transitions.size(); ++i )
+  for (auto& [StartingState, EndingState, Conditions] : transitions)
   {
     // first check if the start of the transition has the same clip as the currently playing clip
-    if ( std::strcmp( transitions[i].first.c_str(), currentAnim.c_str() ) == 0 )
+    if (std::strcmp(StartingState.c_str(), currentAnim.c_str()) == 0)
     {
       bool conditionPass = true;
       // next check if all conditions are fulfilled
-      for ( size_t j = 0; j < conditions[i].size(); ++j )
+      for (auto& [ParamName, Condition, Value] : Conditions)
       {
-        switch ( conditions[i][j].second.first )
+        switch (Condition)
         {
-          case Conditions::BoolEqual:
-            conditionPass = parameters.at( conditions[i][j].first ).boolValue == ( conditions[i][j].second.second != 0 );
-            break;
-          case Conditions::Equal:
-            conditionPass = parameters.at( conditions[i][j].first ).floatValue == conditions[i][j].second.second;
-            break;
-          case Conditions::NotEqual:
-            conditionPass = parameters.at( conditions[i][j].first ).floatValue != conditions[i][j].second.second;
-            break;
-          case Conditions::Greater:
-            conditionPass = parameters.at( conditions[i][j].first ).floatValue > conditions[i][j].second.second;
-            break;
-          case Conditions::Less:
-            conditionPass = parameters.at( conditions[i][j].first ).floatValue < conditions[i][j].second.second;
-            break;
+        case Conditions::BoolEqual:
+          conditionPass = parameters.at(ParamName).boolValue == (Value != 0);
+          break;
+        case Conditions::Equal:
+          conditionPass = parameters.at(ParamName).floatValue == Value;
+          break;
+        case Conditions::NotEqual:
+          conditionPass = parameters.at(ParamName).floatValue != Value;
+          break;
+        case Conditions::Greater:
+          conditionPass = parameters.at(ParamName).floatValue > Value;
+          break;
+        case Conditions::Less:
+          conditionPass = parameters.at(ParamName).floatValue < Value;
+          break;
         }
-        if ( !conditionPass )
+        if (!conditionPass)
           break;
       }
       // change the clip
-      if ( conditionPass )
-        return GetEnv().pManager->Get<AnimationClip>( transitions[i].second );
+      if (conditionPass)
+        return GetEnv().pManager->Get<AnimationClip>(EndingState);
     }
+  }
+  //loop through all possible transitions
+  for ( size_t i = 0; i < transitions.size(); ++i )
+  {
   }
   return nullptr;
 }
@@ -85,8 +88,8 @@ void AnimationController::LoadFromFile( std::string filepath )
       file >> str >> startClip;
       file >> str >> endClip;
 
-      transitions.push_back( { startClip, endClip } );
-      conditions.push_back( Condition() );
+      transitions.push_back({ startClip, endClip, Condition() });
+      //conditions.push_back( Condition() );
 
       while ( ( file >> str ), std::strcmp( str.c_str(), "condition" ) == 0 )
       {
@@ -109,9 +112,7 @@ void AnimationController::LoadFromFile( std::string filepath )
             con = Conditions::Less;
             break;
         }
-        conditions.back().push_back(
-          { paramName, { con, value } }
-        );
+        std::get<2>(transitions.back()).push_back({ paramName , con, value });
       }
     }
     file.close();

@@ -1,0 +1,149 @@
+{
+    "Entities": [
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "image": {
+                "sprite": {
+                    "key": "bg",
+                    "index": 0
+                },
+                "flip_x": false,
+                "flip_y": false
+            },
+            "renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "image": {
+                "sprite": {
+                    "key": "",
+                    "index": 0
+                },
+                "flip_x": false,
+                "flip_y": false
+            },
+            "renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            },
+            "animator": {
+                "timer": 0.0,
+                "speed": 1.0,
+                "controller_key": "Player",
+                "clip_key": ""
+            },
+            "state": {}
+        },
+        {
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "renderer2D": {
+                "material": {
+                    "key": "DefaultText"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            },
+            "text": {
+                "key": "Arial",
+                "text": "Welcome to DELTA",
+                "alignment": "align_right"
+            }
+        }
+    ]
+}

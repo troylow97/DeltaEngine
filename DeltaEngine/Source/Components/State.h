@@ -7,30 +7,20 @@ namespace DeltaEngine
   {
     struct Parameter
     {
-      bool boolValue;
-      float floatValue;
-    };
-    enum class Conditions
-    {
-      BoolEqual,
-      Equal,
-      NotEqual,
-      Greater,
-      Less,
+      bool boolValue {false};
+      float floatValue { 0.0f };
     };
     using Parameters = std::unordered_map<std::string, Parameter>;
-    using Transition = std::pair<std::string, std::string>;
-    using Condition = std::vector<std::pair<std::string, std::pair<Conditions, float>>>;
 
-    Parameters parameters;
+    Parameters parameters{};
 
-    std::vector<Transition> // possible animation transitions
-      transitions;
+    State() : parameters{} {};
 
-    std::vector<Condition> // their conditions
-      conditions;
-
-    State() = default;
+    State& operator= (const State& rhs)
+    {
+      parameters.insert(rhs.parameters.begin(), rhs.parameters.end());
+      return *this;
+    }
 
     bool GetBool(std::string paramName);
     bool SetBool(std::string paramName, bool value);

@@ -19,6 +19,7 @@ namespace DeltaEngine
 
     void PhysicsSystem::Update()
     {
+      for ( size_t step = 0; step < env.pClock->Timesteps(); ++step )
         UpdateVelocity();
     }
 
@@ -45,7 +46,7 @@ namespace DeltaEngine
                 }
 
                 //Set Euler
-                t1.position += r1.Velocity * env.pClock->DeltaTime();                
+                t1.position += r1.Velocity * env.pClock->FixedDeltaTime();                
 
                 //Jumping
                 if (r1.isJumping == true && c1.isCollidingOnFloor)
@@ -103,7 +104,7 @@ namespace DeltaEngine
 
                 //Apply Acceleration
                 Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
-                r1.Velocity += newAcceleration * env.pClock->DeltaTime();
+                r1.Velocity += newAcceleration * env.pClock->FixedDeltaTime();
 
                 //Apply Soft Drag
                 r1.Velocity *= 0.97f;

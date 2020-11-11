@@ -9,8 +9,11 @@
 #include "ECS/EntityManager.h"
 
 #include <rttr/registration>
-#include "Core/Utils/Json/JsonSerialize.h"
 
+#include "Assets/AssetKey.h"
+#include "Core/Utils/Json/JsonSerialize.h"
+#include "Core/GlobalStruct.h"
+#include "Assets/AssetManager.h"
 namespace DeltaEngine
 {
 
@@ -76,6 +79,16 @@ RTTR_REGISTRATION
     rttr::value( "center", Alignment::Centralize )
   );
 
+  rttr::registration::class_<Name>( "name" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Name>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "name", &Name::name )( rttr::policy::prop::bind_as_ptr );
+
+  rttr::registration::class_<Parent>( "parent" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Parent>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "name", &Parent::p_id )( rttr::policy::prop::bind_as_ptr );
+
   rttr::registration::class_<Transform>( "transform" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Transform>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
@@ -125,10 +138,7 @@ RTTR_REGISTRATION
 
   rttr::registration::class_<State>( "state" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<State>()->bits ) )
-    .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "parameters", &State::parameters )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "transition", &State::transitions )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "conditions", &State::conditions )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
+    .property( "parameters", &State::parameters )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
 
   rttr::registration::class_<Image>( "image" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Image>()->bits ) )
@@ -150,7 +160,7 @@ RTTR_REGISTRATION
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "material", &Renderer2D::m_Material )( rttr::policy::prop::bind_as_ptr )
-    .property( "color", &Renderer2D::color )( rttr::policy::prop::bind_as_ptr )
+    .property( "color", &Renderer2D::m_Color )( rttr::policy::prop::bind_as_ptr )
     .property( "active", &Renderer2D::m_Active )( rttr::policy::prop::bind_as_ptr )
     .property( "shaded", &Renderer2D::m_Shaded )( rttr::policy::prop::bind_as_ptr )
     .property( "wireframe", &Renderer2D::m_Wireframe )( rttr::policy::prop::bind_as_ptr );
@@ -181,6 +191,10 @@ namespace DeltaEngine::RT_Reflect
 
 rttr::type RT_Checker( size_t bits )
 {
+  if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
+    return rttr::type::get_by_name( "name" );
+  if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
+    return rttr::type::get_by_name( "parent" );
   if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
     return rttr::type::get_by_name( "transform" );
   if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
@@ -208,6 +222,10 @@ rttr::type RT_Checker( size_t bits )
 
 void RT_Setter( EntityManager &em, EntityID id, size_t bits )
 {
+  if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Name>( id, Name() );
+  if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Parent>( id, Parent() );
   if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
     em.AddComponent<Transform>( id );
   if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
@@ -234,6 +252,10 @@ void RT_Setter( EntityManager &em, EntityID id, size_t bits )
 
 rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
 {
+  if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
+    return rttr::instance( em.GetComponent<Name>( id ) );
+  if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
+    return rttr::instance( em.GetComponent<Parent>( id ) );
   if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
     return rttr::instance( em.GetComponent<Transform>( id ) );
   if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
@@ -261,7 +283,11 @@ rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
 
 void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer, void *ptr )
 {
-  if ( str == "transform" )
+  if ( str == "name" )
+    Serialize::WriteObject( *static_cast<Name *>( ptr ), writer );
+  else if ( str == "parent" )
+    Serialize::WriteObject( *static_cast<Parent *>( ptr ), writer );
+  else if ( str == "transform" )
     Serialize::WriteObject( *static_cast<Transform *>( ptr ), writer );
   else if ( str == "collider" )
     Serialize::WriteObject( *static_cast<Collider *>( ptr ), writer );
@@ -287,7 +313,11 @@ void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::F
 
 void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rttr::variant var )
 {
-  if ( str == "transform" )
+  if ( str == "name" )
+    em.AddComponent<Name>( id, var.get_value<Name>() );
+  else if ( str == "parent" )
+    em.AddComponent<Parent>( id, var.get_value<Parent>() );
+  else if ( str == "transform" )
     em.AddComponent<Transform>( id, var.get_value<Transform>() );
   else if ( str == "collider" )
     em.AddComponent<Collider>( id, var.get_value<Collider>() );
@@ -298,7 +328,7 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
   else if ( str == "animator" )
     em.AddComponent<Animator>( id, var.get_value<Animator>() );
   else if ( str == "state" )
-    em.AddComponent<State>( id, var.get_value<State>() );
+    em.AddComponent<State>( id );
   else if ( str == "image" )
     em.AddComponent<Image>( id, var.get_value<Image>() );
   else if ( str == "text" )
@@ -310,5 +340,4 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
   else if (str == "entity_type")
       em.AddComponent<EntityType>(id, var.get_value<EntityType>());
 }
-
 }

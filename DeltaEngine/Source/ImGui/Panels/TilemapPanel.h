@@ -12,12 +12,7 @@ namespace DeltaEngine
 		~TilemapPanel();
 		bool DraggedFileIn();
 		void Render(bool) override;
-		ImVec2 GetTopLeft() override;
-		ImVec2 GetBottomRight() override;
-
 	private:
 		std::map < std::string, std::string >tileInfo;
-		ImVec2 topLeft;
-		ImVec2 bottomRight;
 	};
 }

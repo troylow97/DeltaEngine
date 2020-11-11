@@ -147,7 +147,7 @@ namespace DeltaEngine
 		Circle circle{ col1.center,col1.size.x };
 		LineSegment line{ col2.center,col2.size,vel2 };
 		Vector2 posNext;
-		posNext = col1.center + vel1 * env.pClock->DeltaTime();
+		posNext = col1.center + vel1 * env.pClock->FixedDeltaTime();
 		float DP_FirstPoint = Vector2DotProduct(line.m_normal, circle.m_center); //N.Bs
 		float DP_LineSeg = Vector2DotProduct(line.m_normal, line.m_pt0);		//N.P0
 
@@ -237,7 +237,7 @@ namespace DeltaEngine
 			std::cout << "WRONG!";
 		Circle circle{ col1.center,col1.size.x };
 		Vector2 posNext;
-		posNext = col1.center + vel1 * env.pClock->DeltaTime();
+		posNext = col1.center + vel1 * env.pClock->FixedDeltaTime();
 		float DP_FirstPoint = Vector2DotProduct(line.m_normal, circle.m_center); //N.Bs
 		float DP_LineSeg = Vector2DotProduct(line.m_normal, line.m_pt0);		//N.P0
 
@@ -615,7 +615,7 @@ namespace DeltaEngine
 			return true;
 	
 		float tFirst = 0;
-		float tLast = env.pClock->DeltaTime();
+		float tLast = env.pClock->FixedDeltaTime();
 		Vector2 RelativeVel;
 		// getting relative velocity
 		RelativeVel.x = vel2.x - vel1.x;

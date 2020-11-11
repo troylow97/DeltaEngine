@@ -4,7 +4,7 @@
 
 namespace DeltaEngine
 {
-  enum class ColliderType
+  enum class ColliderType : unsigned
   {
     NONE,
     BOX,

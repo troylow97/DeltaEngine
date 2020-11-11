@@ -23,6 +23,7 @@ public:
   [[nodiscard]] size_t LoadedCount() const;
   [[nodiscard]] size_t NotFoundCount() const;
 
+  void Load();
   void Load( AssetKey key );
   void Load( AssetKey key, std::string_view str );
 
@@ -43,6 +44,7 @@ protected:
 
   void SetNotFound( AssetKey key );
 
+  virtual void DoLoad() = 0;
   virtual void DoLoad( AssetKey key ) = 0;
   virtual void DoLoad( AssetKey key, std::string_view str ) = 0;
 };

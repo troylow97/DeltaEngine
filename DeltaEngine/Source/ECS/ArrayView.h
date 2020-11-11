@@ -4,15 +4,18 @@
 namespace DeltaEngine
 {
 
+class EntityManager;
+
 template <typename T>
 class ArrayView
 {
   T *m_data { nullptr };
   DataChunk *m_owner { nullptr };
-
 public:
 
   ArrayView() = default;
+
+  ~ArrayView() = default;
 
   ArrayView( T *data_ptr, DataChunk *data_owner )
   {

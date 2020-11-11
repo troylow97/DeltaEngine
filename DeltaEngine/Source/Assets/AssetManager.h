@@ -27,6 +27,9 @@ public:
   template <typename T1>
   [[nodiscard]] AssetState State( AssetKey key ) const;
 
+  template <typename T1>
+  AssetManager<Ts...> &Load();
+
   // Assets
   template <typename T1>
   AssetManager<Ts...> &Load( AssetKey key );
