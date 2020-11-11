@@ -26,7 +26,7 @@ void RenderSystem::Update()
 
   std::vector<EntityID> sortedRenderers;
 
-  em.ForEach(e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
+  em.ForEach( [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
   std::sort(sortedRenderers.begin(), sortedRenderers.end(), SortSprites);
 
   for (EntityID ID : sortedRenderers)
@@ -39,8 +39,6 @@ void RenderSystem::Update()
     {
       Image& i = em.GetComponent<Image>(ID);
       glClear(GL_DEPTH_BUFFER_BIT);
-      DeltaEngine_CORE_TRACE( "Shader Key - {}", r.m_Material.m_ShaderKey );
-      DeltaEngine_CORE_TRACE( "Sprite Key - {}", i.m_Sprite.m_Key);
 
       if (r.m_Active)
       {

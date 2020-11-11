@@ -66,6 +66,14 @@ public:
     return *this;
   }
 
+  Query operator+(const Query& rhs) const
+  {
+    Query tmp { *this };
+    tmp.m_excluded_bits |= rhs.m_excluded_bits;
+    tmp.m_required_bits |= rhs.m_required_bits;
+    return tmp;
+  }
+
 };
 
 } // namespace DeltaEngine
