@@ -82,7 +82,7 @@ namespace DeltaEngine
                     //Player Movement
                     Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
 
-                    r1.AccumulatedForce += move * r1.Mass* 0.5f;
+                    r1.AccumulatedForce += move * r1.Mass * 0.5f;
                 }      
 
                 //Apply Gravity
