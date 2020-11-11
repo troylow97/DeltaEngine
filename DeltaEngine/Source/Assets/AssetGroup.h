@@ -51,6 +51,7 @@ public:
   void Clear();
 
   // Asset data
+  void Load();
   void Load( AssetKey key );
   void Load( AssetKey key, std::string_view str );
 

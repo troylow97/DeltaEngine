@@ -7,8 +7,25 @@ namespace DeltaEngine
 {
 class AnimationControllerLoader final : public AbstractLoader<AnimationController>
 {
+
+  void DoLoad() override
+  {
+    for ( auto &file : FileUtils::FileList( "Animation" ))
+      if (file.extension() == ".anim" )
+      {
+        AnimationController *data = new AnimationController( file.generic_string() );
+        Set( file.filename().generic_string().substr(0, file.generic_string().find_last_of( '.' )),
+             data, AssetState::Final, AssetLifetime::Persistent );
+
+        DeltaEngine_CORE_TRACE( "AnimationController Key: {}", file.filename().generic_string().substr(0, file.filename().generic_string().find_last_of( '.' )));
+
+      }
+  }
+
   void DoLoad( AssetKey key ) override
-  {}
+  {
+    
+  }
 
   void DoLoad( AssetKey key, std::string_view str ) override
   {
