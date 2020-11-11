@@ -45,6 +45,13 @@ void AssetGroup<T1>::Clear()
 //****************************************************************************
 
 template <typename T1>
+void AssetGroup<T1>::Load()
+{
+  if ( m_loader )
+    m_loader->Load();
+}
+
+template <typename T1>
 void AssetGroup<T1>::Load( AssetKey key )
 {
   if ( m_loader )

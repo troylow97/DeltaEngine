@@ -7,6 +7,20 @@ namespace DeltaEngine
 {
 class AnimationClipLoader final : public AbstractLoader<AnimationClip>
 {
+
+  void DoLoad() override
+  {
+    for ( auto &file : FileUtils::FileList( "Clip" ))
+      if (file.extension() == ".clip" )
+      {
+        AnimationClip *data = new AnimationClip( file.generic_string() );
+        Set( file.generic_string(),
+             data, AssetState::Final, AssetLifetime::Persistent );
+
+        DeltaEngine_CORE_TRACE( "AnimationClip Key: {}", file.generic_string());
+      }
+  }
+
   void DoLoad( AssetKey key ) override
   {}
 

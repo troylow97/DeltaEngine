@@ -26,6 +26,13 @@ size_t AbstractLoader<T1>::NotFoundCount() const
 }
 
 template <typename T1>
+void AbstractLoader<T1>::Load()
+{
+  DoLoad();
+}
+
+
+template <typename T1>
 void AbstractLoader<T1>::Load( AssetKey key )
 {
   m_requests++;

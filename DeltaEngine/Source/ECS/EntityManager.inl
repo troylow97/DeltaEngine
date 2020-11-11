@@ -427,6 +427,8 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
             std::swap( *static_cast<Image *>( current ), *static_cast<Image *>( target ) );
           else if ( current_type->bits == ComponentMeta::GetComponentMeta<Renderer2D>()->bits )
             std::swap( *static_cast<Renderer2D *>( current ), *static_cast<Renderer2D *>( target ) );
+          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Name>()->bits )
+            std::swap( *static_cast<Name *>( current ), *static_cast<Name *>( target ) );
           else
             std::memcpy( target, current, current_type->size );
         }

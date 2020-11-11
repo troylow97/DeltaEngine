@@ -2,11 +2,24 @@
 #include <cassert>
 #include "Assets/AbstractLoader.h"
 #include "Render/Texture.h"
-
+#include "Core/Utils/FileUtils.h"
 namespace DeltaEngine
 {
 class TextureLoader final : public AbstractLoader<Texture2D>
 {
+  void DoLoad() override
+  {
+    for ( auto &file : FileUtils::FileList( "Textures" ))
+      if (file.extension() == ".png" || file.extension() == ".jpg")
+      {
+        Texture2D *data = new Texture2D( file.generic_string() );
+        Set( file.generic_string(), data, AssetState::Final, AssetLifetime::Persistent );
+
+        DeltaEngine_CORE_TRACE( "Texture Key: {}", file.generic_string());
+
+      }
+  }
+
   void DoLoad( AssetKey key ) override
   {}
 

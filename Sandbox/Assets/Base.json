@@ -73,7 +73,7 @@
             },
             "image": {
                 "sprite": {
-                    "key": "idle",
+                    "key": "",
                     "index": 0
                 },
                 "flip_x": false,
@@ -94,10 +94,10 @@
                 "wireframe": true
             },
             "animator": {
-                "timer": 0.0666702464222908,
+                "timer": 0.0,
                 "speed": 1.0,
                 "controller_key": "Player",
-                "clip_key": "Idle"
+                "clip_key": ""
             },
             "state": {}
         },
@@ -140,7 +140,7 @@
                 "wireframe": true
             },
             "text": {
-                "key": "Default",
+                "key": "Arial",
                 "text": "Welcome to DELTA",
                 "alignment": "align_right"
             }
