@@ -5,6 +5,7 @@
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "Render/Camera.h"
+#include "Core/Utils/FileUtils.h"
 
 namespace DeltaEngine
 {
@@ -67,7 +68,7 @@ void ViewportPanel::Render( bool isdragged )
     float newCursorX = ( cursorViewPortDistanceX / renderSize.x ) * cameraWidth + Camera::editorCamera->Min().x;
     float newCursorY = Camera::editorCamera->Max().y - ( cursorViewPortDistanceY / renderSize.y ) * cameraHeight;
 
-    InputManager::Get()->SetCurrentCameraPosition( Point( (int) newCursorX, (int)newCursorY ) );
+    InputManager::Get()->SetCurrentCameraPosition( Point( newCursorX, newCursorY ) );
     //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
   }
   else
@@ -80,6 +81,35 @@ void ViewportPanel::Render( bool isdragged )
   Camera::editorCamera->SetViewportSize( viewportPanelSize.x );
   uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
   ImGui::Image( reinterpret_cast<void *>( textureID ), viewportPanelSize, ImVec2 { 0, 1 }, ImVec2 { 1, 0 } );
+
+  if (ImGui::BeginDragDropTarget())
+  {
+      if (InputManager::Get()->TilesetDragged())
+      {
+          //std::cout << "ooo dropping sooon" << std::endl;
+          //std::cout << "x is " << InputManager::Get()->CurrentCameraPosition().point_x << " y is " << InputManager::Get()->CurrentCameraPosition().point_y << std::endl;
+
+          ImGuiDragDropFlags target_flags = 0;
+          //target_flags |= ImGuiDragDropFlags_AcceptBeforeDelivery;    // Don't wait until the delivery (release mouse button on a target) to do something
+          //target_flags |= ImGuiDragDropFlags_AcceptNoDrawDefaultRect; // Don't display the yellow rectangle
+
+          if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("TILES", target_flags))
+          {
+              uint64_t payload_n = *(const uint64_t*)payload->Data;
+              // do the tiling
+              EntityID tile = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity();
+              env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(tile);
+              env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(tile);
+              env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(tile);
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(tile).type = ColliderType::BOX;
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).position = { InputManager::Get()->CurrentCameraPosition().point_x, InputManager::Get()->CurrentCameraPosition().point_y, 0 };
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).scale = { 0.5, 0.5, 0.0 };
+          }
+      }
+      //InputManager::Get()->SetTilesetDragged(false);
+      ImGui::EndDragDropTarget();
+  }
+
   ImGui::End();
 }
 }

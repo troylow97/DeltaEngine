@@ -153,7 +153,7 @@ namespace DeltaEngine
 
                 std::wcout << fileName << std::endl;
              
-                // provide data of files !!!!!!!!!!!!!!!!!!!!!
+                // provide data of files 
                 std::wstring fileNamePath = fileName;
                 std::replace(fileNamePath.begin(), fileNamePath.end(), '\\', '/'); // replace all '\' to '/'
 
@@ -167,10 +167,6 @@ namespace DeltaEngine
                 newPathName += newFileName;
                 FileUtils::CreateDir("Tilemap");
                 FileUtils::CopyFileW(fileNamePath, newPathName);
-
-                //env.pManager->load<Texture2D>(newFileName, newPathName);
-
-                //env.pManager->SetLoader<Texture2D>(new ImGuiFileDragEventDone);
             }
             if (fileName != NULL)
             {

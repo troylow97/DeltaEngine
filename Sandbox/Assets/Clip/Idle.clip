@@ -1,17 +1,17 @@
 Idle_0
-key idle
+key Textures/idle
 value 0
 
 Idle_1
-key idle
+key Textures/idle
 value 1
 
 Idle_2
-key idle
+key Textures/idle
 value 2
 
 Idle_3
-key idle
+key Textures/idle
 value 3
 
 %

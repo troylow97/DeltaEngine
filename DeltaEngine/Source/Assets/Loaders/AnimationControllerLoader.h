@@ -14,7 +14,7 @@ class AnimationControllerLoader final : public AbstractLoader<AnimationControlle
       if (file.extension() == ".anim" )
       {
         AnimationController *data = new AnimationController( file.generic_string() );
-        Set( file.generic_string(),
+        Set( file.generic_string().substr(0, file.generic_string().find_last_of('.')),
              data, AssetState::Final, AssetLifetime::Persistent );
 
         DeltaEngine_CORE_TRACE( "AnimationController Key: {}", file.generic_string());
