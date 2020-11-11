@@ -11,7 +11,6 @@
 
 namespace DeltaEngine
 {
-
 struct AssetDirectoryListener : public IFileWatcherListener
 {
   void OnFileAdded(std::filesystem::path path) override
@@ -31,29 +30,25 @@ std::filesystem::path selection;
 
 void RecursiveDirectoryNodes( std::filesystem::directory_entry dir )
 {
-  bool flag = false;
-  for ( auto &ref : FileUtils::DirList( dir ) )
-    if ( ImGui::TreeNode( dir.path().filename().generic_string().c_str() ) )
-    {
-      flag = true;
-      RecursiveDirectoryNodes( ref );
-      ImGui::TreePop();
-    }
-
-  if (!flag )
-  {
     static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
 
     ImGuiTreeNodeFlags node_flags = base_flags;
     node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
 
-    ImGui::TreeNodeEx( dir.path().filename().generic_string().c_str(), node_flags );
-    if ( ImGui::IsItemClicked() )
+    ImGui::TreeNodeEx(dir.path().filename().generic_string().c_str(), node_flags);
+    if (ImGui::IsItemClicked())
     {
-      selection = dir;
-      DeltaEngine_CORE_TRACE( "Folder {} clicked", dir.path().filename().generic_string() );
+        selection = dir;
+
+        for (auto& ref : FileUtils::DirList(dir))
+        {
+            if (dir.path().stem().has_extension() == 0)
+            {
+                ImGui::SetNextTreeNodeOpen(true);
+                RecursiveDirectoryNodes(ref);
+            }
+        }
     }
-  }
 }
 
 AssetPanel::AssetPanel( std::string str ) :
@@ -95,9 +90,68 @@ void AssetPanel::Render( bool isdragged )
   float nWidth = ImGui::GetContentRegionAvailWidth();
   ImGui::SameLine();
   ImGui::BeginChild( "Details", { nWidth, height }, true );
-  if ( !selection.empty() )
-    for ( auto ref : FileUtils::FileList( selection ) )
-      DeltaEngine_CORE_TRACE( "Files: {}", ref.filename().generic_string() );
+  if (!selection.empty())
+  {
+      static ImGuiTextFilter filter;
+      ImGui::Text("Filter usage:\n"
+          "  \"\"         display all lines\n"
+          "  \"abc\"      display lines containing \"abc\"\n"
+          "  \"abc,123\"  display lines containing \"abc\" or \"123\"\n"
+          "  \"-abc\"     hide lines containing \"abc\"");
+      ImGui::Text("");
+      filter.Draw();
+      ImGui::Text("");
+
+      for (auto ref : FileUtils::FileList(selection))
+      {
+          if (filter.PassFilter(ref.filename().generic_string().c_str()))
+          {
+              ImGui::Text(ref.filename().generic_string().c_str());
+
+              ImGuiDragDropFlags src_flags = 0;
+              src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
+              src_flags |= ImGuiDragDropFlags_SourceAllowNullID;    // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
+
+              if (ImGui::BeginDragDropSource(src_flags))
+              {
+                  std::filesystem::path fullpath = std::filesystem::absolute(ref);
+                  std::wstring path = fullpath;
+                  std::string spath(path.begin(), path.end());
+                  strpath = std::make_unique<std::string>(spath);
+                  // set payload to carry the fullpath of the file dragged
+                  ImGui::SetDragDropPayload("ASSETFILES", strpath.get(), sizeof(std::string));
+                  // display preview of filename
+                  ImGui::Text(fullpath.filename().generic_string().c_str());
+                  ImGui::EndDragDropSource();
+              }
+              /*
+                if (ImGui::BeginDragDropTarget())
+                {
+                    ImGuiDragDropFlags target_flags = 0;
+
+                    const ImGuiPayload* assetpayload = ImGui::AcceptDragDropPayload("ASSETFILES", target_flags);
+                    if (assetpayload)
+                    {
+                        std::string assetpayload_n = *(std::string*)(assetpayload->Data);
+                        std::wstring assetpayload_nws(assetpayload_n.begin(), assetpayload_n.end());
+
+                        std::size_t index = assetpayload_nws.find_last_of(L"/\\");
+                        std::wstring newFileName;
+                        std::wstring newPathName = L"Tilemap/";
+                        for (size_t i = index; i < assetpayload_nws.length(); ++i)
+                        {
+                            newFileName += assetpayload_nws[i];
+                        }
+                        newPathName += newFileName;
+
+                        FileUtils::CopyFileW(assetpayload_nws, newPathName);
+                    }
+                    ImGui::EndDragDropTarget();
+                }
+              */
+          }
+      }
+  }
   ImGui::EndChild();
 
   ImGui::End();

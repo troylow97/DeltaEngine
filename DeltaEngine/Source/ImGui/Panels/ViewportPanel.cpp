@@ -5,6 +5,7 @@
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "Render/Camera.h"
+#include "Core/Utils/FileUtils.h"
 
 namespace DeltaEngine
 {
@@ -85,12 +86,12 @@ void ViewportPanel::Render( bool isdragged )
   {
       if (InputManager::Get()->TilesetDragged())
       {
-          std::cout << "ooo dropping sooon" << std::endl;
-          std::cout << "x is " << InputManager::Get()->CurrentCameraPosition().point_x << " y is " << InputManager::Get()->CurrentCameraPosition().point_y << std::endl;
+          //std::cout << "ooo dropping sooon" << std::endl;
+          //std::cout << "x is " << InputManager::Get()->CurrentCameraPosition().point_x << " y is " << InputManager::Get()->CurrentCameraPosition().point_y << std::endl;
 
           ImGuiDragDropFlags target_flags = 0;
           //target_flags |= ImGuiDragDropFlags_AcceptBeforeDelivery;    // Don't wait until the delivery (release mouse button on a target) to do something
-          target_flags |= ImGuiDragDropFlags_AcceptNoDrawDefaultRect; // Don't display the yellow rectangle
+          //target_flags |= ImGuiDragDropFlags_AcceptNoDrawDefaultRect; // Don't display the yellow rectangle
 
           if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("TILES", target_flags))
           {
