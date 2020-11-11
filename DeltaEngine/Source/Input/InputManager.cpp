@@ -143,6 +143,15 @@ void InputManager::SetEntityIDSelected(size_t _setEntityIDSelected)
 	m_mouse.m_entityid_selected = _setEntityIDSelected;
 }
 
+bool InputManager::TilesetDragged()
+{
+	return m_mouse.m_tileset_dragged;
+}
+void InputManager::SetTilesetDragged(bool _setTilesetDragged)
+{
+	m_mouse.m_tileset_dragged = _setTilesetDragged;
+}
+
 bool* InputManager::GetKeys()
 {
   return m_keyboard.m_is_pressed;

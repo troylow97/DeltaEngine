@@ -231,9 +231,9 @@ void EntityManager::ForEach( Func &&func )
   using params = decltype( ECS_Internal::args( &Func::operator() ) );
 
   Query arg_query;
-  ECS_Internal::unpack_query_with( params {}, arg_query);
+  ECS_Internal::unpack_query_with( params {}, arg_query );
 
-  ForEach<Func>(arg_query, std::move( func ) );
+  ForEach<Func>( arg_query, std::move( func ) );
 }
 
 template <typename Func>
@@ -242,9 +242,9 @@ void EntityManager::ForEach( Query &query, Func &&func )
   using params = decltype( ECS_Internal::args( &Func::operator() ) );
 
   Query arg_query;
-  ECS_Internal::unpack_query_with(params{}, arg_query);
+  ECS_Internal::unpack_query_with( params {}, arg_query );
 
-  ArchetypeIterate( arg_query + query, [&]( Archetype *arch )
+  ArchetypeIterate( query + arg_query, [&]( Archetype *arch )
   {
     for ( auto chunk : arch->chunks )
       ECS_Internal::unpack_chunk( params {}, chunk, func );

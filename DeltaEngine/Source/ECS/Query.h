@@ -68,10 +68,10 @@ public:
 
   Query operator+(const Query& rhs) const
   {
-      Query tmp{*this};
-      tmp.m_excluded_bits |= rhs.m_excluded_bits;
-      tmp.m_required_bits |= rhs.m_required_bits;
-      return tmp;
+    Query tmp { *this };
+    tmp.m_excluded_bits |= rhs.m_excluded_bits;
+    tmp.m_required_bits |= rhs.m_required_bits;
+    return tmp;
   }
 
 };

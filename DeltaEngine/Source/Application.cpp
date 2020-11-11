@@ -111,7 +111,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
 
   env.pECS->GetWorld().InitSystems();
-  //env.pECS->GetWorld().Load( "Base.json" );
+  env.pECS->GetWorld().Load( "Base.json" );
 }
 
 Application::~Application()

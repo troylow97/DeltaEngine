@@ -15,7 +15,7 @@
                 "scale": {
                     "x": 1.0,
                     "y": 1.0,
-                    "z": 0.0
+                    "z": 1.0
                 },
                 "rotation": {
                     "x": 0.0,
@@ -26,7 +26,7 @@
             },
             "image": {
                 "sprite": {
-                    "key": "bg",
+                    "key": "Textures/bg",
                     "index": 0
                 },
                 "flip_x": false,
@@ -62,7 +62,7 @@
                 "scale": {
                     "x": 1.0,
                     "y": 1.0,
-                    "z": 0.0
+                    "z": 1.0
                 },
                 "rotation": {
                     "x": 0.0,
@@ -73,8 +73,8 @@
             },
             "image": {
                 "sprite": {
-                    "key": "",
-                    "index": 0
+                    "key": "Textures/idle",
+                    "index": 3
                 },
                 "flip_x": false,
                 "flip_y": false
@@ -94,10 +94,10 @@
                 "wireframe": true
             },
             "animator": {
-                "timer": 0.0,
+                "timer": 0.26666727662086489,
                 "speed": 1.0,
-                "controller_key": "Player",
-                "clip_key": ""
+                "controller_key": "Animation/Player",
+                "clip_key": "Clip/Idle"
             },
             "state": {}
         },
@@ -116,7 +116,7 @@
                 "scale": {
                     "x": 1.0,
                     "y": 1.0,
-                    "z": 0.0
+                    "z": 1.0
                 },
                 "rotation": {
                     "x": 0.0,
@@ -140,7 +140,7 @@
                 "wireframe": true
             },
             "text": {
-                "key": "Arial",
+                "key": "Default",
                 "text": "Welcome to DELTA",
                 "alignment": "align_right"
             }
