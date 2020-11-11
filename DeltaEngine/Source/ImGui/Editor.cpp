@@ -137,7 +137,6 @@ Editor::Editor()
 
   ImGui_ImplWin32_Init( env.pWin->GetHandle(), RenderModule::openGLSystem->GetGLContext() );
   ImGui_ImplOpenGL3_Init( "#version 410" );
-
 }
 
 Editor::~Editor()

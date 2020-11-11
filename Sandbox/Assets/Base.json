@@ -24,6 +24,14 @@
                     "w": 1.0
                 }
             },
+            "image": {
+                "sprite": {
+                    "key": "bg",
+                    "index": 0
+                },
+                "flip_x": false,
+                "flip_y": false
+            },
             "renderer2D": {
                 "material": {
                     "key": "Default"
@@ -37,14 +45,6 @@
                 "active": true,
                 "shaded": true,
                 "wireframe": true
-            },
-            "image": {
-                "sprite": {
-                    "key": "bg",
-                    "index": 0
-                },
-                "flip_x": false,
-                "flip_y": false
             }
         },
         {
@@ -71,6 +71,14 @@
                     "w": 1.0
                 }
             },
+            "image": {
+                "sprite": {
+                    "key": "idle",
+                    "index": 0
+                },
+                "flip_x": false,
+                "flip_y": false
+            },
             "renderer2D": {
                 "material": {
                     "key": "Default"
@@ -85,16 +93,8 @@
                 "shaded": true,
                 "wireframe": true
             },
-            "image": {
-                "sprite": {
-                    "key": "idle",
-                    "index": 3
-                },
-                "flip_x": false,
-                "flip_y": false
-            },
             "animator": {
-                "timer": 0.2833341360092163,
+                "timer": 0.0666702464222908,
                 "speed": 1.0,
                 "controller_key": "Player",
                 "clip_key": "Idle"

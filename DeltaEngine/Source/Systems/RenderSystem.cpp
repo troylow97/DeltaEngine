@@ -11,6 +11,8 @@ void RenderSystem::Update()
     {
     DeltaEngine_CORE_TRACE( "Shader Key - {}", r.m_Material.m_ShaderKey );
     DeltaEngine_CORE_TRACE( "Sprite Key - {}", i.m_Sprite.m_Key);
+    DeltaEngine_CORE_TRACE( "Sprite Index - {}", i.m_Sprite.m_Valid = true);
+
 
       if (r.m_Active)
       {

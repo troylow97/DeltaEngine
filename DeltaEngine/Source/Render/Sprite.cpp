@@ -4,6 +4,10 @@
 
 namespace DeltaEngine
 {
+
+  Sprite::Sprite()
+    : m_Index { 0 }, m_Valid { GetTexture() != nullptr } {}
+
 Sprite::Sprite( std::string textureName, unsigned int index )
   : m_Key { textureName }, m_Index { index }, m_Valid{ GetTexture() != nullptr } {}
 

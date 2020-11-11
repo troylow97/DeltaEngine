@@ -11,7 +11,7 @@ namespace DeltaEngine
     //std::unordered_map<std::string, std::string> m_Uniforms;
 
     Material( std::string shaderName = "Default" );
-    Material &operator=(const Material& mat);
+    //Material &operator=(const Material& mat);
 
     void ChangeShader(Shader* shaderRef);
     void ChangeShader(std::string shaderName);

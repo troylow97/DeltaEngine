@@ -16,7 +16,8 @@ public:
 #pragma warning(default:4251)
   unsigned int m_Index;
   bool m_Valid;
-  Sprite( std::string textureName = "", unsigned int index = 0 );
+  Sprite();
+  Sprite( std::string textureName, unsigned int index);
   Sprite &operator=( const Sprite & );
   operator bool() const;
   unsigned int GetWidth() const;

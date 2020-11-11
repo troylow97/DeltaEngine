@@ -40,7 +40,7 @@ public:
 
 inline bool ComponentMeta::IsEmpty() const
 {
-  return align == 0;
+  return size == 0;
 }
 
 template <typename T>
