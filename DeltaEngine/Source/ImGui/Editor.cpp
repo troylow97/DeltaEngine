@@ -17,6 +17,7 @@
 #include "ECS/ECSModule.h"
 #include "Panels/AssetPanel.h"
 #include "Panels/ViewportPanel.h"
+#include "Panels/SpriteEditorPanel.h"
 
 namespace DeltaEngine
 {
@@ -121,6 +122,7 @@ Editor::Editor()
   m_panels.push_back( std::make_unique<WorldPanel>( "World" ) );
   m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );
   m_panels.push_back( std::make_unique<AssetPanel>( "Assets" ) );
+  m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor" ) );
 
 
   ImGui::CreateContext();
