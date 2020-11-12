@@ -6,17 +6,16 @@
 
 namespace DeltaEngine
 {
-class  Sprite
+class Sprite
 {
-
-
 public:
 #pragma warning(disable:4251)
   std::string m_Key;
 #pragma warning(default:4251)
   unsigned int m_Index;
-  bool m_Valid;
+  Sprite();
   Sprite( std::string textureName = "", unsigned int index = 0 );
+  Sprite &operator=( const Sprite & );
   operator bool() const;
   unsigned int GetWidth() const;
   unsigned int GetHeight() const;

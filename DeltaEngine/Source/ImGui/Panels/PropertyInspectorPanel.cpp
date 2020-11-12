@@ -10,7 +10,7 @@ namespace DeltaEngine
 PropertyInspectorPanel::PropertyInspectorPanel( std::string str ) :
   IPanel( str )
 {
-
+  m_enabled = true;
 }
 
 PropertyInspectorPanel::~PropertyInspectorPanel()
@@ -144,14 +144,12 @@ void PropertyInspectorPanel::Render( bool )
     //ImGui::Text( "" );
     //ImGui::Text( "" );
 
-    static const char *components[] { " ", "transform", "rigidbody", "collider", "input" };
+    static const char *components[] { " ", "transform", "rigidbody", "collider", "input","ai","entity_type"};
     static int selected = 0;
     ImGui::Combo( "Components", &selected, components, IM_ARRAYSIZE( components ) );
     if ( ImGui::Button( "Add Component" ) )
-    {
-      if ( selected != 0 )
+      if ( selected )
         RT_Reflect::RT_Setter( em, { index }, rttr::type::get_by_name( components[selected] ).get_metadata( "bits" ).to_uint64() );
-    }
 
     ImGui::Text( "" );
     if ( auto result = em.GetEntityArchetype( InputManager::Get()->EntityIDSelected() ); result != nullptr )
@@ -205,6 +203,16 @@ void PropertyInspectorPanel::Render( bool )
             ImGui::DragFloat3( prop_name.c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
           else if ( prop_type == rttr::type::get<bool*>() )
             ImGui::Checkbox( prop_name.c_str(),  value.get_value<bool *>()  );
+          else if (prop_type == rttr::type::get<std::string*>() && instance.get_type()==rttr::type::get<AI>() || instance.get_type() == rttr::type::get<EntityType>())
+          {
+              auto& str = *value.get_value<std::string*>();
+              char buffer[256]{};
+              strcpy_s(buffer, sizeof(buffer), str.c_str());
+              if (ImGui::InputText(prop_name.c_str(), buffer, sizeof(buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+              {
+                  str = std::string(buffer);
+              }
+          }
 
         }
       }
@@ -222,14 +230,4 @@ void PropertyInspectorPanel::Render( bool )
 //    }
 //    return false;
 //}
-
-ImVec2 PropertyInspectorPanel::GetTopLeft()
-{
-  return topLeft;
-}
-
-ImVec2 PropertyInspectorPanel::GetBottomRight()
-{
-  return bottomRight;
-}
 }

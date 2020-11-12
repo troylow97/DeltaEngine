@@ -140,7 +140,6 @@ void Mesh::VertexArray::AddBuffer( const VertexBuffer &vb, const VertexBufferLay
     GLCall( glVertexAttribPointer( i, element.count, element.type, element.normalized, layout.GetStride(), (const void *) pointer ) );
     offset += element.count * VertexBufferLayout::VertexBufferElement::GetSizeOfType( element.type );
   }
-  std::cerr << layout.GetStride() <<std::endl;
 }
 
 void Mesh::VertexArray::Bind() const

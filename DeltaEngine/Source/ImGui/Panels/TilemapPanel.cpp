@@ -149,14 +149,4 @@ namespace DeltaEngine
         }
         ImGui::End();
     }
-
-    ImVec2 TilemapPanel::GetTopLeft()
-    {
-        return topLeft;
-    }
-
-    ImVec2 TilemapPanel::GetBottomRight()
-    {
-        return bottomRight;
-    }
 }

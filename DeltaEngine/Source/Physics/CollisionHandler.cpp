@@ -2,31 +2,30 @@
 
 namespace DeltaEngine
 {
-std::map<std::string, CollisionCallbacks> CollisionHandler::m_handlers; //m_handlers["ReduceHP"] = &ReduceHP;
 
-void CollisionHandler::OnEnter( Collider &col )
+void CollisionHandler::OnEnter(EntityID& id)
 {
-  m_enter.Invoke( col );
+  m_enter.Invoke( id );
 }
-void CollisionHandler::OnStay( Collider &col )
+void CollisionHandler::OnStay(EntityID& id)
 {
-  m_stay.Invoke( col );
+  m_stay.Invoke(id);
 }
-void CollisionHandler::OnExit( Collider &col )
+void CollisionHandler::OnExit(EntityID& id)
 {
 
-  m_exit.Invoke( col );
+  m_exit.Invoke(id);
 }
 
-size_t CollisionHandler::RegisterOnEnter( Action<Collider &> action )
+size_t CollisionHandler::RegisterOnEnter( Action<EntityID&> action )
 {
   return m_enter.Subscribe( action );
 }
-size_t CollisionHandler::RegisterOnStay( Action<Collider &> action )
+size_t CollisionHandler::RegisterOnStay( Action<EntityID&> action )
 {
   return m_stay.Subscribe( action );
 }
-size_t CollisionHandler::RegisterOnExit( Action<Collider &> action )
+size_t CollisionHandler::RegisterOnExit( Action<EntityID&> action )
 {
   return m_exit.Subscribe( action );
 }

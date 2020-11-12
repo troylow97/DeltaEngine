@@ -9,6 +9,8 @@ namespace DeltaEngine
 
   bool State::SetBool(std::string paramName, bool value)
   {
+    if (!parameters.count(paramName))
+      parameters[paramName] = Parameter();
     if (parameters[paramName].boolValue == value)
       return parameters.at(paramName).boolValue;
     parameters[paramName].boolValue = value;
@@ -22,6 +24,8 @@ namespace DeltaEngine
 
   float State::SetFloat(std::string paramName, float value)
   {
+    if (!parameters.count(paramName))
+      parameters[paramName] = Parameter();
     if (parameters[paramName].floatValue == value)
       return parameters.at(paramName).floatValue;
     parameters[paramName].floatValue = value;

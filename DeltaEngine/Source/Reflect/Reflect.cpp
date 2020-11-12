@@ -9,7 +9,11 @@
 #include "ECS/EntityManager.h"
 
 #include <rttr/registration>
+
+#include "Assets/AssetKey.h"
 #include "Core/Utils/Json/JsonSerialize.h"
+#include "Core/GlobalStruct.h"
+#include "Assets/AssetManager.h"
 
 namespace DeltaEngine
 {
@@ -76,6 +80,16 @@ RTTR_REGISTRATION
     rttr::value( "center", Alignment::Centralize )
   );
 
+  rttr::registration::class_<Name>( "name" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Name>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "name", &Name::name )( rttr::policy::prop::bind_as_ptr );
+
+  rttr::registration::class_<Parent>( "parent" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Parent>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "name", &Parent::p_id )( rttr::policy::prop::bind_as_ptr );
+
   rttr::registration::class_<Transform>( "transform" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Transform>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
@@ -97,19 +111,25 @@ RTTR_REGISTRATION
     .property( "movespeed", &RigidBody::Movespeed )( rttr::policy::prop::bind_as_ptr )
     .property( "restitution", &RigidBody::Restitution )( rttr::policy::prop::bind_as_ptr )
     .property( "friction_coeff", &RigidBody::FrictionCoeff )( rttr::policy::prop::bind_as_ptr )
+    .property("inherent_acceleration", &RigidBody::InherentAcceleration)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+    .property("max_acceleration", &RigidBody::MaxAcceleration)(rttr::policy::prop::bind_as_ptr)
+    .property("acceleration_pickup", &RigidBody::AccelerationPickup)(rttr::policy::prop::bind_as_ptr)
     .property( "has_gravity", &RigidBody::hasGravity )( rttr::policy::prop::bind_as_ptr )
-    .property( "is_moveable", &RigidBody::isMoveable )( rttr::policy::prop::bind_as_ptr );
+    .property( "is_moveable", &RigidBody::isMoveable )( rttr::policy::prop::bind_as_ptr )
+    .property("is_jumping", &RigidBody::isJumping)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
-  rttr::registration::class_<Collider>( "collider" )
-    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Collider>()->bits ) )
-    .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "center", &Collider::center )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "size", &Collider::size )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "inter_point", &Collider::interPoint )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "type", &Collider::type )
-    .property( "is_collideable", &Collider::isCollideable )( rttr::policy::prop::bind_as_ptr )
-    .property( "is_trigger", &Collider::isTrigger )( rttr::policy::prop::bind_as_ptr )
-    .property( "is_colliding_on_floor", &Collider::isCollidingOnFloor )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
+  rttr::registration::class_<Collider>("collider")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Collider>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("center", &Collider::center)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("size", &Collider::size)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("inter_point", &Collider::interPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("type", &Collider::type)
+      .property("is_collideable", &Collider::isCollideable)(rttr::policy::prop::bind_as_ptr)
+      .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
+      .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("collision_layer_id", &Collider::CollisionLayerID)(rttr::policy::prop::bind_as_ptr)
+      .property("collision_layer_check", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Animator>( "animator" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Animator>()->bits ) )
@@ -121,10 +141,7 @@ RTTR_REGISTRATION
 
   rttr::registration::class_<State>( "state" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<State>()->bits ) )
-    .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "parameters", &State::parameters )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "transition", &State::transitions )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "conditions", &State::conditions )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
+    .property( "parameters", &State::parameters )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
 
   rttr::registration::class_<Image>( "image" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Image>()->bits ) )
@@ -146,7 +163,7 @@ RTTR_REGISTRATION
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "material", &Renderer2D::m_Material )( rttr::policy::prop::bind_as_ptr )
-    .property( "color", &Renderer2D::color )( rttr::policy::prop::bind_as_ptr )
+    .property( "color", &Renderer2D::m_Color )( rttr::policy::prop::bind_as_ptr )
     .property( "active", &Renderer2D::m_Active )( rttr::policy::prop::bind_as_ptr )
     .property( "shaded", &Renderer2D::m_Shaded )( rttr::policy::prop::bind_as_ptr )
     .property( "wireframe", &Renderer2D::m_Wireframe )( rttr::policy::prop::bind_as_ptr );
@@ -156,6 +173,35 @@ RTTR_REGISTRATION
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "prev", &Input::previousKey )
     .property( "curr", &Input::currentKey );
+
+  rttr::registration::class_<AI>("ai")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("state", &AI::key)(rttr::policy::prop::bind_as_ptr)
+      .property("transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<EntityType>("entity_type")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("type", &EntityType::type)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<Health>("health")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("current_health", &Health::CurrentHealth)(rttr::policy::prop::bind_as_ptr)
+      .property("max_health", &Health::MaxHealth)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<Attack>("attack")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("damage", &Attack::Damage)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<Lifespan>("lifespan")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("lifespan", &Lifespan::Lifespan)(rttr::policy::prop::bind_as_ptr);
+
+
 }
 
 }
@@ -165,6 +211,10 @@ namespace DeltaEngine::RT_Reflect
 
 rttr::type RT_Checker( size_t bits )
 {
+  if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
+    return rttr::type::get_by_name( "name" );
+  if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
+    return rttr::type::get_by_name( "parent" );
   if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
     return rttr::type::get_by_name( "transform" );
   if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
@@ -183,33 +233,61 @@ rttr::type RT_Checker( size_t bits )
     return rttr::type::get_by_name( "text" );
   if ( rttr::type::get_by_name( "renderer2D" ).get_metadata( "bits" ).to_uint64() == bits )
     return rttr::type::get_by_name( "renderer2D" );
+  if (rttr::type::get_by_name("ai").get_metadata("bits").to_uint64() == bits)
+      return rttr::type::get_by_name("ai");
+  if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
+      return rttr::type::get_by_name("entity_type");
+  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+      return rttr::type::get_by_name("attack");
+  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+      return rttr::type::get_by_name("health");
+  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+      return rttr::type::get_by_name("lifespan");
   return rttr::type::get<int>();
 }
 
 void RT_Setter( EntityManager &em, EntityID id, size_t bits )
 {
+  if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Name>( id, Name() );
+  if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
+    em.AddComponent<Parent>( id, Parent() );
   if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Transform>( id, Transform() );
+    em.AddComponent<Transform>( id );
   if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Collider>( id, Collider() );
+    em.AddComponent<Collider>( id );
   if ( rttr::type::get_by_name( "rigidbody" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<RigidBody>( id, RigidBody() );
+    em.AddComponent<RigidBody>( id );
   if ( rttr::type::get_by_name( "input" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Input>( id, Input() );
+    em.AddComponent<Input>( id );
   if ( rttr::type::get_by_name( "animator" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Animator>( id, Animator() );
+    em.AddComponent<Animator>( id );
   if ( rttr::type::get_by_name( "state" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<State>( id, State() );
+    em.AddComponent<State>( id );
   if ( rttr::type::get_by_name( "image" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Image>( id, Image() );
+    em.AddComponent<Image>( id );
   if ( rttr::type::get_by_name( "text" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Text>( id, Text() );
+    em.AddComponent<Text>( id);
   if ( rttr::type::get_by_name( "renderer2D" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Renderer2D>( id, Renderer2D() );
+    em.AddComponent<Renderer2D>( id );
+  if (rttr::type::get_by_name("ai").get_metadata("bits").to_uint64() == bits)
+      em.AddComponent<AI>(id);
+  if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
+      em.AddComponent<EntityType>(id);
+  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+      em.AddComponent<Attack>(id);
+  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+      em.AddComponent<Health>(id);
+  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+      em.AddComponent<Lifespan>(id);
 }
 
 rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
 {
+  if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
+    return rttr::instance( em.GetComponent<Name>( id ) );
+  if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
+    return rttr::instance( em.GetComponent<Parent>( id ) );
   if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
     return rttr::instance( em.GetComponent<Transform>( id ) );
   if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
@@ -228,12 +306,26 @@ rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
     return rttr::instance( em.GetComponent<Text>( id ) );
   if ( rttr::type::get_by_name( "renderer2D" ).get_metadata( "bits" ).to_uint64() == bits )
     return rttr::instance( em.GetComponent<Renderer2D>( id ) );
+  if (rttr::type::get_by_name("ai").get_metadata("bits").to_uint64() == bits)
+      return rttr::instance(em.GetComponent<AI>(id));
+  if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
+      return rttr::instance(em.GetComponent<EntityType>(id));
+  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+      return rttr::instance(em.GetComponent<Attack>(id));
+  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+      return rttr::instance(em.GetComponent<Health>(id));
+  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+      return rttr::instance(em.GetComponent<Lifespan>(id));
   return rttr::instance();
 }
 
 void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer, void *ptr )
 {
-  if ( str == "transform" )
+  if ( str == "name" )
+    Serialize::WriteObject( *static_cast<Name *>( ptr ), writer );
+  else if ( str == "parent" )
+    Serialize::WriteObject( *static_cast<Parent *>( ptr ), writer );
+  else if ( str == "transform" )
     Serialize::WriteObject( *static_cast<Transform *>( ptr ), writer );
   else if ( str == "collider" )
     Serialize::WriteObject( *static_cast<Collider *>( ptr ), writer );
@@ -251,11 +343,25 @@ void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::F
     Serialize::WriteObject( *static_cast<Text *>( ptr ), writer );
   else if ( str == "renderer2D" )
     Serialize::WriteObject( *static_cast<Renderer2D *>( ptr ), writer );
+  else if (str == "ai")
+      Serialize::WriteObject(*static_cast<AI*>(ptr), writer);
+  else if (str == "entity_type")
+      Serialize::WriteObject(*static_cast<EntityType*>(ptr), writer);
+  else if (str == "attack")
+      Serialize::WriteObject(*static_cast<Attack*>(ptr), writer);
+  else if (str == "health")
+      Serialize::WriteObject(*static_cast<Health*>(ptr), writer);
+  else if (str == "lifespan")
+      Serialize::WriteObject(*static_cast<Lifespan*>(ptr), writer);
 }
 
 void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rttr::variant var )
 {
-  if ( str == "transform" )
+  if ( str == "name" )
+    em.AddComponent<Name>( id, var.get_value<Name>() );
+  else if ( str == "parent" )
+    em.AddComponent<Parent>( id, var.get_value<Parent>() );
+  else if ( str == "transform" )
     em.AddComponent<Transform>( id, var.get_value<Transform>() );
   else if ( str == "collider" )
     em.AddComponent<Collider>( id, var.get_value<Collider>() );
@@ -266,13 +372,22 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
   else if ( str == "animator" )
     em.AddComponent<Animator>( id, var.get_value<Animator>() );
   else if ( str == "state" )
-    em.AddComponent<State>( id, var.get_value<State>() );
+    em.AddComponent<State>( id );
   else if ( str == "image" )
     em.AddComponent<Image>( id, var.get_value<Image>() );
   else if ( str == "text" )
     em.AddComponent<Text>( id, var.get_value<Text>() );
   else if ( str == "renderer2D" )
     em.AddComponent<Renderer2D>( id, var.get_value<Renderer2D>() );
+  else if (str == "ai")
+      em.AddComponent<AI>(id, var.get_value<AI>());
+  else if (str == "entity_type")
+      em.AddComponent<EntityType>(id, var.get_value<EntityType>());
+  else if (str == "attack")
+      em.AddComponent<Attack>(id, var.get_value<Attack>());
+  else if (str == "health")
+      em.AddComponent<Health>(id, var.get_value<Health>());
+  else if (str == "lifespan")
+      em.AddComponent<Lifespan>(id, var.get_value<Lifespan>());
 }
-
 }

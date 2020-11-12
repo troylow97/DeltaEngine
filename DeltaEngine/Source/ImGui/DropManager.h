@@ -160,9 +160,9 @@ namespace DeltaEngine
                 std::size_t index = fileNamePath.find_last_of(L"/\\"); 
                 std::wstring newFileName;
                 std::wstring newPathName = L"Tilemap/";
-                for (size_t i = index; i < fileNamePath.length(); ++i)
+                for (size_t j = index; j < fileNamePath.length(); ++j)
                 {
-                    newFileName += fileNamePath[i];
+                    newFileName += fileNamePath[j];
                 }
                 newPathName += newFileName;
                 FileUtils::CreateDir("Tilemap");

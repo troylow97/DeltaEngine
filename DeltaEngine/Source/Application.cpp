@@ -16,7 +16,8 @@
 #include "Input/InputManager.h"
 #include "Audio/AudioEngine.h"
 #include "ImGui/Editor.h"
-
+#include "AI/AI_StateMachine.h"
+#include "Core/Utils/Random.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -48,42 +49,128 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   m_Editor = new Editor();
 
+  Random::Init();
+
   // Asset Loading
   env.pManager = new AM();
-  env.pManager->SetLoader<Font>( new FontLoader() )
-    .Load<Font>( "Fail", "Fonts/Arials.ttf" )
+  env.pManager->SetLoader<Font>( new FontLoader() ).Load<Font>()
     .SetFallback<Font>( new Font( "Fonts/Arial.ttf" ) );
 
-  env.pManager->SetLoader<Shader>( new ShaderLoader() )
-    .Load<Shader>( "Default", "Shaders/Default" )
-    .Load<Shader>( "DefaultText", "Shaders/DefaultText" )
+  env.pManager->SetLoader<Shader>( new ShaderLoader() ).Load<Shader>()
     .SetFallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
 
-  env.pManager->SetLoader<Texture2D>( new TextureLoader() )
-    .Load<Texture2D>( "idle", "idle.png" )
-    .Load<Texture2D>( "run", "run.png" )
-    .Load<Texture2D>( "bg", "bg.png" );
+  env.pManager->SetLoader<Texture2D>( new TextureLoader() ).Load<Texture2D>();
 
-  env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() )
-    .Load<AnimationClip>( "Idle", "Idle.clip" )
-    .Load<AnimationClip>( "Running", "Running.clip" );
+  env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() ).Load<AnimationClip>();
 
-
-  env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() )
-    .Load<AnimationController>( "Player", "Player.anim" );
+  env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() ).Load<AnimationController>();
 
   env.eventManager = new EventManager;
 
   env.pECS = new ECSModule();
-  env.pECS->GetWorld().CreateSystems<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().SetUpdateSequence<InputSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+
+  EntityID first = env.pECS->GetWorld().GetEntityManager().CreateEntity();
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(first);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(first);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(first);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(first);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Input>(first);
+  env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(first).type = "player";
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).size = { 0.5,0.5 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).type = ColliderType::BOX;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(first).position = { 0.5,2.0,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(first).scale = { 0.5,0.5,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).Movespeed = 30.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).Mass = 15.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).isMoveable = true;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).FrictionCoeff = 1.5f;
+  
+  EntityID sec = env.pECS->GetWorld().GetEntityManager().CreateEntity();
+  //env.pECS->GetWorld().GetEntityManager().AddComponent<AI>(sec);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(sec);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(sec);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(sec);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(sec);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<AI>(sec);
+  env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).key = "idle_monster";
+  env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).transition = "null";
+  env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(sec).type = "monster";
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(sec).size = { 0.5,0.5 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(sec).type = ColliderType::BOX;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sec).position = { -2,-3,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sec).scale = { 0.5,0.5,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Movespeed = 20.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Mass = 30.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).isMoveable = true;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Restitution = 0.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).FrictionCoeff = 1.5f;
+
+  EntityID third = env.pECS->GetWorld().GetEntityManager().CreateEntity();
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(third);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(third);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(third);
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(third).type = ColliderType::BOX;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(third).position = { 0,-2,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(third).scale = { 10.5,0.5,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Movespeed = 50.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Mass = 1500.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).isMoveable = false;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Restitution = 0.0f;
+
+  EntityID fourth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(fourth);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(fourth);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(fourth);
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(fourth).type = ColliderType::BOX;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fourth).position = { 4,0,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fourth).scale = { 0.5,10.5,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Movespeed = 50.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Mass = 1500.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).isMoveable = false;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Restitution = 0.0f;
+
+  EntityID fifth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(fifth);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(fifth);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(fifth);
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(fifth).type = ColliderType::BOX;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fifth).position = { -2,2,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fifth).scale = { 0.5,0.5,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).Movespeed = 50.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).Mass = 50.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).isMoveable = true;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).Restitution = 0.0f;
+
+  EntityID sixth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(sixth);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(sixth);
+  env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(sixth);
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(sixth).type = ColliderType::BOX;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sixth).position = { -2,3,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sixth).scale = { 0.5,0.5,0 };
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sixth).Movespeed = 50.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sixth).Mass = 50.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sixth).isMoveable = true;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sixth).Restitution = 0.0f;
+
+  env.pECS->GetWorld().Save("Entities2.json");
+
+  env.pECS->GetWorld().CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().SetUpdateSequence<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().SetLateUpdateSequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+
+
+
+
   env.pECS->GetWorld().InitSystems();
+  //env.pECS->GetWorld().Load( "Base.json" );
 }
 
 Application::~Application()
 {
   DeltaEngine_CORE_INFO( "Engine Shutdown" );
+  //env.pECS->GetWorld().Save("Base.json");
+
   env.pECS->GetWorld().ShutdownSystems();
   delete env.pECS;
   delete env.eventManager;
@@ -100,82 +187,76 @@ Application::~Application()
 
 void Application::Run()
 {
-  DeltaEngine::World &world = env.pECS->GetWorld();
-  DeltaEngine::EntityManager &em = world.GetEntityManager();
-  env.pManager->Get<Texture2D>( "run" )->SliceAll( 2, 3 );
 
-      //auto* s = new SpriteRenderer(env.pManager->get<Texture2D>("run"),
-      //    env.pManager->get<Shader>("Default"));
+  /*DeltaEngine::World &world = env.pECS->GetWorld();
+  DeltaEngine::EntityManager &em = world.GetEntityManager();
   auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
   auto &spriterender = em.GetComponent<Image>( entitybg );
-  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
+  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator>();
+  em.AddComponent<State>(entitysr);
   auto &animator = em.GetComponent<Animator>( entitysr );
   auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
   auto &textrender = em.GetComponent<Text>( entitytr );
   auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
-
-  spriterender.m_Sprite = { "bg" };
+  spriterender.m_Sprite = { "Textures/bg", 0 };
   textrender.m_FontKey = "Default";
-  textrenderer.m_Material = { "DefaultText" } ;
-  animator.m_ControllerKey = "Player";
-
-  //size_t i = AudioEngine::PlaySound( "Audio/jump.wav" );
+  textrenderer.m_Material = { "DefaultText" };
+  animator.m_ControllerKey = "Animation/Player";
+  textrender.m_Text = "Welcome to DELTA";
+  textrender.alignment = Alignment::AlignRight;*/
 
   while ( env.pWin->Running() )
   {
-    textrender.m_Text = "FPS: " + std::to_string( static_cast<u32>( env.pClock->FrameRate() ) );
-    if ( env.pClock->Update() )
-    {
-      InputManager::Get()->Update();
-      // Update engine GameClock
-      env.pECS->GetWorld().Update();
-      env.pECS->GetWorld().LateUpdate();
-      m_Editor->Begin();
-      m_Editor->Render();
-      m_Editor->End();
-      ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
-      env.pWin->Update();
-      //if (!AudioEngine::IsChannelPlaying(i))
-      //  i = AudioEngine::PlaySound( "Audio/jump.wav" );
-      AudioEngine::Update();
-      OnEvent();
-    }
+    env.pClock->Update();
+    InputManager::Get()->Update();
+    // Logic Update()
+    // Physics Update()
+    // Animation Update()
+    // Render Update()
+    // Physics Update()
+    env.pECS->GetWorld().Update();
+    env.pECS->GetWorld().LateUpdate();
+    m_Editor->Begin();
+    m_Editor->Render();
+    m_Editor->End();
+    ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
+    env.pWin->Update();
+
+    OnEvent();
   }
 }
 
-
-
 void Application::OnEvent()
 {
-    if (!env.eventManager->IsEmpty())
+  if ( !env.eventManager->IsEmpty() )
+  {
+    auto ref = env.eventManager->ResolveEvent();
+    EventDispatcher d( ref );
+
+    if ( ref != nullptr )
     {
-        auto ref = env.eventManager->ResolveEvent();
-        EventDispatcher d(ref);
-    
-        if (ref != nullptr)
+      EventType type = ref->GetEventType();
+      switch ( type )
+      {
+        case EventType::ImGuiDragFile:
         {
-            EventType type = ref->GetEventType();
-            switch (type)
-            {
-            case EventType::ImGuiDragFile:
-            {
-                d.Dispatch<ImGuiFileDragEvent>(DE_BIND_EVENT_FN(Editor::OnDragDrop));
-                break;
-            }
-            case EventType::ImGuiRemovingDragFile:
-            {
-                d.Dispatch<ImGuiFileRemovingDragEvent>(DE_BIND_EVENT_FN(Editor::OnRemovingDragDrop));
-                break;
-            }
-            case EventType::ImGuiFileDragDone:
-            {
-                d.Dispatch<ImGuiFileDragEventDone>(DE_BIND_EVENT_FN(Editor::OnDragDropDone));
-                break;
-            }
-            }
+          d.Dispatch<ImGuiFileDragEvent>( DE_BIND_EVENT_FN( Editor::OnDragDrop ) );
+          break;
         }
-        delete ref;
+        case EventType::ImGuiRemovingDragFile:
+        {
+          d.Dispatch<ImGuiFileRemovingDragEvent>( DE_BIND_EVENT_FN( Editor::OnRemovingDragDrop ) );
+          break;
+        }
+        case EventType::ImGuiFileDragDone:
+        {
+          d.Dispatch<ImGuiFileDragEventDone>( DE_BIND_EVENT_FN( Editor::OnDragDropDone ) );
+          break;
+        }
+      }
     }
+    delete ref;
+  }
 }
 
 

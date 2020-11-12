@@ -16,8 +16,12 @@ namespace DeltaEngine
     float Movespeed;
     float Restitution;
     float FrictionCoeff;
+    float InherentAcceleration;
+    float MaxAcceleration;
+    float AccelerationPickup;
     bool hasGravity;
     bool isMoveable;
+    bool isJumping;
 
 
     RigidBody() :
@@ -27,12 +31,16 @@ namespace DeltaEngine
       Acceleration{0, 0},
       AccumulatedForce{0, 0},
       PointEnd{0, 0},
-      Mass{10.0f},
-      Movespeed{100.0f},
+      Mass{20.0f},
+      Movespeed{10.0f},
       Restitution{1.0f},
-      FrictionCoeff{0.35f},
+      FrictionCoeff{0.85f},
+      InherentAcceleration{0.0f},
+      MaxAcceleration{40.0f},
+      AccelerationPickup{3.0f},
       hasGravity{false},
-      isMoveable{true}
+      isMoveable{true},
+      isJumping{false}
     {
     }
   };

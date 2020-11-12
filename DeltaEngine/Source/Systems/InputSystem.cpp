@@ -1,7 +1,7 @@
 #include "InputSystem.h"
 #include "Components/Character.h"
 #include "Input/InputManager.h"
-
+#include "AttackFunctions.h"
 namespace DeltaEngine
 {
 void InputSystem::Initialize()
@@ -22,6 +22,8 @@ void InputSystem::Update()
     {
       i1.previousKey = DEVK_A;
       r1.Direction = Vector2::left();
+      if(r1.InherentAcceleration < r1.MaxAcceleration)
+        r1.InherentAcceleration++;
     } );
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, State &a )
     {
@@ -45,6 +47,8 @@ void InputSystem::Update()
     {
       i1.previousKey = DEVK_D;
       r1.Direction = Vector2::right();
+      if (r1.InherentAcceleration < r1.MaxAcceleration)
+          r1.InherentAcceleration++;
     } );
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, State &a )
     {
@@ -81,19 +85,41 @@ void InputSystem::Update()
 
   if (InputManager::Get()->IsKeyTriggered(DEVK_SPACE))
   {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1,Collider& c1, Input& i1)
           {
-              i1.previousKey = DEVK_S;
-              r1.AccumulatedForce += Vector2{0, 5000};
+              if (c1.isCollidingOnFloor)
+              {
+                  r1.isJumping = true;
+              }
+              i1.previousKey = DEVK_SPACE;
+
           });
   }
 
+  if (InputManager::Get()->IsKeyReleased(DEVK_SPACE))
+  {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+      {
+          i1.previousKey = DEVK_SPACE;
+          r1.isJumping = false;
+      });
+  }
+
+  if (InputManager::Get()->IsKeyTriggered(DEVK_F))
+  {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1)
+      {
+           PlayerRangedAttack(id1);
+      });
+  }
+
   if (InputManager::Get()->IsKeyReleased(DEVK_A) || InputManager::Get()->IsKeyReleased(DEVK_D)
-      || InputManager::Get()->IsKeyReleased(DEVK_W) || InputManager::Get()->IsKeyReleased(DEVK_S))
+      || InputManager::Get()->IsKeyReleased(DEVK_S) || InputManager::Get()->IsKeyReleased(DEVK_W))
   {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
           {
               r1.Direction = Vector2::zero();
+              r1.InherentAcceleration = 0.0f;
           });
   }
 

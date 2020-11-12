@@ -4,7 +4,7 @@
 
 namespace DeltaEngine
 {
-  enum class ColliderType
+  enum class ColliderType : unsigned
   {
     NONE,
     BOX,
@@ -22,7 +22,8 @@ namespace DeltaEngine
     bool isCollideable;
     bool isTrigger;
     bool isCollidingOnFloor;
-
+    char CollisionLayerID;
+    char CollisionLayerCheck;
 
     Collider() :
       center{0, 0},

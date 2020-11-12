@@ -14,7 +14,7 @@ Camera *Camera::editorCamera;
 Camera::Camera( bool editor ) :
   cameraIndex { editor ? -1 : static_cast<int>( allCameras.size() ) }, frameBuffer {},
   m_AspectRatio { 1.0f * env.pWin->Width() / env.pWin->Height() }, m_ViewportSize { 1.0f * env.pWin->Width() },
-  m_Size { 5 }, m_zNear { -10 }, _zFar { 10 },
+  m_Size { 5 }, m_zNear { -100 }, m_zFar { 100 },
   backgroundColor { 49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1 },
   shader { new Shader( "Shaders/DefaultScreen" ) }
 {
@@ -46,7 +46,7 @@ Matrix4x4 Camera::GetProjectionMatrix() const
   return Matrix4x4::Rotate( transform.rotation ) * Matrix4x4::Ortho(
     -m_Size * m_AspectRatio,
     m_Size * m_AspectRatio,
-    -m_Size, m_Size, m_zNear, _zFar );
+    -m_Size, m_Size, m_zNear, m_zFar );
 }
 Matrix4x4 Camera::GetViewMatrix() const
 {
@@ -84,14 +84,13 @@ void Camera::Start()
 
   frameBuffer.Bind();
 
+  //glEnable(GL_DEPTH_TEST);
   glClearColor(
     backgroundColor.r,
     backgroundColor.g,
     backgroundColor.b,
     backgroundColor.a );
-  glClear( GL_COLOR_BUFFER_BIT );
-
-  Camera *thisCam = this;
+  glClear(GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/);
 }
 void Camera::End()
 {
@@ -99,8 +98,9 @@ void Camera::End()
   {
     Gizmos::DrawWorldGrid();
   }
-
   frameBuffer.Unbind();
+  //glDisable(GL_DEPTH_TEST);
+  glClear(GL_COLOR_BUFFER_BIT);
 }
 }
 

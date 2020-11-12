@@ -331,7 +331,7 @@ ParticleSystem::~ParticleSystem()
 }
 void ParticleSystem::Update()
 {
-  durationTimer += static_cast<float>( DeltaTime() );
+  durationTimer += static_cast<float>( FixedDeltaTime() );
   rateOverTime = Math::Clamp( rateOverTime, 0, 100 );
 
   while ( durationTimer > 1.0f / rateOverTime )
@@ -357,9 +357,9 @@ void ParticleSystem::Update()
       continue;
     }
 
-    particle.lifeTimer += static_cast<float>( DeltaTime() );
-    particle.transform.position += particle.velocity * static_cast<float>( DeltaTime() );
-    particle.transform.scale += -Vector3( 1, 1, 1 ) * static_cast<float>( DeltaTime() );
+    particle.lifeTimer += static_cast<float>( FixedDeltaTime() );
+    particle.transform.position += particle.velocity * static_cast<float>( FixedDeltaTime() );
+    particle.transform.scale += -Vector3( 1, 1, 1 ) * static_cast<float>( FixedDeltaTime() );
 
     particle.transform.rotation = Quaternion::AngleAxis( particle.lifeTimer * index / 50, Vector3::forward() );
 

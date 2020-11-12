@@ -14,7 +14,6 @@
 
 namespace DeltaEngine
 {
-
 namespace Serialize
 {
 void WriteEntities( class DeltaEngine::EntityManager &em, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer );
@@ -85,6 +84,8 @@ private:
   void SetEntityArchetype( EntityID id, Archetype *arch );
 
   void MoveEntityToArchetype( EntityID id, Archetype *arch );
+
+  Archetype *CreateEmptyArchetype();
 
   Archetype *FindOrCreateArchetype( const std::vector<const ComponentMeta *>& meta_vec);
 

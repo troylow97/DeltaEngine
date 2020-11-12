@@ -1,0 +1,20 @@
+entry Idle
+
+%Parameters:
+
+param
+Speed 0 0.0
+
+%Transitions:
+
+start Idle
+end Running
+condition Speed > 0
+
+%
+
+start Running
+end Idle
+condition Speed < 1
+
+%

@@ -9,7 +9,7 @@ namespace DeltaEngine
     WorldPanel::WorldPanel(std::string str) :
         IPanel(str)
     {
-
+      m_enabled = true;
     }
 
     WorldPanel::~WorldPanel()
@@ -94,15 +94,5 @@ namespace DeltaEngine
             ImGui::TreePop();
         }
         ImGui::End();
-    }
-
-    ImVec2 WorldPanel::GetTopLeft()
-    {
-        return topLeft;
-    }
-
-    ImVec2 WorldPanel::GetBottomRight()
-    {
-        return bottomRight;
     }
 }

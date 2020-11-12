@@ -156,14 +156,4 @@ void AssetPanel::Render( bool isdragged )
 
   ImGui::End();
 }
-
-ImVec2 AssetPanel::GetTopLeft()
-{
-  return topLeft;
-}
-
-ImVec2 AssetPanel::GetBottomRight()
-{
-  return bottomRight;
-}
 }

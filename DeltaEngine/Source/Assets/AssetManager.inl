@@ -27,6 +27,16 @@ AssetState AssetManager<Ts...>::State( AssetKey key ) const
   return AssetGroup<T1>::State( key );
 }
 
+
+template <typename ... Ts>
+template <typename T1>
+AssetManager<Ts...>& AssetManager<Ts...>::Load()
+{
+  AssetGroup<T1>::Load();
+  return *this;
+}
+
+
 template <typename... Ts>
 template <typename T1>
 AssetManager<Ts...> &AssetManager<Ts...>::Load( AssetKey key )
