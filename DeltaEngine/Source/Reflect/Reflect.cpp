@@ -80,7 +80,7 @@ RTTR_REGISTRATION
     rttr::value( "center", Alignment::Centralize )
   );
 
-  rttr::registration::enumeration<FillType>( "alignment" )
+  rttr::registration::enumeration<FillType>( "filltype" )
     (
     rttr::value( "none", FillType::None ),
     rttr::value( "horizontal_left_to_right", FillType::HorizontalLeftToRight ),
