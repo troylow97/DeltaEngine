@@ -13,6 +13,6 @@ namespace DeltaEngine
 		void Render(bool) override;
 
 	private:
-		std::string textureName = "Textures/idle";
+		char textureName[128] = "Textures/3-Punch Spritesheet";
 	};
 }

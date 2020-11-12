@@ -187,12 +187,11 @@ Application::~Application()
 void Application::Run()
 {
 
-  /*DeltaEngine::World &world = env.pECS->GetWorld();
+  DeltaEngine::World &world = env.pECS->GetWorld();
   DeltaEngine::EntityManager &em = world.GetEntityManager();
   auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
   auto &spriterender = em.GetComponent<Image>( entitybg );
-  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator>();
-  em.AddComponent<State>(entitysr);
+  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator, State>();
   auto &animator = em.GetComponent<Animator>( entitysr );
   auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
   auto &textrender = em.GetComponent<Text>( entitytr );
@@ -200,9 +199,9 @@ void Application::Run()
   spriterender.m_Sprite = { "Textures/bg", 0 };
   textrender.m_FontKey = "Default";
   textrenderer.m_Material = { "DefaultText" };
-  animator.m_ControllerKey = "Animation/Player";
+  animator.m_ControllerKey = "Animation/Dave";
   textrender.m_Text = "Welcome to DELTA";
-  textrender.alignment = Alignment::AlignRight;*/
+  textrender.alignment = Alignment::AlignRight;
 
   while ( env.pWin->Running() )
   {

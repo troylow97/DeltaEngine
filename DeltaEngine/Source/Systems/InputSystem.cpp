@@ -27,7 +27,7 @@ void InputSystem::Update()
     } );
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, State &a )
     {
-      a.SetFloat( "Speed", 1.0f );
+      a.SetBool( "IsRunning", true);
     } );
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Image &s )
     {
@@ -38,7 +38,7 @@ void InputSystem::Update()
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, State &a )
     {
-      a.SetFloat( "Speed", 0.0f );
+      a.SetBool( "IsRunning", false);
     } );
   }
   if ( InputManager::Get()->IsKeyPressed( DEVK_D ) )
@@ -52,7 +52,7 @@ void InputSystem::Update()
     } );
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, State &a )
     {
-      a.SetFloat( "Speed", 1.0f );
+      a.SetBool( "IsRunning", true );
     } );
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Image &s )
     {
@@ -63,7 +63,7 @@ void InputSystem::Update()
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, State &a )
     {
-      a.SetFloat( "Speed", 0.0f );
+      a.SetBool( "IsRunning", false );
     } );
   }
   if ( InputManager::Get()->IsKeyPressed( DEVK_W ) )

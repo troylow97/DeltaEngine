@@ -6,8 +6,8 @@
 
 namespace DeltaEngine
 {
-AnimationController::AnimationController( std::string filepath )
-  : entryAnimation { nullptr }
+AnimationController::AnimationController(std::string filepath)
+  : entryAnimation{ nullptr }, m_Name{ std::string(filepath.c_str()) }
 {
   LoadFromFile( filepath );
 }
@@ -49,10 +49,6 @@ AnimationClip *AnimationController::CheckCondition( std::string currentAnim, Par
         return GetEnv().pManager->Get<AnimationClip>(EndingState);
     }
   }
-  //loop through all possible transitions
-  for ( size_t i = 0; i < transitions.size(); ++i )
-  {
-  }
   return nullptr;
 }
 
@@ -89,7 +85,6 @@ void AnimationController::LoadFromFile( std::string filepath )
       file >> str >> endClip;
 
       transitions.push_back({ startClip, endClip, Condition() });
-      //conditions.push_back( Condition() );
 
       while ( ( file >> str ), std::strcmp( str.c_str(), "condition" ) == 0 )
       {

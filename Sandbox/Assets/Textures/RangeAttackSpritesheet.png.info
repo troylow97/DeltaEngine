@@ -1,0 +1,32 @@
+Textures/RangeAttackSpritesheet_i_0
+offset 0 0
+size 300 300
+pivot 0.5 0.5
+
+Textures/RangeAttackSpritesheet_i_1
+offset 300 0
+size 300 300
+pivot 0.5 0.5
+
+Textures/RangeAttackSpritesheet_i_2
+offset 600 0
+size 300 300
+pivot 0.5 0.5
+
+Textures/RangeAttackSpritesheet_i_3
+offset 900 0
+size 300 300
+pivot 0.5 0.5
+
+Textures/RangeAttackSpritesheet_i_4
+offset 1200 0
+size 300 300
+pivot 0.5 0.5
+
+Textures/RangeAttackSpritesheet_i_5
+offset 1500 0
+size 300 300
+pivot 0.5 0.5
+
+
+%
