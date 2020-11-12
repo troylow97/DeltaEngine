@@ -191,6 +191,16 @@ void AssetGroup<T1>::FreeLoader()
   delete m_loader;
 }
 
+template <typename T1>
+const std::vector<std::pair<AssetKey, T1*>> AssetGroup<T1>::List() const
+{
+  std::vector<std::pair<AssetKey, T1*>> vec;
+  for ( auto it = m_datas.begin(); it != m_datas.end(); ++it )
+    vec.push_back( std::pair( it->first, it->second.data ) );
+  return vec;
+}
+
+
 //****************************************************************************
 // Reference Counting
 //****************************************************************************

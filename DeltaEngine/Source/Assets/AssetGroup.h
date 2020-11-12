@@ -72,6 +72,8 @@ public:
   [[nodiscard]] const AbstractLoader<T1> *Loader() const;
   void SetLoader( AbstractLoader<T1> *loader );
   void FreeLoader();
+
+ const std::vector<std::pair<AssetKey, T1*>> List() const;
 };
 } // namespace DeltaEngine
 

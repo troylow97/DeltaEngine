@@ -67,6 +67,5 @@ namespace DeltaEngine
 		virtual void onExit(EntityID& id) override;
 		virtual void Update(EntityID& id1) override;
 	};
+
 }
-
-

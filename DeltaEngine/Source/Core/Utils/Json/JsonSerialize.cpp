@@ -224,14 +224,14 @@ bool WriteAtomic( const type &t, const variant &var, PrettyWriter<FileWriteStrea
 
   if (t.is_pointer())
   {
-      if (t.get_raw_type().is_arithmetic() || t.get_raw_type() == type::get<std::string>())
+      if (t.get_raw_type().is_arithmetic())
       {
           if (t == type::get<bool*>())
               writer.Bool(var.get_wrapped_value<bool>());
           else if (t == type::get<float*>())
               writer.Double(var.get_wrapped_value<float>());
-          else if (t == type::get<std::string*>())
-              writer.String(var.get_wrapped_value<std::string>());
+          else if (t == type::get<int*>())
+            writer.Int(var.get_wrapped_value<int>());
           return true;
       }
       if (t.get_raw_type().is_enumeration())
@@ -254,6 +254,12 @@ bool WriteAtomic( const type &t, const variant &var, PrettyWriter<FileWriteStrea
           //}
 
           return true;
+      }
+      if ( t.get_raw_type() == type::get<std::string>() )
+      {
+        if (t == type::get<std::string*>())
+          writer.String(var.get_wrapped_value<std::string>());
+        return true;
       }
   }
 

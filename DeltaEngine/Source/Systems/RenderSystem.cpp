@@ -26,7 +26,7 @@ void RenderSystem::Update()
 
   std::vector<EntityID> sortedRenderers;
 
-  em.ForEach( [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
+  em.ForEach( e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
   std::sort(sortedRenderers.begin(), sortedRenderers.end(), SortSprites);
 
   for (EntityID ID : sortedRenderers)

@@ -235,16 +235,17 @@ void ExtractPointerType( variant& obj_dat, variant& extracted )
     *obj_dat.get_value<bool *>() = extracted.get_value<bool>();
   else if ( obj_dat.get_type() == type::get<float *>() )
     *obj_dat.get_value<float *>() = static_cast<float>( extracted.get_value<double>() );
-  else if ( obj_dat.get_type() == type::get<std::string *>() )
-    *obj_dat.get_value<std::string *>() = extracted.get_value<std::string>();
+  else if ( obj_dat.get_type() == type::get<int *>() )
+    *obj_dat.get_value<int *>() = static_cast<int>( extracted.get_value<int>() );
   else if (obj_dat.get_type().get_raw_type().is_enumeration())
   {
       enumeration enum_prop = obj_dat.get_type().get_raw_type().get_enumeration();
       auto v = enum_prop.name_to_value( extracted.get_value<std::string>() );
       if ( obj_dat.get_type() == type::get<Alignment *>() )
         *obj_dat.get_value<Alignment *>() = v.get_value<Alignment>();
-      
   }
+  else if ( obj_dat.get_type() == type::get<std::string *>() )
+    *obj_dat.get_value<std::string *>() = extracted.get_value<std::string>();
 }
 
 

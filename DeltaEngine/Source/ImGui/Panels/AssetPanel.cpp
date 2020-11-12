@@ -11,20 +11,6 @@
 
 namespace DeltaEngine
 {
-struct AssetDirectoryListener : public IFileWatcherListener
-{
-  void OnFileAdded(std::filesystem::path path) override
-  {
-    //if(path.extension() == ".png" || path.extension() == ".jpg")
-
-    //GetEnv()->pManager->Get<>()
-  }
-  void OnFileChanged(std::filesystem::path path) override;
-  void OnFileDeleted(std::filesystem::path path) override;
-  void OnFileRenamed(std::filesystem::path path) override;
-};
-
-
 
 std::filesystem::path selection;
 std::string selection_file;

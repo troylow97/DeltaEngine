@@ -97,7 +97,7 @@ namespace DeltaEngine
 
                 //Apply Friction
                 float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
+                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
                 if (dragForceVector.Magnitude() > std::numeric_limits<float>::epsilon())
                     r1.Velocity += dragForceVector;
 

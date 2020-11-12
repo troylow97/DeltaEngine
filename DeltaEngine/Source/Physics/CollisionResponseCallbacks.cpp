@@ -162,8 +162,8 @@ namespace DeltaEngine
 		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
 		Vector2 impulse, reflectedVectorA, reflectedVectorB;
 		//calculate reflection vector based on conservation of momentum and direction based on the normal and velocity
-		reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (60 * m.penetration) * env.pClock->DeltaTime();
-		reflectedVectorB = -m.normal / (r1.Mass + r2.Mass) * r1.Mass * (60 * m.penetration) * env.pClock->DeltaTime();
+		reflectedVectorA = m.normal / (r1.Mass + r2.Mass) * r2.Mass * (60 * m.penetration) * env.pClock->FixedDeltaTime();
+		reflectedVectorB = -m.normal / (r1.Mass + r2.Mass) * r1.Mass * (60 * m.penetration) * env.pClock->FixedDeltaTime();
 
 
 		if (restitution > std::numeric_limits<float>::epsilon())

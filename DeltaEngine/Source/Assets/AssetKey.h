@@ -15,13 +15,13 @@ public:
   }
 
   AssetKey( const std::string& str ) :
-    m_digest( std::hash<std::string>{}( str ) )
+    m_digest( std::hash<std::string>{}( str ) ), m_key {str}
   {
   }
 
   template <size_t Size>
   constexpr AssetKey( const char( &str )[Size] ) :
-    m_digest( std::hash<std::string>{}( std::string( str ) ) )
+    m_digest( std::hash<std::string>{}( std::string( str ) ) ), m_key{str}
   {
   }
 
@@ -35,8 +35,14 @@ public:
     return m_digest;
   }
 
+  const std::string& Key() const
+  {
+    return m_key;
+  }
+
 private:
   size_t m_digest { 0 };
+  std::string m_key {};
 };
 } // namespace DeltaEngine
 

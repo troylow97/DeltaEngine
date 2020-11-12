@@ -30,7 +30,10 @@ class TextureLoader final : public AbstractLoader<Texture2D>
     //if (data.characterInfo().empty())
     //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
     //else
+
     Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+    if ( !data )
+      DeltaEngine_CORE_ERROR( "FAILED" );
   }
 };
 } // namespace DeltaEngine
