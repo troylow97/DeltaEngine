@@ -23,7 +23,7 @@ World::World(): em( std::make_unique<EntityManager>() )
 {
   CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
 #ifndef DE_EDITOR
-  pause = false;
+  m_pause = false;
 #endif
 }
 

@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
-    <ClCompile Include="CollisionHandlingFunctions.cpp" />
+    <ClCompile Include="Source\CollisionHandlingFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="AI">
@@ -10,6 +10,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CollisionHandlingFunctions.h" />
+    <ClInclude Include="Source\CollisionHandlingFunctions.h" />
   </ItemGroup>
 </Project>
