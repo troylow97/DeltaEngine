@@ -172,19 +172,20 @@ RTTR_REGISTRATION
     .property( "parameters", &State::parameters )( rttr::metadata( "NO_SERIALIZE", true ),
                                                ( rttr::metadata( "NO_EDITOR", true ) ) );
 
-  rttr::registration::class_<Image>( "image" )
-    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Image>()->bits ) )
-    .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "sprite", &Image::m_Sprite )( rttr::policy::prop::bind_as_ptr )
-    .property( "offset", &Image::m_Offset )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "tiling", &Image::m_Tiling )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "fill_type", &Image::m_FillType )( rttr::policy::prop::bind_as_ptr )
-    .property( "fill_amount", &Image::m_FillAmount )( rttr::policy::prop::bind_as_ptr )
-    .property( "overall_angle", &Image::m_OverallAngle )( rttr::policy::prop::bind_as_ptr )
-    .property( "start_angle", &Image::m_StartAngle )( rttr::policy::prop::bind_as_ptr )
-    .property( "end_angle", &Image::m_EndAngle )( rttr::policy::prop::bind_as_ptr )
-    .property( "flip_x", &Image::m_FlipX )( rttr::policy::prop::bind_as_ptr )
-    .property( "flip_y", &Image::m_FlipY )( rttr::policy::prop::bind_as_ptr );
+    rttr::registration::class_<Image>( "image" )
+      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Image>()->bits ) )
+      .constructor<>()( rttr::policy::ctor::as_object )
+      .property( "sprite", &Image::m_Sprite )( rttr::policy::prop::bind_as_ptr )
+      .property( "size", &Image::m_Size )( rttr::policy::prop::bind_as_ptr )
+      .property( "offset", &Image::m_Offset )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "tiling", &Image::m_Tiling )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "fill_type", &Image::m_FillType )( rttr::policy::prop::bind_as_ptr )
+      .property( "fill_amount", &Image::m_FillAmount )( rttr::policy::prop::bind_as_ptr )
+      .property( "overall_angle", &Image::m_OverallAngle )( rttr::policy::prop::bind_as_ptr )
+      .property( "start_angle", &Image::m_StartAngle )( rttr::policy::prop::bind_as_ptr )
+      .property( "end_angle", &Image::m_EndAngle )( rttr::policy::prop::bind_as_ptr )
+      .property( "flip_x", &Image::m_FlipX )( rttr::policy::prop::bind_as_ptr )
+      .property( "flip_y", &Image::m_FlipY )( rttr::policy::prop::bind_as_ptr );
 
   rttr::registration::class_<Text>( "text" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Text>()->bits ) )
