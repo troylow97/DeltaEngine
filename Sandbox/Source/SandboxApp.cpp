@@ -12,6 +12,8 @@
 #include "Systems/PhysicsDrawSystem.h"
 #include "Systems/RenderSystem.h"
 #include "Systems/AttackSystem.h"
+#include "Systems/LifespanSystem.h"
+
 class Sandbox : public DeltaEngine::Application
 {
 public:
@@ -22,8 +24,10 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(first);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(first);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(first);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(first);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Input>(first);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Attack>(first);
+
 		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(first).type = "player";
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).size = { 0.5,0.5 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).type = ColliderType::BOX;
@@ -40,6 +44,7 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(sec);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(sec);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(sec);
+		//env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(sec);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<AI>(sec);
 		env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).key = "idle_monster";
 		env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).transition = "null";
@@ -104,8 +109,8 @@ public:
 
 		env.pECS->GetWorld().Save("Entities2.json");
 
-		env.pECS->GetWorld().CreateSystems<InputSystem, AISystem, AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-		env.pECS->GetWorld().SetUpdateSequence<InputSystem, AISystem, AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+		env.pECS->GetWorld().CreateSystems<InputSystem, AISystem, AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem,LifespanSystem>();
+		env.pECS->GetWorld().SetUpdateSequence<InputSystem, AISystem, AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem, LifespanSystem>();
 		env.pECS->GetWorld().SetLateUpdateSequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
 
 

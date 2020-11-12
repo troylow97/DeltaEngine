@@ -107,7 +107,7 @@ void InputSystem::Update()
 
   if (InputManager::Get()->IsKeyTriggered(DEVK_F))
   {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1,Attack& a1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1,Attack& a1, Image& im)
       {
           a1.isAttacking = true;
       });

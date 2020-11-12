@@ -3,7 +3,7 @@
 #include "Core/GameClock/GameClock.h"
 #include "Collision.h"
 #include <cmath>
-#include "Core/GlobalStruct.h"
+
 namespace DeltaEngine
 {
 	//void CollisionSystem::CollisionResponseMain(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
