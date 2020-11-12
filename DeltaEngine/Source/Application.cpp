@@ -80,10 +80,10 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).type = ColliderType::BOX;
   env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(first).position = { 0.5,2.0,0 };
   env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(first).scale = { 0.5,0.5,0 };
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).Movespeed = 100.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).Movespeed = 30.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).Mass = 15.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).isMoveable = true;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).FrictionCoeff = 0.9f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(first).FrictionCoeff = 1.5f;
   
   EntityID sec = env.pECS->GetWorld().GetEntityManager().CreateEntity();
   //env.pECS->GetWorld().GetEntityManager().AddComponent<AI>(sec);
@@ -99,10 +99,11 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(sec).type = ColliderType::BOX;
   env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sec).position = { -2,-3,0 };
   env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sec).scale = { 0.5,0.5,0 };
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Movespeed = 50.0f;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Mass = 20.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Movespeed = 20.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Mass = 30.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).isMoveable = true;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).FrictionCoeff = 0.9f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).Restitution = 0.0f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sec).FrictionCoeff = 1.5f;
 
   EntityID third = env.pECS->GetWorld().GetEntityManager().CreateEntity();
   env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(third);
@@ -114,7 +115,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Movespeed = 50.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Mass = 1500.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).isMoveable = false;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).FrictionCoeff = 0.9f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Restitution = 0.0f;
 
   EntityID fourth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
   env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(fourth);
@@ -126,7 +127,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Movespeed = 50.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Mass = 1500.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).isMoveable = false;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).FrictionCoeff = 0.9f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Restitution = 0.0f;
 
   EntityID fifth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
   env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(fifth);
@@ -138,7 +139,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).Movespeed = 50.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).Mass = 50.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).isMoveable = true;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).FrictionCoeff = 0.9f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).Restitution = 0.0f;
 
   EntityID sixth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
   env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(sixth);
@@ -150,7 +151,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sixth).Movespeed = 50.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sixth).Mass = 50.0f;
   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sixth).isMoveable = true;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sixth).FrictionCoeff = 0.9f;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(sixth).Restitution = 0.0f;
 
   env.pECS->GetWorld().Save("Entities2.json");
 
