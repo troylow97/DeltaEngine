@@ -3,6 +3,7 @@
 #include "Core/Debugging/Logger/Log.h"
 #include <stb_image.h>
 #include "DEpch.h"
+#include <stack>
 
 namespace DeltaEngine
 {
@@ -48,6 +49,8 @@ void Texture2D::AutoSlice()
   textureInfo.clear();
   unsigned char* m_Data = stbi_load(m_Filepath.c_str(), &m_Width, &m_Height, &m_Channels, 0);
 
+  std::cerr << "auto slicing texture: " << m_Filepath <<std::endl;
+
   // only auto slice if there is an alpha channel
   if (m_Channels != 4)
   {
@@ -58,43 +61,51 @@ void Texture2D::AutoSlice()
   {
     std::vector<std::pair<unsigned int, unsigned int>> visited;
     std::vector<std::pair<unsigned int, unsigned int>> sprite;
-    std::queue<std::pair<unsigned int, unsigned int>> queue;
-
-    for (unsigned int y = 0; y < m_Height; ++y)
+    std::stack<std::pair<unsigned int, unsigned int>> stack;
+    int c = 0;
+    for (unsigned int y = 0; y < (unsigned int)m_Height; ++y)
     {
-      for (unsigned int x = 0; x < m_Width; ++x)
+      for (unsigned int x = 0; x < (unsigned int)m_Width; ++x)
       {
         // check for a non-transparent pixel
         if (*(m_Data + ((long long)x + (long long)y * m_Width) * 4 + 3) != 0)
         {
+          if (std::find(visited.begin(), visited.end(), std::pair<unsigned int, unsigned int>{x, y}) != visited.end())
+            continue;
           unsigned int a = x, b = y;
-          queue.push(std::pair<unsigned int, unsigned int>{x, y});
+          stack.push(std::pair<unsigned int, unsigned int>{x, y});
           do
           {
-            a = queue.front().first;
-            b = queue.front().second;
+            a = stack.top().first;
+            b = stack.top().second;
+            stack.pop();
+
             // check if the pixel has been visited
-            if (std::find(visited.begin(), visited.end(), std::pair<unsigned int, unsigned int>{x, y}) == visited.end())
+            if (std::find(visited.begin(), visited.end(), std::pair<unsigned int, unsigned int>{a, b}) == visited.end())
             {
               sprite.push_back(std::pair<unsigned int, unsigned int>{a, b});
+              visited.push_back(std::pair<unsigned int, unsigned int>{a, b});
               // use 8 way flood fill algorithm to detect the sprite
               // add valid neighbours to the queue
-              for (int j = -1; j < 1; ++j)
-                for (int i = -1; i < 1; ++i)
-                  if (
-                    x == 0 && i == -1 ||
-                    y == 0 && j == -1 ||
-                    x == m_Width - 1 && i == 1 ||
-                    y == m_Height - 1 && j == 1 ||
-                    i == 0 && j == 0)
-                    if (*(m_Data + ((long long)x + i + ((long long)y + j) * m_Width) * 4 + 3) != 0)
-                      queue.push(std::pair<unsigned int, unsigned int>{x + i, y + j});
+              for (int j = -1; j <= 1; ++j)
+                for (int i = -1; i <= 1; ++i)
+                  if ((i || j) &&
+                    !((a == 0 && i == -1) ||
+                      (b == 0 && j == -1) ||
+                      (a == (unsigned int)m_Width - 1 && i == 1) ||
+                      (b == (unsigned int)m_Height - 1 && j == 1)))
+                  {
+                    if (*(m_Data + ((long long)a + i + ((long long)b + j) * m_Width) * 4 + 3) != 0)
+                    {
+                      stack.push(std::pair<unsigned int, unsigned int>{a + i, b + j});
+                    }
+                  }
+              std::cerr << sprite.size() << std::endl;
             }
-            queue.pop();
-          } while (queue.size());
+          } while (!stack.empty());
 
           // get the bounding box from the sprite vector
-          int minX = m_Width, maxX = 0, minY = m_Height, maxY = 0;
+          unsigned int minX = m_Width, maxX = 0, minY = m_Height, maxY = 0;
           for (auto& spriteCoords : sprite)
           {
             minX = spriteCoords.first < minX ? spriteCoords.first : minX;
@@ -107,13 +118,14 @@ void Texture2D::AutoSlice()
             Vector2(1.0f * minX, 1.0f * minY),
             Vector2(1.0f * maxX - minX, 1.0f * maxY - minY),
             Vector2(0.5f, 0.5f) });
-
+          std::cerr << c++ << ": " << minX << ", " << minY << ", " << maxX << ", " << maxY << std::endl;
           // clear the sprite vector, leave visited vector untouched
           sprite.clear();
         }
       }
     }
   }
+  std::cerr << textureInfo.size() << " Sprites Detected" << std::endl;
 
   UpdateMetaFile( m_Filepath + ".info" );
 }
@@ -138,6 +150,24 @@ void Texture2D::SliceAll( unsigned int columns, unsigned int rows )
     }
   }
   UpdateMetaFile( m_Filepath + ".info" );
+
+  std::ofstream file{ m_Name + ".clip" };
+  if (file.is_open())
+  {
+    for (size_t i = 0; i < textureInfo.size(); ++i)
+    {
+      file << m_Name << "_i_" << i << std::endl;
+      file << "key " << m_Name << std::endl;
+      file << "value " << i << std::endl << std::endl;
+    }
+    file << std::endl << "%" << std::endl;
+    file.close();
+  }
+  else
+  {
+    DeltaEngine_CORE_ERROR("Failed to create animation clip \"{}\"!", m_Name);
+  }
+
 }
 
 Vector2 Texture2D::GetOffset( unsigned int index )
@@ -234,6 +264,7 @@ void Texture2D::UpdateMetaFile( std::string filepath )
       file << "pivot " << textureInfo[i].pivot.x << " " << textureInfo[i].pivot.y << std::endl;
       file << std::endl;
     }
+    file << std::endl << "%" << std::endl;
     file.close();
   }
   else

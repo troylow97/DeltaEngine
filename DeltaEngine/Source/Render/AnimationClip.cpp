@@ -1,6 +1,7 @@
 #include "AnimationClip.h"
 #include "ErrorCheck.h"
 #include "Core/Debugging/Logger/Log.h"
+#include "Core/Math/DE_Math.h"
 
 namespace DeltaEngine
 {
@@ -24,6 +25,7 @@ unsigned int AnimationClip::GetFps() const
 }
 Sprite AnimationClip::GetSprite( unsigned int index ) const
 {
+  index = Math::Clamp(index, 0, m_Sprites.size() - 1);
   return m_Sprites[index];
 }
 std::string AnimationClip::GetName() const

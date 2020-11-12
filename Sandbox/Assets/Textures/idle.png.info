@@ -1,20 +1,20 @@
-idle_0
-offset 0 670
-size 550 670
-pivot 0.5 0.5
-
-idle_1
-offset 550 670
-size 550 670
-pivot 0.5 0.5
-
-idle_2
+Textures/idle_i_0
 offset 0 0
 size 550 670
 pivot 0.5 0.5
 
-idle_3
+Textures/idle_i_1
 offset 550 0
+size 550 670
+pivot 0.5 0.5
+
+Textures/idle_i_2
+offset 0 670
+size 550 670
+pivot 0.5 0.5
+
+Textures/idle_i_3
+offset 550 670
 size 550 670
 pivot 0.5 0.5
 
