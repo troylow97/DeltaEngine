@@ -56,53 +56,17 @@ namespace DeltaEngine
 		//////////////////////////////////////////////////////////////////////////////////////
 		float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
 
-		//if (m.penetration > 0.005)
+		//if (m.penetration > 0)
 		{
 			Vector2 impulse = (m.normal * m.penetration);
-			//	//r1.AccumulatedForce += m.normal * knockback_amt * restitution;
-			//	//r2.AccumulatedForce += -m.normal * knockback_amt * restitution;			
-			std::cout << "penetration is :" << m.penetration << std::endl;
-			//if (c1.isCollidingOnFloor)
-			//{
-			//	r1.Velocity += Vector2(0, 10.0f) * env.pClock->DeltaTime();
-			//}
-			//
-			//if (c2.isCollidingOnFloor)
-			//{
-			//	r2.Velocity += Vector2(0, 10.0f) * env.pClock->DeltaTime();
-			//}
+			r1.AccumulatedForce += m.normal * knockback_amt * restitution;
+			r2.AccumulatedForce += -m.normal * knockback_amt * restitution;			
 
 			Vector2 reflectedVectorA = ((impulse) / (r1.Mass + r2.Mass)) * r2.Mass;
 			Vector2 reflectedVectorB = ((-impulse) / (r1.Mass + r2.Mass)) * r1.Mass;
 			r1.PointEnd = c1.center + reflectedVectorA;
 			r2.PointEnd = c2.center + reflectedVectorB;
 		}
-
-
-		//if (m.penetration > std::numeric_limits<float>::epsilon())
-		//{
-		//	Vector2 impulse = (m.normal * m.penetration);
-		//
-		//	//Negate Gravity
-		//	if (c1.isCollidingOnFloor)
-		//	{
-		//		r1.Velocity += Vector2(0, 10.0f) * env.pClock->DeltaTime();
-		//	}
-		//	
-		//	if (c2.isCollidingOnFloor)
-		//	{
-		//		r2.Velocity += Vector2(0, 10.0f) * env.pClock->DeltaTime();
-		//	}
-		//
-		//	Vector2 reflectedVectorA = ((impulse) / (r1.Mass + r2.Mass)) * r2.Mass;
-		//	Vector2 reflectedVectorB = ((-impulse) / (r1.Mass + r2.Mass)) * r1.Mass;
-		//
-		//	//r1.AccumulatedForce += m.normal * knockback_amt * restitution;
-		//	//r2.AccumulatedForce += -m.normal * knockback_amt * restitution;
-		//
-		//	r1.PointEnd = c1.center + reflectedVectorA;
-		//	r2.PointEnd = c2.center + reflectedVectorB;
-		//}
 
 	}
 

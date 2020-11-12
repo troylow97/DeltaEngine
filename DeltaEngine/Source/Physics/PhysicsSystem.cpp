@@ -71,19 +71,10 @@ namespace DeltaEngine
                     }
                 }
 
+                //Player Movement
+                Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
 
-                //
-                if (r1.Direction == Vector2{ 0,-1 } && c1.isCollidingOnFloor)
-                {
-                
-                }
-                else
-                {
-                    //Player Movement
-                    Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
-
-                    r1.AccumulatedForce += move * r1.Mass * 0.5f;
-                }      
+                r1.AccumulatedForce += move * r1.Mass * 0.5f;
 
                 //Apply Gravity
                 if (r1.hasGravity && !c1.isCollidingOnFloor)

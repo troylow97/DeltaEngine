@@ -64,12 +64,12 @@ void CollisionSystem::CollisionIntersectionCheck()
                         }
                     }
 
-
-
                     if (!already_added)
                     {
-                        AABBvsAABB_Manifold(c1, c2, m);
-                        current_manifold_vector.push_back({ m,id1,id2 });
+                        c1.isCollidingOnFloor = false;
+                        c2.isCollidingOnFloor = false;
+                        if (AABBvsAABB_Manifold(c1, c2, m));
+                         current_manifold_vector.push_back({ m,id1,id2 });
                     }
 
                 }
@@ -130,38 +130,43 @@ void CollisionSystem::CollisionHandling()
 void CollisionSystem::CollisionResolution()
 {
    //Resolve LowestPenetrationFirst
-   std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
-   {
-           return a.m.penetration < b.m.penetration;
-   });
+   //std::sort(current_manifold_vector.begin(), current_manifold_vector.end(), [](const CollisionPairInfo& a, const CollisionPairInfo& b)
+   //{
+   //        return a.m.penetration < b.m.penetration;
+   //});
    
-
-    for ( auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++ )
+    for (int i = 0; i < 5; ++i)
     {
-        RigidBody& r1 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id1);
-        RigidBody& r2 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id2);
-        Transform& t1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id1);
-        Transform& t2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id2);
-        Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
-        Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
-
-        if (!c1.isTrigger && !c2.isTrigger)
+        for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
         {
-            CollisionResponseMain(c1, r1, c2, r2, it1->m);
 
-            if (r1.isMoveable)
+            RigidBody& r1 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id1);
+            RigidBody& r2 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id2);
+            Transform& t1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id1);
+            Transform& t2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id2);
+            Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
+            Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
+
+            if (!c1.isTrigger && !c2.isTrigger && AABBvsAABB_Manifold(c1, c2, it1->m))
             {
-                t1.position = r1.PointEnd;
-                c1.center = r1.PointEnd;
+                CollisionResponse(c1, r1, c2, r2, it1->m);
+
+                if (r1.isMoveable)
+                {
+                    t1.position = r1.PointEnd;
+                    c1.center = r1.PointEnd;
+                }
+                if (r2.isMoveable)
+                {
+                    t2.position = r2.PointEnd;
+                    c2.center = r2.PointEnd;
+                }
+
+
             }
-            if (r2.isMoveable)
-            {
-                t2.position = r2.PointEnd;
-                c2.center = r2.PointEnd;
-            }
-            AABBvsAABB_Manifold(c1, c2, it1->m);
         }
     }
+
 
     //for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); it1++)
     //{

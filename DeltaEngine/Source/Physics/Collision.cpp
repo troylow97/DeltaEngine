@@ -608,6 +608,7 @@ namespace DeltaEngine
 //DYNAMIC COLLISION CHECKS
 	bool CollisionIntersection_RectRect(const Collider& col1, const Vector2& vel1, const Collider& col2, const Vector2& vel2)
 	{
+		
 		AABB aabb1{col1.center,col1.size};
 		AABB aabb2{col2.center,col2.size};
 		//Static Collision Check
@@ -844,8 +845,8 @@ namespace DeltaEngine
 		AABB bbox{ B.center,B.size };
 
 		// Calculate half extents along x axis for each object
-		double a_extent = (abox.max.x - abox.min.x) / 2;
-		double b_extent = (bbox.max.x - bbox.min.x) / 2;
+		float a_extent = (abox.max.x - abox.min.x) / 2;
+		float b_extent = (bbox.max.x - bbox.min.x) / 2;
 
 		if (A.center.y > B.center.y)
 		{
@@ -857,18 +858,16 @@ namespace DeltaEngine
 		}
 
 		// Calculate overlap on x axis
-		double x_overlap = a_extent + b_extent - abs(n.x);
+		float x_overlap = a_extent + b_extent - abs(n.x);
 
 		// SAT test on x axis
 		if (x_overlap > 0)
 		{
 			// Calculate half extents along y axis for each object
-			double a_extent2 = (abox.max.y - abox.min.y) / 2;
-			double b_extent2 = (bbox.max.y - bbox.min.y) / 2;
-
+			float a_extent2 = (abox.max.y - abox.min.y) / 2;
+			float b_extent2 = (bbox.max.y - bbox.min.y) / 2;
 			// Calculate overlap on y axis
-			double y_overlap = a_extent2 + b_extent2 - abs(n.y);
-
+			float y_overlap = a_extent2 + b_extent2 - abs(n.y);
 			// SAT test on y axis
 			if (y_overlap > 0)
 			{
@@ -882,21 +881,16 @@ namespace DeltaEngine
 					{
 						m.normal = { 1,0 };
 					}
-
-					//if (A.isWall || B.isWall)
-					//{
-					//	if (A.center.x > B.center.x)
-					//	{
-					//		A.collided_spot = { -1, 0 };
-					//		B.collided_spot = { 1, 0 };
-					//	}
-					//	else
-					//	{
-					//		A.collided_spot = { 1, 0 };
-					//		B.collided_spot = { -1, 0 };
-					//	}
-					//}
 					
+					if (A.center.y > B.center.y)
+					{
+						A.isCollidingOnFloor = true;
+					}
+					else
+					{
+						B.isCollidingOnFloor = true;
+					}
+
 					m.penetration = x_overlap;
 					return true;
 				}
@@ -911,27 +905,22 @@ namespace DeltaEngine
 						m.normal = { 0,1 };
 					}
 
-					//if (A.isWall || B.isWall)
+					if (A.center.y > B.center.y)
 					{
-						if (A.center.y > B.center.y)
-						{
-							A.isCollidingOnFloor = true;
-							//A.collided_spot = { 0,-1 };
-							//B.collided_spot = { 0, 1 };
-						}
-						else
-						{
-							B.isCollidingOnFloor = true;
-							//A.collided_spot = { 0, 1 };
-							//B.collided_spot = { 0,-1 };
-						}
+						A.isCollidingOnFloor = true;
 					}
+					else
+					{
+						B.isCollidingOnFloor = true;
+					}
+
 
 					m.penetration = y_overlap;
 					return true;
 				}
 			}
 		}
+
 		return false;
 	}
 
