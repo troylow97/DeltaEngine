@@ -23,8 +23,6 @@ struct CollisionPairInfo
 
 DEFINE_SYSTEM( CollisionSystem, Collider, RigidBody, Transform )
 
-
-
 std::vector<CollisionPairInfo> current_manifold_vector;
 std::vector<CollisionPairInfo> old_manifold_vector;
 
@@ -44,10 +42,11 @@ public:
   float knockback_amt = 500.0f;
   virtual void CollisionSystem::Update() override;
   virtual void CollisionSystem::LateUpdate() override;
+  virtual void CollisionSystem::Initialize() override;
   CollisionSystem::CollisionSystem() = default;
   CollisionSystem::~CollisionSystem() = default;
-  CollisionHandler collision_handler;
-  void CollisionSystem::Init();
+
+  static CollisionHandler collision_handler;
 
 
   END_DEFINE_SYSTEM( CollisionSystem )

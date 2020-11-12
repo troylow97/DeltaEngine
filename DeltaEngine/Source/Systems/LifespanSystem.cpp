@@ -8,15 +8,24 @@ namespace DeltaEngine
     {
         em.ForEach([&](EntityID& id, Lifespan& ls)
         {
-            if (ls.Lifespan < 0)
+            if (ls.Timer < 0)
             {
                 em.DestroyEntity(id);             
             }
             else
             {
-                ls.Lifespan -= env.pClock->DeltaTime();
+                ls.Timer -= env.pClock->DeltaTime();
             }
         });
+
+        em.ForEach([&](EntityID& id, Health& hp)
+            {
+                if (hp.CurrentHealth < 0)
+                {
+                    em.DestroyEntity(id);
+                }
+            });
+
     }
     void LifespanSystem::LateUpdate()
     {

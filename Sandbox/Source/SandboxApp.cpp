@@ -13,12 +13,14 @@
 #include "Systems/RenderSystem.h"
 #include "Systems/AttackSystem.h"
 #include "Systems/LifespanSystem.h"
-
+#include "../CollisionHandlingFunctions.h"
 class Sandbox : public DeltaEngine::Application
 {
 public:
 	Sandbox()
 	{
+		CollisionSystem::collision_handler.RegisterOnStay(TakeDamage);
+
 		EntityID first = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(first);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(first);
@@ -27,6 +29,7 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(first);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Input>(first);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Attack>(first);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<Health>(first);
 
 		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(first).type = "player";
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).size = { 0.5,0.5 };
@@ -44,6 +47,7 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(sec);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(sec);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(sec);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<Health>(sec);
 		//env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(sec);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<AI>(sec);
 		env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).key = "idle_monster";
@@ -63,6 +67,8 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(third);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(third);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(third);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(third);
+
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(third).type = ColliderType::BOX;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(third).position = { 0,-2,0 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(third).scale = { 10.5,0.5,0 };
@@ -70,11 +76,13 @@ public:
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Mass = 1500.0f;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).isMoveable = false;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Restitution = 0.0f;
+		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(third).type = "wall";
 
 		EntityID fourth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(fourth);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(fourth);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(fourth);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(fourth);
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(fourth).type = ColliderType::BOX;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fourth).position = { 4,0,0 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fourth).scale = { 0.5,10.5,0 };
@@ -82,11 +90,16 @@ public:
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Mass = 1500.0f;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).isMoveable = false;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Restitution = 0.0f;
+		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(fourth).type = "wall";
+
 
 		EntityID fifth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(fifth);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(fifth);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(fifth);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<Health>(fifth);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(fifth);
+
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(fifth).type = ColliderType::BOX;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fifth).position = { -2,2,0 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fifth).scale = { 0.5,0.5,0 };
@@ -95,10 +108,14 @@ public:
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).isMoveable = true;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fifth).Restitution = 0.0f;
 
+
 		EntityID sixth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(sixth);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(sixth);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(sixth);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<Health>(sixth);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(sixth);
+
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(sixth).type = ColliderType::BOX;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sixth).position = { -2,3,0 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sixth).scale = { 0.5,0.5,0 };

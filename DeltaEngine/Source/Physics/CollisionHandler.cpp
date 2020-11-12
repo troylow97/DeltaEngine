@@ -3,29 +3,29 @@
 namespace DeltaEngine
 {
 
-void CollisionHandler::OnEnter(EntityID& id)
+void CollisionHandler::OnEnter(EntityID& id1,EntityID& id2)
 {
-  m_enter.Invoke( id );
+  m_enter.Invoke( id1,id2 );
 }
-void CollisionHandler::OnStay(EntityID& id)
+void CollisionHandler::OnStay(EntityID& id1, EntityID& id2)
 {
-  m_stay.Invoke(id);
+  m_stay.Invoke(id1,id2);
 }
-void CollisionHandler::OnExit(EntityID& id)
+void CollisionHandler::OnExit(EntityID& id1, EntityID& id2)
 {
 
-  m_exit.Invoke(id);
+  m_exit.Invoke(id1,id2);
 }
 
-size_t CollisionHandler::RegisterOnEnter( Action<EntityID&> action )
+size_t CollisionHandler::RegisterOnEnter( Action<EntityID&, EntityID&> action )
 {
   return m_enter.Subscribe( action );
 }
-size_t CollisionHandler::RegisterOnStay( Action<EntityID&> action )
+size_t CollisionHandler::RegisterOnStay( Action<EntityID&, EntityID&> action )
 {
   return m_stay.Subscribe( action );
 }
-size_t CollisionHandler::RegisterOnExit( Action<EntityID&> action )
+size_t CollisionHandler::RegisterOnExit( Action<EntityID&, EntityID&> action )
 {
   return m_exit.Subscribe( action );
 }

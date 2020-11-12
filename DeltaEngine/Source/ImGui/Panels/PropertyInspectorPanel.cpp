@@ -148,7 +148,7 @@ void PropertyInspectorPanel::Render( bool )
     //ImGui::Text( "" );
     //ImGui::Text( "" );
 
-    static const char *components[] { " ", "transform", "rigidbody", "collider", "input","ai","entity_type" };
+    static const char *components[] { " ", "transform", "rigidbody", "collider", "input","ai","entity_type", "health", "attack", "lifespan"};
     static int selected = 0;
     ImGui::Combo( "Components", &selected, components, IM_ARRAYSIZE( components ) );
     if ( ImGui::Button( "Add Component" ) )

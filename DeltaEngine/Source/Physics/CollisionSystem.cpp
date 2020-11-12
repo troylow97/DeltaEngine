@@ -1,15 +1,14 @@
 #include "CollisionSystem.h"
 #include "Collision.h"
-#include "Core/Debugging/Logger/Log.h"
 #include "Core/Math/Math.h"
-#include <cmath>
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
-#include "Components/Character.h"
 #include "Manifold.h"
+
 
 namespace DeltaEngine
 {
+    CollisionHandler CollisionSystem::collision_handler;
 void CollisionSystem::Update()
 {
     for (size_t step = 0; step < env.pClock->Timesteps(); ++step)
@@ -23,8 +22,10 @@ void CollisionSystem::Update()
 void CollisionSystem::LateUpdate()
 {}
 
-void CollisionSystem::Init()
-{}
+void CollisionSystem::Initialize()
+{
+
+}
 
 void CollisionSystem::CollisionIntersectionCheck()
 {
@@ -96,34 +97,28 @@ void CollisionSystem::CollisionHandling()
       {
         if ( it1->id1.index == it2->id1.index && it1->id2.index == it2->id2.index )
         {
-          collision_handler.OnStay( it1->id1 );
-          collision_handler.OnStay( it1->id2 );
+          collision_handler.OnStay( it1->id1,it1->id2 );
           Handled = true;
-          //DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON STAY");
         }
       }
 
-      if ( !Handled )
+        if ( !Handled )
+        {
+          collision_handler.OnEnter(it1->id1, it1->id2);
+        }
+    }
+  }
+
+
+
+    if ( !Handled && !old_manifold_vector.empty() )
+    {
+      //handle previous pair exit
+      for ( auto it3 = old_manifold_vector.begin(); it3 != old_manifold_vector.end(); it3++ )
       {
-        collision_handler.OnEnter( it1->id1);
-        collision_handler.OnEnter( it1->id2);
-        //DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON ENTER");
+        collision_handler.OnExit(it3->id1, it3->id2);
       }
     }
-  }
-
-
-
-  if ( !Handled && !old_manifold_vector.empty() )
-  {
-    //handle previous pair exit
-    for ( auto it3 = old_manifold_vector.begin(); it3 != old_manifold_vector.end(); it3++ )
-    {
-      collision_handler.OnExit( it3->id1 );
-      collision_handler.OnExit( it3->id2 );
-      //DeltaEngine_CORE_TRACE("COLLISION_HANDLING: ON EXIT");
-    }
-  }
 
 }
 
