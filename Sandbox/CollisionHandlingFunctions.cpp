@@ -17,10 +17,11 @@ namespace DeltaEngine
 			auto& hp1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1);
 			auto& hp2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id2);
 
-			if (type1 == entity_type::E_BULLET && type2 != entity_type::E_WALL)
+			if (type1 == entity_type::E_BULLET || type2 == entity_type::E_BULLET)
 			{
-				env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
+				hp1.CurrentHealth--;
 				hp2.CurrentHealth--;
+				return;
 			}
 
 			if(type1 != entity_type::E_WALL && type2 != entity_type::E_WALL)
@@ -29,6 +30,7 @@ namespace DeltaEngine
 				ref1.CurrentHealth--;
 				auto& ref2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id2);
 				ref2.CurrentHealth--;
+				return;
 			}
 
 		}

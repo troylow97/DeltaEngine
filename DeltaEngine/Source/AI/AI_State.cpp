@@ -52,11 +52,11 @@ namespace DeltaEngine
 	}
 	void ChaseEnemyLancer::Update(EntityID& monster)
 	{
-
 		CheckEdges(monster);
 		env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
 		{
-			AITools::MoveTowardsEntity(monster, player);
+				if (et.type == entity_type::E_PLAYER)
+					AITools::MoveTowardsEntity(monster, player);
 		});
 	}
 //----------------------------------------------------------------------
@@ -104,9 +104,10 @@ namespace DeltaEngine
 
 		CheckEdges(monster);
 		env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
-			{
+		{
+			if(et.type == entity_type::E_PLAYER)
 				AITools::MoveTowardsEntity(monster, player);
-			});
+		});
 	}
 	//----------------------------------------------------------------------
 

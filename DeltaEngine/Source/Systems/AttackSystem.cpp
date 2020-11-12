@@ -31,7 +31,7 @@ namespace DeltaEngine
     {
        std::cout << "Ranged Attack" << std::endl;
        Transform& t1 = em.GetComponent<Transform>(id);
-       EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody,EntityType>();
+       EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody,EntityType,Health>();
        em.GetComponent<Transform>(missile).position = t1.position;
        em.GetComponent<RigidBody>(missile).Mass = 5.0f;
        em.GetComponent<Transform>(missile).scale = { 0.2,0.2,0.0 };
@@ -41,7 +41,7 @@ namespace DeltaEngine
        em.GetComponent<EntityType>(missile).type = entity_type::E_BULLET;
        em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
        em.GetComponent<RigidBody>(missile).Movespeed = 40.0f;
-
+       em.GetComponent<Health>(missile).CurrentHealth = 1;
        if (em.GetComponent<Image>(id).m_FlipX == false)
        {
            em.GetComponent<Transform>(missile).position.x += 0.8f;
