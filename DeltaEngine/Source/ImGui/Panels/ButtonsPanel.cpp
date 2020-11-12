@@ -34,7 +34,8 @@ namespace DeltaEngine
 
     void ButtonsPanel::Render(bool isdragged)
     {
-        ImGui::Begin(m_name.c_str(), &m_enabled, ImGuiWindowFlags_NoScrollbar);
+        ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse/* | ImGuiWindowFlags_NoSavedSettings*/;
+        ImGui::Begin(m_name.c_str(), &m_enabled, window_flags);
 
         topLeft = ImGui::GetWindowContentRegionMin();
         bottomRight = ImGui::GetWindowContentRegionMax();
