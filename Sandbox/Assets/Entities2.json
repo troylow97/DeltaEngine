@@ -2,7 +2,7 @@
     "Entities": [
         {
             "entity_type": {
-                "type": "wall"
+                "type": ""
             },
             "transform": {
                 "old_position": {
@@ -48,7 +48,7 @@
         },
         {
             "entity_type": {
-                "type": "wall"
+                "type": ""
             },
             "transform": {
                 "old_position": {
@@ -98,7 +98,7 @@
                 "curr": 0
             },
             "entity_type": {
-                "type": "player"
+                "type": ""
             },
             "health": {
                 "current_health": "max_health"
@@ -259,7 +259,7 @@
         },
         {
             "entity_type": {
-                "type": "monster"
+                "type": ""
             },
             "ai": {
                 "state": "idle_monster",

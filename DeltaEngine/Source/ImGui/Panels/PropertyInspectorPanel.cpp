@@ -189,7 +189,7 @@ void PropertyInspectorPanel::Render( bool )
               ImGui::DragInt(prop_name.c_str(), (int*)(value.get_value<int*>()), 0.01f);
           else if ( prop_type == rttr::type::get<bool*>() )
             ImGui::Checkbox( prop_name.c_str(),  value.get_value<bool *>()  );
-          else if (prop_type == rttr::type::get<std::string*>() && instance.get_type()==rttr::type::get<AI>() || instance.get_type() == rttr::type::get<EntityType>())
+          else if (prop_type == rttr::type::get<std::string*>() && instance.get_type()==rttr::type::get<AI>())
           {
               auto& str = *value.get_value<std::string*>();
               char buffer[256]{};
