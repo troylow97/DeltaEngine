@@ -258,15 +258,15 @@ rttr::type RT_Checker( size_t bits )
     return rttr::type::get_by_name( "text" );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     return rttr::type::get_by_name( "renderer2D" );
-  if (rttr::type::get_by_name("ai").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<AI>()->bits == bits)
       return rttr::type::get_by_name("ai");
-  if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<EntityType>()->bits == bits)
       return rttr::type::get_by_name("entity_type");
-  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
       return rttr::type::get_by_name("attack");
-  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
       return rttr::type::get_by_name("health");
-  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       return rttr::type::get_by_name("lifespan");
   return rttr::type::get<int>();
 }
@@ -299,6 +299,13 @@ void RT_Destroy(EntityManager &em, EntityID id, size_t bits)
     em.RemoveComponent<AI>( id );
   if ( ComponentMeta::GetComponentMeta<EntityType>()->bits == bits )
     em.RemoveComponent<EntityType>( id );
+  if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
+    em.RemoveComponent<Attack>(id);
+  if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
+    em.RemoveComponent<Health>(id);
+  if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
+    em.RemoveComponent<Lifespan>(id);
+
 }
 
 void RT_Setter( EntityManager &em, EntityID id, size_t bits )
@@ -325,15 +332,15 @@ void RT_Setter( EntityManager &em, EntityID id, size_t bits )
     em.AddComponent<Text>( id );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     em.AddComponent<Renderer2D>( id );
-  if (rttr::type::get_by_name("ai").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<AI>()->bits == bits)
       em.AddComponent<AI>(id);
-  if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<EntityType>()->bits == bits)
       em.AddComponent<EntityType>(id);
-  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
       em.AddComponent<Attack>(id);
-  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
       em.AddComponent<Health>(id);
-  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       em.AddComponent<Lifespan>(id);
 }
 
@@ -361,15 +368,15 @@ rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
     return rttr::instance( em.GetComponent<Text>( id ) );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     return rttr::instance( em.GetComponent<Renderer2D>( id ) );
-  if (rttr::type::get_by_name("ai").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<AI>()->bits == bits)
       return rttr::instance(em.GetComponent<AI>(id));
-  if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<EntityType>()->bits == bits)
       return rttr::instance(em.GetComponent<EntityType>(id));
-  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
       return rttr::instance(em.GetComponent<Attack>(id));
-  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
       return rttr::instance(em.GetComponent<Health>(id));
-  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       return rttr::instance(em.GetComponent<Lifespan>(id));
   return rttr::instance();
 }

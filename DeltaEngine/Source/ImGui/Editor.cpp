@@ -28,7 +28,10 @@
 #include "Panels/WorldPanel.h"
 
 #include "EditorDirectoryWatcher.h"
+#include "IconsFontAwesome5.h"
 #include "Core/TypeAlias.h"
+#include "Panels/ButtonsPanel.h"
+
 namespace DeltaEngine
 {
 

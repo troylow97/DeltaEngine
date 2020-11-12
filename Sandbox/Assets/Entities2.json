@@ -37,6 +37,7 @@
                 "is_jumping": false
             },
             "collider": {
+                "type": "box",
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
@@ -79,6 +80,7 @@
                 "is_jumping": false
             },
             "collider": {
+                "type": "box",
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
@@ -121,6 +123,7 @@
                 "is_jumping": false
             },
             "collider": {
+                "type": "box",
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
@@ -163,6 +166,7 @@
                 "is_jumping": false
             },
             "collider": {
+                "type": "box",
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
@@ -218,6 +222,7 @@
                 "is_jumping": false
             },
             "collider": {
+                "type": "box",
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
@@ -267,6 +272,7 @@
                 "is_jumping": false
             },
             "collider": {
+                "type": "box",
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
