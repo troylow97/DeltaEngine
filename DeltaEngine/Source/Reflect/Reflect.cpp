@@ -14,6 +14,7 @@
 #include "Core/Utils/Json/JsonSerialize.h"
 #include "Core/GlobalStruct.h"
 #include "Assets/AssetManager.h"
+
 namespace DeltaEngine
 {
 
@@ -184,6 +185,23 @@ RTTR_REGISTRATION
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("type", &EntityType::type)(rttr::policy::prop::bind_as_ptr);
 
+  rttr::registration::class_<Health>("health")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("current_health", &Health::CurrentHealth)(rttr::policy::prop::bind_as_ptr)
+      .property("max_health", &Health::MaxHealth)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<Attack>("attack")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("damage", &Attack::Damage)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<Lifespan>("lifespan")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("lifespan", &Lifespan::Lifespan)(rttr::policy::prop::bind_as_ptr);
+
+
 }
 
 }
@@ -219,6 +237,12 @@ rttr::type RT_Checker( size_t bits )
       return rttr::type::get_by_name("ai");
   if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
       return rttr::type::get_by_name("entity_type");
+  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+      return rttr::type::get_by_name("attack");
+  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+      return rttr::type::get_by_name("health");
+  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+      return rttr::type::get_by_name("lifespan");
   return rttr::type::get<int>();
 }
 
@@ -250,6 +274,12 @@ void RT_Setter( EntityManager &em, EntityID id, size_t bits )
       em.AddComponent<AI>(id);
   if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
       em.AddComponent<EntityType>(id);
+  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+      em.AddComponent<Attack>(id);
+  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+      em.AddComponent<Health>(id);
+  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+      em.AddComponent<Lifespan>(id);
 }
 
 rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
@@ -280,6 +310,12 @@ rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
       return rttr::instance(em.GetComponent<AI>(id));
   if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
       return rttr::instance(em.GetComponent<EntityType>(id));
+  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+      return rttr::instance(em.GetComponent<Attack>(id));
+  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+      return rttr::instance(em.GetComponent<Health>(id));
+  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+      return rttr::instance(em.GetComponent<Lifespan>(id));
   return rttr::instance();
 }
 
@@ -311,6 +347,12 @@ void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::F
       Serialize::WriteObject(*static_cast<AI*>(ptr), writer);
   else if (str == "entity_type")
       Serialize::WriteObject(*static_cast<EntityType*>(ptr), writer);
+  else if (str == "attack")
+      Serialize::WriteObject(*static_cast<Attack*>(ptr), writer);
+  else if (str == "health")
+      Serialize::WriteObject(*static_cast<Health*>(ptr), writer);
+  else if (str == "lifespan")
+      Serialize::WriteObject(*static_cast<Lifespan*>(ptr), writer);
 }
 
 void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rttr::variant var )
@@ -341,5 +383,11 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
       em.AddComponent<AI>(id, var.get_value<AI>());
   else if (str == "entity_type")
       em.AddComponent<EntityType>(id, var.get_value<EntityType>());
+  else if (str == "attack")
+      em.AddComponent<Attack>(id, var.get_value<Attack>());
+  else if (str == "health")
+      em.AddComponent<Health>(id, var.get_value<Health>());
+  else if (str == "lifespan")
+      em.AddComponent<Lifespan>(id, var.get_value<Lifespan>());
 }
 }
