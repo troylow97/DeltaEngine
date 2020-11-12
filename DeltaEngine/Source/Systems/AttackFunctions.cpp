@@ -1,12 +1,12 @@
 #include "AttackFunctions.h"
-
-class Collider;
+#include "Components/Transform.h"
+#include "Components/Collider.h"
 
 namespace DeltaEngine
 {
 	void PlayerRangedAttack(EntityID& id)
 	{
-		Transform& t1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
+
 
 	}
 }

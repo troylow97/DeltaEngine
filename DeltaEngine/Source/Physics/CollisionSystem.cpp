@@ -68,7 +68,7 @@ void CollisionSystem::CollisionIntersectionCheck()
                     {
                         c1.isCollidingOnFloor = false;
                         c2.isCollidingOnFloor = false;
-                        if (AABBvsAABB_Manifold(c1, c2, m));
+                        if (AABBvsAABB_Manifold(c1, c2, m))
                          current_manifold_vector.push_back({ m,id1,id2 });
                     }
 

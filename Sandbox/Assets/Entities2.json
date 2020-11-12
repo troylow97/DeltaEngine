@@ -39,7 +39,8 @@
             "collider": {
                 "type": "box",
                 "is_collideable": true,
-                "is_trigger": false
+                "is_trigger": false,
+                "collision_layer_id": "collision_layer_check"
             }
         },
         {
@@ -81,7 +82,8 @@
             "collider": {
                 "type": "box",
                 "is_collideable": true,
-                "is_trigger": false
+                "is_trigger": false,
+                "collision_layer_id": "collision_layer_check"
             }
         },
         {
@@ -123,7 +125,8 @@
             "collider": {
                 "type": "box",
                 "is_collideable": true,
-                "is_trigger": false
+                "is_trigger": false,
+                "collision_layer_id": "collision_layer_check"
             }
         },
         {
@@ -165,7 +168,8 @@
             "collider": {
                 "type": "box",
                 "is_collideable": true,
-                "is_trigger": false
+                "is_trigger": false,
+                "collision_layer_id": "collision_layer_check"
             }
         },
         {
@@ -214,7 +218,8 @@
             "collider": {
                 "type": "box",
                 "is_collideable": true,
-                "is_trigger": false
+                "is_trigger": false,
+                "collision_layer_id": "collision_layer_check"
             }
         },
         {
@@ -263,7 +268,8 @@
             "collider": {
                 "type": "box",
                 "is_collideable": true,
-                "is_trigger": false
+                "is_trigger": false,
+                "collision_layer_id": "collision_layer_check"
             }
         }
     ]

@@ -1,6 +1,5 @@
 #pragma once
-
-class EntityID;
+#include "ECS/Entities.h"
 
 namespace DeltaEngine
 {

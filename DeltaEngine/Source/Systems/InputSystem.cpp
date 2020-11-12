@@ -109,7 +109,7 @@ void InputSystem::Update()
   {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1)
       {
-           PlayerRangedAttack(i1);
+           PlayerRangedAttack(id1);
       });
   }
 
