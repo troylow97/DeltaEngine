@@ -60,14 +60,4 @@ namespace DeltaEngine
 
         ImGui::End();
     }
-
-    ImVec2 ButtonsPanel::GetTopLeft()
-    {
-        return topLeft;
-    }
-
-    ImVec2 ButtonsPanel::GetBottomRight()
-    {
-        return bottomRight;
-    }
 }
