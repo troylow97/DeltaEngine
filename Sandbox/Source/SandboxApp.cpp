@@ -13,7 +13,8 @@
 #include "Systems/RenderSystem.h"
 #include "Systems/AttackSystem.h"
 #include "Systems/LifespanSystem.h"
-#include "../CollisionHandlingFunctions.h"
+#include "CollisionHandlingFunctions.h"
+
 class Sandbox : public DeltaEngine::Application
 {
 public:

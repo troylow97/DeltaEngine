@@ -155,8 +155,8 @@
                 "type": ""
             },
             "health": {
-                "current_health": 200,
-                "max_health": 200
+                "current_health": 5000,
+                "max_health": 5000
             },
             "attack": {
                 "damage": 1.0,
