@@ -1,9 +1,6 @@
 {
     "Entities": [
         {
-            "entity_type": {
-                "type": ""
-            },
             "transform": {
                 "old_position": {
                     "x": 0.0,
@@ -44,12 +41,12 @@
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
+            },
+            "entity_type": {
+                "type": ""
             }
         },
         {
-            "entity_type": {
-                "type": ""
-            },
             "transform": {
                 "old_position": {
                     "x": 0.0,
@@ -90,24 +87,15 @@
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
+            },
+            "entity_type": {
+                "type": ""
             }
         },
         {
             "input": {
                 "prev": 0,
                 "curr": 0
-            },
-            "entity_type": {
-                "type": ""
-            },
-            "health": {
-                "current_health": "max_health"
-            },
-            "attack": {
-                "damage": 1.0,
-                "max_cooldown": 1.0,
-                "cooldown_timer": 0.0,
-                "isAttacking": false
             },
             "transform": {
                 "old_position": {
@@ -155,17 +143,29 @@
                     "key": "",
                     "index": 0
                 },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
                 "flip_x": false,
                 "flip_y": false
-            }
-        },
-        {
+            },
             "entity_type": {
                 "type": ""
             },
             "health": {
-                "current_health": "max_health"
+                "current_health": 200,
+                "max_health": 200
             },
+            "attack": {
+                "damage": 1.0,
+                "max_cooldown": 1.0,
+                "cooldown_timer": 0.0,
+                "isAttacking": false
+            }
+        },
+        {
             "transform": {
                 "old_position": {
                     "x": 0.0,
@@ -206,15 +206,16 @@
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
-            }
-        },
-        {
+            },
             "entity_type": {
                 "type": ""
             },
             "health": {
-                "current_health": "max_health"
-            },
+                "current_health": 200,
+                "max_health": 200
+            }
+        },
+        {
             "transform": {
                 "old_position": {
                     "x": 0.0,
@@ -255,19 +256,16 @@
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
-            }
-        },
-        {
+            },
             "entity_type": {
                 "type": ""
             },
-            "ai": {
-                "state": "idle_monster",
-                "transition": "null"
-            },
             "health": {
-                "current_health": "max_health"
-            },
+                "current_health": 200,
+                "max_health": 200
+            }
+        },
+        {
             "transform": {
                 "old_position": {
                     "x": 0.0,
@@ -308,6 +306,17 @@
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
+            },
+            "entity_type": {
+                "type": ""
+            },
+            "ai": {
+                "state": "idle_monster",
+                "transition": "null"
+            },
+            "health": {
+                "current_health": 200,
+                "max_health": 200
             }
         }
     ]

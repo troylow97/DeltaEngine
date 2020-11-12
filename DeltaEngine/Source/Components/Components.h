@@ -11,12 +11,13 @@
 #include "Animator.h"
 #include "State.h"
 #include "EntityInfo.h"
-#include "Core/Typelist/Typelist.h"
 #include "AI.h"
 #include "EntityType.h"
 #include "Health.h"
 #include "Attack.h"
 #include "Lifespan.h"
+#include "Core/Typelist/Typelist.h"
+
 
 namespace DeltaEngine
 {

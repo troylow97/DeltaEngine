@@ -70,10 +70,10 @@ void PropertyInspectorPanel::Render( bool )
         ImGui::EndDragDropTarget();
     }
 
-    static const char *components[] { " ", "Name", "Parent", "Input",
-      "Transform", "Rigidbody", "Collider",
-      "Image","Renderer2D", "Text", "Animator", "State",
-      "EntityType", "AI", "Health", "Attack", "Lifespan"};
+    static const char *components[] { " ", "name", "parent", "input",
+      "transform", "rigidbody", "collider",
+      "image","renderer2D", "text", "animator", "state",
+      "entity_type", "ai", "health", "attack", "lifespan"};
     static int selected = 0;
     ImGui::Combo( "Components", &selected, components, IM_ARRAYSIZE( components ) );
     if ( ImGui::Button( "Add Component" ) )
@@ -102,7 +102,7 @@ void PropertyInspectorPanel::Render( bool )
           RT_Reflect::RT_Destroy( em, { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
           ImGui::PopStyleColor( 3 );
           ImGui::PopID();
-          continue;
+          break;
         }
         ImGui::PopStyleColor( 3 );
         ImGui::PopID();
