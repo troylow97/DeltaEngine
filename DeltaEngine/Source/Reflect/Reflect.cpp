@@ -186,13 +186,13 @@ RTTR_REGISTRATION
       .property("type", &EntityType::type)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Health>("health")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Health>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("current_health", &Health::CurrentHealth)(rttr::policy::prop::bind_as_ptr)
       .property("max_health", &Health::MaxHealth)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Attack>("attack")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("damage", &Attack::Damage)(rttr::policy::prop::bind_as_ptr)
       .property("max_cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
@@ -200,7 +200,7 @@ RTTR_REGISTRATION
       .property("isAttacking", &Attack::isAttacking)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Lifespan>("lifespan")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("lifespan", &Lifespan::Lifespan)(rttr::policy::prop::bind_as_ptr);
 

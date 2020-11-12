@@ -180,6 +180,12 @@
             "entity_type": {
                 "type": "player"
             },
+            "attack": {
+                "damage": 0.0,
+                "max_cooldown": 0.0,
+                "cooldown_timer": 0.0,
+                "isAttacking": false
+            },
             "transform": {
                 "old_position": {
                     "x": 0.0,
