@@ -20,8 +20,8 @@ namespace DeltaEngine
 			if (type1 != type2)
 			{
 				//Lancer Melee Attack
-				if ((type1 == entity_type::E_LANCER_CHARGE || type2 == entity_type::E_LANCER_CHARGE) &&
-					(type1 == entity_type::E_PLAYER || type2 == entity_type::E_PLAYER))
+				if ((type1 == EntityCategory::E_LANCER_CHARGE || type2 == EntityCategory::E_LANCER_CHARGE) &&
+					(type1 == EntityCategory::E_PLAYER || type2 == EntityCategory::E_PLAYER))
 				{
 					hp1.CurrentHealth--;
 					hp2.CurrentHealth--;
@@ -29,8 +29,8 @@ namespace DeltaEngine
 				}
 
 				//Player Ranged Attack
-				if ((type1 == entity_type::E_PLAYER_BULLET || type2 == entity_type::E_PLAYER_BULLET) &&
-					(type1 == entity_type::E_ENEMY || type2 == entity_type::E_ENEMY))
+				if ((type1 == EntityCategory::E_PLAYER_BULLET || type2 == EntityCategory::E_PLAYER_BULLET) &&
+					(type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
 				{
 					hp1.CurrentHealth--;
 					hp2.CurrentHealth--;
@@ -38,8 +38,8 @@ namespace DeltaEngine
 				}
 
 				//Player Melee Attack
-				if ((type1 == entity_type::E_PLAYER_PUNCH || type2 == entity_type::E_PLAYER_PUNCH) &&
-					(type1 == entity_type::E_ENEMY || type2 == entity_type::E_ENEMY))
+				if ((type1 == EntityCategory::E_PLAYER_PUNCH || type2 == EntityCategory::E_PLAYER_PUNCH) &&
+					(type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
 				{
 					hp1.CurrentHealth--;
 					hp2.CurrentHealth--;
@@ -47,10 +47,10 @@ namespace DeltaEngine
 				}
 
 				//Enemy Collide with player
-				if ((type1 == entity_type::E_ENEMY && type2 == entity_type::E_PLAYER) ||
-					(type1 == entity_type::E_PLAYER && type2 == entity_type::E_ENEMY))
+				if ((type1 == EntityCategory::E_ENEMY && type2 == EntityCategory::E_PLAYER) ||
+					(type1 == EntityCategory::E_PLAYER && type2 == EntityCategory::E_ENEMY))
 				{
-					if (type1 == entity_type::E_PLAYER)
+					if (type1 == EntityCategory::E_PLAYER)
 						hp1.CurrentHealth--;
 					else
 						hp2.CurrentHealth--;

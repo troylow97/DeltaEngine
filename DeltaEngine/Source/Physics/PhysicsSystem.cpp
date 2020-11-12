@@ -12,7 +12,7 @@ namespace DeltaEngine
         m_gravity_amount = { 0,-60.0f };
         CurrentJumpTicks = 0;
         MaxJumpTicks = 10;
-        InitialJumpForce = 4000.0f;
+        InitialJumpForce = 4500.0f;
         JumpForce = InitialJumpForce;
         m_max_velocity = 1000.0f;
     }

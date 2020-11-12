@@ -6,7 +6,7 @@ struct Health
 	int MaxHealth;
 
 	Health() :
-		CurrentHealth{200},
-		MaxHealth{200}
+		CurrentHealth{10},
+		MaxHealth{10}
 	{}
 };

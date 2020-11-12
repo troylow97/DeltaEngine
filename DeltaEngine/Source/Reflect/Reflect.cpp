@@ -72,6 +72,17 @@ RTTR_REGISTRATION
     rttr::value( "ray", ColliderType::RAY )
   );
 
+  rttr::registration::enumeration<EntityCategory>("entity_category")
+  (
+  rttr::value("none", EntityCategory::E_NONE),
+  rttr::value("wall", EntityCategory::E_WALL),
+  rttr::value("player", EntityCategory::E_PLAYER),
+  rttr::value("enemy", EntityCategory::E_ENEMY),
+  rttr::value("player_bullet", EntityCategory::E_PLAYER_BULLET),
+  rttr::value("player_punch", EntityCategory::E_PLAYER_PUNCH),
+  rttr::value("charge", EntityCategory::E_LANCER_CHARGE)
+  );
+
   rttr::registration::enumeration<Alignment>( "alignment" )
   (
     rttr::value( "align_left", Alignment::AlignLeft ),
@@ -79,7 +90,7 @@ RTTR_REGISTRATION
     rttr::value( "center", Alignment::Centralize )
   );
 
-  rttr::registration::enumeration<FillType>( "alignment" )
+  rttr::registration::enumeration<FillType>( "filltype" )
     (
     rttr::value( "none", FillType::None ),
     rttr::value( "horizontal_left_to_right", FillType::HorizontalLeftToRight ),
@@ -207,7 +218,7 @@ RTTR_REGISTRATION
   rttr::registration::class_<EntityType>("entity_type")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("type", &EntityType::type)(rttr::policy::prop::bind_as_ptr);
+      .property("category", &EntityType::type)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Health>("health")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Health>()->bits))

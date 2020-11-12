@@ -3,8 +3,9 @@
 
 namespace DeltaEngine
 {
-    enum class entity_type : unsigned int
+    enum class EntityCategory : unsigned
     {
+        E_NONE,
         E_WALL,
         E_PLAYER,
         E_ENEMY,
@@ -15,6 +16,6 @@ namespace DeltaEngine
 
 	struct EntityType
 	{
-        entity_type type;
+        EntityCategory type;
 	};
 }
