@@ -26,7 +26,7 @@ void RenderSystem::Update()
 
   std::vector<EntityID> sortedRenderers;
 
-  em.ForEach( [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
+  em.ForEach( e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
   std::sort(sortedRenderers.begin(), sortedRenderers.end(), SortSprites);
 
   for (EntityID ID : sortedRenderers)
@@ -65,7 +65,7 @@ void RenderSystem::Update()
           r.m_Material.SetUniformMatrix4f("_P", proj);
           r.m_Material.SetUniformColor4f("_Color", r.m_Color);
           r.m_Material.SetUniform1i("_MainTex", 0);
-          r.m_Material.SetUniform1i("_FillType", static_cast<int>(i.m_FillType));
+          r.m_Material.SetUniform1i("_FillType", static_cast<int>(5));
           r.m_Material.SetUniform1f("_FillAmount", i.m_FillAmount);
           r.m_Material.SetUniform1f("_RRot", i.m_OverallAngle);
           r.m_Material.SetUniform1f("_RStart", i.m_StartAngle);

@@ -7,41 +7,9 @@
 namespace DeltaEngine
 {
 Texture2D::Texture2D( std::string filepath )
-  : m_RendererID { 0 }, m_Data { nullptr }, m_Width { 0 }, m_Height { 0 }, m_Filepath { filepath }, m_Name { filepath }
+  : m_RendererID{ 0 }, m_Channels{ 0 }, m_Width{ 0 }, m_Height{ 0 }, m_Filepath{ filepath }, m_Name{ filepath }
 {
-  stbi_set_flip_vertically_on_load( 0 );
-
-  GLCall( glGenTextures( 1, &m_RendererID ) );
-  GLCall( glBindTexture( GL_TEXTURE_2D, m_RendererID ) );
-
-  int channels;
-
-  m_Data = stbi_load( filepath.c_str(), &m_Width, &m_Height, &channels, 0 );
-
-  if ( !m_Data )
-  {
-    DeltaEngine_CORE_ERROR( "ERROR: Couldn't create texture {}!", filepath );
-    m_Filepath = "";
-  }
-
-  GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR ) );
-  GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR ) );
-  GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT ) );
-  GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT ) );
-
-  GLCall( glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_Data ) );
-  GLCall( glGenerateMipmap( GL_TEXTURE_2D ) );
-  GLCall( glBindTexture( GL_TEXTURE_2D, 0 ) );
-
-  if ( m_Data )
-    stbi_image_free( m_Data );
-
-  std::size_t pos;
-  pos = m_Name.find( "." );
-  if ( pos != std::string::npos )
-    m_Name.erase( pos );
-
-  LoadMetaFile( filepath + ".info" );
+  InitTexture(filepath);
 }
 
 Texture2D::~Texture2D()
@@ -73,6 +41,81 @@ int Texture2D::GetHeight() const
 unsigned int Texture2D::GetRendererID() const
 {
   return m_RendererID;
+}
+
+void Texture2D::AutoSlice()
+{
+  textureInfo.clear();
+  unsigned char* m_Data = stbi_load(m_Filepath.c_str(), &m_Width, &m_Height, &m_Channels, 0);
+
+  // only auto slice if there is an alpha channel
+  if (m_Channels != 4)
+  {
+    textureInfo.push_back({
+      Vector2(0, 0), Vector2(static_cast<float>(m_Width), static_cast<float>(m_Height)), Vector2(0.5f, 0.5f) });
+  }
+  else
+  {
+    std::vector<std::pair<unsigned int, unsigned int>> visited;
+    std::vector<std::pair<unsigned int, unsigned int>> sprite;
+    std::queue<std::pair<unsigned int, unsigned int>> queue;
+
+    for (unsigned int y = 0; y < m_Height; ++y)
+    {
+      for (unsigned int x = 0; x < m_Width; ++x)
+      {
+        // check for a non-transparent pixel
+        if (*(m_Data + ((long long)x + (long long)y * m_Width) * 4 + 3) != 0)
+        {
+          unsigned int a = x, b = y;
+          queue.push(std::pair<unsigned int, unsigned int>{x, y});
+          do
+          {
+            a = queue.front().first;
+            b = queue.front().second;
+            // check if the pixel has been visited
+            if (std::find(visited.begin(), visited.end(), std::pair<unsigned int, unsigned int>{x, y}) == visited.end())
+            {
+              sprite.push_back(std::pair<unsigned int, unsigned int>{a, b});
+              // use 8 way flood fill algorithm to detect the sprite
+              // add valid neighbours to the queue
+              for (int j = -1; j < 1; ++j)
+                for (int i = -1; i < 1; ++i)
+                  if (
+                    x == 0 && i == -1 ||
+                    y == 0 && j == -1 ||
+                    x == m_Width - 1 && i == 1 ||
+                    y == m_Height - 1 && j == 1 ||
+                    i == 0 && j == 0)
+                    if (*(m_Data + ((long long)x + i + ((long long)y + j) * m_Width) * 4 + 3) != 0)
+                      queue.push(std::pair<unsigned int, unsigned int>{x + i, y + j});
+            }
+            queue.pop();
+          } while (queue.size());
+
+          // get the bounding box from the sprite vector
+          int minX = m_Width, maxX = 0, minY = m_Height, maxY = 0;
+          for (auto& spriteCoords : sprite)
+          {
+            minX = spriteCoords.first < minX ? spriteCoords.first : minX;
+            maxX = spriteCoords.first > maxX ? spriteCoords.first : maxX;
+            minY = spriteCoords.second < minY ? spriteCoords.second : minY;
+            maxY = spriteCoords.second > maxY ? spriteCoords.second : maxY;
+          }
+          // add the info
+          textureInfo.push_back({
+            Vector2(1.0f * minX, 1.0f * minY),
+            Vector2(1.0f * maxX - minX, 1.0f * maxY - minY),
+            Vector2(0.5f, 0.5f) });
+
+          // clear the sprite vector, leave visited vector untouched
+          sprite.clear();
+        }
+      }
+    }
+  }
+
+  UpdateMetaFile( m_Filepath + ".info" );
 }
 
 void Texture2D::Slice( TextureInfo info )
@@ -112,6 +155,41 @@ Vector2 Texture2D::GetPivot( unsigned int index )
 std::string Texture2D::GetName()
 {
   return m_Name;
+}
+
+void Texture2D::InitTexture(std::string filepath)
+{
+  stbi_set_flip_vertically_on_load(0);
+
+  GLCall(glGenTextures(1, &m_RendererID));
+  GLCall(glBindTexture(GL_TEXTURE_2D, m_RendererID));
+
+  unsigned char* m_Data = stbi_load(filepath.c_str(), &m_Width, &m_Height, &m_Channels, 0);
+
+  if (!m_Data)
+  {
+    DeltaEngine_CORE_ERROR("ERROR: Couldn't create texture {}!", filepath);
+    m_Filepath = "";
+  }
+
+  GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+  GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+  GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+  GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+
+  GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_Data));
+  GLCall(glGenerateMipmap(GL_TEXTURE_2D));
+  GLCall(glBindTexture(GL_TEXTURE_2D, 0));
+
+  if (m_Data)
+    stbi_image_free(m_Data);
+
+  std::size_t pos;
+  pos = m_Name.find(".");
+  if (pos != std::string::npos)
+    m_Name.erase(pos);
+
+  LoadMetaFile(filepath + ".info");
 }
 
 void Texture2D::LoadMetaFile( std::string filepath )

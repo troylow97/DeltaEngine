@@ -33,6 +33,9 @@ class FontLoader final : public AbstractLoader<Font>
       Set( key, nullptr, AssetState::NotFound, AssetLifetime::Persistent );
     else
       Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+
+    DeltaEngine_CORE_TRACE( "Font Key: {}", str);
+
   }
 };
 } // namespace DeltaEngine

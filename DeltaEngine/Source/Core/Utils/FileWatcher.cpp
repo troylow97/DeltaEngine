@@ -2,6 +2,8 @@
 #include "IFileWatcherListener.h"
 #include <windows.h>
 
+#include "Core/Debugging/Logger/Log.h"
+
 namespace DeltaEngine
 {
 
@@ -21,9 +23,9 @@ namespace DeltaEngine
 
   void FileWatcher::Start()
   {
-    if (!m_running.load(std::memory_order_relaxed))
+    if (!m_running.load())
     {
-      m_running.store(true, std::memory_order_relaxed);
+      m_running.store(true);
       m_thread = std::thread(FileWatcher::Thread, std::ref(*this));
       m_thread.detach();
     }
@@ -31,28 +33,28 @@ namespace DeltaEngine
 
   void FileWatcher::Stop()
   {
-    m_running.store(false, std::memory_order_relaxed);
+    m_running.store(false);
   }
 
   void FileWatcher::OnFileAdded(std::filesystem::path file)
   {
     for (auto &ref : m_listeners)
-      ref->OnFileAdded(file);
+      ref->OnFileAdded(file.generic_string());
   }
   void FileWatcher::OnFileDeleted(std::filesystem::path file)
   {
     for (auto &ref : m_listeners)
-      ref->OnFileDeleted(file);
+      ref->OnFileDeleted(file.generic_string());
   }
   void FileWatcher::OnFileChanged(std::filesystem::path file)
   {
     for (auto &ref : m_listeners)
-      ref->OnFileChanged(file);
+      ref->OnFileChanged(file.generic_string());
   }
   void FileWatcher::OnFileRenamed(std::filesystem::path file)
   {
     for (auto &ref : m_listeners)
-      ref->OnFileRenamed(file);
+      ref->OnFileRenamed(file.generic_string());
   }
 
   void FileWatcher::Thread(FileWatcher &fileWatcher)
@@ -74,7 +76,7 @@ namespace DeltaEngine
                hDir,           // handle to directory
                &buffer,        // read results buffer
                sizeof(buffer), // length of buffer
-               FALSE,          // not monitoring subdirectories
+               TRUE,          // not monitoring subdirectories
                FILE_NOTIFY_CHANGE_SECURITY |
                    FILE_NOTIFY_CHANGE_CREATION |
                    FILE_NOTIFY_CHANGE_LAST_ACCESS |

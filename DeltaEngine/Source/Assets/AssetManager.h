@@ -86,6 +86,9 @@ public:
   template <typename T1>
   AssetManager<Ts...> &SetLoader( AbstractLoader<T1> *loader );
 
+  template <typename T1>
+  const std::vector<std::pair<AssetKey, T1*>> List() const;
+
 private:
   template <typename T1, typename... T1s>
   void FreeInternal( AssetTypePack<T1, T1s...> );

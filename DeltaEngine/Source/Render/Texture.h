@@ -15,7 +15,7 @@ struct TextureInfo
 class Texture2D
 {
   unsigned int m_RendererID;
-  unsigned char *m_Data;
+  int m_Channels;
   int m_Width, m_Height;
   std::string m_Filepath, m_Name;
 public:
@@ -30,6 +30,7 @@ public:
 
   unsigned int GetRendererID() const;
 
+  void AutoSlice();
   void Slice( TextureInfo info );
   void SliceAll( unsigned int columns, unsigned int rows );
 
@@ -40,6 +41,7 @@ public:
   std::string GetName();
   std::vector<TextureInfo> textureInfo;
 private:
+  void InitTexture( std::string filepath );
   void LoadMetaFile( std::string filepath );
   void UpdateMetaFile( std::string filepath );
 };

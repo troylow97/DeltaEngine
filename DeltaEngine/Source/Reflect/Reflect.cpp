@@ -17,7 +17,6 @@
 
 namespace DeltaEngine
 {
-
 RTTR_REGISTRATION
 {
   rttr::registration::class_<EngineConfig>( "config" )
@@ -66,11 +65,11 @@ RTTR_REGISTRATION
 
   rttr::registration::enumeration<ColliderType>( "collider_type" )
   (
-      rttr::value( "none", ColliderType::NONE ),
-      rttr::value( "box", ColliderType::BOX ),
-      rttr::value( "circle", ColliderType::CIRCLE ),
-      rttr::value( "line", ColliderType::LINE ),
-      rttr::value( "ray", ColliderType::RAY )
+    rttr::value( "none", ColliderType::NONE ),
+    rttr::value( "box", ColliderType::BOX ),
+    rttr::value( "circle", ColliderType::CIRCLE ),
+    rttr::value( "line", ColliderType::LINE ),
+    rttr::value( "ray", ColliderType::RAY )
   );
 
   rttr::registration::enumeration<Alignment>( "alignment" )
@@ -79,6 +78,17 @@ RTTR_REGISTRATION
     rttr::value( "align_right", Alignment::AlignRight ),
     rttr::value( "center", Alignment::Centralize )
   );
+
+  rttr::registration::enumeration<FillType>( "alignment" )
+    (
+    rttr::value( "none", FillType::None ),
+    rttr::value( "horizontal_left_to_right", FillType::HorizontalLeftToRight ),
+    rttr::value( "horizontal_right_to_left", FillType::HorizontalRightToLeft ),
+    rttr::value( "vertical_top_to_bottom", FillType::VerticalTopToBottom ),
+    rttr::value( "vertical_bottom_to_top", FillType::VerticalBottomToTop ),
+    rttr::value( "radial_360_clockwise", FillType::Radial360Clockwise ),
+    rttr::value( "radial_360_anticlockwise", FillType::Radial360AntiClockwise )
+    );
 
   rttr::registration::class_<Name>( "name" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Name>()->bits ) )
@@ -101,22 +111,27 @@ RTTR_REGISTRATION
   rttr::registration::class_<RigidBody>( "rigidbody" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "direction", &RigidBody::Direction )( rttr::metadata( "NO_SERIALIZE", true ),( rttr::metadata( "NO_EDITOR", true ) ) )
+    .property( "direction", &RigidBody::Direction )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                  ( rttr::metadata( "NO_EDITOR", true ) ) )
     .property( "velocity", &RigidBody::Velocity )( rttr::metadata( "NO_SERIALIZE", true ) )
-    .property( "reflected_vector", &RigidBody::ReflectedVector )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "acceleration", &RigidBody::Acceleration )( rttr::metadata( "NO_SERIALIZE", true ),( rttr::metadata( "NO_EDITOR", true ) ) )
+    .property( "reflected_vector", &RigidBody::ReflectedVector )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                               ( rttr::metadata( "NO_EDITOR", true ) ) )
+    .property( "acceleration", &RigidBody::Acceleration )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                        ( rttr::metadata( "NO_EDITOR", true ) ) )
     .property( "accumulated_force", &RigidBody::AccumulatedForce )( rttr::metadata( "NO_SERIALIZE", true ) )
     .property( "point_end", &RigidBody::PointEnd )( rttr::metadata( "NO_SERIALIZE", true ) )
     .property( "mass", &RigidBody::Mass )( rttr::policy::prop::bind_as_ptr )
     .property( "movespeed", &RigidBody::Movespeed )( rttr::policy::prop::bind_as_ptr )
     .property( "restitution", &RigidBody::Restitution )( rttr::policy::prop::bind_as_ptr )
     .property( "friction_coeff", &RigidBody::FrictionCoeff )( rttr::policy::prop::bind_as_ptr )
-    .property("inherent_acceleration", &RigidBody::InherentAcceleration)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-    .property("max_acceleration", &RigidBody::MaxAcceleration)(rttr::policy::prop::bind_as_ptr)
-    .property("acceleration_pickup", &RigidBody::AccelerationPickup)(rttr::policy::prop::bind_as_ptr)
+    .property( "inherent_acceleration", &RigidBody::InherentAcceleration )( rttr::policy::prop::bind_as_ptr )(
+      rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+    .property( "max_acceleration", &RigidBody::MaxAcceleration )( rttr::policy::prop::bind_as_ptr )
+    .property( "acceleration_pickup", &RigidBody::AccelerationPickup )( rttr::policy::prop::bind_as_ptr )
     .property( "has_gravity", &RigidBody::hasGravity )( rttr::policy::prop::bind_as_ptr )
     .property( "is_moveable", &RigidBody::isMoveable )( rttr::policy::prop::bind_as_ptr )
-    .property("is_jumping", &RigidBody::isJumping)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+    .property( "is_jumping", &RigidBody::isJumping )( rttr::policy::prop::bind_as_ptr )(
+      rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
 
   rttr::registration::class_<Collider>("collider")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Collider>()->bits))
@@ -134,14 +149,16 @@ RTTR_REGISTRATION
   rttr::registration::class_<Animator>( "animator" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Animator>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "timer", &Animator::m_Timer )( rttr::policy::prop::bind_as_ptr )
-    .property( "speed", &Animator::m_Speed )( rttr::policy::prop::bind_as_ptr )
     .property( "controller_key", &Animator::m_ControllerKey )( rttr::policy::prop::bind_as_ptr )
-    .property( "clip_key", &Animator::m_ClipKey )( rttr::policy::prop::bind_as_ptr );
+    .property( "clip_key", &Animator::m_ClipKey )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+    .property( "timer", &Animator::m_Timer )( rttr::policy::prop::bind_as_ptr )
+    .property( "speed", &Animator::m_Speed )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+    .property( "frame", &Animator::m_Frame )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
 
   rttr::registration::class_<State>( "state" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<State>()->bits ) )
-    .property( "parameters", &State::parameters )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
+    .property( "parameters", &State::parameters )( rttr::metadata( "NO_SERIALIZE", true ),
+                                               ( rttr::metadata( "NO_EDITOR", true ) ) );
 
   rttr::registration::class_<Image>( "image" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Image>()->bits ) )
@@ -149,6 +166,11 @@ RTTR_REGISTRATION
     .property( "sprite", &Image::m_Sprite )( rttr::policy::prop::bind_as_ptr )
     .property( "offset", &Image::m_Offset )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
     .property( "tiling", &Image::m_Tiling )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+    .property( "fill_type", &Image::m_FillType )( rttr::policy::prop::bind_as_ptr )
+    .property( "fill_amount", &Image::m_FillAmount )( rttr::policy::prop::bind_as_ptr )
+    .property( "overall_angle", &Image::m_OverallAngle )( rttr::policy::prop::bind_as_ptr )
+    .property( "start_angle", &Image::m_StartAngle )( rttr::policy::prop::bind_as_ptr )
+    .property( "end_angle", &Image::m_EndAngle )( rttr::policy::prop::bind_as_ptr )
     .property( "flip_x", &Image::m_FlipX )( rttr::policy::prop::bind_as_ptr )
     .property( "flip_y", &Image::m_FlipY )( rttr::policy::prop::bind_as_ptr );
 
@@ -164,6 +186,8 @@ RTTR_REGISTRATION
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "material", &Renderer2D::m_Material )( rttr::policy::prop::bind_as_ptr )
     .property( "color", &Renderer2D::m_Color )( rttr::policy::prop::bind_as_ptr )
+    .property( "sorting_layer", &Renderer2D::m_SortingLayer )( rttr::policy::prop::bind_as_ptr )
+    .property( "sorting_order", &Renderer2D::m_SortingOrder )( rttr::policy::prop::bind_as_ptr )
     .property( "active", &Renderer2D::m_Active )( rttr::policy::prop::bind_as_ptr )
     .property( "shaded", &Renderer2D::m_Shaded )( rttr::policy::prop::bind_as_ptr )
     .property( "wireframe", &Renderer2D::m_Wireframe )( rttr::policy::prop::bind_as_ptr );
@@ -174,11 +198,11 @@ RTTR_REGISTRATION
     .property( "prev", &Input::previousKey )
     .property( "curr", &Input::currentKey );
 
-  rttr::registration::class_<AI>("ai")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("state", &AI::key)(rttr::policy::prop::bind_as_ptr)
-      .property("transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
+  rttr::registration::class_<AI>( "ai" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<AI>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "state", &AI::key )( rttr::policy::prop::bind_as_ptr )
+    .property( "transition", &AI::transition )( rttr::policy::prop::bind_as_ptr );
 
   rttr::registration::class_<EntityType>("entity_type")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
@@ -206,118 +230,153 @@ RTTR_REGISTRATION
 
 
 }
-
 }
 
 namespace DeltaEngine::RT_Reflect
 {
-
 rttr::type RT_Checker( size_t bits )
 {
-  if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Name>()->bits == bits )
     return rttr::type::get_by_name( "name" );
-  if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Parent>()->bits == bits )
     return rttr::type::get_by_name( "parent" );
-  if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Transform>()->bits == bits )
     return rttr::type::get_by_name( "transform" );
-  if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Collider>()->bits == bits )
     return rttr::type::get_by_name( "collider" );
-  if ( rttr::type::get_by_name( "rigidbody" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<RigidBody>()->bits == bits )
     return rttr::type::get_by_name( "rigidbody" );
-  if ( rttr::type::get_by_name( "input" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Input>()->bits == bits )
     return rttr::type::get_by_name( "input" );
-  if ( rttr::type::get_by_name( "animator" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Animator>()->bits == bits )
     return rttr::type::get_by_name( "animator" );
-  if ( rttr::type::get_by_name( "state" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<State>()->bits == bits )
     return rttr::type::get_by_name( "state" );
-  if ( rttr::type::get_by_name( "image" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Image>()->bits == bits )
     return rttr::type::get_by_name( "image" );
-  if ( rttr::type::get_by_name( "text" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Text>()->bits == bits )
     return rttr::type::get_by_name( "text" );
-  if ( rttr::type::get_by_name( "renderer2D" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     return rttr::type::get_by_name( "renderer2D" );
-  if (rttr::type::get_by_name("ai").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<AI>()->bits == bits)
       return rttr::type::get_by_name("ai");
-  if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<EntityType>()->bits == bits)
       return rttr::type::get_by_name("entity_type");
-  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
       return rttr::type::get_by_name("attack");
-  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
       return rttr::type::get_by_name("health");
-  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       return rttr::type::get_by_name("lifespan");
   return rttr::type::get<int>();
 }
 
+void RT_Destroy(EntityManager &em, EntityID id, size_t bits)
+{
+  if ( ComponentMeta::GetComponentMeta<Name>()->bits == bits )
+    em.RemoveComponent<Name>( id );
+  if ( ComponentMeta::GetComponentMeta<Parent>()->bits == bits )
+    em.RemoveComponent<Parent>( id );
+  if ( ComponentMeta::GetComponentMeta<Transform>()->bits == bits )
+    em.RemoveComponent<Transform>( id );
+  if ( ComponentMeta::GetComponentMeta<Collider>()->bits == bits )
+    em.RemoveComponent<Collider>( id );
+  if ( ComponentMeta::GetComponentMeta<RigidBody>()->bits == bits )
+    em.RemoveComponent<RigidBody>( id );
+  if ( ComponentMeta::GetComponentMeta<Input>()->bits == bits )
+    em.RemoveComponent<Input>( id );
+  if ( ComponentMeta::GetComponentMeta<Animator>()->bits == bits )
+    em.RemoveComponent<Animator>( id );
+  if ( ComponentMeta::GetComponentMeta<State>()->bits == bits )
+    em.RemoveComponent<State>( id );
+  if ( ComponentMeta::GetComponentMeta<Image>()->bits == bits )
+    em.RemoveComponent<Image>( id );
+  if ( ComponentMeta::GetComponentMeta<Text>()->bits == bits )
+    em.RemoveComponent<Text>( id );
+  if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
+    em.RemoveComponent<Renderer2D>( id );
+  if ( ComponentMeta::GetComponentMeta<AI>()->bits == bits )
+    em.RemoveComponent<AI>( id );
+  if ( ComponentMeta::GetComponentMeta<EntityType>()->bits == bits )
+    em.RemoveComponent<EntityType>( id );
+  if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
+    em.RemoveComponent<Attack>(id);
+  if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
+    em.RemoveComponent<Health>(id);
+  if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
+    em.RemoveComponent<Lifespan>(id);
+
+}
+
 void RT_Setter( EntityManager &em, EntityID id, size_t bits )
 {
-  if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Name>( id, Name() );
-  if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Parent>( id, Parent() );
-  if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
+  if (ComponentMeta::GetComponentMeta<Name>()->bits == bits )
+    em.AddComponent<Name>( id );
+  if ( ComponentMeta::GetComponentMeta<Parent>()->bits == bits )
+    em.AddComponent<Parent>( id );
+  if ( ComponentMeta::GetComponentMeta<Transform>()->bits == bits )
     em.AddComponent<Transform>( id );
-  if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Collider>()->bits == bits )
     em.AddComponent<Collider>( id );
-  if ( rttr::type::get_by_name( "rigidbody" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<RigidBody>()->bits == bits )
     em.AddComponent<RigidBody>( id );
-  if ( rttr::type::get_by_name( "input" ).get_metadata( "bits" ).to_uint64() == bits )
+  if (ComponentMeta::GetComponentMeta<Input>()->bits == bits )
     em.AddComponent<Input>( id );
-  if ( rttr::type::get_by_name( "animator" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Animator>()->bits == bits )
     em.AddComponent<Animator>( id );
-  if ( rttr::type::get_by_name( "state" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<State>()->bits == bits )
     em.AddComponent<State>( id );
-  if ( rttr::type::get_by_name( "image" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Image>()->bits == bits )
     em.AddComponent<Image>( id );
-  if ( rttr::type::get_by_name( "text" ).get_metadata( "bits" ).to_uint64() == bits )
-    em.AddComponent<Text>( id);
-  if ( rttr::type::get_by_name( "renderer2D" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Text>()->bits == bits )
+    em.AddComponent<Text>( id );
+  if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     em.AddComponent<Renderer2D>( id );
-  if (rttr::type::get_by_name("ai").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<AI>()->bits == bits)
       em.AddComponent<AI>(id);
-  if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<EntityType>()->bits == bits)
       em.AddComponent<EntityType>(id);
-  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
       em.AddComponent<Attack>(id);
-  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
       em.AddComponent<Health>(id);
-  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       em.AddComponent<Lifespan>(id);
 }
 
 rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
 {
-  if ( rttr::type::get_by_name( "name" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Name>()->bits == bits )
     return rttr::instance( em.GetComponent<Name>( id ) );
-  if ( rttr::type::get_by_name( "parent" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Parent>()->bits == bits )
     return rttr::instance( em.GetComponent<Parent>( id ) );
-  if ( rttr::type::get_by_name( "transform" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Transform>()->bits == bits )
     return rttr::instance( em.GetComponent<Transform>( id ) );
-  if ( rttr::type::get_by_name( "collider" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Collider>()->bits== bits )
     return rttr::instance( em.GetComponent<Collider>( id ) );
-  if ( rttr::type::get_by_name( "rigidbody" ).get_metadata( "bits" ).to_uint64() == bits )
+  if (ComponentMeta::GetComponentMeta<RigidBody>()->bits == bits )
     return rttr::instance( em.GetComponent<RigidBody>( id ) );
-  if ( rttr::type::get_by_name( "input" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Input>()->bits == bits )
     return rttr::instance( em.GetComponent<Input>( id ) );
-  if ( rttr::type::get_by_name( "animator" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Animator>()->bits == bits )
     return rttr::instance( em.GetComponent<Animator>( id ) );
-  if ( rttr::type::get_by_name( "state" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<State>()->bits == bits )
     return rttr::instance( em.GetComponent<State>( id ) );
-  if ( rttr::type::get_by_name( "image" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Image>()->bits == bits )
     return rttr::instance( em.GetComponent<Image>( id ) );
-  if ( rttr::type::get_by_name( "text" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Text>()->bits == bits )
     return rttr::instance( em.GetComponent<Text>( id ) );
-  if ( rttr::type::get_by_name( "renderer2D" ).get_metadata( "bits" ).to_uint64() == bits )
+  if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     return rttr::instance( em.GetComponent<Renderer2D>( id ) );
-  if (rttr::type::get_by_name("ai").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<AI>()->bits == bits)
       return rttr::instance(em.GetComponent<AI>(id));
-  if (rttr::type::get_by_name("entity_type").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<EntityType>()->bits == bits)
       return rttr::instance(em.GetComponent<EntityType>(id));
-  if (rttr::type::get_by_name("attack").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
       return rttr::instance(em.GetComponent<Attack>(id));
-  if (rttr::type::get_by_name("health").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
       return rttr::instance(em.GetComponent<Health>(id));
-  if (rttr::type::get_by_name("lifespan").get_metadata("bits").to_uint64() == bits)
+  if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       return rttr::instance(em.GetComponent<Lifespan>(id));
   return rttr::instance();
 }

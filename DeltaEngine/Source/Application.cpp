@@ -47,8 +47,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
   RenderModule::openGLSystem->Init();
 
-  m_Editor = new Editor();
-
+  // Randomizer
   Random::Init();
 
   // Asset Loading
@@ -64,6 +63,8 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() ).Load<AnimationClip>();
 
   env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() ).Load<AnimationController>();
+
+  m_Editor = new Editor();
 
   env.eventManager = new EventManager;
 
@@ -94,24 +95,6 @@ Application::~Application()
 
 void Application::Run()
 {
-
-  /*DeltaEngine::World &world = env.pECS->GetWorld();
-  DeltaEngine::EntityManager &em = world.GetEntityManager();
-  auto entitybg = em.CreateEntity<Transform, Renderer2D, Image>();
-  auto &spriterender = em.GetComponent<Image>( entitybg );
-  auto entitysr = em.CreateEntity<Transform, Renderer2D, Image, Animator>();
-  em.AddComponent<State>(entitysr);
-  auto &animator = em.GetComponent<Animator>( entitysr );
-  auto entitytr = em.CreateEntity<Transform, Renderer2D, Text>();
-  auto &textrender = em.GetComponent<Text>( entitytr );
-  auto &textrenderer = em.GetComponent<Renderer2D>( entitytr );
-  spriterender.m_Sprite = { "Textures/bg", 0 };
-  textrender.m_FontKey = "Default";
-  textrenderer.m_Material = { "DefaultText" };
-  animator.m_ControllerKey = "Animation/Player";
-  textrender.m_Text = "Welcome to DELTA";
-  textrender.alignment = Alignment::AlignRight;*/
-
   while ( env.pWin->Running() )
   {
     env.pClock->Update();
@@ -127,9 +110,8 @@ void Application::Run()
     m_Editor->Render();
     m_Editor->End();
     ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
-    env.pWin->Update();
-
     OnEvent();
+    env.pWin->Update();
   }
 }
 

@@ -422,23 +422,25 @@ namespace DeltaEngine
                             target_offset +
                             (target_type->size * target_index));
 
-                        if (current_type->bits == ComponentMeta::GetComponentMeta<Animator>()->bits)
-                            std::swap(*static_cast<Animator*>(current), *static_cast<Animator*>(target));
-                        else if (current_type->bits == ComponentMeta::GetComponentMeta<State>()->bits)
-                            std::swap(*static_cast<State*>(current), *static_cast<State*>(target));
-                        else if (current_type->bits == ComponentMeta::GetComponentMeta<Image>()->bits)
-                            std::swap(*static_cast<Image*>(current), *static_cast<Image*>(target));
-                        else if (current_type->bits == ComponentMeta::GetComponentMeta<Renderer2D>()->bits)
-                            std::swap(*static_cast<Renderer2D*>(current), *static_cast<Renderer2D*>(target));
-                        else if (current_type->bits == ComponentMeta::GetComponentMeta<Name>()->bits)
-                            std::swap(*static_cast<Name*>(current), *static_cast<Name*>(target));
-                        else if (current_type->bits == ComponentMeta::GetComponentMeta<EntityType>()->bits)
-                            std::swap(*static_cast<EntityType*>(current), *static_cast<EntityType*>(target));
-                        else if (current_type->bits == ComponentMeta::GetComponentMeta<AI>()->bits)
-                            std::swap(*static_cast<AI*>(current), *static_cast<AI*>(target));
-                        else
-                            std::memcpy(target, current, current_type->size);
-                    }
+          if ( current_type->bits == ComponentMeta::GetComponentMeta<Animator>()->bits )
+            std::swap( *static_cast<Animator *>( current ), *static_cast<Animator *>( target ) );
+          else if ( current_type->bits == ComponentMeta::GetComponentMeta<State>()->bits )
+            std::swap( *static_cast<State *>( current ), *static_cast<State *>( target ) );
+          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Image>()->bits )
+            std::swap( *static_cast<Image *>( current ), *static_cast<Image *>( target ) );
+          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Renderer2D>()->bits )
+            std::swap( *static_cast<Renderer2D *>( current ), *static_cast<Renderer2D *>( target ) );
+          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Name>()->bits )
+            std::swap( *static_cast<Name *>( current ), *static_cast<Name *>( target ) );
+          else if ( current_type->bits == ComponentMeta::GetComponentMeta<EntityType>()->bits )
+            std::swap( *static_cast<EntityType *>( current ), *static_cast<EntityType *>( target ) );
+          else if ( current_type->bits == ComponentMeta::GetComponentMeta<AI>()->bits )
+            std::swap( *static_cast<AI *>( current ), *static_cast<AI *>( target ) );
+          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Text>()->bits )
+            std::swap( *static_cast<Text *>( current ), *static_cast<Text *>( target ) );
+          else
+            std::memcpy( target, current, current_type->size );
+        }
 
         EraseEntityChunk(current_chunk, current_index);
 

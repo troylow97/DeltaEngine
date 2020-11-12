@@ -37,12 +37,11 @@ void GameClock::Resume()
 
 void GameClock::Update()
 {
-
   TimePoint now = HighResClock::now();
   Nanoseconds delta = std::chrono::duration_cast<Nanoseconds>( now - m_current );
   m_current = now;
 
-  m_dt = static_cast<f32>( delta.count() * 1e-9 );
+  m_dt = std::min( static_cast<f32>( delta.count() * 1e-9 ), m_fixed_dt );
   m_elapsed += m_dt;
 
   m_accumulator += m_dt;

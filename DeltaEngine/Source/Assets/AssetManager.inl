@@ -171,6 +171,13 @@ AssetManager<Ts...> &AssetManager<Ts...>::SetLoader( AbstractLoader<T1> *loader 
 }
 
 template <typename... Ts>
+template <typename T1>
+const std::vector<std::pair<AssetKey, T1*>> AssetManager<Ts...>::List() const
+{
+  return AssetGroup<T1>::List();
+}
+
+template <typename... Ts>
 template <typename T1, typename... T1s>
 void AssetManager<Ts...>::FreeInternal( AssetTypePack<T1, T1s...> )
 {

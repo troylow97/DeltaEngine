@@ -4,7 +4,6 @@
 
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
-#include "Render/Camera.h"
 #include "Core/Utils/FileUtils.h"
 
 namespace DeltaEngine

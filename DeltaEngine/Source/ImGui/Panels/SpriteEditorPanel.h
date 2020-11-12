@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include "DEpch.h"
 #include "ImGui/Panels/IPanel.h"
 
 namespace DeltaEngine
@@ -13,6 +13,6 @@ namespace DeltaEngine
 		void Render(bool) override;
 
 	private:
-
+		std::string textureName = "Textures/idle";
 	};
 }
