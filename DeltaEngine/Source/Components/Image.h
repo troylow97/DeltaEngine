@@ -19,6 +19,7 @@ namespace DeltaEngine
   {
     Sprite m_Sprite;
 
+    Vector2 m_Size;
     Vector2 m_Offset;
     Vector2 m_Tiling;
 
@@ -31,6 +32,7 @@ namespace DeltaEngine
 
     Image()
       : m_Sprite{""},
+        m_Size{1, 1},
         m_Offset{0, 0},
         m_Tiling{1, 1},
         m_FillType{FillType::None},

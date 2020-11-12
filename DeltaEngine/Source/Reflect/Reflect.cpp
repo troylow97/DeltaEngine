@@ -164,6 +164,7 @@ namespace DeltaEngine
       ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Image>()->bits ) )
       .constructor<>()( rttr::policy::ctor::as_object )
       .property( "sprite", &Image::m_Sprite )( rttr::policy::prop::bind_as_ptr )
+      .property( "size", &Image::m_Size )( rttr::policy::prop::bind_as_ptr )
       .property( "offset", &Image::m_Offset )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
       .property( "tiling", &Image::m_Tiling )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
       .property( "fill_type", &Image::m_FillType )( rttr::policy::prop::bind_as_ptr )

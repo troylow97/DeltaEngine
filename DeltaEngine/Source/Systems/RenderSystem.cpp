@@ -49,8 +49,8 @@ void RenderSystem::Update()
         Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
         Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
         Matrix4x4 model = Matrix4x4::Scale(Vector3{
-          (i.m_Sprite ? (i.m_Sprite.GetWidth() / 200.0f) : 1) * (i.m_FlipX ? -1 : 1),
-          (i.m_Sprite ? (i.m_Sprite.GetHeight() / 200.0f) : 1) * (i.m_FlipY ? -1 : 1), 1 })
+          (i.m_Sprite ? (i.m_Sprite.GetWidth() / 200.0f) : 1) * i.m_Size.x * (i.m_FlipX ? -1 : 1),
+          (i.m_Sprite ? (i.m_Sprite.GetHeight() / 200.0f) : 1) * i.m_Size.y * (i.m_FlipY ? -1 : 1), 1 })
           * t.LocalToWorldMatrix();
     
         if (r.m_Shaded)
