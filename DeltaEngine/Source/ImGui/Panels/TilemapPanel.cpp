@@ -34,7 +34,7 @@ namespace DeltaEngine
 
     void TilemapPanel::Render(bool isdragged)
     {
-        ImGui::Begin(m_name.c_str(), &m_enabled/*, ImGuiWindowFlags_AlwaysAutoResize*/);
+        ImGui::Begin( m_name.c_str(), &m_enabled/*, ImGuiWindowFlags_HorizontalScrollbar*/ );
 
         topLeft = ImGui::GetWindowContentRegionMin();
         bottomRight = ImGui::GetWindowContentRegionMax();
@@ -55,6 +55,8 @@ namespace DeltaEngine
             DraggedFileIn();
         }
         std::string path = "Tilemap/";
+        ImGuiStyle& style = ImGui::GetStyle();
+        float window_visible_x2 = ImGui::GetWindowPos().x + ImGui::GetWindowContentRegionMax().x;
 
         for (const auto& entry : std::filesystem::directory_iterator(path))
         { 
@@ -96,14 +98,19 @@ namespace DeltaEngine
 
                 // setting all png files as ImageButton 
                 textureID = _sprite.GetTexture()->GetRendererID();
+                ImGui::PushID(textureID);
                 if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
                     ImVec2{ 32,32 },
                     ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
                     ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y }))
                 {
                     //std::cout << "clicking tiles" << std::endl;
-                }
-                ImGui::SameLine();
+                };
+                float last_tile_x2 = ImGui::GetItemRectMax().x;
+                float next_tile_x2 = last_tile_x2 + style.ItemSpacing.x + 32.0; // Expected position if next tile was on same line
+                if (next_tile_x2 < window_visible_x2)
+                    ImGui::SameLine();
+                ImGui::PopID();
 
                 ImGuiDragDropFlags src_flags = 0;
                 src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
