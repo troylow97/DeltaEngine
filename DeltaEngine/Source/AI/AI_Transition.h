@@ -31,7 +31,7 @@ namespace DeltaEngine
 			auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
 			env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
 			{
-				if (et.type == "player" && AITools::EntityisWithinDetectionRange(monster,player,3.0f,5.0f))
+				if (et.type == entity_type::E_PLAYER && AITools::EntityisWithinDetectionRange(monster,player,3.0f,5.0f))
 				{
 				    ref.transition = getTargetState();
 				}
@@ -53,7 +53,7 @@ namespace DeltaEngine
 			auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
 			env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
 				{
-					if (et.type == "player" && !AITools::EntityisWithinDetectionRange(monster, player, 5.0f, 5.0f))
+					if (et.type == entity_type::E_PLAYER && !AITools::EntityisWithinDetectionRange(monster, player, 5.0f, 5.0f))
 					{
 						ref.transition = getTargetState();
 					}
@@ -75,7 +75,7 @@ namespace DeltaEngine
 			auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
 			env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
 				{
-					if (et.type == "player" && AITools::EntityisWithinDetectionRange(monster, player, 3.0f, 5.0f))
+					if (et.type == entity_type::E_PLAYER && AITools::EntityisWithinDetectionRange(monster, player, 3.0f, 5.0f))
 					{
 						ref.transition = getTargetState();
 					}
@@ -97,7 +97,7 @@ namespace DeltaEngine
 			auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
 			env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
 				{
-					if (et.type == "player" && !AITools::EntityisWithinDetectionRange(monster, player, 5.0f, 5.0f))
+					if (et.type == entity_type::E_PLAYER && !AITools::EntityisWithinDetectionRange(monster, player, 5.0f, 5.0f))
 					{
 						ref.transition = getTargetState();
 					}

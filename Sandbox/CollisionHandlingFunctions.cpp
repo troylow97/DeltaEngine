@@ -12,8 +12,18 @@ namespace DeltaEngine
 			env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id2)
 			)
 		{
-			if(env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type != "wall" &&
-				env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type != "wall")
+			auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
+			auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
+			auto& hp1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1);
+			auto& hp2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id2);
+
+			if (type1 == entity_type::E_BULLET && type2 != entity_type::E_WALL)
+			{
+				env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
+				hp2.CurrentHealth--;
+			}
+
+			if(type1 != entity_type::E_WALL && type2 != entity_type::E_WALL)
 			{
 				auto& ref1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1);
 				ref1.CurrentHealth--;

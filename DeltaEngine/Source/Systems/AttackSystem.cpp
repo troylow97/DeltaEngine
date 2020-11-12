@@ -38,7 +38,7 @@ namespace DeltaEngine
        em.GetComponent<Lifespan>(missile).Timer = 0.35f;
        em.GetComponent<RigidBody>(missile).hasGravity = true;
        em.GetComponent<Collider>(missile).isTrigger = true;
-       em.GetComponent<EntityType>(missile).type = "missile";
+       em.GetComponent<EntityType>(missile).type = entity_type::E_BULLET;
        em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
        em.GetComponent<RigidBody>(missile).Movespeed = 40.0f;
 

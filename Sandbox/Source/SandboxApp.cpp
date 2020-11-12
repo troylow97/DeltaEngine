@@ -31,7 +31,7 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Attack>(first);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Health>(first);
 
-		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(first).type = "player";
+		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(first).type = entity_type::E_PLAYER;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).size = { 0.5,0.5 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(first).type = ColliderType::BOX;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(first).position = { 0.5,2.0,0 };
@@ -52,7 +52,7 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<AI>(sec);
 		env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).key = "idle_monster";
 		env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).transition = "null";
-		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(sec).type = "monster";
+		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(sec).type = entity_type::E_ENEMY;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(sec).size = { 0.5,0.5 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(sec).type = ColliderType::BOX;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(sec).position = { -2,-3,0 };
@@ -76,7 +76,7 @@ public:
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Mass = 1500.0f;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).isMoveable = false;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Restitution = 0.0f;
-		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(third).type = "wall";
+		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(third).type = entity_type::E_WALL;
 
 		EntityID fourth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(fourth);
@@ -90,7 +90,7 @@ public:
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Mass = 1500.0f;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).isMoveable = false;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Restitution = 0.0f;
-		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(fourth).type = "wall";
+		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(fourth).type = entity_type::E_WALL;
 
 
 		EntityID fifth = env.pECS->GetWorld().GetEntityManager().CreateEntity();
