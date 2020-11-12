@@ -202,7 +202,7 @@ RTTR_REGISTRATION
   rttr::registration::class_<Lifespan>("lifespan")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("lifespan", &Lifespan::Lifespan)(rttr::policy::prop::bind_as_ptr);
+      .property("timer", &Lifespan::Timer)(rttr::policy::prop::bind_as_ptr);
 
 
 }

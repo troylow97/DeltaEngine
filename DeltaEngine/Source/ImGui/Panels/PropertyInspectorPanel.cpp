@@ -122,7 +122,7 @@ void PropertyInspectorPanel::Render( bool )
     //ImGui::Text( "" );
     //ImGui::Text( "" );
 
-    static const char *components[] { " ", "transform", "rigidbody", "collider", "input","ai","entity_type"};
+    static const char *components[] { " ", "transform", "rigidbody", "collider", "input","ai","entity_type", "health", "attack", "lifespan"};
     static int selected = 0;
     ImGui::Combo( "Components", &selected, components, IM_ARRAYSIZE( components ) );
     if ( ImGui::Button( "Add Component" ) )
@@ -156,6 +156,12 @@ void PropertyInspectorPanel::Render( bool )
                 em.RemoveComponent<RigidBody>({ InputManager::Get()->EntityIDSelected() });
             if (strcmp(instance.get_type().get_name().to_string().c_str(), "collider") == 0)
                 em.RemoveComponent<Collider>({ InputManager::Get()->EntityIDSelected() });
+            if (strcmp(instance.get_type().get_name().to_string().c_str(), "health") == 0)
+                em.RemoveComponent<Health>({ InputManager::Get()->EntityIDSelected() });
+            if (strcmp(instance.get_type().get_name().to_string().c_str(), "lifespan") == 0)
+                em.RemoveComponent<Lifespan>({ InputManager::Get()->EntityIDSelected() });
+            if (strcmp(instance.get_type().get_name().to_string().c_str(), "attack") == 0)
+                em.RemoveComponent<Attack>({ InputManager::Get()->EntityIDSelected() });
         }
         ImGui::PopStyleColor(3);
         ImGui::PopID();
@@ -177,8 +183,10 @@ void PropertyInspectorPanel::Render( bool )
             ImGui::DragFloat( prop_name.c_str(), ( value.get_value<float *>() ), 0.01f );
           else if ( prop_type == rttr::type::get<Vector2*>())
             ImGui::DragFloat2( prop_name.c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
-          else if ( prop_type == rttr::type::get<Vector3*>())
-            ImGui::DragFloat3( prop_name.c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
+          else if (prop_type == rttr::type::get<Vector3*>())
+              ImGui::DragFloat3(prop_name.c_str(), (float*)(value.get_value<Vector3*>()), 0.01f);
+          else if (prop_type == rttr::type::get<int*>())
+              ImGui::DragInt(prop_name.c_str(), (int*)(value.get_value<int*>()), 0.01f);
           else if ( prop_type == rttr::type::get<bool*>() )
             ImGui::Checkbox( prop_name.c_str(),  value.get_value<bool *>()  );
           else if (prop_type == rttr::type::get<std::string*>() && instance.get_type()==rttr::type::get<AI>() || instance.get_type() == rttr::type::get<EntityType>())
