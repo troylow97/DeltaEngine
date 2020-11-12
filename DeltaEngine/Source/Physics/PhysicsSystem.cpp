@@ -12,7 +12,7 @@ namespace DeltaEngine
         m_gravity_amount = { 0,-60.0f };
         CurrentJumpTicks = 0;
         MaxJumpTicks = 10;
-        InitialJumpForce = 5000.0f;
+        InitialJumpForce = 4000.0f;
         JumpForce = InitialJumpForce;
         m_max_velocity = 1000.0f;
     }
@@ -57,9 +57,8 @@ namespace DeltaEngine
 
                 if (CurrentJumpTicks >= 1 && r1.isJumping == true)
                 {
-                    std::cout << "CurrentJumpTicks: " << CurrentJumpTicks << std::endl;
                     r1.AccumulatedForce += Vector2{ 0, JumpForce + r1.Mass * 100 };
-                    JumpForce *= 0.8f;
+                    JumpForce *= 0.7f;
 
                     if(CurrentJumpTicks < MaxJumpTicks)
                         CurrentJumpTicks++;
@@ -71,19 +70,10 @@ namespace DeltaEngine
                     }
                 }
 
+                //Player Movement
+                Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
 
-                //
-                if (r1.Direction == Vector2{ 0,-1 } && c1.isCollidingOnFloor)
-                {
-                
-                }
-                else
-                {
-                    //Player Movement
-                    Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
-
-                    r1.AccumulatedForce += move * r1.Mass * 0.5f;
-                }      
+                r1.AccumulatedForce += move * r1.Mass * 0.5f;
 
                 //Apply Gravity
                 if (r1.hasGravity && !c1.isCollidingOnFloor)
@@ -97,9 +87,8 @@ namespace DeltaEngine
 
                 //Apply Friction
                 float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-                if (dragForceVector.Magnitude() > std::numeric_limits<float>::epsilon())
-                    r1.Velocity += dragForceVector;
+                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
+                r1.Velocity += dragForceVector;
 
 
                 //Apply Acceleration
@@ -107,7 +96,7 @@ namespace DeltaEngine
                 r1.Velocity += newAcceleration * env.pClock->FixedDeltaTime();
 
                 //Apply Soft Drag
-                r1.Velocity *= 0.97f;
+                r1.Velocity *= 0.96f;
 
                 //Clamp to velocity max for numerical stability
                 if (Vector2DotProduct(r1.Velocity, r1.Velocity) > m_max_velocity)

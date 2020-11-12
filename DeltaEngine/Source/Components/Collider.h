@@ -22,8 +22,8 @@ namespace DeltaEngine
     bool isCollideable;
     bool isTrigger;
     bool isCollidingOnFloor;
-    //char CollisionLayerID;
-    //char CollisionLayerCheck;
+    char CollisionLayerID;
+    char CollisionLayerCheck;
 
     Collider() :
       center{0, 0},

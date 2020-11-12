@@ -134,20 +134,29 @@ namespace DeltaEngine
     }
   }
 
-  Editor::Editor()
-  {
-    m_panels.push_back(std::make_unique<TilemapPanel>("Tilemap"));
-    m_panels.push_back(std::make_unique<PropertyInspectorPanel>("Property Inspector"));
-    m_panels.push_back(std::make_unique<WorldPanel>("World"));
-    m_panels.push_back(std::make_unique<ViewportPanel>("Viewport"));
-    m_panels.push_back(std::make_unique<AssetPanel>("Assets"));
-    m_panels.push_back(std::make_unique<SpriteEditorPanel>("Sprite Editor"));
+Editor::Editor()
+{
+  m_panels.push_back( std::make_unique<TilemapPanel>( "Tilemap" ) );
+  m_panels.push_back( std::make_unique<PropertyInspectorPanel>( "Property Inspector" ) );
+  m_panels.push_back( std::make_unique<WorldPanel>( "World" ) );
+  m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );
+  m_panels.push_back( std::make_unique<AssetPanel>( "Assets" ) );
+  m_panels.push_back( std::make_unique<ButtonsPanel>( " Buttons" ) );
 
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_DockingEnable |
-      ImGuiConfigFlags_ViewportsEnable;
-    ImGui::StyleColorsDark();
+
+  ImGui::CreateContext();
+  ImGuiIO &io = ImGui::GetIO();
+  io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_DockingEnable | ImGuiConfigFlags_ViewportsEnable;
+
+  io.Fonts->AddFontDefault();
+  ImFontConfig icons_config;
+  icons_config.MergeMode = true;
+  icons_config.GlyphMinAdvanceX = 16.0f; // Use if you want to make the icon monospaced
+  icons_config.PixelSnapH = true;
+  // add character ranges and merge into main font, merge in icons from Font Awesome
+  static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+  io.Fonts->AddFontFromFileTTF("fa-solid-900.ttf", 10.0f, &icons_config, icons_ranges);
+  ImGui::StyleColorsDark();
 
     ImGuiStyle& style = ImGui::GetStyle();
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)

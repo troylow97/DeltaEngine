@@ -1,5 +1,6 @@
 #include "AssetPanel.h"
 #include "Input/InputManager.h"
+#include "ImGui/IconsFontAwesome5.h"
 
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
@@ -93,7 +94,61 @@ void AssetPanel::Render( bool isdragged )
       {
           if (filter.PassFilter(ref.filename().generic_string().c_str()))
           {
-              ImGui::Text(ref.filename().generic_string().c_str());
+              if (ref.extension() == ".anim" || ref.extension() == ".clip")
+              {
+                  ImGui::Button(ICON_FA_PHOTO_VIDEO, { 22.0f, 18.0f });
+                  ImGui::SameLine();
+                  ImGui::Text(ref.filename().generic_string().c_str());
+              }
+              else if (ref.extension() == ".wav")
+              {
+                  ImGui::Button(ICON_FA_MUSIC, { 22.0f, 18.0f });
+                  ImGui::SameLine();
+                  ImGui::Text(ref.filename().generic_string().c_str());
+              }
+              else if (ref.extension() == ".ttf")
+              {
+                  ImGui::Button(ICON_FA_FONT, { 22.0f, 18.0f });
+                  ImGui::SameLine();
+                  ImGui::Text(ref.filename().generic_string().c_str());
+              }
+              else if (ref.extension() == ".ini")
+              {
+                  ImGui::Button(ICON_FA_FOLDER_MINUS, { 22.0f, 18.0f });
+                  ImGui::SameLine();
+                  ImGui::Text(ref.filename().generic_string().c_str());
+              }
+              else if (ref.extension() == ".fs" || ref.extension() == ".vs" || ref.extension() == ".dat")
+              {
+                  ImGui::Button(ICON_FA_FILE, { 22.0f, 18.0f });
+                  ImGui::SameLine();
+                  ImGui::Text(ref.filename().generic_string().c_str());
+              }
+              else if (ref.extension() == ".json")
+              {
+                  ImGui::Button(ICON_FA_FILE_CODE, { 22.0f, 18.0f });
+                  ImGui::SameLine();
+                  ImGui::Text(ref.filename().generic_string().c_str());
+              }
+              else if (ref.extension() == ".png" || ref.extension() == ".jpg")
+              {
+                  //uint64_t textureID;
+                  //Sprite _sprite = { ref.filename().generic_string().c_str(), 0 };
+                  //textureID = _sprite.GetTexture()->GetRendererID();
+                  //ImGui::ImageButton(reinterpret_cast<void*>(textureID),
+                  //    ImVec2{ 32,32 },
+                  //    ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                  //    ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
+                  ImGui::Button(ICON_FA_FILE_IMAGE, { 22.0f, 18.0f });
+                  ImGui::SameLine();
+                  ImGui::Text(ref.filename().generic_string().c_str());
+              }
+              else if (ref.extension() == ".info")
+              {
+                  ImGui::Button(ICON_FA_STICKY_NOTE, { 22.0f, 18.0f });
+                  ImGui::SameLine();
+                  ImGui::Text(ref.filename().generic_string().c_str());
+              }
 
               ImGuiDragDropFlags src_flags = 0;
               src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered

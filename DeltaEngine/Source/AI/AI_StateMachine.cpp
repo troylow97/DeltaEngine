@@ -55,7 +55,7 @@ namespace DeltaEngine
 		//Check and apply transitions
        em.ForEach([&](EntityID& id,AI& ai)
        {
-			bool isChanged{ false };
+			//bool isChanged{ false };
 			AIState* ai_state = nullptr;
 
 			auto it = StateList.find(ai.key);
@@ -82,10 +82,10 @@ namespace DeltaEngine
 				ai.key = ai.transition;
 				ai.transition = "null";
 
-				auto it = StateList.find(ai.key);
-				if (it != StateList.end())
+				auto find = StateList.find(ai.key);
+				if (find != StateList.end())
 				{
-					ai_state = it->second;
+					ai_state = find->second;
 				}
 				else
 				{

@@ -58,63 +58,70 @@ namespace DeltaEngine
 
         for (const auto& entry : std::filesystem::directory_iterator(path))
         { 
-            std::string filePath = entry.path().string();
-
-            std::size_t index = filePath.find_last_of("/");
-            std::string fileName;
-            for (size_t i = index + 1; i < filePath.length(); ++i)
+            if (entry.path().extension() == ".png")
             {
-                fileName += filePath[i]; // get fileName as XXX.png
-            }
+                std::string filePath = entry.path().string();
 
-            // only files that end with .png will be loaded as texture 
-            if (tileInfo.find(fileName) == tileInfo.end())
-            {
-                size_t n = std::count(fileName.begin(), fileName.end(), '.');
-                size_t temp_position = fileName.find_last_of(".png");
-                
-                if (temp_position == std::string::npos || n > 1)
+                std::size_t index = filePath.find_last_of("/");
+                std::string fileName;
+                for (size_t i = index + 1; i < filePath.length(); ++i)
                 {
-                    continue;
+                    fileName += filePath[i]; // get fileName as XXX.png
                 }
-                else
+
+                // only files that end with .png will be loaded as texture 
+                if (tileInfo.find(fileName) == tileInfo.end())
                 {
                     tileInfo.insert(std::pair<std::string, std::string>(fileName, filePath));
                     env.pManager->Load<Texture2D>(fileName, filePath);
                     tileInfo[fileName] = env.pManager->Get<Texture2D>(fileName);
-                } 
-            }
-            
-            uint64_t textureID;
-            Sprite _sprite = { fileName, 0 };
 
-            // setting all png files as ImageButton 
-            textureID = _sprite.GetTexture()->GetRendererID();
-            if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
-                ImVec2{ 32,32 },
-                ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
-                ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y }))
-            {
-                //std::cout << "clicking tiles" << std::endl;
-            }
-            ImGui::SameLine();
+                    //size_t n = std::count(fileName.begin(), fileName.end(), '.');
+                    //size_t temp_position = fileName.find_last_of(".png");
+                    //
+                    //if (temp_position == std::string::npos || n > 1)
+                    //{
+                    //    continue;
+                    //}
+                    //else
+                    //{
+                    //    tileInfo.insert(std::pair<std::string, std::string>(fileName, filePath));
+                    //    env.pManager->Load<Texture2D>(fileName, filePath);
+                    //    tileInfo[fileName] = env.pManager->Get<Texture2D>(fileName);
+                    //}
+                }
 
-            ImGuiDragDropFlags src_flags = 0;
-            src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
-            src_flags |= ImGuiDragDropFlags_SourceAllowNullID;    // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
+                uint64_t textureID;
+                Sprite _sprite = { fileName, 0 };
 
-            if (ImGui::BeginDragDropSource(src_flags))
-            {
-                ImGui::SetDragDropPayload("TILES", &textureID, sizeof(int));
-                InputManager::Get()->SetTilesetDragged(true);
-                //std::cout << "dragging tiles" << std::endl;
-                // display preview (decide whether to display the filename or preview the texture)
-                ImGui::Image(reinterpret_cast<void*>(textureID),
+                // setting all png files as ImageButton 
+                textureID = _sprite.GetTexture()->GetRendererID();
+                if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
                     ImVec2{ 32,32 },
                     ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
-                    ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
-                ImGui::Text(fileName.c_str());
-                ImGui::EndDragDropSource();
+                    ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y }))
+                {
+                    //std::cout << "clicking tiles" << std::endl;
+                }
+                ImGui::SameLine();
+
+                ImGuiDragDropFlags src_flags = 0;
+                src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
+                src_flags |= ImGuiDragDropFlags_SourceAllowNullID;    // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
+
+                if (ImGui::BeginDragDropSource(src_flags))
+                {
+                    ImGui::SetDragDropPayload("TILES", &textureID, sizeof(int));
+                    InputManager::Get()->SetTilesetDragged(true);
+                    //std::cout << "dragging tiles" << std::endl;
+                    // display preview (haven't decided whether to display the filename or preview the texture)
+                    ImGui::Image(reinterpret_cast<void*>(textureID),
+                        ImVec2{ 32,32 },
+                        ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
+                        ImVec2{ _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y });
+                    ImGui::Text(fileName.c_str());
+                    ImGui::EndDragDropSource();
+                }
             }
         }
 
@@ -127,8 +134,6 @@ namespace DeltaEngine
             {
                 std::string assetpayload_n = *(std::string*)(assetpayload->Data);
                 std::wstring assetpayload_nws(assetpayload_n.begin(), assetpayload_n.end());
-                std::wcout << "assetpayload_nws is " << assetpayload_nws << std::endl;
-                // assetpayload_nws is C:\Users\Clara\Documents\digipen\sem 3\GAM200\DeltaEngine\Sandbox\Assets\Audio\jump.wav
                 std::size_t index = assetpayload_nws.find_last_of(L"/\\");
                 std::wstring newFileName;
                 std::wstring newPathName = L"Tilemap/";
@@ -142,7 +147,6 @@ namespace DeltaEngine
             }
             ImGui::EndDragDropTarget();
         }
-
         ImGui::End();
     }
 }
