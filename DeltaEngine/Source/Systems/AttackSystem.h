@@ -11,5 +11,5 @@ namespace DeltaEngine
 		void Update() override;
 		void LateUpdate() override;
 		void RangedAttack(EntityID&);
-	END_DEFINE_SYSTEM(AnimationSystem)
+	END_DEFINE_SYSTEM(AttackSystem)
 }

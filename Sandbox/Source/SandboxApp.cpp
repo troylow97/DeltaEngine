@@ -12,6 +12,7 @@
 #include "Systems/PhysicsDrawSystem.h"
 #include "Systems/RenderSystem.h"
 #include "Systems/AttackSystem.h"
+#include "Systems/LifespanSystem.h"
 class Sandbox : public DeltaEngine::Application
 {
 public:
@@ -104,8 +105,8 @@ public:
 
 		env.pECS->GetWorld().Save("Entities2.json");
 
-		env.pECS->GetWorld().CreateSystems<InputSystem, AISystem, AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-		env.pECS->GetWorld().SetUpdateSequence<InputSystem, AISystem, AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+		env.pECS->GetWorld().CreateSystems<InputSystem, AISystem, AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem,LifespanSystem>();
+		env.pECS->GetWorld().SetUpdateSequence<InputSystem, AISystem, AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem, LifespanSystem>();
 		env.pECS->GetWorld().SetLateUpdateSequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
 
 
