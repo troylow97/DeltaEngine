@@ -20,7 +20,7 @@ class Window
 public:
 
   Window() = default;
-  Window( const std::string& title, int width, int height );
+  Window( const std::string& title, int width, int height, bool fullscreen );
   ~Window() = default;
 
   void Init();

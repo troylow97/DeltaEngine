@@ -7,7 +7,7 @@
 //#include "Assets/AssetManager.h"
 //#include "ECS/ECSModule.h"
 //#include "Core/Utils/FileUtils.h"
-
+#include "ECS/ECSModule.h"
 namespace DeltaEngine
 {
     ButtonsPanel::ButtonsPanel(std::string str) :
@@ -49,14 +49,11 @@ namespace DeltaEngine
         ImVec2 ButtonPos2 = { ImGui::GetWindowSize().x * 0.515f, ImGui::GetWindowSize().y * 0.3f };
         ImGui::SetCursorPos(ButtonPos1);
         if (ImGui::Button(ICON_FA_PLAY, { 25.0f, 22.0f }))
-        {
-            std::cout << "play is clicked" << std::endl;
-        }
+          GetEnv().pECS->GetWorld().SetPause(false);
         ImGui::SetCursorPos(ButtonPos2);
         if (ImGui::Button(ICON_FA_PAUSE, { 25.0f, 22.0f }))
-        {
-            std::cout << "pause is clicked" << std::endl;
-        }
+          GetEnv().pECS->GetWorld().SetPause(true);
+        
 
         ImGui::End();
     }

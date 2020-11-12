@@ -40,7 +40,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   AudioEngine::Initialize();
   env.pClock = new GameClock( c.fps );
 
-  env.pWin = new Window( c.win_name, c.width, c.height );
+  env.pWin = new Window( c.win_name, c.width, c.height, c.fullscreen );
   env.pWin->Init();
 
   // Render + Imgui
@@ -64,7 +64,9 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() ).Load<AnimationController>();
 
+#ifdef DE_EDITOR
   m_Editor = new Editor();
+#endif
 
   env.eventManager = new EventManager;
 
@@ -85,7 +87,9 @@ Application::~Application()
   delete env.pManager;
   RenderModule::openGLSystem->Exit();
   delete RenderModule::openGLSystem;
+#ifdef DE_EDITOR
   delete m_Editor;
+#endif
   delete env.pWin;
   delete env.pClock;
 
@@ -105,10 +109,11 @@ void Application::Run()
     // Render Update()
     // Physics Update()
     env.pECS->GetWorld().Update();
-    env.pECS->GetWorld().LateUpdate();
+#ifdef DE_EDITOR
     m_Editor->Begin();
     m_Editor->Render();
     m_Editor->End();
+#endif
     ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
     OnEvent();
     env.pWin->Update();

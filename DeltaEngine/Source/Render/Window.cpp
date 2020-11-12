@@ -74,8 +74,8 @@ LRESULT WINAPI Win32WindowProc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
   return DefWindowProc( hwnd, uMsg, wParam, lParam );
 }
 
-Window::Window( const std::string& title, int width, int height ) :
-  m_title { to_wstring( title ) }, m_width { width }, m_height { height }
+Window::Window( const std::string &title, int width, int height, bool fullscreen ) :
+  m_title { to_wstring( title ) }, m_width { width }, m_height { height }, m_fullscreen{fullscreen}
 {
 
 }
@@ -84,14 +84,14 @@ Window::Window( const std::string& title, int width, int height ) :
 void Window::Init()
 {
   m_running = true;
-  m_fullscreen = m_cursor = false;
+  m_cursor = false;
   InitWindow();
 }
 
 void Window::Update()
 {
   MSG msg = {};
-  
+
   if ( PeekMessage( &msg, nullptr, 0U, 0U, PM_REMOVE ) )
   {
     TranslateMessage( &msg );
@@ -180,7 +180,7 @@ void Window::InitWindow()
     DeltaEngine_CORE_ERROR( "ERROR: Couldn't register window class!" );
   }
 
-  HRESULT oleResult = OleInitialize(NULL);
+  HRESULT oleResult = OleInitialize( NULL );
   (void) oleResult;
   m_hwndl = CreateWindowEx( 0, windowClass.lpszClassName, m_title.c_str(),
                             WS_OVERLAPPEDWINDOW | WS_VISIBLE, 100, 100, m_width, m_height,
@@ -191,10 +191,13 @@ void Window::InitWindow()
     DeltaEngine_CORE_ERROR( "ERROR: Couldn't create window!" );
   }
 
+  if ( m_fullscreen )
+    SetWindowPos( m_hwndl, HWND_TOPMOST, 0, 0, GetSystemMetrics( SM_CXSCREEN ), GetSystemMetrics( SM_CYSCREEN ), 0L );
+
   ShowWindow( GetConsoleWindow(), SW_SHOW );
 
-  RegisterDragDrop(m_hwndl, &dropManager);
-  
+  RegisterDragDrop( m_hwndl, &dropManager );
+
 }
 
 }
