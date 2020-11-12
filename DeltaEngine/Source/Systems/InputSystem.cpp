@@ -109,7 +109,7 @@ void InputSystem::Update()
   {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1,Attack& a1)
       {
-              a1.isAttacking = true;
+          a1.isAttacking = true;
       });
   }
 
