@@ -226,6 +226,14 @@
                 "is_collideable": true,
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
+            },
+            "image": {
+                "sprite": {
+                    "key": "",
+                    "index": 0
+                },
+                "flip_x": false,
+                "flip_y": false
             }
         },
         {

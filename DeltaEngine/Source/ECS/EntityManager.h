@@ -90,7 +90,7 @@ private:
   Archetype *FindOrCreateArchetype( const std::vector<const ComponentMeta *>& meta_vec);
 
   template <typename Func>
-  void ArchetypeIterate( const Query &query, Func &&func );
+  void ArchetypeIterate( const Query& query, Func &&func );
 
   Description *BuildDescription( const std::vector<const ComponentMeta *>& meta_vec);
 

@@ -10,7 +10,7 @@ namespace DeltaEngine
         {
             if (ls.Lifespan < 0)
             {
-                em.DestroyEntity(id);
+                em.DestroyEntity(id);             
             }
             else
             {
