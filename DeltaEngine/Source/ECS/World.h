@@ -10,29 +10,21 @@ namespace DeltaEngine
 
 class World
 {
-#pragma warning(disable:4251)
   std::unique_ptr<EntityManager> em;
   std::unordered_map<size_t, std::unique_ptr<SystemBase>> systems;
   std::vector<size_t> update_sequence;
   std::vector<size_t> late_update_sequence;
-#pragma warning(default:4251)
+  bool m_pause{true};
 
-  bool SystemExist( size_t digest )
-  {
-    if ( systems.find( digest ) == systems.end() )
-      return false;
-    return true;
-  }
 
+  bool SystemExist( size_t digest );
 
 public:
-  World() : em( std::make_unique<EntityManager>() )
-  {}
+  World();
 
-  EntityManager &GetEntityManager() const
-  {
-    return *em;
-  }
+  void SetPause(bool pause);
+
+  EntityManager &GetEntityManager() const;
 
   template <typename... Systems>
   void CreateSystems()
@@ -54,29 +46,13 @@ public:
     return *( it->second );
   }
 
-  void InitSystems()
-  {
-    for ( auto &[hash, system] : systems )
-      system->Initialize();
-  }
+  void InitSystems();
 
-  void ShutdownSystems()
-  {
-    for ( auto &[hash, system] : systems )
-      system->Shutdown();
-  }
+  void ShutdownSystems();
 
-  void Update()
-  {
-    for ( auto hash : update_sequence )
-      systems[hash]->Update();
-  }
+  void Update();
 
-  void LateUpdate()
-  {
-    for ( auto hash : late_update_sequence )
-      systems[hash]->LateUpdate();
-  }
+  void LateUpdate();
 
   template <typename... Systems>
   void SetUpdateSequence()
@@ -102,17 +78,9 @@ public:
     }
   }
 
-  void Save( std::string filename )
-  {
-    JsonFile file;
-    file.StartWriter( filename ).WriteEntities( *em ).EndWriter();
-  }
+  void Save( std::string filename );
 
-  void Load( std::string filename )
-  {
-    JsonFile file;
-    file.StartReader( filename ).LoadEntities( *em ).EndReader();
-  }
+  void Load( std::string filename );
 };
 
 }// namespace DeltaEngine
