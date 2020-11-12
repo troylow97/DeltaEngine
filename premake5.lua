@@ -6,7 +6,8 @@ workspace "DeltaEngine"
   {
     "Debug",
     "Release",
-    "Dist"
+    "Debug_Editor",
+    "Release_Editor"
   }
 
   flags 
@@ -106,6 +107,7 @@ project "DeltaEngine"
 
   filter "configurations:Debug"
     defines "DE_DEBUG"
+    runtime "Debug"
     symbols "On"
     libdirs 
     {
@@ -128,9 +130,35 @@ project "DeltaEngine"
       "{COPY} Dep/rttr/lib/rttr_core_lib_s.pdb ../bin/" .. outputdir .. "/Sandbox",
     }
 
-    
+  filter "configurations:Debug_Editor"
+    defines "DE_DEBUG"
+    defines "DE_EDITOR"
+    runtime "Debug"
+    symbols "On"
+    libdirs 
+    {
+      "%{prj.name}/Dep/glew/GL/lib/Debug/x64",
+      "%{prj.name}/Dep/freetype/objs/x64/DebugStatic"
+    }
+    links 
+    {
+      "rttr_core_lib_s_d.lib",
+      "fmodL_vc.lib",
+      "fmodL.dll",
+      "fmodstudioL.dll",
+      "fmodstudioL_vc.lib"
+    }
+    postbuildcommands
+    {
+      "{COPY} Dep/fmod/core/lib/x64/fmodL.dll ../bin/" .. outputdir .. "/Sandbox",
+      "{COPY} Dep/fmod/studio/lib/x64/fmodstudioL.dll ../bin/" .. outputdir .. "/Sandbox",
+      "{COPY} Dep/freetype/objs/x64/DebugStatic/freetype.lib.pdb ../bin/" .. outputdir .. "/Sandbox",
+      "{COPY} Dep/rttr/lib/rttr_core_lib_s.pdb ../bin/" .. outputdir .. "/Sandbox",
+    }
+
   filter "configurations:Release"
     defines "DE_RELEASE"
+    runtime "Release"
     optimize "On"
     libdirs 
     {
@@ -149,13 +177,32 @@ project "DeltaEngine"
     {
       "{COPY} Dep/fmod/core/lib/x64/fmod.dll ../bin/" .. outputdir .. "/Sandbox",
       "{COPY} Dep/fmod/studio/lib/x64/fmodstudio.dll ../bin/" .. outputdir .. "/Sandbox"
-      
     }
 
-
-  filter "configurations:Dist"
-    defines "DE_DIST"
+  filter "configurations:Release_Editor"
+    defines "DE_RELEASE"
+    defines "DE_EDITOR"
+    runtime "Release"
     optimize "On"
+    libdirs 
+    {
+      "%{prj.name}/Dep/glew/GL/lib/Release/x64",
+      "%{prj.name}/Dep/freetype/objs/x64/ReleaseStatic"
+    }
+    links 
+    {
+      "rttr_core_lib_s.lib",
+      "fmod_vc.lib",
+      "fmod.dll",
+      "fmodstudio.dll",
+      "fmodstudio_vc.lib"
+    }
+    postbuildcommands
+    {
+      "{COPY} Dep/fmod/core/lib/x64/fmod.dll ../bin/" .. outputdir .. "/Sandbox",
+      "{COPY} Dep/fmod/studio/lib/x64/fmodstudio.dll ../bin/" .. outputdir .. "/Sandbox"
+    }
+
     
 project "Sandbox"
   location "Sandbox"
@@ -216,13 +263,23 @@ project "Sandbox"
   filter "configurations:Debug"
     defines "DE_DEBUG"
     defines "DEBUG"
+    runtime "Debug"
     symbols "On"
     
+  filter "configurations:Debug_Editor"
+    defines "DE_DEBUG"
+    defines "DE_EDITOR"
+    defines "DEBUG"
+    runtime "Debug"
+    symbols "On"
+
   filter "configurations:Release"
     defines "DE_RELEASE"
-    optimize "On"
-
-  filter "configurations:Dist"
-    defines "DE_DIST"
+    runtime "Release"
     optimize "On"
   
+  filter "configurations:Release_Editor"
+    defines "DE_RELEASE"
+    defines "DE_EDITOR"
+    runtime "Release"
+    optimize "On"

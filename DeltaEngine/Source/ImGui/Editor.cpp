@@ -22,7 +22,6 @@
 // Panels
 #include "Panels/AssetPanel.h"
 #include "Panels/ViewportPanel.h"
-#include "Panels/SpriteEditorPanel.h"
 #include "Panels/PropertyInspectorPanel.h"
 #include "Panels/TilemapPanel.h"
 #include "Panels/WorldPanel.h"
@@ -158,7 +157,7 @@ Editor::Editor()
   icons_config.PixelSnapH = true;
   // add character ranges and merge into main font, merge in icons from Font Awesome
   static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
-  io.Fonts->AddFontFromFileTTF("fa-solid-900.ttf", 10.0f, &icons_config, icons_ranges);
+  io.Fonts->AddFontFromFileTTF("Fonts/fa-solid-900.ttf", 10.0f, &icons_config, icons_ranges);
   ImGui::StyleColorsDark();
 
     ImGuiStyle& style = ImGui::GetStyle();

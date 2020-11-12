@@ -23,7 +23,8 @@ RTTR_REGISTRATION
     .property( "window", &EngineConfig::win_name )
     .property( "width", &EngineConfig::width )
     .property( "height", &EngineConfig::height )
-    .property( "fps", &EngineConfig::fps );
+    .property( "fps", &EngineConfig::fps )
+    .property( "fullscreen", &EngineConfig::fullscreen );
 
   rttr::registration::class_<Vector2>( "vector2" )
     .property( "x", &Vector2::x )
@@ -162,8 +163,8 @@ RTTR_REGISTRATION
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "controller_key", &Animator::m_ControllerKey )( rttr::policy::prop::bind_as_ptr )
     .property( "clip_key", &Animator::m_ClipKey )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "timer", &Animator::m_Timer )( rttr::policy::prop::bind_as_ptr )
-    .property( "speed", &Animator::m_Speed )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+    .property( "timer", &Animator::m_Timer )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+    .property( "speed", &Animator::m_Speed )( rttr::policy::prop::bind_as_ptr )
     .property( "frame", &Animator::m_Frame )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
 
   rttr::registration::class_<State>( "state" )

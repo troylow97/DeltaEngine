@@ -148,6 +148,16 @@ void InputSystem::Update()
     }
   }
 
+
+  // gets the coordinates of the mouse, good for debugging
+  if ( InputManager::Get()->OnMouseMove() )
+  {
+    auto curr = InputManager::Get()->CurrentPosition();
+    auto prev = InputManager::Get()->PreviousPosition();
+    //if ( curr != prev )
+    //  DeltaEngine_CORE_TRACE( "Mouse Position: x({}) y({})", curr.point_x, curr.point_y );
+  }
+
   if (InputManager::Get()->IsMouseTriggered(DEVK_LBUTTON))
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
@@ -172,32 +182,6 @@ void InputSystem::Update()
 	});
   }
 
-  //if ( InputManager::Get()->IsKeyTriggered( DEVK_P ) )
-  //{
-  //  em.ForEach( [&]( EntityID &id, Input &input )
-  //  {
-  //    auto t2 = em.GetComponent<Transform>( id );
-  //    auto circleEntity = env.pECS->GetWorld().get_entity_manager().CreateEntity<Transform, RigidBody, Collider>();
-  //    auto &circleT = env.pECS->GetWorld().get_entity_manager().GetComponent<Transform>( circleEntity );
-  //    auto &circleR = env.pECS->GetWorld().get_entity_manager().GetComponent<RigidBody>( circleEntity );
-  //    auto &circleC = env.pECS->GetWorld().get_entity_manager().GetComponent<Collider>( circleEntity );
-
-  //    circleT.position = Vector3( t2.position.x, t2.position.y - 0.25f );
-  //    circleT.scale = Vector3( 0.1, 0.1 );
-  //    circleR.hasGravity = true;
-  //    circleC.type = ColliderType::CIRCLE;
-  //  } );
-  //}
-
-
-  // gets the coordinates of the mouse, good for debugging
-  if ( InputManager::Get()->OnMouseMove() )
-  {
-    auto curr = InputManager::Get()->CurrentPosition();
-    auto prev = InputManager::Get()->PreviousPosition();
-    //if ( curr != prev )
-    //  DeltaEngine_CORE_TRACE( "Mouse Position: x({}) y({})", curr.point_x, curr.point_y );
-  }
 }
 
 void InputSystem::LateUpdate()
