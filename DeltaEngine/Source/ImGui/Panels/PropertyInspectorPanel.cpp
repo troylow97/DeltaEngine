@@ -41,9 +41,31 @@ void PropertyInspectorPanel::Render( bool )
     ImGui::Text( text.c_str() );
     ImGui::Text( "" );
     //44-124
-    //static char str1[128] = "";
-    //ImGui::SetNextItemWidth( 100 );
-    //ImGui::InputTextWithHint( "texture", "texture name", str1, IM_ARRAYSIZE( str1 ) );
+    static char str1[128] = "";
+    ImGui::SetNextItemWidth( 100 );
+    ImGui::InputTextWithHint( "texture", "texture name", str1, IM_ARRAYSIZE( str1 ) );
+
+    if (ImGui::BeginDragDropTarget())
+    {
+        ImGuiDragDropFlags target_flags = 0;
+
+        const ImGuiPayload* assetpayload = ImGui::AcceptDragDropPayload("ASSETFILES", target_flags);
+        if (assetpayload)
+        {
+            std::string assetpayload_n = *(std::string*)(assetpayload->Data);
+            std::wstring assetpayload_nws(assetpayload_n.begin(), assetpayload_n.end());
+            std::size_t index = assetpayload_nws.find_last_of(L"/\\");
+            std::wstring newFileName;
+            for (size_t i = index + 1; i < assetpayload_nws.length(); ++i)
+            {
+                newFileName += assetpayload_nws[i];
+            }
+            std::string fileName(newFileName.begin(), newFileName.end());
+            strcpy_s(str1, fileName.c_str());
+        }
+        ImGui::EndDragDropTarget();
+    }
+
     //ImGui::SameLine();
     //static int clicked = 0;
     //ImGui::PushStyleColor( ImGuiCol_Button, ( ImVec4( 0.0f, 0.775f, 0.4125f, 1.0f ) ) );
