@@ -1,9 +1,11 @@
 #include "ImGui/Panels/PropertyInspectorPanel.h"
+#include "ImGui/IconsFontAwesome5.h"
 #include "Input/InputManager.h"
 
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "ImGui/EditorDirectoryWatcher.h"
+#include "Render/Texture.h"
 
 #include "Assets/AssetManager.h"
 #include "Reflect/Reflect.h"
@@ -15,6 +17,10 @@ PropertyInspectorPanel::PropertyInspectorPanel( std::string str ) :
   IPanel( str )
 {
   m_enabled = true;
+  number_of_lines = 0;
+  number_of_empty_lines = 0;
+  number_of_frames = 0;
+  m_texture_is_animation = false;
 }
 
 PropertyInspectorPanel::~PropertyInspectorPanel()
@@ -47,7 +53,7 @@ void PropertyInspectorPanel::Render( bool )
     //44-124
     static char str1[128] = "";
     ImGui::SetNextItemWidth( 100 );
-    ImGui::InputTextWithHint( "texture", "texture name", str1, IM_ARRAYSIZE( str1 ) );
+    ImGui::InputTextWithHint( "", "texture name", str1, IM_ARRAYSIZE( str1 ) );
 
     if (ImGui::BeginDragDropTarget())
     {
@@ -64,11 +70,85 @@ void PropertyInspectorPanel::Render( bool )
             {
                 newFileName += assetpayload_nws[i];
             }
-            std::string fileName(newFileName.begin(), newFileName.end());
-            strcpy_s(str1, fileName.c_str());
+            for (size_t i = 0; i < newFileName.length(); ++i)
+            {
+                fileName += newFileName[i];
+            }
+            //fileName(newFileName.begin(), newFileName.end());
+            //std::string fileName(newFileName.begin(), newFileName.end());
+
+            std::string png = "png";
+            std::string info = "info";
+            if (fileName.find(png) != 0 && fileName.find(png) != std::string::npos && fileName.find(info) == std::string::npos)
+            {
+                strcpy_s(str1, fileName.c_str());
+                env.pManager->Load<Texture2D>(fileName, assetpayload_n);
+
+                assetpayload_n += ".info";
+
+                std::ifstream file(assetpayload_n.c_str());
+                while (std::getline(file, stringcount))
+                {
+                    ++number_of_lines;
+                    if (stringcount.empty())
+                    {
+                        ++number_of_empty_lines;
+                    }
+                }
+
+                if (number_of_lines > 5)
+                {
+                    m_texture_is_animation = true;
+                    number_of_lines = 0;
+                    number_of_frames = number_of_empty_lines;
+                    number_of_empty_lines = 0;
+                }
+                else
+                {
+                    m_texture_is_animation = false;
+                    number_of_lines = 0;
+                    number_of_frames = 0;
+                    number_of_empty_lines = 0;
+                }
+            }
+            else
+            {
+                std::string blank = "";
+                strcpy_s(str1, blank.c_str());
+            }
         }
         ImGui::EndDragDropTarget();
     }
+
+    ImGui::SameLine();
+    static int clicked = 0;
+    if (ImGui::Button(ICON_FA_DOT_CIRCLE, { 20.0f, 18.0f }))
+    {
+        if (m_texture_is_animation)
+            clicked++;
+        else 
+            clicked = 0;
+    }
+    if (m_texture_is_animation && clicked & 1)
+    {
+        ImGui::Begin("Frames", (bool*)true, ImGuiWindowFlags_AlwaysAutoResize);
+        for (unsigned int i = 0; i < number_of_frames; ++i)
+        {
+            if (i % 2 != 0)
+            {
+                ImGui::SameLine();
+            }
+            Sprite frame = { fileName, i };
+            uint64_t textureID = frame.GetTexture()->GetRendererID();
+            ImGui::ImageButton(reinterpret_cast<void*>(textureID),
+                ImVec2{ 60, 60 },
+                ImVec2{ frame.GetOffset().x, frame.GetOffset().y },
+                ImVec2{ frame.GetOffset().x + frame.GetTiling().x, frame.GetOffset().y + frame.GetTiling().y });
+        }
+        ImGui::End();
+    }
+    ImGui::SameLine();
+    ImGui::Text("texture");
 
     static const char *components[] { " ", "name", "parent", "input",
       "transform", "rigidbody", "collider",
