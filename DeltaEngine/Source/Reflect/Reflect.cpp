@@ -126,7 +126,9 @@ RTTR_REGISTRATION
       .property("type", &Collider::type)
       .property("is_collideable", &Collider::isCollideable)(rttr::policy::prop::bind_as_ptr)
       .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
-      .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+      .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("collision_layer_id", &Collider::CollisionLayerID)(rttr::policy::prop::bind_as_ptr)
+      .property("collision_layer_check", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Animator>( "animator" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Animator>()->bits ) )

@@ -1,7 +1,7 @@
 #include "InputSystem.h"
 #include "Components/Character.h"
 #include "Input/InputManager.h"
-
+#include "AttackFunctions.h"
 namespace DeltaEngine
 {
 void InputSystem::Initialize()
@@ -102,6 +102,14 @@ void InputSystem::Update()
       {
           i1.previousKey = DEVK_SPACE;
           r1.isJumping = false;
+      });
+  }
+
+  if (InputManager::Get()->IsKeyTriggered(DEVK_F))
+  {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1)
+      {
+           PlayerRangedAttack(i1);
       });
   }
 
