@@ -5,10 +5,12 @@ namespace DeltaEngine
 {
     enum class entity_type : unsigned int
     {
-        E_WALL = 0x01,
-        E_PLAYER = 0x02,
-        E_ENEMY = 0x04,
-        E_BULLET = 0x08
+        E_WALL,
+        E_PLAYER,
+        E_ENEMY,
+        E_PLAYER_BULLET,
+        E_PLAYER_PUNCH,
+        E_LANCER_CHARGE
     };
 
 	struct EntityType

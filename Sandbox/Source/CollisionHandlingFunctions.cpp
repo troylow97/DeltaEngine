@@ -17,22 +17,47 @@ namespace DeltaEngine
 			auto& hp1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1);
 			auto& hp2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id2);
 
-			if (type1 == entity_type::E_BULLET || type2 == entity_type::E_BULLET)
+			if (type1 != type2)
 			{
-				hp1.CurrentHealth--;
-				hp2.CurrentHealth--;
-				return;
+				//Lancer Melee Attack
+				if ((type1 == entity_type::E_LANCER_CHARGE || type2 == entity_type::E_LANCER_CHARGE) &&
+					(type1 == entity_type::E_PLAYER || type2 == entity_type::E_PLAYER))
+				{
+					hp1.CurrentHealth--;
+					hp2.CurrentHealth--;
+					return;
+				}
+
+				//Player Ranged Attack
+				if ((type1 == entity_type::E_PLAYER_BULLET || type2 == entity_type::E_PLAYER_BULLET) &&
+					(type1 == entity_type::E_ENEMY || type2 == entity_type::E_ENEMY))
+				{
+					hp1.CurrentHealth--;
+					hp2.CurrentHealth--;
+					return;
+				}
+
+				//Player Melee Attack
+				if ((type1 == entity_type::E_PLAYER_PUNCH || type2 == entity_type::E_PLAYER_PUNCH) &&
+					(type1 == entity_type::E_ENEMY || type2 == entity_type::E_ENEMY))
+				{
+					hp1.CurrentHealth--;
+					hp2.CurrentHealth--;
+					return;
+				}
+
+				//Enemy Collide with player
+				if ((type1 == entity_type::E_ENEMY && type2 == entity_type::E_PLAYER) ||
+					(type1 == entity_type::E_PLAYER && type2 == entity_type::E_ENEMY))
+				{
+					if (type1 == entity_type::E_PLAYER)
+						hp1.CurrentHealth--;
+					else
+						hp2.CurrentHealth--;
+					return;
+				}
 			}
 
-			if ((type1 == entity_type::E_ENEMY && type2 == entity_type::E_PLAYER) ||
-				(type1 == entity_type::E_PLAYER && type2 == entity_type::E_ENEMY))
-			{
-				if (type1 == entity_type::E_PLAYER)
-					hp1.CurrentHealth--;
-				else
-					hp2.CurrentHealth--;
-				return;
-			}
 
 		}
 

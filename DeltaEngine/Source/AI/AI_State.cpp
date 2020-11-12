@@ -55,8 +55,17 @@ namespace DeltaEngine
 		CheckEdges(monster);
 		env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
 		{
-				if (et.type == entity_type::E_PLAYER)
-					AITools::MoveTowardsEntity(monster, player);
+			if (et.type == entity_type::E_PLAYER)
+			{
+				if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2) &&
+					env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+				{
+					env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
+				}
+				AITools::MoveTowardsEntity(monster, player);
+
+			}
+					
 		});
 	}
 //----------------------------------------------------------------------

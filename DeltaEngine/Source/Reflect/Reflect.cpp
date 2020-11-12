@@ -218,10 +218,12 @@ RTTR_REGISTRATION
   rttr::registration::class_<Attack>("attack")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("damage", &Attack::Damage)(rttr::policy::prop::bind_as_ptr)
+      .property("range_damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("melee_damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
       .property("max_cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
       .property("cooldown_timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)
-      .property("isAttacking", &Attack::isAttacking)(rttr::policy::prop::bind_as_ptr);
+      .property("ranged_attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)
+      .property("melee_attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Lifespan>("lifespan")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits))

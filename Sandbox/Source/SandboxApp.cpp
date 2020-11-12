@@ -51,7 +51,8 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(sec);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(sec);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Health>(sec);
-		//env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(sec);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<Attack>(sec);
+		env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(sec);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<AI>(sec);
 		env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).key = "idle_monster";
 		env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(sec).transition = "null";
@@ -73,8 +74,8 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(third);
 
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(third).type = ColliderType::BOX;
-		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(third).position = { 0,-2,0 };
-		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(third).scale = { 10.5,0.5,0 };
+		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(third).position = { 0,-3,0 };
+		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(third).scale = { 30.5,0.5,0 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Movespeed = 50.0f;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).Mass = 1500.0f;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(third).isMoveable = false;
@@ -87,7 +88,7 @@ public:
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(fourth);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<EntityType>(fourth);
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(fourth).type = ColliderType::BOX;
-		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fourth).position = { -4,0,0 };
+		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fourth).position = { -5,0,0 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(fourth).scale = { 0.5,10.5,0 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Movespeed = 50.0f;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(fourth).Mass = 1500.0f;

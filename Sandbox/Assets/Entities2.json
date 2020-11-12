@@ -9,11 +9,11 @@
                 },
                 "position": {
                     "x": 0.0,
-                    "y": -2.0,
+                    "y": -3.0,
                     "z": 0.0
                 },
                 "scale": {
-                    "x": 10.5,
+                    "x": 30.5,
                     "y": 0.5,
                     "z": 0.0
                 },
@@ -54,7 +54,7 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": -4.0,
+                    "x": -5.0,
                     "y": 0.0,
                     "z": 0.0
                 },
@@ -159,10 +159,12 @@
                 "max_health": 5000
             },
             "attack": {
-                "damage": 1.0,
+                "range_damage": 1,
+                "melee_damage": 1,
                 "max_cooldown": 1.0,
                 "cooldown_timer": 0.0,
-                "isAttacking": false
+                "ranged_attack": false,
+                "melee_attack": false
             }
         },
         {
@@ -307,6 +309,19 @@
                 "is_trigger": false,
                 "collision_layer_id": "collision_layer_check"
             },
+            "image": {
+                "sprite": {
+                    "key": "",
+                    "index": 0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
             "entity_type": {
                 "type": ""
             },
@@ -317,6 +332,14 @@
             "health": {
                 "current_health": 200,
                 "max_health": 200
+            },
+            "attack": {
+                "range_damage": 1,
+                "melee_damage": 1,
+                "max_cooldown": 1.0,
+                "cooldown_timer": 0.0,
+                "ranged_attack": false,
+                "melee_attack": false
             }
         }
     ]

@@ -16,7 +16,7 @@ void InputSystem::Shutdown()
 
 void InputSystem::Update()
 {
-  if ( InputManager::Get()->IsKeyPressed( DEVK_A ) )
+  if ( InputManager::Get()->IsKeyPressed( DEVK_LEFT ) )
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
@@ -34,14 +34,14 @@ void InputSystem::Update()
       s.m_FlipX = true;
     } );
   }
-  else if ( InputManager::Get()->IsKeyReleased( DEVK_A ) )
+  else if ( InputManager::Get()->IsKeyReleased(DEVK_LEFT) )
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, State &a )
     {
       a.SetFloat( "Speed", 0.0f );
     } );
   }
-  if ( InputManager::Get()->IsKeyPressed( DEVK_D ) )
+  if ( InputManager::Get()->IsKeyPressed(DEVK_RIGHT) )
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
@@ -59,14 +59,15 @@ void InputSystem::Update()
       s.m_FlipX = false;
     } );
   }
-  else if ( InputManager::Get()->IsKeyReleased( DEVK_D ) )
+  else if ( InputManager::Get()->IsKeyReleased(DEVK_RIGHT) )
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, State &a )
     {
       a.SetFloat( "Speed", 0.0f );
     } );
   }
-  if ( InputManager::Get()->IsKeyPressed( DEVK_W ) )
+
+  if ( InputManager::Get()->IsKeyPressed(DEVK_UP) )
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
@@ -74,7 +75,8 @@ void InputSystem::Update()
       r1.Direction = Vector2::up();
     } );
   }
-  if ( InputManager::Get()->IsKeyPressed( DEVK_S ) )
+
+  if ( InputManager::Get()->IsKeyPressed(DEVK_DOWN) )
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
     {
@@ -105,16 +107,24 @@ void InputSystem::Update()
       });
   }
 
-  if (InputManager::Get()->IsKeyTriggered(DEVK_F))
+  if (InputManager::Get()->IsKeyTriggered(DEVK_C))
   {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1,Attack& a1, Image& im)
       {
-          a1.isAttacking = true;
+            a1.RangeAttack = true;
       });
   }
 
-  if (InputManager::Get()->IsKeyReleased(DEVK_A) || InputManager::Get()->IsKeyReleased(DEVK_D)
-      || InputManager::Get()->IsKeyReleased(DEVK_S) || InputManager::Get()->IsKeyReleased(DEVK_W))
+  if (InputManager::Get()->IsKeyTriggered(DEVK_X))
+  {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im)
+      {
+             a1.MeleeAttack = true;
+      });
+  }
+
+  if (InputManager::Get()->IsKeyReleased(DEVK_UP) || InputManager::Get()->IsKeyReleased(DEVK_DOWN)
+      || InputManager::Get()->IsKeyReleased(DEVK_LEFT) || InputManager::Get()->IsKeyReleased(DEVK_RIGHT))
   {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
           {
