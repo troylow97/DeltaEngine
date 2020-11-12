@@ -10,6 +10,6 @@ namespace DeltaEngine
 	DEFINE_SYSTEM(AttackSystem, Attack,Collider,Health,Lifespan,Transform,EntityType)
 		void Update() override;
 		void LateUpdate() override;
-		void RangedAttack();
+		void RangedAttack(EntityID&);
 	END_DEFINE_SYSTEM(AnimationSystem)
 }
