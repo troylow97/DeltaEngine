@@ -24,12 +24,13 @@ namespace DeltaEngine
 				return;
 			}
 
-			if(type1 != entity_type::E_WALL && type2 != entity_type::E_WALL)
+			if ((type1 == entity_type::E_ENEMY && type2 == entity_type::E_PLAYER) ||
+				(type1 == entity_type::E_PLAYER && type2 == entity_type::E_ENEMY))
 			{
-				auto& ref1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1);
-				ref1.CurrentHealth--;
-				auto& ref2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id2);
-				ref2.CurrentHealth--;
+				if (type1 == entity_type::E_PLAYER)
+					hp1.CurrentHealth--;
+				else
+					hp2.CurrentHealth--;
 				return;
 			}
 

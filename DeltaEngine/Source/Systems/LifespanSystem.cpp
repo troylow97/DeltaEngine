@@ -6,6 +6,8 @@ namespace DeltaEngine
 {
     void LifespanSystem::Update()
     {
+        DestroyedEntities.clear();
+
         em.ForEach([&](EntityID& id, Lifespan& ls)
         {
             if (ls.Timer < 0)
@@ -20,11 +22,21 @@ namespace DeltaEngine
 
         em.ForEach([&](EntityID& id, Health& hp)
             {
-                if (hp.CurrentHealth < 0)
+                if (hp.CurrentHealth > hp.MaxHealth)
                 {
-                    em.DestroyEntity(id);
+                    hp.CurrentHealth = hp.MaxHealth;
+                }
+
+                if (hp.CurrentHealth <= 0)
+                {
+                    DestroyedEntities.push_back(id);
                 }
             });
+
+        for (EntityID i : DestroyedEntities)
+        {
+            em.DestroyEntity(i);
+        }
 
     }
     void LifespanSystem::LateUpdate()
