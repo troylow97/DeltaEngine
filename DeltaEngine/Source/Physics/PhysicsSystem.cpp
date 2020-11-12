@@ -57,7 +57,6 @@ namespace DeltaEngine
 
                 if (CurrentJumpTicks >= 1 && r1.isJumping == true)
                 {
-                    std::cout << "CurrentJumpTicks: " << CurrentJumpTicks << std::endl;
                     r1.AccumulatedForce += Vector2{ 0, JumpForce + r1.Mass * 100 };
                     JumpForce *= 0.7f;
 

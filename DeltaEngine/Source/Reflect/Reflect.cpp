@@ -194,7 +194,10 @@ RTTR_REGISTRATION
   rttr::registration::class_<Attack>("attack")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("damage", &Attack::Damage)(rttr::policy::prop::bind_as_ptr);
+      .property("damage", &Attack::Damage)(rttr::policy::prop::bind_as_ptr)
+      .property("max_cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("cooldown_timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)
+      .property("isAttacking", &Attack::isAttacking)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Lifespan>("lifespan")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))

@@ -18,6 +18,7 @@
 #include "ImGui/Editor.h"
 #include "AI/AI_StateMachine.h"
 #include "Core/Utils/Random.h"
+#include "Systems/AttackSystem.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -155,8 +156,8 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   env.pECS->GetWorld().Save("Entities2.json");
 
-  env.pECS->GetWorld().CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
-  env.pECS->GetWorld().SetUpdateSequence<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().CreateSystems<InputSystem, AISystem,AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
+  env.pECS->GetWorld().SetUpdateSequence<InputSystem, AISystem, AttackSystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
   env.pECS->GetWorld().SetLateUpdateSequence<PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem, PhysicsDrawSystem>();
 
 
