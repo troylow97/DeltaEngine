@@ -62,7 +62,7 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX = true;
 			}
 
-			DeltaEngine_CORE_ERROR("FaceLeft: Entity has no image!");
+			DeltaEngine_CORE_ERROR("FaceRight: Entity has no image!");
 
 		}
 		bool isFacingLeft(EntityID& id1)
@@ -94,6 +94,20 @@ namespace DeltaEngine
 		void MoveStop(EntityID& id)
 		{
 			env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = Vector2::zero();
+		}
+		void FaceEntity(EntityID& id1, EntityID& id2)
+		{
+			if (isFacingLeft(id1) && EntityisOnTheRight(id1,id2))
+			{
+				FaceRight(id1);
+				return;
+			}
+
+			if (isFacingRight(id1) && EntityisOnTheLeft(id1, id2))
+			{
+				FaceLeft(id1);
+				return;
+			}
 		}
 		bool EntityisWithinDetectionRange(EntityID& id1, EntityID& id2, float x, float y)
 		{

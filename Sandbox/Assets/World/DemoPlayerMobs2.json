@@ -1770,7 +1770,7 @@
         },
         {
             "input": {
-                "prev": 32,
+                "prev": 68,
                 "curr": 0
             },
             "transform": {
@@ -1780,8 +1780,8 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": -1.1087669134140015,
-                    "y": -2.6809628009796144,
+                    "x": -6.244429588317871,
+                    "y": -1.5484983921051026,
                     "z": 0.0
                 },
                 "scale": {
@@ -1816,8 +1816,8 @@
             },
             "image": {
                 "sprite": {
-                    "key": "Textures/StretchSpritesheet",
-                    "index": 1
+                    "key": "Textures/BreathingSpritesheet",
+                    "index": 5
                 },
                 "size": {
                     "x": 1.0,
@@ -1836,7 +1836,7 @@
                 "overall_angle": 0.0,
                 "start_angle": 0.0,
                 "end_angle": 0.0,
-                "flip_x": true,
+                "flip_x": false,
                 "flip_y": false
             },
             "renderer2D": {
@@ -1871,7 +1871,7 @@
                 "range_damage": 1,
                 "melee_damage": 1,
                 "max_cooldown": 0.6000000238418579,
-                "cooldown_timer": -0.00007960572838783264,
+                "cooldown_timer": -0.0012997514568269253,
                 "ranged_attack": false,
                 "melee_attack": false
             }
@@ -1963,7 +1963,7 @@
                 "category": "enemy"
             },
             "ai": {
-                "state": "chase_enemy_lancer",
+                "state": "idle_lancer",
                 "transition": "null"
             },
             "health": {
