@@ -131,7 +131,7 @@ void PropertyInspectorPanel::Render( bool )
     }
     if (m_texture_is_animation && clicked & 1)
     {
-        ImGui::Begin("Frames", (bool*)true, ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::Begin("Sprite preview", (bool*)true, ImGuiWindowFlags_AlwaysAutoResize);
         for (unsigned int i = 0; i < number_of_frames; ++i)
         {
             if (i % 2 != 0)
