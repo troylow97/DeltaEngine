@@ -115,6 +115,7 @@ void InputSystem::Update()
       a1.RangeAttack = true;
       a.SetBool( "Ranged", true );
       idle_timer = 0.0f;
+      attack_cooldown = 0.0f;
 
     } );
   }

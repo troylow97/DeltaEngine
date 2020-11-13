@@ -1770,7 +1770,7 @@
         },
         {
             "input": {
-                "prev": 32,
+                "prev": 68,
                 "curr": 0
             },
             "transform": {
@@ -1780,8 +1780,8 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": -3.736027479171753,
-                    "y": -2.6804099082946779,
+                    "x": -3.7568366527557375,
+                    "y": -2.6804935932159426,
                     "z": 0.0
                 },
                 "scale": {
@@ -1797,13 +1797,13 @@
                 }
             },
             "rigidbody": {
-                "mass": 20.0,
-                "movespeed": 1.0,
+                "mass": 50.0,
+                "movespeed": 2.0,
                 "restitution": 0.009999999776482582,
-                "friction_coeff": 2.0,
+                "friction_coeff": 5.0,
                 "inherent_acceleration": 0.0,
                 "max_acceleration": 40.0,
-                "acceleration_pickup": 0.46000000834465029,
+                "acceleration_pickup": 0.699999988079071,
                 "has_gravity": true,
                 "is_moveable": true,
                 "is_jumping": false
@@ -1816,8 +1816,8 @@
             },
             "image": {
                 "sprite": {
-                    "key": "Textures/StretchSpritesheet",
-                    "index": 4
+                    "key": "Textures/BreathingSpritesheet",
+                    "index": 6
                 },
                 "size": {
                     "x": 1.0,
@@ -1871,7 +1871,7 @@
                 "range_damage": 1,
                 "melee_damage": 1,
                 "max_cooldown": 0.6000000238418579,
-                "cooldown_timer": -0.008216047659516335,
+                "cooldown_timer": -0.00044810096733272076,
                 "ranged_attack": false,
                 "melee_attack": false
             }

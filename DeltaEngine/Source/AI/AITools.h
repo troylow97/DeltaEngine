@@ -13,6 +13,7 @@ namespace DeltaEngine
 		bool isFacingLeft(EntityID& id);
 		bool isFacingRight(EntityID& id);
 		bool isFacingEachOther(EntityID& id1, EntityID& id2);
+		void FaceEntity(EntityID& id1, EntityID& id2);
 		void MoveRight(EntityID& id);
 		void MoveLeft(EntityID& id);
 		void MoveStop(EntityID& id);
