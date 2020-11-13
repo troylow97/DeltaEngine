@@ -340,7 +340,7 @@ inline size_t EntityManager::InsertEntityChunk( DataChunk *chunk, EntityID id, b
 
 inline void EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
 {
-  assert( chunk->header.index >= index );
+  assert( chunk->header.index > index );
 
   Description *desc = chunk->header.owner->components_desc;
 
@@ -438,10 +438,6 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
             std::swap( *static_cast<AI *>( current ), *static_cast<AI *>( target ) );
           else if ( current_type->bits == ComponentMeta::GetComponentMeta<Text>()->bits )
             std::swap( *static_cast<Text *>( current ), *static_cast<Text *>( target ) );
-          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Collider>()->bits )
-            std::swap( *static_cast<Collider *>( current ), *static_cast<Collider *>( target ) );
-          else if ( current_type->bits == ComponentMeta::GetComponentMeta<RigidBody>()->bits )
-            std::swap( *static_cast<RigidBody *>( current ), *static_cast<RigidBody *>( target ) );
           else
             std::memcpy( target, current, current_type->size );
         }
