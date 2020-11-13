@@ -8,7 +8,9 @@ namespace DeltaEngine
 
 void PhysicsDrawSystem::Update()
 {
-  em.ForEach( e_query, [&]( EntityID id, Collider &c, Transform &t, RigidBody &r )
+  if ( InputManager::Get()->GetShowLine() == true )
+
+    em.ForEach( e_query, [&]( EntityID id, Collider &c, Transform &t, RigidBody &r )
   {
     switch ( c.type )
     {

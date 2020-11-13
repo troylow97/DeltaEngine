@@ -160,14 +160,14 @@ void PropertyInspectorPanel::Render( bool )
           else if ( prop_type == rttr::type::get<Sprite *>() )
           {
             std::vector<const char *> c_ptr_vec;
-            c_ptr_vec.reserve( 128 );
+            c_ptr_vec.reserve( 256 );
             c_ptr_vec.push_back( " " );
             std::vector<std::string> str_vec;
-            str_vec.reserve( 128 );
+            str_vec.reserve( 256 );
             for ( auto &[key, data] : GetEnv().pManager->List<Texture2D>() )
             {
               auto str = key.Key();
-              for ( size_t i = 0; i < data->textureInfo.size(); i++ )
+              for ( size_t i = 0; i < data->textureInfo.size() - 1; i++ )
                 c_ptr_vec.push_back( str_vec.emplace_back( std::string( str + '_' + std::to_string( i ) ) ).c_str() );
             }
 

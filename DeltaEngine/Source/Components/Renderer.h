@@ -23,14 +23,5 @@ namespace DeltaEngine
     {
     };
 
-    Renderer2D& operator=(const Renderer2D& render)
-    {
-      m_Material = render.m_Material;
-      m_Shaded = render.m_Shaded;
-      m_Color = render.m_Color;
-      m_Active = render.m_Active;
-      m_Wireframe = render.m_Wireframe;
-      return *this;
-    }
   };
 }

@@ -222,45 +222,45 @@ bool WriteAtomic( const type &t, const variant &var, PrettyWriter<FileWriteStrea
     return true;
   }
 
-  if (t.is_pointer())
+  if ( t.is_pointer() )
   {
-      if (t.get_raw_type().is_arithmetic())
-      {
-          if (t == type::get<bool*>())
-              writer.Bool(var.get_wrapped_value<bool>());
-          else if (t == type::get<float*>())
-              writer.Double(var.get_wrapped_value<float>());
-          else if (t == type::get<int*>())
-            writer.Int(var.get_wrapped_value<int>());
-          return true;
-      }
-      if (t.get_raw_type().is_enumeration())
-      {
-          enumeration enum_prop = t.get_raw_type().get_enumeration();
-          auto key = enum_prop.value_to_name(var.get_wrapped_value<unsigned>());
-          writer.String(key.to_string());
-          /*bool ok = false;
-          auto result = e_var.to_string( &ok );*/
-          //if ( ok )
-          //  writer.String( e_var.to_string() );
-          //else
-          //{
-          //  ok = false;
-          //  auto value = var.to_uint64( &ok );
-          //  if ( ok )
-          //    writer.Uint64( value );
-          //  else
-          //    writer.Null();
-          //}
+    if ( t.get_raw_type().is_arithmetic() )
+    {
+      if ( t == type::get<bool *>() )
+        writer.Bool( var.get_wrapped_value<bool>() );
+      else if ( t == type::get<float *>() )
+        writer.Double( var.get_wrapped_value<float>() );
+      else if ( t == type::get<int *>() )
+        writer.Int( var.get_wrapped_value<int>() );
+      return true;
+    }
+    if ( t.get_raw_type().is_enumeration() )
+    {
+      enumeration enum_prop = t.get_raw_type().get_enumeration();
+      auto key = enum_prop.value_to_name( var.get_wrapped_value<unsigned>() );
+      writer.String( key.to_string() );
+      /*bool ok = false;
+      auto result = e_var.to_string( &ok );*/
+      //if ( ok )
+      //  writer.String( e_var.to_string() );
+      //else
+      //{
+      //  ok = false;
+      //  auto value = var.to_uint64( &ok );
+      //  if ( ok )
+      //    writer.Uint64( value );
+      //  else
+      //    writer.Null();
+      //}
 
-          return true;
-      }
-      if ( t.get_raw_type() == type::get<std::string>() )
-      {
-        if (t == type::get<std::string*>())
-          writer.String(var.get_wrapped_value<std::string>());
-        return true;
-      }
+      return true;
+    }
+    if ( t.get_raw_type() == type::get<std::string>() )
+    {
+      if ( t == type::get<std::string *>() )
+        writer.String( var.get_wrapped_value<std::string>() );
+      return true;
+    }
   }
 
   if ( t.is_enumeration() )

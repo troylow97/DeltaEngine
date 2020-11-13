@@ -93,6 +93,6 @@ condition IsRunning ? 1
 
 start Clip/StretchSpritesheet
 end Clip/IdleSpritesheet
-condition IsIdle > 10
+condition IsIdle < 8
 
 %
