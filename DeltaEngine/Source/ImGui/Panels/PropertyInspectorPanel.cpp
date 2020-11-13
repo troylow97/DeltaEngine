@@ -70,6 +70,7 @@ void PropertyInspectorPanel::Render( bool )
             {
                 newFileName += assetpayload_nws[i];
             }
+            fileName = "";
             for (size_t i = 0; i < newFileName.length(); ++i)
             {
                 fileName += newFileName[i];
@@ -81,6 +82,7 @@ void PropertyInspectorPanel::Render( bool )
             std::string info = "info";
             if (fileName.find(png) != 0 && fileName.find(png) != std::string::npos && fileName.find(info) == std::string::npos)
             {
+                std::memset(str1, 0, sizeof(str1));
                 strcpy_s(str1, fileName.c_str());
                 env.pManager->Load<Texture2D>(fileName, assetpayload_n);
 
