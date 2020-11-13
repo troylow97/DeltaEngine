@@ -3,5 +3,5 @@
     "width": 1024,
     "height": 768,
     "fps": 60.0,
-    "fullscreen": true
+    "fullscreen": false
 }

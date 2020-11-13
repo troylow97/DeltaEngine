@@ -19,6 +19,7 @@ namespace DeltaEngine
   {
     Sprite m_Sprite;
 
+    Vector2 m_Size;
     Vector2 m_Offset;
     Vector2 m_Tiling;
 
@@ -31,6 +32,7 @@ namespace DeltaEngine
 
     Image()
       : m_Sprite{""},
+        m_Size{1, 1},
         m_Offset{0, 0},
         m_Tiling{1, 1},
         m_FillType{FillType::None},
@@ -43,19 +45,5 @@ namespace DeltaEngine
     {
     }
 
-    Image& operator=(const Image& rhs)
-    {
-      m_Sprite = rhs.m_Sprite;
-      m_Offset = rhs.m_Offset;
-      m_Tiling = rhs.m_Tiling;
-      m_FlipX = rhs.m_FlipX;
-      m_FlipY = rhs.m_FlipY;
-      m_FillType = rhs.m_FillType;
-      m_FillAmount = rhs.m_FillAmount;
-      m_OverallAngle = rhs.m_OverallAngle;
-      m_StartAngle = rhs.m_StartAngle;
-      m_EndAngle = rhs.m_EndAngle;
-      return *this;
-    }
   };
 }

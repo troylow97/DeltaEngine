@@ -1,0 +1,98 @@
+entry Clip/IdleSpritesheet
+
+%Parameters:
+
+param
+Speed 0 0.0
+
+param
+IsIdle 0 0.0
+
+param
+IsRunning 0 0.0
+
+param
+Punch 0 0.0
+
+param
+Ranged 0 0.0
+
+param
+PlayerVelocityY 0 0.0
+
+param
+IsJumping 0 0.0
+
+%Transitions:
+
+start Clip/IdleSpritesheet
+end Clip/RunningSpritesheet
+condition IsRunning ? 1
+
+%
+
+start Clip/RunningSpritesheet
+end Clip/IdleSpritesheet
+condition IsRunning ? 0
+
+%
+
+start Clip/IdleSpritesheet
+end Clip/RangeSpritesheet
+condition Ranged ? 1
+
+%
+
+start Clip/RangeSpritesheet
+end Clip/IdleSpritesheet
+condition Ranged ? 0
+
+%
+
+start Clip/IdleSpritesheet
+end Clip/3-PunchSpritesheet
+condition Punch ? 1
+
+%
+
+start Clip/3-PunchSpritesheet
+end Clip/IdleSpritesheet
+condition Punch ? 0
+
+%
+
+start Clip/IdleSpritesheet
+end Clip/LeapingSpritesheet
+condition PlayerVelocityY > 0
+
+%
+
+start Clip/LeapingSpritesheet
+end Clip/FallingSpritesheet
+condition PlayerVelocityY < 0
+
+%
+
+start Clip/FallingSpritesheet
+end Clip/IdleSpritesheet
+condition PlayerVelocityY = 0
+
+%
+
+start Clip/IdleSpritesheet
+end Clip/StretchSpritesheet
+condition IsIdle > 8
+
+%
+
+start Clip/StretchSpritesheet
+end Clip/RunningSpritesheet
+condition IsRunning ? 1
+
+%
+
+start Clip/StretchSpritesheet
+end Clip/IdleSpritesheet
+condition IsIdle < 8
+
+%

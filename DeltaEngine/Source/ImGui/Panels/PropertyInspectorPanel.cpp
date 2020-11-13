@@ -210,7 +210,7 @@ void PropertyInspectorPanel::Render( bool )
             ImGui::DragFloat3( prop_name.c_str(), (float *) ( value.get_value<Vector3 *>() ), 0.01f );
           else if ( prop_type == rttr::type::get<bool *>() )
             ImGui::Checkbox( prop_name.c_str(), value.get_value<bool *>() );
-          else if ( prop_type == rttr::type::get<std::string *>() && instance.get_type() == rttr::type::get<AI>() || instance.get_type() == rttr::type::get<EntityType>() )
+          else if ( prop_type == rttr::type::get<std::string *>() && instance.get_type() == rttr::type::get<AI>() )
           {
             auto &str = *value.get_value<std::string *>();
             char buffer[256] {};
@@ -240,14 +240,14 @@ void PropertyInspectorPanel::Render( bool )
           else if ( prop_type == rttr::type::get<Sprite *>() )
           {
             std::vector<const char *> c_ptr_vec;
-            c_ptr_vec.reserve( 128 );
+            c_ptr_vec.reserve( 256 );
             c_ptr_vec.push_back( " " );
             std::vector<std::string> str_vec;
-            str_vec.reserve( 128 );
+            str_vec.reserve( 256 );
             for ( auto &[key, data] : GetEnv().pManager->List<Texture2D>() )
             {
               auto str = key.Key();
-              for ( size_t i = 0; i < data->textureInfo.size(); i++ )
+              for ( size_t i = 0; i < data->textureInfo.size() - 1; i++ )
                 c_ptr_vec.push_back( str_vec.emplace_back( std::string( str + '_' + std::to_string( i ) ) ).c_str() );
             }
 

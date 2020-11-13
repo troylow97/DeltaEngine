@@ -30,8 +30,9 @@ public:
     transitions;
 
   AnimationClip *entryAnimation;
+  std::string m_Name;
 
-  AnimationController( std::string filepath = "Player.anim" );
+  AnimationController( std::string filepath = "Dave.anim" );
 
   AnimationClip *CheckCondition( std::string currentAnim, Parameters &parameters );
 private:

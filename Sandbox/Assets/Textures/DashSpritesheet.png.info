@@ -1,0 +1,30 @@
+Textures/Dash Spritesheet_i_0
+offset 0 0
+size 400 250
+pivot 0.5 0.5
+
+Textures/Dash Spritesheet_i_1
+offset 400 0
+size 400 250
+pivot 0.5 0.5
+
+Textures/Dash Spritesheet_i_2
+offset 800 0
+size 400 250
+pivot 0.5 0.5
+
+Textures/Dash Spritesheet_i_3
+offset 1200 0
+size 400 250
+pivot 0.5 0.5
+
+Textures/Dash Spritesheet_i_4
+offset 1600 0
+size 400 250
+pivot 0.5 0.5
+
+Textures/Dash Spritesheet_i_5
+offset 2000 0
+size 400 250
+pivot 0.5 0.5
+

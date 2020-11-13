@@ -1,0 +1,42 @@
+Textures/StretchSpritesheet_i_0
+offset 0 0
+size 200 200
+pivot 0.5 0.5
+
+Textures/StretchSpritesheet_i_1
+offset 200 0
+size 200 200
+pivot 0.5 0.5
+
+Textures/StretchSpritesheet_i_2
+offset 400 0
+size 200 200
+pivot 0.5 0.5
+
+Textures/StretchSpritesheet_i_3
+offset 600 0
+size 200 200
+pivot 0.5 0.5
+
+Textures/StretchSpritesheet_i_4
+offset 800 0
+size 200 200
+pivot 0.5 0.5
+
+Textures/StretchSpritesheet_i_5
+offset 1000 0
+size 200 200
+pivot 0.5 0.5
+
+Textures/StretchSpritesheet_i_6
+offset 1200 0
+size 200 200
+pivot 0.5 0.5
+
+Textures/StretchSpritesheet_i_7
+offset 1400 0
+size 200 200
+pivot 0.5 0.5
+
+
+%

@@ -160,26 +160,22 @@ namespace DeltaEngine
 		{
 			if (EntityisOnTheRight(id1, id2))
 			{
-				std::cout << "going right" << std::endl;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.x = 1;
 
 			}
 			else if(EntityisOnTheLeft(id1,id2))
 			{
-				std::cout << "going left" << std::endl;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.x = -1;
 
 			}
 
 			if (EntityisOnTop(id1, id2))
 			{
-				std::cout << "going up" << std::endl;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.y = 1;
 			
 			}
 			else if(EntityisOnBot(id1, id2))
 			{
-				std::cout << "going down" << std::endl;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.y = -1;
 			}
 

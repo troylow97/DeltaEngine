@@ -2,15 +2,19 @@
 
 struct Attack
 {
-	float Damage;
+	int RangedDamage;
+	int MeleeDamage;
 	float MaxCooldown;
 	float CooldownTimer;
-	bool isAttacking;
+	bool RangeAttack;
+	bool MeleeAttack;
 
 	Attack() :
-		Damage{1.0f},
-		MaxCooldown{1.0f},
+		MeleeDamage{1},
+		RangedDamage{1},
+		MaxCooldown{0.6f},
 		CooldownTimer{0.0f},
-		isAttacking{false}
+		RangeAttack{false},
+		MeleeAttack{false}
 	{}
 };

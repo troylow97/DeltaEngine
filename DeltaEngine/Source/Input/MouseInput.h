@@ -26,6 +26,7 @@ private:
   size_t m_entityid_selected;
 
   bool m_tileset_dragged = false;
+  bool m_asset_dragged = false;
 
   friend class InputManager;
 

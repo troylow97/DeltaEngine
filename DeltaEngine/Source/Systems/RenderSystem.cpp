@@ -49,8 +49,8 @@ void RenderSystem::Update()
         Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
         Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
         Matrix4x4 model = Matrix4x4::Scale(Vector3{
-          (i.m_Sprite ? (i.m_Sprite.GetWidth() / 200.0f) : 1) * (i.m_FlipX ? -1 : 1),
-          (i.m_Sprite ? (i.m_Sprite.GetHeight() / 200.0f) : 1) * (i.m_FlipY ? -1 : 1), 1 })
+          (i.m_Sprite ? (i.m_Sprite.GetWidth() / 200.0f) : 1) * i.m_Size.x * (i.m_FlipX ? -1 : 1),
+          (i.m_Sprite ? (i.m_Sprite.GetHeight() / 200.0f) : 1) * i.m_Size.y * (i.m_FlipY ? -1 : 1), 1 })
           * t.LocalToWorldMatrix();
     
         if (r.m_Shaded)
@@ -65,7 +65,7 @@ void RenderSystem::Update()
           r.m_Material.SetUniformMatrix4f("_P", proj);
           r.m_Material.SetUniformColor4f("_Color", r.m_Color);
           r.m_Material.SetUniform1i("_MainTex", 0);
-          r.m_Material.SetUniform1i("_FillType", static_cast<int>(5));
+          r.m_Material.SetUniform1i("_FillType", static_cast<int>(i.m_FillType));
           r.m_Material.SetUniform1f("_FillAmount", i.m_FillAmount);
           r.m_Material.SetUniform1f("_RRot", i.m_OverallAngle);
           r.m_Material.SetUniform1f("_RStart", i.m_StartAngle);
