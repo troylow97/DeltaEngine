@@ -197,8 +197,9 @@ namespace DeltaEngine
 
 		void MoveTowardsPoint(EntityID& id1, Vector2& point)
 		{
-			Vector2 pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position;
-			Vector2 temp = Normalise(point - pos);
+			Vector2 pos{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position };
+			Vector2 diff{ point - pos };
+			Vector2 temp = Normalise(diff);
 			env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = temp;
 		}
 
