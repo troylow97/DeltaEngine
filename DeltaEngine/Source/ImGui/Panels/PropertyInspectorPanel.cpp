@@ -64,16 +64,16 @@ void PropertyInspectorPanel::Render( bool )
         {
             std::string assetpayload_n = *(std::string*)(assetpayload->Data);
             std::wstring assetpayload_nws(assetpayload_n.begin(), assetpayload_n.end());
-            std::size_t index = assetpayload_nws.find_last_of(L"/\\");
+            std::size_t index_counter = assetpayload_nws.find_last_of(L"/\\");
             std::wstring newFileName;
-            for (size_t i = index + 1; i < assetpayload_nws.length(); ++i)
+            for (size_t i = index_counter + 1; i < assetpayload_nws.length(); ++i)
             {
                 newFileName += assetpayload_nws[i];
             }
             fileName = "";
             for (size_t i = 0; i < newFileName.length(); ++i)
             {
-                fileName += newFileName[i];
+                fileName += (char)newFileName[i];
             }
             //fileName(newFileName.begin(), newFileName.end());
             //std::string fileName(newFileName.begin(), newFileName.end());
