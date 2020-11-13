@@ -32,9 +32,10 @@ namespace DeltaEngine
       type{ColliderType::BOX},
       isCollideable{true},
       isTrigger{false},
-      isCollidingOnFloor{false}
-    {
-    }
+      isCollidingOnFloor{false},
+      CollisionLayerID{0},
+        CollisionLayerCheck{ 0 }
+    {}
 
     Collider(Vector2 new_center, Vector2 new_size, ColliderType col_type) :
       center(new_center),
@@ -43,7 +44,9 @@ namespace DeltaEngine
       type{ColliderType::BOX},
       isCollideable{true},
       isTrigger{false},
-      isCollidingOnFloor{false}
+      isCollidingOnFloor{false},
+      CollisionLayerID{ 0 },
+      CollisionLayerCheck{ 0 }
     {
       (void) col_type;
     }

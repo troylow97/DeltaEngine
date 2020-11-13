@@ -32,7 +32,7 @@ void MouseInput::Update()
 
     if (m_first_time)
     {
-        m_previous_mouse_position = Point(_currentPosition.x, _currentPosition.y);
+        m_previous_mouse_position = Point(static_cast<float>(_currentPosition.x), static_cast<float>(_currentPosition.y));
         m_first_time = false;
     }
 
@@ -83,7 +83,7 @@ void MouseInput::Update()
     if (_currentPosition.x != m_previous_mouse_position.point_x || _currentPosition.y != m_previous_mouse_position.point_y)
     {
         m_current_mouse_position = Point(m_previous_mouse_position.point_x, m_previous_mouse_position.point_y);
-        m_previous_mouse_position = Point(_currentPosition.x, _currentPosition.y);
+        m_previous_mouse_position = Point(static_cast<float>(_currentPosition.x), static_cast<float>(_currentPosition.y));
         m_move_event = true;
     }
 }

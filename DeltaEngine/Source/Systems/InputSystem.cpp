@@ -22,8 +22,8 @@ void InputSystem::Update()
 {
   for ( size_t i = 0; i < GetEnv().pClock->Timesteps(); i++ )
   {
-    idle_timer += FixedDeltaTime();
-    attack_cooldown += FixedDeltaTime();
+    idle_timer += static_cast<float>(FixedDeltaTime());
+    attack_cooldown += static_cast<float>(FixedDeltaTime());
   }
 
   env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID &id,  RigidBody &r1,Input &i, State &a )
