@@ -5,9 +5,9 @@
 #include "Concatenate.h"
 #include "Find.h"
 #include "Remove.h"
+
 namespace DeltaEngine
 {
-
   template <typename... Ts>
   struct Typelist
   {
@@ -33,5 +33,4 @@ namespace DeltaEngine
 
     static constexpr bool empty = size == 0 ? true : false;
   };
-
 } // namespace DeltaEngine

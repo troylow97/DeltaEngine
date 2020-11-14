@@ -8,6 +8,4 @@ struct EngineConfig
   int height{0};
   float fps{0.0f};
   bool fullscreen{false};
-
-
 };

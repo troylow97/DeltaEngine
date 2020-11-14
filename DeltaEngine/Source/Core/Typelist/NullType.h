@@ -2,5 +2,7 @@
 
 namespace DeltaEngine
 {
-  struct NullType{};
+  struct NullType
+  {
+  };
 }

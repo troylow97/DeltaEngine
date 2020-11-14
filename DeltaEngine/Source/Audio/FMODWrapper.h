@@ -23,8 +23,8 @@ namespace DeltaEngine
     FMOD::System* pSystem{nullptr};
     FMOD::Studio::System* pStudioSystem{nullptr};
 
-    size_t nextEventID { 0 };
-    size_t nextChannelID { 0 };
+    size_t nextEventID{0};
+    size_t nextChannelID{0};
 
     FMODWrapper();
     ~FMODWrapper();

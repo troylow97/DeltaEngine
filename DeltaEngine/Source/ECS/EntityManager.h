@@ -14,94 +14,100 @@
 
 namespace DeltaEngine
 {
-namespace Serialize
-{
-void WriteEntities( class DeltaEngine::EntityManager &em, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer );
-}
+  namespace Serialize
+  {
+    void WriteEntities(class EntityManager& em, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer);
+  }
 
-class EntityManager
-{
-  std::vector<Entity> m_entities;
-  std::vector<size_t> m_entities_deleted;
-  std::vector<Archetype *> m_archetypes;
+  class EntityManager
+  {
+    std::vector<Entity> m_entities;
+    std::vector<size_t> m_entities_deleted;
+    std::vector<Archetype*> m_archetypes;
 
-  size_t m_entities_live { 0 };
+    size_t m_entities_live{0};
 
-  friend class World;
-  friend void Serialize::WriteEntities( class EntityManager &em, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer );
-public:
-  EntityManager();
+    friend class World;
+    friend void Serialize::WriteEntities(class EntityManager& em,
+                                         rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer);
+  public:
+    EntityManager();
 
-  ~EntityManager();
+    ~EntityManager();
 
-  void Clear();
+    void Clear();
 
-  template <typename... C>
-  EntityID CreateEntity();
+    template <typename... C>
+    EntityID CreateEntity();
 
-  const std::vector<Entity> &GetEntities();
+    EntityID CreateEntityFromArchetype(EntityID id);
 
-  void DestroyEntity( EntityID id );
+    EntityID CloneEntity(EntityID id);
 
-  template <typename C>
-  bool HasComponent( EntityID id );
+    const std::vector<Entity>& GetEntities();
 
-  template <typename C>
-  C &GetComponent( EntityID id );
+    void DestroyEntity(EntityID id);
 
-  rttr::instance GetComponent( EntityID id, size_t bits );
+    template <typename C>
+    bool HasComponent(EntityID id);
 
-  template <typename C>
-  void AddComponent( EntityID id, C comp );
+    template <typename C>
+    C& GetComponent(EntityID id);
 
-  template <typename C>
-  void AddComponent( EntityID id );
+    rttr::instance GetComponent(EntityID id, size_t bits);
 
-  template <typename C>
-  void RemoveComponent( EntityID id );
+    template <typename C>
+    void AddComponent(EntityID id, C comp);
 
-  template <typename Func>
-  void ForEach( Func &&function );
+    template <typename C>
+    void AddComponent(EntityID id);
 
-  template <typename Func>
-  void ForEach( Query &query, Func &&function );
+    template <typename C>
+    void RemoveComponent(EntityID id);
 
-  Archetype *GetEmptyArchetype();
+    template <typename Func>
+    void ForEach(Func&& function);
 
-  const std::vector<Description::Details> *GetEntityArchetype(size_t id);
+    template <typename Func>
+    void ForEach(Query& query, Func&& function);
 
-private:
-  bool IsEntityValid( EntityID id );
+    Archetype* GetEmptyArchetype();
 
-  EntityID AllocateEntity();
+    const Archetype* GetEntityArchetype(size_t id);
 
-  void DeallocateEntity( EntityID id );
+  private:
+    bool IsEntityValid(EntityID id);
 
-  size_t InsertEntityChunk( DataChunk *chunk, EntityID id, bool initialize = true );
+    EntityID AllocateEntity();
 
-  void EraseEntityChunk( DataChunk *chunk, size_t index );
+    void DeallocateEntity(EntityID id);
 
-  void SetEntityArchetype( EntityID id, Archetype *arch );
+    size_t InsertEntityChunk(DataChunk* chunk, EntityID id, bool initialize = true);
 
-  void MoveEntityToArchetype( EntityID id, Archetype *arch );
+    void EraseEntityChunk(DataChunk* chunk, size_t index);
 
-  Archetype *CreateEmptyArchetype();
+    void SetEntityArchetype(EntityID id, Archetype* arch);
 
-  Archetype *FindOrCreateArchetype( const std::vector<const ComponentMeta *>& meta_vec);
+    void CloneEntityArchetype(EntityID new_id, EntityID id);
 
-  template <typename Func>
-  void ArchetypeIterate( const Query& query, Func &&func );
+    void MoveEntityToArchetype(EntityID id, Archetype* arch);
 
-  Description *BuildDescription( const std::vector<const ComponentMeta *>& meta_vec);
+    Archetype* CreateEmptyArchetype();
 
-  void ReorderChunk( Archetype *arch );
-  void SetChunkFull( DataChunk *chunk );
-  void SetChunkPartial( DataChunk *chunk );
-  DataChunk *FindFreeChunk( Archetype *arch );
-  DataChunk *CreateChunk( Archetype *arch );
-  void DeleteChunk( DataChunk *chunk );
-};
+    Archetype* FindOrCreateArchetype(const std::vector<const ComponentMeta*>& meta_vec);
 
+    template <typename Func>
+    void ArchetypeIterate(const Query& query, Func&& func);
+
+    Description* BuildDescription(const std::vector<const ComponentMeta*>& meta_vec);
+
+    void ReorderChunk(Archetype* arch);
+    void SetChunkFull(DataChunk* chunk);
+    void SetChunkPartial(DataChunk* chunk);
+    DataChunk* FindFreeChunk(Archetype* arch);
+    DataChunk* CreateChunk(Archetype* arch);
+    void DeleteChunk(DataChunk* chunk);
+  };
 } // namespace DeltaEngine
 
 #include "EntityManager.inl"

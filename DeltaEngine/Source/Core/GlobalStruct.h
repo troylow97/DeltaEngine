@@ -9,26 +9,24 @@
 
 namespace DeltaEngine
 {
+  template <typename... Ts>
+  class AssetManager;
 
-template <typename... Ts>
-class AssetManager;
+  using AM = AssetManager<class Font, class Texture2D, class Shader, class AnimationClip, class AnimationController>;
 
-using AM = AssetManager<class Font, class Texture2D, class Shader, class AnimationClip, class AnimationController>;
+  class GameClock;
 
-class GameClock;
+  struct DeltaEngineGlobalEnvironment
+  {
+    class GameClock* pClock;
+    AM* pManager;
+    EventManager* eventManager;
+    class ECSModule* pECS;
+    class Window* pWin;
+  };
 
-struct DeltaEngineGlobalEnvironment
-{
-  class GameClock *pClock;
-  AM *pManager;
-  EventManager* eventManager;
-  class ECSModule *pECS;
-  class Window *pWin;
-};
+  extern DeltaEngineGlobalEnvironment env;
 
-extern DeltaEngineGlobalEnvironment env;
-
-DeltaEngineGlobalEnvironment &GetEnv();
-double FixedDeltaTime();
-
+  DeltaEngineGlobalEnvironment& GetEnv();
+  double FixedDeltaTime();
 }

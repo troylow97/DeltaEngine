@@ -8,7 +8,6 @@ namespace DeltaEngine
 
 namespace DeltaEngine::Types::Internal
 {
-
   template <template <typename> typename Predicate, typename... Ts>
   struct Remove
   {
@@ -30,11 +29,10 @@ namespace DeltaEngine::Types::Internal
     struct Rebuilder<Predicate, List, T, Ts...>
     {
       using type = std::conditional_t<Predicate<T>::value,
-                                             typename Rebuilder<Predicate, typename List::template Append<T>, Ts...>::type,
-                                             typename Rebuilder<Predicate, typename List, Ts...>::type>;
+                                      typename Rebuilder<Predicate, typename List::template Append<T>, Ts...>::type,
+                                      typename Rebuilder<Predicate, List, Ts...>::type>;
     };
 
     using type = typename Rebuilder<Impl, Typelist<>, Ts...>::type;
   };
-
 } // namespace DeltaEngine::Types::Internal

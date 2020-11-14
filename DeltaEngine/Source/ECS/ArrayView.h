@@ -3,59 +3,58 @@
 
 namespace DeltaEngine
 {
+  class EntityManager;
 
-class EntityManager;
-
-template <typename T>
-class ArrayView
-{
-  T *m_data { nullptr };
-  DataChunk *m_owner { nullptr };
-public:
-
-  ArrayView() = default;
-
-  ~ArrayView() = default;
-
-  ArrayView( T *data_ptr, DataChunk *data_owner )
+  template <typename T>
+  class ArrayView
   {
-    m_data = data_ptr;
-    m_owner = data_owner;
-  }
+    T* m_data{nullptr};
+    DataChunk* m_owner{nullptr};
+  public:
 
-  [[nodiscard]] const DataChunk *ChunkOwner() const
-  {
-    return m_owner;
-  }
+    ArrayView() = default;
 
-  [[nodiscard]] bool IsValid() const
-  {
-    return m_data != nullptr;
-  }
+    ~ArrayView() = default;
 
-  [[nodiscard]] unsigned Size() const
-  {
-    return m_owner->header.index;
-  }
+    ArrayView(T* data_ptr, DataChunk* data_owner)
+    {
+      m_data = data_ptr;
+      m_owner = data_owner;
+    }
 
-  const T &operator[]( size_t index ) const
-  {
-    return m_data[index];
-  }
+    [[nodiscard]] const DataChunk* ChunkOwner() const
+    {
+      return m_owner;
+    }
 
-  T &operator[]( size_t index )
-  {
-    return m_data[index];
-  }
+    [[nodiscard]] bool IsValid() const
+    {
+      return m_data != nullptr;
+    }
 
-  T *begin()
-  {
-    return m_data;
-  }
+    [[nodiscard]] unsigned Size() const
+    {
+      return m_owner->header.index;
+    }
 
-  T *end()
-  {
-    return m_data + m_owner->header.index;
-  }
-};
+    const T& operator[](size_t index) const
+    {
+      return m_data[index];
+    }
+
+    T& operator[](size_t index)
+    {
+      return m_data[index];
+    }
+
+    T* begin()
+    {
+      return m_data;
+    }
+
+    T* end()
+    {
+      return m_data + m_owner->header.index;
+    }
+  };
 } // namespace DeltaEngine

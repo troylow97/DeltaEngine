@@ -3,7 +3,5 @@
 
 namespace DeltaEngine
 {
-	void TakeDamage(EntityID& id1, EntityID& id2);
-
+  void TakeDamage(EntityID& id1, EntityID& id2);
 }
-

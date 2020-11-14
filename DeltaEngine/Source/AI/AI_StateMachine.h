@@ -5,19 +5,18 @@
 
 namespace DeltaEngine
 {
-	DEFINE_SYSTEM(AISystem, AI)
-	public:
+  DEFINE_SYSTEM(AISystem, AI)
+  public:
 
-		AISystem::AISystem() = default;
-		AISystem::~AISystem() = default;
-		void AISystem::Initialize();
-		void AISystem::Shutdown();
-		virtual void AISystem::Update() override;
-		virtual void AISystem::LateUpdate() override;
-		std::unordered_map<std::string, AIState*> StateList; //All possible states AI can be in
-	private:
+    AISystem::AISystem() = default;
+    AISystem::~AISystem() = default;
+    void AISystem::Initialize() override;
+    void AISystem::Shutdown() override;
+    void AISystem::Update() override;
+    void AISystem::LateUpdate() override;
+    std::unordered_map<std::string, AIState*> StateList; //All possible states AI can be in
+  private:
 
 
-	END_DEFINE_SYSTEM(AISystem)
-
+  END_DEFINE_SYSTEM(AISystem)
 }

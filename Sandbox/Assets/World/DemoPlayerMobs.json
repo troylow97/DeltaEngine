@@ -290,7 +290,7 @@
             },
             "image": {
                 "sprite": {
-                    "key": "Pavement_Top_2.png",
+                    "key": "Tilemap/Pavement_Top_2",
                     "index": 0
                 },
                 "size": {
@@ -356,7 +356,7 @@
             },
             "image": {
                 "sprite": {
-                    "key": "Pavement_Top_Transition.png",
+                    "key": "Tilemap/Pavement_Top_Transition",
                     "index": 0
                 },
                 "size": {

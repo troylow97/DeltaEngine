@@ -5,10 +5,10 @@
 
 namespace DeltaEngine
 {
-	DEFINE_SYSTEM(LifespanSystem, Lifespan)
-		void Update() override;
-		void LateUpdate() override;
-private:
-	std::vector<EntityID> DestroyedEntities;
-	END_DEFINE_SYSTEM(LifespanSystem)
+  DEFINE_SYSTEM(LifespanSystem, Lifespan)
+    void Update() override;
+    void LateUpdate() override;
+  private:
+    std::vector<EntityID> DestroyedEntities;
+  END_DEFINE_SYSTEM(LifespanSystem)
 }

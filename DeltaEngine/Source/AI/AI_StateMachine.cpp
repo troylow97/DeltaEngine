@@ -19,91 +19,84 @@
 
 namespace DeltaEngine
 {
-void AISystem::Initialize()
-{
-  StateList["idle_lancer"] = new IdleLancer();
-  StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
-  StateList["idle_fiddler"] = new IdleFiddler( Vector2 { 0,0 }, Vector2 { 5,0 } );
-  StateList["chase_enemy_fiddler"] = new ChaseEnemyFiddler();
-  //Temporary Init
-  //em.ForEach([&](EntityID id, AI ai)
-  //{
-  //	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).key = "idle_lancer";
-  //	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).transition = "null";
-  //	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "monster";
-  //});
-
-
-  //em.ForEach([&](EntityID id,Input i)
-  //{
-  //	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "player";
-  //});
-
-
-
-
-}
-
-void AISystem::Shutdown()
-{
-  for ( auto it : StateList )
+  void AISystem::Initialize()
   {
-    delete it.second;
+    StateList["idle_lancer"] = new IdleLancer();
+    StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
+    StateList["idle_fiddler"] = new IdleFiddler(Vector2{0, 0}, Vector2{5, 0});
+    StateList["chase_enemy_fiddler"] = new ChaseEnemyFiddler();
+    //Temporary Init
+    //em.ForEach([&](EntityID id, AI ai)
+    //{
+    //	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).key = "idle_lancer";
+    //	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).transition = "null";
+    //	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "monster";
+    //});
+
+
+    //em.ForEach([&](EntityID id,Input i)
+    //{
+    //	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "player";
+    //});
   }
-}
 
-void AISystem::Update()
-{
-  //Check and apply transitions
-  em.ForEach( [&]( EntityID &id, AI &ai )
+  void AISystem::Shutdown()
   {
- //bool isChanged{ false };
-    AIState *ai_state = nullptr;
-
-    auto it = StateList.find( ai.key );
-    if ( it != StateList.end() )
+    for (auto it : StateList)
     {
-      ai_state = it->second;
+      delete it.second;
     }
-    else
+  }
+
+  void AISystem::Update()
+  {
+    //Check and apply transitions
+    em.ForEach([&](EntityID& id, AI& ai)
     {
-      return;
-    }
+      //bool isChanged{ false };
+      AIState* ai_state = nullptr;
 
-
-    if ( ai_state != nullptr )
-    {
-      if ( ai.transition == "null" )
+      auto it = StateList.find(ai.key);
+      if (it != StateList.end())
       {
-        ai_state->Update( id );
-        return;
-      }
-
-      ai_state->onExit( id );
-
-      ai.key = ai.transition;
-      ai.transition = "null";
-
-      auto find = StateList.find( ai.key );
-      if ( find != StateList.end() )
-      {
-        ai_state = find->second;
+        ai_state = it->second;
       }
       else
       {
         return;
       }
 
-      ai_state->onEnter( id );
 
+      if (ai_state != nullptr)
+      {
+        if (ai.transition == "null")
+        {
+          ai_state->Update(id);
+          return;
+        }
 
-    }
-  } );
-  Profiler::Instance().Record( "AI System" );
-}
+        ai_state->onExit(id);
 
-void AISystem::LateUpdate()
-{
+        ai.key = ai.transition;
+        ai.transition = "null";
 
-}
+        auto find = StateList.find(ai.key);
+        if (find != StateList.end())
+        {
+          ai_state = find->second;
+        }
+        else
+        {
+          return;
+        }
+
+        ai_state->onEnter(id);
+      }
+    });
+    Profiler::Instance().Record("AI System");
+  }
+
+  void AISystem::LateUpdate()
+  {
+  }
 }

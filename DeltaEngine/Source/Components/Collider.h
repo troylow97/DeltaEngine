@@ -34,8 +34,9 @@ namespace DeltaEngine
       isTrigger{false},
       isCollidingOnFloor{false},
       CollisionLayerID{0},
-        CollisionLayerCheck{ 0 }
-    {}
+      CollisionLayerCheck{0}
+    {
+    }
 
     Collider(Vector2 new_center, Vector2 new_size, ColliderType col_type) :
       center(new_center),
@@ -45,10 +46,10 @@ namespace DeltaEngine
       isCollideable{true},
       isTrigger{false},
       isCollidingOnFloor{false},
-      CollisionLayerID{ 0 },
-      CollisionLayerCheck{ 0 }
+      CollisionLayerID{0},
+      CollisionLayerCheck{0}
     {
-      (void) col_type;
+      (void)col_type;
     }
   };
 } // namespace DeltaEngine

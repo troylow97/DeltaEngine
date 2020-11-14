@@ -5,6 +5,7 @@
 #include <vector>
 #include <filesystem>
 #include <memory>
+
 namespace DeltaEngine
 {
   struct IFileWatcherListener;
@@ -13,13 +14,13 @@ namespace DeltaEngine
   {
     std::vector<std::unique_ptr<IFileWatcherListener>> m_listeners;
     std::filesystem::path m_directory;
-    std::atomic<bool> m_running {false};
+    std::atomic<bool> m_running{false};
     std::thread m_thread;
 
   public:
     FileWatcher(std::filesystem::path directory);
-    const std::filesystem::path &GetDirectory();
-    void AddListener(IFileWatcherListener *listener);
+    const std::filesystem::path& GetDirectory();
+    void AddListener(IFileWatcherListener* listener);
     void Start();
     void Stop();
     void OnFileAdded(std::filesystem::path file);
@@ -27,6 +28,6 @@ namespace DeltaEngine
     void OnFileChanged(std::filesystem::path file);
     void OnFileRenamed(std::filesystem::path file);
 
-    static void Thread(FileWatcher &fileWatcher);
+    static void Thread(FileWatcher& fileWatcher);
   };
 } // namespace DeltaEngine

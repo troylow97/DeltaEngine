@@ -4,12 +4,12 @@
 
 namespace DeltaEngine
 {
-	class WorldPanel : public IPanel
-	{
-	public:
-		WorldPanel(std::string str);
-		~WorldPanel();
-		bool DraggedFileIn();
-		void Render(bool) override;
-	};
+  class WorldPanel : public IPanel
+  {
+  public:
+    WorldPanel(std::string str);
+    ~WorldPanel();
+    bool DraggedFileIn();
+    void Render(bool) override;
+  };
 }

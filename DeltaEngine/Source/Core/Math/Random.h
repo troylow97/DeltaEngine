@@ -24,9 +24,10 @@ public:
   /**************************************************************************/
   static void Init()
   {
-    unsigned seed = static_cast<unsigned int>( std::chrono::system_clock::now().time_since_epoch().count() );
-    s_RandomEngine.seed( seed );
+    unsigned seed = static_cast<unsigned int>(std::chrono::system_clock::now().time_since_epoch().count());
+    s_RandomEngine.seed(seed);
   }
+
   /**************************************************************************/
   /*!
     \brief	Returns a float between 0 and 1
@@ -34,8 +35,8 @@ public:
   /**************************************************************************/
   static float RandomFloat()
   {
-    static std::uniform_real_distribution<float> distribution( 0.0f, 1.0f );
-    return (float) distribution( s_RandomEngine );
+    static std::uniform_real_distribution<float> distribution(0.0f, 1.0f);
+    return static_cast<float>(distribution(s_RandomEngine));
   }
 
   /**************************************************************************/
@@ -47,9 +48,9 @@ public:
     \param	max: maximum number in the range
   */
   /**************************************************************************/
-  static int RandomIntRange( int min, int max )
+  static int RandomIntRange(int min, int max)
   {
-    return (int) ( min + ( RandomFloat() * ( max - min ) ) );
+    return static_cast<int>(min + (RandomFloat() * (max - min)));
   }
 
   /**************************************************************************/
@@ -61,14 +62,13 @@ public:
     \param	max: maximum number in the range
   */
   /**************************************************************************/
-  static float RandomFloatRange( float min, float max )
+  static float RandomFloatRange(float min, float max)
   {
-    return ( min + ( RandomFloat() * ( max - min ) ) );
+    return (min + (RandomFloat() * (max - min)));
   }
 
 private:
   //Mersenne Twister 19937 generator
   static std::mt19937 s_RandomEngine;
   static std::uniform_int_distribution<std::mt19937::result_type> s_Distribution;
-
 };

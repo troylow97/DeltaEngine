@@ -6,10 +6,8 @@
 
 namespace DeltaEngine
 {
-
   class Profiler : public Singleton<Profiler>
   {
-
     using Nanoseconds = std::chrono::nanoseconds;
     using HighResClock = std::chrono::high_resolution_clock;
     using TimePoint = std::chrono::time_point<HighResClock>;
@@ -33,9 +31,8 @@ namespace DeltaEngine
     void FrameStart();
     void FrameEnd();
 
-    void Record(std::string_view );
+    void Record(std::string_view);
 
     void Print();
   };
-
 }

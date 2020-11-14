@@ -22,6 +22,5 @@ namespace DeltaEngine
                    m_Wireframe{true}
     {
     };
-
   };
 }
