@@ -23,8 +23,8 @@ namespace DeltaEngine
 				if ((type1 == EntityCategory::E_LANCER_CHARGE || type2 == EntityCategory::E_LANCER_CHARGE) &&
 					(type1 == EntityCategory::E_PLAYER || type2 == EntityCategory::E_PLAYER))
 				{
-					hp1.CurrentHealth--;
-					hp2.CurrentHealth--;
+					hp1.CurrentHealth -= 5;
+					hp2.CurrentHealth -= 5;
 					return;
 				}
 

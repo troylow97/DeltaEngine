@@ -60,6 +60,7 @@ namespace DeltaEngine
 				if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2) &&
 					env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
 				{
+					AITools::FaceEntity(monster, player);
 					env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
 				}
 				AITools::MoveTowardsEntityInX(monster, player);

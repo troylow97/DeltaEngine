@@ -98,7 +98,7 @@ namespace DeltaEngine
 
                 // setting all png files as ImageButton 
                 textureID = _sprite.GetTexture()->GetRendererID();
-                ImGui::PushID(textureID);
+                ImGui::PushID(static_cast<int>(textureID));
                 if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
                     ImVec2{ 32,32 },
                     ImVec2{ _sprite.GetOffset().x, _sprite.GetOffset().y },
@@ -107,7 +107,7 @@ namespace DeltaEngine
                     //std::cout << "clicking tiles" << std::endl;
                 };
                 float last_tile_x2 = ImGui::GetItemRectMax().x;
-                float next_tile_x2 = last_tile_x2 + style.ItemSpacing.x + 32.0; // Expected position if next tile was on same line
+                float next_tile_x2 = last_tile_x2 + style.ItemSpacing.x + 32.0f; // Expected position if next tile was on same line
                 if (next_tile_x2 < window_visible_x2)
                     ImGui::SameLine();
                 ImGui::PopID();

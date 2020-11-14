@@ -12,7 +12,7 @@ struct Attack
 	Attack() :
 		MeleeDamage{1},
 		RangedDamage{1},
-		MaxCooldown{0.6f},
+		MaxCooldown{0.2f},
 		CooldownTimer{0.0f},
 		RangeAttack{false},
 		MeleeAttack{false}

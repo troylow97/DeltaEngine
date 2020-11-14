@@ -15,5 +15,12 @@ namespace DeltaEngine
 		~PropertyInspectorPanel();
 		void Render(bool) override;
 		//virtual bool DraggedFileIn() override;
+	private:
+		int number_of_lines;
+		int number_of_empty_lines;
+		unsigned int number_of_frames;
+		bool m_texture_is_animation;
+		std::string fileName;
+		std::string stringcount;
 	};
 }

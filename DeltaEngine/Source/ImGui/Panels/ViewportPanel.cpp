@@ -95,6 +95,7 @@ void ViewportPanel::Render( bool isdragged )
           if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("TILES", target_flags))
           {
               uint64_t payload_n = *(const uint64_t*)payload->Data;
+              (void)payload_n;
               // do the tiling
               EntityID tile = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity();
               env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(tile);

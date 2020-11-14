@@ -57,7 +57,7 @@ public:
     return GetName();
   } // for debugging to add more info when overrided 
 
-  inline bool IsInCategory( EventCategory category )
+  inline bool IsInCategory(unsigned int category )
   {
     return GetCategoryFlags() & category;
   }

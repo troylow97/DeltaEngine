@@ -48,6 +48,9 @@ namespace DeltaEngine
         // indicates whether a drop can be accepted
         HRESULT DragEnter(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
         {
+            UNREFERENCED_PARAMETER(pDataObj);
+            UNREFERENCED_PARAMETER(grfKeyState);
+            UNREFERENCED_PARAMETER(pt);
             if (pdwEffect == NULL)
             {
                 return E_INVALIDARG;
@@ -74,6 +77,9 @@ namespace DeltaEngine
         //  so it can communicate the effect of the drop back to the source
         HRESULT DragOver(DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
         {
+            UNREFERENCED_PARAMETER(grfKeyState);
+            UNREFERENCED_PARAMETER(pt);
+
             if (pdwEffect == NULL)
             {
                 return E_INVALIDARG;
@@ -108,6 +114,9 @@ namespace DeltaEngine
         // incorporates the source data into the target window, removes target feedback, and releases the data object
         HRESULT Drop(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
         {
+            UNREFERENCED_PARAMETER(grfKeyState);
+            UNREFERENCED_PARAMETER(pt);
+
             if (pdwEffect == NULL)
             {
                 return E_INVALIDARG;
@@ -127,6 +136,7 @@ namespace DeltaEngine
             medium.tymed = TYMED_HGLOBAL;
 
             HRESULT res = pDataObj->GetData(&format, &medium);
+            (void)res;
             HDROP drop = reinterpret_cast<HDROP>(medium.hGlobal); // 
             wchar_t* fileName = NULL;
 

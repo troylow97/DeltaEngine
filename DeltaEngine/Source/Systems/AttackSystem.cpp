@@ -59,11 +59,12 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
         {
+            //std::cout << "range attack!\n";
             Transform& t1 = em.GetComponent<Transform>(id);
             EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
             em.GetComponent<Transform>(missile).position = t1.position;
             em.GetComponent<RigidBody>(missile).Mass = 5.0f;
-            em.GetComponent<Transform>(missile).scale = { 0.2f,0.2f,0.0f };
+            em.GetComponent<Transform>(missile).scale = { 0.4f,0.4f,0.0f };
             em.GetComponent<Lifespan>(missile).Timer = 0.35f;
             em.GetComponent<RigidBody>(missile).hasGravity = true;
             em.GetComponent<Collider>(missile).isTrigger = true;
@@ -92,7 +93,7 @@ namespace DeltaEngine
             EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
             em.GetComponent<Transform>(missile).position = t1.position;
             em.GetComponent<RigidBody>(missile).Mass = 5.0f;
-            em.GetComponent<Transform>(missile).scale = { 0.2f,0.2f,0.0f };
+            em.GetComponent<Transform>(missile).scale = { 0.7f,0.7f,0.0f };
             em.GetComponent<Lifespan>(missile).Timer = 0.1f;
             em.GetComponent<RigidBody>(missile).hasGravity = false;
             em.GetComponent<Collider>(missile).isTrigger = true;
@@ -101,8 +102,8 @@ namespace DeltaEngine
             em.GetComponent<Health>(missile).CurrentHealth = 1;
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
-                em.GetComponent<Transform>(missile).position.x += 0.5f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { 500,0 };
+                em.GetComponent<Transform>(missile).position.x += 0.6f;
+                em.GetComponent<RigidBody>(missile).AccumulatedForce = { 700,0 };
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
             }
             else
