@@ -2,11 +2,10 @@
 
 #include "MouseInput.h"
 #include "KeyboardInput.h"
-#include "Keys.h"
-
+#include "Core/Containers/Singleton.h"
 namespace DeltaEngine
 {
-class InputManager //: public InputListener
+class InputManager : public Singleton<InputManager> //: public InputListener
 {
 
   KeyboardInput m_keyboard;
@@ -17,15 +16,7 @@ public:
   ~InputManager();
 
   void Reset();
-  // to get the input events
   void Update();
-
-  //void addListener(InputListener* listener);
-  //void removeListener(InputListener* listener);
-
-  // get static method as InputManager is a singleton class
-  // returns a pointer to an only instance of the class
-  static InputManager *Get();
 
   bool IsKeyTriggered( int key );
   bool IsKeyPressed( int key );

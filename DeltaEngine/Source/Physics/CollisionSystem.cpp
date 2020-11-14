@@ -4,6 +4,7 @@
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
 #include "Manifold.h"
+#include "Core/Debugging/Profiler/Profiler.h"
 
 
 namespace DeltaEngine
@@ -17,6 +18,8 @@ void CollisionSystem::Update()
         CollisionHandling();
         CollisionResolution();
     }
+    Profiler::Instance().Record("Collision System");
+
 }
 
 void CollisionSystem::LateUpdate()

@@ -29,6 +29,8 @@
 #include "EditorDirectoryWatcher.h"
 #include "IconsFontAwesome5.h"
 #include "Core/TypeAlias.h"
+#include "Core/Debugging/Profiler/Profiler.h"
+#include "Input/Keys.h"
 #include "Panels/ButtonsPanel.h"
 
 namespace DeltaEngine
@@ -37,8 +39,8 @@ namespace DeltaEngine
   void NewFile()
   {
     GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-    InputManager::Get()->SetEntitySelected(false);
-    InputManager::Get()->SetEntityIDSelected( u64_max );
+    InputManager::Instance().SetEntitySelected(false);
+    InputManager::Instance().SetEntityIDSelected( u64_max );
 
   }
 
@@ -65,10 +67,10 @@ namespace DeltaEngine
 
   void DeleteEntity()
   {
-    auto id = InputManager::Get()->EntityIDSelected();
+    auto id = InputManager::Instance().EntityIDSelected();
     GetEnv().pECS->GetWorld().GetEntityManager().DestroyEntity({id});
-    InputManager::Get()->SetEntitySelected(false);
-    InputManager::Get()->SetEntityIDSelected( u64_max );
+    InputManager::Instance().SetEntitySelected(false);
+    InputManager::Instance().SetEntityIDSelected( u64_max );
     DeltaEngine_CORE_TRACE("Deleted Entity - {}", id);
   }
 
@@ -85,7 +87,7 @@ namespace DeltaEngine
       SaveFile();
     if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyDown(DEVK_LSHIFT) && ImGui::IsKeyReleased(DEVK_A))
       AddEntity();
-    if ( ImGui::IsKeyReleased( DEVK_DELETE ) && InputManager::Get()->EntitySelected() &&  InputManager::Get()->EntityIDSelected() != u64_max)
+    if ( ImGui::IsKeyReleased( DEVK_DELETE ) && InputManager::Instance().EntitySelected() &&  InputManager::Instance().EntityIDSelected() != u64_max)
       DeleteEntity();
 
     if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyReleased(DEVK_W))
@@ -195,7 +197,7 @@ Editor::Editor()
 
     // Update ImGui with Custom Input
     auto& ref = ImGui::GetIO();
-    std::memcpy(&ref.KeysDown[0], InputManager::Get()->GetKeys(), 256);
+    std::memcpy(&ref.KeysDown[0], InputManager::Instance().GetKeys(), 256);
 
     // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
     // because it would be confusing to have two docking targets within each others.
@@ -264,6 +266,7 @@ Editor::Editor()
       ImGui::RenderPlatformWindowsDefault();
       wglMakeCurrent(backup_current_context, RenderModule::openGLSystem->GetGLContext());
     }
+    Profiler::Instance().Record("ImGui");
   }
 
   void Editor::OnDragDrop(Event* e)

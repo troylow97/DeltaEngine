@@ -35,8 +35,8 @@ ViewportPanel::~ViewportPanel()
 
 bool ViewportPanel::DraggedFileIn()
 {
-    if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
-        && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
+    if (InputManager::Instance().CurrentPosition().point_x >= GetTopLeft().x && InputManager::Instance().CurrentPosition().point_x <= GetBottomRight().x
+        && InputManager::Instance().CurrentPosition().point_y >= GetTopLeft().y && InputManager::Instance().CurrentPosition().point_y <= GetBottomRight().y)
     {
         std::cout << "it is in Viewport panel!!!" << std::endl;
         return true;
@@ -57,23 +57,23 @@ void ViewportPanel::Render( bool isdragged )
   float height = renderPos.y + renderSize.y;          // gets bottom right of the screen
   float width = renderPos.x + renderSize.x;           // gets bottom right of the screen
                                                       // check if cursor is in the viewport
-  if ( InputManager::Get()->CurrentPosition().point_x >= renderPos.x && InputManager::Get()->CurrentPosition().point_x <= width
-       && InputManager::Get()->CurrentPosition().point_y >= renderPos.y && InputManager::Get()->CurrentPosition().point_y <= height )
+  if ( InputManager::Instance().CurrentPosition().point_x >= renderPos.x && InputManager::Instance().CurrentPosition().point_x <= width
+       && InputManager::Instance().CurrentPosition().point_y >= renderPos.y && InputManager::Instance().CurrentPosition().point_y <= height )
   {
     float cameraWidth = Camera::editorCamera->Max().x - Camera::editorCamera->Min().x;
     float cameraHeight = Camera::editorCamera->Max().y - Camera::editorCamera->Min().y;
-    float cursorViewPortDistanceX = InputManager::Get()->CurrentPosition().point_x - renderPos.x;
-    float cursorViewPortDistanceY = InputManager::Get()->CurrentPosition().point_y - renderPos.y;
+    float cursorViewPortDistanceX = InputManager::Instance().CurrentPosition().point_x - renderPos.x;
+    float cursorViewPortDistanceY = InputManager::Instance().CurrentPosition().point_y - renderPos.y;
     float newCursorX = ( cursorViewPortDistanceX / renderSize.x ) * cameraWidth + Camera::editorCamera->Min().x;
     float newCursorY = Camera::editorCamera->Max().y - ( cursorViewPortDistanceY / renderSize.y ) * cameraHeight;
 
-    InputManager::Get()->SetCurrentCameraPosition( Point( newCursorX, newCursorY ) );
+    InputManager::Instance().SetCurrentCameraPosition( Point( newCursorX, newCursorY ) );
     //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
   }
   else
   {
-    InputManager::Get()->SetCurrentCameraPosition( InputManager::Get()->CurrentPosition() );
-    //std::cout << "x is " << InputManager::Get()->CurrentCameraPosition().point_x << " and y is " << InputManager::Get()->CurrentCameraPosition().point_y << std::endl;
+    InputManager::Instance().SetCurrentCameraPosition( InputManager::Instance().CurrentPosition() );
+    //std::cout << "x is " << InputManager::Instance().CurrentCameraPosition().point_x << " and y is " << InputManager::Instance().CurrentCameraPosition().point_y << std::endl;
   }
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   Camera::editorCamera->SetAspectRatio( viewportPanelSize.x, viewportPanelSize.y );
@@ -83,10 +83,10 @@ void ViewportPanel::Render( bool isdragged )
 
   if (ImGui::BeginDragDropTarget())
   {
-      if (InputManager::Get()->TilesetDragged())
+      if (InputManager::Instance().TilesetDragged())
       {
           //std::cout << "ooo dropping sooon" << std::endl;
-          //std::cout << "x is " << InputManager::Get()->CurrentCameraPosition().point_x << " y is " << InputManager::Get()->CurrentCameraPosition().point_y << std::endl;
+          //std::cout << "x is " << InputManager::Instance().CurrentCameraPosition().point_x << " y is " << InputManager::Instance().CurrentCameraPosition().point_y << std::endl;
 
           ImGuiDragDropFlags target_flags = 0;
           //target_flags |= ImGuiDragDropFlags_AcceptBeforeDelivery;    // Don't wait until the delivery (release mouse button on a target) to do something
@@ -101,11 +101,11 @@ void ViewportPanel::Render( bool isdragged )
               env.pECS->GetWorld().GetEntityManager().AddComponent<Transform>(tile);
               env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(tile);
               env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(tile).type = ColliderType::BOX;
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).position = { InputManager::Get()->CurrentCameraPosition().point_x, InputManager::Get()->CurrentCameraPosition().point_y, 0 };
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).position = { InputManager::Instance().CurrentCameraPosition().point_x, InputManager::Instance().CurrentCameraPosition().point_y, 0 };
               env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).scale = { 0.5, 0.5, 0.0 };
           }
       }
-      //InputManager::Get()->SetTilesetDragged(false);
+      //InputManager::Instance().SetTilesetDragged(false);
       ImGui::EndDragDropTarget();
   }
 

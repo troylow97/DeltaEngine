@@ -51,8 +51,8 @@ AssetPanel::~AssetPanel()
 
 bool AssetPanel::DraggedFileIn()
 {
-  if ( InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
-       && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y )
+  if ( InputManager::Instance().CurrentPosition().point_x >= GetTopLeft().x && InputManager::Instance().CurrentPosition().point_x <= GetBottomRight().x
+       && InputManager::Instance().CurrentPosition().point_y >= GetTopLeft().y && InputManager::Instance().CurrentPosition().point_y <= GetBottomRight().y )
   {
     std::cout << "it is in Asset panel!!!" << std::endl;
     return true;

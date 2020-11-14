@@ -5,6 +5,8 @@
 #include "Collision.h"
 #include <cmath>
 
+#include "Core/Debugging/Profiler/Profiler.h"
+
 namespace DeltaEngine
 {
     void PhysicsSystem::Initialize()
@@ -21,6 +23,9 @@ namespace DeltaEngine
     {
       for ( size_t step = 0; step < env.pClock->Timesteps(); ++step )
         UpdateVelocity();
+
+      Profiler::Instance().Record("Physics System");
+
     }
 
     void PhysicsSystem::LateUpdate()

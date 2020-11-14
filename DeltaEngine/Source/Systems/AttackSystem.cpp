@@ -1,6 +1,7 @@
 #include "AttackSystem.h"
 #include "Core/GameClock/GameClock.h"
 #include "Core/GlobalStruct.h"
+#include "Core/Debugging/Profiler/Profiler.h"
 
 namespace DeltaEngine
 {
@@ -47,7 +48,7 @@ namespace DeltaEngine
 
         RangedAttackingEntities.clear();
         MeleeAttackingEntities.clear();
-
+        Profiler::Instance().Record("Attack System");
     }
     void AttackSystem::LateUpdate()
     {

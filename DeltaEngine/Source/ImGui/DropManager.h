@@ -79,8 +79,8 @@ namespace DeltaEngine
                 return E_INVALIDARG;
             }
             // trigger MouseMove within ImGui, position is within pt.x and pt.y
-            //if (InputManager::Get()->CurrentCameraPosition().point_x >= Camera::editorCamera->Min().x && InputManager::Get()->CurrentCameraPosition().point_x <= Camera::editorCamera->Max().x
-            //    && InputManager::Get()->CurrentCameraPosition().point_y >= Camera::editorCamera->Min().y && InputManager::Get()->CurrentCameraPosition().point_y <= Camera::editorCamera->Max().y)
+            //if (InputManager::Instance().CurrentCameraPosition().point_x >= Camera::editorCamera->Min().x && InputManager::Instance().CurrentCameraPosition().point_x <= Camera::editorCamera->Max().x
+            //    && InputManager::Instance().CurrentCameraPosition().point_y >= Camera::editorCamera->Min().y && InputManager::Instance().CurrentCameraPosition().point_y <= Camera::editorCamera->Max().y)
             //{
             //    _isInPanel = true;
             //    std::cout << "it is in camera panel!!!" << std::endl;

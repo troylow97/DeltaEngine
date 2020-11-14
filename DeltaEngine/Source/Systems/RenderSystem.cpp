@@ -1,4 +1,6 @@
 #include "RenderSystem.h"
+
+#include "Core/Debugging/Profiler/Profiler.h"
 #include "ECS/EntityManager.h"
 
 namespace DeltaEngine
@@ -119,9 +121,12 @@ void RenderSystem::Update()
       }
     }
   }
+
+  Profiler::Instance().Record("Render System Update");
 }
 void RenderSystem::LateUpdate()
 {
   Camera::editorCamera->End();
+  Profiler::Instance().Record("Render System Update");
 }
 }

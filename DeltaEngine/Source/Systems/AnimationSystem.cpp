@@ -1,5 +1,7 @@
 #include "AnimationSystem.h"
 
+#include "Core/Debugging/Profiler/Profiler.h"
+
 namespace DeltaEngine
 {
 void AnimationSystem::Update()
@@ -40,6 +42,8 @@ void AnimationSystem::Update()
         }
       }
     } );
+  Profiler::Instance().Record("Animation System");
+
 }
 void AnimationSystem::LateUpdate()
 {

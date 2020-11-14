@@ -17,6 +17,7 @@
 #include "Audio/AudioEngine.h"
 #include "ImGui/Editor.h"
 #include "AI/AI_StateMachine.h"
+#include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/Utils/Random.h"
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -71,16 +72,11 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.eventManager = new EventManager;
 
   env.pECS = new ECSModule();
-
-
-  //env.pECS->GetWorld().Load( "Base.json" );
 }
 
 Application::~Application()
 {
   DeltaEngine_CORE_INFO( "Engine Shutdown" );
-  //env.pECS->GetWorld().Save("Base.json");
-
   env.pECS->GetWorld().ShutdownSystems();
   delete env.pECS;
   delete env.eventManager;
@@ -101,13 +97,9 @@ void Application::Run()
 {
   while ( env.pWin->Running() )
   {
+    Profiler::Instance().FrameStart();
     env.pClock->Update();
-    InputManager::Get()->Update();
-    // Logic Update()
-    // Physics Update()
-    // Animation Update()
-    // Render Update()
-    // Physics Update()
+    InputManager::Instance().Update();
     env.pECS->GetWorld().Update();
 #ifdef DE_EDITOR
     m_Editor->Begin();
@@ -115,8 +107,10 @@ void Application::Run()
     m_Editor->End();
 #endif
     ::SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
+    Profiler::Instance().Record("Buffer Swap");
     OnEvent();
     env.pWin->Update();
+    Profiler::Instance().FrameEnd();
   }
 }
 
@@ -151,6 +145,7 @@ void Application::OnEvent()
     }
     delete ref;
   }
+  Profiler::Instance().Record("Event");
 }
 
 

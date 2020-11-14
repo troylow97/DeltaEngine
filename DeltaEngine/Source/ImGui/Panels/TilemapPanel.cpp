@@ -23,8 +23,8 @@ namespace DeltaEngine
 
     bool TilemapPanel::DraggedFileIn()
     {
-        if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
-            && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
+        if (InputManager::Instance().CurrentPosition().point_x >= GetTopLeft().x && InputManager::Instance().CurrentPosition().point_x <= GetBottomRight().x
+            && InputManager::Instance().CurrentPosition().point_y >= GetTopLeft().y && InputManager::Instance().CurrentPosition().point_y <= GetBottomRight().y)
         {
             std::cout << "it is in tileset panel!!!" << std::endl;
             return true;
@@ -44,7 +44,7 @@ namespace DeltaEngine
         bottomRight.x += ImGui::GetWindowPos().x;
         bottomRight.y += ImGui::GetWindowPos().y;
 
-        //std::cout << "x is " << InputManager::Get()->CurrentPosition().point_x << " y is " << InputManager::Get()->CurrentPosition().point_y << std::endl;
+        //std::cout << "x is " << InputManager::Instance().CurrentPosition().point_x << " y is " << InputManager::Instance().CurrentPosition().point_y << std::endl;
         //std::cout << "render                   topLeft is " << topLeft.x << ", " << topLeft.y << std::endl;
         //std::cout << "render                   bottomRight is " << bottomRight.x << ", " << bottomRight.y << std::endl;
 
@@ -119,7 +119,7 @@ namespace DeltaEngine
                 if (ImGui::BeginDragDropSource(src_flags))
                 {
                     ImGui::SetDragDropPayload("TILES", &textureID, sizeof(int));
-                    InputManager::Get()->SetTilesetDragged(true);
+                    InputManager::Instance().SetTilesetDragged(true);
                     //std::cout << "dragging tiles" << std::endl;
                     // display preview (haven't decided whether to display the filename or preview the texture)
                     ImGui::Image(reinterpret_cast<void*>(textureID),

@@ -10,6 +10,8 @@
 #include <codecvt>
 #include <locale>
 
+#include "Core/Debugging/Profiler/Profiler.h"
+
 std::wstring to_wstring( std::string str )
 {
   if ( str.empty() )
@@ -97,6 +99,7 @@ void Window::Update()
     TranslateMessage( &msg );
     DispatchMessage( &msg );
   }
+  Profiler::Instance().Record("Window");
 }
 
 void Window::ShutDown()

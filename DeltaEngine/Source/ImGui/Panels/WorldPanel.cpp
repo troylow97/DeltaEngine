@@ -19,8 +19,8 @@ namespace DeltaEngine
 
     bool WorldPanel::DraggedFileIn()
     {
-        if (InputManager::Get()->CurrentPosition().point_x >= GetTopLeft().x && InputManager::Get()->CurrentPosition().point_x <= GetBottomRight().x
-            && InputManager::Get()->CurrentPosition().point_y >= GetTopLeft().y && InputManager::Get()->CurrentPosition().point_y <= GetBottomRight().y)
+        if (InputManager::Instance().CurrentPosition().point_x >= GetTopLeft().x && InputManager::Instance().CurrentPosition().point_x <= GetBottomRight().x
+            && InputManager::Instance().CurrentPosition().point_y >= GetTopLeft().y && InputManager::Instance().CurrentPosition().point_y <= GetBottomRight().y)
         {
             std::cout << "it is in world panel!!!" << std::endl;
             return true;
@@ -60,8 +60,8 @@ namespace DeltaEngine
                 ImGui::TreeNodeEx((void*)(intptr_t)e_id, node_flags, "entity %d", e_id);
                 if (ImGui::IsItemClicked())
                 {
-                  InputManager::Get()->SetEntitySelected(true);
-                  InputManager::Get()->SetEntityIDSelected(e_id);
+                  InputManager::Instance().SetEntitySelected(true);
+                  InputManager::Instance().SetEntityIDSelected(e_id);
                 }
               }
                

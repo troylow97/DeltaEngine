@@ -1,5 +1,6 @@
 #include "LifespanSystem.h"
 #include "Core/GlobalStruct.h"
+#include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/GameClock/GameClock.h"
 
 namespace DeltaEngine
@@ -37,7 +38,7 @@ namespace DeltaEngine
         {
             em.DestroyEntity(i);
         }
-
+        Profiler::Instance().Record("Lifespan System");
     }
     void LifespanSystem::LateUpdate()
     {

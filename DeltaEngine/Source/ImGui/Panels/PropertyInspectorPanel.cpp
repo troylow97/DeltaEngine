@@ -25,7 +25,7 @@ PropertyInspectorPanel::~PropertyInspectorPanel()
 void PropertyInspectorPanel::Render( bool )
 {
   ImGui::Begin( m_name.c_str(), &m_enabled );
-  if ( InputManager::Get()->EntitySelected() )
+  if ( InputManager::Instance().EntitySelected() )
   {
     auto &em = env.pECS->GetWorld().GetEntityManager();
 
@@ -37,7 +37,7 @@ void PropertyInspectorPanel::Render( bool )
     bottomRight.x += ImGui::GetWindowPos().x;
     bottomRight.y += ImGui::GetWindowPos().y;
 
-    size_t index = InputManager::Get()->EntityIDSelected();
+    size_t index = InputManager::Instance().EntityIDSelected();
 
     std::string text = "Edit Entity ";
     text += std::to_string( index );
@@ -81,10 +81,10 @@ void PropertyInspectorPanel::Render( bool )
         RT_Reflect::RT_Setter( em, { index }, rttr::type::get_by_name( components[selected] ).get_metadata( "bits" ).to_uint64() );
 
     ImGui::Text( "" );
-    if ( auto result = em.GetEntityArchetype( InputManager::Get()->EntityIDSelected() ); result != nullptr )
+    if ( auto result = em.GetEntityArchetype( InputManager::Instance().EntityIDSelected() ); result != nullptr )
       for ( auto &ref : *result )
       {
-        rttr::instance instance = em.GetComponent( { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
+        rttr::instance instance = em.GetComponent( { InputManager::Instance().EntityIDSelected() }, ref.meta->bits );
         /*
         auto& ref = em.GetComponent<Texture2D>(id);
         ref.key = dragged.file.key;
@@ -99,7 +99,7 @@ void PropertyInspectorPanel::Render( bool )
         ImGui::PushStyleColor( ImGuiCol_ButtonActive, ( ImVec4( 0.86f, 0.35f, 0.34f, 1.0f ) ) );  // pastel red
         if ( ImGui::Button( "x" ) )
         {
-          RT_Reflect::RT_Destroy( em, { InputManager::Get()->EntityIDSelected() }, ref.meta->bits );
+          RT_Reflect::RT_Destroy( em, { InputManager::Instance().EntityIDSelected() }, ref.meta->bits );
           ImGui::PopStyleColor( 3 );
           ImGui::PopID();
           break;
@@ -241,8 +241,8 @@ void PropertyInspectorPanel::Render( bool )
 
 //bool PropertyInspectorPanel::DraggedFileIn()
 //{
-//    if (InputManager::Get()->CurrentPosition().point_x >= topLeft.x && InputManager::Get()->CurrentPosition().point_x <= bottomRight.x
-//        && InputManager::Get()->CurrentPosition().point_y >= topLeft.y && InputManager::Get()->CurrentPosition().point_y <= bottomRight.y)
+//    if (InputManager::Instance().CurrentPosition().point_x >= topLeft.x && InputManager::Instance().CurrentPosition().point_x <= bottomRight.x
+//        && InputManager::Instance().CurrentPosition().point_y >= topLeft.y && InputManager::Instance().CurrentPosition().point_y <= bottomRight.y)
 //    {
 //        std::cout << "it is in propertyinspector panel!!!" << std::endl;
 //        return true;

@@ -1,5 +1,7 @@
 #include "GameClock.h"
 
+#include "Core/Debugging/Profiler/Profiler.h"
+
 namespace DeltaEngine
 {
 GameClock::GameClock( f32 fps )
@@ -60,6 +62,8 @@ void GameClock::Update()
   }
   else
     m_g_dt = 0.0f;
+
+  Profiler::Instance().Record("Clock");
 }
 
 f32 GameClock::DeltaTime() const

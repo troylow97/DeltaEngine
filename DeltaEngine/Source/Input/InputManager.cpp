@@ -1,6 +1,7 @@
 #include "InputManager.h"
 #include "KeyboardInput.h"
 #include "MouseInput.h"
+#include "Core/Debugging/Profiler/Profiler.h"
 
 namespace DeltaEngine
 {
@@ -25,24 +26,8 @@ void InputManager::Update()
 {
   m_keyboard.Update();
   m_mouse.Update();
-}
 
-//void InputManager::addListener(InputListener* listener)
-//{
-//	_listenerSet.insert(listener);
-//}
-//
-//void InputManager::removeListener(InputListener* listener)
-//{
-//	_listenerSet.erase(listener);
-//}
-
-InputManager *InputManager::Get() // might change in the wei lai
-{
-    // returns the address of the InputManager object
-  static InputManager _InputManager;
-
-  return &_InputManager;
+  Profiler::Instance().Record("Input Manager");
 }
 
 bool InputManager::IsKeyTriggered( int key )
