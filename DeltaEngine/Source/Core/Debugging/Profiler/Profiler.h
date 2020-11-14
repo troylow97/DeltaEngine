@@ -8,6 +8,10 @@ namespace DeltaEngine
 {
   class Profiler : public Singleton<Profiler>
   {
+    friend class Singleton<Profiler>;
+    Profiler() = default;
+    ~Profiler() = default;
+
     using Nanoseconds = std::chrono::nanoseconds;
     using HighResClock = std::chrono::high_resolution_clock;
     using TimePoint = std::chrono::time_point<HighResClock>;

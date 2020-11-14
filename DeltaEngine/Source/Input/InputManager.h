@@ -11,10 +11,12 @@ namespace DeltaEngine
     KeyboardInput m_keyboard;
     MouseInput m_mouse;
 
-  public:
+    friend class Singleton<InputManager>;
     InputManager();
     ~InputManager();
 
+  public:
+    
     void Reset();
     void Update();
 

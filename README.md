@@ -2,6 +2,12 @@
 
 Generate the solution by running the "GenerateProjects.bat"
 
+Build Type:
+Debug - Meant for Game, currently empty
+Debug Editor
+Release - Meant for Game, currently empty
+Release Editor
+
 Keyboard Shortcuts:
 
 Ctrl + N - New Scenes
