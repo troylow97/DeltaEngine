@@ -9,28 +9,28 @@
 
 namespace DeltaEngine
 {
-class Log
-{
-
-public:
-  static void Init();
-
-  static std::shared_ptr<spdlog::logger> &GetCoreLogger()
+  class Log
   {
-    return _coreLogger;
-  }
-  static std::shared_ptr<spdlog::logger> &GetClientLogger()
-  {
-    return _clientLogger;
-  }
+  public:
+    static void Init();
 
-private:
+    static std::shared_ptr<spdlog::logger>& GetCoreLogger()
+    {
+      return _coreLogger;
+    }
+
+    static std::shared_ptr<spdlog::logger>& GetClientLogger()
+    {
+      return _clientLogger;
+    }
+
+  private:
 #pragma warning(disable:4251)
-  static std::shared_ptr<spdlog::logger> _coreLogger;
-  static std::shared_ptr<spdlog::logger> _clientLogger;
-  static std::shared_ptr<spdlog::logger> core_file_logger;
+    static std::shared_ptr<spdlog::logger> _coreLogger;
+    static std::shared_ptr<spdlog::logger> _clientLogger;
+    static std::shared_ptr<spdlog::logger> core_file_logger;
 #pragma warning(default:4251)
-};
+  };
 }
 
 
@@ -38,7 +38,7 @@ private:
 #define DeltaEngine_CORE_TRACE(...) ::DeltaEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define DeltaEngine_CORE_INFO(...)  ::DeltaEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define DeltaEngine_CORE_WARN(...)  ::DeltaEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define DeltaEngine_CORE_ERROR(...) ::DeltaEngine::Log::GetCoreLogger()->error(__VA_ARGS__);spdlog::get("core_file_logger")->error(__VA_ARGS__) 
+#define DeltaEngine_CORE_ERROR(...) ::DeltaEngine::Log::GetCoreLogger()->error(__VA_ARGS__);spdlog::get("core_file_logger")->error(__VA_ARGS__)
 #define DeltaEngine_CORE_FATAL(...) ::DeltaEngine::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 //eg -> //DeltaEngine_CORE_TRACE("Loading shader \"{}\"...", filepath.c_str());

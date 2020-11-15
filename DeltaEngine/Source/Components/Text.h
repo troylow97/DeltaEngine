@@ -5,18 +5,15 @@
 
 namespace DeltaEngine
 {
-
-enum class Alignment : unsigned
-{
-  AlignLeft,
-  AlignRight,
-  Centralize,
-};
+  enum class Alignment : unsigned
+  {
+    AlignLeft,
+    AlignRight,
+    Centralize,
+  };
 
   struct Text
   {
-
-
     std::string m_FontKey = "Default";
 
     std::string m_Text = "";

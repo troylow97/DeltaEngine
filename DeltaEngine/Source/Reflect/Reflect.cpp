@@ -102,10 +102,10 @@ namespace DeltaEngine
       rttr::value("radial_360_anticlockwise", FillType::Radial360AntiClockwise)
     );
 
-    rttr::registration::class_<Name>("name")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Name>()->bits))
+    rttr::registration::class_<EntityName>("name")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityName>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("name", &Name::name)(rttr::policy::prop::bind_as_ptr);
+      .property("name", &EntityName::name)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Parent>("parent")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Parent>()->bits))
@@ -252,7 +252,7 @@ namespace DeltaEngine::RT_Reflect
 {
   rttr::type RT_Checker(size_t bits)
   {
-    if (ComponentMeta::GetComponentMeta<Name>()->bits == bits)
+    if (ComponentMeta::GetComponentMeta<EntityName>()->bits == bits)
       return rttr::type::get_by_name("name");
     if (ComponentMeta::GetComponentMeta<Parent>()->bits == bits)
       return rttr::type::get_by_name("parent");
@@ -289,8 +289,8 @@ namespace DeltaEngine::RT_Reflect
 
   void RT_Destroy(EntityManager& em, EntityID id, size_t bits)
   {
-    if (ComponentMeta::GetComponentMeta<Name>()->bits == bits)
-      em.RemoveComponent<Name>(id);
+    if (ComponentMeta::GetComponentMeta<EntityName>()->bits == bits)
+      em.RemoveComponent<EntityName>(id);
     if (ComponentMeta::GetComponentMeta<Parent>()->bits == bits)
       em.RemoveComponent<Parent>(id);
     if (ComponentMeta::GetComponentMeta<Transform>()->bits == bits)
@@ -325,8 +325,8 @@ namespace DeltaEngine::RT_Reflect
 
   void RT_Setter(EntityManager& em, EntityID id, size_t bits)
   {
-    if (ComponentMeta::GetComponentMeta<Name>()->bits == bits)
-      em.AddComponent<Name>(id);
+    if (ComponentMeta::GetComponentMeta<EntityName>()->bits == bits)
+      em.AddComponent<EntityName>(id);
     if (ComponentMeta::GetComponentMeta<Parent>()->bits == bits)
       em.AddComponent<Parent>(id);
     if (ComponentMeta::GetComponentMeta<Transform>()->bits == bits)
@@ -361,8 +361,8 @@ namespace DeltaEngine::RT_Reflect
 
   rttr::instance RT_Getter(EntityManager& em, EntityID& id, size_t bits)
   {
-    if (ComponentMeta::GetComponentMeta<Name>()->bits == bits)
-      return rttr::instance(em.GetComponent<Name>(id));
+    if (ComponentMeta::GetComponentMeta<EntityName>()->bits == bits)
+      return rttr::instance(em.GetComponent<EntityName>(id));
     if (ComponentMeta::GetComponentMeta<Parent>()->bits == bits)
       return rttr::instance(em.GetComponent<Parent>(id));
     if (ComponentMeta::GetComponentMeta<Transform>()->bits == bits)
@@ -399,7 +399,7 @@ namespace DeltaEngine::RT_Reflect
   void SerializeType(const std::string& str, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer, void* ptr)
   {
     if (str == "name")
-      Serialize::WriteObject(*static_cast<Name*>(ptr), writer);
+      Serialize::WriteObject(*static_cast<EntityName*>(ptr), writer);
     else if (str == "parent")
       Serialize::WriteObject(*static_cast<Parent*>(ptr), writer);
     else if (str == "transform")
@@ -435,7 +435,7 @@ namespace DeltaEngine::RT_Reflect
   void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var)
   {
     if (str == "name")
-      em.AddComponent<Name>(id, var.get_value<Name>());
+      em.AddComponent<EntityName>(id, var.get_value<EntityName>());
     else if (str == "parent")
       em.AddComponent<Parent>(id, var.get_value<Parent>());
     else if (str == "transform")

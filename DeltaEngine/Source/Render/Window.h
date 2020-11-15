@@ -6,47 +6,44 @@
 
 namespace DeltaEngine
 {
+  class Window
+  {
+    HWND m_hwndl;
+    std::wstring m_title;
+    int m_width;
+    int m_height;
+    bool m_running;
+    bool m_fullscreen;
+    bool m_cursor;
 
-class Window
-{
-  HWND m_hwndl;
-  std::wstring m_title;
-  int m_width;
-  int m_height;
-  bool m_running;
-  bool m_fullscreen;
-  bool m_cursor;
+  public:
 
-public:
+    Window() = default;
+    Window(const std::string& title, int width, int height, bool fullscreen);
+    ~Window() = default;
 
-  Window() = default;
-  Window( const std::string& title, int width, int height, bool fullscreen );
-  ~Window() = default;
+    void Init();
+    void Update();
+    void ShutDown();
 
-  void Init();
-  void Update();
-  void ShutDown();
+    HWND GetHandle() const;
 
-  HWND GetHandle() const;
+    void Height(int h);
+    [[nodiscard]] int Height() const;
 
-  void Height( int h );
-  [[nodiscard]] int Height() const;
+    void Width(int w);
+    [[nodiscard]] int Width() const;
 
-  void Width( int w );
-  [[nodiscard]] int Width() const;
+    void Fullscreen(bool f);
+    [[nodiscard]] bool Fullscreen() const;
 
-  void Fullscreen( bool f );
-  [[nodiscard]] bool Fullscreen() const;
+    void Cursor(bool c);
+    [[nodiscard]] bool Cursor() const;
 
-  void Cursor( bool c );
-  [[nodiscard]] bool Cursor() const;
+    void Running(bool r);
+    [[nodiscard]] bool Running() const;
 
-  void Running( bool r );
-  [[nodiscard]] bool Running() const;
-
-  void InitWindow();
-private:
-
-};
-
+    void InitWindow();
+  private:
+  };
 }

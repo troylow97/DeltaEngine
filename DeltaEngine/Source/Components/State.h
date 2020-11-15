@@ -7,16 +7,19 @@ namespace DeltaEngine
   {
     struct Parameter
     {
-      bool boolValue {false};
-      float floatValue { 0.0f };
+      bool boolValue{false};
+      float floatValue{0.0f};
     };
+
     using Parameters = std::unordered_map<std::string, Parameter>;
 
     Parameters parameters{};
 
-    State() : parameters{} {};
+    State() : parameters{}
+    {
+    };
 
-    State& operator= (const State& rhs)
+    State& operator=(const State& rhs)
     {
       parameters.insert(rhs.parameters.begin(), rhs.parameters.end());
       return *this;

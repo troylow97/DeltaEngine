@@ -44,6 +44,5 @@ namespace DeltaEngine
         m_FlipY{false}
     {
     }
-
   };
 }

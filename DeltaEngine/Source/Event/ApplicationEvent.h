@@ -3,122 +3,121 @@
 
 namespace DeltaEngine
 {
-class WindowResizeEvent : public Event
-{
-public:
-  WindowResizeEvent( unsigned int width, unsigned int height )
-    : m_Width( width ), m_Height( height )
-  {}
-
-  inline unsigned int GetWidth() const
+  class WindowResizeEvent : public Event
   {
-    return m_Width;
-  }
-  inline unsigned int GetHeight() const
+  public:
+    WindowResizeEvent(unsigned int width, unsigned int height)
+      : m_Width(width), m_Height(height)
+    {
+    }
+
+    unsigned int GetWidth() const
+    {
+      return m_Width;
+    }
+
+    unsigned int GetHeight() const
+    {
+      return m_Height;
+    }
+
+    std::string ToString() const override
+    {
+      std::stringstream ss;
+      ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
+      return ss.str();
+    }
+
+    EVENT_CLASS_TYPE(WindowResize)
+    EVENT_CLASS_CATEGORY(EventCategoryApplication)
+  private:
+    unsigned int m_Width, m_Height;
+  };
+
+  class WindowCloseEvent : public Event
   {
-    return m_Height;
-  }
+  public:
+    WindowCloseEvent() = default;
 
-  std::string ToString() const override
+    EVENT_CLASS_TYPE(WindowClose)
+    EVENT_CLASS_CATEGORY(EventCategoryApplication)
+  };
+
+  class AppTickEvent : public Event
   {
-    std::stringstream ss;
-    ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
-    return ss.str();
-  }
+  public:
+    AppTickEvent() = default;
 
-  EVENT_CLASS_TYPE( WindowResize )
-    EVENT_CLASS_CATEGORY( EventCategoryApplication )
-private:
-  unsigned int m_Width, m_Height;
-};
+    EVENT_CLASS_TYPE(AppTick)
+    EVENT_CLASS_CATEGORY(EventCategoryApplication)
+  };
 
-class WindowCloseEvent : public Event
-{
-public:
-  WindowCloseEvent() = default;
+  class AppUpdateEvent : public Event
+  {
+  public:
+    AppUpdateEvent() = default;
 
-  EVENT_CLASS_TYPE( WindowClose )
-    EVENT_CLASS_CATEGORY( EventCategoryApplication )
-};
+    EVENT_CLASS_TYPE(AppUpdate)
+    EVENT_CLASS_CATEGORY(EventCategoryApplication)
+  };
 
-class AppTickEvent : public Event
-{
-public:
-  AppTickEvent() = default;
+  class AppRenderEvent : public Event
+  {
+  public:
+    AppRenderEvent() = default;
 
-  EVENT_CLASS_TYPE( AppTick )
-    EVENT_CLASS_CATEGORY( EventCategoryApplication )
-};
+    EVENT_CLASS_TYPE(AppRender)
+    EVENT_CLASS_CATEGORY(EventCategoryApplication)
+  };
 
-class AppUpdateEvent : public Event
-{
-public:
-  AppUpdateEvent() = default;
-
-  EVENT_CLASS_TYPE( AppUpdate )
-    EVENT_CLASS_CATEGORY( EventCategoryApplication )
-};
-
-class AppRenderEvent : public Event
-{
-public:
-  AppRenderEvent() = default;
-
-  EVENT_CLASS_TYPE( AppRender )
-    EVENT_CLASS_CATEGORY( EventCategoryApplication )
-};
-
-class ImGuiFileDragEvent : public Event
-{
-public:
+  class ImGuiFileDragEvent : public Event
+  {
+  public:
 
     ImGuiFileDragEvent() = default;
 
     std::string ToString() const override
     {
-        std::stringstream ss;
-        ss << "ImGuiDragFileEvent" << std::endl;
-        return ss.str();
+      std::stringstream ss;
+      ss << "ImGuiDragFileEvent" << std::endl;
+      return ss.str();
     }
 
     EVENT_CLASS_TYPE(ImGuiDragFile)
-        EVENT_CLASS_CATEGORY(ImGuiCategory)
+    EVENT_CLASS_CATEGORY(ImGuiCategory)
+  };
 
-};
-
-class ImGuiFileRemovingDragEvent : public Event
-{
-public:
+  class ImGuiFileRemovingDragEvent : public Event
+  {
+  public:
 
     ImGuiFileRemovingDragEvent() = default;
 
     std::string ToString() const override
     {
-        std::stringstream ss;
-        ss << "ImGuiFileRemovingDragEvent" << std::endl;
-        return ss.str();
+      std::stringstream ss;
+      ss << "ImGuiFileRemovingDragEvent" << std::endl;
+      return ss.str();
     }
 
     EVENT_CLASS_TYPE(ImGuiRemovingDragFile)
-        EVENT_CLASS_CATEGORY(ImGuiCategory)
+    EVENT_CLASS_CATEGORY(ImGuiCategory)
+  };
 
-};
-
-class ImGuiFileDragEventDone : public Event
-{
-public:
+  class ImGuiFileDragEventDone : public Event
+  {
+  public:
 
     ImGuiFileDragEventDone() = default;
 
     std::string ToString() const override
     {
-        std::stringstream ss;
-        ss << "ImGuiFileDragEventDone" << std::endl;
-        return ss.str();
+      std::stringstream ss;
+      ss << "ImGuiFileDragEventDone" << std::endl;
+      return ss.str();
     }
 
     EVENT_CLASS_TYPE(ImGuiFileDragDone)
-        EVENT_CLASS_CATEGORY(ImGuiCategory)
-
-};
+    EVENT_CLASS_CATEGORY(ImGuiCategory)
+  };
 }

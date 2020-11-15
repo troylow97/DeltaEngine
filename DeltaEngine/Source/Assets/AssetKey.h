@@ -1,59 +1,60 @@
 #pragma once
 #include <string_view>
 #include "Core/Debugging/Logger/Log.h"
+
 namespace DeltaEngine
 {
-class AssetKey
-{
-public:
-
-  AssetKey() = default;
-
-  explicit AssetKey( const size_t digest ) :
-    m_digest( digest )
+  class AssetKey
   {
-  }
+  public:
 
-  AssetKey( const std::string& str ) :
-    m_digest( std::hash<std::string>{}( str ) ), m_key {str}
-  {
-  }
+    AssetKey() = default;
 
-  template <size_t Size>
-  constexpr AssetKey( const char( &str )[Size] ) :
-    m_digest( std::hash<std::string>{}( std::string( str ) ) ), m_key{str}
-  {
-  }
+    explicit AssetKey(const size_t digest) :
+      m_digest(digest)
+    {
+    }
 
-  bool operator==( const AssetKey &rhs ) const
-  {
-    return m_digest == rhs.m_digest;
-  }
+    AssetKey(const std::string& str) :
+      m_digest(std::hash<std::string>{}(str)), m_key{str}
+    {
+    }
 
-  size_t operator()() const
-  {
-    return m_digest;
-  }
+    template <size_t Size>
+    constexpr AssetKey(const char ( &str )[Size]) :
+      m_digest(std::hash<std::string>{}(std::string(str))), m_key{str}
+    {
+    }
 
-  const std::string& Key() const
-  {
-    return m_key;
-  }
+    bool operator==(const AssetKey& rhs) const
+    {
+      return m_digest == rhs.m_digest;
+    }
 
-private:
-  size_t m_digest { 0 };
-  std::string m_key {};
-};
+    size_t operator()() const
+    {
+      return m_digest;
+    }
+
+    const std::string& Key() const
+    {
+      return m_key;
+    }
+
+  private:
+    size_t m_digest{0};
+    std::string m_key{};
+  };
 } // namespace DeltaEngine
 
 namespace std
 {
-template <>
-struct hash<DeltaEngine::AssetKey>
-{
-  std::size_t operator()( const DeltaEngine::AssetKey key ) const noexcept
+  template <>
+  struct hash<DeltaEngine::AssetKey>
   {
-    return key();
-  }
-};
+    std::size_t operator()(const DeltaEngine::AssetKey key) const noexcept
+    {
+      return key();
+    }
+  };
 } // namespace std

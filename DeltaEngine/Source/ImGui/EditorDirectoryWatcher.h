@@ -5,14 +5,11 @@
 
 namespace DeltaEngine
 {
-
-struct EditorDirectoryWatcher : public Singleton<EditorDirectoryWatcher>
-{
-  using Directories = std::unordered_map<std::string, std::vector<std::string>>;
-  Directories m_directory_map;
-  void Initialize();
-  void Shutdown();
-
-};
-
+  struct EditorDirectoryWatcher : public Singleton<EditorDirectoryWatcher>
+  {
+    using Directories = std::unordered_map<std::string, std::vector<std::string>>;
+    Directories m_directory_map;
+    void Initialize();
+    void Shutdown();
+  };
 }

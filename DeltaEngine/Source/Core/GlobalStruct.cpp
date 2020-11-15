@@ -3,15 +3,13 @@
 
 namespace DeltaEngine
 {
+  DeltaEngineGlobalEnvironment& GetEnv()
+  {
+    return env;
+  }
 
-DeltaEngineGlobalEnvironment &GetEnv()
-{
-  return env;
-}
-
-double FixedDeltaTime()
-{
-  return env.pClock->FixedDeltaTime();
-}
-
+  double FixedDeltaTime()
+  {
+    return env.pClock->FixedDeltaTime();
+  }
 }

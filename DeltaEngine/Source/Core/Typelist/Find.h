@@ -1,8 +1,8 @@
 #pragma once
 #include <type_traits>
+
 namespace DeltaEngine::Types::Internal
 {
-
   template <template <typename> typename Predicate, typename NotFound, typename... Ts>
   struct Find;
 

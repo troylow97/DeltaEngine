@@ -2,9 +2,10 @@
 
 struct Lifespan
 {
-	float Timer;
+  float Timer;
 
-	Lifespan() :
-		Timer{ 1.0f }
-	{}
+  Lifespan() :
+    Timer{1.0f}
+  {
+  }
 };

@@ -1,159 +1,142 @@
 #include "InputManager.h"
 #include "KeyboardInput.h"
 #include "MouseInput.h"
+#include "Core/Debugging/Profiler/Profiler.h"
 
 namespace DeltaEngine
 {
+  InputManager::InputManager()
+  {
+  }
 
-InputManager::InputManager()
-{
+  InputManager::~InputManager()
+  {
+  }
 
-}
+  void InputManager::Reset()
+  {
+    m_keyboard.Reset();
+    m_mouse.Reset();
+  }
 
-InputManager::~InputManager()
-{
+  void InputManager::Update()
+  {
+    m_keyboard.Update();
+    m_mouse.Update();
 
-}
+    Profiler::Instance().Record("Input Manager");
+  }
 
-void InputManager::Reset()
-{
-  m_keyboard.Reset();
-  m_mouse.Reset();
-}
+  bool InputManager::IsKeyTriggered(int key)
+  {
+    return m_keyboard.m_is_triggered[key];
+  }
 
-void InputManager::Update()
-{
-  m_keyboard.Update();
-  m_mouse.Update();
-}
+  bool InputManager::IsKeyPressed(int key)
+  {
+    return m_keyboard.m_is_pressed[key];
+  }
 
-//void InputManager::addListener(InputListener* listener)
-//{
-//	_listenerSet.insert(listener);
-//}
-//
-//void InputManager::removeListener(InputListener* listener)
-//{
-//	_listenerSet.erase(listener);
-//}
+  bool InputManager::IsKeyReleased(int key)
+  {
+    return m_keyboard.m_is_released[key];
+  }
 
-InputManager *InputManager::Get() // might change in the wei lai
-{
-    // returns the address of the InputManager object
-  static InputManager _InputManager;
+  bool InputManager::GetShowLine()
+  {
+    return m_keyboard.m_show_line;
+  }
 
-  return &_InputManager;
-}
+  void InputManager::SetShowLine(bool showLine)
+  {
+    m_keyboard.m_show_line = showLine;
+  }
 
-bool InputManager::IsKeyTriggered( int key )
-{
-  return m_keyboard.m_is_triggered[key];
-}
+  bool InputManager::OnMouseMove()
+  {
+    return m_mouse.m_move_event;
+  }
 
-bool InputManager::IsKeyPressed( int key )
-{
-  return m_keyboard.m_is_pressed[key];
-}
+  bool InputManager::IsMouseTriggered(int key)
+  {
+    return m_mouse.m_is_triggered[key];
+  }
 
-bool InputManager::IsKeyReleased( int key )
-{
-  return m_keyboard.m_is_released[key];
-}
+  bool InputManager::IsMousePressed(int key)
+  {
+    return m_mouse.m_is_pressed[key];
+  }
 
-bool InputManager::GetShowLine()
-{
-  return m_keyboard.m_show_line;
-}
+  bool InputManager::IsMouseReleased(int key)
+  {
+    return m_mouse.m_is_released[key];
+  }
 
-void InputManager::SetShowLine( bool showLine )
-{
-  m_keyboard.m_show_line = showLine;
-}
+  const Point& InputManager::CurrentPosition()
+  {
+    return m_mouse.m_current_mouse_position;
+  }
 
-bool InputManager::OnMouseMove()
-{
-  return m_mouse.m_move_event;
-}
+  const Point& InputManager::PreviousPosition()
+  {
+    return m_mouse.m_previous_mouse_position;
+  }
 
-bool InputManager::IsMouseTriggered( int key )
-{
-  return m_mouse.m_is_triggered[key];
-}
+  const Point& InputManager::CurrentCameraPosition()
+  {
+    return m_mouse.m_current_camera_mouse_position;
+  }
 
-bool InputManager::IsMousePressed( int key )
-{
-  return m_mouse.m_is_pressed[key];
-}
-
-bool InputManager::IsMouseReleased( int key )
-{
-  return m_mouse.m_is_released[key];
-}
-
-const Point &InputManager::CurrentPosition()
-{
-  return m_mouse.m_current_mouse_position;
-}
-
-const Point &InputManager::PreviousPosition()
-{
-  return m_mouse.m_previous_mouse_position;
-}
-
-const Point& InputManager::CurrentCameraPosition()
-{
-	return m_mouse.m_current_camera_mouse_position;
-}
-
-void InputManager::SetCurrentPosition(Point _currentPosition)
-{
+  void InputManager::SetCurrentPosition(Point _currentPosition)
+  {
     m_mouse.m_current_mouse_position.point_x = _currentPosition.point_x;
     m_mouse.m_current_mouse_position.point_y = _currentPosition.point_y;
-}
+  }
 
-void InputManager::SetPreviousPosition(Point _previousPositon)
-{
+  void InputManager::SetPreviousPosition(Point _previousPositon)
+  {
     m_mouse.m_previous_mouse_position.point_x = _previousPositon.point_x;
     m_mouse.m_previous_mouse_position.point_y = _previousPositon.point_y;
-}
+  }
 
-void InputManager::SetCurrentCameraPosition(Point _currentCameraPosition)
-{
-	m_mouse.m_current_camera_mouse_position.point_x = _currentCameraPosition.point_x;
-	m_mouse.m_current_camera_mouse_position.point_y = _currentCameraPosition.point_y;
-}
+  void InputManager::SetCurrentCameraPosition(Point _currentCameraPosition)
+  {
+    m_mouse.m_current_camera_mouse_position.point_x = _currentCameraPosition.point_x;
+    m_mouse.m_current_camera_mouse_position.point_y = _currentCameraPosition.point_y;
+  }
 
-bool InputManager::EntitySelected()
-{
-	return m_mouse.m_entity_selected;
-}
+  bool InputManager::EntitySelected()
+  {
+    return m_mouse.m_entity_selected;
+  }
 
-void InputManager::SetEntitySelected(bool _setEntitySelected)
-{
-	m_mouse.m_entity_selected = _setEntitySelected;
-}
+  void InputManager::SetEntitySelected(bool _setEntitySelected)
+  {
+    m_mouse.m_entity_selected = _setEntitySelected;
+  }
 
-size_t InputManager::EntityIDSelected()
-{
-	return m_mouse.m_entityid_selected;
-}
+  size_t InputManager::EntityIDSelected()
+  {
+    return m_mouse.m_entityid_selected;
+  }
 
-void InputManager::SetEntityIDSelected(size_t _setEntityIDSelected)
-{
-	m_mouse.m_entityid_selected = _setEntityIDSelected;
-}
+  void InputManager::SetEntityIDSelected(size_t _setEntityIDSelected)
+  {
+    m_mouse.m_entityid_selected = _setEntityIDSelected;
+  }
 
-bool InputManager::TilesetDragged()
-{
-	return m_mouse.m_tileset_dragged;
-}
-void InputManager::SetTilesetDragged(bool _setTilesetDragged)
-{
-	m_mouse.m_tileset_dragged = _setTilesetDragged;
-}
+  bool InputManager::TilesetDragged()
+  {
+    return m_mouse.m_tileset_dragged;
+  }
 
-bool* InputManager::GetKeys()
-{
-  return m_keyboard.m_is_pressed;
-}
+  void InputManager::SetTilesetDragged(bool _setTilesetDragged)
+  {
+    m_mouse.m_tileset_dragged = _setTilesetDragged;
+  }
+
+  bool* InputManager::GetKeys()
+  {
+    return m_keyboard.m_is_pressed;
+  }
 }

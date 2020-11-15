@@ -2,15 +2,14 @@
 
 #ifdef DE_PLATFORM_WINDOWS
 using namespace DeltaEngine;
-extern DeltaEngine::Application *DeltaEngine::CreateApplication();
+extern Application* DeltaEngine::CreateApplication();
 
-int main( int argc, char **argv )
+int main(int argc, char** argv)
 {
-  auto app = DeltaEngine::CreateApplication();
+  auto app = CreateApplication();
   app->Run();
   delete app;
-  DeltaEngine_CORE_INFO( "APPLICATION EXIT" );
+  DeltaEngine_CORE_INFO("APPLICATION EXIT");
 }
 
 #endif // DE_PLATFORM_WINDOWS
-

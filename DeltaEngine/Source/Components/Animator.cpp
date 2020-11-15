@@ -6,16 +6,14 @@
 
 namespace DeltaEngine
 {
+  unsigned int Animator::GetFrame() const
+  {
+    return m_Frame;
+  }
 
-
-unsigned int Animator::GetFrame() const
-{
-  return m_Frame;
-}
-
-void Animator::Update(AnimationClip* clip)
-{
-  m_Frame = (unsigned int) ( m_Timer * clip->GetFps() );
-  m_Frame = Math::Clamp( m_Frame, 0, clip->GetTotalFrames() );
-}
+  void Animator::Update(AnimationClip* clip)
+  {
+    m_Frame = static_cast<unsigned>(m_Timer * clip->GetFps());
+    m_Frame = Math::Clamp(m_Frame, 0, clip->GetTotalFrames());
+  }
 }

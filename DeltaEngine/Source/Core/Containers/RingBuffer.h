@@ -6,7 +6,6 @@
 template <typename T>
 class RingBuffer
 {
-
 public:
   using Size_u32 = uint32_t;
   using Index = uint32_t;
@@ -19,14 +18,14 @@ public:
 
   */
   /***********************************************************************/
-  explicit RingBuffer( Size_u32 size ) :
-    head { 0 },
-    tail { 0 },
-    max_size { UpperPowerOfTwo( size ) },
-    mask_val { max_size - 1 },
-    array { std::make_unique<T[]>( max_size ) }
+  explicit RingBuffer(Size_u32 size) :
+    head{0},
+    tail{0},
+    max_size{UpperPowerOfTwo(size)},
+    mask_val{max_size - 1},
+    array{std::make_unique<T[]>(max_size)}
   {
-    assert( size > 1 && "size must be greater than 1" );
+    assert(size > 1 && "size must be greater than 1");
   }
 
   /***********************************************************************/
@@ -51,7 +50,7 @@ public:
   /***********************************************************************/
   Size_u32 Size()
   {
-    return mask( tail - head );
+    return mask(tail - head);
   }
 
   /***********************************************************************/
@@ -63,7 +62,7 @@ public:
   /***********************************************************************/
   bool Full()
   {
-    return inc( tail ) == head;
+    return inc(tail) == head;
   }
 
   /***********************************************************************/
@@ -85,18 +84,15 @@ public:
   \brief Writes data to the ring buffer. Data is written to the tail.
   */
   /***********************************************************************/
-  bool Write( T& data )
+  bool Write(T& data)
   {
-    if ( !Full() )
+    if (!Full())
     {
       array[tail] = data;
-      tail = inc( tail );
+      tail = inc(tail);
       return true;
     }
-    else
-    {
-      return false;
-    }
+    return false;
   }
 
   /***********************************************************************/
@@ -106,19 +102,19 @@ public:
   \brief Writes data to the ring buffer. Data is written to the tail.
   */
   /***********************************************************************/
- //bool Write( T &&data )
- //{
- //  if ( !Full() )
- //  {
- //    array[tail] = data;
- //    tail = inc( tail );
- //    return true;
- //  }
- //  else
- //  {
- //    return false;
- //  }
- //}
+  //bool Write( T &&data )
+  //{
+  //  if ( !Full() )
+  //  {
+  //    array[tail] = data;
+  //    tail = inc( tail );
+  //    return true;
+  //  }
+  //  else
+  //  {
+  //    return false;
+  //  }
+  //}
 
   /***********************************************************************/
   /*!
@@ -129,17 +125,14 @@ public:
   /***********************************************************************/
   T Read()
   {
-    if ( !Empty() )
+    if (!Empty())
     {
       T temp = array[head];
-      head = inc( head );
+      head = inc(head);
       return temp;
     }
-    else
-    {
-      assert( "array is empty!" );
-      return array[0];
-    }
+    assert("array is empty!");
+    return array[0];
   }
 
   /***********************************************************************/
@@ -157,7 +150,7 @@ public:
     std::cout << "Current head index is " << head << std::endl;
     std::cout << "Current tail index is " << tail << std::endl;
     std::cout << "Mask value is " << mask_val << std::endl;
-    for ( Size_u32 i = 0; i < max_size; i++ )
+    for (Size_u32 i = 0; i < max_size; i++)
     {
       std::cout << "ring[" << i << "] is: " << array[i] << std::endl;
     }
@@ -183,28 +176,25 @@ public:
   \brief Gets the maximum size the Ring Buffer can hold
   */
   /***********************************************************************/
-  inline Size_u32 GetMaxSize() const
+  Size_u32 GetMaxSize() const
   {
     return max_size;
   }
 
-/***********************************************************************/
-/*!
-\fn T operator[](Index index) const
-
-\brief Gets a specific index of the ring buffer
-*/
-/***********************************************************************/
-  T operator[]( Index index ) const
+  /***********************************************************************/
+  /*!
+  \fn T operator[](Index index) const
+  
+  \brief Gets a specific index of the ring buffer
+  */
+  /***********************************************************************/
+  T operator[](Index index) const
   {
-    if ( index <= max_size )
+    if (index <= max_size)
     {
       return array[head + index - 1];
     }
-    else
-    {
-      assert( index <= max_size && "Index out of bound" );
-    }
+    assert(index <= max_size && "Index out of bound");
 
     return array[0];
   }
@@ -216,16 +206,13 @@ public:
   \brief Gets a specific index of the ring buffer
   */
   /***********************************************************************/
-  T &operator[]( Index index )
+  T& operator[](Index index)
   {
-    if ( index <= max_size )
+    if (index <= max_size)
     {
       return array[head + index - 1];
     }
-    else
-    {
-      assert( index <= max_size && "Index out of bound" );
-    }
+    assert(index <= max_size && "Index out of bound");
 
     return array[0];
   }
@@ -244,7 +231,7 @@ private:
   \brief Index would round up the value to a power of 2.
   */
   /***********************************************************************/
-  Index UpperPowerOfTwo( Index num )
+  Index UpperPowerOfTwo(Index num)
   {
     num--;
     num |= num >> 1;
@@ -263,21 +250,20 @@ private:
   \brief
   */
   /***********************************************************************/
-  inline Index mask( Index val )
+  Index mask(Index val)
   {
     return val & mask_val;
   }
 
-/***********************************************************************/
-/*!
-\fn inline Index inc(Index index) { return mask(index + 1); }
-
-\brief
-*/
-/***********************************************************************/
-  inline Index inc( Index index )
+  /***********************************************************************/
+  /*!
+  \fn inline Index inc(Index index) { return mask(index + 1); }
+  
+  \brief
+  */
+  /***********************************************************************/
+  Index inc(Index index)
   {
-    return mask( index + 1 );
+    return mask(index + 1);
   }
-
 };

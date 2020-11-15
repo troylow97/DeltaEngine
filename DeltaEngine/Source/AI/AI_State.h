@@ -16,56 +16,55 @@
 
 namespace DeltaEngine
 {
-	class Transition;
+  class Transition;
 
-	class AIState
-	{
-	protected:
-		bool CheckEdges(EntityID&);
-	public:
-		std::unordered_map<std::string, Transition*> TransitionEdges;
-		virtual void onEnter(EntityID& id) = 0;
-		virtual void onExit(EntityID& id) = 0;
-		virtual void Update(EntityID& id) = 0;
-		virtual ~AIState();
-	};
+  class AIState
+  {
+  protected:
+    bool CheckEdges(EntityID&);
+  public:
+    std::unordered_map<std::string, Transition*> TransitionEdges;
+    virtual void onEnter(EntityID& id) = 0;
+    virtual void onExit(EntityID& id) = 0;
+    virtual void Update(EntityID& id) = 0;
+    virtual ~AIState();
+  };
 
-	class IdleLancer : public AIState
-	{
-	public:
-		IdleLancer();
-		virtual void onEnter(EntityID& id) override;
-		virtual void onExit(EntityID& id) override;
-		virtual void Update(EntityID& id1) override;
-	};
+  class IdleLancer : public AIState
+  {
+  public:
+    IdleLancer();
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
+  };
 
-	class ChaseEnemyLancer : public AIState
-	{
-	public:
-		ChaseEnemyLancer();
-		virtual void onEnter(EntityID& id) override;
-		virtual void onExit(EntityID& id) override;
-		virtual void Update(EntityID& id1) override;
-	};
+  class ChaseEnemyLancer : public AIState
+  {
+  public:
+    ChaseEnemyLancer();
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
+  };
 
-	class IdleFiddler : public AIState
-	{
-		unsigned int CurrentWayPoint;
-		Vector2 WayPoints[2];
-	public:
-		IdleFiddler(Vector2 p1,Vector2 p2);
-		virtual void onEnter(EntityID& id) override;
-		virtual void onExit(EntityID& id) override;
-		virtual void Update(EntityID& id1) override;
-	};
+  class IdleFiddler : public AIState
+  {
+    unsigned int CurrentWayPoint;
+    Vector2 WayPoints[2];
+  public:
+    IdleFiddler(Vector2 p1, Vector2 p2);
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
+  };
 
-	class ChaseEnemyFiddler : public AIState
-	{
-	public:
-		ChaseEnemyFiddler();
-		virtual void onEnter(EntityID& id) override;
-		virtual void onExit(EntityID& id) override;
-		virtual void Update(EntityID& id1) override;
-	};
-
+  class ChaseEnemyFiddler : public AIState
+  {
+  public:
+    ChaseEnemyFiddler();
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
+  };
 }

@@ -29,17 +29,17 @@
 #include "EditorDirectoryWatcher.h"
 #include "IconsFontAwesome5.h"
 #include "Core/TypeAlias.h"
+#include "Core/Debugging/Profiler/Profiler.h"
+#include "Input/Keys.h"
 #include "Panels/ButtonsPanel.h"
 
 namespace DeltaEngine
 {
-
   void NewFile()
   {
     GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-    InputManager::Get()->SetEntitySelected(false);
-    InputManager::Get()->SetEntityIDSelected( u64_max );
-
+    InputManager::Instance().SetEntitySelected(false);
+    InputManager::Instance().SetEntityIDSelected(u64_max);
   }
 
   void OpenFile()
@@ -47,7 +47,10 @@ namespace DeltaEngine
     std::optional<std::string> path = FileDialogs::OpenFile("DeltaEngine Scene (*.json)\0*.json\0");
 
     if (path)
+    {
+      NewFile();
       GetEnv().pECS->GetWorld().Load(*path);
+    }
   }
 
   void SaveFile()
@@ -63,29 +66,45 @@ namespace DeltaEngine
     GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity<Transform>();
   }
 
+  void CreateEntityFromArchetype()
+  {
+    if (InputManager::Instance().EntitySelected())
+      GetEnv().pECS->GetWorld().GetEntityManager().CreateEntityFromArchetype({
+        InputManager::Instance().EntityIDSelected()
+      });
+  }
+
+  void CloneEntity()
+  {
+    if (InputManager::Instance().EntitySelected())
+      GetEnv().pECS->GetWorld().GetEntityManager().CloneEntity({InputManager::Instance().EntityIDSelected()});
+  }
+
   void DeleteEntity()
   {
-    auto id = InputManager::Get()->EntityIDSelected();
+    auto id = InputManager::Instance().EntityIDSelected();
     GetEnv().pECS->GetWorld().GetEntityManager().DestroyEntity({id});
-    InputManager::Get()->SetEntitySelected(false);
-    InputManager::Get()->SetEntityIDSelected( u64_max );
+    InputManager::Instance().SetEntitySelected(false);
+    InputManager::Instance().SetEntityIDSelected(u64_max);
     DeltaEngine_CORE_TRACE("Deleted Entity - {}", id);
   }
 
   void Editor::MenuBar()
   {
-    if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_N ) )
+    if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyReleased(DEVK_N))
       NewFile();
     if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyReleased(DEVK_O))
-    {
-      NewFile();
       OpenFile();
-    }
     if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyReleased(DEVK_S))
       SaveFile();
     if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyDown(DEVK_LSHIFT) && ImGui::IsKeyReleased(DEVK_A))
       AddEntity();
-    if ( ImGui::IsKeyReleased( DEVK_DELETE ) && InputManager::Get()->EntitySelected() &&  InputManager::Get()->EntityIDSelected() != u64_max)
+    if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyDown(DEVK_LSHIFT) && ImGui::IsKeyReleased(DEVK_C))
+      CreateEntityFromArchetype();
+    if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyDown(DEVK_LSHIFT) && ImGui::IsKeyReleased(DEVK_V))
+      CloneEntity();
+    if (ImGui::IsKeyReleased(DEVK_DELETE) && InputManager::Instance().EntitySelected() && InputManager::Instance().
+      EntityIDSelected() != u64_max)
       DeleteEntity();
 
     if (ImGui::IsKeyDown(DEVK_LCTRL) && ImGui::IsKeyReleased(DEVK_W))
@@ -99,13 +118,10 @@ namespace DeltaEngine
     {
       if (ImGui::BeginMenu("Scene"))
       {
-        if ( ImGui::MenuItem( "New", " Ctrl+N" ) )
+        if (ImGui::MenuItem("New", " Ctrl+N"))
           NewFile();
         if (ImGui::MenuItem("Open", " Ctrl+O"))
-        {
-          NewFile();
           OpenFile();
-        }
         if (ImGui::MenuItem("Save", " Ctrl+S"))
           SaveFile();
         ImGui::EndMenu();
@@ -114,10 +130,11 @@ namespace DeltaEngine
       {
         if (ImGui::MenuItem("Add Entity", " Ctrl+Shift+A"))
           AddEntity();
-        if (ImGui::MenuItem("clone entity"))
-        {
-        }
-        if ( ImGui::MenuItem( "Delete Entity", " Del" ) )
+        if (ImGui::MenuItem("Clone Entity", " Ctrl+Shift+V"))
+          CloneEntity();
+        if (ImGui::MenuItem("Clone Entity Default", " Ctrl+Shift+C"))
+          CreateEntityFromArchetype();
+        if (ImGui::MenuItem("Delete Entity", " Del"))
           DeleteEntity();
 
         ImGui::EndMenu();
@@ -136,29 +153,30 @@ namespace DeltaEngine
     }
   }
 
-Editor::Editor()
-{
-  m_panels.push_back( std::make_unique<TilemapPanel>( "Tilemap" ) );
-  m_panels.push_back( std::make_unique<PropertyInspectorPanel>( "Property Inspector" ) );
-  m_panels.push_back( std::make_unique<WorldPanel>( "World" ) );
-  m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );
-  m_panels.push_back( std::make_unique<AssetPanel>( "Assets" ) );
-  m_panels.push_back( std::make_unique<ButtonsPanel>( " Buttons" ) );
+  Editor::Editor()
+  {
+    m_panels.push_back(std::make_unique<TilemapPanel>("Tilemap"));
+    m_panels.push_back(std::make_unique<PropertyInspectorPanel>("Property Inspector"));
+    m_panels.push_back(std::make_unique<WorldPanel>("World"));
+    m_panels.push_back(std::make_unique<ViewportPanel>("Viewport"));
+    m_panels.push_back(std::make_unique<AssetPanel>("Assets"));
+    m_panels.push_back(std::make_unique<ButtonsPanel>(" Buttons"));
 
 
-  ImGui::CreateContext();
-  ImGuiIO &io = ImGui::GetIO();
-  io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_DockingEnable | ImGuiConfigFlags_ViewportsEnable;
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_DockingEnable |
+      ImGuiConfigFlags_ViewportsEnable;
 
-  io.Fonts->AddFontDefault();
-  ImFontConfig icons_config;
-  icons_config.MergeMode = true;
-  icons_config.GlyphMinAdvanceX = 16.0f; // Use if you want to make the icon monospaced
-  icons_config.PixelSnapH = true;
-  // add character ranges and merge into main font, merge in icons from Font Awesome
-  static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
-  io.Fonts->AddFontFromFileTTF("Fonts/fa-solid-900.ttf", 10.0f, &icons_config, icons_ranges);
-  ImGui::StyleColorsDark();
+    io.Fonts->AddFontDefault();
+    ImFontConfig icons_config;
+    icons_config.MergeMode = true;
+    icons_config.GlyphMinAdvanceX = 16.0f; // Use if you want to make the icon monospaced
+    icons_config.PixelSnapH = true;
+    // add character ranges and merge into main font, merge in icons from Font Awesome
+    static const ImWchar icons_ranges[] = {ICON_MIN_FA, ICON_MAX_FA, 0};
+    io.Fonts->AddFontFromFileTTF("Fonts/fa-solid-900.ttf", 10.0f, &icons_config, icons_ranges);
+    ImGui::StyleColorsDark();
 
     ImGuiStyle& style = ImGui::GetStyle();
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
@@ -195,7 +213,7 @@ Editor::Editor()
 
     // Update ImGui with Custom Input
     auto& ref = ImGui::GetIO();
-    std::memcpy(&ref.KeysDown[0], InputManager::Get()->GetKeys(), 256);
+    std::memcpy(&ref.KeysDown[0], InputManager::Instance().GetKeys(), 256);
 
     // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
     // because it would be confusing to have two docking targets within each others.
@@ -264,6 +282,7 @@ Editor::Editor()
       ImGui::RenderPlatformWindowsDefault();
       wglMakeCurrent(backup_current_context, RenderModule::openGLSystem->GetGLContext());
     }
+    Profiler::Instance().Record("ImGui");
   }
 
   void Editor::OnDragDrop(Event* e)
