@@ -64,6 +64,7 @@ namespace DeltaEngine
       && InputManager::Instance().CurrentPosition().point_y >= renderPos.y && InputManager::Instance().CurrentPosition()
       .point_y <= height)
     {
+      InputManager::Instance().SetMouseInViewPort(true);
       float cameraWidth = Camera::editorCamera->Max().x - Camera::editorCamera->Min().x;
       float cameraHeight = Camera::editorCamera->Max().y - Camera::editorCamera->Min().y;
       float cursorViewPortDistanceX = InputManager::Instance().CurrentPosition().point_x - renderPos.x;
@@ -71,13 +72,38 @@ namespace DeltaEngine
       float newCursorX = (cursorViewPortDistanceX / renderSize.x) * cameraWidth + Camera::editorCamera->Min().x;
       float newCursorY = Camera::editorCamera->Max().y - (cursorViewPortDistanceY / renderSize.y) * cameraHeight;
 
-      InputManager::Instance().SetCurrentCameraPosition(Point(newCursorX, newCursorY));
+      if (m_first_time_viewport)
+      {
+          InputManager::Instance().SetCurrentCameraPosition(Point(newCursorX, newCursorY));
+          InputManager::Instance().SetPreviousCameraPosition(Point(0.0f, 0.0f));
+          m_first_time_viewport = false;
+      }
+      if (InputManager::Instance().CurrentPosition().point_x != InputManager::Instance().PreviousPosition().point_x
+          || InputManager::Instance().CurrentPosition().point_y != InputManager::Instance().PreviousPosition().point_y)
+      {
+          InputManager::Instance().SetPreviousCameraPosition(InputManager::Instance().CurrentCameraPosition());
+          InputManager::Instance().SetCurrentCameraPosition(Point(newCursorX, newCursorY));
+      }
       //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
+      //std::cout << "=========================================================================================================" << std::endl;
+      //std::cout << "camera x is " << InputManager::Instance().CurrentCameraPosition().point_x << " and camera y is " << InputManager::Instance().CurrentCameraPosition().point_y << std::endl;
+      //std::cout << "x is " << InputManager::Instance().CurrentPosition().point_x << " and y is " << InputManager::Instance().CurrentPosition().point_y << std::endl;
+      //std::cout << "previous camera x is " << InputManager::Instance().PreviousCameraPosition().point_x << " and previous camera y is " << InputManager::Instance().PreviousCameraPosition().point_y << std::endl;
+      //std::cout << "previous x is " << InputManager::Instance().PreviousPosition().point_x << " and previous y is " << InputManager::Instance().PreviousPosition().point_y << std::endl;
     }
     else
     {
+      InputManager::Instance().SetMouseInViewPort(false);
       InputManager::Instance().SetCurrentCameraPosition(InputManager::Instance().CurrentPosition());
+      InputManager::Instance().SetPreviousCameraPosition(InputManager::Instance().PreviousPosition());
+      //InputManager::Instance().SetCurrentCameraPosition(Point(0.0f,0.0f));
+      //InputManager::Instance().SetPreviousCameraPosition(Point(0.0f, 0.0f));
       //std::cout << "x is " << InputManager::Instance().CurrentCameraPosition().point_x << " and y is " << InputManager::Instance().CurrentCameraPosition().point_y << std::endl;
+      //std::cout << "=========================================================================================================" << std::endl;
+      //std::cout << "camera x is " << InputManager::Instance().CurrentCameraPosition().point_x << " and camera y is " << InputManager::Instance().CurrentCameraPosition().point_y << std::endl;
+      //std::cout << "x is " << InputManager::Instance().CurrentPosition().point_x << " and y is " << InputManager::Instance().CurrentPosition().point_y << std::endl;
+      //std::cout << "previous camera x is " << InputManager::Instance().PreviousCameraPosition().point_x << " and previous camera y is " << InputManager::Instance().PreviousCameraPosition().point_y << std::endl;
+      //std::cout << "previous x is " << InputManager::Instance().PreviousPosition().point_x << " and previous y is " << InputManager::Instance().PreviousPosition().point_y << std::endl;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     Camera::editorCamera->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);

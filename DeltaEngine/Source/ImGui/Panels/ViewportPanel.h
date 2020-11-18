@@ -11,5 +11,7 @@ namespace DeltaEngine
     ~ViewportPanel();
     bool DraggedFileIn();
     void Render(bool) override;
+  private:
+      bool m_first_time_viewport = true;
   };
 }

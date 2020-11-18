@@ -156,6 +156,109 @@ namespace DeltaEngine
       //  DeltaEngine_CORE_TRACE( "Mouse Position: x({}) y({})", curr.point_x, curr.point_y );
     }
 
+    //if (InputManager::Instance().IsMouseTriggered(DEVK_LBUTTON))
+    //{
+    //  env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
+    //  {
+    //    if (c1.type == ColliderType::BOX)
+    //    {
+    //      if (CollisionIntersection_RectMouse(c1.center, c1.size, InputManager::Instance().CurrentCameraPosition()))
+    //      {
+    //        InputManager::Instance().SetEntitySelected(true);
+    //        InputManager::Instance().SetEntityIDSelected(id1.index);
+    //        InputManager::Instance().SetCameraDragged(false);
+    //      }
+    //    }
+    //    else if (c1.type == ColliderType::CIRCLE)
+    //    {
+    //      if (CollisionIntersection_RectMouse(c1.center, c1.size, InputManager::Instance().CurrentCameraPosition()))
+    //      {
+    //        InputManager::Instance().SetEntitySelected(true);
+    //        InputManager::Instance().SetEntityIDSelected(id1.index);
+    //        InputManager::Instance().SetCameraDragged(false);
+    //        //std::cout << "entity selected is " << InputManager::Instance().EntityIDSelected() << std::endl;
+    //      }
+    //    }
+    //  });
+    //}
+
+    //if (InputManager::Instance().IsMousePressed(DEVK_LBUTTON) && InputManager::Instance().EntitySelected())
+    //{
+    //  InputManager::Instance().SetEntityDragged(true);
+    //  
+    //  if (InputManager::Instance().EntityDragged())
+    //  {
+    //    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
+    //    {
+    //      if (CollisionIntersection_RectMouse(c1.center, c1.size, InputManager::Instance().CurrentCameraPosition()))
+    //      {
+    //        float x_transform = InputManager::Instance().CurrentCameraPosition().point_x - InputManager::Instance().PreviousCameraPosition().point_x;
+    //        float y_transform = InputManager::Instance().CurrentCameraPosition().point_y - InputManager::Instance().PreviousCameraPosition().point_y;
+    //        
+    //        if (id1.index == InputManager::Instance().EntityIDSelected())
+    //        {
+    //            t1.position.x += x_transform;
+    //            t1.position.y += y_transform;
+    //        }
+    //      }
+    //    });
+    //  }
+    //}
+    //else if (InputManager::Instance().IsMouseReleased(DEVK_LBUTTON))
+    //{
+    //    InputManager::Instance().SetEntityDragged(false);
+    //}
+
+    //if (InputManager::Instance().IsKeyPressed(DEVK_W))
+    //{
+    //  Camera::editorCamera->transform.position.y += 0.03f;
+    //}
+    //else if (InputManager::Instance().IsKeyPressed(DEVK_A))
+    //{
+    //  Camera::editorCamera->transform.position.x -= 0.03f;
+    //}
+    //else if (InputManager::Instance().IsKeyPressed(DEVK_S))
+    //{
+    //  Camera::editorCamera->transform.position.y -= 0.03f;
+    //}
+    //else if (InputManager::Instance().IsKeyPressed(DEVK_D))
+    //{
+    //  Camera::editorCamera->transform.position.x += 0.03f;
+    //}
+    //else if (InputManager::Instance().IsKeyPressed(DEVK_Q))
+    //{
+    //  Camera::editorCamera->m_Size -= 0.01f;
+    //}
+    //else if (InputManager::Instance().IsKeyPressed(DEVK_E))
+    //{
+    //  Camera::editorCamera->m_Size += 0.01f;
+    //}
+    //
+    //if (InputManager::Instance().CameraDragged())
+    //{
+    //  if (InputManager::Instance().IsMousePressed(DEVK_LBUTTON))
+    //  {
+    //    float x_transform = InputManager::Instance().CurrentCameraPosition().point_x - InputManager::Instance().PreviousCameraPosition().point_x;
+    //    float y_transform = InputManager::Instance().CurrentCameraPosition().point_y - InputManager::Instance().PreviousCameraPosition().point_y;
+    //    
+    //    Camera::editorCamera->transform.position.x -= x_transform * 0.5;
+    //    Camera::editorCamera->transform.position.y -= y_transform * 0.5;
+    //  }
+    //}
+
+    SelectEntity();
+    DragEntity();
+    DragCamera();
+
+    if (InputManager::Instance().IsKeyPressed(DEVK_LCTRL) &&
+      InputManager::Instance().IsKeyReleased(DEVK_RETURN))
+      Profiler::Instance().Print();
+
+    Profiler::Instance().Record("Input System");
+  }
+
+  void InputSystem::SelectEntity()
+  {
     if (InputManager::Instance().IsMouseTriggered(DEVK_LBUTTON))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
@@ -166,6 +269,7 @@ namespace DeltaEngine
           {
             InputManager::Instance().SetEntitySelected(true);
             InputManager::Instance().SetEntityIDSelected(id1.index);
+            InputManager::Instance().SetCameraDragged(false);
           }
         }
         else if (c1.type == ColliderType::CIRCLE)
@@ -174,17 +278,82 @@ namespace DeltaEngine
           {
             InputManager::Instance().SetEntitySelected(true);
             InputManager::Instance().SetEntityIDSelected(id1.index);
+            InputManager::Instance().SetCameraDragged(false);
             //std::cout << "entity selected is " << InputManager::Instance().EntityIDSelected() << std::endl;
           }
         }
       });
     }
+  }
 
-    if (InputManager::Instance().IsKeyPressed(DEVK_LCTRL) &&
-      InputManager::Instance().IsKeyReleased(DEVK_RETURN))
-      Profiler::Instance().Print();
+  void InputSystem::DragEntity()
+  {
+    if (InputManager::Instance().IsMousePressed(DEVK_LBUTTON) && InputManager::Instance().EntitySelected() && InputManager::Instance().MouseInViewPort())
+    {
+      InputManager::Instance().SetEntityDragged(true);
+      
+      if (InputManager::Instance().EntityDragged())
+      {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id1, Collider& c1, Transform& t1, RigidBody& r1)
+        {
+          if (CollisionIntersection_RectMouse(c1.center, c1.size, InputManager::Instance().CurrentCameraPosition()))
+          {
+            float x_transform = InputManager::Instance().CurrentCameraPosition().point_x - InputManager::Instance().PreviousCameraPosition().point_x;
+            float y_transform = InputManager::Instance().CurrentCameraPosition().point_y - InputManager::Instance().PreviousCameraPosition().point_y;
+            
+            if (id1.index == InputManager::Instance().EntityIDSelected())
+            {
+              t1.position.x += x_transform;
+              t1.position.y += y_transform;
+            }
+          }
+        });
+      }
+    }
+    else if (InputManager::Instance().IsMouseReleased(DEVK_LBUTTON))
+    {
+      InputManager::Instance().SetEntityDragged(false);
+    }
+  }
 
-    Profiler::Instance().Record("Input System");
+  void InputSystem::DragCamera()
+  {
+    if (InputManager::Instance().IsKeyPressed(DEVK_W))
+    {
+      Camera::editorCamera->transform.position.y += 0.03f;
+    }
+    else if (InputManager::Instance().IsKeyPressed(DEVK_A))
+    {
+      Camera::editorCamera->transform.position.x -= 0.03f;
+    }
+    else if (InputManager::Instance().IsKeyPressed(DEVK_S))
+    {
+      Camera::editorCamera->transform.position.y -= 0.03f;
+    }
+    else if (InputManager::Instance().IsKeyPressed(DEVK_D))
+    {
+      Camera::editorCamera->transform.position.x += 0.03f;
+    }
+    else if (InputManager::Instance().IsKeyPressed(DEVK_Q))
+    {
+      Camera::editorCamera->m_Size -= 0.01f;
+    }
+    else if (InputManager::Instance().IsKeyPressed(DEVK_E))
+    {
+      Camera::editorCamera->m_Size += 0.01f;
+    }
+    
+    if (InputManager::Instance().CameraDragged() && InputManager::Instance().MouseInViewPort())
+    {
+      if (InputManager::Instance().IsMousePressed(DEVK_LBUTTON))
+      {
+        float x_transform = InputManager::Instance().CurrentCameraPosition().point_x - InputManager::Instance().PreviousCameraPosition().point_x;
+        float y_transform = InputManager::Instance().CurrentCameraPosition().point_y - InputManager::Instance().PreviousCameraPosition().point_y;
+        
+        Camera::editorCamera->transform.position.x -= x_transform * 0.5f;
+        Camera::editorCamera->transform.position.y -= y_transform * 0.75f;
+      }
+    }
   }
 
   void InputSystem::LateUpdate()

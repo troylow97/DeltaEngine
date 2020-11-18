@@ -51,12 +51,29 @@ namespace DeltaEngine
 
     ImVec2 ButtonPos1 = {ImGui::GetWindowSize().x * 0.485f, ImGui::GetWindowSize().y * 0.3f};
     ImVec2 ButtonPos2 = {ImGui::GetWindowSize().x * 0.515f, ImGui::GetWindowSize().y * 0.3f};
+    ImVec2 ButtonPos3 = {ImGui::GetWindowSize().x * 0.01f, ImGui::GetWindowSize().y * 0.3f};
     ImGui::SetCursorPos(ButtonPos1);
     if (ImGui::Button(ICON_FA_PLAY, {25.0f, 22.0f}))
       GetEnv().pECS->GetWorld().SetPause(false);
     ImGui::SetCursorPos(ButtonPos2);
     if (ImGui::Button(ICON_FA_PAUSE, {25.0f, 22.0f}))
       GetEnv().pECS->GetWorld().SetPause(true);
+    ImGui::SetCursorPos(ButtonPos3);
+    static int clicked = 0;
+    if (ImGui::Button(ICON_FA_ARROWS_ALT, {25.0f, 22.0f}))
+    {
+      ++clicked;
+      if (clicked & 1)
+      {
+        InputManager::Instance().SetCameraDragged(true);
+        InputManager::Instance().SetEntityDragged(false);
+      }
+      else
+      {
+        InputManager::Instance().SetCameraDragged(false);
+        InputManager::Instance().SetEntityDragged(false);
+      }
+    }
 
 
     ImGui::End();

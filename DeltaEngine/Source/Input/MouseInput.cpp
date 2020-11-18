@@ -85,6 +85,8 @@ namespace DeltaEngine
     {
       m_current_mouse_position = Point(m_previous_mouse_position.point_x, m_previous_mouse_position.point_y);
       m_previous_mouse_position = Point(static_cast<float>(_currentPosition.x), static_cast<float>(_currentPosition.y));
+      //std::cout << "m_current_mouse_position is " << m_current_mouse_position.point_x << ", " << m_current_mouse_position.point_y << std::endl;
+      //std::cout << "m_previous_mouse_position is " << m_previous_mouse_position.point_x << ", " << m_previous_mouse_position.point_y << std::endl;
       m_move_event = true;
     }
   }
@@ -124,6 +126,11 @@ namespace DeltaEngine
     return m_current_camera_mouse_position;
   }
 
+  const Point& MouseInput::PreviousCameraPosition()
+  {
+    return m_previous_camera_mouse_position;
+  }
+
   void MouseInput::SetCurrentPosition(Point _currentPosition)
   {
     m_current_mouse_position.point_x = _currentPosition.point_x;
@@ -140,6 +147,12 @@ namespace DeltaEngine
   {
     m_current_camera_mouse_position.point_x = _currentCameraPosition.point_x;
     m_current_camera_mouse_position.point_y = _currentCameraPosition.point_y;
+  }
+
+  void MouseInput::SetPreviousCameraPosition(Point _previousCameraPosition)
+  {
+    m_previous_camera_mouse_position.point_x = _previousCameraPosition.point_x;
+    m_previous_camera_mouse_position.point_y = _previousCameraPosition.point_y;
   }
 
   bool MouseInput::EntitySelected()
@@ -160,6 +173,36 @@ namespace DeltaEngine
   void MouseInput::SetEntityIDSelected(size_t _setEntityIDSelected)
   {
     m_entityid_selected = _setEntityIDSelected;
+  }
+
+  bool MouseInput::EntityDragged()
+  {
+    return m_entity_dragged;
+  }
+
+  void MouseInput::SetEntityDragged(bool _setEntityDragged)
+  {
+    m_entity_dragged = _setEntityDragged;
+  }
+
+  bool MouseInput::CameraDragged()
+  {
+    return m_camera_dragged;
+  }
+
+  void MouseInput::SetCameraDragged(bool _setCameraDragged)
+  {
+    m_camera_dragged = _setCameraDragged;
+  }
+
+  bool MouseInput::MouseInViewPort()
+  {
+    return m_mouse_in_viewport;
+  }
+
+  void MouseInput::SetMouseInViewPort(bool _setMouseInViewPort)
+  {
+    m_mouse_in_viewport = _setMouseInViewPort;
   }
 
   bool MouseInput::TilesetDragged()

@@ -34,12 +34,20 @@ namespace DeltaEngine
     const Point& CurrentPosition(); // getter 
     const Point& PreviousPosition(); // getter
     const Point& CurrentCameraPosition(); // getter
+    const Point& PreviousCameraPosition(); // getter
     void SetCurrentPosition(Point _currentPosition); // setter
     void SetPreviousPosition(Point _previousPosition); // setter
     void SetCurrentCameraPosition(Point _currentCameraPosition); // setter
+    void SetPreviousCameraPosition(Point _previousCameraPosition); // setter
 
     bool EntitySelected(); // getter
     void SetEntitySelected(bool _setEntitySelected); // setter
+    bool EntityDragged(); // getter
+    void SetEntityDragged(bool _setEntityDragged); // setter
+    bool CameraDragged(); // getter
+    void SetCameraDragged(bool _setCameraDragged); // setter
+    bool MouseInViewPort(); // getter
+    void SetMouseInViewPort(bool _setMouseInViewPort); // setter
 
     size_t EntityIDSelected(); // getter
     void SetEntityIDSelected(size_t _setEntityIDSelected); // setter
