@@ -16,40 +16,39 @@ namespace DeltaEngine
   struct Collider
   {
     Vector2 center;
+    Vector2 offset;
     Vector2 size;
     Vector2 interPoint;
     ColliderType type;
-    bool isCollideable;
     bool isTrigger;
     bool isCollidingOnFloor;
-    char CollisionLayerID;
-    char CollisionLayerCheck;
+    unsigned CollisionLayerCheck;
 
     Collider() :
       center{0, 0},
+      offset{0,0},
       size{0, 0},
       interPoint{0, 0},
       type{ColliderType::BOX},
-      isCollideable{true},
       isTrigger{false},
       isCollidingOnFloor{false},
-      CollisionLayerID{0},
-      CollisionLayerCheck{0}
-    {
-    }
+      CollisionLayerCheck{255}
+    { }
 
     Collider(Vector2 new_center, Vector2 new_size, ColliderType col_type) :
       center(new_center),
+      offset{0,0},
       size(new_size),
       interPoint{0, 0},
       type{ColliderType::BOX},
-      isCollideable{true},
       isTrigger{false},
       isCollidingOnFloor{false},
-      CollisionLayerID{0},
-      CollisionLayerCheck{0}
+      CollisionLayerCheck{255}
     {
       (void)col_type;
     }
   };
+
+  //ID 0 and check 0, checks 
+
 } // namespace DeltaEngine

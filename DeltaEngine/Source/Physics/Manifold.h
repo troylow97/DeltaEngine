@@ -9,13 +9,10 @@ namespace DeltaEngine
     float interTime;
     float penetration;
     Vector2 normal;
-    float FrictionCof{0.1f}; //not used for now
-    Vector2 ContactPoint;
 
     Manifold::Manifold() :
       interTime{0.0f},
       penetration{0.0f}
-    {
-    }
+    {}
   };
 }

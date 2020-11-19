@@ -86,6 +86,47 @@ namespace DeltaEngine
       });
     }
 
+    //FOR TESTING-------------------------------------------------------------------------------------------------------
+    if (InputManager::Instance().IsKeyPressed(DEVK_UP))
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i)
+            {
+                r1.Direction = Vector2::up();
+                if (r1.InherentAcceleration < r1.MaxAcceleration)
+                    r1.InherentAcceleration++;
+            });
+    }
+    else if (InputManager::Instance().IsKeyReleased(DEVK_UP))
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i)
+            {
+                r1.Direction = Vector2::zero();
+                if (r1.InherentAcceleration < r1.MaxAcceleration)
+                    r1.InherentAcceleration++;
+            });
+    }
+
+    if (InputManager::Instance().IsKeyPressed(DEVK_DOWN))
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i)
+            {
+                r1.Direction = Vector2::down();
+                if (r1.InherentAcceleration < r1.MaxAcceleration)
+                    r1.InherentAcceleration++;
+            });
+    }
+    else if (InputManager::Instance().IsKeyReleased(DEVK_DOWN))
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i)
+            {
+                r1.Direction = Vector2::zero();
+                if (r1.InherentAcceleration < r1.MaxAcceleration)
+                    r1.InherentAcceleration++;
+            });
+    }
+    //END TESTING-------------------------------------------------------------------------------------------------------
+
+
     if (InputManager::Instance().IsKeyTriggered(DEVK_SPACE))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Collider& c1, Input& i1)

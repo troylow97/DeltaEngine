@@ -18,8 +18,7 @@ namespace DeltaEngine
       m{man},
       id1{i1},
       id2{i2}
-    {
-    }
+    {}
   };
 
   DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)

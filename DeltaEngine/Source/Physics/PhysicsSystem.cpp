@@ -76,7 +76,7 @@ namespace DeltaEngine
                 r1.AccumulatedForce += move * r1.Mass * 0.5f;
 
                 //Apply Gravity
-                if (r1.hasGravity)
+                if (r1.hasGravity && !c1.isCollidingOnFloor)
                 {
                     r1.Acceleration = m_gravity_amount;
                 }
