@@ -38,12 +38,12 @@ condition IsRunning ? 0
 %
 
 start Clip/IdleSpritesheet
-end Clip/RangeSpritesheet
+end Clip/RangeAttackSpritesheet
 condition Ranged ? 1
 
 %
 
-start Clip/RangeSpritesheet
+start Clip/RangeAttackSpritesheet
 end Clip/IdleSpritesheet
 condition Ranged ? 0
 
@@ -93,6 +93,6 @@ condition IsRunning ? 1
 
 start Clip/StretchSpritesheet
 end Clip/IdleSpritesheet
-condition IsIdle > 10
+condition IsIdle < 8
 
 %
