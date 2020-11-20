@@ -2,27 +2,30 @@
 
 namespace DeltaEngine
 {
+  class SystemBase
+  {
+  protected:
+    class EntityManager& em;
 
-class SystemBase
-{
-protected:
-  class EntityManager &em;
+  public:
+    class Query e_query;
 
-public:
-  class Query e_query;
+    explicit SystemBase(EntityManager& ref) : em{ref}
+    {
+    }
 
-  explicit SystemBase( EntityManager &ref ) : em { ref }
-  {}
+    virtual void Initialize()
+    {
+    }
 
-  virtual void Initialize() {}
+    virtual void Update() = 0;
 
-  virtual void Update() = 0;
+    virtual void LateUpdate() = 0;
 
-  virtual void LateUpdate() = 0;
+    virtual void Shutdown()
+    {
+    }
 
-  virtual void Shutdown() {}
-
-  virtual ~SystemBase() = default;
-};
-
+    virtual ~SystemBase() = default;
+  };
 } // namespace DeltaEngine

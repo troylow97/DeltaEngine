@@ -2,59 +2,51 @@
 
 #include "MouseInput.h"
 #include "KeyboardInput.h"
-#include "Keys.h"
+#include "Core/Containers/Singleton.h"
 
 namespace DeltaEngine
 {
-class InputManager //: public InputListener
-{
+  class InputManager : public Singleton<InputManager> //: public InputListener
+  {
+    KeyboardInput m_keyboard;
+    MouseInput m_mouse;
 
-  KeyboardInput m_keyboard;
-  MouseInput m_mouse;
+    friend class Singleton<InputManager>;
+    InputManager();
+    ~InputManager();
 
-public:
-  InputManager();
-  ~InputManager();
+  public:
+    
+    void Reset();
+    void Update();
 
-  void Reset();
-  // to get the input events
-  void Update();
+    bool IsKeyTriggered(int key);
+    bool IsKeyPressed(int key);
+    bool IsKeyReleased(int key);
+    bool GetShowLine();
+    void SetShowLine(bool showLine);
 
-  //void addListener(InputListener* listener);
-  //void removeListener(InputListener* listener);
+    bool OnMouseMove();
 
-  // get static method as InputManager is a singleton class
-  // returns a pointer to an only instance of the class
-  static InputManager *Get();
+    bool IsMouseTriggered(int key);
+    bool IsMousePressed(int key);
+    bool IsMouseReleased(int key);
+    const Point& CurrentPosition(); // getter 
+    const Point& PreviousPosition(); // getter
+    const Point& CurrentCameraPosition(); // getter
+    void SetCurrentPosition(Point _currentPosition); // setter
+    void SetPreviousPosition(Point _previousPosition); // setter
+    void SetCurrentCameraPosition(Point _currentCameraPosition); // setter
 
-  bool IsKeyTriggered( int key );
-  bool IsKeyPressed( int key );
-  bool IsKeyReleased( int key );
-  bool GetShowLine();
-  void SetShowLine( bool showLine );
+    bool EntitySelected(); // getter
+    void SetEntitySelected(bool _setEntitySelected); // setter
 
-  bool OnMouseMove();
+    size_t EntityIDSelected(); // getter
+    void SetEntityIDSelected(size_t _setEntityIDSelected); // setter
 
-  bool IsMouseTriggered( int key );
-  bool IsMousePressed( int key );
-  bool IsMouseReleased( int key );
-  const Point &CurrentPosition();                              // getter 
-  const Point &PreviousPosition();                             // getter
-  const Point &CurrentCameraPosition();                        // getter
-  void SetCurrentPosition(Point _currentPosition);             // setter
-  void SetPreviousPosition(Point _previousPosition);           // setter
-  void SetCurrentCameraPosition(Point _currentCameraPosition); // setter
-															    
-  bool EntitySelected();                                       // getter
-  void SetEntitySelected(bool _setEntitySelected);             // setter
+    bool TilesetDragged(); // getter
+    void SetTilesetDragged(bool _setTilesetDragged); // setter
 
-  size_t EntityIDSelected();                                   // getter
-  void SetEntityIDSelected(size_t _setEntityIDSelected);       // setter
-
-  bool TilesetDragged();                                       // getter
-  void SetTilesetDragged(bool _setTilesetDragged);             // setter
-
-  bool *GetKeys();
-};
-
+    bool* GetKeys();
+  };
 }

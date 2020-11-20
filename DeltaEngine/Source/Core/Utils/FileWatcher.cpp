@@ -2,68 +2,72 @@
 #include "IFileWatcherListener.h"
 #include <windows.h>
 
+#include "Core/Debugging/Logger/Log.h"
+
 namespace DeltaEngine
 {
-
   FileWatcher::FileWatcher(std::filesystem::path directory) : m_directory(directory)
   {
   }
 
-  const std::filesystem::path &FileWatcher::GetDirectory()
+  const std::filesystem::path& FileWatcher::GetDirectory()
   {
     return m_directory;
   }
 
-  void FileWatcher::AddListener(IFileWatcherListener *listener)
+  void FileWatcher::AddListener(IFileWatcherListener* listener)
   {
     m_listeners.push_back(std::unique_ptr<IFileWatcherListener>(listener));
   }
 
   void FileWatcher::Start()
   {
-    if (!m_running.load(std::memory_order_relaxed))
+    if (!m_running.load())
     {
-      m_running.store(true, std::memory_order_relaxed);
-      m_thread = std::thread(FileWatcher::Thread, std::ref(*this));
+      m_running.store(true);
+      m_thread = std::thread(Thread, std::ref(*this));
       m_thread.detach();
     }
   }
 
   void FileWatcher::Stop()
   {
-    m_running.store(false, std::memory_order_relaxed);
+    m_running.store(false);
   }
 
   void FileWatcher::OnFileAdded(std::filesystem::path file)
   {
-    for (auto &ref : m_listeners)
-      ref->OnFileAdded(file);
-  }
-  void FileWatcher::OnFileDeleted(std::filesystem::path file)
-  {
-    for (auto &ref : m_listeners)
-      ref->OnFileDeleted(file);
-  }
-  void FileWatcher::OnFileChanged(std::filesystem::path file)
-  {
-    for (auto &ref : m_listeners)
-      ref->OnFileChanged(file);
-  }
-  void FileWatcher::OnFileRenamed(std::filesystem::path file)
-  {
-    for (auto &ref : m_listeners)
-      ref->OnFileRenamed(file);
+    for (auto& ref : m_listeners)
+      ref->OnFileAdded(file.generic_string());
   }
 
-  void FileWatcher::Thread(FileWatcher &fileWatcher)
+  void FileWatcher::OnFileDeleted(std::filesystem::path file)
   {
-    HANDLE hDir = CreateFile(fileWatcher.GetDirectory().generic_wstring().c_str(),    // path to the directory
-                             FILE_LIST_DIRECTORY,                                    // access (read/write) mode
+    for (auto& ref : m_listeners)
+      ref->OnFileDeleted(file.generic_string());
+  }
+
+  void FileWatcher::OnFileChanged(std::filesystem::path file)
+  {
+    for (auto& ref : m_listeners)
+      ref->OnFileChanged(file.generic_string());
+  }
+
+  void FileWatcher::OnFileRenamed(std::filesystem::path file)
+  {
+    for (auto& ref : m_listeners)
+      ref->OnFileRenamed(file.generic_string());
+  }
+
+  void FileWatcher::Thread(FileWatcher& fileWatcher)
+  {
+    HANDLE hDir = CreateFile(fileWatcher.GetDirectory().generic_wstring().c_str(), // path to the directory
+                             FILE_LIST_DIRECTORY, // access (read/write) mode
                              FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, // share mode
-                             NULL,                                                   // no child process
-                             OPEN_EXISTING,                                          // only open existing
-                             FILE_FLAG_BACKUP_SEMANTICS,                             // file attributes for directory handle
-                             NULL                                                    // no template
+                             nullptr, // no child process
+                             OPEN_EXISTING, // only open existing
+                             FILE_FLAG_BACKUP_SEMANTICS, // file attributes for directory handle
+                             nullptr // no template
     );
 
     wchar_t file[MAX_PATH];
@@ -71,26 +75,26 @@ namespace DeltaEngine
     DWORD bytes;
 
     while (ReadDirectoryChangesW(
-               hDir,           // handle to directory
-               &buffer,        // read results buffer
-               sizeof(buffer), // length of buffer
-               FALSE,          // not monitoring subdirectories
-               FILE_NOTIFY_CHANGE_SECURITY |
-                   FILE_NOTIFY_CHANGE_CREATION |
-                   FILE_NOTIFY_CHANGE_LAST_ACCESS |
-                   FILE_NOTIFY_CHANGE_LAST_WRITE |
-                   FILE_NOTIFY_CHANGE_SIZE |
-                   FILE_NOTIFY_CHANGE_ATTRIBUTES |
-                   FILE_NOTIFY_CHANGE_DIR_NAME |
-                   FILE_NOTIFY_CHANGE_FILE_NAME, // filter conditions
-               &bytes,                           // bytes returned
-               NULL,                             // overlapped buffer
-               NULL                              // completion routine
-               ) &&
-           fileWatcher.m_running.load())
+        hDir, // handle to directory
+        &buffer, // read results buffer
+        sizeof(buffer), // length of buffer
+        TRUE, // not monitoring subdirectories
+        FILE_NOTIFY_CHANGE_SECURITY |
+        FILE_NOTIFY_CHANGE_CREATION |
+        FILE_NOTIFY_CHANGE_LAST_ACCESS |
+        FILE_NOTIFY_CHANGE_LAST_WRITE |
+        FILE_NOTIFY_CHANGE_SIZE |
+        FILE_NOTIFY_CHANGE_ATTRIBUTES |
+        FILE_NOTIFY_CHANGE_DIR_NAME |
+        FILE_NOTIFY_CHANGE_FILE_NAME, // filter conditions
+        &bytes, // bytes returned
+        nullptr, // overlapped buffer
+        nullptr // completion routine
+      ) &&
+      fileWatcher.m_running.load())
     {
-      FILE_NOTIFY_INFORMATION *information;
-      information = (FILE_NOTIFY_INFORMATION *)((char *)buffer);
+      FILE_NOTIFY_INFORMATION* information;
+      information = (FILE_NOTIFY_INFORMATION*)((char*)buffer);
       wcscpy_s(file, L"");
 
       wcsncpy_s(file, information->FileName, information->FileNameLength / 2);

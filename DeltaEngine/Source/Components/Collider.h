@@ -22,8 +22,8 @@ namespace DeltaEngine
     bool isCollideable;
     bool isTrigger;
     bool isCollidingOnFloor;
-    //char CollisionLayerID;
-    //char CollisionLayerCheck;
+    char CollisionLayerID;
+    char CollisionLayerCheck;
 
     Collider() :
       center{0, 0},
@@ -32,7 +32,9 @@ namespace DeltaEngine
       type{ColliderType::BOX},
       isCollideable{true},
       isTrigger{false},
-      isCollidingOnFloor{false}
+      isCollidingOnFloor{false},
+      CollisionLayerID{0},
+      CollisionLayerCheck{0}
     {
     }
 
@@ -43,9 +45,11 @@ namespace DeltaEngine
       type{ColliderType::BOX},
       isCollideable{true},
       isTrigger{false},
-      isCollidingOnFloor{false}
+      isCollidingOnFloor{false},
+      CollisionLayerID{0},
+      CollisionLayerCheck{0}
     {
-      (void) col_type;
+      (void)col_type;
     }
   };
 } // namespace DeltaEngine

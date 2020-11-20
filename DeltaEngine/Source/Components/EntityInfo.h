@@ -3,7 +3,7 @@
 
 namespace DeltaEngine
 {
-  struct Name
+  struct EntityName
   {
     std::string name;
   };

@@ -2,18 +2,17 @@
 
 namespace DeltaEngine
 {
+  struct ComponentMeta;
 
-struct ComponentMeta;
-
-struct Description
-{
-  struct Details
+  struct Description
   {
-    const ComponentMeta* meta;
-    size_t offset;
-  };
-  std::vector<Details> metalist;
-  size_t capacity { 0 };
-};
+    struct Details
+    {
+      const ComponentMeta* meta;
+      size_t offset;
+    };
 
+    std::vector<Details> metalist;
+    size_t capacity{0};
+  };
 } // namespace DeltaEngine

@@ -4,75 +4,77 @@
 
 namespace DeltaEngine
 {
-template <typename>
-class AbstractLoader;
+  template <typename>
+  class AbstractLoader;
 
-class AssetKey;
+  class AssetKey;
 
-template <typename, typename>
-class Asset;
-
-template <typename T1>
-class AssetGroup
-{
   template <typename, typename>
-  friend class Asset;
+  class Asset;
 
-  friend class AbstractLoader<T1>;
+  template <typename T1>
+  class AssetGroup
+  {
+    template <typename, typename>
+    friend class Asset;
 
-  void IncrementReferenceCount( AssetKey key );
-  void DecrementReferenceCount( AssetKey key );
+    friend class AbstractLoader<T1>;
 
-  std::unordered_map<AssetKey, AssetData<T1>> m_datas;
-  T1 *m_fallback { nullptr };
-  AbstractLoader<T1> *m_loader { nullptr };
-  size_t m_timestamp { 0 };
+    void IncrementReferenceCount(AssetKey key);
+    void DecrementReferenceCount(AssetKey key);
 
-protected:
-  AssetGroup() = default;
+    std::unordered_map<AssetKey, AssetData<T1>> m_datas;
+    T1* m_fallback{nullptr};
+    AbstractLoader<T1>* m_loader{nullptr};
+    size_t m_timestamp{0};
 
-public:
+  protected:
+    AssetGroup() = default;
 
-  // Disable copy
-  AssetGroup( const AssetGroup & ) = delete;
-  AssetGroup &operator=( const AssetGroup & ) = delete;
+  public:
 
-  // Disable move
-  AssetGroup( AssetGroup && ) = delete;
-  AssetGroup &operator=( AssetGroup && ) = delete;
+    // Disable copy
+    AssetGroup(const AssetGroup&) = delete;
+    AssetGroup& operator=(const AssetGroup&) = delete;
 
-  // Destructor
-  virtual ~AssetGroup();
+    // Disable move
+    AssetGroup(AssetGroup&&) = delete;
+    AssetGroup& operator=(AssetGroup&&) = delete;
 
-  // Asset group
-  [[nodiscard]] size_t Size() const;
-  [[nodiscard]] size_t Timestamp() const;
-  void Free();
-  void Clear();
+    // Destructor
+    virtual ~AssetGroup();
 
-  // Asset data
-  void Load();
-  void Load( AssetKey key );
-  void Load( AssetKey key, std::string_view str );
+    // Asset group
+    [[nodiscard]] size_t Size() const;
+    [[nodiscard]] size_t Timestamp() const;
+    void Free();
+    void Clear();
 
-  template <typename T2>
-  Asset<T1, T2> Get( AssetKey key );
+    // Asset data
+    void Load();
+    void Load(AssetKey key);
+    void Load(AssetKey key, std::string_view str);
 
-  void Set( AssetKey key, T1 *data, AssetState state, AssetLifetime lifetime );
-  [[nodiscard]] size_t ReferenceCount( AssetKey key ) const;
-  [[nodiscard]] AssetState State( AssetKey key ) const;
+    template <typename T2>
+    Asset<T1, T2> Get(AssetKey key);
 
-  // Fallback
-  T1 *Fallback();
-  [[nodiscard]] const T1 *Fallback() const;
-  void SetFallback( T1 *data );
+    void Set(AssetKey key, T1* data, AssetState state, AssetLifetime lifetime);
+    [[nodiscard]] size_t ReferenceCount(AssetKey key) const;
+    [[nodiscard]] AssetState State(AssetKey key) const;
 
-  // Loaders
-  AbstractLoader<T1> *Loader();
-  [[nodiscard]] const AbstractLoader<T1> *Loader() const;
-  void SetLoader( AbstractLoader<T1> *loader );
-  void FreeLoader();
-};
+    // Fallback
+    T1* Fallback();
+    [[nodiscard]] const T1* Fallback() const;
+    void SetFallback(T1* data);
+
+    // Loaders
+    AbstractLoader<T1>* Loader();
+    [[nodiscard]] const AbstractLoader<T1>* Loader() const;
+    void SetLoader(AbstractLoader<T1>* loader);
+    void FreeLoader();
+
+    const std::vector<std::pair<AssetKey, T1*>> List() const;
+  };
 } // namespace DeltaEngine
 
 #include "AssetGroup.inl"

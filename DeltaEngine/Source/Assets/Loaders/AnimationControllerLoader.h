@@ -5,36 +5,33 @@
 
 namespace DeltaEngine
 {
-class AnimationControllerLoader final : public AbstractLoader<AnimationController>
-{
-
-  void DoLoad() override
+  class AnimationControllerLoader final : public AbstractLoader<AnimationController>
   {
-    for ( auto &file : FileUtils::FileList( "Animation" ))
-      if (file.extension() == ".anim" )
-      {
-        AnimationController *data = new AnimationController( file.generic_string() );
-        Set( file.generic_string().substr(0, file.generic_string().find_last_of('.')),
-             data, AssetState::Final, AssetLifetime::Persistent );
+    void DoLoad() override
+    {
+      for (auto& file : FileUtils::FileList("Animation"))
+        if (file.extension() == ".anim")
+        {
+          AnimationController* data = new AnimationController(file.generic_string());
+          Set(file.generic_string().substr(0, file.generic_string().find_last_of('.')),
+              data, AssetState::Final, AssetLifetime::Persistent);
 
-        DeltaEngine_CORE_TRACE( "AnimationController Key: {}", file.generic_string());
+          DeltaEngine_CORE_TRACE("AnimationController Key: {}", file.generic_string());
+        }
+    }
 
-      }
-  }
+    void DoLoad(AssetKey key) override
+    {
+    }
 
-  void DoLoad( AssetKey key ) override
-  {
-    
-  }
-
-  void DoLoad( AssetKey key, std::string_view str ) override
-  {
-    AnimationController *data = new AnimationController { std::string( str ) };
-    // To define how to handle failed loading
-    //if (data.characterInfo().empty())
-    //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
-    //else
-    Set( key, data, AssetState::Final, AssetLifetime::Persistent );
-  }
-};
+    void DoLoad(AssetKey key, std::string_view str) override
+    {
+      AnimationController* data = new AnimationController{std::string(str)};
+      // To define how to handle failed loading
+      //if (data.characterInfo().empty())
+      //  set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
+      //else
+      Set(key, data, AssetState::Final, AssetLifetime::Persistent);
+    }
+  };
 } // namespace DeltaEngine

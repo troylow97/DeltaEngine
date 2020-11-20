@@ -9,7 +9,7 @@ struct ArgList
 {};
 
 template <typename T, typename Ret, typename... Args>
-ArgList<Args...> args( Ret( T:: * )( Args... ) const );
+ArgList<Args...> args( Ret( T:: * )( Args ... ) const );
 
 template <typename T>
 auto get_chunk_array( DataChunk *chunk )
@@ -59,15 +59,13 @@ Query &unpack_query_with( ArgList<Args...>, Query &query )
 {
   return query.With<Args...>();
 }
-
 } // namespace DeltaEngine::ECS_Internal
 
 namespace DeltaEngine
 {
-
-//******************************************************************************
-// EntityManager Public Methods
-//******************************************************************************
+  //******************************************************************************
+  // EntityManager Public Methods
+  //******************************************************************************
 
 inline EntityManager::EntityManager()
 {
@@ -106,7 +104,10 @@ EntityID EntityManager::CreateEntity()
   {
     static std::vector<const ComponentMeta *> meta_vec;
     if ( meta_vec.empty() )
+    {
       ( meta_vec.push_back( ComponentMeta::GetComponentMeta<C>() ), ... );
+      meta_vec.push_back( ComponentMeta::GetComponentMeta<EntityName>() );
+    }
     std::sort( meta_vec.begin(), meta_vec.end(), []( const ComponentMeta *lhs, const ComponentMeta *rhs )
     {
       return lhs->bits < rhs->bits;
@@ -120,6 +121,21 @@ EntityID EntityManager::CreateEntity()
   SetEntityArchetype( id, arch );
 
   return id;
+}
+
+inline EntityID EntityManager::CreateEntityFromArchetype( EntityID id )
+{
+  EntityID new_id = AllocateEntity();
+  auto &arch = m_entities[id.index].chunk->header.owner;
+  SetEntityArchetype( new_id, arch );
+  return new_id;
+}
+
+inline EntityID EntityManager::CloneEntity( EntityID id )
+{
+  EntityID new_id = AllocateEntity();
+  CloneEntityArchetype( new_id, id );
+  return new_id;
 }
 
 inline const std::vector<Entity> &EntityManager::GetEntities()
@@ -162,7 +178,6 @@ inline rttr::instance EntityManager::GetComponent( EntityID id, size_t bits )
 }
 
 
-
 template <typename C>
 void EntityManager::AddComponent( EntityID id, C comp )
 {
@@ -185,7 +200,7 @@ void EntityManager::AddComponent( EntityID id )
   Description *desc = arch->components_desc;
 
   for ( auto &details : desc->metalist )
-    if ( !(details.meta->bits & meta->bits ))
+    if ( !( details.meta->bits & meta->bits ) )
       meta_vec.push_back( details.meta );
 
   meta_vec.push_back( meta );
@@ -256,10 +271,10 @@ inline Archetype *EntityManager::GetEmptyArchetype()
   return m_archetypes[0];
 }
 
-inline const std::vector<Description::Details> *EntityManager::GetEntityArchetype( size_t id )
+inline const Archetype *EntityManager::GetEntityArchetype( size_t id )
 {
   if ( m_entities[id].chunk )
-    return &m_entities[id].chunk->header.owner->components_desc->metalist;
+    return m_entities[id].chunk->header.owner;
   return nullptr;
 }
 
@@ -300,7 +315,6 @@ inline void EntityManager::DeallocateEntity( EntityID id )
   m_entities[id.index].generation++;
   m_entities[id.index].chunk = nullptr;
   m_entities[id.index].chunk_index = 0;
-
   m_entities_live--;
 }
 
@@ -340,7 +354,7 @@ inline size_t EntityManager::InsertEntityChunk( DataChunk *chunk, EntityID id, b
 
 inline void EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
 {
-  assert( chunk->header.index > index );
+  assert( chunk->header.index >= index );
 
   Description *desc = chunk->header.owner->components_desc;
 
@@ -396,6 +410,79 @@ inline void EntityManager::SetEntityArchetype( EntityID id, Archetype *arch )
     MoveEntityToArchetype( id, arch );
 }
 
+inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
+{
+  Archetype *arch = m_entities[id.index].chunk->header.owner;
+  SetEntityArchetype( new_id, arch );
+
+  DataChunk *current_chunk = m_entities[id.index].chunk;
+  DataChunk *new_chunk = m_entities[id.index].chunk;
+
+  size_t current_index = m_entities[id.index].chunk_index;
+  size_t new_index = m_entities[new_id.index].chunk_index;
+
+  for ( auto &[type, offset] : arch->components_desc->metalist )
+    if ( !type->IsEmpty() )
+    {
+      void *current = static_cast<void *>(
+        reinterpret_cast<byte *>( current_chunk ) +
+        offset +
+        ( type->size * current_index ) );
+
+      void *target = static_cast<void *>(
+        reinterpret_cast<byte *>( new_chunk ) +
+        offset +
+        ( type->size * new_index ) );
+
+      switch ( type->bits )
+      {
+        case ComponentMeta::ComponentBits<Animator>() :
+        {
+          *static_cast<Animator *>( target ) = *static_cast<Animator *>( current );
+          break;
+        }
+        case ComponentMeta::ComponentBits<State>() :
+        {
+          *static_cast<State *>( target ) = *static_cast<State *>( current );
+          break;
+        }
+        case ComponentMeta::ComponentBits<Image>() :
+        {
+          *static_cast<Image *>( target ) = *static_cast<Image *>( current );
+          break;
+        }
+        case ComponentMeta::ComponentBits<Renderer2D>() :
+        {
+          *static_cast<Renderer2D *>( target ) = *static_cast<Renderer2D *>( current );
+          break;
+        }
+        case ComponentMeta::ComponentBits<EntityName>() :
+        {
+          *static_cast<EntityName *>( target ) = *static_cast<EntityName *>( current );
+          break;
+        }
+        case ComponentMeta::ComponentBits<EntityType>() :
+        {
+          *static_cast<EntityType *>( target ) = *static_cast<EntityType *>( current );
+          break;
+        }
+        case ComponentMeta::ComponentBits<AI>() :
+        {
+          *static_cast<AI *>( target ) = *static_cast<AI *>( current );
+          break;
+        }
+        case ComponentMeta::ComponentBits<Text>() :
+        {
+          *static_cast<Text *>( target ) = *static_cast<Text *>( current );
+          break;
+        }
+        default:
+          std::memcpy( target, current, type->size );
+      }
+    }
+}
+
+
 inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
 {
   DataChunk *current_chunk = m_entities[id.index].chunk;
@@ -422,26 +509,52 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
             target_offset +
             ( target_type->size * target_index ) );
 
-          if ( current_type->bits == ComponentMeta::GetComponentMeta<Animator>()->bits )
-            std::swap( *static_cast<Animator *>( current ), *static_cast<Animator *>( target ) );
-          else if ( current_type->bits == ComponentMeta::GetComponentMeta<State>()->bits )
-            std::swap( *static_cast<State *>( current ), *static_cast<State *>( target ) );
-          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Image>()->bits )
-            std::swap( *static_cast<Image *>( current ), *static_cast<Image *>( target ) );
-          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Renderer2D>()->bits )
-            std::swap( *static_cast<Renderer2D *>( current ), *static_cast<Renderer2D *>( target ) );
-          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Name>()->bits )
-            std::swap( *static_cast<Name *>( current ), *static_cast<Name *>( target ) );
-          else if ( current_type->bits == ComponentMeta::GetComponentMeta<EntityType>()->bits )
-            std::swap( *static_cast<EntityType *>( current ), *static_cast<EntityType *>( target ) );
-          else if ( current_type->bits == ComponentMeta::GetComponentMeta<AI>()->bits )
-            std::swap( *static_cast<AI *>( current ), *static_cast<AI *>( target ) );
-          else if ( current_type->bits == ComponentMeta::GetComponentMeta<Text>()->bits )
-            std::swap( *static_cast<Text *>( current ), *static_cast<Text *>( target ) );
-          else
-            std::memcpy( target, current, current_type->size );
+          switch ( current_type->bits )
+          {
+            case ComponentMeta::ComponentBits<Animator>() :
+            {
+              std::swap( *static_cast<Animator *>( current ), *static_cast<Animator *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<State>() :
+            {
+              std::swap( *static_cast<State *>( current ), *static_cast<State *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<Image>() :
+            {
+              std::swap( *static_cast<Image *>( current ), *static_cast<Image *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<Renderer2D>() :
+            {
+              std::swap( *static_cast<Renderer2D *>( current ), *static_cast<Renderer2D *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<EntityName>() :
+            {
+              std::swap( *static_cast<EntityName *>( current ), *static_cast<EntityName *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<EntityType>() :
+            {
+              std::swap( *static_cast<EntityType *>( current ), *static_cast<EntityType *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<AI>() :
+            {
+              std::swap( *static_cast<AI *>( current ), *static_cast<AI *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<Text>() :
+            {
+              std::swap( *static_cast<Text *>( current ), *static_cast<Text *>( target ) );
+              break;
+            }
+            default:
+              std::memcpy( target, current, current_type->size );
+          }
         }
-
   EraseEntityChunk( current_chunk, current_index );
 
   m_entities[id.index].chunk = target_chunk;
@@ -452,6 +565,7 @@ inline Archetype *EntityManager::CreateEmptyArchetype()
 {
   auto *empty_arch = new Archetype();
   std::vector<const ComponentMeta *> empty_vec;
+  empty_vec.push_back( ComponentMeta::GetComponentMeta<EntityName>() );
   empty_arch->components_desc = BuildDescription( empty_vec );
   empty_arch->owner = this;
   return empty_arch;
@@ -467,7 +581,7 @@ inline Archetype *EntityManager::FindOrCreateArchetype( const std::vector<const 
     if ( archetype->bits_signature == signature )
       return archetype;
 
-// else
+  // else
 
   Archetype *new_arch = new Archetype();
   new_arch->components_desc = BuildDescription( meta_vec );
@@ -587,5 +701,4 @@ inline void EntityManager::DeleteChunk( DataChunk *chunk )
   owner->chunks.pop_back();
   delete chunk;
 }
-
 } // namespace DeltaEngine
