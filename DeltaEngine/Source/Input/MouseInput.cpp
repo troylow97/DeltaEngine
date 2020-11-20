@@ -185,6 +185,16 @@ namespace DeltaEngine
     m_entity_dragged = _setEntityDragged;
   }
 
+  bool MouseInput::EntityAllowDrag()
+  {
+    return m_entity_allow_drag;
+  }
+
+  void MouseInput::SetEntityAllowDrag(bool _setEntityAllowDragged)
+  {
+    m_entity_allow_drag = _setEntityAllowDragged;
+  }
+
   bool MouseInput::CameraDragged()
   {
     return m_camera_dragged;
@@ -203,6 +213,26 @@ namespace DeltaEngine
   void MouseInput::SetMouseInViewPort(bool _setMouseInViewPort)
   {
     m_mouse_in_viewport = _setMouseInViewPort;
+  }
+
+  bool MouseInput::EntityChosenInViewport()
+  {
+      return m_entity_chosen_in_viewport;
+  }
+
+  void MouseInput::SetEntityChosenInViewport(bool _setEntityChosenInViewport)
+  {
+      m_entity_chosen_in_viewport = _setEntityChosenInViewport;
+  }
+
+  bool MouseInput::EntityChosenInWorld()
+  {
+      return m_entity_chosen_in_world;
+  }
+
+  void MouseInput::SetEntityChosenInWorld(bool _setEntityChosenInViewport)
+  {
+      m_entity_chosen_in_world = _setEntityChosenInViewport;
   }
 
   bool MouseInput::TilesetDragged()

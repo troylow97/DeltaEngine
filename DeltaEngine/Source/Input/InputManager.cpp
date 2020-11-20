@@ -138,12 +138,22 @@ namespace DeltaEngine
 
   bool InputManager::EntityDragged()
   {
-      return m_mouse.m_entity_dragged;
+    return m_mouse.m_entity_dragged;
   }
 
   void InputManager::SetEntityDragged(bool _setEntityDragged)
   {
-      m_mouse.m_entity_dragged = _setEntityDragged;
+    m_mouse.m_entity_dragged = _setEntityDragged;
+  }
+
+  bool InputManager::EntityAllowDrag()
+  {
+    return m_mouse.m_entity_allow_drag;
+  }
+
+  void InputManager::SetEntityAllowDrag(bool _setEntityAllowDragged)
+  {
+    m_mouse.m_entity_allow_drag = _setEntityAllowDragged;
   }
 
   bool InputManager::CameraDragged()
@@ -164,6 +174,26 @@ namespace DeltaEngine
   void InputManager::SetMouseInViewPort(bool _setMouseInViewPort)
   {
     m_mouse.m_mouse_in_viewport = _setMouseInViewPort;
+  }
+
+  bool InputManager::EntityChosenInViewport()
+  {
+      return m_mouse.m_entity_chosen_in_viewport;
+  }
+
+  void InputManager::SetEntityChosenInViewport(bool _setEntityChosenInViewport)
+  {
+      m_mouse.m_entity_chosen_in_viewport = _setEntityChosenInViewport;
+  }
+
+  bool InputManager::EntityChosenInWorld()
+  {
+      return m_mouse.m_entity_chosen_in_world;
+  }
+
+  void InputManager::SetEntityChosenInWorld(bool _setEntityChosenInViewport)
+  {
+      m_mouse.m_entity_chosen_in_world = _setEntityChosenInViewport;
   }
 
   bool InputManager::TilesetDragged()

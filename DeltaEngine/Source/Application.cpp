@@ -11,6 +11,7 @@
 #include "Input/InputManager.h"
 #include "Audio/AudioEngine.h"
 #include "ImGui/Editor.h"
+#include "ImGui/Panels/LoggerPanel.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/Utils/Random.h"
 /*-----------------------------------
@@ -136,6 +137,11 @@ namespace DeltaEngine
             d.Dispatch<ImGuiFileDragEventDone>(DE_BIND_EVENT_FN(Editor::OnDragDropDone));
             break;
           }
+        //case EventType::ImGuiLoggingMessage:
+        //  {
+        //    d.Dispatch<ImGuiMessageLogger>(DE_BIND_EVENT_FN(ImGuiLogger::AddLog));
+        //    break;
+        //  }
         }
       }
       delete ref;

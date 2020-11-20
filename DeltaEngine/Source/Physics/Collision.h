@@ -39,11 +39,11 @@ namespace DeltaEngine
 
   bool CollisionIntersection_RectPoint(Vector2 Center1, Vector2 Size1, Vector2 Center2);
 
-  bool CollisionIntersection_RectMouse(Vector2 Center1, Vector2 Size1, Point Center2);
+  bool CollisionIntersection_RectMouse(Vector3 Center1, Vector2 Size1, Point Center2);
 
   bool CollisionIntersection_CirclePoint(Vector2 Center1, Vector2 Size1, Vector2 Center2);
 
-  bool CollisionIntersection_CircleMouse(Vector2 Center1, Vector2 Size1, Point Center2);
+  //bool CollisionIntersection_CircleMouse(Vector2 Center1, Vector2 Size1, Point Center2);
 
   //Dynamic Collision Checks
   bool CollisionIntersection_RectRect(const Collider&, const Vector2&, const Collider&, const Vector2&);

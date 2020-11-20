@@ -25,6 +25,7 @@
 #include "Panels/PropertyInspectorPanel.h"
 #include "Panels/TilemapPanel.h"
 #include "Panels/WorldPanel.h"
+#include "Panels/LoggerPanel.h"
 
 #include "EditorDirectoryWatcher.h"
 #include "IconsFontAwesome5.h"
@@ -160,8 +161,8 @@ namespace DeltaEngine
     m_panels.push_back(std::make_unique<WorldPanel>("World"));
     m_panels.push_back(std::make_unique<ViewportPanel>("Viewport"));
     m_panels.push_back(std::make_unique<AssetPanel>("Assets"));
-    m_panels.push_back(std::make_unique<ButtonsPanel>(" Buttons"));
-
+    m_panels.push_back(std::make_unique<LoggerPanel>("Logger"));
+    m_panels.push_back(std::make_unique<ButtonsPanel>("Buttons"));
 
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();

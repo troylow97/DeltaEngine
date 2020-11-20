@@ -26,8 +26,11 @@ namespace DeltaEngine
     bool m_entity_selected = false;
     size_t m_entityid_selected;
     bool m_entity_dragged = false;
+    bool m_entity_allow_drag = false;
     bool m_camera_dragged = false;
     bool m_mouse_in_viewport = false;
+    bool m_entity_chosen_in_viewport = false;
+    bool m_entity_chosen_in_world = false;
 
     bool m_tileset_dragged = false;
     bool m_asset_dragged = false;
@@ -55,10 +58,16 @@ namespace DeltaEngine
     void SetEntitySelected(bool _setEntitySelected); // setter
     bool EntityDragged(); // getter
     void SetEntityDragged (bool _setEntityDragged); // setter
+    bool EntityAllowDrag(); // getter
+    void SetEntityAllowDrag(bool _setEntityAllowDragged); // setter
     bool CameraDragged(); // getter
     void SetCameraDragged(bool _setCameraDragged); // setter
     bool MouseInViewPort(); // getter
     void SetMouseInViewPort(bool _setMouseInViewPort); // setter
+    bool EntityChosenInViewport(); // getter
+    void SetEntityChosenInViewport(bool _setEntityChosenInViewport); // setter
+    bool EntityChosenInWorld(); // getter
+    void SetEntityChosenInWorld(bool _setEntityChosenInViewport); // setter
 
     size_t EntityIDSelected(); // getter
     void SetEntityIDSelected(size_t _setEntityIDSelected); // setter

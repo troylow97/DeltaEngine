@@ -120,4 +120,13 @@ namespace DeltaEngine
     EVENT_CLASS_TYPE(ImGuiFileDragDone)
     EVENT_CLASS_CATEGORY(ImGuiCategory)
   };
+
+  class ImGuiMessageLogger : public Event
+  {
+  public:
+      ImGuiMessageLogger() = default;
+
+      EVENT_CLASS_TYPE(ImGuiLoggingMessage)
+      EVENT_CLASS_CATEGORY(ImGuiCategory)
+  };
 }
