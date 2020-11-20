@@ -32,10 +32,7 @@ namespace DeltaEngine
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, RigidBody& r1, Input& i, State& a)
     {
       a.SetFloat("IsIdle", idle_timer);
-      //if (abs(r1.Velocity.y) > 1.0f )
-      //a.SetFloat( "PlayerVelocityY", r1.Velocity.y  );
-      //if (!r1.isJumping &&  abs(r1.Velocity.y) > 1.0f)
-      //  a.SetFloat( "PlayerVelocityY", -r1.Velocity.y );
+
       if (attack_cooldown > 0.5f)
       {
         a.SetBool("Punch", false);
@@ -129,11 +126,12 @@ namespace DeltaEngine
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_SPACE))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Collider& c1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Collider& c1, Input& i1, State& a)
       {
         if (c1.isCollidingOnFloor)
         {
-          r1.isJumping = true;
+            a.SetFloat("PlayerVelocityY", 1);
+            r1.isJumping = true;
         }
         i1.previousKey = DEVK_SPACE;
         idle_timer = 0.0f;

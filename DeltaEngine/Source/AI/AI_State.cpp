@@ -45,7 +45,7 @@ namespace DeltaEngine
   //----------------------------------------------------------------------
   ChaseEnemyLancer::ChaseEnemyLancer()
   {
-    TransitionEdges["lost_enemy_lancer"] = new LostEnemyLancer();
+
   }
 
   void ChaseEnemyLancer::onEnter(EntityID& id)
@@ -59,7 +59,7 @@ namespace DeltaEngine
 
   void ChaseEnemyLancer::Update(EntityID& monster)
   {
-    CheckEdges(monster);
+    //CheckEdges(monster); lancer continues chasing so no transition edge
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
     {
       if (et.type == EntityCategory::E_PLAYER)
@@ -78,11 +78,10 @@ namespace DeltaEngine
 
   //----------------------------------------------------------------------
 
-  IdleFiddler::IdleFiddler(Vector2 p1, Vector2 p2) :
-    CurrentWayPoint(0)
+  IdleFiddler::IdleFiddler(Vector2 p1, Vector2 p2)
   {
-    WayPoints[0] = p1;
-    WayPoints[1] = p2;
+    Waypoints.push_back(p1);
+    Waypoints.push_back(p2);
     TransitionEdges["detect_enemy_fiddler"] = new DetectEnemyFiddler();
   }
 
@@ -96,12 +95,7 @@ namespace DeltaEngine
 
   void IdleFiddler::Update(EntityID& monster)
   {
-    //if (CurrentWayPoint == 0)
-    {
-      AITools::MoveTowardsPoint(monster, WayPoints[1]);
-    }
-
-
+    UpdateWaypoint(monster);
     CheckEdges(monster);
   }
 
@@ -130,4 +124,58 @@ namespace DeltaEngine
   }
 
   //----------------------------------------------------------------------
+
+  IdleSerpentipede::IdleSerpentipede(Vector2 p1, Vector2 p2,Vector2 p3) :
+      CurrentWayPoint(0)
+  {
+
+      //JsonFile file;
+      //file.StartReader("IdleSerpent.json").LoadObject(WayPoints);
+      //WayPoints[0] = p1;
+      //WayPoints[1] = p2;
+      //WayPoints[2] = p3;
+      //TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(WayPoints[0]);
+  }
+
+  void IdleSerpentipede::onEnter(EntityID& id)
+  {
+  }
+
+  void IdleSerpentipede::onExit(EntityID& id)
+  {
+  }
+
+  void IdleSerpentipede::Update(EntityID& monster)
+  {
+      CheckEdges(monster);
+  }
+
+  ChaseEnemySerpentipede::ChaseEnemySerpentipede(Vector2 p) :
+      DetectionRange(p)
+  {
+      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(DetectionRange);
+  }
+
+  void ChaseEnemySerpentipede::onEnter(EntityID& id)
+  {
+  }
+
+  void ChaseEnemySerpentipede::onExit(EntityID& id)
+  {
+      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0, 0 };
+  }
+
+  void ChaseEnemySerpentipede::Update(EntityID& monster)
+  {
+      CheckEdges(monster);
+      //Move to any of the 3 waypoint, attack player
+
+
+      //env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+      //    {
+      //        if (et.type == EntityCategory::E_PLAYER)
+      //            AITools::MoveTowardsEntity(monster, player);
+      //    });
+  }
+
 }

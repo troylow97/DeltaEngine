@@ -66,7 +66,7 @@ namespace DeltaEngine
     return *this;
   }
 
-  JsonFile& JsonFile::WriteArray(const variant_sequential_view& view)
+  JsonFile& JsonFile::WriteArray(const variant_sequential_view view)
   {
     Serialize::WriteArray(view, *m_writer);
     return *this;

@@ -39,7 +39,7 @@ namespace DeltaEngine
     //void CollisionSystem::CollisionResponse_CircleCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
 
   public:
-    float knockback_amt = 500.0f;
+    
     void CollisionSystem::Update() override;
     void CollisionSystem::LateUpdate() override;
     void CollisionSystem::Initialize() override;

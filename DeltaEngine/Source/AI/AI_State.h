@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include "Core/GlobalStruct.h"
 #include "AI/AITools.h"
-
+#include "Waypoint.h"
 namespace DeltaEngine
 {
   class Transition;
@@ -29,8 +29,8 @@ namespace DeltaEngine
     virtual void Update(EntityID& id) = 0;
     virtual ~AIState();
   };
-
-  class IdleLancer : public AIState
+  
+  class IdleLancer : public AIState //Mosquito
   {
   public:
     IdleLancer();
@@ -48,11 +48,11 @@ namespace DeltaEngine
     void Update(EntityID& id1) override;
   };
 
-  class IdleFiddler : public AIState
+  class IdleFiddler : public AIState, public Waypoint
   {
-    unsigned int CurrentWayPoint;
-    Vector2 WayPoints[2];
+     
   public:
+
     IdleFiddler(Vector2 p1, Vector2 p2);
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
@@ -66,5 +66,26 @@ namespace DeltaEngine
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
     void Update(EntityID& id1) override;
+  };
+
+  class IdleSerpentipede : public AIState
+  {
+      unsigned int CurrentWayPoint;
+  public:
+      std::vector<Vector2> WayPoints;
+      IdleSerpentipede(Vector2 p1, Vector2 p2,Vector2 p3);
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
+  };
+
+  class ChaseEnemySerpentipede : public AIState
+  {
+  public:
+      Vector2 DetectionRange;
+      ChaseEnemySerpentipede(Vector2);
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
   };
 }

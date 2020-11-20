@@ -159,6 +159,7 @@ namespace DeltaEngine
                                                                         (rttr::metadata("NO_EDITOR", true)))
       .property("collision_layer", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr);
 
+
     rttr::registration::class_<Animator>("animator")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Animator>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
