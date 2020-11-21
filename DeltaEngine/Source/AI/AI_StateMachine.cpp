@@ -23,10 +23,10 @@ namespace DeltaEngine
   {
     StateList["idle_lancer"] = new IdleLancer();
     StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
-    StateList["idle_fiddler"] = new IdleFiddler(Vector2{0, 0}, Vector2{5, 0});
+    StateList["idle_fiddler"] = new IdleFiddler();
     StateList["chase_enemy_fiddler"] = new ChaseEnemyFiddler();
-    StateList["idle_serpentipede"] = new IdleSerpentipede(Vector2{ 0, 0 }, Vector2{ 5, 0 }, Vector2{ 3, 0 });
-    StateList["chase_enemy_serpentipede"] = new ChaseEnemySerpentipede(Vector2{ 0, 0 });
+    StateList["idle_serpentipede"] = new IdleSerpentipede();
+    StateList["chase_enemy_serpentipede"] = new ChaseEnemySerpentipede();
   }
 
   void AISystem::Shutdown()

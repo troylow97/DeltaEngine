@@ -53,7 +53,7 @@ namespace DeltaEngine
      
   public:
 
-    IdleFiddler(Vector2 p1, Vector2 p2);
+    IdleFiddler();
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
     void Update(EntityID& id1) override;
@@ -70,10 +70,9 @@ namespace DeltaEngine
 
   class IdleSerpentipede : public AIState
   {
-      unsigned int CurrentWayPoint;
   public:
-      std::vector<Vector2> WayPoints;
-      IdleSerpentipede(Vector2 p1, Vector2 p2,Vector2 p3);
+      Vector2 StartPoint;
+      IdleSerpentipede();
       void onEnter(EntityID& id) override;
       void onExit(EntityID& id) override;
       void Update(EntityID& id1) override;
@@ -81,9 +80,11 @@ namespace DeltaEngine
 
   class ChaseEnemySerpentipede : public AIState
   {
+      float CooldownTimer;
+      int CurrentPoint;
   public:
-      Vector2 DetectionRange;
-      ChaseEnemySerpentipede(Vector2);
+      Vector2 Points[3];
+      ChaseEnemySerpentipede();
       void onEnter(EntityID& id) override;
       void onExit(EntityID& id) override;
       void Update(EntityID& id1) override;

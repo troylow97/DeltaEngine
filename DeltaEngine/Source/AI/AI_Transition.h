@@ -119,17 +119,17 @@ namespace DeltaEngine
 
   class DetectEnemySerpentipede : public Transition
   {
-      Vector2 DetectionRange;
+      Vector2 StartPoint;
   public:
       DetectEnemySerpentipede(Vector2 p) :
-          DetectionRange(p)
+          StartPoint(p)
       {}
       bool TestEdge(EntityID& monster) override
       {
           auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
           env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
               {
-                  if (et.type == EntityCategory::E_PLAYER && AITools::EntityisWithinDetectionRange(player, DetectionRange, 3.0f, 5.0f))
+                  if (et.type == EntityCategory::E_PLAYER && AITools::EntityisWithinDetectionRange(player, StartPoint, 3.0f, 5.0f))
                   {
                       ref.transition = getTargetState();
                   }
@@ -146,10 +146,10 @@ namespace DeltaEngine
 
   class LostEnemySerpentipede : public Transition
   {
-      Vector2 DetectionRange;
+      Vector2 StartPoint;
   public:
       LostEnemySerpentipede(Vector2 p) :
-          DetectionRange(p)
+          StartPoint(p)
       {}
 
       bool TestEdge(EntityID& monster) override
@@ -157,7 +157,7 @@ namespace DeltaEngine
           auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
           env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
               {
-                  if (et.type == EntityCategory::E_PLAYER && !AITools::EntityisWithinDetectionRange(monster, player, 5.0f, 5.0f))
+                  if (et.type == EntityCategory::E_PLAYER && !AITools::EntityisWithinDetectionRange(player, StartPoint, 3.0f, 5.0f))
                   {
                       ref.transition = getTargetState();
                   }
