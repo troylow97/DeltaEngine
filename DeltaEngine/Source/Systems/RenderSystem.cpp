@@ -30,6 +30,7 @@ namespace DeltaEngine
     Camera::editorCamera->Start();
 
     std::vector<EntityID> sortedRenderers;
+    sortedRenderers.reserve( 256 );
 
     em.ForEach(e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
     std::sort(sortedRenderers.begin(), sortedRenderers.end(), SortSprites);

@@ -9,6 +9,7 @@
 
 #include "Assets/AssetManager.h"
 #include "Reflect/Reflect.h"
+#include <filesystem>
 
 namespace DeltaEngine
 {
@@ -48,95 +49,6 @@ namespace DeltaEngine
       ImGui::Text(text.c_str());
       ImGui::Text("");
       //44-124
-      static char str1[128] = "";
-      ImGui::SetNextItemWidth(100);
-      ImGui::InputTextWithHint("", "texture name", str1, IM_ARRAYSIZE(str1));
-
-      if (ImGui::BeginDragDropTarget())
-      {
-        ImGuiDragDropFlags target_flags = 0;
-
-        const ImGuiPayload* assetpayload = ImGui::AcceptDragDropPayload("ASSETFILES", target_flags);
-        if (assetpayload)
-        {
-          std::string assetpayload_n = *static_cast<std::string*>(assetpayload->Data);
-          fileName.assign(assetpayload_n);
-
-          if (fileName.find(".png") != std::string::npos && fileName.find(".info") == std::string::npos)
-          {
-            std::memset(str1, 0, sizeof(str1));
-            strcpy_s(str1, fileName.c_str());
-            env.pManager->Load<Texture2D>(fileName, assetpayload_n);
-
-            assetpayload_n += ".info";
-
-            std::ifstream file(assetpayload_n.c_str());
-            while (std::getline(file, stringcount))
-            {
-              ++number_of_lines;
-              if (stringcount.empty())
-              {
-                ++number_of_empty_lines;
-              }
-            }
-
-            if (number_of_lines > 5)
-            {
-              m_texture_is_animation = true;
-              number_of_lines = 0;
-              number_of_frames = number_of_empty_lines;
-              number_of_empty_lines = 0;
-            }
-            else
-            {
-              m_texture_is_animation = false;
-              number_of_lines = 0;
-              number_of_frames = 0;
-              number_of_empty_lines = 0;
-            }
-          }
-          else
-          {
-            std::string blank = "";
-            strcpy_s(str1, blank.c_str());
-          }
-        }
-        ImGui::EndDragDropTarget();
-      }
-
-      ImGui::SameLine();
-      static int clicked = 0;
-      if (ImGui::Button(ICON_FA_DOT_CIRCLE, {20.0f, 18.0f}))
-      {
-        if (m_texture_is_animation)
-          clicked++;
-        else
-          clicked = 0;
-      }
-      if (m_texture_is_animation && clicked & 1)
-      {
-        bool t = true;
-        ImGui::Begin("Sprite preview", &t, ImGuiWindowFlags_AlwaysAutoResize);
-        for (unsigned int i = 0; i < number_of_frames; ++i)
-        {
-          if (i % 2 != 0)
-          {
-            ImGui::SameLine();
-          }
-          Sprite frame = {fileName, i};
-          uint64_t textureID = frame.GetTexture()->GetRendererID();
-          ImGui::ImageButton(reinterpret_cast<void*>(textureID),
-                             ImVec2{60, 60},
-                             ImVec2{frame.GetOffset().x, frame.GetOffset().y},
-                             ImVec2{
-                               frame.GetOffset().x + frame.GetTiling().x, frame.GetOffset().y + frame.GetTiling().y
-                             });
-        }
-        ImGui::End();
-      }
-      ImGui::SameLine();
-      ImGui::Text("texture");
-
 
       if (auto result = em.GetEntityArchetype(index); result != nullptr)
       {
@@ -297,14 +209,37 @@ namespace DeltaEngine
                 if (assetpayload)
                 {
                   std::string assetpayload_n = *static_cast<std::string*>(assetpayload->Data);
-
-                  if (assetpayload_n.find(".png") != std::string::npos)
+                  std::filesystem::path file { assetpayload_n };
+                  if ( file.extension() == ".png" || file.extension() == ".jpg")
                   {
                     sprite.m_Key = assetpayload_n.substr(0, assetpayload_n.find_last_of('.'));
                     sprite.m_Index = 0;
                   }
                 }
                 ImGui::EndDragDropTarget();
+              }
+
+
+              static bool clicked = false;
+              if (ImGui::Button(ICON_FA_DOT_CIRCLE, {20.0f, 18.0f}))
+                clicked = !clicked;
+
+              // Sprite Panel
+              if ( clicked )
+              {
+                ImGui::Begin("Sprite preview", &clicked, ImGuiWindowFlags_AlwaysAutoResize);
+                for ( size_t i = 0; i < sprite.GetTexture()->textureInfo.size() - 1; i++ )
+                {
+                  if ( i % 4 )
+                    ImGui::SameLine();
+                  Sprite details { sprite.m_Key, static_cast<unsigned>(i) };
+                  unsigned id = details.GetTexture()->GetRendererID();
+                  ImGui::Image(reinterpret_cast<void*>( details.GetTexture()->GetRendererID()),
+                                      ImVec2 { 64, 64 },
+                                      ImVec2 { details.GetOffset().x, details.GetOffset().y },
+                                      ImVec2 { details.GetOffset().x + details.GetTiling().x, details.GetOffset().y + details.GetTiling().y } );
+                }
+                ImGui::End();
               }
             }
             else if (prop_type == rttr::type::get<std::string*>() && instance.get_type() == rttr::type::get<Animator>())

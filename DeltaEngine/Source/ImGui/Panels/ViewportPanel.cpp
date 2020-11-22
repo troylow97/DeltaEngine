@@ -108,9 +108,12 @@ namespace DeltaEngine
             InputManager::Instance().CurrentCameraPosition().point_x,
             InputManager::Instance().CurrentCameraPosition().point_y, 0
           };
+
+          auto offset = payload_n.find_last_of('_');
           env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).scale = {0.5, 0.5, 0.0};
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Key = payload_n;
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Index = 0;
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Key = payload_n.substr(0, offset);
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Index = std::stoi(payload_n.substr(offset + 1));
+          (void) std::stoi(payload_n.substr(offset + 1));
         }
       }
       //InputManager::Instance().SetTilesetDragged(false);

@@ -5,7 +5,7 @@ namespace DeltaEngine
 {
   struct EntityName
   {
-    std::string name;
+    std::string name{};
   };
 
   struct Parent

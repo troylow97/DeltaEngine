@@ -33,6 +33,18 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
+      DeltaEngine_CORE_TRACE("Texture Key: {}", key.Key());
+
+      if(FileUtils::FileExists( key.Key() + ".png" ))
+      {
+        Texture2D* data = new Texture2D(key.Key()+".png");
+        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+      }
+      else if(FileUtils::FileExists( key.Key() + ".jpg" ))
+      {
+        Texture2D* data = new Texture2D(key.Key()+".jpg");
+        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+      }
     }
 
     void DoLoad(AssetKey key, std::string_view str) override

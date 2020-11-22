@@ -1,9 +1,5 @@
-#pragma once
 
 #include "Editor.h"
-
-#include "examples/imgui_impl_opengl3.h"
-#include "examples/imgui_impl_win32.h"
 
 // Core
 #include "Core/GlobalStruct.h"
@@ -168,14 +164,15 @@ namespace DeltaEngine
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_DockingEnable |
       ImGuiConfigFlags_ViewportsEnable;
 
-    io.Fonts->AddFontDefault();
     ImFontConfig icons_config;
-    icons_config.MergeMode = true;
+    icons_config.MergeMode = false;
     icons_config.GlyphMinAdvanceX = 16.0f; // Use if you want to make the icon monospaced
     icons_config.PixelSnapH = true;
     // add character ranges and merge into main font, merge in icons from Font Awesome
     static const ImWchar icons_ranges[] = {ICON_MIN_FA, ICON_MAX_FA, 0};
-    io.Fonts->AddFontFromFileTTF("Fonts/fa-solid-900.ttf", 10.0f, &icons_config, icons_ranges);
+    io.FontDefault = io.Fonts->AddFontFromFileTTF("Fonts/Roboto-Medium.ttf", 16.0f);
+    m_font_awesome = io.Fonts->AddFontFromFileTTF("Fonts/fa-solid-900.ttf", 32.0f, &icons_config, icons_ranges);
+
     ImGui::StyleColorsDark();
 
     ImGuiStyle& style = ImGui::GetStyle();

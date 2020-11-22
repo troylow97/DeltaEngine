@@ -14,6 +14,7 @@ namespace DeltaEngine
       m_g_dt(0.0),
       m_timescale(1.0f),
       m_accumulator(0.0f),
+      m_timesteps(0),
       m_paused(false)
   {
   }

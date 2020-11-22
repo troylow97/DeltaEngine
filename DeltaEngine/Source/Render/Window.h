@@ -8,7 +8,7 @@ namespace DeltaEngine
 {
   class Window
   {
-    HWND m_hwndl;
+    HWND m_hwndl{};
     std::wstring m_title;
     int m_width;
     int m_height;

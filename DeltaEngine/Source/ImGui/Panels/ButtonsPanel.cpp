@@ -8,6 +8,7 @@
 //#include "ECS/ECSModule.h"
 //#include "Core/Utils/FileUtils.h"
 #include "ECS/ECSModule.h"
+#include "ImGui/Editor.h"
 
 namespace DeltaEngine
 {
@@ -52,12 +53,21 @@ namespace DeltaEngine
     ImVec2 ButtonPos1 = {ImGui::GetWindowSize().x * 0.485f, ImGui::GetWindowSize().y * 0.3f};
     ImVec2 ButtonPos2 = {ImGui::GetWindowSize().x * 0.515f, ImGui::GetWindowSize().y * 0.3f};
     ImGui::SetCursorPos(ButtonPos1);
-    if (ImGui::Button(ICON_FA_PLAY, {25.0f, 22.0f}))
+    float lineHeight = ImGui::GetIO().FontDefault->FontSize + ImGui::GetStyle().FramePadding.y * 2.0f;
+    ImVec2 buttonSize = { lineHeight , lineHeight };
+
+    const float original = Editor::m_font_awesome->Scale;
+    Editor::m_font_awesome->Scale = 0.5f;
+    ImGui::PushFont( Editor::m_font_awesome );
+
+    if (ImGui::Button(ICON_FA_PLAY, buttonSize))
       GetEnv().pECS->GetWorld().SetPause(false);
     ImGui::SetCursorPos(ButtonPos2);
-    if (ImGui::Button(ICON_FA_PAUSE, {25.0f, 22.0f}))
+    if (ImGui::Button(ICON_FA_PAUSE, buttonSize))
       GetEnv().pECS->GetWorld().SetPause(true);
 
+    ImGui::PopFont();
+    Editor::m_font_awesome->Scale = original;
 
     ImGui::End();
   }

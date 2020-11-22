@@ -85,6 +85,12 @@ namespace DeltaEngine
   {
     JsonFile file;
     file.StartWriter(filename).WriteEntities(*em).EndWriter();
+
+    std::vector<Vector2> vec2_vec;
+    rttr::variant v { vec2_vec };
+    auto &seq = v.create_sequential_view();
+    file.StartWriter( filename ).WriteArray( seq ).EndWriter();
+
   }
 
   void World::Load(std::string filename)

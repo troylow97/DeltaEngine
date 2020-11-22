@@ -30,15 +30,18 @@ namespace DeltaEngine
   public:
     bool TestEdge(EntityID& monster) override
     {
-      auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+      if (env.pECS->GetWorld().GetEntityManager().HasComponent<AI>(monster))
       {
-        if (et.type == EntityCategory::E_PLAYER && AITools::EntityisWithinDetectionRange(monster, player, 3.0f, 5.0f))
+        auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
         {
-          ref.transition = getTargetState();
-        }
-      });
-      if (ref.transition == getTargetState()) { return true; }
+          if (et.type == EntityCategory::E_PLAYER && AITools::EntityisWithinDetectionRange(monster, player, 3.0f, 5.0f))
+          {
+            ref.transition = getTargetState();
+          }
+        });
+        if (ref.transition == getTargetState()) { return true; }
+      }
       return false;
     }
 

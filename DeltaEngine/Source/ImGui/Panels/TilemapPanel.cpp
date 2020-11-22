@@ -47,66 +47,72 @@ namespace DeltaEngine
     bottomRight.x += ImGui::GetWindowPos().x;
     bottomRight.y += ImGui::GetWindowPos().y;
 
-    ImGui::Text("Current tiles available:");
+    ImGui::Text("Tileset:");
 
     if (isdragged)
     {
       DraggedFileIn();
     }
-    ImGuiStyle& style = ImGui::GetStyle();
-    float window_visible_x2 = ImGui::GetWindowPos().x + ImGui::GetWindowContentRegionMax().x;
+
+    float nWidth = ImGui::GetWindowContentRegionWidth();
+    int columns = nWidth / 74;
+    columns = columns < 1 ? 1 : columns;
+    ImGui::Columns( columns, nullptr, false );
 
     for (const auto& file : FileUtils::FileList("Tilemap"))
     {
+      DeltaEngine_CORE_TRACE( "File - {}", file.generic_string() );
       if (file.extension() == ".png")
       {
         auto key = file.generic_string().substr(0,
                                                 file.generic_string().find_last_of('.'));
         auto ref = env.pManager->Get<Texture2D>(key);
 
-
-        Sprite _sprite = {ref->GetName(), 0};
-        uint64_t textureID = _sprite.GetTexture()->GetRendererID();
-
-        ImGui::PushID(static_cast<int>(textureID));
-        if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
-                               ImVec2{32, 32},
-                               ImVec2{_sprite.GetOffset().x, _sprite.GetOffset().y},
-                               ImVec2{
-                                 _sprite.GetOffset().x + _sprite.GetTiling().x,
-                                 _sprite.GetOffset().y + _sprite.GetTiling().y
-                               }))
+        for (size_t i = 0; i < ref->textureInfo.size() - 1; i ++)
         {
-          //std::cout << "clicking tiles" << std::endl;
-        }
-        float last_tile_x2 = ImGui::GetItemRectMax().x;
-        float next_tile_x2 = last_tile_x2 + style.ItemSpacing.x + 32.0f;
-        // Expected position if next tile was on same line
-        if (next_tile_x2 < window_visible_x2)
-          ImGui::SameLine();
-        ImGui::PopID();
+          Sprite sprite = { ref->GetName(), static_cast<unsigned>(i) };
+          uint64_t id = sprite.GetTexture()->GetRendererID();
 
-        ImGuiDragDropFlags src_flags = 0;
-        src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
-        src_flags |= ImGuiDragDropFlags_SourceAllowNullID;
-        // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
+          ImGui::PushID(static_cast<int>(i));
 
-        if (ImGui::BeginDragDropSource(src_flags))
-        {
-          selected_tile.assign(key);
-          ImGui::SetDragDropPayload("TILES", &selected_tile, sizeof(std::string));
+          if (ImGui::ImageButton(reinterpret_cast<void*>(id),
+               ImVec2{64, 64},
+               ImVec2{sprite.GetOffset().x, sprite.GetOffset().y},
+               ImVec2{
+                 sprite.GetOffset().x + sprite.GetTiling().x,
+                 sprite.GetOffset().y + sprite.GetTiling().y
+               }))
+          {
+            // Nothing for now
+          }
 
-          InputManager::Instance().SetTilesetDragged(true);
-          //std::cout << "dragging tiles" << std::endl;
-          // display preview (haven't decided whether to display the filename or preview the texture)
-          ImGui::Image(reinterpret_cast<void*>(textureID),
-                       ImVec2{32, 32},
-                       ImVec2{_sprite.GetOffset().x, _sprite.GetOffset().y},
-                       ImVec2{
-                         _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y
-                       });
-          ImGui::Text(selected_tile.c_str());
-          ImGui::EndDragDropSource();
+          //float last_tile_x2 = ImGui::GetItemRectMax().x;
+          //float next_tile_x2 = last_tile_x2 + style.ItemSpacing.x + 32.0f;
+          //// Expected position if next tile was on same line
+          //if (next_tile_x2 < window_visible_x2)
+          //  ImGui::SameLine();
+          ImGui::PopID();
+          ImGui::NextColumn();
+
+          ImGuiDragDropFlags src_flags = 0;
+          src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
+          src_flags |= ImGuiDragDropFlags_SourceAllowNullID;
+          // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
+
+          if (ImGui::BeginDragDropSource(src_flags))
+          {
+            selected_tile.assign(key + '_' + std::to_string(sprite.m_Index));
+            ImGui::SetDragDropPayload("TILES", &selected_tile, sizeof(std::string));
+            InputManager::Instance().SetTilesetDragged(true);
+            ImGui::Image(reinterpret_cast<void*>(id),
+                          ImVec2{64, 64},
+                          ImVec2{sprite.GetOffset().x, sprite.GetOffset().y},
+                          ImVec2{
+                            sprite.GetOffset().x + sprite.GetTiling().x, sprite.GetOffset().y + sprite.GetTiling().y
+                          });
+            ImGui::Text(selected_tile.c_str());
+            ImGui::EndDragDropSource();
+          }
         }
       }
     }

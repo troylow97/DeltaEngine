@@ -19,7 +19,7 @@ namespace DeltaEngine
     Point m_current_mouse_position; // the coordinate of current mouse position 
     Point m_previous_mouse_position; // the coordinate of previous mouse position 
     Point m_current_camera_mouse_position; // the coordinate of current mouse position in camera viewport
-    bool m_move_event;
+    bool m_move_event = false;
     bool m_first_time = true;
 
     bool m_entity_selected = false;

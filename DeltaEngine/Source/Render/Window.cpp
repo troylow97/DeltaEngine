@@ -193,7 +193,7 @@ namespace DeltaEngine
       DeltaEngine_CORE_ERROR("ERROR: Couldn't create window!");
     }
 
-    if (m_fullscreen)
+    if (m_fullscreen && m_hwndl)
       SetWindowPos(m_hwndl, HWND_TOPMOST, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), 0L);
 
     ShowWindow(GetConsoleWindow(), SW_SHOW);

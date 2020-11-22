@@ -25,28 +25,36 @@ namespace DeltaEngine
 
   Application::Application() : m_Minimized{true}, m_interval(0.25)
   {
+    // Logger Initialization
     Log::Init();
     DeltaEngine_CORE_INFO("Engine Start");
-    FileUtils::Root("Assets");
-
-    // Load Engine Configuration
-    JsonFile f;
-    EngineConfig c;
-    f.StartReader("config.json").LoadObject(c).EndReader();
-    AudioEngine::Initialize();
-    env.pClock = new GameClock(c.fps);
-
-    env.pWin = new Window(c.win_name, c.width, c.height, c.fullscreen);
-    env.pWin->Init();
-
-    // Render + Imgui
-    RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
-    RenderModule::openGLSystem->Init();
 
     // Randomizer
     Random::Init();
 
-    // Asset Loading
+    // Filesystem Initialization
+    FileUtils::Root("Assets");
+
+    // Engine Initialization
+    JsonFile f;
+    EngineConfig c;
+    f.StartReader("config.json").LoadObject(c).EndReader();
+
+    // Audio Initialization
+    AudioEngine::Initialize();
+
+    // Clock Initialization
+    env.pClock = new GameClock(c.fps);
+
+    // Window Initialization
+    env.pWin = new Window(c.win_name, c.width, c.height, c.fullscreen);
+    env.pWin->Init();
+
+    // Render Initialization
+    RenderModule::openGLSystem = new RenderModule::OpenGLSystem();
+    RenderModule::openGLSystem->Init();
+
+    // Asset Manager Initialization and Loading
     env.pManager = new AM();
     env.pManager->SetLoader<Font>(new FontLoader()).Load<Font>()
        .SetFallback<Font>(new Font("Fonts/Arial.ttf"));
@@ -60,12 +68,15 @@ namespace DeltaEngine
 
     env.pManager->SetLoader<AnimationController>(new AnimationControllerLoader()).Load<AnimationController>();
 
+    // Editor Initialization
 #ifdef DE_EDITOR
     m_Editor = new Editor();
 #endif
 
+    // Event Manager Initialization
     env.eventManager = new EventManager;
 
+    // ECS Initialization
     env.pECS = new ECSModule();
   }
 

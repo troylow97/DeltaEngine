@@ -111,6 +111,7 @@ namespace DeltaEngine::Serialize
           for (auto comp : arch->components_desc->metalist)
           {
             type t = RT_Reflect::RT_Checker(comp.meta->bits);
+            DeltaEngine_CORE_INFO( "Type: {}", t.get_name().to_string() );
             if (!t.is_arithmetic())
             {
               writer.String(t.get_name().to_string());
@@ -232,6 +233,8 @@ namespace DeltaEngine::Serialize
           writer.Double(var.get_wrapped_value<float>());
         else if (t == type::get<int*>())
           writer.Int(var.get_wrapped_value<int>());
+        else if (t== type::get<unsigned*>())
+          writer.Uint(var.get_wrapped_value<unsigned>());
         return true;
       }
       if (t.get_raw_type().is_enumeration())
