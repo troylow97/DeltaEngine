@@ -88,8 +88,15 @@ namespace DeltaEngine
   IdleFiddler::IdleFiddler()
   {
     //To read from json file instead
-    Waypoints.push_back(Vector2{0,0});
-    Waypoints.push_back(Vector2{0,5});
+    //waypoint.Waypoints.push_back(Vector2{ 0,0 });
+    //waypoint.Waypoints.push_back(Vector2{ 5,0 });
+
+
+    JsonFile file;
+   //rttr::variant v{ waypoint.Waypoints };
+   //auto& seq = v.create_sequential_view();
+    //file.StartWriter( filename ).StartObject().WriteObject( obj ).EndObject();
+    file.StartReader("idle_fiddler.json").LoadObject(waypoint).EndReader();
 
     TransitionEdges["detect_enemy_fiddler"] = new DetectEnemyFiddler();
   }
@@ -104,7 +111,7 @@ namespace DeltaEngine
 
   void IdleFiddler::Update(EntityID& monster)
   {
-    UpdateWaypoint(monster);
+    waypoint.UpdateWaypoint(monster);
     CheckEdges(monster);
   }
 
@@ -146,6 +153,10 @@ namespace DeltaEngine
   IdleSerpentipede::IdleSerpentipede()
   {
       StartPoint = Vector2{ 0,0 };
+      JsonFile file;
+
+      file.StartWriter("idle_serpentipede.json").StartObject().WriteObject( StartPoint ).EndObject();
+
       TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(StartPoint);
   }
 
@@ -167,6 +178,11 @@ namespace DeltaEngine
       CooldownTimer{0.0f},
       CurrentPoint{0}
   {
+     Points[0] = Vector2{ 0,0 };
+     Points[1] = Vector2{ 2,0 };
+     Points[2] = Vector2{ 5,0 };
+     JsonFile file;
+     file.StartWriter("chase_serpentipede.json").StartObject().WriteObject(Points).EndObject();
       TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(Points[0]);
   }
 

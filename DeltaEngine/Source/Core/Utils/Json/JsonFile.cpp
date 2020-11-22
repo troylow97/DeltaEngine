@@ -62,7 +62,9 @@ namespace DeltaEngine
 
   JsonFile& JsonFile::WriteObject(instance object)
   {
+    //StartObject();
     Serialize::WriteObject(object, *m_writer);
+    //EndObject();
     return *this;
   }
 

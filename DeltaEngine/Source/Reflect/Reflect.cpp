@@ -14,11 +14,22 @@
 #include "Core/Utils/Json/JsonSerialize.h"
 #include "Core/GlobalStruct.h"
 #include "Assets/AssetManager.h"
-
+#include "AI/Waypoint.h"
+#include "AI/AI_State.h"
 namespace DeltaEngine
 {
   RTTR_REGISTRATION
   {
+    rttr::registration::class_<Waypoint>("Waypoint")
+      .property("Waypoints", &Waypoint::Waypoints)
+      .property("CurrentWaypoint", &Waypoint::CurrentWaypoint);
+
+  rttr::registration::class_<IdleSerpentipede>("IdleSerpent")
+      .property("startpoint", &IdleSerpentipede::StartPoint);
+
+  rttr::registration::class_<ChaseEnemySerpentipede>("ChaseSerpent")
+      .property("startpoint", &ChaseEnemySerpentipede::Points);
+
     rttr::registration::class_<EngineConfig>("config")
       .property("window", &EngineConfig::win_name)
       .property("width", &EngineConfig::width)
@@ -158,7 +169,6 @@ namespace DeltaEngine
       .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true),
                                                                         (rttr::metadata("NO_EDITOR", true)))
       .property("collision_layer", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr);
-
 
     rttr::registration::class_<Animator>("animator")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Animator>()->bits))

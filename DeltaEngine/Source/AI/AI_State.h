@@ -48,11 +48,11 @@ namespace DeltaEngine
     void Update(EntityID& id1) override;
   };
 
-  class IdleFiddler : public AIState, public Waypoint
+  class IdleFiddler : public AIState
   {
      
   public:
-
+      Waypoint waypoint;
     IdleFiddler();
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
