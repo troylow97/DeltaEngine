@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ImGui/Panels/IPanel.h"
+#include "Components/Dragbox.h"
 
 namespace DeltaEngine
 {

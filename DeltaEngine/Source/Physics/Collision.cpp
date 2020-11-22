@@ -580,7 +580,7 @@ namespace DeltaEngine
     return true;
   }
 
-  bool CollisionIntersection_RectMouse(const Vector2 Center1, const Vector2 Size1, Point Center2)
+  bool CollisionIntersection_RectMouse(const Vector3 Center1, const Vector2 Size1, Point Center2)
   {
     Vector2 TopLeft, TopRight, BotLeft, BotRight;
     float HalfWidth = Size1.x / 2;

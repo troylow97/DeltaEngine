@@ -11,6 +11,7 @@
 #include "Input/InputManager.h"
 #include "Audio/AudioEngine.h"
 #include "ImGui/Editor.h"
+#include "ImGui/Panels/LoggerPanel.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/Utils/Random.h"
 /*-----------------------------------

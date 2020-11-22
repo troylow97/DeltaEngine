@@ -87,6 +87,11 @@ namespace DeltaEngine
     return m_mouse.m_current_camera_mouse_position;
   }
 
+  const Point& InputManager::PreviousCameraPosition()
+  {
+    return m_mouse.m_previous_camera_mouse_position;
+  }
+
   void InputManager::SetCurrentPosition(Point _currentPosition)
   {
     m_mouse.m_current_mouse_position.point_x = _currentPosition.point_x;
@@ -103,6 +108,12 @@ namespace DeltaEngine
   {
     m_mouse.m_current_camera_mouse_position.point_x = _currentCameraPosition.point_x;
     m_mouse.m_current_camera_mouse_position.point_y = _currentCameraPosition.point_y;
+  }
+
+  void InputManager::SetPreviousCameraPosition(Point _previousCameraPosition)
+  {
+      m_mouse.m_previous_camera_mouse_position.point_x = _previousCameraPosition.point_x;
+      m_mouse.m_previous_camera_mouse_position.point_y = _previousCameraPosition.point_y;
   }
 
   bool InputManager::EntitySelected()
@@ -123,6 +134,66 @@ namespace DeltaEngine
   void InputManager::SetEntityIDSelected(size_t _setEntityIDSelected)
   {
     m_mouse.m_entityid_selected = _setEntityIDSelected;
+  }
+
+  bool InputManager::EntityDragged()
+  {
+    return m_mouse.m_entity_dragged;
+  }
+
+  void InputManager::SetEntityDragged(bool _setEntityDragged)
+  {
+    m_mouse.m_entity_dragged = _setEntityDragged;
+  }
+
+  bool InputManager::EntityAllowDrag()
+  {
+    return m_mouse.m_entity_allow_drag;
+  }
+
+  void InputManager::SetEntityAllowDrag(bool _setEntityAllowDragged)
+  {
+    m_mouse.m_entity_allow_drag = _setEntityAllowDragged;
+  }
+
+  bool InputManager::CameraDragged()
+  {
+    return m_mouse.m_camera_dragged;
+  }
+
+  void InputManager::SetCameraDragged(bool _setCameraDragged)
+  {
+    m_mouse.m_camera_dragged = _setCameraDragged;
+  }
+
+  bool InputManager::MouseInViewPort()
+  {
+    return m_mouse.m_mouse_in_viewport;
+  }
+
+  void InputManager::SetMouseInViewPort(bool _setMouseInViewPort)
+  {
+    m_mouse.m_mouse_in_viewport = _setMouseInViewPort;
+  }
+
+  bool InputManager::EntityChosenInViewport()
+  {
+      return m_mouse.m_entity_chosen_in_viewport;
+  }
+
+  void InputManager::SetEntityChosenInViewport(bool _setEntityChosenInViewport)
+  {
+      m_mouse.m_entity_chosen_in_viewport = _setEntityChosenInViewport;
+  }
+
+  bool InputManager::EntityChosenInWorld()
+  {
+      return m_mouse.m_entity_chosen_in_world;
+  }
+
+  void InputManager::SetEntityChosenInWorld(bool _setEntityChosenInViewport)
+  {
+      m_mouse.m_entity_chosen_in_world = _setEntityChosenInViewport;
   }
 
   bool InputManager::TilesetDragged()
