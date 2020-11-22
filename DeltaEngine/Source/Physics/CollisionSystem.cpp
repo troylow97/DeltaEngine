@@ -38,46 +38,46 @@ namespace DeltaEngine
     //Collision Intersection
     em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
     {
-      if (c1.isCollideable)
+      if (c1.CollisionLayerCheck != 0)
       {
         c1.isCollidingOnFloor = false;
-        c1.center = t1.position;
+        c1.center = c1.offset + t1.position;
         c1.size = t1.scale;
         em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
         {
-          if (c2.isCollideable)
+          if (c2.CollisionLayerCheck != 0 && id2.index != id1.index)
           {
-            if (id1.index != id2.index)
+            c2.isCollidingOnFloor = false;
+            c2.center = c2.offset + t2.position;
+            c2.size = t2.scale;
+            Manifold m;
+            if (r1.isMoveable || r2.isMoveable)
             {
-              c2.isCollidingOnFloor = false;
-              c2.center = t2.position;
-              c2.size = t2.scale;
-              Manifold m;
-              if (r1.isMoveable || r2.isMoveable)
-              {
-                if (CollisionIntersection_Main(c1, r1, c2, r2, m))
+                if (c1.CollisionLayerCheck & c2.CollisionLayerCheck)
                 {
-                  bool already_added = false;
-                  //Check if there was already collision between the two 
-                  for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); ++it1)
-                  {
-                    if ((it1->id1.index == id1.index && it1->id2.index == id2.index) || (it1->id1.index == id2.index &&
-                      it1->id2.index == id1.index))
+                    if (CollisionIntersection_Main(c1, r1, c2, r2, m))
                     {
-                      already_added = true;
-                      break;
-                    }
-                  }
+                        bool already_added = false;
+                        //Check if there was already collision between the two 
+                        for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); ++it1)
+                        {
+                            if ((it1->id1.index == id1.index && it1->id2.index == id2.index) || (it1->id1.index == id2.index &&
+                                it1->id2.index == id1.index))
+                            {
+                                already_added = true;
+                                break;
+                            }
+                        }
 
-                  if (!already_added)
-                  {
-                    c1.isCollidingOnFloor = false;
-                    c2.isCollidingOnFloor = false;
-                    if (AABBvsAABB_Manifold(c1, c2, m))
-                      current_manifold_vector.push_back({m, id1, id2});
-                  }
+                        if (!already_added)
+                        {
+                            c1.isCollidingOnFloor = false;
+                            c2.isCollidingOnFloor = false;
+                            if (AABBvsAABB_Manifold(c1, c2, m))
+                                current_manifold_vector.push_back({ m, id1, id2 });
+                        }
+                    }
                 }
-              }
             }
           }
         });
@@ -140,19 +140,19 @@ namespace DeltaEngine
         Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
         Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
 
-        if (!c1.isTrigger && !c2.isTrigger && AABBvsAABB_Manifold(c1, c2, it1->m))
+        if (!c1.isTrigger && !c2.isTrigger && AABBvsAABB_Manifold(c1, c2, it1->m) && it1->m.penetration > 0.001f)
         {
           CollisionResponse(c1, r1, c2, r2, it1->m);
 
           if (r1.isMoveable)
           {
-            t1.position = r1.PointEnd;
-            c1.center = r1.PointEnd;
+            t1.position = r1.PointEnd - c1.offset;
+            c1.center = c1.offset + t1.position;
           }
           if (r2.isMoveable)
           {
-            t2.position = r2.PointEnd;
-            c2.center = r2.PointEnd;
+              t2.position = r2.PointEnd - c2.offset;
+              c2.center = c2.offset + t2.position;
           }
         }
       }

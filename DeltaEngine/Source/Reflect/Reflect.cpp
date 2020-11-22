@@ -14,11 +14,22 @@
 #include "Core/Utils/Json/JsonSerialize.h"
 #include "Core/GlobalStruct.h"
 #include "Assets/AssetManager.h"
-
+#include "AI/Waypoint.h"
+#include "AI/AI_State.h"
 namespace DeltaEngine
 {
   RTTR_REGISTRATION
   {
+    rttr::registration::class_<Waypoint>("Waypoint")
+      .property("Waypoints", &Waypoint::Waypoints)
+      .property("CurrentWaypoint", &Waypoint::CurrentWaypoint);
+
+  rttr::registration::class_<IdleSerpentipede>("IdleSerpent")
+      .property("startpoint", &IdleSerpentipede::StartPoint);
+
+  rttr::registration::class_<ChaseEnemySerpentipede>("ChaseSerpent")
+      .property("startpoint", &ChaseEnemySerpentipede::Points);
+
     rttr::registration::class_<EngineConfig>("config")
       .property("window", &EngineConfig::win_name)
       .property("width", &EngineConfig::width)
@@ -148,17 +159,16 @@ namespace DeltaEngine
     rttr::registration::class_<Collider>("collider")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Collider>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("center", &Collider::center)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("center", &Collider::center)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true),(rttr::metadata("NO_EDITOR", true)))
+      .property("offset", &Collider::offset)(rttr::policy::prop::bind_as_ptr)
       .property("size", &Collider::size)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("inter_point", &Collider::interPoint)(rttr::metadata("NO_SERIALIZE", true),
-                                                      (rttr::metadata("NO_EDITOR", true)))
+                                                     (rttr::metadata("NO_EDITOR", true)))
       .property("type", &Collider::type)
-      .property("is_collideable", &Collider::isCollideable)(rttr::policy::prop::bind_as_ptr)
       .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
       .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true),
                                                                         (rttr::metadata("NO_EDITOR", true)))
-      .property("collision_layer_id", &Collider::CollisionLayerID)(rttr::policy::prop::bind_as_ptr)
-      .property("collision_layer_check", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr);
+      .property("collision_layer", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Animator>("animator")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Animator>()->bits))

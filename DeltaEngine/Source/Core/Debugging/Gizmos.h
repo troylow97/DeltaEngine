@@ -20,7 +20,7 @@ namespace DeltaEngine::Gizmos
   void Draw2DBox(Transform transform = Transform());
 
   void Draw2DWireBox(Vector3 position, Vector3 scale = Vector3::one(), Quaternion rotation = Quaternion::Identity());
-  void Draw2DWireBox(Transform transform = Transform());
+  void Draw2DWireBox(Transform transform = Transform(),Vector2 col_offset = Vector2::zero());
 
   void Draw2DCircle(Vector3 position, Vector3 scale = Vector3::one(), Quaternion rotation = Quaternion::Identity());
   void Draw2DCircle(Transform transform = Transform());

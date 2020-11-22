@@ -62,11 +62,13 @@ namespace DeltaEngine
 
   JsonFile& JsonFile::WriteObject(instance object)
   {
+    //StartObject();
     Serialize::WriteObject(object, *m_writer);
+    //EndObject();
     return *this;
   }
 
-  JsonFile& JsonFile::WriteArray(const variant_sequential_view& view)
+  JsonFile& JsonFile::WriteArray(const variant_sequential_view view)
   {
     Serialize::WriteArray(view, *m_writer);
     return *this;

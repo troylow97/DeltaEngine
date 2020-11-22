@@ -22,23 +22,23 @@ namespace DeltaEngine::Serialize
 
   void WriteObject(instance object, PrettyWriter<FileWriteStream>& writer)
   {
-    instance obj = object.get_type().get_raw_type().is_wrapper() ? object.get_wrapped_instance() : object;
+      instance obj = object.get_type().get_raw_type().is_wrapper() ? object.get_wrapped_instance() : object;
 
-    auto prop_list = obj.get_derived_type().get_properties();
-    for (auto prop : prop_list)
-    {
-      if (prop.get_metadata("NO_SERIALIZE"))
-        continue;
+      auto prop_list = obj.get_derived_type().get_properties();
+      for (auto prop : prop_list)
+      {
+          if (prop.get_metadata("NO_SERIALIZE"))
+              continue;
 
-      variant prop_value = prop.get_value(obj);
-      if (!prop_value)
-        continue; // cannot serialize, because we cannot retrieve the value
+          variant prop_value = prop.get_value(obj);
+          if (!prop_value)
+              continue; // cannot serialize, because we cannot retrieve the value
 
-      const auto name = prop.get_name();
-      writer.String(name.data(), static_cast<SizeType>(name.length()), false);
-      if (!WriteVariant(prop_value, writer))
-        DeltaEngine_CORE_WARN("Cannot serialize property {}", name.data());
-    }
+          const auto name = prop.get_name();
+          writer.String(name.data(), static_cast<SizeType>(name.length()), false);
+          if (!WriteVariant(prop_value, writer))
+              DeltaEngine_CORE_WARN("Cannot serialize property {}", name.data());
+      }
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////
@@ -111,6 +111,7 @@ namespace DeltaEngine::Serialize
           for (auto comp : arch->components_desc->metalist)
           {
             type t = RT_Reflect::RT_Checker(comp.meta->bits);
+            DeltaEngine_CORE_INFO("Type: {}", t.get_name().to_string());
             if (!t.is_arithmetic())
             {
               writer.String(t.get_name().to_string());
@@ -224,29 +225,31 @@ namespace DeltaEngine::Serialize
 
     if (t.is_pointer())
     {
-      if (t.get_raw_type().is_arithmetic())
-      {
-        if (t == type::get<bool*>())
-          writer.Bool(var.get_wrapped_value<bool>());
-        else if (t == type::get<float*>())
-          writer.Double(var.get_wrapped_value<float>());
-        else if (t == type::get<int*>())
-          writer.Int(var.get_wrapped_value<int>());
-        return true;
-      }
-      if (t.get_raw_type().is_enumeration())
-      {
-        enumeration enum_prop = t.get_raw_type().get_enumeration();
-        auto key = enum_prop.value_to_name(var.get_wrapped_value<unsigned>());
-        writer.String(key.to_string());
-        return true;
-      }
-      if (t.get_raw_type() == type::get<std::string>())
-      {
-        if (t == type::get<std::string*>())
-          writer.String(var.get_wrapped_value<std::string>());
-        return true;
-      }
+        if (t.get_raw_type().is_arithmetic())
+        {
+            if (t == type::get<bool*>())
+                writer.Bool(var.get_wrapped_value<bool>());
+            else if (t == type::get<float*>())
+                writer.Double(var.get_wrapped_value<float>());
+            else if (t == type::get<int*>())
+                writer.Int(var.get_wrapped_value<int>());
+            else if (t == type::get<unsigned*>())
+                writer.Uint(var.get_wrapped_value<unsigned>());
+            return true;
+        }
+        if (t.get_raw_type().is_enumeration())
+        {
+            enumeration enum_prop = t.get_raw_type().get_enumeration();
+            auto key = enum_prop.value_to_name(var.get_wrapped_value<unsigned>());
+            writer.String(key.to_string());
+            return true;
+        }
+        if (t.get_raw_type() == type::get<std::string>())
+        {
+            if (t == type::get<std::string*>())
+                writer.String(var.get_wrapped_value<std::string>());
+            return true;
+        }
     }
 
     if (t.is_enumeration())

@@ -863,15 +863,6 @@ namespace DeltaEngine
     float a_extent = (abox.max.x - abox.min.x) / 2;
     float b_extent = (bbox.max.x - bbox.min.x) / 2;
 
-    if (A.center.y > B.center.y)
-    {
-      m.ContactPoint = B.center;
-    }
-    else
-    {
-      m.ContactPoint = A.center;
-    }
-
     // Calculate overlap on x axis
     float x_overlap = a_extent + b_extent - abs(n.x);
 
@@ -897,15 +888,6 @@ namespace DeltaEngine
             m.normal = {1, 0};
           }
 
-          if (A.center.y > B.center.y)
-          {
-            A.isCollidingOnFloor = true;
-          }
-          else
-          {
-            B.isCollidingOnFloor = true;
-          }
-
           m.penetration = x_overlap;
           return true;
         }
@@ -920,13 +902,12 @@ namespace DeltaEngine
 
         if (A.center.y > B.center.y)
         {
-          A.isCollidingOnFloor = true;
+            A.isCollidingOnFloor = true;
         }
         else
         {
-          B.isCollidingOnFloor = true;
+            B.isCollidingOnFloor = true;
         }
-
 
         m.penetration = y_overlap;
         return true;
@@ -935,6 +916,7 @@ namespace DeltaEngine
 
     return false;
   }
+
 }
 
 //UNUSED FUNCTIONS

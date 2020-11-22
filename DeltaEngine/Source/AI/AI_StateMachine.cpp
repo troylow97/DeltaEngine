@@ -23,21 +23,10 @@ namespace DeltaEngine
   {
     StateList["idle_lancer"] = new IdleLancer();
     StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
-    StateList["idle_fiddler"] = new IdleFiddler(Vector2{0, 0}, Vector2{5, 0});
+    StateList["idle_fiddler"] = new IdleFiddler();
     StateList["chase_enemy_fiddler"] = new ChaseEnemyFiddler();
-    //Temporary Init
-    //em.ForEach([&](EntityID id, AI ai)
-    //{
-    //	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).key = "idle_lancer";
-    //	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).transition = "null";
-    //	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "monster";
-    //});
-
-
-    //em.ForEach([&](EntityID id,Input i)
-    //{
-    //	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "player";
-    //});
+    StateList["idle_serpentipede"] = new IdleSerpentipede();
+    StateList["chase_enemy_serpentipede"] = new ChaseEnemySerpentipede();
   }
 
   void AISystem::Shutdown()
