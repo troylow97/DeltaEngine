@@ -12,7 +12,7 @@ namespace DeltaEngine
 {
   void PhysicsDrawSystem::Update()
   {
-    if (InputManager::Instance().EntitySelected() && InputManager::Instance().EntityChosenInViewport())
+    if (InputManager::Instance().EntitySelected() && InputManager::Instance().EntityChosenInViewport() && InputManager::Instance().EntityAllowDrag())
     {
         drag_box.drag_box_transform.scale = { 0.3f, 0.3f, 0.0f };
         Gizmos::Draw2DWireBox(drag_box.drag_box_transform);

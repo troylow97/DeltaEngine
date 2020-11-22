@@ -3,6 +3,7 @@
 #include "ImGui/Panels/LoggerPanel.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
+#include "ImGui//Panels/LoggerPanel.h"
 #include "Render/Camera.h"
 
 namespace DeltaEngine

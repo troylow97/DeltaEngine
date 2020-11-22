@@ -26,8 +26,7 @@ namespace DeltaEngine
     MouseScrolled,
     ImGuiDragFile,
     ImGuiRemovingDragFile,
-    ImGuiFileDragDone,
-    ImGuiLoggingMessage
+    ImGuiFileDragDone
   };
 
   enum EventCategory

@@ -49,10 +49,11 @@ namespace DeltaEngine
     bottomRight.x += ImGui::GetWindowPos().x;
     bottomRight.y += ImGui::GetWindowPos().y;
 
-    ImVec2 ButtonPos1 = {ImGui::GetWindowSize().x * 0.485f, ImGui::GetWindowSize().y * 0.3f};
-    ImVec2 ButtonPos2 = {ImGui::GetWindowSize().x * 0.515f, ImGui::GetWindowSize().y * 0.3f};
-    ImVec2 ButtonPos3 = { ImGui::GetWindowSize().x * 0.01f, ImGui::GetWindowSize().y * 0.3f };
-    ImVec2 ButtonPos4 = { ImGui::GetWindowSize().x * 0.04f, ImGui::GetWindowSize().y * 0.3f };
+    ImVec2 ButtonPos1 = {ImGui::GetWindowSize().x * 0.455f, ImGui::GetWindowSize().y * 0.3f};
+    ImVec2 ButtonPos2 = {ImGui::GetWindowSize().x * 0.485f, ImGui::GetWindowSize().y * 0.3f};
+    ImVec2 ButtonPos3 = { ImGui::GetWindowSize().x * 0.515f, ImGui::GetWindowSize().y * 0.3f };
+    ImVec2 ButtonPos4 = { ImGui::GetWindowSize().x * 0.01f, ImGui::GetWindowSize().y * 0.3f };
+    ImVec2 ButtonPos5 = { ImGui::GetWindowSize().x * 0.04f, ImGui::GetWindowSize().y * 0.3f };
     ImGui::SetCursorPos(ButtonPos1);
     if (ImGui::Button(ICON_FA_PLAY, {25.0f, 22.0f}))
       GetEnv().pECS->GetWorld().SetPause(false);
@@ -60,6 +61,10 @@ namespace DeltaEngine
     if (ImGui::Button(ICON_FA_PAUSE, {25.0f, 22.0f}))
       GetEnv().pECS->GetWorld().SetPause(true);
     ImGui::SetCursorPos(ButtonPos3);
+    if (ImGui::Button(ICON_FA_STOP, { 25.0f, 22.0f }))
+    {
+    }
+    ImGui::SetCursorPos(ButtonPos4);
     static int camera_clicked = 0;
     static int entity_clicked = 0;
     if (ImGui::Button(ICON_FA_HAND_PAPER, {25.0f, 22.0f})) // ICON_FA_ARROWS_ALT
@@ -79,7 +84,7 @@ namespace DeltaEngine
         InputManager::Instance().SetEntityAllowDrag(false);
       }
     }
-    ImGui::SetCursorPos(ButtonPos4);
+    ImGui::SetCursorPos(ButtonPos5);
     if (ImGui::Button(ICON_FA_ARROWS_ALT, { 25.0f, 22.0f })) 
     {
       ++entity_clicked;
