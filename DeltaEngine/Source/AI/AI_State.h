@@ -80,9 +80,9 @@ namespace DeltaEngine
 
   class ChaseEnemySerpentipede : public AIState
   {
+  public:
       float CooldownTimer;
       int CurrentPoint;
-  public:
       Vector2 Points[3];
       ChaseEnemySerpentipede();
       void onEnter(EntityID& id) override;

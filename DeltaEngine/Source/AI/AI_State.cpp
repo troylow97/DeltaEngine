@@ -43,8 +43,8 @@ namespace DeltaEngine
     CheckEdges(monster);
     auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
 
-    if (ref.y < 2.0)
-        AITools::MoveTowardsPoint(monster, Vector2{ ref.x,Random::RandomFloatRange(2.1,2.5) });
+    //if (ref.y < 2.0)
+    //    AITools::MoveTowardsPoint(monster, Vector2{ ref.x,Random::RandomFloatRange(2.1,2.5) });
   }
 
   //----------------------------------------------------------------------
@@ -150,13 +150,11 @@ namespace DeltaEngine
 
   //----------------------------------------------------------------------
 
-  IdleSerpentipede::IdleSerpentipede()
+  IdleSerpentipede::IdleSerpentipede() :
+      StartPoint{Vector2{0,0}}
   {
-      StartPoint = Vector2{ 0,0 };
       JsonFile file;
-
-      file.StartWriter("idle_serpentipede.json").StartObject().WriteObject( StartPoint ).EndObject();
-
+      file.StartReader("idle_serpentipede.json").LoadObject(StartPoint).EndReader();
       TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(StartPoint);
   }
 
@@ -178,11 +176,8 @@ namespace DeltaEngine
       CooldownTimer{0.0f},
       CurrentPoint{0}
   {
-     Points[0] = Vector2{ 0,0 };
-     Points[1] = Vector2{ 2,0 };
-     Points[2] = Vector2{ 5,0 };
      JsonFile file;
-     file.StartWriter("chase_serpentipede.json").StartObject().WriteObject(Points).EndObject();
+     file.StartReader("chase_serpentipede.json").LoadObject(Points).EndReader();
       TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(Points[0]);
   }
 
@@ -233,50 +228,6 @@ namespace DeltaEngine
           CooldownTimer -= env.pClock->DeltaTime();
       }
 
-
-
-      //if (CooldownTimer >= 0)
-      //{
-      //    CooldownTimer -= env.pClock->DeltaTime();
-      //
-      //    //Do attack
-      //    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
-      //    {
-      //        if (et.type == EntityCategory::E_PLAYER)
-      //        {
-      //            if (AITools::EntityisAtPoint(monster, Points[CurrentPoint]))
-      //            {
-      //                if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (
-      //                    AITools::Distance_X_BetweenTwoEntities(monster, player) < 5) &&
-      //                    env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
-      //                {
-      //                    AITools::FaceEntity(monster, player);
-      //                    env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).RangeAttack = true;
-      //                    std::cout << "Ranged Attack" << std::endl;
-      //                    CooldownTimer = 2.0f;
-      //                    CurrentPoint = Random::RandomIntRange(0, 2);
-      //                }
-      //            }
-      //            else
-      //                AITools::MoveTowardsPoint(monster, Points[CurrentPoint]);
-      //        }
-      //    });
-      //
-      //}
-      //else
-      //{
-      //    CooldownTimer = 2.0f;
-      //    CurrentPoint = Random::RandomIntRange(0, 2);
-      //}
-
-      //Move to any of the 3 waypoint, attack player
-
-
-      //env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
-      //    {
-      //        if (et.type == EntityCategory::E_PLAYER)
-      //            AITools::MoveTowardsEntity(monster, player);
-      //    });
   }
 
 }
