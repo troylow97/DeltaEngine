@@ -237,35 +237,32 @@ namespace DeltaEngine
   {
     if (InputManager::Instance().EntityAllowDrag() && InputManager::Instance().MouseInViewPort())
     {
-      if (InputManager::Instance().IsMousePressed(DEVK_LBUTTON) && InputManager::Instance().EntitySelected())
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id1, Transform& t1, Image& i1)
       {
-        InputManager::Instance().SetEntityDragged(true);
-        
+        if (CollisionIntersection_RectMouse(drag_box.drag_box_transform.position, drag_box.drag_box_transform.scale, InputManager::Instance().CurrentCameraPosition()))
+        {
+          InputManager::Instance().SetEntityDragged(true);
+        }
         if (InputManager::Instance().EntityDragged())
         {
-          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id1, Transform& t1, Image& i1)
+          if (InputManager::Instance().IsMousePressed(DEVK_LBUTTON) && InputManager::Instance().EntitySelected())
           {
-            auto& t = em.GetComponent<Transform>({ InputManager::Instance().EntityIDSelected() });
-            drag_box.drag_box_transform = t;
-            drag_box.drag_box_transform.position = t.position;
-            drag_box.drag_box_transform.scale = { 0.3f, 0.3f, 0.0f };
-      
-            if (CollisionIntersection_RectMouse(drag_box.drag_box_transform.position, drag_box.drag_box_transform.scale, InputManager::Instance().CurrentCameraPosition()))
+            if (CollisionIntersection_RectMouse(t1.position, t1.scale, InputManager::Instance().CurrentCameraPosition()))
             {
               float x_transform = InputManager::Instance().CurrentCameraPosition().point_x - InputManager::Instance().PreviousCameraPosition().point_x;
               float y_transform = InputManager::Instance().CurrentCameraPosition().point_y - InputManager::Instance().PreviousCameraPosition().point_y;
-              
+          
               if (id1.index == InputManager::Instance().EntityIDSelected())
               {
-                //t1.position.x = InputManager::Instance().CurrentCameraPosition().point_x;
-                //t1.position.y = InputManager::Instance().CurrentCameraPosition().point_y;
-                t1.position.x += x_transform;
-                t1.position.y += y_transform;
+                t1.position.x = InputManager::Instance().CurrentCameraPosition().point_x;
+                t1.position.y = InputManager::Instance().CurrentCameraPosition().point_y;
+                //t1.position.x += x_transform;
+                //t1.position.y += y_transform;
               }
             }
-          });
+          }
         }
-      }
+      });
     }
     else if (InputManager::Instance().IsMouseReleased(DEVK_LBUTTON))
     {
