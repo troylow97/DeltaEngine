@@ -28,7 +28,9 @@ namespace DeltaEngine
       .property("startpoint", &IdleSerpentipede::StartPoint);
 
   rttr::registration::class_<ChaseEnemySerpentipede>("ChaseSerpent")
-      .property("startpoint", &ChaseEnemySerpentipede::Points);
+      .property("cooldown", &ChaseEnemySerpentipede::CooldownTimer)
+      .property("current_point", &ChaseEnemySerpentipede::CurrentPoint)
+      .property("points", &ChaseEnemySerpentipede::Points);
 
     rttr::registration::class_<EngineConfig>("config")
       .property("window", &EngineConfig::win_name)
