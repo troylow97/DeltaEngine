@@ -2,7 +2,7 @@
 #include "Core/GameClock/GameClock.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
-
+#include "AI/AITools.h"
 namespace DeltaEngine
 {
   void AttackSystem::Update()
@@ -13,6 +13,8 @@ namespace DeltaEngine
       {
         a.CooldownTimer -= env.pClock->DeltaTime();
       }
+
+      Dash();
 
       if (a.RangeAttack)
       {
@@ -164,4 +166,26 @@ namespace DeltaEngine
       }
     }
   }
-}
+
+  void AttackSystem::Dash()
+  {
+      em.ForEach([&](EntityID& id1, Transform& t1, EntityType et1)
+      {
+          if (et1.type == EntityCategory::E_PLAYER_DASH)
+          {
+              em.ForEach([&](EntityID& id2,Collider& c2, Transform& t2, EntityType et2)
+              {
+                  if (et2.type == EntityCategory::E_PLAYER)
+                  {
+                      if (c2.isCollidingOnFloor)
+                          t1.position = t2.position;
+                      else
+                          env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
+                      return;
+                  }
+              });
+              return;
+          }
+      });
+  }
+} //Namespace DeltaEngine

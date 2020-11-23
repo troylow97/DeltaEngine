@@ -22,7 +22,7 @@ namespace DeltaEngine
     ColliderType type;
     bool isTrigger;
     bool isCollidingOnFloor;
-    unsigned CollisionLayerCheck;
+    int CollisionLayerCheck;
 
     Collider() :
       center{0, 0},

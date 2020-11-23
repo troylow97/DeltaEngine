@@ -69,16 +69,9 @@ namespace DeltaEngine
     {
       if (et.type == EntityCategory::E_PLAYER)
       {
-        if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (
-            AITools::Distance_X_BetweenTwoEntities(monster, player) < 2) && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1
-            && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
-        {
-          AITools::FaceEntity(monster, player);
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
-        }
         auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
         auto player_size = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).scale;
-        AITools::MoveTowardsPoint(monster, Vector2{player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.5,1.5)});
+        AITools::FlyTowardsPoint(monster, Vector2{player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.5,1.5)});
       }
     });
   }
@@ -136,9 +129,7 @@ namespace DeltaEngine
     {
       if (et.type == EntityCategory::E_PLAYER)
       {
-          if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (
-              AITools::Distance_X_BetweenTwoEntities(monster, player) < 2) &&
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+          if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
           {
               AITools::FaceEntity(monster, player);
               env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
@@ -171,14 +162,24 @@ namespace DeltaEngine
       CheckEdges(monster);
   }
 
+  SerpentipedeData::SerpentipedeData() :
+      MaxCooldown{3.0f},
+      Points{ Vector2{0,0},Vector2{3,0},Vector2{6,0} }
+  {}
+
   ChaseEnemySerpentipede::ChaseEnemySerpentipede() :
-      Points{ Vector2{0.0,0.0},Vector2{2.0,0.0},Vector2{5.0,0.0} },
+      data{  },
       CooldownTimer{0.0f},
       CurrentPoint{0}
   {
      JsonFile file;
-     file.StartReader("chase_serpentipede.json").LoadObject(Points).EndReader();
-      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(Points[0]);
+     rttr::variant v{ data };
+     auto& seq = v.create_sequential_view();
+     file.StartWriter("serpentipede.json").StartObject().WriteObject(seq).EndObject().EndWriter();
+
+     //file.StartReader("chase_serpentipede.json").LoadObject(Points).EndReader();
+
+      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(data.Points[0]);
   }
 
   void ChaseEnemySerpentipede::onEnter(EntityID& id)
@@ -193,34 +194,28 @@ namespace DeltaEngine
   void ChaseEnemySerpentipede::Update(EntityID& monster)
   {
       CheckEdges(monster);
-
+        
       if (CooldownTimer <= 0)
       {
-          if (AITools::EntityisAtPoint(monster, Points[CurrentPoint]))
+          if (AITools::EntityisAtPoint(monster, data.Points[CurrentPoint]))
           {
-              CurrentPoint = Random::RandomIntRange(0, 2);
-
               env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
                   {
                       if (et.type == EntityCategory::E_PLAYER)
                       {
-                          if (AITools::EntityisAtPoint(monster, Points[CurrentPoint]))
-                          {
-                              if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (
-                                  AITools::Distance_X_BetweenTwoEntities(monster, player) < 5) &&
-                                  env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
-                              {
-                                  AITools::FaceEntity(monster, player);
-                                  env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).RangeAttack = true;
-                                  CooldownTimer = 2.0f;
-                              }
-                          }
+                            if (env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+                            {
+                                AITools::FaceEntity(monster, player);
+                                env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).RangeAttack = true;
+                                CooldownTimer = data.MaxCooldown;
+                            }
                       }
                   });
           }
           else
           {
-              AITools::MoveTowardsPoint(monster, Points[CurrentPoint]);
+              AITools::MoveTowardsPoint(monster, data.Points[CurrentPoint]);
+
           }
       }
       else

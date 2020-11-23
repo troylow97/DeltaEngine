@@ -72,7 +72,7 @@ namespace DeltaEngine
         r1.Direction = Vector2::right();
         if (r1.InherentAcceleration < r1.MaxAcceleration)
           r1.InherentAcceleration++;
-
+    
         a.SetBool("IsRunning", true);
         idle_timer = 0.0f;
         i.m_FlipX = false;
@@ -140,7 +140,6 @@ namespace DeltaEngine
         idle_timer = 0.0f;
       });
     }
-
     if (InputManager::Instance().IsKeyReleased(DEVK_SPACE))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
@@ -148,6 +147,37 @@ namespace DeltaEngine
         i1.previousKey = DEVK_SPACE;
         r1.isJumping = false;
       });
+    }
+
+    if (InputManager::Instance().IsKeyTriggered(DEVK_Z)) //DASH
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody& r1, Collider& c1, Input& i1)
+            {
+                if (c1.isCollidingOnFloor && r1.Direction == Vector2::right() || r1.Direction == Vector2::left())
+                {
+                    r1.isDashing = true;
+                    c1.CollisionLayerCheck = 1;
+
+                    EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+                    em.GetComponent<Transform>(missile).position = t1.position;
+                    em.GetComponent<RigidBody>(missile).Mass = 5.0f;
+                    em.GetComponent<Transform>(missile).scale = { 0.4f, 0.4f, 0.0f };
+                    em.GetComponent<Lifespan>(missile).Timer = 0.35f;
+                    em.GetComponent<Collider>(missile).isTrigger = true;
+                    em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_DASH;
+                    em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
+                    em.GetComponent<Health>(missile).CurrentHealth = 1;
+                    if (r1.Direction == Vector2::right())
+                    {
+                        em.GetComponent<Transform>(missile).position.x += 0.5f;
+                    }
+                    else
+                    {
+                        em.GetComponent<Transform>(missile).position.x -= 0.5f;
+                    }
+                }
+            i1.previousKey = DEVK_Z;
+        });
     }
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_C))

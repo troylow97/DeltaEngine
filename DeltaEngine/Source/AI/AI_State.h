@@ -78,12 +78,20 @@ namespace DeltaEngine
       void Update(EntityID& id1) override;
   };
 
+  struct SerpentipedeData
+  {
+      float MaxCooldown;
+      Vector2 Points[3];
+      SerpentipedeData();
+  };
+
   class ChaseEnemySerpentipede : public AIState
   {
   public:
       float CooldownTimer;
       int CurrentPoint;
-      Vector2 Points[3];
+      SerpentipedeData data;
+
       ChaseEnemySerpentipede();
       void onEnter(EntityID& id) override;
       void onExit(EntityID& id) override;

@@ -13,6 +13,7 @@ namespace DeltaEngine
     void LateUpdate() override;
     void RangedAttack(EntityID&);
     void MeleeAttack(EntityID&);
+    void Dash();
   private:
     std::vector<EntityID> MeleeAttackingEntities;
     std::vector<EntityID> RangedAttackingEntities;

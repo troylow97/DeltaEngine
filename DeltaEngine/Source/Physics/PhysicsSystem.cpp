@@ -12,6 +12,8 @@ namespace DeltaEngine
         m_gravity_amount = { 0,-60.0f };
         CurrentJumpTicks = 0;
         MaxJumpTicks = 10;
+        CurrentDashTicks = 0;
+        MaxDashTicks = 10;
         InitialJumpForce = 4500.0f;
         JumpForce = InitialJumpForce;
         m_max_velocity = 1000.0f;
@@ -49,13 +51,38 @@ namespace DeltaEngine
                 t1.position += r1.Velocity * env.pClock->FixedDeltaTime();                
 
                 //Jumping
-                if (r1.isJumping == true && c1.isCollidingOnFloor)
+                if (r1.isJumping && c1.isCollidingOnFloor)
                 {
                     CurrentJumpTicks = 1;
                     JumpForce = InitialJumpForce;
                 }
+                else if (r1.isDashing && CurrentDashTicks < MaxDashTicks && c1.isCollidingOnFloor)
+                {
+                    CurrentDashTicks++;
+                    if (r1.Direction == Vector2::right())
+                    {
+                        r1.AccumulatedForce += Vector2{ 5000 + r1.Mass * 100, 0 };
+                    }
+                    else if (r1.Direction == Vector2::left())
+                    {
+                        r1.AccumulatedForce -= Vector2{ 5000 + r1.Mass * 100, 0 };
+                    }
+                }
+                else if (r1.isDashing && !c1.isCollidingOnFloor)
+                {
+                    CurrentDashTicks = 0;
+                    c1.CollisionLayerCheck = 13;
+                    r1.isDashing = false;
+                }
+                
+                if (CurrentDashTicks >= MaxDashTicks)
+                {
+                    CurrentDashTicks = 0;
+                    c1.CollisionLayerCheck = 13;
+                    r1.isDashing = false;
+                }
 
-                if (CurrentJumpTicks >= 1 && r1.isJumping == true)
+                if (CurrentJumpTicks >= 1 && r1.isJumping)
                 {
                     r1.AccumulatedForce += Vector2{ 0, JumpForce + r1.Mass * 100 };
                     JumpForce *= 0.7f;
@@ -76,7 +103,7 @@ namespace DeltaEngine
                 r1.AccumulatedForce += move * r1.Mass * 0.5f;
 
                 //Apply Gravity
-                if (r1.hasGravity && !c1.isCollidingOnFloor)
+                if (r1.hasGravity && !c1.isCollidingOnFloor && !r1.isDashing)
                 {
                     r1.Acceleration = m_gravity_amount;
                 }

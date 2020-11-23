@@ -46,6 +46,15 @@ namespace DeltaEngine
           return;
         }
 
+        //Player Dash
+        if ((type1 == EntityCategory::E_PLAYER_DASH || type2 == EntityCategory::E_PLAYER_DASH) &&
+            (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
+        {
+            hp1.CurrentHealth--;
+            hp2.CurrentHealth--;
+            return;
+        }
+
         //Enemy Collide with player
         if ((type1 == EntityCategory::E_ENEMY && type2 == EntityCategory::E_PLAYER) ||
           (type1 == EntityCategory::E_PLAYER && type2 == EntityCategory::E_ENEMY))

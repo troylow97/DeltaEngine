@@ -27,10 +27,9 @@ namespace DeltaEngine
   rttr::registration::class_<IdleSerpentipede>("IdleSerpent")
       .property("startpoint", &IdleSerpentipede::StartPoint);
 
-  rttr::registration::class_<ChaseEnemySerpentipede>("ChaseSerpent")
-      .property("cooldown", &ChaseEnemySerpentipede::CooldownTimer)
-      .property("current_point", &ChaseEnemySerpentipede::CurrentPoint)
-      .property("points", &ChaseEnemySerpentipede::Points);
+  rttr::registration::class_<SerpentipedeData>("SerpentipedeData")
+      .property("cooldown", &SerpentipedeData::MaxCooldown)
+      .property("points", &SerpentipedeData::Points);
 
     rttr::registration::class_<EngineConfig>("config")
       .property("window", &EngineConfig::win_name)
@@ -156,7 +155,9 @@ namespace DeltaEngine
       .property("has_gravity", &RigidBody::hasGravity)(rttr::policy::prop::bind_as_ptr)
       .property("is_moveable", &RigidBody::isMoveable)(rttr::policy::prop::bind_as_ptr)
       .property("is_jumping", &RigidBody::isJumping)(rttr::policy::prop::bind_as_ptr)(
-        rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+        rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("is_dashing", &RigidBody::isDashing)(rttr::policy::prop::bind_as_ptr)(
+            rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
     rttr::registration::class_<Collider>("collider")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Collider>()->bits))
@@ -170,7 +171,7 @@ namespace DeltaEngine
       .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
       .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true),
                                                                         (rttr::metadata("NO_EDITOR", true)))
-      .property("collision_layer", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr);
+      .property("collision_layer_check", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Animator>("animator")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Animator>()->bits))

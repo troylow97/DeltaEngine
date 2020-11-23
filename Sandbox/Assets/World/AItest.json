@@ -37,7 +37,8 @@
                 "acceleration_pickup": 3.0,
                 "has_gravity": false,
                 "is_moveable": false,
-                "is_jumping": false
+                "is_jumping": false,
+                "is_dashing": false
             },
             "collider": {
                 "center": {
@@ -50,7 +51,7 @@
                 },
                 "type": "box",
                 "is_trigger": false,
-                "collision_layer": 255
+                "collision_layer_check": 255
             }
         },
         {
@@ -68,8 +69,8 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": -2.2085072994232179,
-                    "y": -0.0005308338440954685,
+                    "x": 3.6624550819396974,
+                    "y": -0.0007375581772066653,
                     "z": 0.0
                 },
                 "scale": {
@@ -94,12 +95,13 @@
                 "acceleration_pickup": 3.0,
                 "has_gravity": true,
                 "is_moveable": true,
-                "is_jumping": false
+                "is_jumping": false,
+                "is_dashing": false
             },
             "collider": {
                 "center": {
-                    "x": -2.2085072994232179,
-                    "y": -0.0005308338440954685
+                    "x": 3.6624550819396974,
+                    "y": -0.0007375581772066653
                 },
                 "offset": {
                     "x": 0.0,
@@ -107,7 +109,7 @@
                 },
                 "type": "box",
                 "is_trigger": false,
-                "collision_layer": 255
+                "collision_layer_check": 13
             },
             "image": {
                 "sprite": {
@@ -150,8 +152,8 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": 0.8329800963401794,
-                    "y": -0.0007494597230106592,
+                    "x": 0.35881033539772036,
+                    "y": -0.0005975911626592279,
                     "z": 0.0
                 },
                 "scale": {
@@ -176,12 +178,13 @@
                 "acceleration_pickup": 3.0,
                 "has_gravity": true,
                 "is_moveable": true,
-                "is_jumping": false
+                "is_jumping": false,
+                "is_dashing": false
             },
             "collider": {
                 "center": {
-                    "x": 0.8329800963401794,
-                    "y": -0.0007494597230106592
+                    "x": 0.35881033539772036,
+                    "y": -0.0005975911626592279
                 },
                 "offset": {
                     "x": 0.0,
@@ -189,7 +192,7 @@
                 },
                 "type": "box",
                 "is_trigger": false,
-                "collision_layer": 255
+                "collision_layer_check": 4
             },
             "image": {
                 "sprite": {
