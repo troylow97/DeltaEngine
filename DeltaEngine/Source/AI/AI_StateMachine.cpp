@@ -21,6 +21,11 @@ namespace DeltaEngine
 {
   void AISystem::Initialize()
   {
+    em.ForEach([&](EntityID& id, AI& ai,Transform& t1)
+    {
+       ai.original_point = t1.position;
+    });
+
     SerpentipedeData serpent_data;
     JsonFile file;
     file.StartReader("AI/serpentipede.json").LoadObject(serpent_data).EndReader();

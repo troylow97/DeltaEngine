@@ -172,16 +172,20 @@ namespace DeltaEngine
         
       if (CooldownTimer <= 0)
       {
-          if (AITools::EntityisAtPoint(monster, SerpentData.Points[CurrentPoint]))
+          auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
+          auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+
+          if (AITools::EntityisAtPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]))
           {
               env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
                   {
                       if (et.type == EntityCategory::E_PLAYER)
                       {
-                            if (env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+                            if (attack.CooldownTimer <= 0)
                             {
+                                CurrentPoint = Random::RandomIntRange(0, 3);
                                 AITools::FaceEntity(monster, player);
-                                env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).RangeAttack = true;
+                                attack.RangeAttack = true;
                                 CooldownTimer = SerpentData.MaxCooldown;
                             }
                       }
@@ -189,8 +193,7 @@ namespace DeltaEngine
           }
           else
           {
-              AITools::MoveTowardsPoint(monster, SerpentData.Points[CurrentPoint]);
-
+              AITools::MoveTowardsPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]);
           }
       }
       else

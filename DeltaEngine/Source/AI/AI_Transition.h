@@ -147,7 +147,11 @@ namespace DeltaEngine
           auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
           env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
               {
-                  if (et.type == EntityCategory::E_PLAYER && AITools::EntityisWithinDetectionRange(player, StartPoint, DetectionRange.x, DetectionRange.y))
+                  if (et.type == EntityCategory::E_PLAYER 
+                      && AITools::EntityisWithinDetectionRange
+                         (player, ref.original_point + StartPoint, 
+                         ref.original_point.x + DetectionRange.x, 
+                         ref.original_point.y + DetectionRange.y))
                   {
                       ref.transition = getTargetState();
                   }
@@ -177,7 +181,11 @@ namespace DeltaEngine
           auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
           env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
               {
-                  if (et.type == EntityCategory::E_PLAYER && !AITools::EntityisWithinDetectionRange(player, StartPoint, DetectionRange.x, DetectionRange.y))
+                  if (et.type == EntityCategory::E_PLAYER 
+                      && !AITools::EntityisWithinDetectionRange
+                          (player, ref.original_point + StartPoint, 
+                          ref.original_point.x + DetectionRange.x, 
+                          ref.original_point.y + DetectionRange.y))
                   {
                       ref.transition = getTargetState();
                   }

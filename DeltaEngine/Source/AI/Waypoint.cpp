@@ -12,8 +12,8 @@ namespace DeltaEngine
 	void Waypoint::UpdateWaypoint(EntityID id)
 	{
 		auto pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position;
-
-		if(AITools::EntityisAtPoint(id, Waypoints[CurrentWaypoint]))
+		auto original_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).original_point;
+		if(AITools::EntityisAtPoint(id, original_pos + Waypoints[CurrentWaypoint]))
 		{
 			if (CurrentWaypoint < Waypoints.size() - 1)
 				CurrentWaypoint++;
@@ -21,6 +21,6 @@ namespace DeltaEngine
 				CurrentWaypoint = 0;
 		}
 
-		AITools::MoveTowardsPoint(id, Waypoints[CurrentWaypoint]);
+		AITools::MoveTowardsPoint(id, original_pos + Waypoints[CurrentWaypoint]);
 	}
 }

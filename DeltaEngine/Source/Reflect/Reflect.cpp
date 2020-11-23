@@ -29,12 +29,12 @@ namespace DeltaEngine
 
   rttr::registration::class_<FiddlerData>("FiddlerData")
       .property("waypoint", &FiddlerData::waypoint)(rttr::policy::prop::bind_as_ptr)
-      .property("lost_detection_range", &FiddlerData::LostDetectionRange)(rttr::policy::prop::bind_as_ptr)
-      .property("charge_detection_range", &FiddlerData::ChargeDetectionRange)(rttr::policy::prop::bind_as_ptr);
+      .property("lost_detection_range", &FiddlerData::ChargeDetectionRange)(rttr::policy::prop::bind_as_ptr)
+      .property("charge_detection_range", &FiddlerData::LostDetectionRange)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<SerpentipedeData>("SerpentipedeData")
       .property("cooldown", &SerpentipedeData::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
-      .property("points", &SerpentipedeData::Points)(rttr::policy::prop::bind_as_ptr)
+      .property("points", &SerpentipedeData::Points)
       .property("detection_range", &SerpentipedeData::DetectionRange)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<EngineConfig>("config")
@@ -236,6 +236,7 @@ namespace DeltaEngine
     rttr::registration::class_<AI>("ai")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
+      .property("original_point", &AI::original_point)(rttr::policy::prop::bind_as_ptr)
       .property("state", &AI::key)(rttr::policy::prop::bind_as_ptr)
       .property("transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
 
