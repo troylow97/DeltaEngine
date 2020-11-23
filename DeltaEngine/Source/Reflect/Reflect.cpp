@@ -24,12 +24,18 @@ namespace DeltaEngine
       .property("Waypoints", &Waypoint::Waypoints)
       .property("CurrentWaypoint", &Waypoint::CurrentWaypoint);
 
-  rttr::registration::class_<IdleSerpentipede>("IdleSerpent")
-      .property("startpoint", &IdleSerpentipede::StartPoint);
+  rttr::registration::class_<LancerData>("LancerData")
+      .property("charge_detection_range", &LancerData::ChargeDetectionRange);
+
+  rttr::registration::class_<FiddlerData>("FiddlerData")
+      .property("waypoint", &FiddlerData::waypoint)(rttr::policy::prop::bind_as_ptr)
+      .property("lost_detection_range", &FiddlerData::LostDetectionRange)(rttr::policy::prop::bind_as_ptr)
+      .property("charge_detection_range", &FiddlerData::ChargeDetectionRange)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<SerpentipedeData>("SerpentipedeData")
-      .property("cooldown", &SerpentipedeData::MaxCooldown)
-      .property("points", &SerpentipedeData::Points);
+      .property("cooldown", &SerpentipedeData::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("points", &SerpentipedeData::Points)(rttr::policy::prop::bind_as_ptr)
+      .property("detection_range", &SerpentipedeData::DetectionRange)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<EngineConfig>("config")
       .property("window", &EngineConfig::win_name)

@@ -19,6 +19,24 @@ namespace DeltaEngine
         m_max_velocity = 1000.0f;
     }
 
+    void PhysicsSystem::SetBounds(RigidBody& r1)
+    {
+        //Check for infinite-mass
+        if (r1.Mass <= 0)
+        {
+            r1.Mass = 1.0f;
+        }
+
+        if (r1.FrictionCoeff <= 0)
+        {
+            r1.FrictionCoeff = 0.01f;
+        }
+        else if (r1.FrictionCoeff > 5)
+        {
+            r1.FrictionCoeff = 5.0f;
+        }
+    }
+
     void PhysicsSystem::Update()
     {
       for ( size_t step = 0; step < env.pClock->Timesteps(); ++step )
@@ -36,16 +54,7 @@ namespace DeltaEngine
         {
             if (r1.isMoveable)
             {
-                //Check for infinite-mass
-                if (r1.Mass <= 0)
-                {
-                    r1.Mass = 1.0f;
-                }
-
-                if (r1.FrictionCoeff <= 0)
-                {
-                    r1.FrictionCoeff = 0.01f;
-                }
+                SetBounds(r1);
 
                 //Set Euler
                 t1.position += r1.Velocity * env.pClock->FixedDeltaTime();                

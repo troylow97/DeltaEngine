@@ -16,6 +16,7 @@ namespace DeltaEngine
     void PhysicsSystem::LateUpdate() override;
 
   private:
+    void PhysicsSystem::SetBounds(RigidBody& r1);
     void PhysicsSystem::UpdateVelocity();
 
     Vector2 m_gravity_amount {0, -60.0f};

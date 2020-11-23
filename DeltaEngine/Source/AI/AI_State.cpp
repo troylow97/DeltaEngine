@@ -25,9 +25,9 @@ namespace DeltaEngine
     }
   }
 
-  IdleLancer::IdleLancer()
+  IdleLancer::IdleLancer(Vector2& charge_range)
   {
-    TransitionEdges["detect_enemy_lancer"] = new DetectEnemyLancer();
+    TransitionEdges["detect_enemy_lancer"] = new DetectEnemyLancer(charge_range);
   }
 
   void IdleLancer::onEnter(EntityID& id)
@@ -78,20 +78,10 @@ namespace DeltaEngine
 
   //----------------------------------------------------------------------
 
-  IdleFiddler::IdleFiddler()
+  IdleFiddler::IdleFiddler(Waypoint& wp,Vector2& charge_range) :
+      waypoint{wp}
   {
-    //To read from json file instead
-    //waypoint.Waypoints.push_back(Vector2{ 0,0 });
-    //waypoint.Waypoints.push_back(Vector2{ 5,0 });
-
-
-    JsonFile file;
-   //rttr::variant v{ waypoint.Waypoints };
-   //auto& seq = v.create_sequential_view();
-    //file.StartWriter( filename ).StartObject().WriteObject( obj ).EndObject();
-    file.StartReader("idle_fiddler.json").LoadObject(waypoint).EndReader();
-
-    TransitionEdges["detect_enemy_fiddler"] = new DetectEnemyFiddler();
+    TransitionEdges["detect_enemy_fiddler"] = new DetectEnemyFiddler(charge_range);
   }
 
   void IdleFiddler::onEnter(EntityID& id)
@@ -108,9 +98,9 @@ namespace DeltaEngine
     CheckEdges(monster);
   }
 
-  ChaseEnemyFiddler::ChaseEnemyFiddler()
+  ChaseEnemyFiddler::ChaseEnemyFiddler(Vector2& lost_range)
   {
-    TransitionEdges["lost_enemy_fiddler"] = new LostEnemyFiddler();
+    TransitionEdges["lost_enemy_fiddler"] = new LostEnemyFiddler(lost_range);
   }
 
   void ChaseEnemyFiddler::onEnter(EntityID& id)
@@ -141,12 +131,9 @@ namespace DeltaEngine
 
   //----------------------------------------------------------------------
 
-  IdleSerpentipede::IdleSerpentipede() :
-      StartPoint{Vector2{0,0}}
+  IdleSerpentipede::IdleSerpentipede(Vector2 startpoint,Vector2 detection_range)
   {
-      JsonFile file;
-      file.StartReader("idle_serpentipede.json").LoadObject(StartPoint).EndReader();
-      TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(StartPoint);
+      TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(startpoint, detection_range);
   }
 
   void IdleSerpentipede::onEnter(EntityID& id)
@@ -162,24 +149,12 @@ namespace DeltaEngine
       CheckEdges(monster);
   }
 
-  SerpentipedeData::SerpentipedeData() :
-      MaxCooldown{3.0f},
-      Points{ Vector2{0,0},Vector2{3,0},Vector2{6,0} }
-  {}
-
-  ChaseEnemySerpentipede::ChaseEnemySerpentipede() :
-      data{  },
+  ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeData& d) :
+      SerpentData{d},
       CooldownTimer{0.0f},
       CurrentPoint{0}
   {
-     JsonFile file;
-     rttr::variant v{ data };
-     auto& seq = v.create_sequential_view();
-     file.StartWriter("serpentipede.json").StartObject().WriteObject(seq).EndObject().EndWriter();
-
-     //file.StartReader("chase_serpentipede.json").LoadObject(Points).EndReader();
-
-      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(data.Points[0]);
+      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(SerpentData.Points[0], SerpentData.DetectionRange);
   }
 
   void ChaseEnemySerpentipede::onEnter(EntityID& id)
@@ -197,7 +172,7 @@ namespace DeltaEngine
         
       if (CooldownTimer <= 0)
       {
-          if (AITools::EntityisAtPoint(monster, data.Points[CurrentPoint]))
+          if (AITools::EntityisAtPoint(monster, SerpentData.Points[CurrentPoint]))
           {
               env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
                   {
@@ -207,14 +182,14 @@ namespace DeltaEngine
                             {
                                 AITools::FaceEntity(monster, player);
                                 env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).RangeAttack = true;
-                                CooldownTimer = data.MaxCooldown;
+                                CooldownTimer = SerpentData.MaxCooldown;
                             }
                       }
                   });
           }
           else
           {
-              AITools::MoveTowardsPoint(monster, data.Points[CurrentPoint]);
+              AITools::MoveTowardsPoint(monster, SerpentData.Points[CurrentPoint]);
 
           }
       }
@@ -224,5 +199,37 @@ namespace DeltaEngine
       }
 
   }
+
+  LancerData::LancerData() :
+      ChargeDetectionRange{Vector2::zero()}
+  {}
+
+  LancerData::LancerData(LancerData& d) :
+      ChargeDetectionRange{ d.ChargeDetectionRange }
+  {}
+
+  FiddlerData::FiddlerData() :
+      waypoint{},
+      ChargeDetectionRange{ Vector2::zero() },
+      LostDetectionRange{ Vector2::zero() }
+  {}
+
+  FiddlerData::FiddlerData(FiddlerData& d) :
+      waypoint{ d.waypoint },
+      ChargeDetectionRange{ d.ChargeDetectionRange },
+      LostDetectionRange{ d.LostDetectionRange }
+  {}
+
+  SerpentipedeData::SerpentipedeData() :
+      MaxCooldown{ 0.0f },
+      Points{ Vector2::zero(),Vector2::zero(),Vector2::zero() },
+      DetectionRange{ Vector2::zero() }
+  {}
+
+  SerpentipedeData::SerpentipedeData(SerpentipedeData& d) :
+      MaxCooldown{ d.MaxCooldown },
+      Points{ d.Points[0],d.Points[1],d.Points[2] },
+      DetectionRange{ d.DetectionRange }
+  {}
 
 }

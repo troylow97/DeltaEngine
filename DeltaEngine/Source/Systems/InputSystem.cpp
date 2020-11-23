@@ -167,14 +167,6 @@ namespace DeltaEngine
                     em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_DASH;
                     em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
                     em.GetComponent<Health>(missile).CurrentHealth = 1;
-                    if (r1.Direction == Vector2::right())
-                    {
-                        em.GetComponent<Transform>(missile).position.x += 0.5f;
-                    }
-                    else
-                    {
-                        em.GetComponent<Transform>(missile).position.x -= 0.5f;
-                    }
                 }
             i1.previousKey = DEVK_Z;
         });
