@@ -6,11 +6,19 @@
 int counter = 0;
 namespace DeltaEngine
 {
+  void ReduceHealth(EntityID& id1, int amount)
+  {
+      if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) && 
+          !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
+      {
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
+      }
+  }
+
   void TakeDamage(EntityID& id1, EntityID& id2)
   {
-    if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
+    if (
       env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id1) &&
-      env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id2) &&
       env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id2)
     )
     {
@@ -25,8 +33,8 @@ namespace DeltaEngine
         if ((type1 == EntityCategory::E_LANCER_CHARGE || type2 == EntityCategory::E_LANCER_CHARGE) &&
           (type1 == EntityCategory::E_PLAYER || type2 == EntityCategory::E_PLAYER))
         {
-          hp1.CurrentHealth -= 5;
-          hp2.CurrentHealth -= 5;
+          ReduceHealth(id1, 1);
+          ReduceHealth(id2, 1);
           return;
         }
 
@@ -58,8 +66,8 @@ namespace DeltaEngine
         if ((type1 == EntityCategory::E_PLAYER_BULLET || type2 == EntityCategory::E_PLAYER_BULLET) &&
           (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
         {
-          hp1.CurrentHealth--;
-          hp2.CurrentHealth--;
+          ReduceHealth(id1, 5);
+          ReduceHealth(id2, 5);
           return;
         }
 
@@ -67,8 +75,8 @@ namespace DeltaEngine
         if ((type1 == EntityCategory::E_PLAYER_PUNCH || type2 == EntityCategory::E_PLAYER_PUNCH) &&
           (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
         {
-          hp1.CurrentHealth--;
-          hp2.CurrentHealth--;
+          ReduceHealth(id1, 5);
+          ReduceHealth(id2, 5);
           return;
         }
 
@@ -76,8 +84,8 @@ namespace DeltaEngine
         if ((type1 == EntityCategory::E_PLAYER_DASH || type2 == EntityCategory::E_PLAYER_DASH) &&
             (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
         {
-            hp1.CurrentHealth--;
-            hp2.CurrentHealth--;
+            ReduceHealth(id1, 5);
+            ReduceHealth(id2, 5);
             return;
         }
 
@@ -86,9 +94,9 @@ namespace DeltaEngine
           (type1 == EntityCategory::E_PLAYER && type2 == EntityCategory::E_ENEMY))
         {
           if (type1 == EntityCategory::E_PLAYER)
-            hp1.CurrentHealth--;
+            ReduceHealth(id1, 5);
           else
-            hp2.CurrentHealth--;
+            ReduceHealth(id2, 5);
         }
       }
     }

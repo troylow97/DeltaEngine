@@ -249,7 +249,8 @@ namespace DeltaEngine
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Health>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("current_health", &Health::CurrentHealth)(rttr::policy::prop::bind_as_ptr)
-      .property("max_health", &Health::MaxHealth)(rttr::policy::prop::bind_as_ptr);
+      .property("max_health", &Health::MaxHealth)(rttr::policy::prop::bind_as_ptr)
+      .property("invulernable", &Health::isInvulnerable)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Attack>("attack")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
