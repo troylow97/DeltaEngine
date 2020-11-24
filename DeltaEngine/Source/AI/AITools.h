@@ -32,6 +32,7 @@ namespace DeltaEngine
     void MoveTowardsEntityInX(EntityID& id1, EntityID& id2);
     void MoveTowardsEntityInX(EntityID& id1, float& pointX);
     void MoveTowardsEntity(EntityID& id1, EntityID& id2);
+    void BulletTowardsEntity(EntityID& id1, EntityID& id2);
     void MoveTowardsPoint(EntityID& id1, Vector2& point);
     void FlyTowardsPoint(EntityID& id1, Vector2& point);
     bool EntityisAtPoint(EntityID& id1, Vector2& point);

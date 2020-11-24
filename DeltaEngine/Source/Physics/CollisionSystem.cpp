@@ -42,6 +42,7 @@ namespace DeltaEngine
       {
         c1.isCollidingOnFloor = false;
         c1.center = c1.offset + t1.position;
+        Vector2 old_size1 = c1.size;
         c1.size = t1.scale;
         em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
         {
@@ -49,6 +50,7 @@ namespace DeltaEngine
           {
             c2.isCollidingOnFloor = false;
             c2.center = c2.offset + t2.position;
+            Vector2 old_size2 = c2.size;
             c2.size = t2.scale;
             Manifold m;
             if (r1.isMoveable || r2.isMoveable)
@@ -79,6 +81,7 @@ namespace DeltaEngine
                     }
                 }
             }
+
           }
         });
       }

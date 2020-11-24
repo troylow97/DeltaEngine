@@ -1,7 +1,9 @@
 #include "CollisionHandlingFunctions.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
+#include "AI/AITools.h"
 
+int counter = 0;
 namespace DeltaEngine
 {
   void TakeDamage(EntityID& id1, EntityID& id2)
@@ -26,6 +28,30 @@ namespace DeltaEngine
           hp1.CurrentHealth -= 5;
           hp2.CurrentHealth -= 5;
           return;
+        }
+
+        //Player Detection Ranged Attack
+        if ((type1 == EntityCategory::E_PLAYER_BULLET_DETECTION || type2 == EntityCategory::E_PLAYER_BULLET_DETECTION) &&
+            (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
+        {
+            EntityID target;
+            if (type1 == EntityCategory::E_PLAYER_BULLET_DETECTION)
+            {
+                target = id2;
+            }
+            else
+            {
+                target = id1;
+            }
+
+           env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
+           {
+               if (et.type == EntityCategory::E_PLAYER_BULLET)
+               {
+                   AITools::BulletTowardsEntity(bullet, target);
+               }
+           });
+
         }
 
         //Player Ranged Attack

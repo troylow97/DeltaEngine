@@ -9,6 +9,7 @@ namespace DeltaEngine
     E_PLAYER,
     E_ENEMY,
     E_PLAYER_BULLET,
+    E_PLAYER_BULLET_DETECTION,
     E_PLAYER_PUNCH,
     E_PLAYER_DASH,
     E_LANCER_CHARGE,

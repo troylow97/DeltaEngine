@@ -170,7 +170,7 @@ namespace DeltaEngine
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("center", &Collider::center)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true),(rttr::metadata("NO_EDITOR", true)))
       .property("offset", &Collider::offset)(rttr::policy::prop::bind_as_ptr)
-      .property("size", &Collider::size)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("size", &Collider::size)(rttr::policy::prop::bind_as_ptr)
       .property("inter_point", &Collider::interPoint)(rttr::metadata("NO_SERIALIZE", true),
                                                      (rttr::metadata("NO_EDITOR", true)))
       .property("type", &Collider::type)

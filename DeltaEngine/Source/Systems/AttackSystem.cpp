@@ -73,14 +73,37 @@ namespace DeltaEngine
       em.GetComponent<Health>(missile).CurrentHealth = 1;
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
-        em.GetComponent<Transform>(missile).position.x += 0.5f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {7500, 4000};
+        em.GetComponent<Transform>(missile).position.x += 0.4f;
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {8000, 3500};
       }
       else
       {
-        em.GetComponent<Transform>(missile).position.x -= 0.5f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-7500, 4000};
+        em.GetComponent<Transform>(missile).position.x -= 0.4f;
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-8000, 3500};
       }
+
+      EntityID missile2 = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+      em.GetComponent<Transform>(missile2).position = t1.position;
+      em.GetComponent<RigidBody>(missile2).Mass = 5.0f;
+      em.GetComponent<Transform>(missile2).scale = { 2.5f, 2.5f, 0.0f };
+      em.GetComponent<Lifespan>(missile2).Timer = 0.35f;
+      em.GetComponent<RigidBody>(missile2).hasGravity = true;
+      em.GetComponent<Collider>(missile2).isTrigger = true;
+      //em.GetComponent<Collider>(missile2).size = {2.0f,2.0f};
+      em.GetComponent<EntityType>(missile2).type = EntityCategory::E_PLAYER_BULLET_DETECTION;
+      em.GetComponent<RigidBody>(missile2).FrictionCoeff = 0.0f;
+      em.GetComponent<Health>(missile2).CurrentHealth = 1;
+      if (em.GetComponent<Image>(id).m_FlipX == false)
+      {
+          em.GetComponent<Transform>(missile2).position.x += 0.4f;
+          em.GetComponent<RigidBody>(missile2).AccumulatedForce = { 8000, 3500 };
+      }
+      else
+      {
+          em.GetComponent<Transform>(missile2).position.x -= 0.4f;
+          em.GetComponent<RigidBody>(missile2).AccumulatedForce = { -8000, 3500 };
+      }
+
     }
     else if(em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
     {
@@ -99,13 +122,13 @@ namespace DeltaEngine
         em.GetComponent<Health>(missile).CurrentHealth = 1;
         if (em.GetComponent<Image>(id).m_FlipX == false)
         {
-            em.GetComponent<Transform>(missile).position.x += 0.5f;
-            em.GetComponent<RigidBody>(missile).AccumulatedForce = { 7500, 4000 };
+            em.GetComponent<Transform>(missile).position.x += 0.4f;
+            em.GetComponent<RigidBody>(missile).AccumulatedForce = { 8000, 3500 };
         }
         else
         {
-            em.GetComponent<Transform>(missile).position.x -= 0.5f;
-            em.GetComponent<RigidBody>(missile).AccumulatedForce = { -7500, 4000 };
+            em.GetComponent<Transform>(missile).position.x -= 0.4f;
+            em.GetComponent<RigidBody>(missile).AccumulatedForce = { -8000, 3500 };
         }
     }
   }

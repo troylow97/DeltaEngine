@@ -1,7 +1,7 @@
 #include "AITools.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Logger/Log.h"
-
+#include "Core/GameClock/GameClock.h"
 namespace DeltaEngine
 {
     namespace AITools
@@ -234,6 +234,14 @@ namespace DeltaEngine
             {
                 env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.y = -1;
             }
+        }
+
+        void BulletTowardsEntity(EntityID& id1, EntityID& id2)
+        {
+            Vector2 pos{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position };
+            Vector2 pos2{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id2).position };
+            Vector2 diff{ pos2 - pos };
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).AccumulatedForce = diff * 1500;
         }
 
         void MoveTowardsPoint(EntityID& id1, Vector2& point)
