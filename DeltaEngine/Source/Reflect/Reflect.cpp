@@ -371,6 +371,8 @@ namespace DeltaEngine::RT_Reflect
       em.RemoveComponent<Health>(id);
     if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       em.RemoveComponent<Lifespan>(id);
+    if (ComponentMeta::GetComponentMeta<Player>()->bits == bits)
+        em.RemoveComponent<Player>(id);
   }
 
   void RT_Setter(EntityManager& em, EntityID id, size_t bits)
@@ -407,6 +409,8 @@ namespace DeltaEngine::RT_Reflect
       em.AddComponent<Health>(id);
     if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       em.AddComponent<Lifespan>(id);
+    if (ComponentMeta::GetComponentMeta<Player>()->bits == bits)
+      em.AddComponent<Player>(id);
   }
 
   rttr::instance RT_Getter(EntityManager& em, EntityID& id, size_t bits)
@@ -443,6 +447,8 @@ namespace DeltaEngine::RT_Reflect
       return rttr::instance(em.GetComponent<Health>(id));
     if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       return rttr::instance(em.GetComponent<Lifespan>(id));
+    if (ComponentMeta::GetComponentMeta<Player>()->bits == bits)
+      return rttr::instance(em.GetComponent<Player>(id));
     return rttr::instance();
   }
 
@@ -480,6 +486,8 @@ namespace DeltaEngine::RT_Reflect
       Serialize::WriteObject(*static_cast<Health*>(ptr), writer);
     else if (str == "lifespan")
       Serialize::WriteObject(*static_cast<Lifespan*>(ptr), writer);
+    else if (str == "player")
+      Serialize::WriteObject(*static_cast<Player*>(ptr), writer);
   }
 
   void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var)
@@ -516,5 +524,7 @@ namespace DeltaEngine::RT_Reflect
       em.AddComponent<Health>(id, var.get_value<Health>());
     else if (str == "lifespan")
       em.AddComponent<Lifespan>(id, var.get_value<Lifespan>());
+    else if (str == "player")
+      em.AddComponent<Player>(id, var.get_value<Player>());
   }
 }

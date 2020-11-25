@@ -1658,6 +1658,296 @@
         },
         {
             "name": {
+                "name": "respawn1"
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": -4.14900016784668,
+                    "y": -2.680000066757202,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false,
+                "is_dashing": false
+            },
+            "collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": true,
+                "collision_layer_check": 255
+            }
+        },
+        {
+            "name": {
+                "name": "respawn2"
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": -2.140000104904175,
+                    "y": -2.680000066757202,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false,
+                "is_dashing": false
+            },
+            "collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": true,
+                "collision_layer_check": 255
+            }
+        },
+        {
+            "name": {
+                "name": "respawn3"
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.14900000393390656,
+                    "y": -2.680000066757202,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false,
+                "is_dashing": false
+            },
+            "collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": true,
+                "collision_layer_check": 255
+            }
+        },
+        {
+            "name": {
+                "name": "respawn4"
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 2.1489999294281008,
+                    "y": -2.680000066757202,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false,
+                "is_dashing": false
+            },
+            "collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": true,
+                "collision_layer_check": 255
+            }
+        },
+        {
+            "name": {
+                "name": "respawn5"
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 4.14900016784668,
+                    "y": -2.680000066757202,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false,
+                "is_dashing": false
+            },
+            "collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": true,
+                "collision_layer_check": 255
+            }
+        },
+        {
+            "name": {
                 "name": "Van collider"
             },
             "transform": {
@@ -1693,7 +1983,8 @@
                 "acceleration_pickup": 3.0,
                 "has_gravity": false,
                 "is_moveable": false,
-                "is_jumping": false
+                "is_jumping": false,
+                "is_dashing": false
             },
             "collider": {
                 "center": {
@@ -1704,9 +1995,13 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
                 "type": "box",
                 "is_trigger": false,
-                "collision_layer": 255
+                "collision_layer_check": 255
             },
             "entity_type": {
                 "category": "none"
@@ -1749,7 +2044,8 @@
                 "acceleration_pickup": 3.0,
                 "has_gravity": false,
                 "is_moveable": false,
-                "is_jumping": false
+                "is_jumping": false,
+                "is_dashing": false
             },
             "collider": {
                 "center": {
@@ -1760,9 +2056,13 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
                 "type": "box",
                 "is_trigger": false,
-                "collision_layer": 255
+                "collision_layer_check": 255
             },
             "entity_type": {
                 "category": "none"
@@ -1805,7 +2105,8 @@
                 "acceleration_pickup": 3.0,
                 "has_gravity": false,
                 "is_moveable": false,
-                "is_jumping": false
+                "is_jumping": false,
+                "is_dashing": false
             },
             "collider": {
                 "center": {
@@ -1816,9 +2117,13 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
                 "type": "box",
                 "is_trigger": false,
-                "collision_layer": 255
+                "collision_layer_check": 255
             },
             "entity_type": {
                 "category": "none"
@@ -1861,7 +2166,8 @@
                 "acceleration_pickup": 3.0,
                 "has_gravity": false,
                 "is_moveable": false,
-                "is_jumping": false
+                "is_jumping": false,
+                "is_dashing": false
             },
             "collider": {
                 "center": {
@@ -1872,12 +2178,139 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
                 "type": "box",
                 "is_trigger": false,
-                "collision_layer": 255
+                "collision_layer_check": 255
             },
             "entity_type": {
                 "category": "none"
+            }
+        },
+        {
+            "name": {
+                "name": "Enemy Lancer"
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.9660000205039978,
+                    "y": -1.8949999809265137,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false,
+                "is_dashing": false
+            },
+            "collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer_check": 255
+            },
+            "image": {
+                "sprite": {
+                    "key": "Textures/Lancer",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 3,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": false
+            },
+            "entity_type": {
+                "category": "enemy"
+            },
+            "ai": {
+                "original_point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "state": "idle_lancer",
+                "transition": "null"
+            },
+            "health": {
+                "current_health": 10,
+                "max_health": 10,
+                "invulernable": false
+            },
+            "attack": {
+                "range_damage": 1,
+                "melee_damage": 1,
+                "max_cooldown": 0.6000000238418579,
+                "cooldown_timer": -0.0031605889089405538,
+                "ranged_attack": false,
+                "melee_attack": false
             }
         },
         {
@@ -1921,7 +2354,8 @@
                 "acceleration_pickup": 0.46000000834465029,
                 "has_gravity": true,
                 "is_moveable": true,
-                "is_jumping": false
+                "is_jumping": false,
+                "is_dashing": false
             },
             "collider": {
                 "center": {
@@ -1932,14 +2366,18 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "size": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
                 "type": "box",
                 "is_trigger": false,
-                "collision_layer": 255
+                "collision_layer_check": 255
             },
             "image": {
                 "sprite": {
                     "key": "Textures/StretchSpritesheet",
-                    "index": 1
+                    "index": 6
                 },
                 "size": {
                     "x": 1.0,
@@ -1987,7 +2425,8 @@
             },
             "health": {
                 "current_health": 20,
-                "max_health": 1500
+                "max_health": 20,
+                "invulernable": false
             },
             "attack": {
                 "range_damage": 1,
@@ -1995,121 +2434,9 @@
                 "max_cooldown": 0.6000000238418579,
                 "cooldown_timer": -0.00007960572838783264,
                 "ranged_attack": true,
-                "melee_attack": false
-            }
-        },
-        {
-            "name": {
-                "name": "Enemy Lancer"
+                "melee_attack": true
             },
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
-                    "x": 0.9660000205039978,
-                    "y": -1.8949999809265137,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "rigidbody": {
-                "mass": 20.0,
-                "movespeed": 10.0,
-                "restitution": 1.0,
-                "friction_coeff": 0.8500000238418579,
-                "inherent_acceleration": 0.0,
-                "max_acceleration": 40.0,
-                "acceleration_pickup": 3.0,
-                "has_gravity": false,
-                "is_moveable": true,
-                "is_jumping": false
-            },
-            "collider": {
-                "center": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "type": "box",
-                "is_trigger": false,
-                "collision_layer": 255
-            },
-            "image": {
-                "sprite": {
-                    "key": "Textures/Lancer",
-                    "index": 0
-                },
-                "size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "fill_type": "",
-                "fill_amount": 1.0,
-                "overall_angle": 0.0,
-                "start_angle": 0.0,
-                "end_angle": 0.0,
-                "flip_x": false,
-                "flip_y": false
-            },
-            "renderer2D": {
-                "material": {
-                    "key": "Default"
-                },
-                "color": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "sorting_layer": 3,
-                "sorting_order": 0.0,
-                "active": true,
-                "shaded": true,
-                "wireframe": false
-            },
-            "entity_type": {
-                "category": "enemy"
-            },
-            "ai": {
-                "state": "idle_lancer",
-                "transition": "null"
-            },
-            "health": {
-                "current_health": 10,
-                "max_health": 10
-            },
-            "attack": {
-                "range_damage": 1,
-                "melee_damage": 1,
-                "max_cooldown": 0.6000000238418579,
-                "cooldown_timer": -0.0031605889089405538,
-                "ranged_attack": false,
-                "melee_attack": false
-            }
+            "player": {}
         }
     ]
 }

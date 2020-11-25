@@ -7,7 +7,7 @@ namespace DeltaEngine
 	struct Player
 	{
 		int RespawnPoint;
-		bool IsDead;
+		bool IsDead = false;
 		//std::vector<Vector2> m_respawn_points;
 
 		//Player() /*:

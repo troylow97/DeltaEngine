@@ -68,8 +68,8 @@ namespace DeltaEngine
         if ((type1 == EntityCategory::E_PLAYER_BULLET || type2 == EntityCategory::E_PLAYER_BULLET) &&
           (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
         {
-          ReduceHealth(id1, 5);
-          ReduceHealth(id2, 5);
+          ReduceHealth(id1, 1);
+          ReduceHealth(id2, 1);
           return;
         }
 
@@ -77,8 +77,8 @@ namespace DeltaEngine
         if ((type1 == EntityCategory::E_PLAYER_PUNCH || type2 == EntityCategory::E_PLAYER_PUNCH) &&
           (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
         {
-          ReduceHealth(id1, 5);
-          ReduceHealth(id2, 5);
+          ReduceHealth(id1, 1);
+          ReduceHealth(id2, 1);
           return;
         }
 
@@ -86,8 +86,8 @@ namespace DeltaEngine
         if ((type1 == EntityCategory::E_PLAYER_DASH || type2 == EntityCategory::E_PLAYER_DASH) &&
             (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
         {
-            ReduceHealth(id1, 5);
-            ReduceHealth(id2, 5);
+            ReduceHealth(id1, 1);
+            ReduceHealth(id2, 1);
             return;
         }
 
@@ -96,9 +96,9 @@ namespace DeltaEngine
           (type1 == EntityCategory::E_PLAYER && type2 == EntityCategory::E_ENEMY))
         {
           if (type1 == EntityCategory::E_PLAYER)
-            ReduceHealth(id1, 5);
+            ReduceHealth(id1, 1);
           else
-            ReduceHealth(id2, 5);
+            ReduceHealth(id2, 1);
         }
       }
     }
