@@ -1,4 +1,5 @@
 #include "Systems/RespawnSystem.h"
+#include "AI/AITools.h"
 
 namespace DeltaEngine
 {
@@ -24,20 +25,42 @@ namespace DeltaEngine
       {
         float temp_x = -4.149f, temp_y = -2.68f;
         float new_x = 0.0f, new_y = 0.0f;
-        for (int i = 0; i < respawns.m_respawns.size(); i++)
+        if (AITools::isFacingRight(id))
         {
-          if (t.position.x >= respawns.m_respawns[i].x)
+          for (int i = 0; i < respawns.m_respawns.size(); i++)
           {
-            temp_x = respawns.m_respawns[i].x;
-            temp_y = respawns.m_respawns[i].y;
+              std::cout << "right i is" << i << std::endl;
+            if (t.position.x >= respawns.m_respawns[i].x)
+            {
+              temp_x = respawns.m_respawns[i].x;
+              temp_y = respawns.m_respawns[i].y;
+            }
           }
+          new_x = temp_x;
+          new_y = temp_y;
+          t.position.x = new_x;
+          t.position.y = new_y;
+          hp.CurrentHealth = hp.MaxHealth;
+          p.IsDead = false;
         }
-        new_x = temp_x;
-        new_y = temp_y;
-        t.position.x = new_x;
-        t.position.y = new_y;
-        hp.CurrentHealth = hp.MaxHealth;
-        p.IsDead = false;
+        else if (AITools::isFacingLeft(id))
+        {
+          for (int i = respawns.m_respawns.size(); i > 0; i--)
+          {
+            std::cout << "left i is" << i << std::endl;
+            if (t.position.x <= respawns.m_respawns[i].x)
+            {
+              temp_x = respawns.m_respawns[i].x;
+              temp_y = respawns.m_respawns[i].y;
+            }
+          }
+          new_x = temp_x;
+          new_y = temp_y;
+          t.position.x = new_x;
+          t.position.y = new_y;
+          hp.CurrentHealth = hp.MaxHealth;
+          p.IsDead = false;
+        }
       }
   	});
   }

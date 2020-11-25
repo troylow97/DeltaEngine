@@ -81,12 +81,12 @@ namespace DeltaEngine
 
         bool isFacingLeft(EntityID& id1)
         {
-            return !env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
+            return env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
         }
 
         bool isFacingRight(EntityID& id1)
         {
-            return env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
+            return !env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
         }
 
         bool isFacingEachOther(EntityID& id1, EntityID& id2)
