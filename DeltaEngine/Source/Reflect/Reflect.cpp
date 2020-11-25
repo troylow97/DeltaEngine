@@ -16,6 +16,8 @@
 #include "Assets/AssetManager.h"
 #include "AI/Waypoint.h"
 #include "AI/AI_State.h"
+#include "Systems/RespawnSystem.h"
+
 
 #include "Systems/EnemySpawner/EnemySpawner.h"
 
@@ -52,6 +54,10 @@ namespace DeltaEngine
 
   rttr::registration::class_<GauntletsList>("Gauntlets")
       .property("gauntlets", &GauntletsList::Gauntlets);
+
+
+  rttr::registration::class_<RespawnPoints>("RespawnPoints")
+      .property("respawn_points", &RespawnPoints::m_respawns);
 
     rttr::registration::class_<EngineConfig>("config")
       .property("window", &EngineConfig::win_name)
@@ -282,6 +288,13 @@ namespace DeltaEngine
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("timer", &Lifespan::Timer)(rttr::policy::prop::bind_as_ptr);
+
+    rttr::registration::class_<Player>("player")
+        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Player>()->bits))
+        .constructor<>()(rttr::policy::ctor::as_object)
+        .property("respawn_point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("is_dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+
   }
 }
 
@@ -321,6 +334,8 @@ namespace DeltaEngine::RT_Reflect
       return rttr::type::get_by_name("health");
     if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       return rttr::type::get_by_name("lifespan");
+    if (ComponentMeta::GetComponentMeta<Player>()->bits == bits)
+      return rttr::type::get_by_name("player");
     return rttr::type::get<int>();
   }
 
