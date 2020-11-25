@@ -90,6 +90,7 @@ namespace DeltaEngine
 
   void Application::Run()
   {
+    env.pECS->GetWorld().Load("World/DemoPlayerMobsLatest.json");
     while (env.pWin->Running())
     {
       Profiler::Instance().FrameStart();

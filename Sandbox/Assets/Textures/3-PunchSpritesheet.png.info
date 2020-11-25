@@ -1,102 +1,301 @@
 Textures/3-PunchSpritesheet_i_0
-offset 0 0
-size 300 200
+offset 75 13
+size 114 170
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_1
-offset 300 0
-size 300 200
+offset 75 216
+size 117 167
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_2
-offset 600 0
-size 300 200
+offset 193 291
+size 2 0
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_3
-offset 900 0
-size 300 200
+offset 200 365
+size 0 0
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_4
-offset 1200 0
-size 300 200
+offset 357 22
+size 206 161
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_5
-offset 1500 0
-size 300 200
+offset 368 315
+size 0 1
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_6
-offset 1800 0
-size 300 200
+offset 376 213
+size 109 171
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_7
-offset 2100 0
-size 300 200
+offset 445 17
+size 1 0
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_8
-offset 2400 0
-size 300 200
+offset 446 19
+size 0 0
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_9
-offset 2700 0
-size 300 200
+offset 462 21
+size 0 0
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_10
-offset 0 200
-size 300 200
+offset 486 291
+size 0 0
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_11
-offset 300 200
-size 300 200
+offset 664 17
+size 153 167
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_12
-offset 600 200
-size 300 200
+offset 675 215
+size 114 170
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_13
-offset 900 200
-size 300 200
+offset 746 15
+size 0 0
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_14
-offset 1200 200
-size 300 200
+offset 820 68
+size 0 4
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_15
-offset 1500 200
-size 300 200
+offset 951 233
+size 144 150
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_16
-offset 1800 200
-size 300 200
+offset 967 115
+size 0 1
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_17
-offset 2100 200
-size 300 200
+offset 969 125
+size 0 0
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_18
-offset 2400 200
-size 300 200
+offset 969 15
+size 135 169
 pivot 0.5 0.5
 
 Textures/3-PunchSpritesheet_i_19
-offset 2700 200
-size 300 200
+offset 1053 14
+size 0 0
 pivot 0.5 0.5
 
+Textures/3-PunchSpritesheet_i_20
+offset 1099 282
+size 0 1
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_21
+offset 1107 72
+size 0 4
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_22
+offset 1257 296
+size 0 1
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_23
+offset 1267 114
+size 0 1
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_24
+offset 1275 13
+size 114 170
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_25
+offset 1276 242
+size 129 143
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_26
+offset 1567 114
+size 0 1
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_27
+offset 1575 12
+size 109 171
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_28
+offset 1586 265
+size 1 4
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_29
+offset 1587 206
+size 200 176
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_30
+offset 1653 392
+size 11 1
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_31
+offset 1685 90
+size 0 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_32
+offset 1864 17
+size 153 167
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_33
+offset 1882 274
+size 2 5
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_34
+offset 1889 200
+size 126 183
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_35
+offset 1946 15
+size 0 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_36
+offset 1953 393
+size 11 1
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_37
+offset 2020 68
+size 0 4
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_38
+offset 2029 311
+size 3 5
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_39
+offset 2161 15
+size 156 168
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_40
+offset 2183 212
+size 129 172
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_41
+offset 2259 14
+size 0 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_42
+offset 2322 89
+size 3 5
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_43
+offset 2335 377
+size 2 1
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_44
+offset 2449 90
+size 8 1
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_45
+offset 2463 217
+size 153 167
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_46
+offset 2476 171
+size 0 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_47
+offset 2477 36
+size 209 148
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_48
+offset 2545 215
+size 0 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_49
+offset 2552 24
+size 0 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_50
+offset 2566 25
+size 0 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_51
+offset 2577 27
+size 1 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_52
+offset 2582 35
+size 0 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_53
+offset 2584 35
+size 1 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_54
+offset 2619 268
+size 0 4
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_55
+offset 2768 314
+size 0 1
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_56
+offset 2773 21
+size 142 162
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_57
+offset 2776 212
+size 109 171
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_58
+offset 2886 290
+size 0 0
+pivot 0.5 0.5
+
+Textures/3-PunchSpritesheet_i_59
+offset 2921 105
+size 8 0
+pivot 0.5 0.5
 
 %

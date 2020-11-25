@@ -13,6 +13,6 @@ namespace DeltaEngine
     void Render(bool) override;
 
   private:
-    char textureName[128] = "Textures/3-Punch Spritesheet";
+    char textureName[128] = "Textures/PROPS";
   };
 }

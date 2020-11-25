@@ -6,12 +6,14 @@
 #include "ECS/EntityManager.h"
 #include "Render/Camera.h"
 #include "Render/Mesh.h"
+#include "Render/Window.h"
 #include "Render/OpenGLSystem.h"
 #include "Assets/AssetManager.h"
 
 namespace DeltaEngine
 {
   Color wireframeColor = Color::Black();
+  std::vector<EntityID> sortedRenderers;
 
   bool SortSprites(EntityID a, EntityID b)
   {
@@ -23,17 +25,8 @@ namespace DeltaEngine
       (i.m_SortingOrder < j.m_SortingOrder);
   }
 
-  void RenderSystem::Update()
+  void DrawRenderer2D(EntityManager& em, Camera& c)
   {
-    RenderModule::openGLSystem->Update();
-
-    Camera::editorCamera->Start();
-
-    std::vector<EntityID> sortedRenderers;
-
-    em.ForEach(e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
-    std::sort(sortedRenderers.begin(), sortedRenderers.end(), SortSprites);
-
     for (EntityID ID : sortedRenderers)
     {
       if (!em.HasComponent<Transform>(ID) || !em.HasComponent<Renderer2D>(ID))
@@ -43,7 +36,6 @@ namespace DeltaEngine
       if (em.HasComponent<Image>(ID))
       {
         Image& i = em.GetComponent<Image>(ID);
-        glClear(GL_DEPTH_BUFFER_BIT);
 
         if (r.m_Active)
         {
@@ -51,8 +43,8 @@ namespace DeltaEngine
           Vector2 tiling = i.m_Tiling * i.m_Sprite.GetTiling();
           Vector2 pivot = i.m_Sprite.GetPivot();
 
-          Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
-          Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+          Matrix4x4 proj = c.GetProjectionMatrix();
+          Matrix4x4 view = c.GetViewMatrix();
           Matrix4x4 model = Matrix4x4::Scale(Vector3{
               (i.m_Sprite ? (i.m_Sprite.GetWidth() / 200.0f) : 1) * i.m_Size.x * (i.m_FlipX ? -1 : 1),
               (i.m_Sprite ? (i.m_Sprite.GetHeight() / 200.0f) : 1) * i.m_Size.y * (i.m_FlipY ? -1 : 1), 1
@@ -77,10 +69,10 @@ namespace DeltaEngine
             r.m_Material.SetUniform1f("_RStart", i.m_StartAngle);
             r.m_Material.SetUniform1f("_REnd", i.m_EndAngle);
             r.m_Material.SetUniformVector4f("_SpriteUV", Vector4(
-                                              i.m_Sprite.GetOffset().x,
-                                              i.m_Sprite.GetOffset().y,
-                                              i.m_Sprite.GetOffset().x + i.m_Sprite.GetTiling().x,
-                                              i.m_Sprite.GetOffset().y + i.m_Sprite.GetTiling().y));
+              i.m_Sprite.GetOffset().x,
+              i.m_Sprite.GetOffset().y,
+              i.m_Sprite.GetOffset().x + i.m_Sprite.GetTiling().x,
+              i.m_Sprite.GetOffset().y + i.m_Sprite.GetTiling().y));
             Mesh::DrawQuad(offset, tiling, pivot);
 
             if (i.m_Sprite)
@@ -103,8 +95,8 @@ namespace DeltaEngine
       {
         Text& x = em.GetComponent<Text>(ID);
         glClear(GL_DEPTH_BUFFER_BIT);
-        Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
-        Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+        Matrix4x4 proj = c.GetProjectionMatrix();
+        Matrix4x4 view = c.GetViewMatrix();
         Matrix4x4 model = t.LocalToWorldMatrix();
 
         // activate corresponding render state	
@@ -125,13 +117,52 @@ namespace DeltaEngine
         }
       }
     }
+  }
+
+  void RenderSystem::Update()
+  {
+    RenderModule::openGLSystem->Update();
+
+    // sort renderers by layer
+    sortedRenderers.clear();
+    em.ForEach(e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
+    std::sort(sortedRenderers.begin(), sortedRenderers.end(), SortSprites);
+
+
+    em.ForEach([&](EntityID id, Camera& c)
+      { 
+        c.SetViewportSize(1.0f * GetEnv().pWin->Width());
+        c.SetAspectRatio(1.0f * GetEnv().pWin->Width(), 1.0f * GetEnv().pWin->Height());
+
+        c.Start();
+        // loop through every object
+        DrawRenderer2D(em, c);
+
+        c.End();
+      });
+
+//#ifdef DE_EDITOR
+//    Camera::editorCamera->Start();
+//    DrawRenderer2D(em, *Camera::editorCamera);
+//#endif // DE_EDITOR
+    Camera::editorCamera->Start();
+    DrawRenderer2D(em, *Camera::editorCamera);
 
     Profiler::Instance().Record("Render System Update");
   }
 
   void RenderSystem::LateUpdate()
   {
+//#ifdef DE_EDITOR
+//    Camera::editorCamera->End();
+//#endif // DE_EDITOR
     Camera::editorCamera->End();
-    Profiler::Instance().Record("Render System Update");
+
+    Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
+    shader->SetUniform1i("_MainTex", 0);
+    glBindTexture(GL_TEXTURE_2D, Camera::editorCamera->GetFrameBuffer().GetColorAttachment());
+    Mesh::DrawQuad();
+
+    Profiler::Instance().Record("Render System Late Update");
   }
 }

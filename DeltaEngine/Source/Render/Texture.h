@@ -30,9 +30,9 @@ namespace DeltaEngine
 
     unsigned int GetRendererID() const;
 
-    void AutoSlice();
+    void AutoSlice(Vector2 pivot = Vector2(0.5f, 0.5f), bool noOverlap = true);
     void Slice(TextureInfo info);
-    void SliceAll(unsigned int columns, unsigned int rows);
+    void SliceAll(unsigned int columns, unsigned int rows, Vector2 pivot = Vector2(0.5f, 0.5f));
 
     Vector2 GetOffset(unsigned int index);
     Vector2 GetSize(unsigned int index);
