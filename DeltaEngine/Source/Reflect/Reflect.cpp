@@ -17,8 +17,6 @@
 #include "AI/Waypoint.h"
 #include "AI/AI_State.h"
 #include "Systems/RespawnSystem.h"
-
-
 #include "Systems/EnemySpawner/EnemySpawner.h"
 
 namespace DeltaEngine

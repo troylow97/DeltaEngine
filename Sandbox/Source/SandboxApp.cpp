@@ -26,8 +26,8 @@ public:
   Sandbox()
   {
     CollisionSystem::collision_handler.RegisterOnStay(TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, LifespanSystem, RespawnSystem>();
-    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, LifespanSystem, RespawnSystem>();
+    env.pECS->GetWorld().CreateSystems<AttackSystem, LifespanSystem, RespawnSystem,EnemySpawner>();
+    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, LifespanSystem, RespawnSystem, EnemySpawner>();
 
     env.pECS->GetWorld().InitSystems();
 
