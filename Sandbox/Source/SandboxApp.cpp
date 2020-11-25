@@ -14,6 +14,10 @@
 #include "Systems/AttackSystem.h"
 #include "Systems/LifespanSystem.h"
 #include "CollisionHandlingFunctions.h"
+#include "Systems/EnemySpawner/EnemySpawner.h"
+#include "UnitManager.h"
+
+UnitManager unit_manager;
 
 class Sandbox : public Application
 {
@@ -21,10 +25,13 @@ public:
   Sandbox()
   {
     CollisionSystem::collision_handler.RegisterOnStay(TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, LifespanSystem>();
-    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, LifespanSystem>();
+    env.pECS->GetWorld().CreateSystems<AttackSystem, LifespanSystem,EnemySpawner>();
+    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, LifespanSystem, EnemySpawner>();
 
     env.pECS->GetWorld().InitSystems();
+
+    unit_manager.Initialize();
+
   }
 
   ~Sandbox()

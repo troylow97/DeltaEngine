@@ -16,6 +16,9 @@
 #include "Assets/AssetManager.h"
 #include "AI/Waypoint.h"
 #include "AI/AI_State.h"
+
+#include "Systems/EnemySpawner/EnemySpawner.h"
+
 namespace DeltaEngine
 {
   RTTR_REGISTRATION
@@ -36,6 +39,19 @@ namespace DeltaEngine
       .property("cooldown", &SerpentipedeData::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
       .property("points", &SerpentipedeData::Points)
       .property("detection_range", &SerpentipedeData::DetectionRange)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<EnemyWave>("EnemyWave")
+      .property("enemy_count", &EnemyWave::EnemyCount)(rttr::policy::prop::bind_as_ptr)
+      .property("enemy_type", &EnemyWave::EnemyType)(rttr::policy::prop::bind_as_ptr)
+      .property("spawn_area", &EnemyWave::SpawnArea)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<Gauntlet>("Gauntlet")
+      .property("enemy_waves", &Gauntlet::EnemyWaves)(rttr::policy::prop::bind_as_ptr)
+      .property("activation_point", &Gauntlet::ActivationPoint)(rttr::policy::prop::bind_as_ptr)
+      .property("is_activated", &Gauntlet::isActivated)(rttr::metadata("NO_SERIALIZE", true));
+
+  rttr::registration::class_<GauntletsList>("Gauntlets")
+      .property("gauntlets", &GauntletsList::Gauntlets);
 
     rttr::registration::class_<EngineConfig>("config")
       .property("window", &EngineConfig::win_name)

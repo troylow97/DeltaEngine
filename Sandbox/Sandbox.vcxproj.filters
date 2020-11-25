@@ -3,6 +3,8 @@
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
     <ClCompile Include="Source\CollisionHandlingFunctions.cpp" />
+    <ClCompile Include="Source\UnitManager.cpp" />
+    <ClCompile Include="Source\Systems\AttackSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="AI">
@@ -11,5 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CollisionHandlingFunctions.h" />
+    <ClInclude Include="Source\UnitManager.h" />
+    <ClInclude Include="Source\Systems\AttackSystem.h" />
   </ItemGroup>
 </Project>
