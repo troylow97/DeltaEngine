@@ -18,6 +18,8 @@ namespace DeltaEngine
   void TakeDamage(EntityID& id1, EntityID& id2)
   {
     if (
+        env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
+        env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id2) &&
       env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id1) &&
       env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id2)
     )
