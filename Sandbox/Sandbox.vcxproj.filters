@@ -4,11 +4,17 @@
     <Filter Include="Systems">
       <UniqueIdentifier>{1DDE831B-89BD-02B7-92D5-8D8DFE336918}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\EnemySpawner">
+      <UniqueIdentifier>{2AD34AD0-1662-D499-BF80-E894ABEEE43F}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CollisionHandlingFunctions.h" />
     <ClInclude Include="Source\Systems\AttackSystem.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\EnemySpawner\EnemySpawner.h">
+      <Filter>Systems\EnemySpawner</Filter>
     </ClInclude>
     <ClInclude Include="Source\UnitManager.h" />
   </ItemGroup>
@@ -17,6 +23,9 @@
     <ClCompile Include="Source\SandboxApp.cpp" />
     <ClCompile Include="Source\Systems\AttackSystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\EnemySpawner\EnemySpawner.cpp">
+      <Filter>Systems\EnemySpawner</Filter>
     </ClCompile>
     <ClCompile Include="Source\UnitManager.cpp" />
   </ItemGroup>
