@@ -1,4 +1,6 @@
 #include "SpriteEditorPanel.h"
+
+#include "imgui.h"
 #include "Core/GlobalStruct.h"
 #include "Assets/AssetManager.h"
 #include "Render/Texture.h"

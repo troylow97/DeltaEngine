@@ -18,6 +18,6 @@ namespace DeltaEngine
 
   struct EntityType
   {
-    EntityCategory type;
+    EntityCategory type {EntityCategory::E_NONE};
   };
 }

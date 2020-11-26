@@ -4,20 +4,22 @@
             "Parent": {
                 "ID": 18446744073709551615
             },
-            "": {},
-            "EntityType": {
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
                 "Position": {
-                    "x": -1.8515009880065919,
-                    "y": 0.5750393867492676,
+                    "x": 0.0,
+                    "y": 0.0,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
                 },
                 "Rotation": {
                     "x": 0.0,
@@ -25,67 +27,28 @@
                     "z": 0.0,
                     "w": 1.0
                 }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Tilemap/bg",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Material": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": true
             }
         },
         {
             "Parent": {
                 "ID": 18446744073709551615
             },
-            "": {},
-            "EntityType": {
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
                 "Position": {
-                    "x": -1.8490769863128663,
-                    "y": -0.8302807807922363,
+                    "x": 0.0,
+                    "y": 0.0,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
                 },
                 "Rotation": {
                     "x": 0.0,
@@ -93,61 +56,196 @@
                     "z": 0.0,
                     "w": 1.0
                 }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Tilemap/Platform_TOP_MID_2",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 15.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 15.0,
-                    "y": 1.0
-                },
-                "Fill Type": "",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Material": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 0.8178294897079468,
-                    "g": 0.7259029150009155,
-                    "b": 0.7259029150009155,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": true
             }
         },
         {
             "Parent": {
                 "ID": 18446744073709551615
             },
-            "": {},
-            "EntityType": {
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
                 "Position": {
-                    "x": -3.3807268142700197,
-                    "y": 0.0947866439819336,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "player_bullet"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.252173900604248,
+                    "y": 1.3101449012756348,
                     "z": 0.0
                 },
                 "Scale": {
@@ -188,7 +286,7 @@
                 "Flip Y": false
             },
             "Renderer2D": {
-                "Material": {
+                "Materials": {
                     "key": "Default"
                 },
                 "Colors": {
@@ -197,143 +295,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": true
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "": {},
-            "EntityType": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": -1.6998419761657715,
-                    "y": 0.0947866439819336,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Tilemap/Building_4",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Material": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": true
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "": {},
-            "EntityType": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": -0.05029773712158203,
-                    "y": 0.08690714836120606,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Building_2",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Material": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
+                "Layer": 0,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,

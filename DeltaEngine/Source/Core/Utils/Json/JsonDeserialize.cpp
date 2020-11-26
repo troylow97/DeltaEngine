@@ -233,6 +233,8 @@ namespace DeltaEngine::Deserialize
   {
     if (obj_dat.get_type() == type::get<bool*>())
       *obj_dat.get_value<bool*>() = extracted.get_value<bool>();
+    else if (obj_dat.get_type() == type::get<std::string*>())
+      *obj_dat.get_value<std::string*>() = extracted.get_value<std::string>();
     else if (obj_dat.get_type() == type::get<int*>())
       *obj_dat.get_value<int*>() = extracted.get_value<int>();
     else if (obj_dat.get_type() == type::get<int64_t*>())
@@ -252,7 +254,6 @@ namespace DeltaEngine::Deserialize
       if (obj_dat.get_type() == type::get<EntityCategory*>())
         *obj_dat.get_value<EntityCategory*>() = v.get_value<EntityCategory>();
     }
-    else if (obj_dat.get_type() == type::get<std::string*>())
-      *obj_dat.get_value<std::string*>() = extracted.get_value<std::string>();
+
   }
 }
