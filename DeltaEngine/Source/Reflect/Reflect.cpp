@@ -269,7 +269,7 @@ namespace DeltaEngine
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("Original Point", &AI::original_point)(rttr::policy::prop::bind_as_ptr)
-      .property("State", &AI::key)(rttr::policy::prop::bind_as_ptr)
+      .property("AIState", &AI::key)(rttr::policy::prop::bind_as_ptr)
       .property("Transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<EntityType>("EntityType")
@@ -313,7 +313,7 @@ namespace DeltaEngine::RT_Reflect
   rttr::type RT_Checker(size_t bits)
   {
     if (ComponentMeta::GetComponentMeta<EntityName>()->bits == bits)
-      return rttr::type::get_by_name("Name");
+      return rttr::type::get_by_name("Entity Name");
     if (ComponentMeta::GetComponentMeta<Parent>()->bits == bits)
       return rttr::type::get_by_name("Parent");
     if (ComponentMeta::GetComponentMeta<Transform>()->bits == bits)
@@ -466,7 +466,7 @@ namespace DeltaEngine::RT_Reflect
 
   void SerializeType(const std::string& str, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer, void* ptr)
   {
-    if (str == "Name")
+    if (str == "Entity Name")
       Serialize::WriteObject(*static_cast<EntityName*>(ptr), writer);
     else if (str == "Parent")
       Serialize::WriteObject(*static_cast<Parent*>(ptr), writer);
@@ -504,7 +504,7 @@ namespace DeltaEngine::RT_Reflect
 
   void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var)
   {
-    if (str == "Name")
+    if (str == "Entity Name")
       em.AddComponent<EntityName>(id, var.get_value<EntityName>());
     else if (str == "Parent")
       em.AddComponent<Parent>(id, var.get_value<Parent>());

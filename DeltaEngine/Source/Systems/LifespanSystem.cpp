@@ -56,10 +56,10 @@ namespace DeltaEngine
       }
     });
 
-    for (EntityID i : DestroyedEntities)
-    {
-      em.DestroyEntity(i);
-    }
+    //for (EntityID i : DestroyedEntities)
+    //{
+    //  em.DestroyEntity(i);
+    //}
     Profiler::Instance().Record("Lifespan System");
   }
 

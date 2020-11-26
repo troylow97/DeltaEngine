@@ -281,7 +281,10 @@ namespace DeltaEngine
         bool EntityisAtPoint(EntityID& id1, Vector2& point)
         {
             Vector2 pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position;
-            if (std::abs(point.x - pos.x) < 0.1 && std::abs(point.y - pos.y) < 0.1)
+            const float xDiff = static_cast<float>(std::abs(point.x - pos.x));
+            const float yDiff = static_cast<float>(std::abs(point.y - pos.y));
+        	
+            if (xDiff < 0.1 && yDiff < 0.1)
             {
                 return true;
             }

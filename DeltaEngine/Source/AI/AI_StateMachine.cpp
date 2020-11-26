@@ -24,16 +24,16 @@ namespace DeltaEngine
     SerpentipedeAIData serpent_data;
     JsonFile file;
     file.StartReader("AI/serpentipedeAI.json").LoadObject(serpent_data).EndReader();
-
+  	
     FiddlerAIData fiddler_data;
     JsonFile file2;
-    //file2.StartWriter("AI/fiddler.json").StartObject().WriteObject(data2).EndObject().EndWriter();
+    //file2.StartWriter("AI/fiddler.json").StartObject().WriteObject(fiddler_data).EndObject().EndWriter();
     file2.StartReader("AI/fiddlerAI.json").LoadObject(fiddler_data).EndReader();
     file2.StartReader("AI/fiddlerAI.json").LoadObject(fiddler_data.waypoint).EndReader();
 
     LancerAIData lancer_data;
     JsonFile file3;
-    file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
+	file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
 
     StateList["idle_lancer"] = new IdleLancer(lancer_data.ChargeDetectionRange);
     StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();

@@ -40,7 +40,7 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = LancerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = LancerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = LancerData.Damage;
-				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/Lancer.png";
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/Lancer";
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Index = 0;
 			}
 			else if (type == "fiddler")
@@ -78,27 +78,27 @@ namespace DeltaEngine
 
 	void EnemySpawner::LoadEnemyData()
 	{
-		//EnemyData Lancer;
-		//Lancer.Health = 10;
-		//Lancer.Damage = 1;
-		//Lancer.Mass = 20;
-		//Lancer.Movespeed = 30;
-		//
-		//JsonFile file;
-		//file.StartWriter("Enemy/Lancer.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
-		//
-		//JsonFile file2;
-		//file2.StartWriter("Enemy/Fiddler.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
-		//
-		//JsonFile file3;
-		//file3.StartWriter("Enemy/Serpentipede.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+		EnemyData Lancer;
+		Lancer.Health = 10;
+		Lancer.Damage = 1;
+		Lancer.Mass = 20;
+		Lancer.Movespeed = 30;
 		
 		JsonFile file;
-		file.StartReader("Enemy/Lancer.json").LoadObject(LancerData).EndReader();
+		file.StartWriter("Enemy/Lancer.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+		
 		JsonFile file2;
-		file.StartReader("Enemy/Fiddler.json").LoadObject(FiddlerData).EndReader();
+		file2.StartWriter("Enemy/Fiddler.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+		
 		JsonFile file3;
-		file.StartReader("Enemy/Serpentipede.json").LoadObject(SerpentipedeData).EndReader();
+		file3.StartWriter("Enemy/Serpentipede.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+		
+		//JsonFile file;
+		//file.StartReader("Enemy/Lancer.json").LoadObject(LancerData).EndReader();
+		//JsonFile file2;
+		//file.StartReader("Enemy/Fiddler.json").LoadObject(FiddlerData).EndReader();
+		//JsonFile file3;
+		//file.StartReader("Enemy/Serpentipede.json").LoadObject(SerpentipedeData).EndReader();
 	}
 
 	void EnemySpawner::Initialize()
