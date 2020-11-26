@@ -147,7 +147,7 @@ namespace DeltaEngine
         ImGui::EndDragDropTarget();
       }
 
-      ImGui::End();
     }
+    ImGui::End();
   }
 }

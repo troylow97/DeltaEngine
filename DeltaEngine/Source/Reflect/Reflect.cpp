@@ -15,6 +15,7 @@
 #include "Core/GlobalStruct.h"
 #include "AI/Waypoint.h"
 #include "AI/AI_State.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -212,7 +213,7 @@ namespace DeltaEngine
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Text>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("Key", &Text::m_FontKey)(rttr::policy::prop::bind_as_ptr)
-      .property("Text", &Text::m_Text)(rttr::policy::prop::bind_as_ptr)
+      .property("Detail", &Text::m_Text)(rttr::policy::prop::bind_as_ptr)
       .property("Alignment", &Text::alignment)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Renderer2D>("Renderer2D")
