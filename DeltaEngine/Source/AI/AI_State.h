@@ -30,29 +30,29 @@ namespace DeltaEngine
     virtual ~AIState();
   };
   
-  struct SerpentipedeData
+  struct SerpentipedeAIData
   {
       float MaxCooldown;
       Vector2 Points[3];
       Vector2 DetectionRange;
-      SerpentipedeData();
-      SerpentipedeData(SerpentipedeData& d);
+      SerpentipedeAIData();
+      SerpentipedeAIData(SerpentipedeAIData& d);
   };
 
-  struct FiddlerData
+  struct FiddlerAIData
   {
       Waypoint waypoint;
       Vector2 ChargeDetectionRange;
       Vector2 LostDetectionRange;
-      FiddlerData();
-      FiddlerData(FiddlerData& d);
+      FiddlerAIData();
+      FiddlerAIData(FiddlerAIData& d);
   };
 
-  struct LancerData
+  struct LancerAIData
   {
       Vector2 ChargeDetectionRange;
-      LancerData();
-      LancerData(LancerData& d);
+      LancerAIData();
+      LancerAIData(LancerAIData& d);
   };
 
   class IdleLancer : public AIState //Mosquito
@@ -95,7 +95,7 @@ namespace DeltaEngine
   class IdleSerpentipede : public AIState
   {
   public:
-      IdleSerpentipede(Vector2,Vector2);
+      IdleSerpentipede(Vector2);
       void onEnter(EntityID& id) override;
       void onExit(EntityID& id) override;
       void Update(EntityID& id1) override;
@@ -106,9 +106,9 @@ namespace DeltaEngine
   public:
       float CooldownTimer;
       int CurrentPoint;
-      SerpentipedeData SerpentData;
+      SerpentipedeAIData SerpentData;
 
-      ChaseEnemySerpentipede(SerpentipedeData& d);
+      ChaseEnemySerpentipede(SerpentipedeAIData& d);
       void onEnter(EntityID& id) override;
       void onExit(EntityID& id) override;
       void Update(EntityID& id1) override;

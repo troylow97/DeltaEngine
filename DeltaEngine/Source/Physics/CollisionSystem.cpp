@@ -55,7 +55,7 @@ namespace DeltaEngine
             Manifold m;
             if (r1.isMoveable || r2.isMoveable)
             {
-                if (c1.CollisionLayerCheck & c2.CollisionLayerCheck)
+                if (c1.CollisionLayerID & c2.CollisionLayerCheck)
                 {
                     if (CollisionIntersection_Main(c1, r1, c2, r2, m))
                     {

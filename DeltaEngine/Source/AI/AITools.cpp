@@ -236,12 +236,17 @@ namespace DeltaEngine
             }
         }
 
-        void BulletTowardsEntity(EntityID& id1, EntityID& id2)
+        void BulletTowardsEntity(EntityID& bullet, EntityID& entity)
         {
-            Vector2 pos{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position };
-            Vector2 pos2{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id2).position };
-            Vector2 diff{ pos2 - pos };
-            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).AccumulatedForce = diff * 1500;
+            Vector2 pos{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(bullet).position };
+            Vector2 pos2{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(entity).position };
+
+            if (std::abs(pos2.x - pos.x) < 0.3 && std::abs(pos2.y - pos.y) < 0.3)
+            {
+                Vector2 diff{ pos2 - pos };
+                env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(bullet).AccumulatedForce = diff * 1500;
+            }
+
         }
 
         void MoveTowardsPoint(EntityID& id1, Vector2& point)
@@ -283,5 +288,17 @@ namespace DeltaEngine
 
             return false;
         }
+
+        bool EntityisAtPointInX(EntityID& id1, float x)
+        {
+            float pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position.x;
+            if (std::abs(x - pos) < 0.1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

@@ -13,6 +13,9 @@
     <ClInclude Include="Source\Systems\AttackSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\EnemySpawner\EnemyData.h">
+      <Filter>Systems\EnemySpawner</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\EnemySpawner\EnemySpawner.h">
       <Filter>Systems\EnemySpawner</Filter>
     </ClInclude>

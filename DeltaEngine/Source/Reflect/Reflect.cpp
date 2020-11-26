@@ -10,13 +10,15 @@
 
 #include <rttr/registration>
 
+
+#include "../../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "Assets/AssetKey.h"
 #include "Core/Utils/Json/JsonSerialize.h"
 #include "Core/GlobalStruct.h"
 #include "AI/Waypoint.h"
 #include "AI/AI_State.h"
 #include "../../Sandbox/Source/Systems/EnemySpawner/EnemySpawner.h"
-#include "../../Sandbox/Source/Systems/RespawnSystem.h"
+#include "../../Sandbox/Source/Systems/EnemySpawner/EnemyData.h"
 
 namespace DeltaEngine
 {
@@ -26,28 +28,36 @@ namespace DeltaEngine
       .property("Waypoints", &Waypoint::Waypoints)
       .property("CurrentWaypoint", &Waypoint::CurrentWaypoint);
 
-  rttr::registration::class_<LancerData>("LancerData")
-      .property("charge_detection_range", &LancerData::ChargeDetectionRange);
+  rttr::registration::class_<EnemyData>("EnemyData")
+      .property("health", &EnemyData::Health)
+      .property("movespeed", &EnemyData::Movespeed)
+      .property("mass", &EnemyData::Mass)
+      .property("damage", &EnemyData::Damage);
 
-  rttr::registration::class_<FiddlerData>("FiddlerData")
-      .property("waypoint", &FiddlerData::waypoint)(rttr::policy::prop::bind_as_ptr)
-      .property("lost_detection_range", &FiddlerData::ChargeDetectionRange)(rttr::policy::prop::bind_as_ptr)
-      .property("charge_detection_range", &FiddlerData::LostDetectionRange)(rttr::policy::prop::bind_as_ptr);
+  rttr::registration::class_<LancerAIData>("LancerAIData")
+      .property("charge_detection_range", &LancerAIData::ChargeDetectionRange);
 
-  rttr::registration::class_<SerpentipedeData>("SerpentipedeData")
-      .property("cooldown", &SerpentipedeData::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
-      .property("points", &SerpentipedeData::Points)
-      .property("detection_range", &SerpentipedeData::DetectionRange)(rttr::policy::prop::bind_as_ptr);
+  rttr::registration::class_<FiddlerAIData>("FiddlerAIData")
+      .property("waypoint", &FiddlerAIData::waypoint)
+      .property("lost_detection_range", &FiddlerAIData::ChargeDetectionRange)
+      .property("charge_detection_range", &FiddlerAIData::LostDetectionRange);
+
+  rttr::registration::class_<SerpentipedeAIData>("SerpentipedeAIData")
+      .property("cooldown", &SerpentipedeAIData::MaxCooldown)
+      .property("points", &SerpentipedeAIData::Points)
+      .property("detection_range", &SerpentipedeAIData::DetectionRange);
 
   rttr::registration::class_<EnemyWave>("EnemyWave")
-      .property("enemy_count", &EnemyWave::EnemyCount)(rttr::policy::prop::bind_as_ptr)
-      .property("enemy_type", &EnemyWave::EnemyType)(rttr::policy::prop::bind_as_ptr)
-      .property("spawn_area", &EnemyWave::SpawnArea)(rttr::policy::prop::bind_as_ptr);
+      .property("enemy_count", &EnemyWave::EnemyCount)
+      .property("enemy_type", &EnemyWave::EnemyType)
+      .property("spawn_area", &EnemyWave::SpawnArea);
 
   rttr::registration::class_<Gauntlet>("Gauntlet")
-      .property("enemy_waves", &Gauntlet::EnemyWaves)(rttr::policy::prop::bind_as_ptr)
-      .property("activation_point", &Gauntlet::ActivationPoint)(rttr::policy::prop::bind_as_ptr)
-      .property("is_activated", &Gauntlet::isActivated)(rttr::metadata("NO_SERIALIZE", true));
+      .property("enemy_waves", &Gauntlet::EnemyWaves)
+      .property("activation_point", &Gauntlet::ActivationPoint)
+      .property("current_enemy_wave", &Gauntlet::CurrentEnemyWave)(rttr::metadata("NO_SERIALIZE", true))
+      .property("is_activated", &Gauntlet::isActivated)(rttr::metadata("NO_SERIALIZE", true))
+      .property("is_finished", &Gauntlet::isFinished)(rttr::metadata("NO_SERIALIZE", true));
 
   rttr::registration::class_<GauntletsList>("Gauntlets")
       .property("gauntlets", &GauntletsList::Gauntlets);
@@ -186,19 +196,20 @@ namespace DeltaEngine
       .property("Jumping", &RigidBody::isJumping)(rttr::policy::prop::bind_as_ptr)(
         rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
-    rttr::registration::class_<Collider>( "Collider" )
-      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Collider>()->bits ) )
-      .constructor<>()( rttr::policy::ctor::as_object )
-      .property( "Center", &Collider::center )( rttr::policy::prop::bind_as_ptr )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-      .property( "Offset", &Collider::offset )( rttr::policy::prop::bind_as_ptr )
-      .property( "Size", &Collider::size )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-      .property( "Intersection Point", &Collider::interPoint )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                                ( rttr::metadata( "NO_EDITOR", true ) ) )
-      .property( "Type", &Collider::type )
-      .property( "Collision Layer", &Collider::CollisionLayerCheck )( rttr::policy::prop::bind_as_ptr )
-      .property( "Trigger", &Collider::isTrigger )( rttr::policy::prop::bind_as_ptr )
-      .property( "Colliding On Floor", &Collider::isCollidingOnFloor )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                                        ( rttr::metadata( "NO_EDITOR", true ) ) );
+    rttr::registration::class_<Collider>("Collider")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Collider>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Center", &Collider::center)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true),(rttr::metadata("NO_EDITOR", true)))
+      .property("Offset", &Collider::offset)(rttr::policy::prop::bind_as_ptr)
+      .property("Size", &Collider::size)(rttr::policy::prop::bind_as_ptr)
+      .property("Intersection Point", &Collider::interPoint)(rttr::metadata("NO_SERIALIZE", true),
+                                                     (rttr::metadata("NO_EDITOR", true)))
+      .property("Type", &Collider::type)
+      .property("Trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
+      .property("Colliding On Floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true),
+                                                                        (rttr::metadata("NO_EDITOR", true)))
+      .property("Collision Layer", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr)
+        .property("Collision Layer ID", &Collider::CollisionLayerID)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Animator>("Animator")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Animator>()->bits))
@@ -240,7 +251,7 @@ namespace DeltaEngine
     rttr::registration::class_<Renderer2D>("Renderer2D")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Material", &Renderer2D::m_Material)(rttr::policy::prop::bind_as_ptr)
+      .property("Materials", &Renderer2D::m_Material)(rttr::policy::prop::bind_as_ptr)
       .property("Colors", &Renderer2D::m_Color)(rttr::policy::prop::bind_as_ptr)
       .property("Layer", &Renderer2D::m_SortingLayer)(rttr::policy::prop::bind_as_ptr)
       .property("Order", &Renderer2D::m_SortingOrder)(rttr::policy::prop::bind_as_ptr)
@@ -293,7 +304,6 @@ namespace DeltaEngine
         .constructor<>()(rttr::policy::ctor::as_object)
         .property("Respawn Point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Is Dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
-
   }
 
 }

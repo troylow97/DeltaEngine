@@ -11,13 +11,13 @@ namespace DeltaEngine
 {
 void PhysicsDrawSystem::Update()
 {
-
   if ( Editor::entity_selected && Editor::tool_selection == Editor::Tool::EntitySelector )
   {
+    Gizmos::SetColor( { 0.19f, 0.71f, 0.81f, .5f } );
+    Gizmos::Draw2DBox( Editor::selection_transform );
+    Gizmos::SetColor( { 0.19f, 0.71f, 0.81f, 1.f } );
+    Gizmos::Draw2DWireBox( Editor::selection_transform );
     Gizmos::SetColor();
-      Gizmos::Draw2DBox( Editor::selection_transform );
-    Gizmos::SetColor();
-
   }
 
   if ( gizmo )

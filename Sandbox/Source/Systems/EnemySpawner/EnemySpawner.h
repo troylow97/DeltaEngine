@@ -3,11 +3,10 @@
 #include "Core/Math/Vector.h"
 #include <string>
 #include "ECS/ECSModule.h"
+#include "EnemyData.h"
 
 namespace DeltaEngine
 {
-	void SpawnEnemy(std::string type, Vector2 position);
-
 	struct EnemyWave
 	{
 		int EnemyCount;
@@ -19,7 +18,9 @@ namespace DeltaEngine
 	{
 		std::vector<EnemyWave> EnemyWaves;
 		Vector2 ActivationPoint;
+		unsigned CurrentEnemyWave;
 		bool isActivated;
+		bool isFinished;
 
 		Gauntlet();
 	};
@@ -33,12 +34,19 @@ namespace DeltaEngine
 		void EnemySpawner::Initialize() override;
 		void EnemySpawner::Update() override;
 		void EnemySpawner::LateUpdate() override;
+
 	
 	
 	private:
+		void LoadEnemyData();
+		void SpawnEnemy(unsigned amount, std::string type, Vector2 position);
+		std::vector<EntityID> EnemiesInGauntlet;
 		GauntletsList list;
-	    int WavesToSpawn;
-	    int CurrentWave;
+		EnemyData SerpentipedeData;
+		EnemyData FiddlerData;
+		EnemyData LancerData;
+		int CurrentGauntlet;
+		bool GauntletIsActive;
 	
 	    END_DEFINE_SYSTEM(AttackSystem)
 

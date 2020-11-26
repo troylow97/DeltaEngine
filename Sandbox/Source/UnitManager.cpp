@@ -1,7 +1,7 @@
 #include "UnitManager.h"
 #include "ECS/ECSModule.h"
 #include "Core/GlobalStruct.h"
-
+#include "../Source/Components/Transform.h"
 UnitManager& GetUnitManager()
 {
 	return unit_manager;
