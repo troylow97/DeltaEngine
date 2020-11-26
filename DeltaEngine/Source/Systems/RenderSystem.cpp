@@ -1,6 +1,4 @@
 #include "RenderSystem.h"
-
-
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "ECS/EntityManager.h"
@@ -128,40 +126,42 @@ namespace DeltaEngine
     em.ForEach(e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers.push_back(id); });
     std::sort(sortedRenderers.begin(), sortedRenderers.end(), SortSprites);
 
-
+    // camera entities
     em.ForEach([&](EntityID id, Camera& c)
-      { 
+      {
+#ifndef DE_EDITOR
         c.SetViewportSize(1.0f * GetEnv().pWin->Width());
         c.SetAspectRatio(1.0f * GetEnv().pWin->Width(), 1.0f * GetEnv().pWin->Height());
+#endif // !DE_EDITOR
 
         c.Start();
         // loop through every object
         DrawRenderer2D(em, c);
 
         c.End();
+
+#ifndef DE_EDITOR
+        Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
+        shader->SetUniform1i("_MainTex", 0);
+        glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+        Mesh::DrawQuad();
+#endif // !DE_EDITOR
       });
 
-//#ifdef DE_EDITOR
-//    Camera::editorCamera->Start();
-//    DrawRenderer2D(em, *Camera::editorCamera);
-//#endif // DE_EDITOR
+
+#ifdef DE_EDITOR
     Camera::editorCamera->Start();
     DrawRenderer2D(em, *Camera::editorCamera);
+#endif // DE_EDITOR
 
     Profiler::Instance().Record("Render System Update");
   }
 
   void RenderSystem::LateUpdate()
   {
-//#ifdef DE_EDITOR
-//    Camera::editorCamera->End();
-//#endif // DE_EDITOR
+#ifdef DE_EDITOR
     Camera::editorCamera->End();
-
-    Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
-    shader->SetUniform1i("_MainTex", 0);
-    glBindTexture(GL_TEXTURE_2D, Camera::editorCamera->GetFrameBuffer().GetColorAttachment());
-    Mesh::DrawQuad();
+#endif // DE_EDITOR
 
     Profiler::Instance().Record("Render System Late Update");
   }

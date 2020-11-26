@@ -12,6 +12,11 @@ namespace DeltaEngine
     Vector2 pivot;
   };
 
+  enum class TextureWrapMode
+  {
+    Repeat, Mirror, Clamp
+  };
+
   class Texture2D
   {
     unsigned int m_RendererID;
@@ -40,6 +45,8 @@ namespace DeltaEngine
 
     std::string GetName();
     std::vector<TextureInfo> textureInfo;
+
+    TextureWrapMode wrapMode;
   private:
     void InitTexture(std::string filepath);
     void LoadMetaFile(std::string filepath);

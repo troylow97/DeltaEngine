@@ -7,8 +7,14 @@
 
 namespace DeltaEngine
 {
-  Texture2D::Texture2D(std::string filepath)
-    : m_RendererID{0}, m_Channels{0}, m_Width{0}, m_Height{0}, m_Filepath{filepath}, m_Name{filepath}
+  Texture2D::Texture2D(std::string filepath) :
+    m_RendererID{ 0 },
+    m_Channels{ 0 },
+    m_Width{ 0 },
+    m_Height{ 0 },
+    m_Filepath{ filepath },
+    m_Name{ filepath },
+    wrapMode{ TextureWrapMode::Repeat }
   {
     InitTexture(filepath);
   }
@@ -197,10 +203,24 @@ namespace DeltaEngine
       m_Filepath = "";
     }
 
+    int glWrapMode = GL_REPEAT;
+    switch (wrapMode)
+    {
+    case TextureWrapMode::Repeat:
+      glWrapMode = GL_REPEAT;
+      break;
+    case TextureWrapMode::Mirror:
+      glWrapMode = GL_MIRRORED_REPEAT;
+      break;
+    case TextureWrapMode::Clamp:
+      glWrapMode = GL_CLAMP;
+      break;
+    }
+
     GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
     GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT));
-    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT));
+    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, glWrapMode));
+    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, glWrapMode));
 
     GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_Data));
     GLCall(glGenerateMipmap(GL_TEXTURE_2D));

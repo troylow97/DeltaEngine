@@ -28,7 +28,6 @@ namespace DeltaEngine
     bottomRight.x += ImGui::GetWindowPos().x;
     bottomRight.y += ImGui::GetWindowPos().y;
 
-
     ImGui::InputText("Texture Name", textureName, 128);
     if (ImGui::BeginDragDropTarget())
     {
@@ -50,8 +49,6 @@ namespace DeltaEngine
       }
       ImGui::EndDragDropTarget();
     }
-
-
 
     Texture2D* texture = GetEnv().pManager->Get<Texture2D>(std::string(textureName));
     if (ImGui::BeginMenuBar())
@@ -91,19 +88,22 @@ namespace DeltaEngine
       }
       ImGui::EndMenuBar();
     }
+
     if (texture)
     {
       uint64_t textureID = texture->GetRendererID();
       static float zoom = 1.0f;
 
       ImVec2 p = ImGui::GetCursorScreenPos();
-      ImGui::BeginChild("Test");
+      ImGui::BeginChild("Texture Editing");
       ImGui::Image(
         reinterpret_cast<void*>(textureID),
         ImVec2{ texture->GetWidth() * zoom, texture->GetHeight() * zoom },
         ImVec2{ 0, 0 }, ImVec2{ 1, 1 }, ImVec4{ 1, 1, 1, 1 }, ImVec4{ 1, 1, 1, 1 });
+      int i = 0;
       for (const TextureInfo& info : texture->textureInfo)
       {
+        ImGui::PushID((texture->GetName() + std::to_string(i++)).c_str());
         ImGui::GetWindowDrawList()->AddRectFilled(
           ImVec2{ p.x + info.offset.x + 1, p.y + info.offset.y + 1 },
           ImVec2{ p.x + info.offset.x + info.size.x + 1, p.y + info.offset.y + info.size.y + 1 },
@@ -117,10 +117,10 @@ namespace DeltaEngine
             p.x + info.offset.x + info.pivot.x * info.size.x + 1,
             p.y + info.offset.y + info.pivot.y * info.size.y + 1 },
           5.0f, IM_COL32(0, 255, 0, 128), 0, 2.0f);
+        ImGui::PopID();
       }
       ImGui::EndChild();
     }
-
     ImGui::End();
   }
 }

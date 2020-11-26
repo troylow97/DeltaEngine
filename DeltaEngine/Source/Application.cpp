@@ -91,6 +91,8 @@ namespace DeltaEngine
   void Application::Run()
   {
     env.pECS->GetWorld().Load("World/DemoPlayerMobsLatest.json");
+    auto entitycamera = env.pECS->GetWorld().GetEntityManager().CreateEntity<Transform, Camera>();
+
     while (env.pWin->Running())
     {
       Profiler::Instance().FrameStart();
