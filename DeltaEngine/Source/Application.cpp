@@ -121,6 +121,8 @@ Application::~Application()
 
 void Application::Run()
 {
+  auto entitycamera = env.pECS->GetWorld().GetEntityManager().CreateEntity<Transform, Camera>();
+
   while ( env.pWin->Running() )
   {
     if ( env.pWin->Focus() )

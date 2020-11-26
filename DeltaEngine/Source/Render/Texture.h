@@ -44,11 +44,12 @@ namespace DeltaEngine
     Vector2 GetPivot(unsigned int index);
 
     std::string GetName();
+    std::string GetFilepath();
     std::vector<TextureInfo> textureInfo;
 
     TextureWrapMode wrapMode;
-  private:
-    void InitTexture(std::string filepath);
+
+    void InitTexture();
     void LoadMetaFile(std::string filepath);
     void UpdateMetaFile(std::string filepath);
   };
