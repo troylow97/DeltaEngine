@@ -22,7 +22,7 @@ namespace DeltaEngine
     {
       if (p.IsDead)
       {
-        float temp_x = -4.149f, temp_y = -2.68f;
+        float temp_x = -9.5f, temp_y = 0.0f;
         float new_x = 0.0f, new_y = 0.0f;
         if (AITools::isFacingRight(id))
         {
@@ -43,7 +43,7 @@ namespace DeltaEngine
         }
         else if (AITools::isFacingLeft(id))
         {
-          for (size_t i = (respawns.m_respawns.size()-1); i >= 0; i--)
+          for (int i = static_cast<int>(respawns.m_respawns.size()-1); i >= 0; i--)
           {
             if (t.position.x <= respawns.m_respawns[i].x)
             {
