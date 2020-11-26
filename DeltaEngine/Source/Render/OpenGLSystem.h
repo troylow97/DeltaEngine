@@ -22,7 +22,6 @@ namespace DeltaEngine
       void Init();
       void Update();
       void Exit();
-
       HDC GetWindowContext();
       HGLRC GetGLContext();
     };

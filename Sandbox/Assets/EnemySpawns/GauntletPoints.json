@@ -1,0 +1,46 @@
+{
+    "gauntlets": [
+        {
+            "enemy_waves": [
+                {
+                    "enemy_count": 3,
+                    "enemy_type": "lancer",
+                    "spawn_area": {
+                        "x": 6.0,
+                        "y": 0.0
+                    }
+                },
+                {
+                    "enemy_count": 2,
+                    "enemy_type": "serpentipede",
+                    "spawn_area": {
+                        "x": 5.0,
+                        "y": 0.0
+                    }
+                }
+            ],
+            "activation_point": {
+                "x": 5.0,
+                "y": 0.0
+            },
+            "current_enemy_wave": 0
+        },
+        {
+            "enemy_waves": [
+                {
+                    "enemy_count": 2,
+                    "enemy_type": "lancer",
+                    "spawn_area": {
+                        "x": 9.0,
+                        "y": 0.0
+                    }
+                }
+            ],
+            "activation_point": {
+                "x": 20.0,
+                "y": 0.0
+            },
+            "current_enemy_wave": 0
+        }
+    ]
+}

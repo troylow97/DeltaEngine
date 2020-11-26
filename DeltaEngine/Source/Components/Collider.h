@@ -4,52 +4,57 @@
 
 namespace DeltaEngine
 {
-  enum class ColliderType : unsigned
+enum class ColliderType : unsigned
+{
+  NONE,
+  BOX,
+  CIRCLE,
+  LINE,
+  RAY
+};
+
+struct Collider
+{
+  Vector2 center;
+  Vector2 offset;
+  Vector2 size;
+  Vector2 interPoint;
+  ColliderType type;
+  unsigned CollisionLayerCheck;
+  unsigned CollisionLayerID;
+  bool isTrigger;
+  bool isCollidingOnFloor;
+
+  Collider() :
+    center { 0, 0 },
+    offset { 0, 0 },
+    size { 0, 0 },
+    interPoint { 0, 0 },
+    type { ColliderType::BOX },
+    CollisionLayerCheck { 255 },
+    CollisionLayerID { 255 },
+    isTrigger { false },
+    isCollidingOnFloor { false }
   {
-    NONE,
-    BOX,
-    CIRCLE,
-    LINE,
-    RAY
-  };
+  }
 
-  struct Collider
+  Collider( Vector2 new_center, Vector2 new_size, ColliderType col_type ) :
+    center( new_center ),
+    offset { 0, 0 },
+    size( new_size ),
+    interPoint { 0, 0 },
+    type { ColliderType::BOX },
+    CollisionLayerCheck { 255 },
+    CollisionLayerID { 255 },
+    isTrigger { false },
+    isCollidingOnFloor { false }
   {
-    Vector2 center;
-    Vector2 size;
-    Vector2 interPoint;
-    ColliderType type;
-    bool isCollideable;
-    bool isTrigger;
-    bool isCollidingOnFloor;
-    char CollisionLayerID;
-    char CollisionLayerCheck;
+    (void) col_type;
+  }
+};
 
-    Collider() :
-      center{0, 0},
-      size{0, 0},
-      interPoint{0, 0},
-      type{ColliderType::BOX},
-      isCollideable{true},
-      isTrigger{false},
-      isCollidingOnFloor{false},
-      CollisionLayerID{0},
-      CollisionLayerCheck{0}
-    {
-    }
-
-    Collider(Vector2 new_center, Vector2 new_size, ColliderType col_type) :
-      center(new_center),
-      size(new_size),
-      interPoint{0, 0},
-      type{ColliderType::BOX},
-      isCollideable{true},
-      isTrigger{false},
-      isCollidingOnFloor{false},
-      CollisionLayerID{0},
-      CollisionLayerCheck{0}
-    {
-      (void)col_type;
-    }
-  };
+//0001 Wall
+//0010 Player
+//0100 Enemy
+//1000 Bullet
 } // namespace DeltaEngine

@@ -30,12 +30,6 @@ namespace DeltaEngine
     POINT _currentPosition = {};
     GetCursorPos(&_currentPosition);
 
-    if (m_first_time)
-    {
-      m_previous_mouse_position = Point(static_cast<float>(_currentPosition.x), static_cast<float>(_currentPosition.y));
-      m_first_time = false;
-    }
-
     // allows us to retrieve the entire sequence of state of each key of the keyboard
     if (GetKeyboardState(m_current_key_state))
     {
@@ -87,88 +81,5 @@ namespace DeltaEngine
       m_previous_mouse_position = Point(static_cast<float>(_currentPosition.x), static_cast<float>(_currentPosition.y));
       m_move_event = true;
     }
-  }
-
-  bool MouseInput::IsMouseTriggered(int key)
-  {
-    return m_is_triggered[key];
-  }
-
-  bool MouseInput::IsMousePressed(int key)
-  {
-    return m_is_pressed[key];
-  }
-
-  bool MouseInput::IsMouseReleased(int key)
-  {
-    return m_is_released[key];
-  }
-
-  bool MouseInput::IsMouseMoved()
-  {
-    return m_move_event;
-  }
-
-  const Point& MouseInput::CurrentPosition()
-  {
-    return m_current_mouse_position;
-  }
-
-  const Point& MouseInput::PreviousPosition()
-  {
-    return m_previous_mouse_position;
-  }
-
-  const Point& MouseInput::CurrentCameraPosition()
-  {
-    return m_current_camera_mouse_position;
-  }
-
-  void MouseInput::SetCurrentPosition(Point _currentPosition)
-  {
-    m_current_mouse_position.point_x = _currentPosition.point_x;
-    m_current_mouse_position.point_y = _currentPosition.point_y;
-  }
-
-  void MouseInput::SetPreviousPosition(Point _previousPositon)
-  {
-    m_previous_mouse_position.point_x = _previousPositon.point_x;
-    m_previous_mouse_position.point_y = _previousPositon.point_y;
-  }
-
-  void MouseInput::SetCurrentCameraPosition(Point _currentCameraPosition)
-  {
-    m_current_camera_mouse_position.point_x = _currentCameraPosition.point_x;
-    m_current_camera_mouse_position.point_y = _currentCameraPosition.point_y;
-  }
-
-  bool MouseInput::EntitySelected()
-  {
-    return m_entity_selected;
-  }
-
-  void MouseInput::SetEntitySelected(bool _setEntitySelected)
-  {
-    m_entity_selected = _setEntitySelected;
-  }
-
-  size_t MouseInput::EntityIDSelected()
-  {
-    return m_entityid_selected;
-  }
-
-  void MouseInput::SetEntityIDSelected(size_t _setEntityIDSelected)
-  {
-    m_entityid_selected = _setEntityIDSelected;
-  }
-
-  bool MouseInput::TilesetDragged()
-  {
-    return m_tileset_dragged;
-  }
-
-  void MouseInput::SetTilesetDragged(bool _setTilesetDragged)
-  {
-    m_tileset_dragged = _setTilesetDragged;
   }
 }

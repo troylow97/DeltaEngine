@@ -10,9 +10,6 @@ namespace DeltaEngine
   public:
     TilemapPanel(std::string str);
     ~TilemapPanel();
-    bool DraggedFileIn();
-    void Render(bool) override;
-  private:
-    std::map<std::string, std::string> tileInfo;
+    void Render() override;
   };
 }

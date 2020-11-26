@@ -65,29 +65,4 @@ namespace DeltaEngine
       memcpy(m_previous_key_state, m_current_key_state, (sizeof(unsigned char) * 256));
     }
   }
-
-  bool KeyboardInput::IsKeyTriggered(int key)
-  {
-    return m_is_triggered[key];
-  }
-
-  bool KeyboardInput::IsKeyPressed(int key)
-  {
-    return m_is_pressed[key];
-  }
-
-  bool KeyboardInput::IsKeyReleased(int key)
-  {
-    return m_is_released[key];
-  }
-
-  bool KeyboardInput::GetShowLine()
-  {
-    return m_show_line;
-  }
-
-  void KeyboardInput::SetShowLine(bool showLine)
-  {
-    m_show_line = showLine;
-  }
 }

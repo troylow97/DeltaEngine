@@ -16,12 +16,18 @@ namespace DeltaEngine
           Set(file.generic_string().substr(0, file.generic_string().find_last_of('.')),
               data, AssetState::Final, AssetLifetime::Persistent);
 
-          DeltaEngine_CORE_TRACE("AnimationClip Key: {}", file.generic_string());
+          DeltaEngine_CORE_INFO("AnimationClip Key: {}", file.generic_string());
         }
     }
 
     void DoLoad(AssetKey key) override
     {
+      std::string str = key.Key() + ".clip";
+      if(FileUtils::FileExists( str ))
+      {
+        AnimationClip* data = new AnimationClip(str);
+        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+      }
     }
 
     void DoLoad(AssetKey key, std::string_view str) override

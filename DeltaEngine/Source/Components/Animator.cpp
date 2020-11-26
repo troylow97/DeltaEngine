@@ -3,7 +3,9 @@
 #include "Assets/AssetManager.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/Math/Math.h"
-
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 namespace DeltaEngine
 {
   unsigned int Animator::GetFrame() const

@@ -1,104 +1,62 @@
 #include "ImGui/Panels/WorldPanel.h"
 #include "Input/InputManager.h"
-
+#include "ImGui/Panels/LoggerPanel.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
-
+#include "ImGui//Panels/LoggerPanel.h"
+#include "Render/Camera.h"
+#include "ImGui/Editor.h"
 namespace DeltaEngine
 {
-  WorldPanel::WorldPanel(std::string str) :
-    IPanel(str)
-  {
-    m_enabled = true;
-  }
+WorldPanel::WorldPanel( std::string str ) :
+  IPanel( str )
+{
+  m_enabled = true;
+}
 
-  WorldPanel::~WorldPanel()
-  {
-    m_enabled = false;
-  }
+WorldPanel::~WorldPanel()
+{
+  m_enabled = false;
+}
 
-  bool WorldPanel::DraggedFileIn()
+void WorldPanel::Render()
+{
+  ImGui::Begin( m_name.c_str(), &m_enabled );
+  auto &em = env.pECS->GetWorld().GetEntityManager();
+
+  if ( ImGui::CollapsingHeader( "Entities" ,ImGuiTreeNodeFlags_DefaultOpen) )
   {
-    if (InputManager::Instance().CurrentPosition().point_x >= GetTopLeft().x && InputManager::Instance().
-      CurrentPosition().point_x <= GetBottomRight().x
-      && InputManager::Instance().CurrentPosition().point_y >= GetTopLeft().y && InputManager::Instance().
-      CurrentPosition().point_y <= GetBottomRight().y)
+    for ( size_t e_id = 0; e_id < em.GetEntities().size(); e_id++ )
     {
-      std::cout << "it is in world panel!!!" << std::endl;
-      return true;
-    }
-    return false;
-  }
-
-  void WorldPanel::Render(bool isdragged)
-  {
-    ImGui::Begin(m_name.c_str(), &m_enabled);
-    auto& em = env.pECS->GetWorld().GetEntityManager();
-
-    topLeft = ImGui::GetWindowContentRegionMin();
-    bottomRight = ImGui::GetWindowContentRegionMax();
-
-    topLeft.x += ImGui::GetWindowPos().x;
-    topLeft.y += ImGui::GetWindowPos().y;
-    bottomRight.x += ImGui::GetWindowPos().x;
-    bottomRight.y += ImGui::GetWindowPos().y;
-
-    if (isdragged)
-    {
-      DraggedFileIn();
-    }
-
-    if (ImGui::TreeNode("Entities"))
-    {
-      for (size_t e_id = 0; e_id < em.GetEntities().size(); e_id++)
+      if ( em.GetEntities()[e_id].chunk )
       {
-        if (em.GetEntities()[e_id].chunk)
+        const auto &ref = em.GetComponent<EntityName>( { e_id } );
+        std::string str = "Entity " + std::to_string( e_id );
+        if ( !ref.name.empty() )
+          str += " - " + ref.name;
+
+        ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_Leaf |
+          ImGuiTreeNodeFlags_NoTreePushOnOpen;
+
+        if (Editor::entity_selected && Editor::entity_id == e_id)
+          node_flags |= ImGuiTreeNodeFlags_Selected
+        ;
+        ImGui::TreeNodeEx( ( void * )static_cast<intptr_t>( e_id ), node_flags, str.c_str() );
+        if ( ImGui::IsItemClicked() )
         {
+          Editor::entity_selected = true;
+          Editor::entity_id = e_id;
 
-          const auto &ref = em.GetComponent<EntityName>( { e_id } );
-          std::string str = "Entity " + std::to_string( e_id );
-          if ( !ref.name.empty() )
-            str += " - " + ref.name;
-          static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
+          auto &t = em.GetComponent<Transform>( { e_id } );
 
-          ImGuiTreeNodeFlags node_flags = base_flags;
-          node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
-
-          ImGui::TreeNodeEx((void*)static_cast<intptr_t>(e_id), node_flags, str.c_str());
-          if (ImGui::IsItemClicked())
-          {
-            InputManager::Instance().SetEntitySelected(true);
-            InputManager::Instance().SetEntityIDSelected(e_id);
-          }
+          Editor::selection_transform = t;
+          Editor::selection_transform.scale = { 0.2f, 0.2f, 0.0f };
         }
+        if ( ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked( 0 ) )
+          Camera::editorCamera->transform.position = em.GetComponent<Transform>( { e_id } ).position;
       }
-      ImGui::TreePop();
     }
-    if (ImGui::TreeNode("Environment"))
-    {
-      if (ImGui::TreeNode("NOTHING HERE"))
-      {
-        ImGui::Text("i told you there's nothing already lol");
-        ImGui::TextColored(ImVec4(1.0f, 0.0f, 1.0f, 1.0f), "pink");
-        ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "yellow");
-        ImGui::TextColored(ImVec4(0.25f, 0.875f, 0.8125f, 1.0f), "clara's fav color is turquoise");
-        ImGui::TreePop();
-      }
-      ImGui::TreePop();
-    }
-    if (ImGui::TreeNode("Segments"))
-    {
-      for (int i = 0; i < 6; i++)
-      {
-        static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_None;
-
-        ImGuiTreeNodeFlags node_flags = base_flags;
-        node_flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen; // ImGuiTreeNodeFlags_Bullet
-
-        ImGui::TreeNodeEx((void*)static_cast<intptr_t>(i), node_flags, "fake one sike %d", i);
-      }
-      ImGui::TreePop();
-    }
-    ImGui::End();
   }
+  ImGui::End();
+}
 }

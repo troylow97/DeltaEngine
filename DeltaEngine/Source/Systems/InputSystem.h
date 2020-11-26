@@ -8,6 +8,7 @@ namespace DeltaEngine
     void Initialize() override;
     void Update() override;
     void LateUpdate() override;
+
     void Shutdown() override;
   END_DEFINE_SYSTEM(InputSystem)
 }

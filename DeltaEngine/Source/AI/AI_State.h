@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include "Core/GlobalStruct.h"
 #include "AI/AITools.h"
-
+#include "Waypoint.h"
 namespace DeltaEngine
 {
   class Transition;
@@ -29,11 +29,36 @@ namespace DeltaEngine
     virtual void Update(EntityID& id) = 0;
     virtual ~AIState();
   };
+  
+  struct SerpentipedeAIData
+  {
+      float MaxCooldown;
+      Vector2 Points[3];
+      Vector2 DetectionRange;
+      SerpentipedeAIData();
+      SerpentipedeAIData(SerpentipedeAIData& d);
+  };
 
-  class IdleLancer : public AIState
+  struct FiddlerAIData
+  {
+      Waypoint waypoint;
+      Vector2 ChargeDetectionRange;
+      Vector2 LostDetectionRange;
+      FiddlerAIData();
+      FiddlerAIData(FiddlerAIData& d);
+  };
+
+  struct LancerAIData
+  {
+      Vector2 ChargeDetectionRange;
+      LancerAIData();
+      LancerAIData(LancerAIData& d);
+  };
+
+  class IdleLancer : public AIState //Mosquito
   {
   public:
-    IdleLancer();
+    IdleLancer(Vector2& chase_range);
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
     void Update(EntityID& id1) override;
@@ -50,10 +75,9 @@ namespace DeltaEngine
 
   class IdleFiddler : public AIState
   {
-    unsigned int CurrentWayPoint;
-    Vector2 WayPoints[2];
+    Waypoint waypoint;
   public:
-    IdleFiddler(Vector2 p1, Vector2 p2);
+    IdleFiddler(Waypoint& wp, Vector2& charge_range);
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
     void Update(EntityID& id1) override;
@@ -62,9 +86,32 @@ namespace DeltaEngine
   class ChaseEnemyFiddler : public AIState
   {
   public:
-    ChaseEnemyFiddler();
+    ChaseEnemyFiddler(Vector2& lost_range);
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
     void Update(EntityID& id1) override;
   };
+
+  class IdleSerpentipede : public AIState
+  {
+  public:
+      IdleSerpentipede(Vector2);
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
+  };
+
+  class ChaseEnemySerpentipede : public AIState
+  {
+  public:
+      float CooldownTimer;
+      int CurrentPoint;
+      SerpentipedeAIData SerpentData;
+
+      ChaseEnemySerpentipede(SerpentipedeAIData& d);
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
+  };
+
 }

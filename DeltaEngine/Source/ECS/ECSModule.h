@@ -6,14 +6,12 @@ namespace DeltaEngine
 {
   class ECSModule
   {
-#pragma warning(disable:4251)
-    std::vector<World*> m_worlds;
-#pragma warning(default:4251)
+    std::vector<std::unique_ptr<World>> m_worlds;
 
   public:
     ECSModule()
     {
-      m_worlds.push_back(new World());
+      m_worlds.push_back(std::make_unique<World>());
     }
 
     World& GetWorld()

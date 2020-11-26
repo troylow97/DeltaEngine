@@ -21,23 +21,28 @@ namespace DeltaEngine
 {
   void AISystem::Initialize()
   {
-    StateList["idle_lancer"] = new IdleLancer();
+    SerpentipedeAIData serpent_data;
+    JsonFile file;
+    file.StartReader("AI/serpentipedeAI.json").LoadObject(serpent_data).EndReader();
+
+    FiddlerAIData fiddler_data;
+    JsonFile file2;
+    //file2.StartWriter("AI/fiddler.json").StartObject().WriteObject(data2).EndObject().EndWriter();
+    file2.StartReader("AI/fiddlerAI.json").LoadObject(fiddler_data).EndReader();
+    file2.StartReader("AI/fiddlerAI.json").LoadObject(fiddler_data.waypoint).EndReader();
+
+    LancerAIData lancer_data;
+    JsonFile file3;
+    file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
+
+    StateList["idle_lancer"] = new IdleLancer(lancer_data.ChargeDetectionRange);
     StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
-    StateList["idle_fiddler"] = new IdleFiddler(Vector2{0, 0}, Vector2{5, 0});
-    StateList["chase_enemy_fiddler"] = new ChaseEnemyFiddler();
-    //Temporary Init
-    //em.ForEach([&](EntityID id, AI ai)
-    //{
-    //	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).key = "idle_lancer";
-    //	env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).transition = "null";
-    //	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "monster";
-    //});
 
+    StateList["idle_fiddler"] = new IdleFiddler(fiddler_data.waypoint, fiddler_data.ChargeDetectionRange);
+    StateList["chase_enemy_fiddler"] = new ChaseEnemyFiddler(fiddler_data.LostDetectionRange);
 
-    //em.ForEach([&](EntityID id,Input i)
-    //{
-    //	env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id).type = "player";
-    //});
+    StateList["idle_serpentipede"] = new IdleSerpentipede(serpent_data.DetectionRange);
+    StateList["chase_enemy_serpentipede"] = new ChaseEnemySerpentipede(serpent_data);
   }
 
   void AISystem::Shutdown()

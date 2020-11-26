@@ -19,18 +19,40 @@ namespace DeltaEngine
       {
         ls.Timer -= env.pClock->DeltaTime();
       }
-    });
 
-    em.ForEach([&](EntityID& id, Health& hp)
+    });
+    em.ForEach([&](EntityID& id, Health& hp, EntityType& et)
     {
       if (hp.CurrentHealth > hp.MaxHealth)
       {
         hp.CurrentHealth = hp.MaxHealth;
       }
-
       if (hp.CurrentHealth <= 0)
       {
-        DestroyedEntities.push_back(id);
+        if (et.type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
+        {
+          Player& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
+          p.IsDead = true;
+        }
+        else if (et.type == EntityCategory::E_ENEMY)
+        {
+          DestroyedEntities.push_back(id);
+        }
+      }
+    });
+    em.ForEach([&](EntityID& id, Health& hp, EntityType& et)
+    {
+      if (hp.CurrentHealth > hp.MaxHealth)
+      {
+        hp.CurrentHealth = hp.MaxHealth;
+      }
+      
+      if (hp.CurrentHealth <= 0)
+      {
+        if (et.type != EntityCategory::E_PLAYER)
+        {
+          DestroyedEntities.push_back(id);
+        }
       }
     });
 

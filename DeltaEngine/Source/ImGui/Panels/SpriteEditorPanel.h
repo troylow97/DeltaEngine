@@ -10,7 +10,7 @@ namespace DeltaEngine
   public:
     SpriteEditorPanel(std::string str);
     ~SpriteEditorPanel();
-    void Render(bool) override;
+    void Render() override;
 
   private:
     char textureName[128] = "Textures/PROPS";

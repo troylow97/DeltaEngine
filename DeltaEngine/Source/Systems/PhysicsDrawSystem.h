@@ -9,5 +9,6 @@ namespace DeltaEngine
   DEFINE_SYSTEM(PhysicsDrawSystem, Transform, Collider, RigidBody)
     void PhysicsDrawSystem::Update() override;
     void PhysicsDrawSystem::LateUpdate() override;
+    static inline bool gizmo;
   END_DEFINE_SYSTEM(PhysicsDrawSystem)
 }

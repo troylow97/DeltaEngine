@@ -4,17 +4,40 @@
 #include "Core/GlobalStruct.h"
 #include "Render/Texture.h"
 #include "Assets/AssetManager.h"
-#include "ECS/ECSModule.h"
 #include "Core/Utils/FileUtils.h"
+#include "ECS/ECSModule.h"
+#include "ImGui/DropManager.h"
+#include "ImGui/Editor.h"
+
+#include "Core/Utils/DirectoryWatcher/DirectoryWatcher.h"
 
 namespace DeltaEngine
 {
   std::string selected_tile;
+  const Directory* tile_dir;
+
+  void Recurse(const Directory& dir)
+  {
+    for (const auto& d : dir.sub_dir)
+    {
+      if (d.cur_dir.path().generic_string().find("Tilemap") != std::string::npos)
+        tile_dir = &d;
+      else
+        Recurse(d);
+    }
+  }
 
   TilemapPanel::TilemapPanel(std::string str) :
     IPanel(str)
   {
     m_enabled = true;
+    for (const auto& dir : SystemDirectory::Instance().ConstDirectories())
+    {
+      if (dir.cur_dir.path().generic_string().find("Tilemap") != std::string::npos)
+        tile_dir = &dir;
+      else
+        Recurse(dir);
+    }
   }
 
   TilemapPanel::~TilemapPanel()
@@ -22,116 +45,108 @@ namespace DeltaEngine
     m_enabled = false;
   }
 
-  bool TilemapPanel::DraggedFileIn()
+  void TilemapPanel::Render()
   {
-    if (InputManager::Instance().CurrentPosition().point_x >= GetTopLeft().x && InputManager::Instance().
-      CurrentPosition().point_x <= GetBottomRight().x
-      && InputManager::Instance().CurrentPosition().point_y >= GetTopLeft().y && InputManager::Instance().
-      CurrentPosition().point_y <= GetBottomRight().y)
+    if (ImGui::Begin(m_name.c_str(), &m_enabled/*, ImGuiWindowFlags_HorizontalScrollbar*/))
     {
-      std::cout << "it is in tileset panel!!!" << std::endl;
-      return true;
-    }
-    return false;
-  }
-
-  void TilemapPanel::Render(bool isdragged)
-  {
-    ImGui::Begin(m_name.c_str(), &m_enabled/*, ImGuiWindowFlags_HorizontalScrollbar*/);
-
-    topLeft = ImGui::GetWindowContentRegionMin();
-    bottomRight = ImGui::GetWindowContentRegionMax();
-
-    topLeft.x += ImGui::GetWindowPos().x;
-    topLeft.y += ImGui::GetWindowPos().y;
-    bottomRight.x += ImGui::GetWindowPos().x;
-    bottomRight.y += ImGui::GetWindowPos().y;
-
-    ImGui::Text("Current tiles available:");
-
-    if (isdragged)
-    {
-      DraggedFileIn();
-    }
-    ImGuiStyle& style = ImGui::GetStyle();
-    float window_visible_x2 = ImGui::GetWindowPos().x + ImGui::GetWindowContentRegionMax().x;
-
-    for (const auto& file : FileUtils::FileList("Tilemap"))
-    {
-      if (file.extension() == ".png")
+      if (ImGui::BeginChild("Tile Selection"))
       {
-        auto key = file.generic_string().substr(0,
-                                                file.generic_string().find_last_of('.'));
-        auto ref = env.pManager->Get<Texture2D>(key);
+        ImGui::Text("Tileset:");
 
 
-        Sprite _sprite = {ref->GetName(), 0};
-        uint64_t textureID = _sprite.GetTexture()->GetRendererID();
+        float nWidth = ImGui::GetWindowContentRegionWidth();
+        int columns = nWidth / 74;
+        columns = columns < 1 ? 1 : columns;
+        ImGui::Columns(columns, nullptr, false);
+        ImGui::PushStyleColor( ImGuiCol_Button, ImVec4( 0.30f, 0.10f, 0.14f, 0.00f ) );
 
-        ImGui::PushID(static_cast<int>(textureID));
-        if (ImGui::ImageButton(reinterpret_cast<void*>(textureID),
-                               ImVec2{32, 32},
-                               ImVec2{_sprite.GetOffset().x, _sprite.GetOffset().y},
+        if (!SystemDirectory::Instance().m_lock.load())
+        {
+          for (const auto& file : tile_dir->file_vec)
+          {
+            if (file.extension() == ".png")
+            {
+              auto str = file.generic_string();
+              str = str.substr(str.find(FileUtils::Root().filename().generic_string()));
+              str = str.substr(str.find_first_of('/') + 1);
+              auto key = str.substr(0,
+                                    str.find_last_of('.'));
+              auto ref = env.pManager->Get<Texture2D>(key);
+
+              for (size_t i = 0; i < ref->textureInfo.size() - 1; i++)
+              {
+                Sprite sprite = {ref->GetName(), static_cast<unsigned>(i)};
+                uint64_t id = sprite.GetTexture()->GetRendererID();
+
+                ImGui::PushID(static_cast<int>(i));
+
+                if (ImGui::ImageButton(reinterpret_cast<void*>(id),
+                                       ImVec2{64, 64},
+                                       ImVec2{sprite.GetOffset().x, sprite.GetOffset().y},
+                                       ImVec2{
+                                         sprite.GetOffset().x + sprite.GetTiling().x,
+                                         sprite.GetOffset().y + sprite.GetTiling().y
+                                       }))
+                {
+                  // Nothing for now
+                }
+
+
+                ImGui::PopID();
+                ImGui::NextColumn();
+
+                ImGuiDragDropFlags src_flags = 0;
+                src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
+                src_flags |= ImGuiDragDropFlags_SourceAllowNullID;
+                // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
+
+                if (ImGui::BeginDragDropSource(src_flags))
+                {
+                  selected_tile.assign(key + '_' + std::to_string(sprite.m_Index));
+                  ImGui::SetDragDropPayload("TILES", &selected_tile, sizeof(std::string));
+                  ImGui::Image(reinterpret_cast<void*>(id),
+                               ImVec2{64, 64},
+                               ImVec2{sprite.GetOffset().x, sprite.GetOffset().y},
                                ImVec2{
-                                 _sprite.GetOffset().x + _sprite.GetTiling().x,
-                                 _sprite.GetOffset().y + _sprite.GetTiling().y
-                               }))
-        {
-          //std::cout << "clicking tiles" << std::endl;
+                                 sprite.GetOffset().x + sprite.GetTiling().x,
+                                 sprite.GetOffset().y + sprite.GetTiling().y
+                               });
+                  ImGui::Text(selected_tile.c_str());
+                  ImGui::EndDragDropSource();
+                }
+              }
+            }
+          }
         }
-        float last_tile_x2 = ImGui::GetItemRectMax().x;
-        float next_tile_x2 = last_tile_x2 + style.ItemSpacing.x + 32.0f;
-        // Expected position if next tile was on same line
-        if (next_tile_x2 < window_visible_x2)
-          ImGui::SameLine();
-        ImGui::PopID();
 
-        ImGuiDragDropFlags src_flags = 0;
-        src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
-        src_flags |= ImGuiDragDropFlags_SourceAllowNullID;
-        // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
-
-        if (ImGui::BeginDragDropSource(src_flags))
-        {
-          selected_tile.assign(key);
-          ImGui::SetDragDropPayload("TILES", &selected_tile, sizeof(std::string));
-
-          InputManager::Instance().SetTilesetDragged(true);
-          //std::cout << "dragging tiles" << std::endl;
-          // display preview (haven't decided whether to display the filename or preview the texture)
-          ImGui::Image(reinterpret_cast<void*>(textureID),
-                       ImVec2{32, 32},
-                       ImVec2{_sprite.GetOffset().x, _sprite.GetOffset().y},
-                       ImVec2{
-                         _sprite.GetOffset().x + _sprite.GetTiling().x, _sprite.GetOffset().y + _sprite.GetTiling().y
-                       });
-          ImGui::Text(selected_tile.c_str());
-          ImGui::EndDragDropSource();
-        }
+        ImGui::PopStyleColor();
       }
-    }
+      ImGui::EndChild();
 
-    if (ImGui::BeginDragDropTarget())
-    {
-      ImGuiDragDropFlags target_flags = 0;
-
-      const ImGuiPayload* assetpayload = ImGui::AcceptDragDropPayload("ASSETFILES", target_flags);
-      if (assetpayload)
+      if (ImGui::BeginDragDropTarget())
       {
-        std::string assetpayload_n = *static_cast<std::string*>(assetpayload->Data);
-        std::wstring assetpayload_nws(assetpayload_n.begin(), assetpayload_n.end());
-        std::size_t index = assetpayload_nws.find_last_of(L"/\\");
-        std::wstring newFileName;
-        std::wstring newPathName = L"Tilemap/";
-        for (size_t i = index; i < assetpayload_nws.length(); ++i)
+        const ImGuiPayload* assetpayload = ImGui::AcceptDragDropPayload("ASSETFILES");
+        if (assetpayload)
         {
-          newFileName += assetpayload_nws[i];
+          std::string assetpayload_n = *static_cast<std::string*>(assetpayload->Data);
+          std::filesystem::path file{assetpayload_n};
+          FileUtils::CopyFileW(file, tile_dir->cur_dir.path() / file.filename());
         }
-        newPathName += newFileName;
+        else if (ImGui::AcceptDragDropPayload("Explorer Files"))
+        {
+          for (const auto& path : DropManager::drop_vec)
+          {
+            auto dest = tile_dir->cur_dir.path() / path.filename();
+            FileUtils::CopyFileW(path, dest);
+          }
+          DropManager::drop_vec.clear();
+          Editor::drag = false;
+        }
 
-        FileUtils::CopyFileW(assetpayload_nws, newPathName);
+
+        ImGui::EndDragDropTarget();
       }
-      ImGui::EndDragDropTarget();
+
     }
     ImGui::End();
   }

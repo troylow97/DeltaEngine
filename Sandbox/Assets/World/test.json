@@ -1,0 +1,1612 @@
+{
+    "Entities": [
+        {
+            "Name": {
+                "name": ""
+            },
+            "Parent": {
+                "parent": 0
+            },
+            "Transform": {
+                "position": {
+                    "x": 3.4313297271728517,
+                    "y": -0.5148825645446777,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/bg",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Parent": {
+                "parent": 0
+            },
+            "Transform": {
+                "position": {
+                    "x": 0.32653141021728518,
+                    "y": -1.4693877696990967,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_1",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 1,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": -2.7365856170654299,
+                    "y": -0.9219512939453125,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_3",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": -8.239025115966797,
+                    "y": -2.9121952056884767,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_1",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": -1.2731714248657227,
+                    "y": -0.2195119857788086,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/bg",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 1.9756107330322266,
+                    "y": -3.5560970306396486,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Dirt_GROUND",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 5.224390029907227,
+                    "y": -4.726829528808594,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Pavement_Top",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 3.936586380004883,
+                    "y": -6.0731706619262699,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Dirt_GROUND",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 5.481817245483398,
+                    "y": -4.5409088134765629,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/bg",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": -1.2272729873657227,
+                    "y": -5.481818199157715,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_7",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 9.368181228637696,
+                    "y": -5.481818199157715,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_8",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 9.613636016845704,
+                    "y": -0.1636362075805664,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_9",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 1.7590923309326172,
+                    "y": 4.5409088134765629,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_2",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 13.009090423583985,
+                    "y": -3.7636356353759767,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_1",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": -7.077272415161133,
+                    "y": 2.372727394104004,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_9",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": -3.518181800842285,
+                    "y": 4.950000286102295,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Building_7",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 4.21363639831543,
+                    "y": 3.109091281890869,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/DirtPlatform_TOP_RIGHT",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        },
+        {
+            "Name": {
+                "name": ""
+            },
+            "Transform": {
+                "position": {
+                    "x": 8.059091567993164,
+                    "y": 4.131817817687988,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "Collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "Image": {
+                "sprite": {
+                    "key": "Tilemap/Dirt_GROUND",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "Renderer2D": {
+                "material": {
+                    "key": "Default"
+                },
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "sorting_layer": 0,
+                "sorting_order": 0.0,
+                "active": true,
+                "shaded": true,
+                "wireframe": true
+            }
+        }
+    ]
+}

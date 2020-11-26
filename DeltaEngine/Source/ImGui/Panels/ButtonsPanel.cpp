@@ -3,11 +3,8 @@
 #include "Input/InputManager.h"
 
 #include "Core/GlobalStruct.h"
-//#include "Render/Texture.h"
-//#include "Assets/AssetManager.h"
-//#include "ECS/ECSModule.h"
-//#include "Core/Utils/FileUtils.h"
 #include "ECS/ECSModule.h"
+#include "ImGui/Editor.h"
 
 namespace DeltaEngine
 {
@@ -22,42 +19,46 @@ namespace DeltaEngine
     m_enabled = false;
   }
 
-  bool ButtonsPanel::DraggedFileIn()
-  {
-    if (InputManager::Instance().CurrentPosition().point_x >= GetTopLeft().x && InputManager::Instance().
-      CurrentPosition().point_x <= GetBottomRight().x
-      && InputManager::Instance().CurrentPosition().point_y >= GetTopLeft().y && InputManager::Instance().
-      CurrentPosition().point_y <= GetBottomRight().y)
-    {
-      std::cout << "it is in button panel!!!" << std::endl;
-      return true;
-    }
-    return false;
-  }
-
-  void ButtonsPanel::Render(bool isdragged)
+  void ButtonsPanel::Render()
   {
     ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove |
       ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse/* | ImGuiWindowFlags_NoSavedSettings*/;
     ImGui::Begin(m_name.c_str(), &m_enabled, window_flags);
 
-    topLeft = ImGui::GetWindowContentRegionMin();
-    bottomRight = ImGui::GetWindowContentRegionMax();
+    ImVec2 tools_pos = { ImGui::GetWindowSize().x * 0.03f, ImGui::GetWindowSize().y * 0.1f };
+    ImVec2 simulation_pos = {ImGui::GetWindowSize().x * 0.45f, ImGui::GetWindowSize().y * 0.1f };
 
-    topLeft.x += ImGui::GetWindowPos().x;
-    topLeft.y += ImGui::GetWindowPos().y;
-    bottomRight.x += ImGui::GetWindowPos().x;
-    bottomRight.y += ImGui::GetWindowPos().y;
+    float lineHeight = ImGui::GetIO().FontDefault->FontSize + ImGui::GetStyle().FramePadding.y * 2.0f;
+    ImVec2 buttonSize = {lineHeight, lineHeight};
 
-    ImVec2 ButtonPos1 = {ImGui::GetWindowSize().x * 0.485f, ImGui::GetWindowSize().y * 0.3f};
-    ImVec2 ButtonPos2 = {ImGui::GetWindowSize().x * 0.515f, ImGui::GetWindowSize().y * 0.3f};
-    ImGui::SetCursorPos(ButtonPos1);
-    if (ImGui::Button(ICON_FA_PLAY, {25.0f, 22.0f}))
+    const float original = Editor::font_awesome->Scale;
+    Editor::font_awesome->Scale = 0.5f;
+    ImGui::PushFont(Editor::font_awesome);
+
+    ImGui::SetCursorPos(tools_pos);
+    if (ImGui::Button(ICON_FA_HAND_PAPER, buttonSize)) // ICON_FA_ARROWS_ALT
+      Editor::tool_selection = Editor::Tool::Camera;
+    ImGui::SameLine();
+    if ( ImGui::Button( ICON_FA_ARROWS_ALT, buttonSize) )
+      Editor::tool_selection = Editor::Tool::EntitySelector;
+
+    Editor::font_awesome->Scale = 0.4f;
+    ImGui::PushFont(Editor::font_awesome);
+
+    ImGui::SetCursorPos(simulation_pos);
+    if (ImGui::Button(ICON_FA_PLAY, buttonSize))
       GetEnv().pECS->GetWorld().SetPause(false);
-    ImGui::SetCursorPos(ButtonPos2);
-    if (ImGui::Button(ICON_FA_PAUSE, {25.0f, 22.0f}))
+    ImGui::SameLine();
+    if (ImGui::Button(ICON_FA_PAUSE, buttonSize))
       GetEnv().pECS->GetWorld().SetPause(true);
+    ImGui::SameLine();
+    if (ImGui::Button(ICON_FA_STOP, buttonSize))
+    {
+    }
 
+    ImGui::PopFont();
+    ImGui::PopFont();
+    Editor::font_awesome->Scale = original;
 
     ImGui::End();
   }

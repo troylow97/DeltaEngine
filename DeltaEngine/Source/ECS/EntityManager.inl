@@ -106,7 +106,11 @@ EntityID EntityManager::CreateEntity()
     if ( meta_vec.empty() )
     {
       ( meta_vec.push_back( ComponentMeta::GetComponentMeta<C>() ), ... );
+      meta_vec.push_back( ComponentMeta::GetComponentMeta<Parent>() );
       meta_vec.push_back( ComponentMeta::GetComponentMeta<EntityName>() );
+      meta_vec.push_back( ComponentMeta::GetComponentMeta<EntityType>() );
+      meta_vec.push_back( ComponentMeta::GetComponentMeta<Transform>() );
+      std::unique( meta_vec.begin(), meta_vec.end() );
     }
     std::sort( meta_vec.begin(), meta_vec.end(), []( const ComponentMeta *lhs, const ComponentMeta *rhs )
     {
@@ -565,7 +569,14 @@ inline Archetype *EntityManager::CreateEmptyArchetype()
 {
   auto *empty_arch = new Archetype();
   std::vector<const ComponentMeta *> empty_vec;
+  empty_vec.push_back( ComponentMeta::GetComponentMeta<Parent>() );
   empty_vec.push_back( ComponentMeta::GetComponentMeta<EntityName>() );
+  empty_vec.push_back( ComponentMeta::GetComponentMeta<EntityType>() );
+  empty_vec.push_back( ComponentMeta::GetComponentMeta<Transform>() );
+  std::sort( empty_vec.begin(), empty_vec.end(), []( const ComponentMeta *lhs, const ComponentMeta *rhs )
+  {
+    return lhs->bits < rhs->bits;
+  } );
   empty_arch->components_desc = BuildDescription( empty_vec );
   empty_arch->owner = this;
   return empty_arch;

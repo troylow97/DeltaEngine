@@ -1,0 +1,249 @@
+{
+    "Entities": [
+        {
+            "name": {
+                "name": ""
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": -3.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 10.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 0.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": false,
+                "is_jumping": false
+            },
+            "collider": {
+                "center": {
+                    "x": 0.0,
+                    "y": -3.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            }
+        },
+        {
+            "name": {
+                "name": ""
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 0.9937866926193237,
+                    "y": -2.0069704055786135,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": true,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "collider": {
+                "center": {
+                    "x": 0.9937866926193237,
+                    "y": -2.0069704055786135
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            }
+        },
+        {
+            "name": {
+                "name": ""
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": 5.0,
+                    "y": 0.4699999988079071,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 6.0,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": false,
+                "is_moveable": false,
+                "is_jumping": false
+            },
+            "collider": {
+                "center": {
+                    "x": 5.0,
+                    "y": 0.4699999988079071
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            }
+        },
+        {
+            "name": {
+                "name": ""
+            },
+            "input": {
+                "prev": 68,
+                "curr": 0
+            },
+            "transform": {
+                "old_position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "position": {
+                    "x": -1.1906806230545045,
+                    "y": -2.0069704055786135,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "rigidbody": {
+                "mass": 20.0,
+                "movespeed": 10.0,
+                "restitution": 1.0,
+                "friction_coeff": 0.8500000238418579,
+                "inherent_acceleration": 0.0,
+                "max_acceleration": 40.0,
+                "acceleration_pickup": 3.0,
+                "has_gravity": true,
+                "is_moveable": true,
+                "is_jumping": false
+            },
+            "collider": {
+                "center": {
+                    "x": -1.1906806230545045,
+                    "y": -2.0069704055786135
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "type": "box",
+                "is_trigger": false,
+                "collision_layer": 255
+            },
+            "image": {
+                "sprite": {
+                    "key": "",
+                    "index": 0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "fill_type": "",
+                "fill_amount": 1.0,
+                "overall_angle": 0.0,
+                "start_angle": 0.0,
+                "end_angle": 0.0,
+                "flip_x": false,
+                "flip_y": false
+            },
+            "state": {},
+            "entity_type": {
+                "category": "player"
+            }
+        }
+    ]
+}

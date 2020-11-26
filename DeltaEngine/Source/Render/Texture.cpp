@@ -267,6 +267,7 @@ namespace DeltaEngine
         Vector2(0, 0), Vector2(static_cast<float>(m_Width), static_cast<float>(m_Height)), Vector2(0.5f, 0.5f)
       });
       UpdateMetaFile(filepath);
+      textureInfo.push_back(TextureInfo());
     }
   }
 

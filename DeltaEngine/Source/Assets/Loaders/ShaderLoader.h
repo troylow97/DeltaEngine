@@ -22,6 +22,11 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
+      if(FileUtils::FileExists( key.Key()+".fs") && FileUtils::FileExists( key.Key() + ".vs"))
+      {
+        Shader* data = new Shader(key.Key());
+        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+      }
     }
 
     void DoLoad(AssetKey key, std::string_view str) override

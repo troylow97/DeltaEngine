@@ -2,6 +2,7 @@
 #include "AI_Transition.h"
 #include "Core/Utils/Random.h"
 #include "Core/GlobalStruct.h"
+#include "Core/GameClock/GameClock.h"
 
 namespace DeltaEngine
 {
@@ -24,9 +25,9 @@ namespace DeltaEngine
     }
   }
 
-  IdleLancer::IdleLancer()
+  IdleLancer::IdleLancer(Vector2& charge_range)
   {
-    TransitionEdges["detect_enemy_lancer"] = new DetectEnemyLancer();
+    TransitionEdges["detect_enemy_lancer"] = new DetectEnemyLancer(charge_range);
   }
 
   void IdleLancer::onEnter(EntityID& id)
@@ -40,12 +41,16 @@ namespace DeltaEngine
   void IdleLancer::Update(EntityID& monster)
   {
     CheckEdges(monster);
+    auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
+
+    //if (ref.y < 2.0)
+    //    AITools::MoveTowardsPoint(monster, Vector2{ ref.x,Random::RandomFloatRange(2.1,2.5) });
   }
 
   //----------------------------------------------------------------------
   ChaseEnemyLancer::ChaseEnemyLancer()
   {
-    TransitionEdges["lost_enemy_lancer"] = new LostEnemyLancer();
+
   }
 
   void ChaseEnemyLancer::onEnter(EntityID& id)
@@ -59,31 +64,24 @@ namespace DeltaEngine
 
   void ChaseEnemyLancer::Update(EntityID& monster)
   {
-    CheckEdges(monster);
+    //CheckEdges(monster); lancer continues chasing so no transition edge
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
     {
       if (et.type == EntityCategory::E_PLAYER)
       {
-        if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (
-            AITools::Distance_X_BetweenTwoEntities(monster, player) < 2) &&
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
-        {
-          AITools::FaceEntity(monster, player);
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
-        }
-        AITools::MoveTowardsEntityInX(monster, player);
+        auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
+        auto player_size = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).scale;
+        AITools::FlyTowardsPoint(monster, Vector2{player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.5,1.5)});
       }
     });
   }
 
   //----------------------------------------------------------------------
 
-  IdleFiddler::IdleFiddler(Vector2 p1, Vector2 p2) :
-    CurrentWayPoint(0)
+  IdleFiddler::IdleFiddler(Waypoint& wp,Vector2& charge_range) :
+      waypoint{wp}
   {
-    WayPoints[0] = p1;
-    WayPoints[1] = p2;
-    TransitionEdges["detect_enemy_fiddler"] = new DetectEnemyFiddler();
+    TransitionEdges["detect_enemy_fiddler"] = new DetectEnemyFiddler(charge_range);
   }
 
   void IdleFiddler::onEnter(EntityID& id)
@@ -96,18 +94,13 @@ namespace DeltaEngine
 
   void IdleFiddler::Update(EntityID& monster)
   {
-    //if (CurrentWayPoint == 0)
-    {
-      AITools::MoveTowardsPoint(monster, WayPoints[1]);
-    }
-
-
+    waypoint.UpdateWaypoint(monster);
     CheckEdges(monster);
   }
 
-  ChaseEnemyFiddler::ChaseEnemyFiddler()
+  ChaseEnemyFiddler::ChaseEnemyFiddler(Vector2& lost_range)
   {
-    TransitionEdges["lost_enemy_fiddler"] = new LostEnemyFiddler();
+    TransitionEdges["lost_enemy_fiddler"] = new LostEnemyFiddler(lost_range);
   }
 
   void ChaseEnemyFiddler::onEnter(EntityID& id)
@@ -125,9 +118,121 @@ namespace DeltaEngine
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
     {
       if (et.type == EntityCategory::E_PLAYER)
-        AITools::MoveTowardsEntity(monster, player);
+      {
+          if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+          {
+              AITools::FaceEntity(monster, player);
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
+          }
+          AITools::MoveTowardsEntityInX(monster, player);
+      }
     });
   }
 
   //----------------------------------------------------------------------
+
+  IdleSerpentipede::IdleSerpentipede(Vector2 detection_range)
+  {
+      TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(detection_range);
+  }
+
+  void IdleSerpentipede::onEnter(EntityID& id)
+  {
+  }
+
+  void IdleSerpentipede::onExit(EntityID& id)
+  {
+  }
+
+  void IdleSerpentipede::Update(EntityID& monster)
+  {
+      CheckEdges(monster);
+  }
+
+  ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :
+      SerpentData{d},
+      CooldownTimer{0.0f},
+      CurrentPoint{0}
+  {
+      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(SerpentData.DetectionRange);
+  }
+
+  void ChaseEnemySerpentipede::onEnter(EntityID& id)
+  {
+  }
+
+  void ChaseEnemySerpentipede::onExit(EntityID& id)
+  {
+      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0, 0 };
+  }
+
+  void ChaseEnemySerpentipede::Update(EntityID& monster)
+  {
+      CheckEdges(monster);
+        
+      if (CooldownTimer <= 0)
+      {
+          auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
+          auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+
+          if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x))
+          {
+              env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+                  {
+                      if (et.type == EntityCategory::E_PLAYER)
+                      {
+                            if (attack.CooldownTimer <= 0)
+                            {
+                                CurrentPoint = Random::RandomIntRange(0, 3);
+                                AITools::FaceEntity(monster, player);
+                                attack.RangeAttack = true;
+                                CooldownTimer = SerpentData.MaxCooldown;
+                            }
+                      }
+                  });
+          }
+          else
+          {
+              AITools::MoveTowardsPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]);
+          }
+      }
+      else
+      {
+          CooldownTimer -= env.pClock->DeltaTime();
+      }
+
+  }
+
+  LancerAIData::LancerAIData() :
+      ChargeDetectionRange{Vector2::zero()}
+  {}
+
+  LancerAIData::LancerAIData(LancerAIData& d) :
+      ChargeDetectionRange{ d.ChargeDetectionRange }
+  {}
+
+  FiddlerAIData::FiddlerAIData() :
+      waypoint{},
+      ChargeDetectionRange{ Vector2::zero() },
+      LostDetectionRange{ Vector2::zero() }
+  {}
+
+  FiddlerAIData::FiddlerAIData(FiddlerAIData& d) :
+      waypoint{ d.waypoint },
+      ChargeDetectionRange{ d.ChargeDetectionRange },
+      LostDetectionRange{ d.LostDetectionRange }
+  {}
+
+  SerpentipedeAIData::SerpentipedeAIData() :
+      MaxCooldown{ 0.0f },
+      Points{ Vector2::zero(),Vector2::zero(),Vector2::zero() },
+      DetectionRange{ Vector2::zero() }
+  {}
+
+  SerpentipedeAIData::SerpentipedeAIData(SerpentipedeAIData& d) :
+      MaxCooldown{ d.MaxCooldown },
+      Points{ d.Points[0],d.Points[1],d.Points[2] },
+      DetectionRange{ d.DetectionRange }
+  {}
+
 }

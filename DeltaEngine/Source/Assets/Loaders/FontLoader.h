@@ -23,6 +23,12 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
+      std::string str = key.Key() + ".ttf";
+      if(FileUtils::FileExists( str ))
+      {
+        Font* data = new Font(str);
+        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+      }
     }
 
     void DoLoad(AssetKey key, std::string_view str) override

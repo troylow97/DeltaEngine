@@ -3,6 +3,10 @@
 #include <vector>
 #include <memory>
 
+
+#include "Components/Transform.h"
+#include "examples/imgui_impl_win32.h"
+
 namespace DeltaEngine
 {
   struct Event;
@@ -11,11 +15,37 @@ namespace DeltaEngine
 
   class Editor
   {
+
     std::vector<std::unique_ptr<IPanel>> m_panels;
-    inline static bool drag;
+
+
     void MenuBar();
 
   public:
+    // Drop Manager
+    inline static bool drag;
+
+    // Custom Font Awesome Management
+    inline static ImFont* font_awesome;
+
+    // Tool toggle
+    enum class Tool : unsigned
+    {
+      None = 0,
+      Camera,
+      EntitySelector
+    };
+
+    inline static Tool tool_selection;
+
+    inline static bool entity_selected;
+    inline static size_t entity_id;
+
+    inline static Transform selection_transform;
+
+    // Simulation toggle
+    inline static bool simulation_running;
+
 
     Editor();
     ~Editor();

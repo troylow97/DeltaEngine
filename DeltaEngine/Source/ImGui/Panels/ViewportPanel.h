@@ -9,7 +9,8 @@ namespace DeltaEngine
   public:
     ViewportPanel(std::string str);
     ~ViewportPanel();
-    bool DraggedFileIn();
-    void Render(bool) override;
+    void Render() override;
+  private:
+    bool m_first_time_viewport = true;
   };
 }
