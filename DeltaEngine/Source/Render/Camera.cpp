@@ -16,8 +16,7 @@ namespace DeltaEngine
     cameraIndex{editor ? -1 : static_cast<int>(allCameras.size())}, frameBuffer{},
     m_AspectRatio{1.0f * env.pWin->Width() / env.pWin->Height()}, m_ViewportSize{1.0f * env.pWin->Width()},
     m_Size{4}, m_zNear{-100}, m_zFar{100},
-    backgroundColor{49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1},
-    shader{new Shader("Shaders/DefaultScreen")}
+    backgroundColor{49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1}
   {
     if (!editor)
       allCameras.push_back(this);
@@ -42,9 +41,6 @@ namespace DeltaEngine
       for (int i = 0; i < allCameras.size(); ++i)
         allCameras[i]->cameraIndex = i;
     }
-
-    if ( this == editorCamera )
-      delete shader;
   }
 
   Matrix4x4 Camera::GetProjectionMatrix() const

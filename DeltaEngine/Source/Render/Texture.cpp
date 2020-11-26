@@ -7,8 +7,14 @@
 
 namespace DeltaEngine
 {
-  Texture2D::Texture2D(std::string filepath)
-    : m_RendererID{0}, m_Channels{0}, m_Width{0}, m_Height{0}, m_Filepath{filepath}, m_Name{filepath}
+  Texture2D::Texture2D(std::string filepath) :
+    m_RendererID{ 0 },
+    m_Channels{ 0 },
+    m_Width{ 0 },
+    m_Height{ 0 },
+    m_Filepath{ filepath },
+    m_Name{ filepath },
+    wrapMode{ TextureWrapMode::Repeat }
   {
     InitTexture(filepath);
   }
@@ -46,12 +52,12 @@ namespace DeltaEngine
     return m_RendererID;
   }
 
-  void Texture2D::AutoSlice()
+  void Texture2D::AutoSlice(Vector2 pivot, bool noOverlap)
   {
     textureInfo.clear();
     unsigned char* m_Data = stbi_load(m_Filepath.c_str(), &m_Width, &m_Height, &m_Channels, 0);
 
-    std::cerr << "auto slicing texture: " << m_Filepath << std::endl;
+    DeltaEngine_CORE_INFO("Auto slicing texture \"{}\"", m_Filepath);
 
     // only auto slice if there is an alpha channel
     if (m_Channels != 4)
@@ -62,77 +68,62 @@ namespace DeltaEngine
     }
     else
     {
-      std::vector<std::pair<unsigned int, unsigned int>> visited;
-      std::vector<std::pair<unsigned int, unsigned int>> sprite;
       std::stack<std::pair<unsigned int, unsigned int>> stack;
-      int c = 0;
-      for (unsigned int y = 0; y < static_cast<unsigned>(m_Height); ++y)
-      {
-        for (unsigned int x = 0; x < static_cast<unsigned>(m_Width); ++x)
+      for (unsigned int x = 0; x < static_cast<unsigned>(m_Width); ++x)
+        for (unsigned int y = 0; y < static_cast<unsigned>(m_Height); ++y)
         {
           // check for a non-transparent pixel
           if (*(m_Data + (static_cast<long long>(x) + static_cast<long long>(y) * m_Width) * 4 + 3) != 0)
           {
-            if (std::find(visited.begin(), visited.end(), std::pair<unsigned int, unsigned int>{x, y}) != visited.end())
-              continue;
+            unsigned int minX = m_Width, maxX = 0, minY = m_Height, maxY = 0;
             unsigned int a = x, b = y;
             stack.push(std::pair<unsigned int, unsigned int>{x, y});
             do
             {
+              // mark as visited by making it transparent, the data is not actually being used for anything else anyway
+              *(m_Data + (static_cast<long long>(a) + static_cast<long long>(b) * m_Width) * 4 + 3) = 0;
+
               a = stack.top().first;
               b = stack.top().second;
               stack.pop();
 
-              // check if the pixel has been visited
-              if (std::find(visited.begin(), visited.end(), std::pair<unsigned int, unsigned int>{a, b}) == visited.
-                end())
-              {
-                sprite.push_back(std::pair<unsigned int, unsigned int>{a, b});
-                visited.push_back(std::pair<unsigned int, unsigned int>{a, b});
-                // use 8 way flood fill algorithm to detect the sprite
-                // add valid neighbours to the queue
+              minX = a < minX ? a : minX;
+              maxX = a > maxX ? a : maxX;
+              minY = b < minY ? b : minY;
+              maxY = b > maxY ? b : maxY;
+
+              // use 8 way flood fill algorithm to detect the sprite
+              // add valid neighbours to the queue
+              for (int i = -1; i <= 1; ++i)
                 for (int j = -1; j <= 1; ++j)
-                  for (int i = -1; i <= 1; ++i)
-                    if ((i || j) &&
-                      !((a == 0 && i == -1) ||
-                        (b == 0 && j == -1) ||
-                        (a == static_cast<unsigned>(m_Width) - 1 && i == 1) ||
-                        (b == static_cast<unsigned>(m_Height) - 1 && j == 1)))
-                    {
-                      if (*(m_Data + (static_cast<long long>(a) + i + (static_cast<long long>(b) + j) * m_Width) * 4 + 3
-                      ) != 0)
-                      {
-                        stack.push(std::pair<unsigned int, unsigned int>{a + i, b + j});
-                      }
-                    }
-                std::cerr << sprite.size() << std::endl;
-              }
+                  if ((i || j) &&
+                    !((a == 0 && i == -1) ||
+                      (b == 0 && j == -1) ||
+                      (a == static_cast<unsigned int>(m_Width) - 1 && i == 1) ||
+                      (b == static_cast<unsigned int>(m_Height) - 1 && j == 1)))
+                    if (*(m_Data + (static_cast<long long>(a) + i + (static_cast<long long>(b) + j) * m_Width) * 4 + 3) != 0)
+                      stack.push(std::pair<unsigned int, unsigned int>{a + i, b + j});
             }
             while (!stack.empty());
 
-            // get the bounding box from the sprite vector
-            unsigned int minX = m_Width, maxX = 0, minY = m_Height, maxY = 0;
-            for (auto& spriteCoords : sprite)
-            {
-              minX = spriteCoords.first < minX ? spriteCoords.first : minX;
-              maxX = spriteCoords.first > maxX ? spriteCoords.first : maxX;
-              minY = spriteCoords.second < minY ? spriteCoords.second : minY;
-              maxY = spriteCoords.second > maxY ? spriteCoords.second : maxY;
-            }
             // add the info
             textureInfo.push_back({
               Vector2(1.0f * minX, 1.0f * minY),
               Vector2(1.0f * maxX - minX, 1.0f * maxY - minY),
-              Vector2(0.5f, 0.5f)
+              pivot
             });
-            std::cerr << c++ << ": " << minX << ", " << minY << ", " << maxX << ", " << maxY << std::endl;
-            // clear the sprite vector, leave visited vector untouched
-            sprite.clear();
+
+            if (noOverlap)
+              for (a = minX; a <= maxX; ++a)
+                for (b = minY; b <= maxY; ++b)
+                  *(m_Data + (static_cast<long long>(a) + static_cast<long long>(b) * m_Width) * 4 + 3) = 0;
           }
         }
-      }
     }
-    std::cerr << textureInfo.size() << " Sprites Detected" << std::endl;
+    DeltaEngine_CORE_INFO("{0} sprites detected in texture \"{1}\"", textureInfo.size(), m_Filepath);
+
+    if (m_Data)
+      stbi_image_free(m_Data);
 
     UpdateMetaFile(m_Filepath + ".info");
   }
@@ -143,7 +134,7 @@ namespace DeltaEngine
     UpdateMetaFile(m_Filepath + ".info");
   }
 
-  void Texture2D::SliceAll(unsigned int columns, unsigned int rows)
+  void Texture2D::SliceAll(unsigned int columns, unsigned int rows, Vector2 pivot)
   {
     textureInfo.clear();
     for (size_t y = 0; y < rows; ++y)
@@ -153,7 +144,7 @@ namespace DeltaEngine
         textureInfo.push_back({
           Vector2(static_cast<float>(m_Width) / columns * x, static_cast<float>(m_Height) / rows * y),
           Vector2(static_cast<float>(m_Width) / columns, static_cast<float>(m_Height) / rows),
-          Vector2(0.5f, 0.5f)
+          pivot
         });
       }
     }
@@ -212,10 +203,24 @@ namespace DeltaEngine
       m_Filepath = "";
     }
 
+    int glWrapMode = GL_REPEAT;
+    switch (wrapMode)
+    {
+    case TextureWrapMode::Repeat:
+      glWrapMode = GL_REPEAT;
+      break;
+    case TextureWrapMode::Mirror:
+      glWrapMode = GL_MIRRORED_REPEAT;
+      break;
+    case TextureWrapMode::Clamp:
+      glWrapMode = GL_CLAMP;
+      break;
+    }
+
     GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
     GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT));
-    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT));
+    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, glWrapMode));
+    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, glWrapMode));
 
     GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_Data));
     GLCall(glGenerateMipmap(GL_TEXTURE_2D));
@@ -245,8 +250,10 @@ namespace DeltaEngine
     {
       while (file.good())
       {
-        textureInfo.push_back(TextureInfo());
         file >> str;
+        if (!strcmp(str.c_str(), "%"))
+          break;
+        textureInfo.push_back(TextureInfo());
         file >> str >> textureInfo.back().offset.x >> textureInfo.back().offset.y;
         file >> str >> textureInfo.back().size.x >> textureInfo.back().size.y;
         file >> str >> textureInfo.back().pivot.x >> textureInfo.back().pivot.y;
@@ -277,7 +284,7 @@ namespace DeltaEngine
         file << "pivot " << textureInfo[i].pivot.x << " " << textureInfo[i].pivot.y << std::endl;
         file << std::endl;
       }
-      file << std::endl << "%" << std::endl;
+      file << "%" << std::endl;
       file.close();
     }
     else

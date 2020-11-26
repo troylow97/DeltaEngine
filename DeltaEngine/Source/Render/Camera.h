@@ -20,7 +20,6 @@ namespace DeltaEngine
     float m_Size;
     float m_zNear, m_zFar;
     Color backgroundColor;
-    Shader* shader;
 
     Transform transform;
     Camera(bool editor = false);
