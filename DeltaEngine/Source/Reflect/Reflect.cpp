@@ -29,32 +29,32 @@ namespace DeltaEngine
       .property("CurrentWaypoint", &Waypoint::CurrentWaypoint);
 
   rttr::registration::class_<EnemyData>("EnemyData")
-      .property("health", &EnemyData::Health)(rttr::policy::prop::bind_as_ptr)
-      .property("movespeed", &EnemyData::Movespeed)(rttr::policy::prop::bind_as_ptr)
-      .property("mass", &EnemyData::Mass)(rttr::policy::prop::bind_as_ptr)
-      .property("damage", &EnemyData::Damage)(rttr::policy::prop::bind_as_ptr);
+      .property("health", &EnemyData::Health)
+      .property("movespeed", &EnemyData::Movespeed)
+      .property("mass", &EnemyData::Mass)
+      .property("damage", &EnemyData::Damage);
 
   rttr::registration::class_<LancerAIData>("LancerAIData")
       .property("charge_detection_range", &LancerAIData::ChargeDetectionRange);
 
   rttr::registration::class_<FiddlerAIData>("FiddlerAIData")
-      .property("waypoint", &FiddlerAIData::waypoint)(rttr::policy::prop::bind_as_ptr)
-      .property("lost_detection_range", &FiddlerAIData::ChargeDetectionRange)(rttr::policy::prop::bind_as_ptr)
-      .property("charge_detection_range", &FiddlerAIData::LostDetectionRange)(rttr::policy::prop::bind_as_ptr);
+      .property("waypoint", &FiddlerAIData::waypoint)
+      .property("lost_detection_range", &FiddlerAIData::ChargeDetectionRange)
+      .property("charge_detection_range", &FiddlerAIData::LostDetectionRange);
 
   rttr::registration::class_<SerpentipedeAIData>("SerpentipedeAIData")
-      .property("cooldown", &SerpentipedeAIData::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("cooldown", &SerpentipedeAIData::MaxCooldown)
       .property("points", &SerpentipedeAIData::Points)
-      .property("detection_range", &SerpentipedeAIData::DetectionRange)(rttr::policy::prop::bind_as_ptr);
+      .property("detection_range", &SerpentipedeAIData::DetectionRange);
 
   rttr::registration::class_<EnemyWave>("EnemyWave")
-      .property("enemy_count", &EnemyWave::EnemyCount)(rttr::policy::prop::bind_as_ptr)
-      .property("enemy_type", &EnemyWave::EnemyType)(rttr::policy::prop::bind_as_ptr)
-      .property("spawn_area", &EnemyWave::SpawnArea)(rttr::policy::prop::bind_as_ptr);
+      .property("enemy_count", &EnemyWave::EnemyCount)
+      .property("enemy_type", &EnemyWave::EnemyType)
+      .property("spawn_area", &EnemyWave::SpawnArea);
 
   rttr::registration::class_<Gauntlet>("Gauntlet")
       .property("enemy_waves", &Gauntlet::EnemyWaves)
-      .property("activation_point", &Gauntlet::ActivationPoint)(rttr::policy::prop::bind_as_ptr)
+      .property("activation_point", &Gauntlet::ActivationPoint)
       .property("current_enemy_wave", &Gauntlet::CurrentEnemyWave)(rttr::metadata("NO_SERIALIZE", true))
       .property("is_activated", &Gauntlet::isActivated)(rttr::metadata("NO_SERIALIZE", true))
       .property("is_finished", &Gauntlet::isFinished)(rttr::metadata("NO_SERIALIZE", true));

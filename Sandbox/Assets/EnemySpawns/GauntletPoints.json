@@ -4,7 +4,7 @@
             "enemy_waves": [
                 {
                     "enemy_count": 3,
-                    "enemy_type": "lancer",
+                    "enemy_type": "fiddler",
                     "spawn_area": {
                         "x": 6.0,
                         "y": 0.0

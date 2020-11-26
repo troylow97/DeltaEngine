@@ -21,11 +21,6 @@ namespace DeltaEngine
 {
   void AISystem::Initialize()
   {
-    em.ForEach([&](EntityID& id, AI& ai,Transform& t1)
-    {
-       ai.original_point = t1.position;
-    });
-
     SerpentipedeAIData serpent_data;
     JsonFile file;
     file.StartReader("AI/serpentipedeAI.json").LoadObject(serpent_data).EndReader();
@@ -34,6 +29,7 @@ namespace DeltaEngine
     JsonFile file2;
     //file2.StartWriter("AI/fiddler.json").StartObject().WriteObject(data2).EndObject().EndWriter();
     file2.StartReader("AI/fiddlerAI.json").LoadObject(fiddler_data).EndReader();
+    file2.StartReader("AI/fiddlerAI.json").LoadObject(fiddler_data.waypoint).EndReader();
 
     LancerAIData lancer_data;
     JsonFile file3;
