@@ -43,7 +43,7 @@ namespace DeltaEngine
         }
         else if (AITools::isFacingLeft(id))
         {
-          for (size_t i = (respawns.m_respawns.size()-1); i >= 0; i--)
+         for (int i = static_cast<int>(respawns.m_respawns.size() - 1); i >= 0; i--)
           {
             if (t.position.x <= respawns.m_respawns[i].x)
             {

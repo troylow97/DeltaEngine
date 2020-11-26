@@ -8,7 +8,7 @@
                 "Name": ""
             },
             "EntityType": {
-                "Category": "wall"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -178,7 +178,7 @@
                 "Name": ""
             },
             "EntityType": {
-                "Category": "enemy"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {

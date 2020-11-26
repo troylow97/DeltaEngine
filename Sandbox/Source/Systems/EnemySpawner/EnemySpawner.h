@@ -7,6 +7,8 @@
 
 namespace DeltaEngine
 {
+
+	
 	struct EnemyWave
 	{
 		int EnemyCount;
@@ -14,9 +16,11 @@ namespace DeltaEngine
 		Vector2 SpawnArea;
 	};
 
+	using VectorOfEnemyWaves = std::vector<std::vector<EnemyWave>>;
+	
 	struct Gauntlet
 	{
-		std::vector<EnemyWave> EnemyWaves;
+		VectorOfEnemyWaves EnemyWaves;
 		Vector2 ActivationPoint;
 		unsigned CurrentEnemyWave;
 		bool isActivated;

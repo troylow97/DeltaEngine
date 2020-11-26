@@ -78,66 +78,82 @@ namespace DeltaEngine
 
 	void EnemySpawner::LoadEnemyData()
 	{
-		EnemyData Lancer;
-		Lancer.Health = 10;
-		Lancer.Damage = 1;
-		Lancer.Mass = 20;
-		Lancer.Movespeed = 30;
-		
-		JsonFile file;
-		file.StartWriter("Enemy/Lancer.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
-		
-		JsonFile file2;
-		file2.StartWriter("Enemy/Fiddler.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
-		
-		JsonFile file3;
-		file3.StartWriter("Enemy/Serpentipede.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+		//EnemyData Lancer;
+		//Lancer.Health = 10;
+		//Lancer.Damage = 1;
+		//Lancer.Mass = 20;
+		//Lancer.Movespeed = 30;
 		
 		//JsonFile file;
-		//file.StartReader("Enemy/Lancer.json").LoadObject(LancerData).EndReader();
+		//file.StartWriter("Enemy/Lancer.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+		//
 		//JsonFile file2;
-		//file.StartReader("Enemy/Fiddler.json").LoadObject(FiddlerData).EndReader();
+		//file2.StartWriter("Enemy/Fiddler.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+		//
 		//JsonFile file3;
-		//file.StartReader("Enemy/Serpentipede.json").LoadObject(SerpentipedeData).EndReader();
+		//file3.StartWriter("Enemy/Serpentipede.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+		
+		JsonFile file;
+		file.StartReader("Enemy/Lancer.json").LoadObject(LancerData).EndReader();
+		JsonFile file2;
+		file.StartReader("Enemy/Fiddler.json").LoadObject(FiddlerData).EndReader();
+		JsonFile file3;
+		file.StartReader("Enemy/Serpentipede.json").LoadObject(SerpentipedeData).EndReader();
+		
 	}
 
 	void EnemySpawner::Initialize()
 	{
 		LoadEnemyData();
 
-		//EnemyWave wave;
-		//wave.EnemyType = "lancer";
-		//wave.EnemyCount = 3;
-		//wave.SpawnArea = Vector2{ 6.0,0.0 };
-		//
-		//EnemyWave wave2;
-		//wave2.EnemyType = "serpentipede";
-		//wave2.EnemyCount = 2;
-		//wave2.SpawnArea = Vector2{ 5.0,0.0 };
-		//
-		//Gauntlet g1;
-		//g1.ActivationPoint = Vector2{ 5.0,0.0 };
-		//g1.CurrentEnemyWave = 0;
-		//g1.EnemyWaves.push_back(wave);
-		//g1.EnemyWaves.push_back(wave2);
-		//
-		//EnemyWave wave3;
-		//wave3.SpawnArea = Vector2{ 9.0,0.0 };
-		//wave3.EnemyType = "fiddler";
-		//wave3.EnemyCount = 2;
-		//
-		//Gauntlet g2;
-		//g2.ActivationPoint = Vector2{ 20.0,0.0 };
-		//g2.CurrentEnemyWave = 0;
-		//g2.EnemyWaves.push_back(wave3);
-		//
-		//list.Gauntlets.push_back(g1);
-		//list.Gauntlets.push_back(g2);
+		EnemyWave wave;
+		wave.EnemyType = "lancer";
+		wave.EnemyCount = 3;
+		wave.SpawnArea = Vector2{ 6.0,0.0 };
+		
+		EnemyWave wave2;
+		wave2.EnemyType = "serpentipede";
+		wave2.EnemyCount = 2;
+		wave2.SpawnArea = Vector2{ 5.0,0.0 };
+
+		EnemyWave wave3;
+		wave2.EnemyType = "fiddler";
+		wave2.EnemyCount = 2;
+		wave2.SpawnArea = Vector2{ 5.0,0.0 };
+
+		std::vector<EnemyWave> firstwave;
+		firstwave.push_back(wave);
+		firstwave.push_back(wave2);
+
+		std::vector<EnemyWave> secondwave;
+		secondwave.push_back(wave3);
+
+		std::vector<std::vector<EnemyWave>> Waves;
+		Waves.push_back(firstwave);
+		Waves.push_back(secondwave);
+		
+		Gauntlet g1;
+		g1.ActivationPoint = Vector2{ 5.0,0.0 };
+		g1.CurrentEnemyWave = 0;
+		g1.EnemyWaves = Waves;
+		
+		EnemyWave wave4;
+		wave4.SpawnArea = Vector2{ 9.0,0.0 };
+		wave4.EnemyType = "fiddler";
+		wave4.EnemyCount = 2;
+		
+		Gauntlet g2;
+		g2.ActivationPoint = Vector2{ 20.0,0.0 };
+		g2.CurrentEnemyWave = 0;
+		g2.EnemyWaves.push_back({wave4});
+		
+		list.Gauntlets.push_back(g1);
+		list.Gauntlets.push_back(g2);
 		
 		
 		JsonFile file;
-		//file.StartWriter("EnemySpawns/GauntletPoints.json").StartObject().WriteObject(list).EndObject().EndWriter();
-		file.StartReader("EnemySpawns/GauntletPoints.json").LoadObject(list).EndReader();
+		file.StartWriter("EnemySpawns/GauntletPoints.json").StartObject().WriteObject(list).EndObject().EndWriter();
+		//file.StartReader("EnemySpawns/GauntletPoints.json").LoadObject(list).EndReader();
 
 		GauntletIsActive = false;
 	}
@@ -156,7 +172,7 @@ namespace DeltaEngine
 				GauntletIsActive = true;
 				list.Gauntlets[i].isActivated = true;
 				//lock player
-				continue;
+				break;
 			}
 		}
 
@@ -172,13 +188,17 @@ namespace DeltaEngine
 					++it;
 			}
 
-			if (EnemiesInGauntlet.size() == 0)
+			if (EnemiesInGauntlet.empty())
 			{
-				if (list.Gauntlets[CurrentGauntlet].CurrentEnemyWave < list.Gauntlets[CurrentGauntlet].EnemyWaves.size())
+				const auto CurrentWave = list.Gauntlets[CurrentGauntlet].CurrentEnemyWave;
+				if (CurrentWave < list.Gauntlets[CurrentGauntlet].EnemyWaves.size())
 				{
-					EnemyWave wave = list.Gauntlets[CurrentGauntlet].EnemyWaves[list.Gauntlets[CurrentGauntlet].CurrentEnemyWave];
-					SpawnEnemy(wave.EnemyCount, wave.EnemyType, wave.SpawnArea);
-					list.Gauntlets[CurrentGauntlet].CurrentEnemyWave++;
+					for(size_t i = 0; i < list.Gauntlets[CurrentGauntlet].EnemyWaves[CurrentWave].size(); ++i)
+					{
+						EnemyWave wave = list.Gauntlets[CurrentGauntlet].EnemyWaves[CurrentWave][i];
+						SpawnEnemy(wave.EnemyCount, wave.EnemyType, wave.SpawnArea);
+						list.Gauntlets[CurrentGauntlet].CurrentEnemyWave++;
+					}
 				}
 				else
 				{
