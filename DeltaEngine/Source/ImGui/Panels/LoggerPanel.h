@@ -1,6 +1,8 @@
 #pragma once
 
 #include <spdlog/spdlog.h>
+
+#include "imgui.h"
 #include "ImGui/Panels/IPanel.h"
 #include "Core/Containers/Singleton.h"
 

@@ -110,7 +110,8 @@ EntityID EntityManager::CreateEntity()
       meta_vec.push_back( ComponentMeta::GetComponentMeta<EntityName>() );
       meta_vec.push_back( ComponentMeta::GetComponentMeta<EntityType>() );
       meta_vec.push_back( ComponentMeta::GetComponentMeta<Transform>() );
-      std::unique( meta_vec.begin(), meta_vec.end() );
+      auto last = std::unique( meta_vec.begin(), meta_vec.end() );
+      meta_vec.erase( last, meta_vec.end() );
     }
     std::sort( meta_vec.begin(), meta_vec.end(), []( const ComponentMeta *lhs, const ComponentMeta *rhs )
     {
@@ -578,6 +579,7 @@ inline Archetype *EntityManager::CreateEmptyArchetype()
     return lhs->bits < rhs->bits;
   } );
   empty_arch->components_desc = BuildDescription( empty_vec );
+  empty_arch->bits_signature = ComponentMeta::BuildSignature( empty_vec );
   empty_arch->owner = this;
   return empty_arch;
 }
