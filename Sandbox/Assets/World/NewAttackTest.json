@@ -8,7 +8,7 @@
                 "Name": ""
             },
             "EntityType": {
-                "Category": "none"
+                "Category": "wall"
             },
             "Transform": {
                 "Position": {
@@ -55,8 +55,8 @@
                 },
                 "Type": "box",
                 "Trigger": false,
-                "Collision Layer": 255,
-                "Collision Layer ID": 255
+                "Collision Layer": 14,
+                "Collision Layer ID": 1
             }
         },
         {
@@ -72,7 +72,7 @@
             "Transform": {
                 "Position": {
                     "x": 4.753829479217529,
-                    "y": -0.0008704215288162231,
+                    "y": -0.000527186319231987,
                     "z": 0.0
                 },
                 "Scale": {
@@ -102,7 +102,7 @@
             "Collider": {
                 "Center": {
                     "x": 4.753829479217529,
-                    "y": -0.0008704215288162231
+                    "y": -0.000527186319231987
                 },
                 "Offset": {
                     "x": 0.0,
@@ -115,7 +115,7 @@
                 "Type": "box",
                 "Trigger": false,
                 "Collision Layer": 13,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 2
             },
             "Image": {
                 "Sprite": {
@@ -178,7 +178,7 @@
                 "Name": ""
             },
             "EntityType": {
-                "Category": "none"
+                "Category": "enemy"
             },
             "Transform": {
                 "Position": {
