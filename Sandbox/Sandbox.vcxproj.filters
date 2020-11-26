@@ -17,6 +17,7 @@
       <Filter>Systems\EnemySpawner</Filter>
     </ClInclude>
     <ClInclude Include="Source\UnitManager.h" />
+    <ClInclude Include="Source\Systems\RespawnSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CollisionHandlingFunctions.cpp" />
@@ -28,5 +29,6 @@
       <Filter>Systems\EnemySpawner</Filter>
     </ClCompile>
     <ClCompile Include="Source\UnitManager.cpp" />
+    <ClCompile Include="Source\Systems\RespawnSystem.cpp" />
   </ItemGroup>
 </Project>

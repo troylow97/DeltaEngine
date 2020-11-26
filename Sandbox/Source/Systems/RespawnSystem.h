@@ -3,11 +3,11 @@
 
 namespace DeltaEngine
 {
-struct RespawnPoints
-{
-  std::vector<Vector2> m_respawns;
-};
-
+  struct RespawnPoints
+  {
+  	std::vector<Vector2> m_respawns;
+  };
+  
 DEFINE_SYSTEM(RespawnSystem, Player)
   void Initialize() override;
   void Update() override;

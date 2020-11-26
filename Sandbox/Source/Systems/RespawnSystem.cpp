@@ -1,35 +1,33 @@
-#include "Systems/RespawnSystem.h"
+#include "../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "AI/AITools.h"
 
 namespace DeltaEngine
 {
   void RespawnSystem::Initialize()
   {
-  	//RespawnPoints res;
-  	//res.m_respawns.push_back({ 0,0 });
-  	
-  	JsonFile file;
-  	//rttr::variant v{ res };
-  	//auto& seq = v.create_sequential_view();
-  	//file.StartWriter("Player/respawn_points.json").StartObject().WriteObject(v).EndObject().EndWriter();
-  
-  	file.StartReader("Player/respawn_points.json").LoadObject(respawns).EndReader();
-  
+    //RespawnPoints res;
+    //res.m_respawns.push_back({ 0,0 });
+
+    JsonFile file;
+    //rttr::variant v{ res };
+    //auto& seq = v.create_sequential_view();
+    //file.StartWriter("Player/respawn_points.json").StartObject().WriteObject(v).EndObject().EndWriter();
+
+    file.StartReader("Player/respawn_points.json").LoadObject(respawns).EndReader();
   }
-  
+
   void RespawnSystem::Update()
   {
-  	em.ForEach([&](EntityID& id, Health& hp, EntityType& et, Transform& t, Player& p)
-  	{
+    em.ForEach([&](EntityID& id, Health& hp, EntityType& et, Transform& t, Player& p)
+    {
       if (p.IsDead)
       {
         float temp_x = -4.149f, temp_y = -2.68f;
         float new_x = 0.0f, new_y = 0.0f;
         if (AITools::isFacingRight(id))
         {
-          for (int i = 0; i < respawns.m_respawns.size(); i++)
+          for (size_t i = 0; i < respawns.m_respawns.size(); i++)
           {
-              std::cout << "right i is" << i << std::endl;
             if (t.position.x >= respawns.m_respawns[i].x)
             {
               temp_x = respawns.m_respawns[i].x;
@@ -45,9 +43,8 @@ namespace DeltaEngine
         }
         else if (AITools::isFacingLeft(id))
         {
-          for (int i = respawns.m_respawns.size(); i > 0; i--)
+          for (size_t i = respawns.m_respawns.size(); i > 0; i--)
           {
-            std::cout << "left i is" << i << std::endl;
             if (t.position.x <= respawns.m_respawns[i].x)
             {
               temp_x = respawns.m_respawns[i].x;
@@ -62,10 +59,10 @@ namespace DeltaEngine
           p.IsDead = false;
         }
       }
-  	});
+    });
   }
   void RespawnSystem::LateUpdate()
   {
-  
+
   }
 }

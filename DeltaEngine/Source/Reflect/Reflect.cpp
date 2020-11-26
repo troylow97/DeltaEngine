@@ -16,8 +16,8 @@
 #include "Assets/AssetManager.h"
 #include "AI/Waypoint.h"
 #include "AI/AI_State.h"
-#include "Systems/RespawnSystem.h"
 #include "../../Sandbox/Source/Systems/EnemySpawner/EnemySpawner.h"
+#include "../../Sandbox/Source/Systems/RespawnSystem.h"
 
 namespace DeltaEngine
 {
