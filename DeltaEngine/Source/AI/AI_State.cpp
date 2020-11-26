@@ -131,9 +131,9 @@ namespace DeltaEngine
 
   //----------------------------------------------------------------------
 
-  IdleSerpentipede::IdleSerpentipede(Vector2 startpoint,Vector2 detection_range)
+  IdleSerpentipede::IdleSerpentipede(Vector2 detection_range)
   {
-      TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(startpoint, detection_range);
+      TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(detection_range);
   }
 
   void IdleSerpentipede::onEnter(EntityID& id)
@@ -149,12 +149,12 @@ namespace DeltaEngine
       CheckEdges(monster);
   }
 
-  ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeData& d) :
+  ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :
       SerpentData{d},
       CooldownTimer{0.0f},
       CurrentPoint{0}
   {
-      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(SerpentData.Points[0], SerpentData.DetectionRange);
+      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(SerpentData.DetectionRange);
   }
 
   void ChaseEnemySerpentipede::onEnter(EntityID& id)
@@ -175,7 +175,7 @@ namespace DeltaEngine
           auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
           auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
 
-          if (AITools::EntityisAtPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]))
+          if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x))
           {
               env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
                   {
@@ -203,33 +203,33 @@ namespace DeltaEngine
 
   }
 
-  LancerData::LancerData() :
+  LancerAIData::LancerAIData() :
       ChargeDetectionRange{Vector2::zero()}
   {}
 
-  LancerData::LancerData(LancerData& d) :
+  LancerAIData::LancerAIData(LancerAIData& d) :
       ChargeDetectionRange{ d.ChargeDetectionRange }
   {}
 
-  FiddlerData::FiddlerData() :
+  FiddlerAIData::FiddlerAIData() :
       waypoint{},
       ChargeDetectionRange{ Vector2::zero() },
       LostDetectionRange{ Vector2::zero() }
   {}
 
-  FiddlerData::FiddlerData(FiddlerData& d) :
+  FiddlerAIData::FiddlerAIData(FiddlerAIData& d) :
       waypoint{ d.waypoint },
       ChargeDetectionRange{ d.ChargeDetectionRange },
       LostDetectionRange{ d.LostDetectionRange }
   {}
 
-  SerpentipedeData::SerpentipedeData() :
+  SerpentipedeAIData::SerpentipedeAIData() :
       MaxCooldown{ 0.0f },
       Points{ Vector2::zero(),Vector2::zero(),Vector2::zero() },
       DetectionRange{ Vector2::zero() }
   {}
 
-  SerpentipedeData::SerpentipedeData(SerpentipedeData& d) :
+  SerpentipedeAIData::SerpentipedeAIData(SerpentipedeAIData& d) :
       MaxCooldown{ d.MaxCooldown },
       Points{ d.Points[0],d.Points[1],d.Points[2] },
       DetectionRange{ d.DetectionRange }

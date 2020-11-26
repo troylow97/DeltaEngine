@@ -43,7 +43,7 @@ namespace DeltaEngine
       
       if (hp.CurrentHealth <= 0)
       {
-        if (et.type == EntityCategory::E_ENEMY)
+        if (et.type != EntityCategory::E_PLAYER)
         {
           DestroyedEntities.push_back(id);
         }

@@ -135,11 +135,9 @@ namespace DeltaEngine
 
   class DetectEnemySerpentipede : public Transition
   {
-      Vector2 StartPoint;
       Vector2 DetectionRange;
   public:
-      DetectEnemySerpentipede(Vector2 p,Vector2 dr) :
-          StartPoint(p),
+      DetectEnemySerpentipede(Vector2 dr) :
           DetectionRange{dr}
       {}
       bool TestEdge(EntityID& monster) override
@@ -149,7 +147,7 @@ namespace DeltaEngine
               {
                   if (et.type == EntityCategory::E_PLAYER 
                       && AITools::EntityisWithinDetectionRange
-                         (player, ref.original_point + StartPoint, 
+                         (player, ref.original_point, 
                          ref.original_point.x + DetectionRange.x, 
                          ref.original_point.y + DetectionRange.y))
                   {
@@ -168,11 +166,9 @@ namespace DeltaEngine
 
   class LostEnemySerpentipede : public Transition
   {
-      Vector2 StartPoint;
       Vector2 DetectionRange;
   public:
-      LostEnemySerpentipede(Vector2 p,Vector2 detection) :
-          StartPoint(p),
+      LostEnemySerpentipede(Vector2 detection) :
           DetectionRange(detection)
       {}
 
@@ -183,7 +179,7 @@ namespace DeltaEngine
               {
                   if (et.type == EntityCategory::E_PLAYER 
                       && !AITools::EntityisWithinDetectionRange
-                          (player, ref.original_point + StartPoint, 
+                          (player, ref.original_point, 
                           ref.original_point.x + DetectionRange.x, 
                           ref.original_point.y + DetectionRange.y))
                   {

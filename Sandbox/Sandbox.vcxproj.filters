@@ -17,6 +17,7 @@
       <Filter>Systems\EnemySpawner</Filter>
     </ClInclude>
     <ClInclude Include="Source\UnitManager.h" />
+    <ClInclude Include="Source\Systems\EnemySpawner\EnemyData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CollisionHandlingFunctions.cpp" />

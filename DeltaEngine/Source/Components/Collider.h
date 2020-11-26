@@ -23,6 +23,7 @@ namespace DeltaEngine
     bool isTrigger;
     bool isCollidingOnFloor;
     int CollisionLayerCheck;
+    int CollisionLayerID;
 
     Collider() :
       center{0, 0},
@@ -32,7 +33,8 @@ namespace DeltaEngine
       type{ColliderType::BOX},
       isTrigger{false},
       isCollidingOnFloor{false},
-      CollisionLayerCheck{255}
+      CollisionLayerCheck{255},
+      CollisionLayerID{255}
     { }
 
     Collider(Vector2 new_center, Vector2 new_size, ColliderType col_type) :
@@ -43,12 +45,16 @@ namespace DeltaEngine
       type{ColliderType::BOX},
       isTrigger{false},
       isCollidingOnFloor{false},
-      CollisionLayerCheck{255}
+      CollisionLayerCheck{255},
+      CollisionLayerID{ 255 }
     {
       (void)col_type;
     }
   };
 
-  //ID 0 and check 0, checks 
+  //0001 Wall
+  //0010 Player
+  //0100 Enemy
+  //1000 Bullet
 
 } // namespace DeltaEngine
