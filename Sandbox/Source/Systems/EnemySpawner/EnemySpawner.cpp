@@ -11,7 +11,6 @@ namespace DeltaEngine
 		for (unsigned i = 0; i < amount; ++i)
 		{
 			float rand1 = Random::RandomFloatRange(-0.4, 0.4);
-			float rand2 = Random::RandomFloatRange(-5, 5);
 
 			EntityID enemy = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 			env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(enemy);
@@ -41,6 +40,8 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = LancerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = LancerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = LancerData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/Lancer.png";
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Index = 0;
 			}
 			else if (type == "fiddler")
 			{

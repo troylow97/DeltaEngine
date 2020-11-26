@@ -4,7 +4,7 @@
             "enemy_waves": [
                 {
                     "enemy_count": 3,
-                    "enemy_type": "fiddler",
+                    "enemy_type": "lancer",
                     "spawn_area": {
                         "x": 6.0,
                         "y": 0.0
@@ -23,9 +23,7 @@
                 "x": 5.0,
                 "y": 0.0
             },
-            "current_enemy_wave": 0,
-            "is_activated": false,
-            "is_finished": false
+            "current_enemy_wave": 0
         },
         {
             "enemy_waves": [
@@ -42,9 +40,7 @@
                 "x": 20.0,
                 "y": 0.0
             },
-            "current_enemy_wave": 0,
-            "is_activated": false,
-            "is_finished": false
+            "current_enemy_wave": 0
         }
     ]
 }
