@@ -49,6 +49,10 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "size": {
+                    "x": 100.0,
+                    "y": 1.0
+                },
                 "type": "box",
                 "is_trigger": false,
                 "collision_layer_check": 255
@@ -69,8 +73,8 @@
                     "z": 0.0
                 },
                 "position": {
-                    "x": 3.6624550819396974,
-                    "y": -0.0007375581772066653,
+                    "x": 3.237985134124756,
+                    "y": -0.0007583923870697618,
                     "z": 0.0
                 },
                 "scale": {
@@ -100,12 +104,16 @@
             },
             "collider": {
                 "center": {
-                    "x": 3.6624550819396974,
-                    "y": -0.0007375581772066653
+                    "x": 3.237985134124756,
+                    "y": -0.0007583923870697618
                 },
                 "offset": {
                     "x": 0.0,
                     "y": 0.0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
                 },
                 "type": "box",
                 "is_trigger": false,
@@ -139,6 +147,18 @@
             "state": {},
             "entity_type": {
                 "category": "player"
+            },
+            "health": {
+                "current_health": 10,
+                "max_health": 10
+            },
+            "attack": {
+                "range_damage": 1,
+                "melee_damage": 1,
+                "max_cooldown": 0.20000000298023225,
+                "cooldown_timer": 0.0,
+                "ranged_attack": false,
+                "melee_attack": false
             }
         },
         {
@@ -153,7 +173,7 @@
                 },
                 "position": {
                     "x": 0.35881033539772036,
-                    "y": -0.0005975911626592279,
+                    "y": -0.0007687093457207084,
                     "z": 0.0
                 },
                 "scale": {
@@ -184,11 +204,15 @@
             "collider": {
                 "center": {
                     "x": 0.35881033539772036,
-                    "y": -0.0005975911626592279
+                    "y": -0.0007687093457207084
                 },
                 "offset": {
                     "x": 0.0,
                     "y": 0.0
+                },
+                "size": {
+                    "x": 1.0,
+                    "y": 1.0
                 },
                 "type": "box",
                 "is_trigger": false,
@@ -224,16 +248,16 @@
                 "category": "enemy"
             },
             "ai": {
-                "state": "chase_enemy_serpentipede",
+                "original_point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "state": "idle",
                 "transition": "null"
             },
-            "attack": {
-                "range_damage": 1,
-                "melee_damage": 1,
-                "max_cooldown": 1.159999966621399,
-                "cooldown_timer": -0.006666278466582298,
-                "ranged_attack": false,
-                "melee_attack": false
+            "health": {
+                "current_health": 137,
+                "max_health": 104
             }
         }
     ]

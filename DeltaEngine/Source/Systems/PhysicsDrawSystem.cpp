@@ -13,9 +13,14 @@ void PhysicsDrawSystem::Update()
 {
 
   if ( Editor::entity_selected && Editor::tool_selection == Editor::Tool::EntitySelector )
-    Gizmos::Draw2DWireBox( Editor::selection_transform );
+  {
+    Gizmos::SetColor();
+      Gizmos::Draw2DBox( Editor::selection_transform );
+    Gizmos::SetColor();
 
-  if ( gizmo)
+  }
+
+  if ( gizmo )
   {
     em.ForEach( e_query, [&]( EntityID id, Collider &c, Transform &t, RigidBody &r )
     {

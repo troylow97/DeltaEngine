@@ -9,5 +9,12 @@
             "y": 0.0
         }
     ],
-    "CurrentWaypoint": 0
+    "lost_detection_range": {
+        "x": 5.0,
+        "y": 5.0
+    },
+    "charge_detection_range": {
+        "x": 3.0,
+        "y": 5.0
+    }
 }

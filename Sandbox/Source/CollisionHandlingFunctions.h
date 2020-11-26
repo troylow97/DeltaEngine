@@ -4,4 +4,5 @@
 namespace DeltaEngine
 {
   void TakeDamage(EntityID& id1, EntityID& id2);
+  void ReduceHealth(EntityID& id, int health);
 }

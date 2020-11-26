@@ -30,10 +30,35 @@ namespace DeltaEngine
     virtual ~AIState();
   };
   
+  struct SerpentipedeData
+  {
+      float MaxCooldown;
+      Vector2 Points[3];
+      Vector2 DetectionRange;
+      SerpentipedeData();
+      SerpentipedeData(SerpentipedeData& d);
+  };
+
+  struct FiddlerData
+  {
+      Waypoint waypoint;
+      Vector2 ChargeDetectionRange;
+      Vector2 LostDetectionRange;
+      FiddlerData();
+      FiddlerData(FiddlerData& d);
+  };
+
+  struct LancerData
+  {
+      Vector2 ChargeDetectionRange;
+      LancerData();
+      LancerData(LancerData& d);
+  };
+
   class IdleLancer : public AIState //Mosquito
   {
   public:
-    IdleLancer();
+    IdleLancer(Vector2& chase_range);
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
     void Update(EntityID& id1) override;
@@ -50,10 +75,9 @@ namespace DeltaEngine
 
   class IdleFiddler : public AIState
   {
-     
+    Waypoint waypoint;
   public:
-      Waypoint waypoint;
-    IdleFiddler();
+    IdleFiddler(Waypoint& wp, Vector2& charge_range);
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
     void Update(EntityID& id1) override;
@@ -62,7 +86,7 @@ namespace DeltaEngine
   class ChaseEnemyFiddler : public AIState
   {
   public:
-    ChaseEnemyFiddler();
+    ChaseEnemyFiddler(Vector2& lost_range);
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
     void Update(EntityID& id1) override;
@@ -71,8 +95,7 @@ namespace DeltaEngine
   class IdleSerpentipede : public AIState
   {
   public:
-      Vector2 StartPoint;
-      IdleSerpentipede();
+      IdleSerpentipede(Vector2,Vector2);
       void onEnter(EntityID& id) override;
       void onExit(EntityID& id) override;
       void Update(EntityID& id1) override;
@@ -83,10 +106,12 @@ namespace DeltaEngine
   public:
       float CooldownTimer;
       int CurrentPoint;
-      Vector2 Points[3];
-      ChaseEnemySerpentipede();
+      SerpentipedeData SerpentData;
+
+      ChaseEnemySerpentipede(SerpentipedeData& d);
       void onEnter(EntityID& id) override;
       void onExit(EntityID& id) override;
       void Update(EntityID& id1) override;
   };
+
 }

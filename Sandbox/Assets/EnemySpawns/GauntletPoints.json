@@ -1,0 +1,38 @@
+{
+    "gauntlets": [
+        {
+            "enemy_waves": [
+                {
+                    "enemy_count": 3,
+                    "enemy_type": "lancer",
+                    "spawn_area": {
+                        "x": 6.0,
+                        "y": 0.0
+                    }
+                }
+            ],
+            "activation_point": {
+                "x": 5.0,
+                "y": 0.0
+            },
+            "is_activated": false
+        },
+        {
+            "enemy_waves": [
+                {
+                    "enemy_count": 2,
+                    "enemy_type": "fiddler",
+                    "spawn_area": {
+                        "x": 9.0,
+                        "y": 0.0
+                    }
+                }
+            ],
+            "activation_point": {
+                "x": 8.0,
+                "y": 0.0
+            },
+            "is_activated": false
+        }
+    ]
+}

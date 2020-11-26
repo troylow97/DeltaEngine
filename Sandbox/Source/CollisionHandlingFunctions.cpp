@@ -1,14 +1,26 @@
 #include "CollisionHandlingFunctions.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
+#include "AI/AITools.h"
 
+int counter = 0;
 namespace DeltaEngine
 {
+  void ReduceHealth(EntityID& id1, int amount)
+  {
+      if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) && 
+          !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
+      {
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
+      }
+  }
+
   void TakeDamage(EntityID& id1, EntityID& id2)
   {
-    if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
+    if (
+        env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
+        env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id2) &&
       env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id1) &&
-      env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id2) &&
       env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id2)
     )
     {
@@ -23,17 +35,41 @@ namespace DeltaEngine
         if ((type1 == EntityCategory::E_LANCER_CHARGE || type2 == EntityCategory::E_LANCER_CHARGE) &&
           (type1 == EntityCategory::E_PLAYER || type2 == EntityCategory::E_PLAYER))
         {
-          hp1.CurrentHealth -= 5;
-          hp2.CurrentHealth -= 5;
+          ReduceHealth(id1, 1);
+          ReduceHealth(id2, 1);
           return;
+        }
+
+        //Player Detection Ranged Attack
+        if ((type1 == EntityCategory::E_PLAYER_BULLET_DETECTION || type2 == EntityCategory::E_PLAYER_BULLET_DETECTION) &&
+            (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
+        {
+            EntityID target;
+            if (type1 == EntityCategory::E_PLAYER_BULLET_DETECTION)
+            {
+                target = id2;
+            }
+            else
+            {
+                target = id1;
+            }
+
+           env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
+           {
+               if (et.type == EntityCategory::E_PLAYER_BULLET)
+               {
+                   AITools::BulletTowardsEntity(bullet, target);
+               }
+           });
+
         }
 
         //Player Ranged Attack
         if ((type1 == EntityCategory::E_PLAYER_BULLET || type2 == EntityCategory::E_PLAYER_BULLET) &&
           (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
         {
-          hp1.CurrentHealth--;
-          hp2.CurrentHealth--;
+          ReduceHealth(id1, 1);
+          ReduceHealth(id2, 1);
           return;
         }
 
@@ -41,9 +77,18 @@ namespace DeltaEngine
         if ((type1 == EntityCategory::E_PLAYER_PUNCH || type2 == EntityCategory::E_PLAYER_PUNCH) &&
           (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
         {
-          hp1.CurrentHealth--;
-          hp2.CurrentHealth--;
+          ReduceHealth(id1, 1);
+          ReduceHealth(id2, 1);
           return;
+        }
+
+        //Player Dash
+        if ((type1 == EntityCategory::E_PLAYER_DASH || type2 == EntityCategory::E_PLAYER_DASH) &&
+            (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
+        {
+            ReduceHealth(id1, 1);
+            ReduceHealth(id2, 1);
+            return;
         }
 
         //Enemy Collide with player
@@ -51,9 +96,9 @@ namespace DeltaEngine
           (type1 == EntityCategory::E_PLAYER && type2 == EntityCategory::E_ENEMY))
         {
           if (type1 == EntityCategory::E_PLAYER)
-            hp1.CurrentHealth--;
+            ReduceHealth(id1, 1);
           else
-            hp2.CurrentHealth--;
+            ReduceHealth(id2, 1);
         }
       }
     }

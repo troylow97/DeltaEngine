@@ -15,10 +15,9 @@
 #include "Core/GlobalStruct.h"
 #include "AI/Waypoint.h"
 #include "AI/AI_State.h"
+#include "../../Sandbox/Source/Systems/EnemySpawner/EnemySpawner.h"
+#include "../../Sandbox/Source/Systems/RespawnSystem.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
 namespace DeltaEngine
 {
   RTTR_REGISTRATION
@@ -27,13 +26,35 @@ namespace DeltaEngine
       .property("Waypoints", &Waypoint::Waypoints)
       .property("CurrentWaypoint", &Waypoint::CurrentWaypoint);
 
-  rttr::registration::class_<IdleSerpentipede>("IdleSerpent")
-      .property("startpoint", &IdleSerpentipede::StartPoint);
+  rttr::registration::class_<LancerData>("LancerData")
+      .property("charge_detection_range", &LancerData::ChargeDetectionRange);
 
-  rttr::registration::class_<ChaseEnemySerpentipede>("ChaseSerpent")
-      .property("cooldown", &ChaseEnemySerpentipede::CooldownTimer)
-      .property("current_point", &ChaseEnemySerpentipede::CurrentPoint)
-      .property("points", &ChaseEnemySerpentipede::Points);
+  rttr::registration::class_<FiddlerData>("FiddlerData")
+      .property("waypoint", &FiddlerData::waypoint)(rttr::policy::prop::bind_as_ptr)
+      .property("lost_detection_range", &FiddlerData::ChargeDetectionRange)(rttr::policy::prop::bind_as_ptr)
+      .property("charge_detection_range", &FiddlerData::LostDetectionRange)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<SerpentipedeData>("SerpentipedeData")
+      .property("cooldown", &SerpentipedeData::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("points", &SerpentipedeData::Points)
+      .property("detection_range", &SerpentipedeData::DetectionRange)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<EnemyWave>("EnemyWave")
+      .property("enemy_count", &EnemyWave::EnemyCount)(rttr::policy::prop::bind_as_ptr)
+      .property("enemy_type", &EnemyWave::EnemyType)(rttr::policy::prop::bind_as_ptr)
+      .property("spawn_area", &EnemyWave::SpawnArea)(rttr::policy::prop::bind_as_ptr);
+
+  rttr::registration::class_<Gauntlet>("Gauntlet")
+      .property("enemy_waves", &Gauntlet::EnemyWaves)(rttr::policy::prop::bind_as_ptr)
+      .property("activation_point", &Gauntlet::ActivationPoint)(rttr::policy::prop::bind_as_ptr)
+      .property("is_activated", &Gauntlet::isActivated)(rttr::metadata("NO_SERIALIZE", true));
+
+  rttr::registration::class_<GauntletsList>("Gauntlets")
+      .property("gauntlets", &GauntletsList::Gauntlets);
+
+
+  rttr::registration::class_<RespawnPoints>("RespawnPoints")
+      .property("respawn_points", &RespawnPoints::m_respawns);
 
     rttr::registration::class_<EngineConfig>("Config")
       .property("window", &EngineConfig::win_name)
@@ -236,6 +257,7 @@ namespace DeltaEngine
     rttr::registration::class_<AI>("AI")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Original Point", &AI::original_point)(rttr::policy::prop::bind_as_ptr)
       .property("State", &AI::key)(rttr::policy::prop::bind_as_ptr)
       .property("Transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
 
@@ -248,7 +270,8 @@ namespace DeltaEngine
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Health>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("Current Health", &Health::CurrentHealth)(rttr::policy::prop::bind_as_ptr)
-      .property("Max Health", &Health::MaxHealth)(rttr::policy::prop::bind_as_ptr);
+      .property("Max Health", &Health::MaxHealth)(rttr::policy::prop::bind_as_ptr)
+      .property("Invulnerable", &Health::isInvulnerable)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Attack>("Attack")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
@@ -263,7 +286,14 @@ namespace DeltaEngine
     rttr::registration::class_<Lifespan>("Lifespan")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Duration", &Lifespan::Timer)(rttr::policy::prop::bind_as_ptr);
+      .property("Timer", &Lifespan::Timer)(rttr::policy::prop::bind_as_ptr);
+
+    rttr::registration::class_<Player>("Player")
+        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Player>()->bits))
+        .constructor<>()(rttr::policy::ctor::as_object)
+        .property("Respawn Point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Is Dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+
   }
 
 }
@@ -304,6 +334,8 @@ namespace DeltaEngine::RT_Reflect
       return rttr::type::get_by_name("Health");
     if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       return rttr::type::get_by_name("Lifespan");
+    if (ComponentMeta::GetComponentMeta<Player>()->bits == bits)
+      return rttr::type::get_by_name("Player");
     return rttr::type::get<int>();
   }
 
@@ -341,6 +373,8 @@ namespace DeltaEngine::RT_Reflect
       em.RemoveComponent<Health>(id);
     if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       em.RemoveComponent<Lifespan>(id);
+    if (ComponentMeta::GetComponentMeta<Player>()->bits == bits)
+        em.RemoveComponent<Player>(id);
   }
 
   void RT_Setter(EntityManager& em, EntityID id, size_t bits)
@@ -377,6 +411,8 @@ namespace DeltaEngine::RT_Reflect
       em.AddComponent<Health>(id);
     if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       em.AddComponent<Lifespan>(id);
+    if (ComponentMeta::GetComponentMeta<Player>()->bits == bits)
+      em.AddComponent<Player>(id);
   }
 
   rttr::instance RT_Getter(EntityManager& em, EntityID& id, size_t bits)
@@ -413,6 +449,8 @@ namespace DeltaEngine::RT_Reflect
       return rttr::instance(em.GetComponent<Health>(id));
     if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
       return rttr::instance(em.GetComponent<Lifespan>(id));
+    if (ComponentMeta::GetComponentMeta<Player>()->bits == bits)
+      return rttr::instance(em.GetComponent<Player>(id));
     return rttr::instance();
   }
 
@@ -450,6 +488,8 @@ namespace DeltaEngine::RT_Reflect
       Serialize::WriteObject(*static_cast<Health*>(ptr), writer);
     else if (str == "Lifespan")
       Serialize::WriteObject(*static_cast<Lifespan*>(ptr), writer);
+    else if (str == "Player")
+      Serialize::WriteObject(*static_cast<Player*>(ptr), writer);
   }
 
   void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var)
@@ -486,5 +526,7 @@ namespace DeltaEngine::RT_Reflect
       em.AddComponent<Health>(id, var.get_value<Health>());
     else if (str == "Lifespan")
       em.AddComponent<Lifespan>(id, var.get_value<Lifespan>());
+    else if (str == "Player")
+      em.AddComponent<Player>(id, var.get_value<Player>());
   }
 }

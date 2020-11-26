@@ -25,9 +25,9 @@ namespace DeltaEngine
     }
   }
 
-  IdleLancer::IdleLancer()
+  IdleLancer::IdleLancer(Vector2& charge_range)
   {
-    TransitionEdges["detect_enemy_lancer"] = new DetectEnemyLancer();
+    TransitionEdges["detect_enemy_lancer"] = new DetectEnemyLancer(charge_range);
   }
 
   void IdleLancer::onEnter(EntityID& id)
@@ -69,36 +69,19 @@ namespace DeltaEngine
     {
       if (et.type == EntityCategory::E_PLAYER)
       {
-        if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (
-            AITools::Distance_X_BetweenTwoEntities(monster, player) < 2) && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1
-            && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
-        {
-          AITools::FaceEntity(monster, player);
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
-        }
         auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
         auto player_size = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).scale;
-        AITools::MoveTowardsPoint(monster, Vector2{player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.5,1.5)});
+        AITools::FlyTowardsPoint(monster, Vector2{player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.5,1.5)});
       }
     });
   }
 
   //----------------------------------------------------------------------
 
-  IdleFiddler::IdleFiddler()
+  IdleFiddler::IdleFiddler(Waypoint& wp,Vector2& charge_range) :
+      waypoint{wp}
   {
-    //To read from json file instead
-    //waypoint.Waypoints.push_back(Vector2{ 0,0 });
-    //waypoint.Waypoints.push_back(Vector2{ 5,0 });
-
-
-    JsonFile file;
-   //rttr::variant v{ waypoint.Waypoints };
-   //auto& seq = v.create_sequential_view();
-    //file.StartWriter( filename ).StartObject().WriteObject( obj ).EndObject();
-    file.StartReader("idle_fiddler.json").LoadObject(waypoint).EndReader();
-
-    TransitionEdges["detect_enemy_fiddler"] = new DetectEnemyFiddler();
+    TransitionEdges["detect_enemy_fiddler"] = new DetectEnemyFiddler(charge_range);
   }
 
   void IdleFiddler::onEnter(EntityID& id)
@@ -115,9 +98,9 @@ namespace DeltaEngine
     CheckEdges(monster);
   }
 
-  ChaseEnemyFiddler::ChaseEnemyFiddler()
+  ChaseEnemyFiddler::ChaseEnemyFiddler(Vector2& lost_range)
   {
-    TransitionEdges["lost_enemy_fiddler"] = new LostEnemyFiddler();
+    TransitionEdges["lost_enemy_fiddler"] = new LostEnemyFiddler(lost_range);
   }
 
   void ChaseEnemyFiddler::onEnter(EntityID& id)
@@ -136,9 +119,7 @@ namespace DeltaEngine
     {
       if (et.type == EntityCategory::E_PLAYER)
       {
-          if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (
-              AITools::Distance_X_BetweenTwoEntities(monster, player) < 2) &&
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+          if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
           {
               AITools::FaceEntity(monster, player);
               env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
@@ -150,12 +131,9 @@ namespace DeltaEngine
 
   //----------------------------------------------------------------------
 
-  IdleSerpentipede::IdleSerpentipede() :
-      StartPoint{Vector2{0,0}}
+  IdleSerpentipede::IdleSerpentipede(Vector2 startpoint,Vector2 detection_range)
   {
-      JsonFile file;
-      file.StartReader("idle_serpentipede.json").LoadObject(StartPoint).EndReader();
-      TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(StartPoint);
+      TransitionEdges["detect_enemy_serpentipede"] = new DetectEnemySerpentipede(startpoint, detection_range);
   }
 
   void IdleSerpentipede::onEnter(EntityID& id)
@@ -171,14 +149,12 @@ namespace DeltaEngine
       CheckEdges(monster);
   }
 
-  ChaseEnemySerpentipede::ChaseEnemySerpentipede() :
-      Points{ Vector2{0.0,0.0},Vector2{2.0,0.0},Vector2{5.0,0.0} },
+  ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeData& d) :
+      SerpentData{d},
       CooldownTimer{0.0f},
       CurrentPoint{0}
   {
-     JsonFile file;
-     file.StartReader("chase_serpentipede.json").LoadObject(Points).EndReader();
-      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(Points[0]);
+      TransitionEdges["lost_enemy_serpentipede"] = new LostEnemySerpentipede(SerpentData.Points[0], SerpentData.DetectionRange);
   }
 
   void ChaseEnemySerpentipede::onEnter(EntityID& id)
@@ -193,34 +169,31 @@ namespace DeltaEngine
   void ChaseEnemySerpentipede::Update(EntityID& monster)
   {
       CheckEdges(monster);
-
+        
       if (CooldownTimer <= 0)
       {
-          if (AITools::EntityisAtPoint(monster, Points[CurrentPoint]))
-          {
-              CurrentPoint = Random::RandomIntRange(0, 2);
+          auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
+          auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
 
+          if (AITools::EntityisAtPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]))
+          {
               env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
                   {
                       if (et.type == EntityCategory::E_PLAYER)
                       {
-                          if (AITools::EntityisAtPoint(monster, Points[CurrentPoint]))
-                          {
-                              if (env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(monster) && (
-                                  AITools::Distance_X_BetweenTwoEntities(monster, player) < 5) &&
-                                  env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
-                              {
-                                  AITools::FaceEntity(monster, player);
-                                  env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).RangeAttack = true;
-                                  CooldownTimer = 2.0f;
-                              }
-                          }
+                            if (attack.CooldownTimer <= 0)
+                            {
+                                CurrentPoint = Random::RandomIntRange(0, 3);
+                                AITools::FaceEntity(monster, player);
+                                attack.RangeAttack = true;
+                                CooldownTimer = SerpentData.MaxCooldown;
+                            }
                       }
                   });
           }
           else
           {
-              AITools::MoveTowardsPoint(monster, Points[CurrentPoint]);
+              AITools::MoveTowardsPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]);
           }
       }
       else
@@ -229,5 +202,37 @@ namespace DeltaEngine
       }
 
   }
+
+  LancerData::LancerData() :
+      ChargeDetectionRange{Vector2::zero()}
+  {}
+
+  LancerData::LancerData(LancerData& d) :
+      ChargeDetectionRange{ d.ChargeDetectionRange }
+  {}
+
+  FiddlerData::FiddlerData() :
+      waypoint{},
+      ChargeDetectionRange{ Vector2::zero() },
+      LostDetectionRange{ Vector2::zero() }
+  {}
+
+  FiddlerData::FiddlerData(FiddlerData& d) :
+      waypoint{ d.waypoint },
+      ChargeDetectionRange{ d.ChargeDetectionRange },
+      LostDetectionRange{ d.LostDetectionRange }
+  {}
+
+  SerpentipedeData::SerpentipedeData() :
+      MaxCooldown{ 0.0f },
+      Points{ Vector2::zero(),Vector2::zero(),Vector2::zero() },
+      DetectionRange{ Vector2::zero() }
+  {}
+
+  SerpentipedeData::SerpentipedeData(SerpentipedeData& d) :
+      MaxCooldown{ d.MaxCooldown },
+      Points{ d.Points[0],d.Points[1],d.Points[2] },
+      DetectionRange{ d.DetectionRange }
+  {}
 
 }

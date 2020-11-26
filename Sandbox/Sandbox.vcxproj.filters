@@ -1,15 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Source\SandboxApp.cpp" />
-    <ClCompile Include="Source\CollisionHandlingFunctions.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="AI">
-      <UniqueIdentifier>{cac68615-fbc8-4c70-a59c-b5601731c561}</UniqueIdentifier>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{1DDE831B-89BD-02B7-92D5-8D8DFE336918}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems\EnemySpawner">
+      <UniqueIdentifier>{2AD34AD0-1662-D499-BF80-E894ABEEE43F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CollisionHandlingFunctions.h" />
+    <ClInclude Include="Source\Systems\AttackSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\EnemySpawner\EnemySpawner.h">
+      <Filter>Systems\EnemySpawner</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\RespawnSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UnitManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\CollisionHandlingFunctions.cpp" />
+    <ClCompile Include="Source\SandboxApp.cpp" />
+    <ClCompile Include="Source\Systems\AttackSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\EnemySpawner\EnemySpawner.cpp">
+      <Filter>Systems\EnemySpawner</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\RespawnSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UnitManager.cpp" />
   </ItemGroup>
 </Project>

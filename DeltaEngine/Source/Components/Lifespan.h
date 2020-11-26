@@ -6,6 +6,9 @@ struct Lifespan
 
   Lifespan() :
     Timer{1.0f}
-  {
-  }
+  {}
+
+  Lifespan(float time) :
+      Timer{ time }
+  {}
 };
