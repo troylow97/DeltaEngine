@@ -226,12 +226,11 @@ namespace DeltaEngine
       .property("Parameters", &State::parameters)(rttr::metadata("NO_SERIALIZE", true),
                                                   (rttr::metadata("NO_EDITOR", true)));
 
-    rttr::registration::class_<Camera>("camera")
+    rttr::registration::class_<Camera>("Camera")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Camera>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("size", &Camera::m_Size)(rttr::policy::prop::bind_as_ptr);
+      .property("Size", &Camera::m_Size)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Image>("image")
     rttr::registration::class_<Image>("Image")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Image>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)

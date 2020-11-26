@@ -14,16 +14,9 @@ namespace DeltaEngine
     m_enabled = false;
   }
 
-  void GamePanel::Render(bool)
+  void GamePanel::Render()
   {
     ImGui::Begin(m_name.c_str(), &m_enabled, ImGuiWindowFlags_MenuBar);
-
-    topLeft = ImGui::GetWindowContentRegionMin();
-    bottomRight = ImGui::GetWindowContentRegionMax();
-    topLeft.x += ImGui::GetWindowPos().x;
-    topLeft.y += ImGui::GetWindowPos().y;
-    bottomRight.x += ImGui::GetWindowPos().x;
-    bottomRight.y += ImGui::GetWindowPos().y;
 
     ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 

@@ -205,6 +205,8 @@ Editor::Editor()
 
   m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );
   m_panels.push_back( std::make_unique<ButtonsPanel>( "Buttons" ) );
+  m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor" ) );
+  m_panels.push_back( std::make_unique<GamePanel>( "Game" ) );
 }
 
 Editor::~Editor()

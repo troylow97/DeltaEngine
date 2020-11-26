@@ -9,6 +9,6 @@ namespace DeltaEngine
   public:
     GamePanel(std::string str);
     ~GamePanel();
-    void Render(bool) override;
+    void Render() override;
   };
 }
