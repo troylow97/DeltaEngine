@@ -1,6 +1,5 @@
 #include "CollisionSystem.h"
 #include "Core/Math/Math.h"
-#include "Core/GameClock/GameClock.h"
 #include "Collision.h"
 #include <cmath>
 
@@ -53,20 +52,34 @@ namespace DeltaEngine
 
   void CollisionSystem::CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
   {
-    //////////////////////////////////////////////////////////////////////////////////////
-    float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
-
-    //if (m.penetration > 0)
+    //Get the separating velocity by projecting along the contact normal
+    Vector2 relativeVelocity = r1.Velocity - r2.Velocity;
+    Vector2 relativeVelocity2 = r2.Velocity - r1.Velocity;
+    float SeperatingVelocity = Vector2DotProduct(relativeVelocity, m.normal);
+    float SeperatingVelocity2 = Vector2DotProduct(relativeVelocity2, -m.normal);
+    if (SeperatingVelocity > 0 || SeperatingVelocity2 > 0)
     {
-      Vector2 impulse = (m.normal * m.penetration);
-      r1.AccumulatedForce += m.normal * knockback_amt * restitution;
-      r2.AccumulatedForce += -m.normal * knockback_amt * restitution;
-
-      Vector2 reflectedVectorA = ((impulse) / (r1.Mass + r2.Mass)) * r2.Mass;
-      Vector2 reflectedVectorB = ((-impulse) / (r1.Mass + r2.Mass)) * r1.Mass;
-      r1.PointEnd = c1.center + reflectedVectorA;
-      r2.PointEnd = c2.center + reflectedVectorB;
+        r1.PointEnd = c1.center;
+        r2.PointEnd = c2.center;
+        //The objects are no longer moving towards each other
+        return;
     }
+
+    //Calculate velocity using conservation of momentum
+    float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+    float j = Vector2DotProduct(-(1 + restitution) * (r1.Velocity - r2.Velocity), m.normal)/(1/r1.Mass + 1/r2.Mass);
+
+    if (r1.isMoveable)
+        r1.Velocity = r1.Velocity + (j / r1.Mass) * m.normal;
+    if(r2.isMoveable)
+        r2.Velocity = r2.Velocity - (j / r2.Mass) * m.normal;
+
+    //Snap object
+    Vector2 impulse = (m.normal * m.penetration);
+    Vector2 reflectedVectorA = ((impulse) / (r1.Mass + r2.Mass)) * r2.Mass;
+    Vector2 reflectedVectorB = ((-impulse) / (r1.Mass + r2.Mass)) * r1.Mass;
+    r1.PointEnd = c1.center + reflectedVectorA;
+    r2.PointEnd = c2.center + reflectedVectorB;
   }
 
   //void CollisionSystem::CollisionResponse_BoxCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)

@@ -8,6 +8,12 @@ namespace DeltaEngine
   {
     size_t index{0};
     size_t generation{1};
+
+    bool operator==(const EntityID& rhs) const
+    {
+      return generation == rhs.generation &&
+        index == rhs.index;
+    }
   };
 
   struct Entity

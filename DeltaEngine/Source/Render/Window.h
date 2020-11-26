@@ -13,6 +13,7 @@ namespace DeltaEngine
     int m_width;
     int m_height;
     bool m_running;
+    bool m_focus;
     bool m_fullscreen;
     bool m_cursor;
 
@@ -42,6 +43,9 @@ namespace DeltaEngine
 
     void Running(bool r);
     [[nodiscard]] bool Running() const;
+
+    void Focus(bool f);
+    [[nodiscard]] bool Focus() const;
 
     void InitWindow();
   private:

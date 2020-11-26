@@ -4,6 +4,15 @@
 #include "Render/Camera.h"
 #include "Core/Math/Math.h"
 
+
+#include "crtdbg.h"
+
+#ifdef _DEBUG
+#define DEBUG_NEW   new( _NORMAL_BLOCK, __FILE__, __LINE__)
+#else
+#define DEBUG_NEW
+#endif
+
 namespace DeltaEngine::Gizmos
 {
   Shader* gizmoShader;
@@ -149,14 +158,14 @@ namespace DeltaEngine::Gizmos
 
   void Draw2DWireBox(Vector3 position, Vector3 scale, Quaternion rotation)
   {
-    Draw2DWireBox(Transform(position, rotation, scale));
+    Draw2DWireBox(Transform(position, rotation, scale), Vector2::zero());
   }
 
-  void Draw2DWireBox(Transform transform)
+  void Draw2DWireBox(Transform transform,Vector2 col_offset)
   {
     glClear(GL_DEPTH_BUFFER_BIT);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+    transform.position = transform.position + col_offset;
     Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
     Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
     Matrix4x4 model = transform.LocalToWorldMatrix();

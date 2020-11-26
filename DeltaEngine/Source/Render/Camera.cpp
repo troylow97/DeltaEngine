@@ -42,6 +42,9 @@ namespace DeltaEngine
       for (int i = 0; i < allCameras.size(); ++i)
         allCameras[i]->cameraIndex = i;
     }
+
+    if ( this == editorCamera )
+      delete shader;
   }
 
   Matrix4x4 Camera::GetProjectionMatrix() const

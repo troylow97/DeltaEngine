@@ -17,17 +17,9 @@ namespace DeltaEngine
     m_enabled = false;
   }
 
-  void SpriteEditorPanel::Render(bool)
+  void SpriteEditorPanel::Render()
   {
     ImGui::Begin(m_name.c_str(), &m_enabled, ImGuiWindowFlags_MenuBar);
-
-    topLeft = ImGui::GetWindowContentRegionMin();
-    bottomRight = ImGui::GetWindowContentRegionMax();
-    topLeft.x += ImGui::GetWindowPos().x;
-    topLeft.y += ImGui::GetWindowPos().y;
-    bottomRight.x += ImGui::GetWindowPos().x;
-    bottomRight.y += ImGui::GetWindowPos().y;
-
 
     ImGui::InputText("Texture Name", textureName, 128);
     Texture2D* texture = GetEnv().pManager->Get<Texture2D>(std::string(textureName));

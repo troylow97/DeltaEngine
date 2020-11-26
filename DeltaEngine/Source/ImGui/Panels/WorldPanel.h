@@ -9,7 +9,6 @@ namespace DeltaEngine
   public:
     WorldPanel(std::string str);
     ~WorldPanel();
-    bool DraggedFileIn();
-    void Render(bool) override;
+    void Render() override;
   };
 }

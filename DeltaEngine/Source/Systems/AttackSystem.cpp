@@ -80,6 +80,32 @@ namespace DeltaEngine
         em.GetComponent<RigidBody>(missile).AccumulatedForce = {-7500, 4000};
       }
     }
+    else if(em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
+    {
+        Transform& t1 = em.GetComponent<Transform>(id);
+        RigidBody& r1 = em.GetComponent<RigidBody>(id);
+        r1.Direction = Vector2::zero();
+        EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+        em.GetComponent<Transform>(missile).position = t1.position;
+        em.GetComponent<RigidBody>(missile).Mass = 5.0f;
+        em.GetComponent<Transform>(missile).scale = { 0.4f, 0.4f, 0.0f };
+        em.GetComponent<Lifespan>(missile).Timer = 0.35f;
+        em.GetComponent<RigidBody>(missile).hasGravity = true;
+        em.GetComponent<Collider>(missile).isTrigger = true;
+        em.GetComponent<EntityType>(missile).type = EntityCategory::E_ENEMY_BULLET; //This bullet wont deal any damage now, to fix
+        em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
+        em.GetComponent<Health>(missile).CurrentHealth = 1;
+        if (em.GetComponent<Image>(id).m_FlipX == false)
+        {
+            em.GetComponent<Transform>(missile).position.x += 0.5f;
+            em.GetComponent<RigidBody>(missile).AccumulatedForce = { 7500, 4000 };
+        }
+        else
+        {
+            em.GetComponent<Transform>(missile).position.x -= 0.5f;
+            em.GetComponent<RigidBody>(missile).AccumulatedForce = { -7500, 4000 };
+        }
+    }
   }
 
   void AttackSystem::MeleeAttack(EntityID& id)

@@ -4,6 +4,7 @@
 
 namespace DeltaEngine
 {
+
   void AnimationSystem::Update()
   {
     for (size_t step = 0; step < env.pClock->Timesteps(); ++step)

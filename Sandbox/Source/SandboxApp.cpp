@@ -20,11 +20,11 @@ class Sandbox : public Application
 public:
   Sandbox()
   {
-    CollisionSystem::collision_handler.RegisterOnStay(TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, LifespanSystem>();
-    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, LifespanSystem>();
+    //CollisionSystem::collision_handler.RegisterOnStay(TakeDamage);
+    //env.pECS->GetWorld().CreateSystems<AttackSystem, LifespanSystem>();
+    //env.pECS->GetWorld().SetUpdateSequence<AttackSystem, LifespanSystem>();
 
-    env.pECS->GetWorld().InitSystems();
+    //env.pECS->GetWorld().InitSystems();
   }
 
   ~Sandbox()

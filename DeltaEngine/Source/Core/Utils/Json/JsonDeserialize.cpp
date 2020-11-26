@@ -233,10 +233,16 @@ namespace DeltaEngine::Deserialize
   {
     if (obj_dat.get_type() == type::get<bool*>())
       *obj_dat.get_value<bool*>() = extracted.get_value<bool>();
+    else if (obj_dat.get_type() == type::get<int*>())
+      *obj_dat.get_value<int*>() = extracted.get_value<int>();
+    else if (obj_dat.get_type() == type::get<int64_t*>())
+      *obj_dat.get_value<int64_t*>() = extracted.get_value<int64_t>();
+    else if (obj_dat.get_type() == type::get<unsigned*>())
+      *obj_dat.get_value<unsigned*>() = extracted.get_value<unsigned>();
+    else if (obj_dat.get_type() == type::get<uint64_t*>())
+      *obj_dat.get_value<uint64_t*>() = extracted.get_value<uint64_t>();
     else if (obj_dat.get_type() == type::get<float*>())
       *obj_dat.get_value<float*>() = static_cast<float>(extracted.get_value<double>());
-    else if (obj_dat.get_type() == type::get<int*>())
-      *obj_dat.get_value<int*>() = static_cast<int>(extracted.get_value<int>());
     else if (obj_dat.get_type().get_raw_type().is_enumeration())
     {
       enumeration enum_prop = obj_dat.get_type().get_raw_type().get_enumeration();

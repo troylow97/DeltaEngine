@@ -10,11 +10,6 @@ namespace DeltaEngine
   public:
     AssetPanel(std::string str);
     ~AssetPanel();
-    bool DraggedFileIn();
-    void Render(bool) override;
-
-  private:
-    ImVec2 topLeft;
-    ImVec2 bottomRight;
+    void Render() override;
   };
 }

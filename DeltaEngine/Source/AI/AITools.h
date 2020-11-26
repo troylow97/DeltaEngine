@@ -7,6 +7,8 @@ namespace DeltaEngine
   {
     float Distance_X_BetweenTwoEntities(EntityID& id1, EntityID& id2);
     float Distance_Y_BetweenTwoEntities(EntityID& id1, EntityID& id2);
+    float Distance_X_BetweenEntityAndPoint(EntityID& id1, Vector2& point);
+    float Distance_Y_BetweenEntityAndPoint(EntityID& id1, Vector2& point);
     float Distance_Total_BetweenTwoEntities(EntityID& id1, EntityID& id2);
     void FaceLeft(EntityID& id);
     void FaceRight(EntityID& id);
@@ -18,6 +20,7 @@ namespace DeltaEngine
     void MoveLeft(EntityID& id);
     void MoveStop(EntityID& id);
     bool EntityisWithinDetectionRange(EntityID& id1, EntityID& id2, float x, float y);
+    bool EntityisWithinDetectionRange(EntityID& id1, Vector2& point, float x, float y);
     bool EntityisOnTheRight(EntityID& id1, EntityID& id2);
     bool EntityisOnTheLeft(EntityID& id1, EntityID& id2);
     bool EntityisOnTop(EntityID& id1, EntityID& id2);

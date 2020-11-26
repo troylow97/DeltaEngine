@@ -10,7 +10,12 @@ namespace DeltaEngine
   {
   }
 
-  const std::filesystem::path& FileWatcher::GetDirectory()
+  void FileWatcher::Directory(std::filesystem::path dir)
+  {
+    m_directory = dir;
+  }
+
+  const std::filesystem::path& FileWatcher::Directory()
   {
     return m_directory;
   }
@@ -38,30 +43,30 @@ namespace DeltaEngine
   void FileWatcher::OnFileAdded(std::filesystem::path file)
   {
     for (auto& ref : m_listeners)
-      ref->OnFileAdded(file.generic_string());
+      ref->OnFileAdded(file);
   }
 
   void FileWatcher::OnFileDeleted(std::filesystem::path file)
   {
     for (auto& ref : m_listeners)
-      ref->OnFileDeleted(file.generic_string());
+      ref->OnFileDeleted(file);
   }
 
   void FileWatcher::OnFileChanged(std::filesystem::path file)
   {
     for (auto& ref : m_listeners)
-      ref->OnFileChanged(file.generic_string());
+      ref->OnFileChanged(file);
   }
 
   void FileWatcher::OnFileRenamed(std::filesystem::path file)
   {
     for (auto& ref : m_listeners)
-      ref->OnFileRenamed(file.generic_string());
+      ref->OnFileRenamed(file);
   }
 
   void FileWatcher::Thread(FileWatcher& fileWatcher)
   {
-    HANDLE hDir = CreateFile(fileWatcher.GetDirectory().generic_wstring().c_str(), // path to the directory
+    HANDLE hDir = CreateFile(fileWatcher.Directory().generic_wstring().c_str(), // path to the directory
                              FILE_LIST_DIRECTORY, // access (read/write) mode
                              FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, // share mode
                              nullptr, // no child process
@@ -71,7 +76,7 @@ namespace DeltaEngine
     );
 
     wchar_t file[MAX_PATH];
-    FILE_NOTIFY_INFORMATION buffer[1024];
+    FILE_NOTIFY_INFORMATION buffer[2048];
     DWORD bytes;
 
     while (ReadDirectoryChangesW(
@@ -96,9 +101,7 @@ namespace DeltaEngine
       FILE_NOTIFY_INFORMATION* information;
       information = (FILE_NOTIFY_INFORMATION*)((char*)buffer);
       wcscpy_s(file, L"");
-
       wcsncpy_s(file, information->FileName, information->FileNameLength / 2);
-
       file[information->FileNameLength / 2] = NULL;
 
       switch (buffer[0].Action)
@@ -119,7 +122,6 @@ namespace DeltaEngine
         fileWatcher.OnFileRenamed(file);
         break;
       }
-      Sleep(1000);
     }
 
     CloseHandle(hDir);

@@ -13,58 +13,73 @@
 #include "Assets/AssetKey.h"
 #include "Core/Utils/Json/JsonSerialize.h"
 #include "Core/GlobalStruct.h"
-#include "Assets/AssetManager.h"
-
+#include "AI/Waypoint.h"
+#include "AI/AI_State.h"
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 namespace DeltaEngine
 {
   RTTR_REGISTRATION
   {
-    rttr::registration::class_<EngineConfig>("config")
+    rttr::registration::class_<Waypoint>("Waypoint")
+      .property("Waypoints", &Waypoint::Waypoints)
+      .property("CurrentWaypoint", &Waypoint::CurrentWaypoint);
+
+  rttr::registration::class_<IdleSerpentipede>("IdleSerpent")
+      .property("startpoint", &IdleSerpentipede::StartPoint);
+
+  rttr::registration::class_<ChaseEnemySerpentipede>("ChaseSerpent")
+      .property("cooldown", &ChaseEnemySerpentipede::CooldownTimer)
+      .property("current_point", &ChaseEnemySerpentipede::CurrentPoint)
+      .property("points", &ChaseEnemySerpentipede::Points);
+
+    rttr::registration::class_<EngineConfig>("Config")
       .property("window", &EngineConfig::win_name)
       .property("width", &EngineConfig::width)
       .property("height", &EngineConfig::height)
       .property("fps", &EngineConfig::fps)
       .property("fullscreen", &EngineConfig::fullscreen);
 
-    rttr::registration::class_<Vector2>("vector2")
+    rttr::registration::class_<Vector2>("Vector2")
       .property("x", &Vector2::x)
       .property("y", &Vector2::y);
 
-    rttr::registration::class_<Vector3>("vector3")
+    rttr::registration::class_<Vector3>("Vector3")
       .property("x", &Vector3::x)
       .property("y", &Vector3::y)
       .property("z", &Vector3::z);
 
-    rttr::registration::class_<Vector4>("vector4")
+    rttr::registration::class_<Vector4>("Vector4")
       .property("x", &Vector4::x)
       .property("y", &Vector4::y)
       .property("z", &Vector4::z)
       .property("w", &Vector4::w);
 
-    rttr::registration::class_<Quaternion>("quaternion")
+    rttr::registration::class_<Quaternion>("Quaternion")
       .property("x", &Quaternion::x)
       .property("y", &Quaternion::y)
       .property("z", &Quaternion::z)
       .property("w", &Quaternion::w);
 
-    rttr::registration::class_<Point>("point")
+    rttr::registration::class_<Point>("Point")
       .property("x", &Point::point_x)
       .property("y", &Point::point_y);
 
-    rttr::registration::class_<Color>("color")
+    rttr::registration::class_<Color>("Color")
       .property("r", &Color::r)
       .property("g", &Color::g)
       .property("b", &Color::b)
       .property("a", &Color::a);
 
-    rttr::registration::class_<Material>("material")
+    rttr::registration::class_<Material>("Material")
       .property("key", &Material::m_ShaderKey);
 
-    rttr::registration::class_<Sprite>("sprite")
+    rttr::registration::class_<Sprite>("Sprite")
       .property("key", &Sprite::m_Key)
       .property("index", &Sprite::m_Index);
 
-    rttr::registration::enumeration<ColliderType>("collider_type")
+    rttr::registration::enumeration<ColliderType>("ColliderType")
     (
       rttr::value("none", ColliderType::NONE),
       rttr::value("box", ColliderType::BOX),
@@ -73,7 +88,7 @@ namespace DeltaEngine
       rttr::value("ray", ColliderType::RAY)
     );
 
-    rttr::registration::enumeration<EntityCategory>("entity_category")
+    rttr::registration::enumeration<EntityCategory>("EntityCategory")
     (
       rttr::value("none", EntityCategory::E_NONE),
       rttr::value("wall", EntityCategory::E_WALL),
@@ -84,14 +99,14 @@ namespace DeltaEngine
       rttr::value("charge", EntityCategory::E_LANCER_CHARGE)
     );
 
-    rttr::registration::enumeration<Alignment>("alignment")
+    rttr::registration::enumeration<Alignment>("Alignment")
     (
       rttr::value("align_left", Alignment::AlignLeft),
       rttr::value("align_right", Alignment::AlignRight),
       rttr::value("center", Alignment::Centralize)
     );
 
-    rttr::registration::enumeration<FillType>("filltype")
+    rttr::registration::enumeration<FillType>("Filltype")
     (
       rttr::value("none", FillType::None),
       rttr::value("horizontal_left_to_right", FillType::HorizontalLeftToRight),
@@ -102,150 +117,154 @@ namespace DeltaEngine
       rttr::value("radial_360_anticlockwise", FillType::Radial360AntiClockwise)
     );
 
-    rttr::registration::class_<EntityName>("name")
+    rttr::registration::class_<EntityName>("Entity Name")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityName>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("name", &EntityName::name)(rttr::policy::prop::bind_as_ptr);
+      .property("Name", &EntityName::name)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Parent>("parent")
+    rttr::registration::class_<Parent>("Parent")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Parent>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("parent", &Parent::p_id)(rttr::policy::prop::bind_as_ptr);
+      .property("ID", &Parent::p_id)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Transform>("transform")
+    rttr::registration::class_<Transform>("Transform")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Transform>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("old_position", &Transform::old_position)(rttr::policy::prop::bind_as_ptr)
-      .property("position", &Transform::position)(rttr::policy::prop::bind_as_ptr)
-      .property("scale", &Transform::scale)(rttr::policy::prop::bind_as_ptr)
-      .property("rotation", &Transform::rotation)(rttr::policy::prop::bind_as_ptr);
+      .property("Old Position", &Transform::old_position)(rttr::metadata("NO_SERIALIZE", true),
+                                                           (rttr::metadata("NO_EDITOR", true)))
+      .property("Position", &Transform::position)(rttr::policy::prop::bind_as_ptr)
+      .property("Scale", &Transform::scale)(rttr::policy::prop::bind_as_ptr)
+      .property("Rotation", &Transform::rotation)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<RigidBody>("rigidbody")
+    rttr::registration::class_<RigidBody>("Rigidbody")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("direction", &RigidBody::Direction)(rttr::metadata("NO_SERIALIZE", true),
+      .property("Direction", &RigidBody::Direction)(rttr::metadata("NO_SERIALIZE", true),
                                                     (rttr::metadata("NO_EDITOR", true)))
-      .property("velocity", &RigidBody::Velocity)(rttr::metadata("NO_SERIALIZE", true))
-      .property("reflected_vector", &RigidBody::ReflectedVector)(rttr::metadata("NO_SERIALIZE", true),
+      .property("Velocity", &RigidBody::Velocity)(rttr::metadata("NO_SERIALIZE", true),
+                                                   (rttr::metadata("NO_EDITOR", true)))
+      .property("Reflected Vector", &RigidBody::ReflectedVector)(rttr::metadata("NO_SERIALIZE", true),
                                                                  (rttr::metadata("NO_EDITOR", true)))
-      .property("acceleration", &RigidBody::Acceleration)(rttr::metadata("NO_SERIALIZE", true),
+      .property("Acceleration", &RigidBody::Acceleration)(rttr::metadata("NO_SERIALIZE", true),
                                                           (rttr::metadata("NO_EDITOR", true)))
-      .property("accumulated_force", &RigidBody::AccumulatedForce)(rttr::metadata("NO_SERIALIZE", true))
-      .property("point_end", &RigidBody::PointEnd)(rttr::metadata("NO_SERIALIZE", true))
-      .property("mass", &RigidBody::Mass)(rttr::policy::prop::bind_as_ptr)
-      .property("movespeed", &RigidBody::Movespeed)(rttr::policy::prop::bind_as_ptr)
-      .property("restitution", &RigidBody::Restitution)(rttr::policy::prop::bind_as_ptr)
-      .property("friction_coeff", &RigidBody::FrictionCoeff)(rttr::policy::prop::bind_as_ptr)
-      .property("inherent_acceleration", &RigidBody::InherentAcceleration)(rttr::policy::prop::bind_as_ptr)(
+      .property("Accumulated Force", &RigidBody::AccumulatedForce)(rttr::metadata("NO_SERIALIZE", true),
+                                                                    (rttr::metadata("NO_EDITOR", true)))
+      .property("Point End", &RigidBody::PointEnd)(rttr::metadata("NO_SERIALIZE", true),
+                                                    (rttr::metadata("NO_EDITOR", true)))
+      .property("Mass", &RigidBody::Mass)(rttr::policy::prop::bind_as_ptr)
+      .property("Move Speed", &RigidBody::Movespeed)(rttr::policy::prop::bind_as_ptr)
+      .property("Restitution", &RigidBody::Restitution)(rttr::policy::prop::bind_as_ptr)
+      .property("Friction Coefficient", &RigidBody::FrictionCoeff)(rttr::policy::prop::bind_as_ptr)
+      .property("Inherent Acceleration", &RigidBody::InherentAcceleration)(rttr::policy::prop::bind_as_ptr)(
         rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("max_acceleration", &RigidBody::MaxAcceleration)(rttr::policy::prop::bind_as_ptr)
-      .property("acceleration_pickup", &RigidBody::AccelerationPickup)(rttr::policy::prop::bind_as_ptr)
-      .property("has_gravity", &RigidBody::hasGravity)(rttr::policy::prop::bind_as_ptr)
-      .property("is_moveable", &RigidBody::isMoveable)(rttr::policy::prop::bind_as_ptr)
-      .property("is_jumping", &RigidBody::isJumping)(rttr::policy::prop::bind_as_ptr)(
+      .property("Max Acceleration", &RigidBody::MaxAcceleration)(rttr::policy::prop::bind_as_ptr)
+      .property("Acceleration Pickup", &RigidBody::AccelerationPickup)(rttr::policy::prop::bind_as_ptr)
+      .property("Gravity", &RigidBody::hasGravity)(rttr::policy::prop::bind_as_ptr)
+      .property("Moveable", &RigidBody::isMoveable)(rttr::policy::prop::bind_as_ptr)
+      .property("Jumping", &RigidBody::isJumping)(rttr::policy::prop::bind_as_ptr)(
         rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
-    rttr::registration::class_<Collider>("collider")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Collider>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("center", &Collider::center)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("size", &Collider::size)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("inter_point", &Collider::interPoint)(rttr::metadata("NO_SERIALIZE", true),
-                                                      (rttr::metadata("NO_EDITOR", true)))
-      .property("type", &Collider::type)
-      .property("is_collideable", &Collider::isCollideable)(rttr::policy::prop::bind_as_ptr)
-      .property("is_trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
-      .property("is_colliding_on_floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true),
-                                                                        (rttr::metadata("NO_EDITOR", true)))
-      .property("collision_layer_id", &Collider::CollisionLayerID)(rttr::policy::prop::bind_as_ptr)
-      .property("collision_layer_check", &Collider::CollisionLayerCheck)(rttr::policy::prop::bind_as_ptr);
+    rttr::registration::class_<Collider>( "Collider" )
+      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Collider>()->bits ) )
+      .constructor<>()( rttr::policy::ctor::as_object )
+      .property( "Center", &Collider::center )( rttr::policy::prop::bind_as_ptr )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Offset", &Collider::offset )( rttr::policy::prop::bind_as_ptr )
+      .property( "Size", &Collider::size )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Intersection Point", &Collider::interPoint )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                                ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Type", &Collider::type )
+      .property( "Collision Layer", &Collider::CollisionLayerCheck )( rttr::policy::prop::bind_as_ptr )
+      .property( "Trigger", &Collider::isTrigger )( rttr::policy::prop::bind_as_ptr )
+      .property( "Colliding On Floor", &Collider::isCollidingOnFloor )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                                        ( rttr::metadata( "NO_EDITOR", true ) ) );
 
-    rttr::registration::class_<Animator>("animator")
+    rttr::registration::class_<Animator>("Animator")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Animator>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("controller_key", &Animator::m_ControllerKey)(rttr::policy::prop::bind_as_ptr)
-      .property("clip_key", &Animator::m_ClipKey)(rttr::metadata("NO_SERIALIZE", true),
+      .property("Controller Key", &Animator::m_ControllerKey)(rttr::policy::prop::bind_as_ptr)
+      .property("Clip Key", &Animator::m_ClipKey)(rttr::metadata("NO_SERIALIZE", true),
                                                   (rttr::metadata("NO_EDITOR", true)))
-      .property("timer", &Animator::m_Timer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("speed", &Animator::m_Speed)(rttr::policy::prop::bind_as_ptr)
-      .property("frame", &Animator::m_Frame)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+      .property("Timer", &Animator::m_Timer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Speed", &Animator::m_Speed)(rttr::policy::prop::bind_as_ptr)
+      .property("Frame", &Animator::m_Frame)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
-    rttr::registration::class_<State>("state")
+    rttr::registration::class_<State>("State")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<State>()->bits))
-      .property("parameters", &State::parameters)(rttr::metadata("NO_SERIALIZE", true),
+      .property("Parameters", &State::parameters)(rttr::metadata("NO_SERIALIZE", true),
                                                   (rttr::metadata("NO_EDITOR", true)));
 
-    rttr::registration::class_<Image>("image")
+    rttr::registration::class_<Image>("Image")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Image>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("sprite", &Image::m_Sprite)(rttr::policy::prop::bind_as_ptr)
-      .property("size", &Image::m_Size)(rttr::policy::prop::bind_as_ptr)
-      .property("offset", &Image::m_Offset)(rttr::policy::prop::bind_as_ptr)
-      .property("tiling", &Image::m_Tiling)(rttr::policy::prop::bind_as_ptr)
-      .property("fill_type", &Image::m_FillType)(rttr::policy::prop::bind_as_ptr)
-      .property("fill_amount", &Image::m_FillAmount)(rttr::policy::prop::bind_as_ptr)
-      .property("overall_angle", &Image::m_OverallAngle)(rttr::policy::prop::bind_as_ptr)
-      .property("start_angle", &Image::m_StartAngle)(rttr::policy::prop::bind_as_ptr)
-      .property("end_angle", &Image::m_EndAngle)(rttr::policy::prop::bind_as_ptr)
-      .property("flip_x", &Image::m_FlipX)(rttr::policy::prop::bind_as_ptr)
-      .property("flip_y", &Image::m_FlipY)(rttr::policy::prop::bind_as_ptr);
+      .property("Sprite", &Image::m_Sprite)(rttr::policy::prop::bind_as_ptr)
+      .property("Size", &Image::m_Size)(rttr::policy::prop::bind_as_ptr)
+      .property("Offset", &Image::m_Offset)(rttr::policy::prop::bind_as_ptr)
+      .property("Tiling", &Image::m_Tiling)(rttr::policy::prop::bind_as_ptr)
+      .property("Fill Type", &Image::m_FillType)(rttr::policy::prop::bind_as_ptr)
+      .property("Fill Amount", &Image::m_FillAmount)(rttr::policy::prop::bind_as_ptr)
+      .property("Overall Angle", &Image::m_OverallAngle)(rttr::policy::prop::bind_as_ptr)
+      .property("Start Angle", &Image::m_StartAngle)(rttr::policy::prop::bind_as_ptr)
+      .property("End Angle", &Image::m_EndAngle)(rttr::policy::prop::bind_as_ptr)
+      .property("Flip X", &Image::m_FlipX)(rttr::policy::prop::bind_as_ptr)
+      .property("Flip Y", &Image::m_FlipY)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Text>("text")
+    rttr::registration::class_<Text>("Text")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Text>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("key", &Text::m_FontKey)(rttr::policy::prop::bind_as_ptr)
-      .property("text", &Text::m_Text)(rttr::policy::prop::bind_as_ptr)
-      .property("alignment", &Text::alignment)(rttr::policy::prop::bind_as_ptr);
+      .property("Key", &Text::m_FontKey)(rttr::policy::prop::bind_as_ptr)
+      .property("Text", &Text::m_Text)(rttr::policy::prop::bind_as_ptr)
+      .property("Alignment", &Text::alignment)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Renderer2D>("renderer2D")
+    rttr::registration::class_<Renderer2D>("Renderer2D")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("material", &Renderer2D::m_Material)(rttr::policy::prop::bind_as_ptr)
-      .property("color", &Renderer2D::m_Color)(rttr::policy::prop::bind_as_ptr)
-      .property("sorting_layer", &Renderer2D::m_SortingLayer)(rttr::policy::prop::bind_as_ptr)
-      .property("sorting_order", &Renderer2D::m_SortingOrder)(rttr::policy::prop::bind_as_ptr)
-      .property("active", &Renderer2D::m_Active)(rttr::policy::prop::bind_as_ptr)
-      .property("shaded", &Renderer2D::m_Shaded)(rttr::policy::prop::bind_as_ptr)
-      .property("wireframe", &Renderer2D::m_Wireframe)(rttr::policy::prop::bind_as_ptr);
+      .property("Material", &Renderer2D::m_Material)(rttr::policy::prop::bind_as_ptr)
+      .property("Colors", &Renderer2D::m_Color)(rttr::policy::prop::bind_as_ptr)
+      .property("Layer", &Renderer2D::m_SortingLayer)(rttr::policy::prop::bind_as_ptr)
+      .property("Order", &Renderer2D::m_SortingOrder)(rttr::policy::prop::bind_as_ptr)
+      .property("Active", &Renderer2D::m_Active)(rttr::policy::prop::bind_as_ptr)
+      .property("Shaded", &Renderer2D::m_Shaded)(rttr::policy::prop::bind_as_ptr)
+      .property("Wireframe", &Renderer2D::m_Wireframe)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Input>("input")
+    rttr::registration::class_<Input>("Input")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Input>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("prev", &Input::previousKey)
-      .property("curr", &Input::currentKey);
+      .property("Previous", &Input::previousKey)
+      .property("Current", &Input::currentKey);
 
-    rttr::registration::class_<AI>("ai")
+    rttr::registration::class_<AI>("AI")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("state", &AI::key)(rttr::policy::prop::bind_as_ptr)
-      .property("transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
+      .property("State", &AI::key)(rttr::policy::prop::bind_as_ptr)
+      .property("Transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<EntityType>("entity_type")
+    rttr::registration::class_<EntityType>("EntityType")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("category", &EntityType::type)(rttr::policy::prop::bind_as_ptr);
+      .property("Category", &EntityType::type)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Health>("health")
+    rttr::registration::class_<Health>("Health")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Health>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("current_health", &Health::CurrentHealth)(rttr::policy::prop::bind_as_ptr)
-      .property("max_health", &Health::MaxHealth)(rttr::policy::prop::bind_as_ptr);
+      .property("Current Health", &Health::CurrentHealth)(rttr::policy::prop::bind_as_ptr)
+      .property("Max Health", &Health::MaxHealth)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Attack>("attack")
+    rttr::registration::class_<Attack>("Attack")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("range_damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
-      .property("melee_damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
-      .property("max_cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
-      .property("cooldown_timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)
-      .property("ranged_attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)
-      .property("melee_attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr);
+      .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("Max Cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)
+      .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Lifespan>("lifespan")
+    rttr::registration::class_<Lifespan>("Lifespan")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("timer", &Lifespan::Timer)(rttr::policy::prop::bind_as_ptr);
+      .property("Duration", &Lifespan::Timer)(rttr::policy::prop::bind_as_ptr);
   }
+
 }
 
 namespace DeltaEngine::RT_Reflect
@@ -253,37 +272,37 @@ namespace DeltaEngine::RT_Reflect
   rttr::type RT_Checker(size_t bits)
   {
     if (ComponentMeta::GetComponentMeta<EntityName>()->bits == bits)
-      return rttr::type::get_by_name("name");
+      return rttr::type::get_by_name("Name");
     if (ComponentMeta::GetComponentMeta<Parent>()->bits == bits)
-      return rttr::type::get_by_name("parent");
+      return rttr::type::get_by_name("Parent");
     if (ComponentMeta::GetComponentMeta<Transform>()->bits == bits)
-      return rttr::type::get_by_name("transform");
+      return rttr::type::get_by_name("Transform");
     if (ComponentMeta::GetComponentMeta<Collider>()->bits == bits)
-      return rttr::type::get_by_name("collider");
+      return rttr::type::get_by_name("Collider");
     if (ComponentMeta::GetComponentMeta<RigidBody>()->bits == bits)
-      return rttr::type::get_by_name("rigidbody");
+      return rttr::type::get_by_name("Rigidbody");
     if (ComponentMeta::GetComponentMeta<Input>()->bits == bits)
-      return rttr::type::get_by_name("input");
+      return rttr::type::get_by_name("Input");
     if (ComponentMeta::GetComponentMeta<Animator>()->bits == bits)
-      return rttr::type::get_by_name("animator");
+      return rttr::type::get_by_name("Animator");
     if (ComponentMeta::GetComponentMeta<State>()->bits == bits)
-      return rttr::type::get_by_name("state");
+      return rttr::type::get_by_name("State");
     if (ComponentMeta::GetComponentMeta<Image>()->bits == bits)
-      return rttr::type::get_by_name("image");
+      return rttr::type::get_by_name("Image");
     if (ComponentMeta::GetComponentMeta<Text>()->bits == bits)
-      return rttr::type::get_by_name("text");
+      return rttr::type::get_by_name("Text");
     if (ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits)
-      return rttr::type::get_by_name("renderer2D");
+      return rttr::type::get_by_name("Renderer2D");
     if (ComponentMeta::GetComponentMeta<AI>()->bits == bits)
-      return rttr::type::get_by_name("ai");
+      return rttr::type::get_by_name("AI");
     if (ComponentMeta::GetComponentMeta<EntityType>()->bits == bits)
-      return rttr::type::get_by_name("entity_type");
+      return rttr::type::get_by_name("EntityType");
     if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
-      return rttr::type::get_by_name("attack");
+      return rttr::type::get_by_name("Attack");
     if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
-      return rttr::type::get_by_name("health");
+      return rttr::type::get_by_name("Health");
     if (ComponentMeta::GetComponentMeta<Lifespan>()->bits == bits)
-      return rttr::type::get_by_name("lifespan");
+      return rttr::type::get_by_name("Lifespan");
     return rttr::type::get<int>();
   }
 
@@ -398,73 +417,73 @@ namespace DeltaEngine::RT_Reflect
 
   void SerializeType(const std::string& str, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer, void* ptr)
   {
-    if (str == "name")
+    if (str == "Name")
       Serialize::WriteObject(*static_cast<EntityName*>(ptr), writer);
-    else if (str == "parent")
+    else if (str == "Parent")
       Serialize::WriteObject(*static_cast<Parent*>(ptr), writer);
-    else if (str == "transform")
+    else if (str == "Transform")
       Serialize::WriteObject(*static_cast<Transform*>(ptr), writer);
-    else if (str == "collider")
+    else if (str == "Collider")
       Serialize::WriteObject(*static_cast<Collider*>(ptr), writer);
-    else if (str == "rigidbody")
+    else if (str == "Rigidbody")
       Serialize::WriteObject(*static_cast<RigidBody*>(ptr), writer);
-    else if (str == "input")
+    else if (str == "Input")
       Serialize::WriteObject(*static_cast<Input*>(ptr), writer);
-    else if (str == "animator")
+    else if (str == "Animator")
       Serialize::WriteObject(*static_cast<Animator*>(ptr), writer);
-    else if (str == "state")
+    else if (str == "State")
       Serialize::WriteObject(*static_cast<State*>(ptr), writer);
-    else if (str == "image")
+    else if (str == "Image")
       Serialize::WriteObject(*static_cast<Image*>(ptr), writer);
-    else if (str == "text")
+    else if (str == "Text")
       Serialize::WriteObject(*static_cast<Text*>(ptr), writer);
-    else if (str == "renderer2D")
+    else if (str == "Renderer2D")
       Serialize::WriteObject(*static_cast<Renderer2D*>(ptr), writer);
-    else if (str == "ai")
+    else if (str == "AI")
       Serialize::WriteObject(*static_cast<AI*>(ptr), writer);
-    else if (str == "entity_type")
+    else if (str == "EntityType")
       Serialize::WriteObject(*static_cast<EntityType*>(ptr), writer);
-    else if (str == "attack")
+    else if (str == "Attack")
       Serialize::WriteObject(*static_cast<Attack*>(ptr), writer);
-    else if (str == "health")
+    else if (str == "Health")
       Serialize::WriteObject(*static_cast<Health*>(ptr), writer);
-    else if (str == "lifespan")
+    else if (str == "Lifespan")
       Serialize::WriteObject(*static_cast<Lifespan*>(ptr), writer);
   }
 
   void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var)
   {
-    if (str == "name")
+    if (str == "Name")
       em.AddComponent<EntityName>(id, var.get_value<EntityName>());
-    else if (str == "parent")
+    else if (str == "Parent")
       em.AddComponent<Parent>(id, var.get_value<Parent>());
-    else if (str == "transform")
-      em.AddComponent<Transform>(id, var.get_value<Transform>());
-    else if (str == "collider")
+    else if (str == "Transform")
+      em.GetComponent<Transform>(id) = var.get_value<Transform>();
+    else if (str == "Collider")
       em.AddComponent<Collider>(id, var.get_value<Collider>());
-    else if (str == "rigidbody")
+    else if (str == "Rigidbody")
       em.AddComponent<RigidBody>(id, var.get_value<RigidBody>());
-    else if (str == "input")
+    else if (str == "Input")
       em.AddComponent<Input>(id, var.get_value<Input>());
-    else if (str == "animator")
+    else if (str == "Animator")
       em.AddComponent<Animator>(id, var.get_value<Animator>());
-    else if (str == "state")
+    else if (str == "State")
       em.AddComponent<State>(id);
-    else if (str == "image")
+    else if (str == "Image")
       em.AddComponent<Image>(id, var.get_value<Image>());
-    else if (str == "text")
+    else if (str == "Text")
       em.AddComponent<Text>(id, var.get_value<Text>());
-    else if (str == "renderer2D")
+    else if (str == "Renderer2D")
       em.AddComponent<Renderer2D>(id, var.get_value<Renderer2D>());
-    else if (str == "ai")
+    else if (str == "AI")
       em.AddComponent<AI>(id, var.get_value<AI>());
-    else if (str == "entity_type")
+    else if (str == "EntityType")
       em.AddComponent<EntityType>(id, var.get_value<EntityType>());
-    else if (str == "attack")
+    else if (str == "Attack")
       em.AddComponent<Attack>(id, var.get_value<Attack>());
-    else if (str == "health")
+    else if (str == "Health")
       em.AddComponent<Health>(id, var.get_value<Health>());
-    else if (str == "lifespan")
+    else if (str == "Lifespan")
       em.AddComponent<Lifespan>(id, var.get_value<Lifespan>());
   }
 }

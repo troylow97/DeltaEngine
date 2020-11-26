@@ -5,121 +5,182 @@
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "Core/Utils/FileUtils.h"
+#include "Input/Keys.h"
+#include "Core/GlobalStruct.h"
+#include "Core/Debugging/Gizmos.h"
+#include "Core/GameClock/GameClock.h"
+#include "ImGui/Editor.h"
+#include "Physics/Collision.h"
 
 namespace DeltaEngine
 {
-  void Camera()
-  {
-    ImGui::Begin("Camera");
-    static float f = 0.0f;
-    ImGui::Text("Edit Camera Props"); // Display some text (you can use a format string too)
-    ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
-    ImGui::DragFloat("size", static_cast<float*>(&Camera::editorCamera->m_Size), 0.01f);
-    ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
-    Camera::editorCamera->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
-    ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
-                ImGui::GetIO().Framerate);
-    ImGui::End();
-  }
 
-  ViewportPanel::ViewportPanel(std::string str) :
-    IPanel(str)
-  {
-    m_enabled = true;
-  }
+static Point curr_mouse {};
+static Point prev_mouse {};
+static bool dragging { false };
 
-  ViewportPanel::~ViewportPanel()
-  {
-    m_enabled = false;
-  }
+void KeysInput()
+{
+  auto delta = GetEnv().pClock->DeltaTime();
+  auto speed = 10.0f;
 
-  bool ViewportPanel::DraggedFileIn()
+
+  Camera::editorCamera->m_Size -= 2 * speed * ImGui::GetIO().MouseWheel * GetEnv().pClock->DeltaTime();
+
+  if ( ImGui::GetIO().MouseReleased[0] && !dragging )
   {
-    if (InputManager::Instance().CurrentPosition().point_x >= GetTopLeft().x && InputManager::Instance().
-      CurrentPosition().point_x <= GetBottomRight().x
-      && InputManager::Instance().CurrentPosition().point_y >= GetTopLeft().y && InputManager::Instance().
-      CurrentPosition().point_y <= GetBottomRight().y)
+    if ( Editor::tool_selection == Editor::Tool::EntitySelector )
     {
-      std::cout << "it is in Viewport panel!!!" << std::endl;
-      return true;
-    }
-    return false;
-  }
+      auto &em = GetEnv().pECS->GetWorld().GetEntityManager();
+      std::vector<size_t> entities;
 
-  void ViewportPanel::Render(bool isdragged)
-  {
-    // camera properties
-    Camera();
-
-    ImGui::Begin(m_name.c_str(), nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove);
-    ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ImVec2 renderPos = ImGui::GetCursorScreenPos(); // gives top left of the window
-    ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
-    float height = renderPos.y + renderSize.y; // gets bottom right of the screen
-    float width = renderPos.x + renderSize.x; // gets bottom right of the screen
-    // check if cursor is in the viewport
-    if (InputManager::Instance().CurrentPosition().point_x >= renderPos.x && InputManager::Instance().CurrentPosition().
-      point_x <= width
-      && InputManager::Instance().CurrentPosition().point_y >= renderPos.y && InputManager::Instance().CurrentPosition()
-      .point_y <= height)
-    {
-      float cameraWidth = Camera::editorCamera->Max().x - Camera::editorCamera->Min().x;
-      float cameraHeight = Camera::editorCamera->Max().y - Camera::editorCamera->Min().y;
-      float cursorViewPortDistanceX = InputManager::Instance().CurrentPosition().point_x - renderPos.x;
-      float cursorViewPortDistanceY = InputManager::Instance().CurrentPosition().point_y - renderPos.y;
-      float newCursorX = (cursorViewPortDistanceX / renderSize.x) * cameraWidth + Camera::editorCamera->Min().x;
-      float newCursorY = Camera::editorCamera->Max().y - (cursorViewPortDistanceY / renderSize.y) * cameraHeight;
-
-      InputManager::Instance().SetCurrentCameraPosition(Point(newCursorX, newCursorY));
-      //std::cout << "x is " << newCursorX << " and y is " << newCursorY << std::endl;
-    }
-    else
-    {
-      InputManager::Instance().SetCurrentCameraPosition(InputManager::Instance().CurrentPosition());
-      //std::cout << "x is " << InputManager::Instance().CurrentCameraPosition().point_x << " and y is " << InputManager::Instance().CurrentCameraPosition().point_y << std::endl;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    Camera::editorCamera->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
-    Camera::editorCamera->SetViewportSize(viewportPanelSize.x);
-    uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
-    ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{0, 1}, ImVec2{1, 0});
-
-    if (ImGui::BeginDragDropTarget())
-    {
-      if (InputManager::Instance().TilesetDragged())
+      em.ForEach( [&]( EntityID &id, Transform &t, Image &i )
       {
-        //std::cout << "ooo dropping sooon" << std::endl;
-        //std::cout << "x is " << InputManager::Instance().CurrentCameraPosition().point_x << " y is " << InputManager::Instance().CurrentCameraPosition().point_y << std::endl;
+        if ( CollisionIntersection_RectMouse( t.position, i.m_Size, curr_mouse ) )
+          entities.push_back( id.index );
+      } );
 
-        ImGuiDragDropFlags target_flags = 0;
-        //target_flags |= ImGuiDragDropFlags_AcceptBeforeDelivery;    // Don't wait until the delivery (release mouse button on a target) to do something
-        //target_flags |= ImGuiDragDropFlags_AcceptNoDrawDefaultRect; // Don't display the yellow rectangle
-
-        if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("TILES", target_flags))
+      if ( !entities.empty() )
+      {
+        if ( auto it = std::find( entities.begin(), entities.end(), Editor::entity_id ); it != entities.end() )
         {
-          std::string payload_n = *static_cast<std::string*>(payload->Data);
-          DeltaEngine_CORE_INFO("Payload String {}", payload_n);
-
-          // do the tiling
-          EntityID tile = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity<
-            Transform, RigidBody, Collider, Renderer2D, Image>();
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).position = {
-            InputManager::Instance().CurrentCameraPosition().point_x,
-            InputManager::Instance().CurrentCameraPosition().point_y, 0
-          };
-
-          auto offset = payload_n.find_last_of('_');
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).scale = {0.5, 0.5, 0.0};
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Key = payload_n.substr(0, offset);
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Index = std::stoi(payload_n.substr(offset + 1));
-          (void) std::stoi(payload_n.substr(offset + 1));
+          if ( ++it == entities.end() )
+          {
+            Editor::entity_selected = true;
+            Editor::entity_id = entities[0];
+            Editor::selection_transform = em.GetComponent<Transform>( { entities[0] } );
+            Editor::selection_transform.scale = { 0.2f, 0.2f, 0.0f };
+          }
+          else
+          {
+            Editor::entity_selected = true;
+            Editor::entity_id = *it;
+            Editor::selection_transform = em.GetComponent<Transform>( { *it } );
+            Editor::selection_transform.scale = { 0.2f, 0.2f, 0.0f };
+          }
+        }
+        else
+        {
+          Editor::entity_selected = true;
+          Editor::entity_id = entities[0];
+          Editor::selection_transform = em.GetComponent<Transform>( { entities[0] } );
+          Editor::selection_transform.scale = { 0.2f, 0.2f, 0.0f };
         }
       }
-      //InputManager::Instance().SetTilesetDragged(false);
-      ImGui::EndDragDropTarget();
     }
-
-    ImGui::End();
   }
+  else if ( ImGui::GetIO().MouseClicked[0] )
+  {
+    if ( Editor::entity_selected )
+      if ( CollisionIntersection_RectMouse( Editor::selection_transform.position, Editor::selection_transform.scale, curr_mouse ) )
+        dragging = true;
+  }
+  else if ( ImGui::GetIO().MouseDown[0] )
+  {
+    auto offset = curr_mouse - prev_mouse;
+
+    if ( Editor::tool_selection == Editor::Tool::Camera )
+    {
+      if ( std::abs( offset.point_x ) > FLT_EPSILON )
+        Camera::editorCamera->transform.position.x -= offset.point_x;
+
+      if ( std::abs( offset.point_y ) > FLT_EPSILON )
+        Camera::editorCamera->transform.position.y -= offset.point_y;
+    }
+    else if ( Editor::tool_selection == Editor::Tool::EntitySelector )
+    {
+      if ( Editor::entity_selected )
+        if ( dragging )
+        {
+          Editor::selection_transform.position.x += offset.point_x;
+          Editor::selection_transform.position.y += offset.point_y;
+          auto &t = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<Transform>( { Editor::entity_id } );
+          t.position.x = Editor::selection_transform.position.x;
+          t.position.y = Editor::selection_transform.position.y;
+        }
+    }
+  }
+  else
+  {
+    if ( ImGui::IsKeyDown( DEVK_W ) && !ImGui::IsKeyDown( DEVK_S ) )
+      Camera::editorCamera->transform.position.y += speed * delta;
+    else if ( ImGui::IsKeyDown( DEVK_S ) && !ImGui::IsKeyDown( DEVK_W ) )
+      Camera::editorCamera->transform.position.y -= speed * delta;
+    if ( ImGui::IsKeyDown( DEVK_A ) && !ImGui::IsKeyDown( DEVK_D ) )
+      Camera::editorCamera->transform.position.x -= speed * delta;
+    else if ( ImGui::IsKeyDown( DEVK_D ) && !ImGui::IsKeyDown( DEVK_A ) )
+      Camera::editorCamera->transform.position.x += speed * delta;
+    if ( ImGui::IsKeyDown( DEVK_Q ) && !ImGui::IsKeyDown( DEVK_E ) )
+      Camera::editorCamera->m_Size -= speed * delta;
+    else if ( ImGui::IsKeyDown( DEVK_E ) && !ImGui::IsKeyDown( DEVK_Q ) )
+      Camera::editorCamera->m_Size += speed * delta;
+    dragging = false;
+  }
+}
+
+
+
+ViewportPanel::ViewportPanel( std::string str ) :
+  IPanel( str )
+{
+  m_enabled = true;
+}
+
+ViewportPanel::~ViewportPanel()
+{
+  m_enabled = false;
+}
+
+void ViewportPanel::Render()
+{
+  ImGui::Begin( m_name.c_str(), nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove );
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ImVec2 renderPos = ImGui::GetCursorScreenPos(); // gives top left of the window
+  ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
+
+  if ( ImGui::IsWindowHovered() )
+  {
+    ImGui::SetWindowFocus();
+
+    prev_mouse = curr_mouse;
+    float cameraWidth = Camera::editorCamera->Max().x - Camera::editorCamera->Min().x;
+    float cameraHeight = Camera::editorCamera->Max().y - Camera::editorCamera->Min().y;
+    float cursorViewPortDistanceX = ImGui::GetMousePos().x - renderPos.x;
+    float cursorViewPortDistanceY = ImGui::GetMousePos().y - renderPos.y;
+    curr_mouse.point_x = ( ( cursorViewPortDistanceX / renderSize.x ) * cameraWidth ) + Camera::editorCamera->Min().x;
+    curr_mouse.point_y = Camera::editorCamera->Max().y - ( ( cursorViewPortDistanceY / renderSize.y ) * cameraHeight );
+
+    KeysInput();
+  }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+  Camera::editorCamera->SetAspectRatio( viewportPanelSize.x, viewportPanelSize.y );
+  Camera::editorCamera->SetViewportSize( viewportPanelSize.x );
+  uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
+  ImGui::Image( reinterpret_cast<void *>( textureID ), viewportPanelSize, ImVec2 { 0, 1 }, ImVec2 { 1, 0 } );
+
+  if ( ImGui::BeginDragDropTarget() )
+  {
+    if ( const ImGuiPayload *payload = ImGui::AcceptDragDropPayload( "TILES" ); payload )
+    {
+      std::string payload_n = *static_cast<std::string *>( payload->Data );
+      DeltaEngine_CORE_INFO( "Payload String {}", payload_n );
+
+      // do the tiling
+      EntityID tile = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity<Renderer2D, Image>();
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( tile ).position = { curr_mouse.point_x, curr_mouse.point_y, 0 };
+
+      auto offset = payload_n.find_last_of( '_' );
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( tile ).scale = { 0.5, 0.5, 0.0 };
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Key = payload_n.
+        substr( 0, offset );
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Index = std::stoi(
+        payload_n.substr( offset + 1 ) );
+      (void) std::stoi( payload_n.substr( offset + 1 ) );
+    }
+    ImGui::EndDragDropTarget();
+  }
+
+  ImGui::End();
+}
 }

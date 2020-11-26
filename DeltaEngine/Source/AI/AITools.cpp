@@ -31,6 +31,30 @@ namespace DeltaEngine
       return 0.0f;
     }
 
+    float Distance_X_BetweenEntityAndPoint(EntityID& id1, Vector2& point)
+    {
+        if (env.pECS->GetWorld().GetEntityManager().HasComponent<Transform>(id1))
+        {
+            return std::abs(env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position.x
+                - point.x);
+        }
+
+        DeltaEngine_CORE_ERROR("Distance_X_BetweenEntitiesAndPoint: Entity has no transform!");
+        return 0.0f;
+    }
+
+    float Distance_Y_BetweenEntityAndPoint(EntityID& id1, Vector2& point)
+    {
+        if (env.pECS->GetWorld().GetEntityManager().HasComponent<Transform>(id1))
+        {
+            return std::abs(env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position.x
+                - point.y);
+        }
+
+        DeltaEngine_CORE_ERROR("Distance_X_BetweenEntitiesAndPoint: Entity has no transform!");
+        return 0.0f;
+    }
+
     float Distance_Total_BetweenTwoEntities(EntityID& id1, EntityID& id2)
     {
       if (env.pECS->GetWorld().GetEntityManager().HasComponent<Transform>(id1) &&
@@ -116,18 +140,12 @@ namespace DeltaEngine
 
     bool EntityisWithinDetectionRange(EntityID& id1, EntityID& id2, float x, float y)
     {
-      //auto& id2_posX = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id2).position.x;
-      //auto& id1_posY = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position.y;
+        return ((Distance_X_BetweenTwoEntities(id1, id2) < x) && (Distance_Y_BetweenTwoEntities(id1, id2) < y));
+    }
 
-      if ((Distance_X_BetweenTwoEntities(id1, id2) < x) && (Distance_Y_BetweenTwoEntities(id1, id2) < y))
-      {
-        //if ((isFacingRight(id1) && id2_posX >= id1_posY) || (isFacingLeft(id1) && id2_posX <= id1_posY))
-        {
-          return true;
-        }
-      }
-
-      return false;
+    bool EntityisWithinDetectionRange(EntityID& id1, Vector2& point, float x, float y)
+    {
+        return ((Distance_X_BetweenEntityAndPoint(id1, point) < x) && (Distance_Y_BetweenEntityAndPoint(id1, point) < y));
     }
 
     bool EntityisOnTheRight(EntityID& id1, EntityID& id2)
@@ -207,7 +225,12 @@ namespace DeltaEngine
     bool EntityisAtPoint(EntityID& id1, Vector2& point)
     {
       Vector2 pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position;
-      return pos == point;
+      if (std::abs(point.x - pos.x) < 0.01 && std::abs(point.y - pos.y) < 0.01)
+      {
+          return true;
+      }
+
+      return false;
     }
   }
 }

@@ -19,7 +19,8 @@ namespace DeltaEngine
 
   public:
     FileWatcher(std::filesystem::path directory);
-    const std::filesystem::path& GetDirectory();
+    void Directory( std::filesystem::path dir );
+    const std::filesystem::path& Directory();
     void AddListener(IFileWatcherListener* listener);
     void Start();
     void Stop();

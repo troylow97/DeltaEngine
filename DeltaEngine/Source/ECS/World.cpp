@@ -1,6 +1,4 @@
 #include "World.h"
-
-
 #include "AI/AI_StateMachine.h"
 #include "Physics/PhysicsSystem.h"
 #include "Systems/AnimationSystem.h"
@@ -51,7 +49,7 @@ namespace DeltaEngine
 
   void World::Update()
   {
-    // Input System Update
+     //Input System Update
     systems[CHash::Hash<InputSystem>().digest]->Update();
     systems[CHash::Hash<AISystem>().digest]->Update();
 
@@ -81,16 +79,10 @@ namespace DeltaEngine
       systems[hash]->LateUpdate();
   }
 
-  void World::Save(std::string filename)
+  void World::Save( std::string filename )
   {
     JsonFile file;
-    file.StartWriter(filename).WriteEntities(*em).EndWriter();
-
-    std::vector<Vector2> vec2_vec;
-    rttr::variant v { vec2_vec };
-    auto &seq = v.create_sequential_view();
-    file.StartWriter( filename ).WriteArray( seq ).EndWriter();
-
+    file.StartWriter( filename ).WriteEntities( *em ).EndWriter();
   }
 
   void World::Load(std::string filename)
