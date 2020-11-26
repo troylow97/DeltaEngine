@@ -16,7 +16,7 @@ namespace DeltaEngine
     m_Name{ filepath },
     wrapMode{ TextureWrapMode::Repeat }
   {
-    InitTexture(filepath);
+    InitTexture();
   }
 
   Texture2D::~Texture2D()
@@ -188,18 +188,25 @@ namespace DeltaEngine
     return m_Name;
   }
 
-  void Texture2D::InitTexture(std::string filepath)
+  std::string Texture2D::GetFilepath()
   {
+    return m_Filepath;
+  }
+
+  void Texture2D::InitTexture()
+  {
+    LoadMetaFile(m_Filepath + ".info");
+
     stbi_set_flip_vertically_on_load(0);
 
     GLCall(glGenTextures(1, &m_RendererID));
     GLCall(glBindTexture(GL_TEXTURE_2D, m_RendererID));
 
-    unsigned char* m_Data = stbi_load(filepath.c_str(), &m_Width, &m_Height, &m_Channels, 0);
+    unsigned char* m_Data = stbi_load(m_Filepath.c_str(), &m_Width, &m_Height, &m_Channels, 0);
 
     if (!m_Data)
     {
-      DeltaEngine_CORE_ERROR("ERROR: Couldn't create texture {}!", filepath);
+      DeltaEngine_CORE_ERROR("ERROR: Couldn't create texture {}!", m_Filepath);
       m_Filepath = "";
     }
 
@@ -234,7 +241,7 @@ namespace DeltaEngine
     if (pos != std::string::npos)
       m_Name.erase(pos);
 
-    LoadMetaFile(filepath + ".info");
+    UpdateMetaFile(m_Filepath + ".info");
   }
 
   void Texture2D::LoadMetaFile(std::string filepath)
@@ -258,6 +265,9 @@ namespace DeltaEngine
         file >> str >> textureInfo.back().size.x >> textureInfo.back().size.y;
         file >> str >> textureInfo.back().pivot.x >> textureInfo.back().pivot.y;
       }
+      int wm = 0;
+      file >> str >> wm;
+      wrapMode = (TextureWrapMode)wm;
       file.close();
     }
     else
@@ -285,6 +295,8 @@ namespace DeltaEngine
         file << std::endl;
       }
       file << "%" << std::endl;
+      file << std::endl;
+      file << "wrap_mode " << static_cast<int>(wrapMode) << std::endl;
       file.close();
     }
     else
