@@ -1,7 +1,7 @@
 #include "AITools.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Logger/Log.h"
-#include "Core/GameClock/GameClock.h"
+
 namespace DeltaEngine
 {
     namespace AITools

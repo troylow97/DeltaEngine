@@ -1,5 +1,6 @@
 #include "World.h"
-#include "AI/AI_StateMachine.h"
+
+#include "../../../Sandbox/Source/Systems/AI/AI_StateMachine.h"
 #include "Physics/PhysicsSystem.h"
 #include "Systems/AnimationSystem.h"
 #include "Systems/InputSystem.h"

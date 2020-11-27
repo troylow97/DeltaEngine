@@ -4,7 +4,7 @@
 #include <string>
 #include <unordered_map>
 #include <chrono>
-#include "AI/AI_StateMachine.h"
+#include "../Source/Systems/AI/AI_StateMachine.h"
 #include "Physics/CollisionSystem.h"
 #include "Physics/PhysicsSystem.h"
 #include "Systems/AnimationSystem.h"
@@ -14,7 +14,7 @@
 #include "Systems/AttackSystem.h"
 #include "Systems/LifespanSystem.h"
 #include "Systems/RespawnSystem.h"
-#include "Systems/UnitManager.h"
+#include "Systems/AI/AI_StateMachine.h"
 #include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
 #include "Systems/EnemySpawner/EnemySpawner.h"
 

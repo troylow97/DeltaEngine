@@ -33,7 +33,6 @@
 #include "Input/Keys.h"
 #include "Panels/ButtonsPanel.h"
 #include "Panels/SettingsPanel.h"
-#include "Panels/StylePanel.h"
 
 #include "Style.h"
 

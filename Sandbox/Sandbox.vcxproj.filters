@@ -4,6 +4,9 @@
     <Filter Include="Systems">
       <UniqueIdentifier>{1DDE831B-89BD-02B7-92D5-8D8DFE336918}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\AI">
+      <UniqueIdentifier>{96D56F8A-828D-B1D7-EB94-8A33D76B4CC8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Systems\CollisionHandler">
       <UniqueIdentifier>{F635BFC6-E25A-0E47-0BA6-F3D6F7290D65}</UniqueIdentifier>
     </Filter>
@@ -12,6 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Systems\AI\AITools.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\AI_State.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\AI_StateMachine.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\AI_Transition.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\Waypoint.h">
+      <Filter>Systems\AI</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\AttackSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -36,6 +54,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
+    <ClCompile Include="Source\Systems\AI\AITools.cpp">
+      <Filter>Systems\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\AI\AI_State.cpp">
+      <Filter>Systems\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\AI\AI_StateMachine.cpp">
+      <Filter>Systems\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\AI\Waypoint.cpp">
+      <Filter>Systems\AI</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Systems\AttackSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>

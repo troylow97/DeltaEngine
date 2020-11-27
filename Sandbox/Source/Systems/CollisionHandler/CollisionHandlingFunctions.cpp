@@ -1,7 +1,7 @@
 #include "CollisionHandlingFunctions.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
-#include "AI/AITools.h"
+#include "../AI/AITools.h"
 #include "../UnitManager.h"
 
 namespace DeltaEngine
