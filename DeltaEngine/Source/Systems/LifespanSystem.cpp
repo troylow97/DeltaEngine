@@ -5,61 +5,56 @@
 
 namespace DeltaEngine
 {
+  void LifespanSystem::LimitCurrentHealthToMaxHealth(Health& hp)
+  {
+      if (hp.CurrentHealth > hp.MaxHealth)
+      {
+          hp.CurrentHealth = hp.MaxHealth;
+      }
+  }
+
+  void LifespanSystem::UpdateLifespan()
+  {
+      em.ForEach([&](EntityID& id, Lifespan& ls)
+          {
+              if (ls.Timer < 0)
+              {
+                  em.DestroyEntity(id);
+              }
+              else
+              {
+                  ls.Timer -= env.pClock->DeltaTime();
+              }
+          });
+  }
+	
   void LifespanSystem::Update()
   {
     DestroyedEntities.clear();
+    UpdateLifespan();
 
-    em.ForEach([&](EntityID& id, Lifespan& ls)
-    {
-      if (ls.Timer < 0)
-      {
-        em.DestroyEntity(id);
-      }
-      else
-      {
-        ls.Timer -= env.pClock->DeltaTime();
-      }
-
-    });
     em.ForEach([&](EntityID& id, Health& hp, EntityType& et)
     {
-      if (hp.CurrentHealth > hp.MaxHealth)
-      {
-        hp.CurrentHealth = hp.MaxHealth;
-      }
+      LimitCurrentHealthToMaxHealth(hp);
+    	
       if (hp.CurrentHealth <= 0)
       {
         if (et.type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
         {
-          Player& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
+          auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
           p.IsDead = true;
         }
-        else if (et.type == EntityCategory::E_ENEMY)
-        {
-          DestroyedEntities.push_back(id);
-        }
-      }
-    });
-    em.ForEach([&](EntityID& id, Health& hp, EntityType& et)
-    {
-      if (hp.CurrentHealth > hp.MaxHealth)
-      {
-        hp.CurrentHealth = hp.MaxHealth;
-      }
-      
-      if (hp.CurrentHealth <= 0)
-      {
-        if (et.type != EntityCategory::E_PLAYER)
+        else
         {
           DestroyedEntities.push_back(id);
         }
       }
     });
 
-    //for (EntityID i : DestroyedEntities)
-    //{
-    //  em.DestroyEntity(i);
-    //}
+    for (EntityID i : DestroyedEntities)
+    {
+      em.DestroyEntity(i);
+    }
     Profiler::Instance().Record("Lifespan System");
   }
 

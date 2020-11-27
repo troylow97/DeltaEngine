@@ -1,263 +1,295 @@
 {
     "Entities": [
         {
-            "name": {
-                "name": "wall"
+            "Parent": {
+                "ID": 18446744073709551615
             },
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "position": {
+            "Entity Name": {
+                "Name": ""
+            },
+            "EntityType": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
                     "x": 0.0,
                     "y": -1.0,
                     "z": 0.0
                 },
-                "scale": {
-                    "x": 100.0,
+                "Scale": {
+                    "x": 20.489999771118165,
                     "y": 1.0,
                     "z": 1.0
                 },
-                "rotation": {
+                "Rotation": {
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0,
                     "w": 1.0
                 }
             },
-            "rigidbody": {
-                "mass": 20.0,
-                "movespeed": 10.0,
-                "restitution": 0.0,
-                "friction_coeff": 0.8500000238418579,
-                "inherent_acceleration": 0.0,
-                "max_acceleration": 40.0,
-                "acceleration_pickup": 3.0,
-                "has_gravity": false,
-                "is_moveable": false,
-                "is_jumping": false,
-                "is_dashing": false
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false,
+                "Jumping": false
             },
-            "collider": {
-                "center": {
+            "Collider": {
+                "Center": {
                     "x": 0.0,
                     "y": -1.0
                 },
-                "offset": {
+                "Offset": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "size": {
-                    "x": 100.0,
+                "Size": {
+                    "x": 20.489999771118165,
                     "y": 1.0
                 },
-                "type": "box",
-                "is_trigger": false,
-                "collision_layer_check": 255
+                "Type": "box",
+                "Trigger": false,
+                "Collision Layer": 14,
+                "Collision Layer ID": 1
             }
         },
         {
-            "name": {
-                "name": "player"
+            "Parent": {
+                "ID": 18446744073709551615
             },
-            "input": {
-                "prev": 68,
-                "curr": 0
+            "Entity Name": {
+                "Name": ""
             },
-            "transform": {
-                "old_position": {
-                    "x": 0.0,
-                    "y": 0.0,
+            "EntityType": {
+                "Category": "player"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 4.753829479217529,
+                    "y": -0.000527186319231987,
                     "z": 0.0
                 },
-                "position": {
-                    "x": 3.237985134124756,
-                    "y": -0.0007583923870697618,
-                    "z": 0.0
-                },
-                "scale": {
+                "Scale": {
                     "x": 1.0,
                     "y": 1.0,
                     "z": 1.0
                 },
-                "rotation": {
+                "Rotation": {
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0,
                     "w": 1.0
                 }
             },
-            "rigidbody": {
-                "mass": 20.0,
-                "movespeed": 10.0,
-                "restitution": 1.0,
-                "friction_coeff": 0.8500000238418579,
-                "inherent_acceleration": 0.0,
-                "max_acceleration": 40.0,
-                "acceleration_pickup": 3.0,
-                "has_gravity": true,
-                "is_moveable": true,
-                "is_jumping": false,
-                "is_dashing": false
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true,
+                "Jumping": false
             },
-            "collider": {
-                "center": {
-                    "x": 3.237985134124756,
-                    "y": -0.0007583923870697618
+            "Collider": {
+                "Center": {
+                    "x": 4.753829479217529,
+                    "y": -0.000527186319231987
                 },
-                "offset": {
+                "Offset": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "size": {
+                "Size": {
                     "x": 1.0,
                     "y": 1.0
                 },
-                "type": "box",
-                "is_trigger": false,
-                "collision_layer_check": 13
+                "Type": "box",
+                "Trigger": false,
+                "Collision Layer": 13,
+                "Collision Layer ID": 2
             },
-            "image": {
-                "sprite": {
+            "Image": {
+                "Sprite": {
                     "key": "",
                     "index": 0
                 },
-                "size": {
+                "Size": {
                     "x": 1.0,
                     "y": 1.0
                 },
-                "offset": {
+                "Offset": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "tiling": {
+                "Tiling": {
                     "x": 1.0,
                     "y": 1.0
                 },
-                "fill_type": "",
-                "fill_amount": 1.0,
-                "overall_angle": 0.0,
-                "start_angle": 0.0,
-                "end_angle": 0.0,
-                "flip_x": false,
-                "flip_y": false
+                "Fill Type": "",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": true,
+                "Flip Y": false
             },
-            "state": {},
-            "entity_type": {
-                "category": "player"
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
             },
-            "health": {
-                "current_health": 10,
-                "max_health": 10
+            "State": {},
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "Invulnerable": false
             },
-            "attack": {
-                "range_damage": 1,
-                "melee_damage": 1,
-                "max_cooldown": 0.20000000298023225,
-                "cooldown_timer": 0.0,
-                "ranged_attack": false,
-                "melee_attack": false
+            "Player": {},
+            "Input": {
+                "Previous": 65,
+                "Current": 0
             }
         },
         {
-            "name": {
-                "name": "serpent"
+            "Parent": {
+                "ID": 18446744073709551615
             },
-            "transform": {
-                "old_position": {
+            "Entity Name": {
+                "Name": ""
+            },
+            "EntityType": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
                     "x": 0.0,
-                    "y": 0.0,
+                    "y": 3.0,
                     "z": 0.0
                 },
-                "position": {
-                    "x": 0.35881033539772036,
-                    "y": -0.0007687093457207084,
-                    "z": 0.0
-                },
-                "scale": {
+                "Scale": {
                     "x": 1.0,
                     "y": 1.0,
                     "z": 1.0
                 },
-                "rotation": {
+                "Rotation": {
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0,
                     "w": 1.0
                 }
             },
-            "rigidbody": {
-                "mass": 20.0,
-                "movespeed": 10.0,
-                "restitution": 1.0,
-                "friction_coeff": 0.8500000238418579,
-                "inherent_acceleration": 0.0,
-                "max_acceleration": 40.0,
-                "acceleration_pickup": 3.0,
-                "has_gravity": true,
-                "is_moveable": true,
-                "is_jumping": false,
-                "is_dashing": false
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true,
+                "Jumping": false
             },
-            "collider": {
-                "center": {
-                    "x": 0.35881033539772036,
-                    "y": -0.0007687093457207084
+            "Collider": {
+                "Center": {
+                    "x": 0.0,
+                    "y": 3.0
                 },
-                "offset": {
+                "Offset": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "size": {
+                "Size": {
                     "x": 1.0,
                     "y": 1.0
                 },
-                "type": "box",
-                "is_trigger": false,
-                "collision_layer_check": 4
+                "Type": "box",
+                "Trigger": false,
+                "Collision Layer": 11,
+                "Collision Layer ID": 4
             },
-            "image": {
-                "sprite": {
-                    "key": "",
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Lancer",
                     "index": 0
                 },
-                "size": {
+                "Size": {
                     "x": 1.0,
                     "y": 1.0
                 },
-                "offset": {
+                "Offset": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "tiling": {
+                "Tiling": {
                     "x": 1.0,
                     "y": 1.0
                 },
-                "fill_type": "",
-                "fill_amount": 1.0,
-                "overall_angle": 0.0,
-                "start_angle": 0.0,
-                "end_angle": 0.0,
-                "flip_x": false,
-                "flip_y": false
+                "Fill Type": "",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
             },
-            "state": {},
-            "entity_type": {
-                "category": "enemy"
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
             },
-            "ai": {
-                "original_point": {
+            "State": {},
+            "AI": {
+                "Original Point": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "state": "idle",
-                "transition": "null"
+                "AIState": "idle_lancer",
+                "Transition": "null"
             },
-            "health": {
-                "current_health": 137,
-                "max_health": 104
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 1,
+                "Melee Damage": 1,
+                "Max Cooldown": 0.20000000298023225,
+                "Cooldown Timer": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false
             }
         }
     ]

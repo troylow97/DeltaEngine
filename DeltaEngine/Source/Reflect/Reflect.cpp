@@ -226,6 +226,11 @@ namespace DeltaEngine
       .property("Parameters", &State::parameters)(rttr::metadata("NO_SERIALIZE", true),
                                                   (rttr::metadata("NO_EDITOR", true)));
 
+    rttr::registration::class_<Camera>("Camera")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Camera>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Size", &Camera::m_Size)(rttr::policy::prop::bind_as_ptr);
+
     rttr::registration::class_<Image>("Image")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Image>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
@@ -272,7 +277,7 @@ namespace DeltaEngine
       .property("AIState", &AI::key)(rttr::policy::prop::bind_as_ptr)
       .property("Transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<EntityType>("EntityType")
+    rttr::registration::class_<EntityType>("Entity Type")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<EntityType>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("Category", &EntityType::type)(rttr::policy::prop::bind_as_ptr);
@@ -337,7 +342,7 @@ namespace DeltaEngine::RT_Reflect
     if (ComponentMeta::GetComponentMeta<AI>()->bits == bits)
       return rttr::type::get_by_name("AI");
     if (ComponentMeta::GetComponentMeta<EntityType>()->bits == bits)
-      return rttr::type::get_by_name("EntityType");
+      return rttr::type::get_by_name("Entity Type");
     if (ComponentMeta::GetComponentMeta<Attack>()->bits == bits)
       return rttr::type::get_by_name("Attack");
     if (ComponentMeta::GetComponentMeta<Health>()->bits == bits)
@@ -490,7 +495,7 @@ namespace DeltaEngine::RT_Reflect
       Serialize::WriteObject(*static_cast<Renderer2D*>(ptr), writer);
     else if (str == "AI")
       Serialize::WriteObject(*static_cast<AI*>(ptr), writer);
-    else if (str == "EntityType")
+    else if (str == "Entity Type")
       Serialize::WriteObject(*static_cast<EntityType*>(ptr), writer);
     else if (str == "Attack")
       Serialize::WriteObject(*static_cast<Attack*>(ptr), writer);
@@ -504,12 +509,14 @@ namespace DeltaEngine::RT_Reflect
 
   void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var)
   {
-    if (str == "Entity Name")
+    if (str == "Name")
       em.AddComponent<EntityName>(id, var.get_value<EntityName>());
     else if (str == "Parent")
-      em.AddComponent<Parent>(id, var.get_value<Parent>());
+      em.GetComponent<Parent>(id) = var.get_value<Parent>();
     else if (str == "Transform")
       em.GetComponent<Transform>(id) = var.get_value<Transform>();
+    else if (str == "Entity Type")
+      em.GetComponent<EntityType>(id) = var.get_value<EntityType>();
     else if (str == "Collider")
       em.AddComponent<Collider>(id, var.get_value<Collider>());
     else if (str == "Rigidbody")
@@ -528,8 +535,6 @@ namespace DeltaEngine::RT_Reflect
       em.AddComponent<Renderer2D>(id, var.get_value<Renderer2D>());
     else if (str == "AI")
       em.AddComponent<AI>(id, var.get_value<AI>());
-    else if (str == "EntityType")
-      em.AddComponent<EntityType>(id, var.get_value<EntityType>());
     else if (str == "Attack")
       em.AddComponent<Attack>(id, var.get_value<Attack>());
     else if (str == "Health")

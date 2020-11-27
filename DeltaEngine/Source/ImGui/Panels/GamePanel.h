@@ -4,11 +4,11 @@
 
 namespace DeltaEngine
 {
-  class SettingsPanel : public IPanel
+  class GamePanel : public IPanel
   {
   public:
-    SettingsPanel(std::string str);
-    ~SettingsPanel();
+    GamePanel(std::string str);
+    ~GamePanel();
     void Render() override;
   };
 }

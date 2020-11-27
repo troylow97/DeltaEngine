@@ -44,5 +44,14 @@ namespace DeltaEngine
         m_FlipY{false}
     {
     }
+
+    Vector2 GetWorldSize()
+    {
+      return Vector2
+      (
+        m_Sprite.GetWidth() / 200.0f * m_Size.x,
+        m_Sprite.GetHeight() / 200.0f * m_Size.y
+      );
+    }
   };
 }
