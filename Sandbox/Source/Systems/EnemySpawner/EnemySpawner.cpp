@@ -224,12 +224,14 @@ namespace DeltaEngine
 			env.pECS->GetWorld().GetEntityManager().AddComponent<Attack>(enemy);
 			env.pECS->GetWorld().GetEntityManager().AddComponent<Health>(enemy);
 			env.pECS->GetWorld().GetEntityManager().AddComponent<Renderer2D>(enemy);
+			env.pECS->GetWorld().GetEntityManager().AddComponent<Animator>(enemy);
 
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).position = position + rand1;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(enemy).original_point = position + rand1;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(enemy).type = EntityCategory::E_ENEMY;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerID = 4;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerCheck = 11;
+			env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
 
 			env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).MaxAcceleration = 0;
 
