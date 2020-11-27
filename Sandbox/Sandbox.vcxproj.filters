@@ -9,7 +9,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\CollisionHandlingFunctions.h" />
     <ClInclude Include="Source\Systems\AttackSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -19,15 +18,18 @@
     <ClInclude Include="Source\Systems\EnemySpawner\EnemySpawner.h">
       <Filter>Systems\EnemySpawner</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\LifespanSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\RespawnSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\UnitManager.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\CollisionHandler\CollisionHandlingFunctions.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\CollisionHandlingFunctions.cpp" />
     <ClCompile Include="Source\SandboxApp.cpp" />
     <ClCompile Include="Source\Systems\AttackSystem.cpp">
       <Filter>Systems</Filter>
@@ -35,11 +37,15 @@
     <ClCompile Include="Source\Systems\EnemySpawner\EnemySpawner.cpp">
       <Filter>Systems\EnemySpawner</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\LifespanSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Systems\RespawnSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\UnitManager.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\CollisionHandler\CollisionHandlingFunctions.cpp" />
   </ItemGroup>
 </Project>

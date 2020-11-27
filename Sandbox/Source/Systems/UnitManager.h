@@ -3,13 +3,20 @@
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(UnitManager, Player)
-    void Initialize() override;
-    void Update() override;
-    void LateUpdate() override;
-    static EntityID GetPlayerID();
-private:
-    static EntityID playerID;
+class UnitManager
+{
+	static EntityID player;
+
+public:
+	static EntityID GetPlayerID();
+
+};
 	
-    END_DEFINE_SYSTEM(UnitManager)
+//DEFINE_SYSTEM(UnitManager, Player)
+//  void UnitManager::Update() override;
+//  static EntityID GetPlayerID();
+//private:
+//  static EntityID playerID;
+//	
+//END_DEFINE_SYSTEM(UnitManager)
 }

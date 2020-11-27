@@ -172,10 +172,7 @@ namespace DeltaEngine
             em.GetComponent<Collider>(missile).isTrigger = true;
             em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
             em.GetComponent<Collider>(missile).CollisionLayerID = 8;
-            if (a.NumberOfCombos != a.MaxComboNumber)
-                em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_PUNCH;
-            else
-                em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_PUNCH_COMBO;
+            em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_PUNCH;
             em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
             em.GetComponent<Health>(missile).CurrentHealth = 1;
             if (em.GetComponent<Image>(id).m_FlipX == false)

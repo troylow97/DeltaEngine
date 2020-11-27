@@ -14,7 +14,8 @@
 #include "Systems/AttackSystem.h"
 #include "Systems/LifespanSystem.h"
 #include "Systems/RespawnSystem.h"
-#include "CollisionHandlingFunctions.h"
+#include "Systems/UnitManager.h"
+#include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
 #include "Systems/EnemySpawner/EnemySpawner.h"
 
 class Sandbox : public Application
