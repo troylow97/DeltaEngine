@@ -42,7 +42,7 @@ namespace DeltaEngine
         if (et.type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
         {
           auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
-          p.IsDead = true;
+          p.isDead = true;
         }
         else
         {

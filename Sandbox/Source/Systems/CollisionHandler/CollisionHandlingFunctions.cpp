@@ -70,8 +70,8 @@ namespace DeltaEngine
                    AITools::BulletTowardsEntity(bullet, target);
                }
            });
-
         }
+      	
       	if(env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(player))
       	{
             auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(player);
@@ -88,7 +88,7 @@ namespace DeltaEngine
             {
                 const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY); // getentityid  which id is enemy so will get the id of enemy
                 const EntityID punch = GetEntityID(id1, id2, EntityCategory::E_PLAYER_PUNCH);
-                auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy);
+                auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
                 Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(punch).Velocity.Normalize();
                 if (attack.NumberOfCombos == attack.MaxComboNumber)
                 {

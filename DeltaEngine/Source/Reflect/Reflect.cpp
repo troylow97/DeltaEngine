@@ -189,9 +189,7 @@ namespace DeltaEngine
       .property("Max Acceleration", &RigidBody::MaxAcceleration)(rttr::policy::prop::bind_as_ptr)
       .property("Acceleration Pickup", &RigidBody::AccelerationPickup)(rttr::policy::prop::bind_as_ptr)
       .property("Gravity", &RigidBody::hasGravity)(rttr::policy::prop::bind_as_ptr)
-      .property("Moveable", &RigidBody::isMoveable)(rttr::policy::prop::bind_as_ptr)
-      .property("Jumping", &RigidBody::isJumping)(rttr::policy::prop::bind_as_ptr)(
-        rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+      .property("Moveable", &RigidBody::isMoveable)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Collider>("Collider")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Collider>()->bits))
@@ -292,16 +290,16 @@ namespace DeltaEngine
         .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
         .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
         .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
-        .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)
+        .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
         .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
         .property("Max Cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
-        .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)
+        .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
-        .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)
+        .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)
         .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
-        .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)
-        .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)
+        .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Lifespan>("Lifespan")
@@ -313,7 +311,9 @@ namespace DeltaEngine
         (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Player>()->bits))
         .constructor<>()(rttr::policy::ctor::as_object)
         .property("Respawn Point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Is Dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+        .property("Is Dead", &Player::isDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Is Jumping", &Player::isJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Is Dashing", &Player::isDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
   }
 
 }

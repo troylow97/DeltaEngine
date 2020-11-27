@@ -26,6 +26,7 @@ namespace DeltaEngine
                 }
                 a.RangeAttack = false;
             }
+        	
             if (a.MeleeAttack)
             {
                 a.StartComboCooldownTimer = true;
@@ -46,12 +47,12 @@ namespace DeltaEngine
                 {
                     a.ComboCooldownTimer -= env.pClock->DeltaTime();
                 }
-            }
-            if (a.ComboCooldownTimer <= 0)
-            {
-                a.NumberOfCombos = 0;
-                a.StartComboCooldownTimer = false;
-                a.ComboCooldownTimer = a.ComboDuration;
+                else
+                {
+                    a.NumberOfCombos = 0;
+                    a.StartComboCooldownTimer = false;
+                    a.ComboCooldownTimer = a.ComboDuration;
+                }
             }
         });
 

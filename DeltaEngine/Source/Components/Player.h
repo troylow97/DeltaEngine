@@ -7,6 +7,18 @@ namespace DeltaEngine
 	struct Player
 	{
 		int RespawnPoint;
-		bool IsDead = false;
+		bool isDead = false;
+		bool isJumping;
+		bool isDashing;
+
+		Player() :
+			RespawnPoint(0),
+			isDead{false},
+			isJumping{false},
+			isDashing{false}
+		{}
 	};
+
+
+		
 }

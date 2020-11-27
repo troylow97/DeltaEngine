@@ -128,12 +128,12 @@ void InputSystem::Update()
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_SPACE))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Collider& c1, Input& i1, State& a)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,State& a,Collider& c1, Player& p1, Input& i1)
       {
         if (c1.isCollidingOnFloor)
         {
             a.SetFloat("PlayerVelocityY", 1);
-            r1.isJumping = true;
+            p1.isJumping = true;
         }
         i1.previousKey = DEVK_SPACE;
         idle_timer = 0.0f;
@@ -141,20 +141,20 @@ void InputSystem::Update()
     }
     if (InputManager::Instance().IsKeyReleased(DEVK_SPACE))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Player& p1, RigidBody& r1, Input& i1)
       {
         i1.previousKey = DEVK_SPACE;
-        r1.isJumping = false;
+        p1.isJumping = false;
       });
     }
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_X)) //DASH
     {
-        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody& r1, Collider& c1, Input& i1)
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Transform& t1, RigidBody r1, State& a, Collider& c1, Player& p1, Input& i1)
             {
                 if (c1.isCollidingOnFloor && r1.Direction == Vector2::right() || r1.Direction == Vector2::left())
                 {
-                    r1.isDashing = true;
+                    p1.isDashing = true;
                     c1.CollisionLayerCheck = 1;
 
                     EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
