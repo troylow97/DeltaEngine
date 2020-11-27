@@ -175,7 +175,11 @@ namespace DeltaEngine
             if (a.NumberOfCombos != a.MaxComboNumber)
                 em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_PUNCH;
             else
+            {
                 em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_PUNCH_COMBO;
+                a.NumberOfCombos = 0;
+            }
+                
             em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
             em.GetComponent<Health>(missile).CurrentHealth = 1;
             if (em.GetComponent<Image>(id).m_FlipX == false)

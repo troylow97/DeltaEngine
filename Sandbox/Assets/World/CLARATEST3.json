@@ -425,8 +425,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.01708766259253025,
-                    "y": 1.0830212831497193,
+                    "x": -1.2380125522613526,
+                    "y": 0.06942355632781983,
                     "z": 0.0
                 },
                 "Scale": {
@@ -450,7 +450,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true,
+                "Moveable": false,
                 "Jumping": false
             },
             "Collider": {
@@ -642,7 +642,7 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 8,
+                "Current Health": 10,
                 "Max Health": 10,
                 "Invulnerable": false
             },
