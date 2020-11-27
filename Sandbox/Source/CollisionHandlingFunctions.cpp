@@ -21,7 +21,7 @@ namespace DeltaEngine
         env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
         env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id2) &&
       env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id1) &&
-      env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id2)
+      env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id2) 
     )
     {
       auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
@@ -80,6 +80,15 @@ namespace DeltaEngine
           ReduceHealth(id1, 1);
           ReduceHealth(id2, 1);
           return;
+        }
+
+        //Player Melee Attack
+        if ((type1 == EntityCategory::E_PLAYER_PUNCH_COMBO || type2 == EntityCategory::E_PLAYER_PUNCH_COMBO) &&
+            (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
+        {
+            ReduceHealth(id1, 3);
+            ReduceHealth(id2, 3);
+            return;
         }
 
         //Player Dash
