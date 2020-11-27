@@ -21,7 +21,7 @@ namespace DeltaEngine
         env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
         env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id2) &&
       env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id1) &&
-      env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id2)
+      env.pECS->GetWorld().GetEntityManager().HasComponent<EntityType>(id2) 
     )
     {
       auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;

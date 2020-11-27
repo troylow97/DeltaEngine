@@ -9,33 +9,51 @@ namespace DeltaEngine
     void AttackSystem::Update()
     {
         em.ForEach([&](EntityID& id, Attack& a, Image& im)
+        {
+            if (a.CooldownTimer > 0)
             {
-                if (a.CooldownTimer > 0)
-                {
-                    a.CooldownTimer -= env.pClock->DeltaTime();
-                }
+                a.CooldownTimer -= env.pClock->DeltaTime();
+            }
 
-                Dash();
+            Dash();
 
-                if (a.RangeAttack)
+            if (a.RangeAttack)
+            {
+                if (a.CooldownTimer <= 0)
                 {
-                    if (a.CooldownTimer <= 0)
-                    {
-                        RangedAttackingEntities.push_back(id);
-                        a.CooldownTimer = a.MaxCooldown;
-                    }
-                    a.RangeAttack = false;
+                    RangedAttackingEntities.push_back(id);
+                    a.CooldownTimer = a.MaxCooldown;
                 }
-                if (a.MeleeAttack)
+                a.RangeAttack = false;
+            }
+            if (a.MeleeAttack)
+            {
+                a.StartComboCooldownTimer = true;
+                if (a.NumberOfCombos != a.MaxComboNumber)
                 {
-                    if (a.CooldownTimer <= 0)
-                    {
-                        MeleeAttackingEntities.push_back(id);
-                        a.CooldownTimer = a.MaxCooldown;
-                    }
-                    a.MeleeAttack = false;
+                    a.NumberOfCombos++;
                 }
-            });
+                if (a.CooldownTimer <= 0)
+                {
+                    MeleeAttackingEntities.push_back(id);
+                    a.CooldownTimer = a.MaxCooldown;
+                }
+                a.MeleeAttack = false;
+            }
+            if (a.StartComboCooldownTimer)
+            {
+                if (a.ComboCooldownTimer > 0)
+                {
+                    a.ComboCooldownTimer -= env.pClock->DeltaTime();
+                }
+            }
+            if (a.ComboCooldownTimer <= 0)
+            {
+                a.NumberOfCombos = 0;
+                a.StartComboCooldownTimer = false;
+                a.ComboCooldownTimer = a.ComboDuration;
+            }
+        });
 
         for (auto& id : RangedAttackingEntities)
         {
@@ -142,8 +160,10 @@ namespace DeltaEngine
 
     void AttackSystem::MeleeAttack(EntityID& id)
     {
-        if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
+        if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(id))
         {
+            auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(id);
+
             Transform& t1 = em.GetComponent<Transform>(id);
             EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
             em.GetComponent<Transform>(missile).position = t1.position;
@@ -154,7 +174,10 @@ namespace DeltaEngine
             em.GetComponent<Collider>(missile).isTrigger = true;
             em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
             em.GetComponent<Collider>(missile).CollisionLayerID = 8;
-            em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_PUNCH;
+            if (a.NumberOfCombos != a.MaxComboNumber)
+                em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_PUNCH;
+            else
+                em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_PUNCH_COMBO;
             em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
             em.GetComponent<Health>(missile).CurrentHealth = 1;
             if (em.GetComponent<Image>(id).m_FlipX == false)

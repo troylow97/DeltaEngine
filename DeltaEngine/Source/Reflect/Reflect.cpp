@@ -1,5 +1,6 @@
 #pragma once
 
+#include <rttr/registration>
 #include "Reflect.h"
 
 #include "EngineConfig.h"
@@ -8,10 +9,6 @@
 #include "ECS/ComponentMeta.h"
 #include "ECS/EntityManager.h"
 
-#include <rttr/registration>
-
-
-#include "../../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "Assets/AssetKey.h"
 #include "Core/Utils/Json/JsonSerialize.h"
 #include "Core/GlobalStruct.h"
@@ -19,6 +16,8 @@
 #include "AI/AI_State.h"
 #include "../../Sandbox/Source/Systems/EnemySpawner/EnemySpawner.h"
 #include "../../Sandbox/Source/Systems/EnemySpawner/EnemyData.h"
+#include "../../Sandbox/Source/Systems/RespawnSystem.h"
+#include "../../Sandbox/Source/Systems/AttackSystem.h"
 
 namespace DeltaEngine
 {
@@ -288,14 +287,20 @@ namespace DeltaEngine
       .property("Invulnerable", &Health::isInvulnerable)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Attack>("Attack")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
-      .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
-      .property("Max Cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
-      .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)
-      .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)
-      .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr);
+        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
+        .constructor<>()(rttr::policy::ctor::as_object)
+        .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
+        .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
+        .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
+        .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)
+        .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
+        .property("Max Cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
+        .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)
+        .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
+        .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)
+        .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)
+        .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)
+        .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Lifespan>("Lifespan")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits))
