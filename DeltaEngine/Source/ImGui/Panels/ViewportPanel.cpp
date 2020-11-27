@@ -82,10 +82,10 @@ void KeysInput()
     if ( Editor::tool_selection == Editor::Tool::Camera )
     {
       if ( std::abs( offset.point_x ) > FLT_EPSILON )
-        Camera::editorCamera->transform.position.x -= offset.point_x;
+        Camera::editorCameraTransform.position.x -= offset.point_x;
 
       if ( std::abs( offset.point_y ) > FLT_EPSILON )
-        Camera::editorCamera->transform.position.y -= offset.point_y;
+        Camera::editorCameraTransform.position.y -= offset.point_y;
     }
     else if ( Editor::tool_selection == Editor::Tool::EntitySelector )
     {
@@ -103,13 +103,13 @@ void KeysInput()
   else
   {
     if ( ImGui::IsKeyDown( DEVK_W ) && !ImGui::IsKeyDown( DEVK_S ) )
-      Camera::editorCamera->transform.position.y += speed * delta;
+      Camera::editorCameraTransform.position.y += speed * delta;
     else if ( ImGui::IsKeyDown( DEVK_S ) && !ImGui::IsKeyDown( DEVK_W ) )
-      Camera::editorCamera->transform.position.y -= speed * delta;
+      Camera::editorCameraTransform.position.y -= speed * delta;
     if ( ImGui::IsKeyDown( DEVK_A ) && !ImGui::IsKeyDown( DEVK_D ) )
-      Camera::editorCamera->transform.position.x -= speed * delta;
+      Camera::editorCameraTransform.position.x -= speed * delta;
     else if ( ImGui::IsKeyDown( DEVK_D ) && !ImGui::IsKeyDown( DEVK_A ) )
-      Camera::editorCamera->transform.position.x += speed * delta;
+      Camera::editorCameraTransform.position.x += speed * delta;
     if ( ImGui::IsKeyDown( DEVK_Q ) && !ImGui::IsKeyDown( DEVK_E ) )
       Camera::editorCamera->m_Size -= speed * delta;
     else if ( ImGui::IsKeyDown( DEVK_E ) && !ImGui::IsKeyDown( DEVK_Q ) )
@@ -143,12 +143,12 @@ void ViewportPanel::Render()
     ImGui::SetWindowFocus();
 
     prev_mouse = curr_mouse;
-    float cameraWidth = Camera::editorCamera->Max().x - Camera::editorCamera->Min().x;
-    float cameraHeight = Camera::editorCamera->Max().y - Camera::editorCamera->Min().y;
+    float cameraWidth = Camera::editorCamera->Max(Camera::editorCameraTransform).x - Camera::editorCamera->Min(Camera::editorCameraTransform).x;
+    float cameraHeight = Camera::editorCamera->Max(Camera::editorCameraTransform).y - Camera::editorCamera->Min(Camera::editorCameraTransform).y;
     float cursorViewPortDistanceX = ImGui::GetMousePos().x - renderPos.x;
     float cursorViewPortDistanceY = ImGui::GetMousePos().y - renderPos.y;
-    curr_mouse.point_x = ( ( cursorViewPortDistanceX / renderSize.x ) * cameraWidth ) + Camera::editorCamera->Min().x;
-    curr_mouse.point_y = Camera::editorCamera->Max().y - ( ( cursorViewPortDistanceY / renderSize.y ) * cameraHeight );
+    curr_mouse.point_x = ( ( cursorViewPortDistanceX / renderSize.x ) * cameraWidth ) + Camera::editorCamera->Min(Camera::editorCameraTransform).x;
+    curr_mouse.point_y = Camera::editorCamera->Max(Camera::editorCameraTransform).y - ( ( cursorViewPortDistanceY / renderSize.y ) * cameraHeight );
 
     KeysInput();
   }

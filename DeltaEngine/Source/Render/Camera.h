@@ -17,17 +17,21 @@ namespace DeltaEngine
     static std::vector<Camera*> allCameras;
     // camera for editor mode only
     static Camera* editorCamera;
+    static Transform editorCameraTransform;
     float m_Size;
     float m_zNear, m_zFar;
     Color backgroundColor;
 
-    Transform transform;
     Camera(bool editor = false);
+    Camera(const Camera&);
+    Camera(Camera&&);
     ~Camera();
-    Matrix4x4 GetProjectionMatrix() const;
-    Matrix4x4 GetViewMatrix() const;
-    Vector3 Max() const;
-    Vector3 Min() const;
+    Camera& operator=(const Camera&);
+    Camera& operator=(Camera&&);
+    Matrix4x4 GetProjectionMatrix(Transform transform) const;
+    Matrix4x4 GetViewMatrix(Transform transform) const;
+    Vector3 Max(Transform transform) const;
+    Vector3 Min(Transform transform) const;
     FrameBuffer& GetFrameBuffer();
     float GetAspectRatio();
     float SetAspectRatio(float width, float height);

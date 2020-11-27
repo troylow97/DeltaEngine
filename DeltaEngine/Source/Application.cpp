@@ -121,6 +121,7 @@ Application::~Application()
 
 void Application::Run()
 {
+  env.pECS->GetWorld().Load("World/test2.json");
   auto entitycamera = env.pECS->GetWorld().GetEntityManager().CreateEntity<Transform, Camera>();
 
   while ( env.pWin->Running() )

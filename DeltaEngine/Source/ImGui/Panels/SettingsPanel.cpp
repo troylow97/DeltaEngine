@@ -22,10 +22,10 @@ namespace DeltaEngine
       {
         static float f = 0.0f;
         ImGui::Text("Edit Camera Props"); // Display some text (you can use a format string too)
-        ImGui::DragFloat3("pos", (float*)&Camera::editorCamera->transform.position, 0.01f);
+        ImGui::DragFloat3("pos", (float*)&Camera::editorCameraTransform.position, 0.01f);
         ImGui::DragFloat("size", static_cast<float*>(&Camera::editorCamera->m_Size), 0.01f);
         ImGui::SliderFloat("rot", &f, -180.0f, 180.0f, "%.1f", 1.0f);
-        Camera::editorCamera->transform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
+        Camera::editorCameraTransform.rotation = Quaternion::AngleAxis(f, Vector3::forward());
         ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate,
                     ImGui::GetIO().Framerate);
       }

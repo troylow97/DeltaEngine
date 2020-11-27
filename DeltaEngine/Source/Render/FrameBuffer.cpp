@@ -13,11 +13,41 @@ namespace DeltaEngine
     Invalidate();
   }
 
+  FrameBuffer::FrameBuffer(const FrameBuffer&)
+  {
+    glGenFramebuffers(1, &m_RendererID);
+
+    Invalidate();
+  }
+
+  FrameBuffer::FrameBuffer(FrameBuffer&&)
+  {
+    // moving frame buffer should not be allowed, just copy
+    glGenFramebuffers(1, &m_RendererID);
+
+    Invalidate();
+  }
+
   FrameBuffer::~FrameBuffer()
   {
     GLCall(glDeleteFramebuffers( 1, &m_RendererID ));
     GLCall(glDeleteTextures( 1, &m_ColorAttachment ));
     GLCall(glDeleteTextures( 1, &m_DepthAttachment ));
+  }
+
+  FrameBuffer& FrameBuffer::operator=(const FrameBuffer& copy)
+  {
+    Resize(copy.m_Width, copy.m_Height);
+
+    return *this;
+  }
+
+  FrameBuffer& FrameBuffer::operator=(FrameBuffer&& move)
+  {
+    // moving frame buffer should not be allowed, just copy
+    Resize(move.m_Width, move.m_Height);
+
+    return *this;
   }
 
   unsigned int FrameBuffer::GetColorAttachment() const
@@ -33,7 +63,7 @@ namespace DeltaEngine
   void FrameBuffer::Bind() const
   {
     GLCall(glBindFramebuffer( GL_FRAMEBUFFER, m_RendererID ));
-    GLCall(glViewport( 0, 0, _width, _height ));
+    GLCall(glViewport( 0, 0, m_Width, m_Height));
   }
 
   void FrameBuffer::Unbind() const
@@ -55,7 +85,7 @@ namespace DeltaEngine
 
     GLCall(glCreateTextures( GL_TEXTURE_2D, 1, &m_ColorAttachment ));
     GLCall(glBindTexture( GL_TEXTURE_2D, m_ColorAttachment ));
-    GLCall(glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr ));
+    GLCall(glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr ));
     GLCall(glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR ));
     GLCall(glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR ));
 
@@ -63,7 +93,7 @@ namespace DeltaEngine
 
     GLCall(glCreateTextures( GL_TEXTURE_2D, 1, &m_DepthAttachment ));
     GLCall(glBindTexture( GL_TEXTURE_2D, m_DepthAttachment ));
-    GLCall(glTexStorage2D( GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, _width, _height ));
+    GLCall(glTexStorage2D( GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, m_Width, m_Height ));
     GLCall(glFramebufferTexture2D( GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthAttachment, 0 ));
 
     ASSERT_ERROR(glCheckFramebufferStatus( GL_FRAMEBUFFER ) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!");
@@ -78,8 +108,8 @@ namespace DeltaEngine
       DeltaEngine_CORE_WARN("Attempted to rezize framebuffer to {0}, {1}", width, height);
       return;
     }
-    _width = width;
-    _height = height;
+    m_Width = width;
+    m_Height = height;
     Invalidate();
   }
 }
