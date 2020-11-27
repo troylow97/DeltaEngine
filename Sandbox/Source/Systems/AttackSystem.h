@@ -8,14 +8,24 @@
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(AttackSystem, Attack, Collider, Health, Lifespan, Transform, EntityType, Image)
-        void Update() override;
-    void LateUpdate() override;
-    void RangedAttack(EntityID&);
-    void MeleeAttack(EntityID&);
-    void Dash();
+  struct PlayerAttackCombo
+  {
+	size_t MaxComboNumber;
+	float ComboMaxDuration;
+  };
+
+DEFINE_SYSTEM(AttackSystem, Attack, Collider, Health, Lifespan, Transform, EntityType, Image)
+  void Initialize() override;
+  void Update() override;
+  void LateUpdate() override;
+  void RangedAttack(EntityID&);
+  void MeleeAttack(EntityID&);
+  void Dash();
+  void AttackCombo();
 private:
-    std::vector<EntityID> MeleeAttackingEntities;
-    std::vector<EntityID> RangedAttackingEntities;
-    END_DEFINE_SYSTEM(AttackSystem)
+  std::vector<EntityID> MeleeAttackingEntities;
+  std::vector<EntityID> RangedAttackingEntities;
+  PlayerAttackCombo _pac;
+  size_t NumberOfCombos;
+END_DEFINE_SYSTEM(AttackSystem)
 }

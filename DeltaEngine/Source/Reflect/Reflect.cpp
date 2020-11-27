@@ -1,5 +1,6 @@
 #pragma once
 
+#include <rttr/registration>
 #include "Reflect.h"
 
 #include "EngineConfig.h"
@@ -8,10 +9,6 @@
 #include "ECS/ComponentMeta.h"
 #include "ECS/EntityManager.h"
 
-#include <rttr/registration>
-
-
-#include "../../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "Assets/AssetKey.h"
 #include "Core/Utils/Json/JsonSerialize.h"
 #include "Core/GlobalStruct.h"
@@ -19,6 +16,8 @@
 #include "AI/AI_State.h"
 #include "../../Sandbox/Source/Systems/EnemySpawner/EnemySpawner.h"
 #include "../../Sandbox/Source/Systems/EnemySpawner/EnemyData.h"
+#include "../../Sandbox/Source/Systems/RespawnSystem.h"
+#include "../../Sandbox/Source/Systems/AttackSystem.h"
 
 namespace DeltaEngine
 {
@@ -65,6 +64,10 @@ namespace DeltaEngine
 
   rttr::registration::class_<RespawnPoints>("RespawnPoints")
       .property("respawn_points", &RespawnPoints::m_respawns);
+
+  rttr::registration::class_<PlayerAttackCombo>("PlayerAttackCombo")
+      .property("max_combo_number", &PlayerAttackCombo::MaxComboNumber)
+      .property("combo_max_duration", &PlayerAttackCombo::ComboMaxDuration);
 
     rttr::registration::class_<EngineConfig>("Config")
       .property("window", &EngineConfig::win_name)

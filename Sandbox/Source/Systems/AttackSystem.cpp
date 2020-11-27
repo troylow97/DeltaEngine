@@ -8,6 +8,20 @@
 
 namespace DeltaEngine
 {
+    void AttackSystem::Initialize()
+    {
+        //PlayerAttackCombo pac;
+        //pac.MaxComboNumber = 3;
+        //pac.ComboMaxDuration = 1.5f;
+
+        JsonFile file;
+        //rttr::variant v{ pac };
+        //auto& seq = v.create_sequential_view();
+        //file.StartWriter("Player/player_attack_combo.json").StartObject().WriteObject(v).EndObject().EndWriter();
+
+        file.StartReader("Player/player_attack_combo.json").LoadObject(_pac).EndReader();
+    }
+
     void AttackSystem::Update()
     {
         em.ForEach([&](EntityID& id, Attack& a, Image& im)
@@ -216,5 +230,19 @@ namespace DeltaEngine
                     return;
                 }
             });
+    }
+
+    void AttackSystem::AttackCombo()
+    {
+        /*
+          f32 GameClock::RealDeltaTime() const
+            return m_dt;
+
+          f32 GameClock::FixedDeltaTime() const
+            return m_fixed_dt * m_timescale;
+
+          f32 GameClock::ElapsedTime() const
+            return m_g_elapsed;
+        */
     }
 } //Namespace DeltaEngine

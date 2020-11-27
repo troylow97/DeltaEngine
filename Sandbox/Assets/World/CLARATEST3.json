@@ -5,9 +5,9 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "real floor"
             },
-            "EntityType": {
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
@@ -64,9 +64,9 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn 1"
             },
-            "EntityType": {
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
@@ -123,9 +123,9 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn 2"
             },
-            "EntityType": {
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
@@ -182,9 +182,9 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn 3"
             },
-            "EntityType": {
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
@@ -241,9 +241,9 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn 4"
             },
-            "EntityType": {
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
@@ -300,9 +300,9 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn 5"
             },
-            "EntityType": {
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
@@ -359,9 +359,9 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "fake floor"
             },
-            "EntityType": {
+            "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
@@ -418,15 +418,15 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "dave chan"
             },
-            "EntityType": {
-                "Category": "none"
+            "Entity Type": {
+                "Category": "player"
             },
             "Transform": {
                 "Position": {
-                    "x": 0.9101409912109375,
-                    "y": -0.0005272906273603439,
+                    "x": 0.0,
+                    "y": -0.0009107869118452072,
                     "z": 0.0
                 },
                 "Scale": {
@@ -455,8 +455,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.9101409912109375,
-                    "y": -0.0005272906273603439
+                    "x": 0.0,
+                    "y": -0.0009107869118452072
                 },
                 "Offset": {
                     "x": 0.0,
@@ -473,7 +473,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "",
+                    "key": "Textures/BreathingSpritesheet",
                     "index": 0
                 },
                 "Size": {
@@ -514,7 +514,7 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 2,
+                "Current Health": 8,
                 "Max Health": 10,
                 "Invulnerable": false
             },
@@ -529,15 +529,15 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "monster chan"
             },
-            "EntityType": {
-                "Category": "none"
+            "Entity Type": {
+                "Category": "enemy"
             },
             "Transform": {
                 "Position": {
-                    "x": 8.772086143493653,
-                    "y": 8.474225997924805,
+                    "x": -0.01708766259253025,
+                    "y": 1.0830212831497193,
                     "z": 0.0
                 },
                 "Scale": {
@@ -566,8 +566,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 8.772086143493653,
-                    "y": 8.474225997924805
+                    "x": -0.01708766259253025,
+                    "y": 1.0830212831497193
                 },
                 "Offset": {
                     "x": 0.0,
