@@ -33,6 +33,7 @@
 #include "Input/Keys.h"
 #include "Panels/ButtonsPanel.h"
 #include "Panels/SettingsPanel.h"
+#include "Panels/StylePanel.h"
 
 #include "Style.h"
 
@@ -152,17 +153,17 @@ void Editor::MenuBar()
     if ( ImGui::BeginMenu( "View" ) )
     {
       if ( ImGui::MenuItem( "World", " Ctrl+1" ) )
-        m_panels[0]->Enable();
-      if ( ImGui::MenuItem( "Inspector", " Ctrl+2" ) )
-        m_panels[1]->Enable();
-      if ( ImGui::MenuItem( "Tilemap", " Ctrl+3" ) )
-        m_panels[2]->Enable();
-      if ( ImGui::MenuItem( "Assets", " Ctrl+4" ) )
-        m_panels[3]->Enable();
-      if ( ImGui::MenuItem( "Settings", " Ctrl+5" ) )
-        m_panels[4]->Enable();
-      if ( ImGui::MenuItem( "Console", " Ctrl+6" ) )
         m_panels[5]->Enable();
+      if ( ImGui::MenuItem( "Inspector", " Ctrl+2" ) )
+        m_panels[4]->Enable();
+      if ( ImGui::MenuItem( "Tilemap", " Ctrl+3" ) )
+        m_panels[3]->Enable();
+      if ( ImGui::MenuItem( "Assets", " Ctrl+4" ) )
+        m_panels[2]->Enable();
+      if ( ImGui::MenuItem( "Settings", " Ctrl+5" ) )
+        m_panels[1]->Enable();
+      if ( ImGui::MenuItem( "Console", " Ctrl+6" ) )
+        m_panels[0]->Enable();
       ImGui::EndMenu();
     }
     ImGui::EndMainMenuBar();
@@ -196,17 +197,15 @@ Editor::Editor()
   ImGui_ImplWin32_Init( env.pWin->GetHandle(), RenderModule::openGLSystem->GetGLContext() );
   ImGui_ImplOpenGL3_Init( "#version 410" );
 
+  m_panels.push_back( std::make_unique<WorldPanel>( "World" ) );
   m_panels.push_back( std::make_unique<PropertyInspectorPanel>( "Property Inspector" ) );
   m_panels.push_back( std::make_unique<TilemapPanel>( "Tilemap" ) );
   m_panels.push_back( std::make_unique<AssetPanel>( "Assets" ) );
   m_panels.push_back( std::make_unique<SettingsPanel>( "Settings" ) );
-  m_panels.push_back(std::make_unique<WorldPanel>("World"));
   m_panels.push_back( std::make_unique<LoggerPanel>( "Console" ) );
 
   m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );
   m_panels.push_back( std::make_unique<ButtonsPanel>( "Buttons" ) );
-  m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor" ) );
-  m_panels.push_back( std::make_unique<GamePanel>( "Game" ) );
 }
 
 Editor::~Editor()
@@ -288,6 +287,9 @@ void Editor::Render()
     if ( ref->IsEnabled() )
       ref->Render(); // update all the panels
 
+  ImGui::Begin( "Style Editorr" );
+  ImGui::ShowStyleEditor();
+  ImGui::End();
 }
 
 void Editor::End()
