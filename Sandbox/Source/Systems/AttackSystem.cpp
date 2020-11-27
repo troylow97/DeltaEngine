@@ -1,8 +1,8 @@
 #include "AttackSystem.h"
+#include "UnitManager.h"
 #include "Core/GameClock/GameClock.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
-#include "AI/AITools.h"
 
 namespace DeltaEngine
 {
@@ -78,7 +78,6 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
         {
-            //std::cout << "range attack!\n";
             Transform& t1 = em.GetComponent<Transform>(id);
             EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
             em.GetComponent<Transform>(missile).position = t1.position;
@@ -112,7 +111,6 @@ namespace DeltaEngine
             em.GetComponent<Collider>(missile2).isTrigger = true;
             em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
             em.GetComponent<Collider>(missile).CollisionLayerID = 8;
-            //em.GetComponent<Collider>(missile2).size = {2.0f,2.0f};
             em.GetComponent<EntityType>(missile2).type = EntityCategory::E_PLAYER_BULLET_DETECTION;
             em.GetComponent<RigidBody>(missile2).FrictionCoeff = 0.0f;
             em.GetComponent<Health>(missile2).CurrentHealth = 1;
@@ -206,7 +204,7 @@ namespace DeltaEngine
             em.GetComponent<Collider>(missile).isTrigger = true;
             em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
             em.GetComponent<Collider>(missile).CollisionLayerID = 8;
-            em.GetComponent<EntityType>(missile).type = EntityCategory::E_LANCER_CHARGE; //CHANGE TO FIDDLER
+            em.GetComponent<EntityType>(missile).type = EntityCategory::E_ENEMY_FIDDLER_PUNCH; //CHANGE TO FIDDLER
             em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
             em.GetComponent<Health>(missile).CurrentHealth = 1;
             if (em.GetComponent<Image>(id).m_FlipX == false)
@@ -230,8 +228,8 @@ namespace DeltaEngine
             {
                 if (et1.type == EntityCategory::E_PLAYER_DASH)
                 {
-                    if (env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(GetUnitManager().player).isCollidingOnFloor)
-                        t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(GetUnitManager().player).position;
+                    if (env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(UnitManager::GetPlayerID()).isCollidingOnFloor)
+                        t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                     else
                         env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
                     return;
