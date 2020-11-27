@@ -84,19 +84,20 @@ namespace DeltaEngine
             }
 
             //Player Melee Attack
-            if (CheckEntityType(id1, EntityCategory::E_PLAYER_PUNCH, id2, EntityCategory::E_ENEMY))
+            if (CheckEntityType(id1, EntityCategory::E_PLAYER_PUNCH, id2, EntityCategory::E_ENEMY)) // checks if which one id1 id2 is punch / enemy
             {
-                const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+                const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY); // getentityid  which id is enemy so will get the id of enemy
                 const EntityID punch = GetEntityID(id1, id2, EntityCategory::E_PLAYER_PUNCH);
+                auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy);
                 Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(punch).Velocity.Normalize();
                 if (attack.NumberOfCombos == attack.MaxComboNumber)
                 {
                     ReduceHealth(id1, attack.MeleeComboDamage);
                     ReduceHealth(id2, attack.MeleeComboDamage);
-                    env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * 900.0f;
+                    env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * a.KnockbackComboAmount; // direction * force
                     attack.NumberOfCombos = 0;
                 }
-                env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * 600.0f;
+                env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * a.KnockbackAmount;
                 ReduceHealth(id1, attack.MeleeDamage);
                 ReduceHealth(id2, attack.MeleeDamage);
                 return;

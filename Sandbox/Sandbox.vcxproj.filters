@@ -4,6 +4,9 @@
     <Filter Include="Systems">
       <UniqueIdentifier>{1DDE831B-89BD-02B7-92D5-8D8DFE336918}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\CollisionHandler">
+      <UniqueIdentifier>{F635BFC6-E25A-0E47-0BA6-F3D6F7290D65}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Systems\EnemySpawner">
       <UniqueIdentifier>{2AD34AD0-1662-D499-BF80-E894ABEEE43F}</UniqueIdentifier>
     </Filter>
@@ -11,6 +14,9 @@
   <ItemGroup>
     <ClInclude Include="Source\Systems\AttackSystem.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\CollisionHandler\CollisionHandlingFunctions.h">
+      <Filter>Systems\CollisionHandler</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\EnemySpawner\EnemyData.h">
       <Filter>Systems\EnemySpawner</Filter>
@@ -27,12 +33,14 @@
     <ClInclude Include="Source\Systems\UnitManager.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\CollisionHandler\CollisionHandlingFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
     <ClCompile Include="Source\Systems\AttackSystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\CollisionHandler\CollisionHandlingFunctions.cpp">
+      <Filter>Systems\CollisionHandler</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\EnemySpawner\EnemySpawner.cpp">
       <Filter>Systems\EnemySpawner</Filter>
@@ -46,6 +54,5 @@
     <ClCompile Include="Source\Systems\UnitManager.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\CollisionHandler\CollisionHandlingFunctions.cpp" />
   </ItemGroup>
 </Project>

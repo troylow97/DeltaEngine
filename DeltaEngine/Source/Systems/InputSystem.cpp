@@ -148,7 +148,7 @@ void InputSystem::Update()
       });
     }
 
-    if (InputManager::Instance().IsKeyTriggered(DEVK_Z)) //DASH
+    if (InputManager::Instance().IsKeyTriggered(DEVK_X)) //DASH
     {
         env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody& r1, Collider& c1, Input& i1)
             {
@@ -167,11 +167,11 @@ void InputSystem::Update()
                     em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
                     em.GetComponent<Health>(missile).CurrentHealth = 1;
                 }
-            i1.previousKey = DEVK_Z;
+            i1.previousKey = DEVK_X;
         });
     }
 
-    if (InputManager::Instance().IsKeyTriggered(DEVK_C))
+    if (InputManager::Instance().IsKeyTriggered(DEVK_Z))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
       {
@@ -182,7 +182,7 @@ void InputSystem::Update()
       });
     }
 
-  if ( InputManager::Instance().IsKeyTriggered( DEVK_X ) )
+  if ( InputManager::Instance().IsKeyTriggered( DEVK_C ) )
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Input &i1, Attack &a1, Image &im, State &a )
     {

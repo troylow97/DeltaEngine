@@ -298,6 +298,8 @@ namespace DeltaEngine
         .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)
         .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
         .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)
+        .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)
+        .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
         .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)
         .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)
         .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr);
