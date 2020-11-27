@@ -16,9 +16,6 @@
 #include "Systems/RespawnSystem.h"
 #include "CollisionHandlingFunctions.h"
 #include "Systems/EnemySpawner/EnemySpawner.h"
-#include "UnitManager.h"
-
-UnitManager unit_manager;
 
 class Sandbox : public Application
 {
@@ -30,9 +27,6 @@ public:
     env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem >();
 
     env.pECS->GetWorld().InitSystems();
-
-    unit_manager.Initialize();
-
   }
 
   ~Sandbox()

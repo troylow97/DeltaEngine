@@ -22,10 +22,11 @@ namespace DeltaEngine
 	{
 		VectorOfEnemyWaves EnemyWaves;
 		Vector2 ActivationPoint;
+		float WallOffsetRight;
+		float WallOffsetLeft;
 		unsigned CurrentEnemyWave;
 		bool isActivated;
 		bool isFinished;
-
 		Gauntlet();
 	};
 
@@ -38,21 +39,25 @@ namespace DeltaEngine
 		void EnemySpawner::Initialize() override;
 		void EnemySpawner::Update() override;
 		void EnemySpawner::LateUpdate() override;
-
+		GauntletsList list;
 	
 	
 	private:
 		void LoadEnemyData();
+		bool CheckForOutsideEnemies();
+		EntityID SpawnWall(Vector2 position);
 		void SpawnEnemy(unsigned amount, std::string type, Vector2 position);
+	
+		std::vector<EntityID> SpawnedEnemiesInGauntlet;
 		std::vector<EntityID> EnemiesInGauntlet;
-		GauntletsList list;
+		EntityID GauntletWalls[2];
 		EnemyData SerpentipedeData;
 		EnemyData FiddlerData;
 		EnemyData LancerData;
 		int CurrentGauntlet;
 		bool GauntletIsActive;
 	
-	    END_DEFINE_SYSTEM(AttackSystem)
+	    END_DEFINE_SYSTEM(EnemySpawner)
 
 
 }

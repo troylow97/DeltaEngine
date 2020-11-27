@@ -3,8 +3,6 @@
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "AI/AITools.h"
-#include "../UnitManager.h"
-
 
 namespace DeltaEngine
 {

@@ -15,7 +15,7 @@ namespace DeltaEngine
   Camera::Camera(bool editor) :
     cameraIndex{editor ? -1 : static_cast<int>(allCameras.size())}, frameBuffer{},
     m_AspectRatio{1.0f * env.pWin->Width() / env.pWin->Height()}, m_ViewportSize{1.0f * env.pWin->Width()},
-    m_Size{4}, m_zNear{-100}, m_zFar{100},
+    m_Size{8}, m_zNear{-100}, m_zFar{100},
     backgroundColor{49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1}
   {
     if (!editor)

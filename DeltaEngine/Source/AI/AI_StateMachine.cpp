@@ -85,7 +85,7 @@ namespace DeltaEngine
         ai.key = ai.transition;
         ai.transition = "null";
 
-        auto find = StateList.find(ai.key);
+        const auto find = StateList.find(ai.key);
         if (find != StateList.end())
         {
           ai_state = find->second;

@@ -196,11 +196,11 @@ Editor::Editor()
   ImGui_ImplWin32_Init( env.pWin->GetHandle(), RenderModule::openGLSystem->GetGLContext() );
   ImGui_ImplOpenGL3_Init( "#version 410" );
 
-  m_panels.push_back( std::make_unique<WorldPanel>( "World" ) );
-  m_panels.push_back( std::make_unique<PropertyInspectorPanel>( "Property Inspector" ) );
+  m_panels.push_back(std::make_unique<PropertyInspectorPanel>("Property Inspector"));
   m_panels.push_back( std::make_unique<TilemapPanel>( "Tilemap" ) );
   m_panels.push_back( std::make_unique<AssetPanel>( "Assets" ) );
   m_panels.push_back( std::make_unique<SettingsPanel>( "Settings" ) );
+  m_panels.push_back(std::make_unique<WorldPanel>("World"));
   m_panels.push_back( std::make_unique<LoggerPanel>( "Console" ) );
 
   m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );
@@ -281,13 +281,14 @@ void Editor::Render()
     }
   }
 
+  ImGui::Begin("Style Editor");
+  ImGui::ShowStyleEditor();
+  ImGui::End();
+	
   for ( auto &ref : m_panels )
     if ( ref->IsEnabled() )
       ref->Render(); // update all the panels
 
-  ImGui::Begin( "Style Editorr" );
-  ImGui::ShowStyleEditor();
-  ImGui::End();
 }
 
 void Editor::End()

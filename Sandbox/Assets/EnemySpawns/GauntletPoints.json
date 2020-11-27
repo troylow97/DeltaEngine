@@ -22,10 +22,10 @@
                 ],
                 [
                     {
-                        "enemy_count": -858993460,
-                        "enemy_type": "",
+                        "enemy_count": 2,
+                        "enemy_type": "lancer",
                         "spawn_area": {
-                            "x": 0.0,
+                            "x": 2.0,
                             "y": 0.0
                         }
                     }
@@ -35,6 +35,8 @@
                 "x": 5.0,
                 "y": 0.0
             },
+            "wall_offset_right": 7.0,
+            "wall_offset_left": 7.0,
             "current_enemy_wave": 0,
             "is_activated": false,
             "is_finished": false
@@ -56,6 +58,8 @@
                 "x": 20.0,
                 "y": 0.0
             },
+            "wall_offset_right": 7.0,
+            "wall_offset_left": 7.0,
             "current_enemy_wave": 0,
             "is_activated": false,
             "is_finished": false

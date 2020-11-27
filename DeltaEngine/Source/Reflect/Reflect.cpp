@@ -55,14 +55,15 @@ namespace DeltaEngine
   rttr::registration::class_<Gauntlet>("Gauntlet")
       .property("enemy_waves", &Gauntlet::EnemyWaves)
       .property("activation_point", &Gauntlet::ActivationPoint)
+      .property("wall_offset_right", &Gauntlet::WallOffsetRight)
+      .property("wall_offset_left", &Gauntlet::WallOffsetLeft)
       .property("current_enemy_wave", &Gauntlet::CurrentEnemyWave)(rttr::metadata("NO_SERIALIZE", true))
       .property("is_activated", &Gauntlet::isActivated)(rttr::metadata("NO_SERIALIZE", true))
       .property("is_finished", &Gauntlet::isFinished)(rttr::metadata("NO_SERIALIZE", true));
 
   rttr::registration::class_<GauntletsList>("Gauntlets")
       .property("gauntlets", &GauntletsList::Gauntlets);
-
-
+  	
   rttr::registration::class_<RespawnPoints>("RespawnPoints")
       .property("respawn_points", &RespawnPoints::m_respawns);
 
@@ -125,10 +126,7 @@ namespace DeltaEngine
       rttr::value("none", EntityCategory::E_NONE),
       rttr::value("wall", EntityCategory::E_WALL),
       rttr::value("player", EntityCategory::E_PLAYER),
-      rttr::value("enemy", EntityCategory::E_ENEMY),
-      rttr::value("player_bullet", EntityCategory::E_PLAYER_BULLET),
-      rttr::value("player_punch", EntityCategory::E_PLAYER_PUNCH),
-      rttr::value("charge", EntityCategory::E_LANCER_CHARGE)
+      rttr::value("enemy", EntityCategory::E_ENEMY)
     );
 
     rttr::registration::enumeration<Alignment>("Alignment")

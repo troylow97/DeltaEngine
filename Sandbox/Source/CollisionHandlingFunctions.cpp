@@ -32,7 +32,7 @@ namespace DeltaEngine
       if (type1 != type2)
       {
         //Lancer Melee Attack
-        if ((type1 == EntityCategory::E_LANCER_CHARGE || type2 == EntityCategory::E_LANCER_CHARGE) &&
+        if ((type1 == EntityCategory::E_ENEMY_FIDDLER_PUNCH || type2 == EntityCategory::E_ENEMY_FIDDLER_PUNCH) &&
           (type1 == EntityCategory::E_PLAYER || type2 == EntityCategory::E_PLAYER))
         {
           ReduceHealth(id1, 1);
@@ -80,6 +80,15 @@ namespace DeltaEngine
           ReduceHealth(id1, 1);
           ReduceHealth(id2, 1);
           return;
+        }
+
+        //Player Melee Attack
+        if ((type1 == EntityCategory::E_PLAYER_PUNCH_COMBO || type2 == EntityCategory::E_PLAYER_PUNCH_COMBO) &&
+            (type1 == EntityCategory::E_ENEMY || type2 == EntityCategory::E_ENEMY))
+        {
+            ReduceHealth(id1, 3);
+            ReduceHealth(id2, 3);
+            return;
         }
 
         //Player Dash
