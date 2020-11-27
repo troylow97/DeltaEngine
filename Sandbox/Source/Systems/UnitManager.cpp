@@ -1,19 +1,19 @@
 #include "UnitManager.h"
 
+#include "Core/GlobalStruct.h"
+
 namespace DeltaEngine
 {
-	EntityID UnitManager::playerID;
-	
-	void UnitManager::Update()
-	{
-		em.ForEach([&](EntityID& id,Player& p)
-		{
-			playerID = id;
-		});
-	}
 
+	EntityID UnitManager::player;
+	
 	EntityID UnitManager::GetPlayerID()
 	{
-		return playerID;
+		env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, Player& p)
+		{
+			player = id;
+		});
+
+		return player;
 	}
 }
