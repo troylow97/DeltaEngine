@@ -1,4 +1,6 @@
 #include "SettingsPanel.h"
+
+#include "imgui.h"
 #include "Render/Camera.h"
 
 namespace DeltaEngine
