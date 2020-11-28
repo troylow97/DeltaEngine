@@ -191,7 +191,7 @@ void EntityManager::AddComponent( EntityID id, C comp )
     AddComponent<C>( id );
 
     if ( !ComponentMeta::GetComponentMeta<C>()->IsEmpty() )
-      GetComponent<C>( id ) = comp;
+      GetComponent<C>( id ) = std::move(comp);
   }
 }
 

@@ -2,6 +2,7 @@
 
 #include "DEpch.h"
 #include "ImGui/Panels/IPanel.h"
+#include "Render/Texture.h"
 
 namespace DeltaEngine
 {
@@ -13,6 +14,7 @@ namespace DeltaEngine
     void Render() override;
 
   private:
-    char textureName[128] = "Textures/3-Punch Spritesheet";
+    std::vector<TextureInfo> info;
+    char textureName[128] = "Textures/PROPS";
   };
 }

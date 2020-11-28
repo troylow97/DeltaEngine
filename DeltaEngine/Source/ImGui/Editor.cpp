@@ -18,10 +18,12 @@
 // Panels
 #include "DropManager.h"
 #include "Panels/AssetPanel.h"
+#include "Panels/GamePanel.h"
 #include "Panels/ViewportPanel.h"
 #include "Panels/PropertyInspectorPanel.h"
 #include "Panels/TilemapPanel.h"
 #include "Panels/WorldPanel.h"
+#include "Panels/SpriteEditorPanel.h"
 #include "Panels/LoggerPanel.h"
 
 #include "IconsFontAwesome5.h"
@@ -200,7 +202,8 @@ Editor::Editor()
   m_panels.push_back( std::make_unique<WorldPanel>( "World" ) );//5
   m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );//6
   m_panels.push_back( std::make_unique<ButtonsPanel>( "Buttons" ) );//7
-  m_panels.push_back( std::make_unique<StylePanel>( "Style Editor" ) ); // 8
+  m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor" ) );
+  m_panels.push_back( std::make_unique<GamePanel>( "Game" ) );
 }
 
 Editor::~Editor()

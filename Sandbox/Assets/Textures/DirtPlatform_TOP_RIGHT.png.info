@@ -3,3 +3,11 @@ offset 0 0
 size 128 128
 pivot 0.5 0.5
 
+Textures/DirtPlatform_TOP_RIGHT_i_1
+offset 0 0
+size 0 0
+pivot 0 0
+
+%
+
+wrap_mode 0

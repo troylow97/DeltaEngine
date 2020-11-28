@@ -1,5 +1,8 @@
 Textures/Fiddler Bubble Shield_i_0
 offset 0 0
-size 262 367
-pivot 0.5 0.5
+size 0 0
+pivot 0 0
 
+%
+
+wrap_mode 0
