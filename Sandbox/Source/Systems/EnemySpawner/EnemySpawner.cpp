@@ -205,7 +205,10 @@ namespace DeltaEngine
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(wall);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Renderer2D>(wall);
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(wall).position = position;
-		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(wall).scale = Vector2{ 0.5,5.0 };
+		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(wall).scale = Vector2{ 0.5,6.0 };
+		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(wall).isMoveable = false;
+		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(wall).CollisionLayerID = 1;
+		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(wall).CollisionLayerCheck = 14;
 		return wall;
 	}
 	

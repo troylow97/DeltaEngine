@@ -16,16 +16,16 @@ namespace DeltaEngine
   void LifespanSystem::UpdateLifespan()
   {
       em.ForEach([&](EntityID& id, Lifespan& ls)
+      {
+          if (ls.Timer < 0)
           {
-              if (ls.Timer < 0)
-              {
-                  em.DestroyEntity(id);
-              }
-              else
-              {
-                  ls.Timer -= env.pClock->DeltaTime();
-              }
-          });
+              DestroyedEntities.push_back(id);
+          }
+          else
+          {
+              ls.Timer -= env.pClock->DeltaTime();
+          }
+      });
   }
 	
   void LifespanSystem::Update()

@@ -13,7 +13,7 @@ namespace DeltaEngine
         CurrentJumpTicks = 0;
         MaxJumpTicks = 10;
         CurrentDashTicks = 0;
-        MaxDashTicks = 10;
+        MaxDashTicks = 8;
         InitialJumpForce = 4500.0f;
         JumpForce = InitialJumpForce;
         m_max_velocity = 1000.0f;
