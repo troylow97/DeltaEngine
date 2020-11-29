@@ -1,5 +1,6 @@
 #include "AI_State.h"
 #include "AI_Transition.h"
+#include "../UnitManager.h"
 #include "Core/Utils/Random.h"
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
@@ -24,6 +25,38 @@ namespace DeltaEngine
       delete it.second;
     }
   }
+
+	/////////////////////////////////////////////////////////////////////////////////////
+	
+  LancerSpawn::LancerSpawn(Vector2& charge_range)
+  {
+      TransitionEdges["detect_enemy_lancer"] = new DetectEnemyLancer(charge_range);
+  }
+
+  void LancerSpawn::onEnter(EntityID& id)
+  {
+  }
+
+  void LancerSpawn::onExit(EntityID& id)
+  {
+  }
+
+  void LancerSpawn::Update(EntityID& monster)
+  {
+      CheckEdges(monster);
+      auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
+      Vector2 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
+
+      if(ref.y > player_pos.y)
+      {
+          AITools::FlyTowardsPoint(monster, player_pos);
+      }
+
+  	
+  	
+  }
+	
+//////////////////////////////////////////////////////////////////////////////////	
 
   IdleLancer::IdleLancer(Vector2& charge_range)
   {
@@ -65,15 +98,16 @@ namespace DeltaEngine
   void ChaseEnemyLancer::Update(EntityID& monster)
   {
     //CheckEdges(monster); lancer continues chasing so no transition edge
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+    EntityID player = UnitManager::GetPlayerID();
+    const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
+    auto player_size = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).scale;
+    AITools::FlyTowardsPoint(monster, Vector2{ player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.5,1.5) });
+    if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
     {
-      if (et.type == EntityCategory::E_PLAYER)
-      {
-        auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
-        auto player_size = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).scale;
-        AITools::FlyTowardsPoint(monster, Vector2{player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.5,1.5)});
-      }
-    });
+        AITools::FaceEntity(monster, player);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
+    }
+
   }
 
   //----------------------------------------------------------------------
@@ -115,18 +149,13 @@ namespace DeltaEngine
   void ChaseEnemyFiddler::Update(EntityID& monster)
   {
     CheckEdges(monster);
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+    EntityID player = UnitManager::GetPlayerID();
+    if (AITools::Distance_X_BetweenTwoEntities(monster,player) < 2 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
     {
-      if (et.type == EntityCategory::E_PLAYER)
-      {
-          if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
-          {
-              AITools::FaceEntity(monster, player);
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
-          }
-          AITools::MoveTowardsEntityInX(monster, player);
-      }
-    });
+        AITools::FaceEntity(monster, player);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
+    }
+    AITools::MoveTowardsEntityInX(monster, player);
   }
 
   //----------------------------------------------------------------------
@@ -177,19 +206,14 @@ namespace DeltaEngine
 
           if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x))
           {
-              env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
-                  {
-                      if (et.type == EntityCategory::E_PLAYER)
-                      {
-                            if (attack.CooldownTimer <= 0)
-                            {
-                                CurrentPoint = Random::RandomIntRange(0, 3);
-                                AITools::FaceEntity(monster, player);
-                                attack.RangeAttack = true;
-                                CooldownTimer = SerpentData.MaxCooldown;
-                            }
-                      }
-                  });
+              EntityID player = UnitManager::GetPlayerID();
+              if (attack.CooldownTimer <= 0 && AITools::Distance_X_BetweenTwoEntities(monster, player) < 6 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 3)
+              {
+                  CurrentPoint = Random::RandomIntRange(0, 3);
+                  AITools::FaceEntity(monster, player);
+                  attack.RangeAttack = true;
+                  CooldownTimer = SerpentData.MaxCooldown;
+              }
           }
           else
           {

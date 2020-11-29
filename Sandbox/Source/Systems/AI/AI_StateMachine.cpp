@@ -19,6 +19,7 @@ namespace DeltaEngine
     JsonFile file3;
 	file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
 
+    StateList["lancer_spawn"] = new LancerSpawn(lancer_data.ChargeDetectionRange);  	
     StateList["idle_lancer"] = new IdleLancer(lancer_data.ChargeDetectionRange);
     StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
 

@@ -37,8 +37,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": false,
-                "Jumping": false
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -96,8 +95,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true,
-                "Jumping": false
+                "Moveable": true
             },
             "Collider": {
                 "Center": {
@@ -113,8 +111,8 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
-                "Collision Layer": 11,
+                "Trigger": true,
+                "Collision Layer": 6,
                 "Collision Layer ID": 4
             },
             "Image": {
@@ -175,10 +173,18 @@
             "Attack": {
                 "Range Damage": 1,
                 "Melee Damage": 1,
+                "Melee Combo Damage": 3,
+                "Number Of Combo": 0,
+                "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
                 "Cooldown Timer": 0.0,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
                 "Ranged Attack": false,
-                "Melee Attack": false
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
             }
         },
         {
@@ -218,8 +224,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": true,
-                "Moveable": true,
-                "Jumping": false
+                "Moveable": true
             },
             "Collider": {
                 "Center": {
@@ -289,10 +294,18 @@
             "Attack": {
                 "Range Damage": 1,
                 "Melee Damage": 1,
+                "Melee Combo Damage": 3,
+                "Number Of Combo": 0,
+                "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
                 "Cooldown Timer": -0.016666656360030175,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
                 "Ranged Attack": false,
-                "Melee Attack": false
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
             },
             "Player": {},
             "Input": {

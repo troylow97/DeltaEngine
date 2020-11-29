@@ -13,7 +13,8 @@ namespace DeltaEngine
         E_PLAYER_PUNCH,
         E_PLAYER_DASH,
         E_ENEMY_BULLET,
-        E_ENEMY_FIDDLER_PUNCH
+        E_ENEMY_FIDDLER_PUNCH,
+    	E_ENEMY_LANCER_PUNCH
     };
 
     struct EntityType
