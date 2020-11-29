@@ -58,6 +58,16 @@ namespace DeltaEngine
             return;
         }
 
+        if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
+        {
+            //PROBLEM HERE!
+            //const EntityID fiddler = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+            //auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(fiddler);
+            ReduceHealth(id1, 1);
+            ReduceHealth(id2, 1);
+            return;
+        }
+
         //Player Detection Ranged Attack
         if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET_DETECTION, id2, EntityCategory::E_ENEMY))
         {

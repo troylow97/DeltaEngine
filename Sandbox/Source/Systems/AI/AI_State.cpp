@@ -102,7 +102,7 @@ namespace DeltaEngine
     const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
     auto player_size = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).scale;
     AITools::FlyTowardsPoint(monster, Vector2{ player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.5,1.5) });
-    if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+    if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
     {
         AITools::FaceEntity(monster, player);
         env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
@@ -150,7 +150,7 @@ namespace DeltaEngine
   {
     CheckEdges(monster);
     EntityID player = UnitManager::GetPlayerID();
-    if (AITools::Distance_X_BetweenTwoEntities(monster,player) < 2 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+    if (AITools::Distance_X_BetweenTwoEntities(monster,player) < 2 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
     {
         AITools::FaceEntity(monster, player);
         env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
@@ -207,7 +207,7 @@ namespace DeltaEngine
           if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x))
           {
               EntityID player = UnitManager::GetPlayerID();
-              if (attack.CooldownTimer <= 0)
+              if (attack.CooldownTimer <= 0 && AITools::Distance_X_BetweenTwoEntities(monster, player) < 6 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 3)
               {
                   CurrentPoint = Random::RandomIntRange(0, 3);
                   AITools::FaceEntity(monster, player);
