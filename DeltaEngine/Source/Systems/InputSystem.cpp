@@ -155,8 +155,6 @@ void InputSystem::Update()
                 if (c1.isCollidingOnFloor && r1.Direction == Vector2::right() || r1.Direction == Vector2::left())
                 {
                     p1.isDashing = true;
-                    c1.CollisionLayerCheck = 1;
-                    c1.CollisionLayerID= 1;
 
                     EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
                     em.GetComponent<Transform>(missile).position = t1.position;

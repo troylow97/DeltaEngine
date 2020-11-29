@@ -83,14 +83,12 @@ namespace DeltaEngine
                     else if (p.isDashing && !c1.isCollidingOnFloor)
                     {
                         CurrentDashTicks = 0;
-                        c1.CollisionLayerCheck = 13;
                         p.isDashing = false;
-                    }
+                    }//To optimise in the future
 
                     if (CurrentDashTicks >= MaxDashTicks)
                     {
                         CurrentDashTicks = 0;
-                        c1.CollisionLayerCheck = 13;
                         p.isDashing = false;
                     }
 

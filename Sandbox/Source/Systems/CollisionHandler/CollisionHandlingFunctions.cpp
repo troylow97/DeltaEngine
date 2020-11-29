@@ -109,17 +109,14 @@ namespace DeltaEngine
         {
             ReduceHealth(id1, 1);
             ReduceHealth(id2, 1);
-            return;
         }
 
         //Enemy Collide with player
-        if (CheckEntityType(id1, EntityCategory::E_PLAYER, id2, EntityCategory::E_ENEMY))
-        {
-          if (type1 == EntityCategory::E_PLAYER)
-            ReduceHealth(id1, 1);
-          else
-            ReduceHealth(id2, 1);
-        }
+        //if (CheckEntityType(id1, EntityCategory::E_PLAYER, id2, EntityCategory::E_ENEMY))
+        //{
+        //  if (type1 == EntityCategory::E_PLAYER)
+        //    ReduceHealth(id1, 1);
+        //}
       }
     }
   }

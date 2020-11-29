@@ -121,13 +121,13 @@ namespace DeltaEngine
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.6f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { 700, 0 };
+                em.GetComponent<RigidBody>(missile).AccumulatedForce = { 850, 0 };
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
             }
             else
             {
                 em.GetComponent<Transform>(missile).position.x -= 0.5f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { -500, 0 };
+                em.GetComponent<RigidBody>(missile).AccumulatedForce = { -850, 0 };
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
             }
         }

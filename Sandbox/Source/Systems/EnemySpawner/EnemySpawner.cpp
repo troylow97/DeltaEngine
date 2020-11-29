@@ -119,7 +119,7 @@ namespace DeltaEngine
 
 		if (GauntletIsActive)
 		{
-			if(list.Gauntlets[CurrentGauntlet].CurrentEnemyWave > list.Gauntlets[CurrentGauntlet].EnemyWaves.size() && 
+			if(list.Gauntlets[CurrentGauntlet].CurrentEnemyWave > list.Gauntlets[CurrentGauntlet].EnemyWaves.size() || 
 				CheckForOutsideEnemies())
 				return;
 			
@@ -185,13 +185,12 @@ namespace DeltaEngine
 	bool EnemySpawner::CheckForOutsideEnemies()
 	{
 		bool activated = false;
-		em.ForEach([&](EntityID& id, EntityType et,Transform t)
+		Vector2 activation = list.Gauntlets[list.Gauntlets[CurrentGauntlet].CurrentEnemyWave].ActivationPoint;
+		em.ForEach([&](EntityID& id, EntityType et)
 		{
-			Vector2 activation = list.Gauntlets[list.Gauntlets[CurrentGauntlet].CurrentEnemyWave].ActivationPoint;
 			if(et.type == EntityCategory::E_ENEMY && AITools::EntityisAtPoint(id,activation,14.0f))
 			{
 				activated = true;
-				return;
 			}
 		});
 		return activated;
@@ -233,14 +232,14 @@ namespace DeltaEngine
 			env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(enemy).original_point = position + rand1;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(enemy).type = EntityCategory::E_ENEMY;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerID = 4;
-			env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerCheck = 11;
+			env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerCheck = 9;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
 
 			env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).MaxAcceleration = 0;
 
 			if (type == "lancer")
 			{
-				env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(enemy).key = "idle_lancer";
+				env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(enemy).key = "lancer_spawn";
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).isTrigger = true;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Movespeed = LancerData.Movespeed;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Mass = LancerData.Mass;

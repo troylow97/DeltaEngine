@@ -42,6 +42,15 @@ namespace DeltaEngine
       LancerAIData(LancerAIData& d);
   };
 
+  class LancerSpawn : public AIState //Mosquito
+  {
+  public:
+      LancerSpawn(Vector2& chase_range);
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
+  };
+	
   class IdleLancer : public AIState //Mosquito
   {
   public:
