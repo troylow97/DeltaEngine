@@ -241,7 +241,7 @@
                 },
                 "Type": "box",
                 "Trigger": false,
-                "Collision Layer": 13,
+                "Collision Layer": 9,
                 "Collision Layer ID": 2
             },
             "Image": {

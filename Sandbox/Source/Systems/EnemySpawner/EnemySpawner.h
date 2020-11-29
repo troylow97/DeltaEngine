@@ -54,6 +54,7 @@ namespace DeltaEngine
 		EnemyData SerpentipedeData;
 		EnemyData FiddlerData;
 		EnemyData LancerData;
+		Vector2 ActivationPoint;
 		int CurrentGauntlet;
 		bool GauntletIsActive;
 	

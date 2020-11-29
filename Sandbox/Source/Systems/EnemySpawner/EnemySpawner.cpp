@@ -110,6 +110,7 @@ namespace DeltaEngine
 			auto& Gauntlet = list.Gauntlets[i];
 			if (AITools::EntityisAtPoint(player, list.Gauntlets[i].ActivationPoint) && !Gauntlet.isActivated && !Gauntlet.isFinished)
 			{
+				ActivationPoint = list.Gauntlets[i].ActivationPoint;
 				CurrentGauntlet = i;
 				GauntletIsActive = true;
 				Gauntlet.isActivated = true;
@@ -119,8 +120,7 @@ namespace DeltaEngine
 
 		if (GauntletIsActive)
 		{
-			if(list.Gauntlets[CurrentGauntlet].CurrentEnemyWave > list.Gauntlets[CurrentGauntlet].EnemyWaves.size() || 
-				CheckForOutsideEnemies())
+			if (CheckForOutsideEnemies())
 				return;
 			
 			for (auto it = SpawnedEnemiesInGauntlet.begin();it != SpawnedEnemiesInGauntlet.end();)
@@ -185,10 +185,9 @@ namespace DeltaEngine
 	bool EnemySpawner::CheckForOutsideEnemies()
 	{
 		bool activated = false;
-		Vector2 activation = list.Gauntlets[list.Gauntlets[CurrentGauntlet].CurrentEnemyWave].ActivationPoint;
 		em.ForEach([&](EntityID& id, EntityType et)
 		{
-			if(et.type == EntityCategory::E_ENEMY && AITools::EntityisAtPoint(id,activation,14.0f))
+			if(et.type == EntityCategory::E_ENEMY && AITools::EntityisAtPoint(id, ActivationPoint,14.0f))
 			{
 				activated = true;
 			}
