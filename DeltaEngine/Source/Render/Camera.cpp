@@ -43,6 +43,31 @@ namespace DeltaEngine
     }
   }
 
+  Camera::Camera(const Camera& rhs) :
+    cameraIndex{static_cast<int>(allCameras.size())},
+    frameBuffer {},
+    m_AspectRatio{rhs.m_AspectRatio},
+    m_ViewportSize{rhs.m_ViewportSize},
+    m_Size{rhs.m_Size},
+    m_zNear{rhs.m_zNear},
+    m_zFar{rhs.m_zFar},
+    backgroundColor{rhs.backgroundColor}
+  {
+    allCameras.push_back( this );
+  }
+
+  Camera& Camera::operator=(const Camera& rhs)
+  {
+    m_AspectRatio = rhs.m_AspectRatio;
+    m_ViewportSize = rhs.m_ViewportSize;
+    m_Size = rhs.m_Size;
+    m_zNear = rhs.m_zNear;
+    m_zFar = rhs.m_zFar;
+    backgroundColor = rhs.backgroundColor;
+    return *this;
+  }
+
+
   Matrix4x4 Camera::GetProjectionMatrix() const
   {
     return Matrix4x4::Rotate(transform.rotation) * Matrix4x4::Ortho(

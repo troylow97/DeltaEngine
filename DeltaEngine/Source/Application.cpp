@@ -121,7 +121,7 @@ Application::~Application()
 
 void Application::Run()
 {
-  auto entitycamera = env.pECS->GetWorld().GetEntityManager().CreateEntity<Transform, Camera>();
+  auto entitycamera = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
 
   while ( env.pWin->Running() )
   {
