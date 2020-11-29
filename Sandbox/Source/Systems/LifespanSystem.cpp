@@ -53,8 +53,8 @@ namespace DeltaEngine
 
     for (EntityID i : DestroyedEntities)
     {
-      std::cout << "Destroying entity id: " << i.index << std::endl;
-      auto ref = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(i);
+      //std::cout << "Destroying entity id: " << i.index << std::endl;
+      //auto ref = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(i);
       em.DestroyEntity(i);
     }
     Profiler::Instance().Record("Lifespan System");
