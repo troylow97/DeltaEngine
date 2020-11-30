@@ -35,9 +35,9 @@ namespace DeltaEngine
 
     unsigned int GetRendererID() const;
 
-    void AutoSlice(Vector2 pivot = Vector2(0.5f, 0.5f), bool noOverlap = true);
-    void Slice(TextureInfo info);
-    void SliceAll(unsigned int columns, unsigned int rows, Vector2 pivot = Vector2(0.5f, 0.5f));
+    void Slice(std::vector<TextureInfo>);
+    std::vector<TextureInfo> AutoSlice(Vector2 pivot = Vector2(0.5f, 0.5f), bool noOverlap = true);
+    std::vector<TextureInfo> SliceAll(unsigned int columns, unsigned int rows, Vector2 pivot = Vector2(0.5f, 0.5f));
 
     Vector2 GetOffset(unsigned int index);
     Vector2 GetSize(unsigned int index);
@@ -49,8 +49,9 @@ namespace DeltaEngine
 
     TextureWrapMode wrapMode;
 
+    void UpdateWrapMode(int mode);
     void InitTexture();
-    void LoadMetaFile(std::string filepath);
-    void UpdateMetaFile(std::string filepath);
+    void LoadInfoFile();
+    void UpdateInfoFile();
   };
 }

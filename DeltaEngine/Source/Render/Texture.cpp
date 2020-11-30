@@ -52,9 +52,15 @@ namespace DeltaEngine
     return m_RendererID;
   }
 
-  void Texture2D::AutoSlice(Vector2 pivot, bool noOverlap)
+  void Texture2D::Slice(std::vector<TextureInfo> newInfo)
   {
-    textureInfo.clear();
+    textureInfo = newInfo;
+    UpdateInfoFile();
+  }
+
+  std::vector<TextureInfo> Texture2D::AutoSlice(Vector2 pivot, bool noOverlap)
+  {
+    std::vector<TextureInfo> slicedInfo;
     unsigned char* m_Data = stbi_load(m_Filepath.c_str(), &m_Width, &m_Height, &m_Channels, 0);
 
     DeltaEngine_CORE_INFO("Auto slicing texture \"{}\"", m_Filepath);
@@ -62,7 +68,7 @@ namespace DeltaEngine
     // only auto slice if there is an alpha channel
     if (m_Channels != 4)
     {
-      textureInfo.push_back({
+      slicedInfo.push_back({
         Vector2(0, 0), Vector2(static_cast<float>(m_Width), static_cast<float>(m_Height)), Vector2(0.5f, 0.5f)
       });
     }
@@ -107,7 +113,7 @@ namespace DeltaEngine
             while (!stack.empty());
 
             // add the info
-            textureInfo.push_back({
+            slicedInfo.push_back({
               Vector2(1.0f * minX, 1.0f * minY),
               Vector2(1.0f * maxX - minX, 1.0f * maxY - minY),
               pivot
@@ -125,47 +131,24 @@ namespace DeltaEngine
     if (m_Data)
       stbi_image_free(m_Data);
 
-    UpdateMetaFile(m_Filepath + ".info");
+    return slicedInfo;
   }
 
-  void Texture2D::Slice(TextureInfo info)
+  std::vector<TextureInfo> Texture2D::SliceAll(unsigned int columns, unsigned int rows, Vector2 pivot)
   {
-    textureInfo.push_back(info);
-    UpdateMetaFile(m_Filepath + ".info");
-  }
-
-  void Texture2D::SliceAll(unsigned int columns, unsigned int rows, Vector2 pivot)
-  {
-    textureInfo.clear();
+    std::vector<TextureInfo> slicedInfo;
     for (size_t y = 0; y < rows; ++y)
     {
       for (size_t x = 0; x < columns; ++x)
       {
-        textureInfo.push_back({
+        slicedInfo.push_back({
           Vector2(static_cast<float>(m_Width) / columns * x, static_cast<float>(m_Height) / rows * y),
           Vector2(static_cast<float>(m_Width) / columns, static_cast<float>(m_Height) / rows),
           pivot
         });
       }
     }
-    UpdateMetaFile(m_Filepath + ".info");
-
-    std::ofstream file{m_Name + ".clip"};
-    if (file.is_open())
-    {
-      for (size_t i = 0; i < textureInfo.size(); ++i)
-      {
-        file << m_Name << "_i_" << i << std::endl;
-        file << "key " << m_Name << std::endl;
-        file << "value " << i << std::endl << std::endl;
-      }
-      file << std::endl << "%" << std::endl;
-      file.close();
-    }
-    else
-    {
-      DeltaEngine_CORE_ERROR("Failed to create animation clip \"{}\"!", m_Name);
-    }
+    return slicedInfo;
   }
 
   Vector2 Texture2D::GetOffset(unsigned int index)
@@ -193,10 +176,15 @@ namespace DeltaEngine
     return m_Filepath;
   }
 
+  void Texture2D::UpdateWrapMode(int mode)
+  {
+    wrapMode = TextureWrapMode(mode);
+    UpdateInfoFile();
+    InitTexture();
+  }
+  
   void Texture2D::InitTexture()
   {
-    LoadMetaFile(m_Filepath + ".info");
-
     stbi_set_flip_vertically_on_load(0);
 
     GLCall(glGenTextures(1, &m_RendererID));
@@ -209,6 +197,8 @@ namespace DeltaEngine
       DeltaEngine_CORE_ERROR("ERROR: Couldn't create texture {}!", m_Filepath);
       m_Filepath = "";
     }
+
+    LoadInfoFile();
 
     int glWrapMode = GL_REPEAT;
     switch (wrapMode)
@@ -241,14 +231,14 @@ namespace DeltaEngine
     if (pos != std::string::npos)
       m_Name.erase(pos);
 
-    UpdateMetaFile(m_Filepath + ".info");
+    UpdateInfoFile();
   }
 
-  void Texture2D::LoadMetaFile(std::string filepath)
+  void Texture2D::LoadInfoFile()
   {
     std::ifstream file;
-    DeltaEngine_CORE_TRACE("Loading Texture info file \"{}\"...", filepath.c_str());
-    file.open((filepath).c_str());
+    DeltaEngine_CORE_TRACE("Loading Texture info file \"{}\"...", m_Filepath + ".info");
+    file.open(m_Filepath + ".info");
 
     std::string str;
     textureInfo.clear();
@@ -272,18 +262,17 @@ namespace DeltaEngine
     }
     else
     {
-      DeltaEngine_CORE_WARN("Texture info file \"{}\" doesn't exist, creating automatically", filepath.c_str());
+      DeltaEngine_CORE_WARN("Texture info file \"{}\" doesn't exist, creating automatically", m_Filepath + ".info");
       textureInfo.push_back({
         Vector2(0, 0), Vector2(static_cast<float>(m_Width), static_cast<float>(m_Height)), Vector2(0.5f, 0.5f)
       });
-      UpdateMetaFile(filepath);
-      textureInfo.push_back(TextureInfo());
+      UpdateInfoFile();
     }
   }
 
-  void Texture2D::UpdateMetaFile(std::string filepath)
+  void Texture2D::UpdateInfoFile()
   {
-    std::ofstream file{filepath.c_str()};
+    std::ofstream file{ m_Filepath + ".info" };
     if (file.is_open())
     {
       for (size_t i = 0; i < textureInfo.size(); ++i)
@@ -301,7 +290,7 @@ namespace DeltaEngine
     }
     else
     {
-      DeltaEngine_CORE_ERROR("Failed to create info file for texture \"{}\"!", filepath);
+      DeltaEngine_CORE_ERROR("Failed to create info file for texture \"{}\"!", m_Filepath + ".info");
     }
   }
 }

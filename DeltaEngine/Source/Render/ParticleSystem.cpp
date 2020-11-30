@@ -377,7 +377,7 @@ namespace DeltaEngine
     }
   }
 
-  void ParticleSystem::Render(const Camera& camera)
+  void ParticleSystem::Render(const Camera&)
   {
     /*
     Update();
