@@ -421,7 +421,7 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
   SetEntityArchetype( new_id, arch );
 
   DataChunk *current_chunk = m_entities[id.index].chunk;
-  DataChunk *new_chunk = m_entities[id.index].chunk;
+  DataChunk *new_chunk = m_entities[new_id.index].chunk;
 
   size_t current_index = m_entities[id.index].chunk_index;
   size_t new_index = m_entities[new_id.index].chunk_index;

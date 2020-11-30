@@ -73,7 +73,7 @@ namespace DeltaEngine
                                     str.find_last_of('.'));
               auto ref = env.pManager->Get<Texture2D>(key);
 
-              for (size_t i = 0; i < ref->textureInfo.size() - 1; i++)
+              for (size_t i = 0; i < ref->textureInfo.size(); i++)
               {
                 Sprite sprite = {ref->GetName(), static_cast<unsigned>(i)};
                 uint64_t id = sprite.GetTexture()->GetRendererID();

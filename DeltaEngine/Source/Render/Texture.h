@@ -12,6 +12,11 @@ namespace DeltaEngine
     Vector2 pivot;
   };
 
+  enum class TextureWrapMode
+  {
+    Repeat, Mirror, Clamp
+  };
+
   class Texture2D
   {
     unsigned int m_RendererID;
@@ -30,18 +35,21 @@ namespace DeltaEngine
 
     unsigned int GetRendererID() const;
 
-    void AutoSlice();
+    void AutoSlice(Vector2 pivot = Vector2(0.5f, 0.5f), bool noOverlap = true);
     void Slice(TextureInfo info);
-    void SliceAll(unsigned int columns, unsigned int rows);
+    void SliceAll(unsigned int columns, unsigned int rows, Vector2 pivot = Vector2(0.5f, 0.5f));
 
     Vector2 GetOffset(unsigned int index);
     Vector2 GetSize(unsigned int index);
     Vector2 GetPivot(unsigned int index);
 
     std::string GetName();
+    std::string GetFilepath();
     std::vector<TextureInfo> textureInfo;
-  private:
-    void InitTexture(std::string filepath);
+
+    TextureWrapMode wrapMode;
+
+    void InitTexture();
     void LoadMetaFile(std::string filepath);
     void UpdateMetaFile(std::string filepath);
   };
