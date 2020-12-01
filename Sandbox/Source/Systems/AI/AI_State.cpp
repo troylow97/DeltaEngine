@@ -51,9 +51,6 @@ namespace DeltaEngine
       {
           AITools::FlyTowardsPoint(monster, player_pos);
       }
-
-  	
-  	
   }
 	
 //////////////////////////////////////////////////////////////////////////////////	
