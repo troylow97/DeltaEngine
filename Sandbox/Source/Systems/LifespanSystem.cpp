@@ -30,8 +30,6 @@ namespace DeltaEngine
 	
   void LifespanSystem::Update()
   {
-    DestroyedEntities.clear();
-
     em.ForEach([&](EntityID& id, Health& hp, EntityType& et)
     {
       LimitCurrentHealthToMaxHealth(hp);
@@ -50,14 +48,21 @@ namespace DeltaEngine
       }
     });
 
+    for (EntityID i : DestroyedEntities) //having a duplicate of this is necessary for now
+    {
+        em.DestroyEntity(i);
+    }
+    DestroyedEntities.clear();
+  	
     UpdateLifespan();
 
     for (EntityID i : DestroyedEntities)
     {
-      std::cout << "Destroying entity id: " << i.index << std::endl;
-      auto ref = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(i);
       em.DestroyEntity(i);
     }
+
+    DestroyedEntities.clear();
+  	
     Profiler::Instance().Record("Lifespan System");
   }
 

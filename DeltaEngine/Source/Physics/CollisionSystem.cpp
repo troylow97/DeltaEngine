@@ -139,7 +139,7 @@ namespace DeltaEngine
         Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
         Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
 
-        if (!c1.isTrigger && !c2.isTrigger && AABBvsAABB_Manifold(c1, c2, it1->m) && it1->m.penetration > 0.001f)
+        if ((AABBvsAABB_Manifold(c1, c2, it1->m) && it1->m.penetration > 0.001f) && (!c1.isTrigger && !c2.isTrigger))
         {
           CollisionResponse(c1, r1, c2, r2, it1->m);
 
