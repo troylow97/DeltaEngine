@@ -207,7 +207,6 @@ namespace DeltaEngine
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(wall).isMoveable = false;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(wall).CollisionLayerID = 1;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(wall).CollisionLayerCheck = 14;
-		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(wall).size = Vector2{ 0.5,6.0 };
 		return wall;
 	}
 	
