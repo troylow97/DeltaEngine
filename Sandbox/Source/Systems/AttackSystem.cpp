@@ -117,17 +117,17 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(id))
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.7,0.7 }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+            EntityID missile = CreateProjectile(id, Vector2{ 0.7,0.5 }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.6f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { 850, 0 };
+                em.GetComponent<RigidBody>(missile).AccumulatedForce = { 1450, 0 };
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
             }
             else
             {
-                em.GetComponent<Transform>(missile).position.x -= 0.5f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { -850, 0 };
+                em.GetComponent<Transform>(missile).position.x -= 0.6f;
+                em.GetComponent<RigidBody>(missile).AccumulatedForce = { -1450, 0 };
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
             }
         }
@@ -146,7 +146,7 @@ namespace DeltaEngine
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
 
         		//Apply knockback to lancer
-                em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 1500.0f;
+                em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 4000.0f;
         		
         	}
             else
