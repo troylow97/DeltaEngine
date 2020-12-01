@@ -49,7 +49,7 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 20.489999771118165,
+                    "x": 1.0,
                     "y": 1.0
                 },
                 "Type": "box",
@@ -70,8 +70,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.4381983280181885,
-                    "y": 2.8188650608062746,
+                    "x": 0.3109303116798401,
+                    "y": 1.1483194828033448,
                     "z": 0.0
                 },
                 "Scale": {
@@ -99,8 +99,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -0.4381983280181885,
-                    "y": 2.8188650608062746
+                    "x": 0.3109303116798401,
+                    "y": 1.1483194828033448
                 },
                 "Offset": {
                     "x": 0.0,
@@ -137,7 +137,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -174,17 +174,17 @@
                 "Range Damage": 1,
                 "Melee Damage": 1,
                 "Melee Combo Damage": 3,
-                "Number Of Combo": 0,
+                "Number Of Combo": 1,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": 0.0,
+                "Cooldown Timer": 0.0833333432674408,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
+                "Combo Cooldown Timer": 1.3666667938232422,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "Start Combo Cooldown Timer": false
+                "Start Combo Cooldown Timer": true
             }
         },
         {
@@ -199,8 +199,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.4381983280181885,
-                    "y": 2.8188650608062746,
+                    "x": 0.2607175409793854,
+                    "y": 0.005600680597126484,
                     "z": 0.0
                 },
                 "Scale": {
@@ -228,8 +228,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -0.4381983280181885,
-                    "y": 2.8188650608062746
+                    "x": 0.2607175409793854,
+                    "y": 0.005600680597126484
                 },
                 "Offset": {
                     "x": 0.0,
@@ -266,7 +266,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -303,17 +303,17 @@
                 "Range Damage": 1,
                 "Melee Damage": 1,
                 "Melee Combo Damage": 3,
-                "Number Of Combo": 0,
+                "Number Of Combo": 3,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": 0.0,
+                "Cooldown Timer": 0.050000011920928958,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
+                "Combo Cooldown Timer": 0.8666672706604004,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "Start Combo Cooldown Timer": false
+                "Start Combo Cooldown Timer": true
             }
         },
         {
@@ -328,8 +328,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.4381983280181885,
-                    "y": 2.8188650608062746,
+                    "x": 0.29618674516677859,
+                    "y": 0.002511248691007495,
                     "z": 0.0
                 },
                 "Scale": {
@@ -357,8 +357,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -0.4381983280181885,
-                    "y": 2.8188650608062746
+                    "x": 0.29618674516677859,
+                    "y": 0.002511248691007495
                 },
                 "Offset": {
                     "x": 0.0,
@@ -395,7 +395,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -432,17 +432,17 @@
                 "Range Damage": 1,
                 "Melee Damage": 1,
                 "Melee Combo Damage": 3,
-                "Number Of Combo": 0,
+                "Number Of Combo": 3,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": 0.0,
+                "Cooldown Timer": 0.050000011920928958,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
+                "Combo Cooldown Timer": 0.8666672706604004,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "Start Combo Cooldown Timer": false
+                "Start Combo Cooldown Timer": true
             }
         },
         {
@@ -458,7 +458,7 @@
             "Transform": {
                 "Position": {
                     "x": 0.2879994809627533,
-                    "y": -0.0005195401608943939,
+                    "y": -0.0005162302404642105,
                     "z": 0.0
                 },
                 "Scale": {
@@ -487,7 +487,7 @@
             "Collider": {
                 "Center": {
                     "x": 0.2879994809627533,
-                    "y": -0.0005195401608943939
+                    "y": -0.0005162302404642105
                 },
                 "Offset": {
                     "x": 0.0,
@@ -545,7 +545,7 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 200,
+                "Current Health": 159,
                 "Max Health": 200,
                 "Invulnerable": false
             },
