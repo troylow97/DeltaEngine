@@ -5,8 +5,8 @@
 
 namespace DeltaEngine
 {
-  GamePanel::GamePanel(std::string str)
-    : IPanel(str)
+  GamePanel::GamePanel(std::string str, Editor& e)
+    : IPanel(str, e)
   {
     m_enabled = true;
   }
@@ -18,7 +18,7 @@ namespace DeltaEngine
 
   void GamePanel::Render()
   {
-    ImGui::Begin(m_name.c_str(), &m_enabled, ImGuiWindowFlags_MenuBar);
+    ImGui::Begin(m_name.c_str(), nullptr, ImGuiWindowFlags_MenuBar);
 
     ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 

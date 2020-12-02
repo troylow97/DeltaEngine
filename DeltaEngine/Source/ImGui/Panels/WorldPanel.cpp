@@ -1,15 +1,13 @@
 #include "ImGui/Panels/WorldPanel.h"
-#include "Input/InputManager.h"
 #include "ImGui/Panels/LoggerPanel.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
-#include "ImGui//Panels/LoggerPanel.h"
 #include "Render/Camera.h"
 #include "ImGui/Editor.h"
 namespace DeltaEngine
 {
-WorldPanel::WorldPanel( std::string str ) :
-  IPanel( str )
+WorldPanel::WorldPanel( std::string str, Editor& e ) :
+  IPanel( str, e )
 {
   m_enabled = true;
 }

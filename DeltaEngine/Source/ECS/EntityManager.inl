@@ -359,7 +359,7 @@ inline size_t EntityManager::InsertEntityChunk( DataChunk *chunk, EntityID id, b
 
 inline void EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
 {
-  assert( chunk->header.index >= index );
+  assert( chunk->header.index > index );
 
   Description *desc = chunk->header.owner->components_desc;
 
@@ -421,7 +421,7 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
   SetEntityArchetype( new_id, arch );
 
   DataChunk *current_chunk = m_entities[id.index].chunk;
-  DataChunk *new_chunk = m_entities[id.index].chunk;
+  DataChunk *new_chunk = m_entities[new_id.index].chunk;
 
   size_t current_index = m_entities[id.index].chunk_index;
   size_t new_index = m_entities[new_id.index].chunk_index;

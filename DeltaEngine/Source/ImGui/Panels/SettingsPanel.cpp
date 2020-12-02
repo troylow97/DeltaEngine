@@ -5,8 +5,8 @@
 
 namespace DeltaEngine
 {
-  SettingsPanel::SettingsPanel(std::string str) :
-    IPanel(str)
+  SettingsPanel::SettingsPanel(std::string str, Editor& e) :
+    IPanel(str, e)
   {
     m_enabled = true;
   }

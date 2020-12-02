@@ -1,7 +1,7 @@
 #include "GameClock.h"
 
 #include "Core/Debugging/Profiler/Profiler.h"
-
+#include "Core/Debugging/Logger/Log.h"
 namespace DeltaEngine
 {
   GameClock::GameClock(f32 fps)
@@ -17,6 +17,7 @@ namespace DeltaEngine
       m_timesteps(0),
       m_paused(false)
   {
+    DeltaEngine_CORE_INFO("Game clock initialized, FPS Cap - {} ", fps);
   }
 
   f32 GameClock::TimeScale() const

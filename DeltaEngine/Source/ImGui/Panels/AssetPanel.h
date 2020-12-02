@@ -1,6 +1,5 @@
 #pragma once
 
-#include <memory>
 #include "IPanel.h"
 
 namespace DeltaEngine
@@ -8,7 +7,7 @@ namespace DeltaEngine
   class AssetPanel : public IPanel
   {
   public:
-    AssetPanel(std::string str);
+    AssetPanel(std::string str, Editor& e);
     ~AssetPanel();
     void Render() override;
   };
