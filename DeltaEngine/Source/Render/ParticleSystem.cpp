@@ -377,8 +377,9 @@ namespace DeltaEngine
     }
   }
 
-  void ParticleSystem::Render(const Camera& camera)
+  void ParticleSystem::Render(const Camera&)
   {
+    /*
     Update();
 
     Matrix4x4 proj = camera.GetProjectionMatrix();
@@ -424,6 +425,7 @@ namespace DeltaEngine
     GLCall(glDrawElementsInstanced( GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr, m_activeParticles ));
 
     vao.Unbind();
+    */
   }
 
   void ParticleSystem::Emit(unsigned int count)

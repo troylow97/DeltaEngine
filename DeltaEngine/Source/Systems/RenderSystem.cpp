@@ -23,7 +23,7 @@ namespace DeltaEngine
       (i.m_SortingOrder < j.m_SortingOrder);
   }
 
-  void DrawRenderer2D(EntityManager& em, Camera& c)
+  void DrawRenderer2D(EntityManager& em, Camera& c, Transform& tr)
   {
     for (EntityID ID : sortedRenderers)
     {
@@ -41,8 +41,8 @@ namespace DeltaEngine
           Vector2 tiling = i.m_Tiling * i.m_Sprite.GetTiling();
           Vector2 pivot = i.m_Sprite.GetPivot();
 
-          Matrix4x4 proj = c.GetProjectionMatrix();
-          Matrix4x4 view = c.GetViewMatrix();
+          Matrix4x4 proj = c.GetProjectionMatrix(tr);
+          Matrix4x4 view = c.GetViewMatrix(tr);
           Matrix4x4 model = Matrix4x4::Scale(Vector3{
               (i.m_Sprite ? (i.m_Sprite.GetWidth() / 200.0f) : 1) * i.m_Size.x * (i.m_FlipX ? -1 : 1),
               (i.m_Sprite ? (i.m_Sprite.GetHeight() / 200.0f) : 1) * i.m_Size.y * (i.m_FlipY ? -1 : 1), 1
@@ -93,8 +93,8 @@ namespace DeltaEngine
       {
         Text& x = em.GetComponent<Text>(ID);
         glClear(GL_DEPTH_BUFFER_BIT);
-        Matrix4x4 proj = c.GetProjectionMatrix();
-        Matrix4x4 view = c.GetViewMatrix();
+        Matrix4x4 proj = c.GetProjectionMatrix(tr);
+        Matrix4x4 view = c.GetViewMatrix(tr);
         Matrix4x4 model = t.LocalToWorldMatrix();
 
         // activate corresponding render state	
@@ -127,7 +127,7 @@ namespace DeltaEngine
     std::sort(sortedRenderers.begin(), sortedRenderers.end(), SortSprites);
 
     // camera entities
-    em.ForEach([&](EntityID id, Camera& c)
+    em.ForEach([&](EntityID id, Transform& tr, Camera& c)
       {
 #ifndef DE_EDITOR
         c.SetViewportSize(1.0f * GetEnv().pWin->Width());
@@ -136,7 +136,7 @@ namespace DeltaEngine
 
         c.Start();
         // loop through every object
-        DrawRenderer2D(em, c);
+        DrawRenderer2D(em, c, tr);
 
         c.End();
 
@@ -151,7 +151,7 @@ namespace DeltaEngine
 
 #ifdef DE_EDITOR
     Camera::editorCamera->Start();
-    DrawRenderer2D(em, *Camera::editorCamera);
+    DrawRenderer2D(em, *Camera::editorCamera, Camera::editorCameraTransform);
 #endif // DE_EDITOR
 
     Profiler::Instance().Record("Render System Update");

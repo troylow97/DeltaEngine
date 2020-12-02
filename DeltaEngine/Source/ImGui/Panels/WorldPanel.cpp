@@ -51,7 +51,7 @@ void WorldPanel::Render()
           Editor::selection_transform.scale = { 0.2f, 0.2f, 0.0f };
         }
         if ( ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked( 0 ) )
-          Camera::editorCamera->transform.position = em.GetComponent<Transform>( { e_id } ).position;
+          Camera::editorCameraTransform.position = em.GetComponent<Transform>( { e_id } ).position;
       }
     }
   }

@@ -11,11 +11,16 @@ namespace DeltaEngine
 {
   std::vector<Camera*> Camera::allCameras;
   Camera* Camera::editorCamera;
+  Transform Camera::editorCameraTransform;
 
   Camera::Camera(bool editor) :
-    cameraIndex{editor ? -1 : static_cast<int>(allCameras.size())}, frameBuffer{},
-    m_AspectRatio{1.0f * env.pWin->Width() / env.pWin->Height()}, m_ViewportSize{1.0f * env.pWin->Width()},
-    m_Size{4}, m_zNear{-100}, m_zFar{100},
+    cameraIndex{editor ? -1 : static_cast<int>(allCameras.size())},
+    frameBuffer{},
+    m_AspectRatio{1.0f * env.pWin->Width() / env.pWin->Height()},
+    m_ViewportSize{1.0f * env.pWin->Width()},
+    m_Size{4},
+    m_zNear{-100},
+    m_zFar{100},
     backgroundColor{49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1}
   {
     if (!editor)
@@ -23,13 +28,53 @@ namespace DeltaEngine
     else
     {
       if (!editorCamera)
+      {
         editorCamera = this;
+        editorCameraTransform = Transform();
+      }
       else
       {
-        DeltaEngine_CORE_ERROR("An editor camera already exists, only one should exist at a time");
+        DeltaEngine_CORE_ERROR("An editor camera already exists, only one should exist at a time.");
         delete this;
       }
     }
+  }
+  Camera::Camera(const Camera& copy) :
+    cameraIndex{ static_cast<int>(allCameras.size()) },
+    frameBuffer{},
+    m_AspectRatio{ copy.m_AspectRatio },
+    m_ViewportSize{ copy.m_ViewportSize },
+    m_Size{ copy.m_Size },
+    m_zNear{ copy.m_zNear },
+    m_zFar{ copy.m_zFar },
+    backgroundColor{ copy.backgroundColor }
+  {
+    if (&copy == editorCamera)
+    {
+      DeltaEngine_CORE_ERROR("Copying the editor camera is not allowed!");
+      delete this;
+    }
+    else
+      allCameras.push_back(this);
+  }
+
+  Camera::Camera(Camera&& move) :
+    cameraIndex{ static_cast<int>(allCameras.size()) },
+    frameBuffer{},
+    m_AspectRatio{ move.m_AspectRatio },
+    m_ViewportSize{ move.m_ViewportSize },
+    m_Size{ move.m_Size },
+    m_zNear{ move.m_zNear },
+    m_zFar{ move.m_zFar },
+    backgroundColor{ move.backgroundColor }
+  {
+    if (&move == editorCamera)
+    {
+      DeltaEngine_CORE_ERROR("Copying the editor camera is not allowed!");
+      delete this;
+    }
+    else
+      allCameras.push_back(this);
   }
 
   Camera::~Camera()
@@ -43,32 +88,40 @@ namespace DeltaEngine
     }
   }
 
-  Camera::Camera(const Camera& rhs) :
-    cameraIndex{static_cast<int>(allCameras.size())},
-    frameBuffer {},
-    m_AspectRatio{rhs.m_AspectRatio},
-    m_ViewportSize{rhs.m_ViewportSize},
-    m_Size{rhs.m_Size},
-    m_zNear{rhs.m_zNear},
-    m_zFar{rhs.m_zFar},
-    backgroundColor{rhs.backgroundColor}
+  Camera& Camera::operator=(const Camera& copy)
   {
-    allCameras.push_back( this );
-  }
-
-  Camera& Camera::operator=(const Camera& rhs)
-  {
-    m_AspectRatio = rhs.m_AspectRatio;
-    m_ViewportSize = rhs.m_ViewportSize;
-    m_Size = rhs.m_Size;
-    m_zNear = rhs.m_zNear;
-    m_zFar = rhs.m_zFar;
-    backgroundColor = rhs.backgroundColor;
+    if (&copy == editorCamera)
+    {
+      DeltaEngine_CORE_ERROR("Copying the editor camera is not allowed!");
+      return *this;
+    }
+    m_AspectRatio = copy.m_AspectRatio;
+    m_ViewportSize = copy.m_ViewportSize;
+    m_Size = copy.m_Size;
+    m_zNear = copy.m_zNear;
+    m_zFar = copy.m_zFar;
+    backgroundColor = copy.backgroundColor;
     return *this;
   }
 
+  Camera& Camera::operator=(Camera&& move)
+  {
+    // moving camera should not be allowed, just copy
+    if (&move == editorCamera)
+    {
+      DeltaEngine_CORE_ERROR("Copying the editor camera is not allowed!");
+      return *this;
+    }
+    m_AspectRatio = move.m_AspectRatio;
+    m_ViewportSize = move.m_ViewportSize;
+    m_Size = move.m_Size;
+    m_zNear = move.m_zNear;
+    m_zFar = move.m_zFar;
+    backgroundColor = move.backgroundColor;
+    return *this;
+  }
 
-  Matrix4x4 Camera::GetProjectionMatrix() const
+  Matrix4x4 Camera::GetProjectionMatrix(Transform transform) const
   {
     return Matrix4x4::Rotate(transform.rotation) * Matrix4x4::Ortho(
       -m_Size * m_AspectRatio,
@@ -76,17 +129,17 @@ namespace DeltaEngine
       -m_Size, m_Size, m_zNear, m_zFar);
   }
 
-  Matrix4x4 Camera::GetViewMatrix() const
+  Matrix4x4 Camera::GetViewMatrix(Transform transform) const
   {
     return Matrix4x4::Transpose(Matrix4x4::Translate(-transform.position));
   }
 
-  Vector3 Camera::Max() const
+  Vector3 Camera::Max(Transform transform) const
   {
     return Vector3(m_Size * m_AspectRatio + transform.position.x, m_Size + transform.position.y);
   }
 
-  Vector3 Camera::Min() const
+  Vector3 Camera::Min(Transform transform) const
   {
     return Vector3(-m_Size * m_AspectRatio + transform.position.x, -m_Size + transform.position.y);
   }
