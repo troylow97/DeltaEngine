@@ -9,7 +9,7 @@ namespace DeltaEngine
   class SpriteEditorPanel : public IPanel
   {
   public:
-    SpriteEditorPanel(std::string str);
+    SpriteEditorPanel(std::string str, Editor& e);
     ~SpriteEditorPanel();
     void Render() override;
 

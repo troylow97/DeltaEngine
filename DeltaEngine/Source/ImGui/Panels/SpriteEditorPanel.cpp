@@ -18,8 +18,8 @@ static ImVec2 initialPos { 0.f,0.f };
 static ImVec2 previousPos { 0.f, 0.f };
 static bool move { false };
 
-SpriteEditorPanel::SpriteEditorPanel( std::string str )
-  : IPanel( str )
+SpriteEditorPanel::SpriteEditorPanel( std::string str, Editor& e )
+  : IPanel( str, e )
 {
   m_enabled = true;
 
@@ -184,12 +184,12 @@ void SpriteEditorPanel::Render()
           //  ImGui::Text( ( texture->GetName() + '_' + std::to_string( i ) ).c_str()  );
           //  ImGui::EndDragDropSource();
           //}
+
           ImGui::SetItemAllowOverlap();
           ImGui::SetCursorScreenPos( { center.x - 10.f, center.y - 10.f } );
           ImGui::Button( ( "##Center" + std::to_string( i ) ).c_str(), { 20.f, 20.f } );
           if(ImGui::IsItemClicked(0))
           {
-            std::cout << "Inside" << std::endl;
             id = i;
             move = true;
           }

@@ -6,8 +6,8 @@
 
 namespace DeltaEngine
 {
-  LoggerPanel::LoggerPanel(std::string str) :
-    IPanel(str)
+  LoggerPanel::LoggerPanel(std::string str, Editor& e) :
+    IPanel(str, e)
   {
     m_enabled = true;
     m_logger_auto_scroll = true;

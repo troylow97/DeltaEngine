@@ -40,20 +40,20 @@
 namespace DeltaEngine
 {
 
-void NewFile()
+void NewFile(Editor& e)
 {
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-  Editor::entity_selected = false;
-  Editor::entity_id = u64_max;
+  e.entity_selected = false;
+  e.entity_id = u64_max;
 }
 
-void OpenFile()
+void OpenFile(Editor& e)
 {
   std::optional<std::string> path = FileDialogs::OpenFile( "DeltaEngine Scene (*.json)\0*.json\0" );
 
   if ( path )
   {
-    NewFile();
+    NewFile(e);
     GetEnv().pECS->GetWorld().Load( *path );
   }
 }
@@ -71,67 +71,69 @@ void AddEntity()
   GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity();
 }
 
-void CreateEntityFromArchetype()
+void CreateEntityFromArchetype(Editor& e)
 {
-  if ( Editor::entity_selected )
-    GetEnv().pECS->GetWorld().GetEntityManager().CreateEntityFromArchetype( { Editor::entity_id } );
+  if ( e.entity_selected )
+    GetEnv().pECS->GetWorld().GetEntityManager().CreateEntityFromArchetype( { e.entity_id } );
 }
 
-void CloneEntity()
+void CloneEntity(Editor& e)
 {
-  if ( Editor::entity_selected )
-    GetEnv().pECS->GetWorld().GetEntityManager().CloneEntity( { Editor::entity_id } );
+  if ( e.entity_selected )
+    GetEnv().pECS->GetWorld().GetEntityManager().CloneEntity( { e.entity_id } );
 }
 
-void DeleteEntity()
+void DeleteEntity(Editor& e)
 {
-  if ( Editor::entity_selected && Editor::entity_id != u64_max )
+  if ( e.entity_selected && e.entity_id != u64_max )
   {
-    auto id = Editor::entity_id;
+    auto id = e.entity_id;
     GetEnv().pECS->GetWorld().GetEntityManager().DestroyEntity( { id } );
-    Editor::entity_selected = false;
-    Editor::entity_id = u64_max;
-    DeltaEngine_CORE_TRACE( "Deleted Entity - {}", id );
+    e.entity_selected = false;
+    e.entity_id = u64_max;
+    DeltaEngine_CORE_INFO( "Deleted Entity - {}", id );
   }
 }
 
 void Editor::MenuBar()
 {
-if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_N ) )
-    NewFile();
+  if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_N ) )
+    NewFile(*this);
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_O ) )
-    OpenFile();
+    OpenFile(*this);
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_S ) )
     SaveFile();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyDown( DEVK_LSHIFT ) && ImGui::IsKeyReleased( DEVK_A ) )
     AddEntity();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyDown( DEVK_LSHIFT ) && ImGui::IsKeyReleased( DEVK_C ) )
-    CreateEntityFromArchetype();
+    CreateEntityFromArchetype(*this);
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyDown( DEVK_LSHIFT ) && ImGui::IsKeyReleased( DEVK_V ) )
-    CloneEntity();
+    CloneEntity(*this);
   else if ( ImGui::IsKeyReleased( DEVK_DELETE ) )
-    DeleteEntity();
+    DeleteEntity(*this);
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_1 ) )
-    m_panels[0]->Enable();
+    m_panels[6]->Enable();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_2 ) )
-    m_panels[1]->Enable();
+    m_panels[5]->Enable();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_3 ) )
-    m_panels[2]->Enable();
+    m_panels[4]->Enable();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_4 ) )
     m_panels[3]->Enable();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_5 ) )
-    m_panels[4]->Enable();
+    m_panels[2]->Enable();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_6 ) )
-    m_panels[5]->Enable();
+    m_panels[1]->Enable();
+  else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_6 ) )
+    m_panels[0]->Enable();
 
   if ( ImGui::BeginMainMenuBar() )
   {
     if ( ImGui::BeginMenu( "Scene" ) )
     {
       if ( ImGui::MenuItem( "New", " Ctrl+N" ) )
-        NewFile();
+        NewFile(*this);
       if ( ImGui::MenuItem( "Open", " Ctrl+O" ) )
-        OpenFile();
+        OpenFile(*this);
       if ( ImGui::MenuItem( "Save", " Ctrl+S" ) )
         SaveFile();
       ImGui::EndMenu();
@@ -141,27 +143,29 @@ if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_N ) )
       if ( ImGui::MenuItem( "Add Entity", " Ctrl+Shift+A" ) )
         AddEntity();
       if ( ImGui::MenuItem( "Clone Entity", " Ctrl+Shift+V" ) )
-        CloneEntity();
+        CloneEntity(*this);
       if ( ImGui::MenuItem( "Clone Entity Default", " Ctrl+Shift+C" ) )
-        CreateEntityFromArchetype();
+        CreateEntityFromArchetype(*this);
       if ( ImGui::MenuItem( "Delete Entity", " Del" ) )
-        DeleteEntity();
+        DeleteEntity(*this);
 
       ImGui::EndMenu();
     }
     if ( ImGui::BeginMenu( "View" ) )
     {
-      if ( ImGui::MenuItem( "World", " Ctrl+1" ) )
+      if ( ImGui::MenuItem( "World Hierarchy", " Ctrl+1" ) )
+        m_panels[6]->Enable();
+      if ( ImGui::MenuItem( "Property Inspector", " Ctrl+2" ) )
         m_panels[5]->Enable();
-      if ( ImGui::MenuItem( "Inspector", " Ctrl+2" ) )
+      if ( ImGui::MenuItem( "Tilemap Panel", " Ctrl+3" ) )
         m_panels[4]->Enable();
-      if ( ImGui::MenuItem( "Tilemap", " Ctrl+3" ) )
+      if ( ImGui::MenuItem( "Assets Panel", " Ctrl+4" ) )
         m_panels[3]->Enable();
-      if ( ImGui::MenuItem( "Assets", " Ctrl+4" ) )
+      if ( ImGui::MenuItem( "Settings Panel", " Ctrl+5" ) )
         m_panels[2]->Enable();
-      if ( ImGui::MenuItem( "Settings", " Ctrl+5" ) )
+      if ( ImGui::MenuItem( "Console Panel", " Ctrl+6" ) )
         m_panels[1]->Enable();
-      if ( ImGui::MenuItem( "Console", " Ctrl+6" ) )
+      if ( ImGui::MenuItem( "Sprite Editor", " Ctrl+7" ) )
         m_panels[0]->Enable();
       ImGui::EndMenu();
     }
@@ -171,6 +175,7 @@ if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_N ) )
 
 Editor::Editor()
 {
+  DeltaEngine_CORE_INFO( "Initializing Editor..." );
   ImGui::CreateContext();
   ImGuiIO &io = ImGui::GetIO();
   io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_DockingEnable |
@@ -194,27 +199,37 @@ Editor::Editor()
   ImGui_ImplWin32_Init( env.pWin->GetHandle(), RenderModule::openGLSystem->GetGLContext() );
   ImGui_ImplOpenGL3_Init( "#version 410" );
 
-  m_panels.push_back( std::make_unique<LoggerPanel>( "Console" ) ); // 0
-  m_panels.push_back( std::make_unique<SettingsPanel>( "Settings" ) );//1
-  m_panels.push_back( std::make_unique<AssetPanel>( "Assets" ) );//2
-  m_panels.push_back( std::make_unique<TilemapPanel>( "Tilemap" ) );//3
-  m_panels.push_back( std::make_unique<PropertyInspectorPanel>( "Property Inspector" ) );//4
-  m_panels.push_back( std::make_unique<WorldPanel>( "World" ) );//5
-  m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport" ) );//6
-  m_panels.push_back( std::make_unique<ButtonsPanel>( "Buttons" ) );//7
-  m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor" ) );
-  m_panels.push_back( std::make_unique<GamePanel>( "Game" ) );
+  m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor", *this ) ); // 0
+  m_panels.push_back( std::make_unique<LoggerPanel>( "Console", *this ) ); // 1
+  m_panels.push_back( std::make_unique<SettingsPanel>( "Settings", *this ) );// 2
+  m_panels.push_back( std::make_unique<AssetPanel>( "Assets", *this ) );// 3
+  m_panels.push_back( std::make_unique<TilemapPanel>( "Tilemap", *this ) );// 4
+  m_panels.push_back( std::make_unique<PropertyInspectorPanel>( "Property Inspector", *this ) );// 5
+  m_panels.push_back( std::make_unique<WorldPanel>( "World", *this ) );// 6
+  m_panels.push_back( std::make_unique<GamePanel>( "Game", *this ) ); // 7
+  m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport", *this ) );// 8
+  m_panels.push_back( std::make_unique<ButtonsPanel>( "Buttons", *this ) );// 9
+  DeltaEngine_CORE_INFO( "Initializing Editor successful" );
 }
 
 Editor::~Editor()
 {
+  DeltaEngine_CORE_INFO( "Shutting down Editor..." );
   ImGui_ImplOpenGL3_Shutdown();
   ImGui_ImplWin32_Shutdown();
   ImGui::DestroyContext();
+  DeltaEngine_CORE_INFO( "Shutting down Editor successful" );
 }
 
 void Editor::Begin()
 {
+  if (entity_selected && tool_selection == Tool::EntitySelector )
+  {
+    auto& t = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<Transform>( { entity_id } );
+    selection_transform.position = t.position;
+  }
+
+
   ImGui_ImplOpenGL3_NewFrame();
   ImGui_ImplWin32_NewFrame();
   ImGui::NewFrame();
@@ -300,6 +315,7 @@ void Editor::End()
     ImGui::RenderPlatformWindowsDefault();
     wglMakeCurrent( backup_current_context, RenderModule::openGLSystem->GetGLContext() );
   }
+
   Profiler::Instance().Record( "ImGui" );
 }
 

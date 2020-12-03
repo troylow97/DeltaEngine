@@ -8,8 +8,8 @@
 
 namespace DeltaEngine
 {
-  ButtonsPanel::ButtonsPanel(std::string str) :
-    IPanel(str)
+  ButtonsPanel::ButtonsPanel(std::string str, Editor& e) :
+    IPanel(str, e)
   {
     m_enabled = true;
   }
