@@ -5,6 +5,7 @@
 #include <ostream>
 
 #include "FMODWrapper.h"
+#include "Core/Debugging/Logger/Log.h"
 
 namespace DeltaEngine
 {
@@ -30,12 +31,18 @@ namespace DeltaEngine
   void AudioEngine::Initialize()
   {
     if (!fmod)
+    {
+      DeltaEngine_CORE_INFO( "Initializing FMOD..." );
       fmod = new FMODWrapper();
+      DeltaEngine_CORE_INFO( "Initializing FMOD successful" );
+    }
   }
 
   void AudioEngine::Shutdown()
   {
+    DeltaEngine_CORE_INFO( "Shutting down FMOD..." );
     delete fmod;
+    DeltaEngine_CORE_INFO( "Shutting down FMOD successful" );
   }
 
   void AudioEngine::Update()

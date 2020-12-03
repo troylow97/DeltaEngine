@@ -3,7 +3,6 @@
 #include <vector>
 #include <memory>
 
-
 #include "Components/Transform.h"
 #include "examples/imgui_impl_win32.h"
 
@@ -22,11 +21,6 @@ namespace DeltaEngine
     void MenuBar();
 
   public:
-    // Drop Manager
-    inline static bool drag;
-
-    // Custom Font Awesome Management
-    inline static ImFont* font_awesome;
 
     // Tool toggle
     enum class Tool : unsigned
@@ -36,15 +30,22 @@ namespace DeltaEngine
       EntitySelector
     };
 
-    inline static Tool tool_selection;
+    // Drop Manager
+    static inline bool drag;
 
-    inline static bool entity_selected;
-    inline static size_t entity_id;
+    // Custom Font Awesome Management, can consider opting DIP
+    static inline ImFont* font_awesome;
 
-    inline static Transform selection_transform;
+    // Can consider opting for DIP
+    static inline Tool tool_selection;
 
-    // Simulation toggle
-    inline static bool simulation_running;
+    // Can consider DIP & include custom debug draw system;
+    static inline bool entity_selected;
+    static inline size_t entity_id;
+    static inline Transform selection_transform;
+
+    // Can consider DIP Simulation toggle To be implemented
+    static inline bool simulation_running;
 
 
     Editor();

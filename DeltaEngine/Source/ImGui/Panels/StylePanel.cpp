@@ -3,8 +3,8 @@
 #include "ImGui/Editor.h"
 namespace DeltaEngine
 {
-StylePanel::StylePanel( std::string str ) :
-  IPanel( str )
+StylePanel::StylePanel( std::string str, Editor& e ) :
+  IPanel( str, e )
 {
   m_enabled = true;
 }

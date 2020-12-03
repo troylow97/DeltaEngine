@@ -16,17 +16,14 @@ namespace DeltaEngine
           Font* data = new Font(file.generic_string());
           Set(file.generic_string().substr(0, file.generic_string().find_last_of('.')),
               data, AssetState::Final, AssetLifetime::Persistent);
-
-          DeltaEngine_CORE_TRACE("Font Key: {}", file.generic_string());
         }
     }
 
     void DoLoad(AssetKey key) override
     {
-      std::string str = key.Key() + ".ttf";
-      if(FileUtils::FileExists( str ))
+      if(FileUtils::FileExists( key.Key() + ".ttf" ))
       {
-        Font* data = new Font(str);
+        Font* data = new Font(key.Key() + ".ttf");
         Set( key, data, AssetState::Final, AssetLifetime::Persistent );
       }
     }
@@ -38,8 +35,6 @@ namespace DeltaEngine
         Set(key, nullptr, AssetState::NotFound, AssetLifetime::Persistent);
       else
         Set(key, data, AssetState::Final, AssetLifetime::Persistent);
-
-      DeltaEngine_CORE_TRACE("Font Key: {}", str);
     }
   };
 } // namespace DeltaEngine

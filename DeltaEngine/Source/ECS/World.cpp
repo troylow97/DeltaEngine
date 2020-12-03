@@ -18,8 +18,11 @@ namespace DeltaEngine
 
   World::World(): em(std::make_unique<EntityManager>())
   {
+    DeltaEngine_CORE_INFO( "Initializing World..." );
     CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem,
                   PhysicsDrawSystem>();
+    DeltaEngine_CORE_INFO( "Initializing World successful" );
+
 #ifndef DE_EDITOR
   m_pause = false;
 #endif
@@ -44,6 +47,7 @@ namespace DeltaEngine
 
   void World::ShutdownSystems()
   {
+    DeltaEngine_CORE_INFO( "Shutting down World's Systems" );
     for (auto& [hash, system] : systems)
       system->Shutdown();
   }

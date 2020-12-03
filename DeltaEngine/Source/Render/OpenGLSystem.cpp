@@ -61,9 +61,10 @@ namespace DeltaEngine
       Mesh::Init();
       Font::Init();
       Gizmos::Init();
-
+#ifdef DE_EDITOR
       Camera* editorCam = new Camera(true);
       editorCam->backgroundColor = Color(71 / 255.0f, 71 / 255.0f, 71 / 255.0f, 1);
+#endif
     }
 
     void OpenGLSystem::Update()
@@ -79,12 +80,15 @@ namespace DeltaEngine
 
     void OpenGLSystem::Exit()
     {
+      DeltaEngine_CORE_INFO( "Shutting down OpenGL..." );
+#ifdef DE_EDITOR
+      delete Camera::editorCamera;
+#endif
       Gizmos::Exit();
       Font::Exit();
       Mesh::Exit();
       CleanRenderingEnvironment();
-      
-      DeltaEngine_CORE_INFO("OpenGL system exited");
+      DeltaEngine_CORE_INFO("Shutting down OpenGL successful");
     }
 
     HDC OpenGLSystem::GetWindowContext()
