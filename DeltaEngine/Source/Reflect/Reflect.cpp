@@ -1,5 +1,6 @@
 #pragma once
 
+#include <rttr/registration>
 #include "Reflect.h"
 
 #include "EngineConfig.h"
@@ -8,17 +9,15 @@
 #include "ECS/ComponentMeta.h"
 #include "ECS/EntityManager.h"
 
-#include <rttr/registration>
-
-
-#include "../../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "Assets/AssetKey.h"
 #include "Core/Utils/Json/JsonSerialize.h"
 #include "Core/GlobalStruct.h"
-#include "AI/Waypoint.h"
-#include "AI/AI_State.h"
+#include "../../Sandbox/Source/Systems/AI/Waypoint.h"
+#include "../../Sandbox/Source/Systems/AI/AI_State.h"
 #include "../../Sandbox/Source/Systems/EnemySpawner/EnemySpawner.h"
 #include "../../Sandbox/Source/Systems/EnemySpawner/EnemyData.h"
+#include "../../Sandbox/Source/Systems/RespawnSystem.h"
+#include "../../Sandbox/Source/Systems/AttackSystem.h"
 
 namespace DeltaEngine
 {
@@ -52,19 +51,20 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "enemy_type", &EnemyWave::EnemyType )
     .property( "spawn_area", &EnemyWave::SpawnArea );
 
-rttr::registration::class_<Gauntlet>( "Gauntlet" )
-    .property( "enemy_waves", &Gauntlet::EnemyWaves )
-    .property( "activation_point", &Gauntlet::ActivationPoint )
-    .property( "current_enemy_wave", &Gauntlet::CurrentEnemyWave )( rttr::metadata( "NO_SERIALIZE", true ) )
-    .property( "is_activated", &Gauntlet::isActivated )( rttr::metadata( "NO_SERIALIZE", true ) )
-    .property( "is_finished", &Gauntlet::isFinished )( rttr::metadata( "NO_SERIALIZE", true ) );
+  rttr::registration::class_<Gauntlet>("Gauntlet")
+      .property("enemy_waves", &Gauntlet::EnemyWaves)
+      .property("activation_point", &Gauntlet::ActivationPoint)
+      .property("wall_offset_right", &Gauntlet::WallOffsetRight)
+      .property("wall_offset_left", &Gauntlet::WallOffsetLeft)
+      .property("current_enemy_wave", &Gauntlet::CurrentEnemyWave)(rttr::metadata("NO_SERIALIZE", true))
+      .property("is_activated", &Gauntlet::isActivated)(rttr::metadata("NO_SERIALIZE", true))
+      .property("is_finished", &Gauntlet::isFinished)(rttr::metadata("NO_SERIALIZE", true));
 
-rttr::registration::class_<GauntletsList>( "Gauntlets" )
-    .property( "gauntlets", &GauntletsList::Gauntlets );
-
-
-rttr::registration::class_<RespawnPoints>( "RespawnPoints" )
-    .property( "respawn_points", &RespawnPoints::m_respawns );
+  rttr::registration::class_<GauntletsList>("Gauntlets")
+      .property("gauntlets", &GauntletsList::Gauntlets);
+  	
+  rttr::registration::class_<RespawnPoints>("RespawnPoints")
+      .property("respawn_points", &RespawnPoints::m_respawns);
 
   rttr::registration::class_<EngineConfig>( "Config" )
     .property( "window", &EngineConfig::win_name )
@@ -120,16 +120,13 @@ rttr::registration::class_<RespawnPoints>( "RespawnPoints" )
     rttr::value( "ray", ColliderType::RAY )
   );
 
-  rttr::registration::enumeration<EntityCategory>( "EntityCategory" )
-  (
-    rttr::value( "none", EntityCategory::E_NONE ),
-    rttr::value( "wall", EntityCategory::E_WALL ),
-    rttr::value( "player", EntityCategory::E_PLAYER ),
-    rttr::value( "enemy", EntityCategory::E_ENEMY ),
-    rttr::value( "player_bullet", EntityCategory::E_PLAYER_BULLET ),
-    rttr::value( "player_punch", EntityCategory::E_PLAYER_PUNCH ),
-    rttr::value( "charge", EntityCategory::E_LANCER_CHARGE )
-  );
+    rttr::registration::enumeration<EntityCategory>("EntityCategory")
+    (
+      rttr::value("none", EntityCategory::E_NONE),
+      rttr::value("wall", EntityCategory::E_WALL),
+      rttr::value("player", EntityCategory::E_PLAYER),
+      rttr::value("enemy", EntityCategory::E_ENEMY)
+    );
 
   rttr::registration::enumeration<Alignment>( "Alignment" )
   (
@@ -168,33 +165,31 @@ rttr::registration::class_<RespawnPoints>( "RespawnPoints" )
     .property( "Scale", &Transform::scale )( rttr::policy::prop::bind_as_ptr )
     .property( "Rotation", &Transform::rotation )( rttr::policy::prop::bind_as_ptr );
 
-  rttr::registration::class_<RigidBody>( "Rigidbody" )
-    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits ) )
-    .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "Direction", &RigidBody::Direction )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                  ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "Velocity", &RigidBody::Velocity )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                 ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "Reflected Vector", &RigidBody::ReflectedVector )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                               ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "Acceleration", &RigidBody::Acceleration )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                        ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "Accumulated Force", &RigidBody::AccumulatedForce )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                                  ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "Point End", &RigidBody::PointEnd )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                  ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "Mass", &RigidBody::Mass )( rttr::policy::prop::bind_as_ptr )
-    .property( "Move Speed", &RigidBody::Movespeed )( rttr::policy::prop::bind_as_ptr )
-    .property( "Restitution", &RigidBody::Restitution )( rttr::policy::prop::bind_as_ptr )
-    .property( "Friction Coefficient", &RigidBody::FrictionCoeff )( rttr::policy::prop::bind_as_ptr )
-    .property( "Inherent Acceleration", &RigidBody::InherentAcceleration )( rttr::policy::prop::bind_as_ptr )(
-      rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "Max Acceleration", &RigidBody::MaxAcceleration )( rttr::policy::prop::bind_as_ptr )
-    .property( "Acceleration Pickup", &RigidBody::AccelerationPickup )( rttr::policy::prop::bind_as_ptr )
-    .property( "Gravity", &RigidBody::hasGravity )( rttr::policy::prop::bind_as_ptr )
-    .property( "Moveable", &RigidBody::isMoveable )( rttr::policy::prop::bind_as_ptr )
-    .property( "Jumping", &RigidBody::isJumping )( rttr::policy::prop::bind_as_ptr )(
-      rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
+    rttr::registration::class_<RigidBody>("Rigidbody")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Direction", &RigidBody::Direction)(rttr::metadata("NO_SERIALIZE", true),
+                                                    (rttr::metadata("NO_EDITOR", true)))
+      .property("Velocity", &RigidBody::Velocity)(rttr::metadata("NO_SERIALIZE", true),
+                                                   (rttr::metadata("NO_EDITOR", true)))
+      .property("Reflected Vector", &RigidBody::ReflectedVector)(rttr::metadata("NO_SERIALIZE", true),
+                                                                 (rttr::metadata("NO_EDITOR", true)))
+      .property("Acceleration", &RigidBody::Acceleration)(rttr::metadata("NO_SERIALIZE", true),
+                                                          (rttr::metadata("NO_EDITOR", true)))
+      .property("Accumulated Force", &RigidBody::AccumulatedForce)(rttr::metadata("NO_SERIALIZE", true),
+                                                                    (rttr::metadata("NO_EDITOR", true)))
+      .property("Point End", &RigidBody::PointEnd)(rttr::metadata("NO_SERIALIZE", true),
+                                                    (rttr::metadata("NO_EDITOR", true)))
+      .property("Mass", &RigidBody::Mass)(rttr::policy::prop::bind_as_ptr)
+      .property("Move Speed", &RigidBody::Movespeed)(rttr::policy::prop::bind_as_ptr)
+      .property("Restitution", &RigidBody::Restitution)(rttr::policy::prop::bind_as_ptr)
+      .property("Friction Coefficient", &RigidBody::FrictionCoeff)(rttr::policy::prop::bind_as_ptr)
+      .property("Inherent Acceleration", &RigidBody::InherentAcceleration)(rttr::policy::prop::bind_as_ptr)(
+        rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Max Acceleration", &RigidBody::MaxAcceleration)(rttr::policy::prop::bind_as_ptr)
+      .property("Acceleration Pickup", &RigidBody::AccelerationPickup)(rttr::policy::prop::bind_as_ptr)
+      .property("Gravity", &RigidBody::hasGravity)(rttr::policy::prop::bind_as_ptr)
+      .property("Moveable", &RigidBody::isMoveable)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Collider>( "Collider" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Collider>()->bits ) )
@@ -271,12 +266,12 @@ rttr::registration::class_<RespawnPoints>( "RespawnPoints" )
     .property( "Previous", &Input::previousKey )
     .property( "Current", &Input::currentKey );
 
-  rttr::registration::class_<AI>( "AI" )
-    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<AI>()->bits ) )
-    .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "Original Point", &AI::original_point )( rttr::policy::prop::bind_as_ptr )
-    .property( "State", &AI::key )( rttr::policy::prop::bind_as_ptr )
-    .property( "Transition", &AI::transition )( rttr::policy::prop::bind_as_ptr );
+    rttr::registration::class_<AI>("AI")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Original Point", &AI::original_point)(rttr::policy::prop::bind_as_ptr)
+      .property("AIState", &AI::key)(rttr::policy::prop::bind_as_ptr)
+      .property("Transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<EntityType>( "Entity Type" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<EntityType>()->bits ) )
@@ -290,27 +285,37 @@ rttr::registration::class_<RespawnPoints>( "RespawnPoints" )
     .property( "Max Health", &Health::MaxHealth )( rttr::policy::prop::bind_as_ptr )
     .property( "Invulnerable", &Health::isInvulnerable )( rttr::policy::prop::bind_as_ptr );
 
-  rttr::registration::class_<Attack>( "Attack" )
-    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Attack>()->bits ) )
-    .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "Range Damage", &Attack::RangedDamage )( rttr::policy::prop::bind_as_ptr )
-    .property( "Melee Damage", &Attack::MeleeDamage )( rttr::policy::prop::bind_as_ptr )
-    .property( "Max Cooldown", &Attack::MaxCooldown )( rttr::policy::prop::bind_as_ptr )
-    .property( "Cooldown Timer", &Attack::CooldownTimer )( rttr::policy::prop::bind_as_ptr )
-    .property( "Ranged Attack", &Attack::RangeAttack )( rttr::policy::prop::bind_as_ptr )
-    .property( "Melee Attack", &Attack::MeleeAttack )( rttr::policy::prop::bind_as_ptr );
+    rttr::registration::class_<Attack>("Attack")
+        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
+        .constructor<>()(rttr::policy::ctor::as_object)
+        .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
+        .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
+        .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
+        .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
+        .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
+        .property("Max Cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
+        .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
+        .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)
+        .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
+        .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Lifespan>( "Lifespan" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "Timer", &Lifespan::Timer )( rttr::policy::prop::bind_as_ptr );
 
-  rttr::registration::class_<Player>( "Player" )
-      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Player>()->bits ) )
-      .constructor<>()( rttr::policy::ctor::as_object )
-      .property( "Respawn Point", &Player::RespawnPoint )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-      .property( "Is Dead", &Player::IsDead )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
-}
+    rttr::registration::class_<Player>("Player")
+        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Player>()->bits))
+        .constructor<>()(rttr::policy::ctor::as_object)
+        .property("Respawn Point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Is Dead", &Player::isDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Is Jumping", &Player::isJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Is Dashing", &Player::isDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+  }
 
 }
 

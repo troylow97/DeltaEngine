@@ -151,7 +151,7 @@ inline const std::vector<Entity> &EntityManager::GetEntities()
 
 inline void EntityManager::DestroyEntity( EntityID id )
 {
-  ASSERT_ERROR( IsEntityValid( id ), "EntityManager: destroying invalid entity" )
+    ASSERT_ERROR(IsEntityValid(id), "EntityManager: destroying invalid entity")
     EraseEntityChunk( m_entities[id.index].chunk, m_entities[id.index].chunk_index );
   DeallocateEntity( id );
 }

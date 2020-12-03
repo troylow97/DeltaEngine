@@ -1,18 +1,5 @@
-/**********************************************************************************
-* \file			AIStates
-* \brief		Contains all the base abstract class of any AI State
-* \author		Low Yee Troy, 100% Code Contribution
-* \version		1.0
-* \date			2020
-*
-* \note			Course: GAM200
-* \copyright	Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
-				or disclosure of this file or its contents without the prior
-				written consent of DigiPen Institute of Technology is prohibited.
-**********************************************************************************/
+#pragma once
 #include <unordered_map>
-#include "Core/GlobalStruct.h"
-#include "AI/AITools.h"
 #include "Waypoint.h"
 namespace DeltaEngine
 {
@@ -55,6 +42,15 @@ namespace DeltaEngine
       LancerAIData(LancerAIData& d);
   };
 
+  class LancerSpawn : public AIState //Mosquito
+  {
+  public:
+      LancerSpawn(Vector2& chase_range);
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
+  };
+	
   class IdleLancer : public AIState //Mosquito
   {
   public:
