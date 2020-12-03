@@ -123,8 +123,7 @@ void Editor::MenuBar()
     m_panels[2]->Enable();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_6 ) )
     m_panels[1]->Enable();
-  else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_6 ) )
-    m_panels[0]->Enable();
+
 
   if ( ImGui::BeginMainMenuBar() )
   {
@@ -165,8 +164,6 @@ void Editor::MenuBar()
         m_panels[2]->Enable();
       if ( ImGui::MenuItem( "Console Panel", " Ctrl+6" ) )
         m_panels[1]->Enable();
-      if ( ImGui::MenuItem( "Sprite Editor", " Ctrl+7" ) )
-        m_panels[0]->Enable();
       ImGui::EndMenu();
     }
     ImGui::EndMainMenuBar();

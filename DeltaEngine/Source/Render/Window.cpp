@@ -10,6 +10,7 @@
 #include <locale>
 #include <windowsx.h>
 #include "Core/Debugging/Profiler/Profiler.h"
+#include "Core/GameClock/GameClock.h"
 
 std::wstring to_wstring(std::string str)
 {
@@ -98,6 +99,10 @@ namespace DeltaEngine
 
   void Window::Update()
   {
+    std::wstringstream wss;
+    wss << m_title << L", FPS - " << std::floor(env.pClock->FrameCount());
+    SetWindowText( m_hwndl, wss.str().c_str());
+
     MSG msg = {};
 
     if (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))

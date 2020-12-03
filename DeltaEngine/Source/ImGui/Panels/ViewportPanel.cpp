@@ -27,7 +27,7 @@ void KeysInput()
 
   Camera::editorCamera->m_Size -= 2 * speed * ImGui::GetIO().MouseWheel * GetEnv().pClock->DeltaTime();
 
-  if ( ImGui::GetIO().MouseReleased[0] && !dragging )
+  if ( ImGui::IsMouseReleased(0) && !dragging )
   {
     if ( Editor::tool_selection == Editor::Tool::EntitySelector )
     {
@@ -36,7 +36,7 @@ void KeysInput()
 
       em.ForEach( [&]( EntityID &id, Transform &t, Image &i )
       {
-        if ( CollisionIntersection_RectMouse( t.position, i.m_Size, curr_mouse ) )
+        if ( CollisionIntersection_RectMouse( t.position, i.GetWorldSize(), curr_mouse ) )
           entities.push_back( id.index );
       } );
 
@@ -69,13 +69,13 @@ void KeysInput()
       }
     }
   }
-  else if ( ImGui::GetIO().MouseClicked[0] )
+  else if ( ImGui::IsMouseClicked(0) )
   {
     if ( Editor::entity_selected )
       if ( CollisionIntersection_RectMouse( Editor::selection_transform.position, Editor::selection_transform.scale, curr_mouse ) )
         dragging = true;
   }
-  else if ( ImGui::GetIO().MouseDown[0] )
+  else if ( ImGui::IsMouseDown(0) )
   {
     auto offset = curr_mouse - prev_mouse;
 
@@ -164,7 +164,6 @@ void ViewportPanel::Render()
     if ( const ImGuiPayload *payload = ImGui::AcceptDragDropPayload( "TILES" ); payload )
     {
       std::string payload_n = *static_cast<std::string *>( payload->Data );
-      DeltaEngine_CORE_INFO( "Payload String {}", payload_n );
 
       // do the tiling
       EntityID tile = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity<Renderer2D, Image>();

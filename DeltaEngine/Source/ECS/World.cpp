@@ -9,90 +9,98 @@
 
 namespace DeltaEngine
 {
-  bool World::SystemExist(size_t digest)
-  {
-    if (systems.find(digest) == systems.end())
-      return false;
-    return true;
-  }
+bool World::SystemExist( size_t digest )
+{
+  if ( systems.find( digest ) == systems.end() )
+    return false;
+  return true;
+}
 
-  World::World(): em(std::make_unique<EntityManager>())
-  {
-    DeltaEngine_CORE_INFO( "Initializing World..." );
-    CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem,
-                  PhysicsDrawSystem>();
-    DeltaEngine_CORE_INFO( "Initializing World successful" );
+World::World() : em( std::make_unique<EntityManager>() )
+{
+  DeltaEngine_CORE_INFO( "Initializing World..." );
+  CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem,
+    PhysicsDrawSystem>();
+  DeltaEngine_CORE_INFO( "Initializing World successful" );
 
 #ifndef DE_EDITOR
   m_pause = false;
 #endif
-  }
+}
 
-  void World::SetPause(bool pause)
+void World::SetPause( bool pause )
+{
+  m_pause = pause;
+}
+
+
+EntityManager &World::GetEntityManager() const
+{
+  return *em;
+}
+
+void World::InitSystems()
+{
+  for ( auto &[hash, system] : systems )
+    system->Initialize();
+}
+
+void World::ShutdownSystems()
+{
+  DeltaEngine_CORE_INFO( "Shutting down World's Systems" );
+  for ( auto &[hash, system] : systems )
+    system->Shutdown();
+}
+
+void World::Run()
+{
+  //Input System Update
+  systems[CHash::Hash<InputSystem>().digest]->Update();
+
+  if ( !m_pause )
   {
-    m_pause = pause;
-  }
-
-
-  EntityManager& World::GetEntityManager() const
-  {
-    return *em;
-  }
-
-  void World::InitSystems()
-  {
-    for (auto& [hash, system] : systems)
-      system->Initialize();
-  }
-
-  void World::ShutdownSystems()
-  {
-    DeltaEngine_CORE_INFO( "Shutting down World's Systems" );
-    for (auto& [hash, system] : systems)
-      system->Shutdown();
-  }
-
-  void World::Update()
-  {
-     //Input System Update
-    systems[CHash::Hash<InputSystem>().digest]->Update();
+    // State Machine Update
     systems[CHash::Hash<AISystem>().digest]->Update();
 
-    if (!m_pause)
-    {
-      // Logic Update
-      for (auto hash : update_sequence)
-        systems[hash]->Update();
 
-      // Physics Update
-      systems[CHash::Hash<PhysicsSystem>().digest]->Update();
-      systems[CHash::Hash<CollisionSystem>().digest]->Update();
+    // Physics Update
+    systems[CHash::Hash<PhysicsSystem>().digest]->Update();
+    systems[CHash::Hash<CollisionSystem>().digest]->Update();
 
-      // Logic Update
-      for (auto hash : update_sequence)
-        systems[hash]->LateUpdate();
-    }
+    // Logic Update
+    Update();
+
     systems[CHash::Hash<AnimationSystem>().digest]->Update();
-    systems[CHash::Hash<RenderSystem>().digest]->Update();
-    systems[CHash::Hash<PhysicsDrawSystem>().digest]->Update();
-    systems[CHash::Hash<RenderSystem>().digest]->LateUpdate();
-  }
 
-  void World::LateUpdate()
-  {
-    for (auto hash : late_update_sequence)
-      systems[hash]->LateUpdate();
+    // Logic Late Update
+    LateUpdate();
   }
+  systems[CHash::Hash<RenderSystem>().digest]->Update();
+  systems[CHash::Hash<PhysicsDrawSystem>().digest]->Update();
+  systems[CHash::Hash<RenderSystem>().digest]->LateUpdate();
+}
 
-  void World::Save( std::string filename )
-  {
-    JsonFile file;
-    file.StartWriter( filename ).WriteEntities( *em ).EndWriter();
-  }
+void World::Update()
+{
+  for ( auto hash : update_sequence )
+    systems[hash]->Update();
+}
 
-  void World::Load(std::string filename)
-  {
-    JsonFile file;
-    file.StartReader(filename).LoadEntities(*em).EndReader();
-  }
+void World::LateUpdate()
+{
+  for ( auto hash : late_update_sequence )
+    systems[hash]->LateUpdate();
+}
+
+void World::Save( std::string filename )
+{
+  JsonFile file;
+  file.StartWriter( filename ).WriteEntities( *em ).EndWriter();
+}
+
+void World::Load( std::string filename )
+{
+  JsonFile file;
+  file.StartReader( filename ).LoadEntities( *em ).EndReader();
+}
 }

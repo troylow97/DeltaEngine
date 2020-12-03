@@ -39,8 +39,8 @@ void RecursiveDirectoryNodes( const Directory &dir, ImGuiTreeNodeFlags flags )
   }
 }
 
-AssetPanel::AssetPanel( std::string str, Editor& e ) :
-  IPanel( str,e )
+AssetPanel::AssetPanel( std::string str, Editor &e ) :
+  IPanel( str, e )
 {
   m_enabled = true;
 }
@@ -99,7 +99,7 @@ void AssetPanel::Render()
         filter.Draw();
         ImGui::Text( "" );
 
-        int columns =static_cast<int>( ( width - width / 4.0f ) / 148.0f);
+        int columns = static_cast<int>( ( width - width / 4.0f ) / 148.0f );
         columns = columns < 1 ? 1 : columns;
         ImGui::Columns( columns, nullptr, false );
 
@@ -162,6 +162,19 @@ void AssetPanel::Render()
                 ImGui::Text( ref.filename().generic_string().c_str() );
                 ImGui::EndDragDropSource();
               }
+
+              if ( ref.extension() == ".png" || ref.extension() == ".jpg" )
+                if ( ImGui::IsItemClicked() )
+                  if ( ImGui::IsMouseDoubleClicked( 0 ) )
+                  {
+                    m_editor.m_panels[0]->Enable();
+                    if ( !m_editor.m_panels[0]->IsEnabled() )
+                      m_editor.m_panels[0]->Enable();
+
+                    auto key = str.substr( 0, str.find_last_of( '.' ) );
+                    m_editor.textureKey.assign( key );
+                  }
+
               ImGui::PopID();
               ImGui::NextColumn();
             }

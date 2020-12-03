@@ -24,9 +24,9 @@ namespace DeltaEngine
 
   Shader::~Shader()
   {
-    DeltaEngine_CORE_TRACE("Deleting Shader {0} and {1}", m_filepath.vertexSource, m_filepath.fragmentSource);
+    DeltaEngine_CORE_TRACE("Deleting Shader {0} and {1}...", m_filepath.vertexSource, m_filepath.fragmentSource);
     glDeleteProgram(m_RendererID);
-    DeltaEngine_CORE_TRACE("Shader deleted");
+    DeltaEngine_CORE_TRACE("Shaders deleted");
   }
 
   void Shader::Bind() const
