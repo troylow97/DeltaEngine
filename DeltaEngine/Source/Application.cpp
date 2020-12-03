@@ -125,8 +125,6 @@ Application::~Application()
 
 void Application::Run()
 {
-  auto entitycamera = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
-
   while ( env.pWin->Running() )
   {
     if ( env.pWin->Focus() )
@@ -134,7 +132,7 @@ void Application::Run()
       Profiler::Instance().FrameStart();
       env.pClock->Update();
       InputManager::Instance().Update();
-      env.pECS->GetWorld().Update();
+      env.pECS->GetWorld().Run();
 #ifdef DE_EDITOR
       m_Editor->Begin();
       m_Editor->Render();
