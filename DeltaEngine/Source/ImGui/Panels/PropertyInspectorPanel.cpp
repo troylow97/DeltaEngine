@@ -56,8 +56,6 @@ void PropertyInspectorPanel::Render()
           std::cout << result->bits_signature << std::endl;
           c_list.push_back( RT_Reflect::RT_Checker( ref.bits ).get_name().to_string() );
         }
-      }
-
 
       static size_t selected = 0;
 
