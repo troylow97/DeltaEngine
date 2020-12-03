@@ -9,12 +9,12 @@ namespace DeltaEngine
   class SpriteEditorPanel : public IPanel
   {
   public:
-    SpriteEditorPanel(std::string str);
+    SpriteEditorPanel(std::string str, Editor& e);
     ~SpriteEditorPanel();
+    void Enable() override;
     void Render() override;
 
   private:
     std::vector<TextureInfo> info;
-    char textureName[128] = "Textures/PROPS";
   };
 }

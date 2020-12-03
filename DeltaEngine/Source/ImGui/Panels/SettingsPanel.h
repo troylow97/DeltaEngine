@@ -7,7 +7,7 @@ namespace DeltaEngine
   class SettingsPanel : public IPanel
   {
   public:
-    SettingsPanel(std::string str);
+    SettingsPanel(std::string str, Editor& e);
     ~SettingsPanel();
     void Render() override;
   };

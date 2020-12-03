@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 
 
 #include "Components/Transform.h"
@@ -16,17 +17,13 @@ namespace DeltaEngine
   class Editor
   {
 
-    std::vector<std::unique_ptr<IPanel>> m_panels;
 
 
     void MenuBar();
 
   public:
-    // Drop Manager
-    inline static bool drag;
 
-    // Custom Font Awesome Management
-    inline static ImFont* font_awesome;
+    std::vector<std::unique_ptr<IPanel>> m_panels;
 
     // Tool toggle
     enum class Tool : unsigned
@@ -36,15 +33,25 @@ namespace DeltaEngine
       EntitySelector
     };
 
-    inline static Tool tool_selection;
+    // Drop Manager
+    static inline bool drag;
 
-    inline static bool entity_selected;
-    inline static size_t entity_id;
+    // Custom Font Awesome Management, can consider opting DIP
+    static inline ImFont* font_awesome;
 
-    inline static Transform selection_transform;
+    // Can consider opting for DIP
+    static inline Tool tool_selection;
 
-    // Simulation toggle
-    inline static bool simulation_running;
+    // Can consider DIP & include custom debug draw system;
+    static inline bool entity_selected;
+    static inline size_t entity_id;
+    static inline Transform selection_transform;
+
+    // Can consider DIP Simulation toggle To be implemented
+    static inline bool simulation_running;
+
+    // Selected Texture
+    std::string textureKey {};
 
 
     Editor();

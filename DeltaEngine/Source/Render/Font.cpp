@@ -22,6 +22,7 @@ namespace DeltaEngine
 
   Font::Font(const std::string& filepath) : m_RendererID{0}
   {
+    DeltaEngine_CORE_TRACE( "Loading font {}...", filepath );
     FT_Face face;
     if (FT_New_Face(ft, filepath.c_str(), 0, &face))
     {
@@ -71,6 +72,7 @@ namespace DeltaEngine
     }
     glBindTexture(GL_TEXTURE_2D, 0);
     FT_Done_Face(face);
+    DeltaEngine_CORE_TRACE( "Font {} was loaded successfully", filepath );
   }
 
   std::unordered_map<char, CharacterInfo>& Font::characterInfo()
@@ -91,7 +93,7 @@ namespace DeltaEngine
       DeltaEngine_CORE_ERROR("Failed to initialize FreeType Library!");
       return;
     }
-    DeltaEngine_CORE_INFO("FreeType was initialized successfully");
+    DeltaEngine_CORE_INFO("Initializing FreeType successful");
   }
 
   void Font::Exit()

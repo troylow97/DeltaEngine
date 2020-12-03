@@ -8,7 +8,7 @@ namespace DeltaEngine
 {
   class Window
   {
-    HWND m_hwndl{};
+    HWND m_hwndl{nullptr};
     std::wstring m_title;
     int m_width;
     int m_height;
@@ -19,13 +19,13 @@ namespace DeltaEngine
 
   public:
 
-    Window() = default;
+    Window() = delete;
     Window(const std::string& title, int width, int height, bool fullscreen);
     ~Window() = default;
 
     void Init();
     void Update();
-    void ShutDown();
+    void Shutdown();
 
     HWND GetHandle() const;
 
@@ -48,6 +48,5 @@ namespace DeltaEngine
     [[nodiscard]] bool Focus() const;
 
     void InitWindow();
-  private:
   };
 }

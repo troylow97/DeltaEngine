@@ -246,8 +246,8 @@ namespace DeltaEngine
 
   bool CollisionIntersection_CircleLineSegment(Collider& col1, const Vector2& vel1, LineSegment line, Manifold& m)
   {
-    if (col1.type != ColliderType::CIRCLE)
-      std::cout << "WRONG!";
+    //if (col1.type != ColliderType::CIRCLE)
+    //  std::cout << "WRONG!";
     Circle circle{col1.center, col1.size.x};
     Vector2 posNext;
     posNext = col1.center + vel1 * env.pClock->FixedDeltaTime();
@@ -616,11 +616,10 @@ namespace DeltaEngine
   }
 
   //DYNAMIC COLLISION CHECKS
-  bool CollisionIntersection_RectRect(const Collider& col1, const Vector2& vel1, const Collider& col2,
-                                      const Vector2& vel2)
+  bool CollisionIntersection_RectRect(const Vector2& center1, const Vector2& size1, const Vector2& vel1, const Vector2& center2, const Vector2& size2, const Vector2& vel2)
   {
-    AABB aabb1{col1.center, col1.size};
-    AABB aabb2{col2.center, col2.size};
+    AABB aabb1{ center1, size1};
+    AABB aabb2{ center2, size2};
     //Static Collision Check
     if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y >
       aabb2.max.y)))
@@ -739,125 +738,125 @@ namespace DeltaEngine
 
   //------------
 
-  bool CollisionIntersection_Main(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& m)
-  {
-    ColliderType type1 = col1.type;
+ // bool CollisionIntersection_Main(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& m)
+ // {
+ //   ColliderType type1 = col1.type;
+ //
+ //   switch (type1)
+ //   {
+ //   case ColliderType::BOX:
+ //     return CollisionIntersection_Sub_Box(col1, r1, col2, r2, m);
+ //   case ColliderType::CIRCLE:
+ //     return CollisionIntersection_Sub_Circle(col1, r1, col2, r2, m);
+ //   case ColliderType::LINE:
+ //     return CollisionIntersection_Sub_Line(col1, col2, m);
+ //   case ColliderType::RAY:
+ //     return CollisionIntersection_Sub_Ray(col1, r1, col2, r2, m);
+ //   default:
+ //     return CollisionIntersection_Sub_Box(col1, r1, col2, r2, m);
+ //   }
+ // }
+ //
+ // bool CollisionIntersection_Sub_Box(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& manifold)
+ // {
+ //   ColliderType type2 = col2.type;
+ //   switch (type2)
+ //   {
+ //   case ColliderType::BOX:
+ //     {
+ //       if (CollisionIntersection_RectRect(col1, r1.Velocity, col2, r2.Velocity))
+ //       {
+ //         AABBvsAABB_Manifold(col1, col2, manifold);
+ //         return true;
+ //       }
+ //       return false;
+ //     }
+ //   case ColliderType::CIRCLE:
+ //     return CollisionIntersection_RectCircle(col1, r1, col2, r1, manifold);
+ //   case ColliderType::LINE:
+ //     return CollisionIntersection_RectLine_Static(col1.center, col1.size, col2.center, col2.size);
+ //   case ColliderType::RAY:
+ //     return CollisionIntersection_RectRay_Static(col1.center, col1.size, col2.center, col2.size);
+ //   default:
+ //     return CollisionIntersection_RectRect_Static(col1.center, col1.size, col2.center, col2.size);
+ //   }
+ // }
+ //
+ // bool CollisionIntersection_Sub_Circle(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2,
+ //                                       Manifold& manifold)
+ // {
+ //   ColliderType type2 = col2.type;
+ //   switch (type2)
+ //   {
+ //   case ColliderType::BOX:
+ //     return CollisionIntersection_RectCircle(col2, r2, col1, r1, manifold);
+ //   case ColliderType::CIRCLE:
+ //     {
+ //       return CollisionIntersection_CircleCircle_Static(col1.center, col1.size, col2.center, col2.size, manifold);
+ //       //return CollisionIntersection_CircleCircle(col1, r1.Velocity, col2, r2.Velocity,manifold);
+ //     }
+ //   case ColliderType::LINE:
+ //     return CollisionIntersection_CircleLineSegment_Static(col1.center, col1.size, col2.center, col2.size);
+ //   case ColliderType::RAY:
+ //     {
+ //       Ray ray{col1.center, r1.Velocity};
+ //       return CollisionIntersection_RayCircle(ray, col2, manifold);
+ //     }
+ //   default:
+ //     return CollisionIntersection_RectCircle(col2, r2, col1, r1, manifold);
+ //   }
+ // }
+ //
+ // bool CollisionIntersection_Sub_Line(Collider& col1, Collider& col2, Manifold& manifold)
+ // {
+ //   UNREFERENCED_PARAMETER(manifold);
+ //   ColliderType type2 = col2.type;
+ //   switch (type2)
+ //   {
+ //   case ColliderType::BOX:
+ //     return CollisionIntersection_RectLine_Static(col2.center, col2.size, col1.center, col1.size);
+ //   case ColliderType::CIRCLE:
+ //     return CollisionIntersection_CircleLineSegment_Static(col2.center, col2.size, col1.center, col1.size);
+ //   case ColliderType::LINE:
+ //     return CollisionIntersection_LineLine_Static(col1.center, col1.size, col2.center, col2.size);
+ //   case ColliderType::RAY:
+ //     return CollisionIntersection_RayLine_Static(col2.center, col2.size, col1.center, col1.size);
+ //   default:
+ //     return CollisionIntersection_RectLine_Static(col2.center, col2.size, col1.center, col1.size);
+ //   }
+ // }
+ //
+ // bool CollisionIntersection_Sub_Ray(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& m)
+ // {
+ //   UNREFERENCED_PARAMETER(r1);
+ //   UNREFERENCED_PARAMETER(r2);
+ //   ColliderType type2 = col2.type;
+ //   switch (type2)
+ //   {
+ //   case ColliderType::BOX:
+ //     return CollisionIntersection_RectRay_Static(col2.center, col2.size, col1.center, col1.size);
+ //   case ColliderType::CIRCLE:
+ //     {
+ //       Ray ray{col1.center, r1.Velocity};
+ //       return CollisionIntersection_RayCircle(ray, col2, m);
+ //     }
+ //   case ColliderType::LINE:
+ //     return CollisionIntersection_RayLine_Static(col1.center, col1.size, col2.center, col2.size);
+ //   case ColliderType::RAY:
+ //     return false; //to be done
+ //   default:
+ //     return CollisionIntersection_RectRay_Static(col2.center, col2.size, col1.center, col1.size);
+ //   }
+ // }
 
-    switch (type1)
-    {
-    case ColliderType::BOX:
-      return CollisionIntersection_Sub_Box(col1, r1, col2, r2, m);
-    case ColliderType::CIRCLE:
-      return CollisionIntersection_Sub_Circle(col1, r1, col2, r2, m);
-    case ColliderType::LINE:
-      return CollisionIntersection_Sub_Line(col1, col2, m);
-    case ColliderType::RAY:
-      return CollisionIntersection_Sub_Ray(col1, r1, col2, r2, m);
-    default:
-      return CollisionIntersection_Sub_Box(col1, r1, col2, r2, m);
-    }
-  }
-
-  bool CollisionIntersection_Sub_Box(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& manifold)
-  {
-    ColliderType type2 = col2.type;
-    switch (type2)
-    {
-    case ColliderType::BOX:
-      {
-        if (CollisionIntersection_RectRect(col1, r1.Velocity, col2, r2.Velocity))
-        {
-          AABBvsAABB_Manifold(col1, col2, manifold);
-          return true;
-        }
-        return false;
-      }
-    case ColliderType::CIRCLE:
-      return CollisionIntersection_RectCircle(col1, r1, col2, r1, manifold);
-    case ColliderType::LINE:
-      return CollisionIntersection_RectLine_Static(col1.center, col1.size, col2.center, col2.size);
-    case ColliderType::RAY:
-      return CollisionIntersection_RectRay_Static(col1.center, col1.size, col2.center, col2.size);
-    default:
-      return CollisionIntersection_RectRect_Static(col1.center, col1.size, col2.center, col2.size);
-    }
-  }
-
-  bool CollisionIntersection_Sub_Circle(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2,
-                                        Manifold& manifold)
-  {
-    ColliderType type2 = col2.type;
-    switch (type2)
-    {
-    case ColliderType::BOX:
-      return CollisionIntersection_RectCircle(col2, r2, col1, r1, manifold);
-    case ColliderType::CIRCLE:
-      {
-        return CollisionIntersection_CircleCircle_Static(col1.center, col1.size, col2.center, col2.size, manifold);
-        //return CollisionIntersection_CircleCircle(col1, r1.Velocity, col2, r2.Velocity,manifold);
-      }
-    case ColliderType::LINE:
-      return CollisionIntersection_CircleLineSegment_Static(col1.center, col1.size, col2.center, col2.size);
-    case ColliderType::RAY:
-      {
-        Ray ray{col1.center, r1.Velocity};
-        return CollisionIntersection_RayCircle(ray, col2, manifold);
-      }
-    default:
-      return CollisionIntersection_RectCircle(col2, r2, col1, r1, manifold);
-    }
-  }
-
-  bool CollisionIntersection_Sub_Line(Collider& col1, Collider& col2, Manifold& manifold)
-  {
-    UNREFERENCED_PARAMETER(manifold);
-    ColliderType type2 = col2.type;
-    switch (type2)
-    {
-    case ColliderType::BOX:
-      return CollisionIntersection_RectLine_Static(col2.center, col2.size, col1.center, col1.size);
-    case ColliderType::CIRCLE:
-      return CollisionIntersection_CircleLineSegment_Static(col2.center, col2.size, col1.center, col1.size);
-    case ColliderType::LINE:
-      return CollisionIntersection_LineLine_Static(col1.center, col1.size, col2.center, col2.size);
-    case ColliderType::RAY:
-      return CollisionIntersection_RayLine_Static(col2.center, col2.size, col1.center, col1.size);
-    default:
-      return CollisionIntersection_RectLine_Static(col2.center, col2.size, col1.center, col1.size);
-    }
-  }
-
-  bool CollisionIntersection_Sub_Ray(Collider& col1, RigidBody& r1, Collider& col2, RigidBody& r2, Manifold& m)
-  {
-    UNREFERENCED_PARAMETER(r1);
-    UNREFERENCED_PARAMETER(r2);
-    ColliderType type2 = col2.type;
-    switch (type2)
-    {
-    case ColliderType::BOX:
-      return CollisionIntersection_RectRay_Static(col2.center, col2.size, col1.center, col1.size);
-    case ColliderType::CIRCLE:
-      {
-        Ray ray{col1.center, r1.Velocity};
-        return CollisionIntersection_RayCircle(ray, col2, m);
-      }
-    case ColliderType::LINE:
-      return CollisionIntersection_RayLine_Static(col1.center, col1.size, col2.center, col2.size);
-    case ColliderType::RAY:
-      return false; //to be done
-    default:
-      return CollisionIntersection_RectRay_Static(col2.center, col2.size, col1.center, col1.size);
-    }
-  }
-
-  bool AABBvsAABB_Manifold(Collider& A, Collider& B, Manifold& m)
+  bool AABBvsAABB_Manifold(Collider& A, Vector2 scaleA, Collider& B, Vector2 scaleB, Manifold& m)
   {
     // Vector from A to B
     Vector2 n = A.center - B.center;
     Vector2 normalised_n = Normalise(n);
 
-    AABB abox{A.center, A.size};
-    AABB bbox{B.center, B.size};
+    const AABB abox{ A.center, A.size * scaleA };
+    const AABB bbox{B.center, B.size * scaleB };
 
     // Calculate half extents along x axis for each object
     float a_extent = (abox.max.x - abox.min.x) / 2;

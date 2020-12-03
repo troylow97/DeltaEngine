@@ -13,8 +13,8 @@
 
 namespace DeltaEngine
 {
-PropertyInspectorPanel::PropertyInspectorPanel( std::string str ) :
-  IPanel( str )
+PropertyInspectorPanel::PropertyInspectorPanel( std::string str, Editor& e ) :
+  IPanel( str, e )
 {
   m_enabled = true;
 }
@@ -51,13 +51,11 @@ void PropertyInspectorPanel::Render()
       std::vector<std::string> c_list;
       c_list.push_back( " " );
       for ( auto &ref : ComponentMeta::GetComponentMetaArray() )
-      {
         if ( !( ref.bits & result->bits_signature ) && ref.bits != 1 )
         {
-          //std::cout << result->bits_signature << std::endl;
+          std::cout << result->bits_signature << std::endl;
           c_list.push_back( RT_Reflect::RT_Checker( ref.bits ).get_name().to_string() );
         }
-      }
 
       static size_t selected = 0;
 
@@ -146,9 +144,9 @@ void PropertyInspectorPanel::Render()
             if ( prop_type == rttr::type::get<float *>() )
               ImGui::DragFloat( ( "##" + prop_name ).c_str(), ( value.get_value<float *>() ), 0.01f );
             else if ( prop_type == rttr::type::get<int *>() )
-              ImGui::InputInt( ( "##" + prop_name ).c_str(), ( value.get_value<int *>() ), 1.0f );
+              ImGui::InputInt( ( "##" + prop_name ).c_str(), ( value.get_value<int *>() ), 1 );
             else if ( prop_type == rttr::type::get<unsigned *>() )
-              ImGui::InputInt( ( "##" + prop_name ).c_str(), (int *) ( value.get_value<unsigned *>() ), 1.0f, 0 );
+              ImGui::InputInt( ( "##" + prop_name ).c_str(), (int *) ( value.get_value<unsigned *>() ), 1, 0 );
             else if ( prop_type == rttr::type::get<Vector2 *>() )
               ImGui::DragFloat2( ( "##" + prop_name ).c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
             else if ( prop_type == rttr::type::get<Vector3 *>() )
@@ -188,7 +186,7 @@ void PropertyInspectorPanel::Render()
               std::vector<std::string> tex_key_vec;
               tex_key_vec.push_back( " " );
               for ( auto &[key, data] : GetEnv().pManager->List<Texture2D>() )
-                for ( size_t i = 0; i < data->textureInfo.size() - 1; i++ )
+                for ( size_t i = 0; i < data->textureInfo.size(); i++ )
                   tex_key_vec.push_back( key.Key() + '_' + std::to_string( i ) );
 
               auto &sprite = *value.get_value<Sprite *>();
@@ -255,8 +253,7 @@ void PropertyInspectorPanel::Render()
                   if ( i % 4 )
                     ImGui::SameLine();
                   Sprite details { sprite.m_Key, static_cast<unsigned>( i ) };
-                  unsigned id = details.GetTexture()->GetRendererID();
-                  ImGui::Image( reinterpret_cast<void *>( details.GetTexture()->GetRendererID() ),
+                  ImGui::Image( reinterpret_cast<ImTextureID>( static_cast<size_t>(details.GetTexture()->GetRendererID())) ,
                                 ImVec2 { 64, 64 },
                                 ImVec2 { details.GetOffset().x, details.GetOffset().y },
                                 ImVec2 {

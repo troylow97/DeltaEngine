@@ -116,5 +116,6 @@ namespace DeltaEngine
     {
       DeltaEngine_CORE_WARN("Animator file \"{}\" doesn't exist", filepath.c_str());
     }
+    DeltaEngine_CORE_TRACE( "Animator {} was loaded successfully", filepath );
   }
 }

@@ -62,7 +62,7 @@ namespace DeltaEngine
             	if(em.HasComponent<Player>(id1))
             	{
                     Player& p = em.GetComponent<Player>(id1);
-                    //Jumping
+                    //Jumping,Dashing
                     if (p.isJumping && c1.isCollidingOnFloor)
                     {
                         CurrentJumpTicks = 1;
@@ -84,7 +84,7 @@ namespace DeltaEngine
                     {
                         CurrentDashTicks = 0;
                         p.isDashing = false;
-                    }//To optimise in the future
+                    }
 
                     if (CurrentDashTicks >= MaxDashTicks)
                     {
