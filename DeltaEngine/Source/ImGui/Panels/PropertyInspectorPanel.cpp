@@ -52,10 +52,7 @@ void PropertyInspectorPanel::Render()
       c_list.push_back( " " );
       for ( auto &ref : ComponentMeta::GetComponentMetaArray() )
         if ( !( ref.bits & result->bits_signature ) && ref.bits != 1 )
-        {
-          std::cout << result->bits_signature << std::endl;
           c_list.push_back( RT_Reflect::RT_Checker( ref.bits ).get_name().to_string() );
-        }
 
       static size_t selected = 0;
 
