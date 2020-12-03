@@ -1,7 +1,7 @@
 #include "AITools.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Logger/Log.h"
-#include "Core/GameClock/GameClock.h"
+
 namespace DeltaEngine
 {
     namespace AITools
@@ -238,12 +238,12 @@ namespace DeltaEngine
 
         void BulletTowardsEntity(EntityID& bullet, EntityID& entity)
         {
-            Vector2 pos{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(bullet).position };
-            Vector2 pos2{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(entity).position };
+            const Vector2 pos{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(bullet).position };
+            const Vector2 pos2{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(entity).position };
 
             if (std::abs(pos2.x - pos.x) < 0.3 && std::abs(pos2.y - pos.y) < 0.3)
             {
-                Vector2 diff{ pos2 - pos };
+                const Vector2 diff{ pos2 - pos };
                 env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(bullet).AccumulatedForce = diff * 1500;
             }
 
@@ -272,16 +272,33 @@ namespace DeltaEngine
 
         void FlyTowardsPoint(EntityID& id1, Vector2& point)
         {
-            Vector2 pos{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position };
+            const Vector2 pos{ env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position };
             Vector2 diff{ point - pos };
-            Vector2 temp = Normalise(diff);
+            const Vector2 temp = Normalise(diff);
             env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = temp;
         }
 
         bool EntityisAtPoint(EntityID& id1, Vector2& point)
         {
             Vector2 pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position;
-            if (std::abs(point.x - pos.x) < 0.1 && std::abs(point.y - pos.y) < 0.1)
+            const float xDiff = static_cast<float>(std::abs(point.x - pos.x));
+            const float yDiff = static_cast<float>(std::abs(point.y - pos.y));
+        	
+            if (xDiff < 0.1f && yDiff < 0.1f)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        bool EntityisAtPoint(EntityID& id1, Vector2& point,float tolerance)
+        {
+            Vector2 pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position;
+            const float xDiff = static_cast<float>(std::abs(point.x - pos.x));
+            const float yDiff = static_cast<float>(std::abs(point.y - pos.y));
+
+            if (xDiff < tolerance && yDiff < tolerance)
             {
                 return true;
             }

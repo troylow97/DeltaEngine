@@ -1,43 +1,60 @@
 #include "AttackSystem.h"
+#include "UnitManager.h"
 #include "Core/GameClock/GameClock.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
-#include "AI/AITools.h"
-#include "../UnitManager.h"
-
 
 namespace DeltaEngine
 {
     void AttackSystem::Update()
     {
         em.ForEach([&](EntityID& id, Attack& a, Image& im)
+        {
+            if (a.CooldownTimer > 0)
             {
-                if (a.CooldownTimer > 0)
-                {
-                    a.CooldownTimer -= env.pClock->DeltaTime();
-                }
+                a.CooldownTimer -= env.pClock->DeltaTime();
+            }
 
-                Dash();
+            Dash();
 
-                if (a.RangeAttack)
+            if (a.RangeAttack)
+            {
+                if (a.CooldownTimer <= 0)
                 {
-                    if (a.CooldownTimer <= 0)
-                    {
-                        RangedAttackingEntities.push_back(id);
-                        a.CooldownTimer = a.MaxCooldown;
-                    }
-                    a.RangeAttack = false;
+                    RangedAttackingEntities.push_back(id);
+                    a.CooldownTimer = a.MaxCooldown;
                 }
-                if (a.MeleeAttack)
+                a.RangeAttack = false;
+            }
+        	
+            if (a.MeleeAttack)
+            {
+                a.StartComboCooldownTimer = true;
+                if (a.NumberOfCombos != a.MaxComboNumber)
                 {
-                    if (a.CooldownTimer <= 0)
-                    {
-                        MeleeAttackingEntities.push_back(id);
-                        a.CooldownTimer = a.MaxCooldown;
-                    }
-                    a.MeleeAttack = false;
+                    a.NumberOfCombos++;
                 }
-            });
+                if (a.CooldownTimer <= 0)
+                {
+                    MeleeAttackingEntities.push_back(id);
+                    a.CooldownTimer = a.MaxCooldown;
+                }
+                a.MeleeAttack = false;
+            }
+            if (a.StartComboCooldownTimer)
+            {
+                if (a.ComboCooldownTimer > 0)
+                {
+                    a.ComboCooldownTimer -= env.pClock->DeltaTime();
+                }
+                else
+                {
+                    a.NumberOfCombos = 0;
+                    a.StartComboCooldownTimer = false;
+                    a.ComboCooldownTimer = a.ComboDuration;
+                }
+            }
+        });
 
         for (auto& id : RangedAttackingEntities)
         {
@@ -62,51 +79,19 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
         {
-            //std::cout << "range attack!\n";
-            Transform& t1 = em.GetComponent<Transform>(id);
-            EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
-            em.GetComponent<Transform>(missile).position = t1.position;
-            em.GetComponent<RigidBody>(missile).Mass = 5.0f;
-            em.GetComponent<Transform>(missile).scale = { 0.4f, 0.4f, 0.0f };
-            em.GetComponent<Lifespan>(missile).Timer = 0.35f;
-            em.GetComponent<RigidBody>(missile).hasGravity = true;
-            em.GetComponent<Collider>(missile).isTrigger = true;
-            em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
-            em.GetComponent<Collider>(missile).CollisionLayerID = 8;
-            em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_BULLET;
-            em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
-            em.GetComponent<Health>(missile).CurrentHealth = 1;
+            EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
+            EntityID missile2 = CreateProjectile(id, Vector2{ 1.7,1.7 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
                 em.GetComponent<RigidBody>(missile).AccumulatedForce = { 8000, 3500 };
-            }
-            else
-            {
-                em.GetComponent<Transform>(missile).position.x -= 0.4f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { -8000, 3500 };
-            }
-
-            EntityID missile2 = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
-            em.GetComponent<Transform>(missile2).position = t1.position;
-            em.GetComponent<RigidBody>(missile2).Mass = 5.0f;
-            em.GetComponent<Transform>(missile2).scale = { 1.5f, 1.5f, 0.0f };
-            em.GetComponent<Lifespan>(missile2).Timer = 0.35f;
-            em.GetComponent<RigidBody>(missile2).hasGravity = true;
-            em.GetComponent<Collider>(missile2).isTrigger = true;
-            em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
-            em.GetComponent<Collider>(missile).CollisionLayerID = 8;
-            //em.GetComponent<Collider>(missile2).size = {2.0f,2.0f};
-            em.GetComponent<EntityType>(missile2).type = EntityCategory::E_PLAYER_BULLET_DETECTION;
-            em.GetComponent<RigidBody>(missile2).FrictionCoeff = 0.0f;
-            em.GetComponent<Health>(missile2).CurrentHealth = 1;
-            if (em.GetComponent<Image>(id).m_FlipX == false)
-            {
                 em.GetComponent<Transform>(missile2).position.x += 0.5f;
                 em.GetComponent<RigidBody>(missile2).AccumulatedForce = { 8000, 3500 };
             }
             else
             {
+                em.GetComponent<Transform>(missile).position.x -= 0.4f;
+                em.GetComponent<RigidBody>(missile).AccumulatedForce = { -8000, 3500 };
                 em.GetComponent<Transform>(missile2).position.x -= 0.5f;
                 em.GetComponent<RigidBody>(missile2).AccumulatedForce = { -8000, 3500 };
             }
@@ -114,21 +99,7 @@ namespace DeltaEngine
         }
         else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
         {
-            Transform& t1 = em.GetComponent<Transform>(id);
-            RigidBody& r1 = em.GetComponent<RigidBody>(id);
-            r1.Direction = Vector2::zero();
-            EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
-            em.GetComponent<Transform>(missile).position = t1.position;
-            em.GetComponent<RigidBody>(missile).Mass = 5.0f;
-            em.GetComponent<Transform>(missile).scale = { 0.4f, 0.4f, 0.0f };
-            em.GetComponent<Lifespan>(missile).Timer = 0.35f;
-            em.GetComponent<RigidBody>(missile).hasGravity = true;
-            em.GetComponent<Collider>(missile).isTrigger = true;
-            em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
-            em.GetComponent<Collider>(missile).CollisionLayerID = 8;
-            em.GetComponent<EntityType>(missile).type = EntityCategory::E_ENEMY_BULLET; //This bullet wont deal any damage now, to fix
-            em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
-            em.GetComponent<Health>(missile).CurrentHealth = 1;
+            EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -144,62 +115,57 @@ namespace DeltaEngine
 
     void AttackSystem::MeleeAttack(EntityID& id)
     {
-        if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
+        if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(id))
         {
-            Transform& t1 = em.GetComponent<Transform>(id);
-            EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
-            em.GetComponent<Transform>(missile).position = t1.position;
-            em.GetComponent<RigidBody>(missile).Mass = 5.0f;
-            em.GetComponent<Transform>(missile).scale = { 0.7f, 0.7f, 0.0f };
-            em.GetComponent<Lifespan>(missile).Timer = 0.1f;
-            em.GetComponent<RigidBody>(missile).hasGravity = false;
-            em.GetComponent<Collider>(missile).isTrigger = true;
-            em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
-            em.GetComponent<Collider>(missile).CollisionLayerID = 8;
-            em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_PUNCH;
-            em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
-            em.GetComponent<Health>(missile).CurrentHealth = 1;
+            EntityID missile = CreateProjectile(id, Vector2{ 0.7,0.5 }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.6f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { 700, 0 };
+                em.GetComponent<RigidBody>(missile).AccumulatedForce = { 1450, 0 };
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
             }
             else
             {
-                em.GetComponent<Transform>(missile).position.x -= 0.5f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { -500, 0 };
+                em.GetComponent<Transform>(missile).position.x -= 0.6f;
+                em.GetComponent<RigidBody>(missile).AccumulatedForce = { -1450, 0 };
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
             }
         }
 
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
         {
-            Transform& t1 = em.GetComponent<Transform>(id);
-            EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
-            em.GetComponent<Transform>(missile).position = t1.position;
-            em.GetComponent<RigidBody>(missile).Mass = 5.0f;
-            em.GetComponent<Transform>(missile).scale = { 0.2f, 0.2f, 0.0f };
-            em.GetComponent<Lifespan>(missile).Timer = 0.1f;
-            em.GetComponent<RigidBody>(missile).hasGravity = false;
-            em.GetComponent<Collider>(missile).isTrigger = true;
-            em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
-            em.GetComponent<Collider>(missile).CollisionLayerID = 8;
-            em.GetComponent<EntityType>(missile).type = EntityCategory::E_LANCER_CHARGE; //CHANGE TO FIDDLER
-            em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
-            em.GetComponent<Health>(missile).CurrentHealth = 1;
-            if (em.GetComponent<Image>(id).m_FlipX == false)
-            {
-                em.GetComponent<Transform>(missile).position.x += 0.5f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { 500, 0 };
+        	if(em.GetComponent<RigidBody>(id).hasGravity == false)
+        	{
+                EntityID missile = CreateProjectile(id, Vector2{ 0.3,0.3 }, false, 0.1f, EntityCategory::E_ENEMY_LANCER_PUNCH);
+                const Vector2 player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
+                const Vector2 monster_pos = em.GetComponent<Transform>(id).position;
+                Vector2 kb = (player_pos - em.GetComponent<Transform>(id).position);
+
+                em.GetComponent<Transform>(missile).position = monster_pos + kb.Normalize() * 0.5f;
+                em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 500.0f;
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
-            }
+
+        		//Apply knockback to lancer
+                em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 4000.0f;
+        		
+        	}
             else
             {
-                em.GetComponent<Transform>(missile).position.x -= 0.5f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce = { -500, 0 };
-                em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
+                EntityID missile = CreateProjectile(id, Vector2{ 0.3,0.3 }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
+                if (em.GetComponent<Image>(id).m_FlipX == false)
+                {
+                    em.GetComponent<Transform>(missile).position.x += 0.5f;
+                    em.GetComponent<RigidBody>(missile).AccumulatedForce = { 500, 0 };
+                    em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
+                }
+                else
+                {
+                    em.GetComponent<Transform>(missile).position.x -= 0.5f;
+                    em.GetComponent<RigidBody>(missile).AccumulatedForce = { -500, 0 };
+                    em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
+                }
             }
+
         }
     }
 
@@ -209,12 +175,30 @@ namespace DeltaEngine
             {
                 if (et1.type == EntityCategory::E_PLAYER_DASH)
                 {
-                    if (env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(GetUnitManager().player).isCollidingOnFloor)
-                        t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(GetUnitManager().player).position;
+                    if (env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(UnitManager::GetPlayerID()).isCollidingOnFloor)
+                        t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                     else
                         env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
-                    return;
                 }
             });
     }
+
+    EntityID AttackSystem::CreateProjectile(EntityID id,Vector2 scale,bool gravity,float Lifetime,EntityCategory type)
+    {
+        Transform& t1 = em.GetComponent<Transform>(id);
+        EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+        em.GetComponent<Transform>(missile).position = t1.position;
+        em.GetComponent<RigidBody>(missile).Mass = 5.0f;
+        em.GetComponent<Transform>(missile).scale = scale;
+        em.GetComponent<Lifespan>(missile).Timer = Lifetime;
+        em.GetComponent<RigidBody>(missile).hasGravity = gravity;
+        em.GetComponent<Collider>(missile).isTrigger = true;
+        em.GetComponent<Collider>(missile).CollisionLayerCheck = 7;
+        em.GetComponent<Collider>(missile).CollisionLayerID = 8;
+        em.GetComponent<EntityType>(missile).type = type;
+        em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
+        em.GetComponent<Health>(missile).CurrentHealth = 1;
+        return missile;
+    }
+	
 } //Namespace DeltaEngine

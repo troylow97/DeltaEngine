@@ -38,22 +38,22 @@ namespace DeltaEngine::Gizmos
     glClear(GL_DEPTH_BUFFER_BIT);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    Transform t = Camera::editorCamera->transform;
+    Transform t = Camera::editorCameraTransform;
     t.position.x = 0;
     t.position.y = 0;
 
-    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
-    Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix(Camera::editorCameraTransform);
+    Matrix4x4 view = Camera::editorCamera->GetViewMatrix(Camera::editorCameraTransform);
     Matrix4x4 model = t.LocalToWorldMatrix();
 
     int i = 0;
     float size = Math::Abs(Camera::editorCamera->m_Size);
-    float minX = (Camera::editorCamera->Min().x) - Camera::editorCamera->m_Size * Camera::editorCamera->GetAspectRatio()
+    float minX = (Camera::editorCamera->Min(Camera::editorCameraTransform).x) - Camera::editorCamera->m_Size * Camera::editorCamera->GetAspectRatio()
       / 2;
-    float minY = (Camera::editorCamera->Min().y) - Camera::editorCamera->m_Size / 2;
-    float maxX = (Camera::editorCamera->Max().x) + Camera::editorCamera->m_Size * Camera::editorCamera->GetAspectRatio()
+    float minY = (Camera::editorCamera->Min(Camera::editorCameraTransform).y) - Camera::editorCamera->m_Size / 2;
+    float maxX = (Camera::editorCamera->Max(Camera::editorCameraTransform).x) + Camera::editorCamera->m_Size * Camera::editorCamera->GetAspectRatio()
       / 2;
-    float maxY = (Camera::editorCamera->Max().y) + Camera::editorCamera->m_Size / 2;
+    float maxY = (Camera::editorCamera->Max(Camera::editorCameraTransform).y) + Camera::editorCamera->m_Size / 2;
 
     if (size < 50)
     {
@@ -120,8 +120,8 @@ namespace DeltaEngine::Gizmos
     glClear(GL_DEPTH_BUFFER_BIT);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
-    Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix(Camera::editorCameraTransform);
+    Matrix4x4 view = Camera::editorCamera->GetViewMatrix(Camera::editorCameraTransform);
     Matrix4x4 model = Transform().LocalToWorldMatrix();
 
     gizmoShader->SetUniformMatrix4f("_M", model);
@@ -143,8 +143,8 @@ namespace DeltaEngine::Gizmos
     glClear(GL_DEPTH_BUFFER_BIT);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
-    Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix(Camera::editorCameraTransform);
+    Matrix4x4 view = Camera::editorCamera->GetViewMatrix(Camera::editorCameraTransform);
     Matrix4x4 model = transform.LocalToWorldMatrix();
 
     gizmoShader->SetUniformMatrix4f("_M", model);
@@ -166,8 +166,8 @@ namespace DeltaEngine::Gizmos
     glClear(GL_DEPTH_BUFFER_BIT);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     transform.position = transform.position + col_offset;
-    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
-    Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix(Camera::editorCameraTransform);
+    Matrix4x4 view = Camera::editorCamera->GetViewMatrix(Camera::editorCameraTransform);
     Matrix4x4 model = transform.LocalToWorldMatrix();
 
     gizmoShader->SetUniformMatrix4f("_M", model);
@@ -195,8 +195,8 @@ namespace DeltaEngine::Gizmos
     glClear(GL_DEPTH_BUFFER_BIT);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
-    Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix(Camera::editorCameraTransform);
+    Matrix4x4 view = Camera::editorCamera->GetViewMatrix(Camera::editorCameraTransform);
     Matrix4x4 model = transform.LocalToWorldMatrix();
 
     gizmoShader->SetUniformMatrix4f("_M", model);
@@ -219,8 +219,8 @@ namespace DeltaEngine::Gizmos
     glClear(GL_DEPTH_BUFFER_BIT);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix();
-    Matrix4x4 view = Camera::editorCamera->GetViewMatrix();
+    Matrix4x4 proj = Camera::editorCamera->GetProjectionMatrix(Camera::editorCameraTransform);
+    Matrix4x4 view = Camera::editorCamera->GetViewMatrix(Camera::editorCameraTransform);
     Matrix4x4 model = transform.LocalToWorldMatrix();
 
     gizmoShader->SetUniformMatrix4f("_M", model);

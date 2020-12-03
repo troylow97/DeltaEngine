@@ -1,12 +1,53 @@
 Textures/PROPS_i_0
-offset 0 0
-size 1018 562
+offset 66 221
+size 73 290
 pivot 0.5 0.5
 
 Textures/PROPS_i_1
+<<<<<<< HEAD
 offset 0 0
 size 0 0
 pivot 0 0
+=======
+offset 158 47
+size 105 466
+pivot 0.5 0.5
+
+Textures/PROPS_i_2
+offset 289 92
+size 90 421
+pivot 0.5 0.5
+
+Textures/PROPS_i_3
+offset 429 398
+size 86 115
+pivot 0.5 0.5
+
+Textures/PROPS_i_4
+offset 436 78
+size 512 271
+pivot 0.5 0.5
+
+Textures/PROPS_i_5
+offset 556 399
+size 155 109
+pivot 0.5 0.5
+
+Textures/PROPS_i_6
+offset 744 424
+size 23 88
+pivot 0.5 0.5
+
+Textures/PROPS_i_7
+offset 805 420
+size 50 92
+pivot 0.5 0.5
+
+Textures/PROPS_i_8
+offset 895 424
+size 23 88
+pivot 0.5 0.5
+>>>>>>> origin/troy
 
 %
 

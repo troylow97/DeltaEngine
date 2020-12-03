@@ -13,7 +13,7 @@ namespace DeltaEngine
         CurrentJumpTicks = 0;
         MaxJumpTicks = 10;
         CurrentDashTicks = 0;
-        MaxDashTicks = 10;
+        MaxDashTicks = 8;
         InitialJumpForce = 4500.0f;
         JumpForce = InitialJumpForce;
         m_max_velocity = 1000.0f;
@@ -59,62 +59,71 @@ namespace DeltaEngine
                 //Set Euler
                 t1.position += r1.Velocity * env.pClock->FixedDeltaTime();                
 
-                //Jumping
-                if (r1.isJumping && c1.isCollidingOnFloor)
-                {
-                    CurrentJumpTicks = 1;
-                    JumpForce = InitialJumpForce;
-                }
-                else if (r1.isDashing && CurrentDashTicks < MaxDashTicks && c1.isCollidingOnFloor)
-                {
-                    CurrentDashTicks++;
-                    if (r1.Direction == Vector2::right())
+            	if(em.HasComponent<Player>(id1))
+            	{
+                    Player& p = em.GetComponent<Player>(id1);
+                    //Jumping
+                    if (p.isJumping && c1.isCollidingOnFloor)
                     {
-                        r1.AccumulatedForce += Vector2{ 5000 + r1.Mass * 100, 0 };
-                    }
-                    else if (r1.Direction == Vector2::left())
-                    {
-                        r1.AccumulatedForce -= Vector2{ 5000 + r1.Mass * 100, 0 };
-                    }
-                }
-                else if (r1.isDashing && !c1.isCollidingOnFloor)
-                {
-                    CurrentDashTicks = 0;
-                    c1.CollisionLayerCheck = 13;
-                    r1.isDashing = false;
-                }
-                
-                if (CurrentDashTicks >= MaxDashTicks)
-                {
-                    CurrentDashTicks = 0;
-                    c1.CollisionLayerCheck = 13;
-                    r1.isDashing = false;
-                }
-
-                if (CurrentJumpTicks >= 1 && r1.isJumping)
-                {
-                    r1.AccumulatedForce += Vector2{ 0, JumpForce + r1.Mass * 100 };
-                    JumpForce *= 0.7f;
-
-                    if(CurrentJumpTicks < MaxJumpTicks)
-                        CurrentJumpTicks++;
-                    else
-                    {
-                        r1.isJumping = false;
-                        CurrentJumpTicks = 0;
+                        CurrentJumpTicks = 1;
                         JumpForce = InitialJumpForce;
                     }
-                }
+                    else if (p.isDashing && CurrentDashTicks < MaxDashTicks && c1.isCollidingOnFloor)
+                    {
+                        CurrentDashTicks++;
+                        if (r1.Direction == Vector2::right())
+                        {
+                            r1.AccumulatedForce += Vector2{ 5000 + r1.Mass * 100, 0 };
+                        }
+                        else if (r1.Direction == Vector2::left())
+                        {
+                            r1.AccumulatedForce -= Vector2{ 5000 + r1.Mass * 100, 0 };
+                        }
+                    }
+                    else if (p.isDashing && !c1.isCollidingOnFloor)
+                    {
+                        CurrentDashTicks = 0;
+                        p.isDashing = false;
+                    }//To optimise in the future
 
-                //Player Movement
+                    if (CurrentDashTicks >= MaxDashTicks)
+                    {
+                        CurrentDashTicks = 0;
+                        p.isDashing = false;
+                    }
+
+                    if (CurrentJumpTicks >= 1 && p.isJumping)
+                    {
+                        r1.AccumulatedForce += Vector2{ 0, JumpForce + r1.Mass * 100 };
+                        JumpForce *= 0.7f;
+
+                        if (CurrentJumpTicks < MaxJumpTicks)
+                            CurrentJumpTicks++;
+                        else
+                        {
+                            p.isJumping = false;
+                            CurrentJumpTicks = 0;
+                            JumpForce = InitialJumpForce;
+                        }
+                    }
+
+                    //Apply Gravity for player
+					if (r1.hasGravity && !c1.isCollidingOnFloor && !p.isDashing)
+                        r1.Acceleration = m_gravity_amount;
+                    else
+                        r1.Acceleration = { 0,0 };    		
+            	}
+
+                //Movement
                 Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
 
                 r1.AccumulatedForce += move * r1.Mass * 0.5f;
 
                 //Apply Gravity
-                if (r1.hasGravity && !c1.isCollidingOnFloor && !r1.isDashing)
+                if (r1.hasGravity && !c1.isCollidingOnFloor)
                 {
-                    r1.Acceleration = m_gravity_amount;
+                	if(!em.HasComponent<Player>(id1))
+						r1.Acceleration = m_gravity_amount;
                 }
                 else
                 {
@@ -122,13 +131,13 @@ namespace DeltaEngine
                 }
 
                 //Apply Friction
-                float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-                Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
+                const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
+                const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
                 r1.Velocity += dragForceVector;
 
 
                 //Apply Acceleration
-                Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
+                const Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
                 r1.Velocity += newAcceleration * env.pClock->FixedDeltaTime();
 
                 //Apply Soft Drag

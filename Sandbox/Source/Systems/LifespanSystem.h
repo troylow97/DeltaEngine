@@ -9,6 +9,8 @@ namespace DeltaEngine
     void Update() override;
     void LateUpdate() override;
   private:
+    void UpdateLifespan();
+    void LimitCurrentHealthToMaxHealth(Health& hp);
     std::vector<EntityID> DestroyedEntities;
   END_DEFINE_SYSTEM(LifespanSystem)
 }

@@ -95,12 +95,7 @@ namespace DeltaEngine
                 ImGui::PopID();
                 ImGui::NextColumn();
 
-                ImGuiDragDropFlags src_flags = 0;
-                src_flags |= ImGuiDragDropFlags_SourceNoDisableHover; // Keep the source displayed as hovered
-                src_flags |= ImGuiDragDropFlags_SourceAllowNullID;
-                // Allow items such as Text(), Image() that have no unique identifier to be used as drag source, by manufacturing a temporary identifier based on their window-relative position. This is extremely unusual within the dear imgui ecosystem and so we made it explicit
-
-                if (ImGui::BeginDragDropSource(src_flags))
+                if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
                 {
                   selected_tile.assign(key + '_' + std::to_string(sprite.m_Index));
                   ImGui::SetDragDropPayload("TILES", &selected_tile, sizeof(std::string));

@@ -195,6 +195,8 @@ namespace DeltaEngine
 
   void Texture2D::InitTexture()
   {
+    LoadMetaFile(m_Filepath + ".info");
+
     stbi_set_flip_vertically_on_load(0);
 
     GLCall(glGenTextures(1, &m_RendererID));
@@ -207,8 +209,6 @@ namespace DeltaEngine
       DeltaEngine_CORE_ERROR("ERROR: Couldn't create texture {}!", m_Filepath);
       m_Filepath = "";
     }
-
-    LoadMetaFile(m_Filepath + ".info");
 
     int glWrapMode = GL_REPEAT;
     switch (wrapMode)
@@ -277,6 +277,7 @@ namespace DeltaEngine
         Vector2(0, 0), Vector2(static_cast<float>(m_Width), static_cast<float>(m_Height)), Vector2(0.5f, 0.5f)
       });
       UpdateMetaFile(filepath);
+      textureInfo.push_back(TextureInfo());
     }
   }
 

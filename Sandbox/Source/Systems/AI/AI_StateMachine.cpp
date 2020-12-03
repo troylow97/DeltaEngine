@@ -1,21 +1,5 @@
-/**********************************************************************************
-* \file			AIStates
-* \brief		Contains all the base abstract class of any AI State
-* \author		Low Yee Troy, 100% Code Contribution
-* \version		1.0
-* \date			2020
-*
-* \note			Course: GAM200
-* \copyright	Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
-        or disclosure of this file or its contents without the prior
-        written consent of DigiPen Institute of Technology is prohibited.
-**********************************************************************************/
 #include "AI_StateMachine.h"
-
 #include "Core/Debugging/Profiler/Profiler.h"
-#define STATE_ENTER 0;
-#define STATE_UPDATE 1;
-#define STATE_EXIT 2;
 
 namespace DeltaEngine
 {
@@ -24,17 +8,18 @@ namespace DeltaEngine
     SerpentipedeAIData serpent_data;
     JsonFile file;
     file.StartReader("AI/serpentipedeAI.json").LoadObject(serpent_data).EndReader();
-
+  	
     FiddlerAIData fiddler_data;
     JsonFile file2;
-    //file2.StartWriter("AI/fiddler.json").StartObject().WriteObject(data2).EndObject().EndWriter();
+    //file2.StartWriter("AI/fiddler.json").StartObject().WriteObject(fiddler_data).EndObject().EndWriter();
     file2.StartReader("AI/fiddlerAI.json").LoadObject(fiddler_data).EndReader();
     file2.StartReader("AI/fiddlerAI.json").LoadObject(fiddler_data.waypoint).EndReader();
 
     LancerAIData lancer_data;
     JsonFile file3;
-    file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
+	file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
 
+    StateList["lancer_spawn"] = new LancerSpawn(lancer_data.ChargeDetectionRange);  	
     StateList["idle_lancer"] = new IdleLancer(lancer_data.ChargeDetectionRange);
     StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
 
@@ -85,7 +70,7 @@ namespace DeltaEngine
         ai.key = ai.transition;
         ai.transition = "null";
 
-        auto find = StateList.find(ai.key);
+        const auto find = StateList.find(ai.key);
         if (find != StateList.end())
         {
           ai_state = find->second;

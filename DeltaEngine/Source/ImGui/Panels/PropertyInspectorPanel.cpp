@@ -32,16 +32,19 @@ void PropertyInspectorPanel::Render()
     auto &em = env.pECS->GetWorld().GetEntityManager();
 
     size_t index = Editor::entity_id;
-    const auto &entity = em.GetComponent<EntityName>( { index } );
-    std::string text {};
-    if ( entity.name.empty() )
-      text = "Entity " + std::to_string( index ) + "'s Properties";
-    else
-      text = entity.name + "'s Properties";
+  	if(em.HasComponent<EntityName>({ index }))
+  	{
+        const auto& entity = em.GetComponent<EntityName>({ index });
+        std::string text{};
+        if (entity.name.empty())
+            text = "Entity " + std::to_string(index) + "'s Properties";
+        else
+            text = entity.name + "'s Properties";
 
-    ImGui::Text( text.c_str() );
-    ImGui::Separator();
-    ImGui::Text( "" );
+        ImGui::Text(text.c_str());
+        ImGui::Separator();
+        ImGui::Text("");
+  	}
 
     if ( auto result = em.GetEntityArchetype( index ); result != nullptr )
     {
@@ -51,11 +54,10 @@ void PropertyInspectorPanel::Render()
       {
         if ( !( ref.bits & result->bits_signature ) && ref.bits != 1 )
         {
-          std::cout << result->bits_signature << std::endl;
+          //std::cout << result->bits_signature << std::endl;
           c_list.push_back( RT_Reflect::RT_Checker( ref.bits ).get_name().to_string() );
         }
       }
-
 
       static size_t selected = 0;
 
