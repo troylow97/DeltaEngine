@@ -73,10 +73,10 @@ namespace DeltaEngine
       break;
     case WM_ACTIVATEAPP:
       {
-        if (wParam)
-          env.pWin->Focus(true);
-        else
-          env.pWin->Focus(false);
+        //if (wParam)
+        //  env.pWin->Focus(true);
+        //else
+        //  env.pWin->Focus(false);
       }
       break;
     }
@@ -85,7 +85,7 @@ namespace DeltaEngine
 
 
   Window::Window(const std::string& title, int width, int height, bool fullscreen) :
-    m_title{to_wstring(title)}, m_width{width}, m_height{height}, m_running{true}, m_focus{}, m_fullscreen{fullscreen},
+    m_title{to_wstring(title)}, m_width{width}, m_height{height}, m_running{true}, m_focus{true}, m_fullscreen{fullscreen},
     m_cursor{false}
   {
   }
