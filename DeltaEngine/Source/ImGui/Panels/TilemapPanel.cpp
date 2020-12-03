@@ -83,16 +83,22 @@ void TilemapPanel::Render()
 
             ImGui::PushID( static_cast<int>( i ) );
 
-            if ( ImGui::ImageButton( reinterpret_cast<void *>( id ),
-                 ImVec2 { 64, 64 },
-                 ImVec2 { sprite.GetOffset().x, sprite.GetOffset().y },
-                 ImVec2 {
-                   sprite.GetOffset().x + sprite.GetTiling().x,
-                   sprite.GetOffset().y + sprite.GetTiling().y
-                 } ) )
-            {
-              // Nothing for now
-            }
+            ImGui::ImageButton( reinterpret_cast<void *>( id ),
+                                ImVec2 { 64, 64 },
+                                ImVec2 { sprite.GetOffset().x, sprite.GetOffset().y },
+                                ImVec2 {
+                                  sprite.GetOffset().x + sprite.GetTiling().x,
+                                  sprite.GetOffset().y + sprite.GetTiling().y
+                                } );
+            if ( ImGui::IsItemClicked() )
+              if(ImGui::IsMouseDoubleClicked(0) )
+              {
+                m_editor.m_panels[0]->Enable();
+                if ( !m_editor.m_panels[0]->IsEnabled() )
+                  m_editor.m_panels[0]->Enable();
+                m_editor.textureKey.assign( key );
+              }
+
 
 
             ImGui::PopID();
@@ -113,7 +119,6 @@ void TilemapPanel::Render()
               ImGui::EndDragDropSource();
             }
           }
-
         }
       }
 
@@ -140,8 +145,6 @@ void TilemapPanel::Render()
         DropManager::drop_vec.clear();
         Editor::drag = false;
       }
-
-
       ImGui::EndDragDropTarget();
     }
 

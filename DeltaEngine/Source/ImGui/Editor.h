@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <memory>
+#include <string>
+
 
 #include "Components/Transform.h"
 #include "examples/imgui_impl_win32.h"
@@ -15,12 +17,13 @@ namespace DeltaEngine
   class Editor
   {
 
-    std::vector<std::unique_ptr<IPanel>> m_panels;
 
 
     void MenuBar();
 
   public:
+
+    std::vector<std::unique_ptr<IPanel>> m_panels;
 
     // Tool toggle
     enum class Tool : unsigned
@@ -46,6 +49,9 @@ namespace DeltaEngine
 
     // Can consider DIP Simulation toggle To be implemented
     static inline bool simulation_running;
+
+    // Selected Texture
+    std::string textureKey {};
 
 
     Editor();

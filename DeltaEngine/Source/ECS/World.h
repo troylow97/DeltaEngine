@@ -50,6 +50,8 @@ namespace DeltaEngine
 
     void ShutdownSystems();
 
+    void Run();
+
     void Update();
 
     void LateUpdate();

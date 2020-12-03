@@ -21,7 +21,7 @@ namespace DeltaEngine
 
   Texture2D::~Texture2D()
   {
-    DeltaEngine_CORE_INFO("Deleting Texture {}", m_Name);
+    DeltaEngine_CORE_TRACE("Deleting Texture {}...", m_Name);
     GLCall(glDeleteTextures( 1, &m_RendererID ));
     DeltaEngine_CORE_INFO("Texture deleted");
   }

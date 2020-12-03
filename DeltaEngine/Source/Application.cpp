@@ -132,7 +132,7 @@ void Application::Run()
       Profiler::Instance().FrameStart();
       env.pClock->Update();
       InputManager::Instance().Update();
-      env.pECS->GetWorld().Update();
+      env.pECS->GetWorld().Run();
 #ifdef DE_EDITOR
       m_Editor->Begin();
       m_Editor->Render();
