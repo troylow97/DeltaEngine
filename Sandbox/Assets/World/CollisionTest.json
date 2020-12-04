@@ -189,8 +189,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.42886778712272646,
-                    "y": -0.0007134377956390381,
+                    "x": -0.036965880542993548,
+                    "y": -0.0009415608365088701,
                     "z": 0.0
                 },
                 "Scale": {
@@ -206,10 +206,10 @@
                 }
             },
             "Rigidbody": {
-                "Mass": 80.0,
-                "Move Speed": 1.0,
+                "Mass": 20.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 3.0,
+                "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
@@ -218,8 +218,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -0.42886778712272646,
-                    "y": -0.0007134377956390381
+                    "x": -0.036965880542993548,
+                    "y": -0.0009415608365088701
                 },
                 "Offset": {
                     "x": 0.0,
@@ -278,7 +278,7 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 133,
+                "Current Health": 66,
                 "Max Health": 200,
                 "Invulnerable": false
             },
@@ -289,7 +289,7 @@
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": -0.00008209235966205597,
+                "Cooldown Timer": -0.0026356829330325128,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 1.5,
                 "Knockback Amount": 0.0,
