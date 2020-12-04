@@ -1,0 +1,83 @@
+Textures/SERP_BODY_FIRE_i_0
+offset 0 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_1
+offset 256 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_2
+offset 512 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_3
+offset 768 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_4
+offset 1024 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_5
+offset 1280 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_6
+offset 1536 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_7
+offset 1792 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_8
+offset 0 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_9
+offset 256 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_10
+offset 512 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_11
+offset 768 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_12
+offset 1024 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_13
+offset 1280 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_14
+offset 1536 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_BODY_FIRE_i_15
+offset 1792 384
+size 256 384
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0
