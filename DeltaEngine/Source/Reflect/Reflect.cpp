@@ -276,7 +276,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("Original Point", &AI::original_point)(rttr::policy::prop::bind_as_ptr)
       .property("AIState", &AI::key)(rttr::policy::prop::bind_as_ptr)
-      .property("Transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
+      .property("Transition", &AI::transition)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
   rttr::registration::class_<EntityType>( "Entity Type" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<EntityType>()->bits ) )
@@ -319,6 +319,8 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .property("Respawn Point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Enemies Defeated", &Player::EnemiesDefeated)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Upgrade Points", &Player::UpgradePoints)(rttr::policy::prop::bind_as_ptr)
+      .property("Attack Upgrade Increase", &Player::AttackUpgradeIncrease)(rttr::policy::prop::bind_as_ptr)
+      .property("Health Upgrade Attack", &Player::HealthUpgradeIncrease)(rttr::policy::prop::bind_as_ptr)
       .property("Dashing Timer Duration", &Player::DashingTimerDuration)(rttr::policy::prop::bind_as_ptr)
       .property("Dashing Timer Cooldown", &Player::DashingTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
@@ -326,7 +328,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .property("Is Dashing", &Player::IsDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Start Dashing Timer", &Player::StartDashingTimer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Allow Dashing", &Player::AllowDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+      .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgrade Attack", &Player::UpgradeAtk)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgrade Health", &Player::UpgradeHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
   }
 
 }

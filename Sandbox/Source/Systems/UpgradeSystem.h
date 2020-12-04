@@ -11,5 +11,7 @@ DEFINE_SYSTEM(UpgradeSystem, Player)
   void UpgradeMaxHealth();
 private:
   int PointsCollected;
+  int Number_Of_Times_Attack_Upgraded;
+  int Number_Of_Times_HP_Upgraded;
 END_DEFINE_SYSTEM(UpgradeSystem)
 }

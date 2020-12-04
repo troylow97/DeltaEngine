@@ -7,6 +7,8 @@ namespace DeltaEngine
     int RespawnPoint;
     int EnemiesDefeated;
     int UpgradePoints;
+    int AttackUpgradeIncrease;
+    int HealthUpgradeIncrease;
     float DashingTimerDuration; // max
     float DashingTimerCooldown; // timer
     bool IsDead;
@@ -15,18 +17,25 @@ namespace DeltaEngine
     bool StartDashingTimer;
     bool AllowDashing;
     bool DashDirectionRight;
+    bool UpgradeAtk;
+    bool UpgradeHP;
     
     Player() :
     	RespawnPoint(0),
         EnemiesDefeated{0},
         UpgradePoints{50},
+        AttackUpgradeIncrease{1},
+        HealthUpgradeIncrease{2},
+        DashingTimerDuration{1.0f},
+        DashingTimerCooldown{1.0f},
     	IsDead{false},
     	IsJumping{false},
     	IsDashing{false},
     	StartDashingTimer{false},
     	AllowDashing{true},
-    	DashingTimerDuration{1.0f},
-    	DashingTimerCooldown{1.0f}
+        DashDirectionRight{true},
+        UpgradeAtk{false},
+        UpgradeHP{false}
     {}
   };	
 }
