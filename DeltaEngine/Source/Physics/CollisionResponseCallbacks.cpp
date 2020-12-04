@@ -53,11 +53,11 @@ namespace DeltaEngine
   void CollisionSystem::CollisionResponse(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m)
   {
     //Get the separating velocity by projecting along the contact normal
-    Vector2 relativeVelocity = r1.Velocity - r2.Velocity;
-    Vector2 relativeVelocity2 = r2.Velocity - r1.Velocity;
-    float SeperatingVelocity = Vector2DotProduct(relativeVelocity, m.normal);
-    float SeperatingVelocity2 = Vector2DotProduct(relativeVelocity2, -m.normal);
-    if (SeperatingVelocity > 0 || SeperatingVelocity2 > 0)
+    const Vector2 relativeVelocity = r1.Velocity - r2.Velocity;
+    const Vector2 relativeVelocity2 = r2.Velocity - r1.Velocity;
+    const float SeparatingVelocity = Vector2DotProduct(relativeVelocity, m.normal);
+    const float SeparatingVelocity2 = Vector2DotProduct(relativeVelocity2, -m.normal);
+    if (SeparatingVelocity > 0 || SeparatingVelocity2 > 0)
     {
         r1.PointEnd = c1.center;
         r2.PointEnd = c2.center;
@@ -75,9 +75,9 @@ namespace DeltaEngine
         r2.Velocity = r2.Velocity - (j / r2.Mass) * m.normal;
 
     //Snap object
-    Vector2 impulse = (m.normal * m.penetration);
-    Vector2 reflectedVectorA = ((impulse) / (r1.Mass + r2.Mass)) * r2.Mass;
-    Vector2 reflectedVectorB = ((-impulse) / (r1.Mass + r2.Mass)) * r1.Mass;
+    const Vector2 impulse = (m.normal * m.penetration);
+    const Vector2 reflectedVectorA = ((impulse) / (r1.Mass + r2.Mass)) * r2.Mass;
+    const Vector2 reflectedVectorB = ((-impulse) / (r1.Mass + r2.Mass)) * r1.Mass;
     r1.PointEnd = c1.center + reflectedVectorA;
     r2.PointEnd = c2.center + reflectedVectorB;
   }

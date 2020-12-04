@@ -243,7 +243,7 @@ namespace DeltaEngine
 			if (type == "lancer")
 			{
 				env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(enemy).key = "lancer_spawn";
-				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).isTrigger = true;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerCheck = 1;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Movespeed = LancerData.Movespeed;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Mass = LancerData.Mass;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = LancerData.Health;

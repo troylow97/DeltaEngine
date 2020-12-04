@@ -200,11 +200,13 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Intersection Point", &Collider::interPoint )( rttr::metadata( "NO_SERIALIZE", true ),
                                                    ( rttr::metadata( "NO_EDITOR", true ) ) )
     .property( "Type", &Collider::type )
-    .property( "Trigger", &Collider::isTrigger )( rttr::policy::prop::bind_as_ptr )
-    .property( "Colliding On Floor", &Collider::isCollidingOnFloor )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                                      ( rttr::metadata( "NO_EDITOR", true ) ) )
     .property( "Collision Layer", &Collider::CollisionLayerCheck )( rttr::policy::prop::bind_as_ptr )
-      .property( "Collision Layer ID", &Collider::CollisionLayerID )( rttr::policy::prop::bind_as_ptr );
+      .property( "Collision Layer ID", &Collider::CollisionLayerID )( rttr::policy::prop::bind_as_ptr )
+
+      .property("Trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
+      .property("Colliding On Floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true),
+          (rttr::metadata("NO_EDITOR", true)))
+      .property("Platform", &Collider::isPlatform)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Animator>( "Animator" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Animator>()->bits ) )
