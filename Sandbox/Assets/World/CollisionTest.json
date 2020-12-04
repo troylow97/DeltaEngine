@@ -249,7 +249,7 @@
             "Transform": {
                 "Position": {
                     "x": 1.2371906042099,
-                    "y": -0.0008832961320877075,
+                    "y": -0.0005276035517454147,
                     "z": 0.0
                 },
                 "Scale": {
@@ -278,7 +278,7 @@
             "Collider": {
                 "Center": {
                     "x": 1.2371906042099,
-                    "y": -0.0008832961320877075
+                    "y": -0.0005276035517454147
                 },
                 "Offset": {
                     "x": 0.0,
@@ -358,11 +358,65 @@
                 "Start Combo Cooldown Timer": false
             },
             "Player": {
+                "Upgrade Points Per Enemy Defeated": 50,
+                "Points Needed For Upgrade": 50,
+                "Attack Upgrade Increase": 1,
+                "Health Upgrade Attack": 2,
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
                 "Previous": 65,
                 "Current": 0
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Upgrade Points"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -10.047618865966797,
+                    "y": 5.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 2.0,
+                    "y": 2.0,
+                    "z": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "Text": {
+                "Key": "Default",
+                "Detail": "0",
+                "Alignment": "align_left"
             }
         }
     ]

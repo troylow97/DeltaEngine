@@ -27,7 +27,6 @@ public:
 
     JsonFile file;
     env.pECS->GetWorld().Load("World/CollisionTest.json");
-  	
   }
 
   ~Sandbox()
