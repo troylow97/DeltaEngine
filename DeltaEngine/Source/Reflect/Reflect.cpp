@@ -42,7 +42,7 @@ rttr::registration::class_<FiddlerAIData>( "FiddlerAIData" )
     .property( "charge_detection_range", &FiddlerAIData::LostDetectionRange );
 
 rttr::registration::class_<SerpentipedeAIData>( "SerpentipedeAIData" )
-    .property( "cooldown", &SerpentipedeAIData::MaxCooldown )
+    .property( "cooldown", &SerpentipedeAIData::AttackCooldown )
     .property( "points", &SerpentipedeAIData::Points )
     .property( "detection_range", &SerpentipedeAIData::DetectionRange );
 
@@ -293,7 +293,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
         .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
         .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
         .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
-        .property("Max Cooldown", &Attack::MaxCooldown)(rttr::policy::prop::bind_as_ptr)
+        .property("Max Cooldown", &Attack::AttackCooldown)(rttr::policy::prop::bind_as_ptr)
         .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
         .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))

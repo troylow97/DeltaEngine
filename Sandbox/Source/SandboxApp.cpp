@@ -17,11 +17,16 @@ class Sandbox : public Application
 public:
   Sandbox()
   {
-    CollisionSystem::collision_handler.RegisterOnStay(TakeDamage);
+    CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
     env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem>();
     env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem >();
 
     env.pECS->GetWorld().InitSystems();
+    CollisionHandlerFunctions::Initialise();
+
+    JsonFile file;
+    env.pECS->GetWorld().Load("World/AttackTest.json");
+  	
   }
 
   ~Sandbox()
