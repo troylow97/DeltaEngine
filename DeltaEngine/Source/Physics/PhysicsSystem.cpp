@@ -135,20 +135,12 @@ namespace DeltaEngine
                 const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
                 r1.Velocity += dragForceVector;
 
-
                 //Apply Acceleration
                 const Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
                 r1.Velocity += newAcceleration * env.pClock->FixedDeltaTime();
 
                 //Apply Soft Drag
                 r1.Velocity *= 0.96f;
-
-                //Clamp to velocity max for numerical stability
-                if (Vector2DotProduct(r1.Velocity, r1.Velocity) > m_max_velocity)
-                {
-                    Normalise(r1.Velocity);
-                    r1.Velocity = r1.Velocity + m_max_velocity;
-                }
 
                 r1.AccumulatedForce = { 0,0 };
                 c1.isCollidingOnFloor = false;

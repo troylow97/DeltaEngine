@@ -24,6 +24,7 @@ struct Collider
   unsigned CollisionLayerID;
   bool isTrigger;
   bool isCollidingOnFloor;
+  bool isPlatform;
 
   Collider() :
     center { 0, 0 },
@@ -34,7 +35,8 @@ struct Collider
     CollisionLayerCheck { 255 },
     CollisionLayerID { 255 },
     isTrigger { false },
-    isCollidingOnFloor { false }
+    isCollidingOnFloor { false },
+	isPlatform{false}
   {
   }
 
@@ -47,7 +49,8 @@ struct Collider
     CollisionLayerCheck { 255 },
     CollisionLayerID { 255 },
     isTrigger { false },
-    isCollidingOnFloor { false }
+    isCollidingOnFloor { false },
+    isPlatform{ false }
   {
     (void) col_type;
   }

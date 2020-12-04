@@ -61,40 +61,43 @@ namespace DeltaEngine
     
         if (type1 != type2)
         {
-          //Fiddler Melee Attack
-          if (CheckEntityType(id1,EntityCategory::E_ENEMY_FIDDLER_PUNCH,id2,EntityCategory::E_PLAYER))
-          {
-          	//PROBLEM HERE!
-              //const EntityID fiddler = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-          	//auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(fiddler);
-              ReduceHealth(id1, CollisionHandlerFiddlerData.Damage);
-              ReduceHealth(id2, CollisionHandlerFiddlerData.Damage);
-              return;
-          }
+            //Fiddler Melee Attack
+            if (CheckEntityType(id1,EntityCategory::E_ENEMY_FIDDLER_PUNCH,id2,EntityCategory::E_PLAYER))
+            {
+                ReduceHealth(id1, CollisionHandlerFiddlerData.Damage);
+                ReduceHealth(id2, CollisionHandlerFiddlerData.Damage);
+                return;
+            }
+
+            //Lancer Melee Attack
+            if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
+            {
+                ReduceHealth(id1, CollisionHandlerLancerData.Damage);
+                ReduceHealth(id2, CollisionHandlerLancerData.Damage);
+                return;
+            }
+
+        	//Serpentipede Ranged Attack
+            if (CheckEntityType(id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER))
+            {
+                ReduceHealth(id1, CollisionHandlerSerpentipedeData.Damage);
+                ReduceHealth(id2, CollisionHandlerSerpentipedeData.Damage);
+                return;
+            }
     
-          if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
-          {
-              //PROBLEM HERE!
-              //const EntityID fiddler = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-              //auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(fiddler);
-              ReduceHealth(id1, CollisionHandlerLancerData.Damage);
-              ReduceHealth(id2, CollisionHandlerLancerData.Damage);
-              return;
-          }
+            //Player Detection Ranged Attack
+            if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET_DETECTION, id2, EntityCategory::E_ENEMY))
+            {
+                EntityID target = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
     
-          //Player Detection Ranged Attack
-          if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET_DETECTION, id2, EntityCategory::E_ENEMY))
-          {
-              EntityID target = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-    
-             env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
-             {
-                 if (et.type == EntityCategory::E_PLAYER_BULLET)
-                 {
-                     AITools::BulletTowardsEntity(bullet, target);
-                 }
-             });
-          }
+               env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
+               {
+                   if (et.type == EntityCategory::E_PLAYER_BULLET)
+                   {
+                       AITools::BulletTowardsEntity(bullet, target);
+                   }
+               });
+            }
         	
         	if(env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(player))
         	{
