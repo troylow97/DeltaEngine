@@ -22,7 +22,7 @@ namespace DeltaEngine
                 if (a.CooldownTimer <= 0)
                 {
                     RangedAttackingEntities.push_back(id);
-                    a.CooldownTimer = a.MaxCooldown;
+                    a.CooldownTimer = a.AttackCooldown;
                 }
                 a.RangeAttack = false;
             }
@@ -37,7 +37,7 @@ namespace DeltaEngine
                 if (a.CooldownTimer <= 0)
                 {
                     MeleeAttackingEntities.push_back(id);
-                    a.CooldownTimer = a.MaxCooldown;
+                    a.CooldownTimer = a.AttackCooldown;
                 }
                 a.MeleeAttack = false;
             }

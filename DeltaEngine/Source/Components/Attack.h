@@ -7,7 +7,7 @@ struct Attack
   int MeleeComboDamage;
   int NumberOfCombos;
   int MaxComboNumber;
-  float MaxCooldown;
+  float AttackCooldown;
   float CooldownTimer;
   float ComboDuration;
   float ComboCooldownTimer;
@@ -23,7 +23,7 @@ struct Attack
     MeleeComboDamage{ 3 }, 
     NumberOfCombos{0},
     MaxComboNumber{3},
-    MaxCooldown{0.2f},
+    AttackCooldown{0.2f},
     CooldownTimer{0.0f},
     ComboDuration{1.5f},
     ComboCooldownTimer{0.0f},

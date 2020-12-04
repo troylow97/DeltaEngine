@@ -102,75 +102,79 @@ namespace DeltaEngine
 	
 	void EnemySpawner::Update()
 	{
-		//temporary add this line inside
 		EntityID player = UnitManager::GetPlayerID();
 
-		for (int i = 0; i < list.Gauntlets.size(); ++i)
+		if(player.index == player.generation)
 		{
-			auto& Gauntlet = list.Gauntlets[i];
-			if (AITools::EntityisAtPoint(player, list.Gauntlets[i].ActivationPoint) && !Gauntlet.isActivated && !Gauntlet.isFinished)
+			for (int i = 0; i < list.Gauntlets.size(); ++i)
 			{
-				ActivationPoint = list.Gauntlets[i].ActivationPoint;
-				CurrentGauntlet = i;
-				GauntletIsActive = true;
-				Gauntlet.isActivated = true;
-				break;
-			}
-		}
-
-		if (GauntletIsActive)
-		{
-			if (CheckForOutsideEnemies())
-				return;
-			
-			for (auto it = SpawnedEnemiesInGauntlet.begin();it != SpawnedEnemiesInGauntlet.end();)
-			{
-				if(!env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it))
+				auto& Gauntlet = list.Gauntlets[i];
+				if (AITools::EntityisAtPoint(player, list.Gauntlets[i].ActivationPoint) && !Gauntlet.isActivated && !Gauntlet.isFinished)
 				{
-					it = SpawnedEnemiesInGauntlet.erase(it);
-					continue;
+					ActivationPoint = list.Gauntlets[i].ActivationPoint;
+					CurrentGauntlet = i;
+					GauntletIsActive = true;
+					Gauntlet.isActivated = true;
+					break;
 				}
-				
-				if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(*it).CurrentHealth <= 0)
-				{
-					it = SpawnedEnemiesInGauntlet.erase(it);
-				}
-				else
-					++it;
 			}
 
-			if (SpawnedEnemiesInGauntlet.empty())
+			if (GauntletIsActive)
 			{
-				auto& Gauntlet = list.Gauntlets[CurrentGauntlet];
-				auto& CurrentWave = Gauntlet.CurrentEnemyWave;
-				//lock player camera
-				
-				if (CurrentWave < list.Gauntlets[CurrentGauntlet].EnemyWaves.size())
+				if (CheckForOutsideEnemies())
+					return;
+
+				for (auto it = SpawnedEnemiesInGauntlet.begin(); it != SpawnedEnemiesInGauntlet.end();)
 				{
-					if (CurrentWave == 0)
+					if (!env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it))
 					{
-						//spawn walls
-						GauntletWalls[0] = SpawnWall(Vector2{ Gauntlet.ActivationPoint.x + Gauntlet.WallOffsetRight,Gauntlet.ActivationPoint.y });
-						GauntletWalls[1] = SpawnWall(Vector2{ Gauntlet.ActivationPoint.x - Gauntlet.WallOffsetRight,Gauntlet.ActivationPoint.y });
-					}				
-					for(size_t i = 0; i < list.Gauntlets[CurrentGauntlet].EnemyWaves[CurrentWave].size(); ++i)
-					{
-						const EnemyWave wave = list.Gauntlets[CurrentGauntlet].EnemyWaves[CurrentWave][i];
-						SpawnEnemy(wave.EnemyCount, wave.EnemyType, wave.SpawnArea);
+						it = SpawnedEnemiesInGauntlet.erase(it);
+						continue;
 					}
-					CurrentWave++;
-				}
-				else
-				{
-					em.DestroyEntity(GauntletWalls[0]);
-					em.DestroyEntity(GauntletWalls[1]);
-					list.Gauntlets[CurrentGauntlet].isActivated = false;
-					list.Gauntlets[CurrentGauntlet].isFinished = true;
-					GauntletIsActive = false;
-				}
-			}
 
+					if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(*it).CurrentHealth <= 0)
+					{
+						it = SpawnedEnemiesInGauntlet.erase(it);
+					}
+					else
+						++it;
+				}
+
+				if (SpawnedEnemiesInGauntlet.empty())
+				{
+					auto& Gauntlet = list.Gauntlets[CurrentGauntlet];
+					auto& CurrentWave = Gauntlet.CurrentEnemyWave;
+					//lock player camera
+
+					if (CurrentWave < list.Gauntlets[CurrentGauntlet].EnemyWaves.size())
+					{
+						if (CurrentWave == 0)
+						{
+							//spawn walls
+							GauntletWalls[0] = SpawnWall(Vector2{ Gauntlet.ActivationPoint.x + Gauntlet.WallOffsetRight,Gauntlet.ActivationPoint.y });
+							GauntletWalls[1] = SpawnWall(Vector2{ Gauntlet.ActivationPoint.x - Gauntlet.WallOffsetRight,Gauntlet.ActivationPoint.y });
+						}
+						for (size_t i = 0; i < list.Gauntlets[CurrentGauntlet].EnemyWaves[CurrentWave].size(); ++i)
+						{
+							const EnemyWave wave = list.Gauntlets[CurrentGauntlet].EnemyWaves[CurrentWave][i];
+							SpawnEnemy(wave.EnemyCount, wave.EnemyType, wave.SpawnArea);
+						}
+						CurrentWave++;
+					}
+					else
+					{
+						em.DestroyEntity(GauntletWalls[0]);
+						em.DestroyEntity(GauntletWalls[1]);
+						list.Gauntlets[CurrentGauntlet].isActivated = false;
+						list.Gauntlets[CurrentGauntlet].isFinished = true;
+						GauntletIsActive = false;
+					}
+				}
+
+			}
 		}
+
+
 
 
 
