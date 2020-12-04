@@ -72,8 +72,6 @@ inline EntityManager::EntityManager()
   Archetype *empty_arch = CreateEmptyArchetype();
   m_archetypes.push_back( empty_arch );
   CreateChunk( empty_arch );
-  ;
-  GetComponent<EntityName>( CreateEntity<Camera>() ).name.assign( "Camera");
 }
 
 inline EntityManager::~EntityManager()
@@ -95,7 +93,6 @@ inline void EntityManager::Clear()
   Archetype *empty_arch = CreateEmptyArchetype();
   m_archetypes.push_back( empty_arch );
   CreateChunk( empty_arch );
-  CreateEntity<Camera>();
 }
 
 template <typename... C>
