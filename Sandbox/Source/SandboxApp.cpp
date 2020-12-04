@@ -25,7 +25,7 @@ public:
     CollisionHandlerFunctions::Initialise();
 
     JsonFile file;
-    env.pECS->GetWorld().Load("World/AttackTest.json");
+    env.pECS->GetWorld().Load("World/CollisionTest.json");
   	
   }
 

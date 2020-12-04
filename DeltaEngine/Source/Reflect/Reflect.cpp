@@ -28,6 +28,9 @@ RTTR_REGISTRATION
     .property( "CurrentWaypoint", &Waypoint::CurrentWaypoint );
 
 rttr::registration::class_<EnemyData>( "EnemyData" )
+    .property("transform_scale", &EnemyData::TransformScale)
+    .property("collider_scale", &EnemyData::ColliderScale)
+    .property("collider_offset", &EnemyData::ColliderOffset)
     .property( "health", &EnemyData::Health )
     .property( "movespeed", &EnemyData::Movespeed )
     .property( "mass", &EnemyData::Mass )
@@ -317,6 +320,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .property("Is Dead", &Player::isDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Jumping", &Player::isJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Dashing", &Player::isDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Start Dashing Timer", &Player::startDashingTimer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Allow Dashing", &Player::allowDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Dashing Timer Duration", &Player::dashingTimerDuration)(rttr::policy::prop::bind_as_ptr)

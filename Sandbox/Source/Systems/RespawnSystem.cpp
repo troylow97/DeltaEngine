@@ -21,10 +21,7 @@ namespace DeltaEngine
   {
     EntityID id = UnitManager::GetPlayerID();
   	
-    //Stop crash by checking for components
-    if (id.index != id.generation)
-        return;
-  	
+    //Stop crash by checking for components	
     if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id) 
         || !em.HasComponent<Health>(id) || !em.HasComponent<Image>(id))
         return;

@@ -16,7 +16,6 @@ namespace DeltaEngine
         MaxDashTicks = 8;
         InitialJumpForce = 4500.0f;
         JumpForce = InitialJumpForce;
-        m_max_velocity = 1000.0f;
     }
 
     void PhysicsSystem::SetBounds(RigidBody& r1)
@@ -63,35 +62,36 @@ namespace DeltaEngine
             	{
                     Player& p = em.GetComponent<Player>(id1);
                     //Jumping,Dashing
-                    if (p.isJumping && c1.isCollidingOnFloor)
-                    {
-                        CurrentJumpTicks = 1;
-                        JumpForce = InitialJumpForce;
-                    }
-                    else if (p.isDashing && CurrentDashTicks < MaxDashTicks && c1.isCollidingOnFloor)
-                    {
-                        CurrentDashTicks++;
-                        if (r1.Direction == Vector2::right() && p.allowDashing)
+            		if(c1.isCollidingOnFloor)
+            		{
+                        if (p.isJumping)
                         {
-                            r1.AccumulatedForce += Vector2{ 5000 + r1.Mass * 100, 0 };
+                            CurrentJumpTicks = 1;
+                            JumpForce = InitialJumpForce;
                         }
-                        else if (r1.Direction == Vector2::left() && p.allowDashing)
+                        else if (p.isDashing && CurrentDashTicks < MaxDashTicks)
                         {
-                            r1.AccumulatedForce -= Vector2{ 5000 + r1.Mass * 100, 0 };
+                            CurrentDashTicks++;
+                            if (p.DashDirectionRight)
+                            {
+                                r1.AccumulatedForce += Vector2{ 5000 + r1.Mass * 100, 0 };
+                            }
+                            else
+                            {
+                                r1.AccumulatedForce -= Vector2{ 5000 + r1.Mass * 100, 0 };
+                            }
                         }
-                    }
-                    else if (p.isDashing && !c1.isCollidingOnFloor)
+            		}
+                    else if (p.isDashing)
                     {
                         CurrentDashTicks = 0;
                         p.isDashing = false;
-                        p.allowDashing = false;
                     }
 
                     if (CurrentDashTicks >= MaxDashTicks)
                     {
                         CurrentDashTicks = 0;
                         p.isDashing = false;
-                        p.allowDashing = false;
                     }
 
                     if (CurrentJumpTicks >= 1 && p.isJumping)

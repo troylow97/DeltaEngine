@@ -8,36 +8,31 @@ namespace DeltaEngine
 {
     void AttackSystem::Update()
     {
+        auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+    	
+        if (p.isDashing)
+        {
+            p.startDashingTimer = true;
+        }
+    	if(p.startDashingTimer)
+    	{
+            p.dashingTimerCooldown -= env.pClock->DeltaTime();
+            p.allowDashing = false;
+    	}
+        if (p.dashingTimerCooldown <= 0.0f)
+        {
+            p.startDashingTimer = false;
+            p.dashingTimerCooldown = p.dashingTimerDuration;
+            p.allowDashing = true;
+        }
+        Dash();
+
         em.ForEach([&](EntityID& id, Attack& a, Image& im)
         {
             if (a.CooldownTimer > 0)
             {
                 a.CooldownTimer -= env.pClock->DeltaTime();
             }
-            if (env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
-            {
-                auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
-
-                if (p.isDashing)
-                {
-                    p.startDashingTimer = true;
-                }
-                if (p.startDashingTimer)
-                {
-                    p.dashingTimerCooldown -= env.pClock->DeltaTime();
-                }
-                if (p.dashingTimerCooldown <= 0.0f)
-                {
-                    p.startDashingTimer = false;
-                    p.dashingTimerCooldown = p.dashingTimerDuration;
-                }
-                if (p.dashingTimerCooldown == p.dashingTimerDuration)
-                {
-                    p.allowDashing = true;
-                }
-            }
-
-            Dash();
 
             if (a.RangeAttack)
             {
@@ -197,7 +192,7 @@ namespace DeltaEngine
         {
             if (et1.type == EntityCategory::E_PLAYER_DASH)
             {
-                if (env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(UnitManager::GetPlayerID()).isCollidingOnFloor)
+                if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).isDashing)
                     t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                 else
                     env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);

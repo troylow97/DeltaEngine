@@ -7,11 +7,12 @@ namespace DeltaEngine
 	struct Player
 	{
 		int RespawnPoint;
-		bool isDead = false;
+		bool isDead;
 		bool isJumping;
 		bool isDashing;
 		bool startDashingTimer;
 		bool allowDashing;
+		bool DashDirectionRight;
 		float dashingTimerDuration; // max
 		float dashingTimerCooldown; // timer
 
@@ -21,7 +22,7 @@ namespace DeltaEngine
 			isJumping{false},
 			isDashing{false},
 			startDashingTimer{false},
-			allowDashing{false},
+			allowDashing{true},
 			dashingTimerDuration{1.0f},
 			dashingTimerCooldown{1.0f}
 		{}

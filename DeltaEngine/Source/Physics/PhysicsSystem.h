@@ -26,6 +26,5 @@ namespace DeltaEngine
     int MaxJumpTicks{10};
     int CurrentDashTicks{ 0 };
     int MaxDashTicks{ 10 };
-    float m_max_velocity{100.0f};
   END_DEFINE_SYSTEM(PhysicsSystem)
 }

@@ -150,13 +150,17 @@ void InputSystem::Update()
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_X)) //DASH
     {
-        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Transform& t1, RigidBody r1, State& a, Collider& c1, Player& p1, Input& i1)
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Transform& t1, RigidBody r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1)
         {
-            if (c1.isCollidingOnFloor && r1.Direction == Vector2::right() || r1.Direction == Vector2::left())
+            if (c1.isCollidingOnFloor && p1.allowDashing)
             {
+                if (a.m_FlipX)
+                    p1.DashDirectionRight = false;
+                else
+                    p1.DashDirectionRight = true;
                 p1.isDashing = true;
-
-                EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+                p1.allowDashing = false;
+                const EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
                 em.GetComponent<Transform>(missile).position = t1.position;
                 em.GetComponent<RigidBody>(missile).Mass = 5.0f;
                 em.GetComponent<Transform>(missile).scale = { 0.4f, 0.4f, 0.0f };
