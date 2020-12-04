@@ -36,6 +36,7 @@ namespace DeltaEngine
     {
         LimitCurrentHealthToMaxHealth(hp);
         auto& player = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+
         if (hp.CurrentHealth <= 0)
         {
           if (et.type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
@@ -45,8 +46,6 @@ namespace DeltaEngine
           }
           else
           {
-              if (et.type == EntityCategory::E_ENEMY)
-                  player.EnemiesDefeated++;
 			  DestroyedEntities.push_back(id);
           }
         }

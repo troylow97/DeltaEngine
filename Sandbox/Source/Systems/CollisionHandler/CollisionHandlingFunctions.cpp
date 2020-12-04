@@ -105,15 +105,18 @@ namespace DeltaEngine
               //Player Ranged Attack
               if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET, id2, EntityCategory::E_ENEMY))
               {
+                  const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
                   ReduceHealth(id1, attack.RangedDamage);
                   ReduceHealth(id2, attack.RangedDamage);
+                  if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
+                      env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
                   return;
               }
     
               //Player Melee Attack
-              if (CheckEntityType(id1, EntityCategory::E_PLAYER_PUNCH, id2, EntityCategory::E_ENEMY)) // checks if which one id1 id2 is punch / enemy
+              if (CheckEntityType(id1, EntityCategory::E_PLAYER_PUNCH, id2, EntityCategory::E_ENEMY))
               {
-                  const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY); // getentityid  which id is enemy so will get the id of enemy
+                  const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
                   const EntityID punch = GetEntityID(id1, id2, EntityCategory::E_PLAYER_PUNCH);
                   auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
                   Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(punch).Velocity.Normalize();
@@ -127,6 +130,9 @@ namespace DeltaEngine
                   env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * a.KnockbackAmount;
                   ReduceHealth(id1, attack.MeleeDamage);
                   ReduceHealth(id2, attack.MeleeDamage);
+
+              	  if(env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
+                      env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
                   return;
               }
         	}
@@ -134,8 +140,11 @@ namespace DeltaEngine
     	 //Player Dash
           if (CheckEntityType(id1, EntityCategory::E_PLAYER_DASH, id2, EntityCategory::E_ENEMY))
           {
+              const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
               ReduceHealth(id1, 1);
               ReduceHealth(id2, 1);
+              if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
+                  env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
           }
     
           //Enemy Collide with player
