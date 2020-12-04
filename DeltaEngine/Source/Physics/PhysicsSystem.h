@@ -18,7 +18,8 @@ namespace DeltaEngine
   private:
     void PhysicsSystem::SetBounds(RigidBody& r1);
     void PhysicsSystem::UpdateVelocity();
-
+    void PhysicsSystem::Dash(Player& p,RigidBody& r,Collider& c);
+    void PhysicsSystem::Jump(Player& p,RigidBody& r,Collider& c);
     Vector2 m_gravity_amount {0, -60.0f};
     float JumpForce{4500.0f};
     float InitialJumpForce{4500.0f};
