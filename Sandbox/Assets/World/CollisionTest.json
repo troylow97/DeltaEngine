@@ -71,13 +71,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 4.21999979019165,
-                    "y": 1.690000057220459,
+                    "x": 4.2555012702941898,
+                    "y": 0.765999972820282,
                     "z": 0.0
                 },
                 "Scale": {
                     "x": 5.0,
-                    "y": 0.9900000095367432,
+                    "y": 0.029999999329447748,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -100,8 +100,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 4.21999979019165,
-                    "y": 1.690000057220459
+                    "x": 4.2555012702941898,
+                    "y": 0.765999972820282
                 },
                 "Offset": {
                     "x": 0.0,
@@ -130,8 +130,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.3300000429153443,
-                    "y": 3.7899999618530275,
+                    "x": 7.439233779907227,
+                    "y": 2.582899332046509,
                     "z": 0.0
                 },
                 "Scale": {
@@ -159,8 +159,67 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -1.3300000429153443,
-                    "y": 3.7899999618530275
+                    "x": 7.439233779907227,
+                    "y": 2.582899332046509
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 14,
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 10.918523788452149,
+                    "y": 4.819586277008057,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 5.0,
+                    "y": 0.9900000095367432,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 10.918523788452149,
+                    "y": 4.819586277008057
                 },
                 "Offset": {
                     "x": 0.0,
@@ -189,8 +248,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.036965880542993548,
-                    "y": -0.0009415608365088701,
+                    "x": 1.2371906042099,
+                    "y": -0.0008832961320877075,
                     "z": 0.0
                 },
                 "Scale": {
@@ -218,8 +277,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -0.036965880542993548,
-                    "y": -0.0009415608365088701
+                    "x": 1.2371906042099,
+                    "y": -0.0008832961320877075
                 },
                 "Offset": {
                     "x": 0.0,
@@ -257,7 +316,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -289,7 +348,7 @@
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": -0.0026356829330325128,
+                "Cooldown Timer": -0.004710759036242962,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 1.5,
                 "Knockback Amount": 0.0,
@@ -302,7 +361,7 @@
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
-                "Previous": 68,
+                "Previous": 65,
                 "Current": 0
             }
         }

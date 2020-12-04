@@ -162,7 +162,6 @@ namespace DeltaEngine
                 em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 500};
                 continue;
       		}
-
         }
 
       	//Standard Collision Response
