@@ -6,7 +6,6 @@ namespace DeltaEngine
 DEFINE_SYSTEM(UpgradeSystem, Player)
   void Update() override;
   void LateUpdate() override;
-  void TotalUpgradePoints();
   void UpgradeAttack();
   void UpgradeMaxHealth();
 private:

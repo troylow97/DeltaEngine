@@ -7,6 +7,7 @@ namespace DeltaEngine
     int RespawnPoint;
     int EnemiesDefeated;
     int UpgradePoints;
+    int PointsNeededForUpgrade;
     int AttackUpgradeIncrease;
     int HealthUpgradeIncrease;
     float DashingTimerDuration; // max
@@ -24,6 +25,7 @@ namespace DeltaEngine
     	RespawnPoint(0),
         EnemiesDefeated{0},
         UpgradePoints{50},
+        PointsNeededForUpgrade{50},
         AttackUpgradeIncrease{1},
         HealthUpgradeIncrease{2},
         DashingTimerDuration{1.0f},

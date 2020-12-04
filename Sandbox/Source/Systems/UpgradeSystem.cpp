@@ -10,12 +10,20 @@ namespace DeltaEngine
 
 	if (p.UpgradeAtk)
 	{
-	  UpgradeAttack();
+	  PointsCollected = p.EnemiesDefeated * p.UpgradePoints;
+	  if (PointsCollected >= p.PointsNeededForUpgrade)
+	  {
+		UpgradeAttack();
+	  }
 	  p.UpgradeAtk = false;
 	}
 	if (p.UpgradeHP)
 	{
-	  UpgradeMaxHealth();
+	  PointsCollected = p.EnemiesDefeated * p.UpgradePoints;
+	  if (PointsCollected >= p.PointsNeededForUpgrade)
+	  {
+		UpgradeMaxHealth();
+	  }
 	  p.UpgradeHP = false;
 	}
   }
@@ -33,6 +41,7 @@ namespace DeltaEngine
 	{
 	  a.MeleeDamage += p.AttackUpgradeIncrease;
 	  a.RangedDamage += p.AttackUpgradeIncrease;
+	  p.EnemiesDefeated--;
 	});
   }
 
@@ -43,6 +52,7 @@ namespace DeltaEngine
 	em.ForEach([&](EntityID& id, Health& h, Player& p)
 	{
 	  h.MaxHealth += p.HealthUpgradeIncrease;
+	  p.EnemiesDefeated--;
 	});
   }
 }
