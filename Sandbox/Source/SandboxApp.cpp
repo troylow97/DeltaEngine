@@ -7,6 +7,7 @@
 #include "../Source/Systems/AI/AI_StateMachine.h"
 #include "Physics/CollisionSystem.h"
 #include "Systems/AttackSystem.h"
+#include "Systems/GCameraSystem.h"
 #include "Systems/LifespanSystem.h"
 #include "Systems/RespawnSystem.h"
 #include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
@@ -18,9 +19,9 @@ public:
   Sandbox()
   {
     CollisionSystem::collision_handler.RegisterOnStay(TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem>();
+    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem, GCameraSystem>();
     env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem >();
-
+    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem>();
     env.pECS->GetWorld().InitSystems();
   }
 

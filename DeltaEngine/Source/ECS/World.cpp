@@ -3,7 +3,6 @@
 #include "../../../Sandbox/Source/Systems/AI/AI_StateMachine.h"
 #include "Physics/PhysicsSystem.h"
 #include "Systems/AnimationSystem.h"
-#include "Systems/GCameraSystem.h"
 #include "Systems/InputSystem.h"
 #include "Systems/OCullSystem.h"
 #include "Systems/PhysicsDrawSystem.h"
@@ -22,7 +21,7 @@ World::World() : em( std::make_unique<EntityManager>() )
 {
   DeltaEngine_CORE_INFO( "Initializing World..." );
   CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem,
-    PhysicsDrawSystem, OCullSystem, GCameraSystem>();
+    PhysicsDrawSystem, OCullSystem>();
   DeltaEngine_CORE_INFO( "Initializing World successful" );
 
 #ifndef DE_EDITOR
@@ -77,7 +76,6 @@ void World::Run()
     // Logic Late Update
     LateUpdate();
   }
-  systems[CHash::Hash<GCameraSystem>().digest]->Update();
   systems[CHash::Hash<OCullSystem>().digest]->Update();
   systems[CHash::Hash<RenderSystem>().digest]->Update();
   systems[CHash::Hash<PhysicsDrawSystem>().digest]->Update();
