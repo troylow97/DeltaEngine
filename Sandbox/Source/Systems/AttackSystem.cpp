@@ -10,20 +10,20 @@ namespace DeltaEngine
     {
         auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
     	
-        if (p.isDashing)
+        if (p.IsDashing)
         {
-            p.startDashingTimer = true;
+            p.StartDashingTimer = true;
         }
-    	if(p.startDashingTimer)
+    	if(p.StartDashingTimer)
     	{
-            p.dashingTimerCooldown -= env.pClock->DeltaTime();
-            p.allowDashing = false;
+            p.DashingTimerCooldown -= env.pClock->DeltaTime();
+            p.AllowDashing = false;
     	}
-        if (p.dashingTimerCooldown <= 0.0f)
+        if (p.DashingTimerCooldown <= 0.0f)
         {
-            p.startDashingTimer = false;
-            p.dashingTimerCooldown = p.dashingTimerDuration;
-            p.allowDashing = true;
+            p.StartDashingTimer = false;
+            p.DashingTimerCooldown = p.DashingTimerDuration;
+            p.AllowDashing = true;
         }
         Dash();
 
@@ -192,7 +192,7 @@ namespace DeltaEngine
         {
             if (et1.type == EntityCategory::E_PLAYER_DASH)
             {
-                if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).isDashing)
+                if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).IsDashing)
                     t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                 else
                     env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);

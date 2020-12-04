@@ -133,7 +133,7 @@ void InputSystem::Update()
         if (c1.isCollidingOnFloor)
         {
             a.SetFloat("PlayerVelocityY", 1);
-            p1.isJumping = true;
+            p1.IsJumping = true;
         }
         i1.previousKey = DEVK_SPACE;
         idle_timer = 0.0f;
@@ -144,7 +144,7 @@ void InputSystem::Update()
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Player& p1, RigidBody& r1, Input& i1)
       {
         i1.previousKey = DEVK_SPACE;
-        p1.isJumping = false;
+        p1.IsJumping = false;
       });
     }
 
@@ -152,14 +152,14 @@ void InputSystem::Update()
     {
         env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Transform& t1, RigidBody r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1)
         {
-            if (c1.isCollidingOnFloor && p1.allowDashing)
+            if (c1.isCollidingOnFloor && p1.AllowDashing)
             {
                 if (a.m_FlipX)
                     p1.DashDirectionRight = false;
                 else
                     p1.DashDirectionRight = true;
-                p1.isDashing = true;
-                p1.allowDashing = false;
+                p1.IsDashing = true;
+                p1.AllowDashing = false;
                 const EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
                 em.GetComponent<Transform>(missile).position = t1.position;
                 em.GetComponent<RigidBody>(missile).Mass = 5.0f;
