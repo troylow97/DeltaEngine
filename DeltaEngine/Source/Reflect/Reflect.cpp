@@ -276,7 +276,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("Original Point", &AI::original_point)(rttr::policy::prop::bind_as_ptr)
       .property("AIState", &AI::key)(rttr::policy::prop::bind_as_ptr)
-      .property("Transition", &AI::transition)(rttr::policy::prop::bind_as_ptr);
+      .property("Transition", &AI::transition)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
   rttr::registration::class_<EntityType>( "Entity Type" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<EntityType>()->bits ) )
@@ -317,7 +317,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Player>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("Respawn Point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("Enemies Defeated", &Player::EnemiesDefeated)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Enemies Defeated", &Player::EnemiesDefeated)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
       .property("Upgrade Points", &Player::UpgradePoints)(rttr::policy::prop::bind_as_ptr)
       .property("Dashing Timer Duration", &Player::DashingTimerDuration)(rttr::policy::prop::bind_as_ptr)
       .property("Dashing Timer Cooldown", &Player::DashingTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
