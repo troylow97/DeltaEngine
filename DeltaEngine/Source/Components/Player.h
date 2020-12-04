@@ -1,33 +1,32 @@
 #pragma once
 
-#include <Core\Math\Vector.h>
-
 namespace DeltaEngine
 {
-	struct Player
-	{
-		int RespawnPoint;
-		bool isDead;
-		bool isJumping;
-		bool isDashing;
-		bool startDashingTimer;
-		bool allowDashing;
-		bool DashDirectionRight;
-		float dashingTimerDuration; // max
-		float dashingTimerCooldown; // timer
-
-		Player() :
-			RespawnPoint(0),
-			isDead{false},
-			isJumping{false},
-			isDashing{false},
-			startDashingTimer{false},
-			allowDashing{true},
-			dashingTimerDuration{1.0f},
-			dashingTimerCooldown{1.0f}
-		{}
-	};
-
-
-		
+  struct Player
+  {
+    int RespawnPoint;
+    int EnemiesDefeated;
+    int UpgradePoints;
+    float DashingTimerDuration; // max
+    float DashingTimerCooldown; // timer
+    bool IsDead;
+    bool IsJumping;
+    bool IsDashing;
+    bool StartDashingTimer;
+    bool AllowDashing;
+    bool DashDirectionRight;
+    
+    Player() :
+    	RespawnPoint(0),
+        EnemiesDefeated{0},
+        UpgradePoints{50},
+    	IsDead{false},
+    	IsJumping{false},
+    	IsDashing{false},
+    	StartDashingTimer{false},
+    	AllowDashing{true},
+    	DashingTimerDuration{1.0f},
+    	DashingTimerCooldown{1.0f}
+    {}
+  };	
 }

@@ -64,12 +64,12 @@ namespace DeltaEngine
                     //Jumping,Dashing
             		if(c1.isCollidingOnFloor)
             		{
-                        if (p.isJumping)
+                        if (p.IsJumping)
                         {
                             CurrentJumpTicks = 1;
                             JumpForce = InitialJumpForce;
                         }
-                        else if (p.isDashing && CurrentDashTicks < MaxDashTicks)
+                        else if (p.IsDashing && CurrentDashTicks < MaxDashTicks)
                         {
                             CurrentDashTicks++;
                             if (p.DashDirectionRight)
@@ -82,19 +82,19 @@ namespace DeltaEngine
                             }
                         }
             		}
-                    else if (p.isDashing)
+                    else if (p.IsDashing)
                     {
                         CurrentDashTicks = 0;
-                        p.isDashing = false;
+                        p.IsDashing = false;
                     }
 
                     if (CurrentDashTicks >= MaxDashTicks)
                     {
                         CurrentDashTicks = 0;
-                        p.isDashing = false;
+                        p.IsDashing = false;
                     }
 
-                    if (CurrentJumpTicks >= 1 && p.isJumping)
+                    if (CurrentJumpTicks >= 1 && p.IsJumping)
                     {
                         r1.AccumulatedForce += Vector2{ 0, JumpForce + r1.Mass * 100 };
                         JumpForce *= 0.7f;
@@ -103,14 +103,14 @@ namespace DeltaEngine
                             CurrentJumpTicks++;
                         else
                         {
-                            p.isJumping = false;
+                            p.IsJumping = false;
                             CurrentJumpTicks = 0;
                             JumpForce = InitialJumpForce;
                         }
                     }
 
                     //Apply Gravity for player
-					if (r1.hasGravity && !c1.isCollidingOnFloor && !p.isDashing)
+					if (r1.hasGravity && !c1.isCollidingOnFloor && !p.IsDashing)
                         r1.Acceleration = m_gravity_amount;
                     else
                         r1.Acceleration = { 0,0 };    		
