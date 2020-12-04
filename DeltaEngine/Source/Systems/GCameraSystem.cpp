@@ -1,0 +1,20 @@
+#include "GCameraSystem.h"
+#include "Components/Components.h"
+namespace DeltaEngine
+{
+
+  void GCameraSystem::Update()
+  {
+    auto& c_t = em.GetComponent<Transform>( { 0 } );
+
+    em.ForEach( [&]( Transform &t, Player &p )
+    {
+      c_t.position = t.position;
+    } );
+  }
+
+  void GCameraSystem::LateUpdate()
+  {
+
+  }
+}

@@ -224,7 +224,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
   rttr::registration::class_<Camera>( "Camera" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Camera>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "Size", &Camera::m_Size )( rttr::policy::prop::bind_as_ptr )
+    .property( "Camera Size", &Camera::m_Size )( rttr::policy::prop::bind_as_ptr )
     .property( "Background Color", &Camera::backgroundColor )( rttr::policy::prop::bind_as_ptr );
 
   rttr::registration::class_<Image>( "Image" )

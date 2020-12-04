@@ -6,6 +6,7 @@
 
 
 #include "Components/Transform.h"
+#include "Core/Containers/Singleton.h"
 #include "examples/imgui_impl_win32.h"
 
 namespace DeltaEngine
@@ -14,13 +15,13 @@ namespace DeltaEngine
   class EntityManager;
   class IPanel;
 
-  class Editor
+  class Editor : public Singleton<Editor>
   {
 
-
+    friend class Singleton<Editor>;
 
     void MenuBar();
-
+    Editor();
   public:
 
     std::vector<std::unique_ptr<IPanel>> m_panels;
@@ -54,7 +55,7 @@ namespace DeltaEngine
     std::string textureKey {};
 
 
-    Editor();
+
     ~Editor();
     void Begin();
     void Render();

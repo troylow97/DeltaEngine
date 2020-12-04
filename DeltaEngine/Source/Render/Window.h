@@ -17,7 +17,9 @@ namespace DeltaEngine
     bool m_fullscreen;
     bool m_cursor;
 
+
   public:
+    void Fullscreen();
 
     Window() = delete;
     Window(const std::string& title, int width, int height, bool fullscreen);

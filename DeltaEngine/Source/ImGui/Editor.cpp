@@ -53,7 +53,7 @@ void OpenFile(Editor& e)
 
   if ( path )
   {
-    NewFile(e);
+    //NewFile(e);
     GetEnv().pECS->GetWorld().Load( *path );
   }
 }

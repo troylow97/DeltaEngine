@@ -33,6 +33,44 @@ std::wstring to_wstring(std::string str)
   return std::wstring();
 }
 
+WINDOWPLACEMENT wpc;
+LONG HWNDStyle = 0;
+LONG HWNDStyleEx = 0;
+
+void DeltaEngine::Window::Fullscreen( )
+{
+  if ( !m_fullscreen  )
+  {
+    m_fullscreen = true;
+    GetWindowPlacement( m_hwndl, &wpc );
+    if ( HWNDStyle == 0 )
+      HWNDStyle = GetWindowLong( m_hwndl, GWL_STYLE );
+    if ( HWNDStyleEx == 0 )
+      HWNDStyleEx = GetWindowLong( m_hwndl, GWL_EXSTYLE );
+
+    LONG NewHWNDStyle = HWNDStyle;
+    NewHWNDStyle &= ~WS_BORDER;
+    NewHWNDStyle &= ~WS_DLGFRAME;
+    NewHWNDStyle &= ~WS_THICKFRAME;
+
+    LONG NewHWNDStyleEx =HWNDStyleEx;
+    NewHWNDStyleEx &= ~WS_EX_WINDOWEDGE;
+
+    SetWindowLong( m_hwndl, GWL_STYLE, NewHWNDStyle | WS_POPUP );
+    SetWindowLong( m_hwndl, GWL_EXSTYLE, NewHWNDStyleEx | WS_EX_TOPMOST );
+    ShowWindow( m_hwndl, SW_SHOWMAXIMIZED );
+  }
+  else
+  {
+    m_fullscreen = false;
+    SetWindowLong( m_hwndl, GWL_STYLE, HWNDStyle );
+    SetWindowLong( m_hwndl, GWL_EXSTYLE, HWNDStyleEx );
+    ShowWindow( m_hwndl, SW_SHOWNORMAL );
+    SetWindowPlacement( m_hwndl, &wpc );
+  }
+}
+
+
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 namespace DeltaEngine
@@ -71,12 +109,13 @@ namespace DeltaEngine
         PostQuitMessage(0);
       }
       break;
+    case WM_ACTIVATE:
     case WM_ACTIVATEAPP:
       {
-        //if (wParam)
-        //  env.pWin->Focus(true);
-        //else
-        //  env.pWin->Focus(false);
+        if (wParam)
+          env.pWin->Focus(true);
+        else
+          env.pWin->Focus(false);
       }
       break;
     }
@@ -99,10 +138,6 @@ namespace DeltaEngine
 
   void Window::Update()
   {
-    std::wstringstream wss;
-    wss << m_title << L", FPS - " << std::floor(env.pClock->FrameCount());
-    SetWindowText( m_hwndl, wss.str().c_str());
-
     MSG msg = {};
 
     if (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
@@ -210,7 +245,7 @@ namespace DeltaEngine
     HRESULT oleResult = OleInitialize(nullptr);
     (void)oleResult;
     m_hwndl = CreateWindowEx(0, windowClass.lpszClassName, m_title.c_str(),
-                             WS_OVERLAPPEDWINDOW | WS_VISIBLE, 100, 100, m_width, m_height,
+                             WS_OVERLAPPEDWINDOW | WS_VISIBLE, 0, 0, m_width, m_height,
                              nullptr, nullptr, windowClass.hInstance, nullptr);
 
     if (!m_hwndl)
@@ -219,10 +254,14 @@ namespace DeltaEngine
     }
 
     if (m_fullscreen && m_hwndl)
-      SetWindowPos(m_hwndl, HWND_TOPMOST, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), 0L);
+    {
+      m_fullscreen = !m_fullscreen;
+      Fullscreen();
+    }
 
     ShowWindow(GetConsoleWindow(), SW_SHOW);
 
     RegisterDragDrop(m_hwndl, &dropManager);
+
   }
 }
