@@ -28,6 +28,7 @@ namespace DeltaEngine
     else
 #endif
     {
+
       auto t = em.GetComponent<Transform>( { 0 } );
       max = Camera::allCameras[0]->Max( t );
       min = Camera::allCameras[0]->Min( t );
