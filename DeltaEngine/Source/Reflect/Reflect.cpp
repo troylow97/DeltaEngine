@@ -308,13 +308,17 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "Timer", &Lifespan::Timer )( rttr::policy::prop::bind_as_ptr );
 
-    rttr::registration::class_<Player>("Player")
-        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Player>()->bits))
-        .constructor<>()(rttr::policy::ctor::as_object)
-        .property("Respawn Point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Is Dead", &Player::isDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Is Jumping", &Player::isJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Is Dashing", &Player::isDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+  rttr::registration::class_<Player>("Player")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Player>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Respawn Point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Dead", &Player::isDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Jumping", &Player::isJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Dashing", &Player::isDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Start Dashing Timer", &Player::startDashingTimer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Dashing", &Player::allowDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Dashing Timer Duration", &Player::dashingTimerDuration)(rttr::policy::prop::bind_as_ptr)
+      .property("Dashing Timer Cooldown", &Player::dashingTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
   }
 
 }

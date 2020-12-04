@@ -14,6 +14,28 @@ namespace DeltaEngine
             {
                 a.CooldownTimer -= env.pClock->DeltaTime();
             }
+            if (env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
+            {
+                auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
+
+                if (p.isDashing)
+                {
+                    p.startDashingTimer = true;
+                }
+                if (p.startDashingTimer)
+                {
+                    p.dashingTimerCooldown -= env.pClock->DeltaTime();
+                }
+                if (p.dashingTimerCooldown <= 0.0f)
+                {
+                    p.startDashingTimer = false;
+                    p.dashingTimerCooldown = p.dashingTimerDuration;
+                }
+                if (p.dashingTimerCooldown == p.dashingTimerDuration)
+                {
+                    p.allowDashing = true;
+                }
+            }
 
             Dash();
 
@@ -172,15 +194,15 @@ namespace DeltaEngine
     void AttackSystem::Dash()
     {
         em.ForEach([&](EntityID& id1, Transform& t1, EntityType et1)
+        {
+            if (et1.type == EntityCategory::E_PLAYER_DASH)
             {
-                if (et1.type == EntityCategory::E_PLAYER_DASH)
-                {
-                    if (env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(UnitManager::GetPlayerID()).isCollidingOnFloor)
-                        t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
-                    else
-                        env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
-                }
-            });
+                if (env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(UnitManager::GetPlayerID()).isCollidingOnFloor)
+                    t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
+                else
+                    env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
+            }
+        });
     }
 
     EntityID AttackSystem::CreateProjectile(EntityID id,Vector2 scale,bool gravity,float Lifetime,EntityCategory type)

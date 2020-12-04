@@ -71,11 +71,11 @@ namespace DeltaEngine
                     else if (p.isDashing && CurrentDashTicks < MaxDashTicks && c1.isCollidingOnFloor)
                     {
                         CurrentDashTicks++;
-                        if (r1.Direction == Vector2::right())
+                        if (r1.Direction == Vector2::right() && p.allowDashing)
                         {
                             r1.AccumulatedForce += Vector2{ 5000 + r1.Mass * 100, 0 };
                         }
-                        else if (r1.Direction == Vector2::left())
+                        else if (r1.Direction == Vector2::left() && p.allowDashing)
                         {
                             r1.AccumulatedForce -= Vector2{ 5000 + r1.Mass * 100, 0 };
                         }
@@ -84,12 +84,14 @@ namespace DeltaEngine
                     {
                         CurrentDashTicks = 0;
                         p.isDashing = false;
+                        p.allowDashing = false;
                     }
 
                     if (CurrentDashTicks >= MaxDashTicks)
                     {
                         CurrentDashTicks = 0;
                         p.isDashing = false;
+                        p.allowDashing = false;
                     }
 
                     if (CurrentJumpTicks >= 1 && p.isJumping)
@@ -143,12 +145,12 @@ namespace DeltaEngine
                 //Apply Soft Drag
                 r1.Velocity *= 0.96f;
 
-                //Clamp to velocity max for numerical stability
-                if (Vector2DotProduct(r1.Velocity, r1.Velocity) > m_max_velocity)
-                {
-                    Normalise(r1.Velocity);
-                    r1.Velocity = r1.Velocity + m_max_velocity;
-                }
+                ////Clamp to velocity max for numerical stability
+                //if (Vector2DotProduct(r1.Velocity, r1.Velocity) > m_max_velocity)
+                //{
+                //    r1.Velocity = Normalise(r1.Velocity);
+                //    r1.Velocity = r1.Velocity * m_max_velocity;
+                //}
 
                 r1.AccumulatedForce = { 0,0 };
                 c1.isCollidingOnFloor = false;
