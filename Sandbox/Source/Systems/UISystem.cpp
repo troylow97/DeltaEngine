@@ -28,6 +28,7 @@ const unsigned credits_screen = 11;
 const unsigned gameover_screen = 12;
 const unsigned upgrade_page = 13;
 const unsigned level1_screen = 14;
+const unsigned upgraded_page = 15;
 
 void UISystem::Initialize()
 {
@@ -51,7 +52,18 @@ void UISystem::Initialize()
 	
 void UISystem::Update()
 {
-
+  //for (auto& screen : m_screen)
+  //{
+  //  if (screen == upgrade_page)
+  //  {
+  //    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+  //    
+  //    em.ForEach([&](UI& ui, EntityID& id) 
+  //    {
+  //      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
+  //    });
+  //  }
+  //}
 }
 
 
@@ -100,19 +112,34 @@ void UISystem::LateUpdate()
 
   if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
   {
-    bool upgrade_screen_exists = false;
-    for (auto screen : m_screen)
-    {
+      bool upgrade_screen_exists = false;
+      for (auto& screen : m_screen)
+      {
+          if (screen == upgrade_page)
+              upgrade_screen_exists = true;
+      }
+
+      if (upgrade_screen_exists)
+      {
+          m_screen.clear();
+          m_screen.push_back(level1_screen);
+      }
+      else
+      {
+          m_screen.push_back(upgrade_page);
+      }
+  }
+  for (auto& screen : m_screen)
+  {
       if (screen == upgrade_page)
-        upgrade_screen_exists = true;
-    }
-    
-    if (upgrade_screen_exists)
-      m_screen.pop_back();
-    else
-    {
-      m_screen.push_back(upgrade_page);
-    }
+      {
+          //auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+          //
+          //em.ForEach([&](UI& ui, EntityID& id)
+          //    {
+          //        env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
+          //    });
+      }
   }
 
 #ifdef DE_EDITOR
@@ -210,6 +237,7 @@ void UISystem::StartGame()
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
+
   m_screen.clear();
   m_screen.push_back(level1_screen);
 }

@@ -29,6 +29,9 @@ public:
     env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, UISystem>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
+
+    JsonFile file;
+    env.pECS->GetWorld().Load("World/MainMenu.json");
   }
 
   ~Sandbox()
