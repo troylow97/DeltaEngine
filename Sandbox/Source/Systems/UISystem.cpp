@@ -22,13 +22,14 @@ const unsigned start_game_selected = 3;
 const unsigned control_selected = 4;
 const unsigned option_selected = 5;
 const unsigned credits_selected = 6;
-const unsigned quit_game_selected = 7;
-const unsigned control_screen = 8;
-const unsigned option_screen = 9;
-const unsigned credits_screen = 10;
-const unsigned gameover_screen = 11;
-const unsigned upgrade_page = 12;
-const unsigned level1_screen = 13;
+const unsigned restart_selected = 7;
+const unsigned quit_game_selected = 8;
+const unsigned control_screen = 9;
+const unsigned option_screen = 10;
+const unsigned credits_screen = 11;
+const unsigned gameover_screen = 12;
+const unsigned upgrade_page = 13;
+const unsigned level1_screen = 14;
 
 void UISystem::Initialize()
 {

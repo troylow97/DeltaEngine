@@ -74,6 +74,7 @@
                 "UI Type": "Screen",
                 "Screen": 0,
                 "Target": -1,
+                "Previous": 0,
                 "Overlay": true
             }
         },
@@ -151,6 +152,7 @@
                 "UI Type": "Screen",
                 "Screen": 0,
                 "Target": -1,
+                "Previous": 0,
                 "Overlay": true
             }
         },
@@ -227,7 +229,8 @@
                 "Function": "",
                 "UI Type": "Interface",
                 "Screen": 0,
-                "Target": -1,
+                "Target": 7,
+                "Previous": 0,
                 "Overlay": true
             }
         },
@@ -303,8 +306,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Button",
-                "Screen": 0,
-                "Target": 8,
+                "Screen": 7,
+                "Target": 14,
+                "Previous": 0,
                 "Overlay": true
             }
         },
@@ -382,6 +386,7 @@
                 "UI Type": "Interface",
                 "Screen": 0,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -459,6 +464,7 @@
                 "UI Type": "Interface",
                 "Screen": 0,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -536,6 +542,7 @@
                 "UI Type": "Interface",
                 "Screen": 0,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -613,6 +620,7 @@
                 "UI Type": "Button",
                 "Screen": 0,
                 "Target": 3,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -690,6 +698,7 @@
                 "UI Type": "Button",
                 "Screen": 0,
                 "Target": 4,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -767,6 +776,7 @@
                 "UI Type": "Button",
                 "Screen": 0,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -844,6 +854,7 @@
                 "UI Type": "Screen",
                 "Screen": 0,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -921,6 +932,7 @@
                 "UI Type": "Screen",
                 "Screen": 4,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -998,6 +1010,7 @@
                 "UI Type": "Screen",
                 "Screen": 4,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -1075,6 +1088,7 @@
                 "UI Type": "Screen",
                 "Screen": 4,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": false
             }
         },
@@ -1152,6 +1166,7 @@
                 "UI Type": "Interface",
                 "Screen": 4,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -1229,6 +1244,7 @@
                 "UI Type": "Interface",
                 "Screen": 4,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         },
@@ -1306,6 +1322,7 @@
                 "UI Type": "Interface",
                 "Screen": 4,
                 "Target": -1,
+                "Previous": -1,
                 "Overlay": true
             }
         }
