@@ -23,10 +23,26 @@ const unsigned gameover_screen = 6;
 const unsigned upgrade_page = 7;
 const unsigned level1_screen = 8;
 
+void UISystem::Initialize()
+{
+    m_screen.push_back(main_screen);
+    //m_screen.push_back(pause_screen);
+    //m_screen.push_back(main_screen);
+    //m_screen.push_back(interface);
+    //m_screen.push_back(control_screen);
+    //m_screen.push_back(option_screen);
+    //m_screen.push_back(credits_screen);
+    //m_screen.push_back(gameover_screen);
+    //m_screen.push_back(upgrade_page);
+    //m_screen.push_back(level1_screen);
+}
+	
 void UISystem::Update()
 {
 
 }
+
+
 
 void UISystem::LateUpdate()
 {
@@ -102,11 +118,19 @@ void UISystem::Return()
   m_screen.pop_back();
 }
 
+void UISystem::UpgradeDamageButton()
+{
+    std::cout << "Upgrading damage" << std::endl;
+}
+
 
 RTTR_REGISTRATION
 {
   rttr::registration::class_<UISystem>( "UISystem" )
   .method( "Return", &UISystem::Return );
+
+  rttr::registration::class_<UISystem>("UpgradeDamageButton")
+  .method("UpgradeDamageButton", &UISystem::UpgradeDamageButton);
 }
 
 
