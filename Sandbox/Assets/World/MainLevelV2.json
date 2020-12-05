@@ -12,8 +12,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 31.950000762939454,
-                    "y": -1.2000000476837159,
+                    "x": 2.3334197998046877,
+                    "y": -1.0132681131362916,
                     "z": 0.0
                 },
                 "Scale": {
@@ -45,7 +45,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -115,7 +115,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -135,7 +135,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -185,7 +185,7 @@
                     "x": 1.0,
                     "y": 2.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -205,7 +205,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -255,7 +255,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -275,7 +275,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -325,7 +325,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -345,7 +345,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -395,7 +395,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -415,7 +415,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -465,7 +465,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -485,7 +485,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -535,7 +535,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -555,7 +555,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -605,7 +605,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -625,7 +625,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -675,7 +675,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -745,7 +745,7 @@
                     "x": 1.0,
                     "y": 2.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -765,7 +765,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -815,7 +815,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -835,7 +835,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -885,7 +885,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -905,7 +905,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -955,7 +955,7 @@
                     "x": 2.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -975,7 +975,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1025,7 +1025,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1045,7 +1045,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1095,7 +1095,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1115,7 +1115,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1165,7 +1165,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1185,7 +1185,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1235,7 +1235,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1255,7 +1255,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1305,7 +1305,7 @@
                     "x": 2.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1325,7 +1325,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1375,7 +1375,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1395,7 +1395,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1445,7 +1445,7 @@
                     "x": 1.0,
                     "y": 2.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1465,7 +1465,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1515,7 +1515,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1535,7 +1535,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1585,7 +1585,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1605,7 +1605,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1655,7 +1655,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1675,7 +1675,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1725,7 +1725,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1745,7 +1745,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1795,7 +1795,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1815,7 +1815,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1865,7 +1865,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1885,7 +1885,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1935,7 +1935,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -1955,7 +1955,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2005,7 +2005,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2025,7 +2025,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2075,7 +2075,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2095,7 +2095,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2145,7 +2145,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2165,7 +2165,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2215,7 +2215,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2235,7 +2235,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2285,7 +2285,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2355,7 +2355,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2375,7 +2375,7 @@
                 },
                 "Layer": -1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2425,7 +2425,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2445,7 +2445,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2495,7 +2495,7 @@
                     "x": 4.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2515,7 +2515,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2565,7 +2565,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2585,7 +2585,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2635,7 +2635,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2655,7 +2655,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2690,7 +2690,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Tilemap/DirtPlatform_BOTTOM_RIGHT",
+                    "key": "",
                     "index": 0
                 },
                 "Size": {
@@ -2705,7 +2705,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2725,7 +2725,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2775,7 +2775,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2795,7 +2795,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2845,7 +2845,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2865,7 +2865,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2915,7 +2915,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -2935,7 +2935,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2985,7 +2985,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3005,7 +3005,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3055,7 +3055,7 @@
                     "x": 4.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3075,7 +3075,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3125,7 +3125,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3145,7 +3145,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3195,7 +3195,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3215,7 +3215,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3265,7 +3265,7 @@
                     "x": 5.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3285,7 +3285,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3335,7 +3335,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3355,7 +3355,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3405,7 +3405,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3425,7 +3425,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3475,7 +3475,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3495,7 +3495,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3545,7 +3545,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3565,7 +3565,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3615,7 +3615,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3685,7 +3685,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3705,7 +3705,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3755,7 +3755,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3775,7 +3775,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3825,7 +3825,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3845,7 +3845,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3895,7 +3895,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3965,7 +3965,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -3985,7 +3985,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4035,7 +4035,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4055,7 +4055,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4105,7 +4105,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4125,7 +4125,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4175,7 +4175,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4245,7 +4245,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4265,7 +4265,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4315,7 +4315,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4335,7 +4335,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4385,7 +4385,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4405,7 +4405,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4455,7 +4455,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4475,7 +4475,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4525,7 +4525,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4545,7 +4545,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4595,7 +4595,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4615,7 +4615,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4665,7 +4665,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4735,7 +4735,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4755,7 +4755,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4805,7 +4805,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4875,7 +4875,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -4945,7 +4945,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5015,7 +5015,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5035,7 +5035,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5085,7 +5085,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5105,7 +5105,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5155,7 +5155,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5175,7 +5175,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5225,7 +5225,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5245,7 +5245,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5295,7 +5295,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5315,7 +5315,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5365,7 +5365,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5385,7 +5385,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5435,7 +5435,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5455,7 +5455,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5505,7 +5505,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5525,7 +5525,7 @@
                 },
                 "Layer": 3,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5575,7 +5575,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5595,7 +5595,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5645,7 +5645,7 @@
                     "x": 2.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5665,7 +5665,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5715,7 +5715,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5735,7 +5735,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5785,7 +5785,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5805,7 +5805,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5855,7 +5855,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5875,7 +5875,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5925,7 +5925,7 @@
                     "x": 1.0,
                     "y": 2.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -5945,7 +5945,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5995,7 +5995,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6015,7 +6015,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6065,7 +6065,7 @@
                     "x": 7.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6085,7 +6085,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6135,7 +6135,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6155,7 +6155,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6205,7 +6205,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6225,7 +6225,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6275,7 +6275,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6345,7 +6345,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6365,7 +6365,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6415,7 +6415,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6435,7 +6435,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6485,7 +6485,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6505,7 +6505,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6555,7 +6555,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6575,7 +6575,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6625,7 +6625,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6645,7 +6645,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6695,7 +6695,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6715,7 +6715,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6765,7 +6765,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6785,7 +6785,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6835,7 +6835,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6855,7 +6855,7 @@
                 },
                 "Layer": 3,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6905,7 +6905,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6925,7 +6925,7 @@
                 },
                 "Layer": 3,
                 "Order": 2.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6975,7 +6975,7 @@
                     "x": 1.0,
                     "y": 2.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -6995,7 +6995,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7045,7 +7045,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7065,7 +7065,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7115,7 +7115,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7135,7 +7135,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7185,7 +7185,7 @@
                     "x": 6.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7205,7 +7205,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7255,7 +7255,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7275,7 +7275,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7325,7 +7325,7 @@
                     "x": 1.0,
                     "y": 2.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7345,7 +7345,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7395,7 +7395,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7415,7 +7415,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7465,7 +7465,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7485,7 +7485,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7535,7 +7535,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7555,7 +7555,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7605,7 +7605,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7625,7 +7625,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7675,7 +7675,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7695,7 +7695,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7745,7 +7745,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7765,7 +7765,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7815,7 +7815,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7885,7 +7885,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -7905,7 +7905,7 @@
                 },
                 "Layer": 3,
                 "Order": 2.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7955,7 +7955,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8025,7 +8025,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8095,7 +8095,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8115,7 +8115,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8165,7 +8165,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8185,7 +8185,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8235,7 +8235,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8255,7 +8255,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8305,7 +8305,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8375,7 +8375,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8395,7 +8395,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8445,7 +8445,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8465,7 +8465,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8515,7 +8515,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8535,7 +8535,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8585,7 +8585,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8605,7 +8605,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8655,7 +8655,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8675,7 +8675,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8725,7 +8725,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8745,7 +8745,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8795,7 +8795,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8815,7 +8815,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8865,7 +8865,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8885,7 +8885,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8935,7 +8935,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -8955,7 +8955,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.30000001192092898,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9005,7 +9005,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9025,7 +9025,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9075,7 +9075,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9095,7 +9095,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9145,7 +9145,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9165,7 +9165,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9215,7 +9215,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9235,7 +9235,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9285,7 +9285,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9355,7 +9355,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9425,7 +9425,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9445,7 +9445,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9495,7 +9495,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9515,7 +9515,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9565,7 +9565,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9585,7 +9585,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9635,7 +9635,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9655,7 +9655,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9705,7 +9705,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9725,7 +9725,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9775,7 +9775,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9795,7 +9795,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9845,7 +9845,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9915,7 +9915,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -9935,7 +9935,7 @@
                 },
                 "Layer": 1,
                 "Order": -1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9985,7 +9985,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10005,7 +10005,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10055,7 +10055,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10075,7 +10075,7 @@
                 },
                 "Layer": 0,
                 "Order": -1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10125,7 +10125,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10145,7 +10145,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10195,7 +10195,7 @@
                     "x": 10.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10265,7 +10265,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10285,7 +10285,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10335,7 +10335,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10355,7 +10355,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10405,7 +10405,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10425,7 +10425,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10475,7 +10475,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10495,7 +10495,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10545,7 +10545,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10565,7 +10565,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10615,7 +10615,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10635,7 +10635,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10685,7 +10685,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10705,7 +10705,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10755,7 +10755,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10775,7 +10775,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10825,7 +10825,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10845,7 +10845,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10895,7 +10895,7 @@
                     "x": 2.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10915,7 +10915,7 @@
                 },
                 "Layer": -1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10965,7 +10965,7 @@
                     "x": 5.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -10985,7 +10985,7 @@
                 },
                 "Layer": -1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11035,7 +11035,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11105,7 +11105,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11125,7 +11125,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11175,7 +11175,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11245,7 +11245,7 @@
                     "x": 5.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11265,7 +11265,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11315,7 +11315,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11385,7 +11385,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11455,7 +11455,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11475,7 +11475,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11525,7 +11525,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11545,7 +11545,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11595,7 +11595,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11615,7 +11615,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -11665,7 +11665,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11735,7 +11735,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11755,7 +11755,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11805,7 +11805,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11875,7 +11875,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -11895,7 +11895,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11945,7 +11945,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12015,7 +12015,7 @@
                     "x": 4.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12093,9 +12093,10 @@
                     "y": 0.30000001192092898
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -12114,7 +12115,7 @@
                     "x": 4.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12180,8 +12181,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 4.440000057220459,
+                    "y": -0.8803598880767822
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12192,9 +12193,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -12213,7 +12215,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12279,8 +12281,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 9.520000457763672,
+                    "y": -0.8804712891578674
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12291,9 +12293,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -12312,7 +12315,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12332,7 +12335,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12378,8 +12381,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 14.585000038146973,
+                    "y": -0.8799999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12390,9 +12393,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -12411,7 +12415,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12431,7 +12435,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12477,8 +12481,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 20.31999969482422,
+                    "y": -0.8799999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12489,9 +12493,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -12510,7 +12515,7 @@
                     "x": 5.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12530,7 +12535,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -12576,8 +12581,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 22.079999923706056,
+                    "y": -0.8799999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12588,9 +12593,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -12609,7 +12615,7 @@
                     "x": 6.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12629,7 +12635,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -12675,8 +12681,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 23.81999969482422,
+                    "y": -0.5600000023841858
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12687,9 +12693,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -12708,7 +12715,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12728,7 +12735,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12774,8 +12781,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 26.989999771118165,
+                    "y": -0.8849999904632568
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12786,9 +12793,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -12807,7 +12815,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12827,7 +12835,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -12873,8 +12881,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 28.270000457763673,
+                    "y": -0.5699999928474426
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12885,9 +12893,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -12906,7 +12915,7 @@
                     "x": 5.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -12926,7 +12935,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -12972,8 +12981,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 29.549999237060548,
+                    "y": -0.8849999904632568
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12984,9 +12993,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -13005,7 +13015,7 @@
                     "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -13025,7 +13035,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13071,8 +13081,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 34.359798431396487,
+                    "y": -0.25
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13083,9 +13093,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -13104,7 +13115,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -13124,7 +13135,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13170,8 +13181,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 39.0,
+                    "y": -0.25
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13182,9 +13193,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 15,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -13203,7 +13215,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -13223,7 +13235,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13240,8 +13252,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 2.859692096710205,
-                    "y": -1.0131968259811402,
+                    "x": 2.3334197998046877,
+                    "y": -1.0132681131362916,
                     "z": 0.0
                 },
                 "Scale": {
@@ -13269,8 +13281,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 2.859692096710205,
-                    "y": -1.0131968259811402
+                    "x": 2.3334197998046877,
+                    "y": -1.0132681131362916
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13281,9 +13293,10 @@
                     "y": 0.8500000238418579
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 9,
-                "Collision Layer ID": 2
+                "Collision Layer ID": 2,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -13302,12 +13315,12 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -13348,9 +13361,15 @@
                 "Melee Attack": false,
                 "Start Combo Cooldown Timer": false
             },
-            "Player": {},
+            "Player": {
+                "Upgrade Points Per Enemy Defeated": 50,
+                "Points Needed For Upgrade": 50,
+                "Attack Upgrade Increase": 1,
+                "Health Upgrade Attack": 2,
+                "Dashing Timer Duration": 1.0
+            },
             "Input": {
-                "Previous": 68,
+                "Previous": 65,
                 "Current": 0
             }
         },
@@ -13407,9 +13426,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": true,
                 "Collision Layer": 5,
-                "Collision Layer ID": 4
+                "Collision Layer ID": 4,
+                "Trigger": true,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -13428,7 +13448,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -13448,7 +13468,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             },
@@ -13457,8 +13477,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_lancer",
-                "Transition": "null"
+                "AIState": "idle_lancer"
             },
             "Health": {
                 "Current Health": 10,
@@ -13535,9 +13554,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": true,
                 "Collision Layer": 5,
-                "Collision Layer ID": 4
+                "Collision Layer ID": 4,
+                "Trigger": true,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -13556,7 +13576,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -13576,7 +13596,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -13586,8 +13606,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_lancer",
-                "Transition": "null"
+                "AIState": "idle_lancer"
             },
             "Health": {
                 "Current Health": 10,
@@ -13664,9 +13683,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": true,
                 "Collision Layer": 5,
-                "Collision Layer ID": 4
+                "Collision Layer ID": 4,
+                "Trigger": true,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -13685,7 +13705,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -13705,7 +13725,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -13715,8 +13735,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_lancer",
-                "Transition": "null"
+                "AIState": "idle_lancer"
             },
             "Health": {
                 "Current Health": 10,
@@ -13793,9 +13812,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": true,
                 "Collision Layer": 5,
-                "Collision Layer ID": 4
+                "Collision Layer ID": 4,
+                "Trigger": true,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -13814,7 +13834,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -13834,7 +13854,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -13844,8 +13864,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_lancer",
-                "Transition": "null"
+                "AIState": "idle_lancer"
             },
             "Health": {
                 "Current Health": 10,
@@ -13882,7 +13901,7 @@
             "Transform": {
                 "Position": {
                     "x": 21.348360061645509,
-                    "y": -0.5191363096237183,
+                    "y": -0.9755856990814209,
                     "z": 0.0
                 },
                 "Scale": {
@@ -13910,8 +13929,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 18.817602157592775,
-                    "y": -0.021636860445141794
+                    "x": 21.348360061645509,
+                    "y": -0.9755856990814209
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13922,9 +13941,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 9,
-                "Collision Layer ID": 4
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -13943,7 +13963,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -13963,7 +13983,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -13973,8 +13993,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_serpentipede",
-                "Transition": "null"
+                "AIState": "idle_serpentipede"
             },
             "Health": {
                 "Current Health": 10,
@@ -13996,6 +14015,84 @@
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "UpgradeMenu"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 13,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": false
             }
         }
     ]
