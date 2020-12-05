@@ -49,7 +49,18 @@ void UISystem::Initialize()
 	
 void UISystem::Update()
 {
-
+  //for (auto& screen : m_screen)
+  //{
+  //  if (screen == upgrade_page)
+  //  {
+  //    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+  //    
+  //    em.ForEach([&](UI& ui, EntityID& id) 
+  //    {
+  //      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
+  //    });
+  //  }
+  //}
 }
 
 
@@ -116,6 +127,18 @@ void UISystem::LateUpdate()
           m_screen.push_back(upgrade_page);
       }
   }
+  for (auto& screen : m_screen)
+  {
+      if (screen == upgrade_page)
+      {
+          //auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+          //
+          //em.ForEach([&](UI& ui, EntityID& id)
+          //    {
+          //        env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
+          //    });
+      }
+  }
 
 #ifdef DE_EDITOR
   auto &t = em.GetComponent<Transform>( { 0 } );
@@ -138,51 +161,50 @@ void UISystem::LateUpdate()
           if (screen == m_screen.back() &&
               ui.ui_type == UIType::Button &&
               CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
-                  {
-                      // Animation update
-
-                      if (InputManager::Instance().IsKeyReleased(DEVK_LBUTTON))
-                      {
-                          if (!ui.functor_key.empty())
-                              rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
-                          else if (ui.overlay && ui.target_screen != -1)
-                              m_screen.push_back(ui.target_screen);
-                          else if (ui.target_screen != -1)
-                          {
-                              m_screen.clear();
-                              m_screen.push_back(ui.target_screen);
-                          }
-                      }
-                  }
+          {
+            // Animation update
+            
+            if (InputManager::Instance().IsKeyReleased(DEVK_LBUTTON))
+            {
+              if (!ui.functor_key.empty())
+                rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
+              else if (ui.overlay && ui.target_screen != -1)
+                m_screen.push_back(ui.target_screen);
+              else if (ui.target_screen != -1)
+              {
+                m_screen.clear();
+                m_screen.push_back(ui.target_screen);
+              }
+            }
+          }
           else if (screen == m_screen.back() &&
               ui.ui_type == UIType::Interface &&
               CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
-                      {
-                          // Animation update
-
-                          if (ui.overlay && ui.target_screen != -1)
-                              m_screen.push_back(ui.target_screen);
-                          else if (ui.target_screen != -1)
-                          {
-                              m_screen.clear();
-                              m_screen.push_back(ui.target_screen);
-                          }
-                      }
-                  
+          {
+            // Animation update
+            
+            if (ui.overlay && ui.target_screen != -1)
+              m_screen.push_back(ui.target_screen);
+            else if (ui.target_screen != -1)
+            {
+              m_screen.clear();
+              m_screen.push_back(ui.target_screen);
+            }
+          }          
           else if (screen == m_screen.back() &&
               ui.ui_type == UIType::Button &&
               !(CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y })))
-                      {
-                          // Animation update
-
-                          if (ui.overlay && ui.previous_screen != -1)
-                              m_screen.push_back(ui.previous_screen);
-                          else if (ui.previous_screen != -1)
-                          {
-                              m_screen.clear();
-                              m_screen.push_back(ui.previous_screen);
-                          }
-                      }
+          {
+             // Animation update
+             
+             if (ui.overlay && ui.previous_screen != -1)
+               m_screen.push_back(ui.previous_screen);
+             else if (ui.previous_screen != -1)
+             {
+               m_screen.clear();
+               m_screen.push_back(ui.previous_screen);
+             }
+          }
           
         }
     });
