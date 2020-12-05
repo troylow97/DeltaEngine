@@ -16,8 +16,12 @@ namespace DeltaEngine
 const unsigned pause_screen = 0;
 const unsigned main_screen = 1;
 const unsigned interface = 2;
-
-
+const unsigned control_screen = 3;
+const unsigned option_screen = 4;
+const unsigned credits_screen = 5;
+const unsigned gameover_screen = 6;
+const unsigned upgrade_page = 7;
+const unsigned level1_screen = 8;
 
 void UISystem::Update()
 {
