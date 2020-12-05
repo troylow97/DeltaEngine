@@ -103,16 +103,16 @@ void UISystem::LateUpdate()
 #endif
   if(!m_screen.empty())
 	em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
-      {
-          r.m_Active = false;
-
-          for (auto screen : m_screen)
-              if (screen == ui.screen)
-              {
-                  r.m_Active = true;
-                  if (screen == m_screen.back() &&
-                      ui.ui_type == UIType::Button &&
-                      CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
+    {
+      r.m_Active = false;
+      
+      for (auto screen : m_screen)
+        if (screen == ui.screen)
+        {
+          r.m_Active = true;
+          if (screen == m_screen.back() &&
+              ui.ui_type == UIType::Button &&
+              CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
                   {
                       // Animation update
 
@@ -129,9 +129,9 @@ void UISystem::LateUpdate()
                           }
                       }
                   }
-                  else if (screen == m_screen.back() &&
-                      ui.ui_type == UIType::Interface &&
-                      CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
+          else if (screen == m_screen.back() &&
+              ui.ui_type == UIType::Interface &&
+              CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
                       {
                           // Animation update
 
@@ -143,9 +143,10 @@ void UISystem::LateUpdate()
                               m_screen.push_back(ui.target_screen);
                           }
                       }
-                  else if (screen == m_screen.back() &&
-                      ui.ui_type == UIType::Button &&
-                      !(CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y })))
+                  
+          else if (screen == m_screen.back() &&
+              ui.ui_type == UIType::Button &&
+              !(CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y })))
                       {
                           // Animation update
 
@@ -157,9 +158,8 @@ void UISystem::LateUpdate()
                               m_screen.push_back(ui.previous_screen);
                           }
                       }
-
-              }
-      });
+        }
+    });
 
 }
 
@@ -185,15 +185,12 @@ void UISystem::UpgradeHPButton()
 
 void UISystem::StartGame()
 {
-    JsonFile file;
-    env.pECS->GetWorld().GetEntityManager().Clear();
-    env.pECS->GetWorld().ShutdownSystems();
-    env.pECS->GetWorld().Load("World/MainLevelV2.json");
-    env.pECS->GetWorld().InitSystems();
-	
-    std::cout << "starting game" << std::endl;
-    m_screen.clear();
-    m_screen.push_back(level1_screen);
+  JsonFile file;
+  env.pECS->GetWorld().GetEntityManager().Clear();
+  env.pECS->GetWorld().Load("World/MainLevelV2.json");
+  
+  m_screen.clear();
+  m_screen.push_back(level1_screen);
 }
 
 void UISystem::QuitGame()
@@ -210,7 +207,7 @@ RTTR_REGISTRATION
   .method("UpgradeDamageButton", &UISystem::UpgradeDamageButton);
 
   rttr::registration::class_<UISystem>("UpgradeHPButton")
-      .method("StartGame", &UISystem::StartGame);
+  .method("StartGame", &UISystem::StartGame);
 	
   rttr::registration::class_<UISystem>("StartGame")
       .method("StartGame", &UISystem::StartGame);
