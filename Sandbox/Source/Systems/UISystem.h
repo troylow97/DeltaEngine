@@ -13,6 +13,7 @@ namespace DeltaEngine
     void UpgradeHPButton();
     void StartGame();
     void QuitGame();
+    void PauseGame();
 private:
 
   std::vector<unsigned> m_screen;

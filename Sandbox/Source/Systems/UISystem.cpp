@@ -56,28 +56,44 @@ void UISystem::Update()
 void UISystem::LateUpdate()
 {
 
-  if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) )
-  {
-    bool main { false };
-    bool pause { false };
-    for ( auto screen : m_screen )
-    {
-      if ( screen == main_screen )
-        main = true;
-      else if ( screen == pause_screen )
-      {
-        pause = true;
-        m_screen.clear();
-        break;
-      }
-    }
-  	
-    if ( !main && !pause)
-    {
-      m_screen.clear();
-      m_screen.push_back( pause_screen );
-    }
+  //if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) )
+  //{
+  //  bool main { false };
+  //  bool pause { false };
+  //  for ( auto screen : m_screen )
+  //  {
+  //    if ( screen == main_screen )
+  //      main = true;
+  //    else if ( screen == pause_screen )
+  //    {
+  //      pause = true;
+  //      m_screen.clear();
+  //      break;
+  //    }
+  //  }
+  //	
+  //  if ( !main && !pause)
+  //  {
+  //    m_screen.clear();
+  //    m_screen.push_back( pause_screen );
+  //  }
+  //
+  //}
 
+  if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
+  {
+      bool main_game = false;
+      bool pause_game_exists = false;
+      for (auto screen : m_screen)
+      {
+          if (screen == pause_game_exists)
+              pause_game_exists = true;
+      }
+
+      if (pause_game_exists)
+          m_screen.pop_back();
+      else
+          m_screen.push_back(pause_screen);
   }
 
   if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
@@ -94,7 +110,6 @@ void UISystem::LateUpdate()
       else
       {
           m_screen.push_back(upgrade_page);
-          std::cout << "pushing back upgrade page, current screen vector size is: " << m_screen.size() << std::endl;
       }
   }
 
@@ -204,6 +219,12 @@ void UISystem::QuitGame()
 {
     env.pECS->GetWorld().GetEntityManager().Clear();
     env.pECS->GetWorld().ShutdownSystems();
+    env.pWin->Shutdown();
+}
+
+void UISystem::PauseGame()
+{
+    std::cout << "pausing game" << std::endl;
 }
 
 RTTR_REGISTRATION
@@ -215,7 +236,10 @@ RTTR_REGISTRATION
   .method("UpgradeDamageButton", &UISystem::UpgradeDamageButton);
 
   rttr::registration::class_<UISystem>("UpgradeHPButton")
-      .method("StartGame", &UISystem::StartGame);
+      .method("UpgradeHPButton", &UISystem::UpgradeHPButton);
+
+  rttr::registration::class_<UISystem>("PauseGame")
+      .method("PauseGame", &UISystem::PauseGame);
 	
   rttr::registration::class_<UISystem>("StartGame")
       .method("StartGame", &UISystem::StartGame);
