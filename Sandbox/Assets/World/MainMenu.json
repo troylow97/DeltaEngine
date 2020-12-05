@@ -570,10 +570,10 @@
                 "Wireframe": true
             },
             "UI": {
-                "Function": "",
+                "Function": "StartGame",
                 "UI Type": "Button",
                 "Screen": 3,
-                "Target": 13,
+                "Target": 14,
                 "Previous": 1,
                 "Overlay": false
             }
@@ -885,7 +885,7 @@
                 "Function": "",
                 "UI Type": "Interface",
                 "Screen": 1,
-                "Target": 7,
+                "Target": 8,
                 "Previous": -1,
                 "Overlay": true
             }
@@ -963,7 +963,7 @@
                 "Function": "",
                 "UI Type": "Button",
                 "Screen": 4,
-                "Target": 8,
+                "Target": 9,
                 "Previous": 1,
                 "Overlay": false
             }
@@ -1041,7 +1041,7 @@
                 "Function": "",
                 "UI Type": "Button",
                 "Screen": 5,
-                "Target": 9,
+                "Target": 10,
                 "Previous": 1,
                 "Overlay": false
             }
@@ -1119,7 +1119,7 @@
                 "Function": "",
                 "UI Type": "Button",
                 "Screen": 6,
-                "Target": 10,
+                "Target": 11,
                 "Previous": 1,
                 "Overlay": false
             }
@@ -1352,9 +1352,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Screen",
-                "Screen": 9,
+                "Screen": 10,
                 "Target": -1,
-                "Previous": 9,
+                "Previous": 10,
                 "Overlay": false
             }
         },
@@ -1430,9 +1430,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Screen",
-                "Screen": 9,
+                "Screen": 10,
                 "Target": -1,
-                "Previous": 9,
+                "Previous": 10,
                 "Overlay": true
             }
         },
@@ -1508,9 +1508,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Screen",
-                "Screen": 9,
+                "Screen": 10,
                 "Target": -1,
-                "Previous": 9,
+                "Previous": 10,
                 "Overlay": false
             }
         },
@@ -1586,9 +1586,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Button",
-                "Screen": 9,
+                "Screen": 10,
                 "Target": -1,
-                "Previous": 9,
+                "Previous": 10,
                 "Overlay": true
             }
         },
@@ -1664,9 +1664,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Button",
-                "Screen": 9,
+                "Screen": 10,
                 "Target": -1,
-                "Previous": 9,
+                "Previous": 10,
                 "Overlay": false
             }
         },
@@ -1742,9 +1742,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Button",
-                "Screen": 9,
+                "Screen": 10,
                 "Target": -1,
-                "Previous": 9,
+                "Previous": 10,
                 "Overlay": true
             }
         },
