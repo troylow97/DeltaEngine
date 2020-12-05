@@ -80,15 +80,21 @@ void UISystem::LateUpdate()
 
   }
 
-  if (InputManager::Instance().IsKeyTriggered(DEVK_U))
+  if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
   {
+      bool upgrade_screen_exists = false;
       for (auto screen : m_screen)
       {
-          if (screen == level1_screen)
-          {
-              m_screen.push_back(upgrade_page);
-              std::cout << "pushing back upgrade page, current screen vector size is: " << m_screen.size() << std::endl;
-          }
+          if (screen == upgrade_page)
+              upgrade_screen_exists = true;
+      }
+
+      if (upgrade_screen_exists)
+          m_screen.pop_back();
+      else
+      {
+          m_screen.push_back(upgrade_page);
+          std::cout << "pushing back upgrade page, current screen vector size is: " << m_screen.size() << std::endl;
       }
   }
 
@@ -187,9 +193,7 @@ void UISystem::StartGame()
 {
     JsonFile file;
     env.pECS->GetWorld().GetEntityManager().Clear();
-    env.pECS->GetWorld().ShutdownSystems();
     env.pECS->GetWorld().Load("World/MainLevelV2.json");
-    env.pECS->GetWorld().InitSystems();
 	
     std::cout << "starting game" << std::endl;
     m_screen.clear();
@@ -198,7 +202,8 @@ void UISystem::StartGame()
 
 void UISystem::QuitGame()
 {
-	
+    env.pECS->GetWorld().GetEntityManager().Clear();
+    env.pECS->GetWorld().ShutdownSystems();
 }
 
 RTTR_REGISTRATION

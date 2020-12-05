@@ -1325,6 +1325,42 @@
                 "Previous": -1,
                 "Overlay": true
             }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Player": {
+                "Upgrade Points Per Enemy Defeated": 50,
+                "Points Needed For Upgrade": 50,
+                "Attack Upgrade Increase": 1,
+                "Health Upgrade Attack": 2,
+                "Dashing Timer Duration": 1.0
+            }
         }
     ]
 }
