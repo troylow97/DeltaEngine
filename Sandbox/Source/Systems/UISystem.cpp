@@ -124,16 +124,16 @@ void UISystem::LateUpdate()
 #endif
   if(!m_screen.empty())
 	em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
-      {
-          r.m_Active = false;
-
-          for (auto screen : m_screen)
-              if (screen == ui.screen)
-              {
-                  r.m_Active = true;
-                  if (screen == m_screen.back() &&
-                      ui.ui_type == UIType::Button &&
-                      CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
+    {
+      r.m_Active = false;
+      
+      for (auto screen : m_screen)
+        if (screen == ui.screen)
+        {
+          r.m_Active = true;
+          if (screen == m_screen.back() &&
+              ui.ui_type == UIType::Button &&
+              CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
                   {
                       // Animation update
 
@@ -150,9 +150,9 @@ void UISystem::LateUpdate()
                           }
                       }
                   }
-                  else if (screen == m_screen.back() &&
-                      ui.ui_type == UIType::Interface &&
-                      CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
+          else if (screen == m_screen.back() &&
+              ui.ui_type == UIType::Interface &&
+              CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
                       {
                           // Animation update
 
@@ -164,9 +164,10 @@ void UISystem::LateUpdate()
                               m_screen.push_back(ui.target_screen);
                           }
                       }
-                  else if (screen == m_screen.back() &&
-                      ui.ui_type == UIType::Button &&
-                      !(CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y })))
+                  
+          else if (screen == m_screen.back() &&
+              ui.ui_type == UIType::Button &&
+              !(CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y })))
                       {
                           // Animation update
 
@@ -178,9 +179,9 @@ void UISystem::LateUpdate()
                               m_screen.push_back(ui.previous_screen);
                           }
                       }
-
-              }
-      });
+          
+        }
+    });
 
 }
 
@@ -192,39 +193,39 @@ void UISystem::Return()
 
 void UISystem::UpgradeDamageButton()
 {
-    std::cout << "Upgrading damage" << std::endl;
-    auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
-    player.UpgradeAtk = true;
+  std::cout << "Upgrading damage" << std::endl;
+  auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
+  player.UpgradeAtk = true;
 }
 
 void UISystem::UpgradeHPButton()
 {
-    std::cout << "Upgrading damage" << std::endl;
-    auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
-    player.UpgradeHP = true;
+  std::cout << "Upgrading damage" << std::endl;
+  auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
+  player.UpgradeHP = true;
 }
 
 void UISystem::StartGame()
 {
-    JsonFile file;
-    env.pECS->GetWorld().GetEntityManager().Clear();
-    env.pECS->GetWorld().Load("World/MainLevelV2.json");
-	
-    std::cout << "starting game" << std::endl;
-    m_screen.clear();
-    m_screen.push_back(level1_screen);
+  JsonFile file;
+  env.pECS->GetWorld().GetEntityManager().Clear();
+  env.pECS->GetWorld().Load("World/MainLevelV2.json");
+  
+  std::cout << "starting game" << std::endl;
+  m_screen.clear();
+  m_screen.push_back(level1_screen);
 }
 
 void UISystem::QuitGame()
 {
-    env.pECS->GetWorld().GetEntityManager().Clear();
-    env.pECS->GetWorld().ShutdownSystems();
-    env.pWin->Shutdown();
+  env.pECS->GetWorld().GetEntityManager().Clear();
+  env.pECS->GetWorld().ShutdownSystems();
+  env.pWin->Shutdown();
 }
 
 void UISystem::PauseGame()
 {
-    std::cout << "pausing game" << std::endl;
+  std::cout << "pausing game" << std::endl;
 }
 
 RTTR_REGISTRATION
@@ -236,18 +237,12 @@ RTTR_REGISTRATION
   .method("UpgradeDamageButton", &UISystem::UpgradeDamageButton);
 
   rttr::registration::class_<UISystem>("UpgradeHPButton")
-      .method("UpgradeHPButton", &UISystem::UpgradeHPButton);
+  .method("UpgradeHPButton", &UISystem::UpgradeHPButton);
 
   rttr::registration::class_<UISystem>("PauseGame")
-      .method("PauseGame", &UISystem::PauseGame);
+  .method("PauseGame", &UISystem::PauseGame);
 	
   rttr::registration::class_<UISystem>("StartGame")
-      .method("StartGame", &UISystem::StartGame);
-
-	
+  .method("StartGame", &UISystem::StartGame);
 }
-
-
-
-
 }
