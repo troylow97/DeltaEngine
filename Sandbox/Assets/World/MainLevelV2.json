@@ -12,6 +12,44 @@
             },
             "Transform": {
                 "Position": {
+                    "x": 0.2966199815273285,
+                    "y": -1.0132681131362916,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0
@@ -249,7 +287,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -669,7 +707,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2349,7 +2387,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2559,7 +2597,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2769,7 +2807,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3189,7 +3227,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4169,7 +4207,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4519,7 +4557,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4589,7 +4627,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5709,7 +5747,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5849,7 +5887,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6339,7 +6377,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6549,7 +6587,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6619,7 +6657,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6689,7 +6727,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7249,7 +7287,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8299,7 +8337,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8509,7 +8547,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8579,7 +8617,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9209,7 +9247,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9769,7 +9807,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10119,7 +10157,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12749,7 +12787,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -12849,7 +12887,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13367,7 +13405,7 @@
             "Transform": {
                 "Position": {
                     "x": 0.2966199815273285,
-                    "y": -1.0132715702056885,
+                    "y": -1.0132681131362916,
                     "z": 0.0
                 },
                 "Scale": {
@@ -13396,7 +13434,7 @@
             "Collider": {
                 "Center": {
                     "x": 0.2966199815273285,
-                    "y": -1.0132715702056885
+                    "y": -1.0132681131362916
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14015,7 +14053,7 @@
             "Transform": {
                 "Position": {
                     "x": 20.819427490234376,
-                    "y": -0.9763123393058777,
+                    "y": -0.9734479784965515,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14044,7 +14082,7 @@
             "Collider": {
                 "Center": {
                     "x": 20.819427490234376,
-                    "y": -0.9763123393058777
+                    "y": -0.9734479784965515
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14097,7 +14135,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14194,9 +14232,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 3,
+                "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14272,9 +14310,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 3,
+                "Layer": 6,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14350,9 +14388,9 @@
                     "b": 1.0,
                     "a": 0.250980406999588
                 },
-                "Layer": 0,
+                "Layer": 6,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14428,9 +14466,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 4,
+                "Layer": 7,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14506,9 +14544,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 3,
+                "Layer": 6,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14584,9 +14622,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 3,
+                "Layer": 6,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14662,9 +14700,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 4,
+                "Layer": 7,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14740,9 +14778,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 4,
+                "Layer": 7,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14818,7 +14856,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 4,
+                "Layer": 8,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -14896,7 +14934,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 4,
+                "Layer": 8,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -14974,9 +15012,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 5,
+                "Layer": 7,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15052,9 +15090,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 5,
+                "Layer": 7,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },

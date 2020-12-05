@@ -100,14 +100,17 @@ void UISystem::LateUpdate()
   if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
   {
       bool upgrade_screen_exists = false;
-      for (auto screen : m_screen)
+      for (auto& screen : m_screen)
       {
           if (screen == upgrade_page)
               upgrade_screen_exists = true;
       }
 
       if (upgrade_screen_exists)
-          m_screen.pop_back();
+      {
+          m_screen.clear();
+          m_screen.push_back(level1_screen);
+      }
       else
       {
           m_screen.push_back(upgrade_page);
