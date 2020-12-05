@@ -16,12 +16,17 @@ namespace DeltaEngine
 const unsigned pause_screen = 0;
 const unsigned main_screen = 1;
 const unsigned interface = 2;
-const unsigned control_screen = 3;
-const unsigned option_screen = 4;
-const unsigned credits_screen = 5;
-const unsigned gameover_screen = 6;
-const unsigned upgrade_page = 7;
-const unsigned level1_screen = 8;
+const unsigned start_game_selected = 3;
+const unsigned control_selected = 4;
+const unsigned option_selected = 5;
+const unsigned credits_selected = 6;
+const unsigned quit_game_selected = 7;
+const unsigned control_screen = 8;
+const unsigned option_screen = 9;
+const unsigned credits_screen = 10;
+const unsigned gameover_screen = 11;
+const unsigned upgrade_page = 12;
+const unsigned level1_screen = 13;
 
 void UISystem::Initialize()
 {
@@ -119,6 +124,34 @@ void UISystem::LateUpdate()
               m_screen.push_back( ui.target_screen );
             }
           }
+        }
+        else if (screen == m_screen.back() &&
+                ui.ui_type == UIType::Interface &&
+                CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
+        {
+          // Animation update
+          
+          if (ui.overlay && ui.target_screen != -1)
+             m_screen.push_back(ui.target_screen);
+          else if (ui.target_screen != -1)
+          {
+            m_screen.clear();
+            m_screen.push_back(ui.target_screen);
+          }
+        }
+        else if (screen == m_screen.back() &&
+            ui.ui_type == UIType::Button &&
+            !(CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y })))
+        {
+            // Animation update
+
+            if (ui.overlay && ui.previous_screen != -1)
+              m_screen.push_back(ui.previous_screen);
+            else if (ui.previous_screen != -1)
+            {
+              m_screen.clear();
+              m_screen.push_back(ui.previous_screen);
+            }
         }
 
       }

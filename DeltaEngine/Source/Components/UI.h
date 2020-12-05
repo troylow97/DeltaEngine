@@ -18,6 +18,7 @@ namespace DeltaEngine
     UIType ui_type;
     unsigned screen;
     int target_screen{-1};
+    int previous_screen{-1};
     bool overlay { false };
   };
 }

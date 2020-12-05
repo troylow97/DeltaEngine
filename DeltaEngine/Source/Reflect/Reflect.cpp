@@ -163,8 +163,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Function", &UI::functor_key )( rttr::policy::prop::bind_as_ptr )
     .property( "UI Type", &UI::ui_type )( rttr::policy::prop::bind_as_ptr )
     .property( "Screen", &UI::screen )( rttr::policy::prop::bind_as_ptr )
-    .property( "Target", &UI::target_screen )( rttr::policy::prop::bind_as_ptr )
-    .property("Overlay", &UI::overlay)( rttr::policy::prop::bind_as_ptr );
+    .property( "Target", &UI::target_screen)(rttr::policy::prop::bind_as_ptr)
+    .property( "Previous", &UI::previous_screen )( rttr::policy::prop::bind_as_ptr )
+    .property( "Overlay", &UI::overlay)( rttr::policy::prop::bind_as_ptr );
 
 
 
