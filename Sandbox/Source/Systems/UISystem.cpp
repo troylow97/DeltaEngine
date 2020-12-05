@@ -97,6 +97,7 @@ void UISystem::LateUpdate()
   if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
   {
       bool option_menu_bool{false};
+      bool pause_screen_bool{ false };
       for (auto& screen : m_screen)
       {
           if (screen == option_screen)
@@ -107,7 +108,24 @@ void UISystem::LateUpdate()
           else if (screen == main_screen)
               QuitGame();
           else if (screen == level1_screen)
-              PauseGame();
+          {
+              for (auto& screen2 : m_screen)
+              {
+                  if (screen2 == pause_screen)
+                      pause_screen_bool = true;
+              }
+
+          	if(pause_screen_bool)
+          	{
+                m_screen.clear();
+                m_screen.push_back(level1_screen);
+          	}
+            else
+            {
+                m_screen.push_back(pause_screen);
+                PauseGame();
+            }
+          }
       }
   	 
   }
@@ -118,7 +136,9 @@ void UISystem::LateUpdate()
       for (auto& screen : m_screen)
       {
           if (screen == upgrade_page)
+          {
               upgrade_screen_exists = true;
+          }
       }
 
       if (upgrade_screen_exists)
@@ -248,6 +268,16 @@ void UISystem::StartGame()
 void UISystem::QuitGame()
 {
   env.pWin->Running(false);
+}
+
+void UISystem::BackToMainMenu()
+{
+    JsonFile file;
+    env.pECS->GetWorld().GetEntityManager().Clear();
+    env.pECS->GetWorld().Load("World/MainMenu.json");
+
+    m_screen.clear();
+    m_screen.push_back(main_screen);
 }
 
 void UISystem::PauseGame()
