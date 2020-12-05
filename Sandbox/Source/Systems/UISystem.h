@@ -15,7 +15,8 @@ namespace DeltaEngine
     void QuitGame();
     void PauseGame();
 private:
-
+  bool isDraggingOnSlider;
+  Vector2 VolumeSliderInitialLocation;
   std::vector<unsigned> m_screen;
   END_DEFINE_SYSTEM(GCameraSystem)
 }

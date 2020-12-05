@@ -154,7 +154,8 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     (
       rttr::value("Screen", UIType::Screen),
       rttr::value("Interface", UIType::Interface),
-      rttr::value("Button", UIType::Button)
+      rttr::value("Button", UIType::Button),
+      rttr::value("Slider", UIType::Slider)
     );
 
   rttr::registration::class_<UI>( "UI" )

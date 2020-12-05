@@ -9,7 +9,8 @@ namespace DeltaEngine
   {
     Screen,
     Interface,
-    Button
+    Button,
+  	Slider
   };
 
   struct UI
