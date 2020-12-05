@@ -4,6 +4,7 @@
 #include "Physics/PhysicsSystem.h"
 #include "Systems/AnimationSystem.h"
 #include "Systems/InputSystem.h"
+#include "Systems/OCullSystem.h"
 #include "Systems/PhysicsDrawSystem.h"
 #include "Systems/RenderSystem.h"
 
@@ -20,7 +21,7 @@ World::World() : em( std::make_unique<EntityManager>() )
 {
   DeltaEngine_CORE_INFO( "Initializing World..." );
   CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem,
-    PhysicsDrawSystem>();
+    PhysicsDrawSystem, OCullSystem>();
   DeltaEngine_CORE_INFO( "Initializing World successful" );
 
 #ifndef DE_EDITOR
@@ -75,6 +76,7 @@ void World::Run()
     // Logic Late Update
     LateUpdate();
   }
+  systems[CHash::Hash<OCullSystem>().digest]->Update();
   systems[CHash::Hash<RenderSystem>().digest]->Update();
   systems[CHash::Hash<PhysicsDrawSystem>().digest]->Update();
   systems[CHash::Hash<RenderSystem>().digest]->LateUpdate();

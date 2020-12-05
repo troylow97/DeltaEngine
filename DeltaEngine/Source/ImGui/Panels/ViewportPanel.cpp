@@ -133,66 +133,72 @@ ViewportPanel::~ViewportPanel()
 
 void ViewportPanel::Render()
 {
-  ImGui::Begin( m_name.c_str(), nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove );
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ImVec2 renderPos = ImGui::GetCursorScreenPos(); // gives top left of the window
-  ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
+  m_active = ImGui::Begin( m_name.c_str(), nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove );
 
-  if ( ImGui::IsWindowHovered() )
+  if (m_active)
   {
-    ImGui::SetWindowFocus();
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ImVec2 renderPos = ImGui::GetCursorScreenPos(); // gives top left of the window
+    ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
+    ren_pos = { renderPos.x, renderPos.y };
+    ren_size = { renderSize.x,renderSize.y };
 
-    prev_mouse = curr_mouse;
-    float cameraWidth = Camera::editorCamera->Max(Camera::editorCameraTransform).x - Camera::editorCamera->Min(Camera::editorCameraTransform).x;
-    float cameraHeight = Camera::editorCamera->Max(Camera::editorCameraTransform).y - Camera::editorCamera->Min(Camera::editorCameraTransform).y;
-    float cursorViewPortDistanceX = ImGui::GetMousePos().x - renderPos.x;
-    float cursorViewPortDistanceY = ImGui::GetMousePos().y - renderPos.y;
-    curr_mouse.point_x = ( ( cursorViewPortDistanceX / renderSize.x ) * cameraWidth ) + Camera::editorCamera->Min(Camera::editorCameraTransform).x;
-    curr_mouse.point_y = Camera::editorCamera->Max(Camera::editorCameraTransform).y - ( ( cursorViewPortDistanceY / renderSize.y ) * cameraHeight );
 
-    KeysInput();
-  }
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-  Camera::editorCamera->SetAspectRatio( viewportPanelSize.x, viewportPanelSize.y );
-  Camera::editorCamera->SetViewportSize( viewportPanelSize.x );
-  uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
-  ImGui::Image( reinterpret_cast<void *>( textureID ), viewportPanelSize, ImVec2 { 0, 1 }, ImVec2 { 1, 0 } );
-
-  if ( ImGui::BeginDragDropTarget() )
-  {
-    if ( const ImGuiPayload *payload = ImGui::AcceptDragDropPayload( "TILES" ); payload )
+    if ( ImGui::IsWindowHovered() )
     {
-      std::string payload_n = *static_cast<std::string *>( payload->Data );
+      ImGui::SetWindowFocus();
 
-      // do the tiling
-      EntityID tile = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity<Renderer2D, Image>();
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( tile ).position = { curr_mouse.point_x, curr_mouse.point_y, 0 };
+      prev_mouse = curr_mouse;
+      float cameraWidth = Camera::editorCamera->Max(Camera::editorCameraTransform).x - Camera::editorCamera->Min(Camera::editorCameraTransform).x;
+      float cameraHeight = Camera::editorCamera->Max(Camera::editorCameraTransform).y - Camera::editorCamera->Min(Camera::editorCameraTransform).y;
+      float cursorViewPortDistanceX = ImGui::GetMousePos().x - renderPos.x;
+      float cursorViewPortDistanceY = ImGui::GetMousePos().y - renderPos.y;
+      curr_mouse.point_x = ( ( cursorViewPortDistanceX / renderSize.x ) * cameraWidth ) + Camera::editorCamera->Min(Camera::editorCameraTransform).x;
+      curr_mouse.point_y = Camera::editorCamera->Max(Camera::editorCameraTransform).y - ( ( cursorViewPortDistanceY / renderSize.y ) * cameraHeight );
 
-      auto offset = payload_n.find_last_of( '_' );
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( tile ).scale = { 0.5, 0.5, 0.0 };
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Key = payload_n.
-        substr( 0, offset );
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Index = std::stoi(
-        payload_n.substr( offset + 1 ) );
+      KeysInput();
     }
-    if ( const ImGuiPayload *payload = ImGui::AcceptDragDropPayload( "ASSETFILES"); payload )
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+    Camera::editorCamera->SetAspectRatio( viewportPanelSize.x, viewportPanelSize.y );
+    Camera::editorCamera->SetViewportSize( viewportPanelSize.x );
+    uint64_t textureID = Camera::editorCamera->GetFrameBuffer().GetColorAttachment();
+    ImGui::Image( reinterpret_cast<void *>( textureID ), viewportPanelSize, ImVec2 { 0, 1 }, ImVec2 { 1, 0 } );
+
+    if ( ImGui::BeginDragDropTarget() )
     {
-      std::string payload_n = *static_cast<std::string *>( payload->Data );
-      if ( payload_n.find(".png") != std::string::npos )
+      if ( const ImGuiPayload *payload = ImGui::AcceptDragDropPayload( "TILES" ); payload )
       {
+        std::string payload_n = *static_cast<std::string *>( payload->Data );
+
+        // do the tiling
         EntityID tile = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity<Renderer2D, Image>();
-
         env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( tile ).position = { curr_mouse.point_x, curr_mouse.point_y, 0 };
+
+        auto offset = payload_n.find_last_of( '_' );
         env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( tile ).scale = { 0.5, 0.5, 0.0 };
-        env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Key = payload_n.substr( 0, payload_n.find_last_of( '.' ) );
-        env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Index = 0;
+        env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Key = payload_n.
+          substr( 0, offset );
+        env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Index = std::stoi(
+          payload_n.substr( offset + 1 ) );
       }
+      if ( const ImGuiPayload *payload = ImGui::AcceptDragDropPayload( "ASSETFILES"); payload )
+      {
+        std::string payload_n = *static_cast<std::string *>( payload->Data );
+        if ( payload_n.find(".png") != std::string::npos )
+        {
+          EntityID tile = GetEnv().pECS->GetWorld().GetEntityManager().CreateEntity<Renderer2D, Image>();
+
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( tile ).position = { curr_mouse.point_x, curr_mouse.point_y, 0 };
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( tile ).scale = { 0.5, 0.5, 0.0 };
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Key = payload_n.substr( 0, payload_n.find_last_of( '.' ) );
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( tile ).m_Sprite.m_Index = 0;
+        }
+      }
+
+      ImGui::EndDragDropTarget();
     }
-
-    ImGui::EndDragDropTarget();
   }
-
   ImGui::End();
 }
 }

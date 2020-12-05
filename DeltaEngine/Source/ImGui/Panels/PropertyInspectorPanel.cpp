@@ -138,6 +138,9 @@ void PropertyInspectorPanel::Render()
 
             ImGui::Text( prop_name.c_str() );
 
+            if ( prop_name == "Size" )
+              prop_name.assign( "Size" + instance.get_type().get_name().to_string() );
+
             if ( prop_type == rttr::type::get<float *>() )
               ImGui::DragFloat( ( "##" + prop_name ).c_str(), ( value.get_value<float *>() ), 0.01f );
             else if ( prop_type == rttr::type::get<int *>() )
@@ -155,7 +158,8 @@ void PropertyInspectorPanel::Render()
             else if ( prop_type == rttr::type::get<std::string *>() && (
               instance.get_type() == rttr::type::get<AI>() ||
               instance.get_type() == rttr::type::get<EntityName>() ||
-              instance.get_type() == rttr::type::get<Text>() ) )
+              instance.get_type() == rttr::type::get<Text>() ||
+              instance.get_type() == rttr::type::get<UI>() ) )
             {
               auto &str = *value.get_value<std::string *>();
               char buffer[256] {};

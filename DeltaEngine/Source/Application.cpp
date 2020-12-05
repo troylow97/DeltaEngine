@@ -15,6 +15,7 @@
 #include "ImGui/Panels/LoggerPanel.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/Utils/Random.h"
+#include "Input/Keys.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -91,9 +92,10 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   // ECS Initialization
   env.pECS = new ECSModule();
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( { 0 } ).m_Size = c.cam_size;
 
 #ifdef DE_EDITOR
-  m_Editor = new Editor();
+  Editor::Instance();
   SystemDirectory::Instance().StartWatch();
 #endif
 }
@@ -104,7 +106,6 @@ Application::~Application()
 
 #ifdef DE_EDITOR
   SystemDirectory::Instance().StopWatch();
-  delete m_Editor;
 #endif
   delete env.pECS;
   delete env.eventManager;
@@ -134,15 +135,16 @@ void Application::Run()
       InputManager::Instance().Update();
       env.pECS->GetWorld().Run();
 #ifdef DE_EDITOR
-      m_Editor->Begin();
-      m_Editor->Render();
-      m_Editor->End();
+      Editor::Instance().Begin();
+      Editor::Instance().Render();
+      Editor::Instance().End();
 #endif
       SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       Profiler::Instance().Record( "Buffer Swap" );
       OnEvent();
       env.pWin->Update();
       Profiler::Instance().FrameEnd();
+
     }
     else
       env.pWin->Update();

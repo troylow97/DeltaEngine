@@ -5,7 +5,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Main Menu Background"
+                "Name": ""
             },
             "Entity Type": {
                 "Category": "none"
@@ -28,13 +28,51 @@
                     "w": 1.0
                 }
             },
+            "Camera": {
+                "Camera Size": 6.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Main Menu Background"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.8399999737739563,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
             "Image": {
                 "Sprite": {
                     "key": "Textures/MainMenu_BG",
                     "index": 0
                 },
                 "Size": {
-                    "x": 1.0,
+                    "x": -3.0,
                     "y": 1.0
                 },
                 "Offset": {
@@ -42,10 +80,10 @@
                     "y": 0.0
                 },
                 "Tiling": {
-                    "x": 1.0,
+                    "x": 3.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -115,7 +153,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -185,7 +223,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -255,7 +293,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -325,7 +363,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -395,7 +433,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "horizontal_right_to_left",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,

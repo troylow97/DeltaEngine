@@ -54,26 +54,27 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "enemy_type", &EnemyWave::EnemyType )
     .property( "spawn_area", &EnemyWave::SpawnArea );
 
-  rttr::registration::class_<Gauntlet>("Gauntlet")
-      .property("enemy_waves", &Gauntlet::EnemyWaves)
-      .property("activation_point", &Gauntlet::ActivationPoint)
-      .property("wall_offset_right", &Gauntlet::WallOffsetRight)
-      .property("wall_offset_left", &Gauntlet::WallOffsetLeft)
-      .property("current_enemy_wave", &Gauntlet::CurrentEnemyWave)(rttr::metadata("NO_SERIALIZE", true))
-      .property("is_activated", &Gauntlet::isActivated)(rttr::metadata("NO_SERIALIZE", true))
-      .property("is_finished", &Gauntlet::isFinished)(rttr::metadata("NO_SERIALIZE", true));
+  rttr::registration::class_<Gauntlet>( "Gauntlet" )
+      .property( "enemy_waves", &Gauntlet::EnemyWaves )
+      .property( "activation_point", &Gauntlet::ActivationPoint )
+      .property( "wall_offset_right", &Gauntlet::WallOffsetRight )
+      .property( "wall_offset_left", &Gauntlet::WallOffsetLeft )
+      .property( "current_enemy_wave", &Gauntlet::CurrentEnemyWave )( rttr::metadata( "NO_SERIALIZE", true ) )
+      .property( "is_activated", &Gauntlet::isActivated )( rttr::metadata( "NO_SERIALIZE", true ) )
+      .property( "is_finished", &Gauntlet::isFinished )( rttr::metadata( "NO_SERIALIZE", true ) );
 
-  rttr::registration::class_<GauntletsList>("Gauntlets")
-      .property("gauntlets", &GauntletsList::Gauntlets);
-  	
-  rttr::registration::class_<RespawnPoints>("RespawnPoints")
-      .property("respawn_points", &RespawnPoints::m_respawns);
+  rttr::registration::class_<GauntletsList>( "Gauntlets" )
+      .property( "gauntlets", &GauntletsList::Gauntlets );
+
+  rttr::registration::class_<RespawnPoints>( "RespawnPoints" )
+      .property( "respawn_points", &RespawnPoints::m_respawns );
 
   rttr::registration::class_<EngineConfig>( "Config" )
     .property( "window", &EngineConfig::win_name )
     .property( "width", &EngineConfig::width )
     .property( "height", &EngineConfig::height )
     .property( "fps", &EngineConfig::fps )
+    .property( "cam_size", &EngineConfig::cam_size )
     .property( "fullscreen", &EngineConfig::fullscreen );
 
   rttr::registration::class_<Vector2>( "Vector2" )
@@ -123,12 +124,12 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     rttr::value( "ray", ColliderType::RAY )
   );
 
-    rttr::registration::enumeration<EntityCategory>("EntityCategory")
+    rttr::registration::enumeration<EntityCategory>( "EntityCategory" )
     (
-      rttr::value("none", EntityCategory::E_NONE),
-      rttr::value("wall", EntityCategory::E_WALL),
-      rttr::value("player", EntityCategory::E_PLAYER),
-      rttr::value("enemy", EntityCategory::E_ENEMY)
+      rttr::value( "none", EntityCategory::E_NONE ),
+      rttr::value( "wall", EntityCategory::E_WALL ),
+      rttr::value( "player", EntityCategory::E_PLAYER ),
+      rttr::value( "enemy", EntityCategory::E_ENEMY )
     );
 
   rttr::registration::enumeration<Alignment>( "Alignment" )
@@ -149,6 +150,24 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     rttr::value( "radial_360_anticlockwise", FillType::Radial360AntiClockwise )
   );
 
+  rttr::registration::enumeration<UIType>( "UIType" )
+    (
+      rttr::value("Screen", UIType::Screen),
+      rttr::value("Interface", UIType::Interface),
+      rttr::value("Button", UIType::Button)
+    );
+
+  rttr::registration::class_<UI>( "UI" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<UI>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "Function", &UI::functor_key )( rttr::policy::prop::bind_as_ptr )
+    .property( "UI Type", &UI::ui_type )( rttr::policy::prop::bind_as_ptr )
+    .property( "Screen", &UI::screen )( rttr::policy::prop::bind_as_ptr )
+    .property( "Target", &UI::target_screen )( rttr::policy::prop::bind_as_ptr )
+    .property("Overlay", &UI::overlay)( rttr::policy::prop::bind_as_ptr );
+
+
+
   rttr::registration::class_<EntityName>( "Entity Name" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<EntityName>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
@@ -168,31 +187,31 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Scale", &Transform::scale )( rttr::policy::prop::bind_as_ptr )
     .property( "Rotation", &Transform::rotation )( rttr::policy::prop::bind_as_ptr );
 
-    rttr::registration::class_<RigidBody>("Rigidbody")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Direction", &RigidBody::Direction)(rttr::metadata("NO_SERIALIZE", true),
-                                                    (rttr::metadata("NO_EDITOR", true)))
-      .property("Velocity", &RigidBody::Velocity)(rttr::metadata("NO_SERIALIZE", true),
-                                                   (rttr::metadata("NO_EDITOR", true)))
-      .property("Reflected Vector", &RigidBody::ReflectedVector)(rttr::metadata("NO_SERIALIZE", true),
-                                                                 (rttr::metadata("NO_EDITOR", true)))
-      .property("Acceleration", &RigidBody::Acceleration)(rttr::metadata("NO_SERIALIZE", true),
-                                                          (rttr::metadata("NO_EDITOR", true)))
-      .property("Accumulated Force", &RigidBody::AccumulatedForce)(rttr::metadata("NO_SERIALIZE", true),
-                                                                    (rttr::metadata("NO_EDITOR", true)))
-      .property("Point End", &RigidBody::PointEnd)(rttr::metadata("NO_SERIALIZE", true),
-                                                    (rttr::metadata("NO_EDITOR", true)))
-      .property("Mass", &RigidBody::Mass)(rttr::policy::prop::bind_as_ptr)
-      .property("Move Speed", &RigidBody::Movespeed)(rttr::policy::prop::bind_as_ptr)
-      .property("Restitution", &RigidBody::Restitution)(rttr::policy::prop::bind_as_ptr)
-      .property("Friction Coefficient", &RigidBody::FrictionCoeff)(rttr::policy::prop::bind_as_ptr)
-      .property("Inherent Acceleration", &RigidBody::InherentAcceleration)(rttr::policy::prop::bind_as_ptr)(
-        rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("Max Acceleration", &RigidBody::MaxAcceleration)(rttr::policy::prop::bind_as_ptr)
-      .property("Acceleration Pickup", &RigidBody::AccelerationPickup)(rttr::policy::prop::bind_as_ptr)
-      .property("Gravity", &RigidBody::hasGravity)(rttr::policy::prop::bind_as_ptr)
-      .property("Moveable", &RigidBody::isMoveable)(rttr::policy::prop::bind_as_ptr);
+    rttr::registration::class_<RigidBody>( "Rigidbody" )
+      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits ) )
+      .constructor<>()( rttr::policy::ctor::as_object )
+      .property( "Direction", &RigidBody::Direction )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                    ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Velocity", &RigidBody::Velocity )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                   ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Reflected Vector", &RigidBody::ReflectedVector )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                                 ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Acceleration", &RigidBody::Acceleration )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                          ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Accumulated Force", &RigidBody::AccumulatedForce )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                                    ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Point End", &RigidBody::PointEnd )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                    ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Mass", &RigidBody::Mass )( rttr::policy::prop::bind_as_ptr )
+      .property( "Move Speed", &RigidBody::Movespeed )( rttr::policy::prop::bind_as_ptr )
+      .property( "Restitution", &RigidBody::Restitution )( rttr::policy::prop::bind_as_ptr )
+      .property( "Friction Coefficient", &RigidBody::FrictionCoeff )( rttr::policy::prop::bind_as_ptr )
+      .property( "Inherent Acceleration", &RigidBody::InherentAcceleration )( rttr::policy::prop::bind_as_ptr )(
+        rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Max Acceleration", &RigidBody::MaxAcceleration )( rttr::policy::prop::bind_as_ptr )
+      .property( "Acceleration Pickup", &RigidBody::AccelerationPickup )( rttr::policy::prop::bind_as_ptr )
+      .property( "Gravity", &RigidBody::hasGravity )( rttr::policy::prop::bind_as_ptr )
+      .property( "Moveable", &RigidBody::isMoveable )( rttr::policy::prop::bind_as_ptr );
 
   rttr::registration::class_<Collider>( "Collider" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Collider>()->bits ) )
@@ -229,7 +248,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
   rttr::registration::class_<Camera>( "Camera" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Camera>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "Size", &Camera::m_Size )( rttr::policy::prop::bind_as_ptr )
+    .property( "Camera Size", &Camera::m_Size )( rttr::policy::prop::bind_as_ptr )
     .property( "Background Color", &Camera::backgroundColor )( rttr::policy::prop::bind_as_ptr );
 
   rttr::registration::class_<Image>( "Image" )
@@ -308,10 +327,10 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
         .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr);
 
-  rttr::registration::class_<Lifespan>( "Lifespan" )
-    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits ) )
-    .constructor<>()( rttr::policy::ctor::as_object )
-    .property( "Timer", &Lifespan::Timer )( rttr::policy::prop::bind_as_ptr );
+    rttr::registration::class_<Lifespan>( "Lifespan" )
+      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits ) )
+      .constructor<>()( rttr::policy::ctor::as_object )
+      .property( "Timer", &Lifespan::Timer )( rttr::policy::prop::bind_as_ptr );
 
   rttr::registration::class_<Player>("Player")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Player>()->bits))
@@ -376,6 +395,8 @@ rttr::type RT_Checker( size_t bits )
     return rttr::type::get_by_name( "Player" );
   if ( ComponentMeta::GetComponentMeta<Camera>()->bits == bits )
     return rttr::type::get_by_name( "Camera" );
+  if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
+    return rttr::type::get_by_name( "UI" );
   return rttr::type::get<int>();
 }
 
@@ -417,6 +438,8 @@ void RT_Destroy( EntityManager &em, EntityID id, size_t bits )
     em.RemoveComponent<Player>( id );
   if ( ComponentMeta::GetComponentMeta<Camera>()->bits == bits )
     em.RemoveComponent<Camera>( id );
+  if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
+    em.RemoveComponent<UI>( id );
 }
 
 void RT_Setter( EntityManager &em, EntityID id, size_t bits )
@@ -457,6 +480,8 @@ void RT_Setter( EntityManager &em, EntityID id, size_t bits )
     em.AddComponent<Player>( id );
   if ( ComponentMeta::GetComponentMeta<Camera>()->bits == bits )
     em.AddComponent<Camera>( id );
+  if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
+    em.AddComponent<UI>( id );
 }
 
 rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
@@ -497,6 +522,8 @@ rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
     return rttr::instance( em.GetComponent<Player>( id ) );
   if ( ComponentMeta::GetComponentMeta<Camera>()->bits == bits )
     return rttr::instance( em.GetComponent<Camera>( id ) );
+  if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
+    return rttr::instance( em.GetComponent<UI>( id ) );
   return rttr::instance();
 }
 
@@ -538,6 +565,8 @@ void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::F
     Serialize::WriteObject( *static_cast<Player *>( ptr ), writer );
   else if ( str == "Camera" )
     Serialize::WriteObject( *static_cast<Camera *>( ptr ), writer );
+  else if ( str == "UI" )
+    Serialize::WriteObject( *static_cast<UI *>( ptr ), writer );
 }
 
 void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rttr::variant var )
@@ -578,5 +607,7 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
     em.AddComponent<Player>( id, var.get_value<Player>() );
   else if ( str == "Camera" )
     em.AddComponent<Camera>( id, var.get_value<Camera>() );
+  else if ( str == "UI" )
+    em.AddComponent<UI>( id, var.get_value<UI>() );
 }
 }

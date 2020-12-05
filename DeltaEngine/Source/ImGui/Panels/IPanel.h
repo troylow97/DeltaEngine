@@ -21,12 +21,17 @@ namespace DeltaEngine
     virtual ~IPanel() = default;
     virtual void Enable() { m_enabled = !m_enabled; }
     bool IsEnabled() const { return m_enabled; }
+    bool IsActive() const
+    {
+      return m_active;
+    }
     const std::string& Name() const { return m_name; }
 
   protected:
     Editor &m_editor;
     std::string m_name;
     bool m_enabled{false};
+    bool m_active{false};
 
   };
 }

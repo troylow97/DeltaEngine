@@ -53,7 +53,8 @@ AssetPanel::~AssetPanel()
 
 void AssetPanel::Render()
 {
-  if ( ImGui::Begin( m_name.c_str(), &m_enabled ) )
+  m_active = ImGui::Begin( m_name.c_str(), &m_enabled );
+  if (m_active)
   {
     float width = ImGui::GetWindowContentRegionWidth();
     float height = ImGui::GetContentRegionAvail().y;

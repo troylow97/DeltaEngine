@@ -4,7 +4,7 @@
 
 namespace DeltaEngine
 {
-  enum class FillType
+  enum class FillType : unsigned
   {
     None,
     HorizontalLeftToRight,
