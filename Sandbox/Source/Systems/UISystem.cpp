@@ -114,24 +114,32 @@ void UISystem::LateUpdate()
           }
         }
         else if (screen == m_screen.back() &&
-                ui.ui_type == UIType::Interface)
+                ui.ui_type == UIType::Interface &&
+                CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
         {
           // Animation update
-          if (CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y }))
+          
+          if (ui.overlay && ui.target_screen != -1)
+             m_screen.push_back(ui.target_screen);
+          else if (ui.target_screen != -1)
           {
-            if (ui.overlay && ui.target_screen != -1)
-              m_screen.push_back(ui.target_screen);
-            else if (ui.target_screen != -1)
+            m_screen.clear();
+            m_screen.push_back(ui.target_screen);
+          }
+        }
+        else if (screen == m_screen.back() &&
+            ui.ui_type == UIType::Button &&
+            !(CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y })))
+        {
+            // Animation update
+
+            if (ui.overlay && ui.previous_screen != -1)
+              m_screen.push_back(ui.previous_screen);
+            else if (ui.previous_screen != -1)
             {
               m_screen.clear();
-              m_screen.push_back(ui.target_screen);
+              m_screen.push_back(ui.previous_screen);
             }
-          }
-          //else
-          //{
-          //    // Animation update
-          //    m_screen.push_back(ui.previous_screen);
-          //}
         }
 
       }
