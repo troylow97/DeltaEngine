@@ -45,7 +45,7 @@ namespace DeltaEngine
 	//std::string str_PointsCollected = std::to_string(PointsCollected);
 	//env.pECS->GetWorld().GetEntityManager().GetComponent<Text>(UpgradePointsNumber).m_Text = str_PointsCollected;
 	// -----------------------------------------------------------------------------------------------------------
-
+  	
 	TempUpgradePointsUI();
 	if (p.UpgradeAtk)
 	{
