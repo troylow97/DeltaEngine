@@ -96,18 +96,20 @@ void UISystem::LateUpdate()
 
   if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
   {
-    bool main_game = false;
-    bool pause_game_exists = false;
-    for (auto screen : m_screen)
-    {
-      if (screen == pause_game_exists)
-        pause_game_exists = true;
-    }
-    
-    if (pause_game_exists)
-      m_screen.pop_back();
-    else
-      m_screen.push_back(pause_screen);
+      bool option_menu_bool{false};
+      for (auto& screen : m_screen)
+      {
+          if (screen == option_screen)
+          {
+              m_screen.clear();
+              m_screen.push_back(main_screen);
+          }
+          else if (screen == main_screen)
+              QuitGame();
+          else if (screen == level1_screen)
+              PauseGame();
+      }
+  	 
   }
 
   if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
@@ -160,7 +162,7 @@ void UISystem::LateUpdate()
       if (screen == ui.screen)
       {
         r.m_Active = true;
-        bool rect_mouse = CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y });
+        const bool rect_mouse = CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y });
         
         if(screen == m_screen.back())
         {
@@ -204,9 +206,10 @@ void UISystem::LateUpdate()
           }
           else if (ui.ui_type == UIType::Slider && rect_mouse)
           {
-            if(InputManager::Instance().IsKeyPressed(DEVK_LBUTTON) && p_x <= VolumeSliderInitialLocation.x && p_x >= (VolumeSliderInitialLocation.x - 2.7f))
+            if(InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
             {
-              t.position.x = p_x;
+            	if(p_x <= VolumeSliderInitialLocation.x && p_x >= (VolumeSliderInitialLocation.x - 2.7f))
+					t.position.x = p_x;
             }
           }
         }
@@ -249,7 +252,7 @@ void UISystem::QuitGame()
 
 void UISystem::PauseGame()
 {
-  //std::cout << "pausing game" << std::endl;
+  std::cout << "pausing game" << std::endl;
 }
 
 RTTR_REGISTRATION
