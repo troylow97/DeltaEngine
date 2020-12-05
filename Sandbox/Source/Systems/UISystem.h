@@ -10,6 +10,7 @@ namespace DeltaEngine
 
     void Return();
     void UpgradeDamageButton();
+    void StartGame();
 private:
 
   std::vector<unsigned> m_screen;

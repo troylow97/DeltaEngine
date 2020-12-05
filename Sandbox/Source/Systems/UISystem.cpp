@@ -62,13 +62,25 @@ void UISystem::LateUpdate()
         break;
       }
     }
-
+  	
     if ( !main && !pause)
     {
       m_screen.clear();
       m_screen.push_back( pause_screen );
     }
 
+  }
+
+  if (InputManager::Instance().IsKeyTriggered(DEVK_U))
+  {
+      for (auto screen : m_screen)
+      {
+          if (screen == level1_screen)
+          {
+              m_screen.push_back(upgrade_page);
+              std::cout << "pushing back upgrade page, current screen vector size is: " << m_screen.size() << std::endl;
+          }
+      }
   }
 
 #ifdef DE_EDITOR
@@ -116,6 +128,7 @@ void UISystem::LateUpdate()
 void UISystem::Return()
 {
   m_screen.pop_back();
+  std::cout << "returning" << std::endl;
 }
 
 void UISystem::UpgradeDamageButton()
@@ -123,6 +136,18 @@ void UISystem::UpgradeDamageButton()
     std::cout << "Upgrading damage" << std::endl;
 }
 
+void UISystem::StartGame()
+{
+    JsonFile file;
+    env.pECS->GetWorld().GetEntityManager().Clear();
+    env.pECS->GetWorld().ShutdownSystems();
+    env.pECS->GetWorld().Load("World/MainLevelV2.json");
+    env.pECS->GetWorld().InitSystems();
+
+    std::cout << "starting game" << std::endl;
+    m_screen.pop_back();
+    m_screen.push_back(level1_screen);
+}
 
 RTTR_REGISTRATION
 {
@@ -131,6 +156,9 @@ RTTR_REGISTRATION
 
   rttr::registration::class_<UISystem>("UpgradeDamageButton")
   .method("UpgradeDamageButton", &UISystem::UpgradeDamageButton);
+
+  rttr::registration::class_<UISystem>("StartGame")
+      .method("StartGame", &UISystem::StartGame);
 }
 
 
