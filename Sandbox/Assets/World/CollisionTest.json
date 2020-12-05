@@ -5,6 +5,82 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.2371906042099,
+                    "y": -0.0005161259323358536,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.2371906042099,
+                    "y": -0.0005164854228496552,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
                 "Name": ""
             },
             "Entity Type": {
@@ -249,7 +325,7 @@
             "Transform": {
                 "Position": {
                     "x": 1.2371906042099,
-                    "y": -0.0005276035517454147,
+                    "y": -0.0005161259323358536,
                     "z": 0.0
                 },
                 "Scale": {
@@ -278,7 +354,7 @@
             "Collider": {
                 "Center": {
                     "x": 1.2371906042099,
-                    "y": -0.0005276035517454147
+                    "y": -0.0005161259323358536
                 },
                 "Offset": {
                     "x": 0.0,
@@ -311,7 +387,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -367,56 +443,6 @@
             "Input": {
                 "Previous": 65,
                 "Current": 0
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "Upgrade Points"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": -10.047618865966797,
-                    "y": 5.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 2.0,
-                    "y": 2.0,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": true
-            },
-            "Text": {
-                "Key": "Default",
-                "Detail": "0",
-                "Alignment": "align_left"
             }
         }
     ]
