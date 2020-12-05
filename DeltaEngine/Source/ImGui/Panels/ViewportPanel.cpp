@@ -140,6 +140,9 @@ void ViewportPanel::Render()
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ImVec2 renderPos = ImGui::GetCursorScreenPos(); // gives top left of the window
     ImVec2 renderSize = ImGui::GetContentRegionAvail(); // gives height and width 
+    ren_pos = { renderPos.x, renderPos.y };
+    ren_size = { renderSize.x,renderSize.y };
+
 
     if ( ImGui::IsWindowHovered() )
     {

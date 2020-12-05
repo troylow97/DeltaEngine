@@ -94,7 +94,6 @@ inline void EntityManager::Clear()
   Archetype *empty_arch = CreateEmptyArchetype();
   m_archetypes.push_back( empty_arch );
   CreateChunk( empty_arch );
-  CreateEntity<Camera>();
 }
 
 template <typename... C>
@@ -483,6 +482,10 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
           *static_cast<Text *>( target ) = *static_cast<Text *>( current );
           break;
         }
+        case ComponentMeta::ComponentBits<UI>() :
+        {
+          *static_cast<UI *>( target ) = *static_cast<UI *>( current );
+        }
         default:
           std::memcpy( target, current, type->size );
       }
@@ -556,6 +559,11 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
             case ComponentMeta::ComponentBits<Text>() :
             {
               std::swap( *static_cast<Text *>( current ), *static_cast<Text *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<UI>() :
+            {
+              std::swap( *static_cast<UI *>( current ), *static_cast<UI *>( target ) );
               break;
             }
             default:

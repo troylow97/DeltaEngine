@@ -10,6 +10,7 @@
 #include "Systems/GCameraSystem.h"
 #include "Systems/LifespanSystem.h"
 #include "Systems/RespawnSystem.h"
+#include "Systems/UISystem.h"
 #include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
 #include "Systems/EnemySpawner/EnemySpawner.h"
 
@@ -19,9 +20,9 @@ public:
   Sandbox()
   {
     CollisionSystem::collision_handler.RegisterOnStay(TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem, GCameraSystem>();
+    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem, GCameraSystem,UISystem>();
     env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem >();
-    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem>();
+    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem,UISystem>();
     env.pECS->GetWorld().InitSystems();
   }
 

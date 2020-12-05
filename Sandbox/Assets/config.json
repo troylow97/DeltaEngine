@@ -3,5 +3,6 @@
     "width": 1600,
     "height": 900,
     "fps": 60.0,
+    "cam_size": 2.0,
     "fullscreen": false
 }

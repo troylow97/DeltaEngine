@@ -158,7 +158,8 @@ void PropertyInspectorPanel::Render()
             else if ( prop_type == rttr::type::get<std::string *>() && (
               instance.get_type() == rttr::type::get<AI>() ||
               instance.get_type() == rttr::type::get<EntityName>() ||
-              instance.get_type() == rttr::type::get<Text>() ) )
+              instance.get_type() == rttr::type::get<Text>() ||
+              instance.get_type() == rttr::type::get<UI>() ) )
             {
               auto &str = *value.get_value<std::string *>();
               char buffer[256] {};

@@ -36,7 +36,10 @@ namespace DeltaEngine
     }
     c_size = { (max.x - min.x), (max.y - min.y )};
 
-    em.ForEach( [&]( Transform &t, Image &i, Renderer2D &r )
+    Query q;
+    q.Exclude<UI>();
+
+    em.ForEach( q,[&]( Transform &t, Image &i, Renderer2D &r )
     {
       Vector2 e_t { t.position.x, t.position.y };
       if ( CollisionIntersection_RectRect_Static( e_t, i.GetWorldSize(), c_center, c_size ) )

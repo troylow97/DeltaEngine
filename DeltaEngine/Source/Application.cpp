@@ -92,6 +92,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   // ECS Initialization
   env.pECS = new ECSModule();
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( { 0 } ).m_Size = c.cam_size;
 
 #ifdef DE_EDITOR
   Editor::Instance();
