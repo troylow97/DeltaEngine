@@ -197,14 +197,12 @@ void UISystem::Return()
 
 void UISystem::UpgradeDamageButton()
 {
-  std::cout << "Upgrading damage" << std::endl;
   auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
   player.UpgradeAtk = true;
 }
 
 void UISystem::UpgradeHPButton()
 {
-  std::cout << "Upgrading HP" << std::endl;
   auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
   player.UpgradeHP = true;
 }
