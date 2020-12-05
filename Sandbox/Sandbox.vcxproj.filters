@@ -42,10 +42,16 @@
     <ClInclude Include="Source\Systems\EnemySpawner\EnemySpawner.h">
       <Filter>Systems\EnemySpawner</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GCameraSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\LifespanSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\RespawnSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\UISystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\UnitManager.h">
@@ -78,10 +84,16 @@
     <ClCompile Include="Source\Systems\EnemySpawner\EnemySpawner.cpp">
       <Filter>Systems\EnemySpawner</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\GCameraSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Systems\LifespanSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\RespawnSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\UISystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\UnitManager.cpp">

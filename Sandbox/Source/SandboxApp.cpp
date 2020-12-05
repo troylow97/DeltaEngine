@@ -19,10 +19,10 @@ class Sandbox : public Application
 public:
   Sandbox()
   {
-    CollisionSystem::collision_handler.RegisterOnStay(TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem, GCameraSystem,UISystem>();
-    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem >();
-    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem,UISystem>();
+    CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
+    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem, GCameraSystem, UISystem>();
+    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner,LifespanSystem, RespawnSystem, UISystem>();
+    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
 
