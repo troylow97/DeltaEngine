@@ -30,10 +30,11 @@ const unsigned credits_screen = 11;
 const unsigned gameover_screen = 12;
 const unsigned upgrade_page = 13;
 const unsigned level1_screen = 14;
+const unsigned upgraded_page = 15;
 
 void UISystem::Initialize()
 {
-    m_screen.push_back(main_screen);
+    m_screen.push_back(level1_screen);
 
     //m_screen.push_back(pause_screen);
     //m_screen.push_back(main_screen);
@@ -200,7 +201,7 @@ void UISystem::UpgradeDamageButton()
 
 void UISystem::UpgradeHPButton()
 {
-  std::cout << "Upgrading damage" << std::endl;
+  std::cout << "Upgrading HP" << std::endl;
   auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
   player.UpgradeHP = true;
 }
@@ -210,8 +211,7 @@ void UISystem::StartGame()
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
-  
-  std::cout << "starting game" << std::endl;
+
   m_screen.clear();
   m_screen.push_back(level1_screen);
 }

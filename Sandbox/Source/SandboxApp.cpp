@@ -28,7 +28,7 @@ public:
     CollisionHandlerFunctions::Initialise();
 
     JsonFile file;
-    env.pECS->GetWorld().Load("World/MainMenu.json");
+    env.pECS->GetWorld().Load("World/MainLevelV2.json");
   }
 
   ~Sandbox()
