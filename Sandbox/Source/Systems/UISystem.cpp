@@ -114,34 +114,40 @@ void UISystem::LateUpdate()
 
   if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
   {
-      bool upgrade_screen_exists = false;
-      for (auto& screen : m_screen)
-      {
-          if (screen == upgrade_page)
-              upgrade_screen_exists = true;
-      }
-
-      if (upgrade_screen_exists)
-      {
-          m_screen.clear();
-          m_screen.push_back(level1_screen);
-      }
-      else
-      {
-          m_screen.push_back(upgrade_page);
-      }
+    bool upgrade_screen_exists = false;
+    for (auto& screen : m_screen)
+    {
+      if (screen == upgrade_page)
+        upgrade_screen_exists = true;
+    }
+    
+    if (upgrade_screen_exists)
+    {
+      m_screen.clear();
+      m_screen.push_back(level1_screen);
+    }
+    else
+    {
+      m_screen.push_back(upgrade_page);
+    }
   }
   for (auto& screen : m_screen)
   {
-      if (screen == upgrade_page)
+    if (screen == upgrade_page)
+    {
+      auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+      Vector3 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
+      
+      em.ForEach([&](UI& ui, EntityID& id, EntityName& en)
       {
-          //auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
-          //
-          //em.ForEach([&](UI& ui, EntityID& id)
-          //    {
-          //        env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
-          //    });
-      }
+        if (en.name == "AttackFilled" || en.name == "AttackDefault")
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x + 1.194f, player_pos.y + 0.727f, 0.0f };
+        else if (en.name == "HealthFilled" || en.name == "HealthDefault")
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.796f, player_pos.y + 0.727f, 0.0f };
+        else
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 0.297f, player_pos.y + 1.013f, 0.0f };
+      });
+    }
   }
 
 #ifdef DE_EDITOR
