@@ -19,6 +19,8 @@ private:
   bool isDraggingOnSlider;
   bool UI_first_time = true;
   Vector2 VolumeSliderInitialLocation;
+  Vector3 PlayerFirstPosition;
+  Vector3 PlayerCurrentPosition;
   std::vector<unsigned> m_screen;
   END_DEFINE_SYSTEM(GCameraSystem)
 }

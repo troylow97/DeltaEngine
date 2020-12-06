@@ -43,34 +43,14 @@ void UISystem::Initialize()
       VolumeSliderInitialLocation = t.position;
   });
   isDraggingOnSlider = false;
-  //m_screen.push_back(pause_screen);
-  //m_screen.push_back(main_screen);
-  //m_screen.push_back(interface);
-  //m_screen.push_back(control_screen);
-  //m_screen.push_back(option_screen);
-  //m_screen.push_back(credits_screen);
-  //m_screen.push_back(gameover_screen);
-  //m_screen.push_back(upgrade_page);
-  //m_screen.push_back(level1_screen);
+  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+  PlayerFirstPosition = p.position;
 }
 	
 void UISystem::Update()
 {
-  //for (auto& screen : m_screen)
-  //{
-  //  if (screen == upgrade_page)
-  //  {
-  //    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
-  //    
-  //    em.ForEach([&](UI& ui, EntityID& id) 
-  //    {
-  //      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
-  //    });
-  //  }
-  //}
+
 }
-
-
 
 void UISystem::LateUpdate()
 {
@@ -100,38 +80,47 @@ void UISystem::LateUpdate()
 
   if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
   {
-      bool option_menu_bool{false};
-      bool pause_screen_bool{ false };
-      for (auto& screen : m_screen)
+    bool option_menu_bool{false};
+    bool pause_screen_bool{ false };
+    for (auto& screen : m_screen)
+    {
+      if (screen == option_screen)
       {
-          if (screen == option_screen)
-          {
-              m_screen.clear();
-              m_screen.push_back(main_screen);
-          }
-          else if (screen == main_screen)
-              QuitGame();
-          else if (screen == level1_screen)
-          {
-              for (auto& screen2 : m_screen)
-              {
-                  if (screen2 == pause_screen)
-                      pause_screen_bool = true;
-              }
-
-          	if(pause_screen_bool)
-          	{
-                m_screen.clear();
-                m_screen.push_back(level1_screen);
-          	}
-            else
-            {
-                m_screen.push_back(pause_screen);
-                PauseGame();
-            }
-          }
+        m_screen.clear();
+        m_screen.push_back(main_screen);
       }
-  	 
+      else if (screen == main_screen)
+        QuitGame();
+      else if (screen == level1_screen)
+      {
+        for (auto& screen2 : m_screen)
+        {
+          if (screen2 == pause_screen)
+            pause_screen_bool = true;
+        }
+      
+      	if(pause_screen_bool)
+      	{
+          m_screen.clear();
+          m_screen.push_back(level1_screen);
+      	}
+        else
+        {
+          auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+          PlayerCurrentPosition = p.position;
+          Vector3 difference = PlayerCurrentPosition - PlayerFirstPosition;
+
+          em.ForEach([&](UI& ui, EntityID& id) 
+          {
+            if (ui.screen == 0 || ui.screen == 4 || ui.screen == 5 || ui.screen == 7 || ui.screen == 8 || ui.screen == 10)
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position += difference;
+          });
+
+          m_screen.push_back(pause_screen);
+          PauseGame();
+        }
+      }
+    }
   }
 
   if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
