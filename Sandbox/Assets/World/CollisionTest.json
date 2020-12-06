@@ -5,6 +5,82 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.2371906042099,
+                    "y": -0.0005161259323358536,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.2371906042099,
+                    "y": -0.0005164854228496552,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
                 "Name": ""
             },
             "Entity Type": {
@@ -17,7 +93,7 @@
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 20.489999771118165,
+                    "x": 50.0,
                     "y": 1.0,
                     "z": 1.0
                 },
@@ -53,9 +129,187 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 14,
-                "Collision Layer ID": 1
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 4.2555012702941898,
+                    "y": 0.765999972820282,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 5.0,
+                    "y": 0.029999999329447748,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 4.2555012702941898,
+                    "y": 0.765999972820282
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 14,
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 7.439233779907227,
+                    "y": 2.582899332046509,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 5.0,
+                    "y": 0.9900000095367432,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 7.439233779907227,
+                    "y": 2.582899332046509
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 14,
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 10.918523788452149,
+                    "y": 4.819586277008057,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 5.0,
+                    "y": 0.9900000095367432,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 10.918523788452149,
+                    "y": 4.819586277008057
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 14,
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": true
             }
         },
         {
@@ -70,8 +324,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.2879994809627533,
-                    "y": -0.0005162302404642105,
+                    "x": 1.2371906042099,
+                    "y": -0.0005161259323358536,
                     "z": 0.0
                 },
                 "Scale": {
@@ -90,7 +344,7 @@
                 "Mass": 20.0,
                 "Move Speed": 10.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
+                "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
@@ -99,8 +353,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.2879994809627533,
-                    "y": -0.0005162302404642105
+                    "x": 1.2371906042099,
+                    "y": -0.0005161259323358536
                 },
                 "Offset": {
                     "x": 0.0,
@@ -111,9 +365,10 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Trigger": false,
                 "Collision Layer": 9,
-                "Collision Layer ID": 2
+                "Collision Layer ID": 2,
+                "Trigger": false,
+                "Platform": false
             },
             "Image": {
                 "Sprite": {
@@ -132,12 +387,12 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -158,7 +413,7 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 159,
+                "Current Health": 66,
                 "Max Health": 200,
                 "Invulnerable": false
             },
@@ -169,18 +424,24 @@
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": -0.016666656360030175,
+                "Cooldown Timer": -0.004710759036242962,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
+                "Combo Cooldown Timer": 1.5,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "Start Combo Cooldown Timer": false
             },
-            "Player": {},
+            "Player": {
+                "Upgrade Points Per Enemy Defeated": 50,
+                "Points Needed For Upgrade": 50,
+                "Attack Upgrade Increase": 1,
+                "Health Upgrade Attack": 2,
+                "Dashing Timer Duration": 1.0
+            },
             "Input": {
-                "Previous": 68,
+                "Previous": 65,
                 "Current": 0
             }
         }

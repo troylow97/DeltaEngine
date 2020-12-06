@@ -12,8 +12,8 @@
 
 namespace DeltaEngine
 {
-  AnimationPanel::AnimationPanel(std::string str)
-    : IPanel(str)
+  AnimationPanel::AnimationPanel(std::string str, Editor& e)
+    : IPanel(str, e)
   {
     m_enabled = true;
   }
@@ -25,8 +25,7 @@ namespace DeltaEngine
 
   void AnimationPanel::Render()
   {
-    ImGui::SetNextWindowSize(ImVec2(700, 600), ImGuiCond_FirstUseEver);
-    if (ImGui::Begin("Animation Editor"))
+    if (ImGui::Begin("Animation Editor" ,&m_enabled))
     {
       static bool playingAnimation = false;
       static float animTimer = 0.f;
@@ -114,11 +113,10 @@ namespace DeltaEngine
               ImVec2{ sprite.GetOffset().x + sprite.GetTiling().x, sprite.GetOffset().y + sprite.GetTiling().y },
               ImVec4{ 1, 1, 1, 1 }, ImVec4{ 1, 1, 1, 1 });
           }
-          ImGui::EndChild();
         }
+        ImGui::EndChild();
       }
-
-      ImGui::End();
     }
+    ImGui::End();
   }
 }

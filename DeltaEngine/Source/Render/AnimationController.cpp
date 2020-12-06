@@ -239,6 +239,6 @@ namespace DeltaEngine
     {
       DeltaEngine_CORE_WARN("Animator file \"{}\" failed to save!", m_Name.c_str());
     }
-    DeltaEngine_CORE_TRACE( "Animator {} was loaded successfully", filepath );
+    DeltaEngine_CORE_TRACE( "Animator {} was loaded successfully", m_Name.c_str() );
   }
 }

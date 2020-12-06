@@ -164,13 +164,27 @@ void PropertyInspectorPanel::Render()
             }
             else if ( prop_type == rttr::type::get<Sprite *>() )
             {
+              auto &sprite = *value.get_value<Sprite *>();
+
+              auto tex = GetEnv().pManager->Get<Texture2D>( sprite.m_Key );
+              bool error { false };
+              if ( tex.State() == AssetState::NotFound || 
+                   tex.State() == AssetState::NotFoundFallback || 
+                   tex.State() == AssetState::NotLoaded || 
+                   tex.State() == AssetState::NotLoadedFallback )
+              {
+                error = true;
+                ImGui::Text( "Error Sprite Key - %s", sprite.m_Key.c_str() );
+              }
+
+
               std::vector<std::string> tex_key_vec;
               tex_key_vec.push_back( " " );
               for ( auto &[key, data] : GetEnv().pManager->List<Texture2D>() )
-                for ( size_t i = 0; i < data->textureInfo.size(); i++ )
-                  tex_key_vec.push_back( key.Key() + '_' + std::to_string( i ) );
+                if ( data )
+                  for ( size_t i = 0; i < data->textureInfo.size(); i++ )
+                    tex_key_vec.push_back( key.Key() + '_' + std::to_string( i ) );
 
-              auto &sprite = *value.get_value<Sprite *>();
               size_t selection = 0;
               for ( size_t i = 0; i < tex_key_vec.size(); i++ )
                 if ( ( sprite.m_Key + '_' + std::to_string( sprite.m_Index ) ) == tex_key_vec[i] )
@@ -352,7 +366,7 @@ void PropertyInspectorPanel::Render()
              ref.meta->bits != ComponentMeta::GetComponentMeta<Parent>()->bits )
         {
           ImGui::SameLine();
-          ImGui::SetCursorPosX( ImGui::GetWindowContentRegionWidth() -15.0f);
+          ImGui::SetCursorPosX( ImGui::GetWindowContentRegionWidth() - 15.0f );
           Editor::font_awesome->Scale = 0.5f;
           ImGui::PushFont( Editor::font_awesome );
           ImGui::PushID( instance.get_type().get_name().to_string().c_str() );

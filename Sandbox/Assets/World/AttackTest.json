@@ -544,6 +544,15 @@
                 "Wireframe": true
             },
             "State": {},
+            "Camera": {
+                "Size": 6.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            },
             "Health": {
                 "Current Health": 159,
                 "Max Health": 200,

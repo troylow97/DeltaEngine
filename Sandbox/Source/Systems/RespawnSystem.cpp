@@ -21,7 +21,7 @@ namespace DeltaEngine
   {
     EntityID id = UnitManager::GetPlayerID();
   	
-    //Stop crash by checking for components
+    //Stop crash by checking for components	
     if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id) 
         || !em.HasComponent<Health>(id) || !em.HasComponent<Image>(id))
         return;
@@ -30,7 +30,7 @@ namespace DeltaEngine
     Transform& t = em.GetComponent<Transform>(id);
     Health& hp = em.GetComponent<Health>(id);
   	
-    if (p.isDead)
+    if (p.IsDead)
     {
         float temp_x = -4.149f, temp_y = -2.68f;
         float new_x = 0.0f, new_y = 0.0f;
@@ -49,7 +49,7 @@ namespace DeltaEngine
             t.position.x = new_x;
             t.position.y = new_y;
             hp.CurrentHealth = hp.MaxHealth;
-            p.isDead = false;
+            p.IsDead = false;
         }
         else if (AITools::isFacingLeft(id))
         {
@@ -66,7 +66,7 @@ namespace DeltaEngine
             t.position.x = new_x;
             t.position.y = new_y;
             hp.CurrentHealth = hp.MaxHealth;
-            p.isDead = false;
+            p.IsDead = false;
         }
     }
   }

@@ -5,7 +5,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "real floor"
             },
             "Entity Type": {
                 "Category": "none"
@@ -37,8 +37,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": false,
-                "Jumping": false
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -64,7 +63,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn1"
             },
             "Entity Type": {
                 "Category": "none"
@@ -96,8 +95,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true,
-                "Jumping": false
+                "Moveable": true
             },
             "Collider": {
                 "Center": {
@@ -123,7 +121,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn2"
             },
             "Entity Type": {
                 "Category": "none"
@@ -155,8 +153,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true,
-                "Jumping": false
+                "Moveable": true
             },
             "Collider": {
                 "Center": {
@@ -182,7 +179,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn3"
             },
             "Entity Type": {
                 "Category": "none"
@@ -214,8 +211,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true,
-                "Jumping": false
+                "Moveable": true
             },
             "Collider": {
                 "Center": {
@@ -241,7 +237,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn4"
             },
             "Entity Type": {
                 "Category": "none"
@@ -273,8 +269,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true,
-                "Jumping": false
+                "Moveable": true
             },
             "Collider": {
                 "Center": {
@@ -300,7 +295,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "respawn5"
             },
             "Entity Type": {
                 "Category": "none"
@@ -332,8 +327,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true,
-                "Jumping": false
+                "Moveable": true
             },
             "Collider": {
                 "Center": {
@@ -359,7 +353,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "fake floor"
             },
             "Entity Type": {
                 "Category": "none"
@@ -391,8 +385,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": false,
-                "Jumping": false
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -418,7 +411,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "monster"
             },
             "Entity Type": {
                 "Category": "enemy"
@@ -450,8 +443,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": false,
-                "Jumping": false
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -536,8 +528,10 @@
                 "Cooldown Timer": 0.0,
                 "Combo Duration": 0.0,
                 "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
                 "Ranged Attack": false,
-                "Melee Attack": false,
+                "Melee Attack": true,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -546,7 +540,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": ""
+                "Name": "dave chan"
             },
             "Entity Type": {
                 "Category": "player"
@@ -578,8 +572,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": true,
-                "Moveable": true,
-                "Jumping": false
+                "Moveable": true
             },
             "Collider": {
                 "Center": {
@@ -656,8 +649,10 @@
                 "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
                 "Ranged Attack": false,
-                "Melee Attack": false,
+                "Melee Attack": true,
                 "Start Combo Cooldown Timer": false
             },
             "Player": {},

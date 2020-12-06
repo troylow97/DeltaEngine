@@ -9,7 +9,8 @@ namespace DeltaEngine
   {
     Screen,
     Interface,
-    Button
+    Button,
+  	Slider
   };
 
   struct UI
@@ -18,6 +19,7 @@ namespace DeltaEngine
     UIType ui_type;
     unsigned screen;
     int target_screen{-1};
+    int previous_screen{-1};
     bool overlay { false };
   };
 }

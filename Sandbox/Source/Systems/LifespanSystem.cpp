@@ -1,4 +1,6 @@
 #include "LifespanSystem.h"
+
+#include "UnitManager.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/GameClock/GameClock.h"
@@ -32,20 +34,21 @@ namespace DeltaEngine
   {
     em.ForEach([&](EntityID& id, Health& hp, EntityType& et)
     {
-      LimitCurrentHealthToMaxHealth(hp);
-    	
-      if (hp.CurrentHealth <= 0)
-      {
-        if (et.type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
+        LimitCurrentHealthToMaxHealth(hp);
+        auto& player = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+
+        if (hp.CurrentHealth <= 0)
         {
-          auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
-          p.isDead = true;
+          if (et.type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
+          {
+              auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
+              p.IsDead = true;
+          }
+          else
+          {
+			  DestroyedEntities.push_back(id);
+          }
         }
-        else
-        {
-          DestroyedEntities.push_back(id);
-        }
-      }
     });
 
     for (EntityID i : DestroyedEntities) //having a duplicate of this is necessary for now
@@ -58,7 +61,7 @@ namespace DeltaEngine
 
     for (EntityID i : DestroyedEntities)
     {
-      em.DestroyEntity(i);
+    	em.DestroyEntity(i);
     }
 
     DestroyedEntities.clear();

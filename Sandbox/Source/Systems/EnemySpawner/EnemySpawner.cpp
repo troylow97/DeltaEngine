@@ -17,11 +17,14 @@ namespace DeltaEngine
 	void EnemySpawner::LoadEnemyData()
 	{
 		//EnemyData Lancer;
+		//Lancer.TransformScale = { 1.0,1.0 };
+		//Lancer.ColliderScale = { 1.0,1.0 };
+		//Lancer.ColliderOffset = { 0,0 };
 		//Lancer.Health = 10;
 		//Lancer.Damage = 1;
 		//Lancer.Mass = 20;
 		//Lancer.Movespeed = 30;
-		
+		//
 		//JsonFile file;
 		//file.StartWriter("Enemy/Lancer.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
 		//
@@ -102,7 +105,6 @@ namespace DeltaEngine
 	
 	void EnemySpawner::Update()
 	{
-		//temporary add this line inside
 		EntityID player = UnitManager::GetPlayerID();
 
 		for (int i = 0; i < list.Gauntlets.size(); ++i)
@@ -122,15 +124,15 @@ namespace DeltaEngine
 		{
 			if (CheckForOutsideEnemies())
 				return;
-			
-			for (auto it = SpawnedEnemiesInGauntlet.begin();it != SpawnedEnemiesInGauntlet.end();)
+
+			for (auto it = SpawnedEnemiesInGauntlet.begin(); it != SpawnedEnemiesInGauntlet.end();)
 			{
-				if(!env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it))
+				if (!env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it))
 				{
 					it = SpawnedEnemiesInGauntlet.erase(it);
 					continue;
 				}
-				
+
 				if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(*it).CurrentHealth <= 0)
 				{
 					it = SpawnedEnemiesInGauntlet.erase(it);
@@ -144,7 +146,7 @@ namespace DeltaEngine
 				auto& Gauntlet = list.Gauntlets[CurrentGauntlet];
 				auto& CurrentWave = Gauntlet.CurrentEnemyWave;
 				//lock player camera
-				
+
 				if (CurrentWave < list.Gauntlets[CurrentGauntlet].EnemyWaves.size())
 				{
 					if (CurrentWave == 0)
@@ -152,8 +154,8 @@ namespace DeltaEngine
 						//spawn walls
 						GauntletWalls[0] = SpawnWall(Vector2{ Gauntlet.ActivationPoint.x + Gauntlet.WallOffsetRight,Gauntlet.ActivationPoint.y });
 						GauntletWalls[1] = SpawnWall(Vector2{ Gauntlet.ActivationPoint.x - Gauntlet.WallOffsetRight,Gauntlet.ActivationPoint.y });
-					}				
-					for(size_t i = 0; i < list.Gauntlets[CurrentGauntlet].EnemyWaves[CurrentWave].size(); ++i)
+					}
+					for (size_t i = 0; i < list.Gauntlets[CurrentGauntlet].EnemyWaves[CurrentWave].size(); ++i)
 					{
 						const EnemyWave wave = list.Gauntlets[CurrentGauntlet].EnemyWaves[CurrentWave][i];
 						SpawnEnemy(wave.EnemyCount, wave.EnemyType, wave.SpawnArea);
@@ -171,9 +173,6 @@ namespace DeltaEngine
 			}
 
 		}
-
-
-
 
 	}
 	
@@ -235,16 +234,19 @@ namespace DeltaEngine
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
 
 			env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).MaxAcceleration = 0;
-
+			
 			if (type == "lancer")
 			{
 				env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(enemy).key = "lancer_spawn";
-				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).isTrigger = true;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerCheck = 1;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Movespeed = LancerData.Movespeed;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Mass = LancerData.Mass;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = LancerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = LancerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = LancerData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = LancerData.TransformScale;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = LancerData.ColliderOffset;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = LancerData.ColliderScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/Lancer";
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Index = 0;
 			}
@@ -257,6 +259,9 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = FiddlerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = FiddlerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = FiddlerData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = FiddlerData.TransformScale;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = FiddlerData.ColliderOffset;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = FiddlerData.ColliderScale;
 			}
 			else if (type == "serpentipede")
 			{
@@ -267,6 +272,9 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = SerpentipedeData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = SerpentipedeData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = SerpentipedeData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = SerpentipedeData.TransformScale;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = SerpentipedeData.ColliderOffset;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = SerpentipedeData.ColliderScale;
 			}
 
 			SpawnedEnemiesInGauntlet.push_back(enemy);

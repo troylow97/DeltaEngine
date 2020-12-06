@@ -12,8 +12,8 @@
 
 namespace DeltaEngine
 {
-  AnimatorPanel::AnimatorPanel(std::string str)
-    : IPanel(str)
+  AnimatorPanel::AnimatorPanel(std::string str, Editor& e)
+    : IPanel(str, e)
   {
     m_enabled = true;
   }
@@ -25,8 +25,7 @@ namespace DeltaEngine
 
   void AnimatorPanel::Render()
   {
-    ImGui::SetNextWindowSize(ImVec2(700, 600), ImGuiCond_FirstUseEver);
-    if (ImGui::Begin("Animator Editor"))
+    if (ImGui::Begin("Animator Editor",&m_enabled ))
     {
       struct Node
       {
@@ -470,8 +469,7 @@ namespace DeltaEngine
         }
         ImGui::EndChild();
       }
-
-      ImGui::End();
     }
+    ImGui::End();
   }
 }

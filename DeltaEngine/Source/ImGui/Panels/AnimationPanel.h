@@ -8,7 +8,7 @@ namespace DeltaEngine
   class AnimationPanel : public IPanel
   {
   public:
-    AnimationPanel(std::string str);
+    AnimationPanel(std::string str, Editor& e);
     ~AnimationPanel();
     void Render() override;
 

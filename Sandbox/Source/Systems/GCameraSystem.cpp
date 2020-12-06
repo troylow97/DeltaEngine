@@ -2,7 +2,6 @@
 #include "Components/Components.h"
 namespace DeltaEngine
 {
-
   void GCameraSystem::Update()
   {
 

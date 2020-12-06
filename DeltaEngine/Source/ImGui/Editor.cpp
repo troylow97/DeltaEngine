@@ -213,6 +213,8 @@ Editor::Editor()
   m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport", *this ) );// 8
   m_panels.push_back( std::make_unique<ButtonsPanel>( "Buttons", *this ) );// 9
   m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor", *this ) ); // 10
+  m_panels.push_back( std::make_unique<AnimatorPanel>( "Animator", *this ) ); // 11 
+  m_panels.push_back( std::make_unique<AnimationPanel>( "Animation", *this ) ); // 12
 
   DeltaEngine_CORE_INFO( "Initializing Editor successful" );
 }

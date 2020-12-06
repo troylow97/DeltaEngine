@@ -1,0 +1,123 @@
+Textures/SERP_FULL_BURROW_i_0
+offset 0 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_1
+offset 256 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_2
+offset 512 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_3
+offset 768 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_4
+offset 1024 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_5
+offset 1280 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_6
+offset 1536 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_7
+offset 1792 0
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_8
+offset 0 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_9
+offset 256 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_10
+offset 512 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_11
+offset 768 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_12
+offset 1024 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_13
+offset 1280 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_14
+offset 1536 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_15
+offset 1792 384
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_16
+offset 0 768
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_17
+offset 256 768
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_18
+offset 512 768
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_19
+offset 768 768
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_20
+offset 1024 768
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_21
+offset 1280 768
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_22
+offset 1536 768
+size 256 384
+pivot 0.5 0.5
+
+Textures/SERP_FULL_BURROW_i_23
+offset 1792 768
+size 256 384
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0
