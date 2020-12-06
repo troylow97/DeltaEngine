@@ -4,6 +4,7 @@
 #include <rttr/detail/registration/registration_impl.h>
 
 #include "UnitManager.h"
+#include "Audio/AudioEngine.h"
 #include "Components/Components.h"
 #include "ImGui/Panels/GamePanel.h"
 #include "ImGui/Panels/ViewportPanel.h"
@@ -285,7 +286,7 @@ void UISystem::StartGame()
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
-
+  AudioEngine::Play("Audio/InGameBGM/main_game_bgm.mp3");
   m_screen.clear();
   m_screen.push_back(level1_screen);
 }

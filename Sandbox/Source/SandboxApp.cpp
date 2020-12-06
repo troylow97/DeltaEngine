@@ -31,7 +31,7 @@ public:
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
 
-    AudioEngine::Play("Audio/MainMenu/main_menu_bgm");
+    AudioEngine::Play("Audio/MainMenu/main_menu_bgm.wav");
 
 
   }
