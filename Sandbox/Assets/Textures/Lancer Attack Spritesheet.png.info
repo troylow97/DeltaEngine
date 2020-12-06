@@ -1,7 +1,67 @@
 Textures/Lancer Attack Spritesheet_i_0
 offset 0 0
-size 0 0
-pivot 0 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_1
+offset 400 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_2
+offset 800 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_3
+offset 1200 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_4
+offset 1600 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_5
+offset 2000 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_6
+offset 2400 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_7
+offset 2800 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_8
+offset 3200 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_9
+offset 3600 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_10
+offset 4000 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_11
+offset 4400 0
+size 400 300
+pivot 0.5 0.5
+
+Textures/Lancer Attack Spritesheet_i_12
+offset 4800 0
+size 400 300
+pivot 0.5 0.5
 
 %
 
