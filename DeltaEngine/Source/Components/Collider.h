@@ -28,7 +28,7 @@ struct Collider
   Collider() :
     center { 0, 0 },
     offset { 0, 0 },
-    size { 0, 0 },
+    size { 1, 1 },
     interPoint { 0, 0 },
     type { ColliderType::BOX },
     CollisionLayerCheck { 255 },

@@ -24,12 +24,14 @@ void PhysicsDrawSystem::Update()
   {
     em.ForEach( e_query, [&]( EntityID id, Collider &c, Transform &t, RigidBody &r )
     {
+      Transform rTransform = t;
       Vector2 pos = c.center + c.offset;
       switch ( c.type )
       {
         case ColliderType::BOX:
+          rTransform.scale *= c.size;
           Gizmos::DrawLine( pos, c.center + r.Velocity );
-          Gizmos::Draw2DWireBox( t, c.offset );
+          Gizmos::Draw2DWireBox( rTransform, c.offset );
           break;
         case ColliderType::CIRCLE:
         {

@@ -11,7 +11,7 @@ namespace DeltaEngine
   };
 
   template <typename... Ts>
-  class AssetManager final : private AssetGroup<Ts>...
+  class AssetManager final : AssetGroup<Ts>...
   {
   public:
     explicit AssetManager() = default;

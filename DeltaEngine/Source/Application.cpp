@@ -2,6 +2,7 @@
 #include "Application.h"
 
 #include "EngineConfig.h"
+#include "Assets/Loaders/AudioLoader.h"
 #include "Render/OpenGLSystem.h"
 #include "Core/Utils/FileUtils.h"
 #include "Core/Utils/DirectoryWatcher/DirectoryWatcher.h"
@@ -15,6 +16,7 @@
 #include "ImGui/Panels/LoggerPanel.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/Utils/Random.h"
+#include "Input/Keys.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -42,6 +44,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   Random::Init();
 
   // Filesystem Initialization
+  DeltaEngine_CORE_INFO( "Root Directory - Assets" );
   FileUtils::Root( "Assets" );
   SystemDirectory::Instance().Initialize();
 
@@ -52,6 +55,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   // Audio Initialization
   AudioEngine::Initialize();
+  AudioLoader().Load();
 
   // Clock Initialization
   env.pClock = new GameClock( c.fps );
@@ -66,30 +70,35 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   // Asset Manager Initialization and Loading
   env.pManager = new AM();
+  DeltaEngine_CORE_INFO( "Initializing AssetManager..." );
+  DeltaEngine_CORE_INFO( "Asset Manager Setting FontLoader with fallback, Fonts/Arial.ttf" );
   env.pManager->SetLoader<Font>( new FontLoader() ).Load<Font>()
     .SetFallback<Font>( new Font( "Fonts/Arial.ttf" ) );
 
+  DeltaEngine_CORE_INFO( "AssetManager Setting ShaderLoader with fallback, Shaders/ErrorShader" );
   env.pManager->SetLoader<Shader>( new ShaderLoader() ).Load<Shader>()
     .SetFallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
 
-  env.pManager->SetLoader<Texture2D>( new TextureLoader() ).Load<Texture2D>();
+  DeltaEngine_CORE_INFO( "AssetManager Setting TextureLoader with no fallback" );
+  env.pManager->SetLoader<Texture2D>( new TextureLoader() ).Load<Texture2D>()
+    .SetFallback<Texture2D>( new Texture2D( "Default/ERROR.png" ) );
 
+  DeltaEngine_CORE_INFO( "AssetManager Setting AnimationClipLoader with no fallback" );
   env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() ).Load<AnimationClip>();
 
+  DeltaEngine_CORE_INFO( "AssetManager Setting AnimationControllerLoader with no fallback" );
   env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() ).Load<AnimationController>();
+  DeltaEngine_CORE_INFO( "Initializing AssetManager successful" );
 
-//  // Editor Initialization
-#ifdef DE_EDITOR
-  m_Editor = new Editor();
-#endif
-
-    // Event Manager Initialization
+   // Event Manager Initialization
   env.eventManager = new EventManager;
 
   // ECS Initialization
   env.pECS = new ECSModule();
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( { 0 } ).m_Size = c.cam_size;
 
- #ifdef DE_EDITOR
+#ifdef DE_EDITOR
+  Editor::Instance();
   SystemDirectory::Instance().StartWatch();
 #endif
 }
@@ -101,29 +110,25 @@ Application::~Application()
 #ifdef DE_EDITOR
   SystemDirectory::Instance().StopWatch();
 #endif
-  env.pECS->GetWorld().ShutdownSystems();
   delete env.pECS;
   delete env.eventManager;
-#ifdef DE_EDITOR
-  delete m_Editor;
-#endif
+  DeltaEngine_CORE_INFO( "Shutting down AssetManager..." );
   delete env.pManager;
-  delete Camera::editorCamera;
+  DeltaEngine_CORE_INFO( "Shutting down AssetManager successful" );
   RenderModule::openGLSystem->Exit();
   delete RenderModule::openGLSystem;
+  env.pWin->Shutdown();
   delete env.pWin;
+  DeltaEngine_CORE_INFO( "Shutting down Gameclock..." );
   delete env.pClock;
+  DeltaEngine_CORE_INFO( "Shutting down Gameclock successful" );
 
   AudioEngine::Shutdown();
   SystemDirectory::Instance().Shutdown();
 }
 
-
 void Application::Run()
 {
-  env.pECS->GetWorld().Load("World/test2.json");
-  auto entitycamera = env.pECS->GetWorld().GetEntityManager().CreateEntity<Transform, Camera>();
-
   while ( env.pWin->Running() )
   {
     if ( env.pWin->Focus() )
@@ -131,20 +136,30 @@ void Application::Run()
       Profiler::Instance().FrameStart();
       env.pClock->Update();
       InputManager::Instance().Update();
-      env.pECS->GetWorld().Update();
+      env.pECS->GetWorld().Run();
 #ifdef DE_EDITOR
-      m_Editor->Begin();
-      m_Editor->Render();
-      m_Editor->End();
+      Editor::Instance().Begin();
+      Editor::Instance().Render();
+      Editor::Instance().End();
+      Profiler::Instance().Record( "ImGui" );
 #endif
       SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       Profiler::Instance().Record( "Buffer Swap" );
       OnEvent();
       env.pWin->Update();
+      AudioEngine::Update();
       Profiler::Instance().FrameEnd();
+
     }
     else
+    {
+#ifdef DE_EDITOR
+      Editor::Instance().Begin();
+      Editor::Instance().Render();
+      Editor::Instance().End();
+#endif
       env.pWin->Update();
+    }
   }
 }
 

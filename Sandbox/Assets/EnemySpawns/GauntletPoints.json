@@ -2,45 +2,67 @@
     "gauntlets": [
         {
             "enemy_waves": [
-                {
-                    "enemy_count": 3,
-                    "enemy_type": "lancer",
-                    "spawn_area": {
-                        "x": 6.0,
-                        "y": 0.0
+                [
+                    {
+                        "enemy_count": 1,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 6.0,
+                            "y": 7.0
+                        }
+                    },
+                    {
+                        "enemy_count": 2,
+                        "enemy_type": "fiddler",
+                        "spawn_area": {
+                            "x": 4.0,
+                            "y": 10.0
+                        }
                     }
-                },
-                {
-                    "enemy_count": 2,
-                    "enemy_type": "serpentipede",
-                    "spawn_area": {
-                        "x": 5.0,
-                        "y": 0.0
+                ],
+                [
+                    {
+                        "enemy_count": 2,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 2.0,
+                            "y": 8.0
+                        }
                     }
-                }
+                ]
             ],
             "activation_point": {
                 "x": 5.0,
                 "y": 0.0
             },
-            "current_enemy_wave": 0
+            "wall_offset_right": 7.0,
+            "wall_offset_left": 7.0,
+            "current_enemy_wave": 0,
+            "is_activated": false,
+            "is_finished": false
         },
         {
             "enemy_waves": [
-                {
-                    "enemy_count": 2,
-                    "enemy_type": "lancer",
-                    "spawn_area": {
-                        "x": 9.0,
-                        "y": 0.0
+                [
+                    {
+                        "enemy_count": 2,
+                        "enemy_type": "fiddler",
+                        "spawn_area": {
+                            "x": 9.0,
+                            "y": 0.0
+                        }
                     }
-                }
+                ]
             ],
             "activation_point": {
                 "x": 20.0,
                 "y": 0.0
             },
-            "current_enemy_wave": 0
+            "wall_offset_right": 7.0,
+            "wall_offset_left": 7.0,
+            "current_enemy_wave": 0,
+            "is_activated": false,
+            "is_finished": false
         }
     ]
 }

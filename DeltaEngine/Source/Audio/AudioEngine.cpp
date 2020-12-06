@@ -5,6 +5,15 @@
 #include <ostream>
 
 #include "FMODWrapper.h"
+#include "Core/Debugging/Logger/Log.h"
+#include "Core/Debugging/Profiler/Profiler.h"
+
+class AudioFile
+{
+  std::string path;
+};
+
+
 
 namespace DeltaEngine
 {
@@ -30,17 +39,24 @@ namespace DeltaEngine
   void AudioEngine::Initialize()
   {
     if (!fmod)
+    {
+      DeltaEngine_CORE_INFO( "Initializing FMOD..." );
       fmod = new FMODWrapper();
+      DeltaEngine_CORE_INFO( "Initializing FMOD successful" );
+    }
   }
 
   void AudioEngine::Shutdown()
   {
+    DeltaEngine_CORE_INFO( "Shutting down FMOD..." );
     delete fmod;
+    DeltaEngine_CORE_INFO( "Shutting down FMOD successful" );
   }
 
   void AudioEngine::Update()
   {
     fmod->Update();
+    Profiler::Instance().Record( "Audio Update" );
   }
 
   // Core
@@ -147,7 +163,39 @@ namespace DeltaEngine
     }
   }
 
+  unsigned AudioEngine::GetChannelPlaybackPosition(ChannelID id)
+  {
+    if ( auto result = fmod->channels.find( id ); result != fmod->channels.end() )
+    {
+      unsigned pos { 0 };
+      FMODWrapper::ErrorChecker( result->second->getPosition( &pos, FMOD_TIMEUNIT_MS ) );
+      return pos;
+    }
+    return 0;
+  }
+
+  unsigned AudioEngine::GetSoundLength(const std::string& name)
+  {
+    if ( auto result = fmod->sounds.find(name); result != fmod->sounds.end() )
+    {
+      unsigned pos { 0 };
+      FMODWrapper::ErrorChecker( result->second->getLength( &pos, FMOD_TIMEUNIT_MS ) );
+      return pos;
+    }
+    return 0;
+  }
+
+
   // Studio
+  bool AudioEngine::IsLoadedBank(const std::string& name)
+  {
+    if ( auto result = fmod->banks.find( name ); result != fmod->banks.end() )
+      return true;
+    return false;
+  }
+
+
+
   void AudioEngine::LoadBank(const std::string& name, FMOD_STUDIO_LOAD_BANK_FLAGS flags)
   {
     if (auto result = fmod->banks.find(name); result != fmod->banks.end())
@@ -171,6 +219,28 @@ namespace DeltaEngine
 
       fmod->banks.erase(name);
     }
+  }
+
+  std::vector<std::string> AudioEngine::EventList(const std::string& name)
+  {
+    if (auto result = fmod->banks.find(name); result!= fmod->banks.end())
+    {
+      int counter { 0 };
+      FMOD::Studio::EventDescription *desc[256];
+      if ( FMODWrapper::ErrorChecker( result->second->getEventList( desc, 256, &counter ) ) )
+        return {};
+
+      std::vector<std::string> str_vec;
+      for (int i = 0; i < counter ; i ++)
+      {
+        char buffer[1024];
+        int retrieved { 0 };
+        desc[i]->getPath( buffer, 1024, &retrieved );
+        str_vec.push_back( buffer );
+      }
+      return str_vec;
+    }
+    return {};
   }
 
   AudioEngine::EventID AudioEngine::Play3DEvent(const std::string& name, const Audio3DAttributes attributes,

@@ -18,7 +18,7 @@ namespace DeltaEngine
     ImVector<int> m_logger_line_offsets; // index to lines offset, maintained by AddLog() calls
     bool m_logger_auto_scroll; // keep scrolling if already at the bottom
 
-    LoggerPanel(std::string str);
+    LoggerPanel(std::string str, Editor& e);
     ~LoggerPanel();
     void Render() override;
     void Clear();

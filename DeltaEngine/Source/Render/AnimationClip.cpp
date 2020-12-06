@@ -114,6 +114,7 @@ namespace DeltaEngine
 
       UpdateAnimation(filepath);
     }
+    DeltaEngine_CORE_TRACE( "Animation clip {} was loaded successfully", filepath );
   }
 
   void AnimationClip::UpdateAnimation(std::string filepath)

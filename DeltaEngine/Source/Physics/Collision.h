@@ -46,7 +46,7 @@ namespace DeltaEngine
   //bool CollisionIntersection_CircleMouse(Vector2 Center1, Vector2 Size1, Point Center2);
 
   //Dynamic Collision Checks
-  bool CollisionIntersection_RectRect(const Collider&, const Vector2&, const Collider&, const Vector2&);
+  bool CollisionIntersection_RectRect(const Vector2&,const Vector2&, const Vector2&, const Vector2&, const Vector2&, const Vector2&);
 
   bool CollisionIntersection_CircleCircle(Collider&, const Vector2&, const Collider&, const Vector2&, Manifold& m);
 
@@ -65,7 +65,7 @@ namespace DeltaEngine
 
   //Calculate Manifold
 
-  bool AABBvsAABB_Manifold(Collider& A, Collider& B, Manifold& m);
+  bool AABBvsAABB_Manifold(Collider& A, Vector2 scaleA, Collider& B, Vector2 scaleB, Manifold& m);
   //UNUSED FUNCTIONS
 
   //int CollisionIntersection_CircleLineSegment(const Circle& circle,

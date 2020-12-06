@@ -9,8 +9,6 @@ namespace DeltaEngine
     bool m_Minimized;
 
     double m_interval;
-
-    Editor* m_Editor;
   public:
     Application();
     virtual ~Application();

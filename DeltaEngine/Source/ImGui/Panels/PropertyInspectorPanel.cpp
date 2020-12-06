@@ -13,8 +13,8 @@
 
 namespace DeltaEngine
 {
-PropertyInspectorPanel::PropertyInspectorPanel( std::string str ) :
-  IPanel( str )
+PropertyInspectorPanel::PropertyInspectorPanel( std::string str, Editor &e ) :
+  IPanel( str, e )
 {
   m_enabled = true;
 }
@@ -32,30 +32,27 @@ void PropertyInspectorPanel::Render()
     auto &em = env.pECS->GetWorld().GetEntityManager();
 
     size_t index = Editor::entity_id;
-    const auto &entity = em.GetComponent<EntityName>( { index } );
-    std::string text {};
-    if ( entity.name.empty() )
-      text = "Entity " + std::to_string( index ) + "'s Properties";
-    else
-      text = entity.name + "'s Properties";
+    if ( em.HasComponent<EntityName>( { index } ) )
+    {
+      const auto &entity = em.GetComponent<EntityName>( { index } );
+      std::string text {};
+      if ( entity.name.empty() )
+        text = "Entity " + std::to_string( index ) + "'s Properties";
+      else
+        text = entity.name + "'s Properties";
 
-    ImGui::Text( text.c_str() );
-    ImGui::Separator();
-    ImGui::Text( "" );
+      ImGui::Text( text.c_str() );
+      ImGui::Separator();
+      ImGui::Text( "" );
+    }
 
     if ( auto result = em.GetEntityArchetype( index ); result != nullptr )
     {
       std::vector<std::string> c_list;
       c_list.push_back( " " );
       for ( auto &ref : ComponentMeta::GetComponentMetaArray() )
-      {
         if ( !( ref.bits & result->bits_signature ) && ref.bits != 1 )
-        {
-          std::cout << result->bits_signature << std::endl;
           c_list.push_back( RT_Reflect::RT_Checker( ref.bits ).get_name().to_string() );
-        }
-      }
-
 
       static size_t selected = 0;
 
@@ -101,30 +98,10 @@ void PropertyInspectorPanel::Render()
       for ( auto &ref : result->components_desc->metalist )
       {
         rttr::instance instance = em.GetComponent( { Editor::entity_id }, ref.meta->bits );
+
+        ImGui::BeginGroup();
         if ( ImGui::CollapsingHeader( instance.get_type().get_name().to_string().c_str(), ImGuiTreeNodeFlags_AllowItemOverlap ) )
         {
-          if ( ref.meta->bits != ComponentMeta::GetComponentMeta<Parent>()->bits &&
-               ref.meta->bits != ComponentMeta::GetComponentMeta<EntityName>()->bits &&
-               ref.meta->bits != ComponentMeta::GetComponentMeta<EntityType>()->bits &&
-               ref.meta->bits != ComponentMeta::GetComponentMeta<Transform>()->bits )
-          {
-            ImGui::SameLine();
-            ImGui::SetCursorPosX( ImGui::GetWindowWidth() - 36.0f );
-            Editor::font_awesome->Scale = 0.5f;
-            ImGui::PushFont( Editor::font_awesome );
-            ImGui::PushID( instance.get_type().get_name().to_string().c_str() );
-            if ( ImGui::Button( ICON_FA_TIMES, { 30.0f,26.0f } ) )
-            {
-              RT_Reflect::RT_Destroy( em, { Editor::entity_id }, ref.meta->bits );
-              ImGui::PopID();
-              ImGui::PopFont();
-              Editor::font_awesome->Scale = original;
-              break;
-            }
-            ImGui::PopID();
-            ImGui::PopFont();
-            Editor::font_awesome->Scale = original;
-          }
           ImGui::PushItemWidth( ImGui::GetWindowWidth() - 20.0f );
           ImGui::Dummy( { 0.0f, 8.0f } );
 
@@ -141,12 +118,15 @@ void PropertyInspectorPanel::Render()
 
             ImGui::Text( prop_name.c_str() );
 
+            if ( prop_name == "Size" )
+              prop_name.assign( "Size" + instance.get_type().get_name().to_string() );
+
             if ( prop_type == rttr::type::get<float *>() )
               ImGui::DragFloat( ( "##" + prop_name ).c_str(), ( value.get_value<float *>() ), 0.01f );
             else if ( prop_type == rttr::type::get<int *>() )
-              ImGui::InputInt( ( "##" + prop_name ).c_str(), ( value.get_value<int *>() ), 1.0f );
+              ImGui::InputInt( ( "##" + prop_name ).c_str(), ( value.get_value<int *>() ), 1 );
             else if ( prop_type == rttr::type::get<unsigned *>() )
-              ImGui::InputInt( ( "##" + prop_name ).c_str(), (int *) ( value.get_value<unsigned *>() ), 1.0f, 0 );
+              ImGui::InputInt( ( "##" + prop_name ).c_str(), (int *) ( value.get_value<unsigned *>() ), 1, 0 );
             else if ( prop_type == rttr::type::get<Vector2 *>() )
               ImGui::DragFloat2( ( "##" + prop_name ).c_str(), (float *) ( value.get_value<Vector2 *>() ), 0.01f );
             else if ( prop_type == rttr::type::get<Vector3 *>() )
@@ -158,7 +138,8 @@ void PropertyInspectorPanel::Render()
             else if ( prop_type == rttr::type::get<std::string *>() && (
               instance.get_type() == rttr::type::get<AI>() ||
               instance.get_type() == rttr::type::get<EntityName>() ||
-              instance.get_type() == rttr::type::get<Text>() ) )
+              instance.get_type() == rttr::type::get<Text>() ||
+              instance.get_type() == rttr::type::get<UI>() ) )
             {
               auto &str = *value.get_value<std::string *>();
               char buffer[256] {};
@@ -179,14 +160,14 @@ void PropertyInspectorPanel::Render()
             else if ( prop_type == rttr::type::get<Color *>() )
             {
               auto &color = *value.get_value<Color *>();
-              ImGui::ColorPicker4( ( "##" + prop_name ).c_str(), (float *) &color );
+              ImGui::ColorPicker4( ( "##" + prop_name ).c_str(), (float *) &color, ImGuiColorEditFlags_NoSidePreview );
             }
             else if ( prop_type == rttr::type::get<Sprite *>() )
             {
               std::vector<std::string> tex_key_vec;
               tex_key_vec.push_back( " " );
               for ( auto &[key, data] : GetEnv().pManager->List<Texture2D>() )
-                for ( size_t i = 0; i < data->textureInfo.size() - 1; i++ )
+                for ( size_t i = 0; i < data->textureInfo.size(); i++ )
                   tex_key_vec.push_back( key.Key() + '_' + std::to_string( i ) );
 
               auto &sprite = *value.get_value<Sprite *>();
@@ -253,8 +234,7 @@ void PropertyInspectorPanel::Render()
                   if ( i % 4 )
                     ImGui::SameLine();
                   Sprite details { sprite.m_Key, static_cast<unsigned>( i ) };
-                  unsigned id = details.GetTexture()->GetRendererID();
-                  ImGui::Image( reinterpret_cast<void *>( details.GetTexture()->GetRendererID() ),
+                  ImGui::Image( reinterpret_cast<ImTextureID>( static_cast<size_t>( details.GetTexture()->GetRendererID() ) ),
                                 ImVec2 { 64, 64 },
                                 ImVec2 { details.GetOffset().x, details.GetOffset().y },
                                 ImVec2 {
@@ -364,30 +344,31 @@ void PropertyInspectorPanel::Render()
           ImGui::Separator();
           ImGui::PopItemWidth();
         }
-        else
+        ImGui::EndGroup();
+
+        if ( ref.meta->bits != ComponentMeta::GetComponentMeta<EntityName>()->bits &&
+             ref.meta->bits != ComponentMeta::GetComponentMeta<EntityType>()->bits &&
+             ref.meta->bits != ComponentMeta::GetComponentMeta<Transform>()->bits &&
+             ref.meta->bits != ComponentMeta::GetComponentMeta<Parent>()->bits )
         {
-          if ( ref.meta->bits != ComponentMeta::GetComponentMeta<EntityName>()->bits &&
-               ref.meta->bits != ComponentMeta::GetComponentMeta<EntityType>()->bits &&
-               ref.meta->bits != ComponentMeta::GetComponentMeta<Transform>()->bits )
+          ImGui::SameLine();
+          ImGui::SetCursorPosX( ImGui::GetWindowContentRegionWidth() -15.0f);
+          Editor::font_awesome->Scale = 0.5f;
+          ImGui::PushFont( Editor::font_awesome );
+          ImGui::PushID( instance.get_type().get_name().to_string().c_str() );
+          if ( ImGui::Button( ICON_FA_TIMES, { 30.0f,26.0f } ) )
           {
-            ImGui::SameLine();
-            ImGui::SetCursorPosX( ImGui::GetWindowWidth() - 36.0f );
-            Editor::font_awesome->Scale = 0.5f;
-            ImGui::PushFont( Editor::font_awesome );
-            ImGui::PushID( instance.get_type().get_name().to_string().c_str() );
-            if ( ImGui::Button( ICON_FA_TIMES, { 30.0f,26.0f } ) )
-            {
-              RT_Reflect::RT_Destroy( em, { Editor::entity_id }, ref.meta->bits );
-              ImGui::PopID();
-              ImGui::PopFont();
-              Editor::font_awesome->Scale = original;
-              break;
-            }
+            RT_Reflect::RT_Destroy( em, { Editor::entity_id }, ref.meta->bits );
             ImGui::PopID();
             ImGui::PopFont();
             Editor::font_awesome->Scale = original;
+            break;
           }
+          ImGui::PopID();
+          ImGui::PopFont();
+          Editor::font_awesome->Scale = original;
         }
+
       }
 
     }

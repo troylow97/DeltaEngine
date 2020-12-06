@@ -12,7 +12,7 @@ namespace DeltaEngine
   class PropertyInspectorPanel : public IPanel
   {
   public:
-    PropertyInspectorPanel(std::string str);
+    PropertyInspectorPanel(std::string str, Editor& e);
     ~PropertyInspectorPanel();
     void Render() override;
   };

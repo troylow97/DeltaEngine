@@ -8,14 +8,18 @@
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(AttackSystem, Attack, Collider, Health, Lifespan, Transform, EntityType, Image)
-        void Update() override;
-    void LateUpdate() override;
-    void RangedAttack(EntityID&);
-    void MeleeAttack(EntityID&);
-    void Dash();
+DEFINE_SYSTEM(AttackSystem, Attack, Collider, Health, Lifespan, Transform, EntityType, Image)
+	//void Initialize() override;
+	void Update() override;
+	void LateUpdate() override;
+	void RangedAttack(EntityID&);
+	void MeleeAttack(EntityID&);
+	void Dash();
+	void AttackCombo();
 private:
-    std::vector<EntityID> MeleeAttackingEntities;
-    std::vector<EntityID> RangedAttackingEntities;
-    END_DEFINE_SYSTEM(AttackSystem)
+	EntityID CreateProjectile(EntityID id, Vector2 scale,bool gravity, float Lifetime, EntityCategory type);
+	std::vector<EntityID> MeleeAttackingEntities;
+	std::vector<EntityID> RangedAttackingEntities;
+  //PlayerAttackCombo _pac;
+END_DEFINE_SYSTEM(AttackSystem)
 }

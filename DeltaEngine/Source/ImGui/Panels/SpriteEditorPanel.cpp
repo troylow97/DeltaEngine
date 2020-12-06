@@ -12,18 +12,25 @@ namespace DeltaEngine
 {
 
 
-SpriteEditorPanel::SpriteEditorPanel( std::string str )
-  : IPanel( str )
+SpriteEditorPanel::SpriteEditorPanel( std::string str, Editor& e )
+  : IPanel( str, e )
 {
-  m_enabled = true;
+  m_enabled = false;
 
 }
 
 SpriteEditorPanel::~SpriteEditorPanel()
 {
   m_enabled = false;
-
 }
+
+void SpriteEditorPanel::Enable()
+{
+  m_enabled = !m_enabled;
+  loaded = false;
+  info.clear();
+}
+
 
 void SpriteEditorPanel::Render()
 {
@@ -47,16 +54,19 @@ void SpriteEditorPanel::Render()
     previousPos = initialPos;
     initialPos = ImGui::GetMousePos();
 
-    Texture2D* texture = GetEnv().pManager->Get<Texture2D>(std::string(textureName));
-
-    if ( texture && ImGui::IsMouseDragging( 0 ) )
+    if (!m_editor.textureKey.empty() )
     {
-      if (draggingSpriteProps)
+      ImGui::Text( ("Texture - " + m_editor.textureKey).c_str() );
+      Texture2D* texture = GetEnv().pManager->Get<Texture2D>(m_editor.textureKey);
+
+      if ( texture && ImGui::IsMouseDragging( 0 ) )
       {
-        ImVec2 d = { initialPos.x - previousPos.x, initialPos.y - previousPos.y };
-        spritePropsPos.x += d.x;
-        spritePropsPos.y += d.y;
-      }
+        if (draggingSpriteProps)
+        {
+          ImVec2 d = { initialPos.x - previousPos.x, initialPos.y - previousPos.y };
+          spritePropsPos.x += d.x;
+          spritePropsPos.y += d.y;
+        }
 
       if ( infoID >= 0 && infoID < info.size() )
       {
@@ -89,19 +99,19 @@ void SpriteEditorPanel::Render()
         info[infoID].offset.x = Math::Clamp(info[infoID].offset.x, 0.f, 1.f * texture->GetWidth());
         info[infoID].offset.y = Math::Clamp(info[infoID].offset.y, 0.f, 1.f * texture->GetHeight());
 
-        info[infoID].size.x = Math::Clamp(info[infoID].size.x, 1.f, 1.f * texture->GetWidth() - info[infoID].offset.x);
-        info[infoID].size.y = Math::Clamp(info[infoID].size.y, 1.f, 1.f * texture->GetHeight() - info[infoID].offset.y);
+          info[infoID].size.x = Math::Clamp(info[infoID].size.x, 1.f, 1.f * texture->GetWidth() - info[infoID].offset.x);
+          info[infoID].size.y = Math::Clamp(info[infoID].size.y, 1.f, 1.f * texture->GetHeight() - info[infoID].offset.y);
 
-        info[infoID].pivot.x = Math::Clamp01(info[infoID].pivot.x);
-        info[infoID].pivot.y = Math::Clamp01(info[infoID].pivot.y);
+          info[infoID].pivot.x = Math::Clamp01(info[infoID].pivot.x);
+          info[infoID].pivot.y = Math::Clamp01(info[infoID].pivot.y);
+        }
       }
-    }
 
-    if (ImGui::IsMouseReleased(0) )
-    {
-      infoID = -1;
-      moveDir = MoveDir::None;
-    }
+      if (ImGui::IsMouseReleased(0) )
+      {
+        infoID = -1;
+        moveDir = MoveDir::None;
+      }
 
     ImGui::InputText( "Texture Name", textureName, 128 );
     if ( ImGui::BeginDragDropTarget() )
@@ -182,13 +192,13 @@ void SpriteEditorPanel::Render()
       ImGui::EndMenuBar();
     }
 
-    if ( texture )
-    {
-      uint64_t textureID = texture->GetRendererID();
+      if ( texture )
+      {
+        uint64_t textureID = texture->GetRendererID();
 
-      ImVec2 p = ImGui::GetCursorScreenPos();
+        ImVec2 p = ImGui::GetCursorScreenPos();
 
-      ImGui::SetCursorScreenPos(p);
+        ImGui::SetCursorScreenPos(p);
 
       if ( ImGui::BeginChild( "Texture Editing" ), ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoMove )
       {
@@ -216,46 +226,46 @@ void SpriteEditorPanel::Render()
           loaded = true;
         }
 
-        if (!hoveringSpriteProps)
-        {
-          ImGui::SetCursorScreenPos(p);
-          ImGui::InvisibleButton("##Area NULL", ImVec2{ 1.f * texture->GetWidth(), 1.f * texture->GetHeight() });
-          if (ImGui::IsItemClicked(0))
-            selectedInfoID = -1;
-        }
-
-        ImGui::SetCursorScreenPos(p);
-
-        int i = 0;
-
-        for ( TextureInfo &detail : info )
-        {
-          ImVec2 min = {
-            p.x + ( detail.offset.x ) * zoom + 1,
-            p.y + ( detail.offset.y ) * zoom + 1 - scrollY };
-
-          ImVec2 max = {
-            p.x + ( detail.offset.x + detail.size.x ) * zoom + 1,
-            p.y + ( detail.offset.y + detail.size.y ) * zoom + 1 - scrollY };
-
-          ImVec2 center = {
-            p.x + ( detail.offset.x + 0.5f * detail.size.x ) * zoom + 1,
-            p.y + ( detail.offset.y + 0.5f * detail.size.y ) * zoom + 1 - scrollY };
-
-          ImVec2 piv = {
-            p.x + ( detail.offset.x + detail.pivot.x * detail.size.x ) * zoom + 1,
-            p.y + ( detail.offset.y + detail.pivot.y * detail.size.y ) * zoom + 1 - scrollY };
-
           if (!hoveringSpriteProps)
           {
-            ImGui::SetCursorScreenPos(min);
-            ImGui::SetItemAllowOverlap();
-            ImGui::InvisibleButton(("##Area" + std::to_string(i)).c_str(), ImVec2{
-              Math::Clamp(max.x - min.x, 1.0f, 1.f * texture->GetWidth()),
-              Math::Clamp(max.y - min.y, 1.0f, 1.f * texture->GetHeight()) });
+            ImGui::SetCursorScreenPos(p);
+            ImGui::InvisibleButton("##Area NULL", ImVec2{ 1.f * texture->GetWidth(), 1.f * texture->GetHeight() });
             if (ImGui::IsItemClicked(0))
-              selectedInfoID = i;
+              selectedInfoID = -1;
           }
+
+          ImGui::SetCursorScreenPos(p);
+
+          int i = 0;
+
+          for ( TextureInfo &detail : info )
+          {
+            ImVec2 min = {
+              p.x + ( detail.offset.x ) * zoom + 1,
+              p.y + ( detail.offset.y ) * zoom + 1 - scrollY };
+
+            ImVec2 max = {
+              p.x + ( detail.offset.x + detail.size.x ) * zoom + 1,
+              p.y + ( detail.offset.y + detail.size.y ) * zoom + 1 - scrollY };
+
+            ImVec2 center = {
+              p.x + ( detail.offset.x + 0.5f * detail.size.x ) * zoom + 1,
+              p.y + ( detail.offset.y + 0.5f * detail.size.y ) * zoom + 1 - scrollY };
+
+            ImVec2 piv = {
+              p.x + ( detail.offset.x + detail.pivot.x * detail.size.x ) * zoom + 1,
+              p.y + ( detail.offset.y + detail.pivot.y * detail.size.y ) * zoom + 1 - scrollY };
+
+            if (!hoveringSpriteProps)
+            {
+              ImGui::SetCursorScreenPos(min);
+              ImGui::SetItemAllowOverlap();
+              ImGui::InvisibleButton(("##Area" + std::to_string(i)).c_str(), ImVec2{
+                Math::Clamp(max.x - min.x, 1.0f, 1.f * texture->GetWidth()),
+                Math::Clamp(max.y - min.y, 1.0f, 1.f * texture->GetHeight()) });
+              if (ImGui::IsItemClicked(0))
+                selectedInfoID = i;
+            }
 
           if (selectedInfoID == i)
           {
@@ -263,38 +273,38 @@ void SpriteEditorPanel::Render()
             ImGui::GetWindowDrawList()->AddRect(min, max, IM_COL32(0, 255, 0, 255));
             ImGui::GetWindowDrawList()->AddCircle(piv, 5.f, IM_COL32(0, 255, 255, 51), 0, 2.0f);
 
-            //left
-            ImGui::SetItemAllowOverlap();
-            ImGui::SetCursorScreenPos({ min.x, center.y - 5.f });
-            ImGui::Button(("##Left" + std::to_string(i)).c_str(), { 10.f, 10.f });
-            if (ImGui::IsItemClicked(0))
-              if (!hoveringSpriteProps)
-              {
-                infoID = i;
-                moveDir = MoveDir::Left;
-              }
+              //left
+              ImGui::SetItemAllowOverlap();
+              ImGui::SetCursorScreenPos({ min.x, center.y - 5.f });
+              ImGui::Button(("##Left" + std::to_string(i)).c_str(), { 10.f, 10.f });
+              if (ImGui::IsItemClicked(0))
+                if (!hoveringSpriteProps)
+                {
+                  infoID = i;
+                  moveDir = MoveDir::Left;
+                }
 
-            //right
-            ImGui::SetItemAllowOverlap();
-            ImGui::SetCursorScreenPos({ max.x - 10.f, center.y - 5.f });
-            ImGui::Button(("##Right" + std::to_string(i)).c_str(), { 10.f, 10.f });
-            if (ImGui::IsItemClicked(0))
-              if (!hoveringSpriteProps)
-              {
-                infoID = i;
-                moveDir = MoveDir::Right;
-              }
+              //right
+              ImGui::SetItemAllowOverlap();
+              ImGui::SetCursorScreenPos({ max.x - 10.f, center.y - 5.f });
+              ImGui::Button(("##Right" + std::to_string(i)).c_str(), { 10.f, 10.f });
+              if (ImGui::IsItemClicked(0))
+                if (!hoveringSpriteProps)
+                {
+                  infoID = i;
+                  moveDir = MoveDir::Right;
+                }
 
-            //up
-            ImGui::SetItemAllowOverlap();
-            ImGui::SetCursorScreenPos({ center.x - 5.f, min.y });
-            ImGui::Button(("##Up" + std::to_string(i)).c_str(), { 10.f, 10.f });
-            if (ImGui::IsItemClicked(0))
-              if (!hoveringSpriteProps)
-              {
-                infoID = i;
-                moveDir = MoveDir::Up;
-              }
+              //up
+              ImGui::SetItemAllowOverlap();
+              ImGui::SetCursorScreenPos({ center.x - 5.f, min.y });
+              ImGui::Button(("##Up" + std::to_string(i)).c_str(), { 10.f, 10.f });
+              if (ImGui::IsItemClicked(0))
+                if (!hoveringSpriteProps)
+                {
+                  infoID = i;
+                  moveDir = MoveDir::Up;
+                }
 
             //down
             ImGui::SetItemAllowOverlap();
@@ -332,48 +342,51 @@ void SpriteEditorPanel::Render()
           {
             static bool denyDrag = true;
 
-            hoveringSpriteProps = ImGui::IsWindowHovered();
+              if ( !ImGui::IsWindowFocused() )
+                denyDrag = true;
 
-            ImGui::SetCursorScreenPos(p);
-            ImGui::InvisibleButton("##Sprite Properties Area", ImVec2(300, 160));
-            ImGui::SetItemAllowOverlap();
-            if (ImGui::IsItemClicked(0))
-              denyDrag = false;
+              hoveringSpriteProps = ImGui::IsWindowHovered();
 
-            ImGui::SetCursorScreenPos(p);
-            ImGui::Text("Sprite Properties");
-            ImGui::Text("Sprite Name: %s", (texture->GetName() + "_" + std::to_string(selectedInfoID)).c_str());
-            float offset[2] = { info[selectedInfoID].offset.x, info[selectedInfoID].offset.y };
-            float size[2] = { info[selectedInfoID].size.x, info[selectedInfoID].size.y };
-            float pivot[2] = { info[selectedInfoID].pivot.x, info[selectedInfoID].pivot.y };
+              ImGui::SetCursorScreenPos(p);
+              ImGui::InvisibleButton("##Sprite Properties Area", ImVec2(300, 160));
+              ImGui::SetItemAllowOverlap();
+              if (ImGui::IsItemClicked(0))
+                denyDrag = false;
 
-            ImGui::DragFloat2("Offset", offset, 1.f);
-            ImGui::SetItemAllowOverlap();
-            if (ImGui::IsItemClicked(0))
-              denyDrag = true;
+              ImGui::SetCursorScreenPos(p);
+              ImGui::Text("Sprite Properties");
+              ImGui::Text("Sprite Name: %s", (texture->GetName() + "_" + std::to_string(selectedInfoID)).c_str());
+              float offset[2] = { info[selectedInfoID].offset.x, info[selectedInfoID].offset.y };
+              float size[2] = { info[selectedInfoID].size.x, info[selectedInfoID].size.y };
+              float pivot[2] = { info[selectedInfoID].pivot.x, info[selectedInfoID].pivot.y };
 
-            ImGui::DragFloat2("Size", size, 1.f);
-            ImGui::SetItemAllowOverlap();
-            if (ImGui::IsItemClicked(0))
-              denyDrag = true;
+              ImGui::DragFloat2("Offset", offset, 1.f);
+              ImGui::SetItemAllowOverlap();
+              if (ImGui::IsItemClicked(0))
+                denyDrag = true;
 
-            ImGui::DragFloat2("Pivot", pivot, 0.01f, 0.0f, 1.0f);
-            ImGui::SetItemAllowOverlap();
-            if (ImGui::IsItemClicked(0))
-              denyDrag = true;
+              ImGui::DragFloat2("Size", size, 1.f);
+              ImGui::SetItemAllowOverlap();
+              if (ImGui::IsItemClicked(0))
+                denyDrag = true;
 
-            info[selectedInfoID].offset = { offset[0], offset[1] };
-            info[selectedInfoID].size = { size[0], size[1] };
-            info[selectedInfoID].pivot = { pivot[0], pivot[1] };
+              ImGui::DragFloat2("Pivot", pivot, 0.01f, 0.0f, 1.0f);
+              ImGui::SetItemAllowOverlap();
+              if (ImGui::IsItemClicked(0))
+                denyDrag = true;
 
-            info[selectedInfoID].offset.x = Math::Clamp(info[selectedInfoID].offset.x, 0.f, 1.f * texture->GetWidth());
-            info[selectedInfoID].offset.y = Math::Clamp(info[selectedInfoID].offset.y, 0.f, 1.f * texture->GetHeight());
+              info[selectedInfoID].offset = { offset[0], offset[1] };
+              info[selectedInfoID].size = { size[0], size[1] };
+              info[selectedInfoID].pivot = { pivot[0], pivot[1] };
 
-            info[selectedInfoID].size.x = Math::Clamp(info[selectedInfoID].size.x, 1.f, 1.f * texture->GetWidth() - info[selectedInfoID].offset.x);
-            info[selectedInfoID].size.y = Math::Clamp(info[selectedInfoID].size.y, 1.f, 1.f * texture->GetHeight() - info[selectedInfoID].offset.y);
+              info[selectedInfoID].offset.x = Math::Clamp(info[selectedInfoID].offset.x, 0.f, 1.f * texture->GetWidth());
+              info[selectedInfoID].offset.y = Math::Clamp(info[selectedInfoID].offset.y, 0.f, 1.f * texture->GetHeight());
 
-            info[selectedInfoID].pivot.x = Math::Clamp01(info[selectedInfoID].pivot.x);
-            info[selectedInfoID].pivot.y = Math::Clamp01(info[selectedInfoID].pivot.y);
+              info[selectedInfoID].size.x = Math::Clamp(info[selectedInfoID].size.x, 1.f, 1.f * texture->GetWidth() - info[selectedInfoID].offset.x);
+              info[selectedInfoID].size.y = Math::Clamp(info[selectedInfoID].size.y, 1.f, 1.f * texture->GetHeight() - info[selectedInfoID].offset.y);
+
+              info[selectedInfoID].pivot.x = Math::Clamp01(info[selectedInfoID].pivot.x);
+              info[selectedInfoID].pivot.y = Math::Clamp01(info[selectedInfoID].pivot.y);
 
             draggingSpriteProps = !denyDrag;
             if (ImGui::IsMouseReleased(0))

@@ -3,6 +3,11 @@ offset 0 0
 size 1920 1020
 pivot 0.5 0.5
 
+Textures/bg_i_1
+offset 0 0
+size 0 0
+pivot 0 0
+
 %
 
 wrap_mode 0

@@ -21,9 +21,6 @@ namespace DeltaEngine
     float AccelerationPickup;
     bool hasGravity;
     bool isMoveable;
-    bool isJumping;
-    bool isDashing;
-
 
     RigidBody() :
       Direction{0, 0},
@@ -40,9 +37,7 @@ namespace DeltaEngine
       MaxAcceleration{40.0f},
       AccelerationPickup{3.0f},
       hasGravity{false},
-      isMoveable{true},
-      isJumping{false},
-      isDashing{false}
+      isMoveable{true}
     {
     }
   };

@@ -16,8 +16,6 @@ namespace DeltaEngine
           Texture2D* data = new Texture2D(file.generic_string());
           Set(file.generic_string().substr(0, file.generic_string().find_last_of('.')), data, AssetState::Final,
               AssetLifetime::Persistent);
-
-          DeltaEngine_CORE_TRACE("Texture Key: {}", file.generic_string());
         }
 
       for (auto& file : FileUtils::FileList("Tilemap"))
@@ -26,15 +24,11 @@ namespace DeltaEngine
           Texture2D* data = new Texture2D(file.generic_string());
           Set(file.generic_string().substr(0, file.generic_string().find_last_of('.')), data, AssetState::Final,
               AssetLifetime::Persistent);
-
-          DeltaEngine_CORE_TRACE("Texture Key: {}", file.generic_string());
         }
     }
 
     void DoLoad(AssetKey key) override
     {
-      DeltaEngine_CORE_TRACE("Texture Key: {}", key.Key());
-
       if(FileUtils::FileExists( key.Key() + ".png" ))
       {
         Texture2D* data = new Texture2D(key.Key()+".png");

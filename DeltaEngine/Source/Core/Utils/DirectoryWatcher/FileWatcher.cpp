@@ -76,7 +76,7 @@ namespace DeltaEngine
     );
 
     wchar_t file[MAX_PATH];
-    FILE_NOTIFY_INFORMATION buffer[2048];
+    FILE_NOTIFY_INFORMATION buffer[1024];
     DWORD bytes;
 
     while (ReadDirectoryChangesW(

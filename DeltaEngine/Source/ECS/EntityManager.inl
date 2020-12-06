@@ -72,6 +72,9 @@ inline EntityManager::EntityManager()
   Archetype *empty_arch = CreateEmptyArchetype();
   m_archetypes.push_back( empty_arch );
   CreateChunk( empty_arch );
+#ifdef DE_EDITOR
+  GetComponent<EntityName>( CreateEntity<Camera>() ).name.assign( "Camera");
+#endif
 }
 
 inline EntityManager::~EntityManager()
@@ -151,7 +154,7 @@ inline const std::vector<Entity> &EntityManager::GetEntities()
 
 inline void EntityManager::DestroyEntity( EntityID id )
 {
-  ASSERT_ERROR( IsEntityValid( id ), "EntityManager: destroying invalid entity" )
+    ASSERT_ERROR(IsEntityValid(id), "EntityManager: destroying invalid entity")
     EraseEntityChunk( m_entities[id.index].chunk, m_entities[id.index].chunk_index );
   DeallocateEntity( id );
 }
@@ -359,7 +362,7 @@ inline size_t EntityManager::InsertEntityChunk( DataChunk *chunk, EntityID id, b
 
 inline void EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
 {
-  assert( chunk->header.index >= index );
+  assert( chunk->header.index > index );
 
   Description *desc = chunk->header.owner->components_desc;
 
@@ -421,7 +424,7 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
   SetEntityArchetype( new_id, arch );
 
   DataChunk *current_chunk = m_entities[id.index].chunk;
-  DataChunk *new_chunk = m_entities[id.index].chunk;
+  DataChunk *new_chunk = m_entities[new_id.index].chunk;
 
   size_t current_index = m_entities[id.index].chunk_index;
   size_t new_index = m_entities[new_id.index].chunk_index;
@@ -479,6 +482,11 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
         case ComponentMeta::ComponentBits<Text>() :
         {
           *static_cast<Text *>( target ) = *static_cast<Text *>( current );
+          break;
+        }
+        case ComponentMeta::ComponentBits<UI>() :
+        {
+          *static_cast<UI *>( target ) = *static_cast<UI *>( current );
           break;
         }
         default:
@@ -554,6 +562,11 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
             case ComponentMeta::ComponentBits<Text>() :
             {
               std::swap( *static_cast<Text *>( current ), *static_cast<Text *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<UI>() :
+            {
+              std::swap( *static_cast<UI *>( current ), *static_cast<UI *>( target ) );
               break;
             }
             default:

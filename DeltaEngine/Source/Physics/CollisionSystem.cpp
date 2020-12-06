@@ -42,22 +42,18 @@ namespace DeltaEngine
       {
         c1.isCollidingOnFloor = false;
         c1.center = c1.offset + t1.position;
-        Vector2 old_size1 = c1.size;
-        c1.size = t1.scale;
         em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
         {
           if (c2.CollisionLayerCheck != 0 && id2.index != id1.index)
           {
             c2.isCollidingOnFloor = false;
             c2.center = c2.offset + t2.position;
-            Vector2 old_size2 = c2.size;
-            c2.size = t2.scale;
             Manifold m;
             if (r1.isMoveable || r2.isMoveable)
             {
                 if (c1.CollisionLayerID & c2.CollisionLayerCheck)
                 {
-                    if (CollisionIntersection_Main(c1, r1, c2, r2, m))
+                    if (CollisionIntersection_RectRect(c1.center, c1.size * t1.scale, r1.Velocity,c2.center,c2.size * t2.scale, r2.Velocity))
                     {
                         bool already_added = false;
                         //Check if there was already collision between the two 
@@ -75,14 +71,15 @@ namespace DeltaEngine
                         {
                             c1.isCollidingOnFloor = false;
                             c2.isCollidingOnFloor = false;
-                            if (AABBvsAABB_Manifold(c1, c2, m))
+                            if (AABBvsAABB_Manifold(c1,t1.scale, c2,t2.scale, m))
                                 current_manifold_vector.push_back({ m, id1, id2 });
                         }
                     }
                 }
             }
-
           }
+
+
         });
       }
     });
@@ -143,7 +140,7 @@ namespace DeltaEngine
         Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
         Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
 
-        if (!c1.isTrigger && !c2.isTrigger && AABBvsAABB_Manifold(c1, c2, it1->m) && it1->m.penetration > 0.001f)
+        if ((AABBvsAABB_Manifold(c1,t1.scale, c2,t2.scale, it1->m) && it1->m.penetration > 0.001f) && (!c1.isTrigger && !c2.isTrigger))
         {
           CollisionResponse(c1, r1, c2, r2, it1->m);
 
