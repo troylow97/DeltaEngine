@@ -77,8 +77,9 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   env.pManager->SetLoader<Shader>( new ShaderLoader() ).Load<Shader>()
     .SetFallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
 
-  DeltaEngine_CORE_INFO( "AssetManager Setting TextureLoader with no fallback" );
-  env.pManager->SetLoader<Texture2D>( new TextureLoader() ).Load<Texture2D>();
+  DeltaEngine_CORE_INFO("AssetManager Setting TextureLoader with no fallback");
+  env.pManager->SetLoader<Texture2D>(new TextureLoader()).Load<Texture2D>()
+    .SetFallback<Texture2D>(new Texture2D("Default/ERROR.png"));
 
   DeltaEngine_CORE_INFO( "AssetManager Setting AnimationClipLoader with no fallback" );
   env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() ).Load<AnimationClip>();
