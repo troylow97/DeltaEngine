@@ -28,11 +28,15 @@ const unsigned credits_screen = 11;
 const unsigned gameover_screen = 12;
 const unsigned upgrade_page = 13;
 const unsigned level1_screen = 14;
-const unsigned upgraded_page = 15;
+const unsigned upgraded_health_page = 15;
+const unsigned upgraded_attack_page = 16;
+const unsigned upgraded_health_only_page = 17;
+const unsigned upgraded_attack_only_page = 18;
 
 void UISystem::Initialize()
 {
-  m_screen.push_back(main_screen);
+  //m_screen.push_back(main_screen);
+  m_screen.push_back(level1_screen);
   em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
   {
     if (ui.ui_type == UIType::Slider)
@@ -183,21 +187,37 @@ void UISystem::LateUpdate()
       r.m_Active = false;
       
       for (auto screen : m_screen)
-      if (screen == ui.screen)
-      {
-        r.m_Active = true;
-        const bool rect_mouse = CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y });
-        
-        if(screen == m_screen.back())
+        if (screen == ui.screen)
         {
-          if (ui.ui_type == UIType::Button && rect_mouse)
+          r.m_Active = true;
+          const bool rect_mouse = CollisionIntersection_RectMouse(t.position, i.GetWorldSize(), { p_x,p_y });
+          
+          if(screen == m_screen.back())
           {
-            // Animation update
-            if (InputManager::Instance().IsKeyReleased(DEVK_LBUTTON))
+            if (ui.ui_type == UIType::Button && rect_mouse)
             {
-              if (!ui.functor_key.empty())
-                rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
-              else if (ui.overlay && ui.target_screen != -1)
+              // Animation update
+              if (InputManager::Instance().IsKeyReleased(DEVK_LBUTTON))
+              {
+                if (!ui.functor_key.empty())
+                { 
+                  rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
+                  if (ui.overlay && ui.target_screen != -1)
+                      m_screen.push_back(ui.target_screen);
+                }
+                else if (ui.overlay && ui.target_screen != -1)
+                  m_screen.push_back(ui.target_screen);
+                else if (ui.target_screen != -1)
+                {
+                  m_screen.clear();
+                  m_screen.push_back(ui.target_screen);
+                }
+              }
+            }
+            else if (ui.ui_type == UIType::Interface && rect_mouse)
+            {
+              // Animation update
+              if (ui.overlay && ui.target_screen != -1)
                 m_screen.push_back(ui.target_screen);
               else if (ui.target_screen != -1)
               {
@@ -205,39 +225,38 @@ void UISystem::LateUpdate()
                 m_screen.push_back(ui.target_screen);
               }
             }
-          }
-          else if (ui.ui_type == UIType::Interface && rect_mouse)
-          {
-            // Animation update
-            if (ui.overlay && ui.target_screen != -1)
-              m_screen.push_back(ui.target_screen);
-            else if (ui.target_screen != -1)
+            else if (ui.ui_type == UIType::Interface && !rect_mouse)
             {
-              m_screen.clear();
-              m_screen.push_back(ui.target_screen);
+                // Animation update
+                if (ui.overlay && ui.previous_screen != -1)
+                    m_screen.push_back(ui.previous_screen);
+                else if (ui.previous_screen != -1)
+                {
+                    m_screen.clear();
+                    m_screen.push_back(ui.previous_screen);
+                }
             }
-          }
-          else if (ui.ui_type == UIType::Button && !rect_mouse)
-          {
-            // Animation update
-            if (ui.overlay && ui.previous_screen != -1)
-              m_screen.push_back(ui.previous_screen);
-            else if (ui.previous_screen != -1)
+            else if (ui.ui_type == UIType::Button && !rect_mouse)
             {
-              m_screen.clear();
-              m_screen.push_back(ui.previous_screen);
+              // Animation update
+              if (ui.overlay && ui.previous_screen != -1)
+                m_screen.push_back(ui.previous_screen);
+              else if (ui.previous_screen != -1)
+              {
+                m_screen.clear();
+                m_screen.push_back(ui.previous_screen);
+              }
             }
-          }
-          else if (ui.ui_type == UIType::Slider && rect_mouse)
-          {
-            if(InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
+            else if (ui.ui_type == UIType::Slider && rect_mouse)
             {
-            	if(p_x <= VolumeSliderInitialLocation.x && p_x >= (VolumeSliderInitialLocation.x - 2.7f))
-					t.position.x = p_x;
+              if(InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
+              {
+              	if(p_x <= VolumeSliderInitialLocation.x && p_x >= (VolumeSliderInitialLocation.x - 2.7f))
+		  			t.position.x = p_x;
+              }
             }
           }
         }
-      }
       
     });
 }
@@ -251,12 +270,14 @@ void UISystem::UpgradeDamageButton()
 {
   auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
   player.UpgradeAtk = true;
+  std::cout << "increasing attack" << std::endl;
 }
 
 void UISystem::UpgradeHPButton()
 {
   auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
   player.UpgradeHP = true;
+  std::cout << "increasing HP" << std::endl;
 }
 
 void UISystem::StartGame()
@@ -276,12 +297,12 @@ void UISystem::QuitGame()
 
 void UISystem::BackToMainMenu()
 {
-    JsonFile file;
-    env.pECS->GetWorld().GetEntityManager().Clear();
-    env.pECS->GetWorld().Load("World/MainMenu.json");
-
-    m_screen.clear();
-    m_screen.push_back(main_screen);
+  JsonFile file;
+  env.pECS->GetWorld().GetEntityManager().Clear();
+  env.pECS->GetWorld().Load("World/MainMenu.json");
+  
+  m_screen.clear();
+  m_screen.push_back(main_screen);
 }
 
 void UISystem::PauseGame()

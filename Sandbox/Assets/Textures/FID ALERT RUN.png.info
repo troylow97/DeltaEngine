@@ -1,52 +1,7 @@
 Textures/FID ALERT RUN_i_0
 offset 0 0
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID ALERT RUN_i_1
-offset 380 0
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID ALERT RUN_i_2
-offset 760 0
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID ALERT RUN_i_3
-offset 1140 0
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID ALERT RUN_i_4
-offset 1520 0
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID ALERT RUN_i_5
-offset 0 320
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID ALERT RUN_i_6
-offset 380 320
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID ALERT RUN_i_7
-offset 760 320
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID ALERT RUN_i_8
-offset 1140 320
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID ALERT RUN_i_9
-offset 1520 320
-size 380 320
-pivot 0.5 0.5
+size 0 0
+pivot 0 0
 
 %
 

@@ -20,8 +20,9 @@ class Sandbox : public Application
 public:
   Sandbox()
   {
-      JsonFile file;
-      env.pECS->GetWorld().Load("World/MainMenu.json");
+    JsonFile file;
+    env.pECS->GetWorld().Load("World/MainLevelV2.json");
+    //env.pECS->GetWorld().Load("World/MainMenu.json");
   	
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
     env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, UISystem, UpgradeSystem>();
