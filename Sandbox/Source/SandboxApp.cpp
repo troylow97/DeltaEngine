@@ -21,6 +21,7 @@ public:
   Sandbox()
   {
     JsonFile file;
+    //env.pECS->GetWorld().Load("World/MainLevelV2.json");
     env.pECS->GetWorld().Load("World/MainMenu.json");
   	
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);

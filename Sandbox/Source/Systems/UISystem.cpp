@@ -44,7 +44,7 @@ void UISystem::Initialize()
   });
   isDraggingOnSlider = false;
   auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-  PlayerFirstPosition = p.position;
+  PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
 }
 	
 void UISystem::Update()
@@ -108,7 +108,9 @@ void UISystem::LateUpdate()
         {
           auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
           PlayerCurrentPosition = p.position;
-          Vector3 difference = PlayerCurrentPosition - PlayerFirstPosition;
+          Vector3 difference;
+          difference = PlayerCurrentPosition - PlayerFirstPosition;
+          PlayerFirstPosition = PlayerCurrentPosition;
 
           em.ForEach([&](UI& ui, EntityID& id) 
           {
