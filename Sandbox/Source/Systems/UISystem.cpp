@@ -137,6 +137,7 @@ void UISystem::LateUpdate()
   if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
   {
     bool upgrade_screen_exists = false;
+    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
     for (auto& screen : m_screen)
     {
       if (screen == upgrade_page)
@@ -151,6 +152,16 @@ void UISystem::LateUpdate()
     else
     {
       m_screen.push_back(upgrade_page);
+      
+      if (p.UpgradedAtk && p.UpgradedHP)
+      {
+        m_screen.push_back(upgraded_attack_only_page);
+        m_screen.push_back(upgraded_health_only_page);
+      }
+      else if (p.UpgradedAtk)
+        m_screen.push_back(upgraded_attack_only_page);
+      else if (p.UpgradedHP)
+        m_screen.push_back(upgraded_health_only_page);
     }
   }
   for (auto& screen : m_screen)
@@ -185,6 +196,7 @@ void UISystem::LateUpdate()
 	em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
     {
       r.m_Active = false;
+      UI_first_time = true;
       
       for (auto screen : m_screen)
         if (screen == ui.screen)
@@ -203,7 +215,7 @@ void UISystem::LateUpdate()
                 { 
                   rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
                   if (ui.overlay && ui.target_screen != -1)
-                      m_screen.push_back(ui.target_screen);
+                    m_screen.push_back(ui.target_screen);
                 }
                 else if (ui.overlay && ui.target_screen != -1)
                   m_screen.push_back(ui.target_screen);
@@ -216,48 +228,45 @@ void UISystem::LateUpdate()
             }
             else if (ui.ui_type == UIType::Interface && rect_mouse)
             {
-              // Animation update
-              if (ui.overlay && ui.target_screen != -1)
-                m_screen.push_back(ui.target_screen);
-              else if (ui.target_screen != -1)
+              if (UI_first_time)
               {
-                m_screen.clear();
-                m_screen.push_back(ui.target_screen);
-              }
-            }
-            else if (ui.ui_type == UIType::Interface && !rect_mouse)
-            {
                 // Animation update
-                if (ui.overlay && ui.previous_screen != -1)
-                    m_screen.push_back(ui.previous_screen);
-                else if (ui.previous_screen != -1)
+                if (ui.overlay && ui.target_screen != -1)
+                    m_screen.push_back(ui.target_screen);
+                else if (ui.target_screen != -1)
                 {
                     m_screen.clear();
-                    m_screen.push_back(ui.previous_screen);
+                    m_screen.push_back(ui.target_screen);
                 }
-            }
-            else if (ui.ui_type == UIType::Button && !rect_mouse)
-            {
-              // Animation update
-              if (ui.overlay && ui.previous_screen != -1)
-                m_screen.push_back(ui.previous_screen);
-              else if (ui.previous_screen != -1)
-              {
-                m_screen.clear();
-                m_screen.push_back(ui.previous_screen);
+                UI_first_time = false;
               }
             }
             else if (ui.ui_type == UIType::Slider && rect_mouse)
             {
-              if(InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
+              if (InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
               {
-              	if(p_x <= VolumeSliderInitialLocation.x && p_x >= (VolumeSliderInitialLocation.x - 2.7f))
-		  			t.position.x = p_x;
+                if (p_x <= VolumeSliderInitialLocation.x && p_x >= (VolumeSliderInitialLocation.x - 2.7f))
+                  t.position.x = p_x;
               }
             }
+            if ((ui.ui_type == UIType::Button || ui.ui_type == UIType::Interface) && !rect_mouse)
+            {
+              if (UI_first_time)
+              {
+                // Animation update
+                if (ui.overlay && ui.previous_screen != -1)
+                  m_screen.push_back(ui.previous_screen);
+                else if (ui.previous_screen != -1)
+                {
+                  m_screen.clear();
+                  m_screen.push_back(ui.previous_screen);
+                }
+              }
+              UI_first_time = false;
+            }
           }
+          //
         }
-      
     });
 }
 

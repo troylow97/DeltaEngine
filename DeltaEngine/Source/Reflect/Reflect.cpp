@@ -366,7 +366,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .property("Allow Dashing", &Player::AllowDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Upgrade Attack", &Player::UpgradeAtk)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("Upgrade Health", &Player::UpgradeHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+      .property("Upgrade Health", &Player::UpgradeHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgraded Attack", &Player::UpgradedAtk)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgraded Health", &Player::UpgradedHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
   }
 
 }

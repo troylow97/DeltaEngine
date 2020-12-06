@@ -17,6 +17,7 @@ namespace DeltaEngine
     void BackToMainMenu();
 private:
   bool isDraggingOnSlider;
+  bool UI_first_time = true;
   Vector2 VolumeSliderInitialLocation;
   std::vector<unsigned> m_screen;
   END_DEFINE_SYSTEM(GCameraSystem)
