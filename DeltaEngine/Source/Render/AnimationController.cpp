@@ -7,7 +7,7 @@
 namespace DeltaEngine
 {
   AnimationController::AnimationController(std::string filepath)
-    : entryAnimation{nullptr}, m_Name{std::string(filepath.c_str())}
+    : entryAnimation{""}, m_Name{std::string(filepath.c_str())}
   {
     LoadFromFile();
   }
@@ -49,7 +49,7 @@ namespace DeltaEngine
           if (strcmp(EndingState.c_str(), "##Exit"))
             return GetEnv().pManager->Get<AnimationClip>(EndingState);
           else
-            return entryAnimation;
+            return GetEnv().pManager->Get<AnimationClip>(entryAnimation);
       }
     }
     return nullptr;
@@ -82,10 +82,9 @@ namespace DeltaEngine
         { std::string(start.c_str()), std::string(end.c_str()), Condition() });
     }
   }
-  void AnimationController::CreateNew(AnimationClip* clip, std::string filepath)
+  void AnimationController::CreateNew(std::string filepath)
   {
     AnimationController c = AnimationController(filepath);
-    c.entryAnimation = clip;
     c.editorPositions.resize(2);
     c.editorPositions[0] = {"entry", Vector2()};
   }
@@ -95,15 +94,14 @@ namespace DeltaEngine
     DeltaEngine_CORE_TRACE("Loading animator \"{}\"...", m_Name.c_str());
     file.open(m_Name.c_str());
 
-    std::string str, defaultClip;
+    std::string str;
 
     if (file.is_open())
     {
       startingParameters.clear();
       editorPositions.clear();
       transitions.clear();
-      file >> str >> defaultClip;
-      entryAnimation = GetEnv().pManager->Get<AnimationClip>(defaultClip);
+      file >> str >> entryAnimation;
       file >> str;
       while (file.good()) // parameters
       {
@@ -162,11 +160,11 @@ namespace DeltaEngine
           std::get<2>(transitions.back()).push_back({paramName, con, value});
         }
       }
-      for (auto& [s, e, c] : transitions)
-      {
-        std::cerr << s << ", " << e << std::endl;
-      }
       file.close();
+      for (auto& [s,e,c] : transitions)
+      {
+        std::cerr << s << "->" << e << std::endl;
+      }
     }
     else
     {
@@ -175,6 +173,38 @@ namespace DeltaEngine
   }
   void AnimationController::SaveToFile()
   {
+    // remove duplicates
+    std::vector<std::pair<std::string, Parameter>> newParameters;
+    {
+      for (auto& [paramName, val] : startingParameters)
+      {
+        bool dup = false;
+        for (auto& [cmp, cval] : newParameters)
+          if (!strcmp(paramName.c_str(), cmp.c_str()))
+          {
+            dup = true;
+            break;
+          }
+        if (!dup)
+          newParameters.push_back({ std::string(paramName.c_str()), val });
+      }
+    }
+    std::vector<std::pair<AssetKey, Vector2>> newPositions;
+    {
+      for (auto& [assetName, val] : editorPositions)
+      {
+        bool dup = false;
+        for (auto& [cmp, cval] : newPositions)
+          if (!strcmp(assetName.Key().c_str(), cmp.Key().c_str()))
+          {
+            dup = true;
+            break;
+          }
+        if (!dup)
+          newPositions.push_back({ assetName, val });
+      }
+    }
+
     std::ofstream file;
     DeltaEngine_CORE_TRACE("Saving animator \"{}\"...", m_Name.c_str());
     file.open(m_Name.c_str());
@@ -183,17 +213,16 @@ namespace DeltaEngine
 
     if (file.is_open())
     {
-      str = entryAnimation ? entryAnimation->GetName() : "NULL";
-      file << "entry " << str << std::endl << std::endl;
+      file << "entry " << entryAnimation << std::endl << std::endl;
       file << "%Parameters:" << std::endl << std::endl;
-      for (auto& [ParamName, Value] : startingParameters)
+      for (auto& [ParamName, Value] : newParameters)
         file << "param" << std::endl
           << ParamName << " "
           << Value.boolValue << " "
           << Value.floatValue << std::endl << std::endl;
 
       file << "%EditorPositions:" << std::endl << std::endl;
-      for (auto& [ClipKey, Pos] : editorPositions)
+      for (auto& [ClipKey, Pos] : newPositions)
         file << "pos" << std::endl
           << ClipKey.Key() << " "
           << Pos.x << " "

@@ -33,7 +33,7 @@ namespace DeltaEngine
     
     std::vector<std::pair<AssetKey, Vector2>> editorPositions;
 
-    AnimationClip* entryAnimation;
+    std::string entryAnimation;
     std::string m_Name;
 
     AnimationController(std::string filepath = "Dave.anim");
@@ -43,7 +43,7 @@ namespace DeltaEngine
     Vector2 EditionPositionAt(AssetKey key);
     void AddNewTransition(std::string, std::string);
 
-    static void CreateNew(AnimationClip* clip, std::string filepath = "New.anim");
+    static void CreateNew(std::string filepath = "New.anim");
     void LoadFromFile();
     void SaveToFile();
   };

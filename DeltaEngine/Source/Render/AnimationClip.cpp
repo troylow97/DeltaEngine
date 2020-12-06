@@ -30,8 +30,11 @@ namespace DeltaEngine
   Sprite AnimationClip::GetSprite(unsigned int index)
   {
     index = Math::Clamp(index, 0, static_cast<int>(m_Sprites.size()) - 1);
-    if (m_Sprites.count(index))
-      return m_Sprites[index];
+    for (; index > 0;)
+    {
+      if (m_Sprites.count(index--))
+        return m_Sprites[index];
+    }
     return Sprite();
   }
 

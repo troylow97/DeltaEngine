@@ -17,7 +17,7 @@ namespace DeltaEngine
           s.parameters.insert(controller->startingParameters.begin(), controller->startingParameters.end());
           if (a.m_ClipKey.empty())
           {
-            newClip = controller->entryAnimation;
+            newClip = GetEnv().pManager->Get<AnimationClip>(controller->entryAnimation);
             a.m_ClipKey = newClip->GetName();
             i.m_Sprite = newClip->GetSprite(a.GetFrame());
           }

@@ -118,7 +118,7 @@ void SpriteEditorPanel::Render()
         {
           if ( ImGui::BeginMenu( "Auto Slicing" ) )
           {
-            static const char *components[] { "Automatic", "Row by Column", "Nothing" };
+            static const char *components[] { "Automatic", "Column by Row", "Nothing" };
             static int selected = 0;
             ImGui::Combo( "Slice Type", &selected, components, IM_ARRAYSIZE( components ) );
             if ( selected == 0 )
@@ -134,7 +134,7 @@ void SpriteEditorPanel::Render()
             {
               static int cr[2] = { 1, 1 };
               static float pivot[2] = { 0.5f, 0.5f };
-              ImGui::DragInt2( "Row and Column", cr, 0.25f, 1, 128 );
+              ImGui::DragInt2( "Column and Row", cr, 0.25f, 1, 128 );
               ImGui::DragFloat2( "Pivot", pivot, 0.01f, 0.0f, 1.0f );
               if ( ImGui::Button( "Auto Slice" ) )
                 info = texture->SliceAll( cr[0], cr[1], Vector2( pivot[0], pivot[1] ) );
