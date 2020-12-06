@@ -3,6 +3,7 @@
 #include "Core/GameClock/GameClock.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
+#include "../../DeltaEngine/Source/Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
@@ -98,6 +99,11 @@ namespace DeltaEngine
         {
             EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
             EntityID missile2 = CreateProjectile(id, Vector2{ 1.7,1.7 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
+            static size_t c_id{ 0 };
+            if (AudioEngine::IsChannelPlaying(c_id))
+                AudioEngine::StopChannel(c_id);
+            c_id  = AudioEngine::Play("Audio/jump.wav");
+
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -135,6 +141,10 @@ namespace DeltaEngine
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(id))
         {
             EntityID missile = CreateProjectile(id, Vector2{ 0.7,0.5 }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+            static size_t c_id{ 0 };
+            if (AudioEngine::IsChannelPlaying(c_id))
+                AudioEngine::StopChannel(c_id);
+            c_id = AudioEngine::Play("Audio/jump.wav");
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.6f;
@@ -159,11 +169,11 @@ namespace DeltaEngine
                 Vector2 kb = (player_pos - em.GetComponent<Transform>(id).position);
 
                 em.GetComponent<Transform>(missile).position = monster_pos + kb.Normalize() * 0.5f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 300.0f;
+                em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 400.0f;
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
 
         		//Apply knockback to lancer
-                em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 3000.0f;
+                em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 4000.0f;
         		
         	}
             else

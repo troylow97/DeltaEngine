@@ -35,7 +35,7 @@ namespace DeltaEngine
     static void LoadSound(const std::string& name, bool loop = false, bool stream = false, bool is3D = false); // shift
     static void UnloadSound(const std::string& name); // shift
 
-    static ChannelID PlaySound(const std::string& name, float dB = 0.0f, Vector3 pos = {0.0f, 0.0f, 0.0f}); // shift
+    static ChannelID Play(const std::string& name, float dB = 0.0f, Vector3 pos = {0.0f, 0.0f, 0.0f}); // shift
     static bool IsChannelPlaying(ChannelID id);
     static void SetChannelPause(ChannelID id, bool pause = true);
     static void SetChannelPitch(ChannelID id, float pitch);

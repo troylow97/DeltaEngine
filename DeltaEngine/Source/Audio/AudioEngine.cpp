@@ -85,7 +85,7 @@ namespace DeltaEngine
     }
   }
 
-  AudioEngine::ChannelID AudioEngine::PlaySound(const std::string& name, const float dB, Vector3 pos)
+  AudioEngine::ChannelID AudioEngine::Play(const std::string& name, const float dB, Vector3 pos)
   {
     ChannelID id = fmod->nextChannelID++;
     auto result = fmod->sounds.find(name);

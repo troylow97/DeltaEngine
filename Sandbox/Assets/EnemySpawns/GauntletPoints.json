@@ -35,8 +35,8 @@
                 "x": 36.745,
                 "y": -1.063
             },
-            "wall_offset_right": 7.0,
-            "wall_offset_left": 7.0,
+            "wall_offset_right": 2.7,
+            "wall_offset_left": 2.7,
             "current_enemy_wave": 0,
             "is_activated": false,
             "is_finished": false
@@ -58,8 +58,8 @@
                 "x": 36.745,
                 "y": -1.063
             },
-            "wall_offset_right": 7.0,
-            "wall_offset_left": 7.0,
+            "wall_offset_right": 4.0,
+            "wall_offset_left": 4.0,
             "current_enemy_wave": 0,
             "is_activated": false,
             "is_finished": false

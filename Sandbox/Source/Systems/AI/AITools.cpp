@@ -47,7 +47,7 @@ namespace DeltaEngine
         {
             if (env.pECS->GetWorld().GetEntityManager().HasComponent<Transform>(id1))
             {
-                return std::abs(env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position.x
+                return std::abs(env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position.y
                     - point.y);
             }
 
@@ -309,10 +309,10 @@ namespace DeltaEngine
             return false;
         }
 
-        bool EntityisAtPointInX(EntityID& id1, float x)
+        bool EntityisAtPointInX(EntityID& id1, float x,float tolerance)
         {
             float pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position.x;
-            if (std::abs(x - pos) < 0.1)
+            if (std::abs(x - pos) < tolerance)
             {
                 return true;
             }

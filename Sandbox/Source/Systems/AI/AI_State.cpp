@@ -201,7 +201,7 @@ namespace DeltaEngine
           auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
           auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
 
-          if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x))
+          if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x,0.1f))
           {
               EntityID player = UnitManager::GetPlayerID();
               if (attack.CooldownTimer <= 0 && AITools::Distance_X_BetweenTwoEntities(monster, player) < 6 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 3)

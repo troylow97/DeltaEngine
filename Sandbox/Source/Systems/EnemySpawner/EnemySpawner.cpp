@@ -110,7 +110,7 @@ namespace DeltaEngine
 		for (int i = 0; i < list.Gauntlets.size(); ++i)
 		{
 			auto& Gauntlet = list.Gauntlets[i];
-			if (AITools::EntityisAtPoint(player, list.Gauntlets[i].ActivationPoint) && !Gauntlet.isActivated && !Gauntlet.isFinished)
+			if (AITools::EntityisAtPointInX(player, list.Gauntlets[i].ActivationPoint.x,0.3f) && !Gauntlet.isActivated && !Gauntlet.isFinished)
 			{
 				ActivationPoint = list.Gauntlets[i].ActivationPoint;
 				CurrentGauntlet = i;
@@ -186,7 +186,7 @@ namespace DeltaEngine
 		bool activated = false;
 		em.ForEach([&](EntityID& id, EntityType et)
 		{
-			if(et.type == EntityCategory::E_ENEMY && AITools::EntityisAtPoint(id, ActivationPoint,14.0f))
+			if(et.type == EntityCategory::E_ENEMY && AITools::EntityisAtPoint(id, ActivationPoint,3.0f))
 			{
 				activated = true;
 			}
@@ -199,10 +199,11 @@ namespace DeltaEngine
 		EntityID wall = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(wall);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(wall);
-		env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(wall);
-		env.pECS->GetWorld().GetEntityManager().AddComponent<Renderer2D>(wall);
+		//env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(wall);
+		//env.pECS->GetWorld().GetEntityManager().AddComponent<Renderer2D>(wall);
+		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(wall).type = EntityCategory::E_WALL;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(wall).position = position;
-		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(wall).scale = Vector2{ 0.5,6.0 };
+		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(wall).scale = Vector2{ 1.0,6.0 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(wall).isMoveable = false;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(wall).CollisionLayerID = 1;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(wall).CollisionLayerCheck = 14;

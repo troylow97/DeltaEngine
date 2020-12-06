@@ -11,6 +11,7 @@ namespace DeltaEngine
     AISystem::AISystem() = default;
     AISystem::~AISystem() = default;
     void AISystem::Initialize() override;
+    void AISystem::LoadLevel1();
     void AISystem::Shutdown() override;
     void AISystem::Update() override;
     void AISystem::LateUpdate() override;
