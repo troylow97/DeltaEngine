@@ -18,6 +18,7 @@
 #include "../../Sandbox/Source/Systems/EnemySpawner/EnemyData.h"
 #include "../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "../../Sandbox/Source/Systems/AttackSystem.h"
+#include "Audio/AudioConfig.h"
 
 namespace DeltaEngine
 {
@@ -73,6 +74,19 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "fps", &EngineConfig::fps )
     .property( "cam_size", &EngineConfig::cam_size )
     .property( "fullscreen", &EngineConfig::fullscreen );
+
+  rttr::registration::class_<SoundConfig>( "Sound Configuration" )
+    .property( "Sound Path", &SoundConfig::path )
+    .property( "Loop", &SoundConfig::loop )
+    .property( "Stream", &SoundConfig::stream )
+    .property( "Is 3D", &SoundConfig::is3D );
+
+  rttr::registration::class_<BankConfig>( "Bank Configuration" )
+    .property( "Bank Path", &BankConfig::path );
+
+  rttr::registration::class_<AudioConfig>( "Audio Configuration" )
+    .property( "Sounds Config", &AudioConfig::sounds_config )
+    .property( "Bank Config", &AudioConfig::banks_config );
 
   rttr::registration::class_<Vector2>( "Vector2" )
     .property( "x", &Vector2::x )

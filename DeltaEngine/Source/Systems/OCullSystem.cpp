@@ -29,7 +29,7 @@ namespace DeltaEngine
 #endif
     {
 
-      auto t = em.GetComponent<Transform>( { 0 } );
+      const auto& t = em.GetComponent<Transform>( { 0 } );
       max = Camera::allCameras[0]->Max( t );
       min = Camera::allCameras[0]->Min( t );
       c_center = { t.position.x, t.position.y };

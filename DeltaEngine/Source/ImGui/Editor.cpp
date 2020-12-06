@@ -28,7 +28,6 @@
 
 #include "IconsFontAwesome5.h"
 #include "Core/TypeAlias.h"
-#include "Core/Debugging/Profiler/Profiler.h"
 #include "examples/imgui_impl_opengl3.h"
 #include "Input/Keys.h"
 #include "Panels/ButtonsPanel.h"
@@ -36,6 +35,7 @@
 #include "Panels/StylePanel.h"
 
 #include "Style.h"
+#include "Panels/AudioPanel.h"
 
 namespace DeltaEngine
 {
@@ -123,6 +123,8 @@ void Editor::MenuBar()
     m_panels[2]->Enable();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_6 ) )
     m_panels[1]->Enable();
+  else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_7 ) )
+    m_panels[0]->Enable();
 
 
   if ( ImGui::BeginMainMenuBar() )
@@ -164,6 +166,8 @@ void Editor::MenuBar()
         m_panels[2]->Enable();
       if ( ImGui::MenuItem( "Console Panel", " Ctrl+6" ) )
         m_panels[1]->Enable();
+      if ( ImGui::MenuItem( "Audio Settings Panel", " Ctrl+7" ) )
+        m_panels[0]->Enable();
       ImGui::EndMenu();
     }
     ImGui::EndMainMenuBar();
@@ -196,7 +200,7 @@ Editor::Editor()
   ImGui_ImplWin32_Init( env.pWin->GetHandle(), RenderModule::openGLSystem->GetGLContext() );
   ImGui_ImplOpenGL3_Init( "#version 410" );
 
-  m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor", *this ) ); // 0
+  m_panels.push_back( std::make_unique<AudioPanel>( "Audio Settings" , *this )); // 0
   m_panels.push_back( std::make_unique<LoggerPanel>( "Console", *this ) ); // 1
   m_panels.push_back( std::make_unique<SettingsPanel>( "Settings", *this ) );// 2
   m_panels.push_back( std::make_unique<AssetPanel>( "Assets", *this ) );// 3
@@ -206,6 +210,8 @@ Editor::Editor()
   m_panels.push_back( std::make_unique<GamePanel>( "Game", *this ) ); // 7
   m_panels.push_back( std::make_unique<ViewportPanel>( "Viewport", *this ) );// 8
   m_panels.push_back( std::make_unique<ButtonsPanel>( "Buttons", *this ) );// 9
+  m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor", *this ) ); // 10
+
   DeltaEngine_CORE_INFO( "Initializing Editor successful" );
 }
 
@@ -312,8 +318,6 @@ void Editor::End()
     ImGui::RenderPlatformWindowsDefault();
     wglMakeCurrent( backup_current_context, RenderModule::openGLSystem->GetGLContext() );
   }
-
-  Profiler::Instance().Record( "ImGui" );
 }
 
 void Editor::OnDragDrop( Event *e )

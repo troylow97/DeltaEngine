@@ -487,6 +487,7 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
         case ComponentMeta::ComponentBits<UI>() :
         {
           *static_cast<UI *>( target ) = *static_cast<UI *>( current );
+          break;
         }
         default:
           std::memcpy( target, current, type->size );

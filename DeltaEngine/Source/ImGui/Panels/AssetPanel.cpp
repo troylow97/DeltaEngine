@@ -128,8 +128,12 @@ void AssetPanel::Render()
 
               if ( ref.extension() == ".anim" || ref.extension() == ".clip" )
                 ImGui::Button( ICON_FA_PHOTO_VIDEO, { 128.0f, 128.0f } );
-              else if ( ref.extension() == ".wav" )
+              else if ( ref.extension() == ".wav" ||
+                        ref.extension() == ".ogg" ||
+                        ref.extension() == ".mp3")
                 ImGui::Button( ICON_FA_MUSIC, { 128.0f, 128.0f } );
+              else if ( ref.extension() == ".bank" )
+                ImGui::Button( ICON_FA_BOLD, { 128.0f, 128.0f } );
               else if ( ref.extension() == ".ttf" )
                 ImGui::Button( ICON_FA_FONT, { 128.0f, 128.0f } );
               else if ( ref.extension() == ".ini" )
@@ -145,7 +149,6 @@ void AssetPanel::Render()
                 ImGui::ImageButton( reinterpret_cast<void *>( textureID ),
                                     ImVec2 { 128.0f, 128.0f }, { 0, 0 }, { 1, 1 }, 0 );
               }
-
               ImGui::PopFont();
               Editor::font_awesome->Scale = original;
 

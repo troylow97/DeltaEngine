@@ -32,10 +32,10 @@ namespace DeltaEngine
     static void Update();
 
     // Core 
-    static void LoadSound(const std::string& name, bool loop = false, bool stream = false, bool is3D = false);
-    static void UnloadSound(const std::string& name);
+    static void LoadSound(const std::string& name, bool loop = false, bool stream = false, bool is3D = false); // shift
+    static void UnloadSound(const std::string& name); // shift
 
-    static ChannelID PlaySound(const std::string& name, float dB = 0.0f, Vector3 pos = {0.0f, 0.0f, 0.0f});
+    static ChannelID PlaySound(const std::string& name, float dB = 0.0f, Vector3 pos = {0.0f, 0.0f, 0.0f}); // shift
     static bool IsChannelPlaying(ChannelID id);
     static void SetChannelPause(ChannelID id, bool pause = true);
     static void SetChannelPitch(ChannelID id, float pitch);
@@ -45,9 +45,14 @@ namespace DeltaEngine
 
     static void SetChannel3DPosition(ChannelID id, Vector3 attributes);
 
+    static unsigned GetChannelPlaybackPosition( ChannelID id );
+    static unsigned GetSoundLength( const std::string &name );
+
     // Studio
+    static bool IsLoadedBank( const std::string &name );
     static void LoadBank(const std::string& name, AUDIOENGINE_LOAD_BANK_FLAGS flags);
     static void UnloadBank(const std::string& name);
+    static std::vector<std::string> EventList( const std::string &name );
 
     static EventID Play3DEvent(const std::string& name, Audio3DAttributes attributes, ParametersMap = ParametersMap());
     static EventID Play2DEvent(const std::string& name, ParametersMap = ParametersMap());

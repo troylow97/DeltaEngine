@@ -15,7 +15,7 @@ namespace DeltaEngine
     unsigned char m_previous_key_state[256] = {}; // an array of old key states
     Point m_current_mouse_position; // the coordinate of current mouse position 
     Point m_previous_mouse_position; // the coordinate of previous mouse position 
-    bool m_move_event;
+    bool m_move_event {false};
     friend class InputManager;
 
     void Reset();

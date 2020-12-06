@@ -91,7 +91,7 @@ void TilemapPanel::Render()
                                   sprite.GetOffset().y + sprite.GetTiling().y
                                 } );
             if ( ImGui::IsItemClicked() )
-              if(ImGui::IsMouseDoubleClicked(0) )
+              if ( ImGui::IsMouseDoubleClicked( 0 ) )
               {
                 m_editor.m_panels[0]->Enable();
                 if ( !m_editor.m_panels[0]->IsEnabled() )
@@ -133,7 +133,8 @@ void TilemapPanel::Render()
       {
         std::string assetpayload_n = *static_cast<std::string *>( assetpayload->Data );
         std::filesystem::path file { assetpayload_n };
-        FileUtils::CopyFileW( file, tile_dir->cur_dir.path() / file.filename() );
+        if ( file.extension() == ".png" )
+          FileUtils::CopyFileW( file, tile_dir->cur_dir.path() / file.filename() );
       }
       else if ( ImGui::AcceptDragDropPayload( "Explorer Files" ) )
       {

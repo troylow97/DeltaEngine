@@ -2,6 +2,7 @@
 #include "Application.h"
 
 #include "EngineConfig.h"
+#include "Assets/Loaders/AudioLoader.h"
 #include "Render/OpenGLSystem.h"
 #include "Core/Utils/FileUtils.h"
 #include "Core/Utils/DirectoryWatcher/DirectoryWatcher.h"
@@ -54,6 +55,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   // Audio Initialization
   AudioEngine::Initialize();
+  AudioLoader().Load();
 
   // Clock Initialization
   env.pClock = new GameClock( c.fps );
@@ -78,7 +80,8 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
     .SetFallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
 
   DeltaEngine_CORE_INFO( "AssetManager Setting TextureLoader with no fallback" );
-  env.pManager->SetLoader<Texture2D>( new TextureLoader() ).Load<Texture2D>();
+  env.pManager->SetLoader<Texture2D>( new TextureLoader() ).Load<Texture2D>()
+    .SetFallback<Texture2D>( new Texture2D( "Default/ERROR.png" ) );
 
   DeltaEngine_CORE_INFO( "AssetManager Setting AnimationClipLoader with no fallback" );
   env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() ).Load<AnimationClip>();
@@ -138,16 +141,25 @@ void Application::Run()
       Editor::Instance().Begin();
       Editor::Instance().Render();
       Editor::Instance().End();
+      Profiler::Instance().Record( "ImGui" );
 #endif
       SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       Profiler::Instance().Record( "Buffer Swap" );
       OnEvent();
       env.pWin->Update();
+      AudioEngine::Update();
       Profiler::Instance().FrameEnd();
 
     }
     else
+    {
+#ifdef DE_EDITOR
+      Editor::Instance().Begin();
+      Editor::Instance().Render();
+      Editor::Instance().End();
+#endif
       env.pWin->Update();
+    }
   }
 }
 

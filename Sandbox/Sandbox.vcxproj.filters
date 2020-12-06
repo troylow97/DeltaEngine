@@ -51,10 +51,10 @@
     <ClInclude Include="Source\Systems\RespawnSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\UnitManager.h">
+    <ClInclude Include="Source\Systems\UISystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\UISystem.h">
+    <ClInclude Include="Source\Systems\UnitManager.h">
       <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
@@ -90,10 +90,10 @@
     <ClCompile Include="Source\Systems\RespawnSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\UnitManager.cpp">
+    <ClCompile Include="Source\Systems\UISystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\UISystem.cpp">
+    <ClCompile Include="Source\Systems\UnitManager.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
