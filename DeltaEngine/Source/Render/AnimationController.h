@@ -2,6 +2,7 @@
 
 #include "AnimationClip.h"
 #include "Components/State.h"
+#include "Assets/AssetKey.h"
 
 namespace DeltaEngine
 {
@@ -25,9 +26,12 @@ namespace DeltaEngine
     // start state, end state, parameter name, parameter condition type, parameter condition value
     using Transition = std::tuple<std::string, std::string, Condition>;
 
-    Parameters startingParameters;
-    std::vector<Transition> // possible animation transitions
-    transitions;
+    std::vector<std::pair<std::string, Parameter>> startingParameters;
+    // possible animation transition
+    std::vector<Transition> transitions; // start state, end state, parameter name, parameter condition type, parameter condition value
+
+    
+    std::vector<std::pair<AssetKey, Vector2>> editorPositions;
 
     AnimationClip* entryAnimation;
     std::string m_Name;
@@ -35,7 +39,12 @@ namespace DeltaEngine
     AnimationController(std::string filepath = "Dave.anim");
 
     AnimationClip* CheckCondition(std::string currentAnim, Parameters& parameters);
-  private:
-    void LoadFromFile(std::string filepath);
+
+    Vector2 EditionPositionAt(AssetKey key);
+    void AddNewTransition(std::string, std::string);
+
+    static void CreateNew(AnimationClip* clip, std::string filepath = "New.anim");
+    void LoadFromFile();
+    void SaveToFile();
   };
 }

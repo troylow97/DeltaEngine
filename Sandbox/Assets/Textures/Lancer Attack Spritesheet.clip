@@ -1,0 +1,40 @@
+frames 7
+fps 12
+loop 1
+
+Textures/Lancer Attack Spritesheet_i_0
+key Textures/Lancer Attack Spritesheet
+value 0
+frame 0
+
+Textures/Lancer Attack Spritesheet_i_1
+key Textures/Lancer Attack Spritesheet
+value 1
+frame 1
+
+Textures/Lancer Attack Spritesheet_i_2
+key Textures/Lancer Attack Spritesheet
+value 2
+frame 2
+
+Textures/Lancer Attack Spritesheet_i_3
+key Textures/Lancer Attack Spritesheet
+value 3
+frame 3
+
+Textures/Lancer Attack Spritesheet_i_4
+key Textures/Lancer Attack Spritesheet
+value 4
+frame 4
+
+Textures/Lancer Attack Spritesheet_i_5
+key Textures/Lancer Attack Spritesheet
+value 5
+frame 5
+
+Textures/Lancer Attack Spritesheet_i_6
+key Textures/Lancer Attack Spritesheet
+value 6
+frame 6
+
+%

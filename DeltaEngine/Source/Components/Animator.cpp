@@ -16,6 +16,6 @@ namespace DeltaEngine
   void Animator::Update(AnimationClip* clip)
   {
     m_Frame = static_cast<unsigned>(m_Timer * clip->GetFps());
-    m_Frame = Math::Clamp(m_Frame, 0, clip->GetTotalFrames());
+    m_Frame = Math::Clamp(m_Frame, 0, clip->GetTotalFrames()-1);
   }
 }

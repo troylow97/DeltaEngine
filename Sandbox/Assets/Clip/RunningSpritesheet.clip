@@ -1,33 +1,45 @@
+frames 8
+fps 12
+loop 1
+
 RunningSpritesheet_i_0
 key Textures/RunningSpritesheet
+value 0
 value 0
 
 RunningSpritesheet_i_1
 key Textures/RunningSpritesheet
 value 1
+value 1
 
 RunningSpritesheet_i_2
 key Textures/RunningSpritesheet
+value 2
 value 2
 
 RunningSpritesheet_i_3
 key Textures/RunningSpritesheet
 value 3
+value 3
 
 RunningSpritesheet_i_4
 key Textures/RunningSpritesheet
+value 4
 value 4
 
 RunningSpritesheet_i_5
 key Textures/RunningSpritesheet
 value 5
+value 5
 
 RunningSpritesheet_i_6
 key Textures/RunningSpritesheet
 value 6
+value 6
 
 RunningSpritesheet_i_7
 key Textures/RunningSpritesheet
+value 7
 value 7
 
 

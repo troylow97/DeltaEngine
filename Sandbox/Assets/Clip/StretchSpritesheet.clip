@@ -1,33 +1,45 @@
+frames 8
+fps 12
+loop 1
+
 StretchSpritesheet_i_0
 key Textures/StretchSpritesheet
+value 0
 value 0
 
 StretchSpritesheet_i_1
 key Textures/StretchSpritesheet
 value 1
+value 1
 
 StretchSpritesheet_i_2
 key Textures/StretchSpritesheet
+value 2
 value 2
 
 StretchSpritesheet_i_3
 key Textures/StretchSpritesheet
 value 3
+value 3
 
 StretchSpritesheet_i_4
 key Textures/StretchSpritesheet
+value 4
 value 4
 
 StretchSpritesheet_i_5
 key Textures/StretchSpritesheet
 value 5
+value 5
 
 StretchSpritesheet_i_6
 key Textures/StretchSpritesheet
 value 6
+value 6
 
 StretchSpritesheet_i_7
 key Textures/StretchSpritesheet
+value 7
 value 7
 
 

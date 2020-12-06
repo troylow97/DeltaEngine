@@ -9,7 +9,7 @@ namespace DeltaEngine
   AnimationController::AnimationController(std::string filepath)
     : entryAnimation{nullptr}, m_Name{std::string(filepath.c_str())}
   {
-    LoadFromFile(filepath);
+    LoadFromFile();
   }
 
   AnimationClip* AnimationController::CheckCondition(std::string currentAnim, Parameters& parameters)
@@ -46,22 +46,62 @@ namespace DeltaEngine
         }
         // change the clip
         if (conditionPass)
-          return GetEnv().pManager->Get<AnimationClip>(EndingState);
+          if (strcmp(EndingState.c_str(), "##Exit"))
+            return GetEnv().pManager->Get<AnimationClip>(EndingState);
+          else
+            return entryAnimation;
       }
     }
     return nullptr;
   }
-
-  void AnimationController::LoadFromFile(std::string filepath)
+  Vector2 AnimationController::EditionPositionAt(AssetKey key)
+  {
+    Vector2 result = Vector2();
+    std::for_each(editorPositions.begin(), editorPositions.end(), [&result, &key](std::pair<AssetKey, Vector2>& pair)
+      {
+        if (pair.first == key)
+          result = pair.second;
+      });
+    return result;
+  }
+  void AnimationController::AddNewTransition(std::string start, std::string end)
+  {
+    bool exists = false;
+    for (auto& t : transitions)
+    {
+      if (!strcmp(std::get<0>(t).c_str(), start.c_str()) &&
+        !strcmp(std::get<1>(t).c_str(), end.c_str()))
+      {
+        exists = true;
+        break;
+      }
+    }
+    if (!exists)
+    {
+      transitions.push_back(
+        { std::string(start.c_str()), std::string(end.c_str()), Condition() });
+    }
+  }
+  void AnimationController::CreateNew(AnimationClip* clip, std::string filepath)
+  {
+    AnimationController c = AnimationController(filepath);
+    c.entryAnimation = clip;
+    c.editorPositions.resize(2);
+    c.editorPositions[0] = {"entry", Vector2()};
+  }
+  void AnimationController::LoadFromFile()
   {
     std::ifstream file;
-    DeltaEngine_CORE_TRACE("Loading animator \"{}\"...", filepath.c_str());
-    file.open((filepath).c_str());
+    DeltaEngine_CORE_TRACE("Loading animator \"{}\"...", m_Name.c_str());
+    file.open(m_Name.c_str());
 
     std::string str, defaultClip;
 
     if (file.is_open())
     {
+      startingParameters.clear();
+      editorPositions.clear();
+      transitions.clear();
       file >> str >> defaultClip;
       entryAnimation = GetEnv().pManager->Get<AnimationClip>(defaultClip);
       file >> str;
@@ -72,7 +112,16 @@ namespace DeltaEngine
         if (str[0] == '%')
           break;
         file >> str >> newParam.boolValue >> newParam.floatValue;
-        startingParameters.insert(std::pair<std::string, Parameter>(str, newParam));
+        startingParameters.push_back(std::pair<std::string, Parameter>(str, newParam));
+      }
+      while (file.good()) // editor positions
+      {
+        Vector2 pos;
+        file >> str;
+        if (str[0] == '%')
+          break;
+        file >> str >> pos.x >> pos.y;
+        editorPositions.push_back(std::pair<AssetKey, Vector2>(str, pos));
       }
       while (file.good()) // transitions and conditions
       {
@@ -81,6 +130,9 @@ namespace DeltaEngine
         Conditions con;
         std::string startClip, endClip;
 
+        file >> str;
+        if (str[0] == '%')
+          break;
         file >> str >> startClip;
         file >> str >> endClip;
 
@@ -110,12 +162,83 @@ namespace DeltaEngine
           std::get<2>(transitions.back()).push_back({paramName, con, value});
         }
       }
+      for (auto& [s, e, c] : transitions)
+      {
+        std::cerr << s << ", " << e << std::endl;
+      }
       file.close();
     }
     else
     {
-      DeltaEngine_CORE_WARN("Animator file \"{}\" doesn't exist", filepath.c_str());
+      DeltaEngine_CORE_WARN("Animator file \"{}\" doesn't exist", m_Name.c_str());
     }
-    DeltaEngine_CORE_TRACE( "Animator {} was loaded successfully", filepath );
+  }
+  void AnimationController::SaveToFile()
+  {
+    std::ofstream file;
+    DeltaEngine_CORE_TRACE("Saving animator \"{}\"...", m_Name.c_str());
+    file.open(m_Name.c_str());
+
+    std::string str;
+
+    if (file.is_open())
+    {
+      str = entryAnimation ? entryAnimation->GetName() : "NULL";
+      file << "entry " << str << std::endl << std::endl;
+      file << "%Parameters:" << std::endl << std::endl;
+      for (auto& [ParamName, Value] : startingParameters)
+        file << "param" << std::endl
+          << ParamName << " "
+          << Value.boolValue << " "
+          << Value.floatValue << std::endl << std::endl;
+
+      file << "%EditorPositions:" << std::endl << std::endl;
+      for (auto& [ClipKey, Pos] : editorPositions)
+        file << "pos" << std::endl
+          << ClipKey.Key() << " "
+          << Pos.x << " "
+          << Pos.y << std::endl << std::endl;
+      file << "%Transitions:" << std::endl << std::endl;
+
+      for (auto& [StartClip, EndClip, Conditions] : transitions)
+      {
+        file << "transition " << std::endl;
+        file << "start " << StartClip << std::endl;
+        file << "end " << EndClip << std::endl;
+        for (auto& [ParamName, ConditionType, ConditionValue] : Conditions)
+        {
+          char ct = '?';
+          switch (ConditionType)
+          {
+          case Conditions::BoolEqual:
+            ct = '?';
+            break;
+          case Conditions::Equal:
+            ct = '=';
+            break;
+          case Conditions::NotEqual:
+            ct = '!';
+            break;
+          case Conditions::Greater:
+            ct = '>';
+            break;
+          case Conditions::Less:
+            ct = '<';
+            break;
+          }
+
+          file << "condition " <<
+            ParamName << ' ' << ct << ' ' << ConditionValue << std::endl;
+        }
+        file << "endTransition" << std::endl << std::endl;
+      }
+      file << "%endfile" << std::endl;
+      file.close();
+    }
+    else
+    {
+      DeltaEngine_CORE_WARN("Animator file \"{}\" failed to save!", m_Name.c_str());
+    }
+    DeltaEngine_CORE_TRACE( "Animator {} was loaded successfully", m_Name.c_str() );
   }
 }

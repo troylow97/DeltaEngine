@@ -4,13 +4,13 @@
 
 namespace DeltaEngine
 {
-  Sprite::Sprite()
-    : m_Key{""}, m_Index{0}
+  Sprite::Sprite(std::string textureName, unsigned int index)
+    : m_Key{textureName}, m_Index{index}
   {
   }
 
-  Sprite::Sprite(std::string textureName, unsigned int index)
-    : m_Key{textureName}, m_Index{index}
+  Sprite::Sprite(const Sprite& copy)
+    : m_Key{ copy.m_Key.c_str() }, m_Index{ copy.m_Index }
   {
   }
 
