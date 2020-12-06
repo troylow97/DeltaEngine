@@ -29,6 +29,9 @@ RTTR_REGISTRATION
     .property( "CurrentWaypoint", &Waypoint::CurrentWaypoint );
 
 rttr::registration::class_<EnemyData>( "EnemyData" )
+    .property("transform_scale", &EnemyData::TransformScale)
+    .property("collider_scale", &EnemyData::ColliderScale)
+    .property("collider_offset", &EnemyData::ColliderOffset)
     .property( "health", &EnemyData::Health )
     .property( "movespeed", &EnemyData::Movespeed )
     .property( "mass", &EnemyData::Mass )
@@ -43,7 +46,7 @@ rttr::registration::class_<FiddlerAIData>( "FiddlerAIData" )
     .property( "charge_detection_range", &FiddlerAIData::LostDetectionRange );
 
 rttr::registration::class_<SerpentipedeAIData>( "SerpentipedeAIData" )
-    .property( "cooldown", &SerpentipedeAIData::MaxCooldown )
+    .property( "cooldown", &SerpentipedeAIData::AttackCooldown )
     .property( "points", &SerpentipedeAIData::Points )
     .property( "detection_range", &SerpentipedeAIData::DetectionRange );
 
@@ -165,7 +168,8 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     (
       rttr::value("Screen", UIType::Screen),
       rttr::value("Interface", UIType::Interface),
-      rttr::value("Button", UIType::Button)
+      rttr::value("Button", UIType::Button),
+      rttr::value("Slider", UIType::Slider)
     );
 
   rttr::registration::class_<UI>( "UI" )
@@ -174,8 +178,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Function", &UI::functor_key )( rttr::policy::prop::bind_as_ptr )
     .property( "UI Type", &UI::ui_type )( rttr::policy::prop::bind_as_ptr )
     .property( "Screen", &UI::screen )( rttr::policy::prop::bind_as_ptr )
-    .property( "Target", &UI::target_screen )( rttr::policy::prop::bind_as_ptr )
-    .property("Overlay", &UI::overlay)( rttr::policy::prop::bind_as_ptr );
+    .property( "Target", &UI::target_screen)(rttr::policy::prop::bind_as_ptr)
+    .property( "Previous", &UI::previous_screen )( rttr::policy::prop::bind_as_ptr )
+    .property( "Overlay", &UI::overlay)( rttr::policy::prop::bind_as_ptr );
 
 
 
@@ -233,11 +238,13 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Intersection Point", &Collider::interPoint )( rttr::metadata( "NO_SERIALIZE", true ),
                                                    ( rttr::metadata( "NO_EDITOR", true ) ) )
     .property( "Type", &Collider::type )
-    .property( "Trigger", &Collider::isTrigger )( rttr::policy::prop::bind_as_ptr )
-    .property( "Colliding On Floor", &Collider::isCollidingOnFloor )( rttr::metadata( "NO_SERIALIZE", true ),
-                                                                      ( rttr::metadata( "NO_EDITOR", true ) ) )
     .property( "Collision Layer", &Collider::CollisionLayerCheck )( rttr::policy::prop::bind_as_ptr )
-      .property( "Collision Layer ID", &Collider::CollisionLayerID )( rttr::policy::prop::bind_as_ptr );
+      .property( "Collision Layer ID", &Collider::CollisionLayerID )( rttr::policy::prop::bind_as_ptr )
+
+      .property("Trigger", &Collider::isTrigger)(rttr::policy::prop::bind_as_ptr)
+      .property("Colliding On Floor", &Collider::isCollidingOnFloor)(rttr::metadata("NO_SERIALIZE", true),
+          (rttr::metadata("NO_EDITOR", true)))
+      .property("Platform", &Collider::isPlatform)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<Animator>( "Animator" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Animator>()->bits ) )
@@ -299,12 +306,12 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Previous", &Input::previousKey )
     .property( "Current", &Input::currentKey );
 
-    rttr::registration::class_<AI>( "AI" )
-      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<AI>()->bits ) )
-      .constructor<>()( rttr::policy::ctor::as_object )
-      .property( "Original Point", &AI::original_point )( rttr::policy::prop::bind_as_ptr )
-      .property( "AIState", &AI::key )( rttr::policy::prop::bind_as_ptr )
-      .property( "Transition", &AI::transition )( rttr::policy::prop::bind_as_ptr );
+    rttr::registration::class_<AI>("AI")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<AI>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Original Point", &AI::original_point)(rttr::policy::prop::bind_as_ptr)
+      .property("AIState", &AI::key)(rttr::policy::prop::bind_as_ptr)
+      .property("Transition", &AI::transition)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
   rttr::registration::class_<EntityType>( "Entity Type" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<EntityType>()->bits ) )
@@ -318,37 +325,49 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Max Health", &Health::MaxHealth )( rttr::policy::prop::bind_as_ptr )
     .property( "Invulnerable", &Health::isInvulnerable )( rttr::policy::prop::bind_as_ptr );
 
-    rttr::registration::class_<Attack>( "Attack" )
-        ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Attack>()->bits ) )
-        .constructor<>()( rttr::policy::ctor::as_object )
-        .property( "Range Damage", &Attack::RangedDamage )( rttr::policy::prop::bind_as_ptr )
-        .property( "Melee Damage", &Attack::MeleeDamage )( rttr::policy::prop::bind_as_ptr )
-        .property( "Melee Combo Damage", &Attack::MeleeComboDamage )( rttr::policy::prop::bind_as_ptr )
-        .property( "Number Of Combo", &Attack::NumberOfCombos )( rttr::policy::prop::bind_as_ptr )( rttr::metadata( "NO_SERIALIZE", true ) )
-        .property( "Max Combo Number", &Attack::MaxComboNumber )( rttr::policy::prop::bind_as_ptr )
-        .property( "Max Cooldown", &Attack::MaxCooldown )( rttr::policy::prop::bind_as_ptr )
-        .property( "Cooldown Timer", &Attack::CooldownTimer )( rttr::policy::prop::bind_as_ptr )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-        .property( "Combo Duration", &Attack::ComboDuration )( rttr::policy::prop::bind_as_ptr )
-        .property( "Combo Cooldown Timer", &Attack::ComboCooldownTimer )( rttr::policy::prop::bind_as_ptr )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-        .property( "Knockback Amount", &Attack::KnockbackAmount )( rttr::policy::prop::bind_as_ptr )
-        .property( "Knockback Combo Amount", &Attack::KnockbackComboAmount )( rttr::policy::prop::bind_as_ptr )
-        .property( "Ranged Attack", &Attack::RangeAttack )( rttr::policy::prop::bind_as_ptr )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-        .property( "Melee Attack", &Attack::MeleeAttack )( rttr::policy::prop::bind_as_ptr )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-        .property( "Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer )( rttr::policy::prop::bind_as_ptr );
+    rttr::registration::class_<Attack>("Attack")
+        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
+        .constructor<>()(rttr::policy::ctor::as_object)
+        .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
+        .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
+        .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
+        .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
+        .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
+        .property("Max Cooldown", &Attack::AttackCooldown)(rttr::policy::prop::bind_as_ptr)
+        .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
+        .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)
+        .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
+        .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Lifespan>( "Lifespan" )
       ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits ) )
       .constructor<>()( rttr::policy::ctor::as_object )
       .property( "Timer", &Lifespan::Timer )( rttr::policy::prop::bind_as_ptr );
 
-    rttr::registration::class_<Player>( "Player" )
-        ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Player>()->bits ) )
-        .constructor<>()( rttr::policy::ctor::as_object )
-        .property( "Respawn Point", &Player::RespawnPoint )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-        .property( "Is Dead", &Player::isDead )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-        .property( "Is Jumping", &Player::isJumping )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-        .property( "Is Dashing", &Player::isDashing )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
-}
+  rttr::registration::class_<Player>("Player")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Player>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Respawn Point", &Player::RespawnPoint)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Enemies Defeated", &Player::EnemiesDefeated)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgrade Points Per Enemy Defeated", &Player::UpgradePoints)(rttr::policy::prop::bind_as_ptr)
+      .property("Points Needed For Upgrade", &Player::PointsNeededForUpgrade)(rttr::policy::prop::bind_as_ptr)
+      .property("Attack Upgrade Increase", &Player::AttackUpgradeIncrease)(rttr::policy::prop::bind_as_ptr)
+      .property("Health Upgrade Attack", &Player::HealthUpgradeIncrease)(rttr::policy::prop::bind_as_ptr)
+      .property("Dashing Timer Duration", &Player::DashingTimerDuration)(rttr::policy::prop::bind_as_ptr)
+      .property("Dashing Timer Cooldown", &Player::DashingTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Jumping", &Player::IsJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Dashing", &Player::IsDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Start Dashing Timer", &Player::StartDashingTimer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Dashing", &Player::AllowDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgrade Attack", &Player::UpgradeAtk)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgrade Health", &Player::UpgradeHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+  }
 
 }
 

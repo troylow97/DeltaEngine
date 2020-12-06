@@ -582,20 +582,15 @@ namespace DeltaEngine
 
   bool CollisionIntersection_RectMouse(const Vector3 Center1, const Vector2 Size1, Point Center2)
   {
-    Vector2 TopLeft, TopRight, BotLeft, BotRight;
-    float HalfWidth = Size1.x / 2;
-    float HalfHeight = Size1.y / 2;
+    Vector2 TopLeft, TopRight, BotLeft;
+    const float HalfWidth = Size1.x / 2;
+    const float HalfHeight = Size1.y / 2;
     TopLeft.x = Center1.x - HalfWidth;
     TopLeft.y = Center1.y + HalfHeight;
 
     TopRight.x = Center1.x + HalfWidth;
-    TopRight.y = Center1.y + HalfHeight;
 
-    BotLeft.x = Center1.x - HalfWidth;
     BotLeft.y = Center1.y - HalfHeight;
-
-    BotRight.x = Center1.x + HalfWidth;
-    BotRight.y = Center1.y - HalfHeight;
 
     if (Center2.point_x < TopLeft.x) return false;
     if (Center2.point_x > TopRight.x) return false;

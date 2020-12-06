@@ -167,8 +167,9 @@ void PropertyInspectorPanel::Render()
               std::vector<std::string> tex_key_vec;
               tex_key_vec.push_back( " " );
               for ( auto &[key, data] : GetEnv().pManager->List<Texture2D>() )
-                for ( size_t i = 0; i < data->textureInfo.size(); i++ )
-                  tex_key_vec.push_back( key.Key() + '_' + std::to_string( i ) );
+                if ( data )
+                  for ( size_t i = 0; i < data->textureInfo.size(); i++ )
+                    tex_key_vec.push_back( key.Key() + '_' + std::to_string( i ) );
 
               auto &sprite = *value.get_value<Sprite *>();
               size_t selection = 0;
@@ -352,7 +353,7 @@ void PropertyInspectorPanel::Render()
              ref.meta->bits != ComponentMeta::GetComponentMeta<Parent>()->bits )
         {
           ImGui::SameLine();
-          ImGui::SetCursorPosX( ImGui::GetWindowContentRegionWidth() -15.0f);
+          ImGui::SetCursorPosX( ImGui::GetWindowContentRegionWidth() - 15.0f );
           Editor::font_awesome->Scale = 0.5f;
           ImGui::PushFont( Editor::font_awesome );
           ImGui::PushID( instance.get_type().get_name().to_string().c_str() );

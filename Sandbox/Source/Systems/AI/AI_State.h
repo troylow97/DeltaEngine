@@ -19,7 +19,7 @@ namespace DeltaEngine
   
   struct SerpentipedeAIData
   {
-      float MaxCooldown;
+      float AttackCooldown;
       Vector2 Points[3];
       Vector2 DetectionRange;
       SerpentipedeAIData();

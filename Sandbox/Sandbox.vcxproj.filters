@@ -57,6 +57,9 @@
     <ClInclude Include="Source\Systems\UnitManager.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\UpgradeSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
@@ -94,6 +97,9 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\UnitManager.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\UpgradeSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>

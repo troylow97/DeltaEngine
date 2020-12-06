@@ -51,9 +51,6 @@ namespace DeltaEngine
       {
           AITools::FlyTowardsPoint(monster, player_pos);
       }
-
-  	
-  	
   }
 	
 //////////////////////////////////////////////////////////////////////////////////	
@@ -212,7 +209,7 @@ namespace DeltaEngine
                   CurrentPoint = Random::RandomIntRange(0, 3);
                   AITools::FaceEntity(monster, player);
                   attack.RangeAttack = true;
-                  CooldownTimer = SerpentData.MaxCooldown;
+                  CooldownTimer = SerpentData.AttackCooldown;
               }
           }
           else
@@ -248,13 +245,13 @@ namespace DeltaEngine
   {}
 
   SerpentipedeAIData::SerpentipedeAIData() :
-      MaxCooldown{ 0.0f },
+      AttackCooldown{ 0.0f },
       Points{ Vector2::zero(),Vector2::zero(),Vector2::zero() },
       DetectionRange{ Vector2::zero() }
   {}
 
   SerpentipedeAIData::SerpentipedeAIData(SerpentipedeAIData& d) :
-      MaxCooldown{ d.MaxCooldown },
+      AttackCooldown{ d.AttackCooldown },
       Points{ d.Points[0],d.Points[1],d.Points[2] },
       DetectionRange{ d.DetectionRange }
   {}

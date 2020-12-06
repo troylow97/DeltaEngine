@@ -8,6 +8,25 @@ namespace DeltaEngine
 {
     void AttackSystem::Update()
     {
+        auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+    	
+        if (p.IsDashing)
+        {
+            p.StartDashingTimer = true;
+        }
+    	if(p.StartDashingTimer)
+    	{
+            p.DashingTimerCooldown -= env.pClock->DeltaTime();
+            p.AllowDashing = false;
+    	}
+        if (p.DashingTimerCooldown <= 0.0f)
+        {
+            p.StartDashingTimer = false;
+            p.DashingTimerCooldown = p.DashingTimerDuration;
+            p.AllowDashing = true;
+        }
+        Dash();
+
         em.ForEach([&](EntityID& id, Attack& a, Image& im)
         {
             if (a.CooldownTimer > 0)
@@ -15,14 +34,12 @@ namespace DeltaEngine
                 a.CooldownTimer -= env.pClock->DeltaTime();
             }
 
-            Dash();
-
             if (a.RangeAttack)
             {
                 if (a.CooldownTimer <= 0)
                 {
                     RangedAttackingEntities.push_back(id);
-                    a.CooldownTimer = a.MaxCooldown;
+                    a.CooldownTimer = a.AttackCooldown;
                 }
                 a.RangeAttack = false;
             }
@@ -37,7 +54,7 @@ namespace DeltaEngine
                 if (a.CooldownTimer <= 0)
                 {
                     MeleeAttackingEntities.push_back(id);
-                    a.CooldownTimer = a.MaxCooldown;
+                    a.CooldownTimer = a.AttackCooldown;
                 }
                 a.MeleeAttack = false;
             }
@@ -172,15 +189,15 @@ namespace DeltaEngine
     void AttackSystem::Dash()
     {
         em.ForEach([&](EntityID& id1, Transform& t1, EntityType et1)
+        {
+            if (et1.type == EntityCategory::E_PLAYER_DASH)
             {
-                if (et1.type == EntityCategory::E_PLAYER_DASH)
-                {
-                    if (env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(UnitManager::GetPlayerID()).isCollidingOnFloor)
-                        t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
-                    else
-                        env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
-                }
-            });
+                if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).IsDashing)
+                    t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
+                else
+                    env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
+            }
+        });
     }
 
     EntityID AttackSystem::CreateProjectile(EntityID id,Vector2 scale,bool gravity,float Lifetime,EntityCategory type)
