@@ -1,47 +1,7 @@
 Textures/Lancer Bounce Spritesheet_i_0
 offset 0 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/Lancer Bounce Spritesheet_i_1
-offset 300 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/Lancer Bounce Spritesheet_i_2
-offset 600 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/Lancer Bounce Spritesheet_i_3
-offset 900 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/Lancer Bounce Spritesheet_i_4
-offset 1200 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/Lancer Bounce Spritesheet_i_5
-offset 1500 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/Lancer Bounce Spritesheet_i_6
-offset 1800 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/Lancer Bounce Spritesheet_i_7
-offset 2100 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/Lancer Bounce Spritesheet_i_8
-offset 2400 0
-size 300 300
-pivot 0.5 0.5
+size 0 0
+pivot 0 0
 
 %
 

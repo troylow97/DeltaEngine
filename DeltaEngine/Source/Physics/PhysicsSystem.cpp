@@ -11,10 +11,10 @@ namespace DeltaEngine
     {
         m_gravity_amount = { 0,-60.0f };
         CurrentJumpTicks = 0;
-        MaxJumpTicks = 10;
+        MaxJumpTicks = 7;
         CurrentDashTicks = 0;
         MaxDashTicks = 8;
-        InitialJumpForce = 4500.0f;
+        InitialJumpForce = 2600.0f;
         JumpForce = InitialJumpForce;
     }
 

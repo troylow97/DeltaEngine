@@ -153,17 +153,17 @@ namespace DeltaEngine
         {
         	if(em.GetComponent<RigidBody>(id).hasGravity == false)
         	{
-                EntityID missile = CreateProjectile(id, Vector2{ 0.3,0.3 }, false, 0.1f, EntityCategory::E_ENEMY_LANCER_PUNCH);
+                EntityID missile = CreateProjectile(id, Vector2{ 0.1f,0.1f }, false, 0.1f, EntityCategory::E_ENEMY_LANCER_PUNCH);
                 const Vector2 player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                 const Vector2 monster_pos = em.GetComponent<Transform>(id).position;
                 Vector2 kb = (player_pos - em.GetComponent<Transform>(id).position);
 
                 em.GetComponent<Transform>(missile).position = monster_pos + kb.Normalize() * 0.5f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 500.0f;
+                em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 300.0f;
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
 
         		//Apply knockback to lancer
-                em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 4000.0f;
+                em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 3000.0f;
         		
         	}
             else

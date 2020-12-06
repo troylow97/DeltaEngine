@@ -98,8 +98,8 @@ namespace DeltaEngine
     EntityID player = UnitManager::GetPlayerID();
     const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
 
-    AITools::FlyTowardsPoint(monster, Vector2{ player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.2,0.8) });
-    if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+    AITools::FlyTowardsPoint(monster, Vector2{ player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(-0.2,0.4) });
+    if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.3f && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
     {
         AITools::FaceEntity(monster, player);
         env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
