@@ -72,14 +72,14 @@ void AudioPanel::Render()
       ImGui::Separator();
       for ( auto &ref : config.sounds_config )
       {
-        if ( c_selection != ref.path)
+        if ( c_selection != ref.path )
           ImGui::GetStateStorage()->SetInt( ImGui::GetID( ref.path.c_str() ), 0 );
 
         ImGui::BeginGroup();
-        if ( ImGui::CollapsingHeader( ref.path.c_str() ) )
+        if ( ImGui::CollapsingHeader( ref.path.c_str(), ImGuiTreeNodeFlags_AllowItemOverlap ) )
         {
           c_selection = ref.path;
-          ImGui::Dummy(ImVec2(0.0f, 10.0f));
+          ImGui::Dummy( ImVec2( 0.0f, 10.0f ) );
 
           if ( FileUtils::FileExists( ref.path ) )
           {
@@ -107,19 +107,19 @@ void AudioPanel::Render()
             unsigned e_pos_sec = ( e_pos % 60000 ) / 1000;
             auto t_size = ImGui::CalcTextSize( "00:00 / 00:00" );
 
-            if ( AudioEngine::IsChannelPlaying( c_id ) && c_sound == ref.path)
+            if ( AudioEngine::IsChannelPlaying( c_id ) && c_sound == ref.path )
             {
               unsigned c_pos = AudioEngine::GetChannelPlaybackPosition( c_id );
               unsigned c_pos_min = c_pos / 60000;
               unsigned c_pos_sec = ( c_pos % 60000 ) / 1000;
               float frac = (float) c_pos / (float) e_pos;
-              ImGui::ProgressBar( frac, { ImGui::GetContentRegionAvailWidth()-t_size.x,0 } );
+              ImGui::ProgressBar( frac, { ImGui::GetContentRegionAvailWidth() - t_size.x,0 } );
               ImGui::SameLine();
               ImGui::Text( "%d:%02d / %d:%02d", c_pos_min, c_pos_sec, e_pos_min, e_pos_sec );
             }
             else
             {
-              ImGui::ProgressBar( 0, { ImGui::GetContentRegionAvailWidth()-t_size.x,0 } );
+              ImGui::ProgressBar( 0, { ImGui::GetContentRegionAvailWidth() - t_size.x,0 } );
               ImGui::SameLine();
               ImGui::Text( "%d:%02d / %d:%02d", 0, 0, e_pos_min, e_pos_sec );
             }
@@ -133,18 +133,42 @@ void AudioPanel::Render()
           }
           else
             ImGui::Text( "FILE - %s CANNOT BE FOUND", ref.path.c_str() );
-          ImGui::Dummy(ImVec2(0.0f, 20.0f));
+          ImGui::Dummy( ImVec2( 0.0f, 20.0f ) );
         }
         ImGui::EndGroup();
 
-        if(ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceNoDisableHover |
-            ImGuiDragDropFlags_SourceAllowNullID))
+        ImGui::SameLine();
+        ImGui::SetCursorPosX( ImGui::GetWindowContentRegionWidth() - 30.0f );
+        const float original = Editor::font_awesome->Scale;
+        Editor::font_awesome->Scale = 0.5f;
+        ImGui::PushFont( Editor::font_awesome );
+        ImGui::PushID( ( "Close" + ref.path ).c_str() );
+        if ( ImGui::Button( ICON_FA_TIMES, { 30.0f,26.0f } ) )
+        {
+          config.sounds_config.erase( std::find_if( config.sounds_config.begin(),
+                                      config.sounds_config.end(),
+                                      [&]( const SoundConfig &lhs )
+          {
+            return lhs.path == ref.path;
+          } ) );
+          ImGui::PopID();
+          ImGui::PopFont();
+          Editor::font_awesome->Scale = original;
+          break;
+        }
+        ImGui::PopID();
+        ImGui::PopFont();
+        Editor::font_awesome->Scale = original;
+
+
+        if ( ImGui::BeginDragDropSource( ImGuiDragDropFlags_SourceNoDisableHover |
+             ImGuiDragDropFlags_SourceAllowNullID ) )
         {
           ImGui::SetDragDropPayload( "Sound File", &c_selection, sizeof( std::string ) );
           ImGui::Text( c_selection.c_str() );
           ImGui::EndDragDropSource();
         }
-      } 
+      }
     }
     ImGui::EndChild();
     if ( ImGui::BeginDragDropTarget() )
@@ -153,8 +177,8 @@ void AudioPanel::Render()
       {
         std::string file = *static_cast<std::string *>( payload->Data );
         std::filesystem::path p { file };
-        if ( p.extension() == ".wav" || 
-             p.extension() == ".ogg" || 
+        if ( p.extension() == ".wav" ||
+             p.extension() == ".ogg" ||
              p.extension() == ".mp3" )
           config.sounds_config.push_back( { file } );
       }
@@ -171,9 +195,10 @@ void AudioPanel::Render()
       ImGui::Separator();
       for ( auto &ref : config.banks_config )
       {
-        if ( e_bank_selection != ref.path)
+        if ( e_bank_selection != ref.path )
           ImGui::GetStateStorage()->SetInt( ImGui::GetID( ref.path.c_str() ), 0 );
-        if ( ImGui::CollapsingHeader( ref.path.c_str() ) )
+        ImGui::BeginGroup();
+        if ( ImGui::CollapsingHeader( ref.path.c_str(), ImGuiTreeNodeFlags_AllowItemOverlap  ) )
         {
           e_bank_selection = ref.path;
           if ( FileUtils::FileExists( ref.path ) )
@@ -182,14 +207,14 @@ void AudioPanel::Render()
               AudioEngine::LoadBank( ref.path, AUDIOENGINE_LOAD_BANK_NORMAL );
             for ( auto a_event : AudioEngine::EventList( ref.path ) )
             {
-              if ( e_selection != a_event)
+              if ( e_selection != a_event )
                 ImGui::GetStateStorage()->SetInt( ImGui::GetID( a_event.c_str() ), 0 );
               if ( ImGui::TreeNodeEx( a_event.c_str() ) )
               {
                 e_selection = a_event;
 
-                if(ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceNoDisableHover |
-                    ImGuiDragDropFlags_SourceAllowNullID))
+                if ( ImGui::BeginDragDropSource( ImGuiDragDropFlags_SourceNoDisableHover |
+                     ImGuiDragDropFlags_SourceAllowNullID ) )
                 {
                   ImGui::SetDragDropPayload( "Sound Event", &e_selection, sizeof( std::string ) );
                   ImGui::Text( e_selection.c_str() );
@@ -218,6 +243,29 @@ void AudioPanel::Render()
           else
             ImGui::Text( "FILE - %s CANNOT BE FOUND", ref.path.c_str() );
         }
+        ImGui::EndGroup();
+        ImGui::SameLine();
+        ImGui::SetCursorPosX( ImGui::GetWindowContentRegionWidth() - 30.0f );
+        const float original = Editor::font_awesome->Scale;
+        Editor::font_awesome->Scale = 0.5f;
+        ImGui::PushFont( Editor::font_awesome );
+        ImGui::PushID( ( "Close" + ref.path ).c_str() );
+        if ( ImGui::Button( ICON_FA_TIMES, { 30.0f,26.0f } ) )
+        {
+          config.banks_config.erase( std::find_if( config.banks_config.begin(),
+                                      config.banks_config.end(),
+                                      [&]( const BankConfig &lhs )
+          {
+            return lhs.path == ref.path;
+          } ) );
+          ImGui::PopID();
+          ImGui::PopFont();
+          Editor::font_awesome->Scale = original;
+          break;
+        }
+        ImGui::PopID();
+        ImGui::PopFont();
+        Editor::font_awesome->Scale = original;
       }
     }
     ImGui::EndChild();

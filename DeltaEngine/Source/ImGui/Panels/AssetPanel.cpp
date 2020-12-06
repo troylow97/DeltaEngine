@@ -171,9 +171,9 @@ void AssetPanel::Render()
                 if ( ImGui::IsItemClicked() )
                   if ( ImGui::IsMouseDoubleClicked( 0 ) )
                   {
-                    m_editor.m_panels[0]->Enable();
-                    if ( !m_editor.m_panels[0]->IsEnabled() )
-                      m_editor.m_panels[0]->Enable();
+                    m_editor.m_panels[10]->Enable();
+                    if ( !m_editor.m_panels[10]->IsEnabled() )
+                      m_editor.m_panels[10]->Enable();
 
                     auto key = str.substr( 0, str.find_last_of( '.' ) );
                     m_editor.textureKey.assign( key );
