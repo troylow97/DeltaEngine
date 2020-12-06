@@ -13,8 +13,9 @@ namespace DeltaEngine
     std::string m_Key;
 #pragma warning(default:4251)
     unsigned int m_Index;
-    Sprite();
     Sprite(std::string textureName = "", unsigned int index = 0);
+    Sprite(const Sprite&);
+    ~Sprite() = default;
     Sprite& operator=(const Sprite&);
     operator bool() const;
     unsigned int GetWidth() const;

@@ -3,96 +3,143 @@ entry Clip/IdleSpritesheet
 %Parameters:
 
 param
-Speed 0 0.0
+Speed 0 0
 
 param
-IsIdle 0 0.0
+IsJumping 0 0
 
 param
-IsRunning 0 0.0
+Punch 0 0
 
 param
-Punch 0 0.0
+IsIdle 0 0
 
 param
-Ranged 0 0.0
+IsRunning 0 0
 
 param
-PlayerVelocityY 0 0.0
+Ranged 0 0
 
 param
-IsJumping 0 0.0
+PlayerVelocityY 0 0
+
+%EditorPositions:
+
+pos
+Entry 22 6
+
+pos
+Exit 485 283
+
+pos
+Clip/IdleSpritesheet -56 98
+
+pos
+Clip/RunningSpritesheet 62 282
+
+pos
+Clip/RangeAttackSpritesheet 118 -60
+
+pos
+Clip/3-PunchSpritesheet 223 171
+
+pos
+Clip/LeapingSpritesheet 402 -60
+
+pos
+Clip/FallingSpritesheet 300 41
+
+pos
+Clip/StretchSpritesheet 409 100
 
 %Transitions:
 
+transition 
 start Clip/IdleSpritesheet
 end Clip/RunningSpritesheet
 condition IsRunning ? 1
+endTransition
 
-%
-
+transition 
 start Clip/RunningSpritesheet
 end Clip/IdleSpritesheet
 condition IsRunning ? 0
+endTransition
 
-%
-
+transition 
 start Clip/IdleSpritesheet
 end Clip/RangeAttackSpritesheet
 condition Ranged ? 1
+endTransition
 
-%
-
+transition 
 start Clip/RangeAttackSpritesheet
 end Clip/IdleSpritesheet
 condition Ranged ? 0
+endTransition
 
-%
-
+transition 
 start Clip/IdleSpritesheet
 end Clip/3-PunchSpritesheet
 condition Punch ? 1
+endTransition
 
-%
-
+transition 
 start Clip/3-PunchSpritesheet
 end Clip/IdleSpritesheet
 condition Punch ? 0
+endTransition
 
-%
-
+transition 
 start Clip/IdleSpritesheet
 end Clip/LeapingSpritesheet
 condition PlayerVelocityY > 0
+endTransition
 
-%
-
+transition 
 start Clip/LeapingSpritesheet
 end Clip/FallingSpritesheet
 condition PlayerVelocityY < 0
+endTransition
 
-%
-
+transition 
 start Clip/FallingSpritesheet
 end Clip/IdleSpritesheet
 condition PlayerVelocityY = 0
+endTransition
 
-%
-
+transition 
 start Clip/IdleSpritesheet
 end Clip/StretchSpritesheet
 condition IsIdle > 8
+endTransition
 
-%
-
+transition 
 start Clip/StretchSpritesheet
 end Clip/RunningSpritesheet
 condition IsRunning ? 1
+endTransition
 
-%
-
+transition 
 start Clip/StretchSpritesheet
 end Clip/IdleSpritesheet
 condition IsIdle < 8
+endTransition
 
-%
+transition 
+start Clip/RunningSpritesheet
+end Clip/RangeAttackSpritesheet
+endTransition
+
+transition 
+start Clip/RunningSpritesheet
+end Clip/3-PunchSpritesheet
+condition Speed ? 0
+endTransition
+
+transition 
+start Clip/StretchSpritesheet
+end Exit
+endTransition
+
+%endfile

@@ -1,17 +1,25 @@
+frames 4
+fps 12
+loop 1
+
 LeapingSpritesheet_i_0
 key Textures/LeapingSpritesheet
+value 0
 value 0
 
 LeapingSpritesheet_i_1
 key Textures/LeapingSpritesheet
 value 1
+value 1
 
 LeapingSpritesheet_i_2
 key Textures/LeapingSpritesheet
 value 2
+value 2
 
 LeapingSpritesheet_i_3
 key Textures/LeapingSpritesheet
+value 3
 value 3
 
 

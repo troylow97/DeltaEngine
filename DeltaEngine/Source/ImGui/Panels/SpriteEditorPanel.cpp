@@ -11,16 +11,6 @@
 namespace DeltaEngine
 {
 
-enum class MoveDir{None, Left, Right, Up, Down};
-static int selectedInfoID { -1 };
-static int infoID { -1 };
-static bool loaded { false };
-static ImVec2 initialPos { 0.f,0.f };
-static ImVec2 previousPos { 0.f, 0.f };
-static ImVec2 spritePropsPos { 0.f, 0.f };
-static bool hoveringSpriteProps{ false };
-static bool draggingSpriteProps{ false };
-static MoveDir moveDir { MoveDir::None };
 
 SpriteEditorPanel::SpriteEditorPanel( std::string str )
   : IPanel( str )
@@ -37,6 +27,17 @@ SpriteEditorPanel::~SpriteEditorPanel()
 
 void SpriteEditorPanel::Render()
 {
+  enum class MoveDir { None, Left, Right, Up, Down };
+  static int selectedInfoID{ -1 };
+  static int infoID{ -1 };
+  static bool loaded{ false };
+  static ImVec2 initialPos{ 0.f,0.f };
+  static ImVec2 previousPos{ 0.f, 0.f };
+  static ImVec2 spritePropsPos{ 0.f, 0.f };
+  static bool hoveringSpriteProps{ false };
+  static bool draggingSpriteProps{ false };
+  static MoveDir moveDir{ MoveDir::None };
+
   if ( ImGui::Begin( m_name.c_str(), &m_enabled,
     ImGuiWindowFlags_MenuBar |
     ImGuiWindowFlags_NoNavInputs | 
@@ -62,7 +63,7 @@ void SpriteEditorPanel::Render()
         ImVec2 d = { initialPos.x - previousPos.x, initialPos.y - previousPos.y };
         switch (moveDir)
         {
-        case DeltaEngine::MoveDir::Left:
+        case MoveDir::Left:
           info[infoID].offset.x += d.x;
           info[infoID].size.x -= d.x;
           if (info[infoID].offset.x < 0)
@@ -70,10 +71,10 @@ void SpriteEditorPanel::Render()
           if (info[infoID].size.x < 1)
             info[infoID].offset.x += info[infoID].size.x - 1;
           break;
-        case DeltaEngine::MoveDir::Right:
+        case MoveDir::Right:
           info[infoID].size.x += d.x;
           break;
-        case DeltaEngine::MoveDir::Up:
+        case MoveDir::Up:
           info[infoID].offset.y += d.y;
           info[infoID].size.y -= d.y;
           if (info[infoID].offset.y < 0)
@@ -81,7 +82,7 @@ void SpriteEditorPanel::Render()
           if (info[infoID].size.y < 1)
             info[infoID].offset.y += info[infoID].size.y - 1;
           break;
-        case DeltaEngine::MoveDir::Down:
+        case MoveDir::Down:
           info[infoID].size.y += d.y;
           break;
         }
@@ -102,7 +103,6 @@ void SpriteEditorPanel::Render()
       moveDir = MoveDir::None;
     }
 
-
     ImGui::InputText( "Texture Name", textureName, 128 );
     if ( ImGui::BeginDragDropTarget() )
     {
@@ -122,6 +122,7 @@ void SpriteEditorPanel::Render()
         assetpayload_n.erase( 0, pos );
         strcpy_s( textureName, assetpayload_n.c_str() );
         loaded = false;
+        texture = GetEnv().pManager->Get<Texture2D>(std::string(textureName));
       }
       ImGui::EndDragDropTarget();
     }
@@ -151,7 +152,7 @@ void SpriteEditorPanel::Render()
             ImGui::DragInt2( "Row and Column", cr, 0.25f, 1, 128 );
             ImGui::DragFloat2( "Pivot", pivot, 0.01f, 0.0f, 1.0f );
             if ( ImGui::Button( "Auto Slice" ) )
-              info = texture->SliceAll( cr[0], cr[1], Vector2( pivot[0], pivot[1] ) );
+              info = texture->SliceAll(cr[0], cr[1], Vector2(pivot[0], pivot[1]));
           }
           ImGui::EndMenu();
         }
@@ -163,14 +164,20 @@ void SpriteEditorPanel::Render()
             texture->UpdateWrapMode(int(texture->wrapMode));
           ImGui::EndMenu();
         }
+        if (ImGui::BeginMenu("Create Clip"))
+        {
+          static bool loop = true;
+          static int fps = 12;
+          ImGui::Checkbox("Loop", &loop);
+          ImGui::DragInt("FPS", &fps, 0.01f, 1, 200);
+          if (ImGui::Button("Apply Changes and Create Clip"))
+            AnimationClip::CreateNew(texture->GetName(), texture->GetName() + ".clip", fps, loop);
+          ImGui::EndMenu();
+        }
         if ( ImGui::Button( "Apply Changes" ) )
-        {
           texture->Slice(info);
-        }
         if ( ImGui::Button( "Revert Changes" ) )
-        {
           loaded = false;
-        }
       }
       ImGui::EndMenuBar();
     }
@@ -183,17 +190,25 @@ void SpriteEditorPanel::Render()
 
       ImGui::SetCursorScreenPos(p);
 
-      if ( ImGui::BeginChild( "Texture Editing" ), ImGuiWindowFlags_HorizontalScrollbar )
+      if ( ImGui::BeginChild( "Texture Editing" ), ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoMove )
       {
         static float zoom = 1.0f;
         if ( ImGui::IsWindowHovered() )
           if ( ImGui::IsKeyDown( DEVK_LCTRL ) )
             zoom += 0.02f * ImGui::GetIO().MouseWheel;
 
+        if (selectedInfoID >= 0)
+          if (ImGui::IsKeyPressed(DEVK_DELETE))
+          {
+            info.erase(info.begin() + selectedInfoID);
+            selectedInfoID = -1;
+          }
+
         ImGui::Image(
           reinterpret_cast<void *>( textureID ),
           ImVec2 { texture->GetWidth() * zoom, texture->GetHeight() * zoom },
           ImVec2 { 0, 0 }, ImVec2 { 1, 1 }, ImVec4 { 1, 1, 1, 1 }, ImVec4 { 1, 1, 1, 1 } );
+
         float scrollY = ImGui::GetScrollY();
         if ( !loaded )
         {
@@ -245,7 +260,7 @@ void SpriteEditorPanel::Render()
           if (selectedInfoID == i)
           {
             ImGui::GetWindowDrawList()->AddRectFilled(min, max, IM_COL32(0, 255, 0, 34));
-            ImGui::GetWindowDrawList()->AddRect(min, max, IM_COL32(0, 255, 0, 34));
+            ImGui::GetWindowDrawList()->AddRect(min, max, IM_COL32(0, 255, 0, 255));
             ImGui::GetWindowDrawList()->AddCircle(piv, 5.f, IM_COL32(0, 255, 255, 51), 0, 2.0f);
 
             //left
@@ -294,7 +309,7 @@ void SpriteEditorPanel::Render()
           }
           else
           {
-            if (ImGui::IsKeyDown(DEVK_LCTRL))
+            if (ImGui::IsWindowHovered() && ImGui::IsKeyDown(DEVK_LCTRL))
             {
               ImGui::GetWindowDrawList()->AddRectFilled(min, max, IM_COL32(0, 255, 0, 17));
               ImGui::GetWindowDrawList()->AddRect(min, max, IM_COL32(0, 255, 0, 255));
@@ -305,7 +320,6 @@ void SpriteEditorPanel::Render()
             ImGui::GetWindowDrawList()->AddCircle(piv, 5.f, IM_COL32(0, 255, 255, 17), 0, 2.0f);
           }
 
-
           ++i;
         }
         ImGui::SetItemAllowOverlap();
@@ -313,6 +327,7 @@ void SpriteEditorPanel::Render()
         {
           p = ImVec2{ p.x + spritePropsPos.x, p.y + spritePropsPos.y };
           ImGui::SetCursorScreenPos(p);
+          ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(51, 51, 51, 255));
           if (ImGui::BeginChild("Sprite Properties", ImVec2(300, 160), true))
           {
             static bool denyDrag = true;
@@ -361,15 +376,17 @@ void SpriteEditorPanel::Render()
             info[selectedInfoID].pivot.y = Math::Clamp01(info[selectedInfoID].pivot.y);
 
             draggingSpriteProps = !denyDrag;
+            if (ImGui::IsMouseReleased(0))
+              denyDrag = true;
           }
           ImGui::EndChild();
+          ImGui::PopStyleColor();
         }
       }
       ImGui::EndChild();
-
     }
+    ImGui::End();
   }
-  ImGui::End();
 }
 
 }

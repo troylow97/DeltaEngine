@@ -33,13 +33,44 @@ namespace DeltaEngine
             {
               newClip = GetEnv().pManager->Get<AnimationClip>(a.m_ClipKey);
 
-              a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
-              while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
-                a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
+              if (newClip->looping)
+              {
+                a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+                while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+                  a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
+              }
+              else
+              {
+                if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+                  a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+              }
             }
             a.Update(newClip);
-            i.m_Sprite = newClip->GetSprite(a.GetFrame());
+
+            Sprite newSprite = newClip->GetSprite(a.GetFrame());
+            if (newSprite)
+              i.m_Sprite = newSprite;
           }
+        }
+        else if (!a.m_ClipKey.empty())
+        {
+          newClip = GetEnv().pManager->Get<AnimationClip>(a.m_ClipKey);
+          if (newClip->looping)
+          {
+            a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+            while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+              a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
+          }
+          else
+          {
+            if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+              a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+          }
+          a.Update(newClip);
+
+          Sprite newSprite = newClip->GetSprite(a.GetFrame());
+          if (newSprite)
+            i.m_Sprite = newSprite;
         }
       });
     Profiler::Instance().Record("Animation System");
