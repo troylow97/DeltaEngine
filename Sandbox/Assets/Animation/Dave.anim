@@ -41,33 +41,32 @@ pos
 Entry 3 4
 
 pos
-Exit 709 230
+Exit 351 360
 
 pos
-Clip/IdleSpritesheet -19 156
+Clip/IdleSpritesheet 31 133
 
 pos
-Clip/RunningSpritesheet 362 162
+Clip/RunningSpritesheet 439 145
 
 pos
-Clip/RangeAttackSpritesheet 144 383
+Clip/RangeAttackSpritesheet -54 299
 
 pos
-Clip/3-PunchSpritesheet 677 349
+Clip/3-PunchSpritesheet 380 271
 
 pos
-Clip/LeapingSpritesheet 504 27
+Clip/LeapingSpritesheet 449 64
 
 pos
-Clip/FallingSpritesheet 186 11
+Clip/FallingSpritesheet 157 20
 
 %Transitions:
 
 transition 
 start Clip/IdleSpritesheet
 end Clip/RunningSpritesheet
-condition IsRunning ? 9
-condition Speed ? 9
+condition IsRunning ? 1
 endTransition
 
 transition 

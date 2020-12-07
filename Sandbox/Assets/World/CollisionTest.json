@@ -12,8 +12,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.2371906042099,
-                    "y": -0.0005161259323358536,
+                    "x": 8.15246295928955,
+                    "y": -0.0005161240696907043,
                     "z": 0.0
                 },
                 "Scale": {
@@ -324,8 +324,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.2371906042099,
-                    "y": -0.0005161259323358536,
+                    "x": 8.15246295928955,
+                    "y": -0.0005161240696907043,
                     "z": 0.0
                 },
                 "Scale": {
@@ -353,8 +353,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 1.2371906042099,
-                    "y": -0.0005161259323358536
+                    "x": 8.15246295928955,
+                    "y": -0.0005161240696907043
                 },
                 "Offset": {
                     "x": 0.0,
@@ -392,7 +392,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": true,
+                "Flip X": false,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -413,7 +413,7 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 66,
+                "Current Health": 31,
                 "Max Health": 200,
                 "Invulnerable": false
             },
@@ -424,7 +424,7 @@
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": -0.004710759036242962,
+                "Cooldown Timer": -0.016666656360030175,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 1.5,
                 "Knockback Amount": 0.0,
@@ -441,7 +441,7 @@
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
-                "Previous": 65,
+                "Previous": 68,
                 "Current": 0
             }
         },
@@ -453,11 +453,11 @@
                 "Name": ""
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "enemy"
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
+                    "x": 2.903177261352539,
                     "y": 0.0,
                     "z": 0.0
                 },
@@ -486,7 +486,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
+                    "x": 2.903177261352539,
                     "y": 0.0
                 },
                 "Offset": {
@@ -564,7 +564,7 @@
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": 0.0,
+                "Cooldown Timer": -0.016666656360030175,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,

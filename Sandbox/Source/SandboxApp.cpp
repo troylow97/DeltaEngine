@@ -23,7 +23,7 @@ public:
     JsonFile file;
     //env.pECS->GetWorld().Load("World/MainLevelV2.json");
     env.pECS->GetWorld().Load("World/MainMenu.json");
-  	
+
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
     env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, UISystem, UpgradeSystem>();
     env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, UpgradeSystem>();
@@ -32,7 +32,6 @@ public:
     CollisionHandlerFunctions::Initialise();
 
     AudioEngine::Play("Audio/MainMenu/main_menu_bgm.wav");
-
 
   }
 

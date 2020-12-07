@@ -99,7 +99,7 @@ namespace DeltaEngine
         {
             EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
             EntityID missile2 = CreateProjectile(id, Vector2{ 1.7f,1.7f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
-            static size_t c_id{ 0 };
+            static size_t c_id{ u64_max };
             if (AudioEngine::IsChannelPlaying(c_id))
                 AudioEngine::StopChannel(c_id);
             c_id  = AudioEngine::Play("Audio/jump.wav");
@@ -141,7 +141,7 @@ namespace DeltaEngine
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(id))
         {
             EntityID missile = CreateProjectile(id, Vector2{ 0.7f,0.5f }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
-            static size_t c_id{ 0 };
+            static size_t c_id{ u64_max };
             if (AudioEngine::IsChannelPlaying(c_id))
                 AudioEngine::StopChannel(c_id);
             c_id = AudioEngine::Play("Audio/jump.wav");
