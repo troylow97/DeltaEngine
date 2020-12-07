@@ -194,10 +194,10 @@ namespace DeltaEngine
         }
       }
       file.close();
-      //for (auto& [s,e,c] : transitions)
-      //{
-      //  std::cerr << s << "->" << e << std::endl;
-      //}
+      for (auto& [s,e,c] : transitions)
+      {
+        std::cerr << s << "->" << e << std::endl;
+      }
     }
     else
     {
@@ -247,7 +247,8 @@ namespace DeltaEngine
     if (file.is_open())
     {
       file << "%Entry:" << std::endl << std::endl;
-      file << "entry " << std::endl << entryAnimation << std::endl << std::endl;
+      if (!entryAnimation.empty())
+        file << "entry " << std::endl << entryAnimation << std::endl << std::endl;
       file << "%Parameters:" << std::endl << std::endl;
       for (auto& [ParamName, Value] : newParameters)
         file << "param" << std::endl
