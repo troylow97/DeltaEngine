@@ -346,9 +346,9 @@ void UISystem::Update()
 
   if ( m_start )
     Start();
-  else if ( m_restart )
+  if ( m_restart )
     Restart();
-  else if (m_backmenu)
+  if ( m_backmenu )
     BackToMenu();
 }
 

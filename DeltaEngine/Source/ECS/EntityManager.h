@@ -75,8 +75,8 @@ namespace DeltaEngine
 
     const Archetype* GetEntityArchetype(size_t id);
 
-  private:
     bool IsEntityValid(EntityID id);
+  private:
 
     EntityID AllocateEntity();
 
