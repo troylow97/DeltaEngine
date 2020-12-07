@@ -43,9 +43,9 @@ const unsigned quit_no = 25; // credits default - 4
 
 void UISystem::Initialize()
 {
-  m_screen.push_back(main_screen);
-  is_main_menu = true;
-  // m_screen.push_back(level1_screen);
+  //m_screen.push_back(main_screen);
+  //is_main_menu = true;
+  m_screen.push_back(level1_screen);
   em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
   {
     if (ui.ui_type == UIType::Slider)
@@ -172,7 +172,7 @@ void UISystem::Update()
     bool paused{ false };
     for (auto& screen : m_screen)
     {
-        if (screen == pause_screen || screen == control_screen || screen == option_screen || screen == gameover_screen || screen == upgrade_page)
+        if (screen == pause_screen || screen == control_screen || screen == option_screen || screen == gameover_screen || screen == upgrade_page || screen == quit_confirmation)
         {
             paused = true;
             break;
@@ -421,9 +421,11 @@ void UISystem::BackToMainMenu()
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainMenu.json");
+  env.pClock->TimeScale(1.0f);
   is_main_menu = true;
   m_screen.clear();
   m_screen.push_back(main_screen);
+  m_start = false;
 }
 
 void UISystem::PauseGame()
