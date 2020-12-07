@@ -228,7 +228,7 @@ namespace DeltaEngine
     EntityID AttackSystem::CreateProjectile(EntityID id,Vector2 scale,bool gravity,float Lifetime,EntityCategory type)
     {
         Transform& t1 = em.GetComponent<Transform>(id);
-        EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+        EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, EntityType, Health>();
         em.GetComponent<Transform>(missile).position = t1.position;
         em.GetComponent<RigidBody>(missile).Mass = 5.0f;
         em.GetComponent<Transform>(missile).scale = scale;
@@ -242,5 +242,6 @@ namespace DeltaEngine
         em.GetComponent<Health>(missile).CurrentHealth = 1;
         return missile;
     }
+
 	
 } //Namespace DeltaEngine
