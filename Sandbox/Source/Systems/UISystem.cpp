@@ -254,10 +254,16 @@ void UISystem::LateUpdate()
           if (screen == 13)
           {
             auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-            if (p.UpgradedAtk)
-               m_screen.push_back(upgraded_attack_only_page);
-            if (p.UpgradedHP)
+            if (p.UpgradedAtk && upgraded_Attack_not_pushed)
+            { 
+              m_screen.push_back(upgraded_attack_only_page);
+              upgraded_Attack_not_pushed = false;
+            }
+            if (p.UpgradedHP && upgraded_HP_not_pushed)
+            { 
               m_screen.push_back(upgraded_health_only_page);
+              upgraded_HP_not_pushed = false;
+            }
           }
           //
         }
@@ -274,14 +280,12 @@ void UISystem::UpgradeDamageButton()
 {
   auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
   player.UpgradeAtk = true;
-  std::cout << "increasing attack" << std::endl;
 }
 
 void UISystem::UpgradeHPButton()
 {
   auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
   player.UpgradeHP = true;
-  std::cout << "increasing HP" << std::endl;
 }
 
 void UISystem::StartGame()

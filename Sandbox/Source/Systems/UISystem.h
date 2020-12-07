@@ -18,6 +18,8 @@ namespace DeltaEngine
 private:
   bool isDraggingOnSlider;
   bool UI_first_time = true;
+  bool upgraded_HP_not_pushed = true;
+  bool upgraded_Attack_not_pushed = true;
   Vector2 VolumeSliderInitialLocation;
   Vector3 PlayerFirstPosition;
   Vector3 PlayerCurrentPosition;
