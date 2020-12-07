@@ -197,16 +197,16 @@ void InputSystem::Update()
     } );
   }
 
-  if (InputManager::Instance().IsKeyTriggered(DEVK_COMMA))
-  {
-    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-    p.UpgradeAtk = true;
-  }
-  if (InputManager::Instance().IsKeyTriggered(DEVK_PERIOD))
-  {
-    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-    p.UpgradeHP = true;
-  }
+  //if (InputManager::Instance().IsKeyTriggered(DEVK_COMMA))
+  //{
+  //  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+  //  p.UpgradeAtk = true;
+  //}
+  //if (InputManager::Instance().IsKeyTriggered(DEVK_PERIOD))
+  //{
+  //  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+  //  p.UpgradeHP = true;
+  //}
 
   if ( InputManager::Instance().IsKeyReleased( DEVK_UP ) || InputManager::Instance().IsKeyReleased( DEVK_DOWN )
        || InputManager::Instance().IsKeyReleased( DEVK_LEFT ) || InputManager::Instance().IsKeyReleased( DEVK_RIGHT ) )

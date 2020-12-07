@@ -28,11 +28,15 @@ const unsigned option_screen = 10;
 const unsigned credits_screen = 11;
 const unsigned gameover_screen = 12;
 const unsigned upgrade_page = 13;
-const unsigned level1_screen = 14;
+const unsigned level1_screen = 14; // Icon_HeavyAttack_2 && Icon_RangedAttack_2
 const unsigned upgraded_health_page = 15;
 const unsigned upgraded_attack_page = 16;
 const unsigned upgraded_health_only_page = 17;
 const unsigned upgraded_attack_only_page = 18;
+const unsigned using_dash = 19;       // p.IsDashing
+const unsigned dash_not_ready = 20;   // p.AllowDashing = false;
+const unsigned using_ranged = 21;     // a.RangeAttack
+const unsigned ranged_not_ready = 22; // AttackCooldown > 0
 
 void UISystem::Initialize()
 {
@@ -166,11 +170,56 @@ void UISystem::LateUpdate()
           else
             env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 0.297f, player_pos.y + 1.013f, 0.0f };
         });
-        break;
+      }
+      if (screen == level1_screen)
+      {
+          auto& id = em.GetComponent<EntityID>(UnitManager::GetPlayerID());
+          Vector3 player_pos = em.GetComponent<Transform>(id).position;
+          auto& p = em.GetComponent<Player>(UnitManager::GetPlayerID());
+          auto& r = em.GetComponent<Renderer2D>(UnitManager::GetPlayerID());
+
+          em.ForEach([&](UI& ui, EntityID& id, EntityName& en)
+          {
+            if (en.name == "DashReady" || en.name == "DashNotReady" || en.name == "UsingDash")
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.25f, player_pos.y -0.3868f, 0.0f };
+            else if (en.name == "RangedReady" || en.name == "RangedNotReady" || en.name == "UsingRanged")
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.0f, player_pos.y - 0.5368f, 0.0f };
+          });
+
+          //if (p.IsDashing)
+          //{
+          //    em.ForEach([&](UI& ui, EntityID& id, EntityName& en) 
+          //    {
+          //        if (en.name == "UsingDash")
+          //        {
+          //            r.m_SortingLayer = 8;
+          //        }
+          //    });
+          //}
+          //    m_screen.push_back(using_dash);
+          //if (p.AllowDashing)
+          //    m_screen.push_back(dash_not_ready);
+
+          /*
+          const unsigned using_dash = 19;       // p.IsDashing
+          const unsigned dash_not_ready = 20;   // p.AllowDashing = false;
+          const unsigned using_ranged = 21;     // a.RangeAttack
+          const unsigned ranged_not_ready = 22; // AttackCooldown > 0
+          */
       }
     }
   }
-
+  //auto& id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+  //auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
+  //
+  //if (!p.IsDashing)
+  //    m_screen.push_back(using_dash);
+  //if (p.AllowDashing)
+  //    m_screen.push_back(dash_not_ready);
+  //if (em.GetComponent<Attack>(id).RangeAttack)
+  //    m_screen.push_back(using_ranged);
+  //if (em.GetComponent<Attack>(id).AttackCooldown > 0.0f)
+  //    m_screen.push_back(ranged_not_ready);
 
 #ifdef DE_EDITOR
   auto &t = em.GetComponent<Transform>( { 0 } );
@@ -185,8 +234,6 @@ void UISystem::LateUpdate()
 	em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
     {
       r.m_Active = false;
-      
-      
       for (auto screen : m_screen)
         if (screen == ui.screen)
         {
@@ -219,11 +266,11 @@ void UISystem::LateUpdate()
             {
               // Animation update
               if (ui.overlay && ui.target_screen != -1)
-                  m_screen.push_back(ui.target_screen);
+                m_screen.push_back(ui.target_screen);
               else if (ui.target_screen != -1)
               {
-                  m_screen.clear();
-                  m_screen.push_back(ui.target_screen);
+                m_screen.clear();
+                m_screen.push_back(ui.target_screen);
               }
             }
             else if (ui.ui_type == UIType::Slider && rect_mouse)
