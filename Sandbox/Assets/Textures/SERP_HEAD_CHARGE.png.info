@@ -48,36 +48,6 @@ offset 256 170
 size 256 170
 pivot 0.5 0.5
 
-Textures/SERP_HEAD_CHARGE_i_10
-offset 512 170
-size 256 170
-pivot 0.5 0.5
-
-Textures/SERP_HEAD_CHARGE_i_11
-offset 768 170
-size 256 170
-pivot 0.5 0.5
-
-Textures/SERP_HEAD_CHARGE_i_12
-offset 1024 170
-size 256 170
-pivot 0.5 0.5
-
-Textures/SERP_HEAD_CHARGE_i_13
-offset 1280 170
-size 256 170
-pivot 0.5 0.5
-
-Textures/SERP_HEAD_CHARGE_i_14
-offset 1536 170
-size 256 170
-pivot 0.5 0.5
-
-Textures/SERP_HEAD_CHARGE_i_15
-offset 1792 170
-size 256 170
-pivot 0.5 0.5
-
 %
 
 wrap_mode 0

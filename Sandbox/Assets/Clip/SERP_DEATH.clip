@@ -1,0 +1,35 @@
+frames 6
+fps 12
+loop 0
+
+Textures/SERP_DEATH_i_0
+key Textures/SERP_DEATH
+value 0
+frame 0
+
+Textures/SERP_DEATH_i_1
+key Textures/SERP_DEATH
+value 1
+frame 1
+
+Textures/SERP_DEATH_i_2
+key Textures/SERP_DEATH
+value 2
+frame 2
+
+Textures/SERP_DEATH_i_3
+key Textures/SERP_DEATH
+value 3
+frame 3
+
+Textures/SERP_DEATH_i_4
+key Textures/SERP_DEATH
+value 4
+frame 4
+
+Textures/SERP_DEATH_i_5
+key Textures/SERP_DEATH
+value 5
+frame 5
+
+%
