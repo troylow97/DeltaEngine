@@ -242,7 +242,7 @@ namespace DeltaEngine
         EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
         em.GetComponent<Transform>(missile).position = t1.position;
         em.GetComponent<RigidBody>(missile).Mass = 5.0f;
-        em.GetComponent<Collider>(missile).size = scale;
+        em.GetComponent<Transform>(missile).scale = scale;
         em.GetComponent<Lifespan>(missile).Timer = Lifetime;
         em.GetComponent<RigidBody>(missile).hasGravity = gravity;
         em.GetComponent<Collider>(missile).isTrigger = true;
