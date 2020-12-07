@@ -202,6 +202,11 @@ void UISystem::LateUpdate()
                   rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
                   if (ui.overlay && ui.target_screen != -1)
                     m_screen.push_back(ui.target_screen);
+                  //else if (ui.target_screen != -1)
+                  //{
+                  //  m_screen.clear();
+                  //  m_screen.push_back(ui.target_screen);
+                  //}
                 }
                 else if (ui.overlay && ui.target_screen != -1)
                   m_screen.push_back(ui.target_screen);
@@ -307,7 +312,7 @@ void UISystem::BackToMainMenu()
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainMenu.json");
-  
+
   m_screen.clear();
   m_screen.push_back(main_screen);
 }
@@ -336,5 +341,11 @@ RTTR_REGISTRATION
 
   rttr::registration::class_<UISystem>("QuitGame")
   .method("QuitGame", &UISystem::QuitGame);
+
+  rttr::registration::class_<UISystem>("BackToMainMenu")
+  .method("BackToMainMenu", &UISystem::BackToMainMenu);
+
+  rttr::registration::class_<UISystem>("PauseGame")
+  .method("PauseGame", &UISystem::PauseGame);
 }
 }
