@@ -53,7 +53,7 @@ void InputSystem::Update()
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1, State &a, Image &i, Attack &att )
     {
-      if ( att.MeleeCooldownTimer <= -0.0 )
+      if ( att.MeleeCooldownTimer <= 0.0 )
       {
         i1.previousKey = DEVK_A;
         r1.Direction = Vector2::left();
@@ -84,7 +84,7 @@ void InputSystem::Update()
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1, State &a, Image &i, Attack &att )
     {
-      if ( att.MeleeCooldownTimer <= -0.0 )
+      if ( att.MeleeCooldownTimer <= 0.0 )
       {
         i1.previousKey = DEVK_D;
         r1.Direction = Vector2::right();
