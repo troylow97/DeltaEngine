@@ -78,11 +78,13 @@ namespace DeltaEngine
 
         for (auto& id : RangedAttackingEntities)
         {
+            em.GetComponent<State>(id).SetBool("RangeAttack", true);
             RangedAttack(id);
         }
 
         for (auto& id : MeleeAttackingEntities)
         {
+            em.GetComponent<State>(id).SetBool("MeleeAttack", true);
             MeleeAttack(id);
         }
 
@@ -233,10 +235,14 @@ namespace DeltaEngine
         {
             if (et1.type == EntityCategory::E_PLAYER_DASH)
             {
-                if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).IsDashing)
-                    t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
+                if (em.GetComponent<Player>(UnitManager::GetPlayerID()).IsDashing)
+                    t1.position = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                 else
-                    env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
+                {
+                    em.DestroyEntity(id1);
+                    em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("IsDodge", false);
+                }
+
             }
         });
     }
