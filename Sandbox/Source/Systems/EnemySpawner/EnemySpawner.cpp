@@ -232,8 +232,9 @@ namespace DeltaEngine
 			env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(enemy).type = EntityCategory::E_ENEMY;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerID = 4;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerCheck = 9;
-			env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
-
+			//env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
+			env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(enemy).m_SortingLayer = 4;
+			
 			env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).MaxAcceleration = 0;
 			
 			if (type == "lancer")
@@ -263,6 +264,8 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = FiddlerData.TransformScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = FiddlerData.ColliderOffset;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = FiddlerData.ColliderScale;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/FID_WALK";
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Index = 0;
 			}
 			else if (type == "serpentipede")
 			{
@@ -276,6 +279,8 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = SerpentipedeData.TransformScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = SerpentipedeData.ColliderOffset;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = SerpentipedeData.ColliderScale;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/SERP_FULL_IDLE";
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Index = 0;
 			}
 
 			SpawnedEnemiesInGauntlet.push_back(enemy);
