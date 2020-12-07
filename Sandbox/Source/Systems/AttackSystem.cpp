@@ -106,7 +106,6 @@ namespace DeltaEngine
             em.AddComponent<Image>(missile);
             em.AddComponent<Renderer2D>(missile);
             em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-            em.AddComponent<State>(missile);
             em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_CHARGED";
             em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
             if (em.GetComponent<Image>(id).m_FlipX == false)
@@ -129,6 +128,8 @@ namespace DeltaEngine
         {
             EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
             em.AddComponent<Image>(missile);
+            em.AddComponent<Renderer2D>(missile);
+            em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
             em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_CHARGED";
             em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
             if (em.GetComponent<Image>(id).m_FlipX == false)
