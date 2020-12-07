@@ -180,7 +180,7 @@ void InputSystem::Update()
                     p1.DashDirectionRight = true;
                 p1.IsDashing = true;
                 p1.AllowDashing = false;
-                s.SetBool("IsDodge", true);
+                s.SetBool("LancerAttack", true);
                 const EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
                 em.GetComponent<Transform>(missile).position = t1.position;
                 em.GetComponent<RigidBody>(missile).Mass = 5.0f;

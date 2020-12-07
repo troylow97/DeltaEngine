@@ -15,7 +15,7 @@ namespace DeltaEngine
 
             if (p.IsDashing)
             {
-                em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("IsDodge", true);
+                em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
                 p.StartDashingTimer = true;
             }
             if (p.StartDashingTimer)
@@ -266,7 +266,7 @@ namespace DeltaEngine
                 else
                 {
                     em.DestroyEntity(id1);
-                    em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("IsDodge", false);
+                    em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", false);
                 }
 
             }
