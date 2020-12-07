@@ -37,6 +37,9 @@ const unsigned using_dash = 19;       // p.IsDashing
 const unsigned dash_not_ready = 20;   // p.AllowDashing = false;
 const unsigned using_ranged = 21;     // a.RangeAttack
 const unsigned ranged_not_ready = 22; // AttackCooldown > 0
+const unsigned quit_confirmation = 23;
+const unsigned quit_yes = 24;
+const unsigned quit_no = 25; // credits default - 4
 
 void UISystem::Initialize()
 {
