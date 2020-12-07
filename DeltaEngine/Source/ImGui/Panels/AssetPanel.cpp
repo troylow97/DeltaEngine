@@ -6,7 +6,7 @@
 #include "ImGui/Editor.h"
 
 #include "Core/Utils/FileUtils.h"
-#include "Core/Utils/DirectoryWatcher/DirectoryWatcher.h"
+#include "Core/Utils/DirectoryWatcher/SystemDirectory.h"
 
 #include "Assets/AssetManager.h"
 #include "ImGui/DropManager.h"

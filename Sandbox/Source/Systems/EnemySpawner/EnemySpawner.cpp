@@ -227,7 +227,7 @@ namespace DeltaEngine
 	{
 		for (unsigned i = 0; i < amount; ++i)
 		{
-			float rand1 = Random::RandomFloatRange(-0.4, 0.4);
+			float rand1 = Random::RandomFloatRange(-0.4f, 0.4f);
 
 			EntityID enemy = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 			env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(enemy);
@@ -258,7 +258,7 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Mass = LancerData.Mass;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = LancerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = LancerData.Health;
-				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = LancerData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = (int)LancerData.Damage;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = LancerData.TransformScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = LancerData.ColliderOffset;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = LancerData.ColliderScale;
@@ -273,7 +273,7 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Mass = FiddlerData.Mass;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = FiddlerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = FiddlerData.Health;
-				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = FiddlerData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = (int)FiddlerData.Damage;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = FiddlerData.TransformScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = FiddlerData.ColliderOffset;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = FiddlerData.ColliderScale;
@@ -288,7 +288,7 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Mass = SerpentipedeData.Mass;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = SerpentipedeData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = SerpentipedeData.Health;
-				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = SerpentipedeData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = (int)SerpentipedeData.Damage;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = SerpentipedeData.TransformScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = SerpentipedeData.ColliderOffset;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = SerpentipedeData.ColliderScale;

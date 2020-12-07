@@ -270,4 +270,18 @@ namespace DeltaEngine
     RegisterDragDrop(m_hwndl, &dropManager);
 
   }
+
+  Point Window::ClientTopLeft()
+  {
+    POINT p{};
+    ClientToScreen( m_hwndl, &p );
+    return { static_cast<float>( p.x ), static_cast<float>( p.y ) };
+  }
+
+  Point Window::ClientRect()
+  {
+    RECT r {};
+    GetClientRect( m_hwndl, &r );
+    return { static_cast<float>(r.right), static_cast<float>(r.bottom) };
+  }
 }

@@ -118,10 +118,7 @@ void PropertyInspectorPanel::Render()
 
             ImGui::Text( prop_name.c_str() );
 
-            if ( prop_name == "Size" )
-            {
-                prop_name.assign("Size" + instance.get_type().get_name().to_string());
-            }
+            prop_name.assign( prop_name + instance.get_type().get_name().to_string() );
 
             if ( prop_type == rttr::type::get<float *>() )
               ImGui::DragFloat( ( "##" + prop_name ).c_str(), ( value.get_value<float *>() ), 0.01f );
@@ -170,9 +167,9 @@ void PropertyInspectorPanel::Render()
 
               auto tex = GetEnv().pManager->Get<Texture2D>( sprite.m_Key );
               bool error { false };
-              if ( tex.State() == AssetState::NotFound || 
-                   tex.State() == AssetState::NotFoundFallback || 
-                   tex.State() == AssetState::NotLoaded || 
+              if ( tex.State() == AssetState::NotFound ||
+                   tex.State() == AssetState::NotFoundFallback ||
+                   tex.State() == AssetState::NotLoaded ||
                    tex.State() == AssetState::NotLoadedFallback )
               {
                 error = true;
