@@ -119,7 +119,9 @@ void PropertyInspectorPanel::Render()
             ImGui::Text( prop_name.c_str() );
 
             if ( prop_name == "Size" )
-              prop_name.assign( "Size" + instance.get_type().get_name().to_string() );
+            {
+                prop_name.assign("Size" + instance.get_type().get_name().to_string());
+            }
 
             if ( prop_type == rttr::type::get<float *>() )
               ImGui::DragFloat( ( "##" + prop_name ).c_str(), ( value.get_value<float *>() ), 0.01f );

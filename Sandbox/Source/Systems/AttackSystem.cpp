@@ -103,7 +103,12 @@ namespace DeltaEngine
             if (AudioEngine::IsChannelPlaying(c_id))
                 AudioEngine::StopChannel(c_id);
             c_id  = AudioEngine::Play("Audio/jump.wav");
-
+            em.AddComponent<Image>(missile);
+            em.AddComponent<Renderer2D>(missile);
+            em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
+            em.AddComponent<State>(missile);
+            em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_CHARGED";
+            em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -123,6 +128,9 @@ namespace DeltaEngine
         else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
         {
             EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
+            em.AddComponent<Image>(missile);
+            em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_CHARGED";
+            em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -228,7 +236,7 @@ namespace DeltaEngine
     EntityID AttackSystem::CreateProjectile(EntityID id,Vector2 scale,bool gravity,float Lifetime,EntityCategory type)
     {
         Transform& t1 = em.GetComponent<Transform>(id);
-        EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+        EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
         em.GetComponent<Transform>(missile).position = t1.position;
         em.GetComponent<RigidBody>(missile).Mass = 5.0f;
         em.GetComponent<Transform>(missile).scale = scale;

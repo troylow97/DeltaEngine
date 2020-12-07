@@ -290,6 +290,7 @@ void UISystem::StartGame()
 {
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
+  env.pClock->TimeScale(1.0f);
   m_screen.clear();
   is_main_menu = false;
   auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
@@ -320,7 +321,7 @@ void UISystem::BackToMainMenu()
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainMenu.json");
-
+  is_main_menu = true;
   m_screen.clear();
   m_screen.push_back(main_screen);
 }
