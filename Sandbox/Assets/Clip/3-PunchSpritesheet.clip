@@ -1,6 +1,6 @@
 frames 20
-fps 12
-loop 1
+fps 2
+loop 0
 
 Textures/3-PunchSpritesheet_i_0
 key Textures/3-PunchSpritesheet

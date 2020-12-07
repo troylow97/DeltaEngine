@@ -79,7 +79,7 @@ namespace DeltaEngine
             {
                 if (a.ComboCooldownTimer > 0)
                 {
-                    a.ComboCooldownTimer -= env.pClock->DeltaTime();
+                    a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
                 }
                 else
                 {
