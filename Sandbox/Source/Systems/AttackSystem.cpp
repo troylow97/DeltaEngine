@@ -27,7 +27,7 @@ namespace DeltaEngine
         }
         Dash();
 
-        em.ForEach([&](EntityID& id, Attack& a, Image& im)
+        em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
         {
             if (a.CooldownTimer > 0)
             {
@@ -50,6 +50,7 @@ namespace DeltaEngine
                 if (a.NumberOfCombos != a.MaxComboNumber)
                 {
                     a.NumberOfCombos++;
+                    st.SetBool("Punch1", true);
                 }
                 if (a.CooldownTimer <= 0)
                 {
