@@ -1,0 +1,10 @@
+frames 1
+fps 12
+loop 1
+
+Textures/FID_BLOCK_READY_i_0
+key Textures/FID_BLOCK_READY
+value 0
+frame 0
+
+%
