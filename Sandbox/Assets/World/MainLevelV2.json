@@ -12,7 +12,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.0,
+                    "x": 2.9376492500305177,
                     "y": 0.0,
                     "z": 0.0
                 },
@@ -1573,7 +1573,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3323,7 +3323,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3813,7 +3813,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5143,7 +5143,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5213,7 +5213,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6683,7 +6683,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9203,7 +9203,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10043,7 +10043,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10113,7 +10113,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10183,7 +10183,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10253,7 +10253,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10463,7 +10463,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10533,7 +10533,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10883,7 +10883,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11233,7 +11233,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12563,7 +12563,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12633,7 +12633,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.20000000298023225,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13283,7 +13283,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13983,7 +13983,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             },
@@ -13995,9 +13995,9 @@
                 "AIState": "idle_lancer"
             },
             "Health": {
-                "Current Health": 20,
+                "Current Health": 18,
                 "Max Health": 20,
-                "TakenDamageTimer": 0.0,
+                "TakenDamageTimer": -3.725290298461914e-9,
                 "Invulnerable": false
             },
             "Attack": {
@@ -14559,8 +14559,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 16.121347427368165,
-                    "y": -0.9362567663192749,
+                    "x": 16.576229095458986,
+                    "y": -0.9329545497894287,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14588,8 +14588,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 16.13134765625,
-                    "y": -1.0662567615509034
+                    "x": 16.58622932434082,
+                    "y": -1.0629545450210572
                 },
                 "Offset": {
                     "x": 0.009999999776482582,
@@ -14691,8 +14691,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 24.396926879882814,
-                    "y": -0.8394142985343933,
+                    "x": 24.39654541015625,
+                    "y": -0.8434470891952515,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14720,8 +14720,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 24.396926879882814,
-                    "y": -0.8394142985343933
+                    "x": 24.39654541015625,
+                    "y": -0.8434470891952515
                 },
                 "Offset": {
                     "x": 0.0,
@@ -16827,7 +16827,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.5999999046325684,
+                    "x": 0.3376493453979492,
                     "y": -1.4500000476837159,
                     "z": 0.0
                 },
@@ -16880,7 +16880,7 @@
                 },
                 "Layer": 7,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -16905,7 +16905,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.3499999046325684,
+                    "x": 0.5876493453979492,
                     "y": -1.600000023841858,
                     "z": 0.0
                 },
@@ -16958,7 +16958,7 @@
                 },
                 "Layer": 7,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -16983,7 +16983,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.5999999046325684,
+                    "x": 0.3376493453979492,
                     "y": -1.4500000476837159,
                     "z": 0.0
                 },
@@ -17061,7 +17061,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.3499999046325684,
+                    "x": 0.5876493453979492,
                     "y": -1.600000023841858,
                     "z": 0.0
                 },
@@ -17139,7 +17139,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.5999999046325684,
+                    "x": 0.3376493453979492,
                     "y": -1.4500000476837159,
                     "z": 0.0
                 },
@@ -17217,7 +17217,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.3499999046325684,
+                    "x": 0.5876493453979492,
                     "y": -1.600000023841858,
                     "z": 0.0
                 },
@@ -18309,7 +18309,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -2.5799999237060549,
+                    "x": 0.3376493453979492,
                     "y": 1.649999976158142,
                     "z": 0.0
                 },
@@ -18342,7 +18342,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "none",
+                "Fill Type": "horizontal_left_to_right",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -18362,7 +18362,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -18387,7 +18387,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -2.5799999237060549,
+                    "x": 0.3376493453979492,
                     "y": 1.649999976158142,
                     "z": 0.0
                 },
@@ -18440,7 +18440,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -18856,8 +18856,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.0,
-                    "y": -1.063287377357483,
+                    "x": 2.9376492500305177,
+                    "y": -1.0632749795913697,
                     "z": 0.0
                 },
                 "Scale": {
@@ -18885,8 +18885,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 1.0,
-                    "y": -1.063287377357483
+                    "x": 2.9376492500305177,
+                    "y": -1.0632749795913697
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18904,8 +18904,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/BreathingSpritesheet",
-                    "index": 7
+                    "key": "Textures/RangeAttackSpritesheet",
+                    "index": 5
                 },
                 "Size": {
                     "x": 1.0,
@@ -18958,19 +18958,19 @@
                 "Range Damage": 2,
                 "Melee Damage": 5,
                 "Melee Combo Damage": 10,
-                "Number Of Combo": 0,
+                "Number Of Combo": 3,
                 "Max Combo Number": 3,
                 "Melee Cooldown": 1.0,
                 "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.016666388139128686,
+                "Range Cooldown Timer": -0.016666388139128686,
                 "Combo Duration": 2.0,
-                "Combo Cooldown Timer": 2.0,
+                "Combo Cooldown Timer": 0.4833347499370575,
                 "Knockback Amount": 500.0,
                 "Knockback Combo Amount": 1000.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "Start Combo Cooldown Timer": false
+                "Start Combo Cooldown Timer": true
             },
             "Player": {
                 "Upgrade Points Per Enemy Defeated": 50,
@@ -18980,7 +18980,7 @@
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
-                "Previous": 32,
+                "Previous": 88,
                 "Current": 0
             }
         }

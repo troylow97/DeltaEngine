@@ -40,7 +40,7 @@ namespace DeltaEngine
             }
             else
             {
-                //st.SetBool("RangeAttack", false);
+                em.GetComponent<State>(id).SetBool("MeleeAttack", false);
             }
 
             if (a.RangeCooldownTimer > 0)
@@ -49,14 +49,14 @@ namespace DeltaEngine
             }
             else
             {
-                //st.SetBool("RangeAttack", false);
+                em.GetComponent<State>(id).SetBool("RangeAttack", false);
             }
 
             if (a.RangeAttack)
             {
                 if (a.RangeCooldownTimer <= 0)
                 {
-                    //em.GetComponent<State>(id).SetBool("RangeAttack", true);
+                    em.GetComponent<State>(id).SetBool("RangeAttack", true);
                     RangedAttackingEntities.push_back(id);
                     a.RangeCooldownTimer = a.RangeCooldown;
                 }
@@ -65,7 +65,7 @@ namespace DeltaEngine
         	
             if (a.MeleeAttack)
             {
-                em.GetComponent<State>(id).SetBool("MeleeAttack", true);
+                //em.GetComponent<State>(id).SetBool("MeleeAttack", true);
                 a.StartComboCooldownTimer = true;
                 if (a.NumberOfCombos != a.MaxComboNumber)
                 {
