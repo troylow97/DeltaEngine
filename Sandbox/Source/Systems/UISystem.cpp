@@ -40,9 +40,9 @@ const unsigned ranged_not_ready = 22; // AttackCooldown > 0
 
 void UISystem::Initialize()
 {
-  //m_screen.push_back(main_screen);
-  //is_main_menu = true;
-  m_screen.push_back(level1_screen);
+  m_screen.push_back(main_screen);
+  is_main_menu = true;
+  // m_screen.push_back(level1_screen);
   em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
   {
     if (ui.ui_type == UIType::Slider)
