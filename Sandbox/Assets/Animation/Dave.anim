@@ -1,6 +1,6 @@
-%EntryAnimation
+%Entry:
 
-entry
+entry 
 Clip/IdleSpritesheet
 
 %Parameters:
@@ -41,25 +41,25 @@ pos
 Entry 3 4
 
 pos
-Exit 709 230
+Exit 652 256
 
 pos
-Clip/IdleSpritesheet -19 156
+Clip/IdleSpritesheet 143 237
 
 pos
-Clip/RunningSpritesheet 301 200
+Clip/RunningSpritesheet 317 261
 
 pos
-Clip/RangeAttackSpritesheet 144 383
+Clip/RangeAttackSpritesheet 92 394
 
 pos
-Clip/3-PunchSpritesheet 677 349
+Clip/3-PunchSpritesheet 357 528
 
 pos
-Clip/LeapingSpritesheet 504 27
+Clip/LeapingSpritesheet 460 138
 
 pos
-Clip/FallingSpritesheet 186 11
+Clip/FallingSpritesheet 282 64
 
 %Transitions:
 
