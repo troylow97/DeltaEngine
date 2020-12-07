@@ -103,6 +103,8 @@ namespace DeltaEngine
 			file.StartReader("EnemySpawns/GauntletPoints.json").LoadObject(list.Gauntlets[i]).EndReader();
 		
 		GauntletIsActive = false;
+
+		ResetActivationPointBool();
 	}
 	
 	void EnemySpawner::Update()
@@ -181,6 +183,15 @@ namespace DeltaEngine
 	void EnemySpawner::LateUpdate()
 	{
 	
+	}
+
+	void EnemySpawner::ResetActivationPointBool()
+	{
+		for (int i = 0; i < list.Gauntlets.size(); ++i)
+		{
+			list.Gauntlets[i].isActivated = false;
+			list.Gauntlets[i].isFinished = false;
+		}
 	}
 
 	bool EnemySpawner::CheckForOutsideEnemies()

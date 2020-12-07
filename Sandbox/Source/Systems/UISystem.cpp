@@ -4,8 +4,8 @@
 #include <rttr/detail/registration/registration_impl.h>
 
 #include "UnitManager.h"
-#include "Audio/AudioEngine.h"
 #include "Components/Components.h"
+#include "EnemySpawner/EnemySpawner.h"
 #include "ImGui/Panels/GamePanel.h"
 #include "ImGui/Panels/ViewportPanel.h"
 #include "Physics/Collision.h"
@@ -44,8 +44,6 @@ void UISystem::Initialize()
       VolumeSliderInitialLocation = t.position;
   });
   isDraggingOnSlider = false;
-  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-  PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
 }
 	
 void UISystem::Update()
@@ -88,40 +86,57 @@ void UISystem::LateUpdate()
       if (screen == option_screen)
       {
         m_screen.clear();
-        m_screen.push_back(main_screen);
+        m_screen.push_back(pause_screen);
+        pause_screen_bool = true;
+        break;
       }
-      else if (screen == main_screen)
-        QuitGame();
-      else if (screen == level1_screen)
+      if (screen == control_screen)
+      {
+        m_screen.clear();
+        m_screen.push_back(pause_screen);
+        pause_screen_bool = true;
+        break;
+      }
+     if (screen == main_screen)
+      {
+        m_screen.clear();
+        m_screen.push_back(main_screen);
+        break;
+      }
+      if (screen == level1_screen)
       {
         for (auto& screen2 : m_screen)
         {
           if (screen2 == pause_screen)
             pause_screen_bool = true;
+
+          break;
         }
-      
-      	if(pause_screen_bool)
-      	{
+      }
+
+      if (pause_screen_bool)
+      {
           m_screen.clear();
+          UnpauseGame();
           m_screen.push_back(level1_screen);
-      	}
-        else
-        {
+      }
+      else
+      {
           auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
           PlayerCurrentPosition = p.position;
           Vector3 difference;
           difference = PlayerCurrentPosition - PlayerFirstPosition;
           PlayerFirstPosition = PlayerCurrentPosition;
 
-          em.ForEach([&](UI& ui, EntityID& id) 
-          {
-            if (ui.screen == 0 || ui.screen == 4 || ui.screen == 5 || ui.screen == 7 || ui.screen == 8 || ui.screen == 10)
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position += difference;
-          });
+          em.ForEach([&](UI& ui, EntityID& id)
+              {
+                  if (ui.screen == 0 || ui.screen == 4 || ui.screen == 5 || ui.screen == 7 || ui.screen == 8 || ui.screen == 10)
+                      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position += difference;
+              });
 
           m_screen.push_back(pause_screen);
+          pause_screen_bool = true;
           PauseGame();
-        }
       }
     }
   }
@@ -220,17 +235,13 @@ void UISystem::LateUpdate()
             }
             else if (ui.ui_type == UIType::Interface && rect_mouse)
             {
-              if (UI_first_time)
+              // Animation update
+              if (ui.overlay && ui.target_screen != -1)
+                  m_screen.push_back(ui.target_screen);
+              else if (ui.target_screen != -1)
               {
-                // Animation update
-                if (ui.overlay && ui.target_screen != -1)
-                    m_screen.push_back(ui.target_screen);
-                else if (ui.target_screen != -1)
-                {
-                    m_screen.clear();
-                    m_screen.push_back(ui.target_screen);
-                }
-                UI_first_time = false;
+                  m_screen.clear();
+                  m_screen.push_back(ui.target_screen);
               }
             }
             else if (ui.ui_type == UIType::Slider && rect_mouse)
@@ -241,7 +252,7 @@ void UISystem::LateUpdate()
                   t.position.x = p_x;
               }
             }
-            else if (ui.ui_type == UIType::Interface && !rect_mouse)
+            if ((ui.ui_type == UIType::Button || ui.ui_type == UIType::Interface) && !rect_mouse)
             {
               if (UI_first_time)
               {
@@ -253,8 +264,8 @@ void UISystem::LateUpdate()
                   m_screen.clear();
                   m_screen.push_back(ui.previous_screen);
                 }
+                UI_first_time = false;
               }
-              UI_first_time = false;
             }
           }
           if (screen == 13)
@@ -298,8 +309,11 @@ void UISystem::StartGame()
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
-  AudioEngine::Play("Audio/InGameBGM/main_game_bgm.mp3");
+  env.pClock->TimeScale(1.0f);
+  env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Initialize();
   m_screen.clear();
+  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+  PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
   m_screen.push_back(level1_screen);
 }
 
@@ -320,7 +334,7 @@ void UISystem::BackToMainMenu()
 
 void UISystem::PauseGame()
 {
-  env.pClock->TimeScale(0.0f);
+    env.pClock->TimeScale(0.0f);
 }
 
 void UISystem::UnpauseGame()
@@ -341,6 +355,9 @@ RTTR_REGISTRATION
 
   rttr::registration::class_<UISystem>("PauseGame")
   .method("PauseGame", &UISystem::PauseGame);
+
+  rttr::registration::class_<UISystem>("UnpauseGame")
+      .method("UnpauseGame", &UISystem::UnpauseGame);
 	
   rttr::registration::class_<UISystem>("StartGame")
   .method("StartGame", &UISystem::StartGame);
