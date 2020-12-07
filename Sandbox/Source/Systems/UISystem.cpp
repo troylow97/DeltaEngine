@@ -214,8 +214,6 @@ void UISystem::LateUpdate()
                   rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
                   if (ui.overlay && ui.target_screen != -1)
                     m_screen.push_back(ui.target_screen);
-
-                  return;
                 }
                 if (ui.overlay && ui.target_screen != -1)
                   m_screen.push_back(ui.target_screen);
@@ -278,6 +276,11 @@ void UISystem::LateUpdate()
         }
     });
   UI_first_time = true;
+
+  if ( m_start )
+    Start();
+  else if ( m_restart )
+    Restart();
 }
 
 void UISystem::Return()
@@ -297,7 +300,7 @@ void UISystem::UpgradeHPButton()
   player.UpgradeHP = true;
 }
 
-void UISystem::StartGame()
+void UISystem::Start()
 {
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
@@ -306,9 +309,15 @@ void UISystem::StartGame()
   auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
   PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
   m_screen.push_back(level1_screen);
+  m_start = false;
 }
 
-void UISystem::RestartGame()
+void UISystem::StartGame()
+{
+  m_start = true;
+}
+
+void UISystem::Restart()
 {
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
@@ -319,6 +328,12 @@ void UISystem::RestartGame()
   auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
   PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
   m_screen.push_back(level1_screen);
+  m_restart = false;
+}
+
+void UISystem::RestartGame()
+{
+  m_restart = true;
 }
 
 void UISystem::QuitGame()

@@ -147,9 +147,7 @@ void Application::Run()
       OnEvent();
       env.pWin->Update();
       AudioEngine::Update();
-      env.pECS->GetWorld().GetEntityManager().CleanUp();
       Profiler::Instance().FrameEnd();
-
     }
     else
     {
@@ -159,7 +157,6 @@ void Application::Run()
       Editor::Instance().End();
 #endif
       env.pWin->Update();
-      env.pECS->GetWorld().GetEntityManager().CleanUp();
     }
   }
 }

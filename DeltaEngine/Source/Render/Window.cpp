@@ -265,7 +265,11 @@ namespace DeltaEngine
       Fullscreen();
     }
 
+#ifdef DE_EDITOR
     ShowWindow(GetConsoleWindow(), SW_SHOW);
+#else
+    ShowWindow( GetConsoleWindow(), SW_HIDE );
+#endif
 
     RegisterDragDrop(m_hwndl, &dropManager);
 
