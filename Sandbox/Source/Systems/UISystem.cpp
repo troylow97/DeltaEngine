@@ -40,9 +40,9 @@ const unsigned ranged_not_ready = 22; // AttackCooldown > 0
 
 void UISystem::Initialize()
 {
-  m_screen.push_back(main_screen);
-  is_main_menu = true;
-  //m_screen.push_back(level1_screen);
+  //m_screen.push_back(main_screen);
+  //is_main_menu = true;
+  m_screen.push_back(level1_screen);
   em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
   {
     if (ui.ui_type == UIType::Slider)
@@ -112,7 +112,7 @@ void UISystem::LateUpdate()
         
         em.ForEach([&](UI& ui, EntityID& id)
         {
-          if (ui.screen == 0 || ui.screen == 4 || ui.screen == 5 || ui.screen == 7 || ui.screen == 8 || ui.screen == 10)
+          if (ui.screen == 0 || ui.screen == 4 || ui.screen == 5 || ui.screen == 7 || ui.screen == 8 || ui.screen == 9 || ui.screen == 10)
             env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position += difference;
         });
         
