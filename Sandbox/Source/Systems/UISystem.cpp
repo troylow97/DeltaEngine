@@ -235,7 +235,7 @@ void UISystem::LateUpdate()
                   t.position.x = p_x;
               }
             }
-            else if ((/*ui.ui_type == UIType::Button || */ui.ui_type == UIType::Interface) && !rect_mouse)
+            else if (ui.ui_type == UIType::Interface && !rect_mouse)
             {
               if (UI_first_time)
               {
@@ -265,7 +265,6 @@ void UISystem::LateUpdate()
               upgraded_HP_not_pushed = false;
             }
           }
-          //
         }
     });
   UI_first_time = true;
