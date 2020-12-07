@@ -123,6 +123,13 @@ void UISystem::Update()
         }
         break;
       }
+      if (screen == credits_screen)
+      {
+        m_screen.clear();
+        if (is_main_menu)
+            m_screen.push_back(main_screen);
+        break;
+      }
       if (screen == level1_screen)
       {
         m_screen.push_back(pause_screen);
