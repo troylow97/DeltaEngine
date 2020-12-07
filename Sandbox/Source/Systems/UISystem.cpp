@@ -61,7 +61,7 @@ void UISystem::AttackVisualFeedback()
 
     if (p.IsDashing)
       m_screen.push_back(using_dash);
-    if (!p.IsDashing && !p.AllowDashing)
+    else if (!p.IsDashing && !p.AllowDashing)
     {
       m_screen.clear();
       m_screen.push_back(level1_screen);
@@ -75,7 +75,7 @@ void UISystem::AttackVisualFeedback()
 
     if (a.RangeAttack)
       m_screen.push_back(using_ranged);
-    if (!a.RangeAttack && a.AttackCooldown < 0.0f)
+    else if (!a.RangeAttack && a.AttackCooldown < 0.0f)
     {
         m_screen.clear();
         m_screen.push_back(level1_screen);
@@ -91,10 +91,6 @@ void UISystem::AttackVisualFeedback()
 
 void UISystem::Update()
 {
-  for (auto& screen : m_screen)
-    if (screen == level1_screen)
-      AttackVisualFeedback();
-
   if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
   {
     bool option_menu_bool{false};
@@ -173,6 +169,18 @@ void UISystem::Update()
 
   if(!is_main_menu)
   {
+    bool paused{ false };
+    for (auto& screen : m_screen)
+    {
+        if (screen == pause_screen || screen == control_screen || screen == option_screen || screen == gameover_screen || screen == upgrade_page)
+        {
+            paused = true;
+            break;
+        }
+    }
+  	if (!paused)
+        AttackVisualFeedback();
+ 	
     if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
     {
       bool upgrade_screen_exists = false;
