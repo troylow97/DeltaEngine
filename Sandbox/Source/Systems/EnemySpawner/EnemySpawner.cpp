@@ -4,6 +4,8 @@
 #include "../UnitManager.h"
 #include "../AI/AITools.h"
 #include "../Source/Core/Utils/Random.h"
+#include "Audio/AudioEngine.h"
+
 namespace DeltaEngine
 {
 	Gauntlet::Gauntlet() :
@@ -101,6 +103,8 @@ namespace DeltaEngine
 			file.StartReader("EnemySpawns/GauntletPoints.json").LoadObject(list.Gauntlets[i]).EndReader();
 		
 		GauntletIsActive = false;
+
+		ResetActivationPointBool();
 	}
 	
 	void EnemySpawner::Update()
@@ -110,7 +114,7 @@ namespace DeltaEngine
 		for (int i = 0; i < list.Gauntlets.size(); ++i)
 		{
 			auto& Gauntlet = list.Gauntlets[i];
-			if (AITools::EntityisAtPoint(player, list.Gauntlets[i].ActivationPoint) && !Gauntlet.isActivated && !Gauntlet.isFinished)
+			if (AITools::EntityisAtPointInX(player, list.Gauntlets[i].ActivationPoint.x,0.3f) && !Gauntlet.isActivated && !Gauntlet.isFinished)
 			{
 				ActivationPoint = list.Gauntlets[i].ActivationPoint;
 				CurrentGauntlet = i;
@@ -181,12 +185,21 @@ namespace DeltaEngine
 	
 	}
 
+	void EnemySpawner::ResetActivationPointBool()
+	{
+		for (int i = 0; i < list.Gauntlets.size(); ++i)
+		{
+			list.Gauntlets[i].isActivated = false;
+			list.Gauntlets[i].isFinished = false;
+		}
+	}
+
 	bool EnemySpawner::CheckForOutsideEnemies()
 	{
 		bool activated = false;
 		em.ForEach([&](EntityID& id, EntityType et)
 		{
-			if(et.type == EntityCategory::E_ENEMY && AITools::EntityisAtPoint(id, ActivationPoint,14.0f))
+			if(et.type == EntityCategory::E_ENEMY && AITools::EntityisAtPoint(id, ActivationPoint,3.0f))
 			{
 				activated = true;
 			}
@@ -194,15 +207,22 @@ namespace DeltaEngine
 		return activated;
 	}
 
+	void EnemySpawner::Shutdown()
+	{
+		EnemiesInGauntlet.clear();
+		SpawnedEnemiesInGauntlet.clear();
+	}
+
 	EntityID EnemySpawner::SpawnWall(Vector2 position)
 	{
 		EntityID wall = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 		env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(wall);
 		env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>(wall);
-		env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(wall);
-		env.pECS->GetWorld().GetEntityManager().AddComponent<Renderer2D>(wall);
+		//env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(wall);
+		//env.pECS->GetWorld().GetEntityManager().AddComponent<Renderer2D>(wall);
+		env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(wall).type = EntityCategory::E_WALL;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(wall).position = position;
-		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(wall).scale = Vector2{ 0.5,6.0 };
+		env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(wall).scale = Vector2{ 1.0,6.0 };
 		env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(wall).isMoveable = false;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(wall).CollisionLayerID = 1;
 		env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(wall).CollisionLayerCheck = 14;
@@ -213,7 +233,7 @@ namespace DeltaEngine
 	{
 		for (unsigned i = 0; i < amount; ++i)
 		{
-			float rand1 = Random::RandomFloatRange(-0.4, 0.4);
+			float rand1 = Random::RandomFloatRange(-0.4f, 0.4f);
 
 			EntityID enemy = env.pECS->GetWorld().GetEntityManager().CreateEntity();
 			env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>(enemy);
@@ -231,8 +251,9 @@ namespace DeltaEngine
 			env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(enemy).type = EntityCategory::E_ENEMY;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerID = 4;
 			env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).CollisionLayerCheck = 9;
-			env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
-
+			//env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
+			env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(enemy).m_SortingLayer = 4;
+			
 			env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).MaxAcceleration = 0;
 			
 			if (type == "lancer")
@@ -243,7 +264,7 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Mass = LancerData.Mass;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = LancerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = LancerData.Health;
-				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = LancerData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = (int)LancerData.Damage;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = LancerData.TransformScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = LancerData.ColliderOffset;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = LancerData.ColliderScale;
@@ -258,10 +279,12 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Mass = FiddlerData.Mass;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = FiddlerData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = FiddlerData.Health;
-				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = FiddlerData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = (int)FiddlerData.Damage;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = FiddlerData.TransformScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = FiddlerData.ColliderOffset;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = FiddlerData.ColliderScale;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/FID_WALK";
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Index = 0;
 			}
 			else if (type == "serpentipede")
 			{
@@ -271,10 +294,23 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).Mass = SerpentipedeData.Mass;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth = SerpentipedeData.Health;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).MaxHealth = SerpentipedeData.Health;
-				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = SerpentipedeData.Damage;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(enemy).MeleeDamage = (int)SerpentipedeData.Damage;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(enemy).scale = SerpentipedeData.TransformScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).offset = SerpentipedeData.ColliderOffset;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = SerpentipedeData.ColliderScale;
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/SERP_FULL_IDLE";
+				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Index = 0;
+
+				unsigned rand_sound = Random::RandomIntRange(0, 2);
+				switch (rand_sound)
+				{
+				case 0:
+					AudioEngine::Play("Audio/Serpentipede/Burrow1.ogg");
+					break;
+				case 1:
+					AudioEngine::Play("Audio/Serpentipede/Burrow2.ogg");
+					break;
+				}
 			}
 
 			SpawnedEnemiesInGauntlet.push_back(enemy);

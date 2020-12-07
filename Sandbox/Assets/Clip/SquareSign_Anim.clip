@@ -1,0 +1,125 @@
+frames 24
+fps 12
+loop 1
+
+Textures/SquareSign_Anim_i_0
+key Textures/SquareSign_Anim
+value 0
+frame 0
+
+Textures/SquareSign_Anim_i_1
+key Textures/SquareSign_Anim
+value 1
+frame 1
+
+Textures/SquareSign_Anim_i_2
+key Textures/SquareSign_Anim
+value 2
+frame 2
+
+Textures/SquareSign_Anim_i_3
+key Textures/SquareSign_Anim
+value 3
+frame 3
+
+Textures/SquareSign_Anim_i_4
+key Textures/SquareSign_Anim
+value 4
+frame 4
+
+Textures/SquareSign_Anim_i_5
+key Textures/SquareSign_Anim
+value 5
+frame 5
+
+Textures/SquareSign_Anim_i_6
+key Textures/SquareSign_Anim
+value 6
+frame 6
+
+Textures/SquareSign_Anim_i_7
+key Textures/SquareSign_Anim
+value 7
+frame 7
+
+Textures/SquareSign_Anim_i_8
+key Textures/SquareSign_Anim
+value 8
+frame 8
+
+Textures/SquareSign_Anim_i_9
+key Textures/SquareSign_Anim
+value 9
+frame 9
+
+Textures/SquareSign_Anim_i_10
+key Textures/SquareSign_Anim
+value 10
+frame 10
+
+Textures/SquareSign_Anim_i_11
+key Textures/SquareSign_Anim
+value 11
+frame 11
+
+Textures/SquareSign_Anim_i_12
+key Textures/SquareSign_Anim
+value 12
+frame 12
+
+Textures/SquareSign_Anim_i_13
+key Textures/SquareSign_Anim
+value 13
+frame 13
+
+Textures/SquareSign_Anim_i_14
+key Textures/SquareSign_Anim
+value 14
+frame 14
+
+Textures/SquareSign_Anim_i_15
+key Textures/SquareSign_Anim
+value 15
+frame 15
+
+Textures/SquareSign_Anim_i_16
+key Textures/SquareSign_Anim
+value 16
+frame 16
+
+Textures/SquareSign_Anim_i_17
+key Textures/SquareSign_Anim
+value 17
+frame 17
+
+Textures/SquareSign_Anim_i_18
+key Textures/SquareSign_Anim
+value 18
+frame 18
+
+Textures/SquareSign_Anim_i_19
+key Textures/SquareSign_Anim
+value 19
+frame 19
+
+Textures/SquareSign_Anim_i_20
+key Textures/SquareSign_Anim
+value 20
+frame 20
+
+Textures/SquareSign_Anim_i_21
+key Textures/SquareSign_Anim
+value 21
+frame 21
+
+Textures/SquareSign_Anim_i_22
+key Textures/SquareSign_Anim
+value 22
+frame 22
+
+Textures/SquareSign_Anim_i_23
+key Textures/SquareSign_Anim
+value 23
+frame 23
+
+%

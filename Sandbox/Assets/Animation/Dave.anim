@@ -12,7 +12,7 @@ param
 IsJumping 0 0
 
 param
-Punch 0 0
+MeleeAttack 0 0
 
 param
 IsIdle 0 0
@@ -24,7 +24,7 @@ param
 IsDodge 0 0
 
 param
-Ranged 0 0
+RangeAttack 0 0
 
 param
 PlayerVelocityY 0 0

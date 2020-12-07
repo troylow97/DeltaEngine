@@ -13,7 +13,7 @@ prior written consent of DigiPen Institute of Technology is prohibited.
 /******************************************************************************/
 #include "Physics/Collision.h"
 #include "Core/Math/Math.h"
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 #include "Core/GlobalStruct.h"
 #include <cmath>
 

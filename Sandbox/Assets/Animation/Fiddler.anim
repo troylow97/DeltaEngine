@@ -1,0 +1,99 @@
+%Entry:
+
+entry 
+Clip/FID_WALK
+
+%Parameters:
+
+param
+IsPatrolling 0 0
+
+param
+IsAlerted 0 0
+
+param
+IsAlertRunning 0 0
+
+param
+IsCharging 0 0
+
+param
+MeleeAttack 0 0
+
+param
+IsDead 0 0
+
+%EditorPositions:
+
+pos
+Entry 3 4
+
+pos
+Exit 652 256
+
+pos
+Clip/FID_WALK 461 124
+
+pos
+Clip/FID_DEATH 2 440
+
+pos
+Clip/FID_ATTACK 220 466
+
+pos
+Clip/FID_ALERT_RUN 265 292
+
+pos
+Clip/FID_ALERT 173 219
+
+%Transitions:
+
+transition 
+start Clip/FID_WALK
+end Clip/FID_ALERT
+condition IsAlerted ? 0
+endTransition
+
+transition 
+start Clip/FID_ALERT
+end Clip/FID_ALERT_RUN
+condition IsAlertRunning ? 0
+endTransition
+
+transition 
+start Clip/FID_ALERT_RUN
+end Clip/FID_ATTACK
+condition IsAttacking ? 0
+endTransition
+
+transition 
+start Clip/FID_ATTACK
+end Clip/FID_DEATH
+condition IsDead ? 0
+endTransition
+
+transition 
+start Clip/FID_ALERT_RUN
+end Clip/FID_DEATH
+condition IsDead ? 0
+endTransition
+
+transition 
+start Clip/FID_ALERT
+end Clip/FID_DEATH
+condition IsDead ? 0
+endTransition
+
+transition 
+start Clip/FID_ATTACK
+end Clip/FID_ALERT
+condition IsAlerted ? 0
+endTransition
+
+transition 
+start Clip/FID_ATTACK
+end Clip/FID_WALK
+condition IsPatrolling ? 0
+endTransition
+
+%endfile

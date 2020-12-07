@@ -22,26 +22,31 @@ void InputSystem::Shutdown()
 }
 
 float idle_timer { 0.0f };
-float attack_cooldown { 0.0f };
+float melee_attack_cooldown { 0.0f };
+float range_attack_cooldown{ 0.0f };
 
 void InputSystem::Update()
 {
   for ( size_t i = 0; i < GetEnv().pClock->Timesteps(); i++ )
   {
     idle_timer += static_cast<float>( FixedDeltaTime() );
-    attack_cooldown += static_cast<float>( FixedDeltaTime() );
+    melee_attack_cooldown += static_cast<float>( FixedDeltaTime() );
   }
 
   env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID &id, RigidBody &r1, Input &i, State &a )
   {
     a.SetFloat( "IsIdle", idle_timer );
 
-    if ( attack_cooldown > 0.5f )
-    {
-      a.SetBool( "Punch", false );
-    }
+    //if (melee_attack_cooldown > 0.5f )
+    //{
+    //  a.SetBool( "MeleeAttack", false );
+    //}
+    //
+    //if (range_attack_cooldown > 0.5f)
+    //{
+    //    a.SetBool("RangeAttack", false);
+    //}
 
-    a.SetBool( "Ranged", false );
   } );
 
     if (InputManager::Instance().IsKeyPressed(DEVK_LEFT))
@@ -161,6 +166,7 @@ void InputSystem::Update()
                     p1.DashDirectionRight = true;
                 p1.IsDashing = true;
                 p1.AllowDashing = false;
+                s.SetBool("IsDodge", true);
                 const EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
                 em.GetComponent<Transform>(missile).position = t1.position;
                 em.GetComponent<RigidBody>(missile).Mass = 5.0f;
@@ -180,9 +186,8 @@ void InputSystem::Update()
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
       {
         a1.RangeAttack = true;
-        a.SetBool("Ranged", true);
         idle_timer = 0.0f;
-        attack_cooldown = 0.0f;
+        melee_attack_cooldown = 0.0f;
       });
     }
 
@@ -191,22 +196,21 @@ void InputSystem::Update()
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Input &i1, Attack &a1, Image &im, State &a )
     {
       a1.MeleeAttack = true;
-      a.SetBool( "Punch", true );
       idle_timer = 0.0f;
-      attack_cooldown = 0.0f;
+      range_attack_cooldown = 0.0f;
     } );
   }
 
-  if (InputManager::Instance().IsKeyTriggered(DEVK_COMMA))
-  {
-    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-    p.UpgradeAtk = true;
-  }
-  if (InputManager::Instance().IsKeyTriggered(DEVK_PERIOD))
-  {
-    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-    p.UpgradeHP = true;
-  }
+  //if (InputManager::Instance().IsKeyTriggered(DEVK_COMMA))
+  //{
+  //  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+  //  p.UpgradeAtk = true;
+  //}
+  //if (InputManager::Instance().IsKeyTriggered(DEVK_PERIOD))
+  //{
+  //  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+  //  p.UpgradeHP = true;
+  //}
 
   if ( InputManager::Instance().IsKeyReleased( DEVK_UP ) || InputManager::Instance().IsKeyReleased( DEVK_DOWN )
        || InputManager::Instance().IsKeyReleased( DEVK_LEFT ) || InputManager::Instance().IsKeyReleased( DEVK_RIGHT ) )

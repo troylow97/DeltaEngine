@@ -1,9 +1,10 @@
 #include "AttackSystem.h"
 #include "UnitManager.h"
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
-
+#include "Audio/AudioEngine.h"
+#include  "Core/Utils/Random.h"
 namespace DeltaEngine
 {
     void AttackSystem::Update()
@@ -16,7 +17,7 @@ namespace DeltaEngine
         }
     	if(p.StartDashingTimer)
     	{
-            p.DashingTimerCooldown -= env.pClock->DeltaTime();
+            p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
             p.AllowDashing = false;
     	}
         if (p.DashingTimerCooldown <= 0.0f)
@@ -31,13 +32,14 @@ namespace DeltaEngine
         {
             if (a.CooldownTimer > 0)
             {
-                a.CooldownTimer -= env.pClock->DeltaTime();
+                a.CooldownTimer -= env.pClock->FixedDeltaTime();
             }
 
             if (a.RangeAttack)
             {
                 if (a.CooldownTimer <= 0)
                 {
+                    em.GetComponent<State>(id).SetBool("RangeAttack", true);
                     RangedAttackingEntities.push_back(id);
                     a.CooldownTimer = a.AttackCooldown;
                 }
@@ -46,6 +48,7 @@ namespace DeltaEngine
         	
             if (a.MeleeAttack)
             {
+                em.GetComponent<State>(id).SetBool("MeleeAttack", true);
                 a.StartComboCooldownTimer = true;
                 if (a.NumberOfCombos != a.MaxComboNumber)
                 {
@@ -76,11 +79,13 @@ namespace DeltaEngine
 
         for (auto& id : RangedAttackingEntities)
         {
+            em.GetComponent<State>(id).SetBool("RangeAttack", true);
             RangedAttack(id);
         }
 
         for (auto& id : MeleeAttackingEntities)
         {
+            em.GetComponent<State>(id).SetBool("MeleeAttack", true);
             MeleeAttack(id);
         }
 
@@ -97,8 +102,20 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
-            EntityID missile2 = CreateProjectile(id, Vector2{ 1.7,1.7 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
+            EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.15f, EntityCategory::E_PLAYER_BULLET);
+            EntityID missile2 = CreateProjectile(id, Vector2{ 1.7f,1.7f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
+            em.AddComponent<Renderer2D>(missile);
+            em.AddComponent<Image>(missile);
+            em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
+            em.GetComponent<Image>(missile).m_Size = { 1.0f,1.0f };
+            em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
+            em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
+            em.GetComponent<State>(id).SetBool("Ranged", true);
+            static size_t c_id{ u64_max };
+            if (AudioEngine::IsChannelPlaying(c_id))
+                AudioEngine::StopChannel(c_id);
+            c_id  = AudioEngine::Play("Audio/jump.wav");
+
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -117,7 +134,13 @@ namespace DeltaEngine
         }
         else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
+            EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
+            em.AddComponent<Renderer2D>(missile);
+            em.AddComponent<Image>(missile);
+            em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
+            em.GetComponent<Image>(missile).m_Size = { 1.0f,1.0f };
+            em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
+
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -135,7 +158,11 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(id))
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.7,0.5 }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+            EntityID missile = CreateProjectile(id, Vector2{ 0.7f,0.5f }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+            static size_t c_id{ u64_max };
+            if (AudioEngine::IsChannelPlaying(c_id))
+                AudioEngine::StopChannel(c_id);
+            c_id = AudioEngine::Play("Audio/jump.wav");
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.6f;
@@ -154,13 +181,27 @@ namespace DeltaEngine
         {
         	if(em.GetComponent<RigidBody>(id).hasGravity == false)
         	{
-                EntityID missile = CreateProjectile(id, Vector2{ 0.3,0.3 }, false, 0.1f, EntityCategory::E_ENEMY_LANCER_PUNCH);
+                unsigned rand_sound = Random::RandomIntRange(0, 3);
+        		switch(rand_sound)
+        		{
+                case 0:
+                   AudioEngine::Play("Audio/Lancer/LancerCharge1.ogg");
+                    break;
+                case 1:
+                   AudioEngine::Play("Audio/Lancer/LancerCharge2.ogg");
+                    break;
+                case 2:
+                    AudioEngine::Play("Audio/Lancer/LancerCharge3.ogg");
+                    break;
+        		}
+
+                EntityID missile = CreateProjectile(id, Vector2{ 0.2f,0.2f }, false, 0.2f, EntityCategory::E_ENEMY_LANCER_PUNCH);
                 const Vector2 player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                 const Vector2 monster_pos = em.GetComponent<Transform>(id).position;
                 Vector2 kb = (player_pos - em.GetComponent<Transform>(id).position);
 
                 em.GetComponent<Transform>(missile).position = monster_pos + kb.Normalize() * 0.5f;
-                em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 500.0f;
+                em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 400.0f;
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
 
         		//Apply knockback to lancer
@@ -169,7 +210,9 @@ namespace DeltaEngine
         	}
             else
             {
-                EntityID missile = CreateProjectile(id, Vector2{ 0.3,0.3 }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
+                AudioEngine::Play("Audio/Fiddler/FiddlerAttack.ogg");
+
+                EntityID missile = CreateProjectile(id, Vector2{ 0.3f,0.3f }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
                 if (em.GetComponent<Image>(id).m_FlipX == false)
                 {
                     em.GetComponent<Transform>(missile).position.x += 0.5f;
@@ -193,10 +236,14 @@ namespace DeltaEngine
         {
             if (et1.type == EntityCategory::E_PLAYER_DASH)
             {
-                if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).IsDashing)
-                    t1.position = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
+                if (em.GetComponent<Player>(UnitManager::GetPlayerID()).IsDashing)
+                    t1.position = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                 else
-                    env.pECS->GetWorld().GetEntityManager().DestroyEntity(id1);
+                {
+                    em.DestroyEntity(id1);
+                    em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("IsDodge", false);
+                }
+
             }
         });
     }
@@ -204,7 +251,7 @@ namespace DeltaEngine
     EntityID AttackSystem::CreateProjectile(EntityID id,Vector2 scale,bool gravity,float Lifetime,EntityCategory type)
     {
         Transform& t1 = em.GetComponent<Transform>(id);
-        EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+        EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
         em.GetComponent<Transform>(missile).position = t1.position;
         em.GetComponent<RigidBody>(missile).Mass = 5.0f;
         em.GetComponent<Transform>(missile).scale = scale;
@@ -218,5 +265,6 @@ namespace DeltaEngine
         em.GetComponent<Health>(missile).CurrentHealth = 1;
         return missile;
     }
+
 	
 } //Namespace DeltaEngine

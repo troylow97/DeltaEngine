@@ -6,9 +6,6 @@ namespace DeltaEngine
 {
   class Application
   {
-    bool m_Minimized;
-
-    double m_interval;
   public:
     Application();
     virtual ~Application();

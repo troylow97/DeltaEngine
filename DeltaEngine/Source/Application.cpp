@@ -5,7 +5,7 @@
 #include "Assets/Loaders/AudioLoader.h"
 #include "Render/OpenGLSystem.h"
 #include "Core/Utils/FileUtils.h"
-#include "Core/Utils/DirectoryWatcher/DirectoryWatcher.h"
+#include "Core/Utils/DirectoryWatcher/SystemDirectory.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "Physics/CollisionSystem.h"
@@ -16,7 +16,6 @@
 #include "ImGui/Panels/LoggerPanel.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/Utils/Random.h"
-#include "Input/Keys.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -32,9 +31,8 @@
 namespace DeltaEngine
 {
 DeltaEngineGlobalEnvironment env;
-int fps;
 
-Application::Application() : m_Minimized { true }, m_interval( 0.25 )
+Application::Application()
 {
   // Logger Initialization
   Log::Init();
@@ -58,7 +56,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   AudioLoader().Load();
 
   // Clock Initialization
-  env.pClock = new GameClock( c.fps );
+  env.pClock = new EngineClock( c.fps );
 
   // Window Initialization
   env.pWin = new Window( c.win_name, c.width, c.height, c.fullscreen );
@@ -95,9 +93,10 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
 
   // ECS Initialization
   env.pECS = new ECSModule();
-  env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( { 0 } ).m_Size = c.cam_size;
-
 #ifdef DE_EDITOR
+  auto id = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
+  env.pECS->GetWorld().GetEntityManager().GetComponent<EntityName>( id).name.assign( "Camera");
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( id ).m_Size = c.cam_size;
   Editor::Instance();
   SystemDirectory::Instance().StartWatch();
 #endif
@@ -149,7 +148,6 @@ void Application::Run()
       env.pWin->Update();
       AudioEngine::Update();
       Profiler::Instance().FrameEnd();
-
     }
     else
     {
@@ -197,17 +195,4 @@ void Application::OnEvent()
   Profiler::Instance().Record( "Event" );
 }
 
-
-bool Application::OnWindowResize( WindowResizeEvent &e )
-{
-  if ( e.GetWidth() == 0 || e.GetHeight() == 0 )
-  {
-    m_Minimized = true;
-    return false;
-  }
-
-  m_Minimized = false;
-
-  return false;
-}
 }

@@ -322,6 +322,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "Current Health", &Health::CurrentHealth )( rttr::policy::prop::bind_as_ptr )
     .property( "Max Health", &Health::MaxHealth )( rttr::policy::prop::bind_as_ptr )
+    .property("TakenDamageTimer", &Health::isDamagedTimer)(rttr::policy::prop::bind_as_ptr)
     .property( "Invulnerable", &Health::isInvulnerable )( rttr::policy::prop::bind_as_ptr );
 
     rttr::registration::class_<Attack>("Attack")
@@ -365,7 +366,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .property("Allow Dashing", &Player::AllowDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Upgrade Attack", &Player::UpgradeAtk)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("Upgrade Health", &Player::UpgradeHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+      .property("Upgrade Health", &Player::UpgradeHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgraded Attack", &Player::UpgradedAtk)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgraded Health", &Player::UpgradedHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
   }
 
 }

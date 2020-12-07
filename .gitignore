@@ -359,3 +359,5 @@ DeltaEngine/DeltaEngine.vcxproj.filters
 DeltaEngine/DeltaEngine.vcxproj
 Sandbox/Sandbox.vcxproj
 DeltaEngine/DeltaEngine.vcxproj
+
+imgui.ini

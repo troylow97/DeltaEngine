@@ -54,8 +54,6 @@ namespace DeltaEngine
     // Selected File
     std::string selectedFile {};
 
-
-
     ~Editor();
     void Begin();
     void Render();

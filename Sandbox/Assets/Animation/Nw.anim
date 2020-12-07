@@ -5,10 +5,16 @@
 %EditorPositions:
 
 pos
-Entry 142 86
+Entry 3 4
 
 pos
-Exit 379 263
+Exit 652 256
+
+pos
+Clip/RangeAttackSpritesheet 30 438
+
+pos
+Clip/3-PunchSpritesheet 463 438
 
 %Transitions:
 

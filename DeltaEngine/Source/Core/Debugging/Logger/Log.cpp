@@ -17,11 +17,20 @@ namespace DeltaEngine
 
     spdlog::set_pattern("%^[%T] %n: %v%$");
     _coreLogger = spdlog::stdout_color_mt("DELTAENGINE");
+
+#ifdef DE_EDITOR
     _coreLogger->set_level(spdlog::level::trace);
+#else
+    _coreLogger->set_level( spdlog::level::off );
+#endif
+
 
     _clientLogger = spdlog::stdout_color_mt("APP");
-    _clientLogger->set_level(spdlog::level::trace);
-
+#ifdef DE_EDITOR
+    _coreLogger->set_level(spdlog::level::trace);
+#else
+    _coreLogger->set_level( spdlog::level::off );
+#endif
     core_file_logger = spdlog::basic_logger_mt("core_file_logger", LOG_TEXT_NAME);
 
     spdlog::flush_on(spdlog::level::info);

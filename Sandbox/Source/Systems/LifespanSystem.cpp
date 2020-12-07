@@ -1,9 +1,10 @@
 #include "LifespanSystem.h"
 
 #include "UnitManager.h"
+#include "Audio/AudioEngine.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 
 namespace DeltaEngine
 {
@@ -25,7 +26,7 @@ namespace DeltaEngine
           }
           else
           {
-              ls.Timer -= env.pClock->DeltaTime();
+              ls.Timer -= env.pClock->FixedDeltaTime();
           }
       });
   }
@@ -39,7 +40,7 @@ namespace DeltaEngine
 
         if (hp.CurrentHealth <= 0)
         {
-          if (et.type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
+          if (env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
           {
               auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
               p.IsDead = true;
@@ -48,6 +49,21 @@ namespace DeltaEngine
           {
 			  DestroyedEntities.push_back(id);
           }
+        }
+        else
+        {
+        	if(em.HasComponent<Renderer2D>(id))
+        	{
+                if (hp.isDamagedTimer > 0.0f)
+                {
+                    em.GetComponent<Renderer2D>(id).m_Color = { 1,0,0 };
+                    hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
+                }
+                else
+                {
+                    em.GetComponent<Renderer2D>(id).m_Color = { 1,1,1 };
+                }
+        	}
         }
     });
 
@@ -61,6 +77,7 @@ namespace DeltaEngine
 
     for (EntityID i : DestroyedEntities)
     {
+    	
     	em.DestroyEntity(i);
     }
 

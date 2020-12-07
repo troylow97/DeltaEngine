@@ -1,14 +1,20 @@
-%Entry
+%Entry:
 
 %Parameters:
 
 %EditorPositions:
 
 pos
-Entry 0 0
+Entry 3 4
 
 pos
-Exit 200 200
+Exit 652 256
+
+pos
+Clip/RangeAttackSpritesheet 30 438
+
+pos
+Clip/3-PunchSpritesheet 463 438
 
 %Transitions:
 

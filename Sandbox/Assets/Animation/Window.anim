@@ -1,0 +1,21 @@
+%Entry:
+
+entry 
+Clip/WindowLight_Anim
+
+%Parameters:
+
+%EditorPositions:
+
+pos
+Entry 0 0
+
+pos
+Exit 200 200
+
+pos
+Clip/WindowLight_Anim 171 71
+
+%Transitions:
+
+%endfile

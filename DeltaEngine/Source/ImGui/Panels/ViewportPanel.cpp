@@ -8,7 +8,7 @@
 #include "Input/Keys.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Gizmos.h"
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 #include "ImGui/Editor.h"
 #include "Physics/Collision.h"
 

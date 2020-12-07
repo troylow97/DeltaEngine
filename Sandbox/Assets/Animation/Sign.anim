@@ -1,0 +1,24 @@
+%Entry:
+
+entry 
+Clip/SquareSign_Anim
+
+%Parameters:
+
+%EditorPositions:
+
+pos
+Entry 0 0
+
+pos
+Exit 200 200
+
+pos
+%Transitions: 0 0
+
+pos
+Clip/SquareSign_Anim 348 122
+
+%Transitions:
+
+%endfile

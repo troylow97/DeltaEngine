@@ -1,9 +1,11 @@
 #include "PhysicsSystem.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/GlobalStruct.h"
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 #include "Collision.h"
 #include <cmath>
+
+#include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
@@ -11,10 +13,10 @@ namespace DeltaEngine
     {
         m_gravity_amount = { 0,-60.0f };
         CurrentJumpTicks = 0;
-        MaxJumpTicks = 10;
+        MaxJumpTicks = 7;
         CurrentDashTicks = 0;
         MaxDashTicks = 8;
-        InitialJumpForce = 4500.0f;
+        InitialJumpForce = 2600.0f;
         JumpForce = InitialJumpForce;
     }
 
@@ -141,6 +143,14 @@ namespace DeltaEngine
 
 	void PhysicsSystem::Jump(Player& p, RigidBody& r, Collider& c)
     {
+        if(CurrentJumpTicks == 1)
+        {
+            static size_t c_id{ u64_max };
+            if (AudioEngine::IsChannelPlaying(c_id))
+                AudioEngine::StopChannel(c_id);
+            c_id = AudioEngine::Play("Audio/jump.wav");
+        }
+    	
         if (CurrentJumpTicks >= 1 && p.IsJumping)
         {
             r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };

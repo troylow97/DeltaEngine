@@ -2,7 +2,7 @@
 #include "Collision.h"
 #include "Core/Math/Math.h"
 #include "Core/GlobalStruct.h"
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 #include "Manifold.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 
@@ -159,7 +159,7 @@ namespace DeltaEngine
 
       		if(em.GetComponent<Transform>(player).position.y < em.GetComponent<Transform>(platform).position.y)
       		{
-                em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 500};
+                em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 5000};
                 continue;
       		}
         }

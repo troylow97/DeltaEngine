@@ -7,6 +7,7 @@
 #include "Input/Keys.h"
 
 #include <string>
+#include <filesystem>
 
 namespace DeltaEngine
 {
@@ -156,7 +157,10 @@ void SpriteEditorPanel::Render()
             ImGui::Checkbox( "Loop", &loop );
             ImGui::DragInt( "FPS", &fps, 0.01f, 1, 200 );
             if ( ImGui::Button( "Apply Changes and Create Clip" ) )
-              AnimationClip::CreateNew( texture->GetName(), texture->GetName() + ".clip", fps, loop );
+            {
+              std::filesystem::path new_path { texture->GetName() + ".clip" };
+              AnimationClip::CreateNew( texture->GetName(), "Clip/" + new_path.filename().generic_string(), fps, loop );
+            }
             ImGui::EndMenu();
           }
           if ( ImGui::Button( "Apply Changes" ) )
