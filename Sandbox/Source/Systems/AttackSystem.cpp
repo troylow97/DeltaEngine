@@ -105,6 +105,7 @@ namespace DeltaEngine
             em.GetComponent<Image>(missile).m_Size = { 1.0f,1.0f };
             em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
             em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
+            em.GetComponent<State>(id).SetBool("Ranged", true);
             static size_t c_id{ u64_max };
             if (AudioEngine::IsChannelPlaying(c_id))
                 AudioEngine::StopChannel(c_id);
@@ -134,6 +135,7 @@ namespace DeltaEngine
             em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
             em.GetComponent<Image>(missile).m_Size = { 1.0f,1.0f };
             em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
+
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -204,6 +206,7 @@ namespace DeltaEngine
             else
             {
                 AudioEngine::Play("Audio/Fiddler/FiddlerAttack.ogg");
+                em.GetComponent<State>(id).SetBool("isAttacking", true);
                 EntityID missile = CreateProjectile(id, Vector2{ 0.3f,0.3f }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
                 if (em.GetComponent<Image>(id).m_FlipX == false)
                 {
