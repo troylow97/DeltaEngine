@@ -176,7 +176,19 @@ void AssetPanel::Render()
                       m_editor.m_panels[10]->Enable();
 
                     auto key = str.substr( 0, str.find_last_of( '.' ) );
-                    m_editor.textureKey.assign( key );
+                    m_editor.selectedFile.assign( key );
+                  }
+
+              if ( ref.extension() == ".anim" )
+                if ( ImGui::IsItemClicked() )
+                  if ( ImGui::IsMouseDoubleClicked( 0 ) )
+                  {
+                    m_editor.m_panels[11]->Enable();
+                    if ( !m_editor.m_panels[11]->IsEnabled() )
+                      m_editor.m_panels[11]->Enable();
+
+                    auto key = str.substr( 0, str.find_last_of( '.' ) );
+                    m_editor.selectedFile.assign( key );
                   }
 
               ImGui::PopID();
@@ -187,6 +199,47 @@ void AssetPanel::Render()
 
         ImGui::PopStyleColor();
       }
+      if (ImGui::IsMouseReleased(ImGuiMouseButton_Right))
+        if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByPopup))
+        {
+          ImGui::OpenPopup("Assets Panel Create New Context Menu");
+        }
+      ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(8, 8));
+      if (ImGui::BeginPopup("Assets Panel Create New Context Menu"))
+      {
+        ImGui::Text("Create New...");
+        ImGui::Separator();
+        if (ImGui::MenuItem("Animation Controller"))
+        {
+          std::string str = "NewController";
+          int i = 0; bool hasSameName = false;
+          do
+          {
+            if (hasSameName)
+            {
+              hasSameName = false;
+              str = "NewController" + std::to_string(i++);
+            }
+            // using filesystem
+            for (auto file : FileUtils::FileList("Animation"))
+            {
+              // using systemdirectory
+                  // Store Directory Reference
+              for (auto& d : SystemDirectory::Instance().ConstDirectories())
+              {
+                if (!strcmp(d.cur_dir.path().filename().generic_string().c_str(), str.c_str()))
+                {
+                  hasSameName = true;
+                  break;
+                }
+              }
+            }
+          } while (hasSameName);
+          AnimationController::CreateNew("Animation/" + str + ".anim");
+        }
+        ImGui::EndPopup();
+      }
+      ImGui::PopStyleVar();
     }
     ImGui::EndChild();
 

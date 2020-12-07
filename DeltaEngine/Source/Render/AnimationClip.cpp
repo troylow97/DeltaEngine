@@ -30,11 +30,14 @@ namespace DeltaEngine
     return fps;
   }
 
-  Sprite AnimationClip::GetSprite(unsigned int index)
+  Sprite AnimationClip::GetSprite(unsigned int frame)
   {
-    index = Math::Clamp(index, 0, static_cast<int>(m_Sprites.size()) - 1);
-    if (m_Sprites.count(index))
-      return m_Sprites[index];
+    frame = Math::Clamp(frame + 1, 1, totalFrames);
+    for (; frame > 0; --frame)
+    {
+      if (m_Sprites.count(frame - 1))
+        return m_Sprites[frame - 1];
+    }
     return Sprite();
   }
 

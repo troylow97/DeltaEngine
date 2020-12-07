@@ -15,7 +15,7 @@ namespace DeltaEngine
   AnimatorPanel::AnimatorPanel(std::string str, Editor& e)
     : IPanel(str, e)
   {
-    m_enabled = true;
+    m_enabled = false;
   }
 
   AnimatorPanel::~AnimatorPanel()
@@ -69,93 +69,83 @@ namespace DeltaEngine
       static std::unordered_map<std::string, bool> paramSelected;
       static std::vector<Node> nodes;
       static std::vector<NodeLink> links;
-      static std::vector<AssetKey> allClips;
       static ImVec2 scrolling = ImVec2(0.0f, 0.0f);
       static bool loaded = false;
       static int nodeSelected = -1;
       static int transitionNode = -1;
       static int hoveredNode = -1;
+      static int selectedTransition = -1;
 
+      std::string deleteParam = "";
       ImGuiIO& io = ImGui::GetIO();
 
-      AnimationController* controller = GetEnv().pManager->Get<AnimationController>(std::string(animName));
+      AnimationController* controller = GetEnv().pManager->Get<AnimationController>(m_editor.selectedFile);
 
       ImGui::BeginChild("Parameters", ImVec2(150, 0));
       ImGui::Text("Parameters");
       ImGui::Separator();
+      if (ImGui::Button("Add..."))
+      {
+        std::string str = "NewParam";
+        int i = 0; bool hasSameName = false;
+        auto checkSameName = [&str](std::string& s)
+        {
+          return !strcmp(str.c_str(), s.c_str());
+        };
+        do
+        {
+          if (hasSameName)
+          {
+            hasSameName = false;
+            str = "NewParam" + std::to_string(i++);
+          }
+          for (auto& [pName, v] : controller->startingParameters)
+          {
+            hasSameName = !strcmp(str.c_str(), pName.c_str());
+            if (hasSameName)
+              break;
+          }
+        } while (hasSameName);
+        controller->startingParameters.push_back({ str, AnimationController::Parameter() });
+      }
+      ImGui::Separator();
       if (!loaded && controller)
       {
+        nodes.clear();
         for (auto& [ParamName, Value] : controller->startingParameters)
         {
           paramSelected[ParamName] = false;
         }
-        // entry and exit nodes
+        int i = 0;
+        for (auto& [key, pos] : controller->editorPositions)
         {
-          Vector2 v = controller->EditionPositionAt("Entry");
-          nodes.push_back(Node(0, "Entry", ImVec2(v.x, v.y)));
-          v = controller->EditionPositionAt("Exit");
-          nodes.push_back(Node(1, "Exit", ImVec2(v.x, v.y)));
+          Vector2 v = controller->EditionPositionAt(key);
+          nodes.push_back(Node(i++, key.Key().c_str(), ImVec2(v.x, v.y)));
         }
-        for (auto& [StartState, EndState, Conditions] : controller->transitions)
-        {
-          bool dup = false;
-          for (auto& clip : allClips)
-          {
-            if (clip == StartState)
-            {
-              dup = true;
-              break;
-            }
-          }
-          if (!dup)
-            allClips.push_back(StartState);
-
-          dup = false;
-          if (EndState == "Exit")
-            dup = true;
-          else
-            for (auto& clip : allClips)
-            {
-              if (clip == EndState)
-              {
-                dup = true;
-                break;
-              }
-            }
-          if (!dup)
-            allClips.push_back(EndState);
-        }
-
-        int i = 2;
-        for (auto& clip : allClips)
-        {
-          Vector2 v = controller->EditionPositionAt(clip);
-          nodes.push_back(Node(i++, clip.Key().c_str(), ImVec2(v.x, v.y)));
-        }
+        
         // entry animation
         {
           int entry = 0;
-          while (!(allClips[entry] == controller->entryAnimation->GetName()))
+          while (entry < nodes.size() && strcmp(nodes[entry].nodeName, controller->entryAnimation.c_str()))
             ++entry;
-          links.push_back(NodeLink(0, entry + 2));
+          if (entry >= nodes.size())
+            nodes.push_back(Node(i++, controller->entryAnimation.c_str(), ImVec2(0, 0)));
+          if (entry < nodes.size())
+            links.push_back(NodeLink(0, entry));
         }
         // the rest of the animations
         for (auto& [StartState, EndState, Conditions] : controller->transitions)
         {
           int start = 0, end = 0;
-          while (!(allClips[start] == StartState))
+          while (start < nodes.size() && strcmp(StartState.c_str(), nodes[start].nodeName))
             ++start;
-          if (strcmp(EndState.c_str(), "Exit"))
-          {
-            while (!(allClips[end] == EndState))
-              ++end;
-            links.push_back(NodeLink(start + 2, end + 2));
-          }
-          else
-          {
-            std::cerr << "exit Transs" << std::endl;
-            links.push_back(NodeLink(start + 2, 1));
-          }
+          if (start >= nodes.size())
+            nodes.push_back(Node(i++, StartState.c_str(), ImVec2(0, 0)));
+          while (end < nodes.size() && strcmp(EndState.c_str(), nodes[end].nodeName))
+            ++end;
+          if (end >= nodes.size())
+            nodes.push_back(Node(i++, EndState.c_str(), ImVec2(0, 0)));
+          links.push_back(NodeLink(start, end));
         }
         loaded = true;
       }
@@ -171,6 +161,11 @@ namespace DeltaEngine
 
           ImGui::Checkbox("Bool", &Value.boolValue);
           ImGui::DragFloat("Float", &Value.floatValue, 0.1f, 0.f, 0.f, "%0.1f");
+          if (ImGui::Button("Delete..."))
+          {
+            paramSelected.erase(ParamName);
+            deleteParam = ParamName.c_str();
+          }
         }
       }
 
@@ -294,7 +289,10 @@ namespace DeltaEngine
         draw_list->ChannelsSetCurrent(0); // Background
         ImGui::SetCursorScreenPos(node_rect_min);
         if (ImGui::InvisibleButton("node", node.nodeSize, ImGuiButtonFlags_MouseButtonLeft | ImGuiButtonFlags_MouseButtonRight))
+        {
+          selectedTransition = -1;
           nodeSelected = node.nID;
+        }
 
         if (ImGui::IsItemHovered())
           hoveredNode = node.nID;
@@ -320,75 +318,114 @@ namespace DeltaEngine
 
       // open context menu
       if (ImGui::IsMouseReleased(ImGuiMouseButton_Right))
-        if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByPopup) || !ImGui::IsAnyItemHovered())
+        if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByPopup))
         {
           ImGui::OpenPopup("Animator Node Context Menu");
         }
-
-      if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
-      {
-        for (Node& node : nodes)
-        {
-          controller->editorPositions[node.nID] = { node.nodeName, Vector2(node.nodePos.x, node.nodePos.y) };
-        }
-        controller->SaveToFile();
-        controller->LoadFromFile();
-      }
 
       // draw context menu
       ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(8, 8));
       if (ImGui::BeginPopup("Animator Node Context Menu"))
       {
         Node* node = (nodeSelected >= 0 && nodeSelected < nodes.size()) ? &nodes[nodeSelected] : NULL;
-        ImVec2 scene_pos = ImGui::GetMousePosOnOpeningCurrentPopup() - offset;
         if (node)
         {
           ImGui::Text("Clip: \"%s\"", node->nodeName);
           ImGui::Separator();
           if (ImGui::MenuItem("Make Transition"))
           {
-            transitionNode = node->nID;
+            // no transition starts from entry or exit
+            if (node->nID > 1 && node->nID < nodes.size())
+              transitionNode = node->nID;
           }
           if (ImGui::MenuItem("Delete"))
           {
-
-          }
-        }
-        else
-        {
-          if (ImGui::MenuItem("Add Parameter"))
-          {
-
+            int i = 0;
+            for (auto& [key, pos] : controller->editorPositions)
+            {
+              if (key == node->nodeName)
+                controller->editorPositions.erase(controller->editorPositions.begin() + i);
+              ++i;
+            }
+            i = 0;
+            for (auto& [StartState, EndState, Conditions] : controller->transitions)
+            {
+              if (!strcmp(StartState.c_str(), node->nodeName) ||
+                !strcmp(EndState.c_str(), node->nodeName))
+                controller->transitions.erase(controller->transitions.begin() + i);
+              ++i;
+            }
+            nodes.erase(nodes.begin() + nodeSelected);
+            nodeSelected = -1;
           }
         }
         ImGui::EndPopup();
       }
       ImGui::PopStyleVar();
 
-      // Scrolling
+      if (!deleteParam.empty())
+      {
+        for (auto it = controller->startingParameters.begin();
+          it != controller->startingParameters.end(); ++it)
+          if (!strcmp((*it).first.c_str(), deleteParam.c_str()))
+          {
+            controller->startingParameters.erase(it);
+            break;
+          }
+        for (auto& [startState, endState, cons] : controller->transitions)
+        {
+          for (auto it = cons.begin();
+            it != cons.end();)
+          {
+            auto& [paramName, conType, conVal] = *it;
+            if (!strcmp(paramName.c_str(), deleteParam.c_str()))
+              it = cons.erase(it);
+            else
+              ++it;
+          }
+        }
+      }
+
+      if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
+      {
+        controller->editorPositions.clear();
+        for (Node& node : nodes)
+        {
+          controller->editorPositions.push_back({ node.nodeName, Vector2(node.nodePos.x, node.nodePos.y) });
+        }
+        controller->SaveToFile();
+        controller->LoadFromFile();
+      }
+
+      // scrolling
       if (ImGui::IsWindowHovered() && !ImGui::IsAnyItemActive() && ImGui::IsMouseDragging(ImGuiMouseButton_Middle, 0.0f))
         scrolling = scrolling + io.MouseDelta;
 
       ImGui::PopItemWidth();
       ImGui::EndChild();
-      if(ImGui::BeginDragDropTarget())
+      if (ImGui::BeginDragDropTarget())
       {
-        const ImGuiPayload *assetpayload = ImGui::AcceptDragDropPayload( "ASSETFILES" );
-        if ( assetpayload )
+        const ImGuiPayload* assetpayload = ImGui::AcceptDragDropPayload("ASSETFILES");
+        if (assetpayload)
         {
-          std::string assetpayload_n = *static_cast<std::string *>( assetpayload->Data );
-          std::filesystem::path file { assetpayload_n };
-          if ( file.extension() == ".clip" )
-            controller->editorPositions.push_back( std::pair( AssetKey{ assetpayload_n.substr( 0, assetpayload_n.find_last_of( '.' )) }, Vector2{ scrolling.x, scrolling.y } ));
+          std::string assetpayload_n = *static_cast<std::string*>(assetpayload->Data);
+          std::filesystem::path file{ assetpayload_n };
+          if (file.extension() == ".clip")
+            controller->editorPositions.push_back(
+              std::pair(AssetKey{ assetpayload_n.substr(0, assetpayload_n.find_last_of('.')) },
+                Vector2{ io.MousePos.x - offset.x, io.MousePos.y - offset.y }));
+          if (controller->entryAnimation.empty())
+            controller->entryAnimation = assetpayload_n.substr(0, assetpayload_n.find_last_of('.'));
+          loaded = false;
         }
       }
+
       ImGui::PopStyleColor();
       ImGui::PopStyleVar();
       ImGui::EndGroup();
 
       // inspector
       {
-        static int selectedTransition = -1;
         ImGui::SameLine();
         if (ImGui::BeginChild("Transition Inspector"))
         {
@@ -407,41 +444,37 @@ namespace DeltaEngine
             }
             else
             {
-
+              ImGui::Text("%s", nodes[nodeSelected].nodeName);
+              //
               ImGui::Text("%s", nodes[nodeSelected].nodeName);
 
               std::vector<AssetKey> clip_vec;
 
-              for ( auto &[key, data] : GetEnv().pManager->List<AnimationClip>() )
-                if (data )
-                  clip_vec.push_back( key );
+              for (auto& [key, data] : GetEnv().pManager->List<AnimationClip>())
+                if (data)
+                  clip_vec.push_back(key);
 
               size_t selection = 0;
-              for ( size_t i = 0; i < clip_vec.size(); i++ )
-                if ( nodes[nodeSelected].nodeName == clip_vec[i].Key() )
+              for (size_t i = 0; i < clip_vec.size(); i++)
+                if (nodes[nodeSelected].nodeName == clip_vec[i].Key())
                   selection = i;
 
               size_t initial = selection;
-              const char *clip_key = clip_vec[selection].Key().c_str();
+              const char* clip_key = clip_vec[selection].Key().c_str();
 
-              if(ImGui::BeginCombo("Clip Selection", clip_key ))
+              if (ImGui::BeginCombo("Clip Selection", clip_key))
               {
-                for ( size_t i = 0 ; i < clip_vec.size(); i++)
+                for (size_t i = 0; i < clip_vec.size(); i++)
                 {
-                  const bool is_selected = ( selection == i );
-                  if ( ImGui::Selectable( clip_vec[i].Key().c_str(), is_selected ) )
+                  const bool is_selected = (selection == i);
+                  if (ImGui::Selectable(clip_vec[i].Key().c_str(), is_selected))
                     selection = i;
 
-                  if ( is_selected )
+                  if (is_selected)
                     ImGui::SetItemDefaultFocus();
                 }
                 ImGui::EndCombo();
               }
-
-
-
-
-              ImGui::Text("TODO: Change Clip Here");
               ImGui::Separator();
               ImGui::Text("Transitions");
               ImGui::Separator();
@@ -456,6 +489,7 @@ namespace DeltaEngine
                 }
                 ++i;
               }
+              //
               ImGui::Separator();
               ImGui::Text("Conditions");
               ImGui::Separator();
@@ -489,7 +523,7 @@ namespace DeltaEngine
                 }
                 if (allParameters.size())
                 {
-                  if (ImGui::Button("Add"))
+                  if (ImGui::Button("Add Condition"))
                   {
                     std::get<2>(controller->transitions[selectedTransition]).push_back({
                       std::string(allParameters[0]), (AnimationController::Conditions)0, 0}
@@ -502,34 +536,32 @@ namespace DeltaEngine
                   ImGui::Text("Add parameters to add conditions");
                 }
               }
-
               // Update Combo Selection
-              if (initial != selection )
+              if (initial != selection)
               {
                 // Update Editor
-                auto it = std::find_if( controller->editorPositions.begin(),
-                                        controller->editorPositions.end(),
-                                        [&]( const std::pair<AssetKey, Vector2> pair )
-                {
-                  return pair.first == clip_vec[initial];
-                } );
-                if ( it != controller->editorPositions.end() )
+                auto it = std::find_if(controller->editorPositions.begin(),
+                  controller->editorPositions.end(),
+                  [&](const std::pair<AssetKey, Vector2> pair)
+                  {
+                    return pair.first == clip_vec[initial];
+                  });
+                if (it != controller->editorPositions.end())
                   it->first = clip_vec[selection];
 
 
                 // Update Transitions
-                std::for_each( controller->transitions.begin(), controller->transitions.end(), [&]( AnimationController::Transition &t )
-                {
-                  auto &[first, second, third] = t;
-                  if ( first == clip_vec[initial].Key() )
-                    first = clip_vec[selection].Key();
-                  else if ( second == clip_vec[initial].Key() )
-                    second = clip_vec[selection].Key();
-                } );
+                std::for_each(controller->transitions.begin(), controller->transitions.end(), [&](AnimationController::Transition& t)
+                  {
+                    auto& [first, second, third] = t;
+                    if (first == clip_vec[initial].Key())
+                      first = clip_vec[selection].Key();
+                    else if (second == clip_vec[initial].Key())
+                      second = clip_vec[selection].Key();
+                  });
 
                 loaded = false;
               }
-
             }
           }
           else
@@ -539,18 +571,6 @@ namespace DeltaEngine
           }
         }
         ImGui::EndChild();
-        //if(ImGui::BeginDragDropTarget())
-        //{
-        //  const ImGuiPayload *assetpayload = ImGui::AcceptDragDropPayload( "ASSETFILES" );
-        //  if ( assetpayload )
-        //  {
-        //    std::string assetpayload_n = *static_cast<std::string *>( assetpayload->Data );
-        //    std::filesystem::path file { assetpayload_n };
-        //    //if ( file.extension() == ".clip" )
-        //      //controller->editorPositions.push_back( std::pair( AssetKey{ assetpayload_n.substr( 0, assetpayload_n.find_last_of( '.' )) }, Vector2{ ImGui::GetMousePos().x, ImGui::GetMousePos().y } ));
-        //  }
-        //}
-
       }
     }
     ImGui::End();

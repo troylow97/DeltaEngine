@@ -1,4 +1,7 @@
-entry Clip/IdleSpritesheet
+%Entry:
+
+entry 
+Clip/IdleSpritesheet
 
 %Parameters:
 
@@ -20,37 +23,31 @@ IsRunning 0 0
 param
 Ranged 0 0
 
-param
-PlayerVelocityY 0 0
-
 %EditorPositions:
 
 pos
-Entry 3 4
+Entry 0 0
 
 pos
-Exit 543 258
+Exit 168 365
 
 pos
-Clip/IdleSpritesheet -32 112
+Clip/IdleSpritesheet 60 127
 
 pos
-Clip/RunningSpritesheet 301 200
+Clip/RunningSpritesheet 438 249
 
 pos
-Clip/RangeAttackSpritesheet 70 403
+Clip/RangeAttackSpritesheet 333 27
 
 pos
-Clip/3-PunchSpritesheet -26 284
+Clip/3-PunchSpritesheet 556 99
 
 pos
-Clip/LeapingSpritesheet 508 18
+Clip/LeapingSpritesheet 338 325
 
 pos
-Clip/FallingSpritesheet 186 11
-
-pos
-Clip/StretchSpritesheet 374 466
+Clip/FallingSpritesheet 31 288
 
 %Transitions:
 
@@ -94,35 +91,33 @@ endTransition
 transition 
 start Clip/IdleSpritesheet
 end Clip/LeapingSpritesheet
-condition PlayerVelocityY > 0
+condition Speed ? 1
 endTransition
 
 transition 
 start Clip/LeapingSpritesheet
 end Clip/FallingSpritesheet
-condition PlayerVelocityY < 0
 endTransition
 
 transition 
 start Clip/FallingSpritesheet
 end Clip/IdleSpritesheet
-condition PlayerVelocityY = 0
 endTransition
 
 transition 
 start Clip/IdleSpritesheet
-end Clip/StretchSpritesheet
+end Clip/3-PunchSpritesheet
 condition IsIdle > 8
 endTransition
 
 transition 
-start Clip/StretchSpritesheet
+start Clip/3-PunchSpritesheet
 end Clip/RunningSpritesheet
 condition IsRunning ? 1
 endTransition
 
 transition 
-start Clip/StretchSpritesheet
+start Clip/3-PunchSpritesheet
 end Clip/IdleSpritesheet
 condition IsIdle < 8
 endTransition
@@ -130,27 +125,13 @@ endTransition
 transition 
 start Clip/RunningSpritesheet
 end Clip/RangeAttackSpritesheet
+condition Speed ? 1
 endTransition
 
 transition 
 start Clip/RunningSpritesheet
 end Clip/3-PunchSpritesheet
-condition Speed ? 0
-endTransition
-
-transition 
-start Clip/StretchSpritesheet
-end Exit
-endTransition
-
-transition 
-start Clip/StretchSpritesheet
-end Clip/LeapingSpritesheet
-endTransition
-
-transition 
-start Clip/LeapingSpritesheet
-end Clip/RangeAttackSpritesheet
+condition Speed ? 1
 endTransition
 
 %endfile
