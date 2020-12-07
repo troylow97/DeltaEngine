@@ -36,7 +36,7 @@ const unsigned upgraded_attack_only_page = 18;
 const unsigned using_dash = 19;       // p.IsDashing
 const unsigned dash_not_ready = 20;   // p.AllowDashing = false;
 const unsigned using_ranged = 21;     // a.RangeAttack
-const unsigned ranged_not_ready = 22; // AttackCooldown > 0
+const unsigned ranged_not_ready = 22; // MeleeCooldown > 0
 const unsigned quit_confirmation = 23;
 const unsigned quit_yes = 24;
 const unsigned quit_no = 25; // credits default - 4
@@ -73,20 +73,20 @@ void UISystem::AttackVisualFeedback()
     m_screen.push_back( level1_screen );
   }
 
-  if ( a.RangeAttack )
-    m_screen.push_back( using_ranged );
-  else if ( !a.RangeAttack && a.AttackCooldown < 0.0f )
-  {
-    m_screen.clear();
-    m_screen.push_back( level1_screen );
-    m_screen.push_back( ranged_not_ready );
-  }
-  //if (a.AttackCooldown > 0.0f)
-  //{
-  //    m_screen.clear();
-  //    m_screen.push_back(level1_screen);
-  //    m_screen.push_back(ranged_not_ready);
-  //}_screen.push_back(level1_screen);
+    if (a.RangeAttack)
+      m_screen.push_back(using_ranged);
+    else if (!a.RangeAttack && a.MeleeCooldown < 0.0f)
+    {
+        m_screen.clear();
+        m_screen.push_back(level1_screen);
+        m_screen.push_back(ranged_not_ready);
+    }
+    //if (a.MeleeCooldown > 0.0f)
+    //{
+    //    m_screen.clear();
+    //    m_screen.push_back(level1_screen);
+    //    m_screen.push_back(ranged_not_ready);
+    //}_screen.push_back(level1_screen);
 }
 
 void UISystem::Update()
