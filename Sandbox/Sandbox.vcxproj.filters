@@ -60,7 +60,7 @@
     <ClInclude Include="Source\Systems\UpgradeSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\AI\ExitScene\ExitScene.h" />
+    <ClInclude Include="Source\Systems\AI\ExitScene\ExitSceneCinematic.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
@@ -103,6 +103,6 @@
     <ClCompile Include="Source\Systems\UpgradeSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\AI\ExitScene\ExitScene.cpp" />
+    <ClCompile Include="Source\Systems\AI\ExitScene\ExitSceneCinematic.cpp" />
   </ItemGroup>
 </Project>

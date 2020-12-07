@@ -1,26 +1,33 @@
-#include "ExitScene.h"
+#include "ExitSceneCinematic.h"
 #include "../../UnitManager.h"
 #include "../AITools.h"
 namespace DeltaEngine
 {
-    void ExitScene::Initialize()
+    void ExitSceneCinematic::Initialize()
     {
         ExitPoint = Vector2{ 41.0f,-1.063f };
+        ExitPoint = Vector2{ 44.0f,-1.063f };
     }
 
-    void ExitScene::Update()
+    void ExitSceneCinematic::Update()
     {
         if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
         {
             EntityID p = UnitManager::GetPlayerID();
             auto& transform = em.GetComponent<Transform>(p);
-            if (AITools::EntityisAtPointInX(p, ExitPoint.x, 1.0f))
+            if (!ExitPointTriggered && AITools::EntityisAtPointInX(p, ExitPoint.x, 1.0f))
             {
                 em.RemoveComponent<Input>(p);
                 em.GetComponent<RigidBody>(p).Direction = Vector2::right();
+                ExitPointTriggered = true;
+            }
+            else if(!StopPointTriggered && AITools::EntityisAtPointInX(p, StopPoint.x, 1.0f))
+            {
+                em.GetComponent<RigidBody>(p).Direction = Vector2{ 0,0 };
             }
         }
 
     }
+
 
 }
