@@ -36,8 +36,8 @@ const unsigned upgraded_attack_only_page = 18;
 
 void UISystem::Initialize()
 {
-  m_screen.push_back(main_screen);
-  //m_screen.push_back(level1_screen);
+  //m_screen.push_back(main_screen);
+  m_screen.push_back(level1_screen);
   em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
   {
     if (ui.ui_type == UIType::Slider)
@@ -144,16 +144,11 @@ void UISystem::LateUpdate()
     else
     {
       m_screen.push_back(upgrade_page);
-      
-      if (p.UpgradedAtk && p.UpgradedHP)
-      {
-        m_screen.push_back(upgraded_attack_only_page);
-        m_screen.push_back(upgraded_health_only_page);
-      }
-      else if (p.UpgradedAtk)
-        m_screen.push_back(upgraded_attack_only_page);
-      else if (p.UpgradedHP)
-        m_screen.push_back(upgraded_health_only_page);
+
+      if (p.UpgradedAtk)
+          m_screen.push_back(upgraded_attack_only_page);
+      if (p.UpgradedHP)
+          m_screen.push_back(upgraded_health_only_page);
     }
   }
   for (auto& screen : m_screen)
@@ -188,7 +183,7 @@ void UISystem::LateUpdate()
 	em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
     {
       r.m_Active = false;
-      UI_first_time = true;
+      
       
       for (auto screen : m_screen)
         if (screen == ui.screen)
@@ -208,6 +203,11 @@ void UISystem::LateUpdate()
                   rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
                   if (ui.overlay && ui.target_screen != -1)
                     m_screen.push_back(ui.target_screen);
+                  //else if (ui.target_screen != -1)
+                  //{
+                  //  m_screen.clear();
+                  //  m_screen.push_back(ui.target_screen);
+                  //}
                 }
                 else if (ui.overlay && ui.target_screen != -1)
                   m_screen.push_back(ui.target_screen);
@@ -241,7 +241,7 @@ void UISystem::LateUpdate()
                   t.position.x = p_x;
               }
             }
-            if ((ui.ui_type == UIType::Button || ui.ui_type == UIType::Interface) && !rect_mouse)
+            else if (ui.ui_type == UIType::Interface && !rect_mouse)
             {
               if (UI_first_time)
               {
@@ -257,9 +257,23 @@ void UISystem::LateUpdate()
               UI_first_time = false;
             }
           }
-          //
+          if (screen == 13)
+          {
+            auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+            if (p.UpgradedAtk && upgraded_Attack_not_pushed)
+            { 
+              m_screen.push_back(upgraded_attack_only_page);
+              upgraded_Attack_not_pushed = false;
+            }
+            if (p.UpgradedHP && upgraded_HP_not_pushed)
+            { 
+              m_screen.push_back(upgraded_health_only_page);
+              upgraded_HP_not_pushed = false;
+            }
+          }
         }
     });
+  UI_first_time = true;
 }
 
 void UISystem::Return()
@@ -271,14 +285,12 @@ void UISystem::UpgradeDamageButton()
 {
   auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
   player.UpgradeAtk = true;
-  std::cout << "increasing attack" << std::endl;
 }
 
 void UISystem::UpgradeHPButton()
 {
   auto& player = em.GetComponent<Player>(UnitManager::GetPlayerID());
   player.UpgradeHP = true;
-  std::cout << "increasing HP" << std::endl;
 }
 
 void UISystem::StartGame()
@@ -301,7 +313,7 @@ void UISystem::BackToMainMenu()
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainMenu.json");
-  
+
   m_screen.clear();
   m_screen.push_back(main_screen);
 }
@@ -335,5 +347,11 @@ RTTR_REGISTRATION
 
   rttr::registration::class_<UISystem>("QuitGame")
   .method("QuitGame", &UISystem::QuitGame);
+
+  rttr::registration::class_<UISystem>("BackToMainMenu")
+  .method("BackToMainMenu", &UISystem::BackToMainMenu);
+
+  rttr::registration::class_<UISystem>("PauseGame")
+  .method("PauseGame", &UISystem::PauseGame);
 }
 }
