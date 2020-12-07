@@ -36,8 +36,8 @@ const unsigned upgraded_attack_only_page = 18;
 
 void UISystem::Initialize()
 {
-  //m_screen.push_back(main_screen);
-  m_screen.push_back(level1_screen);
+  m_screen.push_back(main_screen);
+  //m_screen.push_back(level1_screen);
   em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
   {
     if (ui.ui_type == UIType::Slider)
@@ -306,15 +306,22 @@ void UISystem::UpgradeHPButton()
 
 void UISystem::StartGame()
 {
-  JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
-  env.pClock->TimeScale(1.0f);
-  env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Initialize();
   m_screen.clear();
-  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-  PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
   m_screen.push_back(level1_screen);
+}
+
+void UISystem::RestartGame()
+{
+    env.pECS->GetWorld().GetEntityManager().Clear();
+    env.pECS->GetWorld().Load("World/MainLevelV2.json");
+    env.pClock->TimeScale(1.0f);
+    env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Initialize();
+    m_screen.clear();
+    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+    PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
+    m_screen.push_back(level1_screen);
 }
 
 void UISystem::QuitGame()
@@ -361,6 +368,9 @@ RTTR_REGISTRATION
 	
   rttr::registration::class_<UISystem>("StartGame")
   .method("StartGame", &UISystem::StartGame);
+
+  rttr::registration::class_<UISystem>("RestartGame")
+      .method("RestartGame", &UISystem::RestartGame);
 
   rttr::registration::class_<UISystem>("QuitGame")
   .method("QuitGame", &UISystem::QuitGame);

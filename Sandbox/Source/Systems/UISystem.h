@@ -12,6 +12,7 @@ namespace DeltaEngine
     void UpgradeDamageButton();
     void UpgradeHPButton();
     void StartGame();
+    void RestartGame();
     void QuitGame();
     void PauseGame();
     void UnpauseGame();
