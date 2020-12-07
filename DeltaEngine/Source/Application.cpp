@@ -94,7 +94,7 @@ Application::Application()
   // ECS Initialization
   env.pECS = new ECSModule();
 #ifdef DE_EDITOR
-  auto &id = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
+  auto id = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
   env.pECS->GetWorld().GetEntityManager().GetComponent<EntityName>( id).name.assign( "Camera");
   env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( id ).m_Size = c.cam_size;
   Editor::Instance();

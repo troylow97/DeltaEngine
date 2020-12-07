@@ -527,7 +527,7 @@ namespace DeltaEngine
                   if (ImGui::Button("Add Condition"))
                   {
                     std::get<2>(controller->transitions[selectedTransition]).push_back({
-                      std::string(allParameters[0]), (AnimationController::Conditions)0, 0}
+                      std::string(allParameters[0]), AnimationController::Conditions::BoolEqual, 0.0f}
                     );
                   }
                 }
