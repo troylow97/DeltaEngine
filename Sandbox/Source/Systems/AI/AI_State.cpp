@@ -108,7 +108,7 @@ namespace DeltaEngine
 
   	if(Random::RandomFloatRange(0,100) < 20)
   	{
-        static size_t c_id{ 0 };
+        static size_t c_id{ u64_max };
         if (AudioEngine::IsChannelPlaying(c_id))
             AudioEngine::StopChannel(c_id);
         c_id = AudioEngine::Play("Audio/Lancer/LancerBuzz.ogg");

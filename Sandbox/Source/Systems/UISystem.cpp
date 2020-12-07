@@ -214,8 +214,10 @@ void UISystem::LateUpdate()
                   rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
                   if (ui.overlay && ui.target_screen != -1)
                     m_screen.push_back(ui.target_screen);
+
+                  return;
                 }
-                else if (ui.overlay && ui.target_screen != -1)
+                if (ui.overlay && ui.target_screen != -1)
                   m_screen.push_back(ui.target_screen);
                 else if (ui.target_screen != -1)
                 {
