@@ -19,6 +19,7 @@ namespace DeltaEngine
     void QuitGame();
     void PauseGame();
     void UnpauseGame();
+    void BackToMenu();
     void BackToMainMenu();
 private:
   bool isDraggingOnSlider;
@@ -29,6 +30,7 @@ private:
   bool is_main_menu = false;
   bool m_start { false };
   bool m_restart { false };
+  bool m_backmenu{ false };
 
   Vector2 VolumeSliderInitialLocation;
   Vector3 PlayerFirstPosition;
