@@ -83,7 +83,7 @@ namespace DeltaEngine
 
                 //Apply Friction
                 const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-                const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->DeltaTime();
+                const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
                 r1.Velocity += dragForceVector;
 
 

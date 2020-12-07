@@ -231,7 +231,7 @@ namespace DeltaEngine
       }
       else
       {
-          CooldownTimer -= env.pClock->DeltaTime();
+          CooldownTimer -= env.pClock->FixedDeltaTime();
       }
 
   }

@@ -51,13 +51,20 @@ void InputSystem::Update()
 
     if (InputManager::Instance().IsKeyPressed(DEVK_LEFT))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
       {
         i1.previousKey = DEVK_A;
         r1.Direction = Vector2::left();
         if (r1.InherentAcceleration < r1.MaxAcceleration)
           r1.InherentAcceleration++;
         a.SetBool("IsRunning", true);
+        a.SetBool( "MeleeAttack", false );
+        a.SetBool("Punch1", false);
+        a.SetBool("Punch2", false);
+        a.SetBool("Punch3", false);
+        att.MeleeAttack = false;
+        att.RangeAttack = false;
+        
         idle_timer = 0.0f;
         i.m_FlipX = true;
       });
@@ -67,18 +74,25 @@ void InputSystem::Update()
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a)
       {
         a.SetBool("IsRunning", false);
+
       });
     }
     if (InputManager::Instance().IsKeyPressed(DEVK_RIGHT))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i,  Attack& att)
       {
         i1.previousKey = DEVK_D;
         r1.Direction = Vector2::right();
         if (r1.InherentAcceleration < r1.MaxAcceleration)
           r1.InherentAcceleration++;
-    
+
         a.SetBool("IsRunning", true);
+        a.SetBool( "MeleeAttack", false );
+        a.SetBool("Punch1", false);
+        a.SetBool("Punch2", false);
+        a.SetBool("Punch3", false);
+        att.MeleeAttack = false;
+        att.RangeAttack = false;
         idle_timer = 0.0f;
         i.m_FlipX = false;
       });
@@ -92,7 +106,7 @@ void InputSystem::Update()
     }
 
   //FOR TESTING-------------------------------------------------------------------------------------------------------
-  if ( InputManager::Instance().IsKeyPressed( DEVK_UP ) )
+  /*if ( InputManager::Instance().IsKeyPressed( DEVK_UP ) )
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1, State &a, Image &i )
     {
@@ -128,7 +142,7 @@ void InputSystem::Update()
       if ( r1.InherentAcceleration < r1.MaxAcceleration )
         r1.InherentAcceleration++;
     } );
-  }
+  }*/
   //END TESTING-------------------------------------------------------------------------------------------------------
 
 
@@ -212,6 +226,7 @@ void InputSystem::Update()
   //  p.UpgradeHP = true;
   //}
 
+
   if ( InputManager::Instance().IsKeyReleased( DEVK_UP ) || InputManager::Instance().IsKeyReleased( DEVK_DOWN )
        || InputManager::Instance().IsKeyReleased( DEVK_LEFT ) || InputManager::Instance().IsKeyReleased( DEVK_RIGHT ) )
   {
@@ -222,10 +237,10 @@ void InputSystem::Update()
     } );
   }
 
-
+#ifdef DE_EDITOR
   if ( InputManager::Instance().IsKeyTriggered( DEVK_BACKSLASH ) ) // '\'
     PhysicsDrawSystem::gizmo = !PhysicsDrawSystem::gizmo;
-
+#endif
 
   if ( InputManager::Instance().IsKeyPressed( DEVK_LCTRL ) &&
        InputManager::Instance().IsKeyReleased( DEVK_RETURN ) )

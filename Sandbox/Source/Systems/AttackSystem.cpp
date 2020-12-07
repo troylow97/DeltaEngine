@@ -88,7 +88,7 @@ namespace DeltaEngine
             {
                 if (a.ComboCooldownTimer > 0)
                 {
-                    a.ComboCooldownTimer -= env.pClock->DeltaTime();
+                    a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
                 }
                 else
                 {
@@ -227,28 +227,30 @@ namespace DeltaEngine
                 em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 400.0f;
                 em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
 
-        		//Apply knockback to lancer
-                em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 4000.0f;
-        		
-        	}
-            else
-            {
-                AudioEngine::Play("Audio/Fiddler/FiddlerAttack.ogg");
+  //Apply knockback to lancer
+      em.GetComponent<RigidBody>( id ).AccumulatedForce += -kb.Normalize() * 4000.0f;
 
-                EntityID missile = CreateProjectile(id, Vector2{ 0.3f,0.3f }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
-                if (em.GetComponent<Image>(id).m_FlipX == false)
-                {
-                    em.GetComponent<Transform>(missile).position.x += 0.5f;
-                    em.GetComponent<RigidBody>(missile).AccumulatedForce = { 500, 0 };
-                    em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
-                }
-                else
-                {
-                    em.GetComponent<Transform>(missile).position.x -= 0.5f;
-                    em.GetComponent<RigidBody>(missile).AccumulatedForce = { -500, 0 };
-                    em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
-                }
-            }
+    }
+    else
+    {
+      static size_t c_id { u64_max };
+      if ( AudioEngine::IsChannelPlaying( c_id ) )
+        AudioEngine::StopChannel( c_id );
+      c_id = AudioEngine::Play( "Audio/Fiddler/FiddlerAttack.ogg" );
+      EntityID missile = CreateProjectile( id, Vector2 { 0.3f,0.3f }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH );
+      if ( em.GetComponent<Image>( id ).m_FlipX == false )
+      {
+        em.GetComponent<Transform>( missile ).position.x += 0.5f;
+        em.GetComponent<RigidBody>( missile ).AccumulatedForce = { 500, 0 };
+        em.GetComponent<RigidBody>( missile ).Velocity = em.GetComponent<RigidBody>( id ).Velocity;
+      }
+      else
+      {
+        em.GetComponent<Transform>( missile ).position.x -= 0.5f;
+        em.GetComponent<RigidBody>( missile ).AccumulatedForce = { -500, 0 };
+        em.GetComponent<RigidBody>( missile ).Velocity = em.GetComponent<RigidBody>( id ).Velocity;
+      }
+    }
 
         }
     }
