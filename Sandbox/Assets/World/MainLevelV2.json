@@ -43,44 +43,6 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Camera"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Camera": {
-                "Camera Size": 2.0,
-                "Background Color": {
-                    "r": 0.1921568661928177,
-                    "g": 0.3019607961177826,
-                    "b": 0.4745098054409027,
-                    "a": 1.0
-                }
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
                 "Name": "StreetLamp1OFF"
             },
             "Entity Type": {
@@ -6791,7 +6753,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16654,7 +16616,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 5,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -16732,7 +16694,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 5,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -16810,7 +16772,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 6,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -16888,7 +16850,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 6,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -16966,7 +16928,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 6,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -17044,7 +17006,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 6,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,

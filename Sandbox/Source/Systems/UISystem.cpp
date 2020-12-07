@@ -50,14 +50,46 @@ void UISystem::Initialize()
   });
   isDraggingOnSlider = false;
 }
-	
-void UISystem::Update()
-{
 
+void UISystem::AttackVisualFeedback()
+{
+    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+    auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+
+    if (p.IsDashing)
+      m_screen.push_back(using_dash);
+    if (!p.IsDashing && !p.AllowDashing)
+    {
+      m_screen.clear();
+      m_screen.push_back(level1_screen);
+      m_screen.push_back(dash_not_ready);
+    }
+    if (p.AllowDashing)
+    {
+      m_screen.clear();
+      m_screen.push_back(level1_screen);
+    }
+
+    if (a.RangeAttack)
+      m_screen.push_back(using_ranged);
+    if (!a.RangeAttack && a.AttackCooldown < 0.0f)
+    {
+        m_screen.clear();
+        m_screen.push_back(level1_screen);
+        m_screen.push_back(ranged_not_ready);
+    }
+    //if (a.AttackCooldown > 0.0f)
+    //{
+    //    m_screen.clear();
+    //    m_screen.push_back(level1_screen);
+    //    m_screen.push_back(ranged_not_ready);
+    //}_screen.push_back(level1_screen);
 }
 
-void UISystem::LateUpdate()
+void UISystem::Update()
 {
+  AttackVisualFeedback();
+
   if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
   {
     bool option_menu_bool{false};
@@ -185,41 +217,9 @@ void UISystem::LateUpdate()
             else if (en.name == "RangedReady" || en.name == "RangedNotReady" || en.name == "UsingRanged")
               env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.0f, player_pos.y - 0.5368f, 0.0f };
           });
-
-          //if (p.IsDashing)
-          //{
-          //    em.ForEach([&](UI& ui, EntityID& id, EntityName& en) 
-          //    {
-          //        if (en.name == "UsingDash")
-          //        {
-          //            r.m_SortingLayer = 8;
-          //        }
-          //    });
-          //}
-          //    m_screen.push_back(using_dash);
-          //if (p.AllowDashing)
-          //    m_screen.push_back(dash_not_ready);
-
-          /*
-          const unsigned using_dash = 19;       // p.IsDashing
-          const unsigned dash_not_ready = 20;   // p.AllowDashing = false;
-          const unsigned using_ranged = 21;     // a.RangeAttack
-          const unsigned ranged_not_ready = 22; // AttackCooldown > 0
-          */
       }
     }
   }
-  //auto& id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
-  //auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
-  //
-  //if (!p.IsDashing)
-  //    m_screen.push_back(using_dash);
-  //if (p.AllowDashing)
-  //    m_screen.push_back(dash_not_ready);
-  //if (em.GetComponent<Attack>(id).RangeAttack)
-  //    m_screen.push_back(using_ranged);
-  //if (em.GetComponent<Attack>(id).AttackCooldown > 0.0f)
-  //    m_screen.push_back(ranged_not_ready);
 
   auto &t = em.GetComponent<Transform>( { 0 } );
   float cameraWidth = Camera::allCameras[0]->Max( t ).x - Camera::allCameras[0]->Min( t ).x;
@@ -323,6 +323,11 @@ void UISystem::LateUpdate()
         }
     });
   UI_first_time = true;
+}
+
+void UISystem::LateUpdate()
+{
+
 }
 
 void UISystem::Return()

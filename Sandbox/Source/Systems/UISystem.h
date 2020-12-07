@@ -7,6 +7,7 @@ namespace DeltaEngine
     void Update() override;
     void LateUpdate() override;
 
+    void AttackVisualFeedback();
 
     void Return();
     void UpgradeDamageButton();
