@@ -124,6 +124,7 @@ namespace DeltaEngine
         }
         
         // entry animation
+        if (!controller->entryAnimation.empty())
         {
           int entry = 0;
           while (entry < nodes.size() && strcmp(nodes[entry].nodeName, controller->entryAnimation.c_str()))
