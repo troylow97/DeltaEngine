@@ -3,7 +3,7 @@
 #include "../UnitManager.h"
 #include "Core/Utils/Random.h"
 #include "Core/GlobalStruct.h"
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 #include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
