@@ -12,8 +12,46 @@
             },
             "Transform": {
                 "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
                     "x": 1.0,
-                    "y": -1.0634266138076783,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -103,7 +141,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -173,7 +211,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -243,7 +281,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -313,7 +351,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -383,7 +421,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -523,7 +561,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -803,7 +841,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1013,7 +1051,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1083,7 +1121,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1153,7 +1191,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1223,7 +1261,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1293,7 +1331,7 @@
                 },
                 "Layer": 3,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1363,7 +1401,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1433,7 +1471,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1503,7 +1541,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1573,7 +1611,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1643,7 +1681,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1713,7 +1751,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1783,7 +1821,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1853,7 +1891,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1993,7 +2031,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2133,7 +2171,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2203,7 +2241,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2273,7 +2311,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2343,7 +2381,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2483,7 +2521,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2553,7 +2591,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2623,7 +2661,7 @@
                 },
                 "Layer": 3,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2693,7 +2731,7 @@
                 },
                 "Layer": 3,
                 "Order": 2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2763,7 +2801,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2833,7 +2871,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2903,7 +2941,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2973,7 +3011,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3043,7 +3081,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3113,7 +3151,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3183,7 +3221,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3323,7 +3361,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3393,7 +3431,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3463,7 +3501,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3533,7 +3571,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3673,7 +3711,7 @@
                 },
                 "Layer": 3,
                 "Order": 2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3883,7 +3921,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3953,7 +3991,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4163,7 +4201,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4233,7 +4271,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4373,7 +4411,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4443,7 +4481,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4513,7 +4551,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4583,7 +4621,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4653,7 +4691,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4723,7 +4761,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4793,7 +4831,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4863,7 +4901,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5003,7 +5041,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5073,7 +5111,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5143,7 +5181,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5213,7 +5251,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5283,7 +5321,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5353,7 +5391,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5423,7 +5461,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5493,7 +5531,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5563,7 +5601,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5633,7 +5671,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5703,7 +5741,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5773,7 +5811,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5913,7 +5951,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5983,7 +6021,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6053,7 +6091,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6123,7 +6161,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6193,7 +6231,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6263,7 +6301,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6333,7 +6371,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6403,7 +6441,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6473,7 +6511,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6613,7 +6651,7 @@
                 },
                 "Layer": -1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6683,7 +6721,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6823,7 +6861,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6893,7 +6931,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6963,7 +7001,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7033,7 +7071,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7103,7 +7141,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7173,7 +7211,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7243,7 +7281,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7383,7 +7421,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7453,7 +7491,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7663,7 +7701,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7733,7 +7771,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7803,7 +7841,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -8013,7 +8051,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8223,7 +8261,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -8293,7 +8331,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8433,7 +8471,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8503,7 +8541,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8573,7 +8611,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8643,7 +8681,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8713,7 +8751,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8783,7 +8821,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.30000001192092898,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8853,7 +8891,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8923,7 +8961,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8993,7 +9031,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9343,7 +9381,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9413,7 +9451,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9483,7 +9521,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9553,7 +9591,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9623,7 +9661,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9763,7 +9801,7 @@
                 },
                 "Layer": 1,
                 "Order": -1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9833,7 +9871,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9903,7 +9941,7 @@
                 },
                 "Layer": 0,
                 "Order": -1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9973,7 +10011,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10393,7 +10431,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10463,7 +10501,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10743,7 +10781,7 @@
                 },
                 "Layer": -1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11093,7 +11131,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11373,7 +11411,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11443,7 +11481,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -11723,7 +11761,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11933,7 +11971,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -12003,7 +12041,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12073,7 +12111,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12143,7 +12181,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12213,7 +12251,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12283,7 +12321,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12683,7 +12721,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12783,7 +12821,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -12883,7 +12921,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12983,7 +13021,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13083,7 +13121,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13183,7 +13221,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13283,7 +13321,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13383,7 +13421,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13401,7 +13439,7 @@
             "Transform": {
                 "Position": {
                     "x": 1.0,
-                    "y": -1.0634266138076783,
+                    "y": -1.0632826089859009,
                     "z": 0.0
                 },
                 "Scale": {
@@ -13430,7 +13468,7 @@
             "Collider": {
                 "Center": {
                     "x": 1.0,
-                    "y": -1.0634266138076783
+                    "y": -1.0632826089859009
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13502,7 +13540,7 @@
                 "Max Cooldown": 0.5,
                 "Cooldown Timer": -1.825392246246338e-7,
                 "Combo Duration": 2.0,
-                "Combo Cooldown Timer": 0.6666674613952637,
+                "Combo Cooldown Timer": 0.2450561374425888,
                 "Knockback Amount": 50.0,
                 "Knockback Combo Amount": 100.0,
                 "Ranged Attack": false,
@@ -13873,7 +13911,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -13919,8 +13957,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 13.600476264953614,
-                    "y": 2.3769032955169679,
+                    "x": 13.326897621154786,
+                    "y": 2.3021738529205324,
                     "z": 0.0
                 },
                 "Scale": {
@@ -13948,8 +13986,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 13.600476264953614,
-                    "y": 2.3769032955169679
+                    "x": 13.326897621154786,
+                    "y": 2.3021738529205324
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14049,7 +14087,7 @@
             "Transform": {
                 "Position": {
                     "x": 21.4672908782959,
-                    "y": -0.4258900582790375,
+                    "y": -0.42552778124809267,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14078,7 +14116,7 @@
             "Collider": {
                 "Center": {
                     "x": 21.4672908782959,
-                    "y": -0.4258900582790375
+                    "y": -0.42552778124809267
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14131,7 +14169,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14177,8 +14215,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 16.580909729003908,
-                    "y": -1.0903421640396119,
+                    "x": 16.436410903930665,
+                    "y": -1.0935014486312867,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14206,8 +14244,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 16.580909729003908,
-                    "y": -1.0903421640396119
+                    "x": 16.436410903930665,
+                    "y": -1.0935014486312867
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14260,7 +14298,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14307,7 +14345,7 @@
             "Transform": {
                 "Position": {
                     "x": 28.25218963623047,
-                    "y": -0.11578449606895447,
+                    "y": -0.11552450060844422,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14336,7 +14374,7 @@
             "Collider": {
                 "Center": {
                     "x": 28.25218963623047,
-                    "y": -0.11578449606895447
+                    "y": -0.11552450060844422
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14389,7 +14427,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14518,7 +14556,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14647,7 +14685,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15136,7 +15174,7 @@
                 },
                 "Layer": 5,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15214,7 +15252,7 @@
                 },
                 "Layer": 6,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15292,7 +15330,7 @@
                 },
                 "Layer": 6,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15448,7 +15486,7 @@
                 },
                 "Layer": 6,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15526,7 +15564,7 @@
                 },
                 "Layer": 6,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15604,7 +15642,7 @@
                 },
                 "Layer": 6,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15690,7 +15728,7 @@
                 "Function": "",
                 "UI Type": "Button",
                 "Screen": 4,
-                "Target": 0,
+                "Target": 9,
                 "Previous": 0,
                 "Overlay": false
             }
@@ -15959,7 +15997,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/OptionsBG",
+                    "key": "Textures/Mainmenu_Popup_Options",
                     "index": 0
                 },
                 "Size": {
@@ -16558,6 +16596,1488 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
+                "Name": "DashReady"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.25,
+                    "y": -1.4500000476837159,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.25,
+                    "y": 0.25,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Icon_HeavyAttack_2",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 7,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Interface",
+                "Screen": 14,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "RangedReady"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": -1.600000023841858,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.25,
+                    "y": 0.25,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Icon_RangedAttack_2",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 7,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Interface",
+                "Screen": 14,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "DashNotReady"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.25,
+                    "y": -1.4500000476837159,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.25,
+                    "y": 0.25,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Icon_HeavyAttack_Off_2",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 7,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Interface",
+                "Screen": 20,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "RangedNotReady"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": -1.600000023841858,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.25,
+                    "y": 0.25,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Icon_RangedAttack_Off_2",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 7,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Interface",
+                "Screen": 22,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "UsingDash"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.25,
+                    "y": -1.4500000476837159,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.25,
+                    "y": 0.25,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Icon_HeavyAttack_Shine_2",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 7,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Interface",
+                "Screen": 19,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "UsingRanged"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": -1.600000023841858,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.25,
+                    "y": 0.25,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Icon_RangedAttack_Shine_2",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 7,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Interface",
+                "Screen": 21,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "PauseControls"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 3.5,
+                    "y": -1.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pause_Controls",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 7,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 9,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ControlPauseMenuBG"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.0,
+                    "y": -1.0634266138076783,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pause_Menu",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 5,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 9,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ControlPauseMenuTitle"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.2919999957084656,
+                    "y": 1.1192721128463746,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pause_Title",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 9,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ControlRestartDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.2879999876022339,
+                    "y": -0.41342663764953616,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Restart_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 9,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ControlControlsDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.19000005722045899,
+                    "y": -0.8634266257286072,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Controls_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 9,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ControlOptionsDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.2849999666213989,
+                    "y": -1.3134266138076783,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Options_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 9,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ControlQuitGameDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.15699994564056397,
+                    "y": -1.7634265422821046,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/QuitGame_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 9,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "OptionsPauseMenuBG"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.0,
+                    "y": -1.0634266138076783,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pause_Menu",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 5,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 10,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "OptionsPauseMenuTitle"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.2919999957084656,
+                    "y": 1.1192721128463746,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pause_Title",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 10,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "OptionsRestartDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.2879999876022339,
+                    "y": -0.41342663764953616,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Restart_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 10,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "OptionsControlsDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.19000005722045899,
+                    "y": -0.8634266257286072,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Controls_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 10,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "OptionsOptionsDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.2849999666213989,
+                    "y": -1.3134266138076783,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Options_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 10,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "OptionsQuitGameDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.15699994564056397,
+                    "y": -1.7634265422821046,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/QuitGame_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 6,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 10,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
                 "Name": ""
             },
             "Entity Type": {
@@ -16629,7 +18149,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
