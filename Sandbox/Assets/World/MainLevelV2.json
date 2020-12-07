@@ -15375,7 +15375,7 @@
                 "Wireframe": true
             },
             "UI": {
-                "Function": "StartGame",
+                "Function": "RestartGame",
                 "UI Type": "Button",
                 "Screen": 7,
                 "Target": 14,
@@ -15843,7 +15843,7 @@
                 "Wireframe": true
             },
             "UI": {
-                "Function": "RestartGame",
+                "Function": "BackToMainMenu",
                 "UI Type": "Button",
                 "Screen": 8,
                 "Target": 1,
