@@ -1,0 +1,108 @@
+%Entry:
+
+entry 
+Clip/LANCER_IDLE
+
+%Parameters:
+
+param
+IsIdle 0 0
+
+param
+IsAlerted 0 0
+
+param
+IsAlertIdle 0 0
+
+param
+IsBouncing 0 0
+
+param
+MeleeAttack 0 0
+
+param
+IsDead 0 0
+
+%EditorPositions:
+
+pos
+Entry 3 4
+
+pos
+Exit 652 256
+
+pos
+Clip/LANCER_IDLE 223 127
+
+pos
+Clip/AlertSpritesheet 305 266
+
+pos
+Clip/LANCER_ALERT_IDLE 263 344
+
+pos
+Clip/LANCER_ATTACK 20 375
+
+pos
+Clip/LANCER_BOUNCE 72 498
+
+pos
+Clip/LANCER_DEATH 373 474
+
+%Transitions:
+
+transition 
+start Clip/LANCER_IDLE
+end Clip/AlertSpritesheet
+condition IsAlerted ? 0
+endTransition
+
+transition 
+start Clip/AlertSpritesheet
+end Clip/LANCER_ALERT_IDLE
+condition IsAlertIdle ? 0
+endTransition
+
+transition 
+start Clip/LANCER_ALERT_IDLE
+end Clip/LANCER_ATTACK
+condition MeleeAttack ? 0
+endTransition
+
+transition 
+start Clip/LANCER_ATTACK
+end Clip/LANCER_BOUNCE
+condition IsBouncing ? 0
+endTransition
+
+transition 
+start Clip/AlertSpritesheet
+end Clip/LANCER_DEATH
+condition IsDead ? 0
+endTransition
+
+transition 
+start Clip/LANCER_ALERT_IDLE
+end Clip/LANCER_DEATH
+condition IsDead ? 0
+endTransition
+
+transition 
+start Clip/LANCER_ATTACK
+end Clip/LANCER_DEATH
+condition IsDead ? 0
+endTransition
+
+transition 
+start Clip/LANCER_BOUNCE
+end Clip/LANCER_DEATH
+condition IsDead ? 0
+endTransition
+
+transition 
+start Clip/LANCER_BOUNCE
+end Clip/LANCER_ALERT_IDLE
+condition IsAlertIdle ? 0
+endTransition
+
+%endfile
