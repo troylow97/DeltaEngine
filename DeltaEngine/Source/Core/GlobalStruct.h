@@ -14,11 +14,11 @@ namespace DeltaEngine
 
   using AM = AssetManager<class Font, class Texture2D, class Shader, class AnimationClip, class AnimationController>;
 
-  class GameClock;
+  class EngineClock;
 
   struct DeltaEngineGlobalEnvironment
   {
-    class GameClock* pClock;
+    class EngineClock* pClock;
     AM* pManager;
     EventManager* eventManager;
     class ECSModule* pECS;

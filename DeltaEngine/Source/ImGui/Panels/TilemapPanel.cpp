@@ -9,7 +9,7 @@
 #include "ImGui/DropManager.h"
 #include "ImGui/Editor.h"
 
-#include "Core/Utils/DirectoryWatcher/DirectoryWatcher.h"
+#include "Core/Utils/DirectoryWatcher/SystemDirectory.h"
 
 namespace DeltaEngine
 {
@@ -96,7 +96,7 @@ void TilemapPanel::Render()
                 m_editor.m_panels[0]->Enable();
                 if ( !m_editor.m_panels[0]->IsEnabled() )
                   m_editor.m_panels[0]->Enable();
-                m_editor.textureKey.assign( key );
+                m_editor.selectedFile.assign( key );
               }
 
 

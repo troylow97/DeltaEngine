@@ -6,7 +6,7 @@
 #include "Core/Debugging/Logger/Log.h"
 
 // Core
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 #include "ECS/ECSModule.h"
 
 // Math

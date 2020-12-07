@@ -11,11 +11,10 @@ namespace DeltaEngine
 
     float m_Timer{0.0f};
     float m_Speed{1.0f};
-    unsigned m_Frame{0};
 
     Animator()
       : m_ControllerKey{""}, m_ClipKey{""},
-        m_Timer{0.0f}, m_Speed{1}, m_Frame{0}
+        m_Timer{0.0f}, m_Speed{1}
     {
     }
 
@@ -24,13 +23,8 @@ namespace DeltaEngine
       m_ControllerKey = std::string(rhs.m_ControllerKey);
       m_ClipKey = std::string(rhs.m_ClipKey);
       m_Timer = 0;
-      m_Frame = 0;
       m_Speed = rhs.m_Speed;
       return *this;
     }
-
-    unsigned int GetFrame() const;
-
-    void Update(AnimationClip* clip);
   };
 }

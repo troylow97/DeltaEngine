@@ -1,5 +1,5 @@
 #include "GlobalStruct.h"
-#include "GameClock/GameClock.h"
+#include "GameClock/EngineClock.h"
 
 namespace DeltaEngine
 {

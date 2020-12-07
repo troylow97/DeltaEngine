@@ -7,6 +7,7 @@
 #include "Input/Keys.h"
 
 #include <string>
+#include <filesystem>
 
 namespace DeltaEngine
 {
@@ -53,10 +54,10 @@ void SpriteEditorPanel::Render()
     previousPos = initialPos;
     initialPos = ImGui::GetMousePos();
 
-    if ( !m_editor.textureKey.empty() )
+    if ( !m_editor.selectedFile.empty() )
     {
-      ImGui::Text( ( "Texture - " + m_editor.textureKey ).c_str() );
-      Texture2D *texture = GetEnv().pManager->Get<Texture2D>( m_editor.textureKey );
+      ImGui::Text( ( "Texture - " + m_editor.selectedFile ).c_str() );
+      Texture2D *texture = GetEnv().pManager->Get<Texture2D>( m_editor.selectedFile );
 
       if ( texture && ImGui::IsMouseDragging( 0 ) )
       {
@@ -118,7 +119,7 @@ void SpriteEditorPanel::Render()
         {
           if ( ImGui::BeginMenu( "Auto Slicing" ) )
           {
-            static const char *components[] { "Automatic", "Row by Column", "Nothing" };
+            static const char *components[] { "Automatic", "Column by Row", "Nothing" };
             static int selected = 0;
             ImGui::Combo( "Slice Type", &selected, components, IM_ARRAYSIZE( components ) );
             if ( selected == 0 )
@@ -134,7 +135,7 @@ void SpriteEditorPanel::Render()
             {
               static int cr[2] = { 1, 1 };
               static float pivot[2] = { 0.5f, 0.5f };
-              ImGui::DragInt2( "Row and Column", cr, 0.25f, 1, 128 );
+              ImGui::DragInt2( "Column and Row", cr, 0.25f, 1, 128 );
               ImGui::DragFloat2( "Pivot", pivot, 0.01f, 0.0f, 1.0f );
               if ( ImGui::Button( "Auto Slice" ) )
                 info = texture->SliceAll( cr[0], cr[1], Vector2( pivot[0], pivot[1] ) );
@@ -156,7 +157,10 @@ void SpriteEditorPanel::Render()
             ImGui::Checkbox( "Loop", &loop );
             ImGui::DragInt( "FPS", &fps, 0.01f, 1, 200 );
             if ( ImGui::Button( "Apply Changes and Create Clip" ) )
-              AnimationClip::CreateNew( texture->GetName(), texture->GetName() + ".clip", fps, loop );
+            {
+              std::filesystem::path new_path { texture->GetName() + ".clip" };
+              AnimationClip::CreateNew( texture->GetName(), "Clip/" + new_path.filename().generic_string(), fps, loop );
+            }
             ImGui::EndMenu();
           }
           if ( ImGui::Button( "Apply Changes" ) )
@@ -207,9 +211,9 @@ void SpriteEditorPanel::Render()
                 assetpayload_n.erase( pos );
               pos = assetpayload_n.find( "Texture" );
               assetpayload_n.erase( 0, pos );
-              m_editor.textureKey.assign( assetpayload_n );
+              m_editor.selectedFile.assign( assetpayload_n );
               loaded = false;
-              texture = GetEnv().pManager->Get<Texture2D>( m_editor.textureKey );
+              texture = GetEnv().pManager->Get<Texture2D>( m_editor.selectedFile );
             }
             ImGui::EndDragDropTarget();
           }

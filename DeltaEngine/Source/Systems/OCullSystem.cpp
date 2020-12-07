@@ -28,11 +28,13 @@ namespace DeltaEngine
     else
 #endif
     {
-
-      const auto& t = em.GetComponent<Transform>( { 0 } );
-      max = Camera::allCameras[0]->Max( t );
-      min = Camera::allCameras[0]->Min( t );
-      c_center = { t.position.x, t.position.y };
+      if (Camera::allCameras.size())
+      {
+        const auto& t = em.GetComponent<Transform>({ 0 });
+        max = Camera::allCameras[0]->Max(t);
+        min = Camera::allCameras[0]->Min(t);
+        c_center = { t.position.x, t.position.y };
+      }
     }
     c_size = { (max.x - min.x), (max.y - min.y )};
 

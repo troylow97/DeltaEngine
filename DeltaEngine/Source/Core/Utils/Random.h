@@ -41,7 +41,8 @@ public:
 
   /**************************************************************************/
   /*!
-    \brief	Returns an int between a range
+    \brief	Returns an int between a range.
+            Example min = 0, max = 3. Numbers given would be 0,1,2
   
     \param	min: mininum number in the range
   

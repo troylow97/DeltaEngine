@@ -1,0 +1,65 @@
+frames 12
+fps 12
+loop 1
+
+Textures/AttackSpriteSheet_i_0
+key Textures/AttackSpriteSheet
+value 0
+frame 0
+
+Textures/AttackSpriteSheet_i_1
+key Textures/AttackSpriteSheet
+value 1
+frame 1
+
+Textures/AttackSpriteSheet_i_2
+key Textures/AttackSpriteSheet
+value 2
+frame 2
+
+Textures/AttackSpriteSheet_i_3
+key Textures/AttackSpriteSheet
+value 3
+frame 3
+
+Textures/AttackSpriteSheet_i_4
+key Textures/AttackSpriteSheet
+value 4
+frame 4
+
+Textures/AttackSpriteSheet_i_5
+key Textures/AttackSpriteSheet
+value 5
+frame 5
+
+Textures/AttackSpriteSheet_i_6
+key Textures/AttackSpriteSheet
+value 6
+frame 6
+
+Textures/AttackSpriteSheet_i_7
+key Textures/AttackSpriteSheet
+value 7
+frame 7
+
+Textures/AttackSpriteSheet_i_8
+key Textures/AttackSpriteSheet
+value 8
+frame 8
+
+Textures/AttackSpriteSheet_i_9
+key Textures/AttackSpriteSheet
+value 9
+frame 9
+
+Textures/AttackSpriteSheet_i_10
+key Textures/AttackSpriteSheet
+value 10
+frame 10
+
+Textures/AttackSpriteSheet_i_11
+key Textures/AttackSpriteSheet
+value 11
+frame 11
+
+%

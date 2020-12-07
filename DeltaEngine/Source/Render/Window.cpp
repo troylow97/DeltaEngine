@@ -10,7 +10,7 @@
 #include <locale>
 #include <windowsx.h>
 #include "Core/Debugging/Profiler/Profiler.h"
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 
 std::wstring to_wstring(std::string str)
 {
@@ -138,6 +138,12 @@ namespace DeltaEngine
 
   void Window::Update()
   {
+#ifdef DE_EDITOR
+    std::wstringstream wss;
+    wss << m_title << L", FPS - " << env.pClock->FrameCount();
+    SetWindowText( m_hwndl, wss.str().c_str());
+#endif
+
     MSG msg = {};
 
     if (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
@@ -263,5 +269,19 @@ namespace DeltaEngine
 
     RegisterDragDrop(m_hwndl, &dropManager);
 
+  }
+
+  Point Window::ClientTopLeft()
+  {
+    POINT p{};
+    ClientToScreen( m_hwndl, &p );
+    return { static_cast<float>( p.x ), static_cast<float>( p.y ) };
+  }
+
+  Point Window::ClientRect()
+  {
+    RECT r {};
+    GetClientRect( m_hwndl, &r );
+    return { static_cast<float>(r.right), static_cast<float>(r.bottom) };
   }
 }
