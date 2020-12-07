@@ -268,7 +268,7 @@ namespace DeltaEngine
 #ifdef DE_EDITOR
     ShowWindow(GetConsoleWindow(), SW_SHOW);
 #else
-    ShowWindow( GetConsoleWindow(), SW_HIDE );
+    ShowWindow( GetConsoleWindow(), SW_SHOW );
 #endif
 
     RegisterDragDrop(m_hwndl, &dropManager);
