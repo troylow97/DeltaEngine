@@ -15,7 +15,7 @@ namespace DeltaEngine
   AnimatorPanel::AnimatorPanel(std::string str, Editor& e)
     : IPanel(str, e)
   {
-    m_enabled = true;
+    m_enabled = false;
   }
 
   AnimatorPanel::~AnimatorPanel()
@@ -76,9 +76,10 @@ namespace DeltaEngine
       static int hoveredNode = -1;
       static int selectedTransition = -1;
 
+      std::string deleteParam = "";
       ImGuiIO& io = ImGui::GetIO();
 
-      AnimationController* controller = GetEnv().pManager->Get<AnimationController>(std::string(animName));
+      AnimationController* controller = GetEnv().pManager->Get<AnimationController>(m_editor.selectedFile);
 
       ImGui::BeginChild("Parameters", ImVec2(150, 0));
       ImGui::Text("Parameters");
@@ -127,6 +128,8 @@ namespace DeltaEngine
           int entry = 0;
           while (entry < nodes.size() && strcmp(nodes[entry].nodeName, controller->entryAnimation.c_str()))
             ++entry;
+          if (entry >= nodes.size())
+            nodes.push_back(Node(i++, controller->entryAnimation.c_str(), ImVec2(0, 0)));
           if (entry < nodes.size())
             links.push_back(NodeLink(0, entry));
         }
@@ -134,10 +137,14 @@ namespace DeltaEngine
         for (auto& [StartState, EndState, Conditions] : controller->transitions)
         {
           int start = 0, end = 0;
-          while (strcmp(StartState.c_str(), nodes[start].nodeName))
+          while (start < nodes.size() && strcmp(StartState.c_str(), nodes[start].nodeName))
             ++start;
-          while (strcmp(EndState.c_str(), nodes[end].nodeName))
+          if (start >= nodes.size())
+            nodes.push_back(Node(i++, StartState.c_str(), ImVec2(0, 0)));
+          while (end < nodes.size() && strcmp(EndState.c_str(), nodes[end].nodeName))
             ++end;
+          if (end >= nodes.size())
+            nodes.push_back(Node(i++, EndState.c_str(), ImVec2(0, 0)));
           links.push_back(NodeLink(start, end));
         }
         loaded = true;
@@ -154,6 +161,11 @@ namespace DeltaEngine
 
           ImGui::Checkbox("Bool", &Value.boolValue);
           ImGui::DragFloat("Float", &Value.floatValue, 0.1f, 0.f, 0.f, "%0.1f");
+          if (ImGui::Button("Delete..."))
+          {
+            paramSelected.erase(ParamName);
+            deleteParam = ParamName.c_str();
+          }
         }
       }
 
@@ -306,7 +318,7 @@ namespace DeltaEngine
 
       // open context menu
       if (ImGui::IsMouseReleased(ImGuiMouseButton_Right))
-        if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByPopup) || !ImGui::IsAnyItemHovered())
+        if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByPopup))
         {
           ImGui::OpenPopup("Animator Node Context Menu");
         }
@@ -316,7 +328,6 @@ namespace DeltaEngine
       if (ImGui::BeginPopup("Animator Node Context Menu"))
       {
         Node* node = (nodeSelected >= 0 && nodeSelected < nodes.size()) ? &nodes[nodeSelected] : NULL;
-        ImVec2 scene_pos = ImGui::GetMousePosOnOpeningCurrentPopup() - offset;
         if (node)
         {
           ImGui::Text("Clip: \"%s\"", node->nodeName);
@@ -352,6 +363,29 @@ namespace DeltaEngine
       }
       ImGui::PopStyleVar();
 
+      if (!deleteParam.empty())
+      {
+        for (auto it = controller->startingParameters.begin();
+          it != controller->startingParameters.end(); ++it)
+          if (!strcmp((*it).first.c_str(), deleteParam.c_str()))
+          {
+            controller->startingParameters.erase(it);
+            break;
+          }
+        for (auto& [startState, endState, cons] : controller->transitions)
+        {
+          for (auto it = cons.begin();
+            it != cons.end();)
+          {
+            auto& [paramName, conType, conVal] = *it;
+            if (!strcmp(paramName.c_str(), deleteParam.c_str()))
+              it = cons.erase(it);
+            else
+              ++it;
+          }
+        }
+      }
+
       if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
       {
         controller->editorPositions.clear();
@@ -380,6 +414,8 @@ namespace DeltaEngine
             controller->editorPositions.push_back(
               std::pair(AssetKey{ assetpayload_n.substr(0, assetpayload_n.find_last_of('.')) },
                 Vector2{ io.MousePos.x - offset.x, io.MousePos.y - offset.y }));
+          if (controller->entryAnimation.empty())
+            controller->entryAnimation = assetpayload_n.substr(0, assetpayload_n.find_last_of('.'));
           loaded = false;
         }
       }

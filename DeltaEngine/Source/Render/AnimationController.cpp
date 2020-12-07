@@ -86,7 +86,35 @@ namespace DeltaEngine
   {
     AnimationController c = AnimationController(filepath);
     c.editorPositions.resize(2);
-    c.editorPositions[0] = {"entry", Vector2()};
+    c.editorPositions[0] = {"Entry", Vector2(0, 0)};
+    c.editorPositions[1] = {"Exit", Vector2(200, 200)};
+
+    std::ofstream file;
+    DeltaEngine_CORE_TRACE("Saving animator \"{}\"...", filepath.c_str());
+    file.open(filepath.c_str());
+
+    std::string str;
+
+    if (file.is_open())
+    {
+      file << "%Entry" << std::endl << std::endl;
+      file << "%Parameters:" << std::endl << std::endl;
+
+      file << "%EditorPositions:" << std::endl << std::endl;
+      for (auto& [ClipKey, Pos] : c.editorPositions)
+        file << "pos" << std::endl
+        << ClipKey.Key() << " "
+        << Pos.x << " "
+        << Pos.y << std::endl << std::endl;
+      file << "%Transitions:" << std::endl << std::endl;
+      file << "%endfile" << std::endl;
+      file.close();
+    }
+    else
+    {
+      DeltaEngine_CORE_WARN("Failed to create Animator file \"{}\"", filepath.c_str());
+    }
+
   }
   void AnimationController::LoadFromFile()
   {
@@ -101,8 +129,13 @@ namespace DeltaEngine
       startingParameters.clear();
       editorPositions.clear();
       transitions.clear();
-      file >> str >> entryAnimation;
       file >> str;
+      file >> str;
+      if (str[0] != '%')
+      {
+        file >> entryAnimation;
+        file >> str;
+      }
       while (file.good()) // parameters
       {
         Parameter newParam;
@@ -213,7 +246,8 @@ namespace DeltaEngine
 
     if (file.is_open())
     {
-      file << "entry " << entryAnimation << std::endl << std::endl;
+      file << "%Entry:" << std::endl << std::endl;
+      file << "entry " << std::endl << entryAnimation << std::endl << std::endl;
       file << "%Parameters:" << std::endl << std::endl;
       for (auto& [ParamName, Value] : newParameters)
         file << "param" << std::endl
@@ -268,6 +302,5 @@ namespace DeltaEngine
     {
       DeltaEngine_CORE_WARN("Animator file \"{}\" failed to save!", m_Name.c_str());
     }
-    DeltaEngine_CORE_TRACE( "Animator {} was loaded successfully", m_Name.c_str() );
   }
 }

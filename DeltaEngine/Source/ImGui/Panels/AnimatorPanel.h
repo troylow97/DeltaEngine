@@ -11,9 +11,5 @@ namespace DeltaEngine
     AnimatorPanel(std::string str, Editor& e);
     ~AnimatorPanel();
     void Render() override;
-
-  private:
-    char animName[128] = "Animation/Dave";
-
   };
 }

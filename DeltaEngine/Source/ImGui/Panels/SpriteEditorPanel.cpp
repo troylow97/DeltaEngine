@@ -53,10 +53,10 @@ void SpriteEditorPanel::Render()
     previousPos = initialPos;
     initialPos = ImGui::GetMousePos();
 
-    if ( !m_editor.textureKey.empty() )
+    if ( !m_editor.selectedFile.empty() )
     {
-      ImGui::Text( ( "Texture - " + m_editor.textureKey ).c_str() );
-      Texture2D *texture = GetEnv().pManager->Get<Texture2D>( m_editor.textureKey );
+      ImGui::Text( ( "Texture - " + m_editor.selectedFile ).c_str() );
+      Texture2D *texture = GetEnv().pManager->Get<Texture2D>( m_editor.selectedFile );
 
       if ( texture && ImGui::IsMouseDragging( 0 ) )
       {
@@ -207,9 +207,9 @@ void SpriteEditorPanel::Render()
                 assetpayload_n.erase( pos );
               pos = assetpayload_n.find( "Texture" );
               assetpayload_n.erase( 0, pos );
-              m_editor.textureKey.assign( assetpayload_n );
+              m_editor.selectedFile.assign( assetpayload_n );
               loaded = false;
-              texture = GetEnv().pManager->Get<Texture2D>( m_editor.textureKey );
+              texture = GetEnv().pManager->Get<Texture2D>( m_editor.selectedFile );
             }
             ImGui::EndDragDropTarget();
           }
