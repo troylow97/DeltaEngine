@@ -18,30 +18,31 @@ Gauntlet::Gauntlet() :
 
 void EnemySpawner::LoadEnemyData()
 {
-  //EnemyData Lancer;
-  //Lancer.TransformScale = { 1.0,1.0 };
-  //Lancer.ColliderScale = { 1.0,1.0 };
-  //Lancer.ColliderOffset = { 0,0 };
-  //Lancer.Health = 10;
-  //Lancer.Damage = 1;
-  //Lancer.Mass = 20;
-  //Lancer.Movespeed = 30;
-  //
-  //JsonFile file;
-  //file.StartWriter("Enemy/Lancer.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
-  //
-  //JsonFile file2;
-  //file2.StartWriter("Enemy/Fiddler.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
-  //
-  //JsonFile file3;
-  //file3.StartWriter("Enemy/Serpentipede.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+   //EnemyData Lancer;
+   //Lancer.TransformScale = { 1.0,1.0 };
+   //Lancer.ColliderScale = { 1.0,1.0 };
+   //Lancer.ColliderOffset = { 0,0 };
+   //Lancer.Health = 10;
+   //Lancer.Damage = 1;
+   //Lancer.Mass = 20;
+   //Lancer.Movespeed = 30;
+   //Lancer.Attackspeed = 1.0f;
+   //
+   //JsonFile file;
+   //file.StartWriter("Enemy/Lancer.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+   //
+   //JsonFile file2;
+   //file2.StartWriter("Enemy/Fiddler.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
+   //
+   //JsonFile file3;
+   //file3.StartWriter("Enemy/Serpentipede.json").StartObject().WriteObject(Lancer).EndObject().EndWriter();
 
-  JsonFile file;
-  file.StartReader( "Enemy/Lancer.json" ).LoadObject( LancerData ).EndReader();
-  JsonFile file2;
-  file.StartReader( "Enemy/Fiddler.json" ).LoadObject( FiddlerData ).EndReader();
-  JsonFile file3;
-  file.StartReader( "Enemy/Serpentipede.json" ).LoadObject( SerpentipedeData ).EndReader();
+   JsonFile file;
+   file.StartReader( "Enemy/Lancer.json" ).LoadObject( LancerData ).EndReader();
+   JsonFile file2;
+   file.StartReader( "Enemy/Fiddler.json" ).LoadObject( FiddlerData ).EndReader();
+   JsonFile file3;
+   file.StartReader( "Enemy/Serpentipede.json" ).LoadObject( SerpentipedeData ).EndReader();
 
 }
 

@@ -35,7 +35,8 @@ rttr::registration::class_<EnemyData>( "EnemyData" )
     .property( "health", &EnemyData::Health )
     .property( "movespeed", &EnemyData::Movespeed )
     .property( "mass", &EnemyData::Mass )
-    .property( "damage", &EnemyData::Damage );
+    .property( "damage", &EnemyData::Damage )
+    .property("attackspeed", &EnemyData::Attackspeed);
 
 rttr::registration::class_<LancerAIData>( "LancerAIData" )
     .property( "charge_detection_range", &LancerAIData::ChargeDetectionRange );
@@ -171,7 +172,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       rttr::value("Button", UIType::Button),
       rttr::value("Slider", UIType::Slider),
       rttr::value("HealthBar_Fill", UIType::Healthbar),
-        rttr::value("HealthBar_Base", UIType::Healthbar_base)
+      rttr::value("HealthBar_Base", UIType::Healthbar_base)
     );
 
   rttr::registration::class_<UI>( "UI" )
