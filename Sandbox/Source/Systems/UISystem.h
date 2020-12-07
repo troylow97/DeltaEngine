@@ -35,6 +35,8 @@ private:
   Vector2 VolumeSliderInitialLocation;
   Vector3 PlayerFirstPosition;
   Vector3 PlayerCurrentPosition;
+  Vector3 UPlayerFirstPosition;
+  Vector3 UPlayerCurrentPosition;
   std::vector<unsigned> m_screen;
   END_DEFINE_SYSTEM(GCameraSystem)
 }

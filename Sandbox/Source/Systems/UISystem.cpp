@@ -43,9 +43,9 @@ const unsigned quit_no = 25; // credits default - 4
 
 void UISystem::Initialize()
 {
-  m_screen.push_back(main_screen);
-  is_main_menu = true;
-  //m_screen.push_back(level1_screen);
+  //m_screen.push_back(main_screen);
+  //is_main_menu = true;
+  m_screen.push_back(level1_screen);
   em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
   {
     if (ui.ui_type == UIType::Slider)
@@ -152,7 +152,7 @@ void UISystem::Update()
         
         em.ForEach([&](UI& ui, EntityID& id)
         {
-          if (ui.screen == 0 || ui.screen == 4 || ui.screen == 5 || ui.screen == 7 || ui.screen == 8 || ui.screen == 9 || ui.screen == 10)
+          if (ui.screen == 0 || ui.screen == 4 || ui.screen == 5 || ui.screen == 7 || ui.screen == 8 || ui.screen == 9 || ui.screen == 10 || ui.screen == 23 || ui.screen == 24 || ui.screen == 25)
             env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position += difference;
         });
         
@@ -170,17 +170,19 @@ void UISystem::Update()
   if(!is_main_menu)
   {
     bool paused{ false };
-    for (auto& screen : m_screen)
-    {
-        if (screen == pause_screen || screen == control_screen || screen == option_screen || screen == gameover_screen || screen == upgrade_page || screen == quit_confirmation)
+
+    auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+    UPlayerCurrentPosition = p.position;
+    Vector3 difference;
+    difference = UPlayerCurrentPosition - UPlayerFirstPosition;
+    UPlayerFirstPosition = UPlayerCurrentPosition;
+
+    em.ForEach([&](UI& ui, EntityID& id)
         {
-            paused = true;
-            break;
-        }
-    }
-  	if (!paused)
-        AttackVisualFeedback();
- 	
+            if (ui.screen == 13 || ui.screen == 17 || ui.screen == 18)
+                env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position += difference;
+        });
+
     if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
     {
       bool upgrade_screen_exists = false;
@@ -206,37 +208,48 @@ void UISystem::Update()
           m_screen.push_back(upgraded_health_only_page);
       }
     }
+    for (auto& screen : m_screen)
+    {
+      if (screen == pause_screen || screen == control_screen || screen == option_screen || screen == gameover_screen || screen == upgrade_page || screen == quit_confirmation)
+      {
+        paused = true;
+        break;
+      }
+    }
+  	if (!paused)
+        AttackVisualFeedback();
+ 	
     for (auto& screen : m_screen)//Upgrade page to follow player
     {
-      if (screen == upgrade_page)
+      //if (screen == upgrade_page)
+      //{
+      //  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+      //  Vector3 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
+      //  
+      //  em.ForEach([&](UI& ui, EntityID& id, EntityName& en)
+      //  {
+      //    if (en.name == "AttackFilled" || en.name == "AttackDefault")
+      //      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x + 1.194f, player_pos.y + 0.727f, 0.0f };
+      //    else if (en.name == "HealthFilled" || en.name == "HealthDefault")
+      //      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.796f, player_pos.y + 0.727f, 0.0f };
+      //    else
+      //      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x/* - 0.297f*/, player_pos.y/* + 1.013f*/, 0.0f };
+      //  });
+      //}
+      if (screen == level1_screen)
       {
-        auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
-        Vector3 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
+        auto& id = em.GetComponent<EntityID>(UnitManager::GetPlayerID());
+        Vector3 player_pos = em.GetComponent<Transform>(id).position;
+        auto& p = em.GetComponent<Player>(UnitManager::GetPlayerID());
+        auto& r = em.GetComponent<Renderer2D>(UnitManager::GetPlayerID());
         
         em.ForEach([&](UI& ui, EntityID& id, EntityName& en)
         {
-          if (en.name == "AttackFilled" || en.name == "AttackDefault")
-            env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x + 1.194f, player_pos.y + 0.727f, 0.0f };
-          else if (en.name == "HealthFilled" || en.name == "HealthDefault")
-            env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.796f, player_pos.y + 0.727f, 0.0f };
-          else
-            env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 0.297f, player_pos.y + 1.013f, 0.0f };
+          if (en.name == "DashReady" || en.name == "DashNotReady" || en.name == "UsingDash")
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 2.6f, -1.45f/*player_pos.y -0.3868f*/, 0.0f };
+          else if (en.name == "RangedReady" || en.name == "RangedNotReady" || en.name == "UsingRanged")
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 2.35f, -1.6f/*player_pos.y - 0.5368f*/, 0.0f };
         });
-      }
-      if (screen == level1_screen)
-      {
-          auto& id = em.GetComponent<EntityID>(UnitManager::GetPlayerID());
-          Vector3 player_pos = em.GetComponent<Transform>(id).position;
-          auto& p = em.GetComponent<Player>(UnitManager::GetPlayerID());
-          auto& r = em.GetComponent<Renderer2D>(UnitManager::GetPlayerID());
-
-          em.ForEach([&](UI& ui, EntityID& id, EntityName& en)
-          {
-            if (en.name == "DashReady" || en.name == "DashNotReady" || en.name == "UsingDash")
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.25f, player_pos.y -0.3868f, 0.0f };
-            else if (en.name == "RangedReady" || en.name == "RangedNotReady" || en.name == "UsingRanged")
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.0f, player_pos.y - 0.5368f, 0.0f };
-          });
       }
     }
   }
@@ -383,6 +396,7 @@ void UISystem::Start()
   is_main_menu = false;
   auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
   PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
+  UPlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
   m_screen.push_back(level1_screen);
   m_start = false;
 }
@@ -402,7 +416,9 @@ void UISystem::Restart()
   m_screen.clear();
   is_main_menu = false;
   auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-  PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
+  //PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
+  PlayerFirstPosition = { 0.0f, 0.0f, 0.0f };// p.position;
+  UPlayerFirstPosition = { 0.0f, 0.0f, 0.0f };// p.position;
   m_screen.push_back(level1_screen);
   m_restart = false;
 }
