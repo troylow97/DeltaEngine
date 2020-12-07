@@ -24,7 +24,7 @@ param
 IsDodge 0 0
 
 param
-RangeAttack 0 0
+Ranged 0 0
 
 param
 PlayerVelocityY 0 0
