@@ -101,7 +101,7 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.15f, EntityCategory::E_PLAYER_BULLET);
+            EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
             EntityID missile2 = CreateProjectile(id, Vector2{ 1.7f,1.7f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
             em.AddComponent<Renderer2D>(missile);
             em.AddComponent<Image>(missile);
