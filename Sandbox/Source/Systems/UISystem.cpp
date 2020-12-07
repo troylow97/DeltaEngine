@@ -221,15 +221,24 @@ void UISystem::LateUpdate()
   //if (em.GetComponent<Attack>(id).AttackCooldown > 0.0f)
   //    m_screen.push_back(ranged_not_ready);
 
-#ifdef DE_EDITOR
   auto &t = em.GetComponent<Transform>( { 0 } );
   float cameraWidth = Camera::allCameras[0]->Max( t ).x - Camera::allCameras[0]->Min( t ).x;
   float cameraHeight = Camera::allCameras[0]->Max( t ).y - Camera::allCameras[0]->Min( t ).y;
+
+#ifdef DE_EDITOR
   float cursorViewPortDistanceX = InputManager::Instance().CurrentPosition().point_x - GamePanel::render_pos.x;
   float cursorViewPortDistanceY = InputManager::Instance().CurrentPosition().point_y - GamePanel::render_pos.y;
   auto p_x = ( ( cursorViewPortDistanceX / GamePanel::render_size.x ) * cameraWidth ) + Camera::allCameras[0]->Min( t ).x;
   auto p_y = Camera::allCameras[0]->Max( t ).y - ( ( cursorViewPortDistanceY / GamePanel::render_size.y ) * cameraHeight );
+#else
+
+  float cursorViewPortDistanceX = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
+  float cursorViewPortDistanceY = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
+  auto p_x = ( ( cursorViewPortDistanceX / GetEnv().pWin->ClientRect().point_x ) * cameraWidth ) + Camera::allCameras[0]->Min( t ).x;
+  auto p_y = Camera::allCameras[0]->Max( t ).y - ( ( cursorViewPortDistanceY / GetEnv().pWin->ClientRect().point_y ) * cameraHeight );
 #endif
+
+
   if(!m_screen.empty())
 	em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
     {
@@ -337,6 +346,7 @@ void UISystem::StartGame()
 {
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
+  env.pClock->TimeScale(1.0f);
   m_screen.clear();
   is_main_menu = false;
   auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
@@ -367,7 +377,7 @@ void UISystem::BackToMainMenu()
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainMenu.json");
-
+  is_main_menu = true;
   m_screen.clear();
   m_screen.push_back(main_screen);
 }

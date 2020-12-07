@@ -9,7 +9,7 @@
 #include "ImGui/DropManager.h"
 #include "ImGui/Editor.h"
 
-#include "Core/Utils/DirectoryWatcher/DirectoryWatcher.h"
+#include "Core/Utils/DirectoryWatcher/SystemDirectory.h"
 
 namespace DeltaEngine
 {

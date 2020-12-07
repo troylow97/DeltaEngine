@@ -159,7 +159,7 @@ namespace DeltaEngine
 
       		if(em.GetComponent<Transform>(player).position.y < em.GetComponent<Transform>(platform).position.y)
       		{
-                em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 500};
+                em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 5000};
                 continue;
       		}
         }

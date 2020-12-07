@@ -5,7 +5,7 @@
 #include "Assets/Loaders/AudioLoader.h"
 #include "Render/OpenGLSystem.h"
 #include "Core/Utils/FileUtils.h"
-#include "Core/Utils/DirectoryWatcher/DirectoryWatcher.h"
+#include "Core/Utils/DirectoryWatcher/SystemDirectory.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "Physics/CollisionSystem.h"
@@ -16,7 +16,6 @@
 #include "ImGui/Panels/LoggerPanel.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/Utils/Random.h"
-#include "Input/Keys.h"
 
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
@@ -94,9 +93,10 @@ Application::Application()
 
   // ECS Initialization
   env.pECS = new ECSModule();
-  env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( { 0 } ).m_Size = c.cam_size;
-
 #ifdef DE_EDITOR
+  auto id = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
+  env.pECS->GetWorld().GetEntityManager().GetComponent<EntityName>( id).name.assign( "Camera");
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( id ).m_Size = c.cam_size;
   Editor::Instance();
   SystemDirectory::Instance().StartWatch();
 #endif

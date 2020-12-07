@@ -2,6 +2,8 @@
 #include "DEpch.h"
 #include "Core/Debugging/Logger/Log.h"
 #include <string>
+
+#include "Core/Math/Point.h"
 #define MAX_LOADSTRING 100
 
 namespace DeltaEngine
@@ -48,6 +50,9 @@ namespace DeltaEngine
 
     void Focus(bool f);
     [[nodiscard]] bool Focus() const;
+
+    Point ClientTopLeft();
+    Point ClientRect();
 
     void InitWindow();
   };

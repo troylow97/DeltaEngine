@@ -1,6 +1,6 @@
-%Entry:
+%EntryAnimation
 
-entry 
+entry
 Clip/IdleSpritesheet
 
 %Parameters:
@@ -23,31 +23,43 @@ IsRunning 0 0
 param
 Ranged 0 0
 
+param
+PlayerVelocityY 0 0
+
+param
+NewParam 0 0
+
+param
+NewParam0 0 0
+
+param
+NewParam1 0 0
+
 %EditorPositions:
 
 pos
-Entry 0 0
+Entry 3 4
 
 pos
-Exit 168 365
+Exit 709 230
 
 pos
-Clip/IdleSpritesheet 60 127
+Clip/IdleSpritesheet -19 156
 
 pos
-Clip/RunningSpritesheet 438 249
+Clip/RunningSpritesheet 301 200
 
 pos
-Clip/RangeAttackSpritesheet 333 27
+Clip/RangeAttackSpritesheet 144 383
 
 pos
-Clip/3-PunchSpritesheet 556 99
+Clip/3-PunchSpritesheet 677 349
 
 pos
-Clip/LeapingSpritesheet 338 325
+Clip/LeapingSpritesheet 504 27
 
 pos
-Clip/FallingSpritesheet 31 288
+Clip/FallingSpritesheet 186 11
 
 %Transitions:
 
@@ -91,47 +103,19 @@ endTransition
 transition 
 start Clip/IdleSpritesheet
 end Clip/LeapingSpritesheet
-condition Speed ? 1
+condition PlayerVelocityY > 0
 endTransition
 
 transition 
 start Clip/LeapingSpritesheet
 end Clip/FallingSpritesheet
+condition PlayerVelocityY < 0
 endTransition
 
 transition 
 start Clip/FallingSpritesheet
 end Clip/IdleSpritesheet
-endTransition
-
-transition 
-start Clip/IdleSpritesheet
-end Clip/3-PunchSpritesheet
-condition IsIdle > 8
-endTransition
-
-transition 
-start Clip/3-PunchSpritesheet
-end Clip/RunningSpritesheet
-condition IsRunning ? 1
-endTransition
-
-transition 
-start Clip/3-PunchSpritesheet
-end Clip/IdleSpritesheet
-condition IsIdle < 8
-endTransition
-
-transition 
-start Clip/RunningSpritesheet
-end Clip/RangeAttackSpritesheet
-condition Speed ? 1
-endTransition
-
-transition 
-start Clip/RunningSpritesheet
-end Clip/3-PunchSpritesheet
-condition Speed ? 1
+condition PlayerVelocityY = 0
 endTransition
 
 %endfile
