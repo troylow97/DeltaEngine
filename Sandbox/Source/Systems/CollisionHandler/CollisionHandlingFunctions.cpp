@@ -64,24 +64,24 @@ namespace DeltaEngine
             //Fiddler Melee Attack
             if (CheckEntityType(id1,EntityCategory::E_ENEMY_FIDDLER_PUNCH,id2,EntityCategory::E_PLAYER))
             {
-                ReduceHealth(id1, CollisionHandlerFiddlerData.Damage);
-                ReduceHealth(id2, CollisionHandlerFiddlerData.Damage);
+                ReduceHealth(id1, (int)CollisionHandlerFiddlerData.Damage);
+                ReduceHealth(id2, (int)CollisionHandlerFiddlerData.Damage);
                 return;
             }
 
             //Lancer Melee Attack
             if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
             {
-                ReduceHealth(id1, CollisionHandlerLancerData.Damage);
-                ReduceHealth(id2, CollisionHandlerLancerData.Damage);
+                ReduceHealth(id1, (int)CollisionHandlerLancerData.Damage);
+                ReduceHealth(id2, (int)CollisionHandlerLancerData.Damage);
                 return;
             }
 
         	//Serpentipede Ranged Attack
             if (CheckEntityType(id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER))
             {
-                ReduceHealth(id1, CollisionHandlerSerpentipedeData.Damage);
-                ReduceHealth(id2, CollisionHandlerSerpentipedeData.Damage);
+                ReduceHealth(id1, (int)CollisionHandlerSerpentipedeData.Damage);
+                ReduceHealth(id2, (int)CollisionHandlerSerpentipedeData.Damage);
                 return;
             }
     

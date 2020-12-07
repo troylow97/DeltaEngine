@@ -99,7 +99,7 @@ namespace DeltaEngine
     EntityID player = UnitManager::GetPlayerID();
     const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
 
-    AITools::FlyTowardsPoint(monster, Vector2{ player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(-0.2,0.4) });
+    AITools::FlyTowardsPoint(monster, Vector2{ player_pos.x + Random::RandomFloatRange(-0.3f,0.3f),player_pos.y + Random::RandomFloatRange(-0.2f,0.4f) });
     if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.3f && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
     {
         AITools::FaceEntity(monster, player);
