@@ -1,6 +1,121 @@
 Textures/WindowLight_Anim_i_0
 offset 0 0
-size 2048 384
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_1
+offset 128 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_2
+offset 256 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_3
+offset 384 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_4
+offset 512 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_5
+offset 640 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_6
+offset 768 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_7
+offset 896 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_8
+offset 1024 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_9
+offset 1152 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_10
+offset 1280 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_11
+offset 1408 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_12
+offset 1536 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_13
+offset 1664 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_14
+offset 1792 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_15
+offset 1920 0
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_16
+offset 0 192
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_17
+offset 128 192
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_18
+offset 256 192
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_19
+offset 384 192
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_20
+offset 512 192
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_21
+offset 640 192
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_22
+offset 768 192
+size 128 192
+pivot 0.5 0.5
+
+Textures/WindowLight_Anim_i_23
+offset 896 192
+size 128 192
 pivot 0.5 0.5
 
 %
