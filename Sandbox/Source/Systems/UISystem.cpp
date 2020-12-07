@@ -179,8 +179,11 @@ void UISystem::Update()
         }
     }
   	if (!paused)
+  	{
+        UpdateHealthBar();
         AttackVisualFeedback();
- 	
+  	}
+
     if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
     {
       bool upgrade_screen_exists = false;
@@ -232,10 +235,10 @@ void UISystem::Update()
 
           em.ForEach([&](UI& ui, EntityID& id, EntityName& en)
           {
-            if (en.name == "DashReady" || en.name == "DashNotReady" || en.name == "UsingDash")
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.25f, player_pos.y -0.3868f, 0.0f };
-            else if (en.name == "RangedReady" || en.name == "RangedNotReady" || en.name == "UsingRanged")
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.0f, player_pos.y - 0.5368f, 0.0f };
+              if (en.name == "DashReady" || en.name == "DashNotReady" || en.name == "UsingDash")
+                  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 2.6f, -1.45f, 0.0f };
+              else if (en.name == "RangedReady" || en.name == "RangedNotReady" || en.name == "UsingRanged")
+                  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 2.35f, -1.6f, 0.0f };
           });
       }
     }
@@ -441,6 +444,35 @@ void UISystem::PauseGame()
 void UISystem::UnpauseGame()
 {
   env.pClock->TimeScale(1.0f);
+}
+
+void UISystem::UpdateHealthBar()
+{
+    //if (!is_main_menu)
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, UI& u,Image& im,Transform& t)
+            {
+                auto& hp = em.GetComponent<Health>(UnitManager::GetPlayerID());
+                auto& player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID());
+                Vector2 translation = { -2.6,1.65 };
+        	
+                if(u.ui_type == UIType::Healthbar)
+                {
+                    const float current_hp = static_cast<float>(hp.CurrentHealth);
+                    const float max_hp = static_cast<float>(hp.MaxHealth);
+                    const float percentage = (current_hp / max_hp);
+                    im.m_FillAmount = percentage;
+                    t.position.x = player_pos.position.x + translation.x;
+                    t.position.y = translation.y;
+                }
+				else if (u.ui_type == UIType::Healthbar_base)
+                {
+                    t.position.x = player_pos.position.x + translation.x;
+                    t.position.y = translation.y;
+                }
+            });
+    
+	}
 }
 
 RTTR_REGISTRATION
