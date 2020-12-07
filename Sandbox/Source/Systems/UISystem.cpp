@@ -40,9 +40,9 @@ const unsigned ranged_not_ready = 22; // AttackCooldown > 0
 
 void UISystem::Initialize()
 {
-  //m_screen.push_back(main_screen);
-  //is_main_menu = true;
-  m_screen.push_back(level1_screen);
+  m_screen.push_back(main_screen);
+  is_main_menu = true;
+  // m_screen.push_back(level1_screen);
   em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
   {
     if (ui.ui_type == UIType::Slider)
@@ -261,8 +261,10 @@ void UISystem::Update()
                   rttr::type::get<UISystem>().get_method(ui.functor_key.c_str()).invoke({ *this });
                   if (ui.overlay && ui.target_screen != -1)
                     m_screen.push_back(ui.target_screen);
+
+                  return;
                 }
-                else if (ui.overlay && ui.target_screen != -1)
+                if (ui.overlay && ui.target_screen != -1)
                   m_screen.push_back(ui.target_screen);
                 else if (ui.target_screen != -1)
                 {
@@ -361,6 +363,7 @@ void UISystem::StartGame()
 
 void UISystem::RestartGame()
 {
+  env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Shutdown();
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
   env.pClock->TimeScale(1.0f);
@@ -374,6 +377,7 @@ void UISystem::RestartGame()
 
 void UISystem::QuitGame()
 {
+  env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Shutdown();
   env.pWin->Running(false);
 }
 
