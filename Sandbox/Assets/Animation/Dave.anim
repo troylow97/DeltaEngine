@@ -281,4 +281,10 @@ end Exit
 condition LancerAttack ? 0
 endTransition
 
+transition 
+start Clip/RunningSpritesheet
+end Clip/Punch1
+condition Punch1 ? 1
+endTransition
+
 %endfile
