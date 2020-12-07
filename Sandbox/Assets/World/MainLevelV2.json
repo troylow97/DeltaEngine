@@ -385,6 +385,82 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
                 "Name": "StreetLamp1OFF"
             },
             "Entity Type": {
@@ -2195,7 +2271,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4225,7 +4301,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5415,7 +5491,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -9755,7 +9831,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10735,7 +10811,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10805,7 +10881,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11715,7 +11791,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13125,7 +13201,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -15096,7 +15172,7 @@
                 "Function": "UpgradeHPButton",
                 "UI Type": "Button",
                 "Screen": 13,
-                "Target": 15,
+                "Target": -1,
                 "Previous": 13,
                 "Overlay": true
             }
@@ -15408,7 +15484,7 @@
                 "Function": "UpgradeDamageButton",
                 "UI Type": "Button",
                 "Screen": 13,
-                "Target": 16,
+                "Target": -1,
                 "Previous": 13,
                 "Overlay": true
             }
@@ -16812,7 +16888,7 @@
                 "Function": "UpgradeHPButton",
                 "UI Type": "Button",
                 "Screen": 18,
-                "Target": 19,
+                "Target": -1,
                 "Previous": 18,
                 "Overlay": true
             }
@@ -16890,7 +16966,7 @@
                 "Function": "UpgradeDamageButton",
                 "UI Type": "Button",
                 "Screen": 17,
-                "Target": 19,
+                "Target": -1,
                 "Previous": 17,
                 "Overlay": true
             }
@@ -16967,9 +17043,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Interface",
-                "Screen": 19,
-                "Target": 19,
-                "Previous": 19,
+                "Screen": 18,
+                "Target": 18,
+                "Previous": 18,
                 "Overlay": true
             }
         },
@@ -17045,9 +17121,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Interface",
-                "Screen": 19,
-                "Target": 19,
-                "Previous": 19,
+                "Screen": 17,
+                "Target": 17,
+                "Previous": 17,
                 "Overlay": true
             }
         },
