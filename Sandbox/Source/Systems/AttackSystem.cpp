@@ -17,7 +17,7 @@ namespace DeltaEngine
         }
     	if(p.StartDashingTimer)
     	{
-            p.DashingTimerCooldown -= env.pClock->DeltaTime();
+            p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
             p.AllowDashing = false;
     	}
         if (p.DashingTimerCooldown <= 0.0f)
@@ -32,7 +32,7 @@ namespace DeltaEngine
         {
             if (a.CooldownTimer > 0)
             {
-                a.CooldownTimer -= env.pClock->DeltaTime();
+                a.CooldownTimer -= env.pClock->FixedDeltaTime();
             }
 
             if (a.RangeAttack)
@@ -242,7 +242,7 @@ namespace DeltaEngine
         EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
         em.GetComponent<Transform>(missile).position = t1.position;
         em.GetComponent<RigidBody>(missile).Mass = 5.0f;
-        em.GetComponent<Transform>(missile).scale = scale;
+        em.GetComponent<Collider>(missile).size = scale;
         em.GetComponent<Lifespan>(missile).Timer = Lifetime;
         em.GetComponent<RigidBody>(missile).hasGravity = gravity;
         em.GetComponent<Collider>(missile).isTrigger = true;
