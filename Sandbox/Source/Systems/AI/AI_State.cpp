@@ -3,7 +3,8 @@
 #include "../UnitManager.h"
 #include "Core/Utils/Random.h"
 #include "Core/GlobalStruct.h"
-#include "Core/GameClock/EngineClock.h"
+#include "Core/GameClock/GameClock.h"
+#include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
@@ -98,13 +99,23 @@ namespace DeltaEngine
     EntityID player = UnitManager::GetPlayerID();
     const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
 
-    AITools::FlyTowardsPoint(monster, Vector2{ player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(0.2,0.8) });
-    if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
+    AITools::FlyTowardsPoint(monster, Vector2{ player_pos.x + Random::RandomFloatRange(-0.3,0.3),player_pos.y + Random::RandomFloatRange(-0.2,0.4) });
+    if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.3f && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).CooldownTimer <= 0)
     {
         AITools::FaceEntity(monster, player);
         env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
     }
 
+  	if(Random::RandomFloatRange(0,100) < 20)
+  	{
+        static size_t c_id{ 0 };
+        if (AudioEngine::IsChannelPlaying(c_id))
+            AudioEngine::StopChannel(c_id);
+        c_id = AudioEngine::Play("Audio/Lancer/LancerBuzz.ogg");
+
+  	}
+
+  	
   }
 
   //----------------------------------------------------------------------
@@ -201,7 +212,7 @@ namespace DeltaEngine
           auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
           auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
 
-          if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x))
+          if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x,0.1f))
           {
               EntityID player = UnitManager::GetPlayerID();
               if (attack.CooldownTimer <= 0 && AITools::Distance_X_BetweenTwoEntities(monster, player) < 6 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 3)

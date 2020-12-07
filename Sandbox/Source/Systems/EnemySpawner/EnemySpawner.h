@@ -40,7 +40,7 @@ namespace DeltaEngine
 		void EnemySpawner::Update() override;
 		void EnemySpawner::LateUpdate() override;
 		GauntletsList list;
-	
+		void EnemySpawner::ResetActivationPointBool();
 	
 	private:
 		void LoadEnemyData();

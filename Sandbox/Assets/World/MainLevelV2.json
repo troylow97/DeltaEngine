@@ -5,6 +5,44 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.0,
+                    "y": -1.0634266138076783,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
                 "Name": "StreetLamp1OFF"
             },
             "Entity Type": {
@@ -275,7 +313,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -485,7 +523,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -765,7 +803,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -975,7 +1013,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1115,7 +1153,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1185,7 +1223,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9305,7 +9343,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9725,7 +9763,7 @@
                 },
                 "Layer": 1,
                 "Order": -1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11685,7 +11723,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12292,11 +12330,11 @@
             "Collider": {
                 "Center": {
                     "x": 21.860000610351564,
-                    "y": -1.3000000715255738
+                    "y": -1.350000023841858
                 },
                 "Offset": {
                     "x": 23.0,
-                    "y": -0.10000000149011612
+                    "y": -0.15000000596046449
                 },
                 "Size": {
                     "x": 95.0,
@@ -12319,7 +12357,7 @@
                 },
                 "Offset": {
                     "x": 0.0,
-                    "y": 0.0
+                    "y": -0.15000000596046449
                 },
                 "Tiling": {
                     "x": 4.0,
@@ -12392,7 +12430,7 @@
             "Collider": {
                 "Center": {
                     "x": 4.440000057220459,
-                    "y": -0.8803598880767822
+                    "y": -1.0303598642349244
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12406,7 +12444,7 @@
                 "Collision Layer": 15,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": false
+                "Platform": true
             },
             "Image": {
                 "Sprite": {
@@ -12492,7 +12530,7 @@
             "Collider": {
                 "Center": {
                     "x": 9.520000457763672,
-                    "y": -0.8804712891578674
+                    "y": -1.0304713249206544
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12506,7 +12544,7 @@
                 "Collision Layer": 15,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": false
+                "Platform": true
             },
             "Image": {
                 "Sprite": {
@@ -12592,7 +12630,7 @@
             "Collider": {
                 "Center": {
                     "x": 14.585000038146973,
-                    "y": -0.8799999952316284
+                    "y": -1.0299999713897706
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12606,7 +12644,7 @@
                 "Collision Layer": 15,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": false
+                "Platform": true
             },
             "Image": {
                 "Sprite": {
@@ -12645,7 +12683,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12691,8 +12729,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 20.31999969482422,
-                    "y": -0.8799999952316284
+                    "x": 21.25,
+                    "y": -1.0299999713897706
                 },
                 "Offset": {
                     "x": 0.9300000071525574,
@@ -12706,7 +12744,7 @@
                 "Collision Layer": 15,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": false
+                "Platform": true
             },
             "Image": {
                 "Sprite": {
@@ -12892,7 +12930,7 @@
             "Collider": {
                 "Center": {
                     "x": 23.81999969482422,
-                    "y": -0.5600000023841858
+                    "y": -0.8999999761581421
                 },
                 "Offset": {
                     "x": 0.0,
@@ -12906,7 +12944,7 @@
                 "Collision Layer": 15,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": false
+                "Platform": true
             },
             "Image": {
                 "Sprite": {
@@ -12992,7 +13030,7 @@
             "Collider": {
                 "Center": {
                     "x": 26.989999771118165,
-                    "y": -0.8849999904632568
+                    "y": -1.034999966621399
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13006,7 +13044,7 @@
                 "Collision Layer": 15,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": false
+                "Platform": true
             },
             "Image": {
                 "Sprite": {
@@ -13092,7 +13130,7 @@
             "Collider": {
                 "Center": {
                     "x": 28.270000457763673,
-                    "y": -0.5699999928474426
+                    "y": -0.7200000286102295
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13106,7 +13144,7 @@
                 "Collision Layer": 15,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": false
+                "Platform": true
             },
             "Image": {
                 "Sprite": {
@@ -13192,7 +13230,7 @@
             "Collider": {
                 "Center": {
                     "x": 29.549999237060548,
-                    "y": -0.8849999904632568
+                    "y": -1.034999966621399
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13206,7 +13244,7 @@
                 "Collision Layer": 15,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": false
+                "Platform": true
             },
             "Image": {
                 "Sprite": {
@@ -13363,7 +13401,7 @@
             "Transform": {
                 "Position": {
                     "x": 1.0,
-                    "y": -1.0132681131362916,
+                    "y": -1.0634266138076783,
                     "z": 0.0
                 },
                 "Scale": {
@@ -13391,8 +13429,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.2966199815273285,
-                    "y": -1.0132681131362916
+                    "x": 1.0,
+                    "y": -1.0634266138076783
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13453,23 +13491,23 @@
             "Health": {
                 "Current Health": 100,
                 "Max Health": 100,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
                 "Range Damage": 2,
                 "Melee Damage": 5,
                 "Melee Combo Damage": 10,
-                "Number Of Combo": 0,
+                "Number Of Combo": 1,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.5,
-                "Cooldown Timer": -0.01399226114153862,
+                "Cooldown Timer": -1.825392246246338e-7,
                 "Combo Duration": 2.0,
-                "Combo Cooldown Timer": 1.5,
+                "Combo Cooldown Timer": 0.6666674613952637,
                 "Knockback Amount": 50.0,
                 "Knockback Combo Amount": 100.0,
-                "Ranged Attack": true,
-                "Melee Attack": true,
-                "Start Combo Cooldown Timer": false
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": true
             },
             "Player": {
                 "Upgrade Points Per Enemy Defeated": 50,
@@ -13479,7 +13517,7 @@
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
-                "Previous": 68,
+                "Previous": 32,
                 "Current": 0
             }
         },
@@ -13600,7 +13638,7 @@
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 0.20000000298023225,
+                "Max Cooldown": 1.5,
                 "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
@@ -13623,8 +13661,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 13.569686889648438,
-                    "y": -0.6868023872375488,
+                    "x": 13.058502197265625,
+                    "y": -0.6708278656005859,
                     "z": 0.0
                 },
                 "Scale": {
@@ -13652,8 +13690,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 13.569686889648438,
-                    "y": -0.6868023872375488
+                    "x": 13.058502197265625,
+                    "y": -0.6708278656005859
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13729,7 +13767,7 @@
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 0.20000000298023225,
+                "Max Cooldown": 1.5,
                 "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
@@ -13781,8 +13819,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 13.957154273986817,
-                    "y": -0.49719059467315676
+                    "x": 13.946109771728516,
+                    "y": 2.5991361141204836
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13835,7 +13873,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -13845,7 +13883,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_lancer"
+                "AIState": "spawn_lancer"
             },
             "Health": {
                 "Current Health": 10,
@@ -13858,7 +13896,7 @@
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 0.20000000298023225,
+                "Max Cooldown": 1.5,
                 "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
@@ -13881,8 +13919,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 14.378105163574219,
-                    "y": 2.589118003845215,
+                    "x": 13.600476264953614,
+                    "y": 2.3769032955169679,
                     "z": 0.0
                 },
                 "Scale": {
@@ -13910,8 +13948,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 13.239927291870118,
-                    "y": -0.5548986196517944
+                    "x": 13.600476264953614,
+                    "y": 2.3769032955169679
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13987,7 +14025,7 @@
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 0.20000000298023225,
+                "Max Cooldown": 1.5,
                 "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
@@ -14011,7 +14049,7 @@
             "Transform": {
                 "Position": {
                     "x": 21.4672908782959,
-                    "y": -0.41612088680267336,
+                    "y": -0.4258900582790375,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14039,8 +14077,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 20.819046020507814,
-                    "y": -0.9734479784965515
+                    "x": 21.4672908782959,
+                    "y": -0.4258900582790375
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14103,7 +14141,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "chase_enemy_serpentipede"
+                "AIState": "idle_Serpentipede"
             },
             "Health": {
                 "Current Health": 50,
@@ -14117,7 +14155,7 @@
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": 0.0,
+                "Cooldown Timer": -0.016666656360030175,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14139,8 +14177,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 16.727493286132814,
-                    "y": -0.7776694893836975,
+                    "x": 16.580909729003908,
+                    "y": -1.0903421640396119,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14157,27 +14195,27 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 5.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
+                "Max Acceleration": 20.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 20.819046020507814,
-                    "y": -0.9734479784965515
+                    "x": 16.580909729003908,
+                    "y": -1.0903421640396119
                 },
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 0.8100000023841858,
-                    "y": 1.7200000286102296
+                    "x": 1.649999976158142,
+                    "y": 0.7300000190734863
                 },
                 "Type": "box",
                 "Collision Layer": 9,
@@ -14187,7 +14225,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SERP_FULL_IDLE",
+                    "key": "Textures/FID_WALK",
                     "index": 0
                 },
                 "Size": {
@@ -14245,7 +14283,7 @@
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 0.20000000298023225,
+                "Max Cooldown": 2.0,
                 "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
@@ -14268,8 +14306,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 28.279756546020509,
-                    "y": -0.09553372859954834,
+                    "x": 28.25218963623047,
+                    "y": -0.11578449606895447,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14297,8 +14335,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 20.819046020507814,
-                    "y": -0.9734479784965515
+                    "x": 28.25218963623047,
+                    "y": -0.11578449606895447
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14361,7 +14399,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "chase_enemy_serpentipede"
+                "AIState": "idle_serpentipede"
             },
             "Health": {
                 "Current Health": 50,
@@ -14375,6 +14413,264 @@
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
                 "Max Cooldown": 0.20000000298023225,
+                "Cooldown Timer": 0.0,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer 3"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 27.036212921142579,
+                    "y": -0.3832864761352539,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 27.036212921142579,
+                    "y": -0.3832864761352539
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": true,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/AlertSpritesheet",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 4,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 1,
+                "Melee Damage": 1,
+                "Melee Combo Damage": 3,
+                "Number Of Combo": 0,
+                "Max Combo Number": 3,
+                "Max Cooldown": 1.5,
+                "Cooldown Timer": 0.0,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer 3"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 29.83175277709961,
+                    "y": -0.3513374328613281,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 29.83175277709961,
+                    "y": -0.3513374328613281
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": true,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/AlertSpritesheet",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 4,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 1,
+                "Melee Damage": 1,
+                "Melee Combo Damage": 3,
+                "Number Of Combo": 0,
+                "Max Combo Number": 3,
+                "Max Cooldown": 1.5,
                 "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
@@ -14458,9 +14754,9 @@
                 "Function": "UpgradeHPButton",
                 "UI Type": "Button",
                 "Screen": 13,
-                "Target": 15,
+                "Target": -1,
                 "Previous": 13,
-                "Overlay": false
+                "Overlay": true
             }
         },
         {
@@ -14535,9 +14831,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Screen",
-                "Screen": 15,
-                "Target": -1,
-                "Previous": 13,
+                "Screen": 17,
+                "Target": 17,
+                "Previous": 17,
                 "Overlay": true
             }
         },
@@ -14691,9 +14987,9 @@
             "UI": {
                 "Function": "",
                 "UI Type": "Screen",
-                "Screen": 15,
-                "Target": -1,
-                "Previous": 13,
+                "Screen": 18,
+                "Target": 18,
+                "Previous": 18,
                 "Overlay": true
             }
         },
@@ -14770,9 +15066,9 @@
                 "Function": "UpgradeDamageButton",
                 "UI Type": "Button",
                 "Screen": 13,
-                "Target": 15,
+                "Target": -1,
                 "Previous": 13,
-                "Overlay": false
+                "Overlay": true
             }
         },
         {
@@ -14787,8 +15083,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
+                    "x": 1.0,
+                    "y": -1.0634266138076783,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14865,8 +15161,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.7080000042915344,
-                    "y": 2.1826987266540529,
+                    "x": 0.2919999957084656,
+                    "y": 1.1192721128463746,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14943,8 +15239,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.2879999876022339,
-                    "y": 0.6499999761581421,
+                    "x": -0.2879999876022339,
+                    "y": -0.41342663764953616,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15021,8 +15317,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.2879999876022339,
-                    "y": 0.6499999761581421,
+                    "x": -0.2879999876022339,
+                    "y": -0.41342663764953616,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15079,7 +15375,7 @@
                 "Wireframe": true
             },
             "UI": {
-                "Function": "StartGame",
+                "Function": "RestartGame",
                 "UI Type": "Button",
                 "Screen": 7,
                 "Target": 14,
@@ -15099,8 +15395,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.190000057220459,
-                    "y": 0.20000000298023225,
+                    "x": -0.19000005722045899,
+                    "y": -0.8634266257286072,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15177,8 +15473,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.284999966621399,
-                    "y": -0.25,
+                    "x": -0.2849999666213989,
+                    "y": -1.3134266138076783,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15255,8 +15551,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.156999945640564,
-                    "y": -0.699999988079071,
+                    "x": -0.15699994564056397,
+                    "y": -1.7634265422821046,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15333,8 +15629,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.190000057220459,
-                    "y": 0.20000000298023225,
+                    "x": -0.19000005722045899,
+                    "y": -0.8634266257286072,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15394,7 +15690,7 @@
                 "Function": "",
                 "UI Type": "Button",
                 "Screen": 4,
-                "Target": 9,
+                "Target": 0,
                 "Previous": 0,
                 "Overlay": false
             }
@@ -15411,8 +15707,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.284999966621399,
-                    "y": -0.25,
+                    "x": -0.2849999666213989,
+                    "y": -1.3134266138076783,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15489,8 +15785,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.156999945640564,
-                    "y": -0.699999988079071,
+                    "x": -0.15699994564056397,
+                    "y": -1.7634265422821046,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15547,10 +15843,10 @@
                 "Wireframe": true
             },
             "UI": {
-                "Function": "Return",
+                "Function": "BackToMainMenu",
                 "UI Type": "Button",
                 "Screen": 8,
-                "Target": -1,
+                "Target": 1,
                 "Previous": 0,
                 "Overlay": false
             }
@@ -15567,8 +15863,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 2.4000000953674318,
-                    "y": 0.0,
+                    "x": 3.4000000953674318,
+                    "y": -1.0634266138076783,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15620,7 +15916,7 @@
                 },
                 "Layer": 5,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15645,8 +15941,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 4.400000095367432,
-                    "y": 0.0,
+                    "x": 5.400000095367432,
+                    "y": -1.0634266138076783,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15698,7 +15994,7 @@
                 },
                 "Layer": 6,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15723,8 +16019,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 5.0,
-                    "y": 0.48180216550827029,
+                    "x": 6.0,
+                    "y": -0.581624448299408,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15776,7 +16072,7 @@
                 },
                 "Layer": 7,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15801,8 +16097,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 5.0,
-                    "y": 0.8677965998649597,
+                    "x": 6.0,
+                    "y": -0.1956300139427185,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15854,7 +16150,7 @@
                 },
                 "Layer": 7,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15879,8 +16175,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 6.360000133514404,
-                    "y": 0.8679999709129334,
+                    "x": 7.360000133514404,
+                    "y": -0.19542664289474488,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15957,8 +16253,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 3.747999906539917,
-                    "y": 0.48656564950942995,
+                    "x": 4.748000144958496,
+                    "y": -0.5768609642982483,
                     "z": 0.0
                 },
                 "Scale": {
@@ -16035,8 +16331,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 6.23799991607666,
-                    "y": 0.48656564950942995,
+                    "x": 7.23799991607666,
+                    "y": -0.5768609642982483,
                     "z": 0.0
                 },
                 "Scale": {
@@ -16106,20 +16402,20 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Camera"
+                "Name": "HealthDefault"
             },
             "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
+                    "x": -1.4989999532699586,
+                    "y": -0.28600001335144045,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 1.25,
+                    "y": 1.25,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16129,14 +16425,132 @@
                     "w": 1.0
                 }
             },
-            "Camera": {
-                "Camera Size": 2.0,
-                "Background Color": {
-                    "r": 0.1921568661928177,
-                    "g": 0.3019607961177826,
-                    "b": 0.4745098054409027,
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Icon_HealthUpgrade_Off",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
                     "a": 1.0
+                },
+                "Layer": 7,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "UpgradeHPButton",
+                "UI Type": "Button",
+                "Screen": 18,
+                "Target": -1,
+                "Previous": 18,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "AttackDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.4910000562667847,
+                    "y": -0.28600001335144045,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.25,
+                    "y": 1.25,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
                 }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Icon_AttackUpgrade_Off",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 7,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "UpgradeDamageButton",
+                "UI Type": "Button",
+                "Screen": 17,
+                "Target": -1,
+                "Previous": 17,
+                "Overlay": true
             }
         },
         {

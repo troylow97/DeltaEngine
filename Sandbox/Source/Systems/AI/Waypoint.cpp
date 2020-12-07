@@ -13,7 +13,7 @@ namespace DeltaEngine
 	{
 		auto pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position;
 		auto original_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id).original_point;
-		if(AITools::EntityisAtPointInX(id, original_pos.x + Waypoints[CurrentWaypoint].x))
+		if(AITools::EntityisAtPointInX(id, original_pos.x + Waypoints[CurrentWaypoint].x,0.1f))
 		{
 			if (CurrentWaypoint < Waypoints.size() - 1)
 				CurrentWaypoint++;

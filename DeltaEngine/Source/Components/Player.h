@@ -20,6 +20,8 @@ namespace DeltaEngine
     bool DashDirectionRight;
     bool UpgradeAtk;
     bool UpgradeHP;
+    bool UpgradedAtk;
+    bool UpgradedHP;
     
     Player() :
     	RespawnPoint(0),
@@ -37,7 +39,9 @@ namespace DeltaEngine
     	AllowDashing{true},
         DashDirectionRight{true},
         UpgradeAtk{false},
-        UpgradeHP{false}
+        UpgradeHP{false},
+        UpgradedAtk{false},
+        UpgradedHP{false}
     {}
   };	
 }
