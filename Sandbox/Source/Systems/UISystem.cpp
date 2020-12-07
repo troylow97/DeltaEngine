@@ -348,6 +348,8 @@ void UISystem::Update()
     Start();
   else if ( m_restart )
     Restart();
+  else if ( m_backmenu )
+    BackToMenu();
 }
 
 void UISystem::LateUpdate()
@@ -416,7 +418,7 @@ void UISystem::QuitGame()
   env.pWin->Running(false);
 }
 
-void UISystem::BackToMainMenu()
+void UISystem::BackToMenu()
 {
   JsonFile file;
   env.pECS->GetWorld().GetEntityManager().Clear();
@@ -424,6 +426,12 @@ void UISystem::BackToMainMenu()
   is_main_menu = true;
   m_screen.clear();
   m_screen.push_back(main_screen);
+  m_backmenu = false;
+}
+
+void UISystem::BackToMainMenu()
+{
+  m_backmenu = true;
 }
 
 void UISystem::PauseGame()
