@@ -1,6 +1,6 @@
-%EntryAnimation
+%Entry:
 
-entry
+entry 
 Clip/IdleSpritesheet
 
 %Parameters:
@@ -47,7 +47,7 @@ pos
 Clip/IdleSpritesheet -19 156
 
 pos
-Clip/RunningSpritesheet 301 200
+Clip/RunningSpritesheet 362 162
 
 pos
 Clip/RangeAttackSpritesheet 144 383
@@ -66,7 +66,8 @@ Clip/FallingSpritesheet 186 11
 transition 
 start Clip/IdleSpritesheet
 end Clip/RunningSpritesheet
-condition IsRunning ? 1
+condition IsRunning ? 9
+condition Speed ? 9
 endTransition
 
 transition 

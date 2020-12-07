@@ -123,41 +123,6 @@ offset 0 1152
 size 256 384
 pivot 0.5 0.5
 
-Textures/SERP_FULL_ALERT_i_25
-offset 256 1152
-size 256 384
-pivot 0.5 0.5
-
-Textures/SERP_FULL_ALERT_i_26
-offset 512 1152
-size 256 384
-pivot 0.5 0.5
-
-Textures/SERP_FULL_ALERT_i_27
-offset 768 1152
-size 256 384
-pivot 0.5 0.5
-
-Textures/SERP_FULL_ALERT_i_28
-offset 1024 1152
-size 256 384
-pivot 0.5 0.5
-
-Textures/SERP_FULL_ALERT_i_29
-offset 1280 1152
-size 256 384
-pivot 0.5 0.5
-
-Textures/SERP_FULL_ALERT_i_30
-offset 1536 1152
-size 256 384
-pivot 0.5 0.5
-
-Textures/SERP_FULL_ALERT_i_31
-offset 1792 1152
-size 256 384
-pivot 0.5 0.5
-
 %
 
 wrap_mode 0
