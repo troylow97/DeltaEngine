@@ -47,6 +47,7 @@ namespace DeltaEngine
 
       glClearColor(0, 0, 0, 1); //RGBA
 
+      glewExperimental = GL_TRUE;
       if (glewInit() != GLEW_OK)
       {
         DeltaEngine_CORE_ERROR("glewInit() failed!");
