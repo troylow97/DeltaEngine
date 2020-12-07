@@ -99,6 +99,11 @@ namespace DeltaEngine
         {
             EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
             EntityID missile2 = CreateProjectile(id, Vector2{ 1.7f,1.7f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
+            em.AddComponent<Renderer2D>(missile);
+            em.AddComponent<Image>(missile);
+            em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
+            em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
+            em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
             static size_t c_id{ u64_max };
             if (AudioEngine::IsChannelPlaying(c_id))
                 AudioEngine::StopChannel(c_id);
@@ -123,6 +128,10 @@ namespace DeltaEngine
         else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
         {
             EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
+            em.AddComponent<Renderer2D>(missile);
+            em.AddComponent<Image>(missile);
+            em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
+            em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -177,7 +186,7 @@ namespace DeltaEngine
                     break;
         		}
 
-                EntityID missile = CreateProjectile(id, Vector2{ 0.1f,0.1f }, false, 0.1f, EntityCategory::E_ENEMY_LANCER_PUNCH);
+                EntityID missile = CreateProjectile(id, Vector2{ 0.2f,0.2f }, false, 0.2f, EntityCategory::E_ENEMY_LANCER_PUNCH);
                 const Vector2 player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                 const Vector2 monster_pos = em.GetComponent<Transform>(id).position;
                 Vector2 kb = (player_pos - em.GetComponent<Transform>(id).position);
@@ -228,7 +237,7 @@ namespace DeltaEngine
     EntityID AttackSystem::CreateProjectile(EntityID id,Vector2 scale,bool gravity,float Lifetime,EntityCategory type)
     {
         Transform& t1 = em.GetComponent<Transform>(id);
-        EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+        EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
         em.GetComponent<Transform>(missile).position = t1.position;
         em.GetComponent<RigidBody>(missile).Mass = 5.0f;
         em.GetComponent<Transform>(missile).scale = scale;

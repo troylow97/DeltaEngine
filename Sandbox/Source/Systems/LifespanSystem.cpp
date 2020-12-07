@@ -40,7 +40,7 @@ namespace DeltaEngine
 
         if (hp.CurrentHealth <= 0)
         {
-          if (et.type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
+          if (env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(id))
           {
               auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(id);
               p.IsDead = true;
@@ -49,6 +49,21 @@ namespace DeltaEngine
           {
 			  DestroyedEntities.push_back(id);
           }
+        }
+        else
+        {
+        	if(em.HasComponent<Renderer2D>(id))
+        	{
+                if (hp.isDamagedTimer > 0.0f)
+                {
+                    em.GetComponent<Renderer2D>(id).m_Color = { 1,0,0 };
+                    hp.isDamagedTimer -= env.pClock->DeltaTime();
+                }
+                else
+                {
+                    em.GetComponent<Renderer2D>(id).m_Color = { 1,1,1 };
+                }
+        	}
         }
     });
 

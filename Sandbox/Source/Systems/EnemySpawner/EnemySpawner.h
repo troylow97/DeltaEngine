@@ -37,6 +37,7 @@ namespace DeltaEngine
 
 	DEFINE_SYSTEM(EnemySpawner, Transform, EntityType)
 		void EnemySpawner::Initialize() override;
+	    void EnemySpawner::Shutdown() override;
 		void EnemySpawner::Update() override;
 		void EnemySpawner::LateUpdate() override;
 		GauntletsList list;

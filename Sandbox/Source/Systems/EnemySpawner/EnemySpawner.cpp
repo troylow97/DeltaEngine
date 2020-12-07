@@ -207,6 +207,12 @@ namespace DeltaEngine
 		return activated;
 	}
 
+	void EnemySpawner::Shutdown()
+	{
+		EnemiesInGauntlet.clear();
+		SpawnedEnemiesInGauntlet.clear();
+	}
+
 	EntityID EnemySpawner::SpawnWall(Vector2 position)
 	{
 		EntityID wall = env.pECS->GetWorld().GetEntityManager().CreateEntity();

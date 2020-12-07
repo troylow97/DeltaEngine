@@ -358,6 +358,7 @@ void UISystem::StartGame()
 
 void UISystem::RestartGame()
 {
+  env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Shutdown();
   env.pECS->GetWorld().GetEntityManager().Clear();
   env.pECS->GetWorld().Load("World/MainLevelV2.json");
   env.pClock->TimeScale(1.0f);
@@ -371,6 +372,7 @@ void UISystem::RestartGame()
 
 void UISystem::QuitGame()
 {
+  env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Shutdown();
   env.pWin->Running(false);
 }
 

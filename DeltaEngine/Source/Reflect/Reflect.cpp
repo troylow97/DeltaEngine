@@ -322,6 +322,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .constructor<>()( rttr::policy::ctor::as_object )
     .property( "Current Health", &Health::CurrentHealth )( rttr::policy::prop::bind_as_ptr )
     .property( "Max Health", &Health::MaxHealth )( rttr::policy::prop::bind_as_ptr )
+    .property("TakenDamageTimer", &Health::isDamagedTimer)(rttr::policy::prop::bind_as_ptr)
     .property( "Invulnerable", &Health::isInvulnerable )( rttr::policy::prop::bind_as_ptr );
 
     rttr::registration::class_<Attack>("Attack")
