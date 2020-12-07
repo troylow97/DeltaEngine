@@ -22,12 +22,9 @@ void UpgradeSystem::Initialize()
 
 void UpgradeSystem::Update()
 {
-
-
   if ( env.pECS->GetWorld().GetEntityManager().IsEntityValid( UnitManager::GetPlayerID() ) )
     if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Player>( UnitManager::GetPlayerID() ) )
     {
-
       auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( UnitManager::GetPlayerID() );
 
       TempUpgradePointsUI();
