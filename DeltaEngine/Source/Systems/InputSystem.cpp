@@ -227,15 +227,15 @@ void InputSystem::Update()
   //}
 
 
-  //if ( InputManager::Instance().IsKeyReleased( DEVK_UP ) || InputManager::Instance().IsKeyReleased( DEVK_DOWN )
-  //     || InputManager::Instance().IsKeyReleased( DEVK_LEFT ) || InputManager::Instance().IsKeyReleased( DEVK_RIGHT ) )
-  //{
-  //  env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
-  //  {
-  //    r1.Direction = Vector2::zero();
-  //    r1.InherentAcceleration = 0.0f;
-  //  } );
-  //}
+  if ( InputManager::Instance().IsKeyReleased( DEVK_UP ) || InputManager::Instance().IsKeyReleased( DEVK_DOWN )
+       || InputManager::Instance().IsKeyReleased( DEVK_LEFT ) || InputManager::Instance().IsKeyReleased( DEVK_RIGHT ) )
+  {
+    env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1 )
+    {
+      r1.Direction = Vector2::zero();
+      r1.InherentAcceleration = 0.0f;
+    } );
+  }
 
 #ifdef DE_EDITOR
   if ( InputManager::Instance().IsKeyTriggered( DEVK_BACKSLASH ) ) // '\'

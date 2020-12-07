@@ -18352,7 +18352,7 @@
             },
             "UI": {
                 "Function": "",
-                "UI Type": "HealthBar",
+                "UI Type": "HealthBar_Fill",
                 "Screen": 14,
                 "Target": -1,
                 "Previous": -1,
@@ -18430,7 +18430,7 @@
             },
             "UI": {
                 "Function": "",
-                "UI Type": "Interface",
+                "UI Type": "HealthBar_Base",
                 "Screen": 14,
                 "Target": -1,
                 "Previous": -1,

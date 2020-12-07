@@ -169,7 +169,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       rttr::value("Screen", UIType::Screen),
       rttr::value("Interface", UIType::Interface),
       rttr::value("Button", UIType::Button),
-      rttr::value("Slider", UIType::Slider)
+      rttr::value("Slider", UIType::Slider),
+      rttr::value("HealthBar_Fill", UIType::Healthbar),
+        rttr::value("HealthBar_Base", UIType::Healthbar_base)
     );
 
   rttr::registration::class_<UI>( "UI" )

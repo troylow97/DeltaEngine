@@ -228,7 +228,6 @@ namespace DeltaEngine
       if ( AudioEngine::IsChannelPlaying( c_id ) )
         AudioEngine::StopChannel( c_id );
       c_id = AudioEngine::Play( "Audio/Fiddler/FiddlerAttack.ogg" );
-      em.GetComponent<State>( id ).SetBool( "isAttacking", true );
       EntityID missile = CreateProjectile( id, Vector2 { 0.3f,0.3f }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH );
       if ( em.GetComponent<Image>( id ).m_FlipX == false )
       {
