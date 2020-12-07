@@ -12,7 +12,7 @@ param
 IsJumping 0 0
 
 param
-MeleeAttack 0 0
+Punch 0 0
 
 param
 IsIdle 0 0

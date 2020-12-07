@@ -9,24 +9,28 @@ namespace DeltaEngine
 {
     void AttackSystem::Update()
     {
-        auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-    	
-        if (p.IsDashing)
+        if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
         {
-            p.StartDashingTimer = true;
+            auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+
+            if (p.IsDashing)
+            {
+                em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("IsDodge", true);
+                p.StartDashingTimer = true;
+            }
+            if (p.StartDashingTimer)
+            {
+                p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
+                p.AllowDashing = false;
+            }
+            if (p.DashingTimerCooldown <= 0.0f)
+            {
+                p.StartDashingTimer = false;
+                p.DashingTimerCooldown = p.DashingTimerDuration;
+                p.AllowDashing = true;
+            }
+            Dash();
         }
-    	if(p.StartDashingTimer)
-    	{
-            p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
-            p.AllowDashing = false;
-    	}
-        if (p.DashingTimerCooldown <= 0.0f)
-        {
-            p.StartDashingTimer = false;
-            p.DashingTimerCooldown = p.DashingTimerDuration;
-            p.AllowDashing = true;
-        }
-        Dash();
 
         em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
         {
@@ -34,12 +38,16 @@ namespace DeltaEngine
             {
                 a.CooldownTimer -= env.pClock->FixedDeltaTime();
             }
+            else
+            {
+                //st.SetBool("RangeAttack", false);
+            }
 
             if (a.RangeAttack)
             {
                 if (a.CooldownTimer <= 0)
                 {
-                    em.GetComponent<State>(id).SetBool("RangeAttack", true);
+                    //em.GetComponent<State>(id).SetBool("RangeAttack", true);
                     RangedAttackingEntities.push_back(id);
                     a.CooldownTimer = a.AttackCooldown;
                 }
@@ -87,13 +95,11 @@ namespace DeltaEngine
 
         for (auto& id : RangedAttackingEntities)
         {
-            em.GetComponent<State>(id).SetBool("RangeAttack", true);
             RangedAttack(id);
         }
 
         for (auto& id : MeleeAttackingEntities)
         {
-            em.GetComponent<State>(id).SetBool("MeleeAttack", true);
             MeleeAttack(id);
         }
 

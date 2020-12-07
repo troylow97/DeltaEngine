@@ -167,7 +167,7 @@ void InputSystem::Update()
                 p1.IsDashing = true;
                 p1.AllowDashing = false;
                 s.SetBool("IsDodge", true);
-                const EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
+                const EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
                 em.GetComponent<Transform>(missile).position = t1.position;
                 em.GetComponent<RigidBody>(missile).Mass = 5.0f;
                 em.GetComponent<Transform>(missile).scale = { 0.4f, 0.4f, 0.0f };
