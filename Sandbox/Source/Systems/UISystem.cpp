@@ -37,6 +37,9 @@ const unsigned using_dash = 19;       // p.IsDashing
 const unsigned dash_not_ready = 20;   // p.AllowDashing = false;
 const unsigned using_ranged = 21;     // a.RangeAttack
 const unsigned ranged_not_ready = 22; // AttackCooldown > 0
+const unsigned quit_confirmation = 23;
+const unsigned quit_yes = 24;
+const unsigned quit_no = 25; // credits default - 4
 
 void UISystem::Initialize()
 {
@@ -58,7 +61,7 @@ void UISystem::AttackVisualFeedback()
 
     if (p.IsDashing)
       m_screen.push_back(using_dash);
-    if (!p.IsDashing && !p.AllowDashing)
+    else if (!p.IsDashing && !p.AllowDashing)
     {
       m_screen.clear();
       m_screen.push_back(level1_screen);
@@ -72,7 +75,7 @@ void UISystem::AttackVisualFeedback()
 
     if (a.RangeAttack)
       m_screen.push_back(using_ranged);
-    if (!a.RangeAttack && a.AttackCooldown < 0.0f)
+    else if (!a.RangeAttack && a.AttackCooldown < 0.0f)
     {
         m_screen.clear();
         m_screen.push_back(level1_screen);
@@ -88,10 +91,6 @@ void UISystem::AttackVisualFeedback()
 
 void UISystem::Update()
 {
-  for (auto& screen : m_screen)
-    if (screen == level1_screen)
-      AttackVisualFeedback();
-
   if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
   {
     bool option_menu_bool{false};
@@ -121,6 +120,13 @@ void UISystem::Update()
           m_screen.push_back(pause_screen);
           pause_screen_bool = true;
         }
+        break;
+      }
+      if (screen == credits_screen)
+      {
+        m_screen.clear();
+        if (is_main_menu)
+            m_screen.push_back(main_screen);
         break;
       }
       if (screen == level1_screen)
@@ -163,6 +169,18 @@ void UISystem::Update()
 
   if(!is_main_menu)
   {
+    bool paused{ false };
+    for (auto& screen : m_screen)
+    {
+        if (screen == pause_screen || screen == control_screen || screen == option_screen || screen == gameover_screen || screen == upgrade_page)
+        {
+            paused = true;
+            break;
+        }
+    }
+  	if (!paused)
+        AttackVisualFeedback();
+ 	
     if (InputManager::Instance().IsKeyTriggered(DEVK_U)) //Upgrade Page
     {
       bool upgrade_screen_exists = false;
