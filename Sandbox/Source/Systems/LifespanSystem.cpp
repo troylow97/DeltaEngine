@@ -26,7 +26,7 @@ namespace DeltaEngine
           }
           else
           {
-              ls.Timer -= env.pClock->DeltaTime();
+              ls.Timer -= env.pClock->FixedDeltaTime();
           }
       });
   }
@@ -57,7 +57,7 @@ namespace DeltaEngine
                 if (hp.isDamagedTimer > 0.0f)
                 {
                     em.GetComponent<Renderer2D>(id).m_Color = { 1,0,0 };
-                    hp.isDamagedTimer -= env.pClock->DeltaTime();
+                    hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
                 }
                 else
                 {
