@@ -29,7 +29,7 @@
                 }
             },
             "Camera": {
-                "Camera Size": 5.0,
+                "Camera Size": 4.0,
                 "Background Color": {
                     "r": 0.0,
                     "g": 0.0,
@@ -96,10 +96,10 @@
                     "key": "Default"
                 },
                 "Colors": {
-                    "r": 0.0,
-                    "g": 0.0,
-                    "b": 0.0,
-                    "a": 0.0
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
                 },
                 "Layer": -2,
                 "Order": 0.0,
