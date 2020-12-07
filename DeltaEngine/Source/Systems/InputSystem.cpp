@@ -87,7 +87,7 @@ void InputSystem::Update()
   }
 
 //FOR TESTING-------------------------------------------------------------------------------------------------------
-  if ( InputManager::Instance().IsKeyPressed( DEVK_UP ) )
+  /*if ( InputManager::Instance().IsKeyPressed( DEVK_UP ) )
   {
     env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, RigidBody &r1, Input &i1, State &a, Image &i )
     {
@@ -123,7 +123,7 @@ void InputSystem::Update()
       if ( r1.InherentAcceleration < r1.MaxAcceleration )
         r1.InherentAcceleration++;
     } );
-  }
+  }*/
   //END TESTING-------------------------------------------------------------------------------------------------------
 
 

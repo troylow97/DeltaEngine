@@ -230,13 +230,13 @@ void UISystem::Update()
         auto &p = em.GetComponent<Player>( UnitManager::GetPlayerID() );
         auto &r = em.GetComponent<Renderer2D>( UnitManager::GetPlayerID() );
 
-        em.ForEach( [&]( UI &ui, EntityID &id, EntityName &en )
+        em.ForEach([&](UI& ui, EntityID& id, EntityName& en)
         {
-          if ( en.name == "DashReady" || en.name == "DashNotReady" || en.name == "UsingDash" )
-            env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( id ).position = { player_pos.x - 1.25f, player_pos.y - 0.3868f, 0.0f };
-          else if ( en.name == "RangedReady" || en.name == "RangedNotReady" || en.name == "UsingRanged" )
-            env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( id ).position = { player_pos.x - 1.0f, player_pos.y - 0.5368f, 0.0f };
-        } );
+          if (en.name == "DashReady" || en.name == "DashNotReady" || en.name == "UsingDash")
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 2.6f, -1.45f, 0.0f };
+          else if (en.name == "RangedReady" || en.name == "RangedNotReady" || en.name == "UsingRanged")
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 2.35f, -1.6f, 0.0f };
+        });
       }
     }
   }

@@ -78,14 +78,6 @@ namespace DeltaEngine
           if (newSprite)
             i.m_Sprite = newSprite;
         }
-        if (InputManager::Instance().IsKeyPressed(DEVK_LEFT))
-        {
-          s.SetBool("IsDodge", true);
-        }
-        else if (InputManager::Instance().IsKeyReleased(DEVK_LEFT))
-        {
-          s.SetBool("IsDodge", false);
-        }
       });
     Profiler::Instance().Record("Animation System");
   }
