@@ -14,6 +14,7 @@ namespace DeltaEngine
     void StartGame();
     void QuitGame();
     void PauseGame();
+    void UnpauseGame();
     void BackToMainMenu();
 private:
   bool isDraggingOnSlider;

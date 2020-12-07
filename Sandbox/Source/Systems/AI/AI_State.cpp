@@ -4,6 +4,7 @@
 #include "Core/Utils/Random.h"
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/GameClock.h"
+#include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
@@ -105,6 +106,16 @@ namespace DeltaEngine
         env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
     }
 
+  	if(Random::RandomFloatRange(0,100) < 20)
+  	{
+        static size_t c_id{ 0 };
+        if (AudioEngine::IsChannelPlaying(c_id))
+            AudioEngine::StopChannel(c_id);
+        c_id = AudioEngine::Play("Audio/Lancer/LancerBuzz.ogg");
+
+  	}
+
+  	
   }
 
   //----------------------------------------------------------------------

@@ -3,8 +3,8 @@
 #include "Core/GameClock/GameClock.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
-#include "../../DeltaEngine/Source/Audio/AudioEngine.h"
-
+#include "Audio/AudioEngine.h"
+#include  "Core/Utils/Random.h"
 namespace DeltaEngine
 {
     void AttackSystem::Update()
@@ -163,6 +163,20 @@ namespace DeltaEngine
         {
         	if(em.GetComponent<RigidBody>(id).hasGravity == false)
         	{
+                unsigned rand_sound = Random::RandomIntRange(0, 3);
+        		switch(rand_sound)
+        		{
+                case 0:
+                   AudioEngine::Play("Audio/Lancer/LancerCharge1.ogg");
+                    break;
+                case 1:
+                   AudioEngine::Play("Audio/Lancer/LancerCharge2.ogg");
+                    break;
+                case 2:
+                    AudioEngine::Play("Audio/Lancer/LancerCharge3.ogg");
+                    break;
+        		}
+
                 EntityID missile = CreateProjectile(id, Vector2{ 0.1f,0.1f }, false, 0.1f, EntityCategory::E_ENEMY_LANCER_PUNCH);
                 const Vector2 player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                 const Vector2 monster_pos = em.GetComponent<Transform>(id).position;
@@ -178,6 +192,7 @@ namespace DeltaEngine
         	}
             else
             {
+                AudioEngine::Play("Audio/Fiddler/FiddlerAttack.ogg");
                 EntityID missile = CreateProjectile(id, Vector2{ 0.3,0.3 }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
                 if (em.GetComponent<Image>(id).m_FlipX == false)
                 {

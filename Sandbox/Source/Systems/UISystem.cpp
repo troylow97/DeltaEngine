@@ -308,7 +308,12 @@ void UISystem::BackToMainMenu()
 
 void UISystem::PauseGame()
 {
-  std::cout << "pausing game" << std::endl;
+  env.pClock->TimeScale(0.0f);
+}
+
+void UISystem::UnpauseGame()
+{
+    env.pClock->TimeScale(1.0f);
 }
 
 RTTR_REGISTRATION

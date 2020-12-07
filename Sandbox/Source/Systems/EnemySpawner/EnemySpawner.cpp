@@ -4,6 +4,8 @@
 #include "../UnitManager.h"
 #include "../AI/AITools.h"
 #include "../Source/Core/Utils/Random.h"
+#include "Audio/AudioEngine.h"
+
 namespace DeltaEngine
 {
 	Gauntlet::Gauntlet() :
@@ -281,6 +283,17 @@ namespace DeltaEngine
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(enemy).size = SerpentipedeData.ColliderScale;
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/SERP_FULL_IDLE";
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(enemy).m_Sprite.m_Index = 0;
+
+				unsigned rand_sound = Random::RandomIntRange(0, 2);
+				switch (rand_sound)
+				{
+				case 0:
+					AudioEngine::Play("Audio/Serpentipede/Burrow1.ogg");
+					break;
+				case 1:
+					AudioEngine::Play("Audio/Serpentipede/Burrow2.ogg");
+					break;
+				}
 			}
 
 			SpawnedEnemiesInGauntlet.push_back(enemy);
