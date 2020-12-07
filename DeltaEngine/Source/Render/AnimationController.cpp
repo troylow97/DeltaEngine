@@ -46,7 +46,7 @@ namespace DeltaEngine
         }
         // change the clip
         if (conditionPass)
-          if (strcmp(EndingState.c_str(), "##Exit"))
+          if (strcmp(EndingState.c_str(), "Exit"))
             return GetEnv().pManager->Get<AnimationClip>(EndingState);
           else
             return GetEnv().pManager->Get<AnimationClip>(entryAnimation);
@@ -194,10 +194,10 @@ namespace DeltaEngine
         }
       }
       file.close();
-      for (auto& [s,e,c] : transitions)
-      {
-        std::cerr << s << "->" << e << std::endl;
-      }
+      //for (auto& [s,e,c] : transitions)
+      //{
+      //  std::cerr << s << "->" << e << std::endl;
+      //}
     }
     else
     {

@@ -1,6 +1,8 @@
 #include "AnimationSystem.h"
 
 #include "Core/Debugging/Profiler/Profiler.h"
+#include "Input/InputManager.h"
+#include "Input/Keys.h"
 
 namespace DeltaEngine
 {
@@ -12,14 +14,18 @@ namespace DeltaEngine
       {
         AnimationController* controller = GetEnv().pManager->Get<AnimationController>(a.m_ControllerKey);
         AnimationClip* newClip = nullptr;
+        unsigned int frame = 0;
         if (controller)
         {
           s.parameters.insert(controller->startingParameters.begin(), controller->startingParameters.end());
           if (a.m_ClipKey.empty())
           {
             newClip = GetEnv().pManager->Get<AnimationClip>(controller->entryAnimation);
+
+            frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
+
             a.m_ClipKey = newClip->GetName();
-            i.m_Sprite = newClip->GetSprite(a.GetFrame());
+            i.m_Sprite = newClip->GetSprite(frame);
           }
           else
           {
@@ -45,9 +51,9 @@ namespace DeltaEngine
                   a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
               }
             }
-            a.Update(newClip);
+            frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
 
-            Sprite newSprite = newClip->GetSprite(a.GetFrame());
+            Sprite newSprite = newClip->GetSprite(frame);
             if (newSprite)
               i.m_Sprite = newSprite;
           }
@@ -66,11 +72,19 @@ namespace DeltaEngine
             if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
               a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
           }
-          a.Update(newClip);
 
-          Sprite newSprite = newClip->GetSprite(a.GetFrame());
+          frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
+          Sprite newSprite = newClip->GetSprite(frame);
           if (newSprite)
             i.m_Sprite = newSprite;
+        }
+        if (InputManager::Instance().IsKeyPressed(DEVK_LEFT))
+        {
+          s.SetBool("IsRunning", true);
+        }
+        else if (InputManager::Instance().IsKeyReleased(DEVK_LEFT))
+        {
+          s.SetBool("IsRunning", false);
         }
       });
     Profiler::Instance().Record("Animation System");

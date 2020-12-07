@@ -32,10 +32,10 @@ pos
 Exit 168 365
 
 pos
-Clip/IdleSpritesheet 67 96
+Clip/IdleSpritesheet 60 127
 
 pos
-Clip/RunningSpritesheet 412 231
+Clip/RunningSpritesheet 438 249
 
 pos
 Clip/RangeAttackSpritesheet 333 27
@@ -44,7 +44,7 @@ pos
 Clip/3-PunchSpritesheet 556 99
 
 pos
-Clip/LeapingSpritesheet 168 214
+Clip/LeapingSpritesheet 338 325
 
 pos
 Clip/FallingSpritesheet 31 288
@@ -91,6 +91,7 @@ endTransition
 transition 
 start Clip/IdleSpritesheet
 end Clip/LeapingSpritesheet
+condition Speed ? 1
 endTransition
 
 transition 
@@ -124,12 +125,13 @@ endTransition
 transition 
 start Clip/RunningSpritesheet
 end Clip/RangeAttackSpritesheet
+condition Speed ? 1
 endTransition
 
 transition 
 start Clip/RunningSpritesheet
 end Clip/3-PunchSpritesheet
-condition Speed ? 0
+condition Speed ? 1
 endTransition
 
 %endfile

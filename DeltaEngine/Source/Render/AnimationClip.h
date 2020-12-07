@@ -19,7 +19,7 @@ namespace DeltaEngine
     AnimationClip(std::string filepath = "Example.clip");
     unsigned int GetTotalFrames() const;
     unsigned int GetFps() const;
-    Sprite GetSprite(unsigned int index);
+    Sprite GetSprite(unsigned int frame);
     std::string GetName() const;
     static void CreateNew(
       std::string textureName,

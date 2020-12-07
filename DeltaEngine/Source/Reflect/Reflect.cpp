@@ -253,8 +253,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Clip Key", &Animator::m_ClipKey )( rttr::metadata( "NO_SERIALIZE", true ),
                                                 ( rttr::metadata( "NO_EDITOR", true ) ) )
     .property( "Timer", &Animator::m_Timer )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
-    .property( "Speed", &Animator::m_Speed )( rttr::policy::prop::bind_as_ptr )
-    .property( "Frame", &Animator::m_Frame )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) );
+    .property( "Speed", &Animator::m_Speed )( rttr::policy::prop::bind_as_ptr );
 
   rttr::registration::class_<State>( "State" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<State>()->bits ) )
