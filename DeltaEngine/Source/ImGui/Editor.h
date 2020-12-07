@@ -54,8 +54,6 @@ namespace DeltaEngine
     // Selected Texture
     std::string textureKey {};
 
-
-
     ~Editor();
     void Begin();
     void Render();

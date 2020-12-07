@@ -26,31 +26,31 @@ PlayerVelocityY 0 0
 %EditorPositions:
 
 pos
-Entry 22 6
+Entry 3 4
 
 pos
-Exit 485 283
+Exit 543 258
 
 pos
-Clip/IdleSpritesheet 36 132
+Clip/IdleSpritesheet -32 112
 
 pos
-Clip/RunningSpritesheet 62 282
+Clip/RunningSpritesheet 301 200
 
 pos
-Clip/RangeAttackSpritesheet 118 -60
+Clip/RangeAttackSpritesheet 70 403
 
 pos
-Clip/3-PunchSpritesheet 223 171
+Clip/3-PunchSpritesheet -26 284
 
 pos
-Clip/LeapingSpritesheet 402 -60
+Clip/LeapingSpritesheet 508 18
 
 pos
-Clip/FallingSpritesheet 300 41
+Clip/FallingSpritesheet 186 11
 
 pos
-Clip/StretchSpritesheet 409 100
+Clip/StretchSpritesheet 374 466
 
 %Transitions:
 
@@ -88,6 +88,7 @@ transition
 start Clip/3-PunchSpritesheet
 end Clip/IdleSpritesheet
 condition Punch ? 0
+condition Speed ? 0
 endTransition
 
 transition 
@@ -140,6 +141,16 @@ endTransition
 transition 
 start Clip/StretchSpritesheet
 end Exit
+endTransition
+
+transition 
+start Clip/StretchSpritesheet
+end Clip/LeapingSpritesheet
+endTransition
+
+transition 
+start Clip/LeapingSpritesheet
+end Clip/RangeAttackSpritesheet
 endTransition
 
 %endfile

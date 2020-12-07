@@ -90,7 +90,7 @@ void AudioPanel::Render()
             {
               if ( AudioEngine::IsChannelPlaying( c_id ) )
                 AudioEngine::StopChannel( c_id );
-              c_id = AudioEngine::PlaySound( ref.path );
+              c_id = AudioEngine::Play( ref.path );
               c_sound = ref.path;
             }
             ImGui::SameLine();

@@ -32,9 +32,8 @@
 namespace DeltaEngine
 {
 DeltaEngineGlobalEnvironment env;
-int fps;
 
-Application::Application() : m_Minimized { true }, m_interval( 0.25 )
+Application::Application()
 {
   // Logger Initialization
   Log::Init();
@@ -58,7 +57,7 @@ Application::Application() : m_Minimized { true }, m_interval( 0.25 )
   AudioLoader().Load();
 
   // Clock Initialization
-  env.pClock = new GameClock( c.fps );
+  env.pClock = new EngineClock( c.fps );
 
   // Window Initialization
   env.pWin = new Window( c.win_name, c.width, c.height, c.fullscreen );
@@ -197,17 +196,4 @@ void Application::OnEvent()
   Profiler::Instance().Record( "Event" );
 }
 
-
-bool Application::OnWindowResize( WindowResizeEvent &e )
-{
-  if ( e.GetWidth() == 0 || e.GetHeight() == 0 )
-  {
-    m_Minimized = true;
-    return false;
-  }
-
-  m_Minimized = false;
-
-  return false;
-}
 }

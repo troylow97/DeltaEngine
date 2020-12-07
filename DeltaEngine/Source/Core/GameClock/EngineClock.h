@@ -4,7 +4,7 @@
 
 namespace DeltaEngine
 {
-  class GameClock
+  class EngineClock
   {
     using Nanoseconds = std::chrono::nanoseconds;
     using HighResClock = std::chrono::high_resolution_clock;
@@ -15,8 +15,8 @@ namespace DeltaEngine
     * Constructor / Destructor
     *************************************************************/
 
-    GameClock(f32 fps);
-    ~GameClock() = default;
+    EngineClock(f32 fps);
+    ~EngineClock() = default;
 
     /*************************************************************
     * Interface
@@ -42,7 +42,7 @@ namespace DeltaEngine
     f32 UnscaledTime() const;
 
     // FPS
-    f32 FrameCount() const;
+    u32 FrameCount() const;
 
     // TimeStep
     u32 Timesteps() const;
@@ -62,6 +62,9 @@ namespace DeltaEngine
     // Controls
     f32 m_timescale;
     f32 m_accumulator;
+    f32 m_frames_tracker;
     u32 m_timesteps;
+    u32 m_framecounts;
+    u32 m_frames;
   };
 } // namespace DeltaEngine

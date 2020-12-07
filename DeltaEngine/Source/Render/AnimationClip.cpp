@@ -1,4 +1,7 @@
 #include "AnimationClip.h"
+
+#include <filesystem>
+
 #include "ErrorCheck.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/Math/DE_Math.h"

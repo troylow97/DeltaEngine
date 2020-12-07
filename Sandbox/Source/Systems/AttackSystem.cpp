@@ -1,6 +1,7 @@
 #include "AttackSystem.h"
 #include "UnitManager.h"
-#include "Core/GameClock/GameClock.h"
+#include "Audio/AudioEngine.h"
+#include "Core/GameClock/EngineClock.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 
@@ -94,10 +95,11 @@ namespace DeltaEngine
 
     void AttackSystem::RangedAttack(EntityID& id)
     {
+
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
-            EntityID missile2 = CreateProjectile(id, Vector2{ 1.7,1.7 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
+            EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
+            EntityID missile2 = CreateProjectile(id, Vector2{ 1.7f,1.7f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -116,7 +118,7 @@ namespace DeltaEngine
         }
         else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
+            EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -134,7 +136,7 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(id))
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.7,0.5 }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+            EntityID missile = CreateProjectile(id, Vector2{ 0.7f,0.5f }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.6f;
@@ -153,7 +155,7 @@ namespace DeltaEngine
         {
         	if(em.GetComponent<RigidBody>(id).hasGravity == false)
         	{
-                EntityID missile = CreateProjectile(id, Vector2{ 0.3,0.3 }, false, 0.1f, EntityCategory::E_ENEMY_LANCER_PUNCH);
+                EntityID missile = CreateProjectile(id, Vector2{ 0.3f,0.3f }, false, 0.1f, EntityCategory::E_ENEMY_LANCER_PUNCH);
                 const Vector2 player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
                 const Vector2 monster_pos = em.GetComponent<Transform>(id).position;
                 Vector2 kb = (player_pos - em.GetComponent<Transform>(id).position);
@@ -168,7 +170,7 @@ namespace DeltaEngine
         	}
             else
             {
-                EntityID missile = CreateProjectile(id, Vector2{ 0.3,0.3 }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
+                EntityID missile = CreateProjectile(id, Vector2{ 0.3f,0.3f }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
                 if (em.GetComponent<Image>(id).m_FlipX == false)
                 {
                     em.GetComponent<Transform>(missile).position.x += 0.5f;

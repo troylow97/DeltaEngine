@@ -264,7 +264,7 @@ void PropertyInspectorPanel::Render()
               std::vector<std::string> anim_key_vec;
               anim_key_vec.push_back( " " );
 
-              for ( auto &[key, data] : GetEnv().pManager->List<AnimationController>() )
+              for ( const auto &[key, data] : GetEnv().pManager->List<AnimationController>() )
                 anim_key_vec.push_back( key.Key() );
 
               auto &str = *value.get_value<std::string *>();

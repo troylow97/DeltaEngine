@@ -371,6 +371,17 @@ namespace DeltaEngine
 
       ImGui::PopItemWidth();
       ImGui::EndChild();
+      if(ImGui::BeginDragDropTarget())
+      {
+        const ImGuiPayload *assetpayload = ImGui::AcceptDragDropPayload( "ASSETFILES" );
+        if ( assetpayload )
+        {
+          std::string assetpayload_n = *static_cast<std::string *>( assetpayload->Data );
+          std::filesystem::path file { assetpayload_n };
+          if ( file.extension() == ".clip" )
+            controller->editorPositions.push_back( std::pair( AssetKey{ assetpayload_n.substr( 0, assetpayload_n.find_last_of( '.' )) }, Vector2{ scrolling.x, scrolling.y } ));
+        }
+      }
       ImGui::PopStyleColor();
       ImGui::PopStyleVar();
       ImGui::EndGroup();
@@ -398,6 +409,38 @@ namespace DeltaEngine
             {
 
               ImGui::Text("%s", nodes[nodeSelected].nodeName);
+
+              std::vector<AssetKey> clip_vec;
+
+              for ( auto &[key, data] : GetEnv().pManager->List<AnimationClip>() )
+                if (data )
+                  clip_vec.push_back( key );
+
+              size_t selection = 0;
+              for ( size_t i = 0; i < clip_vec.size(); i++ )
+                if ( nodes[nodeSelected].nodeName == clip_vec[i].Key() )
+                  selection = i;
+
+              size_t initial = selection;
+              const char *clip_key = clip_vec[selection].Key().c_str();
+
+              if(ImGui::BeginCombo("Clip Selection", clip_key ))
+              {
+                for ( size_t i = 0 ; i < clip_vec.size(); i++)
+                {
+                  const bool is_selected = ( selection == i );
+                  if ( ImGui::Selectable( clip_vec[i].Key().c_str(), is_selected ) )
+                    selection = i;
+
+                  if ( is_selected )
+                    ImGui::SetItemDefaultFocus();
+                }
+                ImGui::EndCombo();
+              }
+
+
+
+
               ImGui::Text("TODO: Change Clip Here");
               ImGui::Separator();
               ImGui::Text("Transitions");
@@ -459,6 +502,34 @@ namespace DeltaEngine
                   ImGui::Text("Add parameters to add conditions");
                 }
               }
+
+              // Update Combo Selection
+              if (initial != selection )
+              {
+                // Update Editor
+                auto it = std::find_if( controller->editorPositions.begin(),
+                                        controller->editorPositions.end(),
+                                        [&]( const std::pair<AssetKey, Vector2> pair )
+                {
+                  return pair.first == clip_vec[initial];
+                } );
+                if ( it != controller->editorPositions.end() )
+                  it->first = clip_vec[selection];
+
+
+                // Update Transitions
+                std::for_each( controller->transitions.begin(), controller->transitions.end(), [&]( AnimationController::Transition &t )
+                {
+                  auto &[first, second, third] = t;
+                  if ( first == clip_vec[initial].Key() )
+                    first = clip_vec[selection].Key();
+                  else if ( second == clip_vec[initial].Key() )
+                    second = clip_vec[selection].Key();
+                } );
+
+                loaded = false;
+              }
+
             }
           }
           else
@@ -468,6 +539,18 @@ namespace DeltaEngine
           }
         }
         ImGui::EndChild();
+        //if(ImGui::BeginDragDropTarget())
+        //{
+        //  const ImGuiPayload *assetpayload = ImGui::AcceptDragDropPayload( "ASSETFILES" );
+        //  if ( assetpayload )
+        //  {
+        //    std::string assetpayload_n = *static_cast<std::string *>( assetpayload->Data );
+        //    std::filesystem::path file { assetpayload_n };
+        //    //if ( file.extension() == ".clip" )
+        //      //controller->editorPositions.push_back( std::pair( AssetKey{ assetpayload_n.substr( 0, assetpayload_n.find_last_of( '.' )) }, Vector2{ ImGui::GetMousePos().x, ImGui::GetMousePos().y } ));
+        //  }
+        //}
+
       }
     }
     ImGui::End();

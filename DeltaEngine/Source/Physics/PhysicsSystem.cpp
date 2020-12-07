@@ -1,7 +1,7 @@
 #include "PhysicsSystem.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/GlobalStruct.h"
-#include "Core/GameClock/GameClock.h"
+#include "Core/GameClock/EngineClock.h"
 #include "Collision.h"
 #include <cmath>
 
