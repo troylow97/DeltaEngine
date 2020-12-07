@@ -33,8 +33,6 @@ private:
   bool m_restart { false };
   bool m_backmenu { false };
 
-  void UpdateHealthBar();
-
   Vector2 VolumeSliderInitialLocation;
   Vector3 PlayerFirstPosition;
   Vector3 PlayerCurrentPosition;

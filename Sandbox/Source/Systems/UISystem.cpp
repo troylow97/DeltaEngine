@@ -43,9 +43,9 @@ const unsigned quit_no = 25; // credits default - 4
 
 void UISystem::Initialize()
 {
-  //m_screen.push_back(main_screen);
-  //is_main_menu = true;
-  m_screen.push_back(level1_screen);
+  m_screen.push_back(main_screen);
+  is_main_menu = true;
+  //m_screen.push_back(level1_screen);
   em.ForEach([&](UI& ui, Transform& t, Image& i, Renderer2D& r)
   {
     if (ui.ui_type == UIType::Slider)
@@ -75,7 +75,7 @@ void UISystem::AttackVisualFeedback()
 
     if (a.RangeAttack)
       m_screen.push_back(using_ranged);
-    else if (!a.RangeAttack && a.AttackCooldown < 0.0f)
+    else if (!a.RangeAttack && a.RangeCooldown < 0.0f)
     {
         m_screen.clear();
         m_screen.push_back(level1_screen);
@@ -408,8 +408,8 @@ void UISystem::Start()
   m_screen.clear();
   is_main_menu = false;
   auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-  PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
-  UPlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
+  PlayerFirstPosition = { 0.0f, 0.0f, 0.0f };// p.position;
+  UPlayerFirstPosition = { 0.0f, 0.0f, 0.0f };// p.position;
   m_screen.push_back(level1_screen);
   m_start = false;
 }
