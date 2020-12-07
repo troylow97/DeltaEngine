@@ -88,7 +88,9 @@ void UISystem::AttackVisualFeedback()
 
 void UISystem::Update()
 {
-  AttackVisualFeedback();
+  for (auto& screen : m_screen)
+    if (screen == level1_screen)
+      AttackVisualFeedback();
 
   if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
   {

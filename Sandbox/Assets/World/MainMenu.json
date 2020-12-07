@@ -233,6 +233,44 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
                 "Name": "MainMenuBG"
             },
             "Entity Type": {
@@ -2916,6 +2954,22 @@
                     "b": 0.4745098054409027,
                     "a": 1.0
                 }
+            },
+            "Attack": {
+                "Range Damage": 1,
+                "Melee Damage": 1,
+                "Melee Combo Damage": 3,
+                "Number Of Combo": 0,
+                "Max Combo Number": 3,
+                "Max Cooldown": 0.20000000298023225,
+                "Cooldown Timer": 0.0,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
             },
             "Player": {
                 "Upgrade Points Per Enemy Defeated": 50,
