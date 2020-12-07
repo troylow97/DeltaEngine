@@ -34,9 +34,18 @@ namespace DeltaEngine
 
         em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
         {
-            if (a.CooldownTimer > 0)
+            if (a.MeleeCooldownTimer > 0)
             {
-                a.CooldownTimer -= env.pClock->FixedDeltaTime();
+                a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
+            }
+            else
+            {
+                //st.SetBool("RangeAttack", false);
+            }
+
+            if (a.RangeCooldownTimer > 0)
+            {
+                a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
             }
             else
             {
@@ -45,11 +54,11 @@ namespace DeltaEngine
 
             if (a.RangeAttack)
             {
-                if (a.CooldownTimer <= 0)
+                if (a.RangeCooldownTimer <= 0)
                 {
                     //em.GetComponent<State>(id).SetBool("RangeAttack", true);
                     RangedAttackingEntities.push_back(id);
-                    a.CooldownTimer = a.AttackCooldown;
+                    a.RangeCooldownTimer = a.RangeCooldown;
                 }
                 a.RangeAttack = false;
             }
@@ -68,10 +77,10 @@ namespace DeltaEngine
                     if (a.NumberOfCombos==3)
                       st.SetBool("Punch3", true);
                 }
-                if (a.CooldownTimer <= 0)
+                if (a.MeleeCooldownTimer <= 0)
                 {
                     MeleeAttackingEntities.push_back(id);
-                    a.CooldownTimer = a.AttackCooldown;
+                    a.MeleeCooldownTimer = a.MeleeCooldown;
                 }
                 a.MeleeAttack = false;
             }

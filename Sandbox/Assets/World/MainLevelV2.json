@@ -663,7 +663,7 @@
                 },
                 "Layer": 1,
                 "Order": 2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1573,7 +1573,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3323,7 +3323,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3603,7 +3603,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3813,7 +3813,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5143,7 +5143,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5213,7 +5213,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6333,7 +6333,7 @@
                 },
                 "Layer": 1,
                 "Order": 3.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6683,7 +6683,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7523,7 +7523,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7873,7 +7873,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8293,7 +8293,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8993,7 +8993,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9203,7 +9203,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10043,7 +10043,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10113,7 +10113,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10183,7 +10183,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10253,7 +10253,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10463,7 +10463,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10533,7 +10533,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10603,7 +10603,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10883,7 +10883,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11233,7 +11233,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12563,7 +12563,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12633,7 +12633,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.20000000298023225,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13283,7 +13283,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13983,7 +13983,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             },
@@ -14006,8 +14006,10 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 1.5,
-                "Cooldown Timer": 0.0,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14136,8 +14138,10 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 1.5,
-                "Cooldown Timer": 0.0,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14266,8 +14270,10 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 1.5,
-                "Cooldown Timer": 0.0,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14396,8 +14402,10 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 1.5,
-                "Cooldown Timer": 0.0,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14526,8 +14534,10 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 1.5,
-                "Cooldown Timer": 0.0,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14549,8 +14559,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 16.585063934326173,
-                    "y": -0.9375787973403931,
+                    "x": 16.121347427368165,
+                    "y": -0.9362567663192749,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14578,8 +14588,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 16.595064163208009,
-                    "y": -1.0675787925720215
+                    "x": 16.13134765625,
+                    "y": -1.0662567615509034
                 },
                 "Offset": {
                     "x": 0.009999999776482582,
@@ -14656,8 +14666,10 @@
                 "Melee Combo Damage": 5,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 2.0,
-                "Cooldown Timer": 0.0,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14680,7 +14692,7 @@
             "Transform": {
                 "Position": {
                     "x": 24.396926879882814,
-                    "y": -0.8434470891952515,
+                    "y": -0.8394142985343933,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14709,7 +14721,7 @@
             "Collider": {
                 "Center": {
                     "x": 24.396926879882814,
-                    "y": -0.8434470891952515
+                    "y": -0.8394142985343933
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14786,8 +14798,10 @@
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": 0.0,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14916,8 +14930,10 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 1.5,
-                "Cooldown Timer": 0.0,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -16864,7 +16880,7 @@
                 },
                 "Layer": 7,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -16942,7 +16958,7 @@
                 },
                 "Layer": 7,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -18326,7 +18342,7 @@
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Fill Type": "horizontal_left_to_right",
+                "Fill Type": "none",
                 "Fill Amount": 1.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
@@ -18346,7 +18362,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -18424,7 +18440,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -18841,7 +18857,7 @@
             "Transform": {
                 "Position": {
                     "x": 1.0,
-                    "y": 5.0,
+                    "y": -1.063287377357483,
                     "z": 0.0
                 },
                 "Scale": {
@@ -18889,7 +18905,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/BreathingSpritesheet",
-                    "index": 8
+                    "index": 7
                 },
                 "Size": {
                     "x": 1.0,
@@ -18923,7 +18939,7 @@
                 },
                 "Layer": 5,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             },
@@ -18944,8 +18960,10 @@
                 "Melee Combo Damage": 10,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Max Cooldown": 0.20000000298023225,
-                "Cooldown Timer": -0.016666656360030175,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 2.0,
                 "Combo Cooldown Timer": 2.0,
                 "Knockback Amount": 500.0,
