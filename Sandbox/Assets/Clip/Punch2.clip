@@ -1,0 +1,35 @@
+frames 6
+fps 12
+loop 0
+
+Textures/3-PunchSpritesheet_i_6
+key Textures/3-PunchSpritesheet
+value 6
+frame 0
+
+Textures/3-PunchSpritesheet_i_7
+key Textures/3-PunchSpritesheet
+value 7
+frame 1
+
+Textures/3-PunchSpritesheet_i_8
+key Textures/3-PunchSpritesheet
+value 8
+frame 2
+
+Textures/3-PunchSpritesheet_i_9
+key Textures/3-PunchSpritesheet
+value 9
+frame 3
+
+Textures/3-PunchSpritesheet_i_10
+key Textures/3-PunchSpritesheet
+value 10
+frame 4
+
+Textures/3-PunchSpritesheet_i_11
+key Textures/3-PunchSpritesheet
+value 11
+frame 5
+
+%

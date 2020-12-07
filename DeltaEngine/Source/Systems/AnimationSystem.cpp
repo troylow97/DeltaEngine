@@ -47,7 +47,7 @@ namespace DeltaEngine
               }
               else
               {
-                if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+                if (a.m_Timer < 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                   a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
               }
             }
@@ -80,11 +80,11 @@ namespace DeltaEngine
         }
         if (InputManager::Instance().IsKeyPressed(DEVK_LEFT))
         {
-          s.SetBool("IsRunning", true);
+          s.SetBool("IsDodge", true);
         }
         else if (InputManager::Instance().IsKeyReleased(DEVK_LEFT))
         {
-          s.SetBool("IsRunning", false);
+          s.SetBool("IsDodge", false);
         }
       });
     Profiler::Instance().Record("Animation System");
