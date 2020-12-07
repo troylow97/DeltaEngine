@@ -24,14 +24,11 @@ namespace DeltaEngine
       render_pos = { ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y };
       render_size = { viewportPanelSize.x,viewportPanelSize.y };
 
-      for (Camera* camera : Camera::allCameras)
-      {
-        //camera->SetAspectRatio(gameFixedAspectRatio, 1.0f);
-        camera->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
-        camera->SetViewportSize(viewportPanelSize.x);
-        uint64_t textureID = camera->GetFrameBuffer().GetColorAttachment();
-        ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-      }
+      //Camera::allCameras[0]->SetAspectRatio(gameFixedAspectRatio, 1.0f);
+      Camera::allCameras[0]->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
+      Camera::allCameras[0]->SetViewportSize(viewportPanelSize.x);
+      uint64_t textureID = Camera::allCameras[0]->GetFrameBuffer().GetColorAttachment();
+      ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
     }
     ImGui::End();
   }

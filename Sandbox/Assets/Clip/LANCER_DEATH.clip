@@ -1,0 +1,10 @@
+frames 1
+fps 12
+loop 1
+
+Textures/LANCER_DEATH_i_0
+key Textures/LANCER_DEATH
+value 0
+frame 0
+
+%
