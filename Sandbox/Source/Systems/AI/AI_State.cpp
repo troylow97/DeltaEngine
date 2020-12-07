@@ -164,6 +164,7 @@ namespace DeltaEngine
         env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
     }
     AITools::MoveTowardsEntityInX(monster, player);
+
   }
 
   //----------------------------------------------------------------------

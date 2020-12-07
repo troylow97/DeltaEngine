@@ -18,7 +18,7 @@ param
 IsCharging 0 0
 
 param
-IsAttacking 0 0
+MeleeAttack 0 0
 
 param
 IsDead 0 0

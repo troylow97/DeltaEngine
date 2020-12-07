@@ -38,10 +38,10 @@ void InputSystem::Update()
 
     if ( attack_cooldown > 0.5f )
     {
-      a.SetBool( "Punch", false );
+      a.SetBool( "MeleeAttack", false );
     }
 
-    a.SetBool( "Ranged", false );
+    a.SetBool( "RangeAttack", false );
   } );
 
     if (InputManager::Instance().IsKeyPressed(DEVK_LEFT))
