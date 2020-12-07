@@ -12,7 +12,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 2.9376492500305177,
+                    "x": 1.0,
                     "y": 0.0,
                     "z": 0.0
                 },
@@ -31,9 +31,85 @@
             "Camera": {
                 "Camera Size": 2.0,
                 "Background Color": {
-                    "r": 0.0,
-                    "g": 0.0,
-                    "b": 0.0,
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 0.1921568661928177,
+                    "g": 0.3019607961177826,
+                    "b": 0.4745098054409027,
                     "a": 1.0
                 }
             }
@@ -103,7 +179,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -173,7 +249,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -243,7 +319,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -313,7 +389,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -383,7 +459,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -453,7 +529,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -523,7 +599,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -593,7 +669,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -733,7 +809,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -803,7 +879,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -873,7 +949,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1013,7 +1089,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1083,7 +1159,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1153,7 +1229,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1223,7 +1299,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1293,7 +1369,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1433,7 +1509,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1503,7 +1579,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1573,7 +1649,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1643,7 +1719,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1713,7 +1789,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1783,7 +1859,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -1853,7 +1929,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1923,7 +1999,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1993,7 +2069,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2063,7 +2139,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2133,7 +2209,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2203,7 +2279,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2343,7 +2419,7 @@
                 },
                 "Layer": -1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2413,7 +2489,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2553,7 +2629,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2623,7 +2699,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2693,7 +2769,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -2763,7 +2839,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2833,7 +2909,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2973,7 +3049,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3113,7 +3189,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3183,7 +3259,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3323,7 +3399,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3393,7 +3469,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3463,7 +3539,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3533,7 +3609,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -3673,7 +3749,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3743,7 +3819,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3813,7 +3889,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3953,7 +4029,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4023,7 +4099,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4093,7 +4169,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4163,7 +4239,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4233,7 +4309,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4303,7 +4379,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4373,7 +4449,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4443,7 +4519,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4513,7 +4589,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4583,7 +4659,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -4653,7 +4729,7 @@
                 },
                 "Layer": 3,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4793,7 +4869,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5073,7 +5149,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5143,7 +5219,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5213,7 +5289,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5283,7 +5359,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5353,7 +5429,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5423,7 +5499,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5493,7 +5569,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5563,7 +5639,7 @@
                 },
                 "Layer": 3,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5633,7 +5709,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5703,7 +5779,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5773,7 +5849,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5843,7 +5919,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5913,7 +5989,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -5983,7 +6059,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6053,7 +6129,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6123,7 +6199,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6193,7 +6269,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6263,7 +6339,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6403,7 +6479,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6473,7 +6549,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6543,7 +6619,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6613,7 +6689,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -6683,7 +6759,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6893,7 +6969,7 @@
                 },
                 "Layer": 3,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6963,7 +7039,7 @@
                 },
                 "Layer": 3,
                 "Order": 2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7033,7 +7109,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7173,7 +7249,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7243,7 +7319,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7383,7 +7459,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7453,7 +7529,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -7593,7 +7669,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7663,7 +7739,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7803,7 +7879,7 @@
                 },
                 "Layer": 2,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -7943,7 +8019,7 @@
                 },
                 "Layer": 3,
                 "Order": 2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8153,7 +8229,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8223,7 +8299,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8433,7 +8509,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8503,7 +8579,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8573,7 +8649,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8643,7 +8719,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.20000000298023225,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8713,7 +8789,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.30000001192092898,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8783,7 +8859,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8853,7 +8929,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -8923,7 +8999,7 @@
                 },
                 "Layer": 1,
                 "Order": -0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9203,7 +9279,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9273,7 +9349,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9343,7 +9419,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9413,7 +9489,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9483,7 +9559,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9553,7 +9629,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9693,7 +9769,7 @@
                 },
                 "Layer": 1,
                 "Order": -1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9763,7 +9839,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9833,7 +9909,7 @@
                 },
                 "Layer": 0,
                 "Order": -1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -9903,7 +9979,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10043,7 +10119,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10113,7 +10189,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10183,7 +10259,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10253,7 +10329,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10323,7 +10399,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10393,7 +10469,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10463,7 +10539,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10533,7 +10609,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10673,7 +10749,7 @@
                 },
                 "Layer": -1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10883,7 +10959,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11233,7 +11309,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11303,7 +11379,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11373,7 +11449,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -11513,7 +11589,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11653,7 +11729,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -11863,7 +11939,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -11933,7 +12009,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12003,7 +12079,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12073,7 +12149,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12143,7 +12219,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12213,7 +12289,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12563,7 +12639,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12633,7 +12709,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.20000000298023225,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12703,7 +12779,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.30000001192092898,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12773,7 +12849,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12843,7 +12919,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.20000000298023225,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12913,7 +12989,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.30000001192092898,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -12983,7 +13059,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.30000001192092898,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13283,7 +13359,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13383,7 +13459,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13483,7 +13559,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13583,7 +13659,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13683,7 +13759,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -13783,7 +13859,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13883,9 +13959,143 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Player"
+            },
+            "Entity Type": {
+                "Category": "player"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.0,
+                    "y": -1.063326358795166,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 50.0,
+                "Move Speed": 5.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 2.0,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 12.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 1.0,
+                    "y": -1.063326358795166
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.44999998807907107,
+                    "y": 0.8500000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 2,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/BreathingSpritesheet",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 5,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "State": {},
+            "Health": {
+                "Current Health": 100,
+                "Max Health": 100,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": true
+            },
+            "Attack": {
+                "Range Damage": 2,
+                "Melee Damage": 5,
+                "Melee Combo Damage": 10,
+                "Number Of Combo": 2,
+                "Max Combo Number": 3,
+                "Max Cooldown": 0.20000000298023225,
+                "Cooldown Timer": 0.050000011920928958,
+                "Combo Duration": 2.0,
+                "Combo Cooldown Timer": 0.0783894807100296,
+                "Knockback Amount": 500.0,
+                "Knockback Combo Amount": 1000.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": true
+            },
+            "Player": {
+                "Upgrade Points Per Enemy Defeated": 50,
+                "Points Needed For Upgrade": 50,
+                "Attack Upgrade Increase": 1,
+                "Health Upgrade Attack": 2,
+                "Dashing Timer Duration": 1.0
+            },
+            "Input": {
+                "Previous": 32,
+                "Current": 0
             }
         },
         {
@@ -13983,7 +14193,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             },
@@ -13995,9 +14205,9 @@
                 "AIState": "idle_lancer"
             },
             "Health": {
-                "Current Health": 18,
+                "Current Health": 20,
                 "Max Health": 20,
-                "TakenDamageTimer": -3.725290298461914e-9,
+                "TakenDamageTimer": 0.0,
                 "Invulnerable": false
             },
             "Attack": {
@@ -14006,10 +14216,8 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Max Cooldown": 1.5,
+                "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14114,7 +14322,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14138,10 +14346,8 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Max Cooldown": 1.5,
+                "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14246,7 +14452,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14270,10 +14476,8 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Max Cooldown": 1.5,
+                "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14378,7 +14582,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14402,10 +14606,8 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Max Cooldown": 1.5,
+                "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14510,7 +14712,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14534,10 +14736,8 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Max Cooldown": 1.5,
+                "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14559,8 +14759,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 16.576229095458986,
-                    "y": -0.9329545497894287,
+                    "x": 16.41560935974121,
+                    "y": -0.9355230331420898,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14588,8 +14788,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 16.58622932434082,
-                    "y": -1.0629545450210572
+                    "x": 16.425609588623048,
+                    "y": -1.0655230283737183
                 },
                 "Offset": {
                     "x": 0.009999999776482582,
@@ -14642,7 +14842,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14666,10 +14866,8 @@
                 "Melee Combo Damage": 5,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Max Cooldown": 2.0,
+                "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14691,8 +14889,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 24.39654541015625,
-                    "y": -0.8434470891952515,
+                    "x": 28.208959579467775,
+                    "y": -0.0711459144949913,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14720,8 +14918,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 24.39654541015625,
-                    "y": -0.8434470891952515
+                    "x": 28.208959579467775,
+                    "y": -0.0711459144949913
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14774,7 +14972,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14798,10 +14996,8 @@
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Max Cooldown": 0.20000000298023225,
+                "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14906,7 +15102,7 @@
                 },
                 "Layer": 4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -14930,10 +15126,8 @@
                 "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Max Cooldown": 1.5,
+                "Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -14955,13 +15149,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.4989999532699586,
-                    "y": -0.28600001335144045,
+                    "x": -1.0,
+                    "y": 0.8629999756813049,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.25,
-                    "y": 1.25,
+                    "x": 1.0,
+                    "y": 1.0,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15033,13 +15227,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.4989999532699586,
-                    "y": -0.28600001335144045,
+                    "x": -1.0,
+                    "y": 0.8629999756813049,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.25,
-                    "y": 1.25,
+                    "x": 1.0,
+                    "y": 1.0,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15112,12 +15306,12 @@
             "Transform": {
                 "Position": {
                     "x": 0.0,
-                    "y": 0.0,
+                    "y": 1.062999963760376,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.7200000286102295,
+                    "y": 0.7400000095367432,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15189,13 +15383,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.4910000562667847,
-                    "y": -0.28600001335144045,
+                    "x": 1.0,
+                    "y": 0.8629999756813049,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.25,
-                    "y": 1.25,
+                    "x": 1.0,
+                    "y": 1.0,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15267,13 +15461,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.4910000562667847,
-                    "y": -0.28600001335144045,
+                    "x": 1.0,
+                    "y": 0.8629999756813049,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.25,
-                    "y": 1.25,
+                    "x": 1.0,
+                    "y": 1.0,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15345,13 +15539,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.0,
-                    "y": -1.0634266138076783,
+                    "x": -1.6369999647140504,
+                    "y": 1.0800000429153443,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15396,9 +15590,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 5,
+                "Layer": 8,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15423,13 +15617,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.2919999957084656,
-                    "y": 1.1192721128463746,
+                    "x": -2.171999931335449,
+                    "y": 2.640000104904175,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15474,9 +15668,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 6,
+                "Layer": 9,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15501,13 +15695,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.2879999876022339,
-                    "y": -0.41342663764953616,
+                    "x": -2.621999979019165,
+                    "y": 1.5399999618530274,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15552,9 +15746,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 6,
+                "Layer": 9,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15579,13 +15773,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.2879999876022339,
-                    "y": -0.41342663764953616,
+                    "x": -2.621999979019165,
+                    "y": 1.5399999618530274,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15630,7 +15824,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 10,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -15657,13 +15851,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.19000005722045899,
-                    "y": -0.8634266257286072,
+                    "x": -2.552000045776367,
+                    "y": 1.2000000476837159,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15708,9 +15902,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 6,
+                "Layer": 9,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15735,13 +15929,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.2849999666213989,
-                    "y": -1.3134266138076783,
+                    "x": -2.621999979019165,
+                    "y": 0.8600000143051148,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15786,9 +15980,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 6,
+                "Layer": 9,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15813,13 +16007,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.15699994564056397,
-                    "y": -1.7634265422821046,
+                    "x": -2.5220000743865969,
+                    "y": 0.5199999809265137,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15864,9 +16058,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 6,
+                "Layer": 9,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
@@ -15891,13 +16085,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.19000005722045899,
-                    "y": -0.8634266257286072,
+                    "x": -2.552000045776367,
+                    "y": 1.2000000476837159,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -15942,7 +16136,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 10,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -15969,13 +16163,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.2849999666213989,
-                    "y": -1.3134266138076783,
+                    "x": -2.621999979019165,
+                    "y": 0.8600000143051148,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16020,7 +16214,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 10,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -16047,13 +16241,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.15699994564056397,
-                    "y": -1.7634265422821046,
+                    "x": -2.5220000743865969,
+                    "y": 0.5199999809265137,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16098,17 +16292,17 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 10,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
             "UI": {
-                "Function": "BackToMainMenu",
+                "Function": "",
                 "UI Type": "Button",
                 "Screen": 8,
-                "Target": 1,
+                "Target": 23,
                 "Previous": 0,
                 "Overlay": false
             }
@@ -16125,13 +16319,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 3.4000000953674318,
-                    "y": -1.0634266138076783,
+                    "x": 0.0,
+                    "y": 1.062999963760376,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.699999988079071,
+                    "y": 0.6499999761581421,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16176,7 +16370,7 @@
                     "b": 1.0,
                     "a": 0.7843137383460999
                 },
-                "Layer": 5,
+                "Layer": 8,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -16203,13 +16397,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 5.400000095367432,
-                    "y": -1.0634266138076783,
+                    "x": 1.0,
+                    "y": 1.062999963760376,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 0.8999999761581421,
-                    "y": 0.8999999761581421,
+                    "x": 0.699999988079071,
+                    "y": 0.699999988079071,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16254,7 +16448,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 6,
+                "Layer": 9,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -16281,13 +16475,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 6.0,
-                    "y": -0.581624448299408,
+                    "x": 1.6629999876022339,
+                    "y": 1.562999963760376,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.699999988079071,
+                    "y": 0.699999988079071,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16332,7 +16526,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 10,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -16359,13 +16553,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 6.0,
-                    "y": -0.1956300139427185,
+                    "x": 1.6629999876022339,
+                    "y": 1.9634000062942505,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.699999988079071,
+                    "y": 0.699999988079071,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16410,7 +16604,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 10,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -16437,13 +16631,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 7.360000133514404,
-                    "y": -0.19542664289474488,
+                    "x": 2.6630001068115236,
+                    "y": 1.9630000591278077,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 0.5,
-                    "y": 0.5,
+                    "x": 0.3499999940395355,
+                    "y": 0.3499999940395355,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16488,7 +16682,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 10,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -16515,13 +16709,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 4.748000144958496,
-                    "y": -0.5768609642982483,
+                    "x": 0.6629999876022339,
+                    "y": 1.562999963760376,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.699999988079071,
+                    "y": 0.699999988079071,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16566,7 +16760,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 10,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -16593,13 +16787,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 7.23799991607666,
-                    "y": -0.5768609642982483,
+                    "x": 2.6630001068115236,
+                    "y": 1.562999963760376,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.699999988079071,
+                    "y": 0.699999988079071,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16644,7 +16838,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 7,
+                "Layer": 10,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -16671,13 +16865,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.4989999532699586,
-                    "y": -0.28600001335144045,
+                    "x": -1.0,
+                    "y": 0.8629999756813049,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.25,
-                    "y": 1.25,
+                    "x": 1.0,
+                    "y": 1.0,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16749,13 +16943,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.4910000562667847,
-                    "y": -0.28600001335144045,
+                    "x": 1.0,
+                    "y": 0.8629999756813049,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.25,
-                    "y": 1.25,
+                    "x": 1.0,
+                    "y": 1.0,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -16827,7 +17021,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.3376493453979492,
+                    "x": -1.5999999046325684,
                     "y": -1.4500000476837159,
                     "z": 0.0
                 },
@@ -16905,7 +17099,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.5876493453979492,
+                    "x": -1.3499999046325684,
                     "y": -1.600000023841858,
                     "z": 0.0
                 },
@@ -16983,7 +17177,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.3376493453979492,
+                    "x": -1.5999999046325684,
                     "y": -1.4500000476837159,
                     "z": 0.0
                 },
@@ -17061,7 +17255,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.5876493453979492,
+                    "x": -1.3499999046325684,
                     "y": -1.600000023841858,
                     "z": 0.0
                 },
@@ -17139,7 +17333,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.3376493453979492,
+                    "x": -1.5999999046325684,
                     "y": -1.4500000476837159,
                     "z": 0.0
                 },
@@ -17217,7 +17411,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.5876493453979492,
+                    "x": -1.3499999046325684,
                     "y": -1.600000023841858,
                     "z": 0.0
                 },
@@ -17295,13 +17489,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 3.5,
-                    "y": -1.0,
+                    "x": 1.2350000143051148,
+                    "y": 1.0640000104904175,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 0.75,
-                    "y": 0.75,
+                    "x": 0.699999988079071,
+                    "y": 0.699999988079071,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -17373,13 +17567,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.0,
-                    "y": -1.0634266138076783,
+                    "x": -1.6369999647140504,
+                    "y": 1.0800000429153443,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -17451,13 +17645,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.2919999957084656,
-                    "y": 1.1192721128463746,
+                    "x": -2.171999931335449,
+                    "y": 2.640000104904175,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -17529,13 +17723,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.2879999876022339,
-                    "y": -0.41342663764953616,
+                    "x": -2.621999979019165,
+                    "y": 1.5399999618530274,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -17607,13 +17801,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.19000005722045899,
-                    "y": -0.8634266257286072,
+                    "x": -2.552000045776367,
+                    "y": 1.2000000476837159,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -17685,13 +17879,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.2849999666213989,
-                    "y": -1.3134266138076783,
+                    "x": -2.621999979019165,
+                    "y": 0.8600000143051148,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -17763,13 +17957,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.15699994564056397,
-                    "y": -1.7634265422821046,
+                    "x": -2.5220000743865969,
+                    "y": 0.5199999809265137,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -17841,13 +18035,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.0,
-                    "y": -1.0634266138076783,
+                    "x": -1.6369999647140504,
+                    "y": 1.0800000429153443,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -17919,13 +18113,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.2919999957084656,
-                    "y": 1.1192721128463746,
+                    "x": -2.171999931335449,
+                    "y": 2.640000104904175,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -17997,13 +18191,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.2879999876022339,
-                    "y": -0.41342663764953616,
+                    "x": -2.621999979019165,
+                    "y": 1.5399999618530274,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -18075,13 +18269,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.19000005722045899,
-                    "y": -0.8634266257286072,
+                    "x": -2.552000045776367,
+                    "y": 1.2000000476837159,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -18153,13 +18347,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.2849999666213989,
-                    "y": -1.3134266138076783,
+                    "x": -2.621999979019165,
+                    "y": 0.8600000143051148,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -18231,13 +18425,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.15699994564056397,
-                    "y": -1.7634265422821046,
+                    "x": -2.5220000743865969,
+                    "y": 0.5199999809265137,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -18302,20 +18496,20 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "HealthBar_Filled"
+                "Name": "QuitConfirmation"
             },
             "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
                 "Position": {
-                    "x": 0.3376493453979492,
-                    "y": 1.649999976158142,
+                    "x": 0.0,
+                    "y": 0.8629999756813049,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.75,
+                    "y": 0.75,
                     "z": 1.0
                 },
                 "Rotation": {
@@ -18327,85 +18521,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/HealthBar_Fill",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "horizontal_left_to_right",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 4,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": true
-            },
-            "UI": {
-                "Function": "",
-                "UI Type": "HealthBar_Fill",
-                "Screen": 14,
-                "Target": -1,
-                "Previous": -1,
-                "Overlay": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "HealthBar_Base"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.3376493453979492,
-                    "y": 1.649999976158142,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/HealthBar_BG",
+                    "key": "Textures/Confirmation_Popup",
                     "index": 0
                 },
                 "Size": {
@@ -18438,19 +18554,955 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 4,
+                "Layer": 10,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             },
             "UI": {
                 "Function": "",
-                "UI Type": "HealthBar_Base",
-                "Screen": 14,
+                "UI Type": "Screen",
+                "Screen": 23,
+                "Target": -1,
+                "Previous": 23,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "AreYouSure"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 1.062999963760376,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/AREYOUSURE_HL",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 11,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 23,
+                "Target": -1,
+                "Previous": 23,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "YesDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.6899999976158142,
+                    "y": 0.550000011920929,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/YES_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 11,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Interface",
+                "Screen": 23,
+                "Target": 24,
+                "Previous": 23,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "YesSelected"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.6899999976158142,
+                    "y": 0.550000011920929,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/YES_HL",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 12,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "BackToMainMenu",
+                "UI Type": "Button",
+                "Screen": 24,
+                "Target": -1,
+                "Previous": 23,
+                "Overlay": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "NoDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.4000000059604645,
+                    "y": 0.550000011920929,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/NO_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 11,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Interface",
+                "Screen": 23,
+                "Target": 25,
+                "Previous": 23,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "NoSelected"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.4000000059604645,
+                    "y": 0.550000011920929,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/NO_HL",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 12,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Button",
+                "Screen": 25,
+                "Target": 0,
+                "Previous": 23,
+                "Overlay": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ConfirmationBlackOverlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 1.062999963760376,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Black",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 0.7843137383460999
+                },
+                "Layer": 5,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 23,
                 "Target": -1,
                 "Previous": -1,
-                "Overlay": false
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ConfirmationPauseMenuBG"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -1.6369999647140504,
+                    "y": 1.0800000429153443,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pause_Menu",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 8,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 23,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ConfirmationPauseMenuTitle"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -2.171999931335449,
+                    "y": 2.640000104904175,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pause_Title",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 9,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 23,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ConfirmationRestartDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -2.621999979019165,
+                    "y": 1.5399999618530274,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Restart_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 9,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 23,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ConfirmationControlsDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -2.552000045776367,
+                    "y": 1.2000000476837159,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Controls_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 9,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 23,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ConfirmationOptionsDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -2.621999979019165,
+                    "y": 0.8600000143051148,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Options_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 9,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 23,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "ConfirmationQuitGameDefault"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -2.5220000743865969,
+                    "y": 0.5199999809265137,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.75,
+                    "y": 0.75,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/QuitGame_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 9,
+                "Order": 0.0,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "UI": {
+                "Function": "",
+                "UI Type": "Screen",
+                "Screen": 23,
+                "Target": -1,
+                "Previous": -1,
+                "Overlay": true
             }
         },
         {
@@ -18529,7 +19581,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -18610,7 +19662,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -18691,7 +19743,7 @@
                 },
                 "Layer": 3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -18835,153 +19887,13 @@
                 },
                 "Layer": 1,
                 "Order": 0.10000000149011612,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             },
             "Animator": {
                 "Controller Key": "Animation/Sign",
                 "Speed": 1.0
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "Player"
-            },
-            "Entity Type": {
-                "Category": "player"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 2.9376492500305177,
-                    "y": -1.0632749795913697,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 50.0,
-                "Move Speed": 5.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 2.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 12.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 2.9376492500305177,
-                    "y": -1.0632749795913697
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 0.44999998807907107,
-                    "y": 0.8500000238418579
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 2,
-                "Trigger": false,
-                "Platform": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/RangeAttackSpritesheet",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 5,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Dave",
-                "Speed": 1.0
-            },
-            "State": {},
-            "Health": {
-                "Current Health": 100,
-                "Max Health": 100,
-                "TakenDamageTimer": 0.0,
-                "Invulnerable": true
-            },
-            "Attack": {
-                "Range Damage": 2,
-                "Melee Damage": 5,
-                "Melee Combo Damage": 10,
-                "Number Of Combo": 3,
-                "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": -0.016666388139128686,
-                "Range Cooldown Timer": -0.016666388139128686,
-                "Combo Duration": 2.0,
-                "Combo Cooldown Timer": 0.4833347499370575,
-                "Knockback Amount": 500.0,
-                "Knockback Combo Amount": 1000.0,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "Start Combo Cooldown Timer": true
-            },
-            "Player": {
-                "Upgrade Points Per Enemy Defeated": 50,
-                "Points Needed For Upgrade": 50,
-                "Attack Upgrade Increase": 1,
-                "Health Upgrade Attack": 2,
-                "Dashing Timer Duration": 1.0
-            },
-            "Input": {
-                "Previous": 88,
-                "Current": 0
             }
         }
     ]
