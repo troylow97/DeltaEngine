@@ -10,7 +10,9 @@ namespace DeltaEngine
     Screen,
     Interface,
     Button,
-  	Slider
+  	Slider,
+    Healthbar,
+    Healthbar_base
   };
 
   struct UI

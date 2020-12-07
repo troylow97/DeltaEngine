@@ -8,6 +8,7 @@ namespace DeltaEngine
     void LateUpdate() override;
 
     void AttackVisualFeedback();
+    void UpdateHealthBar();
     void Start();
     void Restart();
 

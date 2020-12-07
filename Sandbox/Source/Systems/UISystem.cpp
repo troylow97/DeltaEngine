@@ -89,6 +89,31 @@ void UISystem::AttackVisualFeedback()
     //}_screen.push_back(level1_screen);
 }
 
+void UISystem::UpdateHealthBar()
+{
+  env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, UI& u, Image& im, Transform& t)
+  {
+    auto& hp = em.GetComponent<Health>(UnitManager::GetPlayerID());
+    auto& player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID());
+    Vector2 translation = { -2.6,1.65 };
+    
+    if (u.ui_type == UIType::Healthbar)
+    {
+      const float current_hp = static_cast<float>(hp.CurrentHealth);
+      const float max_hp = static_cast<float>(hp.MaxHealth);
+      const float percentage = (current_hp / max_hp);
+      im.m_FillAmount = percentage;
+      t.position.x = player_pos.position.x + translation.x;
+      t.position.y = translation.y;
+    }
+    else if (u.ui_type == UIType::Healthbar_base)
+    {
+      t.position.x = player_pos.position.x + translation.x;
+      t.position.y = translation.y;
+    }
+  });
+}
+
 void UISystem::Update()
 {
   if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
@@ -216,26 +241,14 @@ void UISystem::Update()
         break;
       }
     }
-  	if (!paused)
-        AttackVisualFeedback();
+    if (!paused)
+    {
+      UpdateHealthBar();
+      AttackVisualFeedback();
+    }
  	
     for (auto& screen : m_screen)//Upgrade page to follow player
     {
-      //if (screen == upgrade_page)
-      //{
-      //  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
-      //  Vector3 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(p).position;
-      //  
-      //  em.ForEach([&](UI& ui, EntityID& id, EntityName& en)
-      //  {
-      //    if (en.name == "AttackFilled" || en.name == "AttackDefault")
-      //      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x + 1.194f, player_pos.y + 0.727f, 0.0f };
-      //    else if (en.name == "HealthFilled" || en.name == "HealthDefault")
-      //      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x - 1.796f, player_pos.y + 0.727f, 0.0f };
-      //    else
-      //      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position = { player_pos.x/* - 0.297f*/, player_pos.y/* + 1.013f*/, 0.0f };
-      //  });
-      //}
       if (screen == level1_screen)
       {
         auto& id = em.GetComponent<EntityID>(UnitManager::GetPlayerID());
