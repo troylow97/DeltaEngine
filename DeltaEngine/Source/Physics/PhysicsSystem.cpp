@@ -145,7 +145,7 @@ namespace DeltaEngine
     {
         if(CurrentJumpTicks == 1)
         {
-            static size_t c_id{ 0 };
+            static size_t c_id{ u64_max };
             if (AudioEngine::IsChannelPlaying(c_id))
                 AudioEngine::StopChannel(c_id);
             c_id = AudioEngine::Play("Audio/jump.wav");

@@ -97,17 +97,13 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
-            EntityID missile2 = CreateProjectile(id, Vector2{ 1.7,1.7 }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
-            static size_t c_id{ 0 };
+            EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
+            EntityID missile2 = CreateProjectile(id, Vector2{ 1.7f,1.7f }, true, 0.35f, EntityCategory::E_PLAYER_BULLET_DETECTION);
+            static size_t c_id{ u64_max };
             if (AudioEngine::IsChannelPlaying(c_id))
                 AudioEngine::StopChannel(c_id);
             c_id  = AudioEngine::Play("Audio/jump.wav");
-            em.AddComponent<Image>(missile);
-            em.AddComponent<Renderer2D>(missile);
-            em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-            em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_CHARGED";
-            em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
+
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -126,12 +122,7 @@ namespace DeltaEngine
         }
         else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.4,0.4 }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
-            em.AddComponent<Image>(missile);
-            em.AddComponent<Renderer2D>(missile);
-            em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-            em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_CHARGED";
-            em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
+            EntityID missile = CreateProjectile(id, Vector2{ 0.4f,0.4f }, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
             if (em.GetComponent<Image>(id).m_FlipX == false)
             {
                 em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -149,8 +140,8 @@ namespace DeltaEngine
     {
         if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>(id))
         {
-            EntityID missile = CreateProjectile(id, Vector2{ 0.7,0.5 }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
-            static size_t c_id{ 0 };
+            EntityID missile = CreateProjectile(id, Vector2{ 0.7f,0.5f }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+            static size_t c_id{ u64_max };
             if (AudioEngine::IsChannelPlaying(c_id))
                 AudioEngine::StopChannel(c_id);
             c_id = AudioEngine::Play("Audio/jump.wav");
@@ -202,7 +193,7 @@ namespace DeltaEngine
             else
             {
                 AudioEngine::Play("Audio/Fiddler/FiddlerAttack.ogg");
-                EntityID missile = CreateProjectile(id, Vector2{ 0.3,0.3 }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
+                EntityID missile = CreateProjectile(id, Vector2{ 0.3f,0.3f }, false, 0.1f, EntityCategory::E_ENEMY_FIDDLER_PUNCH);
                 if (em.GetComponent<Image>(id).m_FlipX == false)
                 {
                     em.GetComponent<Transform>(missile).position.x += 0.5f;
@@ -237,7 +228,7 @@ namespace DeltaEngine
     EntityID AttackSystem::CreateProjectile(EntityID id,Vector2 scale,bool gravity,float Lifetime,EntityCategory type)
     {
         Transform& t1 = em.GetComponent<Transform>(id);
-        EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
+        EntityID missile = em.CreateEntity<Collider, Lifespan, Transform, RigidBody, EntityType, Health>();
         em.GetComponent<Transform>(missile).position = t1.position;
         em.GetComponent<RigidBody>(missile).Mass = 5.0f;
         em.GetComponent<Transform>(missile).scale = scale;

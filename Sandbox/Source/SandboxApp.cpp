@@ -33,7 +33,6 @@ public:
 
     AudioEngine::Play("Audio/MainMenu/main_menu_bgm.wav");
 
-
   }
 
   ~Sandbox()
