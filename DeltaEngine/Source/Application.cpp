@@ -148,7 +148,6 @@ void Application::Run()
       env.pWin->Update();
       AudioEngine::Update();
       Profiler::Instance().FrameEnd();
-
     }
     else
     {

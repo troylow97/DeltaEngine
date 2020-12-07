@@ -33,7 +33,6 @@ namespace DeltaEngine
   };
 }
 
-
 //CORE LOG MACROS
 #define DeltaEngine_CORE_TRACE(...) ::DeltaEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define DeltaEngine_CORE_INFO(...)  ::DeltaEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
@@ -42,7 +41,6 @@ namespace DeltaEngine
 #define DeltaEngine_CORE_FATAL(...) ::DeltaEngine::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 //eg -> //DeltaEngine_CORE_TRACE("Loading shader \"{}\"...", filepath.c_str());
-
 
 //CLIENT LOG APP MACROS
 #define DeltaEngine_TRACE(...)      ::DeltaEngine::Log::GetClientLogger()->trace(__VA_ARGS__)

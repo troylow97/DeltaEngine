@@ -8,6 +8,8 @@ namespace DeltaEngine
     void LateUpdate() override;
 
     void AttackVisualFeedback();
+    void Start();
+    void Restart();
 
     void Return();
     void UpgradeDamageButton();
@@ -25,6 +27,9 @@ private:
   bool upgraded_Attack_not_pushed = true;
   bool back_to_main_menu = false;
   bool is_main_menu = false;
+  bool m_start { false };
+  bool m_restart { false };
+
   Vector2 VolumeSliderInitialLocation;
   Vector3 PlayerFirstPosition;
   Vector3 PlayerCurrentPosition;
