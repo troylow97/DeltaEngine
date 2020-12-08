@@ -1,17 +1,18 @@
 /**********************************************************************************
-* \file   DirectoryListener.h
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \file   DirectoryListener.cpp
+* \brief  This file contains the implementation for the Directory Listener
+*         Directory Listener is responsible for updating the cached directory
+*         reference stored in the system directory
 *
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #pragma once
+
 #include "IFileWatcherListener.h"
 
 namespace DeltaEngine

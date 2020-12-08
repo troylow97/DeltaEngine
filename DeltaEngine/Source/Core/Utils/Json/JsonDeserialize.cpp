@@ -1,10 +1,9 @@
 /**********************************************************************************
 * \file   JsonDeserialize.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  This file contains the implementation of Json Deserialization
+*
+* \author Tan, Tong Wee, 30% Code Contribution
+*         70% Code from official RTTR
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction

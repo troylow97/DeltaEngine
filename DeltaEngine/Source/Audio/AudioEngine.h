@@ -1,16 +1,24 @@
 /**********************************************************************************
 * \file   AudioEngine.h
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  This file contains the definition of the Audio Engine that interacts with
+*         FMOD through the wrapper
 *
+*         Audio Engine provides the following functionality:
+*         - FMOD Studio
+*           - 2D / 3D Events
+*           - Parameters
+*
+*         - FMOD Core
+*           - Play Sound 2D / 3D
+*           - Global parameters
+*
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #pragma once
 
 #include <unordered_map>
