@@ -52,7 +52,7 @@ const unsigned ranged_not_ready = 22; // AttackCooldown > 0
 const unsigned quit_confirmation = 23;
 const unsigned quit_yes = 24;
 const unsigned quit_no = 25; // credits default - 4
-
+	
 void UISystem::Initialize()
 {
   OCullSystem::Enable(true);
@@ -142,6 +142,13 @@ void UISystem::Update()
 
 void UISystem::LateUpdate()
 {
+    if (credits_rolling)
+    {
+        m_screen.clear();
+        credits_rolling = false;
+        return;
+    }
+	
   if ( InputManager::Instance().IsKeyTriggered( DEVK_ESCAPE ) )
   {
     bool option_menu_bool { false };

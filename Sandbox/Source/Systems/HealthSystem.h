@@ -10,15 +10,15 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
 #include "ECS/ECSModule.h"
-#include "Components/Lifespan.h"
 #include <vector>
+#include "Components/Health.h"
 
 namespace DeltaEngine
 {
-  DEFINE_SYSTEM(LifespanSystem, Lifespan)
+  DEFINE_SYSTEM(HealthSystem, Health)
     void Update() override;
     void LateUpdate() override;
   private:
-    std::vector<EntityID> DestroyedEntities;
-  END_DEFINE_SYSTEM(LifespanSystem)
+    void LimitCurrentHealthToMaxHealth(Health& hp);
+  END_DEFINE_SYSTEM(HealthSystem)
 }

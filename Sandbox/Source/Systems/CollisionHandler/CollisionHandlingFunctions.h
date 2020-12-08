@@ -25,6 +25,7 @@ namespace DeltaEngine
 		static void Initialise();
 		static void TakeDamage(EntityID& id1, EntityID& id2);
 		static bool CheckEntityType(EntityID, EntityCategory, EntityID, EntityCategory);
+
 		static void ReduceHealth(EntityID& id, int health);
 				
 	};

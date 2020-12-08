@@ -9,7 +9,7 @@ param
 PlayerDetected 0 0
 
 param
-HP 0 0
+IsDead 0 0
 
 param
 Ranged 0 0
@@ -57,9 +57,15 @@ end Clip/SERP_FIRE
 endTransition
 
 transition 
+start Clip/SERP_FULL_IDLE
+end Clip/SERP_DEATH
+condition IsDead ? 1
+endTransition
+
+transition 
 start Clip/SERP_FULL_ALERT
 end Clip/SERP_DEATH
-condition HP < 1
+condition IsDead ? 1
 endTransition
 
 transition 
@@ -71,13 +77,13 @@ endTransition
 transition 
 start Clip/SERP_FIRE
 end Clip/SERP_DEATH
-condition HP < 1
+condition IsDead ? 1
 endTransition
 
 transition 
 start Clip/SERP_CHARGE
 end Clip/SERP_DEATH
-condition HP < 1
+condition IsDead ? 1
 endTransition
 
 %endfile

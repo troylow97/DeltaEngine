@@ -76,6 +76,12 @@ condition IsBouncing ? 1
 endTransition
 
 transition 
+start Clip/LANCER_IDLE
+end Clip/LANCER_DEATH
+condition IsDead ? 1
+endTransition
+
+transition 
 start Clip/AlertSpritesheet
 end Clip/LANCER_DEATH
 condition IsDead ? 1

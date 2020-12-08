@@ -372,7 +372,7 @@ inline size_t EntityManager::InsertEntityChunk( DataChunk *chunk, EntityID id, b
 
 inline void EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
 {
-  assert( chunk->header.index > index );
+  assert( chunk->header.index >= index );
 
   Description *desc = chunk->header.owner->components_desc;
 

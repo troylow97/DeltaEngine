@@ -67,6 +67,12 @@ condition MeleeAttack ? 1
 endTransition
 
 transition 
+start Clip/FID_WALK
+end Clip/FID_DEATH
+condition IsDead ? 1
+endTransition
+
+transition 
 start Clip/FID_ATTACK
 end Clip/FID_DEATH
 condition IsDead ? 1

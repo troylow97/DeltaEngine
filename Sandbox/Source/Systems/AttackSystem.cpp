@@ -201,13 +201,13 @@ void AttackSystem::MeleeAttack( EntityID &id )
     if ( em.GetComponent<Image>( id ).m_FlipX == false )
     {
       em.GetComponent<Transform>( missile ).position.x += 0.6f;
-      em.GetComponent<RigidBody>( missile ).AccumulatedForce = { 1450, 0 };
+      em.GetComponent<RigidBody>( missile ).AccumulatedForce = { 400, 0 };
       em.GetComponent<RigidBody>( missile ).Velocity = em.GetComponent<RigidBody>( id ).Velocity;
     }
     else
     {
       em.GetComponent<Transform>( missile ).position.x -= 0.6f;
-      em.GetComponent<RigidBody>( missile ).AccumulatedForce = { -1450, 0 };
+      em.GetComponent<RigidBody>( missile ).AccumulatedForce = { -400, 0 };
       em.GetComponent<RigidBody>( missile ).Velocity = em.GetComponent<RigidBody>( id ).Velocity;
     }
   }
@@ -288,7 +288,7 @@ void AttackSystem::Dash()
 EntityID AttackSystem::CreateProjectile( EntityID id, Vector2 scale, bool gravity, float Lifetime, EntityCategory type )
 {
   Transform &t1 = em.GetComponent<Transform>( id );
-  EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
+  EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody>();
   em.GetComponent<Transform>( missile ).position = t1.position;
   em.GetComponent<RigidBody>( missile ).Mass = 5.0f;
   em.GetComponent<Transform>( missile ).scale = scale;
@@ -299,7 +299,6 @@ EntityID AttackSystem::CreateProjectile( EntityID id, Vector2 scale, bool gravit
   em.GetComponent<Collider>( missile ).CollisionLayerID = 8;
   em.GetComponent<EntityType>( missile ).type = type;
   em.GetComponent<RigidBody>( missile ).FrictionCoeff = 0.0f;
-  em.GetComponent<Health>( missile ).CurrentHealth = 1;
   return missile;
 }
 

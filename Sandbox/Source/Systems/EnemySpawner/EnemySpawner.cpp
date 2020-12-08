@@ -218,7 +218,7 @@ void EnemySpawner::SpawnEnemy( unsigned amount, std::string type, Vector2 positi
       em.GetComponent<Collider>( enemy ).offset = LancerData.ColliderOffset;
       em.GetComponent<Collider>( enemy ).size = LancerData.ColliderScale;
       em.GetComponent<Image>( enemy ).m_Sprite.m_Key = "Textures/Lancer";
-      em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Lancer.anim";
+      em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Lancer";
       em.GetComponent<Image>( enemy ).m_Sprite.m_Index = 0;
     }
     else if ( type == "fiddler" )
@@ -234,7 +234,7 @@ void EnemySpawner::SpawnEnemy( unsigned amount, std::string type, Vector2 positi
       em.GetComponent<Collider>( enemy ).offset = FiddlerData.ColliderOffset;
       em.GetComponent<Collider>( enemy ).size = FiddlerData.ColliderScale;
       em.GetComponent<Image>( enemy ).m_Sprite.m_Key = "Textures/FID_WALK";
-      em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Fiddler.anim";
+      em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Fiddler";
       em.GetComponent<Image>( enemy ).m_Sprite.m_Index = 0;
     }
     else if ( type == "serpentipede" )
@@ -250,7 +250,7 @@ void EnemySpawner::SpawnEnemy( unsigned amount, std::string type, Vector2 positi
       em.GetComponent<Collider>( enemy ).offset = SerpentipedeData.ColliderOffset;
       em.GetComponent<Collider>( enemy ).size = SerpentipedeData.ColliderScale;
       em.GetComponent<Image>( enemy ).m_Sprite.m_Key = "Textures/SERP_FULL_IDLE";
-      em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Serpentipede.anim";
+      em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Serpentipede";
       em.GetComponent<Image>( enemy ).m_Sprite.m_Index = 0;
 
       unsigned rand_sound = Random::RandomIntRange( 0, 2 );

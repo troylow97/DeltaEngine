@@ -15,6 +15,9 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "DeltaEngine.h"
 #include "../../EnemySpawner/EnemySpawner.h"
 #include "../../UISystem.h"
+#include "Audio/AudioEngine.h"
+#include "Input/InputManager.h"
+#include "Input/Keys.h"
 #include "Systems/OCullSystem.h"
 namespace DeltaEngine
 {
@@ -58,6 +61,15 @@ namespace DeltaEngine
 
         if (CreditsRolledTriggered)
         {
+            UISystem::credits_rolling = true;
+        	if(InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
+        	{
+                UISystem::credits_rolling = false;
+                CreditsRolledTriggered = false;
+                MainMenuTriggered = true;
+                LoadMainMenuAgain();
+                return;
+        	}
             em.ForEach([&](EntityID& id, EntityName& en, Transform& t)
             {
                 if (en.name == "CreditsToBeRolled")
@@ -66,11 +78,12 @@ namespace DeltaEngine
 
                     if (pos.position.y <= 7.8f)
                     {
-                        pos.position.y += (GetEnv().pClock->FixedDeltaTime() * 0.1f);
-                        std::cout << " pos.position.y is " << pos.position.y << std::endl;
+                        UISystem::credits_rolling = true;
+                        pos.position.y += (GetEnv().pClock->FixedDeltaTime() * 0.3f);
                     }
                     else
                     {
+                        UISystem::credits_rolling = false;
                         CreditsRolledTriggered = false;
                         MainMenuTriggered = true;
                     }
@@ -93,6 +106,7 @@ namespace DeltaEngine
         env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Initialize();
         env.pECS->GetWorld().GetEntityManager().Clear();
         OCullSystem::Enable(false);
+        AudioEngine::StopChannels();
         env.pECS->GetWorld().Load("World/CreditsRolling.json");
         CreditsRolledTriggered = true;
     }
@@ -102,6 +116,12 @@ namespace DeltaEngine
         env.pECS->GetWorld().FindOrCreateSystem<UISystem>().Initialize();
         env.pECS->GetWorld().GetEntityManager().Clear();
         env.pECS->GetWorld().Load("World/MainMenu.json");
+        AudioEngine::Play("Audio/MainMenu/main_menu_bgm.wav");
+        env.pClock->TimeScale(1.0f);
+        ExitPointTriggered = false;
+        StopPointTriggered = false;
+        CreditsRolledTriggered = false;
+        MainMenuTriggered = false;
     }
 
     void ExitSceneCinematic::LateUpdate()

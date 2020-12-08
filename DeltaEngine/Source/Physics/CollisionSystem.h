@@ -23,11 +23,13 @@ namespace DeltaEngine
     Manifold m;
     EntityID id1;
     EntityID id2;
+    bool ignore;
 
     CollisionPairInfo(Manifold man, EntityID i1, EntityID i2) :
       m{man},
       id1{i1},
-      id2{i2}
+      id2{i2},
+  	  ignore{false}
     {}
   };
 
