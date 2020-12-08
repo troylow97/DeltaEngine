@@ -243,31 +243,31 @@ void UISystem::LateUpdate()
         env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( id ).position += difference;
     } );
 
-    if ( InputManager::Instance().IsKeyTriggered( DEVK_U ) ) //Upgrade Page
-    {
-      bool upgrade_screen_exists = false;
-      auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( UnitManager::GetPlayerID() );
-      for ( auto &screen : m_screen )
-      {
-        if ( screen == upgrade_page )
-          upgrade_screen_exists = true;
-      }
-
-      if ( upgrade_screen_exists )
-      {
-        m_screen.clear();
-        m_screen.push_back( level1_screen );
-      }
-      else
-      {
-        m_screen.push_back( upgrade_page );
-
-        if ( p.UpgradedAtk )
-          m_screen.push_back( upgraded_attack_only_page );
-        if ( p.UpgradedHP )
-          m_screen.push_back( upgraded_health_only_page );
-      }
-    }
+    //if ( InputManager::Instance().IsKeyTriggered( DEVK_U ) ) //Upgrade Page
+    //{
+    //  bool upgrade_screen_exists = false;
+    //  auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( UnitManager::GetPlayerID() );
+    //  for ( auto &screen : m_screen )
+    //  {
+    //    if ( screen == upgrade_page )
+    //      upgrade_screen_exists = true;
+    //  }
+    //
+    //  if ( upgrade_screen_exists )
+    //  {
+    //    m_screen.clear();
+    //    m_screen.push_back( level1_screen );
+    //  }
+    //  else
+    //  {
+    //    m_screen.push_back( upgrade_page );
+    //
+    //    if ( p.UpgradedAtk )
+    //      m_screen.push_back( upgraded_attack_only_page );
+    //    if ( p.UpgradedHP )
+    //      m_screen.push_back( upgraded_health_only_page );
+    //  }
+    //}
     for ( auto &screen : m_screen )
     {
       if ( screen == pause_screen || screen == control_screen || screen == option_screen || screen == gameover_screen || screen == upgrade_page || screen == quit_confirmation )
