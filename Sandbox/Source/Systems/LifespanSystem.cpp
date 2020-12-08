@@ -60,7 +60,16 @@ void LifespanSystem::Update()
           }
           else
           {
-            DestroyedEntities.push_back( id );
+          	if(!em.HasComponent<Lifespan>(id))
+          	{
+                //em.AddComponent<Lifespan>(id);
+                //em.GetComponent<Lifespan>(id).Timer = 0.3f;
+                //em.GetComponent<RigidBody>(id).isMoveable = false;
+                em.GetComponent<State>(id).SetBool("IsDead", true);
+                //em.GetComponent<EntityType>(id).type = EntityCategory::E_NONE;
+                DestroyedEntities.push_back(id);
+          	}
+
           }
         }
         else
@@ -80,7 +89,6 @@ void LifespanSystem::Update()
         }
       }
   } );
-
   for ( EntityID i : DestroyedEntities ) //having a duplicate of this is necessary for now
   {
     em.DestroyEntity( i );

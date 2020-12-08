@@ -64,6 +64,8 @@ void AttackSystem::Update()
       a.RangeAttack = false;
     }
 
+    if(a.MeleeAttack && em.HasComponent<AI>(id))
+        st.SetBool("MeleeAttack", true);
     if ( a.MeleeAttack && a.MeleeCooldownTimer <= 0 )
     {
       a.StartComboCooldownTimer = true;

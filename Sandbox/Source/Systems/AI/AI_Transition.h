@@ -122,8 +122,8 @@ namespace DeltaEngine
           env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id,Player& p)
               {
                   if (AITools::EntityisWithinDetectionRange (id, ref.original_point, 
-                         DetectionRange.x, 
-                         DetectionRange.y))
+                         ref.original_point.x + DetectionRange.x, 
+                         ref.original_point.y + DetectionRange.y))
                   {
                       ref.transition = getTargetState();
                   }
@@ -154,8 +154,8 @@ namespace DeltaEngine
                   if (et.type == EntityCategory::E_PLAYER 
                       && !AITools::EntityisWithinDetectionRange
                           (player, ref.original_point, 
-                          DetectionRange.x, 
-                          DetectionRange.y))
+                          ref.original_point.x + DetectionRange.x, 
+                          ref.original_point.y + DetectionRange.y))
                   {
                       ref.transition = getTargetState();
                   }
