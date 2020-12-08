@@ -54,55 +54,61 @@ Clip/LANCER_DEATH 373 474
 transition 
 start Clip/LANCER_IDLE
 end Clip/AlertSpritesheet
-condition IsAlerted ? 0
+condition IsAlerted ? 1
 endTransition
 
 transition 
 start Clip/AlertSpritesheet
 end Clip/LANCER_ALERT_IDLE
-condition IsAlertIdle ? 0
+condition IsAlertIdle ? 1
 endTransition
 
 transition 
 start Clip/LANCER_ALERT_IDLE
 end Clip/LANCER_ATTACK
-condition MeleeAttack ? 0
+condition MeleeAttack ? 1
 endTransition
 
 transition 
 start Clip/LANCER_ATTACK
 end Clip/LANCER_BOUNCE
-condition IsBouncing ? 0
+condition IsBouncing ? 1
+endTransition
+
+transition 
+start Clip/LANCER_IDLE
+end Clip/LANCER_DEATH
+condition IsDead ? 1
 endTransition
 
 transition 
 start Clip/AlertSpritesheet
 end Clip/LANCER_DEATH
-condition IsDead ? 0
+condition IsDead ? 1
 endTransition
 
 transition 
 start Clip/LANCER_ALERT_IDLE
 end Clip/LANCER_DEATH
-condition IsDead ? 0
+condition IsDead ? 1
 endTransition
 
 transition 
 start Clip/LANCER_ATTACK
 end Clip/LANCER_DEATH
-condition IsDead ? 0
+condition IsDead ? 1
 endTransition
 
 transition 
 start Clip/LANCER_BOUNCE
 end Clip/LANCER_DEATH
-condition IsDead ? 0
+condition IsDead ? 1
 endTransition
 
 transition 
 start Clip/LANCER_BOUNCE
 end Clip/LANCER_ALERT_IDLE
-condition IsAlertIdle ? 0
+condition IsAlertIdle ? 1
 endTransition
 
 %endfile

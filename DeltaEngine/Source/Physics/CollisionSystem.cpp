@@ -143,53 +143,59 @@ namespace DeltaEngine
     {
       for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); ++it1)
       {
-        RigidBody& r1 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id1);
-        RigidBody& r2 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id2);
-        Transform& t1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id1);
-        Transform& t2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id2);
-        Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
-        Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
+      	if(!it1->ignore)
+      	{
+            RigidBody& r1 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id1);
+            RigidBody& r2 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id2);
+            Transform& t1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id1);
+            Transform& t2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id2);
+            Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
+            Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
 
 
-      	//Platform logic
-      	if((c1.isPlatform || c2.isPlatform) && (em.HasComponent<Player>(it1->id1) || em.HasComponent<Player>(it1->id2)))
-        {
-            EntityID player;
-            EntityID platform;
-        	if(em.HasComponent<Player>(it1->id1))
-        	{
-                player = it1->id1;
-                platform = it1->id2;       		
-        	}
-            else
-			{
-                player = it1->id2;
-                platform = it1->id1;
-			}
+            //Platform logic
+            if ((c1.isPlatform || c2.isPlatform) && (em.HasComponent<Player>(it1->id1) || em.HasComponent<Player>(it1->id2)))
+            {
+                EntityID player;
+                EntityID platform;
+                if (em.HasComponent<Player>(it1->id1))
+                {
+                    player = it1->id1;
+                    platform = it1->id2;
+                }
+                else
+                {
+                    player = it1->id2;
+                    platform = it1->id1;
+                }
 
-      		if(em.GetComponent<Transform>(player).position.y < em.GetComponent<Transform>(platform).position.y)
-      		{
-                em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 5000};
-                continue;
-      		}
-        }
+                if (em.GetComponent<Transform>(player).position.y < em.GetComponent<Transform>(platform).position.y &&
+                    it1->m.normal == Vector2::up())
+                {
+                    it1->ignore = true;
+                    em.GetComponent<Transform>(player).position.y += 0.1f;
+                    continue;
+                }
+            }
 
-      	//Standard Collision Response
-        if ((AABBvsAABB_Manifold(c1,t1.scale, c2,t2.scale, it1->m) && it1->m.penetration > 0.001f) && (!c1.isTrigger && !c2.isTrigger))
-        {
-          CollisionResponse(c1, r1, c2, r2, it1->m);
+            //Standard Collision Response
+            if ((AABBvsAABB_Manifold(c1, t1.scale, c2, t2.scale, it1->m) && it1->m.penetration > 0.001f) && (!c1.isTrigger && !c2.isTrigger))
+            {
+                CollisionResponse(c1, r1, c2, r2, it1->m);
 
-          if (r1.isMoveable)
-          {
-            t1.position = r1.PointEnd - c1.offset;
-            c1.center = c1.offset + t1.position;
-          }
-          if (r2.isMoveable)
-          {
-              t2.position = r2.PointEnd - c2.offset;
-              c2.center = c2.offset + t2.position;
-          }
-        }
+                if (r1.isMoveable)
+                {
+                    t1.position = r1.PointEnd - c1.offset;
+                    c1.center = c1.offset + t1.position;
+                }
+                if (r2.isMoveable)
+                {
+                    t2.position = r2.PointEnd - c2.offset;
+                    c2.center = c2.offset + t2.position;
+                }
+            }
+      	}
+
       }
     }
 

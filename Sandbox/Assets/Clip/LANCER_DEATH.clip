@@ -1,10 +1,50 @@
-frames 1
+frames 9
 fps 12
-loop 1
+loop 0
 
 Textures/LANCER_DEATH_i_0
 key Textures/LANCER_DEATH
 value 0
 frame 0
+
+Textures/LANCER_DEATH_i_1
+key Textures/LANCER_DEATH
+value 1
+frame 1
+
+Textures/LANCER_DEATH_i_2
+key Textures/LANCER_DEATH
+value 2
+frame 2
+
+Textures/LANCER_DEATH_i_3
+key Textures/LANCER_DEATH
+value 3
+frame 3
+
+Textures/LANCER_DEATH_i_4
+key Textures/LANCER_DEATH
+value 4
+frame 4
+
+Textures/LANCER_DEATH_i_5
+key Textures/LANCER_DEATH
+value 5
+frame 5
+
+Textures/LANCER_DEATH_i_6
+key Textures/LANCER_DEATH
+value 6
+frame 6
+
+Textures/LANCER_DEATH_i_7
+key Textures/LANCER_DEATH
+value 7
+frame 7
+
+Textures/LANCER_DEATH_i_8
+key Textures/LANCER_DEATH
+value 8
+frame 8
 
 %

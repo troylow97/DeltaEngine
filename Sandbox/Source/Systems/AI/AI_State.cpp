@@ -82,7 +82,7 @@ namespace DeltaEngine
   void IdleLancer::Update(EntityID& monster)
   {
     CheckEdges(monster);
-    auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
+    auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position; 	
 
     //if (ref.y < 2.0)
     //    AITools::MoveTowardsPoint(monster, Vector2{ ref.x,Random::RandomFloatRange(2.1,2.5) });
@@ -142,10 +142,12 @@ namespace DeltaEngine
 
   void IdleFiddler::onExit(EntityID& id)
   {
+      env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsPatrolling", false);
   }
 
   void IdleFiddler::Update(EntityID& monster)
   {
+    env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsPatrolling", true);
     waypoint.UpdateWaypoint(monster);
     CheckEdges(monster);
   }
@@ -157,20 +159,24 @@ namespace DeltaEngine
 
   void ChaseEnemyFiddler::onEnter(EntityID& id)
   {
+
   }
 
   void ChaseEnemyFiddler::onExit(EntityID& id)
   {
     env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = {0, 0};
+    env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlertRunning", false);
   }
 
   void ChaseEnemyFiddler::Update(EntityID& monster)
   {
+     env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlertRunning", true);
     CheckEdges(monster);
     EntityID player = UnitManager::GetPlayerID();
     if (AITools::Distance_X_BetweenTwoEntities(monster,player) < 2 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeCooldownTimer <= 0)
     {
         AITools::FaceEntity(monster, player);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlertRunning", false);
         env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
     }
     AITools::MoveTowardsEntityInX(monster, player);
@@ -236,7 +242,8 @@ namespace DeltaEngine
           }
           else
           {
-              AITools::MoveTowardsPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]);
+              Vector2 newpoint = ai.original_point + SerpentData.Points[CurrentPoint];
+              AITools::MoveTowardsPoint(monster, newpoint);
           }
       }
       else

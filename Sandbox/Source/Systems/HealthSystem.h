@@ -1,10 +1,7 @@
 /**********************************************************************************
-* \file   TextRenderSystem.h
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \file   LifespanSystem.h
+* \brief  The file contains the system for updating entities health
+* \author Low, Troy,     100% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
@@ -12,12 +9,16 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
-#include "DeltaEngine.h"
+#include "ECS/ECSModule.h"
+#include <vector>
+#include "Components/Health.h"
 
 namespace DeltaEngine
 {
-  DEFINE_SYSTEM(TextRenderSystem, Transform)
+  DEFINE_SYSTEM(HealthSystem, Health)
     void Update() override;
     void LateUpdate() override;
-  END_DEFINE_SYSTEM(TextRenderSystem)
+  private:
+    void LimitCurrentHealthToMaxHealth(Health& hp);
+  END_DEFINE_SYSTEM(HealthSystem)
 }

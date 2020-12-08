@@ -52,29 +52,6 @@ namespace DeltaEngine
     }
   };
 
-  //class LostEnemyLancer : public Transition //deprecated
-  //{
-  //public:
-  //  bool TestEdge(EntityID& monster) override
-  //  {
-  //    auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-  //    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
-  //    {
-  //      if (et.type == EntityCategory::E_PLAYER && !AITools::EntityisWithinDetectionRange(monster, player, 5.0f, 5.0f))
-  //      {
-  //        ref.transition = getTargetState();
-  //      }
-  //    });
-  //    if (ref.transition == getTargetState()) { return true; }
-  //    return false;
-  //  }
-  //
-  //  std::string getTargetState() override
-  //  {
-  //    return "idle_lancer";
-  //  }
-  //};
-
   class DetectEnemyFiddler : public Transition
   {
       Vector2 ChargeDetectionRange;
@@ -145,8 +122,8 @@ namespace DeltaEngine
           env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id,Player& p)
               {
                   if (AITools::EntityisWithinDetectionRange (id, ref.original_point, 
-                         DetectionRange.x, 
-                         DetectionRange.y))
+                         ref.original_point.x + DetectionRange.x, 
+                         ref.original_point.y + DetectionRange.y))
                   {
                       ref.transition = getTargetState();
                   }
@@ -177,8 +154,8 @@ namespace DeltaEngine
                   if (et.type == EntityCategory::E_PLAYER 
                       && !AITools::EntityisWithinDetectionRange
                           (player, ref.original_point, 
-                          DetectionRange.x, 
-                          DetectionRange.y))
+                          ref.original_point.x + DetectionRange.x, 
+                          ref.original_point.y + DetectionRange.y))
                   {
                       ref.transition = getTargetState();
                   }

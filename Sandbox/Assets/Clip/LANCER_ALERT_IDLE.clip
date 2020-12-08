@@ -1,4 +1,4 @@
-frames 1
+frames 2
 fps 12
 loop 1
 
@@ -6,5 +6,10 @@ Textures/LANCER_ALERT_IDLE_i_0
 key Textures/LANCER_ALERT_IDLE
 value 0
 frame 0
+
+Textures/LANCER_ALERT_IDLE_i_1
+key Textures/LANCER_ALERT_IDLE
+value 1
+frame 1
 
 %

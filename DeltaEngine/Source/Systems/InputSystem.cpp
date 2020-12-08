@@ -1,11 +1,8 @@
 /**********************************************************************************
 * \file   InputSystem.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
-*
+* \brief  The file contains implementation of InputSystem.
+* \author Chin, Clara,   50% Code Contribution
+* \author Low, Troy,     50% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
@@ -21,6 +18,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Input/Keys.h"
 #include "../../Sandbox/Source/Systems/UnitManager.h"
+#include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
@@ -37,6 +35,7 @@ void InputSystem::Shutdown()
 float idle_timer { 0.0f };
 float melee_attack_cooldown { 0.0f };
 float range_attack_cooldown { 0.0f };
+bool god_mode = false;
 
 void InputSystem::Update()
 {
@@ -61,6 +60,32 @@ void InputSystem::Update()
     //}
 
   } );
+
+  if (InputManager::Instance().IsKeyTriggered(DEVK_0))
+  {
+      if (!god_mode)
+      {
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Attack& a, Health& h, Player& p) 
+          {
+              h.isInvulnerable = true;
+              a.MeleeComboDamage *= 2;
+              a.MeleeDamage *= 2;
+              a.RangedDamage *= 2;
+          });
+          god_mode = true;
+      }
+      else
+      {
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Attack& a, Health& h, Player& p)
+          {
+              h.isInvulnerable = false;
+              a.MeleeComboDamage /= 2;
+              a.MeleeDamage /= 2;
+              a.RangedDamage /= 2;
+          });
+          god_mode = false;
+      }
+  }
 
   if ( InputManager::Instance().IsKeyPressed( DEVK_LEFT ) && !InputManager::Instance().IsKeyPressed( DEVK_C ) )
   {
@@ -173,6 +198,8 @@ else if ( InputManager::Instance().IsKeyReleased( DEVK_DOWN ) )
         p1.IsJumping = true;
       i1.previousKey = DEVK_SPACE;
       idle_timer = 0.0f;
+
+      AudioEngine::Play("Audio/jump.wav");
     } );
   }
   if ( InputManager::Instance().IsKeyReleased( DEVK_SPACE ) )

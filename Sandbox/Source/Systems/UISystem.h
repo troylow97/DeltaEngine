@@ -33,6 +33,7 @@ namespace DeltaEngine
     void UnpauseGame();
     void BackToMenu();
     void BackToMainMenu();
+    inline static bool credits_rolling{ false };
 private:
   bool isDraggingOnSlider;
   bool UI_first_time = true;
@@ -43,6 +44,7 @@ private:
   bool m_start { false };
   bool m_restart { false };
   bool m_backmenu { false };
+
 
   Vector2 VolumeSliderInitialLocation;
   Vector3 PlayerFirstPosition;

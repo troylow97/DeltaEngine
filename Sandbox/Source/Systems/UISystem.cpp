@@ -51,7 +51,7 @@ const unsigned ranged_not_ready = 22; // AttackCooldown > 0
 const unsigned quit_confirmation = 23;
 const unsigned quit_yes = 24;
 const unsigned quit_no = 25; // credits default - 4
-
+	
 void UISystem::Initialize()
 {
   OCullSystem::Enable(true);
@@ -143,6 +143,13 @@ void UISystem::Update()
 
 void UISystem::LateUpdate()
 {
+    if (credits_rolling)
+    {
+        m_screen.clear();
+        credits_rolling = false;
+        return;
+    }
+	
   if ( InputManager::Instance().IsKeyTriggered( DEVK_ESCAPE ) )
   {
     bool option_menu_bool { false };
@@ -237,31 +244,31 @@ void UISystem::LateUpdate()
         env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( id ).position += difference;
     } );
 
-    if ( InputManager::Instance().IsKeyTriggered( DEVK_U ) ) //Upgrade Page
-    {
-      bool upgrade_screen_exists = false;
-      auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( UnitManager::GetPlayerID() );
-      for ( auto &screen : m_screen )
-      {
-        if ( screen == upgrade_page )
-          upgrade_screen_exists = true;
-      }
-
-      if ( upgrade_screen_exists )
-      {
-        m_screen.clear();
-        m_screen.push_back( level1_screen );
-      }
-      else
-      {
-        m_screen.push_back( upgrade_page );
-
-        if ( p.UpgradedAtk )
-          m_screen.push_back( upgraded_attack_only_page );
-        if ( p.UpgradedHP )
-          m_screen.push_back( upgraded_health_only_page );
-      }
-    }
+    //if ( InputManager::Instance().IsKeyTriggered( DEVK_U ) ) //Upgrade Page
+    //{
+    //  bool upgrade_screen_exists = false;
+    //  auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( UnitManager::GetPlayerID() );
+    //  for ( auto &screen : m_screen )
+    //  {
+    //    if ( screen == upgrade_page )
+    //      upgrade_screen_exists = true;
+    //  }
+    //
+    //  if ( upgrade_screen_exists )
+    //  {
+    //    m_screen.clear();
+    //    m_screen.push_back( level1_screen );
+    //  }
+    //  else
+    //  {
+    //    m_screen.push_back( upgrade_page );
+    //
+    //    if ( p.UpgradedAtk )
+    //      m_screen.push_back( upgraded_attack_only_page );
+    //    if ( p.UpgradedHP )
+    //      m_screen.push_back( upgraded_health_only_page );
+    //  }
+    //}
     for ( auto &screen : m_screen )
     {
       if ( screen == pause_screen || screen == control_screen || screen == option_screen || screen == gameover_screen || screen == upgrade_page || screen == quit_confirmation )

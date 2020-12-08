@@ -1,11 +1,7 @@
 /**********************************************************************************
 * \file   Texture.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
-*
+* \brief  The file contains implementation of Texture class.
+* \author Ong, Graeme,   100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
@@ -213,7 +209,29 @@ namespace DeltaEngine
 
     LoadInfoFile();
 
-    int glWrapMode = GL_REPEAT;
+    GLint internal = GL_RGBA;
+    switch (m_Channels)
+    {
+    case 1:	internal = GL_RED;
+      break;
+    case 2: internal = GL_RG8;
+      break;
+    case 3: internal = GL_RGB8;
+      break;
+    case 4: internal = GL_RGBA8;
+    }
+    GLint format = GL_RGBA;
+    switch (m_Channels)
+    {
+    case 1:	format = GL_RED;
+      break;
+    case 2: format = GL_RG;
+      break;
+    case 3: format = GL_RGB;
+      break;
+    case 4: format = GL_RGBA;
+    }
+    GLint glWrapMode = GL_REPEAT;
     switch (wrapMode)
     {
     case TextureWrapMode::Repeat:
@@ -232,7 +250,7 @@ namespace DeltaEngine
     GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, glWrapMode));
     GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, glWrapMode));
 
-    GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_Data));
+    GLCall(glTexImage2D(GL_TEXTURE_2D, 0, internal, m_Width, m_Height, 0, format, GL_UNSIGNED_BYTE, m_Data));
     GLCall(glGenerateMipmap(GL_TEXTURE_2D));
     GLCall(glBindTexture(GL_TEXTURE_2D, 0));
 

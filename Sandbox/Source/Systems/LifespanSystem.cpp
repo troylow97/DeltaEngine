@@ -18,84 +18,25 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-void LifespanSystem::LimitCurrentHealthToMaxHealth( Health &hp )
-{
-  if ( hp.CurrentHealth > hp.MaxHealth )
-  {
-    hp.CurrentHealth = hp.MaxHealth;
-  }
-}
 
-void LifespanSystem::UpdateLifespan()
-{
-  em.ForEach( [&]( EntityID &id, Lifespan &ls )
-  {
-    if ( ls.Timer < 0 )
-    {
-      DestroyedEntities.push_back( id );
-    }
-    else
-    {
-      ls.Timer -= env.pClock->FixedDeltaTime();
-    }
-  } );
-}
+	void LifespanSystem::Update()
+	{
+		em.ForEach([&](EntityID& id, EntityType& et, Lifespan& l)
+			{
+				if (l.Timer < 0.0f)
+					DestroyedEntities.push_back(id);
+				else
+					l.Timer -= env.pClock->FixedDeltaTime();
+			});
 
-void LifespanSystem::Update()
-{
-  em.ForEach( [&]( EntityID &id, Health &hp, EntityType &et )
-  {
-    LimitCurrentHealthToMaxHealth( hp );
+		for(auto& ref : DestroyedEntities)
+			em.DestroyEntity(ref);
 
-    if ( hp.CurrentHealth <= 0 )
-    {
-      if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Player>( id ) )
-      {
-        auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( id );
-        p.IsDead = true;
-      }
-      else
-      {
-        DestroyedEntities.push_back( id );
-      }
-    }
-    else
-    {
-      if ( em.HasComponent<Renderer2D>( id ) )
-      {
-        if ( hp.isDamagedTimer > 0.0f )
-        {
-          em.GetComponent<Renderer2D>( id ).m_Color = { 1,0,0 };
-          hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
-        }
-        else
-        {
-          em.GetComponent<Renderer2D>( id ).m_Color = { 1,1,1 };
-        }
-      }
-    }
+		DestroyedEntities.clear();
+		
+		Profiler::Instance().Record("Lifespan System");
+	}
 
-  } );
-
-  for ( EntityID i : DestroyedEntities ) //having a duplicate of this is necessary for now
-  {
-    em.DestroyEntity( i );
-  }
-  DestroyedEntities.clear();
-
-  UpdateLifespan();
-
-  for ( EntityID i : DestroyedEntities )
-  {
-
-    em.DestroyEntity( i );
-  }
-
-  DestroyedEntities.clear();
-
-  Profiler::Instance().Record( "Lifespan System" );
-}
-
-void LifespanSystem::LateUpdate()
-{}
+	void LifespanSystem::LateUpdate()
+	{}
 }

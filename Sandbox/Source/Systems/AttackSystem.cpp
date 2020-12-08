@@ -64,6 +64,8 @@ void AttackSystem::Update()
       a.RangeAttack = false;
     }
 
+    if(a.MeleeAttack && em.HasComponent<AI>(id))
+        st.SetBool("MeleeAttack", true);
     if ( a.MeleeAttack && a.MeleeCooldownTimer <= 0 )
     {
       a.StartComboCooldownTimer = true;
@@ -191,7 +193,7 @@ void AttackSystem::MeleeAttack( EntityID &id )
 {
   if ( em.GetComponent<EntityType>( id ).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>( id ) )
   {
-    EntityID missile = CreateProjectile( id, Vector2 { 0.7f,0.5f }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH );
+    EntityID missile = CreateProjectile( id, Vector2 { 0.5f,0.4f }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH );
     static size_t c_id { u64_max };
     if ( AudioEngine::IsChannelPlaying( c_id ) )
       AudioEngine::StopChannel( c_id );
@@ -199,13 +201,13 @@ void AttackSystem::MeleeAttack( EntityID &id )
     if ( em.GetComponent<Image>( id ).m_FlipX == false )
     {
       em.GetComponent<Transform>( missile ).position.x += 0.6f;
-      em.GetComponent<RigidBody>( missile ).AccumulatedForce = { 1450, 0 };
+      em.GetComponent<RigidBody>( missile ).AccumulatedForce = { 400, 0 };
       em.GetComponent<RigidBody>( missile ).Velocity = em.GetComponent<RigidBody>( id ).Velocity;
     }
     else
     {
       em.GetComponent<Transform>( missile ).position.x -= 0.6f;
-      em.GetComponent<RigidBody>( missile ).AccumulatedForce = { -1450, 0 };
+      em.GetComponent<RigidBody>( missile ).AccumulatedForce = { -400, 0 };
       em.GetComponent<RigidBody>( missile ).Velocity = em.GetComponent<RigidBody>( id ).Velocity;
     }
   }
@@ -286,7 +288,7 @@ void AttackSystem::Dash()
 EntityID AttackSystem::CreateProjectile( EntityID id, Vector2 scale, bool gravity, float Lifetime, EntityCategory type )
 {
   Transform &t1 = em.GetComponent<Transform>( id );
-  EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
+  EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody>();
   em.GetComponent<Transform>( missile ).position = t1.position;
   em.GetComponent<RigidBody>( missile ).Mass = 5.0f;
   em.GetComponent<Transform>( missile ).scale = scale;
@@ -297,7 +299,6 @@ EntityID AttackSystem::CreateProjectile( EntityID id, Vector2 scale, bool gravit
   em.GetComponent<Collider>( missile ).CollisionLayerID = 8;
   em.GetComponent<EntityType>( missile ).type = type;
   em.GetComponent<RigidBody>( missile ).FrictionCoeff = 0.0f;
-  em.GetComponent<Health>( missile ).CurrentHealth = 1;
   return missile;
 }
 

@@ -24,7 +24,7 @@ namespace DeltaEngine
         MaxJumpTicks = 7;
         CurrentDashTicks = 0;
         MaxDashTicks = 8;
-        InitialJumpForce = 2600.0f;
+        InitialJumpForce = 3500.0f;
         JumpForce = InitialJumpForce;
     }
 
@@ -150,15 +150,7 @@ namespace DeltaEngine
     }
 
 	void PhysicsSystem::Jump(Player& p, RigidBody& r, Collider& c)
-    {
-        if(CurrentJumpTicks == 1)
-        {
-            static size_t c_id{ u64_max };
-            if (AudioEngine::IsChannelPlaying(c_id))
-                AudioEngine::StopChannel(c_id);
-            c_id = AudioEngine::Play("Audio/jump.wav");
-        }
-    	
+    {   	
         if (CurrentJumpTicks >= 1 && p.IsJumping)
         {
             r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };
