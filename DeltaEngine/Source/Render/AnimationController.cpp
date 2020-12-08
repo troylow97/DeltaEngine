@@ -35,19 +35,24 @@ namespace DeltaEngine
           switch (Condition)
           {
           case Conditions::BoolEqual:
-            conditionPass = parameters.at(ParamName).boolValue == (Value != 0);
+            if (parameters.count(ParamName))
+              conditionPass = parameters.at(ParamName).boolValue == (Value != 0);
             break;
           case Conditions::Equal:
-            conditionPass = parameters.at(ParamName).floatValue == Value;
+            if (parameters.count(ParamName))
+              conditionPass = parameters.at(ParamName).floatValue == Value;
             break;
           case Conditions::NotEqual:
-            conditionPass = parameters.at(ParamName).floatValue != Value;
+            if (parameters.count(ParamName))
+              conditionPass = parameters.at(ParamName).floatValue != Value;
             break;
           case Conditions::Greater:
-            conditionPass = parameters.at(ParamName).floatValue > Value;
+            if (parameters.count(ParamName))
+              conditionPass = parameters.at(ParamName).floatValue > Value;
             break;
           case Conditions::Less:
-            conditionPass = parameters.at(ParamName).floatValue < Value;
+            if (parameters.count(ParamName))
+              conditionPass = parameters.at(ParamName).floatValue < Value;
             break;
           }
           if (!conditionPass)

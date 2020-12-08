@@ -1,10 +1,65 @@
-frames 1
+frames 12
 fps 12
-loop 1
+loop 0
 
 Textures/FID_DMG_i_0
 key Textures/FID_DMG
 value 0
 frame 0
+
+Textures/FID_DMG_i_1
+key Textures/FID_DMG
+value 1
+frame 1
+
+Textures/FID_DMG_i_2
+key Textures/FID_DMG
+value 2
+frame 2
+
+Textures/FID_DMG_i_3
+key Textures/FID_DMG
+value 3
+frame 3
+
+Textures/FID_DMG_i_4
+key Textures/FID_DMG
+value 4
+frame 4
+
+Textures/FID_DMG_i_5
+key Textures/FID_DMG
+value 5
+frame 5
+
+Textures/FID_DMG_i_6
+key Textures/FID_DMG
+value 6
+frame 6
+
+Textures/FID_DMG_i_7
+key Textures/FID_DMG
+value 7
+frame 7
+
+Textures/FID_DMG_i_8
+key Textures/FID_DMG
+value 8
+frame 8
+
+Textures/FID_DMG_i_9
+key Textures/FID_DMG
+value 9
+frame 9
+
+Textures/FID_DMG_i_10
+key Textures/FID_DMG
+value 10
+frame 10
+
+Textures/FID_DMG_i_11
+key Textures/FID_DMG
+value 11
+frame 11
 
 %

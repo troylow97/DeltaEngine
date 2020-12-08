@@ -58,21 +58,6 @@ offset 380 640
 size 380 320
 pivot 0.5 0.5
 
-Textures/FID_WALK_i_12
-offset 760 640
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID_WALK_i_13
-offset 1140 640
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID_WALK_i_14
-offset 1520 640
-size 380 320
-pivot 0.5 0.5
-
 %
 
 wrap_mode 0
