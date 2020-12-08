@@ -154,7 +154,7 @@ void EnemySpawner::Update()
             continue;
           }
 
-          if ( env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( *it ).CurrentHealth <= 0 )
+          if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it) && env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( *it ).CurrentHealth <= 0 )
           {
             it = SpawnedEnemiesInGauntlet.erase( it );
           }

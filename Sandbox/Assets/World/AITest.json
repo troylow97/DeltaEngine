@@ -259,8 +259,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/BreathingSpritesheet",
-                    "index": 7
+                    "key": "Textures/FID_WALK",
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -299,7 +299,7 @@
                 "Wireframe": true
             },
             "Animator": {
-                "Controller Key": "Animation/Serpentipede",
+                "Controller Key": "Animation/Fiddler",
                 "Speed": 1.0
             },
             "State": {},
