@@ -21,6 +21,7 @@ namespace DeltaEngine
     float m_Size;
     float m_zNear, m_zFar;
     Color backgroundColor;
+    float fadeColorAmt = 0;
 
     Camera(bool editor = false);
     Camera(const Camera&);
