@@ -43,7 +43,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Credits"
+                "Name": "CreditsToBeRolled"
             },
             "Entity Type": {
                 "Category": "none"
@@ -51,12 +51,12 @@
             "Transform": {
                 "Position": {
                     "x": 0.0,
-                    "y": -7.5,
+                    "y": -7.8,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.75,
-                    "y": 1.75,
+                    "x": 1.0,
+                    "y": 1.0,
                     "z": 1.0
                 },
                 "Rotation": {

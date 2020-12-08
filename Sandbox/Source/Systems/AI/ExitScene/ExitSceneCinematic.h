@@ -14,18 +14,21 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Components/Transform.h"
 namespace DeltaEngine
 {
-	DEFINE_SYSTEM(ExitSceneCinematic, Transform)
+DEFINE_SYSTEM(ExitSceneCinematic, Transform)
     void Initialize() override;
 	void Update() override;
 	void LateUpdate() override;
 	void CreditsStart();
+	void LoadMainMenuAgain();
 
 private:
 	Vector2 ExitPoint;
 	Vector2 StopPoint;
 	float timer;
+	float credits_timer;
 	bool ExitPointTriggered;
 	bool StopPointTriggered;
-	
-	END_DEFINE_SYSTEM(ExitSceneCinematic)
+	bool CreditsRolledTriggered;
+	bool MainMenuTriggered;
+END_DEFINE_SYSTEM(ExitSceneCinematic)
 }
