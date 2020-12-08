@@ -12,13 +12,17 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "../../UnitManager.h"
 #include "../AITools.h"
 #include "DeltaEngine.h"
+#include "../../EnemySpawner/EnemySpawner.h"
+#include "Systems/OCullSystem.h"
 namespace DeltaEngine
 {
     void ExitSceneCinematic::Initialize()
     {
         ExitPoint = Vector2{ 41.0f,-1.063f };
-        StopPoint = Vector2{ 44.0f,-1.063f };
+        StopPoint = Vector2{ 47.0f,-1.063f };
         timer = 0.0f;
+        ExitPointTriggered = false;
+        StopPointTriggered = false;
     }
 
     void ExitSceneCinematic::Update()
@@ -37,11 +41,26 @@ namespace DeltaEngine
             {
                 em.GetComponent<RigidBody>(p).Direction = Vector2{ 0,0 };
                 StopPointTriggered = true;
-                timer += GetEnv().pClock->DeltaTime();
+            }
+            if (StopPointTriggered)
+            {
+                timer += GetEnv().pClock->FixedDeltaTime();
                 Camera::allCameras[0]->fadeColorAmt = timer;
             }
+            if (timer >= 5.0f)
+                CreditsStart();
         }
+    }
 
+    void ExitSceneCinematic::CreditsStart()
+    {
+        timer = 0.0f;
+        ExitPointTriggered = false;
+        StopPointTriggered = false;
+        env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Initialize();
+        env.pECS->GetWorld().GetEntityManager().Clear();
+        OCullSystem::Enable(false);
+        env.pECS->GetWorld().Load("World/CreditsRolling.json");
     }
 
     void ExitSceneCinematic::LateUpdate()

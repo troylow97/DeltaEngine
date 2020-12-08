@@ -18,6 +18,7 @@ namespace DeltaEngine
     void Initialize() override;
 	void Update() override;
 	void LateUpdate() override;
+	void CreditsStart();
 
 private:
 	Vector2 ExitPoint;
@@ -27,5 +28,4 @@ private:
 	bool StopPointTriggered;
 	
 	END_DEFINE_SYSTEM(ExitSceneCinematic)
-
 }
