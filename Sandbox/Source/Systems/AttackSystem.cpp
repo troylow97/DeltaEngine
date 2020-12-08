@@ -191,7 +191,7 @@ void AttackSystem::MeleeAttack( EntityID &id )
 {
   if ( em.GetComponent<EntityType>( id ).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().HasComponent<Attack>( id ) )
   {
-    EntityID missile = CreateProjectile( id, Vector2 { 0.7f,0.5f }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH );
+    EntityID missile = CreateProjectile( id, Vector2 { 0.5f,0.4f }, false, 0.1f, EntityCategory::E_PLAYER_PUNCH );
     static size_t c_id { u64_max };
     if ( AudioEngine::IsChannelPlaying( c_id ) )
       AudioEngine::StopChannel( c_id );
