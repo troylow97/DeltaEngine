@@ -1,14 +1,12 @@
 /**********************************************************************************
-* \file			Random.cpp
-* \brief		Functions for generating random numbers.
-* \author		Low Yee Troy, 100% Code Contribution
-* \version		1.0
-* \date			2020
+* \file   Random.h
+* \brief  The file contains functions for generating random numbers
+* \author Low, Troy,     100% Code Contribution
 *
-* \note			Course: GAM150
-* \copyright	Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
-				or disclosure of this file or its contents without the prior
-				written consent of DigiPen Institute of Technology is prohibited.
+*
+* \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
+or disclosure of this file or its contents without the prior
+written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
 #include <chrono>
