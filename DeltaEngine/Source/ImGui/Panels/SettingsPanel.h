@@ -1,11 +1,8 @@
 /**********************************************************************************
 * \file   SettingsPanel.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
-*
+* \brief  The file contains interface of SettingsPanel. Directly edits the editor
+* camera.
+* \author Ong, Graeme,   100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
