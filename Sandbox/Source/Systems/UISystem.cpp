@@ -1,10 +1,8 @@
 /**********************************************************************************
 * \file   UISystem.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  The file contains the system for updating and displaying UI in the game
+* \author Chin, Clara,     70% Code Contribution
+* \author Low, Troy,       30% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
