@@ -1,15 +1,16 @@
 /**********************************************************************************
 * \file   JsonDeserialize.cpp
-* \brief  This file contains the implementation of Json Deserialization
+* \brief  This file contains the implementation of Json deserialization using RTTR
+*         The original source is modified to support the engine custom data type
 *
 * \author Tan, Tong Wee, 30% Code Contribution
 *         70% Code from official RTTR
-*
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #define RAPIDJSON_HAS_STDSTRING 1
 
 #include "JsonDeserialize.h"

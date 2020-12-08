@@ -1,5 +1,5 @@
 /**********************************************************************************
-* \file   Profiler.cpp
+* \file   Profiler.h
 * \brief  This file contains the defintion of the engine's profiler
 *
 * \author Tan, Tong Wee, 100% Code Contribution
@@ -10,6 +10,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 
 #pragma once
+
 #include "Core/Containers/Singleton.h"
 #include <chrono>
 #include <string>

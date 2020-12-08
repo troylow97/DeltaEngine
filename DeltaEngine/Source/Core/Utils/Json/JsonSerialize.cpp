@@ -1,5 +1,5 @@
 /**********************************************************************************
-* \file   JsonSerializer.cpp
+* \file   JsonSerialize.cpp
 * \brief  This file contains the implementation for Json Serialization using RTTR
 *         The original source is modified to support the engine custom data type
 *
@@ -9,6 +9,7 @@
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #define RAPIDJSON_HAS_STDSTRING 1
 
 #include "JsonSerialize.h"

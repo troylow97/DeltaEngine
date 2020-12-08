@@ -1,15 +1,16 @@
 /**********************************************************************************
 * \file   TextureLoader.h
 * \brief  This file contain the implementation for TextureLoader
-* \author Tan, Tong Wee, 100% Code Contribution
 *
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #pragma once
-#include <cassert>
+
 #include "Assets/AbstractLoader.h"
 #include "Render/Texture.h"
 #include "Core/Utils/FileUtils.h"

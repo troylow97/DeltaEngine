@@ -10,6 +10,7 @@
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #include "World.h"
 
 #include "../../../Sandbox/Source/Systems/AI/AI_StateMachine.h"

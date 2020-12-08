@@ -1,6 +1,6 @@
 /**********************************************************************************
-* \file   AudioEngine.h
-* \brief  This file contains the definition of the Audio Engine that interacts with
+* \file   AudioEngine.cpp
+* \brief  This file contains the implementation of the Audio Engine that interacts with
 *         FMOD through the wrapper
 *
 *         Audio Engine provides the following functionality:
