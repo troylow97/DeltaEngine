@@ -45,7 +45,7 @@ void RespawnSystem::Update()
 
       if ( p.IsDead )
       {
-        float temp_x = -4.149f, temp_y = -2.68f;
+        float temp_x = 0.541, temp_y = 3.0f;
         float new_x = 0.0f, new_y = 0.0f;
         if ( AITools::isFacingRight( id ) )
         {
