@@ -35,6 +35,7 @@ void InputSystem::Shutdown()
 float idle_timer { 0.0f };
 float melee_attack_cooldown { 0.0f };
 float range_attack_cooldown { 0.0f };
+bool god_mode = false;
 
 void InputSystem::Update()
 {
@@ -59,6 +60,32 @@ void InputSystem::Update()
     //}
 
   } );
+
+  if (InputManager::Instance().IsKeyTriggered(DEVK_0))
+  {
+      if (!god_mode)
+      {
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Attack& a, Health& h, Player& p) 
+          {
+              h.isInvulnerable = true;
+              a.MeleeComboDamage *= 2;
+              a.MeleeDamage *= 2;
+              a.RangedDamage *= 2;
+          });
+          god_mode = true;
+      }
+      else
+      {
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Attack& a, Health& h, Player& p)
+          {
+              h.isInvulnerable = false;
+              a.MeleeComboDamage /= 2;
+              a.MeleeDamage /= 2;
+              a.RangedDamage /= 2;
+          });
+          god_mode = false;
+      }
+  }
 
   if ( InputManager::Instance().IsKeyPressed( DEVK_LEFT ) && !InputManager::Instance().IsKeyPressed( DEVK_C ) )
   {
