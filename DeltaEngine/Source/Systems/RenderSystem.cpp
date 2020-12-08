@@ -74,6 +74,7 @@ namespace DeltaEngine
             r.m_Material.SetUniformMatrix4f("_P", proj);
             r.m_Material.SetUniformColor4f("_Color", r.m_Color);
             r.m_Material.SetUniform1i("_MainTex", 0);
+            r.m_Material.SetUniform1f("_FadeAmt", c.fadeColorAmt);
             r.m_Material.SetUniform1i("_FillType", static_cast<int>(i.m_FillType));
             r.m_Material.SetUniform1f("_FillAmount", i.m_FillAmount);
             r.m_Material.SetUniform1f("_RRot", i.m_OverallAngle);
@@ -114,6 +115,7 @@ namespace DeltaEngine
         r.m_Material.SetUniformMatrix4f("_M", model);
         r.m_Material.SetUniformMatrix4f("_V", view);
         r.m_Material.SetUniformMatrix4f("_P", proj);
+        r.m_Material.SetUniform1f("_FadeAmt", c.fadeColorAmt);
         r.m_Material.SetUniform1i("_MainTex", 0);
 
         if (r.m_Shaded)

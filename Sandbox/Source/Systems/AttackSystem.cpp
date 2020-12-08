@@ -1,10 +1,8 @@
 /**********************************************************************************
 * \file   AttackSystem.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  The file contains the system for gameplay attack
+* \author Chin, Clara,   50% Code Contribution
+* \author Low, Troy,     50% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction

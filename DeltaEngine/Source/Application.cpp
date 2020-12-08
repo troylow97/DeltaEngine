@@ -1,10 +1,10 @@
 /**********************************************************************************
 * \file   Application.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  The file contains code for running the engine application
+* \author Chin, Clara,   25% Code Contribution
+* \author Low, Troy,     25% Code Contribution
+* \author Ong, Graeme,   25% Code Contribution
+* \author Tan, Tong Wee, 25% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction

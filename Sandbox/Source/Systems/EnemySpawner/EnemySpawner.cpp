@@ -1,10 +1,7 @@
 /**********************************************************************************
 * \file   EnemySpawner.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  The file contains the system for spawning enemies in the game
+* \author Low, Troy,     100% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
@@ -154,7 +151,7 @@ void EnemySpawner::Update()
             continue;
           }
 
-          if ( env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( *it ).CurrentHealth <= 0 )
+          if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it) && env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( *it ).CurrentHealth <= 0 )
           {
             it = SpawnedEnemiesInGauntlet.erase( it );
           }
@@ -235,16 +232,16 @@ void EnemySpawner::Shutdown()
 EntityID EnemySpawner::SpawnWall( Vector2 position )
 {
   EntityID wall = env.pECS->GetWorld().GetEntityManager().CreateEntity();
-  env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>( wall );
-  env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>( wall );
+  em.AddComponent<RigidBody>( wall );
+  em.AddComponent<Collider>( wall );
   //env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(wall);
   //env.pECS->GetWorld().GetEntityManager().AddComponent<Renderer2D>(wall);
-  env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( wall ).type = EntityCategory::E_WALL;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( wall ).position = position;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( wall ).scale = Vector2 { 1.0,6.0 };
-  env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( wall ).isMoveable = false;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( wall ).CollisionLayerID = 1;
-  env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( wall ).CollisionLayerCheck = 14;
+  em.GetComponent<EntityType>( wall ).type = EntityCategory::E_WALL;
+  em.GetComponent<Transform>( wall ).position = position;
+  em.GetComponent<Transform>( wall ).scale = Vector2 { 1.0,6.0 };
+  em.GetComponent<RigidBody>( wall ).isMoveable = false;
+  em.GetComponent<Collider>( wall ).CollisionLayerID = 1;
+  em.GetComponent<Collider>( wall ).CollisionLayerCheck = 14;
   return wall;
 }
 
@@ -255,21 +252,22 @@ void EnemySpawner::SpawnEnemy( unsigned amount, std::string type, Vector2 positi
     float rand1 = Random::RandomFloatRange( -0.4f, 0.4f );
 
     EntityID enemy = env.pECS->GetWorld().GetEntityManager().CreateEntity();
-    env.pECS->GetWorld().GetEntityManager().AddComponent<RigidBody>( enemy );
-    env.pECS->GetWorld().GetEntityManager().AddComponent<Collider>( enemy );
-    env.pECS->GetWorld().GetEntityManager().AddComponent<Image>( enemy );
-    env.pECS->GetWorld().GetEntityManager().AddComponent<State>( enemy );
-    env.pECS->GetWorld().GetEntityManager().AddComponent<AI>( enemy );
-    env.pECS->GetWorld().GetEntityManager().AddComponent<Attack>( enemy );
-    env.pECS->GetWorld().GetEntityManager().AddComponent<Health>( enemy );
-    env.pECS->GetWorld().GetEntityManager().AddComponent<Renderer2D>( enemy );
-    env.pECS->GetWorld().GetEntityManager().AddComponent<Animator>( enemy );
+    em.AddComponent<RigidBody>( enemy );
+    em.AddComponent<Collider>( enemy );
+    em.AddComponent<Image>( enemy );
+    em.AddComponent<State>( enemy );
+    em.AddComponent<AI>( enemy );
+    em.AddComponent<Attack>( enemy );
+    em.AddComponent<Health>( enemy );
+    em.AddComponent<Renderer2D>( enemy );
+    em.AddComponent<Animator>( enemy );
 
-    env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( enemy ).position = position + rand1;
-    env.pECS->GetWorld().GetEntityManager().GetComponent<AI>( enemy ).original_point = position + rand1;
-    env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( enemy ).type = EntityCategory::E_ENEMY;
-    env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( enemy ).CollisionLayerID = 4;
-    env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( enemy ).CollisionLayerCheck = 9;
+    em.GetComponent<Renderer2D>(enemy).m_Wireframe = false;
+    em.GetComponent<Transform>( enemy ).position = position + rand1;
+    em.GetComponent<AI>( enemy ).original_point = position + rand1;
+    em.GetComponent<EntityType>( enemy ).type = EntityCategory::E_ENEMY;
+    em.GetComponent<Collider>( enemy ).CollisionLayerID = 4;
+    em.GetComponent<Collider>( enemy ).CollisionLayerCheck = 9;
     //env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
     env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>( enemy ).m_SortingLayer = 4;
 
@@ -277,48 +275,51 @@ void EnemySpawner::SpawnEnemy( unsigned amount, std::string type, Vector2 positi
 
     if ( type == "lancer" )
     {
-      env.pECS->GetWorld().GetEntityManager().GetComponent<AI>( enemy ).key = "lancer_spawn";
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( enemy ).CollisionLayerCheck = 1;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( enemy ).Movespeed = LancerData.Movespeed;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( enemy ).Mass = LancerData.Mass;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( enemy ).CurrentHealth = LancerData.Health;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( enemy ).MaxHealth = LancerData.Health;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>( enemy ).MeleeDamage = (int) LancerData.Damage;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( enemy ).scale = LancerData.TransformScale;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( enemy ).offset = LancerData.ColliderOffset;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( enemy ).size = LancerData.ColliderScale;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( enemy ).m_Sprite.m_Key = "Textures/Lancer";
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( enemy ).m_Sprite.m_Index = 0;
+      em.GetComponent<AI>( enemy ).key = "lancer_spawn";
+      em.GetComponent<Collider>( enemy ).CollisionLayerCheck = 1;
+      em.GetComponent<RigidBody>( enemy ).Movespeed = LancerData.Movespeed;
+      em.GetComponent<RigidBody>( enemy ).Mass = LancerData.Mass;
+      em.GetComponent<Health>( enemy ).CurrentHealth = LancerData.Health;
+      em.GetComponent<Health>( enemy ).MaxHealth = LancerData.Health;
+      em.GetComponent<Attack>( enemy ).MeleeDamage = (int) LancerData.Damage;
+      em.GetComponent<Transform>( enemy ).scale = LancerData.TransformScale;
+      em.GetComponent<Collider>( enemy ).offset = LancerData.ColliderOffset;
+      em.GetComponent<Collider>( enemy ).size = LancerData.ColliderScale;
+      em.GetComponent<Image>( enemy ).m_Sprite.m_Key = "Textures/Lancer";
+      em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Lancer.anim";
+      em.GetComponent<Image>( enemy ).m_Sprite.m_Index = 0;
     }
     else if ( type == "fiddler" )
     {
-      env.pECS->GetWorld().GetEntityManager().GetComponent<AI>( enemy ).key = "idle_fiddler";
-      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( enemy ).hasGravity = true;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( enemy ).Movespeed = FiddlerData.Movespeed;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( enemy ).Mass = FiddlerData.Mass;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( enemy ).CurrentHealth = FiddlerData.Health;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( enemy ).MaxHealth = FiddlerData.Health;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>( enemy ).MeleeDamage = (int) FiddlerData.Damage;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( enemy ).scale = FiddlerData.TransformScale;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( enemy ).offset = FiddlerData.ColliderOffset;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( enemy ).size = FiddlerData.ColliderScale;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( enemy ).m_Sprite.m_Key = "Textures/FID_WALK";
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( enemy ).m_Sprite.m_Index = 0;
+      em.GetComponent<AI>( enemy ).key = "idle_fiddler";
+      em.GetComponent<RigidBody>( enemy ).hasGravity = true;
+      em.GetComponent<RigidBody>( enemy ).Movespeed = FiddlerData.Movespeed;
+      em.GetComponent<RigidBody>( enemy ).Mass = FiddlerData.Mass;
+      em.GetComponent<Health>( enemy ).CurrentHealth = FiddlerData.Health;
+      em.GetComponent<Health>( enemy ).MaxHealth = FiddlerData.Health;
+      em.GetComponent<Attack>( enemy ).MeleeDamage = (int) FiddlerData.Damage;
+      em.GetComponent<Transform>( enemy ).scale = FiddlerData.TransformScale;
+      em.GetComponent<Collider>( enemy ).offset = FiddlerData.ColliderOffset;
+      em.GetComponent<Collider>( enemy ).size = FiddlerData.ColliderScale;
+      em.GetComponent<Image>( enemy ).m_Sprite.m_Key = "Textures/FID_WALK";
+      em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Fiddler.anim";
+      em.GetComponent<Image>( enemy ).m_Sprite.m_Index = 0;
     }
     else if ( type == "serpentipede" )
     {
-      env.pECS->GetWorld().GetEntityManager().GetComponent<AI>( enemy ).key = "idle_serpentipede";
-      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( enemy ).hasGravity = true;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( enemy ).Movespeed = SerpentipedeData.Movespeed;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( enemy ).Mass = SerpentipedeData.Mass;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( enemy ).CurrentHealth = SerpentipedeData.Health;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( enemy ).MaxHealth = SerpentipedeData.Health;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>( enemy ).MeleeDamage = (int) SerpentipedeData.Damage;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( enemy ).scale = SerpentipedeData.TransformScale;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( enemy ).offset = SerpentipedeData.ColliderOffset;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>( enemy ).size = SerpentipedeData.ColliderScale;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( enemy ).m_Sprite.m_Key = "Textures/SERP_FULL_IDLE";
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( enemy ).m_Sprite.m_Index = 0;
+      em.GetComponent<AI>( enemy ).key = "idle_serpentipede";
+      em.GetComponent<RigidBody>( enemy ).hasGravity = true;
+      em.GetComponent<RigidBody>( enemy ).Movespeed = SerpentipedeData.Movespeed;
+      em.GetComponent<RigidBody>( enemy ).Mass = SerpentipedeData.Mass;
+      em.GetComponent<Health>( enemy ).CurrentHealth = SerpentipedeData.Health;
+      em.GetComponent<Health>( enemy ).MaxHealth = SerpentipedeData.Health;
+      em.GetComponent<Attack>( enemy ).MeleeDamage = (int) SerpentipedeData.Damage;
+      em.GetComponent<Transform>( enemy ).scale = SerpentipedeData.TransformScale;
+      em.GetComponent<Collider>( enemy ).offset = SerpentipedeData.ColliderOffset;
+      em.GetComponent<Collider>( enemy ).size = SerpentipedeData.ColliderScale;
+      em.GetComponent<Image>( enemy ).m_Sprite.m_Key = "Textures/SERP_FULL_IDLE";
+      em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Serpentipede.anim";
+      em.GetComponent<Image>( enemy ).m_Sprite.m_Index = 0;
 
       unsigned rand_sound = Random::RandomIntRange( 0, 2 );
       switch ( rand_sound )

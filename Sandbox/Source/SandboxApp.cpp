@@ -1,10 +1,8 @@
 /**********************************************************************************
 * \file   Sandbox.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  The file contains code to run the main game
+* \author Chin, Clara,   50% Code Contribution
+* \author Low, Troy,     50% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
@@ -28,6 +26,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
 #include "Systems/EnemySpawner/EnemySpawner.h"
 #include "Audio/AudioEngine.h"
+#include "Systems/AI/ExitScene/ExitSceneCinematic.h"
 
 
 class Sandbox : public Application
@@ -40,8 +39,8 @@ public:
     env.pECS->GetWorld().Load("World/MainMenu.json");
 
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, UISystem, UpgradeSystem>();
-    env.pECS->GetWorld().SetUpdateSequence< AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, UpgradeSystem >();
+    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, UISystem, UpgradeSystem,ExitSceneCinematic>();
+    env.pECS->GetWorld().SetUpdateSequence< AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, UpgradeSystem, ExitSceneCinematic >();
     env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, UISystem>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
