@@ -9,7 +9,10 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "AI_StateMachine.h"
+
+#include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
+#include "Core/GameClock/EngineClock.h"
 
 namespace DeltaEngine
 {
@@ -75,22 +78,30 @@ namespace DeltaEngine
           return;
         }
 
-        ai_state->onExit(id);
+      	if(ai.timer <= 0)
+      	{
+            ai_state->onExit(id);
 
-        ai.key = ai.transition;
-        ai.transition = "null";
+            ai.key = ai.transition;
+            ai.transition = "null";
 
-        const auto find = StateList.find(ai.key);
-        if (find != StateList.end())
-        {
-          ai_state = find->second;
-        }
+            const auto find = StateList.find(ai.key);
+            if (find != StateList.end())
+            {
+                ai_state = find->second;
+            }
+            else
+            {
+                return;
+            }
+
+            ai_state->onEnter(id);
+      	}
         else
         {
-          return;
+            ai.timer -= env.pClock->FixedDeltaTime();
         }
 
-        ai_state->onEnter(id);
       }
     });
     Profiler::Instance().Record("AI System");

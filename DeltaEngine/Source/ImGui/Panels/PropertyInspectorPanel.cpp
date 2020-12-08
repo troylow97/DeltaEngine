@@ -45,7 +45,7 @@ void PropertyInspectorPanel::Render()
     auto &em = env.pECS->GetWorld().GetEntityManager();
 
     size_t index = Editor::entity_id;
-    if ( em.HasComponent<EntityName>( { index } ) )
+    if (em.IsEntityValid({ index }) && em.HasComponent<EntityName>({ index }))
     {
       const auto &entity = em.GetComponent<EntityName>( { index } );
       std::string text {};

@@ -1,0 +1,313 @@
+{
+    "Entities": [
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 50.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.18116039037704469,
+                    "y": 0.9993482828140259,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 0.18116039037704469,
+                    "y": 0.9993482828140259
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/BreathingSpritesheet",
+                    "index": 8
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "State": {},
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": true
+            },
+            "Attack": {
+                "Range Damage": 1,
+                "Melee Damage": 1,
+                "Melee Combo Damage": 3,
+                "Number Of Combo": 0,
+                "Max Combo Number": 3,
+                "Melee Cooldown": 1.0,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            },
+            "Player": {
+                "Upgrade Points Per Enemy Defeated": 50,
+                "Points Needed For Upgrade": 50,
+                "Attack Upgrade Increase": 1,
+                "Health Upgrade Attack": 2,
+                "Dashing Timer Duration": 1.0
+            },
+            "Input": {
+                "Previous": 32,
+                "Current": 0
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 4.056849956512451,
+                    "y": 0.999472439289093,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 20.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 4.056849956512451,
+                    "y": 0.999472439289093
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/FID_WALK",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": true
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            }
+        }
+    ]
+}

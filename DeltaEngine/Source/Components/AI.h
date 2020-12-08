@@ -17,11 +17,13 @@ struct AI
   DeltaEngine::Vector2 original_point;
   std::string key;
   std::string transition;
+  float timer;
 
   AI() :
     original_point{{0,0}},
     key("idle"),
-    transition("null")
+    transition("null"),
+	timer{0.0f}
   {
   }
 };

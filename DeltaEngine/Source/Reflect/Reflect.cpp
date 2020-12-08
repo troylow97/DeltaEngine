@@ -326,8 +326,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("Original Point", &AI::original_point)(rttr::policy::prop::bind_as_ptr)
       .property("AIState", &AI::key)(rttr::policy::prop::bind_as_ptr)
-      .property("Transition", &AI::transition)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
-
+      .property("Transition", &AI::transition)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("TimeBetweenState", &AI::timer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+	
   rttr::registration::class_<EntityType>( "Entity Type" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<EntityType>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )

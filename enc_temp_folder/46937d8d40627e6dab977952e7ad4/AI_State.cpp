@@ -151,7 +151,10 @@ namespace DeltaEngine
   void IdleFiddler::Update(EntityID& monster)
   {
     waypoint.UpdateWaypoint(monster);
-    CheckEdges(monster);
+    if (CheckEdges(monster))
+    {
+        env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster).timer = 3.0f;
+    }
   }
 
   ChaseEnemyFiddler::ChaseEnemyFiddler(Vector2& lost_range)
