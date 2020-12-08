@@ -22,6 +22,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Physics/Collision.h"
 #include "Input/InputManager.h"
 #include "Input/Keys.h"
+#include "Systems/OCullSystem.h"
 
 namespace DeltaEngine
 {
@@ -54,6 +55,7 @@ const unsigned quit_no = 25; // credits default - 4
 
 void UISystem::Initialize()
 {
+  OCullSystem::Enable(true);
   m_screen.push_back( main_screen );
   is_main_menu = true;
   //m_screen.push_back(level1_screen);
