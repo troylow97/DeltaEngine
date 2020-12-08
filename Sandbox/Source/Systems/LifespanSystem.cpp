@@ -36,39 +36,35 @@ void LifespanSystem::Update()
   em.ForEach( [&]( EntityID &id, Health &hp, EntityType &et )
   {
     LimitCurrentHealthToMaxHealth( hp );
-    if ( env.pECS->GetWorld().GetEntityManager().IsEntityValid( UnitManager::GetPlayerID() ) )
-      if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Player>( UnitManager::GetPlayerID() ) )
-      {
-        auto &player = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( UnitManager::GetPlayerID() );
 
-        if ( hp.CurrentHealth <= 0 )
+    if ( hp.CurrentHealth <= 0 )
+    {
+      if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Player>( id ) )
+      {
+        auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( id );
+        p.IsDead = true;
+      }
+      else
+      {
+        DestroyedEntities.push_back( id );
+      }
+    }
+    else
+    {
+      if ( em.HasComponent<Renderer2D>( id ) )
+      {
+        if ( hp.isDamagedTimer > 0.0f )
         {
-          if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Player>( id ) )
-          {
-            auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( id );
-            p.IsDead = true;
-          }
-          else
-          {
-            DestroyedEntities.push_back( id );
-          }
+          em.GetComponent<Renderer2D>( id ).m_Color = { 1,0,0 };
+          hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
         }
         else
         {
-          if ( em.HasComponent<Renderer2D>( id ) )
-          {
-            if ( hp.isDamagedTimer > 0.0f )
-            {
-              em.GetComponent<Renderer2D>( id ).m_Color = { 1,0,0 };
-              hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
-            }
-            else
-            {
-              em.GetComponent<Renderer2D>( id ).m_Color = { 1,1,1 };
-            }
-          }
+          em.GetComponent<Renderer2D>( id ).m_Color = { 1,1,1 };
         }
       }
+    }
+
   } );
 
   for ( EntityID i : DestroyedEntities ) //having a duplicate of this is necessary for now

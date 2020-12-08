@@ -6,7 +6,6 @@
 #include "UnitManager.h"
 #include "Components/Components.h"
 #include "EnemySpawner/EnemySpawner.h"
-#include "ImGui/Panels/GamePanel.h"
 #include "ImGui/Panels/ViewportPanel.h"
 #include "Physics/Collision.h"
 #include "Input/InputManager.h"
@@ -95,7 +94,7 @@ void UISystem::AttackVisualFeedback()
 
 void UISystem::UpdateHealthBar()
 {
-  env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID &id, UI &u, Image &im, Transform &t )
+  env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID &id, UI &u, Image &im, Transform &t, Renderer2D &r )
   {
     if ( env.pECS->GetWorld().GetEntityManager().IsEntityValid( UnitManager::GetPlayerID() ) )
       if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Player>( UnitManager::GetPlayerID() ) )
@@ -110,11 +109,13 @@ void UISystem::UpdateHealthBar()
           const float max_hp = static_cast<float>( hp.MaxHealth );
           const float percentage = ( current_hp / max_hp );
           im.m_FillAmount = percentage;
+          r.m_Wireframe = false;
           t.position.x = player_pos.position.x + translation.x;
           t.position.y = translation.y;
         }
         else if ( u.ui_type == UIType::Healthbar_base )
         {
+          r.m_Wireframe = false;
           t.position.x = player_pos.position.x + translation.x;
           t.position.y = translation.y;
         }
