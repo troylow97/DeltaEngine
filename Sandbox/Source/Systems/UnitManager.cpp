@@ -9,11 +9,10 @@ namespace DeltaEngine
 	
 	EntityID UnitManager::GetPlayerID()
 	{
-		env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, Player& p)
+		env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, Player& p, RigidBody& r, State& s, Animator& a)
 		{
 			player = id;
 		});
-
 		return player;
 	}
 }

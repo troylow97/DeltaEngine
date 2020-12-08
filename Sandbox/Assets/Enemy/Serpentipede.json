@@ -14,5 +14,6 @@
     "health": 50,
     "movespeed": 10.0,
     "mass": 20.0,
-    "damage": 5.0
+    "damage": 5.0,
+    "attackspeed": 2.0
 }

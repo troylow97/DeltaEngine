@@ -1,36 +1,35 @@
 frames 6
-fps 12
+fps 42
 loop 0
 
-RangeAttackSpritesheet_i_0
+Textures/RangeAttackSpritesheet_i_0
 key Textures/RangeAttackSpritesheet
 value 0
-value 0
+frame 0
 
-RangeAttackSpritesheet_i_1
+Textures/RangeAttackSpritesheet_i_1
 key Textures/RangeAttackSpritesheet
 value 1
-value 1
+frame 1
 
-RangeAttackSpritesheet_i_2
+Textures/RangeAttackSpritesheet_i_2
 key Textures/RangeAttackSpritesheet
 value 2
-value 2
+frame 2
 
-RangeAttackSpritesheet_i_3
+Textures/RangeAttackSpritesheet_i_3
 key Textures/RangeAttackSpritesheet
 value 3
-value 3
+frame 3
 
-RangeAttackSpritesheet_i_4
+Textures/RangeAttackSpritesheet_i_4
 key Textures/RangeAttackSpritesheet
 value 4
-value 4
+frame 4
 
-RangeAttackSpritesheet_i_5
+Textures/RangeAttackSpritesheet_i_5
 key Textures/RangeAttackSpritesheet
 value 5
-value 5
-
+frame 5
 
 %

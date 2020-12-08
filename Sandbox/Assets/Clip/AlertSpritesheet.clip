@@ -1,0 +1,55 @@
+frames 10
+fps 12
+loop 1
+
+Textures/AlertSpritesheet_i_0
+key Textures/AlertSpritesheet
+value 0
+frame 0
+
+Textures/AlertSpritesheet_i_1
+key Textures/AlertSpritesheet
+value 1
+frame 1
+
+Textures/AlertSpritesheet_i_2
+key Textures/AlertSpritesheet
+value 2
+frame 2
+
+Textures/AlertSpritesheet_i_3
+key Textures/AlertSpritesheet
+value 3
+frame 3
+
+Textures/AlertSpritesheet_i_4
+key Textures/AlertSpritesheet
+value 4
+frame 4
+
+Textures/AlertSpritesheet_i_5
+key Textures/AlertSpritesheet
+value 5
+frame 5
+
+Textures/AlertSpritesheet_i_6
+key Textures/AlertSpritesheet
+value 6
+frame 6
+
+Textures/AlertSpritesheet_i_7
+key Textures/AlertSpritesheet
+value 7
+frame 7
+
+Textures/AlertSpritesheet_i_8
+key Textures/AlertSpritesheet
+value 8
+frame 8
+
+Textures/AlertSpritesheet_i_9
+key Textures/AlertSpritesheet
+value 9
+frame 9
+
+%

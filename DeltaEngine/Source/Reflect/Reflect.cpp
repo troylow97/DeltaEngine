@@ -35,7 +35,8 @@ rttr::registration::class_<EnemyData>( "EnemyData" )
     .property( "health", &EnemyData::Health )
     .property( "movespeed", &EnemyData::Movespeed )
     .property( "mass", &EnemyData::Mass )
-    .property( "damage", &EnemyData::Damage );
+    .property( "damage", &EnemyData::Damage )
+    .property("attackspeed", &EnemyData::Attackspeed);
 
 rttr::registration::class_<LancerAIData>( "LancerAIData" )
     .property( "charge_detection_range", &LancerAIData::ChargeDetectionRange );
@@ -169,7 +170,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       rttr::value("Screen", UIType::Screen),
       rttr::value("Interface", UIType::Interface),
       rttr::value("Button", UIType::Button),
-      rttr::value("Slider", UIType::Slider)
+      rttr::value("Slider", UIType::Slider),
+      rttr::value("HealthBar_Fill", UIType::Healthbar),
+      rttr::value("HealthBar_Base", UIType::Healthbar_base)
     );
 
   rttr::registration::class_<UI>( "UI" )
@@ -333,8 +336,10 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
         .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
         .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
         .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
-        .property("Max Cooldown", &Attack::AttackCooldown)(rttr::policy::prop::bind_as_ptr)
-        .property("Cooldown Timer", &Attack::CooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Melee Cooldown", &Attack::MeleeCooldown)(rttr::policy::prop::bind_as_ptr)
+        .property("Range Cooldown", &Attack::RangeCooldown)(rttr::policy::prop::bind_as_ptr)
+        .property("Melee Cooldown Timer", &Attack::MeleeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Range Cooldown Timer", &Attack::RangeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
         .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)

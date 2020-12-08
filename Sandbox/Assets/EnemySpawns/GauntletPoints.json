@@ -16,7 +16,7 @@
                         "enemy_type": "fiddler",
                         "spawn_area": {
                             "x": 37.0,
-                            "y": -1.0
+                            "y": -0.5
                         }
                     }
                 ],
@@ -42,7 +42,7 @@
                         "enemy_type": "serpentipede",
                         "spawn_area": {
                             "x": 36.0,
-                            "y": -1.063
+                            "y": -0.5
                         }
                     }
                 ],
@@ -60,7 +60,7 @@
                         "enemy_type": "fiddler",
                         "spawn_area": {
                             "x": 35.0,
-                            "y": -1.0
+                            "y": -0.5
                         }
                     },
 					{					
@@ -68,7 +68,7 @@
                         "enemy_type": "serpentipede",
                         "spawn_area": {
                             "x": 36.0,
-                            "y": -1.063
+                            "y": -0.5
                         }
                     }
                 ]

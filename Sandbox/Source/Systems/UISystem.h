@@ -8,6 +8,7 @@ namespace DeltaEngine
     void LateUpdate() override;
 
     void AttackVisualFeedback();
+    void UpdateHealthBar();
     void Start();
     void Restart();
 
@@ -19,6 +20,7 @@ namespace DeltaEngine
     void QuitGame();
     void PauseGame();
     void UnpauseGame();
+    void BackToMenu();
     void BackToMainMenu();
 private:
   bool isDraggingOnSlider;
@@ -29,10 +31,13 @@ private:
   bool is_main_menu = false;
   bool m_start { false };
   bool m_restart { false };
+  bool m_backmenu { false };
 
   Vector2 VolumeSliderInitialLocation;
   Vector3 PlayerFirstPosition;
   Vector3 PlayerCurrentPosition;
+  Vector3 UPlayerFirstPosition;
+  Vector3 UPlayerCurrentPosition;
   std::vector<unsigned> m_screen;
   END_DEFINE_SYSTEM(GCameraSystem)
 }

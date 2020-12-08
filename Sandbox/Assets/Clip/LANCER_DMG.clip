@@ -1,0 +1,10 @@
+frames 1
+fps 12
+loop 1
+
+Textures/LANCER_DMG_i_0
+key Textures/LANCER_DMG
+value 0
+frame 0
+
+%

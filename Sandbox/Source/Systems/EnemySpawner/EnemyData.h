@@ -12,6 +12,7 @@ namespace DeltaEngine
         float Movespeed;
         float Mass;
         float Damage;
+        float Attackspeed;
     };
 
 }

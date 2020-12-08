@@ -12,7 +12,7 @@ param
 IsJumping 0 0
 
 param
-MeleeAttack 0 0
+Punch 0 0
 
 param
 IsIdle 0 0
@@ -50,7 +50,7 @@ pos
 Exit 371 551
 
 pos
-Clip/IdleSpritesheet 81 109
+Clip/IdleSpritesheet 31 94
 
 pos
 Clip/RunningSpritesheet 161 261
@@ -279,6 +279,18 @@ transition
 start Clip/LancerAttack
 end Exit
 condition LancerAttack ? 0
+endTransition
+
+transition 
+start Clip/RunningSpritesheet
+end Clip/Punch1
+condition Punch1 ? 1
+endTransition
+
+transition 
+start Clip/RangeAttackSpritesheet
+end Clip/IdleSpritesheet
+condition Ranged ? 0
 endTransition
 
 %endfile

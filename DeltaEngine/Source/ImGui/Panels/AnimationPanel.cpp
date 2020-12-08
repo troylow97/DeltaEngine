@@ -93,7 +93,7 @@ namespace DeltaEngine
           ImGui::Text("Preview");
 
           if (playingAnimation)
-            animTimer += GetEnv().pClock->DeltaTime();
+            animTimer += GetEnv().pClock->FixedDeltaTime();
           while (animTimer > 1.0f * clip->GetTotalFrames() / clip->GetFps())
             animTimer -= 1.0f * clip->GetTotalFrames() / clip->GetFps();
 

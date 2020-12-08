@@ -249,12 +249,15 @@ namespace DeltaEngine::Deserialize
     {
       enumeration enum_prop = obj_dat.get_type().get_raw_type().get_enumeration();
       auto v = enum_prop.name_to_value(extracted.get_value<std::string>());
+
       if (obj_dat.get_type() == type::get<Alignment*>())
         *obj_dat.get_value<Alignment*>() = v.get_value<Alignment>();
       else if (obj_dat.get_type() == type::get<EntityCategory*>())
         *obj_dat.get_value<EntityCategory*>() = v.get_value<EntityCategory>();
       else if (obj_dat.get_type() == type::get<UIType*>())
         *obj_dat.get_value<UIType*>() = v.get_value<UIType>();
+      else if (obj_dat.get_type() == type::get<FillType*>())
+        *obj_dat.get_value<FillType*>() = v.get_value<FillType>();
     }
 
   }
