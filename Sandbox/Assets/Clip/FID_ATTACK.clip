@@ -1,10 +1,65 @@
-frames 1
+frames 12
 fps 12
-loop 1
+loop 0
 
 Textures/FID_ATTACK_i_0
 key Textures/FID_ATTACK
 value 0
 frame 0
+
+Textures/FID_ATTACK_i_1
+key Textures/FID_ATTACK
+value 1
+frame 1
+
+Textures/FID_ATTACK_i_2
+key Textures/FID_ATTACK
+value 2
+frame 2
+
+Textures/FID_ATTACK_i_3
+key Textures/FID_ATTACK
+value 3
+frame 3
+
+Textures/FID_ATTACK_i_4
+key Textures/FID_ATTACK
+value 4
+frame 4
+
+Textures/FID_ATTACK_i_5
+key Textures/FID_ATTACK
+value 5
+frame 5
+
+Textures/FID_ATTACK_i_6
+key Textures/FID_ATTACK
+value 6
+frame 6
+
+Textures/FID_ATTACK_i_7
+key Textures/FID_ATTACK
+value 7
+frame 7
+
+Textures/FID_ATTACK_i_8
+key Textures/FID_ATTACK
+value 8
+frame 8
+
+Textures/FID_ATTACK_i_9
+key Textures/FID_ATTACK
+value 9
+frame 9
+
+Textures/FID_ATTACK_i_10
+key Textures/FID_ATTACK
+value 10
+frame 10
+
+Textures/FID_ATTACK_i_11
+key Textures/FID_ATTACK
+value 11
+frame 11
 
 %

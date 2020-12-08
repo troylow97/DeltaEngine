@@ -51,49 +51,49 @@ Clip/FID_ALERT 173 219
 transition 
 start Clip/FID_WALK
 end Clip/FID_ALERT
-condition IsAlerted ? 0
+condition IsAlerted ? 1
 endTransition
 
 transition 
 start Clip/FID_ALERT
 end Clip/FID_ALERT_RUN
-condition IsAlertRunning ? 0
+condition IsAlertRunning ? 1
 endTransition
 
 transition 
 start Clip/FID_ALERT_RUN
 end Clip/FID_ATTACK
-condition IsAttacking ? 0
+condition IsAttacking ? 1
 endTransition
 
 transition 
 start Clip/FID_ATTACK
 end Clip/FID_DEATH
-condition IsDead ? 0
+condition IsDead ? 1
 endTransition
 
 transition 
 start Clip/FID_ALERT_RUN
 end Clip/FID_DEATH
-condition IsDead ? 0
+condition IsDead ? 1
 endTransition
 
 transition 
 start Clip/FID_ALERT
 end Clip/FID_DEATH
-condition IsDead ? 0
+condition IsDead ? 1
 endTransition
 
 transition 
 start Clip/FID_ATTACK
 end Clip/FID_ALERT
-condition IsAlerted ? 0
+condition IsAlerted ? 1
 endTransition
 
 transition 
 start Clip/FID_ATTACK
 end Clip/FID_WALK
-condition IsPatrolling ? 0
+condition IsPatrolling ? 1
 endTransition
 
 %endfile

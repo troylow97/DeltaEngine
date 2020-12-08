@@ -1,4 +1,4 @@
-frames 1
+frames 6
 fps 12
 loop 1
 
@@ -6,5 +6,30 @@ Textures/FID_ALERT_i_0
 key Textures/FID_ALERT
 value 0
 frame 0
+
+Textures/FID_ALERT_i_1
+key Textures/FID_ALERT
+value 1
+frame 1
+
+Textures/FID_ALERT_i_2
+key Textures/FID_ALERT
+value 2
+frame 2
+
+Textures/FID_ALERT_i_3
+key Textures/FID_ALERT
+value 3
+frame 3
+
+Textures/FID_ALERT_i_4
+key Textures/FID_ALERT
+value 4
+frame 4
+
+Textures/FID_ALERT_i_5
+key Textures/FID_ALERT
+value 5
+frame 5
 
 %

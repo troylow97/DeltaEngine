@@ -38,7 +38,7 @@ namespace DeltaEngine
       m_SortingOrder{0.0f},
       m_Active{true},
       m_Shaded{true},
-      m_Wireframe{true}
+      m_Wireframe{false}
     {
     };
   };
