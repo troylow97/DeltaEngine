@@ -78,29 +78,22 @@ namespace DeltaEngine
           return;
         }
 
-      	if(ai.timer <= 0)
-      	{
-            ai_state->onExit(id);
+        ai_state->onExit(id);
 
-            ai.key = ai.transition;
-            ai.transition = "null";
+        ai.key = ai.transition;
+        ai.transition = "null";
 
-            const auto find = StateList.find(ai.key);
-            if (find != StateList.end())
-            {
-                ai_state = find->second;
-            }
-            else
-            {
-                return;
-            }
-
-            ai_state->onEnter(id);
-      	}
+        const auto find = StateList.find(ai.key);
+        if (find != StateList.end())
+        {
+            ai_state = find->second;
+        }
         else
         {
-            ai.timer -= env.pClock->FixedDeltaTime();
+            return;
         }
+
+        ai_state->onEnter(id);
 
       }
     });
