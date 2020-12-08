@@ -11,6 +11,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "ExitSceneCinematic.h"
 #include "../../UnitManager.h"
 #include "../AITools.h"
+#include "DeltaEngine.h"
 namespace DeltaEngine
 {
     void ExitSceneCinematic::Initialize()
@@ -34,6 +35,13 @@ namespace DeltaEngine
             else if(!StopPointTriggered && AITools::EntityisAtPointInX(p, StopPoint.x, 1.0f))
             {
                 em.GetComponent<RigidBody>(p).Direction = Vector2{ 0,0 };
+            }
+
+            if (ExitPointTriggered && !StopPointTriggered)
+            {
+              static float timer = 0;
+              timer += GetEnv().pClock->DeltaTime();
+              Camera::allCameras[0]->fadeColorAmt = timer;
             }
         }
 
