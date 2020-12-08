@@ -29,5 +29,8 @@ namespace DeltaEngine
 
     }
 
-
+    void ExitSceneCinematic::LateUpdate()
+    {
+	    
+    }
 }

@@ -1,13 +1,13 @@
 #pragma once
 #include "Core/Math/Vector.h"
 #include "ECS/ECSModule.h"
-#include "Components/Components.h"
-
+#include "Components/Transform.h"
 namespace DeltaEngine
 {
-	DEFINE_SYSTEM(ExitSceneCinematic, Transform, EntityType)
+	DEFINE_SYSTEM(ExitSceneCinematic, Transform)
     void Initialize() override;
 	void Update() override;
+	void LateUpdate() override;
 
 private:
 	Vector2 ExitPoint;

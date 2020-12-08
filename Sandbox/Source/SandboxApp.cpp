@@ -15,6 +15,7 @@
 #include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
 #include "Systems/EnemySpawner/EnemySpawner.h"
 #include "Audio/AudioEngine.h"
+#include "Systems/AI/ExitScene/ExitSceneCinematic.h"
 
 
 class Sandbox : public Application
@@ -27,8 +28,8 @@ public:
     env.pECS->GetWorld().Load("World/MainMenu.json");
 
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, UISystem, UpgradeSystem>();
-    env.pECS->GetWorld().SetUpdateSequence< AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, UpgradeSystem >();
+    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, UISystem, UpgradeSystem,ExitSceneCinematic>();
+    env.pECS->GetWorld().SetUpdateSequence< AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, UpgradeSystem, ExitSceneCinematic >();
     env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, UISystem>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
