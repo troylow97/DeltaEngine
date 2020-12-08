@@ -1,7 +1,8 @@
 /**********************************************************************************
 * \file   ExitSceneCinematic.cpp
 * \brief  The file contains the code for exiting the scene
-* \author Low, Troy,     100% Code Contribution
+* \author Low, Troy,     50% Code Contribution
+* \author Chin, Clara,   50% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
