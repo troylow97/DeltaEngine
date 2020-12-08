@@ -13,7 +13,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "ParticleSystem.h"
 #include "Core/Math/Math.h"
-#include "Core/Math/Random.h"
+#include "Core/Utils/Random.h"
 #include "ErrorCheck.h"
 #include "OpenGLSystem.h"
 #include "Core/Debugging/Logger/Log.h"
