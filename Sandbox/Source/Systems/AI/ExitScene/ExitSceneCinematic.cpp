@@ -17,7 +17,8 @@ namespace DeltaEngine
     void ExitSceneCinematic::Initialize()
     {
         ExitPoint = Vector2{ 41.0f,-1.063f };
-        ExitPoint = Vector2{ 44.0f,-1.063f };
+        StopPoint = Vector2{ 44.0f,-1.063f };
+        timer = 0.0f;
     }
 
     void ExitSceneCinematic::Update()
@@ -35,13 +36,9 @@ namespace DeltaEngine
             else if(!StopPointTriggered && AITools::EntityisAtPointInX(p, StopPoint.x, 1.0f))
             {
                 em.GetComponent<RigidBody>(p).Direction = Vector2{ 0,0 };
-            }
-
-            if (ExitPointTriggered && !StopPointTriggered)
-            {
-              static float timer = 0;
-              timer += GetEnv().pClock->DeltaTime();
-              Camera::allCameras[0]->fadeColorAmt = timer;
+                StopPointTriggered = true;
+                timer += GetEnv().pClock->DeltaTime();
+                Camera::allCameras[0]->fadeColorAmt = timer;
             }
         }
 

@@ -22,9 +22,10 @@ namespace DeltaEngine
 private:
 	Vector2 ExitPoint;
 	Vector2 StopPoint;
+	float timer;
 	bool ExitPointTriggered;
 	bool StopPointTriggered;
-
+	
 	END_DEFINE_SYSTEM(ExitSceneCinematic)
 
 }
