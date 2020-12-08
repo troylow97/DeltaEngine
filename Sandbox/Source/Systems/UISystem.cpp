@@ -124,6 +124,11 @@ void UISystem::UpdateHealthBar()
 
 void UISystem::Update()
 {
+  
+}
+
+void UISystem::LateUpdate()
+{
   if ( InputManager::Instance().IsKeyTriggered( DEVK_ESCAPE ) )
   {
     bool option_menu_bool { false };
@@ -177,8 +182,9 @@ void UISystem::Update()
     {
       if ( pause_screen_bool )
       {
-        auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( UnitManager::GetPlayerID() );
+        auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( { 0 } );
         PlayerCurrentPosition = p.position;
+        PlayerCurrentPosition.y = 0.0f;
         Vector3 difference;
         difference = PlayerCurrentPosition - PlayerFirstPosition;
         PlayerFirstPosition = PlayerCurrentPosition;
@@ -204,8 +210,9 @@ void UISystem::Update()
   {
     bool paused { false };
 
-    auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( UnitManager::GetPlayerID() );
+    auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( {0} );
     UPlayerCurrentPosition = p.position;
+    PlayerCurrentPosition.y = 0.0f;
     Vector3 difference;
     difference = UPlayerCurrentPosition - UPlayerFirstPosition;
     UPlayerFirstPosition = UPlayerCurrentPosition;
@@ -262,10 +269,7 @@ void UISystem::Update()
         if ( env.pECS->GetWorld().GetEntityManager().IsEntityValid( UnitManager::GetPlayerID() ) )
           if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Player>( UnitManager::GetPlayerID() ) )
           {
-            auto &id = em.GetComponent<EntityID>( UnitManager::GetPlayerID() );
-            Vector3 player_pos = em.GetComponent<Transform>( id ).position;
-            auto &p = em.GetComponent<Player>( UnitManager::GetPlayerID() );
-            auto &r = em.GetComponent<Renderer2D>( UnitManager::GetPlayerID() );
+            Vector3 player_pos = em.GetComponent<Transform>( { 0 } ).position;
 
             em.ForEach( [&]( UI &ui, EntityID &id, EntityName &en )
             {
@@ -390,11 +394,6 @@ void UISystem::Update()
     BackToMenu();
 }
 
-void UISystem::LateUpdate()
-{
-
-}
-
 void UISystem::Return()
 {
   m_screen.pop_back();
@@ -419,9 +418,8 @@ void UISystem::Start()
   env.pClock->TimeScale( 1.0f );
   m_screen.clear();
   is_main_menu = false;
-  auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( UnitManager::GetPlayerID() );
-  PlayerFirstPosition = { 0.0f, 0.0f, 0.0f };// p.position;
-  UPlayerFirstPosition = { 0.0f, 0.0f, 0.0f };// p.position;
+  PlayerFirstPosition = { 0.0f, 1.1f, 0.0f };// p.position;
+  UPlayerFirstPosition = { 0.0f, 1.1f, 0.0f };// p.position;
   m_screen.push_back( level1_screen );
   m_start = false;
 }
@@ -440,10 +438,8 @@ void UISystem::Restart()
   env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Initialize();
   m_screen.clear();
   is_main_menu = false;
-  auto &p = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( UnitManager::GetPlayerID() );
-  //PlayerFirstPosition = { 1.0f, -1.01f, 0.0f };// p.position;
-  PlayerFirstPosition = { 0.0f, 0.0f, 0.0f };// p.position;
-  UPlayerFirstPosition = { 0.0f, 0.0f, 0.0f };// p.position;
+  PlayerFirstPosition = { 0.0f, 1.1f, 0.0f };// p.position;
+  UPlayerFirstPosition = { 0.0f, 1.1f, 0.0f };// p.position;
   m_screen.push_back( level1_screen );
   m_restart = false;
 }

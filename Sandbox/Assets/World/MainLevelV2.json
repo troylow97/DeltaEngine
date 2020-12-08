@@ -31,9 +31,9 @@
             "Camera": {
                 "Camera Size": 2.0,
                 "Background Color": {
-                    "r": 0.1921568661928177,
-                    "g": 0.3019607961177826,
-                    "b": 0.4745098054409027,
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0,
                     "a": 1.0
                 }
             }
@@ -105,7 +105,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -175,7 +175,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -315,7 +315,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -455,7 +455,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -525,7 +525,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -595,7 +595,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -665,7 +665,7 @@
                 "Order": 2.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -735,7 +735,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -875,7 +875,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -1085,7 +1085,7 @@
                 "Order": -0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -1155,7 +1155,7 @@
                 "Order": 0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -1295,7 +1295,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -1365,7 +1365,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -1435,7 +1435,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -1715,7 +1715,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -1855,7 +1855,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -1925,7 +1925,7 @@
                 "Order": 0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -2065,7 +2065,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -2205,7 +2205,7 @@
                 "Order": 1.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -2275,7 +2275,7 @@
                 "Order": -0.20000000298023225,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -2345,7 +2345,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -2555,7 +2555,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -2765,7 +2765,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -2835,7 +2835,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3185,7 +3185,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3255,7 +3255,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3325,7 +3325,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3395,7 +3395,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3465,7 +3465,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3605,7 +3605,7 @@
                 "Order": 1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3675,7 +3675,7 @@
                 "Order": 1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3745,7 +3745,7 @@
                 "Order": 1.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3815,7 +3815,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -3885,7 +3885,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -4025,7 +4025,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -4165,7 +4165,7 @@
                 "Order": -0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -4235,7 +4235,7 @@
                 "Order": -0.20000000298023225,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -4305,7 +4305,7 @@
                 "Order": -0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -4375,7 +4375,7 @@
                 "Order": 1.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -4445,7 +4445,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -4515,7 +4515,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -4655,7 +4655,7 @@
                 "Order": -0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5005,7 +5005,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5075,7 +5075,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5145,7 +5145,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5215,7 +5215,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5285,7 +5285,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5425,7 +5425,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5495,7 +5495,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5565,7 +5565,7 @@
                 "Order": 1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5635,7 +5635,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5705,7 +5705,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5775,7 +5775,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -5985,7 +5985,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -6335,7 +6335,7 @@
                 "Order": 3.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -6475,7 +6475,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -6545,7 +6545,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -6685,7 +6685,7 @@
                 "Order": 1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -6825,7 +6825,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -6895,7 +6895,7 @@
                 "Order": 1.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -6965,7 +6965,7 @@
                 "Order": 2.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7035,7 +7035,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7105,7 +7105,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7175,7 +7175,7 @@
                 "Order": 1.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7385,7 +7385,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7525,7 +7525,7 @@
                 "Order": 1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7595,7 +7595,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7665,7 +7665,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7735,7 +7735,7 @@
                 "Order": 1.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7805,7 +7805,7 @@
                 "Order": 1.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7875,7 +7875,7 @@
                 "Order": 1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -7945,7 +7945,7 @@
                 "Order": 2.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8015,7 +8015,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8085,7 +8085,7 @@
                 "Order": -0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8155,7 +8155,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8225,7 +8225,7 @@
                 "Order": 0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8295,7 +8295,7 @@
                 "Order": 0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8365,7 +8365,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8435,7 +8435,7 @@
                 "Order": -0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8505,7 +8505,7 @@
                 "Order": -0.20000000298023225,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8575,7 +8575,7 @@
                 "Order": -0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8645,7 +8645,7 @@
                 "Order": -0.20000000298023225,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8715,7 +8715,7 @@
                 "Order": -0.30000001192092898,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8785,7 +8785,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8855,7 +8855,7 @@
                 "Order": -0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8925,7 +8925,7 @@
                 "Order": -0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -8995,7 +8995,7 @@
                 "Order": -0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9065,7 +9065,7 @@
                 "Order": -0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9135,7 +9135,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9205,7 +9205,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9275,7 +9275,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9345,7 +9345,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9415,7 +9415,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9485,7 +9485,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9555,7 +9555,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9625,7 +9625,7 @@
                 "Order": -1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9695,7 +9695,7 @@
                 "Order": -1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9765,7 +9765,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9835,7 +9835,7 @@
                 "Order": -1.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9905,7 +9905,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -9975,7 +9975,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10045,7 +10045,7 @@
                 "Order": 0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10115,7 +10115,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10185,7 +10185,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10255,7 +10255,7 @@
                 "Order": 0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10325,7 +10325,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10395,7 +10395,7 @@
                 "Order": 0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10465,7 +10465,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10535,7 +10535,7 @@
                 "Order": 0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10605,7 +10605,7 @@
                 "Order": -0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10675,7 +10675,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10745,7 +10745,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10815,7 +10815,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10885,7 +10885,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -10955,7 +10955,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11025,7 +11025,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11095,7 +11095,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11165,7 +11165,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11235,7 +11235,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11305,7 +11305,7 @@
                 "Order": 0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11445,7 +11445,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11515,7 +11515,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11585,7 +11585,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11655,7 +11655,7 @@
                 "Order": 1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11725,7 +11725,7 @@
                 "Order": 1.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -11935,7 +11935,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12005,7 +12005,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12075,7 +12075,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12145,7 +12145,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12215,7 +12215,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12285,7 +12285,7 @@
                 "Order": 0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12355,7 +12355,7 @@
                 "Order": 0.20000000298023225,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12425,7 +12425,7 @@
                 "Order": 0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12495,7 +12495,7 @@
                 "Order": 0.20000000298023225,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12565,7 +12565,7 @@
                 "Order": 0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12635,7 +12635,7 @@
                 "Order": 0.20000000298023225,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12705,7 +12705,7 @@
                 "Order": 0.30000001192092898,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12775,7 +12775,7 @@
                 "Order": 0.10000000149011612,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12845,7 +12845,7 @@
                 "Order": 0.20000000298023225,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12915,7 +12915,7 @@
                 "Order": 0.30000001192092898,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -12985,7 +12985,7 @@
                 "Order": 0.30000001192092898,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -13185,7 +13185,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -13285,7 +13285,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -13385,7 +13385,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -13685,7 +13685,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -14116,7 +14116,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "State": {},
             "AI": {
@@ -14248,7 +14248,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "State": {},
             "AI": {
@@ -14380,7 +14380,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "State": {},
             "AI": {
@@ -14512,7 +14512,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "State": {},
             "AI": {
@@ -14644,7 +14644,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "State": {},
             "AI": {
@@ -14776,7 +14776,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "State": {},
             "AI": {
@@ -14908,7 +14908,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "State": {},
             "AI": {
@@ -15010,7 +15010,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "UpgradeHPButton",
@@ -15088,7 +15088,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -15166,7 +15166,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -15244,7 +15244,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -15322,7 +15322,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "UpgradeDamageButton",
@@ -15400,7 +15400,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -15478,7 +15478,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -15556,7 +15556,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -15634,7 +15634,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "RestartGame",
@@ -15712,7 +15712,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -15790,7 +15790,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -15868,7 +15868,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -15946,7 +15946,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16024,7 +16024,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16102,7 +16102,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16180,7 +16180,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16258,7 +16258,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16336,7 +16336,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16414,7 +16414,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16492,7 +16492,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16570,7 +16570,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16648,7 +16648,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16726,7 +16726,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "UpgradeHPButton",
@@ -16804,7 +16804,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "UpgradeDamageButton",
@@ -16882,7 +16882,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -16960,7 +16960,7 @@
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17038,7 +17038,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17116,7 +17116,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17194,7 +17194,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17272,7 +17272,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17350,7 +17350,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17428,7 +17428,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17506,7 +17506,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17584,7 +17584,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17662,7 +17662,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17740,7 +17740,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17818,7 +17818,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17896,7 +17896,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -17974,7 +17974,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18052,7 +18052,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18130,7 +18130,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18208,7 +18208,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18286,7 +18286,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18364,7 +18364,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18442,7 +18442,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18520,7 +18520,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18598,7 +18598,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "BackToMainMenu",
@@ -18676,7 +18676,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18754,7 +18754,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18832,7 +18832,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18910,7 +18910,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -18988,7 +18988,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -19066,7 +19066,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -19144,7 +19144,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -19222,7 +19222,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -19300,7 +19300,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "UI": {
                 "Function": "",
@@ -19470,7 +19470,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -19551,7 +19551,7 @@
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             }
         },
         {
@@ -19621,7 +19621,7 @@
                 "Order": 0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "Animator": {
                 "Controller Key": "Animation/Window",
@@ -19695,7 +19695,7 @@
                 "Order": 0.10000000149011612,
                 "Active": true,
                 "Shaded": true,
-                "Wireframe": true
+                "Wireframe": false
             },
             "Animator": {
                 "Controller Key": "Animation/Sign",
@@ -19818,7 +19818,7 @@
                 "Melee Combo Damage": 10,
                 "Number Of Combo": 2,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 0.10000000149011612,
+                "Melee Cooldown": 0.5,
                 "Range Cooldown": 0.4000000059604645,
                 "Melee Cooldown Timer": 0.0,
                 "Range Cooldown Timer": 0.0,

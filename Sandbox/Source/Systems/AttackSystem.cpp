@@ -36,35 +36,24 @@ void AttackSystem::Update()
   em.ForEach( [&]( EntityID &id, Attack &a, Image &im, Animator &anim, State &st )
   {
     if ( a.MeleeCooldownTimer > -0.2 )
-    {
       a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
-    }
     else
-    {
       em.GetComponent<State>( id ).SetBool( "MeleeAttack", false );
-    }
 
     if ( a.RangeCooldownTimer > -0.2 )
-    {
       a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
-    }
     else
-    {
-      em.GetComponent<State>( id ).SetBool( "RangeAttack", false );
-    }
+      em.GetComponent<State>( id ).SetBool( "Ranged", false );
 
-    if ( a.RangeAttack )
+    if ( a.RangeAttack && a.RangeCooldownTimer <= 0 )
     {
-      if ( a.RangeCooldownTimer <= -0.2 )
-      {
-        em.GetComponent<State>( id ).SetBool( "RangeAttack", true );
-        RangedAttackingEntities.push_back( id );
-        a.RangeCooldownTimer = a.RangeCooldown;
-      }
+      em.GetComponent<State>( id ).SetBool( "Ranged", true );
+      RangedAttackingEntities.push_back( id );
+      a.RangeCooldownTimer = a.RangeCooldown;
       a.RangeAttack = false;
     }
 
-    if ( a.MeleeAttack && a.MeleeCooldownTimer<= 0 )
+    if ( a.MeleeAttack && a.MeleeCooldownTimer <= 0 )
     {
       a.StartComboCooldownTimer = true;
       if ( a.NumberOfCombos != a.MaxComboNumber )
@@ -76,13 +65,13 @@ void AttackSystem::Update()
           st.SetBool( "Punch2", false );
           st.SetBool( "Punch3", false );
         }
-        if ( a.NumberOfCombos == 2 )
+        else if ( a.NumberOfCombos == 2 )
         {
           st.SetBool( "Punch2", true );
           st.SetBool( "Punch1", false );
           st.SetBool( "Punch3", false );
         }
-        if ( a.NumberOfCombos == 3 )
+        else if ( a.NumberOfCombos == 3 )
         {
           st.SetBool( "Punch3", true );
           st.SetBool( "Punch1", false );
@@ -91,8 +80,8 @@ void AttackSystem::Update()
         }
       }
 
-        MeleeAttackingEntities.push_back( id );
-        a.MeleeCooldownTimer = a.MeleeCooldown;
+      MeleeAttackingEntities.push_back( id );
+      a.MeleeCooldownTimer = a.MeleeCooldown;
     }
 
     a.MeleeAttack = false;
@@ -101,7 +90,7 @@ void AttackSystem::Update()
     if ( a.StartComboCooldownTimer )
     {
       a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
-      if (! (a.ComboCooldownTimer > 0) )
+      if ( !( a.ComboCooldownTimer > 0 ) )
       {
         st.SetBool( "Punch1", false );
         st.SetBool( "Punch2", false );

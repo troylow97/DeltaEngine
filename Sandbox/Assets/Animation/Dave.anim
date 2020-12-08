@@ -287,4 +287,10 @@ end Clip/Punch1
 condition Punch1 ? 1
 endTransition
 
+transition 
+start Clip/RangeAttackSpritesheet
+end Clip/IdleSpritesheet
+condition Ranged ? 0
+endTransition
+
 %endfile
