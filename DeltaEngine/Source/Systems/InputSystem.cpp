@@ -21,6 +21,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Input/Keys.h"
 #include "../../Sandbox/Source/Systems/UnitManager.h"
+#include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
@@ -173,6 +174,8 @@ else if ( InputManager::Instance().IsKeyReleased( DEVK_DOWN ) )
         p1.IsJumping = true;
       i1.previousKey = DEVK_SPACE;
       idle_timer = 0.0f;
+
+      AudioEngine::Play("Audio/jump.wav");
     } );
   }
   if ( InputManager::Instance().IsKeyReleased( DEVK_SPACE ) )

@@ -62,36 +62,7 @@ namespace DeltaEngine
 
   bool CollisionIntersection_RayCircle(const Ray& ray, Collider& col2, Manifold& m);
 
-  //Main
-  bool CollisionIntersection_Main(Collider&, RigidBody&, Collider&, RigidBody&, Manifold& m);
-
-  bool CollisionIntersection_Sub_Box(Collider&, RigidBody&, Collider&, RigidBody&, Manifold& m);
-
-  bool CollisionIntersection_Sub_Circle(Collider&, RigidBody&, Collider&, RigidBody&, Manifold& m);
-
-  bool CollisionIntersection_Sub_Ray(Collider&, RigidBody&, Collider&, RigidBody&, Manifold& m);
-
-  bool CollisionIntersection_Sub_Line(Collider&, Collider&, Manifold& m);
-
   //Calculate Manifold
 
   bool AABBvsAABB_Manifold(Collider& A, Vector2 scaleA, Collider& B, Vector2 scaleB, Manifold& m);
-  //UNUSED FUNCTIONS
-
-  //int CollisionIntersection_CircleLineSegment(const Circle& circle,
-  //	const Vector2& ptEnd,
-  //	const LineSegment& lineSeg,
-  //	Vector2& interPt,
-  //	Vector2& normalAtCollision,
-  //	float& interTime,
-  //	bool& checkLineEdges);
-
-  //Need to add
-  //int CheckMovingCircleToLineEdge(bool withinBothLines,
-  //	const Circle& circle,
-  //	const Vector2& ptEnd,
-  //	const LineSegment& lineSeg,
-  //	Vector2& interPt,
-  //	Vector2& normalAtCollision,
-  //	float& interTime);
 }
