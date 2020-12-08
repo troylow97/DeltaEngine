@@ -79,7 +79,8 @@ namespace DeltaEngine
                     if (pos.position.y <= 7.8f)
                     {
                         UISystem::credits_rolling = true;
-                        pos.position.y += (GetEnv().pClock->FixedDeltaTime() * 0.3f);
+                        for (size_t step = 0; step < env.pClock->Timesteps(); ++step)
+                          pos.position.y += (GetEnv().pClock->FixedDeltaTime() * 0.3f);
                     }
                     else
                     {
