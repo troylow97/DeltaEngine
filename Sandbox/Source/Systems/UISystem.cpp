@@ -30,12 +30,12 @@ namespace DeltaEngine
   const unsigned interface = 2;
   const unsigned start_game_selected = 3;
   const unsigned control_selected = 4;
-  const unsigned option_selected = 5;
+  const unsigned resume_selected = 5;
   const unsigned credits_selected = 6;
   const unsigned restart_selected = 7;
   const unsigned quit_game_selected = 8;
   const unsigned control_screen = 9;
-  const unsigned option_screen = 10;
+  const unsigned resume_screen = 10;
   const unsigned credits_screen = 11;
   const unsigned gameover_screen = 12;
   const unsigned upgrade_page = 13;
@@ -151,22 +151,22 @@ namespace DeltaEngine
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
     {
-      bool option_menu_bool{false};
+      //bool option_menu_bool{false};
       bool pause_screen_bool{false};
 
       for (auto& screen : m_screen)
       {
-        if (screen == option_screen)
+        if (screen == resume_screen)
         {
-          m_screen.clear();
-          if (is_main_menu)
-            m_screen.push_back(main_screen);
-          else
-          {
-            m_screen.push_back(pause_screen);
-            pause_screen_bool = true;
-          }
-          break;
+          ////////////////////m_screen.clear();
+          ////////////////////if (is_main_menu)
+          ////////////////////  m_screen.push_back(main_screen);
+          ////////////////////else
+          ////////////////////{
+          ////////////////////  m_screen.push_back(pause_screen);
+          ////////////////////  pause_screen_bool = true;
+          ////////////////////}
+          ////////////////////break;
         }
         if (screen == control_screen)
         {
@@ -271,7 +271,7 @@ namespace DeltaEngine
       //}
       for (auto& screen : m_screen)
       {
-        if (screen == pause_screen || screen == control_screen || screen == option_screen || screen == gameover_screen
+        if (screen == pause_screen || screen == control_screen || screen == gameover_screen
           || screen == upgrade_page || screen == quit_confirmation)
         {
           paused = true;
