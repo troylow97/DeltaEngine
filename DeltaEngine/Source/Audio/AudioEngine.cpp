@@ -21,6 +21,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "AudioEngine.h"
 #include "FMODWrapper.h"
+#include "Core/TypeAlias.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 
@@ -87,6 +88,8 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(fmod->pSystem->createSound(name.c_str(), mode, nullptr, &sound));
       if (sound)
         fmod->sounds[name] = sound;
+
+      std::cout << name << std::endl;
     }
   }
 
@@ -103,13 +106,12 @@ namespace DeltaEngine
   {
     ChannelID id = fmod->nextChannelID++;
     auto result = fmod->sounds.find(name);
-    if (result == fmod->sounds.end())
+    if ( result == fmod->sounds.end() )
     {
-      LoadSound(name);
-      result = fmod->sounds.find(name);
-      if (result == fmod->sounds.end())
-        return id;
+      DeltaEngine_CORE_WARN( "Audio - \"{}\" not found", name);
+      return u64_max;
     }
+
     FMOD::Channel* channel{nullptr};
     FMODWrapper::ErrorChecker(fmod->pSystem->playSound(result->second, nullptr, true, &channel));
     if (channel)

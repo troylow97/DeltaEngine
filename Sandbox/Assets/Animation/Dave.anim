@@ -9,9 +9,6 @@ param
 Speed 0 0
 
 param
-IsJumping 0 0
-
-param
 Punch 0 0
 
 param
@@ -40,6 +37,9 @@ Punch3 0 0
 
 param
 LancerAttack 0 0
+
+param
+NewParam 0 0
 
 %EditorPositions:
 
@@ -187,8 +187,8 @@ endTransition
 transition 
 start Clip/RunningSpritesheet
 end Clip/FallingSpritesheet
-condition PlayerVelocityY < 0
-condition IsJumping ? 0
+condition PlayerVelocityY ! 0
+condition Speed ? 0
 endTransition
 
 transition 

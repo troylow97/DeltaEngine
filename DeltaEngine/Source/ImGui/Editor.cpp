@@ -166,9 +166,9 @@ namespace DeltaEngine
       }
       if (ImGui::BeginMenu("View"))
       {
-        if (ImGui::MenuItem("World Hierarchy", " Ctrl+1"))
+        if (ImGui::MenuItem("World Hierarchy Panel", " Ctrl+1"))
           m_panels[6]->Enable();
-        if (ImGui::MenuItem("Property Inspector", " Ctrl+2"))
+        if (ImGui::MenuItem("Property Inspector Panel", " Ctrl+2"))
           m_panels[5]->Enable();
         if (ImGui::MenuItem("Tilemap Panel", " Ctrl+3"))
           m_panels[4]->Enable();
