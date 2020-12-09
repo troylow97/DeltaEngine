@@ -16409,7 +16409,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Pause_Controls",
+                    "key": "Textures/Pausemenu_Popup_Controls",
                     "index": 0
                 },
                 "Size": {
