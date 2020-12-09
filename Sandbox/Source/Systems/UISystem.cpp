@@ -17,6 +17,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "UnitManager.h"
 #include "Components/Components.h"
 #include "EnemySpawner/EnemySpawner.h"
+#include "ImGui/Panels/GamePanel.h"
 #include "ImGui/Panels/ViewportPanel.h"
 #include "Physics/Collision.h"
 #include "Input/InputManager.h"
