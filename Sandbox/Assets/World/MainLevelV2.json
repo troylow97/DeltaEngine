@@ -14909,7 +14909,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.6369999647140504,
+                    "x": -1.8369999647140504,
                     "y": 1.0800000429153443,
                     "z": 0.0
                 },
@@ -14927,7 +14927,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Pause_Menu",
+                    "key": "Textures/Pausemenu_Overlay",
                     "index": 0
                 },
                 "Size": {
@@ -15066,7 +15066,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 1.5399999618530274,
+                    "y": 1.2000000476837159,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15144,7 +15144,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 1.5399999618530274,
+                    "y": 1.2000000476837159,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15222,7 +15222,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.552000045776367,
-                    "y": 1.2000000476837159,
+                    "y": 0.8600000143051148,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15292,7 +15292,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "OptionsDefault"
+                "Name": "ResumeDefault"
             },
             "Entity Type": {
                 "Category": "none"
@@ -15300,7 +15300,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 0.8600000143051148,
+                    "y": 1.5399999618530274,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15317,7 +15317,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Options_D",
+                    "key": "Textures/Resume_D",
                     "index": 0
                 },
                 "Size": {
@@ -15456,7 +15456,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.552000045776367,
-                    "y": 1.2000000476837159,
+                    "y": 0.8600000143051148,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15526,7 +15526,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "OptionsSelected"
+                "Name": "ResumeSelected"
             },
             "Entity Type": {
                 "Category": "none"
@@ -15534,7 +15534,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 0.8600000143051148,
+                    "y": 1.5399999618530274,
                     "z": 0.0
                 },
                 "Scale": {
@@ -15551,7 +15551,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Options_HL",
+                    "key": "Textures/Resume_HL",
                     "index": 0
                 },
                 "Size": {
@@ -15594,7 +15594,7 @@
                 "Function": "",
                 "UI Type": "Button",
                 "Screen": 5,
-                "Target": 10,
+                "Target": 14,
                 "Previous": 0,
                 "Overlay": false
             }
@@ -15753,474 +15753,6 @@
                 "Target": -1,
                 "Previous": 10,
                 "Overlay": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "OptionsBG"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 1.0,
-                    "y": 1.062999963760376,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.699999988079071,
-                    "y": 0.699999988079071,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Mainmenu_Popup_Options",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 9,
-                "Order": 0.0,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "UI": {
-                "Function": "",
-                "UI Type": "Screen",
-                "Screen": 10,
-                "Target": -1,
-                "Previous": 10,
-                "Overlay": true
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "ResolutionText"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 1.6629999876022339,
-                    "y": 1.562999963760376,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.699999988079071,
-                    "y": 0.699999988079071,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/1920x1080",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 10,
-                "Order": 0.0,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "UI": {
-                "Function": "",
-                "UI Type": "Screen",
-                "Screen": 10,
-                "Target": -1,
-                "Previous": 10,
-                "Overlay": true
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "SliderBar"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 1.6629999876022339,
-                    "y": 1.9634000062942505,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.699999988079071,
-                    "y": 0.699999988079071,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SliderBar",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 10,
-                "Order": 0.0,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "UI": {
-                "Function": "",
-                "UI Type": "Slider",
-                "Screen": 10,
-                "Target": -1,
-                "Previous": 10,
-                "Overlay": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "SliderHandle"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 2.6630001068115236,
-                    "y": 1.9630000591278077,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.3499999940395355,
-                    "y": 0.3499999940395355,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/CircleKnob",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 10,
-                "Order": 0.0,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "UI": {
-                "Function": "",
-                "UI Type": "Button",
-                "Screen": 10,
-                "Target": -1,
-                "Previous": 10,
-                "Overlay": true
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "LeftArrow"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.6629999876022339,
-                    "y": 1.562999963760376,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.699999988079071,
-                    "y": 0.699999988079071,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/OptionsLeftArrow",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 10,
-                "Order": 0.0,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "UI": {
-                "Function": "",
-                "UI Type": "Button",
-                "Screen": 10,
-                "Target": -1,
-                "Previous": 10,
-                "Overlay": true
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "RightArrow"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 2.6630001068115236,
-                    "y": 1.562999963760376,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.699999988079071,
-                    "y": 0.699999988079071,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/OptionsRightArrow",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 10,
-                "Order": 0.0,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "UI": {
-                "Function": "",
-                "UI Type": "Button",
-                "Screen": 10,
-                "Target": -1,
-                "Previous": 10,
-                "Overlay": true
             }
         },
         {
@@ -16955,7 +16487,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Pause_Menu",
+                    "key": "Textures/Pausemenu_Overlay",
                     "index": 0
                 },
                 "Size": {
@@ -17094,7 +16626,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 1.5399999618530274,
+                    "y": 1.2000000476837159,
                     "z": 0.0
                 },
                 "Scale": {
@@ -17172,7 +16704,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.552000045776367,
-                    "y": 1.2000000476837159,
+                    "y": 0.8600000143051148,
                     "z": 0.0
                 },
                 "Scale": {
@@ -17242,7 +16774,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "ControlOptionsDefault"
+                "Name": "ControlResumeDefault"
             },
             "Entity Type": {
                 "Category": "none"
@@ -17250,7 +16782,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 0.8600000143051148,
+                    "y": 1.5399999618530274,
                     "z": 0.0
                 },
                 "Scale": {
@@ -17267,7 +16799,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Options_D",
+                    "key": "Textures/Resume_D",
                     "index": 0
                 },
                 "Size": {
@@ -17398,7 +16930,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "OptionsPauseMenuBG"
+                "Name": "ResumePauseMenuBG"
             },
             "Entity Type": {
                 "Category": "none"
@@ -17423,7 +16955,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Pause_Menu",
+                    "key": "Textures/Pausemenu_Overlay",
                     "index": 0
                 },
                 "Size": {
@@ -17476,7 +17008,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "OptionsPauseMenuTitle"
+                "Name": "ResumePauseMenuTitle"
             },
             "Entity Type": {
                 "Category": "none"
@@ -17554,7 +17086,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "OptionsRestartDefault"
+                "Name": "ResumeRestartDefault"
             },
             "Entity Type": {
                 "Category": "none"
@@ -17562,7 +17094,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 1.5399999618530274,
+                    "y": 1.2000000476837159,
                     "z": 0.0
                 },
                 "Scale": {
@@ -17632,7 +17164,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "OptionsControlsDefault"
+                "Name": "ResumeControlsDefault"
             },
             "Entity Type": {
                 "Category": "none"
@@ -17640,7 +17172,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.552000045776367,
-                    "y": 1.2000000476837159,
+                    "y": 0.8600000143051148,
                     "z": 0.0
                 },
                 "Scale": {
@@ -17710,7 +17242,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "OptionsOptionsDefault"
+                "Name": "ResumeResumeDefault"
             },
             "Entity Type": {
                 "Category": "none"
@@ -17718,7 +17250,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 0.8600000143051148,
+                    "y": 1.5399999618530274,
                     "z": 0.0
                 },
                 "Scale": {
@@ -17735,7 +17267,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Options_D",
+                    "key": "Textures/Resume_D",
                     "index": 0
                 },
                 "Size": {
@@ -17788,7 +17320,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "OptionsQuitGameDefault"
+                "Name": "ResumeQuitGameDefault"
             },
             "Entity Type": {
                 "Category": "none"
@@ -18437,7 +17969,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Pause_Menu",
+                    "key": "Textures/Pausemenu_Overlay",
                     "index": 0
                 },
                 "Size": {
@@ -18576,7 +18108,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 1.5399999618530274,
+                    "y": 1.2000000476837159,
                     "z": 0.0
                 },
                 "Scale": {
@@ -18654,7 +18186,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.552000045776367,
-                    "y": 1.2000000476837159,
+                    "y": 0.8600000143051148,
                     "z": 0.0
                 },
                 "Scale": {
@@ -18724,7 +18256,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "ConfirmationOptionsDefault"
+                "Name": "ConfirmationResumeDefault"
             },
             "Entity Type": {
                 "Category": "none"
@@ -18732,7 +18264,7 @@
             "Transform": {
                 "Position": {
                     "x": -2.621999979019165,
-                    "y": 0.8600000143051148,
+                    "y": 1.5399999618530274,
                     "z": 0.0
                 },
                 "Scale": {
@@ -18749,7 +18281,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Options_D",
+                    "key": "Textures/Resume_D",
                     "index": 0
                 },
                 "Size": {
