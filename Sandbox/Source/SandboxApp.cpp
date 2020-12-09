@@ -35,9 +35,13 @@ class Sandbox : public Application
 public:
   Sandbox()
   {
+
+#ifndef DE_EDITOR
+    AudioEngine::Play("Audio/MainMenu/main_menu_bgm.wav");
     JsonFile file;
-    //env.pECS->GetWorld().Load("World/MainLevelV2.json");
     env.pECS->GetWorld().Load("World/MainMenu.json");
+#endif
+
 
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
     env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem,
@@ -48,7 +52,7 @@ public:
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
 
-    AudioEngine::Play("Audio/MainMenu/main_menu_bgm.wav");
+
   }
 
   ~Sandbox()

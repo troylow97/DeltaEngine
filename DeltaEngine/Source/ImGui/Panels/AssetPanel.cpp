@@ -29,20 +29,22 @@ namespace DeltaEngine
   {
     for (const auto& d : dir.sub_dir)
     {
-      if (d.sub_dir.empty())
-        flags = ImGuiTreeNodeFlags_Leaf;
+      ImGuiTreeNodeFlags recurse_flags = flags & ~( ImGuiTreeNodeFlags_Selected );
 
-      if (selection)
-        if (selection->cur_dir == dir.cur_dir)
-          flags |= ImGuiTreeNodeFlags_Selected;
+      if ( d.sub_dir.empty() )
+        recurse_flags = ImGuiTreeNodeFlags_Leaf;
 
-      bool open = ImGui::TreeNodeEx(d.cur_dir.path().filename().generic_string().c_str(), flags);
+      if ( selection )
+        if ( selection->cur_dir == d.cur_dir )
+          recurse_flags |= ImGuiTreeNodeFlags_Selected;
+
+      bool open = ImGui::TreeNodeEx(d.cur_dir.path().filename().generic_string().c_str(), recurse_flags);
       if (ImGui::IsItemClicked())
         selection = &d;
 
       if (open)
       {
-        RecursiveDirectoryNodes(d, flags);
+        RecursiveDirectoryNodes(d, recurse_flags);
         ImGui::TreePop();
       }
     }
@@ -117,6 +119,32 @@ namespace DeltaEngine
 
           if (!SystemDirectory::Instance().m_lock.load())
           {
+            for (auto& ref : selection->sub_dir )
+            {
+              if (filter.PassFilter(ref.cur_dir.path().filename().generic_string().c_str()))
+              {
+                auto str = ref.cur_dir.path().filename().generic_string();
+
+                ImGui::PushID(ref.cur_dir.path().c_str());
+                ImGui::BeginGroup();
+
+                const float original = Editor::font_awesome->Scale;
+                Editor::font_awesome->Scale = 2.0f;
+                ImGui::PushFont(Editor::font_awesome);
+                ImGui::Button(ICON_FA_FOLDER, {128.0f, 128.0f});
+                if ( ImGui::IsItemClicked() )
+                  if ( ImGui::IsMouseDoubleClicked( 0 ) )
+                    selection = &ref;
+                ImGui::PopFont();
+                Editor::font_awesome->Scale = original;
+
+                ImGui::TextWrapped(ref.cur_dir.path().filename().generic_string().c_str());
+                ImGui::EndGroup();
+                ImGui::PopID();
+                ImGui::NextColumn();
+              }
+            }
+
             for (auto& ref : selection->file_vec)
             {
               if (ref.extension() == ".info")
@@ -135,6 +163,7 @@ namespace DeltaEngine
                 ImGui::PushFont(Editor::font_awesome);
 
 
+
                 if (ref.extension() == ".anim" || ref.extension() == ".clip")
                   ImGui::Button(ICON_FA_PHOTO_VIDEO, {128.0f, 128.0f});
                 else if (ref.extension() == ".wav" ||
@@ -149,7 +178,7 @@ namespace DeltaEngine
                   ImGui::Button(ICON_FA_FOLDER_MINUS, {128.0f, 128.0f});
                 else if (ref.extension() == ".fs" || ref.extension() == ".vs" || ref.extension() == ".dat")
                   ImGui::Button(ICON_FA_FILE, {128.0f, 128.0f});
-                else if (ref.extension() == ".json")
+                else if (ref.extension() == ".json" || ref.extension() == ".cfg" )
                   ImGui::Button(ICON_FA_FILE_CODE, {128.0f, 128.0f});
                 else if (ref.extension() == ".png" || ref.extension() == ".jpg")
                 {
@@ -158,6 +187,9 @@ namespace DeltaEngine
                   ImGui::ImageButton(reinterpret_cast<void*>(textureID),
                                      ImVec2{128.0f, 128.0f}, {0, 0}, {1, 1}, 0);
                 }
+                else if (!ref.has_extension() )
+                  ImGui::Button(ICON_FA_MUSIC, {128.0f, 128.0f});
+
                 ImGui::PopFont();
                 Editor::font_awesome->Scale = original;
 
