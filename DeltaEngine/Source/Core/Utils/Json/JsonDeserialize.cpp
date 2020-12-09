@@ -272,6 +272,5 @@ namespace DeltaEngine::Deserialize
       else if (obj_dat.get_type() == type::get<FillType*>())
         *obj_dat.get_value<FillType*>() = v.get_value<FillType>();
     }
-
   }
 }

@@ -20,18 +20,18 @@ namespace DeltaEngine
     Screen,
     Interface,
     Button,
-  	Slider,
-  	Healthbar,
-  	Healthbar_base
+    Slider,
+    Healthbar,
+    Healthbar_base
   };
 
   struct UI
   {
     std::string functor_key;
-    UIType ui_type;
-    unsigned screen;
+    UIType ui_type{UIType::Screen};
+    unsigned screen{0};
     int target_screen{-1};
     int previous_screen{-1};
-    bool overlay { false };
+    bool overlay{false};
   };
 }

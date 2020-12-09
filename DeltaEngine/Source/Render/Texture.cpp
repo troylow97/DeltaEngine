@@ -17,13 +17,13 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
   Texture2D::Texture2D(std::string filepath) :
-    m_RendererID{ 0 },
-    m_Channels{ 0 },
-    m_Width{ 0 },
-    m_Height{ 0 },
-    m_Filepath{ filepath },
-    m_Name{ filepath },
-    wrapMode{ TextureWrapMode::Repeat }
+    m_RendererID{0},
+    m_Channels{0},
+    m_Width{0},
+    m_Height{0},
+    m_Filepath{filepath},
+    m_Name{filepath},
+    wrapMode{TextureWrapMode::Repeat}
   {
     InitTexture();
   }
@@ -116,7 +116,8 @@ namespace DeltaEngine
                       (b == 0 && j == -1) ||
                       (a == static_cast<unsigned int>(m_Width) - 1 && i == 1) ||
                       (b == static_cast<unsigned int>(m_Height) - 1 && j == 1)))
-                    if (*(m_Data + (static_cast<long long>(a) + i + (static_cast<long long>(b) + j) * m_Width) * 4 + 3) != 0)
+                    if (*(m_Data + (static_cast<long long>(a) + i + (static_cast<long long>(b) + j) * m_Width) * 4 + 3)
+                      != 0)
                       stack.push(std::pair<unsigned int, unsigned int>{a + i, b + j});
             }
             while (!stack.empty());
@@ -187,11 +188,11 @@ namespace DeltaEngine
 
   void Texture2D::UpdateWrapMode(int mode)
   {
-    wrapMode = TextureWrapMode(mode);
+    wrapMode = static_cast<TextureWrapMode>(mode);
     UpdateInfoFile();
     InitTexture();
   }
-  
+
   void Texture2D::InitTexture()
   {
     stbi_set_flip_vertically_on_load(0);
@@ -212,7 +213,7 @@ namespace DeltaEngine
     GLint internal = GL_RGBA;
     switch (m_Channels)
     {
-    case 1:	internal = GL_RED;
+    case 1: internal = GL_RED;
       break;
     case 2: internal = GL_RG8;
       break;
@@ -223,7 +224,7 @@ namespace DeltaEngine
     GLint format = GL_RGBA;
     switch (m_Channels)
     {
-    case 1:	format = GL_RED;
+    case 1: format = GL_RED;
       break;
     case 2: format = GL_RG;
       break;
@@ -288,7 +289,7 @@ namespace DeltaEngine
       }
       int wm = 0;
       file >> str >> wm;
-      wrapMode = (TextureWrapMode)wm;
+      wrapMode = static_cast<TextureWrapMode>(wm);
       file.close();
     }
     else
@@ -303,7 +304,7 @@ namespace DeltaEngine
 
   void Texture2D::UpdateInfoFile()
   {
-    std::ofstream file{ m_Filepath + ".info" };
+    std::ofstream file{m_Filepath + ".info"};
     if (file.is_open())
     {
       for (size_t i = 0; i < textureInfo.size(); ++i)

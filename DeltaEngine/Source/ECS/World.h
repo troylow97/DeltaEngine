@@ -53,7 +53,6 @@ namespace DeltaEngine
       const auto it = systems.find(hash.digest);
       if (it == systems.end())
       {
-
         systems[hash.digest] = std::make_unique<System>(*em);
         return *(systems[hash.digest]);
       }

@@ -22,5 +22,6 @@ struct Health
     MaxHealth{10},
     isDamagedTimer{0.0f},
     isInvulnerable{false}
-  {}
+  {
+  }
 };

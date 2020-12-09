@@ -31,10 +31,10 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
-      if(FileUtils::FileExists(  key.Key() + ".clip" ))
+      if (FileUtils::FileExists(key.Key() + ".clip"))
       {
-        AnimationClip* data = new AnimationClip( key.Key() + ".clip");
-        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+        AnimationClip* data = new AnimationClip(key.Key() + ".clip");
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
       }
     }
 

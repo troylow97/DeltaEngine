@@ -22,10 +22,10 @@ namespace DeltaEngine
   public:
     FrameBuffer();
     FrameBuffer(const FrameBuffer&);
-    FrameBuffer(FrameBuffer&&);
+    FrameBuffer(FrameBuffer&&) noexcept;
     ~FrameBuffer();
     FrameBuffer& operator=(const FrameBuffer&);
-    FrameBuffer& operator=(FrameBuffer&&);
+    FrameBuffer& operator=(FrameBuffer&&) noexcept;
     unsigned int GetColorAttachment() const;
     unsigned int GetDepthAttachment() const;
     void Bind() const;

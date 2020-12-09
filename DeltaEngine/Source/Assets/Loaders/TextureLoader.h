@@ -40,15 +40,15 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
-      if(FileUtils::FileExists( key.Key() + ".png" ))
+      if (FileUtils::FileExists(key.Key() + ".png"))
       {
-        Texture2D* data = new Texture2D(key.Key()+".png");
-        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+        Texture2D* data = new Texture2D(key.Key() + ".png");
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
       }
-      else if(FileUtils::FileExists( key.Key() + ".jpg" ))
+      else if (FileUtils::FileExists(key.Key() + ".jpg"))
       {
-        Texture2D* data = new Texture2D(key.Key()+".jpg");
-        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+        Texture2D* data = new Texture2D(key.Key() + ".jpg");
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
       }
     }
 

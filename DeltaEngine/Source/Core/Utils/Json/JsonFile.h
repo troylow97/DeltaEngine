@@ -40,8 +40,8 @@ namespace DeltaEngine
     JsonFile& EndArray();
     JsonFile& WriteKey(std::string str);
     JsonFile& WriteObject(rttr::instance object);
-    JsonFile& WriteArray( rttr::variant_sequential_view view);
-    JsonFile& WriteAssociative( rttr::variant_associative_view view);
+    JsonFile& WriteArray(rttr::variant_sequential_view view);
+    JsonFile& WriteAssociative(rttr::variant_associative_view view);
     JsonFile& WriteEntities(class EntityManager& em);
 
     // Reading Operations

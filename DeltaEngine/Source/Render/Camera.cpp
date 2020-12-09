@@ -48,15 +48,16 @@ namespace DeltaEngine
       }
     }
   }
+
   Camera::Camera(const Camera& copy) :
-    cameraIndex{ static_cast<int>(allCameras.size()) },
+    cameraIndex{static_cast<int>(allCameras.size())},
     frameBuffer{},
-    m_AspectRatio{ copy.m_AspectRatio },
-    m_ViewportSize{ copy.m_ViewportSize },
-    m_Size{ copy.m_Size },
-    m_zNear{ copy.m_zNear },
-    m_zFar{ copy.m_zFar },
-    backgroundColor{ copy.backgroundColor }
+    m_AspectRatio{copy.m_AspectRatio},
+    m_ViewportSize{copy.m_ViewportSize},
+    m_Size{copy.m_Size},
+    m_zNear{copy.m_zNear},
+    m_zFar{copy.m_zFar},
+    backgroundColor{copy.backgroundColor}
   {
     if (&copy == editorCamera)
     {
@@ -67,15 +68,15 @@ namespace DeltaEngine
       allCameras.push_back(this);
   }
 
-  Camera::Camera(Camera&& move) :
-    cameraIndex{ static_cast<int>(allCameras.size()) },
+  Camera::Camera(Camera&& move) noexcept :
+    cameraIndex{static_cast<int>(allCameras.size())},
     frameBuffer{},
-    m_AspectRatio{ move.m_AspectRatio },
-    m_ViewportSize{ move.m_ViewportSize },
-    m_Size{ move.m_Size },
-    m_zNear{ move.m_zNear },
-    m_zFar{ move.m_zFar },
-    backgroundColor{ move.backgroundColor }
+    m_AspectRatio{move.m_AspectRatio},
+    m_ViewportSize{move.m_ViewportSize},
+    m_Size{move.m_Size},
+    m_zNear{move.m_zNear},
+    m_zFar{move.m_zFar},
+    backgroundColor{move.backgroundColor}
   {
     if (&move == editorCamera)
     {
@@ -113,7 +114,7 @@ namespace DeltaEngine
     return *this;
   }
 
-  Camera& Camera::operator=(Camera&& move)
+  Camera& Camera::operator=(Camera&& move) noexcept
   {
     // moving camera should not be allowed, just copy
     if (&move == editorCamera)

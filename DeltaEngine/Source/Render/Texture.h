@@ -23,7 +23,9 @@ namespace DeltaEngine
 
   enum class TextureWrapMode
   {
-    Repeat, Mirror, Clamp
+    Repeat,
+    Mirror,
+    Clamp
   };
 
   class Texture2D

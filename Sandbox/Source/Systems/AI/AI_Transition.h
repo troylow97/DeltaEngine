@@ -26,18 +26,20 @@ namespace DeltaEngine
 
   class DetectEnemyLancer : public Transition
   {
-      Vector2 ChargeDetectionRange;
+    Vector2 ChargeDetectionRange;
   public:
-      DetectEnemyLancer(Vector2& charge_range) :
-          ChargeDetectionRange(charge_range)
-      {}
+    DetectEnemyLancer(Vector2& charge_range) :
+      ChargeDetectionRange(charge_range)
+    {
+    }
 
     bool TestEdge(EntityID& monster) override
     {
       auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
       {
-        if (et.type == EntityCategory::E_PLAYER && AITools::EntityisWithinDetectionRange(monster, player, ChargeDetectionRange.x, ChargeDetectionRange.y))
+        if (et.type == EntityCategory::E_PLAYER && AITools::EntityisWithinDetectionRange(
+          monster, player, ChargeDetectionRange.x, ChargeDetectionRange.y))
         {
           ref.transition = getTargetState();
         }
@@ -54,18 +56,20 @@ namespace DeltaEngine
 
   class DetectEnemyFiddler : public Transition
   {
-      Vector2 ChargeDetectionRange;
+    Vector2 ChargeDetectionRange;
   public:
     DetectEnemyFiddler(Vector2& charge_range) :
-        ChargeDetectionRange(charge_range)
-    {}
+      ChargeDetectionRange(charge_range)
+    {
+    }
 
     bool TestEdge(EntityID& monster) override
     {
       auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
       {
-        if (et.type == EntityCategory::E_PLAYER && AITools::EntityisWithinDetectionRange(monster, player, ChargeDetectionRange.x, ChargeDetectionRange.y))
+        if (et.type == EntityCategory::E_PLAYER && AITools::EntityisWithinDetectionRange(
+          monster, player, ChargeDetectionRange.x, ChargeDetectionRange.y))
         {
           ref.transition = getTargetState();
         }
@@ -82,19 +86,20 @@ namespace DeltaEngine
 
   class LostEnemyFiddler : public Transition
   {
-      Vector2 LostDetectionRange;
+    Vector2 LostDetectionRange;
   public:
     LostEnemyFiddler(Vector2& lost_range) :
-        LostDetectionRange{lost_range}
-    {}
+      LostDetectionRange{lost_range}
+    {
+    }
 
     bool TestEdge(EntityID& monster) override
     {
       auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
       {
-        if (et.type == EntityCategory::E_PLAYER && 
-            !AITools::EntityisWithinDetectionRange(monster, player, LostDetectionRange.x, LostDetectionRange.y))
+        if (et.type == EntityCategory::E_PLAYER &&
+          !AITools::EntityisWithinDetectionRange(monster, player, LostDetectionRange.x, LostDetectionRange.y))
         {
           ref.transition = getTargetState();
         }
@@ -111,62 +116,65 @@ namespace DeltaEngine
 
   class DetectEnemySerpentipede : public Transition
   {
-      Vector2 DetectionRange;
+    Vector2 DetectionRange;
   public:
-      DetectEnemySerpentipede(Vector2 dr) :
-          DetectionRange{dr}
-      {}
-      bool TestEdge(EntityID& monster) override
-      {
-          auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id,Player& p)
-              {
-                  if (AITools::EntityisWithinDetectionRange (id, ref.original_point, 
-                         ref.original_point.x + DetectionRange.x, 
-                         ref.original_point.y + DetectionRange.y))
-                  {
-                      ref.transition = getTargetState();
-                  }
-              });
-          if (ref.transition == getTargetState()) { return true; }
-          return false;
-      }
+    DetectEnemySerpentipede(Vector2 dr) :
+      DetectionRange{dr}
+    {
+    }
 
-      std::string getTargetState() override
+    bool TestEdge(EntityID& monster) override
+    {
+      auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id, Player& p)
       {
-          return "chase_enemy_serpentipede";
-      }
+        if (AITools::EntityisWithinDetectionRange(id, ref.original_point,
+                                                  ref.original_point.x + DetectionRange.x,
+                                                  ref.original_point.y + DetectionRange.y))
+        {
+          ref.transition = getTargetState();
+        }
+      });
+      if (ref.transition == getTargetState()) { return true; }
+      return false;
+    }
+
+    std::string getTargetState() override
+    {
+      return "chase_enemy_serpentipede";
+    }
   };
 
   class LostEnemySerpentipede : public Transition
   {
-      Vector2 DetectionRange;
+    Vector2 DetectionRange;
   public:
-      LostEnemySerpentipede(Vector2 detection) :
-          DetectionRange(detection)
-      {}
+    LostEnemySerpentipede(Vector2 detection) :
+      DetectionRange(detection)
+    {
+    }
 
-      bool TestEdge(EntityID& monster) override
+    bool TestEdge(EntityID& monster) override
+    {
+      auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
       {
-          auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
-              {
-                  if (et.type == EntityCategory::E_PLAYER 
-                      && !AITools::EntityisWithinDetectionRange
-                          (player, ref.original_point, 
-                          ref.original_point.x + DetectionRange.x, 
-                          ref.original_point.y + DetectionRange.y))
-                  {
-                      ref.transition = getTargetState();
-                  }
-              });
-          if (ref.transition == getTargetState()) { return true; }
-          return false;
-      }
+        if (et.type == EntityCategory::E_PLAYER
+          && !AITools::EntityisWithinDetectionRange
+          (player, ref.original_point,
+           ref.original_point.x + DetectionRange.x,
+           ref.original_point.y + DetectionRange.y))
+        {
+          ref.transition = getTargetState();
+        }
+      });
+      if (ref.transition == getTargetState()) { return true; }
+      return false;
+    }
 
-      std::string getTargetState() override
-      {
-          return "idle_serpentipede";
-      }
+    std::string getTargetState() override
+    {
+      return "idle_serpentipede";
+    }
   };
 }

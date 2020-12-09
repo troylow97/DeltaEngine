@@ -21,7 +21,7 @@ namespace DeltaEngine
     SerpentipedeAIData serpent_data;
     JsonFile file;
     file.StartReader("AI/serpentipedeAI.json").LoadObject(serpent_data).EndReader();
-  	
+
     FiddlerAIData fiddler_data;
     JsonFile file2;
     //file2.StartWriter("AI/fiddler.json").StartObject().WriteObject(fiddler_data).EndObject().EndWriter();
@@ -30,9 +30,9 @@ namespace DeltaEngine
 
     LancerAIData lancer_data;
     JsonFile file3;
-	file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
+    file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
 
-    StateList["lancer_spawn"] = new LancerSpawn(lancer_data.ChargeDetectionRange);  	
+    StateList["lancer_spawn"] = new LancerSpawn(lancer_data.ChargeDetectionRange);
     StateList["idle_lancer"] = new IdleLancer(lancer_data.ChargeDetectionRange);
     StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
 
@@ -86,15 +86,14 @@ namespace DeltaEngine
         const auto find = StateList.find(ai.key);
         if (find != StateList.end())
         {
-            ai_state = find->second;
+          ai_state = find->second;
         }
         else
         {
-            return;
+          return;
         }
 
         ai_state->onEnter(id);
-
       }
     });
     Profiler::Instance().Record("AI System");

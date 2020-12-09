@@ -11,6 +11,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #pragma once
 #include <unordered_map>
 #include "Waypoint.h"
+
 namespace DeltaEngine
 {
   class Transition;
@@ -26,41 +27,41 @@ namespace DeltaEngine
     virtual void Update(EntityID& id) = 0;
     virtual ~AIState();
   };
-  
+
   struct SerpentipedeAIData
   {
-      float AttackCooldown;
-      Vector2 Points[3];
-      Vector2 DetectionRange;
-      SerpentipedeAIData();
-      SerpentipedeAIData(SerpentipedeAIData& d);
+    float AttackCooldown;
+    Vector2 Points[3];
+    Vector2 DetectionRange;
+    SerpentipedeAIData();
+    SerpentipedeAIData(SerpentipedeAIData& d);
   };
 
   struct FiddlerAIData
   {
-      Waypoint waypoint;
-      Vector2 ChargeDetectionRange;
-      Vector2 LostDetectionRange;
-      FiddlerAIData();
-      FiddlerAIData(FiddlerAIData& d);
+    Waypoint waypoint;
+    Vector2 ChargeDetectionRange;
+    Vector2 LostDetectionRange;
+    FiddlerAIData();
+    FiddlerAIData(FiddlerAIData& d);
   };
 
   struct LancerAIData
   {
-      Vector2 ChargeDetectionRange;
-      LancerAIData();
-      LancerAIData(LancerAIData& d);
+    Vector2 ChargeDetectionRange;
+    LancerAIData();
+    LancerAIData(LancerAIData& d);
   };
 
   class LancerSpawn : public AIState //Mosquito
   {
   public:
-      LancerSpawn(Vector2& chase_range);
-      void onEnter(EntityID& id) override;
-      void onExit(EntityID& id) override;
-      void Update(EntityID& id1) override;
+    LancerSpawn(Vector2& chase_range);
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
   };
-	
+
   class IdleLancer : public AIState //Mosquito
   {
   public:
@@ -101,23 +102,22 @@ namespace DeltaEngine
   class IdleSerpentipede : public AIState
   {
   public:
-      IdleSerpentipede(Vector2);
-      void onEnter(EntityID& id) override;
-      void onExit(EntityID& id) override;
-      void Update(EntityID& id1) override;
+    IdleSerpentipede(Vector2);
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
   };
 
   class ChaseEnemySerpentipede : public AIState
   {
   public:
-      float CooldownTimer;
-      int CurrentPoint;
-      SerpentipedeAIData SerpentData;
+    float CooldownTimer;
+    int CurrentPoint;
+    SerpentipedeAIData SerpentData;
 
-      ChaseEnemySerpentipede(SerpentipedeAIData& d);
-      void onEnter(EntityID& id) override;
-      void onExit(EntityID& id) override;
-      void Update(EntityID& id1) override;
+    ChaseEnemySerpentipede(SerpentipedeAIData& d);
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
   };
-
 }

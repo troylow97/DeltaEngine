@@ -16,157 +16,157 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-	EnemyData CollisionHandlerFunctions::CollisionHandlerFiddlerData{};
-	EnemyData CollisionHandlerFunctions::CollisionHandlerLancerData{};
-	EnemyData CollisionHandlerFunctions::CollisionHandlerSerpentipedeData{};
+  EnemyData CollisionHandlerFunctions::CollisionHandlerFiddlerData{};
+  EnemyData CollisionHandlerFunctions::CollisionHandlerLancerData{};
+  EnemyData CollisionHandlerFunctions::CollisionHandlerSerpentipedeData{};
 
-	void CollisionHandlerFunctions::Initialise()
-	{
-		JsonFile file;
-		file.StartReader("Enemy/Lancer.json").LoadObject(CollisionHandlerLancerData).EndReader();
-		JsonFile file2;
-		file.StartReader("Enemy/Fiddler.json").LoadObject(CollisionHandlerFiddlerData).EndReader();
-		JsonFile file3;
-		file.StartReader("Enemy/Serpentipede.json").LoadObject(CollisionHandlerSerpentipedeData).EndReader();
-	}
+  void CollisionHandlerFunctions::Initialise()
+  {
+    JsonFile file;
+    file.StartReader("Enemy/Lancer.json").LoadObject(CollisionHandlerLancerData).EndReader();
+    JsonFile file2;
+    file.StartReader("Enemy/Fiddler.json").LoadObject(CollisionHandlerFiddlerData).EndReader();
+    JsonFile file3;
+    file.StartReader("Enemy/Serpentipede.json").LoadObject(CollisionHandlerSerpentipedeData).EndReader();
+  }
 
-	void CollisionHandlerFunctions::ReduceHealth(EntityID& id1, int amount)
-	{
-		if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
-			!env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
-		{
-			env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
-			env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.3f;
-		}
-	}
+  void CollisionHandlerFunctions::ReduceHealth(EntityID& id1, int amount)
+  {
+    if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
+      !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
+    {
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.3f;
+    }
+  }
 
-	bool CollisionHandlerFunctions::CheckEntityType(EntityID id1, EntityCategory typecheck1, EntityID id2, EntityCategory typecheck2)
-	{
-		auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
-		auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
-		return (type1 == typecheck1 && type2 == typecheck2);
-	}
+  bool CollisionHandlerFunctions::CheckEntityType(EntityID id1, EntityCategory typecheck1, EntityID id2,
+                                                  EntityCategory typecheck2)
+  {
+    auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
+    auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
+    return (type1 == typecheck1 && type2 == typecheck2);
+  }
 
-	EntityID GetEntityID(EntityID id1, EntityID id2, EntityCategory type)
-	{
-		auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
-		auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
-		if (type1 == type)
-			return id1;
+  EntityID GetEntityID(EntityID id1, EntityID id2, EntityCategory type)
+  {
+    auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
+    auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
+    if (type1 == type)
+      return id1;
 
-		return id2;
-	}
+    return id2;
+  }
 
-	void CollisionHandlerFunctions::TakeDamage(EntityID& id1, EntityID& id2)
-	{
-		auto& em = env.pECS->GetWorld().GetEntityManager();
-		const auto& et1 = em.GetComponent<EntityType>(id1);
-		const auto& et2 = em.GetComponent<EntityType>(id2);
+  void CollisionHandlerFunctions::TakeDamage(EntityID& id1, EntityID& id2)
+  {
+    auto& em = env.pECS->GetWorld().GetEntityManager();
+    const auto& et1 = em.GetComponent<EntityType>(id1);
+    const auto& et2 = em.GetComponent<EntityType>(id2);
 
-		if (et1.type != et2.type)
-		{
-			//Fiddler Melee Attack
-			{
-				if (CheckEntityType(id1, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id2, EntityCategory::E_PLAYER))
-				{
-					ReduceHealth(id2, (int)CollisionHandlerFiddlerData.Damage);
-					return;
-				}
-				if (CheckEntityType(id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER))
-				{
-					ReduceHealth(id1, (int)CollisionHandlerFiddlerData.Damage);
-					return;
-				}
-			}
+    if (et1.type != et2.type)
+    {
+      //Fiddler Melee Attack
+      {
+        if (CheckEntityType(id1, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id2, EntityCategory::E_PLAYER))
+        {
+          ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+          return;
+        }
+        if (CheckEntityType(id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER))
+        {
+          ReduceHealth(id1, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+          return;
+        }
+      }
 
-			//Lancer Melee Attack
-			{
-				if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
-				{
+      //Lancer Melee Attack
+      {
+        if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
+        {
+          ReduceHealth(id2, static_cast<int>(CollisionHandlerLancerData.Damage));
+          return;
+        }
+        if (CheckEntityType(id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER))
+        {
+          ReduceHealth(id1, static_cast<int>(CollisionHandlerLancerData.Damage));
+          return;
+        }
+      }
 
-					ReduceHealth(id2, (int)CollisionHandlerLancerData.Damage);
-					return;
-				}
-				if (CheckEntityType(id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER))
-				{
-					ReduceHealth(id1, (int)CollisionHandlerLancerData.Damage);
-					return;
-				}
-			}
+      //Serpentipede Ranged Attack
+      {
+        if (CheckEntityType(id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER))
+        {
+          ReduceHealth(id2, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
+          return;
+        }
+        if (CheckEntityType(id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER))
+        {
+          ReduceHealth(id1, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
+          return;
+        }
+      }
 
-			//Serpentipede Ranged Attack
-			{
-				if (CheckEntityType(id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER))
-				{
-					ReduceHealth(id2, (int)CollisionHandlerSerpentipedeData.Damage);
-					return;
-				}
-				if (CheckEntityType(id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER))
-				{
-					ReduceHealth(id1, (int)CollisionHandlerSerpentipedeData.Damage);
-					return;
-				}
-			}
+      //Player Detection Ranged Attack
+      if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET_DETECTION, id2, EntityCategory::E_ENEMY) ||
+        CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET_DETECTION, id1, EntityCategory::E_ENEMY))
+      {
+        EntityID target = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
 
-			//Player Detection Ranged Attack
-			if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET_DETECTION, id2, EntityCategory::E_ENEMY) ||
-				CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET_DETECTION, id1, EntityCategory::E_ENEMY))
-			{
-				EntityID target = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
+        {
+          if (et.type == EntityCategory::E_PLAYER_BULLET)
+            AITools::BulletTowardsEntity(bullet, target);
+        });
+      }
 
-				env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
-					{
-						if (et.type == EntityCategory::E_PLAYER_BULLET)
-							AITools::BulletTowardsEntity(bullet, target);
-					});
-			}
+      const auto player = UnitManager::GetPlayerID();
+      auto& att = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(player);
+      //Player Ranged Attack
+      if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET, id2, EntityCategory::E_ENEMY) ||
+        CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET, id1, EntityCategory::E_ENEMY))
+      {
+        EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+        ReduceHealth(enemy, att.RangedDamage);
+        if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
+        return;
+      }
 
-			const auto player = UnitManager::GetPlayerID();
-			auto& att = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(player);
-			//Player Ranged Attack
-			if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET, id2, EntityCategory::E_ENEMY) ||
-				CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET, id1, EntityCategory::E_ENEMY))
-			{
-				EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-				ReduceHealth(enemy, att.RangedDamage);
-				if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
-					env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
-				return;
-			}
+      //Player Dash
+      if (CheckEntityType(id1, EntityCategory::E_PLAYER_DASH, id2, EntityCategory::E_ENEMY) ||
+        CheckEntityType(id2, EntityCategory::E_PLAYER_DASH, id1, EntityCategory::E_ENEMY))
+      {
+        EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+        ReduceHealth(enemy, 1);
+        if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
+      }
 
-			//Player Dash
-			if (CheckEntityType(id1, EntityCategory::E_PLAYER_DASH, id2, EntityCategory::E_ENEMY) ||
-				CheckEntityType(id2, EntityCategory::E_PLAYER_DASH, id1, EntityCategory::E_ENEMY))
-			{
-				EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-				ReduceHealth(enemy, 1);
-				if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
-					env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
-			}
+      //Player Melee Attack
+      if (CheckEntityType(id1, EntityCategory::E_PLAYER_PUNCH, id2, EntityCategory::E_ENEMY) ||
+        CheckEntityType(id2, EntityCategory::E_PLAYER_PUNCH, id1, EntityCategory::E_ENEMY))
+      {
+        const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+        const EntityID punch = GetEntityID(id1, id2, EntityCategory::E_PLAYER_PUNCH);
+        Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(punch).Velocity.Normalize();
+        if (att.NumberOfCombos == att.MaxComboNumber)
+        {
+          ReduceHealth(id1, att.MeleeComboDamage);
+          ReduceHealth(id2, att.MeleeComboDamage);
+          env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * att.
+            KnockbackComboAmount; // direction * force
+          att.NumberOfCombos = 0;
+        }
+        env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * att.
+          KnockbackAmount;
+        ReduceHealth(id1, att.MeleeDamage);
+        ReduceHealth(id2, att.MeleeDamage);
 
-			//Player Melee Attack
-			if (CheckEntityType(id1, EntityCategory::E_PLAYER_PUNCH, id2, EntityCategory::E_ENEMY) ||
-				CheckEntityType(id2, EntityCategory::E_PLAYER_PUNCH, id1, EntityCategory::E_ENEMY))
-			{
-				const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-				const EntityID punch = GetEntityID(id1, id2, EntityCategory::E_PLAYER_PUNCH);
-				Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(punch).Velocity.Normalize();
-				if (att.NumberOfCombos == att.MaxComboNumber)
-				{
-					ReduceHealth(id1, att.MeleeComboDamage);
-					ReduceHealth(id2, att.MeleeComboDamage);
-					env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * att.KnockbackComboAmount; // direction * force
-					att.NumberOfCombos = 0;
-				}
-				env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * att.KnockbackAmount;
-				ReduceHealth(id1, att.MeleeDamage);
-				ReduceHealth(id2, att.MeleeDamage);
-
-				if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
-					env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
-			}
-		}
-
-	}
-
+        if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
+      }
+    }
+  }
 }

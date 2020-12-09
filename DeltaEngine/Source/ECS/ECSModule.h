@@ -22,18 +22,18 @@ namespace DeltaEngine
   public:
     ECSModule()
     {
-      DeltaEngine_CORE_INFO( "Initializing ECS..." );
-      DeltaEngine_CORE_INFO( "Creating default world" );
+      DeltaEngine_CORE_INFO("Initializing ECS...");
+      DeltaEngine_CORE_INFO("Creating default world");
       m_worlds.push_back(std::make_unique<World>());
-      DeltaEngine_CORE_INFO( "Initializing ECS successful" );
+      DeltaEngine_CORE_INFO("Initializing ECS successful");
     }
 
     ~ECSModule()
     {
-      DeltaEngine_CORE_INFO( "Shutting down ECS..." );
-      for ( auto &world : m_worlds )
+      DeltaEngine_CORE_INFO("Shutting down ECS...");
+      for (auto& world : m_worlds)
         world->ShutdownSystems();
-      DeltaEngine_CORE_INFO( "Shutting down ECS successful" );
+      DeltaEngine_CORE_INFO("Shutting down ECS successful");
     }
 
     World& GetWorld()

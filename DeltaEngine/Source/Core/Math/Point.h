@@ -20,8 +20,8 @@ namespace DeltaEngine
     Point();
     Point(float x, float y);
     Point(const Point& point);
-    Point operator+ ( const Point &point );
-    Point operator- ( const Point &point );
+    Point operator+(const Point& point);
+    Point operator-(const Point& point);
 
     bool operator==(const Point& rhs);
     bool operator!=(const Point& rhs);

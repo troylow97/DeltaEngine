@@ -23,6 +23,7 @@ namespace DeltaEngine
     Manifold::Manifold() :
       interTime{0.0f},
       penetration{0.0f}
-    {}
+    {
+    }
   };
 }

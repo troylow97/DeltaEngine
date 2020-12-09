@@ -31,10 +31,10 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
-      if(FileUtils::FileExists( key.Key() + ".anim" ))
+      if (FileUtils::FileExists(key.Key() + ".anim"))
       {
         AnimationController* data = new AnimationController(key.Key() + ".anim");
-        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
       }
     }
 

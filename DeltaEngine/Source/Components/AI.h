@@ -20,10 +20,10 @@ struct AI
   float timer;
 
   AI() :
-    original_point{{0,0}},
+    original_point{{0, 0}},
     key("idle"),
     transition("null"),
-	timer{0.0f}
+    timer{0.0f}
   {
   }
 };

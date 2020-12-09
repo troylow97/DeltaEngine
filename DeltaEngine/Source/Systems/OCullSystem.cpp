@@ -18,16 +18,16 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-	static bool _enable;
+  static bool _enable;
 
-	void OCullSystem::Update()
-	{
-		if (_enable)
-		{
-			Vector3 max{};
-			Vector3 min{};
-			Vector2 c_size{};
-			Vector2 c_center{};
+  void OCullSystem::Update()
+  {
+    if (_enable)
+    {
+      Vector3 max{};
+      Vector3 min{};
+      Vector2 c_size{};
+      Vector2 c_center{};
 
 
 #ifdef DE_EDITOR
@@ -39,40 +39,37 @@ namespace DeltaEngine
 			}
 			else
 #endif
-			{
-				if (Camera::allCameras.size())
-				{
-					const auto& t = em.GetComponent<Transform>({ 0 });
-					max = Camera::allCameras[0]->Max(t);
-					min = Camera::allCameras[0]->Min(t);
-					c_center = { t.position.x, t.position.y };
-				}
-			}
-			c_size = { (max.x - min.x), (max.y - min.y) };
+      {
+        if (Camera::allCameras.size())
+        {
+          const auto& t = em.GetComponent<Transform>({0});
+          max = Camera::allCameras[0]->Max(t);
+          min = Camera::allCameras[0]->Min(t);
+          c_center = {t.position.x, t.position.y};
+        }
+      }
+      c_size = {(max.x - min.x), (max.y - min.y)};
 
-			Query q;
-			q.Exclude<UI>();
+      Query q;
+      q.Exclude<UI>();
 
-			em.ForEach(q, [&](Transform& t, Image& i, Renderer2D& r)
-				{
-					Vector2 e_t{ t.position.x, t.position.y };
-					if (CollisionIntersection_RectRect_Static(e_t, i.GetWorldSize(), c_center, c_size))
-						r.m_Active = true;
-					else
-						r.m_Active = false;
-				});
-		}
-	}
+      em.ForEach(q, [&](Transform& t, Image& i, Renderer2D& r)
+      {
+        Vector2 e_t{t.position.x, t.position.y};
+        if (CollisionIntersection_RectRect_Static(e_t, i.GetWorldSize(), c_center, c_size))
+          r.m_Active = true;
+        else
+          r.m_Active = false;
+      });
+    }
+  }
 
-	void OCullSystem::LateUpdate()
-	{
+  void OCullSystem::LateUpdate()
+  {
+  }
 
-
-
-	}
-
-	void OCullSystem::Enable(bool b)
-	{
-		_enable = b;
-	}
+  void OCullSystem::Enable(bool b)
+  {
+    _enable = b;
+  }
 }

@@ -18,25 +18,25 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
+  void LifespanSystem::Update()
+  {
+    em.ForEach([&](EntityID& id, EntityType& et, Lifespan& l)
+    {
+      if (l.Timer < 0.0f)
+        DestroyedEntities.push_back(id);
+      else
+        l.Timer -= env.pClock->FixedDeltaTime();
+    });
 
-	void LifespanSystem::Update()
-	{
-		em.ForEach([&](EntityID& id, EntityType& et, Lifespan& l)
-			{
-				if (l.Timer < 0.0f)
-					DestroyedEntities.push_back(id);
-				else
-					l.Timer -= env.pClock->FixedDeltaTime();
-			});
+    for (auto& ref : DestroyedEntities)
+      em.DestroyEntity(ref);
 
-		for(auto& ref : DestroyedEntities)
-			em.DestroyEntity(ref);
+    DestroyedEntities.clear();
 
-		DestroyedEntities.clear();
-		
-		Profiler::Instance().Record("Lifespan System");
-	}
+    Profiler::Instance().Record("Lifespan System");
+  }
 
-	void LifespanSystem::LateUpdate()
-	{}
+  void LifespanSystem::LateUpdate()
+  {
+  }
 }

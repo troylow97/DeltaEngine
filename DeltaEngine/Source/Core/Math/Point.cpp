@@ -30,12 +30,12 @@ namespace DeltaEngine
 
   Point Point::operator+(const Point& point)
   {
-    return Point( point_x + point.point_x, point_y + point.point_y );
+    return Point(point_x + point.point_x, point_y + point.point_y);
   }
 
   Point Point::operator-(const Point& point)
   {
-    return Point( point_x - point.point_x, point_y - point.point_y );
+    return Point(point_x - point.point_x, point_y - point.point_y);
   }
 
   bool Point::operator==(const Point& rhs)

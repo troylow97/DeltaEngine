@@ -32,10 +32,10 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
-      if(FileUtils::FileExists( key.Key() + ".ttf" ))
+      if (FileUtils::FileExists(key.Key() + ".ttf"))
       {
         Font* data = new Font(key.Key() + ".ttf");
-        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
       }
     }
 

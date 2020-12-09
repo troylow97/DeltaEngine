@@ -33,11 +33,11 @@ namespace DeltaEngine
     float fadeColorAmt = 0;
 
     Camera(bool editor = false);
-    Camera(const Camera&);
-    Camera(Camera&&);
+    Camera(const Camera&) ;
+    Camera(Camera&&) noexcept;
     ~Camera();
     Camera& operator=(const Camera&);
-    Camera& operator=(Camera&&);
+    Camera& operator=(Camera&&) noexcept;
     Matrix4x4 GetProjectionMatrix(Transform transform) const;
     Matrix4x4 GetViewMatrix(Transform transform) const;
     Vector3 Max(Transform transform) const;

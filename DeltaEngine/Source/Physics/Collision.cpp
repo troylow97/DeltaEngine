@@ -608,10 +608,11 @@ namespace DeltaEngine
   }
 
   //DYNAMIC COLLISION CHECKS
-  bool CollisionIntersection_RectRect(const Vector2& center1, const Vector2& size1, const Vector2& vel1, const Vector2& center2, const Vector2& size2, const Vector2& vel2)
+  bool CollisionIntersection_RectRect(const Vector2& center1, const Vector2& size1, const Vector2& vel1,
+                                      const Vector2& center2, const Vector2& size2, const Vector2& vel2)
   {
-    AABB aabb1{ center1, size1};
-    AABB aabb2{ center2, size2};
+    AABB aabb1{center1, size1};
+    AABB aabb2{center2, size2};
     //Static Collision Check
     if (!((aabb1.max.x < aabb2.min.x) || (aabb1.min.x > aabb2.max.x) || (aabb1.max.y < aabb2.min.y) || (aabb1.min.y >
       aabb2.max.y)))
@@ -734,8 +735,8 @@ namespace DeltaEngine
     Vector2 n = A.center - B.center;
     Vector2 normalised_n = Normalise(n);
 
-    const AABB abox{ A.center, A.size * scaleA };
-    const AABB bbox{B.center, B.size * scaleB };
+    const AABB abox{A.center, A.size * scaleA};
+    const AABB bbox{B.center, B.size * scaleB};
 
     // Calculate half extents along x axis for each object
     float a_extent = (abox.max.x - abox.min.x) / 2;
@@ -780,11 +781,11 @@ namespace DeltaEngine
 
         if (A.center.y > B.center.y)
         {
-            A.isCollidingOnFloor = true;
+          A.isCollidingOnFloor = true;
         }
         else
         {
-            B.isCollidingOnFloor = true;
+          B.isCollidingOnFloor = true;
         }
 
         m.penetration = y_overlap;
@@ -794,5 +795,4 @@ namespace DeltaEngine
 
     return false;
   }
-
 }

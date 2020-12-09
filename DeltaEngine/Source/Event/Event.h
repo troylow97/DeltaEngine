@@ -128,8 +128,8 @@ namespace DeltaEngine
     explicit EventManager() :
       EventQueue{1000}
     {
-      DeltaEngine_CORE_INFO( "Initializing EventManager..." );
-      DeltaEngine_CORE_INFO( "Initializing EventManager successful" );
+      DeltaEngine_CORE_INFO("Initializing EventManager...");
+      DeltaEngine_CORE_INFO("Initializing EventManager successful");
     }
 
     void AddEvent(Event* event)
@@ -159,13 +159,13 @@ namespace DeltaEngine
 
     ~EventManager()
     {
-      DeltaEngine_CORE_INFO( "Shutting down EventManager..." );
+      DeltaEngine_CORE_INFO("Shutting down EventManager...");
       while (!EventQueue.Empty())
       {
         auto ref = EventQueue.Read();
         delete ref;
       }
-      DeltaEngine_CORE_INFO( "Shutting down EventManager successful" );
+      DeltaEngine_CORE_INFO("Shutting down EventManager successful");
     }
 
   private:

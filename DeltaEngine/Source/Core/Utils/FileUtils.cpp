@@ -113,9 +113,9 @@ namespace DeltaEngine::FileUtils
   std::vector<fs::directory_entry> RecursiveDirList(fs::path dir)
   {
     std::vector<fs::directory_entry> dir_list;
-    for ( auto &ref : fs::recursive_directory_iterator( dir ) )
-      if ( is_directory( ref ) )
-        dir_list.push_back( ref );
+    for (auto& ref : fs::recursive_directory_iterator(dir))
+      if (is_directory(ref))
+        dir_list.push_back(ref);
 
     return dir_list;
   }

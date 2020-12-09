@@ -33,10 +33,10 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
-      if(FileUtils::FileExists( key.Key()+".fs") && FileUtils::FileExists( key.Key() + ".vs"))
+      if (FileUtils::FileExists(key.Key() + ".fs") && FileUtils::FileExists(key.Key() + ".vs"))
       {
         Shader* data = new Shader(key.Key());
-        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
       }
     }
 

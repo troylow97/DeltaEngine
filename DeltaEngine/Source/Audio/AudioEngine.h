@@ -66,14 +66,14 @@ namespace DeltaEngine
 
     static void SetChannel3DPosition(ChannelID id, Vector3 attributes);
 
-    static unsigned GetChannelPlaybackPosition( ChannelID id );
-    static unsigned GetSoundLength( const std::string &name );
+    static unsigned GetChannelPlaybackPosition(ChannelID id);
+    static unsigned GetSoundLength(const std::string& name);
 
     // Studio
-    static bool IsLoadedBank( const std::string &name );
+    static bool IsLoadedBank(const std::string& name);
     static void LoadBank(const std::string& name, AUDIOENGINE_LOAD_BANK_FLAGS flags);
     static void UnloadBank(const std::string& name);
-    static std::vector<std::string> EventList( const std::string &name );
+    static std::vector<std::string> EventList(const std::string& name);
 
     static EventID Play3DEvent(const std::string& name, Audio3DAttributes attributes, ParametersMap = ParametersMap());
     static EventID Play2DEvent(const std::string& name, ParametersMap = ParametersMap());

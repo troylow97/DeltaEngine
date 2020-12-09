@@ -17,36 +17,35 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-
-void Recurse( Directory &dir, Directory* selection, const std::filesystem::path& parent )
-{
-  for ( auto &d : dir.sub_dir )
+  void Recurse(Directory& dir, Directory* selection, const std::filesystem::path& parent)
   {
-    if ( d.cur_dir.path().generic_string().find( parent.parent_path().generic_string() ) != std::string::npos )
-      selection = &d;
-    else
-      Recurse( d, selection, parent );
+    for (auto& d : dir.sub_dir)
+    {
+      if (d.cur_dir.path().generic_string().find(parent.parent_path().generic_string()) != std::string::npos)
+        selection = &d;
+      else
+        Recurse(d, selection, parent);
+    }
   }
-}
 
-  void DirectoryListener::OnFileAdded( std::filesystem::path path )
+  void DirectoryListener::OnFileAdded(std::filesystem::path path)
   {
-    SystemDirectory::Instance().m_lock.store( true );
+    SystemDirectory::Instance().m_lock.store(true);
     auto p = FileUtils::Root() / path;
-    if ( p.extension() == ".json" )
+    if (p.extension() == ".json")
       return;
-    Directory *selection { nullptr };
-    for ( auto &dir : SystemDirectory::Instance().Directories() )
-      if ( dir.cur_dir.path().generic_string().find( p.parent_path().generic_string() ) != std::string::npos )
+    Directory* selection{nullptr};
+    for (auto& dir : SystemDirectory::Instance().Directories())
+      if (dir.cur_dir.path().generic_string().find(p.parent_path().generic_string()) != std::string::npos)
         selection = &dir;
       else
-        Recurse( dir, selection, p );
+        Recurse(dir, selection, p);
 
     selection->file_vec.push_back(p);
-    SystemDirectory::Instance().m_lock.store( false );
+    SystemDirectory::Instance().m_lock.store(false);
   }
 
-  void DirectoryListener::OnFileDeleted( std::filesystem::path path )
+  void DirectoryListener::OnFileDeleted(std::filesystem::path path)
   {
     //auto folder_offset = path.find_last_of( '/' );
     //auto folder = path.substr( 0, folder_offset );
@@ -60,12 +59,12 @@ void Recurse( Directory &dir, Directory* selection, const std::filesystem::path&
     //} ) );
   }
 
-  void DirectoryListener::OnFileChanged( std::filesystem::path path )
+  void DirectoryListener::OnFileChanged(std::filesystem::path path)
   {
-    (void) path;
+    (void)path;
   }
 
-  void DirectoryListener::OnFileRenamed( std::filesystem::path path )
+  void DirectoryListener::OnFileRenamed(std::filesystem::path path)
   {
     //auto folder_offset = path.find_last_of( '/' );
     //auto folder = path.substr( 0, folder_offset );

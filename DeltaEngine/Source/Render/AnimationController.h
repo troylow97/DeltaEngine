@@ -37,9 +37,10 @@ namespace DeltaEngine
 
     std::vector<std::pair<std::string, Parameter>> startingParameters;
     // possible animation transition
-    std::vector<Transition> transitions; // start state, end state, parameter name, parameter condition type, parameter condition value
+    std::vector<Transition> transitions;
+    // start state, end state, parameter name, parameter condition type, parameter condition value
 
-    
+
     std::vector<std::pair<AssetKey, Vector2>> editorPositions;
 
     std::string entryAnimation;

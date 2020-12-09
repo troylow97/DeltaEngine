@@ -246,9 +246,9 @@ namespace DeltaEngine::Serialize
           writer.Int(var.get_wrapped_value<int>());
         else if (t == type::get<int64_t*>())
           writer.Int64(var.get_wrapped_value<int64_t>());
-        else if (t== type::get<unsigned*>())
+        else if (t == type::get<unsigned*>())
           writer.Uint(var.get_wrapped_value<unsigned>());
-        else if (t== type::get<uint64_t*>() )
+        else if (t == type::get<uint64_t*>())
           writer.Uint64(var.get_wrapped_value<uint64_t>());
 
         return true;

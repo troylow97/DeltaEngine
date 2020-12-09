@@ -31,7 +31,7 @@ namespace DeltaEngine
 
   public:
     FileWatcher(std::filesystem::path directory);
-    void Directory( std::filesystem::path dir );
+    void Directory(std::filesystem::path dir);
     const std::filesystem::path& Directory();
     void AddListener(IFileWatcherListener* listener);
     void Start();

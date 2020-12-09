@@ -24,20 +24,21 @@ namespace DeltaEngine
     const float SeparatingVelocity2 = Vector2DotProduct(relativeVelocity2, -m.normal);
     if (SeparatingVelocity > 0 || SeparatingVelocity2 > 0)
     {
-        r1.PointEnd = c1.center;
-        r2.PointEnd = c2.center;
-        //The objects are no longer moving towards each other
-        return;
+      r1.PointEnd = c1.center;
+      r2.PointEnd = c2.center;
+      //The objects are no longer moving towards each other
+      return;
     }
 
     //Calculate velocity using conservation of momentum
     float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
-    float j = Vector2DotProduct(-(1 + restitution) * (r1.Velocity - r2.Velocity), m.normal)/(1/r1.Mass + 1/r2.Mass);
+    float j = Vector2DotProduct(-(1 + restitution) * (r1.Velocity - r2.Velocity), m.normal) / (1 / r1.Mass + 1 / r2.Mass
+    );
 
     if (r1.isMoveable)
-        r1.Velocity = r1.Velocity + (j / r1.Mass) * m.normal;
-    if(r2.isMoveable)
-        r2.Velocity = r2.Velocity - (j / r2.Mass) * m.normal;
+      r1.Velocity = r1.Velocity + (j / r1.Mass) * m.normal;
+    if (r2.isMoveable)
+      r2.Velocity = r2.Velocity - (j / r2.Mass) * m.normal;
 
     //Snap object
     const Vector2 impulse = (m.normal * m.penetration);

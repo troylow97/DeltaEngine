@@ -31,7 +31,7 @@ namespace DeltaEngine
 #ifdef DE_EDITOR
     _coreLogger->set_level(spdlog::level::trace);
 #else
-    _coreLogger->set_level( spdlog::level::off );
+    _coreLogger->set_level(spdlog::level::off);
 #endif
 
 
@@ -39,7 +39,7 @@ namespace DeltaEngine
 #ifdef DE_EDITOR
     _coreLogger->set_level(spdlog::level::trace);
 #else
-    _coreLogger->set_level( spdlog::level::off );
+    _coreLogger->set_level(spdlog::level::off);
 #endif
     core_file_logger = spdlog::basic_logger_mt("core_file_logger", LOG_TEXT_NAME);
 

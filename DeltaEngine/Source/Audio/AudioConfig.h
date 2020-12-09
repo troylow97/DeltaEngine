@@ -15,7 +15,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-
   struct SoundConfig
   {
     std::string path{};
@@ -26,7 +25,7 @@ namespace DeltaEngine
 
   struct BankConfig
   {
-    std::string path {};
+    std::string path{};
   };
 
   struct AudioConfig

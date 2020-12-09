@@ -77,10 +77,10 @@ namespace DeltaEngine
             r.m_Material.SetUniform1f("_RStart", i.m_StartAngle);
             r.m_Material.SetUniform1f("_REnd", i.m_EndAngle);
             r.m_Material.SetUniformVector4f("_SpriteUV", Vector4(
-              i.m_Sprite.GetOffset().x,
-              i.m_Sprite.GetOffset().y,
-              i.m_Sprite.GetOffset().x + i.m_Sprite.GetTiling().x,
-              i.m_Sprite.GetOffset().y + i.m_Sprite.GetTiling().y));
+                                              i.m_Sprite.GetOffset().x,
+                                              i.m_Sprite.GetOffset().y,
+                                              i.m_Sprite.GetOffset().x + i.m_Sprite.GetTiling().x,
+                                              i.m_Sprite.GetOffset().y + i.m_Sprite.GetTiling().y));
             Mesh::DrawQuad(offset, tiling, pivot);
 
             if (i.m_Sprite)
@@ -139,25 +139,25 @@ namespace DeltaEngine
 
     // camera entities
     em.ForEach([&](EntityID id, Transform& tr, Camera& c)
-      {
+    {
 #ifndef DE_EDITOR
-        c.SetViewportSize(1.0f * GetEnv().pWin->Width());
-        c.SetAspectRatio(1.0f * GetEnv().pWin->Width(), 1.0f * GetEnv().pWin->Height());
+      c.SetViewportSize(1.0f * GetEnv().pWin->Width());
+      c.SetAspectRatio(1.0f * GetEnv().pWin->Width(), 1.0f * GetEnv().pWin->Height());
 #endif // !DE_EDITOR
 
-        c.Start();
-        // loop through every object
-        DrawRenderer2D(em, c, tr);
+      c.Start();
+      // loop through every object
+      DrawRenderer2D(em, c, tr);
 
-        c.End();
+      c.End();
 
 #ifndef DE_EDITOR
-        Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
-        shader->SetUniform1i("_MainTex", 0);
-        glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
-        Mesh::DrawQuad();
+      Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
+      shader->SetUniform1i("_MainTex", 0);
+      glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+      Mesh::DrawQuad();
 #endif // !DE_EDITOR
-      });
+    });
 
 
 #ifdef DE_EDITOR
