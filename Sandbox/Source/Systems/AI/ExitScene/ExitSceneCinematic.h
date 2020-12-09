@@ -25,8 +25,8 @@ namespace DeltaEngine
   private:
     Vector2 ExitPoint;
     Vector2 StopPoint;
-    float timer;
-    float credits_timer;
+    float timer{0.0f};
+    float credits_timer {0.0f};
     bool ExitPointTriggered;
     bool StopPointTriggered;
     bool CreditsRolledTriggered;

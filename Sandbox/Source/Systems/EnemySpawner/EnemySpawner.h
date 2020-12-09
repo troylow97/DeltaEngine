@@ -30,8 +30,8 @@ namespace DeltaEngine
   {
     VectorOfEnemyWaves EnemyWaves;
     Vector2 ActivationPoint;
-    float WallOffsetRight;
-    float WallOffsetLeft;
+    float WallOffsetRight {2.5f};
+    float WallOffsetLeft {2.5f};
     unsigned CurrentEnemyWave;
     bool isActivated;
     bool isFinished;
