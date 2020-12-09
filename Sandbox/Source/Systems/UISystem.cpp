@@ -152,7 +152,6 @@ namespace DeltaEngine
     if (InputManager::Instance().IsKeyTriggered(DEVK_ESCAPE))
     {
       //bool option_menu_bool{false};
-      bool pause_screen_bool{false};
 
       for (auto& screen : m_screen)
       {
@@ -510,6 +509,7 @@ namespace DeltaEngine
   void UISystem::UnpauseGame()
   {
     env.pClock->TimeScale(1.0f);
+    pause_screen_bool = false;
   }
 
   RTTR_REGISTRATION

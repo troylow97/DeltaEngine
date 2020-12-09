@@ -1583,7 +1583,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 0,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -1661,7 +1661,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 1,
+                "Layer": 3,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -1739,7 +1739,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 1,
+                "Layer": 3,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -1817,7 +1817,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 2,
+                "Layer": 4,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -1895,7 +1895,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 1,
+                "Layer": 3,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,
@@ -1973,7 +1973,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 2,
+                "Layer": 4,
                 "Order": 0.0,
                 "Active": false,
                 "Shaded": true,

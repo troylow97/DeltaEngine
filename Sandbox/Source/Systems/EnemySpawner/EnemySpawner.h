@@ -65,7 +65,7 @@ namespace DeltaEngine
     EnemyData LancerData;
     Vector2 ActivationPoint;
     int CurrentGauntlet{0};
-    bool GauntletIsActive;
+    bool GauntletIsActive{false};
 
   END_DEFINE_SYSTEM(EnemySpawner)
 }

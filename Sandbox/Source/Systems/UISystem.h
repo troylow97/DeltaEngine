@@ -36,15 +36,16 @@ namespace DeltaEngine
     void BackToMainMenu();
     inline static bool credits_rolling{false};
   private:
-    bool isDraggingOnSlider;
-    bool UI_first_time = true;
-    bool upgraded_HP_not_pushed = true;
-    bool upgraded_Attack_not_pushed = true;
-    bool back_to_main_menu = false;
-    bool is_main_menu = false;
+    bool isDraggingOnSlider{false};
+    bool UI_first_time{true};
+    bool upgraded_HP_not_pushed{true};
+    bool upgraded_Attack_not_pushed{true};
+    bool back_to_main_menu{false};
+    bool is_main_menu{false};
     bool m_start{false};
     bool m_restart{false};
     bool m_backmenu{false};
+    bool pause_screen_bool{false};
 
 
     Vector2 VolumeSliderInitialLocation;
