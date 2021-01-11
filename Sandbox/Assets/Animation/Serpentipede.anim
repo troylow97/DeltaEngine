@@ -1,83 +1,119 @@
 %Entry:
 
-entry 
+entry
 Clip/SERP_FULL_IDLE
 
 %Parameters:
 
 param
-PlayerDetected 0 0
+PlayerDetected
+0 0
 
 param
-HP 0 0
+HP
+0 0
 
 param
-IsAttacking 0 0
+IsAttacking
+0 0
 
 %EditorPositions:
 
 pos
-Entry -198 -58
+Entry
+-198 -58
 
 pos
-Exit 79 112
+Exit
+79 112
 
 pos
-Clip/SERP_FULL_IDLE -438 88
+Clip/SERP_FULL_IDLE
+-438 88
 
 pos
-Clip/SERP_FIRE -34 119
+Clip/SERP_FIRE
+-34 119
 
 pos
-Clip/SERP_FULL_ALERT -375 248
+Clip/SERP_FULL_ALERT
+-375 248
 
 pos
-Clip/SERP_DEATH -188 65
+Clip/SERP_DEATH
+-188 65
 
 pos
-Clip/SERP_CHARGE -68 241
+Clip/SERP_CHARGE
+-68 241
 
 %Transitions:
 
 transition 
-start Clip/SERP_FULL_IDLE
-end Clip/SERP_FULL_ALERT
-condition PlayerDetected ? 1
+start 
+Clip/SERP_FULL_IDLE
+end 
+Clip/SERP_FULL_ALERT
+condition 
+PlayerDetected
+? 1
 endTransition
 
 transition 
-start Clip/SERP_FULL_ALERT
-end Clip/SERP_CHARGE
-condition IsAttacking ? 1
+start 
+Clip/SERP_FULL_ALERT
+end 
+Clip/SERP_CHARGE
+condition 
+IsAttacking
+? 1
 endTransition
 
 transition 
-start Clip/SERP_CHARGE
-end Clip/SERP_FIRE
+start 
+Clip/SERP_CHARGE
+end 
+Clip/SERP_FIRE
 endTransition
 
 transition 
-start Clip/SERP_FULL_ALERT
-end Clip/SERP_DEATH
-condition HP < 1
+start 
+Clip/SERP_FULL_ALERT
+end 
+Clip/SERP_DEATH
+condition 
+HP
+< 1
 endTransition
 
 transition 
-start Clip/SERP_FIRE
-end Clip/SERP_FULL_ALERT
-condition PlayerDetected ? 0
+start 
+Clip/SERP_FIRE
+end 
+Clip/SERP_FULL_ALERT
+condition 
+PlayerDetected
+? 0
 endTransition
 
 transition 
-start Clip/SERP_FIRE
-end Clip/SERP_DEATH
-condition HP < 1
+start 
+Clip/SERP_FIRE
+end 
+Clip/SERP_DEATH
+condition 
+HP
+< 1
 endTransition
 
 transition 
-start Clip/SERP_CHARGE
-end Clip/SERP_DEATH
-condition HP < 1
+start 
+Clip/SERP_CHARGE
+end 
+Clip/SERP_DEATH
+condition 
+HP
+< 1
 endTransition
 
 %endfile

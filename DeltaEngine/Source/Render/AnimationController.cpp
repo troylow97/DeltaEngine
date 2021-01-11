@@ -147,7 +147,10 @@ namespace DeltaEngine
       file >> str;
       if (str[0] != '%')
       {
-        file >> entryAnimation;
+        while (std::getline(file, entryAnimation))
+          if (!entryAnimation.empty())
+            break;
+        std::cout << entryAnimation << std::endl;
         file >> str;
       }
       while (file.good()) // parameters
@@ -156,6 +159,9 @@ namespace DeltaEngine
         file >> str;
         if (str[0] == '%')
           break;
+        //while (std::getline(file, str))
+        //  if (!entryAnimation.empty())
+        //    break;
         file >> str >> newParam.boolValue >> newParam.floatValue;
         startingParameters.push_back(std::pair<std::string, Parameter>(str, newParam));
       }
@@ -165,6 +171,9 @@ namespace DeltaEngine
         file >> str;
         if (str[0] == '%')
           break;
+        //while (std::getline(file, str))
+        //  if (!entryAnimation.empty())
+        //    break;
         file >> str >> pos.x >> pos.y;
         editorPositions.push_back(std::pair<AssetKey, Vector2>(str, pos));
       }
@@ -179,12 +188,22 @@ namespace DeltaEngine
         if (str[0] == '%')
           break;
         file >> str >> startClip;
+        //while (std::getline(file, startClip))
+        //  if (!entryAnimation.empty())
+        //    break;
         file >> str >> endClip;
+        //while (std::getline(file, endClip))
+        //  if (!entryAnimation.empty())
+        //    break;
 
         transitions.push_back({startClip, endClip, Condition()});
 
         while ((file >> str), std::strcmp(str.c_str(), "condition") == 0)
         {
+          //while (std::getline(file, paramName))
+          //  if (!entryAnimation.empty())
+          //    break;
+          //file >> condition >> value;
           file >> paramName >> condition >> value;
           switch (condition[0])
           {
@@ -262,27 +281,25 @@ namespace DeltaEngine
     {
       file << "%Entry:" << std::endl << std::endl;
       if (!entryAnimation.empty())
-        file << "entry " << std::endl << entryAnimation << std::endl << std::endl;
+        file << "entry" << std::endl << entryAnimation << std::endl << std::endl;
       file << "%Parameters:" << std::endl << std::endl;
       for (auto& [ParamName, Value] : newParameters)
         file << "param" << std::endl
-          << ParamName << " "
-          << Value.boolValue << " "
-          << Value.floatValue << std::endl << std::endl;
+          << ParamName << std::endl
+          << Value.boolValue << " " << Value.floatValue << std::endl << std::endl;
 
       file << "%EditorPositions:" << std::endl << std::endl;
       for (auto& [ClipKey, Pos] : newPositions)
         file << "pos" << std::endl
-          << ClipKey.Key() << " "
-          << Pos.x << " "
-          << Pos.y << std::endl << std::endl;
+          << ClipKey.Key() << std::endl
+          << Pos.x << " " << Pos.y << std::endl << std::endl;
       file << "%Transitions:" << std::endl << std::endl;
 
       for (auto& [StartClip, EndClip, Conditions] : transitions)
       {
         file << "transition " << std::endl;
-        file << "start " << StartClip << std::endl;
-        file << "end " << EndClip << std::endl;
+        file << "start " << std::endl << StartClip << std::endl;
+        file << "end " << std::endl << EndClip << std::endl;
         for (auto& [ParamName, ConditionType, ConditionValue] : Conditions)
         {
           char ct = '?';
@@ -305,8 +322,8 @@ namespace DeltaEngine
             break;
           }
 
-          file << "condition " <<
-            ParamName << ' ' << ct << ' ' << ConditionValue << std::endl;
+          file << "condition " << std::endl
+            << ParamName << std::endl << ct << ' ' << ConditionValue << std::endl;
         }
         file << "endTransition" << std::endl << std::endl;
       }

@@ -159,8 +159,10 @@ namespace DeltaEngine
         }
         loaded = true;
       }
+      char renameParamBuf[128];
       for (auto& [ParamName, Value] : controller->startingParameters)
       {
+        ImGui::PushID(ParamName.c_str());
         ImGui::Selectable(ParamName.c_str(), &paramSelected[ParamName]);
         if (paramSelected[ParamName])
         {
@@ -169,6 +171,10 @@ namespace DeltaEngine
 
           nodeFlags |= ImGuiTreeNodeFlags_Selected;
 
+          strcpy(renameParamBuf, ParamName.c_str());
+
+          if (ImGui::InputText("Rename", renameParamBuf, 128))
+            ParamName = renameParamBuf;
           ImGui::Checkbox("Bool", &Value.boolValue);
           ImGui::DragFloat("Float", &Value.floatValue, 0.1f, 0.f, 0.f, "%0.1f");
           if (ImGui::Button("Delete..."))
@@ -177,6 +183,7 @@ namespace DeltaEngine
             deleteParam = ParamName.c_str();
           }
         }
+        ImGui::PopID();
       }
 
       ImGui::EndChild();
@@ -330,7 +337,9 @@ namespace DeltaEngine
       if (ImGui::IsMouseReleased(ImGuiMouseButton_Right))
         if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByPopup))
         {
-          ImGui::OpenPopup("Animator Node Context Menu");
+          Node* node = (nodeSelected >= 0 && nodeSelected < nodes.size()) ? &nodes[nodeSelected] : NULL;
+          if (node)
+            ImGui::OpenPopup("Animator Node Context Menu");
         }
 
       // draw context menu
@@ -505,11 +514,13 @@ namespace DeltaEngine
               ImGui::Separator();
               if (selectedTransition >= 0 && selectedTransition < controller->transitions.size())
               {
+                int sid = 0;
                 std::vector<const char*> allParameters;
                 for (auto& param : controller->startingParameters)
                   allParameters.push_back(param.first.c_str());
                 for (auto& [paramName, conType, conVal] : std::get<2>(controller->transitions[selectedTransition]))
                 {
+                  ImGui::PushID(("Parameter Combo " + std::to_string(sid)).c_str());
                   static const char* conditions[]{ "Bool Equal", "Equal", "Not Equal", "Greater", "Less" };
                   if (ImGui::BeginCombo("Parameter", paramName.c_str()))
                   {
@@ -526,10 +537,28 @@ namespace DeltaEngine
                     }
                     ImGui::EndCombo();
                   }
+                  ImGui::PopID();
 
+                  ImGui::PushID(("Condition Combo " + std::to_string(sid)).c_str());
                   ImGui::Combo("Condition", (int*)&conType, conditions, IM_ARRAYSIZE(conditions));
+                  ImGui::PopID();
+
+                  ImGui::PushID(("Value Drag " + std::to_string(sid)).c_str());
                   ImGui::DragFloat("Value", &conVal);
+                  ImGui::PopID();
+
+                  ImGui::PushID(("Delete Condition " + std::to_string(sid)).c_str());
+                  if (ImGui::Button("Delete..."))
+                  {
+                    // delete the condition
+                    std::get<2>(controller->transitions[selectedTransition]).erase(
+                      std::get<2>(controller->transitions[selectedTransition]).begin() + sid
+                    );
+                  }
+                  ImGui::PopID();
+
                   ImGui::Separator();
+                  ++sid;
                 }
                 if (allParameters.size())
                 {
