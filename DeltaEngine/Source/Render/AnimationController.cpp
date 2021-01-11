@@ -159,10 +159,10 @@ namespace DeltaEngine
         file >> str;
         if (str[0] == '%')
           break;
-        //while (std::getline(file, str))
-        //  if (!entryAnimation.empty())
-        //    break;
-        file >> str >> newParam.boolValue >> newParam.floatValue;
+        while (std::getline(file, str))
+          if (!str.empty())
+            break;
+        file >> newParam.boolValue >> newParam.floatValue;
         startingParameters.push_back(std::pair<std::string, Parameter>(str, newParam));
       }
       while (file.good()) // editor positions
@@ -171,10 +171,10 @@ namespace DeltaEngine
         file >> str;
         if (str[0] == '%')
           break;
-        //while (std::getline(file, str))
-        //  if (!entryAnimation.empty())
-        //    break;
-        file >> str >> pos.x >> pos.y;
+        while (std::getline(file, str))
+          if (!str.empty())
+            break;
+        file >> pos.x >> pos.y;
         editorPositions.push_back(std::pair<AssetKey, Vector2>(str, pos));
       }
       while (file.good()) // transitions and conditions
@@ -187,24 +187,27 @@ namespace DeltaEngine
         file >> str;
         if (str[0] == '%')
           break;
-        file >> str >> startClip;
-        //while (std::getline(file, startClip))
-        //  if (!entryAnimation.empty())
-        //    break;
-        file >> str >> endClip;
-        //while (std::getline(file, endClip))
-        //  if (!entryAnimation.empty())
-        //    break;
+        file >> str;
+        while (std::getline(file, startClip))
+          if (!startClip.empty())
+            break;
+        file >> str;
+        while (std::getline(file, endClip))
+          if (!endClip.empty())
+            break;
 
         transitions.push_back({startClip, endClip, Condition()});
 
         while ((file >> str), std::strcmp(str.c_str(), "condition") == 0)
         {
-          //while (std::getline(file, paramName))
-          //  if (!entryAnimation.empty())
-          //    break;
-          //file >> condition >> value;
-          file >> paramName >> condition >> value;
+          while (std::getline(file, paramName))
+            if (!paramName.empty())
+              break;
+          //file.ignore();
+          //std::getline(file, paramName);
+          std::cerr << paramName;
+          file >> condition >> value;
+          //file >> paramName >> condition >> value;
           switch (condition[0])
           {
           case '?':
@@ -297,9 +300,9 @@ namespace DeltaEngine
 
       for (auto& [StartClip, EndClip, Conditions] : transitions)
       {
-        file << "transition " << std::endl;
-        file << "start " << std::endl << StartClip << std::endl;
-        file << "end " << std::endl << EndClip << std::endl;
+        file << "transition" << std::endl;
+        file << "start" << std::endl << StartClip << std::endl;
+        file << "end" << std::endl << EndClip << std::endl;
         for (auto& [ParamName, ConditionType, ConditionValue] : Conditions)
         {
           char ct = '?';
@@ -322,7 +325,7 @@ namespace DeltaEngine
             break;
           }
 
-          file << "condition " << std::endl
+          file << "condition" << std::endl
             << ParamName << std::endl << ct << ' ' << ConditionValue << std::endl;
         }
         file << "endTransition" << std::endl << std::endl;

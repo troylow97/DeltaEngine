@@ -49,69 +49,69 @@ Clip/SERP_CHARGE
 
 %Transitions:
 
-transition 
-start 
+transition
+start
 Clip/SERP_FULL_IDLE
-end 
+end
 Clip/SERP_FULL_ALERT
-condition 
+condition
 PlayerDetected
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/SERP_FULL_ALERT
-end 
+end
 Clip/SERP_CHARGE
-condition 
+condition
 IsAttacking
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/SERP_CHARGE
-end 
+end
 Clip/SERP_FIRE
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/SERP_FULL_ALERT
-end 
+end
 Clip/SERP_DEATH
-condition 
+condition
 HP
 < 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/SERP_FIRE
-end 
+end
 Clip/SERP_FULL_ALERT
-condition 
+condition
 PlayerDetected
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/SERP_FIRE
-end 
+end
 Clip/SERP_DEATH
-condition 
+condition
 HP
 < 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/SERP_CHARGE
-end 
+end
 Clip/SERP_DEATH
-condition 
+condition
 HP
 < 1
 endTransition

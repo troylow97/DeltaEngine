@@ -32,6 +32,12 @@ namespace DeltaEngine
     m_enabled = false;
   }
 
+  void AnimatorPanel::Enable()
+  {
+    m_enabled = !m_enabled;
+    loaded = false;
+  }
+
   void AnimatorPanel::Render()
   {
     if (ImGui::Begin("Animator Editor",&m_enabled ))
@@ -79,7 +85,6 @@ namespace DeltaEngine
       static std::vector<Node> nodes;
       static std::vector<NodeLink> links;
       static ImVec2 scrolling = ImVec2(0.0f, 0.0f);
-      static bool loaded = false;
       static int nodeSelected = -1;
       static int transitionNode = -1;
       static int hoveredNode = -1;
@@ -121,6 +126,8 @@ namespace DeltaEngine
       if (!loaded && controller)
       {
         nodes.clear();
+        links.clear();
+        paramSelected.clear();
         for (auto& [ParamName, Value] : controller->startingParameters)
         {
           paramSelected[ParamName] = false;
@@ -159,7 +166,7 @@ namespace DeltaEngine
         }
         loaded = true;
       }
-      char renameParamBuf[128];
+
       for (auto& [ParamName, Value] : controller->startingParameters)
       {
         ImGui::PushID(ParamName.c_str());
@@ -171,10 +178,11 @@ namespace DeltaEngine
 
           nodeFlags |= ImGuiTreeNodeFlags_Selected;
 
-          strcpy(renameParamBuf, ParamName.c_str());
+          auto& str = ParamName;
+          char buffer[256]{};
+          if (ImGui::InputText("Rename", buffer, sizeof(buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+            str = std::string(buffer);
 
-          if (ImGui::InputText("Rename", renameParamBuf, 128))
-            ParamName = renameParamBuf;
           ImGui::Checkbox("Bool", &Value.boolValue);
           ImGui::DragFloat("Float", &Value.floatValue, 0.1f, 0.f, 0.f, "%0.1f");
           if (ImGui::Button("Delete..."))

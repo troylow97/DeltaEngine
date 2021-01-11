@@ -61,82 +61,82 @@ Clip/FID_ALERT
 
 %Transitions:
 
-transition 
-start 
+transition
+start
 Clip/FID_WALK
-end 
+end
 Clip/FID_ALERT
-condition 
+condition
 IsAlerted
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/FID_ALERT
-end 
+end
 Clip/FID_ALERT_RUN
-condition 
+condition
 IsAlertRunning
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/FID_ALERT_RUN
-end 
+end
 Clip/FID_ATTACK
-condition 
+condition
 IsAttacking
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/FID_ATTACK
-end 
+end
 Clip/FID_DEATH
-condition 
+condition
 IsDead
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/FID_ALERT_RUN
-end 
+end
 Clip/FID_DEATH
-condition 
+condition
 IsDead
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/FID_ALERT
-end 
+end
 Clip/FID_DEATH
-condition 
+condition
 IsDead
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/FID_ATTACK
-end 
+end
 Clip/FID_ALERT
-condition 
+condition
 IsAlerted
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/FID_ATTACK
-end 
+end
 Clip/FID_WALK
-condition 
+condition
 IsPatrolling
 ? 1
 endTransition

@@ -113,348 +113,348 @@ Clip/LancerAttack
 
 %Transitions:
 
-transition 
-start 
+transition
+start
 Clip/IdleSpritesheet
-end 
+end
 Clip/RunningSpritesheet
-condition 
+condition
 IsRunning
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/RunningSpritesheet
-end 
+end
 Clip/IdleSpritesheet
-condition 
+condition
 IsRunning
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/IdleSpritesheet
-end 
+end
 Clip/RangeAttackSpritesheet
-condition 
+condition
 Ranged
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/RangeAttackSpritesheet
-end 
+end
 Exit
-condition 
+condition
 Ranged
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/IdleSpritesheet
-end 
+end
 Clip/DashSpritesheet
-condition 
+condition
 IsDodge
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/DashSpritesheet
-end 
+end
 Exit
-condition 
+condition
 IsDodge
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/IdleSpritesheet
-end 
+end
 Clip/Punch1
-condition 
+condition
 Punch1
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/Punch1
-end 
+end
 Clip/Punch2
-condition 
+condition
 Punch2
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/Punch2
-end 
+end
 Clip/Punch3
-condition 
+condition
 Punch3
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/Punch1
-end 
+end
 Exit
-condition 
+condition
 Punch1
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/Punch2
-end 
+end
 Exit
-condition 
+condition
 Punch2
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/Punch3
-end 
+end
 Exit
-condition 
+condition
 Punch3
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/IdleSpritesheet
-end 
+end
 Clip/InitialJump
-condition 
+condition
 PlayerVelocityY
 > 5
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/RunningSpritesheet
-end 
+end
 Clip/InitialJump
-condition 
+condition
 PlayerVelocityY
 > 5
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/InitialJump
-end 
+end
 Clip/ReachingTop
-condition 
+condition
 PlayerVelocityY
 > -0.1
-condition 
+condition
 PlayerVelocityY
 < 5
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/ReachingTop
-end 
+end
 Clip/FallingSpritesheet
-condition 
+condition
 PlayerVelocityY
 < 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/RunningSpritesheet
-end 
+end
 Clip/FallingSpritesheet
-condition 
+condition
 PlayerVelocityY
 < 0
-condition 
+condition
 IsJumping
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/FallingSpritesheet
-end 
+end
 Clip/LandingSpriteSheet
-condition 
+condition
 PlayerVelocityY
 > -0.1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/LandingSpriteSheet
-end 
+end
 Clip/IdleSpritesheet
-condition 
+condition
 IsRunning
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/LandingSpriteSheet
-end 
+end
 Clip/RunningSpritesheet
-condition 
+condition
 IsRunning
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/IdleSpritesheet
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/RunningSpritesheet
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/RangeAttackSpritesheet
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/FallingSpritesheet
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/LandingSpriteSheet
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/DashSpritesheet
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/InitialJump
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/ReachingTop
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/Punch1
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/Punch2
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/Punch3
-end 
+end
 Clip/LancerAttack
-condition 
+condition
 LancerAttack
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/LancerAttack
-end 
+end
 Exit
-condition 
+condition
 LancerAttack
 ? 0
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/RunningSpritesheet
-end 
+end
 Clip/Punch1
-condition 
+condition
 Punch1
 ? 1
 endTransition
 
-transition 
-start 
+transition
+start
 Clip/RangeAttackSpritesheet
-end 
+end
 Clip/IdleSpritesheet
-condition 
+condition
 Ranged
 ? 0
 endTransition
