@@ -315,6 +315,29 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Shaded", &Renderer2D::m_Shaded )( rttr::policy::prop::bind_as_ptr )
     .property( "Wireframe", &Renderer2D::m_Wireframe )( rttr::policy::prop::bind_as_ptr );
 
+  rttr::registration::class_<RendererOverlay>( "RendererOverlay" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<RendererOverlay>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "Pos X", &RendererOverlay::posX )( rttr::policy::prop::bind_as_ptr )
+    .property( "Pos Y", &RendererOverlay::posY )( rttr::policy::prop::bind_as_ptr )
+    .property( "Width", &RendererOverlay::width )( rttr::policy::prop::bind_as_ptr )
+    .property( "Height", &RendererOverlay::height )( rttr::policy::prop::bind_as_ptr )
+    .property( "Left", &RendererOverlay::left )( rttr::policy::prop::bind_as_ptr )
+    .property( "Right", &RendererOverlay::right )( rttr::policy::prop::bind_as_ptr )
+    .property( "Top", &RendererOverlay::top )( rttr::policy::prop::bind_as_ptr )
+    .property( "Bottom", &RendererOverlay::bottom )( rttr::policy::prop::bind_as_ptr )
+    .property( "Anchor Min", &RendererOverlay::anchorMin )( rttr::policy::prop::bind_as_ptr )
+    .property( "Anchor Max", &RendererOverlay::anchorMax )( rttr::policy::prop::bind_as_ptr )
+    .property( "Pivot", &RendererOverlay::pivot)( rttr::policy::prop::bind_as_ptr )
+    .property( "Materials", &RendererOverlay::m_Material )( rttr::policy::prop::bind_as_ptr )
+    .property( "Colors", &RendererOverlay::m_Color )( rttr::policy::prop::bind_as_ptr )
+    .property( "Layer", &RendererOverlay::m_SortingLayer )( rttr::policy::prop::bind_as_ptr )
+    .property( "Order", &RendererOverlay::m_SortingOrder )( rttr::policy::prop::bind_as_ptr )
+    .property( "Preserve Aspect", &RendererOverlay::m_PreserveAspect )( rttr::policy::prop::bind_as_ptr )
+    .property( "Active", &RendererOverlay::m_Active )( rttr::policy::prop::bind_as_ptr )
+    .property( "Shaded", &RendererOverlay::m_Shaded )( rttr::policy::prop::bind_as_ptr )
+    .property( "Wireframe", &RendererOverlay::m_Wireframe )( rttr::policy::prop::bind_as_ptr );
+
   rttr::registration::class_<Input>( "Input" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Input>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
@@ -417,6 +440,8 @@ rttr::type RT_Checker( size_t bits )
     return rttr::type::get_by_name( "Text" );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     return rttr::type::get_by_name( "Renderer2D" );
+  if ( ComponentMeta::GetComponentMeta<RendererOverlay>()->bits == bits )
+    return rttr::type::get_by_name( "RendererOverlay" );
   if ( ComponentMeta::GetComponentMeta<AI>()->bits == bits )
     return rttr::type::get_by_name( "AI" );
   if ( ComponentMeta::GetComponentMeta<EntityType>()->bits == bits )
@@ -460,6 +485,8 @@ void RT_Destroy( EntityManager &em, EntityID id, size_t bits )
     em.RemoveComponent<Text>( id );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     em.RemoveComponent<Renderer2D>( id );
+  if ( ComponentMeta::GetComponentMeta<RendererOverlay>()->bits == bits )
+    em.RemoveComponent<RendererOverlay>( id );
   if ( ComponentMeta::GetComponentMeta<AI>()->bits == bits )
     em.RemoveComponent<AI>( id );
   if ( ComponentMeta::GetComponentMeta<EntityType>()->bits == bits )
@@ -502,6 +529,8 @@ void RT_Setter( EntityManager &em, EntityID id, size_t bits )
     em.AddComponent<Text>( id );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     em.AddComponent<Renderer2D>( id );
+  if ( ComponentMeta::GetComponentMeta<RendererOverlay>()->bits == bits )
+    em.AddComponent<RendererOverlay>( id );
   if ( ComponentMeta::GetComponentMeta<AI>()->bits == bits )
     em.AddComponent<AI>( id );
   if ( ComponentMeta::GetComponentMeta<EntityType>()->bits == bits )
@@ -544,6 +573,8 @@ rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
     return rttr::instance( em.GetComponent<Text>( id ) );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     return rttr::instance( em.GetComponent<Renderer2D>( id ) );
+  if ( ComponentMeta::GetComponentMeta<RendererOverlay>()->bits == bits )
+    return rttr::instance( em.GetComponent<RendererOverlay>( id ) );
   if ( ComponentMeta::GetComponentMeta<AI>()->bits == bits )
     return rttr::instance( em.GetComponent<AI>( id ) );
   if ( ComponentMeta::GetComponentMeta<EntityType>()->bits == bits )
@@ -587,6 +618,8 @@ void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::F
     Serialize::WriteObject( *static_cast<Text *>( ptr ), writer );
   else if ( str == "Renderer2D" )
     Serialize::WriteObject( *static_cast<Renderer2D *>( ptr ), writer );
+  else if ( str == "RendererOverlay" )
+    Serialize::WriteObject( *static_cast<RendererOverlay*>( ptr ), writer );
   else if ( str == "AI" )
     Serialize::WriteObject( *static_cast<AI *>( ptr ), writer );
   else if ( str == "Entity Type" )
@@ -631,6 +664,8 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
     em.AddComponent<Text>( id, var.get_value<Text>() );
   else if ( str == "Renderer2D" )
     em.AddComponent<Renderer2D>( id, var.get_value<Renderer2D>() );
+  else if ( str == "RendererOverlay" )
+    em.AddComponent<RendererOverlay>( id, var.get_value<RendererOverlay>() );
   else if ( str == "AI" )
     em.AddComponent<AI>( id, var.get_value<AI>() );
   else if ( str == "Attack" )

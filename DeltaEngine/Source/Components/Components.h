@@ -38,7 +38,7 @@ namespace DeltaEngine
 {
   using CoreBase = Typelist<EntityID,Parent, EntityName, EntityType>;
   using PhysicsBase = CoreBase::Append<Transform, RigidBody, Collider>;
-  using RenderBase = PhysicsBase::Append<Image, Renderer2D, Text, Animator, State, Camera>;
+  using RenderBase = PhysicsBase::Append<Image, Renderer2D, RendererOverlay, Text, Animator, State, Camera>;
   using GameBase = RenderBase::Append< AI, Health, Attack, Lifespan, Player, Input, UI>;
   using ComponentList = GameBase;
 }

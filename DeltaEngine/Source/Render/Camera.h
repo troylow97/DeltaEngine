@@ -43,8 +43,9 @@ namespace DeltaEngine
     Vector3 Max(Transform transform) const;
     Vector3 Min(Transform transform) const;
     FrameBuffer& GetFrameBuffer();
-    float GetAspectRatio();
+    float GetAspectRatio() const;
     float SetAspectRatio(float width, float height);
+    float GetViewportSize() const;
     float SetViewportSize(float width);
 
     void Start();

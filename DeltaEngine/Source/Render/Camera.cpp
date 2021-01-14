@@ -158,7 +158,7 @@ namespace DeltaEngine
     return frameBuffer;
   }
 
-  float Camera::GetAspectRatio()
+  float Camera::GetAspectRatio() const
   {
     return m_AspectRatio;
   }
@@ -166,6 +166,11 @@ namespace DeltaEngine
   float Camera::SetAspectRatio(float width, float height)
   {
     return m_AspectRatio = width / height;
+  }
+
+  float Camera::GetViewportSize() const
+  {
+    return m_ViewportSize;
   }
 
   float Camera::SetViewportSize(float width)
