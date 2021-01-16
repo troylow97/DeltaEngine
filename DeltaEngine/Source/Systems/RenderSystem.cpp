@@ -140,8 +140,9 @@ namespace DeltaEngine
         Transform t{};
         RendererOverlay& r = em.GetComponent<RendererOverlay>(ID);
         Image& i = em.GetComponent<Image>(ID);
-        float cw = c.GetViewportSize();
-        float ch = c.GetViewportSize() / c.GetAspectRatio();
+        float refAspect = r.refRes.x / r.refRes.y;
+        float cw = r.refRes.x;
+        float ch = r.refRes.y;
 
         if (r.m_Active)
         {
@@ -163,26 +164,26 @@ namespace DeltaEngine
             float anch = (r.anchorMax.x - r.anchorMin.x) / 2 - .5f;
             float midpt = (r.left - r.right) / 2 / cw;
             t.position.x = anch + midpt;
-            tmpXscale = 1 - (r.left + r.right) / cw;
+            tmpXscale = (1 - (r.left + r.right) / cw);
             pivot = Vector2(.5f, .5f);
           }
           else
           {
-            t.position.x = r.posX;
-            tmpXscale = r.width / cw;
+            t.position.x = r.pos.x / cw + r.anchorMin.x - .5f;
+            tmpXscale = r.size.x / cw;
           }
           if (Math::Abs(r.anchorMax.y - r.anchorMin.y) > .01f)
           {
             float anch = (r.anchorMax.y - r.anchorMin.y) / 2 - .5f;
             float midpt = (r.bottom - r.top) / 2 / ch;
             t.position.y = anch + midpt;
-            tmpYscale = 1 - (r.top + r.bottom) / ch;
+            tmpYscale = (1 - (r.top + r.bottom) / ch);
             pivot = Vector2(.5f, .5f);
           }
           else
           {
-            t.position.y = r.posY;
-            tmpYscale = r.height / ch;
+            t.position.y = r.pos.y / ch + r.anchorMin.y - .5f;
+            tmpYscale = r.size.y / ch;
           }
 
           if (r.m_PreserveAspect)
@@ -191,11 +192,11 @@ namespace DeltaEngine
 
             if (tmpXscale / tmpYscale > sprAspect)
             {
-              tmpXscale = tmpYscale * sprAspect / c.GetAspectRatio();
+              tmpXscale = tmpYscale * sprAspect / refAspect;
             }
             else
             {
-              tmpYscale = tmpXscale / sprAspect * c.GetAspectRatio();
+              tmpYscale = tmpXscale / sprAspect * refAspect;
             }
           }
 
@@ -310,10 +311,45 @@ namespace DeltaEngine
         Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
         shader->SetUniform1i("_MainTex", 0);
         glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+
         Mesh::DrawQuad();
 #endif // !DE_EDITOR
       });
+    Camera::finalFrameBuffer->Resize(static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize()),
+      static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize() / Camera::allCameras[0]->GetAspectRatio()));
 
+    Camera::finalFrameBuffer->Bind();
+
+    glClearColor(1, 0, 1, 1);
+    glClear(GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/);
+
+    em.ForEach([&](EntityID id, Transform& tr, Camera& c)
+      {
+        Vector2 cameraAspect{ 1, 1 };
+
+        if (Camera::GetFixedAspectRatio() > .01f)
+        {
+          if (c.GetAspectRatio() > Camera::GetFixedAspectRatio())
+          {
+            cameraAspect.x = Camera::GetFixedAspectRatio() / c.GetAspectRatio();
+          }
+          else
+          {
+            cameraAspect.y = c.GetAspectRatio() / Camera::GetFixedAspectRatio();
+          }
+        }
+
+        // cameraAspect may be modified further depending on advanced camera settings
+
+        Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
+        shader->SetUniform1i("_MainTex", 0);
+        shader->SetUniformVector2f("_ScreenAspect", cameraAspect);
+        glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+
+        Mesh::DrawQuad();
+      });
+
+    Camera::finalFrameBuffer->Unbind();
 
 #ifdef DE_EDITOR
     Camera::editorCamera->Start();

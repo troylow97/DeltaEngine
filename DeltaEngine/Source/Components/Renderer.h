@@ -21,10 +21,11 @@ namespace DeltaEngine
 {
   struct RendererOverlay
   {
+    Vector2 refRes;
     // no stretch
     // this is more useful for guaranteeing objects remaining in a specific displacement from the anchor point
     // while guaranteeing width/height ratio is preserved without preserved aspect
-    float posX, posY, width, height;
+    Vector2 pos, size;
     // stretch
     // this is more useful for images that you want guaranteed to stretch across the screen, such as faders
     // may not have desirable behaviour with preserved aspect
@@ -47,10 +48,9 @@ namespace DeltaEngine
     bool m_Wireframe = false;
 
     RendererOverlay() :
-      posX(0),
-      posY(0),
-      width(100),
-      height(100),
+      refRes(Vector2(1920, 1080)),
+      pos(Vector2::zero()),
+      size(Vector2::one() * 100.0f),
       left(0),
       right(0),
       top(0),

@@ -71,6 +71,8 @@ namespace DeltaEngine
       Mesh::Init();
       Font::Init();
       Gizmos::Init();
+      Camera::finalFrameBuffer = new FrameBuffer();
+
 #ifdef DE_EDITOR
       Camera* editorCam = new Camera(true);
       editorCam->backgroundColor = Color(71 / 255.0f, 71 / 255.0f, 71 / 255.0f, 1);
