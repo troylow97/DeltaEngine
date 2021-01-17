@@ -12,6 +12,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "ECS/EntityManager.h"
 #include "Render/Camera.h"
+#include "Render/VideoClip.h"
 #include "Render/Mesh.h"
 #include "Render/Window.h"
 #include "Render/OpenGLSystem.h"
@@ -278,9 +279,14 @@ namespace DeltaEngine
       }
     }
   }
-
+  VideoClip* video = nullptr;
   void RenderSystem::Update()
   {
+    if (!video)
+    {
+      video = new VideoClip("I WiSHCover.mp4");
+    }
+
     RenderModule::openGLSystem->Update();
 
     // sort renderers by layer

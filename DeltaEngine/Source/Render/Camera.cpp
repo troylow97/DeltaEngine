@@ -210,7 +210,6 @@ namespace DeltaEngine
   {
     frameBuffer.Resize(static_cast<unsigned int>(camWidth),
                        static_cast<unsigned int>(camWidth / fixedAspect));
-    std::cerr << camWidth << std::endl;
     frameBuffer.Bind();
 
     //glEnable(GL_DEPTH_TEST);

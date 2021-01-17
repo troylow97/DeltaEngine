@@ -150,7 +150,7 @@ namespace DeltaEngine
         while (std::getline(file, entryAnimation))
           if (!entryAnimation.empty())
             break;
-        std::cout << entryAnimation << std::endl;
+        //std::cerr << entryAnimation << std::endl;
         file >> str;
       }
       while (file.good()) // parameters
@@ -205,7 +205,7 @@ namespace DeltaEngine
               break;
           //file.ignore();
           //std::getline(file, paramName);
-          std::cerr << paramName;
+          //std::cerr << paramName;
           file >> condition >> value;
           //file >> paramName >> condition >> value;
           switch (condition[0])
@@ -230,10 +230,10 @@ namespace DeltaEngine
         }
       }
       file.close();
-      for (auto& [s,e,c] : transitions)
-      {
-        std::cerr << s << "->" << e << std::endl;
-      }
+      //for (auto& [s,e,c] : transitions)
+      //{
+      //  std::cerr << s << "->" << e << std::endl;
+      //}
     }
     else
     {

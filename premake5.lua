@@ -60,6 +60,7 @@ project "DeltaEngine"
 
   includedirs
   {
+    "%{prj.name}/Dep/ffmpeg",
     "%{prj.name}/Dep/imgui",
     "%{prj.name}/Dep/glew",
     "%{prj.name}/Dep/spdlog/include",
@@ -227,6 +228,7 @@ project "Sandbox"
   
   includedirs
   {
+    "DeltaEngine/Dep/ffmpeg",
     "DeltaEngine/Dep/imgui",
     "DeltaEngine/Dep/glew",
     "DeltaEngine/Dep/spdlog/include",
@@ -254,7 +256,8 @@ project "Sandbox"
   
   filter "system:windows" 
     systemversion "latest"
-    
+    warnings "Extra"
+
     defines
     {
       "DE_PLATFORM_WINDOWS"
