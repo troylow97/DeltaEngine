@@ -15,7 +15,9 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  class ECSModule
+  class ECSModule 
+  // can be the factory class itself
+  // should always use unique_ptr, will prevent duplicate stuff by accident
   {
     std::vector<std::unique_ptr<World>> m_worlds;
 
@@ -26,6 +28,7 @@ namespace DeltaEngine
       DeltaEngine_CORE_INFO("Creating default world");
       m_worlds.push_back(std::make_unique<World>());
       DeltaEngine_CORE_INFO("Initializing ECS successful");
+      //m_worlds.push_back(std::make_unique<World>());
     }
 
     ~ECSModule()
@@ -39,6 +42,17 @@ namespace DeltaEngine
     World& GetWorld()
     {
       return *m_worlds[0]; // default for now
+    }
+
+    void GameWorld() // the factor class
+    {
+    //    std::map<int, ICloneWorld*>::iterator it = m_worlds[1];
+      //WorldFactory worldfactory;
+      //worldfactory.addPrototype(1, &m_worlds[1]);
+    }
+    
+    World& GetGameWorld()
+    {
     }
 
     // Multiple World Usage in the future
