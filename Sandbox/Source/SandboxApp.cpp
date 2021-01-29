@@ -45,9 +45,10 @@ public:
 
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
     env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem,
-                                       UISystem/*, UpgradeSystem*/, ExitSceneCinematic, HealthSystem>();
-    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem/*, UpgradeSystem*/,
-                                           ExitSceneCinematic, LifespanSystem>();
+                                       UISystem/*, UpgradeSystem, ExitSceneCinematic*/, HealthSystem>();
+    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, LifespanSystem>();
+    //env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, UpgradeSystem,
+    //    ExitSceneCinematic, LifespanSystem>();
     env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, UISystem>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
