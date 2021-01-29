@@ -25,7 +25,7 @@ namespace DeltaEngine
 
   Sprite& Sprite::operator=(const Sprite& rhs)
   {
-    m_Key = std::string(rhs.m_Key);
+    m_Key = string(rhs.m_Key);
     m_Index = rhs.m_Index;
     return *this;
   }
@@ -76,16 +76,16 @@ namespace DeltaEngine
   Texture2D* Sprite::GetTexture() const
   {
     if (m_Key.length() > 0)
-      return GetEnv().pManager->Get<Texture2D>(m_Key);
+      return GetEnv().pManager->Get<Texture2D>(native::to_string(m_Key));
     return nullptr;
   }
 
-  std::string Sprite::GetName() const
+  Sprite::string Sprite::GetName() const
   {
     return m_Key + "_" + std::to_string(m_Index);
   }
 
-  std::string Sprite::GetKey() const
+  Sprite::string Sprite::GetKey() const
   {
     return m_Key;
   }

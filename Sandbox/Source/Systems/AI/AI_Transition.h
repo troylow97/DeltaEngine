@@ -20,7 +20,7 @@ namespace DeltaEngine
   {
   public:
     virtual bool TestEdge(EntityID&) = 0;
-    virtual std::string getTargetState() = 0;
+    virtual native::string32 getTargetState() = 0;
     virtual ~Transition() = default;
   };
 
@@ -48,7 +48,7 @@ namespace DeltaEngine
       return false;
     }
 
-    std::string getTargetState() override
+    native::string32 getTargetState() override
     {
       return "chase_enemy_lancer";
     }
@@ -78,7 +78,7 @@ namespace DeltaEngine
       return false;
     }
 
-    std::string getTargetState() override
+    native::string32 getTargetState() override
     {
       return "chase_enemy_fiddler";
     }
@@ -108,7 +108,7 @@ namespace DeltaEngine
       return false;
     }
 
-    std::string getTargetState() override
+    native::string32 getTargetState() override
     {
       return "idle_fiddler";
     }
@@ -139,7 +139,7 @@ namespace DeltaEngine
       return false;
     }
 
-    std::string getTargetState() override
+    native::string32 getTargetState() override
     {
       return "chase_enemy_serpentipede";
     }
@@ -172,7 +172,7 @@ namespace DeltaEngine
       return false;
     }
 
-    std::string getTargetState() override
+    native::string32 getTargetState() override
     {
       return "idle_serpentipede";
     }

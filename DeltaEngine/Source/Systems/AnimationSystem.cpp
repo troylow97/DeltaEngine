@@ -20,7 +20,7 @@ namespace DeltaEngine
     for (size_t step = 0; step < env.pClock->Timesteps(); ++step)
       em.ForEach([&](EntityID id, Animator& a, State& s, Image& i)
       {
-        AnimationController* controller = GetEnv().pManager->Get<AnimationController>(a.m_ControllerKey);
+        AnimationController* controller = GetEnv().pManager->Get<AnimationController>(native::to_string(a.m_ControllerKey));
         AnimationClip* newClip = nullptr;
         unsigned int frame = 0;
         if (controller)
@@ -32,20 +32,20 @@ namespace DeltaEngine
 
             frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
 
-            a.m_ClipKey = newClip->GetName();
+            a.m_ClipKey.assign(newClip->GetName());         	
             i.m_Sprite = newClip->GetSprite(frame);
           }
           else
           {
-            newClip = controller->CheckCondition(a.m_ClipKey, s.parameters);
+            newClip = controller->CheckCondition(native::to_string(a.m_ClipKey), s.parameters);
             if (newClip)
             {
-              a.m_ClipKey = newClip->GetName();
+              a.m_ClipKey.assign(newClip->GetName());
               a.m_Timer = 0;
             }
             else
             {
-              newClip = GetEnv().pManager->Get<AnimationClip>(a.m_ClipKey);
+              newClip = GetEnv().pManager->Get<AnimationClip>(native::to_string(a.m_ClipKey));
 
               if (newClip->looping)
               {
@@ -68,7 +68,7 @@ namespace DeltaEngine
         }
         else if (!a.m_ClipKey.empty())
         {
-          newClip = GetEnv().pManager->Get<AnimationClip>(a.m_ClipKey);
+          newClip = GetEnv().pManager->Get<AnimationClip>(native::to_string(a.m_ClipKey));
           if (newClip->looping)
           {
             a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;

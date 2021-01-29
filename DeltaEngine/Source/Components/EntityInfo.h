@@ -12,14 +12,13 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
-#include <string>
 #include "Core/TypeAlias.h"
 
 namespace DeltaEngine
 {
   struct EntityName
   {
-    std::string name{};
+     native::string32 name{};
   };
 
   struct Parent

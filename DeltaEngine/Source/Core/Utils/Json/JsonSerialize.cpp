@@ -18,6 +18,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Debugging/Assert.h"
 #include "Reflect/Reflect.h"
 
+#include "Core/Utils/NativeString.h"
+
 using namespace rttr;
 using namespace rapidjson;
 
@@ -41,7 +43,7 @@ namespace DeltaEngine::Serialize
     {
       if (prop.get_metadata("NO_SERIALIZE"))
         continue;
-
+    	
       variant prop_value = prop.get_value(obj);
       if (!prop_value)
         continue; // cannot serialize, because we cannot retrieve the value
@@ -67,8 +69,8 @@ namespace DeltaEngine::Serialize
         variant wrapped_var = item.extract_wrapped_value();
         type value_type = wrapped_var.get_type();
         if (value_type.is_arithmetic() ||
-          value_type.is_enumeration() ||
-          value_type == type::get<std::string>())
+            value_type.is_enumeration() ||
+            value_type == type::get<std::string>())
           WriteAtomic(value_type, wrapped_var, writer);
         else // object
           WriteRecursive(wrapped_var, writer);
@@ -286,7 +288,7 @@ namespace DeltaEngine::Serialize
 
       return true;
     }
-
+  	
     if (t == type::get<std::string>())
     {
       writer.String(var.to_string());

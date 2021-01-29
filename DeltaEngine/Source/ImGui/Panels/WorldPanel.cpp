@@ -41,7 +41,7 @@ namespace DeltaEngine
           const auto& ref = em.GetComponent<EntityName>({e_id});
           std::string str = "Entity " + std::to_string(e_id);
           if (!ref.name.empty())
-            str += " - " + ref.name;
+            str += " - " + native::to_string(ref.name);
 
           ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_Leaf |
             ImGuiTreeNodeFlags_NoTreePushOnOpen;
