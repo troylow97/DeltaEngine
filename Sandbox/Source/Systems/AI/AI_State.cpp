@@ -237,6 +237,7 @@ namespace DeltaEngine
   {
     CheckEdges(monster);
     std::cout << "Burrow state is: " << BurrowState << std::endl;
+    std::cout << "Current Point is: " << CurrentPoint << std::endl;
   	//Seen
     if(BurrowState == 0)
     {
@@ -267,12 +268,10 @@ namespace DeltaEngine
             BurrowState = 2;
             auto& renderer = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster);
             auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
-            auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
             auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
             health.isInvulnerable = true;
             renderer.m_Active = false;
-            rb.isMoveable = false;
-            collider.CollisionLayerCheck = 0;
+            collider.CollisionLayerCheck = 1;
 
         	switch(CurrentPoint)
         	{
@@ -298,16 +297,17 @@ namespace DeltaEngine
   	//Hidden
     if (BurrowState == 2)
     {
-    	//Move towards next point
-        if(!AITools::EntityisAtPoint(monster,SerpentData.Points[CurrentPoint]))
+        auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+        //Move towards next point
+        if (AITools::EntityisAtPointInX(monster, SerpentData.Points[CurrentPoint].x, 0.1f))
         {
-            AITools::MoveTowardsPoint(monster, SerpentData.Points[CurrentPoint]);
+            //Monster is at point
+            BurrowState = 3;
+            BurrowDurationMax = 0.5f;
+            return;
         }
 
-    	//Monster is at point
-        BurrowState = 3;
-        BurrowDurationMax = 0.5f;
-        return;
+        AITools::MoveTowardsPoint(monster, SerpentData.Points[CurrentPoint]);
     }
 
   	//Burrowing Up
@@ -322,15 +322,17 @@ namespace DeltaEngine
         else
         {
             BurrowState = 0;
+            BurrowDurationMax = 0.5f;
             auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
-            auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
             auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
             health.isInvulnerable = false;
 
-            rb.isMoveable = true;
+
             collider.CollisionLayerCheck = 9;
         }
     }
+
+  	
   }
 
   LancerAIData::LancerAIData() :
