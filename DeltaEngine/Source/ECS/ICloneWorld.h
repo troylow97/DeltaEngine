@@ -13,21 +13,21 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-	class ICloneWorld // interface class
-	{
-	public:
-	  virtual ICloneWorld* clone() = 0;
-	  // if a class has anything virtual, it must ALWAYS have a virtual destructor
-	  virtual ~ICloneWorld() = default; 
-	  /*
-	    // virtual as it is an interface 
-	    virtual void attack() = 0; 
-	    virtual IWeapon* clone() = 0;
-	    virtual ~IWeapon() = default;
-	    // if a class has anything virtual, it must ALWAYS have a virtual destructor
-	  */
-	};
-
+  class ICloneWorld // interface class
+  {
+  public:
+    virtual ICloneWorld* clone() = 0;
+    // if a class has anything virtual, it must ALWAYS have a virtual destructor
+    virtual ~ICloneWorld() = default; 
+    /*
+      // virtual as it is an interface 
+      virtual void attack() = 0; 
+      virtual IWeapon* clone() = 0;
+      virtual ~IWeapon() = default;
+      // if a class has anything virtual, it must ALWAYS have a virtual destructor
+    */
+  };
+  /* -----------------------------------------------------------------------------------
 	class WorldFactory
 	{
 	  std::map<int, ICloneWorld*> _m_worlds;
@@ -54,6 +54,7 @@ namespace DeltaEngine
 		// factory.addPrototype(2, &superbow_prototype);
 	  }
 	};
+	----------------------------------------------------------------------------------- */
 }
 /* --------------------------------------------------------------------------------------------
 play pause stop
