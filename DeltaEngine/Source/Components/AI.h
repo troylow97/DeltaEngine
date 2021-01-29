@@ -10,14 +10,13 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
 #include <string>
-#include "Core/Utils/NativeString.h"
 #include "Core/Math/Vector.h"
 
 struct AI
 {
   DeltaEngine::Vector2 original_point;
-  native::string32 key;
-  native::string32 transition;
+  std::string key;
+  std::string transition;
   float timer;
 
   AI() :

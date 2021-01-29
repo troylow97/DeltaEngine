@@ -192,7 +192,8 @@ namespace DeltaEngine
 
           auto offset = payload_n.find_last_of('_');
           env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).scale = {0.5, 0.5, 0.0};
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Key.assign(payload_n.substr(0, offset));
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Key = payload_n.
+            substr(0, offset);
           env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Index = std::stoi(
             payload_n.substr(offset + 1));
         }
@@ -207,8 +208,8 @@ namespace DeltaEngine
               curr_mouse.point_x, curr_mouse.point_y, 0
             };
             env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(tile).scale = {0.5, 0.5, 0.0};
-             env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Key.assign(payload_n.substr(
-                 0, payload_n.find_last_of('.')));
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Key = payload_n.substr(
+              0, payload_n.find_last_of('.'));
             env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Index = 0;
           }
         }

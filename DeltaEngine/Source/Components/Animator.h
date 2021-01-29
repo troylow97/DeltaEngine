@@ -13,14 +13,14 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
 
-#include "Core/Utils/NativeString.h"
+#include "Render/AnimationClip.h"
 
 namespace DeltaEngine
 {
   struct Animator
   {
-    native::string32 m_ControllerKey;
-    native::string32 m_ClipKey;
+    std::string m_ControllerKey;
+    std::string m_ClipKey;
 
     float m_Timer{0.0f};
     float m_Speed{1.0f};
@@ -33,8 +33,8 @@ namespace DeltaEngine
 
     Animator& operator=(const Animator& rhs)
     {
-      m_ControllerKey = native::string32(rhs.m_ControllerKey);
-      m_ClipKey = native::string32(rhs.m_ClipKey);
+      m_ControllerKey = std::string(rhs.m_ControllerKey);
+      m_ClipKey = std::string(rhs.m_ClipKey);
       m_Timer = 0;
       m_Speed = rhs.m_Speed;
       return *this;

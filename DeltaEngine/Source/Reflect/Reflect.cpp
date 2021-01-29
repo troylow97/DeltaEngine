@@ -32,7 +32,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "../../Sandbox/Source/Systems/AttackSystem.h"
 #include "Audio/AudioConfig.h"
-#include "../Core/Utils/NativeString.h"
 
 namespace DeltaEngine
 {
@@ -137,9 +136,6 @@ namespace DeltaEngine
       .property("b", &Color::b)
       .property("a", &Color::a);
 
-    rttr::registration::class_<native::string64>("String64")
-        .property("data", &native::string64::chars);
- 
     rttr::registration::class_<Material>("Material")
       .property("key", &Material::m_ShaderKey);
 

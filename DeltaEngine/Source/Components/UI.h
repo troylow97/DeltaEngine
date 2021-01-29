@@ -9,6 +9,9 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
+#include "DEpch.h"
+#include "Render/Font.h"
+#include "Core/Math/Color.h"
 
 namespace DeltaEngine
 {
@@ -24,7 +27,7 @@ namespace DeltaEngine
 
   struct UI
   {
-    native::string32 functor_key;
+    std::string functor_key;
     UIType ui_type{UIType::Screen};
     unsigned screen{0};
     int target_screen{-1};

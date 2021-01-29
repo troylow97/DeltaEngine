@@ -117,12 +117,12 @@ namespace DeltaEngine
         if (r.m_Shaded)
         {
           r.m_Material.SetUniformColor4f("_Color", r.m_Color);
-          Mesh::DrawTextMesh(GetEnv().pManager->Get<Font>(native::to_string(x.m_FontKey)), native::to_string(x.m_Text), 1, false);
+          Mesh::DrawTextMesh(GetEnv().pManager->Get<Font>(x.m_FontKey), x.m_Text, 1, false);
         }
         if (r.m_Wireframe)
         {
           r.m_Material.SetUniformColor4f("_Color", wireframeColor);
-          Mesh::DrawTextMesh(GetEnv().pManager->Get<Font>(native::to_string(x.m_FontKey)), native::to_string(x.m_Text), 1, true);
+          Mesh::DrawTextMesh(GetEnv().pManager->Get<Font>(x.m_FontKey), x.m_Text, 1, true);
         }
       }
     }

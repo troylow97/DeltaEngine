@@ -12,6 +12,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
+#include "Core/GameClock/EngineClock.h"
 
 namespace DeltaEngine
 {
@@ -58,7 +59,7 @@ namespace DeltaEngine
       //bool isChanged{ false };
       AIState* ai_state = nullptr;
 
-      const auto it = StateList.find(native::to_string(ai.key));
+      auto it = StateList.find(ai.key);
       if (it != StateList.end())
       {
         ai_state = it->second;
@@ -82,7 +83,7 @@ namespace DeltaEngine
         ai.key = ai.transition;
         ai.transition = "null";
 
-        const auto find = StateList.find(native::to_string(ai.key));
+        const auto find = StateList.find(ai.key);
         if (find != StateList.end())
         {
           ai_state = find->second;

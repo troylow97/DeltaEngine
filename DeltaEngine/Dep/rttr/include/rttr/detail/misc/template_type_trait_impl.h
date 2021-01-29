@@ -147,7 +147,7 @@ namespace detail                                                                
 #define RTTR_ADD_TYPE_TRAIT_SPECIALIZATION(value_type)  \
 RTTR_ADD_TYPE_TRAIT_SPECIALIZATION_1(value_type)        \
 RTTR_ADD_TYPE_TRAIT_SPECIALIZATION_2(value_type)        \
-RTTR_ADD_TYPE_TRAIT_SPECIALIZATION_3(value_type)        \
+RTTR_ADD_TYPE_TRAIT_SPECIALIZATION_3(value_type)
 
 
 RTTR_ADD_TYPE_TRAIT_SPECIALIZATION(std::size_t)

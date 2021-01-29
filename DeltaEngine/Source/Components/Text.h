@@ -15,7 +15,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "DEpch.h"
 #include "Render/Font.h"
 #include "Core/Math/Color.h"
-#include "Core/Utils/NativeString.h"
 
 namespace DeltaEngine
 {
@@ -28,9 +27,9 @@ namespace DeltaEngine
 
   struct Text
   {
-    native::string32 m_FontKey = "Default";
+    std::string m_FontKey = "Default";
 
-    native::string128 m_Text = "";
+    std::string m_Text = "";
 
     Alignment alignment = Alignment::AlignLeft;
 

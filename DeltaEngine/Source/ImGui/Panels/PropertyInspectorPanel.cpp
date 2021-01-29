@@ -177,7 +177,7 @@ namespace DeltaEngine
               {
                 auto& sprite = *value.get_value<Sprite*>();
 
-                auto tex = GetEnv().pManager->Get<Texture2D>(native::to_string(sprite.m_Key));
+                auto tex = GetEnv().pManager->Get<Texture2D>(sprite.m_Key);
                 bool error{false};
                 if (tex.State() == AssetState::NotFound ||
                   tex.State() == AssetState::NotFoundFallback ||
@@ -198,7 +198,7 @@ namespace DeltaEngine
 
                 size_t selection = 0;
                 for (size_t i = 0; i < tex_key_vec.size(); i++)
-                  if ((native::to_string(sprite.m_Key) + '_' + std::to_string(sprite.m_Index)) == tex_key_vec[i])
+                  if ((sprite.m_Key + '_' + std::to_string(sprite.m_Index)) == tex_key_vec[i])
                     selection = i;
 
 
@@ -223,7 +223,7 @@ namespace DeltaEngine
                 if (initial != selection)
                 {
                   auto offset = tex_key_vec[selection].find_last_of('_');
-                  sprite.m_Key.assign(tex_key_vec[selection].substr(0, offset));
+                  sprite.m_Key = tex_key_vec[selection].substr(0, offset);
                   sprite.m_Index = std::stoi(tex_key_vec[selection].substr(offset + 1));
                 }
                 if (ImGui::BeginDragDropTarget())
@@ -235,7 +235,7 @@ namespace DeltaEngine
                     std::filesystem::path file{assetpayload_n};
                     if (file.extension() == ".png" || file.extension() == ".jpg")
                     {
-                      sprite.m_Key.assign(assetpayload_n.substr(0, assetpayload_n.find_last_of('.')));
+                      sprite.m_Key = assetpayload_n.substr(0, assetpayload_n.find_last_of('.'));
                       sprite.m_Index = 0;
                     }
                   }
@@ -258,7 +258,7 @@ namespace DeltaEngine
                   {
                     if (i % 4)
                       ImGui::SameLine();
-                    Sprite details{native::to_string(sprite.m_Key), static_cast<unsigned>(i)};
+                    Sprite details{sprite.m_Key, static_cast<unsigned>(i)};
                     ImGui::Image(
                       reinterpret_cast<ImTextureID>(static_cast<size_t>(details.GetTexture()->GetRendererID())),
                       ImVec2{64, 64},
