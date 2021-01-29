@@ -65,7 +65,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -135,7 +135,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -205,7 +205,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -835,7 +835,7 @@
                 },
                 "Layer": -5,
                 "Order": -2.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1045,7 +1045,7 @@
                 },
                 "Layer": -5,
                 "Order": -2.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1465,7 +1465,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1535,7 +1535,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1605,7 +1605,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1745,7 +1745,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1815,7 +1815,7 @@
                 },
                 "Layer": -2,
                 "Order": -1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2025,7 +2025,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2095,7 +2095,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2165,7 +2165,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2235,7 +2235,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2305,7 +2305,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2445,7 +2445,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2725,7 +2725,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2795,7 +2795,7 @@
                 },
                 "Layer": -1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2865,7 +2865,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2935,7 +2935,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3005,7 +3005,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3075,7 +3075,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3145,7 +3145,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3215,7 +3215,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3285,7 +3285,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3355,7 +3355,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3425,7 +3425,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3495,7 +3495,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3565,7 +3565,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3635,7 +3635,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3705,7 +3705,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3775,7 +3775,7 @@
                 },
                 "Layer": -3,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3845,7 +3845,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3915,7 +3915,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3985,7 +3985,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4055,7 +4055,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4125,7 +4125,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4195,7 +4195,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4265,7 +4265,7 @@
                 },
                 "Layer": -3,
                 "Order": -1.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4335,7 +4335,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4405,7 +4405,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4475,7 +4475,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4545,7 +4545,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4685,7 +4685,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5175,7 +5175,7 @@
                 },
                 "Layer": -5,
                 "Order": -2.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5315,7 +5315,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5945,7 +5945,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6575,7 +6575,7 @@
                 },
                 "Layer": -4,
                 "Order": -2.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6645,7 +6645,7 @@
                 },
                 "Layer": -3,
                 "Order": -2.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6715,7 +6715,7 @@
                 },
                 "Layer": -2,
                 "Order": -2.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10022,8 +10022,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 13.229999542236329,
-                    "y": -0.05999999865889549,
+                    "x": 15.367115020751954,
+                    "y": -0.053038179874420169,
                     "z": 0.0
                 },
                 "Scale": {
@@ -10059,7 +10059,7 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 50.0,
+                    "x": 40.0,
                     "y": 1.0
                 },
                 "Type": "box",
@@ -10074,16 +10074,16 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Collider_Platform_3"
+                "Name": "Collider_Right"
             },
             "Entity Type": {
                 "Category": "wall"
             },
             "Transform": {
                 "Position": {
-                    "x": 13.40999984741211,
-                    "y": 0.5299999713897705,
-                    "z": 0.0
+                    "x": 32.64301681518555,
+                    "y": 2.3788363933563234,
+                    "z": 0.17000000178813935
                 },
                 "Scale": {
                     "x": 1.0,
@@ -10106,26 +10106,85 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": false
+                "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 12.069999694824219,
-                    "y": -0.3199999928474426
+                    "x": -0.05999999865889549,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 2.609999895095825,
-                    "y": 0.05000000074505806
+                    "x": 1.0,
+                    "y": 4.579999923706055
                 },
                 "Type": "box",
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_Left"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -1.5321998596191407,
+                    "y": 2.3443470001220705,
+                    "z": 0.17000000178813935
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": -0.05999999865889549,
+                    "y": 0.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 4.579999923706055
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": false
             }
         },
         {
@@ -10140,8 +10199,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 4.78000020980835,
-                    "y": 0.5199999809265137,
+                    "x": 4.754587173461914,
+                    "y": 0.5435426235198975,
                     "z": 0.0
                 },
                 "Scale": {
@@ -10178,7 +10237,7 @@
                 },
                 "Size": {
                     "x": 2.619999885559082,
-                    "y": 0.10000000149011612
+                    "y": 0.009999999776482582
                 },
                 "Type": "box",
                 "Collision Layer": 255,
@@ -10192,15 +10251,15 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Collider_Platform_5"
+                "Name": "Collider_platform_2"
             },
             "Entity Type": {
                 "Category": "wall"
             },
             "Transform": {
                 "Position": {
-                    "x": 19.09000015258789,
-                    "y": 0.5099999904632568,
+                    "x": 8.82917308807373,
+                    "y": 2.7784712314605715,
                     "z": 0.0
                 },
                 "Scale": {
@@ -10236,8 +10295,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 0.7099999785423279,
-                    "y": -0.05000000074505806
+                    "x": 0.7900000214576721,
+                    "y": 0.009999999776482582
                 },
                 "Type": "box",
                 "Collision Layer": 255,
@@ -10251,74 +10310,15 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Collider_Platform_4"
+                "Name": "Collider_Platform_3"
             },
             "Entity Type": {
                 "Category": "wall"
             },
             "Transform": {
                 "Position": {
-                    "x": 8.880000114440918,
-                    "y": 2.7699999809265138,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 12.069999694824219,
-                    "y": -0.3199999928474426
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 0.6100000143051148,
-                    "y": 0.05000000074505806
-                },
-                "Type": "box",
-                "Collision Layer": 255,
-                "Collision Layer ID": 255,
-                "Trigger": false,
-                "Platform": true
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "Collider_Platform_2"
-            },
-            "Entity Type": {
-                "Category": "wall"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 9.279999732971192,
-                    "y": 1.0800000429153443,
+                    "x": 9.23764419555664,
+                    "y": 1.05458664894104,
                     "z": 0.0
                 },
                 "Scale": {
@@ -10355,7 +10355,184 @@
                 },
                 "Size": {
                     "x": 1.3899999856948853,
-                    "y": 0.05000000074505806
+                    "y": 0.009999999776482582
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_Platform_4"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 13.41847038269043,
+                    "y": 0.5215288400650024,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 12.069999694824219,
+                    "y": -0.3199999928474426
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 2.609999895095825,
+                    "y": 0.009999999776482582
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_Platform_5"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 19.073057174682618,
+                    "y": 0.526942253112793,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 12.069999694824219,
+                    "y": -0.3199999928474426
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.7099999785423279,
+                    "y": 0.009999999776482582
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_Platform_6"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 19.876115798950197,
+                    "y": 0.8177690505981445,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 12.069999694824219,
+                    "y": -0.3199999928474426
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.41999998688697817,
+                    "y": 0.009999999776482582
                 },
                 "Type": "box",
                 "Collision Layer": 255,
@@ -10377,7 +10554,7 @@
             "Transform": {
                 "Position": {
                     "x": 26.440000534057618,
-                    "y": 0.7699999809265137,
+                    "y": 0.8208267688751221,
                     "z": 0.0
                 },
                 "Scale": {
@@ -10414,7 +10591,7 @@
                 },
                 "Size": {
                     "x": 0.3700000047683716,
-                    "y": -0.05999999865889549
+                    "y": 0.009999999776482582
                 },
                 "Type": "box",
                 "Collision Layer": 255,
@@ -10428,7 +10605,7 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Collider_Platform_7"
+                "Name": "Collider_1stFloor_1"
             },
             "Entity Type": {
                 "Category": "wall"
@@ -10487,133 +10664,15 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Collider_Right"
+                "Name": "Collider_1stFloor_2"
             },
             "Entity Type": {
                 "Category": "wall"
             },
             "Transform": {
                 "Position": {
-                    "x": 35.040000915527347,
-                    "y": 5.0,
-                    "z": 0.17000000178813935
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": -0.05999999865889549,
-                    "y": 0.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 20.0
-                },
-                "Type": "box",
-                "Collision Layer": 255,
-                "Collision Layer ID": 255,
-                "Trigger": false,
-                "Platform": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "Collider_Left"
-            },
-            "Entity Type": {
-                "Category": "wall"
-            },
-            "Transform": {
-                "Position": {
-                    "x": -8.430000305175782,
-                    "y": 5.0,
-                    "z": 0.17000000178813935
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": -0.05999999865889549,
-                    "y": 0.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 20.0
-                },
-                "Type": "box",
-                "Collision Layer": 255,
-                "Collision Layer ID": 255,
-                "Trigger": false,
-                "Platform": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "Collider_Platform_6"
-            },
-            "Entity Type": {
-                "Category": "wall"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 19.90999984741211,
-                    "y": 0.75,
+                    "x": 6.2009782791137699,
+                    "y": 0.981927752494812,
                     "z": 0.0
                 },
                 "Scale": {
@@ -10641,16 +10700,16 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 12.069999694824219,
-                    "y": -0.3199999928474426
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
                 },
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 0.41999998688697817,
-                    "y": -0.05999999865889549
+                    "x": 0.3499999940395355,
+                    "y": -0.03999999910593033
                 },
                 "Type": "box",
                 "Collision Layer": 255,
@@ -10664,7 +10723,184 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Collider_Platform_8"
+                "Name": "Collider_1stFloor_3"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 6.721793174743652,
+                    "y": 0.981927752494812,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.3700000047683716,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_2ndFloor_1"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 6.168426990509033,
+                    "y": 1.432215690612793,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.4300000071525574,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_2ndFloor_2"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 6.683817386627197,
+                    "y": 1.4267905950546265,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.30000001192092898,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_2ndFloor_3"
             },
             "Entity Type": {
                 "Category": "wall"
@@ -10723,7 +10959,302 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Collider_Platform_9"
+                "Name": "Collider_2ndFloor_4"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 8.094358444213868,
+                    "y": 1.4430660009384156,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.3799999952316284,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_2ndFloor_5"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 11.118550300598145,
+                    "y": 1.4007103443145753,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.7900000214576721,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_3rdFloor_1"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 7.530141830444336,
+                    "y": 1.882503628730774,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.4000000059604645,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_3rdFloor_2"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 8.088932991027832,
+                    "y": 1.882503628730774,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.3799999952316284,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_4thFloor_1"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 4.564698219299316,
+                    "y": 2.3101885318756105,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.7699999809265137,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_4thFloor_2"
             },
             "Entity Type": {
                 "Category": "wall"
@@ -10782,15 +11313,310 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Collider_Platform_10"
+                "Name": "Collider_4thFloor_3"
             },
             "Entity Type": {
                 "Category": "wall"
             },
             "Transform": {
                 "Position": {
-                    "x": 6.659999847412109,
-                    "y": 3.319999933242798,
+                    "x": 7.2480340003967289,
+                    "y": 2.3219411373138429,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.7900000214576721,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_4thFloor_4"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 7.991279602050781,
+                    "y": 2.3002407550811769,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.3799999952316284,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_4thFloor_5"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 10.541088104248047,
+                    "y": 2.317182779312134,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.7699999809265137,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_5thFloor_1"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 3.983100414276123,
+                    "y": 2.736309289932251,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.7900000214576721,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_5thFloor_2"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 4.701397895812988,
+                    "y": 2.7280619144439699,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.36000001430511477,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Collider_Roof"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 6.736175060272217,
+                    "y": 3.227522134780884,
                     "z": 0.0
                 },
                 "Scale": {
@@ -10826,7 +11652,7 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 1.3600000143051148,
+                    "x": 1.399999976158142,
                     "y": -0.03999999910593033
                 },
                 "Type": "box",
@@ -10848,8 +11674,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 3.440000057220459,
-                    "y": 0.9700000286102295,
+                    "x": 3.7502806186676027,
+                    "y": 0.7339168787002564,
                     "z": 0.0
                 },
                 "Scale": {
@@ -10942,8 +11768,8 @@
             "State": {},
             "AI": {
                 "Original Point": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
                 },
                 "AIState": "idle_lancer"
             },
@@ -11067,7 +11893,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             },
@@ -11078,8 +11904,8 @@
             "State": {},
             "AI": {
                 "Original Point": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 7.670000076293945,
+                    "y": 3.8889999389648439
                 },
                 "AIState": "idle_lancer"
             },
@@ -11214,8 +12040,8 @@
             "State": {},
             "AI": {
                 "Original Point": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 13.739999771118164,
+                    "y": 0.9190000295639038
                 },
                 "AIState": "idle_fiddler"
             },
@@ -11233,6 +12059,278 @@
                 "Max Combo Number": 0,
                 "Melee Cooldown": 2.0,
                 "Range Cooldown": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_2"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_3"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 3.8582043647766115,
+                    "y": 1.260045051574707,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
                 "Melee Cooldown Timer": -0.20000000298023225,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
@@ -11294,8 +12392,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.2200000286102296,
-                    "y": 0.9700000286102295,
+                    "x": -0.13111019134521485,
+                    "y": 1.5678222179412842,
                     "z": 0.0
                 },
                 "Scale": {
@@ -11362,7 +12460,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -11377,7 +12475,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": false
             },
@@ -11406,7 +12504,7 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
-                "Ranged Attack": false,
+                "Ranged Attack": true,
                 "Melee Attack": true,
                 "Start Combo Cooldown Timer": false
             },
@@ -11418,7 +12516,7 @@
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
-                "Previous": 0,
+                "Previous": 32,
                 "Current": 0
             }
         }

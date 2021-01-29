@@ -39,7 +39,7 @@ public:
 #ifndef DE_EDITOR
     AudioEngine::Play("Audio/MainMenu/main_menu_bgm.wav");
     JsonFile file;
-    env.pECS->GetWorld().Load("World/MainMenu.json");
+    env.pECS->GetWorld().Load("World/gam250.json");
 #endif
 
 
