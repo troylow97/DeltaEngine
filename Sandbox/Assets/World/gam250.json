@@ -65,7 +65,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -135,7 +135,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -205,7 +205,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -275,7 +275,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -345,7 +345,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -415,7 +415,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -835,7 +835,7 @@
                 },
                 "Layer": -5,
                 "Order": -2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1045,7 +1045,7 @@
                 },
                 "Layer": -5,
                 "Order": -2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -1325,7 +1325,7 @@
                 },
                 "Layer": 0,
                 "Order": -1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2165,7 +2165,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2235,7 +2235,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -2305,7 +2305,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3355,7 +3355,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3495,7 +3495,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3565,7 +3565,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3635,7 +3635,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3845,7 +3845,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3915,7 +3915,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -3985,7 +3985,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4055,7 +4055,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4125,7 +4125,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4195,7 +4195,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4265,7 +4265,7 @@
                 },
                 "Layer": -3,
                 "Order": -1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4335,7 +4335,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4405,7 +4405,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4475,7 +4475,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4545,7 +4545,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4685,7 +4685,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5315,7 +5315,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5945,7 +5945,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6575,7 +6575,7 @@
                 },
                 "Layer": -4,
                 "Order": -2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6645,7 +6645,7 @@
                 },
                 "Layer": -3,
                 "Order": -2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -6715,7 +6715,7 @@
                 },
                 "Layer": -2,
                 "Order": -2.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10782,6 +10782,65 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
+                "Name": "Collider_Platform_10"
+            },
+            "Entity Type": {
+                "Category": "wall"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 6.659999847412109,
+                    "y": 3.319999933242798,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 4.559999942779541,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 11.9399995803833,
+                    "y": -0.3400000035762787
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.3600000143051148,
+                    "y": -0.03999999910593033
+                },
+                "Type": "box",
+                "Collision Layer": 255,
+                "Collision Layer ID": 255,
+                "Trigger": false,
+                "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
                 "Name": "Lancer_1"
             },
             "Entity Type": {
@@ -10926,7 +10985,7 @@
             "Transform": {
                 "Position": {
                     "x": 7.670000076293945,
-                    "y": 0.9191531538963318,
+                    "y": 3.8889999389648439,
                     "z": 0.0
                 },
                 "Scale": {
@@ -11318,7 +11377,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             },
@@ -11335,7 +11394,7 @@
             },
             "Attack": {
                 "Range Damage": 0,
-                "Melee Damage": 16,
+                "Melee Damage": 32,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
