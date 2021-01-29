@@ -65,7 +65,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -135,7 +135,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4475,7 +4475,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -4545,7 +4545,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5315,7 +5315,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -5945,7 +5945,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Active": true,
+                "Active": false,
                 "Shaded": true,
                 "Wireframe": true
             }
@@ -10942,8 +10942,8 @@
             "State": {},
             "AI": {
                 "Original Point": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
                 },
                 "AIState": "idle_lancer"
             },
@@ -11078,8 +11078,8 @@
             "State": {},
             "AI": {
                 "Original Point": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 7.670000076293945,
+                    "y": 3.8889999389648439
                 },
                 "AIState": "idle_lancer"
             },
@@ -11214,8 +11214,8 @@
             "State": {},
             "AI": {
                 "Original Point": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 13.739999771118164,
+                    "y": 0.9190000295639038
                 },
                 "AIState": "idle_fiddler"
             },
@@ -11294,8 +11294,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.2200000286102296,
-                    "y": 0.9700000286102295,
+                    "x": 5.0,
+                    "y": 5.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -11387,10 +11387,10 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 10,
-                "Max Health": 10,
+                "Current Health": 5000,
+                "Max Health": 5000,
                 "TakenDamageTimer": 0.0,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 0,

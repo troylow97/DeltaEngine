@@ -74,11 +74,11 @@
                 ]
             ],
             "activation_point": {
-                "x": 23.224,
-                "y": 0.349
+                "x": 36.745,
+                "y": -1.063
             },
-            "wall_offset_right": 3.5,
-            "wall_offset_left": 4.0,
+            "wall_offset_right": 2.5,
+            "wall_offset_left": 2.5,
             "current_enemy_wave": 0,
             "is_activated": false,
             "is_finished": false
