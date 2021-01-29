@@ -42,7 +42,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Render/OpenGLSystem.h"
 #include "Render/Shader.h"
 #include "Render/Texture.h"
-#include "Render/ParticleSystem.h"
+//#include "Render/ParticleSystem.h"
 #include "Render/Material.h"
 
 #include "Event/ApplicationEvent.h"
