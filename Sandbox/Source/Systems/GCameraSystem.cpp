@@ -34,7 +34,7 @@ namespace DeltaEngine
       em.ForEach([&](Transform& t, Player& p)
       {
         c_t->position = t.position;
-        c_t->position.y = 0.0f;
+        c_t->position.y = 2.0f;
       });
   }
 }
