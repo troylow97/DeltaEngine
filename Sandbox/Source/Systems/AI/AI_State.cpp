@@ -109,10 +109,13 @@ namespace DeltaEngine
     EntityID player = UnitManager::GetPlayerID();
     const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
 
+  	//Move towards player
     AITools::FlyTowardsPoint(monster, Vector2{
                                player_pos.x + Random::RandomFloatRange(-0.3f, 0.3f),
                                player_pos.y + Random::RandomFloatRange(-0.2f, 0.4f)
                              });
+
+    //Attack if player  is close AND attack cooldown is 0
     if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.3f &&
       AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().
                                                                          GetComponent<Attack>(monster).
@@ -120,15 +123,16 @@ namespace DeltaEngine
     {
       AITools::FaceEntity(monster, player);
       env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
+      //if (Random::RandomFloatRange(0, 100) < 20)
+      {
+          static size_t c_id{ u64_max };
+          if (AudioEngine::IsChannelPlaying(c_id))
+              AudioEngine::StopChannel(c_id);
+          c_id = AudioEngine::Play("Audio/Lancer/LancerBuzz.ogg");
+      }
     }
 
-    if (Random::RandomFloatRange(0, 100) < 20)
-    {
-      static size_t c_id{u64_max};
-      if (AudioEngine::IsChannelPlaying(c_id))
-        AudioEngine::StopChannel(c_id);
-      c_id = AudioEngine::Play("Audio/Lancer/LancerBuzz.ogg");
-    }
+
   }
 
   //----------------------------------------------------------------------
@@ -175,16 +179,19 @@ namespace DeltaEngine
     env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlertRunning", true);
     CheckEdges(monster);
     EntityID player = UnitManager::GetPlayerID();
-    if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 &&
-      AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().
-                                                                         GetComponent<Attack>(monster).
-                                                                         MeleeCooldownTimer <= 0)
+    auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+    if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2 && 
+        env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeCooldownTimer <= 0)
     {
       AITools::FaceEntity(monster, player);
       env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlertRunning", false);
       env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
     }
-    AITools::MoveTowardsEntityInX(monster, player);
+
+  	if(AITools::Distance_X_BetweenEntityAndPoint(monster, ref.original_point) < 1)
+		AITools::MoveTowardsEntityInX(monster, player);
+    else
+        AITools::MoveTowardsPoint(monster, ref.original_point);
   }
 
   //----------------------------------------------------------------------
@@ -209,6 +216,8 @@ namespace DeltaEngine
 
   ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :
     CooldownTimer{0.0f},
+	BurrowDurationMax{0.0f},
+    BurrowState{0},
     CurrentPoint{0},
     SerpentData{d}
   {
@@ -227,34 +236,103 @@ namespace DeltaEngine
   void ChaseEnemySerpentipede::Update(EntityID& monster)
   {
     CheckEdges(monster);
-
-    if (CooldownTimer <= 0)
+    std::cout << "Burrow state is: " << BurrowState << std::endl;
+    std::cout << "Current Point is: " << CurrentPoint << std::endl;
+  	//Seen
+    if(BurrowState == 0)
     {
-      auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
-      auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-
-      if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x, 0.1f))
-      {
-        EntityID player = UnitManager::GetPlayerID();
-        if (attack.MeleeCooldownTimer <= 0 && AITools::Distance_X_BetweenTwoEntities(monster, player) < 6 &&
-          AITools::Distance_Y_BetweenTwoEntities(monster, player) < 3)
+        if (CooldownTimer <= 0)
         {
-          CurrentPoint = Random::RandomIntRange(0, 3);
-          AITools::FaceEntity(monster, player);
-          attack.RangeAttack = true;
-          CooldownTimer = SerpentData.AttackCooldown;
+            auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
+            auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+
+            //Burrow Serpentipede
+            BurrowState = 1;
+            ai.timer = CooldownTimer + BurrowDurationMax;
+            BurrowDurationMax = 0.5f;
         }
-      }
-      else
-      {
-        Vector2 newpoint = ai.original_point + SerpentData.Points[CurrentPoint];
-        AITools::MoveTowardsPoint(monster, newpoint);
-      }
+        else
+        {
+            CooldownTimer -= env.pClock->FixedDeltaTime();
+        }
+        return;
     }
-    else
+
+  	//Burrowing Down
+  	if(BurrowState == 1)
+  	{
+        if (BurrowDurationMax > 0.0f)
+            BurrowDurationMax -= env.pClock->FixedDeltaTime();
+        else
+        {
+            BurrowState = 2;
+            auto& renderer = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster);
+            auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
+            auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
+            health.isInvulnerable = true;
+            renderer.m_Active = false;
+            collider.CollisionLayerCheck = 1;
+
+        	switch(CurrentPoint)
+        	{
+            case 0:
+                CurrentPoint = Random::RandomIntRange(1, 3); //random from 1, 2
+                break;
+            case 1:
+                if (Random::RandomIntRange(1, 3) == 1)
+                    CurrentPoint = 0;
+                else
+                    CurrentPoint = 2;
+                break;
+            case 2:
+                CurrentPoint = Random::RandomIntRange(0, 2); //random from 1, 2
+                break;
+            default:
+                return;
+        	}
+        }
+        return;
+  	}
+
+  	//Hidden
+    if (BurrowState == 2)
     {
-      CooldownTimer -= env.pClock->FixedDeltaTime();
+        auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+        //Move towards next point
+        if (AITools::EntityisAtPointInX(monster, SerpentData.Points[CurrentPoint].x, 0.1f))
+        {
+            //Monster is at point
+            BurrowState = 3;
+            BurrowDurationMax = 0.5f;
+            return;
+        }
+
+        AITools::MoveTowardsPoint(monster, SerpentData.Points[CurrentPoint]);
     }
+
+  	//Burrowing Up
+    if (BurrowState == 3)
+    {
+        if (BurrowDurationMax > 0.0f)
+        {
+            BurrowDurationMax -= env.pClock->FixedDeltaTime();
+        	//Play burrowing up animation
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster).m_Active = true;
+        }
+        else
+        {
+            BurrowState = 0;
+            BurrowDurationMax = 0.5f;
+            auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
+            auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
+            health.isInvulnerable = false;
+
+
+            collider.CollisionLayerCheck = 9;
+        }
+    }
+
+  	
   }
 
   LancerAIData::LancerAIData() :

@@ -11907,7 +11907,7 @@
                     "x": 7.670000076293945,
                     "y": 3.8889999389648439
                 },
-                "AIState": "idle_lancer"
+                "AIState": "idle_serpentipede"
             },
             "Health": {
                 "Current Health": 50,
@@ -12392,8 +12392,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.13111019134521485,
-                    "y": 1.5678222179412842,
+                    "x": 5.0,
+                    "y": 4.0,
                     "z": 0.0
                 },
                 "Scale": {
