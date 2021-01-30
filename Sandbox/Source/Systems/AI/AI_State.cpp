@@ -215,7 +215,7 @@ namespace DeltaEngine
   }
 
   ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :
-    CooldownTimer{0.0f},
+    CooldownTimer{3.0f},
 	BurrowDurationMax{0.0f},
     BurrowState{0},
     CurrentPoint{0},
@@ -236,20 +236,29 @@ namespace DeltaEngine
   void ChaseEnemySerpentipede::Update(EntityID& monster)
   {
     CheckEdges(monster);
+    auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+    const auto trans = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster);
+    auto rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
+    const Vector2 pos = ai.original_point;
     std::cout << "Burrow state is: " << BurrowState << std::endl;
-    std::cout << "Current Point is: " << CurrentPoint << std::endl;
+    std::cout << "Moving to: " << pos.x + SerpentData.Points[CurrentPoint].x << "," << pos.y + SerpentData.Points[CurrentPoint].y << std::endl;
+    std::cout << "Current point: " << trans.position.x << "," << trans.position.y << std::endl;
+    //std::cout << "points " << 0 << " is " << pos.x + SerpentData.Points[0].x << "," << pos.y + SerpentData.Points[0].y << std::endl;
+    //std::cout << "points " << 1 << " is " << pos.x + SerpentData.Points[1].x << "," << pos.y + SerpentData.Points[1].y << std::endl;
+    //std::cout << "points " << 2 << " is " << pos.x + SerpentData.Points[2].x << "," << pos.y + SerpentData.Points[2].y << std::endl;
   	//Seen
     if(BurrowState == 0)
     {
+        rb.isMoveable = false;
+        rb.Direction = Vector2::zero();
         if (CooldownTimer <= 0)
         {
             auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
             auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-
             //Burrow Serpentipede
             BurrowState = 1;
-            ai.timer = CooldownTimer + BurrowDurationMax;
-            BurrowDurationMax = 0.5f;
+            CooldownTimer = 3.0f;
+            BurrowDurationMax = 2.0f;
         }
         else
         {
@@ -261,6 +270,7 @@ namespace DeltaEngine
   	//Burrowing Down
   	if(BurrowState == 1)
   	{
+        rb.isMoveable = false;
         if (BurrowDurationMax > 0.0f)
             BurrowDurationMax -= env.pClock->FixedDeltaTime();
         else
@@ -272,7 +282,6 @@ namespace DeltaEngine
             health.isInvulnerable = true;
             renderer.m_Active = false;
             collider.CollisionLayerCheck = 1;
-
         	switch(CurrentPoint)
         	{
             case 0:
@@ -298,21 +307,27 @@ namespace DeltaEngine
     if (BurrowState == 2)
     {
         auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+        //auto current_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
+    	
         //Move towards next point
-        if (AITools::EntityisAtPointInX(monster, SerpentData.Points[CurrentPoint].x, 0.1f))
+        if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x, 0.2f))
         {
             //Monster is at point
             BurrowState = 3;
-            BurrowDurationMax = 0.5f;
+            rb.isMoveable = false;
+            BurrowDurationMax = 2.0f;
+            rb.Direction = Vector2::zero();
             return;
         }
-
-        AITools::MoveTowardsPoint(monster, SerpentData.Points[CurrentPoint]);
+        rb.isMoveable = true;
+        AITools::MoveTowardsPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]);
     }
 
   	//Burrowing Up
     if (BurrowState == 3)
     {
+        rb.isMoveable = false;
+        rb.Direction = Vector2::zero();
         if (BurrowDurationMax > 0.0f)
         {
             BurrowDurationMax -= env.pClock->FixedDeltaTime();
@@ -326,6 +341,7 @@ namespace DeltaEngine
             auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
             auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
             health.isInvulnerable = false;
+            CooldownTimer = 3.0f;
 
 
             collider.CollisionLayerCheck = 9;
