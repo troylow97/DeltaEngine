@@ -54,8 +54,6 @@ namespace DeltaEngine
 
       if (a.RangeCooldownTimer > -0.2)
         a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
-      else
-        em.GetComponent<State>(id).SetBool("Ranged", false);
 
       if (a.RangeAttack && a.RangeCooldownTimer <= 0)
       {
@@ -64,6 +62,8 @@ namespace DeltaEngine
         a.RangeCooldownTimer = a.RangeCooldown;
         a.RangeAttack = false;
       }
+      if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
+          em.GetComponent<State>(id).SetBool("Ranged", false);
 
       if (a.MeleeAttack && em.HasComponent<AI>(id))
         st.SetBool("MeleeAttack", true);
