@@ -165,6 +165,7 @@ namespace DeltaEngine
            ref.original_point.x + DetectionRange.x,
            ref.original_point.y + DetectionRange.y))
         {
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).Direction = Vector2::zero();
           ref.transition = getTargetState();
         }
       });

@@ -112,7 +112,8 @@ namespace DeltaEngine
   {
   public:
     float CooldownTimer;
-    float BurrowDurationMax;
+    float BurrowDownDuration;
+    float BurrowUpDuration;
     unsigned int BurrowState; //0: Seen, 1: Burrowing Down, 2: Hidden, 3: Burrowing Up
     int CurrentPoint;
     SerpentipedeAIData SerpentData;

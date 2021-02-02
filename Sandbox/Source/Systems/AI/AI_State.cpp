@@ -56,8 +56,7 @@ namespace DeltaEngine
   {
     CheckEdges(monster);
     auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
-    Vector2 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).
-                             position;
+    Vector2 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
 
     if (ref.y > player_pos.y)
     {
@@ -150,6 +149,7 @@ namespace DeltaEngine
   void IdleFiddler::onExit(EntityID& id)
   {
     env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsPatrolling", false);
+    env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
   }
 
   void IdleFiddler::Update(EntityID& monster)
@@ -176,6 +176,7 @@ namespace DeltaEngine
 
   void ChaseEnemyFiddler::Update(EntityID& monster)
   {
+      env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlerted", false);
     env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlertRunning", true);
     CheckEdges(monster);
     EntityID player = UnitManager::GetPlayerID();
@@ -186,6 +187,7 @@ namespace DeltaEngine
       AITools::FaceEntity(monster, player);
       env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlertRunning", false);
       env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
+      std::cout << "melee attacking" << std::endl;
     }
 
   	if(AITools::Distance_X_BetweenEntityAndPoint(monster, ref.original_point) < 1)
@@ -215,8 +217,9 @@ namespace DeltaEngine
   }
 
   ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :
-    CooldownTimer{3.0f},
-	BurrowDurationMax{0.0f},
+    CooldownTimer{1.0f},
+	BurrowDownDuration{0.5f},
+    BurrowUpDuration{ 0.5f },
     BurrowState{0},
     CurrentPoint{0},
     SerpentData{d}
@@ -231,6 +234,7 @@ namespace DeltaEngine
   void ChaseEnemySerpentipede::onExit(EntityID& id)
   {
     env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = {0, 0};
+    env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("PlayerDetected", false);
   }
 
   void ChaseEnemySerpentipede::Update(EntityID& monster)
@@ -238,27 +242,32 @@ namespace DeltaEngine
     CheckEdges(monster);
     auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
     const auto trans = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster);
-    auto rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
-    const Vector2 pos = ai.original_point;
-    std::cout << "Burrow state is: " << BurrowState << std::endl;
-    std::cout << "Moving to: " << pos.x + SerpentData.Points[CurrentPoint].x << "," << pos.y + SerpentData.Points[CurrentPoint].y << std::endl;
-    std::cout << "Current point: " << trans.position.x << "," << trans.position.y << std::endl;
+    auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
+    auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
+    //const Vector2 pos = ai.original_point;
+    //
+    //std::cout << "Burrow state is: " << BurrowState << std::endl;
+    //std::cout << "Moving to: " << pos.x + SerpentData.Points[CurrentPoint].x << std::endl;
+    //std::cout << "Current point: " << trans.position.x << std::endl;
+    //std::cout << "Direction is " << rb.Direction.x << std::endl;
+    //
     //std::cout << "points " << 0 << " is " << pos.x + SerpentData.Points[0].x << "," << pos.y + SerpentData.Points[0].y << std::endl;
     //std::cout << "points " << 1 << " is " << pos.x + SerpentData.Points[1].x << "," << pos.y + SerpentData.Points[1].y << std::endl;
     //std::cout << "points " << 2 << " is " << pos.x + SerpentData.Points[2].x << "," << pos.y + SerpentData.Points[2].y << std::endl;
-  	//Seen
+    //s.SetBool("PlayerDetected", true);
+  	
+  	//Seen and attacking
     if(BurrowState == 0)
     {
-        rb.isMoveable = false;
         rb.Direction = Vector2::zero();
         if (CooldownTimer <= 0)
         {
+            AITools::FaceEntity(monster, UnitManager::GetPlayerID());
             auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
-            auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+            attack.RangeAttack = true;
             //Burrow Serpentipede
             BurrowState = 1;
-            CooldownTimer = 3.0f;
-            BurrowDurationMax = 2.0f;
+            CooldownTimer = 1.0f;
         }
         else
         {
@@ -270,9 +279,12 @@ namespace DeltaEngine
   	//Burrowing Down
   	if(BurrowState == 1)
   	{
-        rb.isMoveable = false;
-        if (BurrowDurationMax > 0.0f)
-            BurrowDurationMax -= env.pClock->FixedDeltaTime();
+        if (BurrowDownDuration > 0.0f)
+        {
+            BurrowDownDuration -= env.pClock->FixedDeltaTime();
+        	//Add burrow down animation
+        }
+
         else
         {
             BurrowState = 2;
@@ -282,6 +294,7 @@ namespace DeltaEngine
             health.isInvulnerable = true;
             renderer.m_Active = false;
             collider.CollisionLayerCheck = 1;
+            BurrowDownDuration = 0.5f;
         	switch(CurrentPoint)
         	{
             case 0:
@@ -314,30 +327,27 @@ namespace DeltaEngine
         {
             //Monster is at point
             BurrowState = 3;
-            rb.isMoveable = false;
-            BurrowDurationMax = 2.0f;
             rb.Direction = Vector2::zero();
-            return;
         }
-        rb.isMoveable = true;
         AITools::MoveTowardsPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]);
+        rb.Direction.y = 0;
+        return;
     }
 
   	//Burrowing Up
     if (BurrowState == 3)
     {
-        rb.isMoveable = false;
         rb.Direction = Vector2::zero();
-        if (BurrowDurationMax > 0.0f)
+        if (BurrowUpDuration > 0.0f)
         {
-            BurrowDurationMax -= env.pClock->FixedDeltaTime();
+            BurrowUpDuration -= env.pClock->FixedDeltaTime();
         	//Play burrowing up animation
             env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster).m_Active = true;
         }
         else
         {
             BurrowState = 0;
-            BurrowDurationMax = 0.5f;
+            BurrowUpDuration = 0.5f;
             auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
             auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
             health.isInvulnerable = false;
