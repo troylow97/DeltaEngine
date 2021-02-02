@@ -236,8 +236,8 @@ namespace DeltaEngine
   void ChaseEnemySerpentipede::Update(EntityID& monster)
   {
     CheckEdges(monster);
-    std::cout << "Burrow state is: " << BurrowState << std::endl;
-    std::cout << "Current Point is: " << CurrentPoint << std::endl;
+    //std::cout << "Burrow state is: " << BurrowState << std::endl;
+    //std::cout << "Current Point is: " << CurrentPoint << std::endl;
   	//Seen
     if(BurrowState == 0)
     {
