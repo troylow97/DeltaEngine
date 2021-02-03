@@ -12448,8 +12448,8 @@
             "State": {},
             "AI": {
                 "Original Point": {
-                    "x": 1.97,
-                    "y": 0.91
+                    "x": 1.9700000286102296,
+                    "y": 0.9100000262260437
                 },
                 "AIState": "idle_fiddler"
             },
@@ -12548,7 +12548,7 @@
                 "Mass": 50.0,
                 "Move Speed": 15.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 2.0,
+                "Friction Coefficient": 2.5,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 12.0,
                 "Acceleration Pickup": 3.0,
@@ -12609,7 +12609,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 2,
+                "Layer": 3,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,

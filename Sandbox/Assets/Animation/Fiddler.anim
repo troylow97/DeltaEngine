@@ -21,6 +21,9 @@ param
 MeleeAttack 0 0
 
 param
+Block 0 0
+
+param
 IsDead 0 0
 
 %EditorPositions:
@@ -67,13 +70,31 @@ condition MeleeAttack ? 1
 endTransition
 
 transition 
-start Clip/FID_WALK
+start Clip/FID_ATTACK
+end Clip/FID_ALERT
+condition MeleeAttack ? 0
+endTransition
+
+transition 
+start Clip/FID_ALERT_RUN
+end Clip/FID_BLOCK
+condition MeleeAttack ? 1
+endTransition
+
+transition 
+start Clip/FID_ATTACK
+end Clip/FID_BLOCK
+condition MeleeAttack ? 0
+endTransition
+
+transition 
+start Clip/FID_ATTACK
 end Clip/FID_DEATH
 condition IsDead ? 1
 endTransition
 
 transition 
-start Clip/FID_ATTACK
+start Clip/FID_BLOCK
 end Clip/FID_DEATH
 condition IsDead ? 1
 endTransition
@@ -85,21 +106,9 @@ condition IsDead ? 1
 endTransition
 
 transition 
-start Clip/FID_ALERT
+start Clip/FID_WALK
 end Clip/FID_DEATH
 condition IsDead ? 1
-endTransition
-
-transition 
-start Clip/FID_ATTACK
-end Clip/FID_ALERT
-condition IsAlerted ? 1
-endTransition
-
-transition 
-start Clip/FID_ATTACK
-end Clip/FID_WALK
-condition IsPatrolling ? 1
 endTransition
 
 %endfile

@@ -73,6 +73,8 @@ namespace DeltaEngine
 
   class ChaseEnemyLancer : public AIState
   {
+    bool Bouncing;
+    float BouncingTimer;
   public:
     ChaseEnemyLancer();
     void onEnter(EntityID& id) override;
@@ -92,6 +94,7 @@ namespace DeltaEngine
 
   class ChaseEnemyFiddler : public AIState
   {
+    float OnEnterDuration;//To prevent constant animation change between alerted and not alerted;
   public:
     ChaseEnemyFiddler(Vector2& lost_range);
     void onEnter(EntityID& id) override;
