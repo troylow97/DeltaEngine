@@ -40,7 +40,7 @@ namespace DeltaEngine
 
   void AnimatorPanel::Render()
   {
-    if (ImGui::Begin("Animator Editor",&m_enabled ))
+    if (ImGui::Begin("Animator Editor", &m_enabled ))
     {
       struct Node
       {

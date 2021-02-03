@@ -7,7 +7,7 @@
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
-#include "ParticleSystem.h"
+#include "PS.h"
 #include "Core/Math/Math.h"
 #include "Core/Utils/Random.h"
 #include "ErrorCheck.h"
@@ -21,7 +21,7 @@ namespace DeltaEngine
   // VertexBufferLayout 
   //********************************************************************************
 #pragma region VertexBufferLayout class
-  class ParticleSystem::VertexBufferLayout
+  class PS::VertexBufferLayout
   {
   public:
     struct VertexBufferElement
@@ -101,28 +101,28 @@ namespace DeltaEngine
   // VertexBuffer 
   //********************************************************************************
 #pragma region VertexBuffer class
-  ParticleSystem::VertexBuffer::VertexBuffer()
+  PS::VertexBuffer::VertexBuffer()
   {
     GLCall(glGenBuffers( 1, &m_RendererID ));
   }
 
-  ParticleSystem::VertexBuffer::~VertexBuffer()
+  PS::VertexBuffer::~VertexBuffer()
   {
     GLCall(glDeleteBuffers( 1, &m_RendererID ));
   }
 
-  void ParticleSystem::VertexBuffer::InitData(const float* data, unsigned int size)
+  void PS::VertexBuffer::InitData(const float* data, unsigned int size)
   {
     GLCall(glBindBuffer( GL_ARRAY_BUFFER, m_RendererID ));
     GLCall(glBufferData( GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW ));
   }
 
-  void ParticleSystem::VertexBuffer::Bind() const
+  void PS::VertexBuffer::Bind() const
   {
     GLCall(glBindBuffer( GL_ARRAY_BUFFER, m_RendererID ));
   }
 
-  void ParticleSystem::VertexBuffer::Unbind() const
+  void PS::VertexBuffer::Unbind() const
   {
     GLCall(glBindBuffer( GL_ARRAY_BUFFER, 0 ));
   }
@@ -132,17 +132,17 @@ namespace DeltaEngine
   // VertexArray 
   //********************************************************************************
 #pragma region VertexArray class
-  ParticleSystem::VertexArray::VertexArray()
+  PS::VertexArray::VertexArray()
   {
     GLCall(glGenVertexArrays( 1, &m_RendererID ));
   }
 
-  ParticleSystem::VertexArray::~VertexArray()
+  PS::VertexArray::~VertexArray()
   {
     GLCall(glDeleteVertexArrays( 1, &m_RendererID ));
   }
 
-  void ParticleSystem::VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout)
+  void PS::VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout)
   {
     Bind();
     vb.Bind();
@@ -159,15 +159,15 @@ namespace DeltaEngine
           GetStride(), static_cast<const void*>(pointer) ));
       offset += element.count * VertexBufferLayout::VertexBufferElement::GetSizeOfType(element.type);
     }
-    vertexAttribArrayCount += static_cast<unsigned int>(elements.size());
+    vertexAttribArrayCount = static_cast<unsigned int>(elements.size());
   }
 
-  void ParticleSystem::VertexArray::Bind() const
+  void PS::VertexArray::Bind() const
   {
     GLCall(glBindVertexArray( m_RendererID ));
   }
 
-  void ParticleSystem::VertexArray::Unbind() const
+  void PS::VertexArray::Unbind() const
   {
     GLCall(glBindVertexArray( 0 ));
   }
@@ -177,7 +177,7 @@ namespace DeltaEngine
   // IndexBuffer 
   //********************************************************************************
 #pragma region IndexBuffer class
-  ParticleSystem::IndexBuffer::IndexBuffer()
+  PS::IndexBuffer::IndexBuffer()
     : m_Count
     {
       0
@@ -186,12 +186,12 @@ namespace DeltaEngine
     GLCall(glGenBuffers( 1, &m_RendererID ));
   }
 
-  ParticleSystem::IndexBuffer::~IndexBuffer()
+  PS::IndexBuffer::~IndexBuffer()
   {
     GLCall(glDeleteBuffers( 1, &m_RendererID ));
   }
 
-  void ParticleSystem::IndexBuffer::InitData(const unsigned int* data, unsigned int count)
+  void PS::IndexBuffer::InitData(const unsigned int* data, unsigned int count)
   {
     m_Count = count;
 
@@ -199,12 +199,12 @@ namespace DeltaEngine
     GLCall(glBufferData( GL_ELEMENT_ARRAY_BUFFER, count * sizeof( unsigned int ), data, GL_STATIC_DRAW ));
   }
 
-  void ParticleSystem::IndexBuffer::Bind() const
+  void PS::IndexBuffer::Bind() const
   {
     GLCall(glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_RendererID ));
   }
 
-  void ParticleSystem::IndexBuffer::Unbind() const
+  void PS::IndexBuffer::Unbind() const
   {
     GLCall(glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 ));
   }
@@ -214,7 +214,7 @@ namespace DeltaEngine
   // ParticleSystem 
   //********************************************************************************
 #pragma region ParticleSystem class
-  unsigned int ParticleSystem::FindInactiveParticle()
+  unsigned int PS::FindInactiveParticle()
   {
     unsigned int i = 0;
     for (; i < maxParticles; ++i)
@@ -225,7 +225,7 @@ namespace DeltaEngine
     return maxParticles;
   }
 
-  std::vector<float> ParticleSystem::VerticesDataFormat()
+  std::vector<float> PS::VerticesDataFormat()
   {
     std::vector<float> coords;
     for (unsigned int i = 0; i < verticesCount; ++i)
@@ -248,7 +248,7 @@ namespace DeltaEngine
     return coords;
   }
 
-  std::vector<float> ParticleSystem::ParticleDataFormat()
+  std::vector<float> PS::ParticleDataFormat()
   {
     std::vector<float> coords;
     for (auto& particle : m_ParticlePool)
@@ -266,7 +266,7 @@ namespace DeltaEngine
     return coords;
   }
 
-  void ParticleSystem::AssertProperties()
+  void PS::AssertProperties()
   {
     verticesCount = static_cast<unsigned int>(vertices.size());
     //ensure there are enough colors for each vertex
@@ -287,7 +287,7 @@ namespace DeltaEngine
     }
   }
 
-  ParticleSystem::ParticleSystem() : texture{new Texture2D("DefaultParticle.png")}
+  PS::PS() : texture{new Texture2D("DefaultParticle.png")}
   {
     m_ParticlePool.resize(maxParticles);
 
@@ -316,7 +316,8 @@ namespace DeltaEngine
     AssertProperties();
 
     vao.Bind();
-    vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
+    vbo.InitData(         VerticesDataFormat().data(),
+                          static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)));
     instancedVbo.InitData(ParticleDataFormat().data(),
                           static_cast<unsigned int>(m_activeParticles * 12 * sizeof(float)));
     ibo.InitData(indices.data(), 6);
@@ -342,13 +343,13 @@ namespace DeltaEngine
     shader = new Shader("Shaders/DefaultParticle");
   }
 
-  ParticleSystem::~ParticleSystem()
+  PS::~PS()
   {
     DeltaEngine_CORE_INFO("Deleting Particle System");
     DeltaEngine_CORE_INFO("Particle System deleted");
   }
 
-  void ParticleSystem::Update()
+  void PS::Update()
   {
     durationTimer += static_cast<float>(FixedDeltaTime());
     rateOverTime = Math::Clamp(rateOverTime, 0, 100);
@@ -386,17 +387,21 @@ namespace DeltaEngine
     }
   }
 
-  void ParticleSystem::Render(const Camera&)
+  void PS::Render(const Camera& camera, const Transform& tr)
   {
-    /*
+    
     Update();
 
-    Matrix4x4 proj = camera.GetProjectionMatrix();
-    Matrix4x4 view = camera.GetViewMatrix();
+    Matrix4x4 proj = camera.GetProjectionMatrix(tr);
+    Matrix4x4 view = camera.GetViewMatrix(tr);
     Matrix4x4 model = transform.LocalToWorldMatrix();
 
     if (texture)
+    {
       texture->Bind(0);
+      std::cerr
+        << m_activeParticles << std::endl;
+    }
 
     shader->SetUniform1i("_MainTex", 0);
 
@@ -417,16 +422,13 @@ namespace DeltaEngine
     vbo.Unbind();
 
     instancedVbo.InitData(ParticleDataFormat().data(),
-                          static_cast<unsigned int>(m_activeParticles * 12 * sizeof(float)));
+                          static_cast<unsigned int>(ParticleDataFormat().size() * sizeof(float)));
     instancedVbo.Bind();
 
     instancedVbo.Unbind();
 
     vao.Bind();
 
-    GLCall(glVertexAttribDivisor( 0, 0 ));
-    GLCall(glVertexAttribDivisor( 1, 0 ));
-    GLCall(glVertexAttribDivisor( 2, 0 ));
     GLCall(glVertexAttribDivisor( 3, 1 ));
     GLCall(glVertexAttribDivisor( 4, 1 ));
     GLCall(glVertexAttribDivisor( 5, 1 ));
@@ -434,10 +436,10 @@ namespace DeltaEngine
     GLCall(glDrawElementsInstanced( GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr, m_activeParticles ));
 
     vao.Unbind();
-    */
+    
   }
 
-  void ParticleSystem::Emit(unsigned int count)
+  void PS::Emit(unsigned int count)
   {
     for (; count > 0; --count)
     {
@@ -458,7 +460,7 @@ namespace DeltaEngine
     }
   }
 
-  unsigned int ParticleSystem::GetActiveParticleCount()
+  unsigned int PS::GetActiveParticleCount()
   {
     return m_activeParticles;
   }

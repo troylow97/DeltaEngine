@@ -6,9 +6,9 @@ in vec2 vertexTexCoord;
 out vec4 color;
 
 uniform sampler2D _MainTex;
-uniform vec4 _Color = vec4(1, 1, 1, 1);
+uniform vec4 _Color = vec4(0, 1, 1, 1);
 
 void main()
 {
-	color = texture(_MainTex, vertexTexCoord) * vertexColor * _Color;
+  color = texture(_MainTex, vertexTexCoord) * vertexColor * _Color;
 }

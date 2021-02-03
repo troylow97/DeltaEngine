@@ -37,6 +37,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Panels/WorldPanel.h"
 #include "Panels/AnimatorPanel.h"
 #include "Panels/SpriteEditorPanel.h"
+#include "Panels/BezierPanel.h"
 #include "Panels/LoggerPanel.h"
 
 #include "IconsFontAwesome5.h"
@@ -225,6 +226,7 @@ Editor::Editor()
   m_panels.push_back( std::make_unique<ButtonsPanel>( "Buttons", *this ) );// 9
   m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor", *this ) ); // 10
   m_panels.push_back( std::make_unique<AnimatorPanel>( "Animator", *this ) ); // 11 
+  m_panels.push_back( std::make_unique<BezierPanel>( "Curve Editor", *this ) ); // 12
 
   DeltaEngine_CORE_INFO( "Initializing Editor successful" );
 }

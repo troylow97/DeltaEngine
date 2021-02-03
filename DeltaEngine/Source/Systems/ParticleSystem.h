@@ -1,6 +1,6 @@
 /**********************************************************************************
-* \file   SpriteEditorPanel.h
-* \brief  The file contains interface of SpriteEditorPanel.
+* \file   RenderSystem.h
+* \brief  The file contains interface of RenderSystem.
 * \author Ong, Graeme,   100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
@@ -9,22 +9,14 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
 
-#include "DEpch.h"
-#include "ImGui/Panels/IPanel.h"
-#include "Render/Texture.h"
+#include "ECS/ECSModule.h"
+#include "Components/Transform.h"
+#include "Components/ParticleEmitter.h"
 
 namespace DeltaEngine
 {
-  class SpriteEditorPanel : public IPanel
-  {
-  public:
-    SpriteEditorPanel(std::string str, Editor& e);
-    ~SpriteEditorPanel();
-    void Enable() override;
-    void Render() override;
-
-  private:
-    std::vector<TextureInfo> info;
-    bool loaded;
-  };
+  DEFINE_SYSTEM(ParticleSystem, Transform, ParticleEmitter)
+    void Update() override;
+  void LateUpdate() override;
+  END_DEFINE_SYSTEM(ParticleSystem)
 }

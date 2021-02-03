@@ -21,22 +21,11 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
 
-enum class MoveDir { None, Left, Right, Up, Down };
-static int selectedInfoID{ -1 };
-static int infoID{ -1 };
-static bool loaded{ false };
-static ImVec2 initialPos{ 0.f,0.f };
-static ImVec2 previousPos{ 0.f, 0.f };
-static ImVec2 spritePropsPos{ 0.f, 0.f };
-static bool hoveringSpriteProps{ false };
-static bool draggingSpriteProps{ false };
-static MoveDir moveDir{ MoveDir::None };
-
 SpriteEditorPanel::SpriteEditorPanel( std::string str, Editor& e )
   : IPanel( str, e )
 {
   m_enabled = false;
-
+  loaded = false;
 }
 
 SpriteEditorPanel::~SpriteEditorPanel()
@@ -59,6 +48,16 @@ void SpriteEditorPanel::Render()
     ImGuiWindowFlags_NoNavInputs | 
     ImGuiWindowFlags_NoDocking) )
   {
+    enum class MoveDir { None, Left, Right, Up, Down };
+    static int selectedInfoID{ -1 };
+    static int infoID{ -1 };
+    static ImVec2 spritePropsPos{ 0.f, 0.f };
+    static bool hoveringSpriteProps{ false };
+    static bool draggingSpriteProps{ false };
+    static MoveDir moveDir{ MoveDir::None };
+
+    static ImVec2 initialPos{ 0.f,0.f };
+    static ImVec2 previousPos{ 0.f, 0.f };
 
     previousPos = initialPos;
     initialPos = ImGui::GetMousePos();

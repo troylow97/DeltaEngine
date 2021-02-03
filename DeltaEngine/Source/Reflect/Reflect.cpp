@@ -304,6 +304,22 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Detail", &Text::m_Text )( rttr::policy::prop::bind_as_ptr )
     .property( "Alignment", &Text::alignment )( rttr::policy::prop::bind_as_ptr );
 
+  rttr::registration::class_<ParticleEmitter>( "ParticleEmitter" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<ParticleEmitter>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "playOnAwake", &ParticleEmitter::playOnAwake)( rttr::policy::prop::bind_as_ptr )
+    .property( "duration", &ParticleEmitter::duration)( rttr::policy::prop::bind_as_ptr )
+    .property( "looping", &ParticleEmitter::looping)( rttr::policy::prop::bind_as_ptr )
+    .property( "prewarm", &ParticleEmitter::prewarm)( rttr::policy::prop::bind_as_ptr )
+    .property( "startDelay", &ParticleEmitter::startDelay)( rttr::policy::prop::bind_as_ptr )
+    .property( "startLifetime", &ParticleEmitter::startLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "startColor", &ParticleEmitter::startColor)( rttr::policy::prop::bind_as_ptr )
+    .property( "startRotation", &ParticleEmitter::startRotation)( rttr::policy::prop::bind_as_ptr )
+    .property( "startSize", &ParticleEmitter::startSize)( rttr::policy::prop::bind_as_ptr )
+    .property( "maxParticles", &ParticleEmitter::maxParticles)( rttr::policy::prop::bind_as_ptr )
+    .property( "rateOverTime", &ParticleEmitter::rateOverTime)( rttr::policy::prop::bind_as_ptr )
+    .property( "bursts", &ParticleEmitter::bursts)( rttr::policy::prop::bind_as_ptr );
+
   rttr::registration::class_<Renderer2D>( "Renderer2D" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
@@ -436,6 +452,8 @@ rttr::type RT_Checker( size_t bits )
     return rttr::type::get_by_name( "Image" );
   if ( ComponentMeta::GetComponentMeta<Text>()->bits == bits )
     return rttr::type::get_by_name( "Text" );
+  if ( ComponentMeta::GetComponentMeta<ParticleEmitter>()->bits == bits )
+    return rttr::type::get_by_name( "ParticleEmitter" );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     return rttr::type::get_by_name( "Renderer2D" );
   if ( ComponentMeta::GetComponentMeta<RendererOverlay>()->bits == bits )
@@ -481,6 +499,8 @@ void RT_Destroy( EntityManager &em, EntityID id, size_t bits )
     em.RemoveComponent<Image>( id );
   if ( ComponentMeta::GetComponentMeta<Text>()->bits == bits )
     em.RemoveComponent<Text>( id );
+  if ( ComponentMeta::GetComponentMeta<ParticleEmitter>()->bits == bits )
+    em.RemoveComponent<ParticleEmitter>( id );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     em.RemoveComponent<Renderer2D>( id );
   if ( ComponentMeta::GetComponentMeta<RendererOverlay>()->bits == bits )
@@ -525,6 +545,8 @@ void RT_Setter( EntityManager &em, EntityID id, size_t bits )
     em.AddComponent<Image>( id );
   if ( ComponentMeta::GetComponentMeta<Text>()->bits == bits )
     em.AddComponent<Text>( id );
+  if ( ComponentMeta::GetComponentMeta<ParticleEmitter>()->bits == bits )
+    em.AddComponent<ParticleEmitter>( id );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     em.AddComponent<Renderer2D>( id );
   if ( ComponentMeta::GetComponentMeta<RendererOverlay>()->bits == bits )
@@ -569,6 +591,8 @@ rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
     return rttr::instance( em.GetComponent<Image>( id ) );
   if ( ComponentMeta::GetComponentMeta<Text>()->bits == bits )
     return rttr::instance( em.GetComponent<Text>( id ) );
+  if ( ComponentMeta::GetComponentMeta<ParticleEmitter>()->bits == bits )
+    return rttr::instance( em.GetComponent<ParticleEmitter>( id ) );
   if ( ComponentMeta::GetComponentMeta<Renderer2D>()->bits == bits )
     return rttr::instance( em.GetComponent<Renderer2D>( id ) );
   if ( ComponentMeta::GetComponentMeta<RendererOverlay>()->bits == bits )
@@ -614,6 +638,8 @@ void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::F
     Serialize::WriteObject( *static_cast<Image *>( ptr ), writer );
   else if ( str == "Text" )
     Serialize::WriteObject( *static_cast<Text *>( ptr ), writer );
+  else if ( str == "ParticleEmitter" )
+    Serialize::WriteObject( *static_cast<ParticleEmitter*>( ptr ), writer );
   else if ( str == "Renderer2D" )
     Serialize::WriteObject( *static_cast<Renderer2D *>( ptr ), writer );
   else if ( str == "RendererOverlay" )
@@ -660,6 +686,8 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
     em.AddComponent<Image>( id, var.get_value<Image>() );
   else if ( str == "Text" )
     em.AddComponent<Text>( id, var.get_value<Text>() );
+  else if ( str == "ParticleEmitter" )
+    em.AddComponent<ParticleEmitter>( id, var.get_value<ParticleEmitter>() );
   else if ( str == "Renderer2D" )
     em.AddComponent<Renderer2D>( id, var.get_value<Renderer2D>() );
   else if ( str == "RendererOverlay" )

@@ -19,7 +19,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  class ParticleSystem
+  class PS
   {
     class VertexBufferLayout;
 
@@ -155,10 +155,10 @@ namespace DeltaEngine
     Transform transform;
 
     //member functions
-    ParticleSystem();
-    ~ParticleSystem();
+    PS();
+    ~PS();
     void Update();
-    void Render(const Camera& camera);
+    void Render(const Camera& camera, const Transform& tr);
     void Emit(unsigned int count);
     unsigned int GetActiveParticleCount();
   };

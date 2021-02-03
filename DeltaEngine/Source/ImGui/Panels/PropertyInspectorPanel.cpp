@@ -168,7 +168,8 @@ void PropertyInspectorPanel::Render()
             else if ( prop_type == rttr::type::get<Color *>() )
             {
               auto &color = *value.get_value<Color *>();
-              ImGui::ColorPicker4( ( "##" + prop_name ).c_str(), (float *) &color, ImGuiColorEditFlags_NoSidePreview );
+              //ImGui::ColorPicker4( ( "##" + prop_name ).c_str(), (float *) &color, ImGuiColorEditFlags_NoSidePreview );
+              ImGui::ColorEdit4( ( "##" + prop_name ).c_str(), (float *) &color, ImGuiColorEditFlags_NoSidePreview );
             }
             else if ( prop_type == rttr::type::get<Sprite *>() )
             {

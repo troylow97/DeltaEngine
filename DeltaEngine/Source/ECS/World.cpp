@@ -20,6 +20,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/OCullSystem.h"
 #include "Systems/PhysicsDrawSystem.h"
 #include "Systems/RenderSystem.h"
+#include "Systems/ParticleSystem.h"
 
 namespace DeltaEngine
 {
@@ -34,7 +35,7 @@ World::World() : em( std::make_unique<EntityManager>() )
 {
   DeltaEngine_CORE_INFO( "Initializing World..." );
   CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem,
-    PhysicsDrawSystem, OCullSystem>();
+    PhysicsDrawSystem, ParticleSystem, OCullSystem>();
   DeltaEngine_CORE_INFO( "Initializing World successful" );
 
 #ifndef DE_EDITOR
@@ -89,6 +90,7 @@ void World::Run()
     // Logic Late Update
     LateUpdate();
   }
+  systems[CHash::Hash<ParticleSystem>().digest]->Update();
   systems[CHash::Hash<OCullSystem>().digest]->Update();
   systems[CHash::Hash<RenderSystem>().digest]->Update();
   systems[CHash::Hash<PhysicsDrawSystem>().digest]->Update();
