@@ -68,21 +68,21 @@ namespace DeltaEngine
       return *m_worlds[0]; // default for now
     }
 
-    World& GameWorld() // the factory class
-    {
-      /*
-      //std::map<int, std::unique_ptr<ICloneWorld>>::iterator it = m_worlds[1];
-      //WorldFactory worldfactory;
-      //worldfactory.addPrototype(1, &m_worlds[1]);
-      */
-      addPrototype(1, std::move(_m_worlds[0]));
-
-      m_worlds.push_back(std::make_unique<World>());
-    }
-    
-    World& GetGameWorld()
-    {
-    }
+    //World& GameWorld() // the factory class
+    //{
+    //  /*
+    //  //std::map<int, std::unique_ptr<ICloneWorld>>::iterator it = m_worlds[1];
+    //  //WorldFactory worldfactory;
+    //  //worldfactory.addPrototype(1, &m_worlds[1]);
+    //  */
+    //  addPrototype(1, std::move(_m_worlds[0]));
+    //
+    //  m_worlds.push_back(std::make_unique<World>());
+    //}
+    //
+    //World& GetGameWorld()
+    //{
+    //}
 
     // Multiple World Usage in the future
     // Get Entities Component Data from other world
