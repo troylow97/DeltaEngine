@@ -73,7 +73,7 @@ namespace DeltaEngine
 
   void IdleLancer::onEnter(EntityID& id)
   {
-      //env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsIdle", true);
+      env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsIdle", true);
   }
 
   void IdleLancer::onExit(EntityID& id)

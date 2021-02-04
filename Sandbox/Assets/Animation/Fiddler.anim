@@ -21,6 +21,9 @@ param
 MeleeAttack 0 0
 
 param
+Block 0 0
+
+param
 IsDead 0 0
 
 %EditorPositions:
@@ -29,43 +32,22 @@ pos
 Entry 3 4
 
 pos
-Exit 371 551
+Exit 652 256
 
 pos
-Clip/IdleSpritesheet 31 94
+Clip/FID_WALK 461 124
 
 pos
-Clip/RunningSpritesheet 161 261
+Clip/FID_DEATH 2 440
 
 pos
-Clip/RangeAttackSpritesheet -126 273
+Clip/FID_ATTACK 220 466
 
 pos
-Clip/FallingSpritesheet 647 -44
+Clip/FID_ALERT_RUN 265 292
 
 pos
-Clip/LandingSpriteSheet 340 -21
-
-pos
-Clip/DashSpritesheet -55 428
-
-pos
-Clip/InitialJump 602 82
-
-pos
-Clip/ReachingTop 830 29
-
-pos
-Clip/Punch1 445 214
-
-pos
-Clip/Punch2 690 181
-
-pos
-Clip/Punch3 929 203
-
-pos
-Clip/LancerAttack 759 484
+Clip/FID_ALERT 173 219
 
 %Transitions:
 
@@ -88,13 +70,31 @@ condition MeleeAttack ? 1
 endTransition
 
 transition 
-start Clip/FID_WALK
+start Clip/FID_ATTACK
+end Clip/FID_ALERT
+condition MeleeAttack ? 0
+endTransition
+
+transition 
+start Clip/FID_ALERT_RUN
+end Clip/FID_BLOCK
+condition MeleeAttack ? 1
+endTransition
+
+transition 
+start Clip/FID_ATTACK
+end Clip/FID_BLOCK
+condition MeleeAttack ? 0
+endTransition
+
+transition 
+start Clip/FID_ATTACK
 end Clip/FID_DEATH
 condition IsDead ? 1
 endTransition
 
 transition 
-start Clip/FID_ATTACK
+start Clip/FID_BLOCK
 end Clip/FID_DEATH
 condition IsDead ? 1
 endTransition
@@ -106,21 +106,9 @@ condition IsDead ? 1
 endTransition
 
 transition 
-start Clip/FID_ALERT
+start Clip/FID_WALK
 end Clip/FID_DEATH
 condition IsDead ? 1
-endTransition
-
-transition 
-start Clip/FID_ATTACK
-end Clip/FID_ALERT
-condition IsAlerted ? 1
-endTransition
-
-transition 
-start Clip/FID_ATTACK
-end Clip/FID_WALK
-condition IsPatrolling ? 1
 endTransition
 
 %endfile
