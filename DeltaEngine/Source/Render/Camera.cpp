@@ -19,17 +19,14 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
   std::vector<Camera*> Camera::allCameras;
-  FrameBuffer* Camera::finalFrameBuffer;
   Camera* Camera::editorCamera;
   Transform Camera::editorCameraTransform;
-  float Camera::fixedAspect = 16.f / 9.f;
 
   Camera::Camera(bool editor) :
     cameraIndex{editor ? -1 : static_cast<int>(allCameras.size())},
     frameBuffer{},
-    aspectRatio{ 16.f / 9.f },
-    viewportSize{ 1920 },
-    camWidth{ 1920 },
+    m_AspectRatio{1.0f * env.pWin->Width() / env.pWin->Height()},
+    m_ViewportSize{1.0f * env.pWin->Width()},
     m_Size{6},
     m_zNear{-100},
     m_zFar{100},
@@ -51,16 +48,16 @@ namespace DeltaEngine
       }
     }
   }
+
   Camera::Camera(const Camera& copy) :
-    cameraIndex{ static_cast<int>(allCameras.size()) },
+    cameraIndex{static_cast<int>(allCameras.size())},
     frameBuffer{},
-    aspectRatio{ 16.f / 9.f },
-    viewportSize{ 1920 },
-    camWidth{ 1920 },
-    m_Size{ copy.m_Size },
-    m_zNear{ copy.m_zNear },
-    m_zFar{ copy.m_zFar },
-    backgroundColor{ copy.backgroundColor }
+    m_AspectRatio{copy.m_AspectRatio},
+    m_ViewportSize{copy.m_ViewportSize},
+    m_Size{copy.m_Size},
+    m_zNear{copy.m_zNear},
+    m_zFar{copy.m_zFar},
+    backgroundColor{copy.backgroundColor}
   {
     if (&copy == editorCamera)
     {
@@ -71,16 +68,15 @@ namespace DeltaEngine
       allCameras.push_back(this);
   }
 
-  Camera::Camera(Camera&& move) :
-    cameraIndex{ static_cast<int>(allCameras.size()) },
+  Camera::Camera(Camera&& move) noexcept :
+    cameraIndex{static_cast<int>(allCameras.size())},
     frameBuffer{},
-    aspectRatio{ 16.f / 9.f },
-    viewportSize{ 1920 },
-    camWidth{ 1920 },
-    m_Size{ move.m_Size },
-    m_zNear{ move.m_zNear },
-    m_zFar{ move.m_zFar },
-    backgroundColor{ move.backgroundColor }
+    m_AspectRatio{move.m_AspectRatio},
+    m_ViewportSize{move.m_ViewportSize},
+    m_Size{move.m_Size},
+    m_zNear{move.m_zNear},
+    m_zFar{move.m_zFar},
+    backgroundColor{move.backgroundColor}
   {
     if (&move == editorCamera)
     {
@@ -109,6 +105,8 @@ namespace DeltaEngine
       DeltaEngine_CORE_ERROR("Copying the editor camera is not allowed!");
       return *this;
     }
+    m_AspectRatio = copy.m_AspectRatio;
+    m_ViewportSize = copy.m_ViewportSize;
     m_Size = copy.m_Size;
     m_zNear = copy.m_zNear;
     m_zFar = copy.m_zFar;
@@ -116,7 +114,7 @@ namespace DeltaEngine
     return *this;
   }
 
-  Camera& Camera::operator=(Camera&& move)
+  Camera& Camera::operator=(Camera&& move) noexcept
   {
     // moving camera should not be allowed, just copy
     if (&move == editorCamera)
@@ -124,6 +122,8 @@ namespace DeltaEngine
       DeltaEngine_CORE_ERROR("Copying the editor camera is not allowed!");
       return *this;
     }
+    m_AspectRatio = move.m_AspectRatio;
+    m_ViewportSize = move.m_ViewportSize;
     m_Size = move.m_Size;
     m_zNear = move.m_zNear;
     m_zFar = move.m_zFar;
@@ -133,16 +133,10 @@ namespace DeltaEngine
 
   Matrix4x4 Camera::GetProjectionMatrix(Transform transform) const
   {
-    if (this == editorCamera)
-      return Matrix4x4::Rotate(transform.rotation) * Matrix4x4::Ortho(
-        -m_Size * aspectRatio,
-        m_Size * aspectRatio,
-        -m_Size, m_Size, m_zNear, m_zFar);
-    else
-      return Matrix4x4::Rotate(transform.rotation) * Matrix4x4::Ortho(
-        -m_Size * ((fixedAspect > .01f ) ? fixedAspect : aspectRatio),
-        m_Size * ((fixedAspect > .01f ) ? fixedAspect : aspectRatio),
-        -m_Size, m_Size, m_zNear, m_zFar);
+    return Matrix4x4::Rotate(transform.rotation) * Matrix4x4::Ortho(
+      -m_Size * m_AspectRatio,
+      m_Size * m_AspectRatio,
+      -m_Size, m_Size, m_zNear, m_zFar);
   }
 
   Matrix4x4 Camera::GetViewMatrix(Transform transform) const
@@ -152,12 +146,12 @@ namespace DeltaEngine
 
   Vector3 Camera::Max(Transform transform) const
   {
-    return Vector3(m_Size * aspectRatio + transform.position.x, m_Size + transform.position.y);
+    return Vector3(m_Size * m_AspectRatio + transform.position.x, m_Size + transform.position.y);
   }
 
   Vector3 Camera::Min(Transform transform) const
   {
-    return Vector3(-m_Size * aspectRatio + transform.position.x, -m_Size + transform.position.y);
+    return Vector3(-m_Size * m_AspectRatio + transform.position.x, -m_Size + transform.position.y);
   }
 
   FrameBuffer& Camera::GetFrameBuffer()
@@ -167,49 +161,24 @@ namespace DeltaEngine
 
   float Camera::GetAspectRatio()
   {
-    return aspectRatio;
+    return m_AspectRatio;
   }
-  
+
   float Camera::SetAspectRatio(float width, float height)
   {
-    aspectRatio = width / height;
-    return aspectRatio;
-  }
-
-  float Camera::GetFixedAspectRatio()
-  {
-    return fixedAspect;
-  }
-
-  float Camera::SetFixedAspectRatio(float width, float height)
-  {
-    fixedAspect = width / height;
-    return fixedAspect;
-  }
-
-  float Camera::GetViewportSize()
-  {
-    return camWidth;
+    return m_AspectRatio = width / height;
   }
 
   float Camera::SetViewportSize(float width)
   {
-    viewportSize = width;
-    camWidth = viewportSize;
-    if (fixedAspect > .01f && aspectRatio > fixedAspect)
-      camWidth *= fixedAspect / aspectRatio;
-    return camWidth;
-  }
-
-  float Camera::GetTrueViewportSize()
-  {
-    return viewportSize;
+    return m_ViewportSize = width;
   }
 
   void Camera::Start()
   {
-    frameBuffer.Resize(static_cast<unsigned int>(camWidth),
-                       static_cast<unsigned int>(camWidth / fixedAspect));
+    frameBuffer.Resize(static_cast<unsigned int>(m_ViewportSize),
+                       static_cast<unsigned int>(m_ViewportSize / m_AspectRatio));
+
     frameBuffer.Bind();
 
     //glEnable(GL_DEPTH_TEST);

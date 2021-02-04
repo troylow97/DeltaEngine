@@ -16,11 +16,9 @@ namespace DeltaEngine
 {
   class AnimatorPanel : public IPanel
   {
-    bool loaded = false;
   public:
     AnimatorPanel(std::string str, Editor& e);
     ~AnimatorPanel();
-    void Enable() override;
     void Render() override;
   };
 }
