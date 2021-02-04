@@ -13,7 +13,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "ECS/EntityManager.h"
 #include "Render/Camera.h"
 #include "Render/VideoClip.h"
-#include "Render/PS.h"
 #include "Render/Mesh.h"
 #include "Render/Window.h"
 #include "Render/OpenGLSystem.h"
@@ -324,18 +323,8 @@ namespace DeltaEngine
     }
   }
   VideoClip* video = nullptr;
-  PS* ps = nullptr;
   void RenderSystem::Update()
   {
-    if (!video)
-    {
-      video = new VideoClip("I WiSHCover.mp4");
-    }
-    if (!ps)
-    {
-      ps = new PS();
-    }
-
     RenderModule::openGLSystem->Update();
 
     // sort renderers by layer
@@ -371,8 +360,11 @@ namespace DeltaEngine
         Mesh::DrawQuad();
 #endif // !DE_EDITOR
       });
-    Camera::finalFrameBuffer->Resize(static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize()),
-      static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize() / Camera::allCameras[0]->GetAspectRatio()));
+    if (Camera::allCameras.size())
+    {
+      Camera::finalFrameBuffer->Resize(static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize()),
+        static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize() / Camera::allCameras[0]->GetAspectRatio()));
+    }
 
     Camera::finalFrameBuffer->Bind();
 

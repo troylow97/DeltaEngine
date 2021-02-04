@@ -178,6 +178,22 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     rttr::value( "radial_360_anticlockwise", FillType::Radial360AntiClockwise )
   );
 
+  rttr::registration::enumeration<ParticleEmitter::Shape>( "Shape" )
+  (
+    rttr::value( "None", ParticleEmitter::Shape::None ),
+    rttr::value( "Circle", ParticleEmitter::Shape::Circle ),
+    rttr::value( "Line", ParticleEmitter::Shape::Line ),
+    rttr::value( "Box", ParticleEmitter::Shape::Box )
+  );
+
+  rttr::registration::enumeration<ParticleEmitter::GenType>( "Generation Mode" )
+  (
+    rttr::value( "Random", ParticleEmitter::GenType::Random ),
+    rttr::value( "Loop", ParticleEmitter::GenType::Loop ),
+    rttr::value( "PingPong", ParticleEmitter::GenType::PingPong ),
+    rttr::value( "Spread", ParticleEmitter::GenType::Spread )
+  );
+
   rttr::registration::enumeration<UIType>( "UIType" )
     (
       rttr::value("Screen", UIType::Screen),
@@ -312,13 +328,16 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "looping", &ParticleEmitter::looping)( rttr::policy::prop::bind_as_ptr )
     .property( "prewarm", &ParticleEmitter::prewarm)( rttr::policy::prop::bind_as_ptr )
     .property( "startDelay", &ParticleEmitter::startDelay)( rttr::policy::prop::bind_as_ptr )
-    .property( "startLifetime", &ParticleEmitter::startLifetime)( rttr::policy::prop::bind_as_ptr )
-    .property( "startColor", &ParticleEmitter::startColor)( rttr::policy::prop::bind_as_ptr )
-    .property( "startRotation", &ParticleEmitter::startRotation)( rttr::policy::prop::bind_as_ptr )
-    .property( "startSize", &ParticleEmitter::startSize)( rttr::policy::prop::bind_as_ptr )
+    .property( "startLifetimeMin", &ParticleEmitter::startLifetimeMin)( rttr::policy::prop::bind_as_ptr )
+    .property( "startLifetimeMax", &ParticleEmitter::startLifetimeMax)( rttr::policy::prop::bind_as_ptr )
+    .property( "startColorMin", &ParticleEmitter::startColorMin)( rttr::policy::prop::bind_as_ptr )
+    .property( "startColorMax", &ParticleEmitter::startColorMax)( rttr::policy::prop::bind_as_ptr )
+    .property( "startRotationMin", &ParticleEmitter::startRotationMin)( rttr::policy::prop::bind_as_ptr )
+    .property( "startRotationMax", &ParticleEmitter::startRotationMax)( rttr::policy::prop::bind_as_ptr )
+    .property( "startSizeMin", &ParticleEmitter::startSizeMin)( rttr::policy::prop::bind_as_ptr )
+    .property( "startSizeMax", &ParticleEmitter::startSizeMax)( rttr::policy::prop::bind_as_ptr )
     .property( "maxParticles", &ParticleEmitter::maxParticles)( rttr::policy::prop::bind_as_ptr )
-    .property( "rateOverTime", &ParticleEmitter::rateOverTime)( rttr::policy::prop::bind_as_ptr )
-    .property( "bursts", &ParticleEmitter::bursts)( rttr::policy::prop::bind_as_ptr );
+    .property( "rateOverTime", &ParticleEmitter::rateOverTime)( rttr::policy::prop::bind_as_ptr );
 
   rttr::registration::class_<Renderer2D>( "Renderer2D" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits ) )

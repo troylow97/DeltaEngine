@@ -23,7 +23,7 @@ namespace DeltaEngine
   BezierPanel::BezierPanel(std::string str, Editor& e)
     : IPanel(str, e)
   {
-    m_enabled = false;
+    m_enabled = true;
     curve = new BezierCurve();
   }
 
@@ -66,7 +66,6 @@ namespace DeltaEngine
         controlDraggedL = -1;
         controlDraggedR = -1;
       }
-
 
       ImGui::Text("Curve");
       ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1, 1));
@@ -128,22 +127,23 @@ namespace DeltaEngine
           );
         }
         // actual curve
+        size_t last = 0;
         for (size_t i = 0; i < curve->anchors.size() - 1; ++i)
         {
-          if (!i && curve->anchors[i].x > 0)
-            draw_list->AddLine(
-              ImVec2(canvas_bleed.x,
-                canvas_sz_wbleed.y * (1 - curve->anchors[i + 0].y) + canvas_bleed.y) + offset,
-              ImVec2(canvas_sz_wbleed.x * curve->anchors[i + 0].x + canvas_bleed.x,
-                canvas_sz_wbleed.y * (1 - curve->anchors[i + 0].y) + canvas_bleed.y) + offset,
-              IM_COL32(100, 17, 17, 255), 1);
+          if (!curve->anchors[i].second)
+            continue;
+
+          last = i;
+
+          if (!curve->anchors[i + 1].second)
+            continue;
 
           ImVec2 p1 = offset + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i].x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i].y) + canvas_bleed.y);
+            canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
+            canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
           ImVec2 p2 = offset + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i + 1].x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i + 1].y) + canvas_bleed.y);
+            canvas_sz_wbleed.x * curve->anchors[i + 1].first.x + canvas_bleed.x,
+            canvas_sz_wbleed.y * (1 - curve->anchors[i + 1].first.y) + canvas_bleed.y);
           ImVec2 c1 = curve->controlsRight[i].second ? ImVec2(
             canvas_sz_wbleed.x * curve->controlsRight[i].first.x,
             canvas_sz_wbleed.y * -curve->controlsRight[i].first.y) : ImVec2();
@@ -156,11 +156,30 @@ namespace DeltaEngine
             p2 + c2, p2,
             IM_COL32(100, 17, 17, 255), 1);
         }
+
+        if (curve->anchors[0].second && curve->anchors[0].first.x > 0)
+          draw_list->AddLine(
+            ImVec2(canvas_bleed.x,
+              canvas_sz_wbleed.y * (1 - curve->anchors[0].first.y) + canvas_bleed.y) + offset,
+            ImVec2(canvas_sz_wbleed.x * curve->anchors[0].first.x + canvas_bleed.x,
+              canvas_sz_wbleed.y * (1 - curve->anchors[0].first.y) + canvas_bleed.y) + offset,
+            IM_COL32(51, 17, 17, 255), 1);
+
+        if (curve->anchors[last].second && curve->anchors[last].first.x > 0)
+          draw_list->AddLine(
+            ImVec2(canvas_sz_wbleed.x * curve->anchors[last].first.x + canvas_bleed.x,
+              canvas_sz_wbleed.y * (1 - curve->anchors[last].first.y) + canvas_bleed.y) + offset,
+            ImVec2(canvas_bleed.x + canvas_sz_wbleed.x,
+              canvas_sz_wbleed.y * (1 - curve->anchors[last].first.y) + canvas_bleed.y) + offset,
+            IM_COL32(51, 17, 17, 255), 1);
+
         for (size_t i = 0; i < curve->anchors.size(); ++i)
         {
+          if (!curve->anchors[i].second)
+            continue;
           ImVec2 p = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i].x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i].y) + canvas_bleed.y);
+            canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
+            canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
 
           ImGui::SetCursorScreenPos(p);
           ImGui::Button(("##BezKey" + std::to_string(i)).c_str(), { 7.f, 7.f });
@@ -172,19 +191,21 @@ namespace DeltaEngine
         }
         if (anchorDragged >= 0 && anchorDragged < curve->anchors.size())
         {
-          curve->anchors[anchorDragged].x += io.MouseDelta.x / canvas_sz_wbleed.x;
-          curve->anchors[anchorDragged].y -= io.MouseDelta.y / canvas_sz_wbleed.y;
+          curve->anchors[anchorDragged].first.x += io.MouseDelta.x / canvas_sz_wbleed.x;
+          curve->anchors[anchorDragged].first.y -= io.MouseDelta.y / canvas_sz_wbleed.y;
 
-          curve->anchors[anchorDragged].x = Math::Clamp01(curve->anchors[anchorDragged].x);
-          curve->anchors[anchorDragged].y = Math::Clamp01(curve->anchors[anchorDragged].y);
+          curve->anchors[anchorDragged].first.x = Math::Clamp01(curve->anchors[anchorDragged].first.x);
+          curve->anchors[anchorDragged].first.y = Math::Clamp01(curve->anchors[anchorDragged].first.y);
         }
         for (size_t i = 1; i < curve->controlsLeft.size(); ++i)
         {
+          if (!curve->anchors[i].second)
+            continue;
           if (!curve->controlsLeft[i].second)
             continue;
           ImVec2 p1 = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i].x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i].y) + canvas_bleed.y);
+            canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
+            canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
           ImVec2 p2 = p1 + ImVec2(
             canvas_sz_wbleed.x * curve->controlsLeft[i].first.x,
             canvas_sz_wbleed.y * -curve->controlsLeft[i].first.y);
@@ -211,14 +232,16 @@ namespace DeltaEngine
         }
         for (size_t i = 0; i < curve->controlsRight.size() - 1; ++i)
         {
+          if (!curve->anchors[i].second)
+            continue;
           if (!curve->controlsRight[i].second)
             continue;
           ImVec2 p1 = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i].x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i].y) + canvas_bleed.y);
+            canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
+            canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
           ImVec2 p2 = p1 + ImVec2(
-            canvas_sz_wbleed.x * curve->controlsRight[i + 0].first.x,
-            canvas_sz_wbleed.y * -curve->controlsRight[i + 0].first.y);
+            canvas_sz_wbleed.x * curve->controlsRight[i].first.x,
+            canvas_sz_wbleed.y * -curve->controlsRight[i].first.y);
 
           draw_list->AddLine(
             p1 - ImVec2(-3.5f, -3.5f), p2 - ImVec2(-3.5f, -3.5f),
@@ -240,7 +263,15 @@ namespace DeltaEngine
           curve->controlsRight[controlDraggedR].first.x += io.MouseDelta.x / canvas_sz_wbleed.x;
           curve->controlsRight[controlDraggedR].first.y -= io.MouseDelta.y / canvas_sz_wbleed.y;
         }
+        ImGui::SetCursorScreenPos(offset);
+        ImGui::DragFloat("CurveMax", &curve->max, 0.05f);
+        ImGui::SetItemAllowOverlap();
+
+        ImGui::SetCursorScreenPos(offset + ImVec2(0, canvas_sz.y - 20));
+        ImGui::DragFloat("CurveMin", &curve->min, 0.05f);
+        ImGui::SetItemAllowOverlap();
       }
+
       ImGui::PopItemWidth();
       ImGui::PopStyleColor();
       ImGui::PopStyleVar();
@@ -267,12 +298,12 @@ namespace DeltaEngine
           ImGui::Text("Key Properties");
 
           {
-            float keyPos[2] = { curve->anchors[selectedKey].x, curve->anchors[selectedKey].y };
+            float keyPos[2] = { curve->anchors[selectedKey].first.x, curve->anchors[selectedKey].first.y };
             ImGui::DragFloat2("Pos", keyPos, .001f, 0, 1);
             ImGui::SetItemAllowOverlap();
             if (ImGui::IsItemClicked(0))
               denyDrag = true;
-            curve->anchors[selectedKey] = Vector2(keyPos[0], keyPos[1]);
+            curve->anchors[selectedKey].first = Vector2(keyPos[0], keyPos[1]);
           }
 
           ImGui::Checkbox("Left Control", &curve->controlsLeft[selectedKey].second);
@@ -311,7 +342,6 @@ namespace DeltaEngine
         ImGui::EndChild();
         ImGui::PopStyleColor();
       }
-
 
       ImGui::EndChild();
     }

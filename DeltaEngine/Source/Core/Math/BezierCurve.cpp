@@ -22,27 +22,49 @@ namespace DeltaEngine
 
   BezierCurve::BezierCurve()
   {
-    anchors.push_back(Vector2(0, 0));
-    controlsLeft.push_back({ Vector2(-0.1f, 0), false });
-    controlsRight.push_back({ Vector2(0.1f, 0), true });
+    anchors[0] = { Vector2(0, 0), true };
+    controlsLeft[0] = { Vector2(-0.1f, 0), false };
+    controlsRight[0] = { Vector2(0.1f, 0), true };
 
-    anchors.push_back(Vector2(0.5f, 0.5f));
-    controlsLeft.push_back({ Vector2(-0.1f, 0), true });
-    controlsRight.push_back({ Vector2(0.1f, 0), true });
+    anchors[1] = { Vector2(0.5f, 0.5f), true };
+    controlsLeft[1] = { Vector2(-0.1f, 0), true };
+    controlsRight[1] = { Vector2(0.1f, 0), true };
 
-    anchors.push_back(Vector2(1, 1));
-    controlsLeft.push_back({ Vector2(-0.1f, 0), true });
-    controlsRight.push_back({ Vector2(0.1f, 0), false });
+    anchors[2] = { Vector2(1, 1), true };
+    controlsLeft[2] = { Vector2(-0.1f, 0), true };
+    controlsRight[2] = { Vector2(0.1f, 0), false };
+  }
+  BezierCurve::BezierCurve(int constant)
+  {
+    min = constant - 1.f;
+    max = constant + 1.f;
+
+    anchors[0] = { Vector2(0, 0.5f), true };
+    controlsLeft[0] = { Vector2(-0.1f, 0), false };
+    controlsRight[0] = { Vector2(0.1f, 0), false };
+
+    anchors[1] = { Vector2(1, 0.5f), true };
+    controlsLeft[1] = { Vector2(-0.1f, 0), false };
+    controlsRight[1] = { Vector2(0.1f, 0), false };
   }
 
   float BezierCurve::Evaluate(float time)
   {
     int i = 0;
+    float lastCheck = 0;
     int startInd = -1, endInd = -1;
-    for (auto position : anchors)
+    for (auto [position, active] : anchors)
     {
+      if (!active)
+        continue;
       if (position.x < time)
-        startInd = i;
+      {
+        if (position.x > lastCheck)
+        {
+          lastCheck = position.x;
+          startInd = i;
+        }
+      }
       else
       {
         endInd = i;
@@ -52,40 +74,40 @@ namespace DeltaEngine
     }
     
     if (startInd == -1)
-      return anchors[0].y;
+      return anchors[0].first.y;
     if (endInd == -1)
-      return anchors.back().y;
+      return anchors.back().first.y;
 
-    float t0 = anchors[startInd].x;
-    float t1 = anchors[endInd].x;
+    float t0 = anchors[startInd].first.x;
+    float t1 = anchors[endInd].first.x;
     time = (time - t0) / (t1 - t0);
     bool right = controlsRight[startInd].second;
     bool left = controlsLeft[endInd].second;
 
     if (left && right)
     {
-      Vector2 p0 = anchors[startInd];
-      Vector2 p1 = anchors[startInd] + controlsRight[startInd].first;
-      Vector2 p2 = anchors[endInd] + controlsLeft[endInd].first;
-      Vector2 p3 = anchors[endInd];
+      Vector2 p0 = anchors[startInd].first;
+      Vector2 p1 = anchors[startInd].first + controlsRight[startInd].first;
+      Vector2 p2 = anchors[endInd].first + controlsLeft[endInd].first;
+      Vector2 p3 = anchors[endInd].first;
 
-      return EvaluateCubic(p0, p1, p2, p3, time).y;
+      return min + (max - min) * EvaluateCubic(p0, p1, p2, p3, time).y;
     }
     else if (left || right)
     {
-      Vector2 p0 = anchors[startInd];
+      Vector2 p0 = anchors[startInd].first;
       Vector2 p1 = left ?
-        anchors[endInd] + controlsLeft[endInd].first :
-        anchors[startInd] + controlsRight[startInd].first;
-      Vector2 p2 = anchors[endInd];
+        anchors[endInd].first + controlsLeft[endInd].first :
+        anchors[startInd].first + controlsRight[startInd].first;
+      Vector2 p2 = anchors[endInd].first;
 
-      return EvaluateQuadratic(p0, p1, p2, time).y;
+      return min + (max - min) * EvaluateQuadratic(p0, p1, p2, time).y;
     }
     else
     {
-      Vector2 p0 = anchors[startInd];
-      Vector2 p1 = anchors[endInd];
-      return EvaluateLinear(p0, p1, time).y;
+      Vector2 p0 = anchors[startInd].first;
+      Vector2 p1 = anchors[endInd].first;
+      return min + (max - min) * EvaluateLinear(p0, p1, time).y;
     }
   }
 }
