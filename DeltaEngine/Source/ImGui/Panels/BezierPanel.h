@@ -1,6 +1,6 @@
 /**********************************************************************************
-* \file   SpriteEditorPanel.h
-* \brief  The file contains interface of SpriteEditorPanel.
+* \file   BezierPanel.h
+* \brief  The file contains interface of BezierPanel.
 * \author Ong, Graeme,   100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
@@ -11,20 +11,18 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "DEpch.h"
 #include "ImGui/Panels/IPanel.h"
-#include "Render/Texture.h"
+#include "Core/Math/BezierCurve.h"
 
 namespace DeltaEngine
 {
-  class SpriteEditorPanel : public IPanel
+  class BezierPanel : public IPanel
   {
+    BezierCurve* curve = nullptr;
+    bool loaded = false;
   public:
-    SpriteEditorPanel(std::string str, Editor& e);
-    ~SpriteEditorPanel();
+    BezierPanel(std::string str, Editor& e);
+    ~BezierPanel();
     void Enable() override;
     void Render() override;
-
-  private:
-    std::vector<TextureInfo> info;
-    bool loaded;
   };
 }

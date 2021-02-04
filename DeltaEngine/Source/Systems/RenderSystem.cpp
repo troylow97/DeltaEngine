@@ -36,6 +36,13 @@ namespace DeltaEngine
 
   void DrawRenderer2D(EntityManager& em, Camera& c, Transform& tr)
   {
+    Material spriteMat{ "Shaders/DefaultSprite" };
+    Material textMat{ "Shaders/DefaultText" };
+    Material particleMat{ "Shaders/DefaultParticle" };
+
+    Matrix4x4 proj = c.GetProjectionMatrix(tr);
+    Matrix4x4 view = c.GetViewMatrix(tr);
+    
     for (EntityID ID : sortedRenderers2D)
     {
       if (!em.HasComponent<Transform>(ID) || !em.HasComponent<Renderer2D>(ID))
@@ -44,59 +51,61 @@ namespace DeltaEngine
       Renderer2D& r = em.GetComponent<Renderer2D>(ID);
       if (em.HasComponent<Image>(ID))
       {
-        Image& i = em.GetComponent<Image>(ID);
+        Image& img = em.GetComponent<Image>(ID);
 
         if (r.m_Active)
         {
-          Vector2 offset = i.m_Offset + i.m_Sprite.GetOffset();
-          Vector2 tiling = i.m_Tiling * i.m_Sprite.GetTiling();
-          Vector2 pivot = i.m_Sprite.GetPivot();
+          Vector2 offset = img.m_Offset + img.m_Sprite.GetOffset();
+          Vector2 tiling = img.m_Tiling * img.m_Sprite.GetTiling();
+          Vector2 pivot = img.m_Sprite.GetPivot();
 
-          Matrix4x4 proj = c.GetProjectionMatrix(tr);
-          Matrix4x4 view = c.GetViewMatrix(tr);
           Matrix4x4 model = Matrix4x4::Scale(Vector3{
-              (i.m_Sprite ? (i.m_Sprite.GetWidth() / 200.0f) : 1) * i.m_Size.x * (i.m_FlipX ? -1 : 1),
-              (i.m_Sprite ? (i.m_Sprite.GetHeight() / 200.0f) : 1) * i.m_Size.y * (i.m_FlipY ? -1 : 1), 1
+              (img.m_Sprite ? (img.m_Sprite.GetWidth() / 200.0f) : 1) * img.m_Size.x * (img.m_FlipX ? -1 : 1),
+              (img.m_Sprite ? (img.m_Sprite.GetHeight() / 200.0f) : 1) * img.m_Size.y * (img.m_FlipY ? -1 : 1), 1
             })
             * t.LocalToWorldMatrix();
 
           if (r.m_Shaded)
           {
-            if (i.m_Sprite)
+            if (img.m_Sprite)
             {
-              i.m_Sprite.GetTexture()->Bind(0);
+              img.m_Sprite.GetTexture()->Bind();
             }
 
-            r.m_Material.SetUniformMatrix4f("_M", model);
-            r.m_Material.SetUniformMatrix4f("_V", view);
-            r.m_Material.SetUniformMatrix4f("_P", proj);
-            r.m_Material.SetUniformColor4f("_Color", r.m_Color);
-            r.m_Material.SetUniform1i("_MainTex", 0);
-            r.m_Material.SetUniform1f("_FadeAmt", c.fadeColorAmt);
-            r.m_Material.SetUniform1i("_FillType", static_cast<int>(i.m_FillType));
-            r.m_Material.SetUniform1f("_FillAmount", i.m_FillAmount);
-            r.m_Material.SetUniform1f("_RRot", i.m_OverallAngle);
-            r.m_Material.SetUniform1f("_RStart", i.m_StartAngle);
-            r.m_Material.SetUniform1f("_REnd", i.m_EndAngle);
-            r.m_Material.SetUniformVector4f("_SpriteUV", Vector4(
-              i.m_Sprite.GetOffset().x,
-              i.m_Sprite.GetOffset().y,
-              i.m_Sprite.GetOffset().x + i.m_Sprite.GetTiling().x,
-              i.m_Sprite.GetOffset().y + i.m_Sprite.GetTiling().y));
+            spriteMat.SetUniformMatrix4f("_M", model);
+            spriteMat.SetUniformMatrix4f("_V", view);
+            spriteMat.SetUniformMatrix4f("_P", proj);
+            spriteMat.SetUniformColor4f("_Color", r.m_Color);
+            spriteMat.SetUniform1i("_MainTex", 0);
+            spriteMat.SetUniform1i("_FillType", static_cast<int>(img.m_FillType));
+            spriteMat.SetUniform1f("_FillAmount", img.m_FillAmount);
+            spriteMat.SetUniform1f("_RRot", img.m_OverallAngle);
+            spriteMat.SetUniform1f("_RStart", img.m_StartAngle);
+            spriteMat.SetUniform1f("_REnd", img.m_EndAngle);
+            spriteMat.SetUniformVector4f("_SpriteUV", Vector4(
+              img.m_Sprite.GetOffset().x,
+              img.m_Sprite.GetOffset().y,
+              img.m_Sprite.GetOffset().x + img.m_Sprite.GetTiling().x,
+              img.m_Sprite.GetOffset().y + img.m_Sprite.GetTiling().y));
+
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
             Mesh::DrawQuad(offset, tiling, pivot);
 
-            if (i.m_Sprite)
+            if (img.m_Sprite)
             {
-              i.m_Sprite.GetTexture()->Unbind();
+              img.m_Sprite.GetTexture()->Unbind();
             }
           }
           if (r.m_Wireframe)
           {
-            r.m_Material.SetUniformMatrix4f("_M", model);
-            r.m_Material.SetUniformMatrix4f("_V", view);
-            r.m_Material.SetUniformMatrix4f("_P", proj);
-            r.m_Material.SetUniform1i("_FillType", 0);
-            r.m_Material.SetUniformColor4f("_Color", wireframeColor);
+            spriteMat.SetUniformMatrix4f("_M", model);
+            spriteMat.SetUniformMatrix4f("_V", view);
+            spriteMat.SetUniformMatrix4f("_P", proj);
+            spriteMat.SetUniform1i("_FillType", 0);
+            spriteMat.SetUniformColor4f("_Color", wireframeColor);
             Mesh::DrawQuad(true);
           }
         }
@@ -105,27 +114,61 @@ namespace DeltaEngine
       {
         Text& x = em.GetComponent<Text>(ID);
         glClear(GL_DEPTH_BUFFER_BIT);
-        Matrix4x4 proj = c.GetProjectionMatrix(tr);
-        Matrix4x4 view = c.GetViewMatrix(tr);
         Matrix4x4 model = t.LocalToWorldMatrix();
 
         // activate corresponding render state	
-        r.m_Material.SetUniformMatrix4f("_M", model);
-        r.m_Material.SetUniformMatrix4f("_V", view);
-        r.m_Material.SetUniformMatrix4f("_P", proj);
-        r.m_Material.SetUniform1f("_FadeAmt", c.fadeColorAmt);
-        r.m_Material.SetUniform1i("_MainTex", 0);
+        textMat.SetUniformMatrix4f("_M", model);
+        textMat.SetUniformMatrix4f("_V", view);
+        textMat.SetUniformMatrix4f("_P", proj);
+        textMat.SetUniform1i("_MainTex", 0);
 
         if (r.m_Shaded)
         {
-          r.m_Material.SetUniformColor4f("_Color", r.m_Color);
+          glEnable(GL_BLEND);
+          glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+          glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+          textMat.SetUniformColor4f("_Color", r.m_Color);
           Mesh::DrawTextMesh(GetEnv().pManager->Get<Font>(x.m_FontKey), x.m_Text, 1, false);
         }
         if (r.m_Wireframe)
         {
-          r.m_Material.SetUniformColor4f("_Color", wireframeColor);
+          textMat.SetUniformColor4f("_Color", wireframeColor);
           Mesh::DrawTextMesh(GetEnv().pManager->Get<Font>(x.m_FontKey), x.m_Text, 1, true);
         }
+      }
+      if (em.HasComponent<ParticleEmitter>(ID))
+      {
+        ParticleEmitter& ps = em.GetComponent<ParticleEmitter>(ID);
+
+        Matrix4x4 model = t.LocalToWorldMatrix();
+
+        GetEnv().pManager->Get<Texture2D>("Textures/DefaultParticle")->Bind();
+        particleMat.SetUniformMatrix4f("_M", model);
+        particleMat.SetUniformMatrix4f("_V", view);
+        particleMat.SetUniformMatrix4f("_P", proj);
+        particleMat.SetUniform1i("_MainTex", 0);
+
+        std::vector<float> locationSizes { 4, 4, 4 };
+        std::vector<float> particleMats;
+        for (auto& particle : ps.m_ParticlePool)
+        {
+          if (!particle.active)
+            continue;
+          Matrix4x4 pMat = Matrix4x4::Transpose(particle.transform.LocalToWorldMatrix());
+
+          //vertex position
+          for (unsigned int j = 0; j < 12; ++j)
+          {
+            particleMats.push_back(pMat.m[j]);
+          }
+        }
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+        Mesh::DrawQuadInst(ps.m_ActiveParticles, particleMats, locationSizes);
       }
     }
   }
@@ -282,11 +325,6 @@ namespace DeltaEngine
   VideoClip* video = nullptr;
   void RenderSystem::Update()
   {
-    if (!video)
-    {
-      video = new VideoClip("I WiSHCover.mp4");
-    }
-
     RenderModule::openGLSystem->Update();
 
     // sort renderers by layer
@@ -307,6 +345,7 @@ namespace DeltaEngine
 #endif // !DE_EDITOR
 
         c.Start();
+
         // loop through every object
         DrawRenderer2D(em, c, tr);
         DrawRendererOverlay(em, c);
@@ -321,8 +360,11 @@ namespace DeltaEngine
         Mesh::DrawQuad();
 #endif // !DE_EDITOR
       });
-    Camera::finalFrameBuffer->Resize(static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize()),
-      static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize() / Camera::allCameras[0]->GetAspectRatio()));
+    if (Camera::allCameras.size())
+    {
+      Camera::finalFrameBuffer->Resize(static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize()),
+        static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize() / Camera::allCameras[0]->GetAspectRatio()));
+    }
 
     Camera::finalFrameBuffer->Bind();
 

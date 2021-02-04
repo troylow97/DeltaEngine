@@ -36,6 +36,11 @@ namespace DeltaEngine
     m_ShaderKey = shaderName;
   }
 
+  void Material::Bind()
+  {
+    GetEnv().pManager->Get<Shader>(m_ShaderKey)->Bind();
+  }
+
   void Material::SetUniform1i(std::string name, int i0)
   {
     GetEnv().pManager->Get<Shader>(m_ShaderKey)->SetUniform1i(name, i0);
