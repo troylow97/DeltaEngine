@@ -21,6 +21,7 @@ namespace DeltaEngine
 {
   void AttackSystem::Update()
   {
+    // dashing --------------------------------------------------------------------------------------------------
     if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
     {
       auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
@@ -44,7 +45,19 @@ namespace DeltaEngine
       }
       Dash();
     }
-
+    // SMG attack -----------------------------------------------------------------------------------------------
+    if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
+    {
+      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+      if (a.SMGAttack)
+      {
+        // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
+        //p.StartDashingTimer = true;
+        SMGAttack(UnitManager::GetPlayerID());
+      }
+    }
+    // melee and ranged attack ----------------------------------------------------------------------------------
     em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
     {
       if (a.MeleeCooldownTimer > -0.2)
@@ -269,6 +282,41 @@ namespace DeltaEngine
     }
   }
 
+  void AttackSystem::SMGAttack(EntityID& id)
+  {
+    //////////////////// AHHHH DO HERE
+    if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
+    {
+      EntityID smgbullet = CreateSMGBullet(id, Vector2{ 0.25f, 0.25f }, false, 0.2f, EntityCategory::E_PLAYER_SMG);
+      em.AddComponent<Renderer2D>(smgbullet);
+      em.AddComponent<Image>(smgbullet);
+      em.GetComponent<Renderer2D>(smgbullet).m_SortingLayer = 4;
+      em.GetComponent<Image>(smgbullet).m_Size = { 0.25f, 0.25f };
+      em.GetComponent<Image>(smgbullet).m_Sprite.m_Key = "Textures/ExperienceORB"; // use BULLET to replace now
+      em.GetComponent<Image>(smgbullet).m_Sprite.m_Index = 0;
+      // em.GetComponent<State>(id).SetBool("Ranged", true); // change when have the animation 
+      static size_t c_id{ u64_max };
+      //////if (AudioEngine::IsChannelPlaying(c_id))
+      //////  AudioEngine::StopChannel(c_id);
+      //////c_id = AudioEngine::Play("Audio/SWORD_GEN-HDF-22317.wav"); // temp one lol 
+      
+      if (em.GetComponent<Image>(id).m_FlipX == false) // face right bah
+      {
+        em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { 8000, 0 };
+        //em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
+        //em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { 8000, 0 };
+      }
+      else // face left i guess 
+      {
+        em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { -8000, 0 };
+        //em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
+        //em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { -8000, 0 };
+      }
+    }
+  }
+
   void AttackSystem::Dash()
   {
     em.ForEach([&](EntityID& id1, Transform& t1, EntityType et1)
@@ -301,5 +349,23 @@ namespace DeltaEngine
     em.GetComponent<EntityType>(missile).type = type;
     em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
     return missile;
+  }
+
+  EntityID AttackSystem::CreateSMGBullet(EntityID id, Vector2 scale, bool gravity, float Lifetime, EntityCategory type)
+  {
+    Transform& t1 = em.GetComponent<Transform>(id);
+    EntityID smgbullet = em.CreateEntity<Collider, Lifespan, RigidBody>();
+    em.GetComponent<Transform>(smgbullet).position.x = t1.position.x;// -0.5f;
+    em.GetComponent<Transform>(smgbullet).position.y = t1.position.y;
+    em.GetComponent<RigidBody>(smgbullet).Mass = 5.0f;
+    em.GetComponent<Transform>(smgbullet).scale = scale;
+    em.GetComponent<Lifespan>(smgbullet).Timer = Lifetime;
+    em.GetComponent<RigidBody>(smgbullet).hasGravity = gravity;
+    em.GetComponent<Collider>(smgbullet).isTrigger = true;
+    em.GetComponent<Collider>(smgbullet).CollisionLayerCheck = 7;
+    em.GetComponent<Collider>(smgbullet).CollisionLayerID = 8;
+    em.GetComponent<EntityType>(smgbullet).type = type;
+    em.GetComponent<RigidBody>(smgbullet).FrictionCoeff = 0.0f;
+    return smgbullet;
   }
 } //Namespace DeltaEngine

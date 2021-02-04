@@ -349,6 +349,7 @@ namespace DeltaEngine
       .constructor<>()(rttr::policy::ctor::as_object)
       .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
       .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("SMG Damage", &Attack::SMGDamage)(rttr::policy::prop::bind_as_ptr)
       .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
       .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(
         rttr::metadata("NO_SERIALIZE", true))
@@ -367,6 +368,8 @@ namespace DeltaEngine
       .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(
         rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(
+        rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("SMG Attack", &Attack::SMGAttack)(rttr::policy::prop::bind_as_ptr)(
         rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr);
 

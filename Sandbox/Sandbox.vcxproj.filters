@@ -69,6 +69,7 @@
     <ClInclude Include="Source\Systems\UpgradeSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\MouseCalculationSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
@@ -117,5 +118,6 @@
     <ClCompile Include="Source\Systems\UpgradeSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\MouseCalculationSystem.cpp" />
   </ItemGroup>
 </Project>

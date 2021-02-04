@@ -70,6 +70,7 @@ namespace DeltaEngine
           a.MeleeComboDamage *= 2;
           a.MeleeDamage *= 2;
           a.RangedDamage *= 2;
+          a.SMGAttack *= 2;
         });
         god_mode = true;
       }
@@ -81,6 +82,7 @@ namespace DeltaEngine
           a.MeleeComboDamage /= 2;
           a.MeleeDamage /= 2;
           a.RangedDamage /= 2;
+          a.SMGAttack /= 2;
         });
         god_mode = false;
       }
@@ -104,6 +106,7 @@ namespace DeltaEngine
             a.SetBool("Punch3", false);
             att.MeleeAttack = false;
             att.RangeAttack = false;
+            att.SMGAttack = false;
 
             idle_timer = 0.0f;
             i.m_FlipX = true;
@@ -136,6 +139,7 @@ namespace DeltaEngine
             a.SetBool("Punch3", false);
             att.MeleeAttack = false;
             att.RangeAttack = false;
+            att.SMGAttack = false;
             idle_timer = 0.0f;
             i.m_FlipX = false;
           }
@@ -256,6 +260,23 @@ namespace DeltaEngine
         a1.MeleeAttack = true;
         idle_timer = 0.0f;
         range_attack_cooldown = 0.0f;
+      });
+    }
+
+    if (InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
+    {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      {
+        a1.SMGAttack = true;
+        idle_timer = 0.0f; // what's this troy low yee?
+      });
+    }
+    if (InputManager::Instance().IsKeyReleased(DEVK_LBUTTON))
+    {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      {
+        a1.SMGAttack = false;
+        idle_timer = 0.0f; // what's this troy low yee?
       });
     }
 
