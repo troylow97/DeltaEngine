@@ -3,6 +3,8 @@
 #include "Core/Math/DE_Math.h"
 #include "Core/Math/BezierCurve.h"
 #include "Core/Math/Gradient.h"
+#include "Components/Transform.h"
+#include "ECS/Entities.h"
 
 namespace DeltaEngine
 {
@@ -48,8 +50,8 @@ namespace DeltaEngine
     BezierCurve velocityOverLifetimeXMax, velocityOverLifetimeYMax, velocityOverLifetimeZMax;
     Gradient colorOverLifetimeMin;
     Gradient colorOverLifetimeMax;
-    float rotationOverLifetimeMin;
-    float rotationOverLifetimeMax;
+    float rotationOverLifetimeMin = 0;
+    float rotationOverLifetimeMax = 0;
     BezierCurve sizeOverLifetimeXMin, sizeOverLifetimeYMin, sizeOverLifetimeZMin;
     BezierCurve sizeOverLifetimeXMax, sizeOverLifetimeYMax, sizeOverLifetimeZMax;
 
@@ -64,7 +66,7 @@ namespace DeltaEngine
     Shape shape = Shape::Circle;
     GenType genType = GenType::Spread;
     float radius = 1.f;
-    Transform shapeTransform = Transform();
+    //Transform shapeTransform = Transform();
 
     // these should not be easily editable
     // they are public for system access
@@ -82,10 +84,10 @@ namespace DeltaEngine
       bool active = false;
     };
 
-    std::vector<Particle> m_ParticlePool;
     unsigned int m_ActiveParticles = 0;
     float emissionTimer = 0;
     float durationTimer = 0;
-    float playbackTimer = 0;
+    
+    static std::map<EntityID, std::vector<Particle>> particlePools;
   };
 }

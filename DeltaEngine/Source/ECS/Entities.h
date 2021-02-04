@@ -27,6 +27,16 @@ namespace DeltaEngine
           return generation == rhs.generation &&
               index == rhs.index;
       }
+      bool operator>(const EntityID& rhs) const
+      {
+          return generation > rhs.generation &&
+              index > rhs.index;
+      }
+      bool operator<(const EntityID& rhs) const
+      {
+          return generation < rhs.generation &&
+              index < rhs.index;
+      }
   };
 
   struct Entity

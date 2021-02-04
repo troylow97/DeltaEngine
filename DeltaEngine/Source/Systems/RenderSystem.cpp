@@ -151,7 +151,7 @@ namespace DeltaEngine
 
         std::vector<float> locationSizes { 4, 4, 4 };
         std::vector<float> particleMats;
-        for (auto& particle : ps.m_ParticlePool)
+        for (auto& particle : ps.particlePools[ID])
         {
           if (!particle.active)
             continue;
