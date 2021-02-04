@@ -1,6 +1,6 @@
 %Entry:
 
-entry 
+entry
 Clip/WindowLight_Anim
 
 %Parameters:
@@ -8,13 +8,15 @@ Clip/WindowLight_Anim
 %EditorPositions:
 
 pos
-Entry 0 0
+Entry
+0 0
 
 pos
-Exit 200 200
+Exit
+200 200
 
 pos
-Clip/WindowLight_Anim 215 79
+Clip/WindowLight_Anim 171 71
 
 %Transitions:
 
