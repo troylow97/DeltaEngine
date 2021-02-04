@@ -29,7 +29,7 @@ namespace DeltaEngine
     Invalidate();
   }
 
-  FrameBuffer::FrameBuffer(FrameBuffer&&)
+  FrameBuffer::FrameBuffer(FrameBuffer&&) noexcept
   {
     // moving frame buffer should not be allowed, just copy
     glGenFramebuffers(1, &m_RendererID);
@@ -51,7 +51,7 @@ namespace DeltaEngine
     return *this;
   }
 
-  FrameBuffer& FrameBuffer::operator=(FrameBuffer&& move)
+  FrameBuffer& FrameBuffer::operator=(FrameBuffer&& move) noexcept
   {
     // moving frame buffer should not be allowed, just copy
     Resize(move.m_Width, move.m_Height);

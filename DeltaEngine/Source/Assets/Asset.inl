@@ -1,16 +1,23 @@
 /**********************************************************************************
 * \file   Asset.inl
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  This file contains the implementation of Asset
+*         Asset is a wrapper container over the actual resource of type T
 *
+*         Asset is a custom pointer wrapper to the AssetData stored in AssetGroup
+*         
+*         This custom pointer wrapper contains the following functionality:
+*         - Switching to Fallback Data
+*         - Reference tracking
+*         - Lifetime tracking
+*         - State tracking
+*
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #include "Core/Debugging/Assert.h"
 
 namespace DeltaEngine

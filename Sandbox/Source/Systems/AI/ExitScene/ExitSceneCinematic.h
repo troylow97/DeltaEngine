@@ -12,19 +12,24 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Math/Vector.h"
 #include "ECS/ECSModule.h"
 #include "Components/Transform.h"
+
 namespace DeltaEngine
 {
-	DEFINE_SYSTEM(ExitSceneCinematic, Transform)
+  DEFINE_SYSTEM(ExitSceneCinematic, Transform)
     void Initialize() override;
-	void Update() override;
-	void LateUpdate() override;
+    void Update() override;
+    void LateUpdate() override;
+    void CreditsStart();
+    void LoadMainMenuAgain();
 
-private:
-	Vector2 ExitPoint;
-	Vector2 StopPoint;
-	bool ExitPointTriggered;
-	bool StopPointTriggered;
-
-	END_DEFINE_SYSTEM(ExitSceneCinematic)
-
+  private:
+    Vector2 ExitPoint;
+    Vector2 StopPoint;
+    float timer{0.0f};
+    float credits_timer {0.0f};
+    bool ExitPointTriggered;
+    bool StopPointTriggered;
+    bool CreditsRolledTriggered;
+    bool MainMenuTriggered;
+  END_DEFINE_SYSTEM(ExitSceneCinematic)
 }

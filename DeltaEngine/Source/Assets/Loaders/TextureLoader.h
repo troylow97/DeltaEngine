@@ -1,18 +1,16 @@
 /**********************************************************************************
 * \file   TextureLoader.h
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  This file contain the implementation for TextureLoader
 *
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #pragma once
-#include <cassert>
+
 #include "Assets/AbstractLoader.h"
 #include "Render/Texture.h"
 #include "Core/Utils/FileUtils.h"
@@ -42,15 +40,15 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
-      if(FileUtils::FileExists( key.Key() + ".png" ))
+      if (FileUtils::FileExists(key.Key() + ".png"))
       {
-        Texture2D* data = new Texture2D(key.Key()+".png");
-        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+        Texture2D* data = new Texture2D(key.Key() + ".png");
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
       }
-      else if(FileUtils::FileExists( key.Key() + ".jpg" ))
+      else if (FileUtils::FileExists(key.Key() + ".jpg"))
       {
-        Texture2D* data = new Texture2D(key.Key()+".jpg");
-        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+        Texture2D* data = new Texture2D(key.Key() + ".jpg");
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
       }
     }
 

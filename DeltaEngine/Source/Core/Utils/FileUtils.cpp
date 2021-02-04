@@ -1,16 +1,14 @@
 /**********************************************************************************
 * \file   FileUtils.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  This file contains the implementation of a wrapper over std::filesystem
 *
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #include "FileUtils.h"
 #include "Core/Debugging/Logger/Log.h"
 #include <fstream>
@@ -115,9 +113,9 @@ namespace DeltaEngine::FileUtils
   std::vector<fs::directory_entry> RecursiveDirList(fs::path dir)
   {
     std::vector<fs::directory_entry> dir_list;
-    for ( auto &ref : fs::recursive_directory_iterator( dir ) )
-      if ( is_directory( ref ) )
-        dir_list.push_back( ref );
+    for (auto& ref : fs::recursive_directory_iterator(dir))
+      if (is_directory(ref))
+        dir_list.push_back(ref);
 
     return dir_list;
   }

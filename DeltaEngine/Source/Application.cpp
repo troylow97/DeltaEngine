@@ -101,14 +101,14 @@ Application::Application()
   env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() ).Load<AnimationController>();
   DeltaEngine_CORE_INFO( "Initializing AssetManager successful" );
 
-   // Event Manager Initialization
+  // Event Manager Initialization
   env.eventManager = new EventManager;
 
   // ECS Initialization
   env.pECS = new ECSModule();
 #ifdef DE_EDITOR
-  //auto id = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
-  //env.pECS->GetWorld().GetEntityManager().GetComponent<EntityName>( id).name.assign( "Camera");
+    //auto id = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
+    //env.pECS->GetWorld().GetEntityManager().GetComponent<EntityName>( id).name.assign( "Camera");
   //env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( id ).m_Size = c.cam_size;
   Editor::Instance();
   SystemDirectory::Instance().StartWatch();
@@ -157,8 +157,8 @@ void Application::Run()
 #endif
       SwapBuffers( RenderModule::openGLSystem->GetWindowContext() );
       Profiler::Instance().Record( "Buffer Swap" );
-      OnEvent();
       env.pWin->Update();
+      OnEvent();
       AudioEngine::Update();
       Profiler::Instance().FrameEnd();
     }
@@ -170,6 +170,7 @@ void Application::Run()
       Editor::Instance().End();
 #endif
       env.pWin->Update();
+      OnEvent();
     }
   }
 }
@@ -207,5 +208,4 @@ void Application::OnEvent()
   }
   Profiler::Instance().Record( "Event" );
 }
-
 }

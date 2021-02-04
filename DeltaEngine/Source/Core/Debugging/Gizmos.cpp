@@ -61,10 +61,12 @@ namespace DeltaEngine::Gizmos
 
     int i = 0;
     float size = Math::Abs(Camera::editorCamera->m_Size);
-    float minX = (Camera::editorCamera->Min(Camera::editorCameraTransform).x) - Camera::editorCamera->m_Size * Camera::editorCamera->GetAspectRatio()
+    float minX = (Camera::editorCamera->Min(Camera::editorCameraTransform).x) - Camera::editorCamera->m_Size *
+      Camera::editorCamera->GetAspectRatio()
       / 2;
     float minY = (Camera::editorCamera->Min(Camera::editorCameraTransform).y) - Camera::editorCamera->m_Size / 2;
-    float maxX = (Camera::editorCamera->Max(Camera::editorCameraTransform).x) + Camera::editorCamera->m_Size * Camera::editorCamera->GetAspectRatio()
+    float maxX = (Camera::editorCamera->Max(Camera::editorCameraTransform).x) + Camera::editorCamera->m_Size *
+      Camera::editorCamera->GetAspectRatio()
       / 2;
     float maxY = (Camera::editorCamera->Max(Camera::editorCameraTransform).y) + Camera::editorCamera->m_Size / 2;
 
@@ -174,7 +176,7 @@ namespace DeltaEngine::Gizmos
     Draw2DWireBox(Transform(position, rotation, scale), Vector2::zero());
   }
 
-  void Draw2DWireBox(Transform transform,Vector2 col_offset)
+  void Draw2DWireBox(Transform transform, Vector2 col_offset)
   {
     glClear(GL_DEPTH_BUFFER_BIT);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

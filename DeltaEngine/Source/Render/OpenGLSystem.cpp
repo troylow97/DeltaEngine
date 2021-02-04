@@ -94,7 +94,7 @@ namespace DeltaEngine
 
     void OpenGLSystem::Exit()
     {
-      DeltaEngine_CORE_INFO( "Shutting down OpenGL..." );
+      DeltaEngine_CORE_INFO("Shutting down OpenGL...");
 #ifdef DE_EDITOR
       delete Camera::editorCamera;
 #endif

@@ -1,11 +1,10 @@
 /**********************************************************************************
-* \file   JsonDeserialize.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \file   JsonDeserialize.h
+* \brief  This file contains the definition of Json deserialization using RTTR
+*         The original source is modified to support the engine custom data type
 *
+* \author Tan, Tong Wee, 30% Code Contribution
+*         70% Code from official RTTR
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior

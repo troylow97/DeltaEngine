@@ -1,16 +1,15 @@
 /**********************************************************************************
-* \file   JsonSerializer.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \file   JsonSerialize.cpp
+* \brief  This file contains the implementation for Json Serialization using RTTR
+*         The original source is modified to support the engine custom data type
 *
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #define RAPIDJSON_HAS_STDSTRING 1
 
 #include "JsonSerialize.h"
@@ -247,9 +246,9 @@ namespace DeltaEngine::Serialize
           writer.Int(var.get_wrapped_value<int>());
         else if (t == type::get<int64_t*>())
           writer.Int64(var.get_wrapped_value<int64_t>());
-        else if (t== type::get<unsigned*>())
+        else if (t == type::get<unsigned*>())
           writer.Uint(var.get_wrapped_value<unsigned>());
-        else if (t== type::get<uint64_t*>() )
+        else if (t == type::get<uint64_t*>())
           writer.Uint64(var.get_wrapped_value<uint64_t>());
 
         return true;

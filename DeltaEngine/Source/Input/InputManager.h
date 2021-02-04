@@ -26,7 +26,7 @@ namespace DeltaEngine
     ~InputManager();
 
   public:
-    
+
     void Reset();
     void Update();
 
