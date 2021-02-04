@@ -98,8 +98,8 @@ namespace DeltaEngine
 
   void ChaseEnemyLancer::onEnter(EntityID& id)
   {
-      env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
-      env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlertIdle", true);
+      //env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
+      //env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlertIdle", true);
   }
 
   void ChaseEnemyLancer::onExit(EntityID& id)
@@ -130,12 +130,12 @@ namespace DeltaEngine
       AITools::FaceEntity(monster, player);
       a.MeleeAttack = true;
       //if (Random::RandomFloatRange(0, 100) < 20)
-      {
-          static size_t c_id{ u64_max };
-          if (AudioEngine::IsChannelPlaying(c_id))
-              AudioEngine::StopChannel(c_id);
-          c_id = AudioEngine::Play("Audio/Lancer/LancerBuzz.ogg");
-      }
+      //{
+      //    static size_t c_id{ u64_max };
+      //    if (AudioEngine::IsChannelPlaying(c_id))
+      //        AudioEngine::StopChannel(c_id);
+      //    c_id = AudioEngine::Play("Audio/Lancer/LancerBuzz.ogg");
+      //}
     }
 
   	//if(!Bouncing && !a.MeleeAttack && a.MeleeCooldownTimer > 0.3f && a.MeleeCooldownTimer < 0.8f)
