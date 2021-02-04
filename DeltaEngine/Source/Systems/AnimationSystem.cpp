@@ -34,7 +34,6 @@ namespace DeltaEngine
 
             a.m_ClipKey = newClip->GetName();
             i.m_Sprite = newClip->GetSprite(frame);
-            a.m_LoopsCompleted = 0;
           }
           else
           {
@@ -43,7 +42,6 @@ namespace DeltaEngine
             {
               a.m_ClipKey = newClip->GetName();
               a.m_Timer = 0;
-              a.m_LoopsCompleted = 0;
             }
             else
             {
@@ -53,17 +51,12 @@ namespace DeltaEngine
               {
                 a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
                 while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
-                {
                   a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
-                  ++a.m_LoopsCompleted;
-                }
               }
               else
               {
                 if (a.m_Timer < 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                   a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
-                else
-                  a.m_LoopsCompleted = 1;
               }
             }
             frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
@@ -80,17 +73,12 @@ namespace DeltaEngine
           {
             a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
             while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
-            {
               a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
-              ++a.m_LoopsCompleted;
-            }
           }
           else
           {
             if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
               a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
-            else
-              a.m_LoopsCompleted = 1;
           }
 
           frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());

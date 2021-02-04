@@ -1,5 +1,4 @@
 #version 330 core
-
 layout (location = 0) in vec3 position;
 layout (location = 1) in vec4 color;
 layout (location = 2) in vec2 texCoord;
@@ -23,11 +22,6 @@ void main()
 	pMat[1] = vec4(p0.y, p1.y, p2.y, 0);
 	pMat[2] = vec4(p0.z, p1.z, p2.z, 0);
 	pMat[3] = vec4(p0.w, p1.w, p2.w, 1);
-
-	//pMat[0] = vec4(1, 0, 0, 0);
-	//pMat[1] = vec4(0, 1, 0, 0);
-	//pMat[2] = vec4(0, 0, 1, 0);
-	//pMat[3] = vec4(gl_InstanceID, 0, 0, 1);
 
 	vec4 v = vec4(position, 1.0); 
 	vec4 v1 = _M * (pMat * v);
