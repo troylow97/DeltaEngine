@@ -22,7 +22,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  class World : public ICloneWorld
+  class World //: public ICloneWorld
   {
     std::unique_ptr<EntityManager> em;
     std::unordered_map<size_t, std::unique_ptr<SystemBase>> systems;
@@ -41,7 +41,7 @@ namespace DeltaEngine
 
     }
 
-    virtual ICloneWorld* clone() override;
+    //virtual ICloneWorld* clone() override;
 
     //std::unique_ptr<SystemBase>(const std::unique_ptr<SystemBase>& rhs)
     //{
