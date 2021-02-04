@@ -9,7 +9,10 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "AI_StateMachine.h"
+
+#include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
+#include "Core/GameClock/EngineClock.h"
 
 namespace DeltaEngine
 {
@@ -18,7 +21,7 @@ namespace DeltaEngine
     SerpentipedeAIData serpent_data;
     JsonFile file;
     file.StartReader("AI/serpentipedeAI.json").LoadObject(serpent_data).EndReader();
-  	
+
     FiddlerAIData fiddler_data;
     JsonFile file2;
     //file2.StartWriter("AI/fiddler.json").StartObject().WriteObject(fiddler_data).EndObject().EndWriter();
@@ -27,9 +30,9 @@ namespace DeltaEngine
 
     LancerAIData lancer_data;
     JsonFile file3;
-	file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
+    file3.StartReader("AI/lancerAI.json").LoadObject(lancer_data).EndReader();
 
-    StateList["lancer_spawn"] = new LancerSpawn(lancer_data.ChargeDetectionRange);  	
+    StateList["lancer_spawn"] = new LancerSpawn(lancer_data.ChargeDetectionRange);
     StateList["idle_lancer"] = new IdleLancer(lancer_data.ChargeDetectionRange);
     StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
 

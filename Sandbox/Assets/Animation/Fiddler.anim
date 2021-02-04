@@ -87,8 +87,18 @@ Clip/FID_ALERT_RUN
 end
 Clip/FID_ATTACK
 condition
-IsAttacking
+MeleeAttack
 ? 1
+endTransition
+
+transition
+start
+Clip/FID_ATTACK
+end
+Clip/FID_ALERT
+condition
+MeleeAttack
+? 0
 endTransition
 
 transition
