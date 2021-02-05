@@ -199,7 +199,7 @@ namespace DeltaEngine
         i1.previousKey = DEVK_SPACE;
         idle_timer = 0.0f;
 
-        AudioEngine::Play("Audio/jump.wav");
+        AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
       });
     }
     if (InputManager::Instance().IsKeyReleased(DEVK_SPACE))
