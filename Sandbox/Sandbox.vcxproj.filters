@@ -57,6 +57,9 @@
     <ClInclude Include="Source\Systems\LifespanSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\MouseCalculation.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\RespawnSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -69,7 +72,6 @@
     <ClInclude Include="Source\Systems\UpgradeSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\MouseCalculation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
@@ -106,6 +108,9 @@
     <ClCompile Include="Source\Systems\LifespanSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\MouseCalculation.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Systems\RespawnSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
@@ -118,6 +123,5 @@
     <ClCompile Include="Source\Systems\UpgradeSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\MouseCalculation.cpp" />
   </ItemGroup>
 </Project>

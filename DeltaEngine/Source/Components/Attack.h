@@ -53,6 +53,7 @@ struct Attack
     RangeAttack{false},
     MeleeAttack{false},
     SMGAttack{false},
+    Blocking{false},
     StartComboCooldownTimer{false}
   {
   }
