@@ -31,6 +31,7 @@ struct Attack
   bool RangeAttack;
   bool MeleeAttack;
   bool SMGAttack;
+  bool Blocking;
   bool StartComboCooldownTimer;
 
   Attack() :

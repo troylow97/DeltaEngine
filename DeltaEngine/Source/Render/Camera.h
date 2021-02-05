@@ -17,37 +17,43 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  class Camera
-  {
-    int cameraIndex;
-    FrameBuffer frameBuffer;
-    float m_AspectRatio, m_ViewportSize;
-  public:
-    static std::vector<Camera*> allCameras;
-    // camera for editor mode only
-    static Camera* editorCamera;
-    static Transform editorCameraTransform;
-    float m_Size;
-    float m_zNear, m_zFar;
-    Color backgroundColor;
-    float fadeColorAmt = 0;
+    class Camera
+    {
+        int cameraIndex;
+        FrameBuffer frameBuffer;
+        float aspectRatio, viewportSize, camWidth;
+    public:
+        static std::vector<Camera*> allCameras;
+        // camera for editor mode only
+        static FrameBuffer* finalFrameBuffer;
+        static Camera* editorCamera;
+        static Transform editorCameraTransform;
+        static float fixedAspect;
+        float m_Size;
+        float m_zNear, m_zFar;
+        Color backgroundColor;
+        float fadeColorAmt = 0;
 
-    Camera(bool editor = false);
-    Camera(const Camera&) ;
-    Camera(Camera&&) noexcept;
-    ~Camera();
-    Camera& operator=(const Camera&);
-    Camera& operator=(Camera&&) noexcept;
-    Matrix4x4 GetProjectionMatrix(Transform transform) const;
-    Matrix4x4 GetViewMatrix(Transform transform) const;
-    Vector3 Max(Transform transform) const;
-    Vector3 Min(Transform transform) const;
-    FrameBuffer& GetFrameBuffer();
-    float GetAspectRatio();
-    float SetAspectRatio(float width, float height);
-    float SetViewportSize(float width);
+        Camera(bool editor = false);
+        Camera(const Camera&);
+        Camera(Camera&&);
+        ~Camera();
+        Camera& operator=(const Camera&);
+        Camera& operator=(Camera&&);
+        Matrix4x4 GetProjectionMatrix(Transform transform) const;
+        Matrix4x4 GetViewMatrix(Transform transform) const;
+        Vector3 Max(Transform transform) const;
+        Vector3 Min(Transform transform) const;
+        FrameBuffer& GetFrameBuffer();
+        float GetAspectRatio();
+        float SetAspectRatio(float width, float height);
+        static float GetFixedAspectRatio();
+        static float SetFixedAspectRatio(float width, float height);
+        float GetViewportSize();
+        float SetViewportSize(float width);
+        float GetTrueViewportSize();
 
-    void Start();
-    void End();
-  };
+        void Start();
+        void End();
+    };
 }

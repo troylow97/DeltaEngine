@@ -10,5 +10,5 @@ uniform vec4 _Color = vec4(1, 1, 1, 1);
 
 void main()
 {
-	color = texture(_MainTex, vertexTexCoord) * vertexColor * _Color;
+  color = texture(_MainTex, vertexTexCoord) * vertexColor * _Color;
 }

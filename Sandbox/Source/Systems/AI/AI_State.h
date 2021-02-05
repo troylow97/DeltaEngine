@@ -73,6 +73,8 @@ namespace DeltaEngine
 
   class ChaseEnemyLancer : public AIState
   {
+    bool Bouncing;
+    float BouncingTimer;
   public:
     ChaseEnemyLancer();
     void onEnter(EntityID& id) override;
@@ -92,6 +94,7 @@ namespace DeltaEngine
 
   class ChaseEnemyFiddler : public AIState
   {
+      float AttackDelay;
   public:
     ChaseEnemyFiddler(Vector2& lost_range);
     void onEnter(EntityID& id) override;
@@ -112,7 +115,8 @@ namespace DeltaEngine
   {
   public:
     float CooldownTimer;
-    float BurrowDurationMax;
+    float BurrowDownDuration;
+    float BurrowUpDuration;
     unsigned int BurrowState; //0: Seen, 1: Burrowing Down, 2: Hidden, 3: Burrowing Up
     int CurrentPoint;
     SerpentipedeAIData SerpentData;

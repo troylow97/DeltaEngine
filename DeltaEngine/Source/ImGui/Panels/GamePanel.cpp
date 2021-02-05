@@ -63,6 +63,8 @@ namespace DeltaEngine
         uint64_t textureID = Camera::allCameras[0]->GetFrameBuffer().GetColorAttachment();
         ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{0, 1}, ImVec2{1, 0});
       }
+      uint64_t textureID = Camera::finalFrameBuffer->GetColorAttachment();
+      ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
     }
     ImGui::End();
   }

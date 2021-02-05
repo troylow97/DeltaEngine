@@ -110,6 +110,11 @@ namespace DeltaEngine
     return *this;
   }
 
+  Vector2 Vector2::Lerp(Vector2 a, Vector2 b, float t)
+  {
+    return a + (b - a) * t;
+  }
+
 #pragma region Vector2 Operators
   Vector2& Vector2::operator=(const Vector2& a)
   {
@@ -330,6 +335,12 @@ namespace DeltaEngine
   {
     return sqrtf(SqrMagnitude());
   }
+
+  Vector3 Vector3::Lerp(Vector3 a, Vector3 b, float t)
+  {
+    return a + (b - a) * t;
+  }
+
 #pragma region Vector3 Operators
   Vector3& Vector3::operator=(const Vector3& a)
   {

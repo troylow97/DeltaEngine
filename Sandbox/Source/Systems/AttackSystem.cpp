@@ -66,6 +66,7 @@ namespace DeltaEngine
     // melee and ranged attack ----------------------------------------------------------------------------------
     em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
     {
+      //Reduce Cooldowns   	
       if (a.MeleeCooldownTimer > -0.2)
         a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
       else
@@ -74,7 +75,13 @@ namespace DeltaEngine
       if (a.RangeCooldownTimer > -0.2)
         a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
 
-      if (a.RangeAttack && a.RangeCooldownTimer <= 0)
+	  //Toggle Block    	
+      if(a.Blocking)
+      {
+	      
+      }
+      //Toggle Ranged Attack
+      else if (a.RangeAttack && a.RangeCooldownTimer <= 0)
       {
         em.GetComponent<State>(id).SetBool("Ranged", true);
         RangedAttackingEntities.push_back(id);
@@ -84,10 +91,12 @@ namespace DeltaEngine
       if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
           em.GetComponent<State>(id).SetBool("Ranged", false);
 
-      if (a.MeleeAttack && em.HasComponent<AI>(id))
-        st.SetBool("MeleeAttack", true);
-      if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
+       //Toggle Melee Attack   	
+      else if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
       {
+        if (em.HasComponent<AI>(id))
+            st.SetBool("MeleeAttack", true);
+      	
         a.StartComboCooldownTimer = true;
         if (a.NumberOfCombos != a.MaxComboNumber)
         {
@@ -97,18 +106,23 @@ namespace DeltaEngine
             st.SetBool("Punch1", true);
             st.SetBool("Punch2", false);
             st.SetBool("Punch3", false);
+            AudioEngine::SetGlobalParameterByName( "Punch", 1 );
           }
           else if (a.NumberOfCombos == 2)
           {
             st.SetBool("Punch2", true);
             st.SetBool("Punch1", false);
             st.SetBool("Punch3", false);
+            AudioEngine::SetGlobalParameterByName( "Punch", 2 );
+
           }
           else if (a.NumberOfCombos == 3)
           {
             st.SetBool("Punch3", true);
             st.SetBool("Punch1", false);
             st.SetBool("Punch2", false);
+            AudioEngine::SetGlobalParameterByName( "Punch", 3 );
+
             a.NumberOfCombos = 0;
           }
         }
@@ -169,10 +183,9 @@ namespace DeltaEngine
       em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
       em.GetComponent<State>(id).SetBool("Ranged", true);
       static size_t c_id{u64_max};
-      if (AudioEngine::IsChannelPlaying(c_id))
-        AudioEngine::StopChannel(c_id);
-      c_id = AudioEngine::Play("Audio/jump.wav");
-      
+      AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
+
+
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -217,9 +230,9 @@ namespace DeltaEngine
     {
       EntityID missile = CreateProjectile(id, Vector2{0.5f, 0.4f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
       static size_t c_id{u64_max};
-      if (AudioEngine::IsChannelPlaying(c_id))
-        AudioEngine::StopChannel(c_id);
-      c_id = AudioEngine::Play("Audio/jump.wav");
+
+      AudioEngine::Play2DEvent( "event:/Player/PlayerPunch" );
+
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.6f;

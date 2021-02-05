@@ -12,6 +12,6 @@ uniform vec4 _FadeColor = vec4(0, 0, 0, 1);
 
 void main()
 {
-    color = texture(_MainTex, vertexTexCoord) * vertexColor * _Color;
-    color = mix(color, vec4(_FadeColor.r, _FadeColor.g, _FadeColor.b, color.a), _FadeAmt);
+  color = texture(_MainTex, vertexTexCoord) * vertexColor * _Color;
+  color = mix(color, vec4(_FadeColor.r, _FadeColor.g, _FadeColor.b, color.a), _FadeAmt);
 } 

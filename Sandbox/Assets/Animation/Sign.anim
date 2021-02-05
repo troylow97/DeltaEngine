@@ -1,6 +1,6 @@
 %Entry:
 
-entry 
+entry
 Clip/SquareSign_Anim
 
 %Parameters:
@@ -8,16 +8,16 @@ Clip/SquareSign_Anim
 %EditorPositions:
 
 pos
-Entry 0 0
+Entry
+0 0
 
 pos
-Exit 200 200
+Exit
+200 200
 
 pos
-%Transitions: 0 0
-
-pos
-Clip/SquareSign_Anim 348 122
+Clip/SquareSign_Anim
+348 122
 
 %Transitions:
 

@@ -1,126 +1,166 @@
 %Entry:
 
-entry 
+entry
 Clip/FID_WALK
 
 %Parameters:
 
 param
-IsPatrolling 0 0
+IsPatrolling
+0 0
 
 param
-IsAlerted 0 0
+IsAlerted
+0 0
 
 param
-IsAlertRunning 0 0
+IsAlertRunning
+0 0
 
 param
-IsCharging 0 0
+IsCharging
+0 0
 
 param
-MeleeAttack 0 0
+MeleeAttack
+0 0
 
 param
-IsDead 0 0
+IsDead
+0 0
 
 %EditorPositions:
 
 pos
-Entry 3 4
+Entry
+3 4
 
 pos
-Exit 371 551
+Exit
+652 256
 
 pos
-Clip/IdleSpritesheet 31 94
+Clip/FID_WALK
+461 124
 
 pos
-Clip/RunningSpritesheet 161 261
+Clip/FID_DEATH
+-78 465
 
 pos
-Clip/RangeAttackSpritesheet -126 273
+Clip/FID_ATTACK
+220 466
 
 pos
-Clip/FallingSpritesheet 647 -44
+Clip/FID_ALERT_RUN
+189 232
 
 pos
-Clip/LandingSpriteSheet 340 -21
-
-pos
-Clip/DashSpritesheet -55 428
-
-pos
-Clip/InitialJump 602 82
-
-pos
-Clip/ReachingTop 830 29
-
-pos
-Clip/Punch1 445 214
-
-pos
-Clip/Punch2 690 181
-
-pos
-Clip/Punch3 929 203
-
-pos
-Clip/LancerAttack 759 484
+Clip/FID_ALERT
+-61 157
 
 %Transitions:
 
-transition 
-start Clip/FID_WALK
-end Clip/FID_ALERT
-condition IsAlerted ? 1
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_ALERT
+condition
+IsAlerted
+? 1
 endTransition
 
-transition 
-start Clip/FID_ALERT
-end Clip/FID_ALERT_RUN
-condition IsAlertRunning ? 1
+transition
+start
+Clip/FID_ALERT
+end
+Clip/FID_ALERT_RUN
+condition
+IsAlertRunning
+? 1
 endTransition
 
-transition 
-start Clip/FID_ALERT_RUN
-end Clip/FID_ATTACK
-condition MeleeAttack ? 1
+transition
+start
+Clip/FID_ALERT_RUN
+end
+Clip/FID_ATTACK
+condition
+MeleeAttack
+? 1
 endTransition
 
-transition 
-start Clip/FID_WALK
-end Clip/FID_DEATH
-condition IsDead ? 1
+transition
+start
+Clip/FID_ATTACK
+end
+Clip/FID_ALERT_RUN
+condition
+MeleeAttack
+? 0
+condition
+IsAlertRunning
+? 0
 endTransition
 
-transition 
-start Clip/FID_ATTACK
-end Clip/FID_DEATH
-condition IsDead ? 1
+transition
+start
+Clip/FID_ATTACK
+end
+Clip/FID_DEATH
+condition
+IsDead
+? 1
+condition
+MeleeAttack
+? 0
 endTransition
 
-transition 
-start Clip/FID_ALERT_RUN
-end Clip/FID_DEATH
-condition IsDead ? 1
+transition
+start
+Clip/FID_ALERT_RUN
+end
+Clip/FID_DEATH
+condition
+IsDead
+? 1
 endTransition
 
-transition 
-start Clip/FID_ALERT
-end Clip/FID_DEATH
-condition IsDead ? 1
+transition
+start
+Clip/FID_ALERT
+end
+Clip/FID_DEATH
+condition
+IsDead
+? 1
 endTransition
 
-transition 
-start Clip/FID_ATTACK
-end Clip/FID_ALERT
-condition IsAlerted ? 1
+transition
+start
+Clip/FID_ATTACK
+end
+Clip/FID_ALERT
+condition
+IsAlerted
+? 1
+condition
+MeleeAttack
+? 0
 endTransition
 
-transition 
-start Clip/FID_ATTACK
-end Clip/FID_WALK
-condition IsPatrolling ? 1
+transition
+start
+Clip/FID_ATTACK
+end
+Clip/FID_WALK
+condition
+IsPatrolling
+? 1
+condition
+MeleeAttack
+? 0
 endTransition
 
 %endfile

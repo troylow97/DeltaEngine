@@ -36,6 +36,7 @@ namespace DeltaEngine
     float CrossProduct_Magnitude(const Vector2& a) const;
     Vector2 CrossProduct_Vector(const Vector2& a) const;
     Vector2 Square();
+    static Vector2 Lerp(Vector2 a, Vector2 b, float t);
 #pragma region Vector2 Operators
     Vector2& operator=(const Vector2& a);
     Vector2 operator+(Vector2 a) const;
@@ -77,6 +78,7 @@ namespace DeltaEngine
     Vector3 normalized() const;
     float Magnitude() const;
     float SqrMagnitude() const;
+    static Vector3 Lerp(Vector3 a, Vector3 b, float t);
 #pragma region Vector3 Operators
     Vector3& operator=(const Vector3& a);
     Vector3& operator=(const Vector2& a);
