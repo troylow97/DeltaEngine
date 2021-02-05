@@ -269,6 +269,7 @@ namespace DeltaEngine
                     r1.Movespeed /= 0.2;
                     r1.FrictionCoeff -= 4.0f;
                     r1.MaxAcceleration += 10.0f;
+                    a.SetBool("ShieldUp", false);
                     std::cout << "Blocking Off" << std::endl;
         		}
                 else //Toggle Block
@@ -277,6 +278,7 @@ namespace DeltaEngine
                     r1.Movespeed *= 0.2;
                     r1.FrictionCoeff += 4.0f;
                     r1.MaxAcceleration -= 10.0f;
+                    a.SetBool("ShieldUp", true);
                     std::cout << "Blocking On" << std::endl;
                 }
 

@@ -213,12 +213,7 @@ namespace DeltaEngine
     EntityID player = UnitManager::GetPlayerID();
     auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
     //To Add Blocking Mechanic here
-  	
-    //if (anim.m_ClipKey == "Clip/FID_ATTACK")
-    //{
-    //    AttackDelay -= env.pClock->FixedDeltaTime();
-    //    return;
-    //}
+
   	
     if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 1.5f && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1.5f &&
         a.MeleeCooldownTimer <= 0)
@@ -226,8 +221,14 @@ namespace DeltaEngine
       AITools::FaceEntity(monster, player);
       env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeAttack = true;
       s.SetBool("MeleeAttack", true);
-      std::cout << "Attacking" << std::endl;
     }
+    if (anim.m_ClipKey == "Clip/FID_ATTACK" && anim.LoopsCompleted() > 0)
+    {
+        s.SetBool("MeleeAttack", false);
+        s.SetBool("IsAlertRunning", true);
+        return;
+    }
+  	
 
     
   	if(AITools::Distance_X_BetweenEntityAndPoint(monster, ref.original_point) < 1)
