@@ -537,7 +537,7 @@ namespace DeltaEngine
                       bool isSelected = !strcmp(paramName.c_str(), param);
                       if (ImGui::Selectable(param, isSelected))
                       {
-
+                        paramName = param;
                       }
 
                       if (isSelected)
