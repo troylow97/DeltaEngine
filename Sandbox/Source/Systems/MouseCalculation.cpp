@@ -63,41 +63,17 @@ namespace DeltaEngine
   
     bool MouseCalculation::IsMouseOnRight()
     {
-      //std::ofstream txtOut;
-      //txtOut.open("checkmousethingy.txt");
-
-      auto& t = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>({ 0 });
-      float cameraWidth = Camera::allCameras[0]->Max(t).x - Camera::allCameras[0]->Min(t).x;
-      float cameraHeight = Camera::allCameras[0]->Max(t).y - Camera::allCameras[0]->Min(t).y;
+      auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
 #ifdef DE_EDITOR
       auto p_x = GamePanel::curr_mouse.point_x;
       auto p_y = GamePanel::curr_mouse.point_y;
-      auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-
-      if (p_x > player_pos.position.x)
-        return true;
 #else
-      float cursorViewPortDistanceX = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
-      float cursorViewPortDistanceY = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
-      auto p_x = ((cursorViewPortDistanceX / GetEnv().pWin->ClientRect().point_x) * cameraWidth) + Camera::allCameras[0]->Min(t).x;
-      auto p_y = Camera::allCameras[0]->Max(t).y - ((cursorViewPortDistanceY / GetEnv().pWin->ClientRect().point_y) *cameraHeight);
-      auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-      
-      //if (txtOut.is_open())
-      //{
-      //  txtOut << "player_pos.position.x is " << player_pos.position.x << "\n";
-      //  txtOut << "p_x is " << p_x << "\n";
-      //  txtOut << "\n";
-      //  txtOut << "player_pos.position.y is " << player_pos.position.y << "\n";
-      //  txtOut << "p_y is " << p_y << "\n";
-      //  txtOut << "\n";
-      //  txtOut << "\n";
-      //}
-      
+      auto p_x = CalculateScreenCoordinate().x;
+      auto p_y = CalculateScreenCoordinate().y;
+#endif
       if (p_x > player_pos.position.x)
         return true;
-#endif
-        return false;
+      return false;
     }
 
     Vector2 MouseCalculation::CalculateDirectionVector()
@@ -106,15 +82,37 @@ namespace DeltaEngine
 #ifdef DE_EDITOR
       auto p_x = GamePanel::curr_mouse.point_x;
       auto p_y = GamePanel::curr_mouse.point_y;
-
-      Vector2 direction_vector = { p_x - player_pos.position.x, p_y - player_pos.position.y }; // 1.06608, 0.592079
-      float magnitude = direction_vector.Magnitude();
-      Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude};
 #else
-
+      auto p_x = CalculateScreenCoordinate().x;
+      auto p_y = CalculateScreenCoordinate().y;
 #endif
+      Vector2 direction_vector = { p_x - player_pos.position.x, p_y - player_pos.position.y };
+      float magnitude = direction_vector.Magnitude();
+      Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
 
       return normalized_direction_vector;
+    }
+
+    Vector2 MouseCalculation::CalculateScreenCoordinate()
+    {
+      auto& t = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>({ 0 });
+      float cameraWidth = Camera::allCameras[0]->Max(t).x - Camera::allCameras[0]->Min(t).x;
+      float cameraHeight = Camera::allCameras[0]->Max(t).y - Camera::allCameras[0]->Min(t).y;
+      Vector2 screen_coordinate_mid;
+      Vector2 screen_coordinate_min;
+      Vector2 screen_coordinate_max;
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](Transform& t, Camera& c)
+      {
+        screen_coordinate_mid = { t.position.x ,t.position.y }; 
+        screen_coordinate_min = { screen_coordinate_mid.x - (cameraWidth / 2), screen_coordinate_mid.y - (cameraHeight / 2) };  
+        screen_coordinate_max = { screen_coordinate_mid.x + (cameraWidth / 2), screen_coordinate_mid.y + (cameraHeight / 2) }; 
+      });
+      float cursorViewPortDistanceX = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
+      float cursorViewPortDistanceY = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
+      auto p_x = ((cursorViewPortDistanceX / GetEnv().pWin->ClientRect().point_x) * cameraWidth) + screen_coordinate_min.x;
+      auto p_y = screen_coordinate_max.y - ((cursorViewPortDistanceY / GetEnv().pWin->ClientRect().point_y) * cameraHeight);
+      
+      return Vector2{ p_x, p_y };
     }
   }
 }
