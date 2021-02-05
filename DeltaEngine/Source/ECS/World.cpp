@@ -42,11 +42,6 @@ namespace DeltaEngine
 #endif
   }
 
-  ICloneWorld* World::clone()
-  {
-      return new World{ *this };
-  }
-
   void World::SetPause(bool pause)
   {
     m_pause = pause;
