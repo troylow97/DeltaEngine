@@ -45,7 +45,7 @@ Clip/FID_WALK
 
 pos
 Clip/FID_DEATH
-2 440
+-78 465
 
 pos
 Clip/FID_ATTACK
@@ -53,11 +53,11 @@ Clip/FID_ATTACK
 
 pos
 Clip/FID_ALERT_RUN
-265 292
+189 232
 
 pos
 Clip/FID_ALERT
-173 219
+-61 157
 
 %Transitions:
 
