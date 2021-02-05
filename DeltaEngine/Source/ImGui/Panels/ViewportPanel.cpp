@@ -168,7 +168,8 @@ namespace DeltaEngine
           Camera::editorCameraTransform).x;
         curr_mouse.point_y = Camera::editorCamera->Max(Camera::editorCameraTransform).y - ((cursorViewPortDistanceY /
           renderSize.y) * cameraHeight);
-
+        std::cout << "curr_mouse.point_x is " << curr_mouse.point_x << std::endl;
+        std::cout << "curr_mouse.point_y is " << curr_mouse.point_y << std::endl;
         KeysInput();
       }
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

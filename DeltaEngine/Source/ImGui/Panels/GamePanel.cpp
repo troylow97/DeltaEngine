@@ -11,12 +11,11 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "imgui.h"
 #include "Render/Camera.h"
-#include "Components/Components.h"
+#include "Core/GlobalStruct.h"
+#include "ECS/ECSModule.h"
 
 namespace DeltaEngine
 {
-  static Point curr_mouse{};
-  static Point prev_mouse{};
 
   GamePanel::GamePanel(std::string str, Editor& e)
     : IPanel(str, e)
@@ -41,19 +40,18 @@ namespace DeltaEngine
         if (ImGui::IsWindowHovered())
         {
             ImGui::SetWindowFocus();
-            mouse_pos = { ImGui::GetMousePos().x, ImGui::GetMousePos().y };
+            //mouse_pos = { ImGui::GetMousePos().x, ImGui::GetMousePos().y };
 
-            //prev_mouse = curr_mouse;
-            //auto& t = em.GetComponent<Transform>({ 0 });
-            //float cameraWidth = Camera::allCameras[0]->Max(t).x - Camera::allCameras[0]->Min(t).x;
-            //float cameraHeight = Camera::allCameras[0]->Max(t).y - Camera::allCameras[0]->Min(t).y;
-            //
-            //float cursorViewPortDistanceX = ImGui::GetMousePos().x - render_pos.x;
-            //float cursorViewPortDistanceY = ImGui::GetMousePos().y - render_pos.y;
-            //curr_mouse.point_x = ((cursorViewPortDistanceX / render_size.x) * cameraWidth) + Camera::allCameras[0]->Min(
-            //    Camera::editorCameraTransform).x;
-            //curr_mouse.point_y = Camera::allCameras[0]->Max(Camera::editorCameraTransform).y - ((cursorViewPortDistanceY /
-            //    render_size.y) * cameraHeight);
+            prev_mouse = curr_mouse;
+ 
+            auto& t = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>({ 0 });
+            float cameraWidth = Camera::allCameras[0]->Max(t).x - Camera::allCameras[0]->Min(t).x;
+            float cameraHeight = Camera::allCameras[0]->Max(t).y - Camera::allCameras[0]->Min(t).y;
+            
+            float cursorViewPortDistanceX = ImGui::GetMousePos().x - render_pos.x;
+            float cursorViewPortDistanceY = ImGui::GetMousePos().y - render_pos.y;
+            curr_mouse.point_x = ((cursorViewPortDistanceX / render_size.x) * cameraWidth) + Camera::allCameras[0]->Min(Camera::editorCameraTransform).x;
+            curr_mouse.point_y = Camera::allCameras[0]->Max(Camera::editorCameraTransform).y - ((cursorViewPortDistanceY / render_size.y) * cameraHeight);
         }
         Camera::allCameras[0]->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
         Camera::allCameras[0]->SetViewportSize(viewportPanelSize.x);

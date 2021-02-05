@@ -22,5 +22,7 @@ namespace DeltaEngine
     static inline Vector2 render_pos;
     static inline Vector2 render_size;
     static inline Vector2 mouse_pos;
+    static inline Point curr_mouse;
+    static inline Point prev_mouse;
   };
 }

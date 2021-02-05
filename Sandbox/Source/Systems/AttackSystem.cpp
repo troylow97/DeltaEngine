@@ -15,7 +15,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Audio/AudioEngine.h"
-#include  "Core/Utils/Random.h"
+#include "Core/Utils/Random.h"
+#include "MouseCalculation.h"
 
 namespace DeltaEngine
 {
@@ -300,14 +301,14 @@ namespace DeltaEngine
       //////  AudioEngine::StopChannel(c_id);
       //////c_id = AudioEngine::Play("Audio/SWORD_GEN-HDF-22317.wav"); // temp one lol 
       
-      if (em.GetComponent<Image>(id).m_FlipX == false) // face right bah
+      if (MouseCalculation::ShootRight())
       {
-        em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
-        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { 8000, 0 };
-        //em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
-        //em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { 8000, 0 };
+          em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
+          em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { 8000, 0 };
+          //em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
+          //em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { 8000, 0 };
       }
-      else // face left i guess 
+      else if (MouseCalculation::ShootLeft())
       {
         em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
         em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { -8000, 0 };

@@ -1,5 +1,5 @@
 /**********************************************************************************
-* \file   MouseCalculationSystem.h
+* \file   MouseCalculation.h
 * \brief  The file contains the system for doing the calculations for mouse related
 *         attacks
 * \author Chin, Clara,   100% Code Contribution
@@ -12,17 +12,27 @@ written consent of DigiPen Institute of Technology is prohibited.
 #pragma once
 #include "ECS/ECSModule.h"
 #include "Core/Math/Point.h"
+#include "Core/GlobalStruct.h"
 
 namespace DeltaEngine
 {
-  DEFINE_SYSTEM(MouseCalculationSystem, Transform)
-    void Update() override;
-    void LateUpdate() override;
-    bool ShootRight();
-    bool ShootLeft();
-    bool IsMouseOnRight();
-private:
-    Point curr_mouse{};
-    Point prev_mouse{};
-  END_DEFINE_SYSTEM(MouseCalculationSystem)
+    namespace MouseCalculation
+    {
+        bool ShootRight();
+        bool ShootLeft();
+        bool IsMouseOnRight();
+    //private:
+    //    Point curr_mouse{};
+    //    Point prev_mouse{};
+    }
+//  DEFINE_SYSTEM(MouseCalculation, Transform)
+//    void Update() override;
+//    void LateUpdate() override;
+//    bool ShootRight();
+//    bool ShootLeft();
+//    bool IsMouseOnRight();
+//private:
+//    Point curr_mouse{};
+//    Point prev_mouse{};
+//  END_DEFINE_SYSTEM(MouseCalculation)
 }

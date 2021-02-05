@@ -23,7 +23,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/RespawnSystem.h"
 #include "Systems/UpgradeSystem.h"
 #include "Systems/UISystem.h"
-#include "Systems/MouseCalculationSystem.h"
 #include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
 #include "Systems/EnemySpawner/EnemySpawner.h"
 #include "Audio/AudioEngine.h"
@@ -45,9 +44,9 @@ public:
 
 
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, MouseCalculationSystem, LifespanSystem, RespawnSystem, GCameraSystem,
+    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem,
                                        UISystem/*, UpgradeSystem, ExitSceneCinematic*/, HealthSystem>();
-    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, MouseCalculationSystem, HealthSystem, RespawnSystem, LifespanSystem>();
+    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, LifespanSystem>();
     //env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, UpgradeSystem,
     //    ExitSceneCinematic, LifespanSystem>();
     env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, UISystem>();
