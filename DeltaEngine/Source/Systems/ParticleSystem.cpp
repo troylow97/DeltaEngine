@@ -28,14 +28,17 @@ namespace DeltaEngine
   {
     em.ForEach(e_query, [&](EntityID id, Transform& tr, ParticleEmitter& ps)
       {
-        ps.m_ParticlePool.resize(ps.maxParticles);
-        auto Emit = [&ps](unsigned int count)
+        if (!ParticleEmitter::particlePools.count(id))
+          ParticleEmitter::particlePools[id] = std::vector<ParticleEmitter::Particle>();
+        ParticleEmitter::particlePools[id].resize(ps.maxParticles);
+
+        auto Emit = [&id, &ps](unsigned int count)
         {
-          auto FindInactiveParticle = [&ps]()
+          auto FindInactiveParticle = [&id, &ps]()
           {
             for (unsigned int i = 0; i < ps.maxParticles; ++i)
             {
-              if (!ps.m_ParticlePool[i].active)
+              if (!ps.particlePools[id][i].active)
                 return i;
             }
             return ps.maxParticles;
@@ -44,9 +47,9 @@ namespace DeltaEngine
           for (unsigned int i = 0; i < count; ++i)
           {
             if (ps.m_ActiveParticles >= ps.maxParticles ||
-              FindInactiveParticle() >= ps.m_ParticlePool.size())
+              FindInactiveParticle() >= ps.particlePools[id].size())
               break;
-            Particle& particle = ps.m_ParticlePool[FindInactiveParticle()];
+            Particle& particle = ps.particlePools[id][FindInactiveParticle()];
             ++ps.m_ActiveParticles;
             particle.active = true;
 
@@ -113,7 +116,6 @@ namespace DeltaEngine
 
         ps.emissionTimer += static_cast<float>(FixedDeltaTime());
         ps.durationTimer += static_cast<float>(FixedDeltaTime());
-        ps.playbackTimer += static_cast<float>(FixedDeltaTime());
         ps.rateOverTime = Math::Clamp(ps.rateOverTime, 0, 100);
 
         while (ps.emissionTimer > 1.0f / ps.rateOverTime)
@@ -125,7 +127,7 @@ namespace DeltaEngine
           ps.durationTimer -= ps.duration;
 
         int index = 0;
-        for (auto& particle : ps.m_ParticlePool)
+        for (auto& particle : ps.particlePools[id])
         {
           if (!particle.active)
           {
@@ -135,7 +137,6 @@ namespace DeltaEngine
 
           if (particle.lifeTimer >= particle.lifeTime)
           {
-            std::cerr << particle.lifeTimer << "," << particle.lifeTime << std::endl;
             particle.active = false;
             --ps.m_ActiveParticles;
             ++index;
@@ -155,12 +156,6 @@ namespace DeltaEngine
               ps.sizeOverLifetimeZMin.Evaluate(particle.lifeTimer / particle.lifeTime),
               ps.sizeOverLifetimeZMax.Evaluate(particle.lifeTimer / particle.lifeTime))
             );
-          //particle.transform.scale = Vector3::one();
-          std::cerr
-            << particle.lifeTimer / particle.lifeTime << ","
-            << ps.sizeOverLifetimeXMin.Evaluate(particle.lifeTimer / particle.lifeTime) << ","
-            << ps.sizeOverLifetimeXMin.Evaluate(0.5f) << ","
-            << std::endl;
 
           particle.transform.rotation = Quaternion::AngleAxis(particle.lifeTimer * index / 50, Vector3::forward());
 

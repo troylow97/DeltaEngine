@@ -5,19 +5,19 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Floor"
+                "Name": ""
             },
             "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
                 "Position": {
-                    "x": -0.18000000715255738,
-                    "y": -1.7610000371932984,
+                    "x": 0.0,
+                    "y": 0.0,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 26.239999771118165,
+                    "x": 1.0,
                     "y": 1.0,
                     "z": 1.0
                 },
@@ -41,8 +41,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -0.18000000715255738,
-                    "y": -1.7610000371932984
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -57,70 +57,11 @@
                 "Collision Layer ID": 255,
                 "Trigger": false,
                 "Platform": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "Fiddler"
-            },
-            "Entity Type": {
-                "Category": "enemy"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.838269054889679,
-                    "y": -0.7625400424003601,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 0.838269054889679,
-                    "y": -0.7625400424003601
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 4,
-                "Trigger": false,
-                "Platform": false
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/FID_WALK",
-                    "index": 6
+                    "key": "Textures/LANCER_ALERT_IDLE",
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -159,7 +100,7 @@
                 "Wireframe": false
             },
             "Animator": {
-                "Controller Key": "Animation/Fiddler",
+                "Controller Key": "Animation/Lancer",
                 "Speed": 1.0
             },
             "State": {},
@@ -168,7 +109,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_fiddler"
+                "AIState": "idle_lancer"
             },
             "Health": {
                 "Current Health": 10,
@@ -184,15 +125,14 @@
                 "Max Combo Number": 3,
                 "Melee Cooldown": 1.0,
                 "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": -0.20000000298023225,
-                "Range Cooldown Timer": -0.20000000298023225,
+                "Melee Cooldown Timer": 0.0,
+                "Range Cooldown Timer": 0.0,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -201,15 +141,15 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "Camera"
+                "Name": ""
             },
             "Entity Type": {
                 "Category": "none"
             },
             "Transform": {
                 "Position": {
-                    "x": 7.066181182861328,
-                    "y": 2.0,
+                    "x": 0.0,
+                    "y": 0.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -232,147 +172,6 @@
                     "b": 0.4745098054409027,
                     "a": 1.0
                 }
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "Player"
-            },
-            "Entity Type": {
-                "Category": "player"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 7.066181182861328,
-                    "y": -0.761760413646698,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 7.066181182861328,
-                    "y": -0.761760413646698
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 4,
-                "Trigger": false,
-                "Platform": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/BreathingSpritesheet",
-                    "index": 7
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Dave",
-                "Speed": 1.0
-            },
-            "State": {},
-            "Health": {
-                "Current Health": 10,
-                "Max Health": 10,
-                "TakenDamageTimer": 0.0,
-                "Invulnerable": false
-            },
-            "Attack": {
-                "Range Damage": 1,
-                "Melee Damage": 1,
-                "Melee Combo Damage": 3,
-                "Number Of Combo": 0,
-                "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
-                "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": -0.21666638553142548,
-                "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 1.5,
-                "Knockback Amount": 0.0,
-                "Knockback Combo Amount": 0.0,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "Blocking": false,
-                "Start Combo Cooldown Timer": false
-            },
-            "Player": {
-                "Upgrade Points Per Enemy Defeated": 50,
-                "Points Needed For Upgrade": 50,
-                "Attack Upgrade Increase": 1,
-                "Health Upgrade Attack": 2,
-                "Dashing Timer Duration": 1.0
-            },
-            "Input": {
-                "Previous": 68,
-                "Current": 0
             }
         }
     ]
