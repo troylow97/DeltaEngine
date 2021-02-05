@@ -1,0 +1,213 @@
+Textures/TILESET_GROUND_SECTIONS_i_0
+offset 11 323
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_1
+offset 40 52
+size 98 115
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_2
+offset 53 360
+size 1 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_3
+offset 54 360
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_4
+offset 67 183
+size 71 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_5
+offset 151 49
+size 127 116
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_6
+offset 151 184
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_7
+offset 151 323
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_8
+offset 291 184
+size 70 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_9
+offset 292 323
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_10
+offset 293 50
+size 92 115
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_11
+offset 370 351
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_12
+offset 410 397
+size 1 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_13
+offset 411 397
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_14
+offset 411 399
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_15
+offset 412 413
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_16
+offset 414 413
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_17
+offset 418 349
+size 1 1
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_18
+offset 419 350
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_19
+offset 419 415
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_20
+offset 452 323
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_21
+offset 481 56
+size 98 115
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_22
+offset 509 183
+size 70 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_23
+offset 589 55
+size 127 118
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_24
+offset 589 183
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_25
+offset 589 323
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_26
+offset 728 58
+size 90 115
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_27
+offset 728 184
+size 69 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_28
+offset 728 323
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_29
+offset 837 387
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_30
+offset 847 375
+size 1 7
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_31
+offset 895 321
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_32
+offset 937 137
+size 3 6
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_33
+offset 938 57
+size 84 115
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_34
+offset 950 182
+size 72 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_35
+offset 1036 182
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_36
+offset 1036 321
+size 127 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_37
+offset 1037 57
+size 127 115
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_38
+offset 1094 45
+size 0 0
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_39
+offset 1175 58
+size 93 114
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_40
+offset 1175 182
+size 70 127
+pivot 0.5 0.5
+
+Textures/TILESET_GROUND_SECTIONS_i_41
+offset 1175 321
+size 127 127
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0
