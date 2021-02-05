@@ -415,6 +415,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
         .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
         .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Blocking", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
         .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Lifespan>( "Lifespan" )

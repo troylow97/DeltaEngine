@@ -259,6 +259,31 @@ namespace DeltaEngine
       });
     }
 
+    if (InputManager::Instance().IsKeyTriggered(DEVK_F))
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a,RigidBody& r1)
+            {
+        		if(a1.Blocking == true)
+        		{
+                    a1.Blocking = false;
+                    r1.Movespeed /= 0.2;
+                    r1.FrictionCoeff -= 4.0f;
+                    r1.MaxAcceleration += 10.0f;
+                    std::cout << "Blocking Off" << std::endl;
+        		}
+                else //Toggle Block
+                {
+                    a1.Blocking = true;
+                    r1.Movespeed *= 0.2;
+                    r1.FrictionCoeff += 4.0f;
+                    r1.MaxAcceleration -= 10.0f;
+                    std::cout << "Blocking On" << std::endl;
+                }
+
+
+            });
+    }
+
     //if (InputManager::Instance().IsKeyTriggered(DEVK_COMMA))
     //{
     //  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());

@@ -47,6 +47,7 @@ namespace DeltaEngine
 
     em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
     {
+      //Reduce Cooldowns   	
       if (a.MeleeCooldownTimer > -0.2)
         a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
       else
@@ -57,7 +58,13 @@ namespace DeltaEngine
       else
         em.GetComponent<State>(id).SetBool("Ranged", false);
 
-      if (a.RangeAttack && a.RangeCooldownTimer <= 0)
+	  //Toggle Block    	
+      if(a.Blocking)
+      {
+	      
+      }
+      //Toggle Ranged Attack
+      else if (a.RangeAttack && a.RangeCooldownTimer <= 0)
       {
         em.GetComponent<State>(id).SetBool("Ranged", true);
         RangedAttackingEntities.push_back(id);
@@ -65,10 +72,12 @@ namespace DeltaEngine
         a.RangeAttack = false;
       }
 
-      if (a.MeleeAttack && em.HasComponent<AI>(id))
-        st.SetBool("MeleeAttack", true);
-      if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
+       //Toggle Melee Attack   	
+      else if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
       {
+        if (em.HasComponent<AI>(id))
+            st.SetBool("MeleeAttack", true);
+      	
         a.StartComboCooldownTimer = true;
         if (a.NumberOfCombos != a.MaxComboNumber)
         {

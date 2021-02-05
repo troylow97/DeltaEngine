@@ -32,12 +32,29 @@ namespace DeltaEngine
 
   void CollisionHandlerFunctions::ReduceHealth(EntityID& id1, int amount)
   {
-    if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
-      !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
+    auto em = env.pECS->GetWorld().GetEntityManager();
+    if (em.HasComponent<Health>(id1) &&
+      !em.GetComponent<Health>(id1).isInvulnerable)
     {
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.3f;
+      em.GetComponent<Health>(id1).CurrentHealth -= amount;
+      em.GetComponent<Health>(id1).isDamagedTimer = 0.3f;
     }
+  }
+
+ bool CollisionHandlerFunctions::CheckBlock(EntityID& defender,EntityID& attacker)
+  {
+     auto& block = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(defender);
+     auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(defender);
+     Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(attacker).Velocity.Normalize();
+
+	  if(block.Blocking && ((kb_vector.x > 0 && AITools::isFacingLeft(defender)) || (kb_vector.x < 0 && AITools::isFacingRight(defender))))
+	  {
+        rb.AccumulatedForce += kb_vector * 1000.0f;
+
+        std::cout << "Blocking" << std::endl;
+        return true;
+	  }
+      return false;
   }
 
   bool CollisionHandlerFunctions::CheckEntityType(EntityID id1, EntityCategory typecheck1, EntityID id2,
@@ -68,12 +85,12 @@ namespace DeltaEngine
     {
       //Fiddler Melee Attack
       {
-        if (CheckEntityType(id1, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id2, EntityCategory::E_PLAYER))
+        if (CheckEntityType(id1, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id2, EntityCategory::E_PLAYER) && CheckBlock(id2, id1))
         {
-          ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+          ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));         
           return;
         }
-        if (CheckEntityType(id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER))
+        if (CheckEntityType(id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER) && CheckBlock(id1, id2))
         {
           ReduceHealth(id1, static_cast<int>(CollisionHandlerFiddlerData.Damage));
           return;
@@ -82,12 +99,12 @@ namespace DeltaEngine
 
       //Lancer Melee Attack
       {
-        if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
+        if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER) && CheckBlock(id2, id1))
         {
           ReduceHealth(id2, static_cast<int>(CollisionHandlerLancerData.Damage));
           return;
         }
-        if (CheckEntityType(id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER))
+        if (CheckEntityType(id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER) && CheckBlock(id1, id2))
         {
           ReduceHealth(id1, static_cast<int>(CollisionHandlerLancerData.Damage));
           return;

@@ -28,6 +28,7 @@ struct Attack
   float KnockbackComboAmount;
   bool RangeAttack;
   bool MeleeAttack;
+  bool Blocking;
   bool StartComboCooldownTimer;
 
   Attack() :

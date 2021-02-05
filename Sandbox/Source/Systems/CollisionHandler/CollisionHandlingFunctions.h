@@ -27,5 +27,6 @@ namespace DeltaEngine
     static bool CheckEntityType(EntityID, EntityCategory, EntityID, EntityCategory);
 
     static void ReduceHealth(EntityID& id, int health);
+    static bool CheckBlock(EntityID& defender, EntityID& attacker);
   };
 }
