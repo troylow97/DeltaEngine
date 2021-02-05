@@ -60,24 +60,27 @@ namespace DeltaEngine
         }
         // change the clip
         if (conditionPass)
+        {
           if (strcmp(EndingState.c_str(), "Exit"))
             return GetEnv().pManager->Get<AnimationClip>(EndingState);
-          else
-            return GetEnv().pManager->Get<AnimationClip>(entryAnimation);
+          return GetEnv().pManager->Get<AnimationClip>(entryAnimation);
+        }
       }
     }
     return nullptr;
   }
+
   Vector2 AnimationController::EditionPositionAt(AssetKey key)
   {
     Vector2 result = Vector2();
     std::for_each(editorPositions.begin(), editorPositions.end(), [&result, &key](std::pair<AssetKey, Vector2>& pair)
-      {
-        if (pair.first == key)
-          result = pair.second;
-      });
+    {
+      if (pair.first == key)
+        result = pair.second;
+    });
     return result;
   }
+
   void AnimationController::AddNewTransition(std::string start, std::string end)
   {
     bool exists = false;
@@ -93,9 +96,10 @@ namespace DeltaEngine
     if (!exists)
     {
       transitions.push_back(
-        { std::string(start.c_str()), std::string(end.c_str()), Condition() });
+        {std::string(start.c_str()), std::string(end.c_str()), Condition()});
     }
   }
+
   void AnimationController::CreateNew(std::string filepath)
   {
     AnimationController c = AnimationController(filepath);
@@ -117,9 +121,9 @@ namespace DeltaEngine
       file << "%EditorPositions:" << std::endl << std::endl;
       for (auto& [ClipKey, Pos] : c.editorPositions)
         file << "pos" << std::endl
-        << ClipKey.Key() << " "
-        << Pos.x << " "
-        << Pos.y << std::endl << std::endl;
+          << ClipKey.Key() << " "
+          << Pos.x << " "
+          << Pos.y << std::endl << std::endl;
       file << "%Transitions:" << std::endl << std::endl;
       file << "%endfile" << std::endl;
       file.close();
@@ -128,8 +132,8 @@ namespace DeltaEngine
     {
       DeltaEngine_CORE_WARN("Failed to create Animator file \"{}\"", filepath.c_str());
     }
-
   }
+
   void AnimationController::LoadFromFile()
   {
     std::ifstream file;
@@ -240,6 +244,7 @@ namespace DeltaEngine
       DeltaEngine_CORE_WARN("Animator file \"{}\" doesn't exist", m_Name.c_str());
     }
   }
+
   void AnimationController::SaveToFile()
   {
     // remove duplicates
@@ -255,7 +260,7 @@ namespace DeltaEngine
             break;
           }
         if (!dup)
-          newParameters.push_back({ std::string(paramName.c_str()), val });
+          newParameters.push_back({std::string(paramName.c_str()), val});
       }
     }
     std::vector<std::pair<AssetKey, Vector2>> newPositions;
@@ -270,7 +275,7 @@ namespace DeltaEngine
             break;
           }
         if (!dup)
-          newPositions.push_back({ assetName, val });
+          newPositions.push_back({assetName, val});
       }
     }
 

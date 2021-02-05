@@ -30,7 +30,6 @@ namespace DeltaEngine
 
   class Editor : public Singleton<Editor>
   {
-
     friend class Singleton<Editor>;
 
     void MenuBar();
@@ -65,7 +64,7 @@ namespace DeltaEngine
     static inline bool simulation_running;
 
     // Selected File
-    std::string selectedFile {};
+    std::string selectedFile{};
 
     ~Editor();
     void Begin();

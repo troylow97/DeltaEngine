@@ -14,15 +14,14 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
+  EntityID UnitManager::player;
 
-	EntityID UnitManager::player;
-	
-	EntityID UnitManager::GetPlayerID()
-	{
-		env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, Player& p, RigidBody& r, State& s, Animator& a)
-		{
-			player = id;
-		});
-		return player;
-	}
+  EntityID UnitManager::GetPlayerID()
+  {
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, Player& p, RigidBody& r, State& s, Animator& a)
+    {
+      player = id;
+    });
+    return player;
+  }
 }

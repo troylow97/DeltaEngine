@@ -11,9 +11,10 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
 #include "DeltaEngine.h"
+
 namespace DeltaEngine
 {
-  DEFINE_SYSTEM(UISystem, Transform,Image,Renderer2D)
+  DEFINE_SYSTEM(UISystem, Transform, Image, Renderer2D)
     void Initialize() override;
     void Update() override;
     void LateUpdate() override;
@@ -33,22 +34,25 @@ namespace DeltaEngine
     void UnpauseGame();
     void BackToMenu();
     void BackToMainMenu();
-private:
-  bool isDraggingOnSlider;
-  bool UI_first_time = true;
-  bool upgraded_HP_not_pushed = true;
-  bool upgraded_Attack_not_pushed = true;
-  bool back_to_main_menu = false;
-  bool is_main_menu = false;
-  bool m_start { false };
-  bool m_restart { false };
-  bool m_backmenu { false };
+    inline static bool credits_rolling{false};
+  private:
+    bool isDraggingOnSlider{false};
+    bool UI_first_time{true};
+    bool upgraded_HP_not_pushed{true};
+    bool upgraded_Attack_not_pushed{true};
+    bool back_to_main_menu{false};
+    bool is_main_menu{false};
+    bool m_start{false};
+    bool m_restart{false};
+    bool m_backmenu{false};
+    bool pause_screen_bool{false};
 
-  Vector2 VolumeSliderInitialLocation;
-  Vector3 PlayerFirstPosition;
-  Vector3 PlayerCurrentPosition;
-  Vector3 UPlayerFirstPosition;
-  Vector3 UPlayerCurrentPosition;
-  std::vector<unsigned> m_screen;
+
+    Vector2 VolumeSliderInitialLocation;
+    Vector3 PlayerFirstPosition;
+    Vector3 PlayerCurrentPosition;
+    Vector3 UPlayerFirstPosition;
+    Vector3 UPlayerCurrentPosition;
+    std::vector<unsigned> m_screen;
   END_DEFINE_SYSTEM(GCameraSystem)
 }

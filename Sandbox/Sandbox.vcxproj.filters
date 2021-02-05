@@ -51,6 +51,9 @@
     <ClInclude Include="Source\Systems\GCameraSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\HealthSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\LifespanSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -96,6 +99,9 @@
     <ClCompile Include="Source\Systems\GCameraSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\HealthSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Systems\LifespanSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
@@ -111,9 +117,5 @@
     <ClCompile Include="Source\Systems\UpgradeSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Shaders\DefaultSprite.fs" />
-    <None Include="Assets\Shaders\DefaultSprite.vs" />
   </ItemGroup>
 </Project>

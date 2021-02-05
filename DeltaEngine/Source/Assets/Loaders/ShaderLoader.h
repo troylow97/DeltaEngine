@@ -1,18 +1,16 @@
 /**********************************************************************************
 * \file   ShaderLoader.h
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  This file contains the implementation for ShaderLoader
 *
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #pragma once
-#include <cassert>
+
 #include "Assets/AbstractLoader.h"
 #include "Core/Utils/FileUtils.h"
 #include "Render/Shader.h"
@@ -35,10 +33,10 @@ namespace DeltaEngine
 
     void DoLoad(AssetKey key) override
     {
-      if(FileUtils::FileExists( key.Key()+".fs") && FileUtils::FileExists( key.Key() + ".vs"))
+      if (FileUtils::FileExists(key.Key() + ".fs") && FileUtils::FileExists(key.Key() + ".vs"))
       {
         Shader* data = new Shader(key.Key());
-        Set( key, data, AssetState::Final, AssetLifetime::Persistent );
+        Set(key, data, AssetState::Final, AssetLifetime::Persistent);
       }
     }
 

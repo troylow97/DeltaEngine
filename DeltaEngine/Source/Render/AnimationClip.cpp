@@ -63,7 +63,7 @@ namespace DeltaEngine
     unsigned int start,
     unsigned int end)
   {
-    std::ofstream file{ filepath.c_str() };
+    std::ofstream file{filepath.c_str()};
 
     Texture2D* texture = GetEnv().pManager->Get<Texture2D>(std::string(textureName));
 
@@ -129,7 +129,7 @@ namespace DeltaEngine
 
       UpdateAnimation(filepath);
     }
-    DeltaEngine_CORE_TRACE( "Animation clip {} was loaded successfully", filepath );
+    DeltaEngine_CORE_TRACE("Animation clip {} was loaded successfully", filepath);
   }
 
   void AnimationClip::UpdateAnimation(std::string filepath)

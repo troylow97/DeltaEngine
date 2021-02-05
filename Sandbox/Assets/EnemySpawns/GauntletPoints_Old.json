@@ -1,0 +1,87 @@
+{
+    "gauntlets": [
+        {
+            "enemy_waves": [
+                [
+                    {
+                        "enemy_count": 1,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 35.0,
+                            "y": 2.5
+                        }
+                    },
+                    {
+                        "enemy_count": 1,
+                        "enemy_type": "fiddler",
+                        "spawn_area": {
+                            "x": 37.0,
+                            "y": -0.5
+                        }
+                    }
+                ],
+                [
+                    {
+                        "enemy_count": 1,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 35.0,
+                            "y": 2.5
+                        }
+                    },
+					{
+                        "enemy_count": 1,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 37.0,
+                            "y": 2.5
+                        }
+                    },
+					{					
+                        "enemy_count": 1,
+                        "enemy_type": "serpentipede",
+                        "spawn_area": {
+                            "x": 36.0,
+                            "y": -0.5
+                        }
+                    }
+                ],
+                [
+                    {
+                        "enemy_count": 2,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 36.0,
+                            "y": 2.5
+                        }
+                    },
+					{
+                        "enemy_count": 1,
+                        "enemy_type": "fiddler",
+                        "spawn_area": {
+                            "x": 35.0,
+                            "y": -0.5
+                        }
+                    },
+					{					
+                        "enemy_count": 1,
+                        "enemy_type": "serpentipede",
+                        "spawn_area": {
+                            "x": 36.0,
+                            "y": -0.5
+                        }
+                    }
+                ]
+            ],
+            "activation_point": {
+                "x": 36.745,
+                "y": -1.063
+            },
+            "wall_offset_right": 2.5,
+            "wall_offset_left": 2.5,
+            "current_enemy_wave": 0,
+            "is_activated": false,
+            "is_finished": false
+        }
+    ]
+}

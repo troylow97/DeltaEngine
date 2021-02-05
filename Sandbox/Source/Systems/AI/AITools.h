@@ -46,8 +46,7 @@ namespace DeltaEngine
     void MoveTowardsPoint(EntityID& id1, Vector2& point);
     void FlyTowardsPoint(EntityID& id1, Vector2& point);
     bool EntityisAtPoint(EntityID& id1, Vector2& point);
-    bool EntityisAtPointInX(EntityID& id1, float x,float tolerance);
+    bool EntityisAtPointInX(EntityID& id1, float x, float tolerance);
     bool EntityisAtPoint(EntityID& id1, Vector2& point, float tolerance);
-
   }
 }

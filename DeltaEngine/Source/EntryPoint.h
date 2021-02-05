@@ -18,7 +18,6 @@ using namespace DeltaEngine;
 extern Application* DeltaEngine::CreateApplication();
 
 
-
 // debug_new.cpp
 // compile by using: cl /EHsc /W4 /D_DEBUG /MDd debug_new.cpp
 #define _CRTDBG_MAP_ALLOC

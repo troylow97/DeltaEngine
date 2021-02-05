@@ -23,12 +23,15 @@ namespace DeltaEngine
     Manifold m;
     EntityID id1;
     EntityID id2;
+    bool ignore;
 
     CollisionPairInfo(Manifold man, EntityID i1, EntityID i2) :
       m{man},
       id1{i1},
-      id2{i2}
-    {}
+      id2{i2},
+      ignore{false}
+    {
+    }
   };
 
   DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
@@ -49,7 +52,7 @@ namespace DeltaEngine
     //void CollisionSystem::CollisionResponse_CircleCircle(Collider& c1, RigidBody& r1, Collider& c2, RigidBody& r2, Manifold& m);
 
   public:
-    
+
     void CollisionSystem::Update() override;
     void CollisionSystem::LateUpdate() override;
     void CollisionSystem::Initialize() override;

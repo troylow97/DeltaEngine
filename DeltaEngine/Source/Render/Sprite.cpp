@@ -19,7 +19,7 @@ namespace DeltaEngine
   }
 
   Sprite::Sprite(const Sprite& copy)
-    : m_Key{ copy.m_Key.c_str() }, m_Index{ copy.m_Index }
+    : m_Key{copy.m_Key.c_str()}, m_Index{copy.m_Index}
   {
   }
 

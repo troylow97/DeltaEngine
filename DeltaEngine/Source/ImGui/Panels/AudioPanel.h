@@ -11,6 +11,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "ImGui/Panels/IPanel.h"
 #include "Audio/AudioConfig.h"
+
 namespace DeltaEngine
 {
   class AudioPanel : public IPanel

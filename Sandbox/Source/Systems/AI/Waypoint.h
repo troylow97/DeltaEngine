@@ -15,12 +15,11 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-	struct Waypoint
-	{
-		std::vector<Vector2> Waypoints;
-		unsigned CurrentWaypoint;
-		Waypoint();
-		void UpdateWaypoint(EntityID id);
-	};
+  struct Waypoint
+  {
+    std::vector<Vector2> Waypoints;
+    unsigned CurrentWaypoint;
+    Waypoint();
+    void UpdateWaypoint(EntityID id);
+  };
 }
-

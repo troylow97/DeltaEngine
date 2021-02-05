@@ -1,0 +1,53 @@
+Textures/SPRITES_UI_INGAME_i_0
+offset 27 59
+size 610 205
+pivot 0.5 0.5
+
+Textures/SPRITES_UI_INGAME_i_1
+offset 45 359
+size 179 155
+pivot 0.5 0.5
+
+Textures/SPRITES_UI_INGAME_i_2
+offset 47 529
+size 179 155
+pivot 0.5 0.5
+
+Textures/SPRITES_UI_INGAME_i_3
+offset 105 283
+size 455 26
+pivot 0.5 0.5
+
+Textures/SPRITES_UI_INGAME_i_4
+offset 235 359
+size 179 155
+pivot 0.5 0.5
+
+Textures/SPRITES_UI_INGAME_i_5
+offset 235 529
+size 179 155
+pivot 0.5 0.5
+
+Textures/SPRITES_UI_INGAME_i_6
+offset 665 201
+size 202 214
+pivot 0.5 0.5
+
+Textures/SPRITES_UI_INGAME_i_7
+offset 667 21
+size 462 143
+pivot 0.5 0.5
+
+Textures/SPRITES_UI_INGAME_i_8
+offset 880 250
+size 114 114
+pivot 0.5 0.5
+
+Textures/SPRITES_UI_INGAME_i_9
+offset 1017 252
+size 110 110
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

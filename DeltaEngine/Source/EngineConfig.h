@@ -20,6 +20,6 @@ struct EngineConfig
   int width{0};
   int height{0};
   float fps{0.0f};
-  float cam_size { 0.0f };
+  float cam_size{0.0f};
   bool fullscreen{false};
 };

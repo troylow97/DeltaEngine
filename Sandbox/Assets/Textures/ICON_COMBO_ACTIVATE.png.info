@@ -1,0 +1,43 @@
+Textures/ICON_COMBO_ACTIVATE_i_0
+offset 0 0
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_ACTIVATE_i_1
+offset 492 0
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_ACTIVATE_i_2
+offset 984 0
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_ACTIVATE_i_3
+offset 1476 0
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_ACTIVATE_i_4
+offset 0 150
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_ACTIVATE_i_5
+offset 492 150
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_ACTIVATE_i_6
+offset 984 150
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_ACTIVATE_i_7
+offset 1476 150
+size 492 150
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

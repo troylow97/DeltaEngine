@@ -1,16 +1,20 @@
 /**********************************************************************************
 * \file   EngineClock.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  This file contains the implementation of the engine's clock
 *
+*         The engine clock is written to support the following:
+*         - Timescaling
+*         - Timestepping
+*         - unscaled / scaled / fixed unscaled / fixed scaled deltaTime 
+*         - unscaled / scaled / fixed unscaled / fixed scaled Time tracking
+*
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #include "EngineClock.h"
 
 #include "Core/Debugging/Profiler/Profiler.h"
@@ -29,7 +33,10 @@ namespace DeltaEngine
       m_unscaled_time(0.0),
       m_timescale(1.0f),
       m_accumulator(0.0f),
-      m_timesteps(0)
+      m_frames_tracker(0.0f),
+      m_timesteps(0),
+      m_framecounts(0),
+      m_frames(0)
   {
     DeltaEngine_CORE_INFO("Game clock initialized, FPS Cap - {} ", fps);
   }
@@ -52,14 +59,14 @@ namespace DeltaEngine
 
     m_dt = std::min(static_cast<f32>(delta.count() * 1e-9), m_fixed_dt);
     m_unscaled_time += m_dt;
-    m_time += ( m_dt * m_timescale );
+    m_time += (m_dt * m_timescale);
 
     m_accumulator += m_dt;
     m_timesteps = 0;
 
     m_frames_tracker += m_dt;
     m_frames++;
-    if (m_frames_tracker > 1.0f )
+    if (m_frames_tracker > 1.0f)
     {
       m_frames_tracker = 0.0f;
       m_framecounts = m_frames;
@@ -71,7 +78,7 @@ namespace DeltaEngine
       m_accumulator -= m_fixed_dt;
       ++m_timesteps;
       m_fixed_unscaled_time += m_fixed_dt;
-      m_fixed_time += ( m_fixed_dt * m_timescale );
+      m_fixed_time += (m_fixed_dt * m_timescale);
     }
 
     Profiler::Instance().Record("Clock");

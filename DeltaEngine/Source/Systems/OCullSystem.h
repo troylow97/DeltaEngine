@@ -16,5 +16,7 @@ namespace DeltaEngine
   DEFINE_SYSTEM(OCullSystem, Transform)
     void Update() override;
     void LateUpdate() override;
+    static void Enable(bool b);
+
   END_DEFINE_SYSTEM(OCullSystem)
 }

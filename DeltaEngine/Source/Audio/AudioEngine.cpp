@@ -1,23 +1,27 @@
 /**********************************************************************************
 * \file   AudioEngine.cpp
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  This file contains the implementation of the Audio Engine that interacts with
+*         FMOD through the wrapper
 *
+*         Audio Engine provides the following functionality:
+*         - FMOD Studio
+*           - 2D / 3D Events
+*           - Parameters
+*
+*         - FMOD Core
+*           - Play Sound 2D / 3D
+*           - Global parameters
+*
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #include "AudioEngine.h"
-
-
-#include <iostream>
-#include <ostream>
-
 #include "FMODWrapper.h"
+#include "Core/TypeAlias.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 
@@ -25,8 +29,6 @@ class AudioFile
 {
   std::string path;
 };
-
-
 
 namespace DeltaEngine
 {
@@ -53,23 +55,23 @@ namespace DeltaEngine
   {
     if (!fmod)
     {
-      DeltaEngine_CORE_INFO( "Initializing FMOD..." );
+      DeltaEngine_CORE_INFO("Initializing FMOD...");
       fmod = new FMODWrapper();
-      DeltaEngine_CORE_INFO( "Initializing FMOD successful" );
+      DeltaEngine_CORE_INFO("Initializing FMOD successful");
     }
   }
 
   void AudioEngine::Shutdown()
   {
-    DeltaEngine_CORE_INFO( "Shutting down FMOD..." );
+    DeltaEngine_CORE_INFO("Shutting down FMOD...");
     delete fmod;
-    DeltaEngine_CORE_INFO( "Shutting down FMOD successful" );
+    DeltaEngine_CORE_INFO("Shutting down FMOD successful");
   }
 
   void AudioEngine::Update()
   {
     fmod->Update();
-    Profiler::Instance().Record( "Audio Update" );
+    Profiler::Instance().Record("Audio Update");
   }
 
   // Core
@@ -86,6 +88,8 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(fmod->pSystem->createSound(name.c_str(), mode, nullptr, &sound));
       if (sound)
         fmod->sounds[name] = sound;
+
+      std::cout << name << std::endl;
     }
   }
 
@@ -102,13 +106,12 @@ namespace DeltaEngine
   {
     ChannelID id = fmod->nextChannelID++;
     auto result = fmod->sounds.find(name);
-    if (result == fmod->sounds.end())
+    if ( result == fmod->sounds.end() )
     {
-      LoadSound(name);
-      result = fmod->sounds.find(name);
-      if (result == fmod->sounds.end())
-        return id;
+      DeltaEngine_CORE_WARN( "Audio - \"{}\" not found", name);
+      return u64_max;
     }
+
     FMOD::Channel* channel{nullptr};
     FMODWrapper::ErrorChecker(fmod->pSystem->playSound(result->second, nullptr, true, &channel));
     if (channel)
@@ -178,10 +181,10 @@ namespace DeltaEngine
 
   unsigned AudioEngine::GetChannelPlaybackPosition(ChannelID id)
   {
-    if ( auto result = fmod->channels.find( id ); result != fmod->channels.end() )
+    if (auto result = fmod->channels.find(id); result != fmod->channels.end())
     {
-      unsigned pos { 0 };
-      FMODWrapper::ErrorChecker( result->second->getPosition( &pos, FMOD_TIMEUNIT_MS ) );
+      unsigned pos{0};
+      FMODWrapper::ErrorChecker(result->second->getPosition(&pos, FMOD_TIMEUNIT_MS));
       return pos;
     }
     return 0;
@@ -189,10 +192,10 @@ namespace DeltaEngine
 
   unsigned AudioEngine::GetSoundLength(const std::string& name)
   {
-    if ( auto result = fmod->sounds.find(name); result != fmod->sounds.end() )
+    if (auto result = fmod->sounds.find(name); result != fmod->sounds.end())
     {
-      unsigned pos { 0 };
-      FMODWrapper::ErrorChecker( result->second->getLength( &pos, FMOD_TIMEUNIT_MS ) );
+      unsigned pos{0};
+      FMODWrapper::ErrorChecker(result->second->getLength(&pos, FMOD_TIMEUNIT_MS));
       return pos;
     }
     return 0;
@@ -202,11 +205,10 @@ namespace DeltaEngine
   // Studio
   bool AudioEngine::IsLoadedBank(const std::string& name)
   {
-    if ( auto result = fmod->banks.find( name ); result != fmod->banks.end() )
+    if (auto result = fmod->banks.find(name); result != fmod->banks.end())
       return true;
     return false;
   }
-
 
 
   void AudioEngine::LoadBank(const std::string& name, FMOD_STUDIO_LOAD_BANK_FLAGS flags)
@@ -236,20 +238,20 @@ namespace DeltaEngine
 
   std::vector<std::string> AudioEngine::EventList(const std::string& name)
   {
-    if (auto result = fmod->banks.find(name); result!= fmod->banks.end())
+    if (auto result = fmod->banks.find(name); result != fmod->banks.end())
     {
-      int counter { 0 };
-      FMOD::Studio::EventDescription *desc[256];
-      if ( FMODWrapper::ErrorChecker( result->second->getEventList( desc, 256, &counter ) ) )
+      int counter{0};
+      FMOD::Studio::EventDescription* desc[256];
+      if (FMODWrapper::ErrorChecker(result->second->getEventList(desc, 256, &counter)))
         return {};
 
       std::vector<std::string> str_vec;
-      for (int i = 0; i < counter ; i ++)
+      for (int i = 0; i < counter; i ++)
       {
         char buffer[1024];
-        int retrieved { 0 };
-        desc[i]->getPath( buffer, 1024, &retrieved );
-        str_vec.push_back( buffer );
+        int retrieved{0};
+        desc[i]->getPath(buffer, 1024, &retrieved);
+        str_vec.push_back(buffer);
       }
       return str_vec;
     }
