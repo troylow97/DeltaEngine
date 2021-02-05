@@ -11,28 +11,15 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
 #include "ECS/ECSModule.h"
-#include "Core/Math/Point.h"
 #include "Core/GlobalStruct.h"
 
 namespace DeltaEngine
 {
-    namespace MouseCalculation
-    {
-        bool ShootRight();
-        bool ShootLeft();
-        bool IsMouseOnRight();
-    //private:
-    //    Point curr_mouse{};
-    //    Point prev_mouse{};
-    }
-//  DEFINE_SYSTEM(MouseCalculation, Transform)
-//    void Update() override;
-//    void LateUpdate() override;
-//    bool ShootRight();
-//    bool ShootLeft();
-//    bool IsMouseOnRight();
-//private:
-//    Point curr_mouse{};
-//    Point prev_mouse{};
-//  END_DEFINE_SYSTEM(MouseCalculation)
+  namespace MouseCalculation
+  {
+    bool ShootRight();
+    bool ShootLeft();
+    bool IsMouseOnRight();
+    Vector2 CalculateDirectionVector();
+  }
 }

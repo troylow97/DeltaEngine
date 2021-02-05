@@ -27,6 +27,7 @@ struct Attack
   float ComboCooldownTimer;
   float KnockbackAmount;
   float KnockbackComboAmount;
+  float SMGFireRate;
   bool RangeAttack;
   bool MeleeAttack;
   bool SMGAttack;
@@ -47,6 +48,7 @@ struct Attack
     ComboCooldownTimer{0.0f},
     KnockbackAmount{0.0f},
     KnockbackComboAmount{0.0f},
+    SMGFireRate{0.5f},
     RangeAttack{false},
     MeleeAttack{false},
     SMGAttack{false},

@@ -51,12 +51,17 @@ namespace DeltaEngine
     {
       auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
       auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-      if (a.SMGAttack)
+      if (a.SMGAttack && a.SMGFireRate <= 0.0f)
       {
         // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
         //p.StartDashingTimer = true;
         SMGAttack(UnitManager::GetPlayerID());
       }
+
+      if (a.SMGFireRate >= 0.0f)
+          a.SMGFireRate -= env.pClock->FixedDeltaTime();
+      else
+          a.SMGFireRate = 0.25f;
     }
     // melee and ranged attack ----------------------------------------------------------------------------------
     em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
@@ -167,7 +172,7 @@ namespace DeltaEngine
       if (AudioEngine::IsChannelPlaying(c_id))
         AudioEngine::StopChannel(c_id);
       c_id = AudioEngine::Play("Audio/jump.wav");
-
+      
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
@@ -285,35 +290,32 @@ namespace DeltaEngine
 
   void AttackSystem::SMGAttack(EntityID& id)
   {
-    //////////////////// AHHHH DO HERE
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
     {
-      EntityID smgbullet = CreateSMGBullet(id, Vector2{ 0.25f, 0.25f }, false, 0.2f, EntityCategory::E_PLAYER_SMG);
+      EntityID smgbullet = CreateSMGBullet(id, Vector2{ 0.75f, 0.75f }, false, 0.5f, EntityCategory::E_PLAYER_SMG);
       em.AddComponent<Renderer2D>(smgbullet);
       em.AddComponent<Image>(smgbullet);
       em.GetComponent<Renderer2D>(smgbullet).m_SortingLayer = 4;
       em.GetComponent<Image>(smgbullet).m_Size = { 0.25f, 0.25f };
-      em.GetComponent<Image>(smgbullet).m_Sprite.m_Key = "Textures/ExperienceORB"; // use BULLET to replace now
+      em.GetComponent<Image>(smgbullet).m_Sprite.m_Key = "Textures/BULLET"; // use BULLET to replace for now
       em.GetComponent<Image>(smgbullet).m_Sprite.m_Index = 0;
-      // em.GetComponent<State>(id).SetBool("Ranged", true); // change when have the animation 
-      static size_t c_id{ u64_max };
+      ////// em.GetComponent<State>(id).SetBool("Ranged", true); // change when have the animation 
+      //////static size_t c_id{ u64_max };
       //////if (AudioEngine::IsChannelPlaying(c_id))
       //////  AudioEngine::StopChannel(c_id);
-      //////c_id = AudioEngine::Play("Audio/SWORD_GEN-HDF-22317.wav"); // temp one lol 
+      //////c_id = AudioEngine::Play("Audio/SWORD_GEN-HDF-22317.wav"); 
       
       if (MouseCalculation::ShootRight())
       {
-          em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
-          em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { 8000, 0 };
-          //em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
-          //em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { 8000, 0 };
+        Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
+        em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 10000, direction_to_shoot.y * 10000 };
       }
       else if (MouseCalculation::ShootLeft())
       {
+        Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
         em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
-        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { -8000, 0 };
-        //em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
-        //em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { -8000, 0 };
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 10000, direction_to_shoot.y * 10000 };
       }
     }
   }

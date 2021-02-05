@@ -39,19 +39,24 @@ namespace DeltaEngine
         render_size = {viewportPanelSize.x, viewportPanelSize.y};
         if (ImGui::IsWindowHovered())
         {
-            ImGui::SetWindowFocus();
-            //mouse_pos = { ImGui::GetMousePos().x, ImGui::GetMousePos().y };
+          ImGui::SetWindowFocus();
 
-            prev_mouse = curr_mouse;
- 
-            auto& t = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>({ 0 });
-            float cameraWidth = Camera::allCameras[0]->Max(t).x - Camera::allCameras[0]->Min(t).x;
-            float cameraHeight = Camera::allCameras[0]->Max(t).y - Camera::allCameras[0]->Min(t).y;
-            
-            float cursorViewPortDistanceX = ImGui::GetMousePos().x - render_pos.x;
-            float cursorViewPortDistanceY = ImGui::GetMousePos().y - render_pos.y;
-            curr_mouse.point_x = ((cursorViewPortDistanceX / render_size.x) * cameraWidth) + Camera::allCameras[0]->Min(Camera::editorCameraTransform).x;
-            curr_mouse.point_y = Camera::allCameras[0]->Max(Camera::editorCameraTransform).y - ((cursorViewPortDistanceY / render_size.y) * cameraHeight);
+          prev_mouse = curr_mouse;
+          
+          auto& t = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>({ 0 });
+          float cameraWidth = Camera::allCameras[0]->Max(t).x - Camera::allCameras[0]->Min(t).x;  // 12.182
+          float cameraHeight = Camera::allCameras[0]->Max(t).y - Camera::allCameras[0]->Min(t).y; //  5.000 
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](Transform& t, Camera& c)
+          {
+            game_camera_mid = { t.position.x ,t.position.y }; // (5, 2)
+            game_camera_min = { game_camera_mid.x - (cameraWidth / 2), game_camera_mid.y - (cameraHeight / 2) };  // (-1.091, -0.5)
+            game_camera_max = { game_camera_mid.x + (cameraWidth / 2), game_camera_mid.y + (cameraHeight / 2) }; // (11.091,  4.5)
+          });
+
+          float cursorViewPortDistanceX = ImGui::GetMousePos().x - render_pos.x;
+          float cursorViewPortDistanceY = ImGui::GetMousePos().y - render_pos.y; 
+          curr_mouse.point_x = ((cursorViewPortDistanceX / render_size.x) * cameraWidth) + game_camera_min.x;
+          curr_mouse.point_y = game_camera_max .y - ((cursorViewPortDistanceY / render_size.y) * cameraHeight);
         }
         Camera::allCameras[0]->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
         Camera::allCameras[0]->SetViewportSize(viewportPanelSize.x);

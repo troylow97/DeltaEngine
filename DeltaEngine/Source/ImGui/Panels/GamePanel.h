@@ -24,5 +24,8 @@ namespace DeltaEngine
     static inline Vector2 mouse_pos;
     static inline Point curr_mouse;
     static inline Point prev_mouse;
+    static inline Vector2 game_camera_mid;
+    static inline Vector2 game_camera_min;
+    static inline Vector2 game_camera_max;
   };
 }

@@ -271,7 +271,7 @@ namespace DeltaEngine
         idle_timer = 0.0f; // what's this troy low yee?
       });
     }
-    if (InputManager::Instance().IsKeyReleased(DEVK_LBUTTON))
+    if (!(InputManager::Instance().IsKeyPressed(DEVK_LBUTTON)))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
       {

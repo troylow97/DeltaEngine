@@ -320,14 +320,10 @@ namespace DeltaEngine
   auto p_y = Camera::allCameras[0]->Max( t ).y - ( ( cursorViewPortDistanceY / GamePanel::render_size.y ) * cameraHeight );
 #else
 
-    float cursorViewPortDistanceX = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().
-      point_x;
-    float cursorViewPortDistanceY = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().
-      point_y;
-    auto p_x = ((cursorViewPortDistanceX / GetEnv().pWin->ClientRect().point_x) * cameraWidth) + Camera::allCameras[0]->
-      Min(t).x;
-    auto p_y = Camera::allCameras[0]->Max(t).y - ((cursorViewPortDistanceY / GetEnv().pWin->ClientRect().point_y) *
-      cameraHeight);
+    float cursorViewPortDistanceX = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
+    float cursorViewPortDistanceY = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
+    auto p_x = ((cursorViewPortDistanceX / GetEnv().pWin->ClientRect().point_x) * cameraWidth) + Camera::allCameras[0]->Min(t).x;
+    auto p_y = Camera::allCameras[0]->Max(t).y - ((cursorViewPortDistanceY / GetEnv().pWin->ClientRect().point_y) * cameraHeight);
 #endif
 
 
