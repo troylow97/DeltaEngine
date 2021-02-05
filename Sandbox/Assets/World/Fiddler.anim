@@ -45,7 +45,7 @@ Clip/FID_WALK
 
 pos
 Clip/FID_DEATH
--78 465
+2 440
 
 pos
 Clip/FID_ATTACK
@@ -53,11 +53,11 @@ Clip/FID_ATTACK
 
 pos
 Clip/FID_ALERT_RUN
-189 232
+265 292
 
 pos
 Clip/FID_ALERT
--61 157
+173 219
 
 %Transitions:
 
@@ -99,9 +99,6 @@ Clip/FID_ALERT_RUN
 condition
 MeleeAttack
 ? 0
-condition
-IsAlertRunning
-? 0
 endTransition
 
 transition
@@ -112,9 +109,6 @@ Clip/FID_DEATH
 condition
 IsDead
 ? 1
-condition
-MeleeAttack
-? 0
 endTransition
 
 transition
@@ -145,9 +139,6 @@ Clip/FID_ALERT
 condition
 IsAlerted
 ? 1
-condition
-MeleeAttack
-? 0
 endTransition
 
 transition
@@ -158,9 +149,6 @@ Clip/FID_WALK
 condition
 IsPatrolling
 ? 1
-condition
-MeleeAttack
-? 0
 endTransition
 
 %endfile

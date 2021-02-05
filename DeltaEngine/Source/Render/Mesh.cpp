@@ -369,11 +369,6 @@ namespace DeltaEngine
     vbo.Bind();
     vbo.Unbind();
 
-    if (0)
-    {
-      (void)0;
-    }
-
     if (useInstancing)
     {
       ivbo.InitData(
@@ -407,51 +402,6 @@ namespace DeltaEngine
       {
         GLCall(glDrawArrays(GL_TRIANGLES, 0, static_cast<unsigned int>(vertices.size())));
       }
-    }
-
-    vao.Unbind();
-    if (indices.size())
-      ibo.Unbind();
-  }
-
-  void Mesh::DrawWireframe()
-  {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-    if (indices.size())
-    {
-      ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
-      ibo.Bind();
-    }
-
-    vbo.InitData(
-      VerticesDataFormat().data(),
-      static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)),
-      isDynamic);
-    vbo.Bind();
-    vbo.Unbind();
-
-    if (useInstancing)
-    {
-      ivbo.InitData(
-        instanceData.data(),
-        static_cast<unsigned int>(instanceData.size() * sizeof(float)),
-        isDynamic);
-      ivbo.Bind();
-      ivbo.Unbind();
-    }
-
-    vao.Bind();
-
-    if (indices.size())
-    {
-      GLCall(glDrawElements( GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr ));
-    }
-    else
-    {
-      GLCall(glDrawArrays( GL_TRIANGLES, 0, static_cast<unsigned int>( vertices.size() ) ));
     }
 
     vao.Unbind();
@@ -609,10 +559,10 @@ namespace DeltaEngine
     quad->texCoords[1] = Vector2(1, 0);
     quad->texCoords[2] = Vector2(1, 1);
     quad->texCoords[3] = Vector2(0, 1);
-    if (wireframe)
-      quad->DrawWireframe();
-    else
-      quad->Draw();
+    wireframe ? glDisable(GL_BLEND) : glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glPolygonMode(GL_FRONT_AND_BACK, wireframe ? GL_LINE : GL_FILL);
+    quad->Draw();
   }
 
   void Mesh::DrawQuad(Vector2 offset, Vector2 tiling, Vector2 pivot)
@@ -625,6 +575,10 @@ namespace DeltaEngine
     quad->texCoords[1] = Vector2(offset.x + tiling.x, offset.y);
     quad->texCoords[2] = Vector2(offset.x + tiling.x, offset.y + tiling.y);
     quad->texCoords[3] = Vector2(offset.x, offset.y + tiling.y);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     quad->Draw();
   }
 
