@@ -1,0 +1,53 @@
+Textures/FID_DEATH_i_0
+offset 0 0
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_DEATH_i_1
+offset 400 0
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_DEATH_i_2
+offset 800 0
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_DEATH_i_3
+offset 1200 0
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_DEATH_i_4
+offset 1600 0
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_DEATH_i_5
+offset 0 400
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_DEATH_i_6
+offset 400 400
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_DEATH_i_7
+offset 800 400
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_DEATH_i_8
+offset 1200 400
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_DEATH_i_9
+offset 1600 400
+size 400 400
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

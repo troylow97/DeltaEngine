@@ -1,6 +1,61 @@
 Textures/FID_DMG_i_0
 offset 0 0
-size 1980 640
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_1
+offset 330 0
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_2
+offset 660 0
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_3
+offset 990 0
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_4
+offset 1320 0
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_5
+offset 1650 0
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_6
+offset 0 320
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_7
+offset 330 320
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_8
+offset 660 320
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_9
+offset 990 320
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_10
+offset 1320 320
+size 330 320
+pivot 0.5 0.5
+
+Textures/FID_DMG_i_11
+offset 1650 320
+size 330 320
 pivot 0.5 0.5
 
 %

@@ -1,6 +1,21 @@
 Textures/DAVE_FIRE_i_0
 offset 0 0
-size 1200 300
+size 300 300
+pivot 0.5 0.5
+
+Textures/DAVE_FIRE_i_1
+offset 300 0
+size 300 300
+pivot 0.5 0.5
+
+Textures/DAVE_FIRE_i_2
+offset 600 0
+size 300 300
+pivot 0.5 0.5
+
+Textures/DAVE_FIRE_i_3
+offset 900 0
+size 300 300
 pivot 0.5 0.5
 
 %

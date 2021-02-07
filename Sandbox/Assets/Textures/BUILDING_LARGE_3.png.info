@@ -1,6 +1,11 @@
 Textures/BUILDING_LARGE_3_i_0
 offset 0 0
-size 1662 1326
+size 831 1326
+pivot 0.5 0.5
+
+Textures/BUILDING_LARGE_3_i_1
+offset 831 0
+size 831 1326
 pivot 0.5 0.5
 
 %

@@ -1,0 +1,45 @@
+frames 8
+fps 12
+loop 0
+
+Textures/BLOCKER_SPAWN_i_0
+key Textures/BLOCKER_SPAWN
+value 0
+frame 0
+
+Textures/BLOCKER_SPAWN_i_1
+key Textures/BLOCKER_SPAWN
+value 1
+frame 1
+
+Textures/BLOCKER_SPAWN_i_2
+key Textures/BLOCKER_SPAWN
+value 2
+frame 2
+
+Textures/BLOCKER_SPAWN_i_3
+key Textures/BLOCKER_SPAWN
+value 3
+frame 3
+
+Textures/BLOCKER_SPAWN_i_4
+key Textures/BLOCKER_SPAWN
+value 4
+frame 4
+
+Textures/BLOCKER_SPAWN_i_5
+key Textures/BLOCKER_SPAWN
+value 5
+frame 5
+
+Textures/BLOCKER_SPAWN_i_6
+key Textures/BLOCKER_SPAWN
+value 6
+frame 6
+
+Textures/BLOCKER_SPAWN_i_7
+key Textures/BLOCKER_SPAWN
+value 7
+frame 7
+
+%
