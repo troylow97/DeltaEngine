@@ -1,61 +1,6 @@
 Textures/LANCER_BOUNCE_i_0
 offset 0 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_1
-offset 300 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_2
-offset 600 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_3
-offset 900 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_4
-offset 1200 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_5
-offset 1500 0
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_6
-offset 0 300
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_7
-offset 300 300
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_8
-offset 600 300
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_9
-offset 900 300
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_10
-offset 1200 300
-size 300 300
-pivot 0.5 0.5
-
-Textures/LANCER_BOUNCE_i_11
-offset 1500 300
-size 300 300
+size 1800 600
 pivot 0.5 0.5
 
 %
