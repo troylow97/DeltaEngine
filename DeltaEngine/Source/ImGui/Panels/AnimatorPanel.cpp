@@ -376,13 +376,14 @@ namespace DeltaEngine
                 ++i;
             }
             i = 0;
-            for (auto& [StartState, EndState, Conditions] : controller->transitions)
+            for (; i < static_cast<int>(controller->transitions.size());)
             {
+              auto& [StartState, EndState, Conditions] = controller->transitions[i];
               if (!strcmp(StartState.c_str(), node->nodeName) ||
                 !strcmp(EndState.c_str(), node->nodeName))
               {
+                std::cerr << node->nodeName << ", " << StartState << ", " << EndState << std::endl;
                 controller->transitions.erase(controller->transitions.begin() + i);
-                std::cerr << StartState << ", " << EndState << std::endl;
               }
               else
                 ++i;
