@@ -15,6 +15,7 @@ struct Attack
 {
   int RangedDamage;
   int MeleeDamage;
+  int SMGDamage;
   int MeleeComboDamage;
   int NumberOfCombos;
   int MaxComboNumber;
@@ -26,14 +27,17 @@ struct Attack
   float ComboCooldownTimer;
   float KnockbackAmount;
   float KnockbackComboAmount;
+  float SMGFireRate;
   bool RangeAttack;
   bool MeleeAttack;
+  bool SMGAttack;
   bool Blocking;
   bool StartComboCooldownTimer;
 
   Attack() :
     RangedDamage{1},
     MeleeDamage{1},
+    SMGDamage{1},
     MeleeComboDamage{3},
     NumberOfCombos{0},
     MaxComboNumber{3},
@@ -45,8 +49,11 @@ struct Attack
     ComboCooldownTimer{0.0f},
     KnockbackAmount{0.0f},
     KnockbackComboAmount{0.0f},
+    SMGFireRate{0.5f},
     RangeAttack{false},
     MeleeAttack{false},
+    SMGAttack{false},
+    Blocking{false},
     StartComboCooldownTimer{false}
   {
   }

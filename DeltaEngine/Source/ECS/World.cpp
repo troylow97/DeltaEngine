@@ -43,10 +43,10 @@ World::World() : em( std::make_unique<EntityManager>() )
 #endif
 }
 
-void World::SetPause( bool pause )
-{
-  m_pause = pause;
-}
+  void World::SetPause(bool pause)
+  {
+    m_pause = pause;
+  }
 
 
 EntityManager &World::GetEntityManager() const

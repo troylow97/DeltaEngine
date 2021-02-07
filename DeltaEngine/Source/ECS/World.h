@@ -17,12 +17,11 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "EntityManager.h"
 #include "SystemBase.h"
 #include "Core/Typelist/CHash.h"
-#include "ECS/ICloneWorld.h"
 #include <memory>
 
 namespace DeltaEngine
 {
-  class World //: public ICloneWorld
+  class World
   {
     std::unique_ptr<EntityManager> em;
     std::unordered_map<size_t, std::unique_ptr<SystemBase>> systems;
@@ -40,26 +39,6 @@ namespace DeltaEngine
     {
 
     }
-
-    //virtual ICloneWorld* clone() override;
-
-    //std::unique_ptr<SystemBase>(const std::unique_ptr<SystemBase>& rhs)
-    //{
-    //    for (const auto& ref : rhs.systems)
-    //    {
-    //        systems[ref.first] = new std::unique_ptr<SystemBase>(*ref.second);
-    //    }
-    //}
-
-    //////World(const World& rhs) : systems(new SystemBase(*rhs.systems)) {}
-    ////////std::unique_ptr<SystemBase>(const std::unique_ptr<SystemBase>& rhs)
-    ////////{
-    ////////    for (const auto& ref : rhs.systems)
-    ////////    {
-    ////////        systems[ref.first] = new std::unique_ptr<SystemBase>(*ref.second);
-    ////////    }
-    ////////}
-
 
     void SetPause(bool pause);
 
