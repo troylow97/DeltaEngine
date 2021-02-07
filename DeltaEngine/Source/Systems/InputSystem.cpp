@@ -325,10 +325,11 @@ namespace DeltaEngine
     if (InputManager::Instance().IsKeyReleased(DEVK_UP) || InputManager::Instance().IsKeyReleased(DEVK_DOWN)
       || InputManager::Instance().IsKeyReleased(DEVK_LEFT) || InputManager::Instance().IsKeyReleased(DEVK_RIGHT))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Animator& a,State& s, RigidBody& r1, Input& i1)
       {
         r1.Direction = Vector2::zero();
         r1.InherentAcceleration = 0.0f;
+        s.SetBool("isRunning", false);
       });
     }
 

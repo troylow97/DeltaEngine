@@ -29,54 +29,59 @@ param
 isIdle
 1 0
 
+param
+ReachingTop
+1 0
+
+param
+JumpLanded
+1 0
+
 %EditorPositions:
 
 pos
 Entry
--56 -99
+-277 -56
 
 pos
 Exit
 652 256
 
 pos
-Clip/Punch1
-30 -146
-
-pos
-Clip/IdleSpritesheet
-58 -13
+Clip/ReachingTop
+162 323
 
 pos
 Clip/DAVE_SHIELD_UP
--211 -35
+-439 149
 
 pos
 Clip/RunningSpritesheet
--153 82
+-329 296
+
+pos
+Clip/LandingSpriteSheet
+223 174
+
+pos
+Clip/Punch1
+135 -74
 
 pos
 Clip/InitialJump
-53 137
+-67 338
 
 pos
-Clip/ReachingTop
-230 197
-
-pos
-Clip/RecoverySpritesheet
-526 161
+Clip/IdleSpritesheet
+-76 83
 
 %Transitions:
 
 transition
 start
-Clip/IdleSpritesheet
+Clip/ReachingTop
 end
-Clip/Punch1
-condition
-Punch1
-? 1
+Clip/ReachingTop
 endTransition
 
 transition
@@ -91,11 +96,51 @@ endTransition
 
 transition
 start
+Clip/RunningSpritesheet
+end
+Clip/DAVE_SHIELD_UP
+condition
+ShieldUp
+? 1
+endTransition
+
+transition
+start
+Clip/ReachingTop
+end
+Clip/LandingSpriteSheet
+condition
+JumpLanded
+? 1
+endTransition
+
+transition
+start
+Clip/IdleSpritesheet
+end
+Clip/Punch1
+condition
+Punch1
+? 1
+endTransition
+
+transition
+start
 Clip/DAVE_SHIELD_UP
 end
 Clip/IdleSpritesheet
 condition
 ShieldUp
+? 0
+endTransition
+
+transition
+start
+Clip/RunningSpritesheet
+end
+Clip/IdleSpritesheet
+condition
+isRunning
 ? 0
 endTransition
 
@@ -107,26 +152,6 @@ Clip/RunningSpritesheet
 condition
 isRunning
 ? 1
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/IdleSpritesheet
-condition
-isRunning
-? 0
-endTransition
-
-transition
-start
-Clip/Punch1
-end
-Clip/IdleSpritesheet
-condition
-Punch1
-? 0
 endTransition
 
 transition
@@ -144,18 +169,14 @@ start
 Clip/InitialJump
 end
 Clip/ReachingTop
+condition
+ReachingTop
+? 1
 endTransition
 
 transition
 start
-Clip/ReachingTop
-end
-Clip/ReachingTop
-endTransition
-
-transition
-start
-Clip/ReachingTop
+Clip/LandingSpriteSheet
 end
 Clip/IdleSpritesheet
 condition
