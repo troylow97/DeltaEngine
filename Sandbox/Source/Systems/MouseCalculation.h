@@ -21,6 +21,7 @@ namespace DeltaEngine
     bool ShootLeft();
     bool IsMouseOnRight();
     Vector2 CalculateDirectionVector();
+    Vector2 CalculateGameCoordinate();
     Vector2 CalculateScreenCoordinate();
   }
 }

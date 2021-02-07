@@ -80,8 +80,8 @@ namespace DeltaEngine
     {
       auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
 #ifdef DE_EDITOR
-      auto p_x = GamePanel::curr_mouse.point_x;
-      auto p_y = GamePanel::curr_mouse.point_y;
+      auto p_x = CalculateGameCoordinate().x;
+      auto p_y = CalculateGameCoordinate().y;
 #else
       auto p_x = CalculateScreenCoordinate().x;
       auto p_y = CalculateScreenCoordinate().y;
@@ -91,6 +91,14 @@ namespace DeltaEngine
       Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
 
       return normalized_direction_vector;
+    }
+
+    Vector2 MouseCalculation::CalculateGameCoordinate()
+    {
+      auto p_x = GamePanel::curr_mouse.point_x;
+      auto p_y = GamePanel::curr_mouse.point_y;
+      
+      return Vector2{ p_x, p_y };
     }
 
     Vector2 MouseCalculation::CalculateScreenCoordinate()
