@@ -372,18 +372,24 @@ namespace DeltaEngine
             {
               if (key == node->nodeName)
                 controller->editorPositions.erase(controller->editorPositions.begin() + i);
-              ++i;
+              else
+                ++i;
             }
             i = 0;
             for (auto& [StartState, EndState, Conditions] : controller->transitions)
             {
               if (!strcmp(StartState.c_str(), node->nodeName) ||
                 !strcmp(EndState.c_str(), node->nodeName))
+              {
                 controller->transitions.erase(controller->transitions.begin() + i);
-              ++i;
+                std::cerr << StartState << ", " << EndState << std::endl;
+              }
+              else
+                ++i;
             }
             nodes.erase(nodes.begin() + nodeSelected);
             nodeSelected = -1;
+            loaded = false;
           }
         }
         ImGui::EndPopup();

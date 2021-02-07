@@ -6,10 +6,6 @@ Clip/IdleSpritesheet
 %Parameters:
 
 param
-%EditorPositions:
-0 0
-
-param
 isRunning
 1 0
 
