@@ -11782,6 +11782,7 @@
             "Attack": {
                 "Range Damage": 0,
                 "Melee Damage": 2,
+                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -11793,8 +11794,11 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
+                "SMG Attack": false,
+                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -11918,6 +11922,7 @@
             "Attack": {
                 "Range Damage": 5,
                 "Melee Damage": 0,
+                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -11929,8 +11934,11 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
+                "SMG Attack": false,
+                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -12054,6 +12062,7 @@
             "Attack": {
                 "Range Damage": 0,
                 "Melee Damage": 10,
+                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -12065,8 +12074,11 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
+                "SMG Attack": false,
+                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -12190,6 +12202,7 @@
             "Attack": {
                 "Range Damage": 0,
                 "Melee Damage": 2,
+                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -12201,8 +12214,11 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
+                "SMG Attack": false,
+                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -12326,6 +12342,7 @@
             "Attack": {
                 "Range Damage": 0,
                 "Melee Damage": 2,
+                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -12337,8 +12354,11 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
+                "SMG Attack": false,
+                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -12491,12 +12511,13 @@
                 "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 0,
+                "Range Damage": 1,
                 "Melee Damage": 1,
-                "Melee Combo Damage": 0,
+                "SMG Damage": 1,
+                "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 0.2,
+                "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "Melee Cooldown Timer": -0.20000000298023225,
                 "Range Cooldown Timer": -0.20000000298023225,
@@ -12504,8 +12525,11 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
-                "Ranged Attack": true,
-                "Melee Attack": true,
+                "SMG Fire Rate": 0.5,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "SMG Attack": false,
+                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             },
             "Player": {

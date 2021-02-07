@@ -37,11 +37,19 @@ param
 JumpLanded
 1 0
 
+param
+Punch2
+1 0
+
+param
+Punch3
+1 0
+
 %EditorPositions:
 
 pos
 Entry
--277 -56
+-471 -49
 
 pos
 Exit
@@ -64,16 +72,24 @@ Clip/LandingSpriteSheet
 223 174
 
 pos
-Clip/Punch1
-135 -74
-
-pos
 Clip/InitialJump
 -67 338
 
 pos
 Clip/IdleSpritesheet
 -76 83
+
+pos
+Clip/DAVE_PUNCH1_NEW
+-135 -54
+
+pos
+Clip/DAVE_PUNCH2_NEW
+-122 -132
+
+pos
+Clip/DAVE_PUNCH3_NEW
+134 -191
 
 %Transitions:
 
@@ -111,16 +127,6 @@ end
 Clip/LandingSpriteSheet
 condition
 JumpLanded
-? 1
-endTransition
-
-transition
-start
-Clip/IdleSpritesheet
-end
-Clip/Punch1
-condition
-Punch1
 ? 1
 endTransition
 
@@ -181,6 +187,56 @@ end
 Clip/IdleSpritesheet
 condition
 isIdle
+? 1
+endTransition
+
+transition
+start
+Clip/IdleSpritesheet
+end
+Clip/DAVE_PUNCH1_NEW
+condition
+Punch1
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH1_NEW
+end
+Clip/DAVE_PUNCH2_NEW
+condition
+Punch2
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH2_NEW
+end
+Clip/DAVE_PUNCH3_NEW
+condition
+Punch3
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH3_NEW
+end
+Clip/IdleSpritesheet
+condition
+isIdle
+? 1
+endTransition
+
+transition
+start
+Clip/RunningSpritesheet
+end
+Clip/DAVE_PUNCH1_NEW
+condition
+Punch1
 ? 1
 endTransition
 

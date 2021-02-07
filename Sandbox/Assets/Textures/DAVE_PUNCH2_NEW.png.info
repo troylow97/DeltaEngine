@@ -1,0 +1,53 @@
+Textures/DAVE_PUNCH2_NEW_i_0
+offset 0 0
+size 288 240
+pivot 0.5 0.5
+
+Textures/DAVE_PUNCH2_NEW_i_1
+offset 288 0
+size 288 240
+pivot 0.5 0.5
+
+Textures/DAVE_PUNCH2_NEW_i_2
+offset 576 0
+size 288 240
+pivot 0.5 0.5
+
+Textures/DAVE_PUNCH2_NEW_i_3
+offset 864 0
+size 288 240
+pivot 0.5 0.5
+
+Textures/DAVE_PUNCH2_NEW_i_4
+offset 1152 0
+size 288 240
+pivot 0.5 0.5
+
+Textures/DAVE_PUNCH2_NEW_i_5
+offset 0 240
+size 288 240
+pivot 0.5 0.5
+
+Textures/DAVE_PUNCH2_NEW_i_6
+offset 288 240
+size 288 240
+pivot 0.5 0.5
+
+Textures/DAVE_PUNCH2_NEW_i_7
+offset 576 240
+size 288 240
+pivot 0.5 0.5
+
+Textures/DAVE_PUNCH2_NEW_i_8
+offset 864 240
+size 288 240
+pivot 0.5 0.5
+
+Textures/DAVE_PUNCH2_NEW_i_9
+offset 1152 240
+size 288 240
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0
