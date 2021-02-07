@@ -64,7 +64,7 @@ namespace DeltaEngine
           a.SMGFireRate = 0.25f;
     }
     // melee and ranged attack ----------------------------------------------------------------------------------
-    em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
+    em.ForEach([&](EntityID& id,RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
     {
       //Reduce Cooldowns   	
       if (a.MeleeCooldownTimer > -0.2)
@@ -75,14 +75,17 @@ namespace DeltaEngine
       if (a.RangeCooldownTimer > -0.2)
         a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
 
-	  //Toggle Block    	
-      if(a.Blocking)
-      {
-	      
-      }
       //Toggle Ranged Attack
-      else if (a.RangeAttack && a.RangeCooldownTimer <= 0)
+      if (a.RangeAttack && a.RangeCooldownTimer <= 0)
       {
+      	if(a.Blocking)
+      	{
+            a.Blocking = false;
+			r.Movespeed /= 0.2;
+            r.FrictionCoeff -= 4.0f;
+            r.MaxAcceleration += 10.0f;
+            st.SetBool("ShieldUp", false);
+      	}
         em.GetComponent<State>(id).SetBool("Ranged", true);
         RangedAttackingEntities.push_back(id);
         a.RangeCooldownTimer = a.RangeCooldown;
@@ -92,8 +95,16 @@ namespace DeltaEngine
           em.GetComponent<State>(id).SetBool("Ranged", false);
 
        //Toggle Melee Attack   	
-      else if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
+      if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
       {
+          if (a.Blocking)
+          {
+              a.Blocking = false;
+              r.Movespeed /= 0.2;
+              r.FrictionCoeff -= 4.0f;
+              r.MaxAcceleration += 10.0f;
+              st.SetBool("ShieldUp", false);
+          }
         if (em.HasComponent<AI>(id))
             st.SetBool("MeleeAttack", true);
       	
