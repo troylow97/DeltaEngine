@@ -149,25 +149,32 @@ namespace DeltaEngine
 
   void PhysicsSystem::Jump(Player& p, RigidBody& r, Collider& c)
   {
-    if (CurrentJumpTicks >= 1 && p.IsJumping)
-    {
-      r.AccumulatedForce += Vector2{0, JumpForce + r.Mass * 100};
-      JumpForce *= 0.7f;
+  	if(p.IsJumping)
+  	{
+        if (CurrentJumpTicks >= 1)
+        {
+            r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };
+            JumpForce *= 0.7f;
 
-      if (CurrentJumpTicks < MaxJumpTicks)
-        CurrentJumpTicks++;
-      else
-      {
-        p.IsJumping = false;
-        CurrentJumpTicks = 0;
-        JumpForce = InitialJumpForce;
-      }
-    }
+            if (CurrentJumpTicks < MaxJumpTicks)
+                CurrentJumpTicks++;
+            else
+            {
+                p.IsJumping = false;
+                CurrentJumpTicks = 0;
+                JumpForce = InitialJumpForce;
 
-    //Apply Gravity for player
-    if (r.hasGravity && !c.isCollidingOnFloor && !p.IsDashing)
-      r.Acceleration = m_gravity_amount;
-    else
-      r.Acceleration = {0, 0};
+            }
+        }
+
+        //Apply Gravity for player
+        if (r.hasGravity && !c.isCollidingOnFloor && !p.IsDashing)
+            r.Acceleration = m_gravity_amount;
+        else
+            r.Acceleration = { 0, 0 };
+  	}
+
+  	
+
   }
 }

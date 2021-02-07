@@ -20,9 +20,16 @@ namespace DeltaEngine
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, Player& p, RigidBody& r, State& s, Animator& a)
     {
+      if(p.IsJumping)
+      {
+	      if(r.Velocity.y > 0)
+	      {
+		      
+	      }
+      }
       player = id;
-      std::cout << "Player state is: " << a.m_ClipKey << std::endl;
     });
+  	
     return player;
   }
 }
