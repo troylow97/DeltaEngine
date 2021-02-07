@@ -58,10 +58,22 @@ namespace DeltaEngine
         SMGAttack(UnitManager::GetPlayerID());
       }
 
-      if (a.SMGFireRate >= 0.0f)
+      if (a.SMGAttack)
+          a.StartSMGCooldownTimer = true;
+      if (a.StartSMGCooldownTimer)
+      {
+        if (a.SMGFireRate >= 0.0f)
+        {
           a.SMGFireRate -= env.pClock->FixedDeltaTime();
-      else
-          a.SMGFireRate = 0.25f;
+          a.AllowSMGAttack = false;
+        }
+        else
+        {
+          a.SMGFireRate = a.SMGCooldown;
+          a.AllowSMGAttack = true;
+          a.StartSMGCooldownTimer = false;
+        }
+      }
     }
     // melee and ranged attack ----------------------------------------------------------------------------------
     em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
