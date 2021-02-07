@@ -198,16 +198,19 @@ namespace DeltaEngine
           p1.IsJumping = true;
         i1.previousKey = DEVK_SPACE;
         idle_timer = 0.0f;
-
+        a.SetBool("isJumping", true);
         AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
       });
     }
     if (InputManager::Instance().IsKeyReleased(DEVK_SPACE))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, RigidBody& r1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, State& a, RigidBody& r1, Input& i1,Animator anim)
       {
         i1.previousKey = DEVK_SPACE;
         p1.IsJumping = false;
+        a.SetBool("JumpEnd", true);
+        if (anim.m_ClipKey == "JumpEnd" && anim.LoopsCompleted() > 0)
+            a.SetBool("isIdle", true);
       });
     }
 
