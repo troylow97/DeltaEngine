@@ -582,6 +582,14 @@ namespace DeltaEngine
                   ImGui::Text("There are no parameters!");
                   ImGui::Text("Add parameters to add conditions");
                 }
+                if (ImGui::Button("Delete Transition"))
+                {
+                  controller->transitions.erase(controller->transitions.begin() + selectedTransition);
+                  controller->SaveToFile();
+                  controller->LoadFromFile();
+                  loaded = false;
+                  selectedTransition = -1;
+                }
               }
               // Update Combo Selection
               if (initial != selection)
