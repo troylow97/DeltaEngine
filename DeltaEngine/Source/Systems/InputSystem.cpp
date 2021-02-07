@@ -70,6 +70,7 @@ namespace DeltaEngine
           a.MeleeComboDamage *= 2;
           a.MeleeDamage *= 2;
           a.RangedDamage *= 2;
+          a.SMGAttack *= 2;
         });
         god_mode = true;
       }
@@ -81,6 +82,7 @@ namespace DeltaEngine
           a.MeleeComboDamage /= 2;
           a.MeleeDamage /= 2;
           a.RangedDamage /= 2;
+          a.SMGAttack /= 2;
         });
         god_mode = false;
       }
@@ -104,6 +106,7 @@ namespace DeltaEngine
             a.SetBool("Punch3", false);
             att.MeleeAttack = false;
             att.RangeAttack = false;
+            att.SMGAttack = false;
 
             idle_timer = 0.0f;
             i.m_FlipX = true;
@@ -136,6 +139,7 @@ namespace DeltaEngine
             a.SetBool("Punch3", false);
             att.MeleeAttack = false;
             att.RangeAttack = false;
+            att.SMGAttack = false;
             idle_timer = 0.0f;
             i.m_FlipX = false;
           }
@@ -198,16 +202,19 @@ namespace DeltaEngine
           p1.IsJumping = true;
         i1.previousKey = DEVK_SPACE;
         idle_timer = 0.0f;
-
+        a.SetBool("isJumping", true);
         AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
       });
     }
     if (InputManager::Instance().IsKeyReleased(DEVK_SPACE))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, RigidBody& r1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, State& a, RigidBody& r1, Input& i1,Animator anim)
       {
         i1.previousKey = DEVK_SPACE;
         p1.IsJumping = false;
+        a.SetBool("JumpEnd", true);
+        if (anim.m_ClipKey == "JumpEnd" && anim.LoopsCompleted() > 0)
+            a.SetBool("isIdle", true);
       });
     }
 
@@ -259,6 +266,50 @@ namespace DeltaEngine
       });
     }
 
+    if (InputManager::Instance().IsKeyTriggered(DEVK_F))
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a,RigidBody& r1)
+            {
+        		if(a1.Blocking == true)
+        		{
+                    a1.Blocking = false;
+                    r1.Movespeed /= 0.2;
+                    r1.FrictionCoeff -= 4.0f;
+                    r1.MaxAcceleration += 10.0f;
+                    a.SetBool("ShieldUp", false);
+                    std::cout << "Blocking Off" << std::endl;
+        		}
+                else //Toggle Block
+                {
+                    a1.Blocking = true;
+                    r1.Movespeed *= 0.2;
+                    r1.FrictionCoeff += 4.0f;
+                    r1.MaxAcceleration -= 10.0f;
+                    a.SetBool("ShieldUp", true);
+                    std::cout << "Blocking On" << std::endl;
+                }
+
+
+            });
+    }
+
+    if (InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
+    {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      {
+        a1.SMGAttack = true;
+        idle_timer = 0.0f; // what's this troy low yee?
+      });
+    }
+    if (!(InputManager::Instance().IsKeyPressed(DEVK_LBUTTON)))
+    {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      {
+        a1.SMGAttack = false;
+        idle_timer = 0.0f; // what's this troy low yee?
+      });
+    }
+
     //if (InputManager::Instance().IsKeyTriggered(DEVK_COMMA))
     //{
     //  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
@@ -274,10 +325,11 @@ namespace DeltaEngine
     if (InputManager::Instance().IsKeyReleased(DEVK_UP) || InputManager::Instance().IsKeyReleased(DEVK_DOWN)
       || InputManager::Instance().IsKeyReleased(DEVK_LEFT) || InputManager::Instance().IsKeyReleased(DEVK_RIGHT))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Animator& a,State& s, RigidBody& r1, Input& i1)
       {
         r1.Direction = Vector2::zero();
         r1.InherentAcceleration = 0.0f;
+        s.SetBool("isRunning", false);
       });
     }
 

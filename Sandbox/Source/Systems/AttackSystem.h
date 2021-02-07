@@ -25,10 +25,12 @@ namespace DeltaEngine
     void LateUpdate() override;
     void RangedAttack(EntityID&);
     void MeleeAttack(EntityID&);
+    void SMGAttack(EntityID&);
     void Dash();
     void AttackCombo();
   private:
     EntityID CreateProjectile(EntityID id, Vector2 scale, bool gravity, float Lifetime, EntityCategory type);
+    EntityID CreateSMGBullet(EntityID id, Vector2 scale, bool gravity, float Lifetime, EntityCategory type);
     std::vector<EntityID> MeleeAttackingEntities;
     std::vector<EntityID> RangedAttackingEntities;
     //PlayerAttackCombo _pac;

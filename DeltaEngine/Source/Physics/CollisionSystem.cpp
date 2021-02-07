@@ -99,10 +99,10 @@ namespace DeltaEngine
     bool Handled = false;
     if (!current_manifold_vector.empty())
     {
-      for (std::vector<CollisionPairInfo>::iterator it1 = current_manifold_vector.begin(); it1 !=
+      for (auto it1 = current_manifold_vector.begin(); it1 !=
            current_manifold_vector.end(); ++it1)
       {
-        for (std::vector<CollisionPairInfo>::iterator it2 = old_manifold_vector.begin(); it2 != old_manifold_vector.
+        for (auto it2 = old_manifold_vector.begin(); it2 != old_manifold_vector.
              end(); ++it2)
         {
           if (it1->id1.index == it2->id1.index && it1->id2.index == it2->id2.index)
@@ -142,15 +142,15 @@ namespace DeltaEngine
     {
       for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); ++it1)
       {
-        if (!it1->ignore)
+        Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
+        Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
+      	
+        if (!it1->ignore && (!c1.isTrigger && !c2.isTrigger))
         {
           RigidBody& r1 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id1);
           RigidBody& r2 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id2);
           Transform& t1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id1);
           Transform& t2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id2);
-          Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
-          Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
-
 
           //Platform logic
           if ((c1.isPlatform || c2.isPlatform) && (em.HasComponent<Player>(it1->id1) || em.HasComponent<Player
@@ -179,8 +179,7 @@ namespace DeltaEngine
           }
 
           //Standard Collision Response
-          if ((AABBvsAABB_Manifold(c1, t1.scale, c2, t2.scale, it1->m) && it1->m.penetration > 0.001f) && (!c1.isTrigger
-            && !c2.isTrigger))
+          if ((AABBvsAABB_Manifold(c1, t1.scale, c2, t2.scale, it1->m) && it1->m.penetration > 0.001f))
           {
             CollisionResponse(c1, r1, c2, r2, it1->m);
 
