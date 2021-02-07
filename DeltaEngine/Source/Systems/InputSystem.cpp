@@ -48,16 +48,16 @@ namespace DeltaEngine
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, RigidBody& r1, Input& i, State& a)
     {
       a.SetFloat("IsIdle", idle_timer);
-
-      //if (melee_attack_cooldown > 0.5f )
-      //{
-      //  a.SetBool( "MeleeAttack", false );
-      //}
-      //
-      //if (range_attack_cooldown > 0.5f)
-      //{
-      //    a.SetBool("RangeAttack", false);
-      //}
+    
+      if (melee_attack_cooldown > 0.5f )
+      {
+        a.SetBool( "MeleeAttack", false );
+      }
+      
+      if (range_attack_cooldown > 0.5f)
+      {
+          a.SetBool("RangeAttack", false);
+      }
     });
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_0))
@@ -263,6 +263,7 @@ namespace DeltaEngine
         a1.MeleeAttack = true;
         idle_timer = 0.0f;
         range_attack_cooldown = 0.0f;
+        std::cout << "melee attack" << std::endl;
       });
     }
 

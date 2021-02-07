@@ -225,6 +225,7 @@ namespace DeltaEngine
 
   void AttackSystem::MeleeAttack(EntityID& id)
   {
+      std::cout << "punching" << std::endl;
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().
       HasComponent<Attack>(id))
     {
