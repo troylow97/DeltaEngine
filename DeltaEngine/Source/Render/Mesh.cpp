@@ -541,12 +541,11 @@ namespace DeltaEngine
     VertexBufferLayout layout;
     for (float locationSize : locations)
     {
-      layout.Push<float>(locationSize);
+      layout.Push<float>(static_cast<unsigned int>(locationSize));
     }
     quadInst->vao.AddBuffer(quadInst->ivbo, layout, true, 3);
 
     quadInst->Draw();
-    //Test();
   }
 
   void Mesh::DrawQuad(bool wireframe)
