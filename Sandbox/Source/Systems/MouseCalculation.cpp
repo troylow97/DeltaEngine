@@ -27,24 +27,12 @@ namespace DeltaEngine
   {
     bool ShootRight()
     {
-      auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
       auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
       
       if (IsMouseOnRight() && IsWithinRange(true)) // mouse on right side of player
       {
-        //std::cout << "yes mouse is on the right side of the player" << std::endl;
         if (AITools::isFacingRight(player_id)) // player facing right
         {
-          //std::cout << "AITools::isFacingRight(id) is " << AITools::isFacingRight(player_id) << std::endl;
-          return true;
-        }
-        return false;
-      }
-      else if (IsMouseOnLeft() && IsWithinRange(false))
-      {
-        if (AITools::isFacingLeft(player_id)) // player facing right
-        {
-          //std::cout << "AITools::isFacingRight(id) is " << AITools::isFacingRight(player_id) << std::endl;
           return true;
         }
         return false;
@@ -55,15 +43,12 @@ namespace DeltaEngine
     
     bool ShootLeft()
     {
-      auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
       auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
       
-      if (!IsMouseOnRight()) // mouse on left side of player
+      if (!IsMouseOnRight() && IsWithinRange(false)) // mouse on left side of player
       {
-        //std::cout << "yes mouse is on the left side of the player" << std::endl;
         if (AITools::isFacingLeft(player_id)) // player facing left
         {
-          //std::cout << "AITools::isFacingLeft(id) is " << AITools::isFacingRight(player_id) << std::endl;
           return true;
         }
         return false;
@@ -86,52 +71,32 @@ namespace DeltaEngine
       return false;
     }
 
-    bool MouseCalculation::IsMouseOnLeft()
-    {
-      auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-#ifdef DE_EDITOR
-      auto p_x = GamePanel::curr_mouse.point_x;
-      auto p_y = GamePanel::curr_mouse.point_y;
-#else
-      auto p_x = CalculateScreenCoordinate().x;
-      auto p_y = CalculateScreenCoordinate().y;
-#endif
-      if (p_x < player_pos.position.x)
-          return true;
-      return false;
-    }
-
     bool MouseCalculation::IsWithinRange(bool right)
     {
       if (right == true)
       {
-        float dot_product = 1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y;
+        float dot_product = 1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y; // dot product between [x1, y1] and [x2, y2], x1*x2 + y1*y2
         float determinant = 1.0f * CalculateDirectionVector().y - 0.0f * CalculateDirectionVector().x;
         float angle = atan2(determinant, dot_product);
         angle *= (180.0 / 3.141592653589793238463);
         
         if (angle > -45.0f && angle < 45.0f)
         {
-          std::cout << "angle on right is " << angle << std::endl;
           return true;
         }
-        std::cout << "angle on right outside range is " << angle << std::endl;
         return false;
       }
       if (right == false)
       {
-        float dot_product = -1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y;
+        float dot_product = -1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y; // dot product between [x1, y1] and [x2, y2], x1*x2 + y1*y2
         float determinant = -1.0f * CalculateDirectionVector().y - 0.0f * CalculateDirectionVector().x;
         float angle = atan2(determinant, dot_product);
         angle *= (180.0 / 3.141592653589793238463);
         
         if (angle > -45.0f && angle < 45.0f)
         {
-          std::cout << "angle on left is " << angle << std::endl;
           return true;
         }
-        std::cout << "angle is out of range already" << std::endl;
-        std::cout << "angle on left outside range is " << angle << std::endl;
         return false;
       }
       return false;
@@ -151,7 +116,6 @@ namespace DeltaEngine
       float magnitude = direction_vector.Magnitude();
       Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
 
-      //std::cout << "normalized_direction_vector is (" << normalized_direction_vector.x << ", " << normalized_direction_vector.y << ")" << std::endl;
       return normalized_direction_vector;
     }
 

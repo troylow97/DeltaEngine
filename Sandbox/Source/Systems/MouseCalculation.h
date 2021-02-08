@@ -20,7 +20,6 @@ namespace DeltaEngine
     bool ShootRight();
     bool ShootLeft();
     bool IsMouseOnRight();
-    bool IsMouseOnLeft();
     bool IsWithinRange(bool right);
     Vector2 CalculateDirectionVector();
     Vector2 CalculateGameCoordinate();
