@@ -80,16 +80,8 @@ Clip/IdleSpritesheet
 -64 79
 
 pos
-Clip/DAVE_PUNCH1_NEW
--135 -54
-
-pos
-Clip/DAVE_PUNCH2_NEW
--122 -132
-
-pos
 Clip/DAVE_PUNCH3_NEW
-134 -191
+-147 -100
 
 %Transitions:
 
@@ -175,9 +167,6 @@ start
 Clip/InitialJump
 end
 Clip/ReachingTop
-condition
-ReachingTop
-? 1
 endTransition
 
 transition
@@ -185,26 +174,13 @@ start
 Clip/LandingSpriteSheet
 end
 Clip/IdleSpritesheet
-condition
-isIdle
-? 1
 endTransition
 
 transition
 start
 Clip/IdleSpritesheet
 end
-Clip/DAVE_PUNCH1_NEW
-condition
-Punch1
-? 1
-endTransition
-
-transition
-start
-Clip/DAVE_PUNCH1_NEW
-end
-Clip/DAVE_PUNCH2_NEW
+Clip/DAVE_PUNCH3_NEW
 condition
 Punch2
 ? 1
@@ -212,29 +188,9 @@ endTransition
 
 transition
 start
-Clip/DAVE_PUNCH2_NEW
-end
-Clip/DAVE_PUNCH3_NEW
-condition
-Punch3
-? 1
-endTransition
-
-transition
-start
-Clip/DAVE_PUNCH3_NEW
-end
-Clip/IdleSpritesheet
-condition
-isIdle
-? 1
-endTransition
-
-transition
-start
 Clip/RunningSpritesheet
 end
-Clip/DAVE_PUNCH1_NEW
+Clip/DAVE_PUNCH3_NEW
 condition
 Punch1
 ? 1

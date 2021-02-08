@@ -20,19 +20,19 @@ namespace DeltaEngine
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id,Collider& c, Player& p, RigidBody& r, State& s, Animator& a)
     {
-      if(p.IsJumping)
-      {
-	      if(r.Velocity.y < 0)
-	      {
-              s.SetBool("ReachingTop", true);
-              s.SetBool("isJumping", false);
-	      }
-
-      	  if(c.isCollidingOnFloor)
-      	  {
-              s.SetBool("JumpLanded", true);
-      	  }
-      }
+      //if(p.IsJumping)
+      //{
+	  //    if(r.Velocity.y < 0)
+	  //    {
+      //        s.SetBool("ReachingTop", true);
+      //        s.SetBool("isJumping", false);
+	  //    }
+      //
+      //	  if(c.isCollidingOnFloor)
+      //	  {
+      //        s.SetBool("JumpLanded", true);
+      //	  }
+      //}
       player = id;
     });
   	
