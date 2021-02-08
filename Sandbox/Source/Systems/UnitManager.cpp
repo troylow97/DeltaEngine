@@ -34,6 +34,7 @@ namespace DeltaEngine
       //	  }
       //}
       player = id;
+      std::cout << "Player state is: " << a.m_ClipKey << std::endl;
     });
   	
     return player;

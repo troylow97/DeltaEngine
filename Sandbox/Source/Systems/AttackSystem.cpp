@@ -58,10 +58,22 @@ namespace DeltaEngine
         SMGAttack(UnitManager::GetPlayerID());
       }
 
-      if (a.SMGFireRate >= 0.0f)
+      if (a.SMGAttack)
+          a.StartSMGCooldownTimer = true;
+      if (a.StartSMGCooldownTimer)
+      {
+        if (a.SMGFireRate >= 0.0f)
+        {
           a.SMGFireRate -= env.pClock->FixedDeltaTime();
-      else
-          a.SMGFireRate = 0.25f;
+          a.AllowSMGAttack = false;
+        }
+        else
+        {
+          a.SMGFireRate = a.SMGCooldown;
+          a.AllowSMGAttack = true;
+          a.StartSMGCooldownTimer = false;
+        }
+      }
     }
     // melee and ranged attack ----------------------------------------------------------------------------------
     em.ForEach([&](EntityID& id,RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
@@ -317,12 +329,12 @@ namespace DeltaEngine
   {
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
     {
-      EntityID smgbullet = CreateSMGBullet(id, Vector2{ 0.75f, 0.75f }, false, 0.5f, EntityCategory::E_PLAYER_SMG);
+      EntityID smgbullet = CreateSMGBullet(id, Vector2{ 0.25f, 0.25f }, false, 0.5f, EntityCategory::E_PLAYER_SMG);
       em.AddComponent<Renderer2D>(smgbullet);
       em.AddComponent<Image>(smgbullet);
       em.GetComponent<Renderer2D>(smgbullet).m_SortingLayer = 4;
       em.GetComponent<Image>(smgbullet).m_Size = { 0.25f, 0.25f };
-      em.GetComponent<Image>(smgbullet).m_Sprite.m_Key = "Textures/BULLET"; // use BULLET to replace for now
+      em.GetComponent<Image>(smgbullet).m_Sprite.m_Key = "Textures/DAVE_BULLET"; 
       em.GetComponent<Image>(smgbullet).m_Sprite.m_Index = 0;
       ////// em.GetComponent<State>(id).SetBool("Ranged", true); // change when have the animation 
       //////static size_t c_id{ u64_max };

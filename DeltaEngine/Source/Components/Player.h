@@ -25,6 +25,7 @@ namespace DeltaEngine
     bool IsDead;
     bool IsJumping;
     bool IsDashing;
+    bool IsDodging;
     bool StartDashingTimer;
     bool AllowDashing;
     bool DashDirectionRight;
@@ -45,6 +46,7 @@ namespace DeltaEngine
       IsDead{false},
       IsJumping{false},
       IsDashing{false},
+      IsDodging{false},
       StartDashingTimer{false},
       AllowDashing{true},
       DashDirectionRight{true},

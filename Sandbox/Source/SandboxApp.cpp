@@ -49,7 +49,7 @@ public:
     env.pECS->GetWorld().SetUpdateSequence<AttackSystem, /*EnemySpawner*/ HealthSystem, RespawnSystem, LifespanSystem>();
     //env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, UpgradeSystem,
     //    ExitSceneCinematic, LifespanSystem>();
-    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, UISystem>();
+    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem/*, UISystem*/>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
 
