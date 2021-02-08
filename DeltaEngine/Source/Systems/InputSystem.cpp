@@ -93,7 +93,7 @@ namespace DeltaEngine
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
         {
-          if (att.MeleeCooldownTimer <= 0.0)
+          if (!att.Blocking && att.MeleeCooldownTimer <= 0.0) 
           {
             i1.previousKey = DEVK_A;
             r1.Direction = Vector2::left();
@@ -125,7 +125,7 @@ namespace DeltaEngine
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
         {
-          if (att.MeleeCooldownTimer <= 0.0)
+          if (!att.Blocking && att.MeleeCooldownTimer <= 0.0)
           {
             i1.previousKey = DEVK_D;
             r1.Direction = Vector2::right();
@@ -196,13 +196,18 @@ namespace DeltaEngine
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_SPACE))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, State& a, Collider& c1, Player& p1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, State& a, Collider& c1, Player& p1, Input& i1,Attack& att,RigidBody& r1)
       {
         if (c1.isCollidingOnFloor)
           p1.IsJumping = true;
         i1.previousKey = DEVK_SPACE;
         idle_timer = 0.0f;
+        a.SetBool("ShieldUp", false);
         a.SetBool("isJumping", true);
+        att.Blocking = false;
+        r1.Movespeed /= 0.2;
+        r1.FrictionCoeff -= 4.0f;
+        r1.MaxAcceleration += 10.0f;
         AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
       });
     }

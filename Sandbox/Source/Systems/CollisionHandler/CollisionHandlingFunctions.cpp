@@ -20,6 +20,17 @@ namespace DeltaEngine
     EnemyData CollisionHandlerFunctions::CollisionHandlerLancerData{};
     EnemyData CollisionHandlerFunctions::CollisionHandlerSerpentipedeData{};
 
+    void CollisionHandlerFunctions::ShowHitVFX(Vector2 pos, std::string image,std::string animation)
+    {
+        auto& em = env.pECS->GetWorld().GetEntityManager();
+        EntityID vfx = em.CreateEntity<Animator,Renderer2D, Image>();
+        em.GetComponent<Transform>(vfx).position = pos;
+        em.GetComponent<Renderer2D>(vfx).m_SortingLayer = 5;
+        em.GetComponent<EntityType>(vfx).type = EntityCategory::E_VFX;
+        em.GetComponent<Image>(vfx).m_Sprite.m_Key = image;
+        em.GetComponent<Animator>(vfx).m_ControllerKey = animation;
+    }
+
     void CollisionHandlerFunctions::Initialise()
     {
         JsonFile file;
@@ -60,15 +71,15 @@ namespace DeltaEngine
 
     bool CollisionHandlerFunctions::CheckBlock(EntityID& defender, EntityID& attacker)
     {
-        auto& block = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(defender);
-        auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(defender);
-        Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(attacker).Velocity.Normalize();
-
-        if (block.Blocking && ((kb_vector.x > 0 && AITools::isFacingLeft(defender)) || (kb_vector.x < 0 && AITools::isFacingRight(defender))))
-        {
-            rb.AccumulatedForce += kb_vector * 1000.0f;
-            return true;
-        }
+       // auto& block = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(defender);
+       // auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(defender);
+       // Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(attacker).Velocity.Normalize();
+       //
+       // if (block.Blocking && ((kb_vector.x > 0 && AITools::isFacingLeft(defender)) || (kb_vector.x < 0 && AITools::isFacingRight(defender))))
+       // {
+       //     rb.AccumulatedForce += kb_vector * 1000.0f;
+       //     return true;
+       // }
         return false;
     }
 
@@ -177,11 +188,12 @@ namespace DeltaEngine
             {
                 const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
                 const EntityID punch = GetEntityID(id1, id2, EntityCategory::E_PLAYER_PUNCH);
-                Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(punch).Velocity.Normalize();
+                Vector2 kb_vector = em.GetComponent<RigidBody>(punch).Velocity.Normalize();
                 if (att.NumberOfCombos == att.MaxComboNumber)
                 {
                     ReduceHealth(id1, att.MeleeComboDamage);
                     ReduceHealth(id2, att.MeleeComboDamage);
+                    ShowHitVFX(em.GetComponent<Transform>(id1).position,"Textures/DAVE_HITFX","Animation/DaveHitVFX");
                     env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * att.
                         KnockbackComboAmount; // direction * force
                     att.NumberOfCombos = 0;

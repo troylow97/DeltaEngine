@@ -1,0 +1,20 @@
+%Entry:
+
+entry
+Clip/WindowLight_Anim
+
+%Parameters:
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+200 200
+
+%Transitions:
+
+%endfile
