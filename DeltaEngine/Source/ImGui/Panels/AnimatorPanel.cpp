@@ -93,7 +93,7 @@ namespace DeltaEngine
       std::string deleteParam = "";
       ImGuiIO& io = ImGui::GetIO();
 
-      AnimationController* controller = GetEnv().pManager->Get<AnimationController>(m_editor.selectedFile);
+      AnimationController* controller = GetEnv().pManager->Get<AnimationController>(selectedFile);
 
       ImGui::BeginChild("Parameters", ImVec2(150, 0));
       ImGui::Text("Parameters");
@@ -345,7 +345,7 @@ namespace DeltaEngine
       if (ImGui::IsMouseReleased(ImGuiMouseButton_Right))
         if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AllowWhenBlockedByPopup))
         {
-          Node* node = (nodeSelected >= 0 && nodeSelected < nodes.size()) ? &nodes[nodeSelected] : NULL;
+          Node* node = (nodeSelected > 1 && nodeSelected < nodes.size()) ? &nodes[nodeSelected] : NULL;
           if (node)
             ImGui::OpenPopup("Animator Node Context Menu");
         }
@@ -354,7 +354,7 @@ namespace DeltaEngine
       ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(8, 8));
       if (ImGui::BeginPopup("Animator Node Context Menu"))
       {
-        Node* node = (nodeSelected >= 0 && nodeSelected < nodes.size()) ? &nodes[nodeSelected] : NULL;
+        Node* node = (nodeSelected > 1 && nodeSelected < nodes.size()) ? &nodes[nodeSelected] : NULL;
         if (node)
         {
           ImGui::Text("Clip: \"%s\"", node->nodeName);
@@ -381,15 +381,17 @@ namespace DeltaEngine
               auto& [StartState, EndState, Conditions] = controller->transitions[i];
               if (!strcmp(StartState.c_str(), node->nodeName) ||
                 !strcmp(EndState.c_str(), node->nodeName))
-              {
-                std::cerr << node->nodeName << ", " << StartState << ", " << EndState << std::endl;
                 controller->transitions.erase(controller->transitions.begin() + i);
-              }
               else
                 ++i;
             }
             nodes.erase(nodes.begin() + nodeSelected);
             nodeSelected = -1;
+            loaded = false;
+          }
+          if (ImGui::MenuItem("Set As Entry"))
+          {
+            controller->entryAnimation = node->nodeName;
             loaded = false;
           }
         }
