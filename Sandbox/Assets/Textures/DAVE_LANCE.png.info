@@ -1,0 +1,63 @@
+Textures/DAVE_LANCE_i_0
+offset 0 0
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_1
+offset 512 0
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_2
+offset 1024 0
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_3
+offset 1536 0
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_4
+offset 0 200
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_5
+offset 512 200
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_6
+offset 1024 200
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_7
+offset 1536 200
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_8
+offset 0 400
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_9
+offset 512 400
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_10
+offset 1024 400
+size 512 200
+pivot 0.5 0.5
+
+Textures/DAVE_LANCE_i_11
+offset 1536 400
+size 512 200
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

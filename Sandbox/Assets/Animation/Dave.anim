@@ -6,36 +6,32 @@ Clip/IdleSpritesheet
 %Parameters:
 
 param
-%EditorPositions:
+isRunning
 0 0
 
 param
-isRunning
-1 0
-
-param
 ShieldUp
-1 0
+0 0
 
 param
 Punch1
-1 0
+0 0
 
 param
 isJumping
-1 0
+0 0
 
 param
 isIdle
-1 0
+0 0
 
 param
 ReachingTop
-1 0
+0 0
 
 param
 JumpLanded
-1 0
+0 0
 
 param
 Punch2

@@ -372,18 +372,25 @@ namespace DeltaEngine
             {
               if (key == node->nodeName)
                 controller->editorPositions.erase(controller->editorPositions.begin() + i);
-              ++i;
+              else
+                ++i;
             }
             i = 0;
-            for (auto& [StartState, EndState, Conditions] : controller->transitions)
+            for (; i < static_cast<int>(controller->transitions.size());)
             {
+              auto& [StartState, EndState, Conditions] = controller->transitions[i];
               if (!strcmp(StartState.c_str(), node->nodeName) ||
                 !strcmp(EndState.c_str(), node->nodeName))
+              {
+                std::cerr << node->nodeName << ", " << StartState << ", " << EndState << std::endl;
                 controller->transitions.erase(controller->transitions.begin() + i);
-              ++i;
+              }
+              else
+                ++i;
             }
             nodes.erase(nodes.begin() + nodeSelected);
             nodeSelected = -1;
+            loaded = false;
           }
         }
         ImGui::EndPopup();
@@ -581,6 +588,14 @@ namespace DeltaEngine
                 {
                   ImGui::Text("There are no parameters!");
                   ImGui::Text("Add parameters to add conditions");
+                }
+                if (ImGui::Button("Delete Transition"))
+                {
+                  controller->transitions.erase(controller->transitions.begin() + selectedTransition);
+                  controller->SaveToFile();
+                  controller->LoadFromFile();
+                  loaded = false;
+                  selectedTransition = -1;
                 }
               }
               // Update Combo Selection
