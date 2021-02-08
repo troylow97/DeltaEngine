@@ -345,14 +345,14 @@ namespace DeltaEngine
       if (MouseCalculation::ShootRight())
       {
         Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
-        em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
-        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 10000, direction_to_shoot.y * 10000 };
+        //em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
       }
       else if (MouseCalculation::ShootLeft())
       {
         Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
-        em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
-        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 10000, direction_to_shoot.y * 10000 };
+        //em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
       }
     }
   }
