@@ -88,7 +88,7 @@ namespace DeltaEngine
       }
     }
 
-    if (InputManager::Instance().IsKeyPressed(DEVK_A) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
+    if (InputManager::Instance().IsKeyPressed(DEVK_A) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON) && !InputManager::Instance().IsKeyPressed(DEVK_E))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
@@ -120,7 +120,7 @@ namespace DeltaEngine
         a.SetBool("IsRunning", false);
       });
     }
-    if (InputManager::Instance().IsKeyPressed(DEVK_D) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
+    if (InputManager::Instance().IsKeyPressed(DEVK_D) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON) && !InputManager::Instance().IsKeyPressed(DEVK_E))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
@@ -194,7 +194,7 @@ namespace DeltaEngine
     //END TESTING-------------------------------------------------------------------------------------------------------
 
 
-    if (InputManager::Instance().IsKeyTriggered(DEVK_W)/* || InputManager::Instance().IsKeyTriggered(DEVK_SPACE)*/)
+    if (InputManager::Instance().IsKeyTriggered(DEVK_W) || InputManager::Instance().IsKeyTriggered(DEVK_SPACE))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, State& a, Collider& c1, Player& p1, Input& i1,Attack& att,RigidBody& r1)
       {
@@ -202,16 +202,18 @@ namespace DeltaEngine
           p1.IsJumping = true;
         i1.previousKey = DEVK_W;
         idle_timer = 0.0f;
-        a.SetBool("ShieldUp", false);
-        a.SetBool("isJumping", true);
-        att.Blocking = false;
-        r1.Movespeed /= 0.2;
-        r1.FrictionCoeff -= 4.0f;
-        r1.MaxAcceleration += 10.0f;
+
+      	if(att.Blocking)
+      	{
+            a.SetBool("ShieldUp", false);
+            a.SetBool("isJumping", true);
+            att.Blocking = false;
+      	}
+
         AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
       });
     }
-    if (InputManager::Instance().IsKeyReleased(DEVK_W)/* || InputManager::Instance().IsKeyReleased(DEVK_SPACE)*/)
+    if (InputManager::Instance().IsKeyReleased(DEVK_W) || InputManager::Instance().IsKeyReleased(DEVK_SPACE))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, State& a, RigidBody& r1, Input& i1,Animator anim)
       {
@@ -225,10 +227,17 @@ namespace DeltaEngine
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_Q)) //DASH
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody& r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1,Attack& att)
       {
         if (c1.isCollidingOnFloor && p1.AllowDashing)
         {
+          if (att.Blocking)
+          {
+              s.SetBool("ShieldUp", false);
+              s.SetBool("isJumping", true);
+              att.Blocking = false;
+          }
+        	
           if (a.m_FlipX)
             p1.DashDirectionRight = false;
           else
@@ -248,6 +257,24 @@ namespace DeltaEngine
         }
         i1.previousKey = DEVK_Q;
       });
+    }
+
+    if (InputManager::Instance().IsKeyTriggered(DEVK_RBUTTON)) //DASH DODGE
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1)
+            {
+                if (c1.isCollidingOnFloor && p1.AllowDashing)
+                {
+                    if (a.m_FlipX)
+                        p1.DashDirectionRight = false;
+                    else
+                        p1.DashDirectionRight = true;
+                    p1.IsDodging = true;
+                    p1.AllowDashing = false;
+                    //s.SetBool("SOMEDASHINGANIMATION", true);
+                }
+                i1.previousKey = DEVK_RBUTTON;
+            });
     }
 
     //if (InputManager::Instance().IsKeyTriggered(DEVK_Z))
@@ -278,23 +305,17 @@ namespace DeltaEngine
         		if(a1.Blocking == true)
         		{
                     a1.Blocking = false;
-                    r1.Movespeed /= 0.2;
-                    r1.FrictionCoeff -= 4.0f;
-                    r1.MaxAcceleration += 10.0f;
                     a.SetBool("ShieldUp", false);
                     std::cout << "Blocking Off" << std::endl;
         		}
                 else //Toggle Block
                 {
                     a1.Blocking = true;
-                    r1.Movespeed *= 0.2;
-                    r1.FrictionCoeff += 4.0f;
-                    r1.MaxAcceleration -= 10.0f;
                     a.SetBool("ShieldUp", true);
                     std::cout << "Blocking On" << std::endl;
                 }
-
-
+        
+        
             });
     }
 
