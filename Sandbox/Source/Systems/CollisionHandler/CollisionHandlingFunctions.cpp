@@ -91,6 +91,7 @@ namespace DeltaEngine
 
     void CollisionHandlerFunctions::TakeDamage(EntityID& id1, EntityID& id2)
     {
+        return;
         auto& em = env.pECS->GetWorld().GetEntityManager();
         const auto& et1 = em.GetComponent<EntityType>(id1);
         const auto& et2 = em.GetComponent<EntityType>(id2);
