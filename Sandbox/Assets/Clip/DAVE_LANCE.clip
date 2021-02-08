@@ -1,6 +1,6 @@
-frames 12
+frames 11
 fps 12
-loop 0
+loop 1
 
 Textures/DAVE_LANCE_i_0
 key Textures/DAVE_LANCE
@@ -56,10 +56,5 @@ Textures/DAVE_LANCE_i_10
 key Textures/DAVE_LANCE
 value 10
 frame 10
-
-Textures/DAVE_LANCE_i_11
-key Textures/DAVE_LANCE
-value 11
-frame 11
 
 %

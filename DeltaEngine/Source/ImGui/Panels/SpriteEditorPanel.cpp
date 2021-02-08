@@ -190,9 +190,8 @@ void SpriteEditorPanel::Render()
         if ( ImGui::BeginChild( "Texture Editing" ), ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoMove )
         {
           static float zoom = 1.0f;
-          if ( ImGui::IsWindowHovered() )
-            if ( ImGui::IsKeyDown( DEVK_LCTRL ) )
-              zoom += 0.02f * ImGui::GetIO().MouseWheel;
+          if (ImGui::IsKeyDown(DEVK_LCTRL))
+            zoom += 0.02f * ImGui::GetIO().MouseWheel;
 
           if ( selectedInfoID >= 0 )
             if ( ImGui::IsKeyPressed( DEVK_DELETE ) )
@@ -327,7 +326,7 @@ void SpriteEditorPanel::Render()
             }
             else
             {
-              if ( ImGui::IsWindowHovered() && ImGui::IsKeyDown( DEVK_LCTRL ) )
+              if ( ImGui::IsKeyDown( DEVK_LCTRL ) )
               {
                 ImGui::GetWindowDrawList()->AddRectFilled( min, max, IM_COL32( 0, 255, 0, 17 ) );
                 ImGui::GetWindowDrawList()->AddRect( min, max, IM_COL32( 0, 255, 0, 255 ) );

@@ -10,36 +10,8 @@ isRunning
 0 0
 
 param
-ShieldUp
+NewParam
 0 0
-
-param
-Punch1
-0 0
-
-param
-isJumping
-0 0
-
-param
-isIdle
-0 0
-
-param
-ReachingTop
-0 0
-
-param
-JumpLanded
-0 0
-
-param
-Punch2
-1 0
-
-param
-Punch3
-1 0
 
 %EditorPositions:
 
@@ -52,12 +24,12 @@ Exit
 1058 0
 
 pos
-Clip/DAVE_SHIELD_UP
-227 283
+Any State
+1140 -137
 
 pos
-Clip/DAVE_DEATH
-1002 61
+Clip/DAVE_SHIELD_UP
+401 144
 
 pos
 Clip/DAVE_FALL
@@ -65,11 +37,11 @@ Clip/DAVE_FALL
 
 pos
 Clip/DAVE_FIRE
-739 220
+911 227
 
 pos
 Clip/DAVE_FIRE_READY
-409 101
+394 221
 
 pos
 Clip/DAVE_IDLE
@@ -89,31 +61,27 @@ Clip/DAVE_JUMP
 
 pos
 Clip/DAVE_LANCE
-175 231
+398 300
 
 pos
 Clip/DAVE_LAND
 772 -1
 
 pos
-Clip/DAVE_PUNCH
-548 261
-
-pos
 Clip/DAVE_PUNCH1_NEW
-346 337
+401 64
 
 pos
 Clip/DAVE_PUNCH2_NEW
-346 375
+657 65
 
 pos
 Clip/DAVE_PUNCH3_NEW
-346 413
+915 64
 
 pos
 Clip/DAVE_RECOVER
-610 339
+703 -129
 
 pos
 Clip/DAVE_RUN
@@ -121,7 +89,19 @@ Clip/DAVE_RUN
 
 pos
 Clip/DAVE_SHIELD_BLOCK
-862 290
+928 145
+
+pos
+Clip/DAVE_SHIELD_ON
+660 147
+
+pos
+Clip/DAVE_FIRE_ON
+665 227
+
+pos
+Clip/DAVE_DEATH
+990 -301
 
 %Transitions:
 
@@ -134,20 +114,6 @@ endTransition
 
 transition
 start
-Clip/DAVE_RUN
-end
-Exit
-endTransition
-
-transition
-start
-Clip/DAVE_IDLE_STRETCH
-end
-Exit
-endTransition
-
-transition
-start
 Clip/DAVE_JUMP
 end
 Clip/DAVE_FALL
@@ -158,13 +124,6 @@ start
 Clip/DAVE_FALL
 end
 Clip/DAVE_LAND
-endTransition
-
-transition
-start
-Clip/DAVE_LAND
-end
-Exit
 endTransition
 
 transition
@@ -190,9 +149,110 @@ endTransition
 
 transition
 start
-Clip/DAVE_DASH
+Clip/DAVE_IDLE
+end
+Clip/DAVE_PUNCH1_NEW
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH1_NEW
+end
+Clip/DAVE_PUNCH2_NEW
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH2_NEW
+end
+Clip/DAVE_PUNCH3_NEW
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_UP
+end
+Clip/DAVE_SHIELD_ON
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_ON
+end
+Clip/DAVE_SHIELD_BLOCK
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_FIRE_READY
+endTransition
+
+transition
+start
+Clip/DAVE_FALL
+end
+Clip/DAVE_RECOVER
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_BLOCK
+end
+Clip/DAVE_SHIELD_ON
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_SHIELD_UP
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE_READY
+end
+Clip/DAVE_FIRE_ON
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE_ON
+end
+Clip/DAVE_FIRE
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE
+end
+Clip/DAVE_FIRE_ON
+endTransition
+
+transition
+start
+Any State
+end
+Clip/DAVE_DEATH
+endTransition
+
+transition
+start
+Any State
 end
 Exit
+condition
+isRunning
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_LANCE
 endTransition
 
 %endfile
