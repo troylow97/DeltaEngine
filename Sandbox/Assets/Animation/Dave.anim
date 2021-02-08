@@ -1,7 +1,7 @@
 %Entry:
 
 entry
-Clip/IdleSpritesheet
+Clip/DAVE_IDLE
 
 %Parameters:
 
@@ -45,151 +45,154 @@ Punch3
 
 pos
 Entry
--471 -49
+0 -2
 
 pos
 Exit
-652 256
-
-pos
-Clip/ReachingTop
-162 323
+1058 0
 
 pos
 Clip/DAVE_SHIELD_UP
--439 149
+227 283
 
 pos
-Clip/RunningSpritesheet
--329 296
+Clip/DAVE_DEATH
+1002 61
 
 pos
-Clip/LandingSpriteSheet
-223 174
+Clip/DAVE_FALL
+600 -1
 
 pos
-Clip/InitialJump
--67 338
+Clip/DAVE_FIRE
+739 220
 
 pos
-Clip/IdleSpritesheet
--64 79
+Clip/DAVE_FIRE_READY
+409 101
+
+pos
+Clip/DAVE_IDLE
+101 0
+
+pos
+Clip/DAVE_DASH
+401 -136
+
+pos
+Clip/DAVE_IDLE_STRETCH
+402 -199
+
+pos
+Clip/DAVE_JUMP
+400 1
+
+pos
+Clip/DAVE_LANCE
+175 231
+
+pos
+Clip/DAVE_LAND
+772 -1
+
+pos
+Clip/DAVE_PUNCH
+548 261
+
+pos
+Clip/DAVE_PUNCH1_NEW
+346 337
+
+pos
+Clip/DAVE_PUNCH2_NEW
+346 375
 
 pos
 Clip/DAVE_PUNCH3_NEW
--147 -100
+346 413
+
+pos
+Clip/DAVE_RECOVER
+610 339
+
+pos
+Clip/DAVE_RUN
+400 -69
+
+pos
+Clip/DAVE_SHIELD_BLOCK
+862 290
 
 %Transitions:
 
 transition
 start
-Clip/ReachingTop
+Clip/DAVE_IDLE
 end
-Clip/ReachingTop
+Clip/DAVE_RUN
 endTransition
 
 transition
 start
-Clip/IdleSpritesheet
+Clip/DAVE_RUN
 end
-Clip/DAVE_SHIELD_UP
-condition
-ShieldUp
-? 1
+Exit
 endTransition
 
 transition
 start
-Clip/RunningSpritesheet
+Clip/DAVE_IDLE_STRETCH
 end
-Clip/DAVE_SHIELD_UP
-condition
-ShieldUp
-? 1
+Exit
 endTransition
 
 transition
 start
-Clip/ReachingTop
+Clip/DAVE_JUMP
 end
-Clip/LandingSpriteSheet
-condition
-JumpLanded
-? 1
+Clip/DAVE_FALL
 endTransition
 
 transition
 start
-Clip/DAVE_SHIELD_UP
+Clip/DAVE_FALL
 end
-Clip/IdleSpritesheet
-condition
-ShieldUp
-? 0
+Clip/DAVE_LAND
 endTransition
 
 transition
 start
-Clip/RunningSpritesheet
+Clip/DAVE_LAND
 end
-Clip/IdleSpritesheet
-condition
-isRunning
-? 0
+Exit
 endTransition
 
 transition
 start
-Clip/IdleSpritesheet
+Clip/DAVE_IDLE
 end
-Clip/RunningSpritesheet
-condition
-isRunning
-? 1
+Clip/DAVE_JUMP
 endTransition
 
 transition
 start
-Clip/IdleSpritesheet
+Clip/DAVE_IDLE
 end
-Clip/InitialJump
-condition
-isJumping
-? 1
+Clip/DAVE_IDLE_STRETCH
 endTransition
 
 transition
 start
-Clip/InitialJump
+Clip/DAVE_IDLE
 end
-Clip/ReachingTop
+Clip/DAVE_DASH
 endTransition
 
 transition
 start
-Clip/LandingSpriteSheet
+Clip/DAVE_DASH
 end
-Clip/IdleSpritesheet
-endTransition
-
-transition
-start
-Clip/IdleSpritesheet
-end
-Clip/DAVE_PUNCH3_NEW
-condition
-Punch2
-? 1
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/DAVE_PUNCH3_NEW
-condition
-Punch1
-? 1
+Exit
 endTransition
 
 %endfile
