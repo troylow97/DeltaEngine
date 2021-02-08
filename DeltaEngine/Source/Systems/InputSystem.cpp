@@ -88,7 +88,7 @@ namespace DeltaEngine
       }
     }
 
-    if (InputManager::Instance().IsKeyPressed(DEVK_A) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
+    if (InputManager::Instance().IsKeyPressed(DEVK_A) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON) && !InputManager::Instance().IsKeyPressed(DEVK_E))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
@@ -120,7 +120,7 @@ namespace DeltaEngine
         a.SetBool("IsRunning", false);
       });
     }
-    if (InputManager::Instance().IsKeyPressed(DEVK_D) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
+    if (InputManager::Instance().IsKeyPressed(DEVK_D) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON) && !InputManager::Instance().IsKeyPressed(DEVK_E))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
