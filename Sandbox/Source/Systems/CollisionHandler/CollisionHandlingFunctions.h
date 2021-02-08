@@ -28,6 +28,7 @@ namespace DeltaEngine
         static void TakeDamage(EntityID& id1, EntityID& id2);
         static bool CheckEntityType(EntityID, EntityCategory, EntityID, EntityCategory);
         static void ShowHitVFX(Vector2 pos, std::string image, std::string animation);
+        static void ApplyKnockBack(EntityID& defender, EntityID& attacker,const float amount);
 
         static void ReduceHealth(EntityID& id, int health);
         static bool CheckBlock(EntityID& defender, EntityID& attacker);

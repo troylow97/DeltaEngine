@@ -68,18 +68,24 @@ namespace DeltaEngine
 
         return id2;
     }
-
+	
+    void CollisionHandlerFunctions::ApplyKnockBack(EntityID& defender, EntityID& attacker,const float amount)
+    {
+        const Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(attacker).Velocity.Normalize();
+        auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(defender);
+        rb.AccumulatedForce += kb_vector * amount;
+    }
+	
     bool CollisionHandlerFunctions::CheckBlock(EntityID& defender, EntityID& attacker)
     {
-       // auto& block = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(defender);
-       // auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(defender);
-       // Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(attacker).Velocity.Normalize();
-       //
-       // if (block.Blocking && ((kb_vector.x > 0 && AITools::isFacingLeft(defender)) || (kb_vector.x < 0 && AITools::isFacingRight(defender))))
-       // {
-       //     rb.AccumulatedForce += kb_vector * 1000.0f;
-       //     return true;
-       // }
+       auto& block = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(defender);
+
+       const Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(attacker).Velocity.Normalize();
+       
+       if (block.Blocking && ((kb_vector.x > 0 && AITools::isFacingLeft(defender)) || (kb_vector.x < 0 && AITools::isFacingRight(defender))))
+       {
+           return true;
+       }
         return false;
     }
 
@@ -97,12 +103,14 @@ namespace DeltaEngine
                 {
                 	if(!CheckBlock(id2,id1))
 						ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+                    ApplyKnockBack(id2, id1,1000.0f);
                     return;
                 }
                 if (CheckEntityType(id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER))
                 {
                     if (!CheckBlock(id1, id2))
 						ReduceHealth(id1, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+                    ApplyKnockBack(id1, id2, 1000.0f);
                     return;
                 }
             }
@@ -112,11 +120,13 @@ namespace DeltaEngine
                 if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
                 {
                     ReduceHealth(id2, static_cast<int>(CollisionHandlerLancerData.Damage));
+                    ApplyKnockBack(id2, id1, 600.0f);
                     return;
                 }
                 if (CheckEntityType(id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER))
                 {
                     ReduceHealth(id1, static_cast<int>(CollisionHandlerLancerData.Damage));
+                    ApplyKnockBack(id1, id2, 600.0f);
                     return;
                 }
             }
@@ -126,11 +136,13 @@ namespace DeltaEngine
                 if (CheckEntityType(id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER))
                 {
                     ReduceHealth(id2, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
+                    ApplyKnockBack(id2, id1, 600.0f);
                     return;
                 }
                 if (CheckEntityType(id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER))
                 {
                     ReduceHealth(id1, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
+                    ApplyKnockBack(id2, id1, 600.0f);
                     return;
                 }
             }

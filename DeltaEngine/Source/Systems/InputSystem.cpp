@@ -93,7 +93,7 @@ namespace DeltaEngine
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
         {
-          if (att.MeleeCooldownTimer <= 0.0)
+          if (!att.Blocking && att.MeleeCooldownTimer <= 0.0)
           {
             i1.previousKey = DEVK_A;
             r1.Direction = Vector2::left();
@@ -125,7 +125,7 @@ namespace DeltaEngine
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
         {
-          if (att.MeleeCooldownTimer <= 0.0)
+          if (!att.Blocking && att.MeleeCooldownTimer <= 0.0)
           {
             i1.previousKey = DEVK_D;
             r1.Direction = Vector2::right();
@@ -196,10 +196,19 @@ namespace DeltaEngine
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_W)/* || InputManager::Instance().IsKeyTriggered(DEVK_SPACE)*/)
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, State& a, Collider& c1, Player& p1, Input& i1)
-      {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, State& s, Collider& c1, Player& p1, Input& i1,Attack& a1, RigidBody& r1)
+      {      	
         if (c1.isCollidingOnFloor)
-          p1.IsJumping = true;
+        {
+            //Cancel Block
+            a1.Blocking = false;
+            r1.Movespeed /= 0.2;
+            r1.FrictionCoeff -= 4.0f;
+            r1.MaxAcceleration += 10.0f;
+            s.SetBool("ShieldUp", false);
+            p1.IsJumping = true;
+            //
+        }
         i1.previousKey = DEVK_W;
         idle_timer = 0.0f;
 
@@ -212,15 +221,24 @@ namespace DeltaEngine
       {
         i1.previousKey = DEVK_W;
         p1.IsJumping = false;
+        p1.IsJumping = false;
       });
     }
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_Q)) //DASH
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody& r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1,Attack& a1)
       {
         if (c1.isCollidingOnFloor && p1.AllowDashing)
         {
+		  //Cancel Block
+            a1.Blocking = false;
+            r1.Movespeed /= 0.2;
+            r1.FrictionCoeff -= 4.0f;
+            r1.MaxAcceleration += 10.0f;
+            s.SetBool("ShieldUp", false);
+	      //	
+        	
           if (a.m_FlipX)
             p1.DashDirectionRight = false;
           else
@@ -254,8 +272,15 @@ namespace DeltaEngine
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_LBUTTON))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a,RigidBody& r1)
       {
+        //Cancel Block
+        a1.Blocking = false;
+        r1.Movespeed /= 0.2;
+        r1.FrictionCoeff -= 4.0f;
+        r1.MaxAcceleration += 10.0f;
+        a.SetBool("ShieldUp", false);
+        //	     	
         a1.MeleeAttack = true;
         idle_timer = 0.0f;
         range_attack_cooldown = 0.0f;
@@ -274,7 +299,6 @@ namespace DeltaEngine
           r1.FrictionCoeff -= 4.0f;
           r1.MaxAcceleration += 10.0f;
           a.SetBool("ShieldUp", false);
-          std::cout << "Blocking Off" << std::endl;
         }
         else //Toggle Block
         {
@@ -283,7 +307,6 @@ namespace DeltaEngine
           r1.FrictionCoeff += 4.0f;
           r1.MaxAcceleration -= 10.0f;
           a.SetBool("ShieldUp", true);
-          std::cout << "Blocking On" << std::endl;
         }
       });
     }
@@ -301,8 +324,15 @@ namespace DeltaEngine
     }
     if (!(InputManager::Instance().IsKeyPressed(DEVK_E)))
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a,RigidBody& r1)
       {
+        //Cancel Block
+        a1.Blocking = false;
+        r1.Movespeed /= 0.2;
+        r1.FrictionCoeff -= 4.0f;
+        r1.MaxAcceleration += 10.0f;
+        a.SetBool("ShieldUp", false);
+        //	         	
         a1.SMGAttack = false;
         idle_timer = 0.0f; // what's this troy low yee?
         i1.previousKey = DEVK_E;
