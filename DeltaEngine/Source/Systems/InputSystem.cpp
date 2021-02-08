@@ -208,9 +208,6 @@ namespace DeltaEngine
             a.SetBool("ShieldUp", false);
             a.SetBool("isJumping", true);
             att.Blocking = false;
-            r1.Movespeed /= 0.2;
-            r1.FrictionCoeff -= 4.0f;
-            r1.MaxAcceleration += 10.0f;
       	}
 
         AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
@@ -239,9 +236,6 @@ namespace DeltaEngine
               s.SetBool("ShieldUp", false);
               s.SetBool("isJumping", true);
               att.Blocking = false;
-              r1.Movespeed /= 0.2;
-              r1.FrictionCoeff -= 4.0f;
-              r1.MaxAcceleration += 10.0f;
           }
         	
           if (a.m_FlipX)
@@ -311,18 +305,12 @@ namespace DeltaEngine
         		if(a1.Blocking == true)
         		{
                     a1.Blocking = false;
-                    r1.Movespeed /= 0.2;
-                    r1.FrictionCoeff -= 4.0f;
-                    r1.MaxAcceleration += 10.0f;
                     a.SetBool("ShieldUp", false);
                     std::cout << "Blocking Off" << std::endl;
         		}
                 else //Toggle Block
                 {
                     a1.Blocking = true;
-                    r1.Movespeed *= 0.2;
-                    r1.FrictionCoeff += 4.0f;
-                    r1.MaxAcceleration -= 10.0f;
                     a.SetBool("ShieldUp", true);
                     std::cout << "Blocking On" << std::endl;
                 }
