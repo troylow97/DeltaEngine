@@ -71,7 +71,7 @@ endTransition
 
 transition 
 start Clip/FID_ATTACK
-end Clip/FID_ALERT
+end Clip/FID_ALERT_RUN
 condition MeleeAttack ? 0
 endTransition
 
