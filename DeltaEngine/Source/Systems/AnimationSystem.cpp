@@ -58,21 +58,26 @@ namespace DeltaEngine
                 while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                 {
                   a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
-                  ++a.m_LoopsCompleted;
                 }
               }
               else
               {
                 if (a.m_Timer < 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                   a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
-                else
-                  a.m_LoopsCompleted = 1;
               }
             }
 
             if (newClip)
             {
               frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
+
+              if (frame == newClip->GetTotalFrames() - 1)
+              {
+                if (newClip->looping)
+                  ++a.m_LoopsCompleted;
+                else
+                  a.m_LoopsCompleted = 1;
+              }
 
               Sprite newSprite = newClip->GetSprite(frame);
               if (newSprite)
@@ -91,18 +96,22 @@ namespace DeltaEngine
               while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
               {
                 a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
-                ++a.m_LoopsCompleted;
               }
             }
             else
             {
               if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                 a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
-              else
-                a.m_LoopsCompleted = 1;
             }
 
             frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
+            if (frame == newClip->GetTotalFrames() - 1)
+            {
+              if (newClip->looping)
+                ++a.m_LoopsCompleted;
+              else
+                a.m_LoopsCompleted = 1;
+            }
             Sprite newSprite = newClip->GetSprite(frame);
             if (newSprite)
               i.m_Sprite = newSprite;

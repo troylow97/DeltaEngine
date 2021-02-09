@@ -44,10 +44,11 @@ namespace DeltaEngine
 
     Editor& m_editor;
 
-    // Selected File
-    std::string selectedFile;
-
     std::string m_name;
+
+    // Selected File
+    std::string selectedFile{""};
+
     bool m_enabled{false};
     bool m_active{false};
   };

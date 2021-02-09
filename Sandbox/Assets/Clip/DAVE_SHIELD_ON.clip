@@ -1,0 +1,10 @@
+frames 1
+fps 12
+loop 0
+
+Textures/DAVE_SHIELD_UP_i_5
+key Textures/DAVE_SHIELD_UP
+value 5
+frame 0
+
+%

@@ -7,23 +7,23 @@ Clip/FID_WALK
 
 param
 IsPatrolling
-0 0
+1 0
 
 param
 IsAlerted
-0 0
+1 0
 
 param
 IsAlertRunning
-0 0
+1 0
 
 param
 IsCharging
-0 0
+1 0
 
 param
 MeleeAttack
-0 0
+1 0
 
 param
 IsDead
@@ -40,127 +40,25 @@ Exit
 652 256
 
 pos
+Any State
+200 0
+
+pos
 Clip/FID_WALK
-461 124
-
-pos
-Clip/FID_DEATH
--78 465
-
-pos
-Clip/FID_ATTACK
-220 466
+263 45
 
 pos
 Clip/FID_ALERT_RUN
-189 232
+-102 176
 
 pos
-Clip/FID_ALERT
--61 157
+Clip/FID_DEATH
+199 389
+
+pos
+Clip/FID_ATTACK
+-47 341
 
 %Transitions:
-
-transition
-start
-Clip/FID_WALK
-end
-Clip/FID_ALERT
-condition
-IsAlerted
-? 1
-endTransition
-
-transition
-start
-Clip/FID_ALERT
-end
-Clip/FID_ALERT_RUN
-condition
-IsAlertRunning
-? 1
-endTransition
-
-transition
-start
-Clip/FID_ALERT_RUN
-end
-Clip/FID_ATTACK
-condition
-MeleeAttack
-? 1
-endTransition
-
-transition
-start
-Clip/FID_ATTACK
-end
-Clip/FID_ALERT_RUN
-condition
-MeleeAttack
-? 0
-condition
-IsAlertRunning
-? 0
-endTransition
-
-transition
-start
-Clip/FID_ATTACK
-end
-Clip/FID_DEATH
-condition
-IsDead
-? 1
-condition
-MeleeAttack
-? 0
-endTransition
-
-transition
-start
-Clip/FID_ALERT_RUN
-end
-Clip/FID_DEATH
-condition
-IsDead
-? 1
-endTransition
-
-transition
-start
-Clip/FID_ALERT
-end
-Clip/FID_DEATH
-condition
-IsDead
-? 1
-endTransition
-
-transition
-start
-Clip/FID_ATTACK
-end
-Clip/FID_ALERT
-condition
-IsAlerted
-? 1
-condition
-MeleeAttack
-? 0
-endTransition
-
-transition
-start
-Clip/FID_ATTACK
-end
-Clip/FID_WALK
-condition
-IsPatrolling
-? 1
-condition
-MeleeAttack
-? 0
-endTransition
 
 %endfile

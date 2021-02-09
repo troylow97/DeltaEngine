@@ -48,7 +48,7 @@ namespace DeltaEngine
           c_center = {t.position.x, t.position.y};
         }
       }
-      c_size = {(max.x - min.x) * 20, (max.y - min.y) * 20};
+      c_size = {(max.x - min.x) * 10, (max.y - min.y) * 10};
 
       Query q;
       q.Exclude<UI>();

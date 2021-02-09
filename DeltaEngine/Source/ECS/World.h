@@ -21,7 +21,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  class World
+  class World 
   {
     std::unique_ptr<EntityManager> em;
     std::unordered_map<size_t, std::unique_ptr<SystemBase>> systems;

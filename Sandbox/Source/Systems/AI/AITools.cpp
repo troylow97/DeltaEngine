@@ -280,7 +280,7 @@ namespace DeltaEngine
       }
     }
 
-    void FlyTowardsPoint(EntityID& id1, Vector2& point)
+    void FlyTowardsPoint(EntityID& id1,const Vector2 point)
     {
       const Vector2 pos{env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position};
       Vector2 diff{point - pos};

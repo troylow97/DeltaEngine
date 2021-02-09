@@ -32,6 +32,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "../../Sandbox/Source/Systems/AttackSystem.h"
 #include "Audio/AudioConfig.h"
+#include "Components/ParticleEmitter.h"
 
 namespace DeltaEngine
 {
@@ -425,6 +426,7 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)
       .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
       .property("SMG Fire Rate", &Attack::SMGFireRate)(rttr::policy::prop::bind_as_ptr)
+      .property("Attack Delay", &Attack::AttackDelay)(rttr::policy::prop::bind_as_ptr)
       .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("SMG Attack", &Attack::SMGAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))

@@ -2,6 +2,7 @@
 
 #include "DEpch.h"
 #include "Vector.h"
+#include <array>
 
 namespace DeltaEngine
 {
