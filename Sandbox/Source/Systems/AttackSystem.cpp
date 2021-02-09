@@ -22,82 +22,76 @@ namespace DeltaEngine
 {
   void AttackSystem::Update()
   {
-    // dashing --------------------------------------------------------------------------------------------------
-    if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
-    {
-      auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-      if (p.IsDashing || p.IsDodging)
-      {
-        em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
-        p.StartDashingTimer = true;
-      }
-      if (p.StartDashingTimer)
-      {
-        p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
-        p.AllowDashing = false;
-      }
-      if (p.DashingTimerCooldown <= 0.0f)
-      {
-        p.StartDashingTimer = false;
-        p.DashingTimerCooldown = p.DashingTimerDuration;
-        p.AllowDashing = true;
-        s.SetBool("LancerAttack", false);
-      }
-      Dash();
-    }
-    // SMG attack -----------------------------------------------------------------------------------------------
-    if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
-    {
-      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
-      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-      if (a.SMGAttack && a.SMGFireRate <= 0.0f)
-      {
-        // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
-        //p.StartDashingTimer = true;
-        SMGAttack(UnitManager::GetPlayerID());
-      }
+  	if(em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
+  	{
+  		//DASH
+        auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+        if (p.IsDashing || p.IsDodging)
+        {
+            em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
+            p.StartDashingTimer = true;
+        }
+        if (p.StartDashingTimer)
+        {
+            p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
+            p.AllowDashing = false;
+        }
+        if (p.DashingTimerCooldown <= 0.0f)
+        {
+            p.StartDashingTimer = false;
+            p.DashingTimerCooldown = p.DashingTimerDuration;
+            p.AllowDashing = true;
+            s.SetBool("LancerAttack", false);
+        }
+        Dash();
 
-      if (a.SMGAttack)
-          a.StartSMGCooldownTimer = true;
-      if (a.StartSMGCooldownTimer)
-      {
-        if (a.SMGFireRate >= 0.0f)
+  		//SMG
+        auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+        auto& state = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+        if (a.SMGAttack && a.SMGFireRate <= 0.0f)
         {
-          a.SMGFireRate -= env.pClock->FixedDeltaTime();
-          a.AllowSMGAttack = false;
+            // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
+            //p.StartDashingTimer = true;
+            SMGAttack(UnitManager::GetPlayerID());
         }
-        else
+
+        if (a.SMGAttack)
+            a.StartSMGCooldownTimer = true;
+        if (a.StartSMGCooldownTimer)
         {
-          a.SMGFireRate = a.SMGCooldown;
-          a.AllowSMGAttack = true;
-          a.StartSMGCooldownTimer = false;
+            if (a.SMGFireRate >= 0.0f)
+            {
+                a.SMGFireRate -= env.pClock->FixedDeltaTime();
+                a.AllowSMGAttack = false;
+            }
+            else
+            {
+                a.SMGFireRate = a.SMGCooldown;
+                a.AllowSMGAttack = true;
+                a.StartSMGCooldownTimer = false;
+            }
         }
-      }
-    }
+  	}
+
     // melee and ranged attack ----------------------------------------------------------------------------------
-    em.ForEach([&](EntityID& id,RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
+    em.ForEach([&](EntityID& id,EntityType et, RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
     {
       //Reduce Cooldowns   	
-      if (a.MeleeCooldownTimer > -0.2)
+      if (a.MeleeCooldownTimer > -0.2f)
         a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
-      else
-        em.GetComponent<State>(id).SetBool("MeleeAttack", false);
 
-      if (a.RangeCooldownTimer > -0.2)
+      if (a.RangeCooldownTimer > -0.2f)
         a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
 
-      //Toggle Ranged Attack
-      if (a.RangeAttack && a.RangeCooldownTimer <= 0)
+      if(a.AttackDelay > 0.0f)
       {
-      	if(a.Blocking)
-      	{
-            a.Blocking = false;
-			r.Movespeed /= 0.2;
-            r.FrictionCoeff -= 4.0f;
-            r.MaxAcceleration += 10.0f;
-            st.SetBool("ShieldUp", false);
-      	}
+          a.AttackDelay -= env.pClock->FixedDeltaTime();
+      }
+
+      //Toggle Ranged Attack
+      if (a.RangeAttack && a.RangeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
+      {
         em.GetComponent<State>(id).SetBool("Ranged", true);
         RangedAttackingEntities.push_back(id);
         a.RangeCooldownTimer = a.RangeCooldown;
@@ -107,21 +101,13 @@ namespace DeltaEngine
           em.GetComponent<State>(id).SetBool("Ranged", false);
 
        //Toggle Melee Attack   	
-      if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
+      if (a.MeleeAttack && a.MeleeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
       {
-          if (a.Blocking)
-          {
-              a.Blocking = false;
-              r.Movespeed /= 0.2;
-              r.FrictionCoeff -= 4.0f;
-              r.MaxAcceleration += 10.0f;
-              st.SetBool("ShieldUp", false);
-          }
-        if (em.HasComponent<AI>(id))
-            st.SetBool("MeleeAttack", true);
+        //if (em.HasComponent<AI>(id))
+        //    st.SetBool("MeleeAttack", true);
       	
         a.StartComboCooldownTimer = true;
-        if (a.NumberOfCombos != a.MaxComboNumber)
+        if (et.type == EntityCategory::E_PLAYER && a.NumberOfCombos != a.MaxComboNumber)
         {
           a.NumberOfCombos++;
           if (a.NumberOfCombos == 1)
@@ -152,9 +138,10 @@ namespace DeltaEngine
 
         MeleeAttackingEntities.push_back(id);
         a.MeleeCooldownTimer = a.MeleeCooldown;
+        a.MeleeAttack = false;
       }
 
-      a.MeleeAttack = false;
+
 
 
       if (a.StartComboCooldownTimer)
