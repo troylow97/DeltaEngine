@@ -24,7 +24,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 // STL
 #include <string>
 #include <vector>
-#include <array>
 #include <map>
 #include <unordered_map>
 #include <unordered_set>

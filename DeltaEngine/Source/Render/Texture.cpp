@@ -304,9 +304,6 @@ namespace DeltaEngine
 
   void Texture2D::UpdateInfoFile()
   {
-#ifndef DE_EDITOR
-    return;
-#endif
     std::ofstream file{m_Filepath + ".info"};
     if (file.is_open())
     {

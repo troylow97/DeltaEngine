@@ -1,158 +1,111 @@
 %Entry:
 
-entry
+entry 
 Clip/LANCER_IDLE
 
 %Parameters:
 
 param
-IsIdle
-0 0
+IsIdle 0 0
 
 param
-IsAlerted
-0 0
+IsAlerted 0 0
 
 param
-IsAlertIdle
-0 0
+IsAlertIdle 0 0
 
 param
-IsBouncing
-0 0
+IsBouncing 0 0
 
 param
-MeleeAttack
-0 0
+MeleeAttack 0 0
 
 param
-IsDead
-0 0
+IsDead 0 0
 
 %EditorPositions:
 
 pos
-Entry
-3 4
+Entry -198 -58
 
 pos
-Exit
-652 256
+Exit 79 112
 
 pos
-Clip/LANCER_IDLE
-223 127
+Clip/SERP_FULL_IDLE -438 88
 
 pos
-Clip/AlertSpritesheet
-305 266
+Clip/SERP_FIRE -34 119
 
 pos
-Clip/LANCER_ALERT_IDLE
-263 344
+Clip/SERP_FULL_ALERT -375 248
 
 pos
-Clip/LANCER_ATTACK
-20 375
+Clip/SERP_DEATH -188 65
 
 pos
-Clip/LANCER_BOUNCE
-72 498
-
-pos
-Clip/LANCER_DEATH
-373 474
+Clip/SERP_CHARGE -68 241
 
 %Transitions:
 
-transition
-start
-Clip/LANCER_IDLE
-end
-Clip/AlertSpritesheet
-condition
-IsAlerted
-? 1
+transition 
+start Clip/LANCER_IDLE
+end Clip/AlertSpritesheet
+condition IsAlerted ? 1
 endTransition
 
-transition
-start
-Clip/AlertSpritesheet
-end
-Clip/LANCER_ALERT_IDLE
-condition
-IsAlertIdle
-? 1
+transition 
+start Clip/AlertSpritesheet
+end Clip/LANCER_ALERT_IDLE
+condition IsAlertIdle ? 1
 endTransition
 
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_ATTACK
-condition
-MeleeAttack
-? 1
+transition 
+start Clip/LANCER_ALERT_IDLE
+end Clip/LANCER_ATTACK
+condition MeleeAttack ? 1
 endTransition
 
-transition
-start
-Clip/LANCER_ATTACK
-end
-Clip/LANCER_BOUNCE
-condition
-IsBouncing
-? 1
+transition 
+start Clip/LANCER_ATTACK
+end Clip/LANCER_BOUNCE
+condition IsBouncing ? 1
 endTransition
 
-transition
-start
-Clip/AlertSpritesheet
-end
-Clip/LANCER_DEATH
-condition
-IsDead
-? 1
+transition 
+start Clip/LANCER_IDLE
+end Clip/LANCER_DEATH
+condition IsDead ? 1
 endTransition
 
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_DEATH
-condition
-IsDead
-? 1
+transition 
+start Clip/AlertSpritesheet
+end Clip/LANCER_DEATH
+condition IsDead ? 1
 endTransition
 
-transition
-start
-Clip/LANCER_ATTACK
-end
-Clip/LANCER_DEATH
-condition
-IsDead
-? 1
+transition 
+start Clip/LANCER_ALERT_IDLE
+end Clip/LANCER_DEATH
+condition IsDead ? 1
 endTransition
 
-transition
-start
-Clip/LANCER_BOUNCE
-end
-Clip/LANCER_DEATH
-condition
-IsDead
-? 1
+transition 
+start Clip/LANCER_ATTACK
+end Clip/LANCER_DEATH
+condition IsDead ? 1
 endTransition
 
-transition
-start
-Clip/LANCER_BOUNCE
-end
-Clip/LANCER_ALERT_IDLE
-condition
-IsAlertIdle
-? 1
+transition 
+start Clip/LANCER_BOUNCE
+end Clip/LANCER_DEATH
+condition IsDead ? 1
+endTransition
+
+transition 
+start Clip/LANCER_BOUNCE
+end Clip/LANCER_ALERT_IDLE
+condition IsAlertIdle ? 1
 endTransition
 
 %endfile

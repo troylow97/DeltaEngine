@@ -11,7 +11,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include <iostream>
 #include <algorithm>
 #include "ErrorCheck.h"
-#include "Shader.h"
 
 
 #include "crtdbg.h"
@@ -97,12 +96,6 @@ namespace DeltaEngine
     {
       return m_Stride;
     }
-
-    void Clear()
-    {
-      m_Elements.clear();
-      m_Stride = 0;
-    }
   };
 #pragma endregion
 
@@ -156,13 +149,8 @@ namespace DeltaEngine
     GLCall(glDeleteVertexArrays( 1, &m_RendererID ));
   }
 
-  void Mesh::VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout, bool instanced, int startCount)
+  void Mesh::VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout)
   {
-    if (startCount == -1)
-      startCount = vertexAttribArrayCount;
-    else
-      vertexAttribArrayCount = startCount;
-
     Bind();
     vb.Bind();
     const auto& elements = layout.GetElements();
@@ -170,20 +158,14 @@ namespace DeltaEngine
     for (unsigned int i = 0; i < elements.size(); ++i)
     {
       const auto& element = elements[i];
-      GLCall(glEnableVertexAttribArray( i + startCount));
+      GLCall(glEnableVertexAttribArray( i ));
+      //this line below is to avoid a warning related to OpenGL API design flaw for this particular function "glVertexAttribPointer"
       void const* pointer = static_cast<char const*>(nullptr) + offset;
       GLCall(
-        glVertexAttribPointer(
-          i + startCount,
-          element.count,
-          element.type,
-          element.normalized,
-          layout.GetStride(),
-          static_cast<const void*>(pointer) ));
+        glVertexAttribPointer( i, element.count, element.type, element.normalized, layout.GetStride(), static_cast<const
+          void*>(pointer) ));
       offset += element.count * VertexBufferLayout::VertexBufferElement::GetSizeOfType(element.type);
-      GLCall(glVertexAttribDivisor(i + startCount, instanced)); // tell OpenGL this is an instanced vertex attribute.
     }
-    vertexAttribArrayCount += static_cast<unsigned int>(elements.size());
   }
 
   void Mesh::VertexArray::Bind() const
@@ -202,7 +184,10 @@ namespace DeltaEngine
   //********************************************************************************
 #pragma region IndexBuffer class
   Mesh::IndexBuffer::IndexBuffer()
-    : m_Count { 0 }
+    : m_Count
+    {
+      0
+    }
   {
     GLCall(glGenBuffers( 1, &m_RendererID ));
   }
@@ -218,11 +203,8 @@ namespace DeltaEngine
 
     GLCall(glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_RendererID ));
     GLCall(
-      glBufferData(
-        GL_ELEMENT_ARRAY_BUFFER,
-        count * sizeof( unsigned int ),
-        data,
-        dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW ));
+      glBufferData( GL_ELEMENT_ARRAY_BUFFER, count * sizeof( unsigned int ), data, dynamic ? GL_DYNAMIC_DRAW :
+        GL_STATIC_DRAW ));
   }
 
   void Mesh::IndexBuffer::Bind() const
@@ -293,11 +275,8 @@ namespace DeltaEngine
     isDynamic = dynamic;
 
     vao.Bind();
-    vbo.InitData(
-      VerticesDataFormat().data(),
-      static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)),
-      isDynamic);
-
+    vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)),
+                 isDynamic);
     if (indices.size())
       ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()), isDynamic);
 
@@ -356,52 +335,65 @@ namespace DeltaEngine
 
   void Mesh::Draw()
   {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
     if (indices.size())
     {
       ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()), isDynamic);
       ibo.Bind();
     }
 
-    vbo.InitData(
-      VerticesDataFormat().data(),
-      static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)),
-      isDynamic);
+    vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)),
+                 isDynamic);
     vbo.Bind();
-    vbo.Unbind();
 
-    if (useInstancing)
-    {
-      ivbo.InitData(
-        instanceData.data(),
-        static_cast<unsigned int>(instanceData.size() * sizeof(float)),
-        isDynamic);
-      ivbo.Bind();
-      ivbo.Unbind();
-    }
+    vbo.Unbind();
 
     vao.Bind();
 
     if (indices.size())
     {
-      if (useInstancing)
-      {
-        GLCall(glDrawElementsInstanced(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr, instances));
-      }
-      else
-      {
-        GLCall(glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr));
-      }
+      GLCall(glDrawElements( GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr ));
     }
     else
     {
-      if (useInstancing)
-      {
-        GLCall(glDrawArraysInstanced(GL_TRIANGLES, 0, static_cast<unsigned int>(vertices.size()), instances));
-      }
-      else
-      {
-        GLCall(glDrawArrays(GL_TRIANGLES, 0, static_cast<unsigned int>(vertices.size())));
-      }
+      GLCall(glDrawArrays( GL_TRIANGLES, 0, static_cast<unsigned int>( vertices.size() ) ));
+    }
+
+    vao.Unbind();
+    if (indices.size())
+      ibo.Unbind();
+  }
+
+  void Mesh::DrawWireframe()
+  {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    if (indices.size())
+    {
+      ibo.InitData(indices.data(), static_cast<unsigned int>(indices.size()));
+      ibo.Bind();
+    }
+
+    vbo.InitData(VerticesDataFormat().data(), static_cast<unsigned int>(vertices.size() * 9 * sizeof(float)),
+                 isDynamic);
+    vbo.Bind();
+
+    vbo.Unbind();
+
+    vao.Bind();
+
+    if (indices.size())
+    {
+      GLCall(glDrawElements( GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr ));
+    }
+    else
+    {
+      GLCall(glDrawArrays( GL_TRIANGLES, 0, static_cast<unsigned int>( vertices.size() ) ));
     }
 
     vao.Unbind();
@@ -410,7 +402,6 @@ namespace DeltaEngine
   }
 
   Mesh* quad;
-  Mesh* quadInst;
   Mesh* line;
   Mesh* txtm;
 
@@ -423,8 +414,6 @@ namespace DeltaEngine
 
     // init quad
     quad = new Mesh();
-    quadInst = new Mesh();
-    quadInst->useInstancing = true;
 
     // init line with empty static mesh
     line = new Mesh();
@@ -437,7 +426,6 @@ namespace DeltaEngine
     verts.push_back(Vector3(0.5f, -0.5f, 0.0f));
     verts.push_back(Vector3(-0.5f, -0.5f, 0.0f));
     quad->SetVertices(verts);
-    quadInst->SetVertices(verts);
     txtm->SetVertices(verts);
 
     uvs.push_back(Vector2(0.0f, 0.0f));
@@ -445,7 +433,6 @@ namespace DeltaEngine
     uvs.push_back(Vector2(1.0f, 1.0f));
     uvs.push_back(Vector2(0.0f, 1.0f));
     quad->SetUVs(uvs);
-    quadInst->SetUVs(uvs);
     txtm->SetUVs(uvs);
 
     inds.push_back(0);
@@ -455,97 +442,14 @@ namespace DeltaEngine
     inds.push_back(3);
     inds.push_back(0);
     quad->SetIndices(inds);
-    quadInst->SetIndices(inds);
     txtm->SetIndices(inds);
   }
 
   void Mesh::Exit()
   {
     delete quad;
-    delete quadInst;
     delete line;
     delete txtm;
-  }
-
-  void Test()
-  {
-    Vector2 translations[100];
-    int index = 0;
-    float offset = 0.1f;
-    for (int y = -10; y < 10; y += 2)
-    {
-      for (int x = -10; x < 10; x += 2)
-      {
-        Vector2 translation;
-        translation.x = (float)x / 10.0f + offset;
-        translation.y = (float)y / 10.0f + offset;
-        translations[index++] = translation;
-      }
-    }
-    // store instance data in an array buffer
-    // --------------------------------------
-    unsigned int instanceVBO;
-    glGenBuffers(1, &instanceVBO);
-    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
-    glBufferData(GL_ARRAY_BUFFER,
-      sizeof(Vector2) * 100, // instanceDataSize * instances
-      &translations[0], // instanceData
-      GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0); 
-
-    float quadVertices[] = {
-      // positions     // colors
-      -0.05f,  0.05f,  1.0f, 0.0f, 0.0f,
-       0.05f, -0.05f,  0.0f, 1.0f, 0.0f,
-      -0.05f, -0.05f,  0.0f, 0.0f, 1.0f,
-
-      -0.05f,  0.05f,  1.0f, 0.0f, 0.0f,
-       0.05f, -0.05f,  0.0f, 1.0f, 0.0f,
-       0.05f,  0.05f,  0.0f, 1.0f, 1.0f
-    };
-    unsigned int quadVAO, quadVBO;
-    glGenVertexArrays(1, &quadVAO);
-    glGenBuffers(1, &quadVBO);
-    glBindVertexArray(quadVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
-    // also set instance data
-    glEnableVertexAttribArray(2);
-    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO); // this attribute comes from a different vertex buffer
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glVertexAttribDivisor(2, 1); // tell OpenGL this is an instanced vertex attribute.
-    Shader s{"Shaders/Test"}; 
-    s.Bind();
-    glBindVertexArray(quadVAO);
-    glDrawArraysInstanced(GL_TRIANGLES, 0, 6, 100); // 100 triangles of 6 vertices each
-    glBindVertexArray(0);
-  }
-
-  void Mesh::DrawQuadInst(unsigned int count, std::vector<float> instData, std::vector<float> locations)
-  {
-    if (locations.empty())
-    {
-      // location size data is required for instancing
-      return;
-    }
-
-    quadInst->instances = count;
-    quadInst->instanceData.clear();
-    quadInst->instanceData = instData;
-
-    VertexBufferLayout layout;
-    for (float locationSize : locations)
-    {
-      layout.Push<float>(static_cast<unsigned int>(locationSize));
-    }
-    quadInst->vao.AddBuffer(quadInst->ivbo, layout, true, 3);
-
-    quadInst->Draw();
   }
 
   void Mesh::DrawQuad(bool wireframe)
@@ -558,10 +462,10 @@ namespace DeltaEngine
     quad->texCoords[1] = Vector2(1, 0);
     quad->texCoords[2] = Vector2(1, 1);
     quad->texCoords[3] = Vector2(0, 1);
-    wireframe ? glDisable(GL_BLEND) : glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glPolygonMode(GL_FRONT_AND_BACK, wireframe ? GL_LINE : GL_FILL);
-    quad->Draw();
+    if (wireframe)
+      quad->DrawWireframe();
+    else
+      quad->Draw();
   }
 
   void Mesh::DrawQuad(Vector2 offset, Vector2 tiling, Vector2 pivot)
@@ -574,10 +478,6 @@ namespace DeltaEngine
     quad->texCoords[1] = Vector2(offset.x + tiling.x, offset.y);
     quad->texCoords[2] = Vector2(offset.x + tiling.x, offset.y + tiling.y);
     quad->texCoords[3] = Vector2(offset.x, offset.y + tiling.y);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     quad->Draw();
   }
 

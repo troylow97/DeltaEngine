@@ -11782,7 +11782,6 @@
             "Attack": {
                 "Range Damage": 0,
                 "Melee Damage": 2,
-                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -11794,11 +11793,8 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "SMG Attack": false,
-                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -11922,7 +11918,6 @@
             "Attack": {
                 "Range Damage": 5,
                 "Melee Damage": 0,
-                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -11934,11 +11929,8 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "SMG Attack": false,
-                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -12062,7 +12054,6 @@
             "Attack": {
                 "Range Damage": 0,
                 "Melee Damage": 10,
-                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -12074,11 +12065,8 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "SMG Attack": false,
-                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -12202,7 +12190,6 @@
             "Attack": {
                 "Range Damage": 0,
                 "Melee Damage": 2,
-                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -12214,11 +12201,8 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "SMG Attack": false,
-                "Blocking": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -12342,7 +12326,6 @@
             "Attack": {
                 "Range Damage": 0,
                 "Melee Damage": 2,
-                "SMG Damage": 1,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 0,
@@ -12354,11 +12337,144 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.5,
                 "Ranged Attack": false,
                 "Melee Attack": false,
-                "SMG Attack": false,
-                "Blocking": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Fiddler_Test"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.9700000286102296,
+                    "y": 0.9191531538963318,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 7.670000076293945,
+                    "y": 0.9191531538963318
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": -0.14000000059604646
+                },
+                "Size": {
+                    "x": 1.5800000429153443,
+                    "y": 0.7900000214576721
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/FID_BLOCK_READY",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Fiddler",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 1.9700000286102296,
+                    "y": 0.9100000262260437
+                },
+                "AIState": "idle_fiddler"
+            },
+            "Health": {
+                "Current Health": 50,
+                "Max Health": 50,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 10,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 2.0,
+                "Range Cooldown": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
                 "Start Combo Cooldown Timer": false
             }
         },
@@ -12432,7 +12548,7 @@
                 "Mass": 50.0,
                 "Move Speed": 15.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 2.0,
+                "Friction Coefficient": 2.5,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 12.0,
                 "Acceleration Pickup": 3.0,
@@ -12493,7 +12609,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 2,
+                "Layer": 3,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -12511,13 +12627,12 @@
                 "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 1,
-                "Melee Damage": 1,
-                "SMG Damage": 1,
-                "Melee Combo Damage": 2,
+                "Range Damage": 0,
+                "Melee Damage": 64,
+                "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
-                "Max Combo Number": 3,
-                "Melee Cooldown": 0.20000000298023225,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "Melee Cooldown Timer": -0.20000000298023225,
                 "Range Cooldown Timer": -0.20000000298023225,
@@ -12525,11 +12640,8 @@
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.5,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "SMG Attack": false,
-                "Blocking": false,
+                "Ranged Attack": true,
+                "Melee Attack": true,
                 "Start Combo Cooldown Timer": false
             },
             "Player": {

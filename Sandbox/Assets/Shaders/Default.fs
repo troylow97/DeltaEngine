@@ -30,72 +30,72 @@ uniform float _REnd = 180;
 
 void main()
 {
-  if (_FillType == 1)
-  {
-  	if (vertexTexCoord.x > _FillAmount * (_SpriteUV.z - _SpriteUV.x) + _SpriteUV.x)
-  		discard;
-  }
-  if (_FillType == 2)
-  {
-  	if (vertexTexCoord.x < (1 - _FillAmount) * (_SpriteUV.z - _SpriteUV.x) + _SpriteUV.x)
-  		discard;
-  }
-  if (_FillType == 3)
-  {
-  	if (vertexTexCoord.y > _FillAmount * (_SpriteUV.w - _SpriteUV.y) + _SpriteUV.y)
-  		discard;
-  }
-  if (_FillType == 4)
-  {
-  	if (vertexTexCoord.y < (1 - _FillAmount) * (_SpriteUV.w - _SpriteUV.y) + _SpriteUV.y)
-  		discard;
-  }
-  if (_FillType == 5)
-  {
-  	float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, _FillAmount)));
-  	float startAngle = _RRot - _REnd;
-      float endAngle = _RRot + _REnd + rotAngle;
-  
-      // check offsets
-      float offset0 = clamp(0, 360, startAngle + 360);
-      float offset360 = clamp(0, 360, endAngle - 360);
-  
-      // convert uv to atan coordinates
-      vec2 atan2Coord = vec2(
-  		mix(-1, 1, (vertexTexCoord.x - _SpriteUV.x) / (_SpriteUV.z - _SpriteUV.x)),
-  		mix(-1, 1, (vertexTexCoord.y - _SpriteUV.y) / (_SpriteUV.w - _SpriteUV.y)));
-      float atanAngle = atan(atan2Coord.y, atan2Coord.x) * 57.3; // angle in degrees
-  
-      // convert angle to 360 system
-      if(atanAngle < 0) atanAngle = 360 + atanAngle;
-  
-      if(atanAngle >= startAngle && atanAngle <= endAngle) discard;
-      if(atanAngle <= offset360) discard;
-      if(atanAngle >= offset0) discard;
-  }
-  if (_FillType == 6)
-  {
-  	float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, _FillAmount)));
-  	float startAngle = _RRot - _RStart - rotAngle;
-      float endAngle = _RRot + _REnd;
-  
-      // check offsets
-      float offset0 = clamp(0, 360, startAngle + 360);
-      float offset360 = clamp(0, 360, endAngle - 360);
-  
-      // convert uv to atan coordinates
-      vec2 atan2Coord = vec2(
-  		mix(-1, 1, (vertexTexCoord.x - _SpriteUV.x) / (_SpriteUV.z - _SpriteUV.x)),
-  		mix(-1, 1, (vertexTexCoord.y - _SpriteUV.y) / (_SpriteUV.w - _SpriteUV.y)));
-      float atanAngle = atan(atan2Coord.y, atan2Coord.x) * 57.3; // angle in degrees
-  
-      // convert angle to 360 system
-      if(atanAngle < 0) atanAngle = 360 + atanAngle;
-  
-      if(atanAngle >= startAngle && atanAngle <= endAngle) discard;
-      if(atanAngle <= offset360) discard;
-      if(atanAngle >= offset0) discard;
-  }
-  color = texture(_MainTex, vertexTexCoord) * vertexColor * _Color;
-  color = mix(color, vec4(_FadeColor.r, _FadeColor.g, _FadeColor.b, color.a), _FadeAmt);
+	if (_FillType == 1)
+	{
+		if (vertexTexCoord.x > _FillAmount * (_SpriteUV.z - _SpriteUV.x) + _SpriteUV.x)
+			discard;
+	}
+	if (_FillType == 2)
+	{
+		if (vertexTexCoord.x < (1 - _FillAmount) * (_SpriteUV.z - _SpriteUV.x) + _SpriteUV.x)
+			discard;
+	}
+	if (_FillType == 3)
+	{
+		if (vertexTexCoord.y > _FillAmount * (_SpriteUV.w - _SpriteUV.y) + _SpriteUV.y)
+			discard;
+	}
+	if (_FillType == 4)
+	{
+		if (vertexTexCoord.y < (1 - _FillAmount) * (_SpriteUV.w - _SpriteUV.y) + _SpriteUV.y)
+			discard;
+	}
+	if (_FillType == 5)
+	{
+		float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, _FillAmount)));
+		float startAngle = _RRot - _REnd;
+        float endAngle = _RRot + _REnd + rotAngle;
+
+        // check offsets
+        float offset0 = clamp(0, 360, startAngle + 360);
+        float offset360 = clamp(0, 360, endAngle - 360);
+
+        // convert uv to atan coordinates
+        vec2 atan2Coord = vec2(
+			mix(-1, 1, (vertexTexCoord.x - _SpriteUV.x) / (_SpriteUV.z - _SpriteUV.x)),
+			mix(-1, 1, (vertexTexCoord.y - _SpriteUV.y) / (_SpriteUV.w - _SpriteUV.y)));
+        float atanAngle = atan(atan2Coord.y, atan2Coord.x) * 57.3; // angle in degrees
+
+        // convert angle to 360 system
+        if(atanAngle < 0) atanAngle = 360 + atanAngle;
+
+        if(atanAngle >= startAngle && atanAngle <= endAngle) discard;
+        if(atanAngle <= offset360) discard;
+        if(atanAngle >= offset0) discard;
+	}
+	if (_FillType == 6)
+	{
+		float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, _FillAmount)));
+		float startAngle = _RRot - _RStart - rotAngle;
+        float endAngle = _RRot + _REnd;
+
+        // check offsets
+        float offset0 = clamp(0, 360, startAngle + 360);
+        float offset360 = clamp(0, 360, endAngle - 360);
+
+        // convert uv to atan coordinates
+        vec2 atan2Coord = vec2(
+			mix(-1, 1, (vertexTexCoord.x - _SpriteUV.x) / (_SpriteUV.z - _SpriteUV.x)),
+			mix(-1, 1, (vertexTexCoord.y - _SpriteUV.y) / (_SpriteUV.w - _SpriteUV.y)));
+        float atanAngle = atan(atan2Coord.y, atan2Coord.x) * 57.3; // angle in degrees
+
+        // convert angle to 360 system
+        if(atanAngle < 0) atanAngle = 360 + atanAngle;
+
+        if(atanAngle >= startAngle && atanAngle <= endAngle) discard;
+        if(atanAngle <= offset360) discard;
+        if(atanAngle >= offset0) discard;
+	}
+	color = texture(_MainTex, vertexTexCoord) * vertexColor * _Color;
+    color = mix(color, vec4(_FadeColor.r, _FadeColor.g, _FadeColor.b, color.a), _FadeAmt);
 }

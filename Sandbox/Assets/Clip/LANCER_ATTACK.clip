@@ -1,4 +1,4 @@
-frames 13
+frames 15
 fps 12
 loop 0
 
@@ -66,5 +66,15 @@ Textures/LANCER_ATTACK_i_12
 key Textures/LANCER_ATTACK
 value 12
 frame 12
+
+Textures/LANCER_ATTACK_i_13
+key Textures/LANCER_ATTACK
+value 13
+frame 13
+
+Textures/LANCER_ATTACK_i_14
+key Textures/LANCER_ATTACK
+value 14
+frame 14
 
 %

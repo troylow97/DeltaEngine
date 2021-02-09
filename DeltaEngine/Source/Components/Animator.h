@@ -25,8 +25,6 @@ namespace DeltaEngine
     float m_Timer{0.0f};
     float m_Speed{1.0f};
 
-    int m_LoopsCompleted = 0;
-
     Animator()
       : m_ControllerKey{""}, m_ClipKey{""},
         m_Timer{0.0f}, m_Speed{1}
@@ -40,11 +38,6 @@ namespace DeltaEngine
       m_Timer = 0;
       m_Speed = rhs.m_Speed;
       return *this;
-    }
-
-    int LoopsCompleted()
-    {
-      return m_LoopsCompleted;
     }
   };
 }

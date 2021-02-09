@@ -30,14 +30,10 @@ namespace DeltaEngine
           {
             newClip = GetEnv().pManager->Get<AnimationClip>(controller->entryAnimation);
 
-            if (newClip)
-            {
-              frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
+            frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
 
-              a.m_ClipKey = newClip->GetName();
-              i.m_Sprite = newClip->GetSprite(frame);
-              a.m_LoopsCompleted = 0;
-            }
+            a.m_ClipKey = newClip->GetName();
+            i.m_Sprite = newClip->GetSprite(frame);
           }
           else
           {
@@ -46,7 +42,6 @@ namespace DeltaEngine
             {
               a.m_ClipKey = newClip->GetName();
               a.m_Timer = 0;
-              a.m_LoopsCompleted = 0;
             }
             else
             {
@@ -56,57 +51,40 @@ namespace DeltaEngine
               {
                 a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
                 while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
-                {
                   a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
-                  ++a.m_LoopsCompleted;
-                }
               }
               else
               {
                 if (a.m_Timer < 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                   a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
-                else
-                  a.m_LoopsCompleted = 1;
               }
             }
+            frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
 
-            if (newClip)
-            {
-              frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
-
-              Sprite newSprite = newClip->GetSprite(frame);
-              if (newSprite)
-                i.m_Sprite = newSprite;
-            }
+            Sprite newSprite = newClip->GetSprite(frame);
+            if (newSprite)
+              i.m_Sprite = newSprite;
           }
         }
         else if (!a.m_ClipKey.empty())
         {
           newClip = GetEnv().pManager->Get<AnimationClip>(a.m_ClipKey);
-          if (newClip)
+          if (newClip->looping)
           {
-            if (newClip->looping)
-            {
-              a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
-              while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
-              {
-                a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
-                ++a.m_LoopsCompleted;
-              }
-            }
-            else
-            {
-              if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
-                a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
-              else
-                a.m_LoopsCompleted = 1;
-            }
-
-            frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
-            Sprite newSprite = newClip->GetSprite(frame);
-            if (newSprite)
-              i.m_Sprite = newSprite;
+            a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+            while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+              a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
           }
+          else
+          {
+            if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+              a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+          }
+
+          frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
+          Sprite newSprite = newClip->GetSprite(frame);
+          if (newSprite)
+            i.m_Sprite = newSprite;
         }
       });
     Profiler::Instance().Record("Animation System");

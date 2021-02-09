@@ -25,6 +25,5 @@ namespace DeltaEngine
 
   private:
     std::vector<TextureInfo> info;
-    bool loaded;
   };
 }

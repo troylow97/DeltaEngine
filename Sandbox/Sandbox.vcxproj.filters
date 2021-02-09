@@ -18,23 +18,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Systems\AI\AITools.h">
-      <Filter>Systems\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Systems\AI\AI_State.h">
-      <Filter>Systems\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Systems\AI\AI_StateMachine.h">
-      <Filter>Systems\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Systems\AI\AI_Transition.h">
-      <Filter>Systems\AI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Systems\AI\ExitScene\ExitSceneCinematic.h">
       <Filter>Systems\AI\ExitScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Systems\AI\Waypoint.h">
-      <Filter>Systems\AI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\AttackSystem.h">
       <Filter>Systems</Filter>
@@ -57,9 +42,6 @@
     <ClInclude Include="Source\Systems\LifespanSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\MouseCalculation.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Systems\RespawnSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -78,20 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
-    <ClCompile Include="Source\Systems\AI\AITools.cpp">
-      <Filter>Systems\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Systems\AI\AI_State.cpp">
-      <Filter>Systems\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Systems\AI\AI_StateMachine.cpp">
-      <Filter>Systems\AI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Systems\AI\ExitScene\ExitSceneCinematic.cpp">
       <Filter>Systems\AI\ExitScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Systems\AI\Waypoint.cpp">
-      <Filter>Systems\AI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\AttackSystem.cpp">
       <Filter>Systems</Filter>
@@ -109,9 +79,6 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\LifespanSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Systems\MouseCalculation.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\RespawnSystem.cpp">

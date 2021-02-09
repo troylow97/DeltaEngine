@@ -14,13 +14,13 @@ uniform mat4 _P; //ProjectionMatrix
 
 void main()
 {
-  vec4 v = vec4(position, 1.0);
-  vec4 v1 = _M * v;
-  vec4 v2 = _V * v1;
-  vec4 v3 = _P * v2;
-  gl_Position = v3;
-  
-  vertexPosition = v1.xyz;
-  vertexColor = color;
-  vertexTexCoord = texCoord;
+	vec4 v = vec4(position, 1.0);
+	vec4 v1 = _M * v;
+	vec4 v2 = _V * v1;
+	vec4 v3 = _P * v2;
+	gl_Position = v3;
+
+	vertexPosition = v1.xyz;
+	vertexColor = color;
+	vertexTexCoord = texCoord;
 }

@@ -36,13 +36,12 @@ namespace DeltaEngine
 
     class VertexArray
     {
-      unsigned int vertexAttribArrayCount = 0;
     public:
       unsigned int m_RendererID;
       VertexArray();
       ~VertexArray();
 
-      void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout, bool instanced = false, int startCount = -1);
+      void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
 
       void Bind() const;
       void Unbind() const;
@@ -68,15 +67,12 @@ namespace DeltaEngine
     };
 
     VertexArray vao;
-    VertexBuffer vbo, ivbo;
+    VertexBuffer vbo;
     IndexBuffer ibo;
 
     const unsigned int MAX_VERTICES = 65534;
 
     unsigned int verticesCount;
-
-    unsigned int instances;
-    std::vector<float> instanceData;
 
     std::vector<Vector3> vertices;
     std::vector<Color> colors;
@@ -85,7 +81,6 @@ namespace DeltaEngine
     std::vector<unsigned int> indices;
 
     bool isDynamic = false;
-    bool useInstancing = false;
     bool useSubdata = false;
 
     std::vector<float> VerticesDataFormat();
@@ -103,10 +98,6 @@ namespace DeltaEngine
 
     static void Init();
     static void Exit();
-
-
-    static void DrawQuadInst(unsigned int count, std::vector<float> instData, std::vector<float> locations);
-
     static void DrawQuad(bool wireframe = false);
     static void DrawQuad(Vector2 offset, Vector2 tiling, Vector2 pivot);
     static void DrawLine(Vector3 start, Vector3 end);

@@ -42,7 +42,6 @@ namespace DeltaEngine
     void SetUniform1f(std::string name, float f0);
     void SetUniformMatrix4f(std::string name, Matrix4x4 matrix);
     void SetUniformColor4f(std::string name, Color c);
-    void SetUniformVector2f(std::string name, Vector2 v);
     void SetUniformVector3f(std::string name, Vector3 v);
     void SetUniformVector4f(std::string name, Vector4 v);
     void SetUniformVector4f(std::string name, float v0, float v1, float v2, float v3);
