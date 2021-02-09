@@ -36,7 +36,7 @@ namespace DeltaEngine
   void VFXSystem::ShowHitVFX(Vector3 pos, Vector2 size, std::string image, std::string animation, /*std::string animation_bool,*/ float duration)
   {
     auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
-    auto& player_render2d = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(UnitManager::GetPlayerID());
+
     EntityID vfx = em.CreateEntity<Animator, Renderer2D, Image, Lifespan, State>();
     float random_x = Random::RandomFloatRange(-0.2f, 0.2f);
     float random_y = Random::RandomFloatRange(-0.2f, 0.2f);

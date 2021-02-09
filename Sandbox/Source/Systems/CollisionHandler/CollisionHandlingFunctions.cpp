@@ -52,6 +52,8 @@ namespace DeltaEngine
   {
     auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
     auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
+    (void)type2;
+
     if (type1 == type)
       return id1;
     
