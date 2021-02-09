@@ -20,6 +20,6 @@ namespace DeltaEngine
 
     void ShowHitVFX(Vector3 pos, Vector2 size, std::string image, std::string animation, /*std::string animation_bool,*/ float duration);
 private:
-    //
+    int ShowVFX = 0;
   END_DEFINE_SYSTEM(VFXSystem)
 }

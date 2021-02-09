@@ -23,8 +23,14 @@ namespace DeltaEngine
 
     if (player_attack.DamageEnemy)
     {
-      ShowHitVFX(player_pos.position, { 2.0f, 2.0f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
-      player_attack.DamageEnemy = false;
+      ShowVFX++;
+      
+      if (ShowVFX == 3)
+      {
+        ShowHitVFX(player_pos.position, { 2.0f, 2.0f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
+        player_attack.DamageEnemy = false;
+        ShowVFX = 0;
+      }
     }
   }
   
