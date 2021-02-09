@@ -27,6 +27,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include <map>
 #include <unordered_map>
 #include <unordered_set>
+#include <array>
 
 // platform specifi header
 #ifdef DE_PLATFORM_WINDOWS

@@ -5,11 +5,11 @@ namespace DeltaEngine
 {
   Gradient::Gradient()
   {
-    //colorKeys[0] = {Color(), 0} ;
-    //colorKeys[1] = {Color(), 1} ;
-    //
-    //alphaKeys[0] = {1, 0} ;
-    //alphaKeys[1] = {1, 1} ;
+    colorKeys[0] = {Color(), 0} ;
+    colorKeys[1] = {Color(), 1} ;
+
+    alphaKeys[0] = {1, 0} ;
+    alphaKeys[1] = {1, 1} ;
   }
 
   Color Gradient::Evaluate(float time)

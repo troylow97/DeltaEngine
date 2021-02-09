@@ -9,9 +9,9 @@ namespace DeltaEngine
   {
     // value, location (0 - 1)
     // alpha is active
-    //std::array<std::pair<Color, float>, 8> colorKeys;
+    std::array<std::pair<Color, float>, 8> colorKeys;
     // negative is inactive
-    //std::array<std::pair<float, float>, 8> alphaKeys;
+    std::array<std::pair<float, float>, 8> alphaKeys;
 
     Gradient();
 

@@ -2,6 +2,7 @@
 
 #include "DEpch.h"
 #include "Vector.h"
+#include <array>
 
 namespace DeltaEngine
 {
@@ -9,11 +10,11 @@ namespace DeltaEngine
   {
     // positions are saved as normalized vectors
     // position, active
-    //std::array<std::pair<Vector2, bool>, 8> anchors;
+    std::array<std::pair<Vector2, bool>, 8> anchors;
     // controls are local to anchors
     // position, active
-    //std::array<std::pair<Vector2, bool>, 8> controlsLeft;
-    //std::array<std::pair<Vector2, bool>, 8> controlsRight;
+    std::array<std::pair<Vector2, bool>, 8> controlsLeft;
+    std::array<std::pair<Vector2, bool>, 8> controlsRight;
 
     // determines the true positions
     float min = 0.0f, max = 1.0f;
