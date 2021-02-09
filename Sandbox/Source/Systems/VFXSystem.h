@@ -18,7 +18,7 @@ namespace DeltaEngine
     void Update() override;
     void LateUpdate() override;
 
-    void ShowHitVFX(Vector2 pos, std::string image, std::string animation);
+    void ShowHitVFX(Vector3 pos, Vector2 size, std::string image, std::string animation, /*std::string animation_bool,*/ float duration);
 private:
     //
   END_DEFINE_SYSTEM(VFXSystem)
