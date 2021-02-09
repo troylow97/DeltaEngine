@@ -36,6 +36,7 @@ struct Attack
   bool Blocking;
   bool StartSMGCooldownTimer;
   bool StartComboCooldownTimer;
+  bool DamageEnemy;
 
   Attack() :
     RangedDamage{1},
@@ -60,7 +61,8 @@ struct Attack
     AllowSMGAttack{true},
     Blocking{false},
     StartSMGCooldownTimer{false},
-    StartComboCooldownTimer{false}
+    StartComboCooldownTimer{false},
+    DamageEnemy{false}
   {
   }
 };
