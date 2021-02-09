@@ -39,8 +39,7 @@ namespace DeltaEngine
     if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
     {
       EntityID p = UnitManager::GetPlayerID();
-      auto& transform = em.GetComponent<Transform>(p);
-      (void)transform;
+
       if (!ExitPointTriggered && AITools::EntityisAtPointInX(p, ExitPoint.x, 1.0f))
       {
         em.RemoveComponent<Input>(p);
