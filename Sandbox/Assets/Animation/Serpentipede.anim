@@ -1,20 +1,36 @@
 %Entry:
 
 entry
-Clip/SERP_FULL_IDLE
+Clip/SERP_IDLE
 
 %Parameters:
 
 param
-PlayerDetected
+Alert
 0 0
 
 param
-HP
+Damaged
 0 0
 
 param
-IsAttacking
+Burrow
+0 0
+
+param
+Unburrow
+0 0
+
+param
+Charge
+0 0
+
+param
+Fire
+0 0
+
+param
+Dead
 0 0
 
 %EditorPositions:
@@ -25,32 +41,174 @@ Entry
 
 pos
 Exit
-79 112
+384 48
 
 pos
 Any State
-200 0
+0 -102
 
 pos
-Clip/SERP_FULL_IDLE
--438 88
+Clip/SERP_IDLE
+-227 28
 
 pos
-Clip/SERP_FIRE
--34 119
+Clip/SERP_ALERT
+-198 101
 
 pos
-Clip/SERP_FULL_ALERT
--375 248
-
-pos
-Clip/SERP_DEATH
--188 65
+Clip/SERP_BURROW
+1 33
 
 pos
 Clip/SERP_CHARGE
--68 241
+1 165
+
+pos
+Clip/SERP_DEATH
+144 -102
+
+pos
+Clip/SERP_DMG
+0 -36
+
+pos
+Clip/SERP_FIRE
+1 226
+
+pos
+Clip/SERP_UNBURROW
+3 100
 
 %Transitions:
+
+transition
+start
+Any State
+end
+Clip/SERP_DEATH
+condition
+Dead
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_DEATH
+end
+Exit
+condition
+Dead
+? 0
+endTransition
+
+transition
+start
+Clip/SERP_IDLE
+end
+Clip/SERP_ALERT
+condition
+Alert
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_DMG
+condition
+Damaged
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_BURROW
+condition
+Burrow
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_FIRE
+condition
+Fire
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_CHARGE
+condition
+Charge
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_UNBURROW
+condition
+Unburrow
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_UNBURROW
+end
+Exit
+condition
+Unburrow
+? 0
+endTransition
+
+transition
+start
+Clip/SERP_CHARGE
+end
+Exit
+condition
+Charge
+? 0
+endTransition
+
+transition
+start
+Clip/SERP_FIRE
+end
+Exit
+condition
+Fire
+? 0
+endTransition
+
+transition
+start
+Clip/SERP_BURROW
+end
+Exit
+condition
+Burrow
+? 0
+endTransition
+
+transition
+start
+Clip/SERP_DMG
+end
+Exit
+condition
+Damaged
+? 0
+endTransition
 
 %endfile

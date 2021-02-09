@@ -1,6 +1,6 @@
-frames 15
+frames 12
 fps 12
-loop 0
+loop 1
 
 Textures/FID_WALK_i_0
 key Textures/FID_WALK
@@ -61,20 +61,5 @@ Textures/FID_WALK_i_11
 key Textures/FID_WALK
 value 11
 frame 11
-
-Textures/FID_WALK_i_12
-key Textures/FID_WALK
-value 12
-frame 12
-
-Textures/FID_WALK_i_13
-key Textures/FID_WALK
-value 13
-frame 13
-
-Textures/FID_WALK_i_14
-key Textures/FID_WALK
-value 14
-frame 14
 
 %
