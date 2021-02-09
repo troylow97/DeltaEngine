@@ -1,0 +1,65 @@
+frames 12
+fps 12
+loop 0
+
+Textures/DAVE_DEATH_i_0
+key Textures/DAVE_DEATH
+value 0
+frame 0
+
+Textures/DAVE_DEATH_i_1
+key Textures/DAVE_DEATH
+value 1
+frame 1
+
+Textures/DAVE_DEATH_i_2
+key Textures/DAVE_DEATH
+value 2
+frame 2
+
+Textures/DAVE_DEATH_i_3
+key Textures/DAVE_DEATH
+value 3
+frame 3
+
+Textures/DAVE_DEATH_i_4
+key Textures/DAVE_DEATH
+value 4
+frame 4
+
+Textures/DAVE_DEATH_i_5
+key Textures/DAVE_DEATH
+value 5
+frame 5
+
+Textures/DAVE_DEATH_i_6
+key Textures/DAVE_DEATH
+value 6
+frame 6
+
+Textures/DAVE_DEATH_i_7
+key Textures/DAVE_DEATH
+value 7
+frame 7
+
+Textures/DAVE_DEATH_i_8
+key Textures/DAVE_DEATH
+value 8
+frame 8
+
+Textures/DAVE_DEATH_i_9
+key Textures/DAVE_DEATH
+value 9
+frame 9
+
+Textures/DAVE_DEATH_i_10
+key Textures/DAVE_DEATH
+value 10
+frame 10
+
+Textures/DAVE_DEATH_i_11
+key Textures/DAVE_DEATH
+value 11
+frame 11
+
+%

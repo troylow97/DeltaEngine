@@ -1,40 +1,16 @@
 %Entry:
 
 entry
-Clip/IdleSpritesheet
+Clip/DAVE_IDLE
 
 %Parameters:
 
 param
-Speed
+isRunning
 0 0
 
 param
-IsJumping
-0 0
-
-param
-Punch
-0 0
-
-param
-IsIdle
-0 0
-
-param
-IsRunning
-0 0
-
-param
-IsDodge
-0 0
-
-param
-Ranged
-0 0
-
-param
-PlayerVelocityY
+ShieldUp
 0 0
 
 param
@@ -42,421 +18,181 @@ Punch1
 0 0
 
 param
-Punch2
+isJumping
 0 0
+
+param
+isIdle
+0 0
+
+param
+ReachingTop
+0 0
+
+param
+JumpLanded
+0 0
+
+param
+Punch2
+1 0
 
 param
 Punch3
-0 0
-
-param
-LancerAttack
-0 0
+1 0
 
 %EditorPositions:
 
 pos
 Entry
-3 4
+0 -2
 
 pos
 Exit
-371 551
+1058 0
 
 pos
-Clip/IdleSpritesheet
-31 94
+Clip/DAVE_SHIELD_UP
+227 283
 
 pos
-Clip/RunningSpritesheet
-161 261
+Clip/DAVE_DEATH
+1002 61
 
 pos
-Clip/RangeAttackSpritesheet
--126 273
+Clip/DAVE_FALL
+600 -1
 
 pos
-Clip/FallingSpritesheet
-647 -44
+Clip/DAVE_FIRE
+739 220
 
 pos
-Clip/LandingSpriteSheet
-340 -21
+Clip/DAVE_FIRE_READY
+409 101
 
 pos
-Clip/DashSpritesheet
--55 428
+Clip/DAVE_IDLE
+101 0
 
 pos
-Clip/InitialJump
-602 82
+Clip/DAVE_DASH
+401 -136
 
 pos
-Clip/ReachingTop
-830 29
+Clip/DAVE_IDLE_STRETCH
+402 -199
 
 pos
-Clip/Punch1
-445 214
+Clip/DAVE_JUMP
+400 1
 
 pos
-Clip/Punch2
-690 181
+Clip/DAVE_LANCE
+175 231
 
 pos
-Clip/Punch3
-929 203
+Clip/DAVE_LAND
+772 -1
 
 pos
-Clip/LancerAttack
-759 484
+Clip/DAVE_PUNCH
+548 261
+
+pos
+Clip/DAVE_PUNCH1_NEW
+346 337
+
+pos
+Clip/DAVE_PUNCH2_NEW
+346 375
+
+pos
+Clip/DAVE_PUNCH3_NEW
+346 413
+
+pos
+Clip/DAVE_RECOVER
+610 339
+
+pos
+Clip/DAVE_RUN
+400 -69
+
+pos
+Clip/DAVE_SHIELD_BLOCK
+862 290
 
 %Transitions:
 
 transition
 start
-Clip/IdleSpritesheet
+Clip/DAVE_IDLE
 end
-Clip/RunningSpritesheet
-condition
-IsRunning
-? 1
+Clip/DAVE_RUN
 endTransition
 
 transition
 start
-Clip/RunningSpritesheet
-end
-Clip/IdleSpritesheet
-condition
-IsRunning
-? 0
-endTransition
-
-transition
-start
-Clip/IdleSpritesheet
-end
-Clip/RangeAttackSpritesheet
-condition
-Ranged
-? 1
-endTransition
-
-transition
-start
-Clip/RangeAttackSpritesheet
+Clip/DAVE_RUN
 end
 Exit
-condition
-Ranged
-? 0
 endTransition
 
 transition
 start
-Clip/IdleSpritesheet
-end
-Clip/DashSpritesheet
-condition
-IsDodge
-? 1
-endTransition
-
-transition
-start
-Clip/DashSpritesheet
+Clip/DAVE_IDLE_STRETCH
 end
 Exit
-condition
-IsDodge
-? 0
 endTransition
 
 transition
 start
-Clip/IdleSpritesheet
+Clip/DAVE_JUMP
 end
-Clip/Punch1
-condition
-Punch1
-? 1
+Clip/DAVE_FALL
 endTransition
 
 transition
 start
-Clip/Punch1
+Clip/DAVE_FALL
 end
-Clip/Punch2
-condition
-Punch2
-? 1
+Clip/DAVE_LAND
 endTransition
 
 transition
 start
-Clip/Punch2
-end
-Clip/Punch3
-condition
-Punch3
-? 1
-endTransition
-
-transition
-start
-Clip/Punch1
+Clip/DAVE_LAND
 end
 Exit
-condition
-Punch1
-? 0
 endTransition
 
 transition
 start
-Clip/Punch2
+Clip/DAVE_IDLE
+end
+Clip/DAVE_JUMP
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_IDLE_STRETCH
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_DASH
+endTransition
+
+transition
+start
+Clip/DAVE_DASH
 end
 Exit
-condition
-Punch2
-? 0
-endTransition
-
-transition
-start
-Clip/Punch3
-end
-Exit
-condition
-Punch3
-? 0
-endTransition
-
-transition
-start
-Clip/IdleSpritesheet
-end
-Clip/InitialJump
-condition
-PlayerVelocityY
-> 5
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/InitialJump
-condition
-PlayerVelocityY
-> 5
-endTransition
-
-transition
-start
-Clip/InitialJump
-end
-Clip/ReachingTop
-condition
-PlayerVelocityY
-> -0.1
-condition
-PlayerVelocityY
-< 5
-endTransition
-
-transition
-start
-Clip/ReachingTop
-end
-Clip/FallingSpritesheet
-condition
-PlayerVelocityY
-< 0
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/FallingSpritesheet
-condition
-PlayerVelocityY
-< 0
-condition
-IsJumping
-? 0
-endTransition
-
-transition
-start
-Clip/FallingSpritesheet
-end
-Clip/LandingSpriteSheet
-condition
-PlayerVelocityY
-> -0.1
-endTransition
-
-transition
-start
-Clip/LandingSpriteSheet
-end
-Clip/IdleSpritesheet
-condition
-IsRunning
-? 0
-endTransition
-
-transition
-start
-Clip/LandingSpriteSheet
-end
-Clip/RunningSpritesheet
-condition
-IsRunning
-? 1
-endTransition
-
-transition
-start
-Clip/IdleSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/RangeAttackSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/FallingSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/LandingSpriteSheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/DashSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/InitialJump
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/ReachingTop
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/Punch1
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/Punch2
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/Punch3
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/LancerAttack
-end
-Exit
-condition
-LancerAttack
-? 0
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/Punch1
-condition
-Punch1
-? 1
-endTransition
-
-transition
-start
-Clip/RangeAttackSpritesheet
-end
-Clip/IdleSpritesheet
-condition
-Ranged
-? 0
 endTransition
 
 %endfile

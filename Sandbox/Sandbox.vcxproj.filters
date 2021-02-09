@@ -42,6 +42,9 @@
     <ClInclude Include="Source\Systems\LifespanSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\MouseCalculation.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\RespawnSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -76,6 +79,9 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\LifespanSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\MouseCalculation.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\RespawnSystem.cpp">

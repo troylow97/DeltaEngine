@@ -1,0 +1,25 @@
+frames 4
+fps 12
+loop 0
+
+Textures/DAVE_JUMP_i_0
+key Textures/DAVE_JUMP
+value 0
+frame 0
+
+Textures/DAVE_JUMP_i_1
+key Textures/DAVE_JUMP
+value 1
+frame 1
+
+Textures/DAVE_JUMP_i_2
+key Textures/DAVE_JUMP
+value 2
+frame 2
+
+Textures/DAVE_JUMP_i_3
+key Textures/DAVE_JUMP
+value 3
+frame 3
+
+%

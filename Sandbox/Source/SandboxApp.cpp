@@ -37,19 +37,19 @@ public:
   {
 
 #ifndef DE_EDITOR
-    AudioEngine::Play("Audio/MainMenu/main_menu_bgm.wav");
+    AudioEngine::SetEventVolume(AudioEngine::Play2DEvent("event:/BGM/BGM1"),-12.0f);
     JsonFile file;
-    env.pECS->GetWorld().Load("World/gam250.json");
+    env.pECS->GetWorld().Load("World/gam250alphaWithCollider.json");
 #endif
 
 
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem,
+    env.pECS->GetWorld().CreateSystems<AttackSystem, /*EnemySpawner*/ LifespanSystem, RespawnSystem, GCameraSystem,
                                        UISystem/*, UpgradeSystem, ExitSceneCinematic*/, HealthSystem>();
-    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, LifespanSystem>();
+    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, /*EnemySpawner*/ HealthSystem, RespawnSystem, LifespanSystem>();
     //env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, UpgradeSystem,
     //    ExitSceneCinematic, LifespanSystem>();
-    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, UISystem>();
+    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem/*, UISystem*/>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
 

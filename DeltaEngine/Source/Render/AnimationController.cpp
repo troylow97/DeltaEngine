@@ -102,6 +102,9 @@ namespace DeltaEngine
 
   void AnimationController::CreateNew(std::string filepath)
   {
+#ifndef DE_EDITOR
+    return;
+#endif
     AnimationController c = AnimationController(filepath);
     c.editorPositions.resize(2);
     c.editorPositions[0] = {"Entry", Vector2(0, 0)};
@@ -257,6 +260,9 @@ namespace DeltaEngine
       }
     }
 
+#ifndef DE_EDITOR
+    return;
+#endif
     std::ofstream file;
     DeltaEngine_CORE_TRACE("Saving animator \"{}\"...", m_Name.c_str());
     file.open(m_Name.c_str());

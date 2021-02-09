@@ -94,7 +94,7 @@ namespace DeltaEngine
 
   class ChaseEnemyFiddler : public AIState
   {
-    float OnEnterDuration;//To prevent constant animation change between alerted and not alerted;
+      float AttackDelay;
   public:
     ChaseEnemyFiddler(Vector2& lost_range);
     void onEnter(EntityID& id) override;

@@ -15,12 +15,14 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Audio/AudioEngine.h"
-#include  "Core/Utils/Random.h"
+#include "Core/Utils/Random.h"
+#include "MouseCalculation.h"
 
 namespace DeltaEngine
 {
   void AttackSystem::Update()
   {
+    // dashing --------------------------------------------------------------------------------------------------
     if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
     {
       auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
@@ -44,9 +46,39 @@ namespace DeltaEngine
       }
       Dash();
     }
-
-    em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
+    // SMG attack -----------------------------------------------------------------------------------------------
+    if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
     {
+      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+      if (a.SMGAttack && a.SMGFireRate <= 0.0f)
+      {
+        // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
+        //p.StartDashingTimer = true;
+        SMGAttack(UnitManager::GetPlayerID());
+      }
+
+      if (a.SMGAttack)
+          a.StartSMGCooldownTimer = true;
+      if (a.StartSMGCooldownTimer)
+      {
+        if (a.SMGFireRate >= 0.0f)
+        {
+          a.SMGFireRate -= env.pClock->FixedDeltaTime();
+          a.AllowSMGAttack = false;
+        }
+        else
+        {
+          a.SMGFireRate = a.SMGCooldown;
+          a.AllowSMGAttack = true;
+          a.StartSMGCooldownTimer = false;
+        }
+      }
+    }
+    // melee and ranged attack ----------------------------------------------------------------------------------
+    em.ForEach([&](EntityID& id,RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
+    {
+      //Reduce Cooldowns   	
       if (a.MeleeCooldownTimer > -0.2)
         a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
       else
@@ -54,21 +86,40 @@ namespace DeltaEngine
 
       if (a.RangeCooldownTimer > -0.2)
         a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
-      else
-        em.GetComponent<State>(id).SetBool("Ranged", false);
 
+      //Toggle Ranged Attack
       if (a.RangeAttack && a.RangeCooldownTimer <= 0)
       {
+      	if(a.Blocking)
+      	{
+            a.Blocking = false;
+			r.Movespeed /= 0.2;
+            r.FrictionCoeff -= 4.0f;
+            r.MaxAcceleration += 10.0f;
+            st.SetBool("ShieldUp", false);
+      	}
         em.GetComponent<State>(id).SetBool("Ranged", true);
         RangedAttackingEntities.push_back(id);
         a.RangeCooldownTimer = a.RangeCooldown;
         a.RangeAttack = false;
       }
+      if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
+          em.GetComponent<State>(id).SetBool("Ranged", false);
 
-      if (a.MeleeAttack && em.HasComponent<AI>(id))
-        st.SetBool("MeleeAttack", true);
+       //Toggle Melee Attack   	
       if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
       {
+          if (a.Blocking)
+          {
+              a.Blocking = false;
+              r.Movespeed /= 0.2;
+              r.FrictionCoeff -= 4.0f;
+              r.MaxAcceleration += 10.0f;
+              st.SetBool("ShieldUp", false);
+          }
+        if (em.HasComponent<AI>(id))
+            st.SetBool("MeleeAttack", true);
+      	
         a.StartComboCooldownTimer = true;
         if (a.NumberOfCombos != a.MaxComboNumber)
         {
@@ -78,18 +129,23 @@ namespace DeltaEngine
             st.SetBool("Punch1", true);
             st.SetBool("Punch2", false);
             st.SetBool("Punch3", false);
+            AudioEngine::SetGlobalParameterByName( "Punch", 1 );
           }
           else if (a.NumberOfCombos == 2)
           {
             st.SetBool("Punch2", true);
             st.SetBool("Punch1", false);
             st.SetBool("Punch3", false);
+            AudioEngine::SetGlobalParameterByName( "Punch", 2 );
+
           }
           else if (a.NumberOfCombos == 3)
           {
             st.SetBool("Punch3", true);
             st.SetBool("Punch1", false);
             st.SetBool("Punch2", false);
+            AudioEngine::SetGlobalParameterByName( "Punch", 3 );
+
             a.NumberOfCombos = 0;
           }
         }
@@ -150,9 +206,8 @@ namespace DeltaEngine
       em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
       em.GetComponent<State>(id).SetBool("Ranged", true);
       static size_t c_id{u64_max};
-      if (AudioEngine::IsChannelPlaying(c_id))
-        AudioEngine::StopChannel(c_id);
-      c_id = AudioEngine::Play("Audio/jump.wav");
+      AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
+
 
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
@@ -193,14 +248,15 @@ namespace DeltaEngine
 
   void AttackSystem::MeleeAttack(EntityID& id)
   {
+      std::cout << "punching" << std::endl;
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().
       HasComponent<Attack>(id))
     {
       EntityID missile = CreateProjectile(id, Vector2{0.5f, 0.4f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
       static size_t c_id{u64_max};
-      if (AudioEngine::IsChannelPlaying(c_id))
-        AudioEngine::StopChannel(c_id);
-      c_id = AudioEngine::Play("Audio/jump.wav");
+
+      AudioEngine::Play2DEvent( "event:/Player/PlayerPunch" );
+
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.6f;
@@ -269,6 +325,38 @@ namespace DeltaEngine
     }
   }
 
+  void AttackSystem::SMGAttack(EntityID& id)
+  {
+    if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
+    {
+      EntityID smgbullet = CreateSMGBullet(id, Vector2{ 0.25f, 0.25f }, false, 0.5f, EntityCategory::E_PLAYER_SMG);
+      em.AddComponent<Renderer2D>(smgbullet);
+      em.AddComponent<Image>(smgbullet);
+      em.GetComponent<Renderer2D>(smgbullet).m_SortingLayer = 4;
+      em.GetComponent<Image>(smgbullet).m_Size = { 0.25f, 0.25f };
+      em.GetComponent<Image>(smgbullet).m_Sprite.m_Key = "Textures/DAVE_BULLET"; 
+      em.GetComponent<Image>(smgbullet).m_Sprite.m_Index = 0;
+      ////// em.GetComponent<State>(id).SetBool("Ranged", true); // change when have the animation 
+      //////static size_t c_id{ u64_max };
+      //////if (AudioEngine::IsChannelPlaying(c_id))
+      //////  AudioEngine::StopChannel(c_id);
+      //////c_id = AudioEngine::Play("Audio/SWORD_GEN-HDF-22317.wav"); 
+      
+      if (MouseCalculation::ShootRight())
+      {
+        Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
+        //em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
+      }
+      else if (MouseCalculation::ShootLeft())
+      {
+        Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
+        //em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
+      }
+    }
+  }
+
   void AttackSystem::Dash()
   {
     em.ForEach([&](EntityID& id1, Transform& t1, EntityType et1)
@@ -301,5 +389,23 @@ namespace DeltaEngine
     em.GetComponent<EntityType>(missile).type = type;
     em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
     return missile;
+  }
+
+  EntityID AttackSystem::CreateSMGBullet(EntityID id, Vector2 scale, bool gravity, float Lifetime, EntityCategory type)
+  {
+    Transform& t1 = em.GetComponent<Transform>(id);
+    EntityID smgbullet = em.CreateEntity<Collider, Lifespan, RigidBody>();
+    em.GetComponent<Transform>(smgbullet).position.x = t1.position.x;// -0.5f;
+    em.GetComponent<Transform>(smgbullet).position.y = t1.position.y;
+    em.GetComponent<RigidBody>(smgbullet).Mass = 5.0f;
+    em.GetComponent<Transform>(smgbullet).scale = scale;
+    em.GetComponent<Lifespan>(smgbullet).Timer = Lifetime;
+    em.GetComponent<RigidBody>(smgbullet).hasGravity = gravity;
+    em.GetComponent<Collider>(smgbullet).isTrigger = true;
+    em.GetComponent<Collider>(smgbullet).CollisionLayerCheck = 7;
+    em.GetComponent<Collider>(smgbullet).CollisionLayerID = 8;
+    em.GetComponent<EntityType>(smgbullet).type = type;
+    em.GetComponent<RigidBody>(smgbullet).FrictionCoeff = 0.0f;
+    return smgbullet;
   }
 } //Namespace DeltaEngine
