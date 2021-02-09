@@ -95,6 +95,7 @@ void World::Run()
   systems[CHash::Hash<RenderSystem>().digest]->Update();
   systems[CHash::Hash<PhysicsDrawSystem>().digest]->Update();
   systems[CHash::Hash<RenderSystem>().digest]->LateUpdate();
+  CleanUpEntities();
 }
 
 void World::Update()
@@ -108,6 +109,20 @@ void World::LateUpdate()
   for ( auto hash : late_update_sequence )
     systems[hash]->LateUpdate();
 }
+
+void World::CleanUpEntities()
+{
+  std::vector<size_t> e_vec;
+  em->ForEach( [&]( EntityID& id, Parent &p )
+  {
+    if ( !em->IsEntityValid( { p.p_id } ) )
+      e_vec.push_back( id.index );
+  } );
+
+  for ( auto &id : e_vec )
+    em->DestroyEntity( { id } );
+}
+
 
 void World::Save( std::string filename )
 {

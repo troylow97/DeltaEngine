@@ -98,6 +98,8 @@ namespace DeltaEngine
       }
     }
 
+    void CleanUpEntities();
+
     void Save(std::string filename);
 
     void Load(std::string filename);
