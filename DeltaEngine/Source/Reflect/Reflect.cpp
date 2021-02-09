@@ -152,13 +152,22 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     rttr::value( "ray", ColliderType::RAY )
   );
 
-    rttr::registration::enumeration<EntityCategory>( "EntityCategory" )
-    (
-      rttr::value( "none", EntityCategory::E_NONE ),
-      rttr::value( "wall", EntityCategory::E_WALL ),
-      rttr::value( "player", EntityCategory::E_PLAYER ),
-      rttr::value( "enemy", EntityCategory::E_ENEMY )
-    );
+  rttr::registration::enumeration<EntityCategory>( "EntityCategory" )
+  (
+    rttr::value( "none", EntityCategory::E_NONE ),
+    rttr::value( "wall", EntityCategory::E_WALL ),
+    rttr::value( "player", EntityCategory::E_PLAYER ),
+    rttr::value( "enemy", EntityCategory::E_ENEMY),
+    rttr::value( "player bullet", EntityCategory::E_PLAYER_BULLET),
+    rttr::value( "player bullet detection", EntityCategory::E_PLAYER_BULLET_DETECTION),
+    rttr::value( "player punch", EntityCategory::E_PLAYER_PUNCH),
+    rttr::value( "player dash", EntityCategory::E_PLAYER_DASH),
+    rttr::value( "player smg", EntityCategory::E_PLAYER_SMG),
+    rttr::value( "enemy bullet", EntityCategory::E_ENEMY_BULLET),
+    rttr::value( "enemy fiddler punch", EntityCategory::E_ENEMY_FIDDLER_PUNCH),
+    rttr::value( "enemy lancer punch", EntityCategory::E_ENEMY_LANCER_PUNCH),
+    rttr::value( "vfx", EntityCategory::E_VFX )
+  );
 
   rttr::registration::enumeration<Alignment>( "Alignment" )
   (
