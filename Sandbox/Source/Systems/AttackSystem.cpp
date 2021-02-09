@@ -10,6 +10,7 @@ namespace DeltaEngine
 {
     void AttackSystem::Update()
     {
+<<<<<<< Updated upstream
         em.ForEach([&](EntityID& id, Attack& a, Image& im)
             {
                 if (a.CooldownTimer > 0)
@@ -40,6 +41,81 @@ namespace DeltaEngine
             });
 
         for (auto& id : RangedAttackingEntities)
+=======
+      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+      if (a.SMGAttack && a.SMGFireRate <= 0.0f)
+      {
+        // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
+        //p.StartDashingTimer = true;
+        SMGAttack(UnitManager::GetPlayerID());
+      }
+
+      if (a.SMGAttack)
+          a.StartSMGCooldownTimer = true;
+      if (a.StartSMGCooldownTimer)
+      {
+        if (a.SMGFireRate >= 0.0f)
+        {
+          a.SMGFireRate -= env.pClock->FixedDeltaTime();
+          a.AllowSMGAttack = false;
+        }
+        else
+        {
+          a.SMGFireRate = a.SMGCooldown;
+          a.AllowSMGAttack = true;
+          a.StartSMGCooldownTimer = false;
+        }
+      }
+    }
+    // melee and ranged attack ----------------------------------------------------------------------------------
+    em.ForEach([&](EntityID& id,RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
+    {
+      //Reduce Cooldowns   	
+      if (a.MeleeCooldownTimer > -0.2)
+        a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
+      else
+        em.GetComponent<State>(id).SetBool("MeleeAttack", false);
+
+      if (a.RangeCooldownTimer > -0.2)
+        a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
+
+      //Toggle Ranged Attack
+      if (a.RangeAttack && a.RangeCooldownTimer <= 0)
+      {
+      	if(a.Blocking)
+      	{
+            a.Blocking = false;
+			r.Movespeed /= 0.2;
+            r.FrictionCoeff -= 4.0f;
+            r.MaxAcceleration += 10.0f;
+            st.SetBool("ShieldUp", false);
+      	}
+        em.GetComponent<State>(id).SetBool("Ranged", true);
+        RangedAttackingEntities.push_back(id);
+        a.RangeCooldownTimer = a.RangeCooldown;
+        a.RangeAttack = false;
+      }
+      if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
+          em.GetComponent<State>(id).SetBool("Ranged", false);
+
+       //Toggle Melee Attack   	
+      if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
+      {
+          if (a.Blocking)
+          {
+              a.Blocking = false;
+              r.Movespeed /= 0.2;
+              r.FrictionCoeff -= 4.0f;
+              r.MaxAcceleration += 10.0f;
+              st.SetBool("ShieldUp", false);
+          }
+        //if (em.HasComponent<AI>(id))
+        //    st.SetBool("MeleeAttack", true);
+      	
+        a.StartComboCooldownTimer = true;
+        if (a.NumberOfCombos != a.MaxComboNumber)
+>>>>>>> Stashed changes
         {
             RangedAttack(id);
         }
