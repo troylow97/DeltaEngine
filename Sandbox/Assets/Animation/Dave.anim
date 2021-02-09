@@ -53,11 +53,15 @@ param
 LancerAttack
 0 0
 
+param
+ShieldUp
+0 0
+
 %EditorPositions:
 
 pos
 Entry
-3 4
+-138 -91
 
 pos
 Exit
@@ -65,7 +69,7 @@ Exit
 
 pos
 Clip/IdleSpritesheet
-31 94
+-5 73
 
 pos
 Clip/RunningSpritesheet
@@ -110,6 +114,10 @@ Clip/Punch3
 pos
 Clip/LancerAttack
 759 484
+
+pos
+Clip/DAVE_SHIELD_UP
+138 -170
 
 %Transitions:
 
@@ -456,6 +464,33 @@ end
 Clip/IdleSpritesheet
 condition
 Ranged
+? 0
+endTransition
+
+transition
+start
+Clip/IdleSpritesheet
+end
+Clip/IdleSpritesheet
+endTransition
+
+transition
+start
+Clip/IdleSpritesheet
+end
+Clip/DAVE_SHIELD_UP
+condition
+ShieldUp
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_UP
+end
+Clip/IdleSpritesheet
+condition
+ShieldUp
 ? 0
 endTransition
 

@@ -23,7 +23,7 @@ namespace DeltaEngine
   BezierPanel::BezierPanel(std::string str, Editor& e)
     : IPanel(str, e)
   {
-    m_enabled = true;
+    m_enabled = false;
     curve = new BezierCurve();
   }
 

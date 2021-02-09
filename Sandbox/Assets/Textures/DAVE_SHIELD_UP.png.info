@@ -1,0 +1,33 @@
+Textures/DAVE_SHIELD_UP_i_0
+offset 0 0
+size 198 241
+pivot 0.5 0.5
+
+Textures/DAVE_SHIELD_UP_i_1
+offset 198 0
+size 198 241
+pivot 0.5 0.5
+
+Textures/DAVE_SHIELD_UP_i_2
+offset 396 0
+size 198 241
+pivot 0.5 0.5
+
+Textures/DAVE_SHIELD_UP_i_3
+offset 0 241
+size 198 241
+pivot 0.5 0.5
+
+Textures/DAVE_SHIELD_UP_i_4
+offset 198 241
+size 198 241
+pivot 0.5 0.5
+
+Textures/DAVE_SHIELD_UP_i_5
+offset 396 241
+size 198 241
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

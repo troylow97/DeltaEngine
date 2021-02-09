@@ -21,6 +21,7 @@ namespace DeltaEngine
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, Player& p, RigidBody& r, State& s, Animator& a)
     {
       player = id;
+      //std::cout << "Player state is: " << a.m_ClipKey << std::endl;
     });
     return player;
   }

@@ -151,7 +151,7 @@ namespace DeltaEngine
 
         std::vector<float> locationSizes { 4, 4, 4 };
         std::vector<float> particleMats;
-        for (auto& particle : ps.m_ParticlePool)
+        for (auto& particle : ps.particlePools[ID])
         {
           if (!particle.active)
             continue;
@@ -368,7 +368,7 @@ namespace DeltaEngine
 
     Camera::finalFrameBuffer->Bind();
 
-    glClearColor(1, 0, 1, 1);
+    glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/);
 
     em.ForEach([&](EntityID id, Transform& tr, Camera& c)

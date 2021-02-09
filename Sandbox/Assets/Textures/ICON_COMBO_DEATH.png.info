@@ -1,0 +1,143 @@
+Textures/ICON_COMBO_DEATH_i_0
+offset 0 0
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_1
+offset 492 0
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_2
+offset 984 0
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_3
+offset 1476 0
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_4
+offset 0 150
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_5
+offset 492 150
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_6
+offset 984 150
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_7
+offset 1476 150
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_8
+offset 0 300
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_9
+offset 492 300
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_10
+offset 984 300
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_11
+offset 1476 300
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_12
+offset 0 450
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_13
+offset 492 450
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_14
+offset 984 450
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_15
+offset 1476 450
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_16
+offset 0 600
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_17
+offset 492 600
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_18
+offset 984 600
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_19
+offset 1476 600
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_20
+offset 0 750
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_21
+offset 492 750
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_22
+offset 984 750
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_23
+offset 1476 750
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_24
+offset 0 900
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_25
+offset 492 900
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_26
+offset 984 900
+size 492 150
+pivot 0.5 0.5
+
+Textures/ICON_COMBO_DEATH_i_27
+offset 1476 900
+size 492 150
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

@@ -70,6 +70,7 @@ namespace DeltaEngine
           a.MeleeComboDamage *= 2;
           a.MeleeDamage *= 2;
           a.RangedDamage *= 2;
+          a.SMGAttack *= 2;
         });
         god_mode = true;
       }
@@ -81,12 +82,13 @@ namespace DeltaEngine
           a.MeleeComboDamage /= 2;
           a.MeleeDamage /= 2;
           a.RangedDamage /= 2;
+          a.SMGAttack /= 2;
         });
         god_mode = false;
       }
     }
 
-    if (InputManager::Instance().IsKeyPressed(DEVK_LEFT) && !InputManager::Instance().IsKeyPressed(DEVK_C))
+    if (InputManager::Instance().IsKeyPressed(DEVK_A) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
@@ -104,6 +106,7 @@ namespace DeltaEngine
             a.SetBool("Punch3", false);
             att.MeleeAttack = false;
             att.RangeAttack = false;
+            att.SMGAttack = false;
 
             idle_timer = 0.0f;
             i.m_FlipX = true;
@@ -117,7 +120,7 @@ namespace DeltaEngine
         a.SetBool("IsRunning", false);
       });
     }
-    if (InputManager::Instance().IsKeyPressed(DEVK_RIGHT) && !InputManager::Instance().IsKeyPressed(DEVK_C))
+    if (InputManager::Instance().IsKeyPressed(DEVK_D) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach(
         [&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
@@ -136,12 +139,13 @@ namespace DeltaEngine
             a.SetBool("Punch3", false);
             att.MeleeAttack = false;
             att.RangeAttack = false;
+            att.SMGAttack = false;
             idle_timer = 0.0f;
             i.m_FlipX = false;
           }
         });
     }
-    else if (InputManager::Instance().IsKeyReleased(DEVK_RIGHT))
+    else if (InputManager::Instance().IsKeyReleased(DEVK_D))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a)
       {
@@ -190,72 +194,118 @@ namespace DeltaEngine
     //END TESTING-------------------------------------------------------------------------------------------------------
 
 
-    if (InputManager::Instance().IsKeyTriggered(DEVK_SPACE))
+    if (InputManager::Instance().IsKeyTriggered(DEVK_W)/* || InputManager::Instance().IsKeyTriggered(DEVK_SPACE)*/)
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, State& a, Collider& c1, Player& p1, Input& i1)
       {
         if (c1.isCollidingOnFloor)
           p1.IsJumping = true;
-        i1.previousKey = DEVK_SPACE;
+        i1.previousKey = DEVK_W;
         idle_timer = 0.0f;
 
-        AudioEngine::Play("Audio/jump.wav");
+        AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
       });
     }
-    if (InputManager::Instance().IsKeyReleased(DEVK_SPACE))
+    if (InputManager::Instance().IsKeyReleased(DEVK_W)/* || InputManager::Instance().IsKeyReleased(DEVK_SPACE)*/)
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, RigidBody& r1, Input& i1)
       {
-        i1.previousKey = DEVK_SPACE;
+        i1.previousKey = DEVK_W;
         p1.IsJumping = false;
       });
     }
 
-    if (InputManager::Instance().IsKeyTriggered(DEVK_X)) //DASH
+    if (InputManager::Instance().IsKeyTriggered(DEVK_Q)) //DASH
     {
-      env.pECS->GetWorld().GetEntityManager().ForEach(
-        [&](EntityID id1, Transform& t1, RigidBody r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1)
-        {
-          if (c1.isCollidingOnFloor && p1.AllowDashing)
-          {
-            if (a.m_FlipX)
-              p1.DashDirectionRight = false;
-            else
-              p1.DashDirectionRight = true;
-            p1.IsDashing = true;
-            p1.AllowDashing = false;
-            s.SetBool("LancerAttack", true);
-            const EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
-            em.GetComponent<Transform>(missile).position = t1.position;
-            em.GetComponent<RigidBody>(missile).Mass = 5.0f;
-            em.GetComponent<Transform>(missile).scale = {0.4f, 0.4f, 0.0f};
-            em.GetComponent<Lifespan>(missile).Timer = 0.35f;
-            em.GetComponent<Collider>(missile).isTrigger = true;
-            em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_DASH;
-            em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
-            em.GetComponent<Health>(missile).CurrentHealth = 1;
-          }
-          i1.previousKey = DEVK_X;
-        });
-    }
-
-    if (InputManager::Instance().IsKeyTriggered(DEVK_Z))
-    {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1)
       {
-        a1.RangeAttack = true;
-        idle_timer = 0.0f;
-        melee_attack_cooldown = 0.0f;
+        if (c1.isCollidingOnFloor && p1.AllowDashing)
+        {
+          if (a.m_FlipX)
+            p1.DashDirectionRight = false;
+          else
+            p1.DashDirectionRight = true;
+          p1.IsDashing = true;
+          p1.AllowDashing = false;
+          s.SetBool("LancerAttack", true);
+          const EntityID missile = em.CreateEntity<Collider, Lifespan, RigidBody, Health>();
+          em.GetComponent<Transform>(missile).position = t1.position;
+          em.GetComponent<RigidBody>(missile).Mass = 5.0f;
+          em.GetComponent<Transform>(missile).scale = {0.4f, 0.4f, 0.0f};
+          em.GetComponent<Lifespan>(missile).Timer = 0.35f;
+          em.GetComponent<Collider>(missile).isTrigger = true;
+          em.GetComponent<EntityType>(missile).type = EntityCategory::E_PLAYER_DASH;
+          em.GetComponent<RigidBody>(missile).FrictionCoeff = 0.0f;
+          em.GetComponent<Health>(missile).CurrentHealth = 1;
+        }
+        i1.previousKey = DEVK_Q;
       });
     }
 
-    if (InputManager::Instance().IsKeyTriggered(DEVK_C))
+    //if (InputManager::Instance().IsKeyTriggered(DEVK_Z))
+    //{
+    //  env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+    //  {
+    //    a1.RangeAttack = true;
+    //    idle_timer = 0.0f;
+    //    melee_attack_cooldown = 0.0f;
+    //  });
+    //}
+
+    if (InputManager::Instance().IsKeyTriggered(DEVK_LBUTTON))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
       {
         a1.MeleeAttack = true;
         idle_timer = 0.0f;
         range_attack_cooldown = 0.0f;
+        i1.previousKey = DEVK_LBUTTON;
+      });
+    }
+
+    if (InputManager::Instance().IsKeyTriggered(DEVK_LSHIFT))
+    {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a,RigidBody& r1)
+      {
+        if(a1.Blocking == true)
+        {
+          a1.Blocking = false;
+          r1.Movespeed /= 0.2;
+          r1.FrictionCoeff -= 4.0f;
+          r1.MaxAcceleration += 10.0f;
+          a.SetBool("ShieldUp", false);
+          std::cout << "Blocking Off" << std::endl;
+        }
+        else //Toggle Block
+        {
+          a1.Blocking = true;
+          r1.Movespeed *= 0.2;
+          r1.FrictionCoeff += 4.0f;
+          r1.MaxAcceleration -= 10.0f;
+          a.SetBool("ShieldUp", true);
+          std::cout << "Blocking On" << std::endl;
+        }
+      });
+    }
+
+    if (InputManager::Instance().IsKeyPressed(DEVK_E))
+    {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      {
+         if (a1.AllowSMGAttack)
+         {
+           a1.SMGAttack = true;
+           idle_timer = 0.0f; // what's this troy low yee?
+         }
+      });
+    }
+    if (!(InputManager::Instance().IsKeyPressed(DEVK_E)))
+    {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      {
+        a1.SMGAttack = false;
+        idle_timer = 0.0f; // what's this troy low yee?
+        i1.previousKey = DEVK_E;
       });
     }
 
@@ -271,8 +321,8 @@ namespace DeltaEngine
     //}
 
 
-    if (InputManager::Instance().IsKeyReleased(DEVK_UP) || InputManager::Instance().IsKeyReleased(DEVK_DOWN)
-      || InputManager::Instance().IsKeyReleased(DEVK_LEFT) || InputManager::Instance().IsKeyReleased(DEVK_RIGHT))
+    if (InputManager::Instance().IsKeyReleased(DEVK_W) || InputManager::Instance().IsKeyReleased(DEVK_S)
+      || InputManager::Instance().IsKeyReleased(DEVK_A) || InputManager::Instance().IsKeyReleased(DEVK_D))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1)
       {
