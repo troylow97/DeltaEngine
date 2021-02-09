@@ -115,7 +115,7 @@ void World::CleanUpEntities()
   std::vector<size_t> e_vec;
   em->ForEach( [&]( EntityID& id, Parent &p )
   {
-    if ( !em->IsEntityValid( { p.p_id } ) )
+    if ( p.p_id != u64_max && !em->IsEntityValid( { p.p_id } ) )
       e_vec.push_back( id.index );
   } );
 
