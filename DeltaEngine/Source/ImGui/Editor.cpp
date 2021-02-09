@@ -105,7 +105,6 @@ void DeleteEntity(Editor& e)
     GetEnv().pECS->GetWorld().GetEntityManager().DestroyEntity( { id } );
     e.entity_selected = false;
     e.entity_id = u64_max;
-    DeltaEngine_CORE_INFO( "Deleted Entity - {}", id );
   }
 }
 

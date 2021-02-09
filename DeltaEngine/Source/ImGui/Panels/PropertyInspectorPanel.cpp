@@ -143,6 +143,32 @@ void PropertyInspectorPanel::Render()
               ImGui::DragFloat4( ( "##" + prop_name ).c_str(), (float *) ( value.get_value<Quaternion *>() ), 0.01f );
             else if ( prop_type == rttr::type::get<bool *>() )
               ImGui::Checkbox( ( "##" + prop_name ).c_str(), value.get_value<bool *>() );
+            else if ( prop_type == rttr::type::get<size_t *>() && instance.get_type() == rttr::type::get<Parent>() )
+            {
+              auto& id = *value.get_value<size_t *>();
+
+              size_t selection { id == u64_max ? 0 : id + 1 };
+              
+              if ( ImGui::BeginCombo( ( "##" + prop_name ).c_str(), id != u64_max ? std::to_string(id).c_str(): "Select..." ) )
+              {
+                for ( size_t i = 0; i < em.GetEntities().size() + 1; i++ )
+                {
+                  if ( index == i - 1 )
+                    continue;
+                  std::string id_label{ i == 0 ? "Select..." : std::to_string(i - 1)};
+
+                  const bool is_selected = ( selection == i );
+                  if ( ImGui::Selectable( id_label.c_str(), is_selected ) )
+                    id = i-1;
+
+                  if ( is_selected )
+                    ImGui::SetItemDefaultFocus();
+                }
+                ImGui::EndCombo();
+              }
+              if (id != u64_max)
+              DeltaEngine_CORE_INFO( "Parent Name: {}", em.GetComponent<EntityName>( { id } ).name);
+            }
             else if ( prop_type == rttr::type::get<std::string *>() && (
               instance.get_type() == rttr::type::get<AI>() ||
               instance.get_type() == rttr::type::get<EntityName>() ||
@@ -151,6 +177,7 @@ void PropertyInspectorPanel::Render()
             {
               auto &str = *value.get_value<std::string *>();
               char buffer[256] {};
+              std::copy( str.begin(), str.end(), buffer );
               if ( ImGui::InputText( ( "##" + prop_name ).c_str(), buffer, sizeof( buffer ), ImGuiInputTextFlags_EnterReturnsTrue ) )
                 str = std::string( buffer );
             }
@@ -370,9 +397,9 @@ void PropertyInspectorPanel::Render()
         ImGui::EndGroup();
 
         if ( ref.meta->bits != ComponentMeta::GetComponentMeta<EntityName>()->bits &&
-             ref.meta->bits != ComponentMeta::GetComponentMeta<EntityType>()->bits &&
+             ref.meta->bits != ComponentMeta::GetComponentMeta<EntityType>()->bits /*&&
              ref.meta->bits != ComponentMeta::GetComponentMeta<Transform>()->bits &&
-             ref.meta->bits != ComponentMeta::GetComponentMeta<Parent>()->bits )
+             ref.meta->bits != ComponentMeta::GetComponentMeta<Parent>()->bits*/ )
         {
           ImGui::SameLine();
           ImGui::SetCursorPosX( ImGui::GetWindowContentRegionWidth() - 15.0f );
