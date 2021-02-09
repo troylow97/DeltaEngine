@@ -1,0 +1,24 @@
+%Entry:
+
+entry
+Clip/DAVE_HITFX
+
+%Parameters:
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+200 200
+
+pos
+Clip/DAVE_HITFX
+53 100
+
+%Transitions:
+
+%endfile

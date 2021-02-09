@@ -63,6 +63,9 @@ namespace DeltaEngine
     unsigned int start,
     unsigned int end)
   {
+#ifndef DE_EDITOR
+    return;
+#endif
     std::ofstream file{filepath.c_str()};
 
     Texture2D* texture = GetEnv().pManager->Get<Texture2D>(std::string(textureName));
@@ -134,6 +137,9 @@ namespace DeltaEngine
 
   void AnimationClip::UpdateAnimation(std::string filepath)
   {
+#ifndef DE_EDITOR
+    return;
+#endif
     std::ofstream file{filepath.c_str()};
     if (file.is_open())
     {

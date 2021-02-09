@@ -1,4 +1,4 @@
-frames 12
+frames 9
 fps 12
 loop 0
 
@@ -46,20 +46,5 @@ Textures/LANCER_BOUNCE_i_8
 key Textures/LANCER_BOUNCE
 value 8
 frame 8
-
-Textures/LANCER_BOUNCE_i_9
-key Textures/LANCER_BOUNCE
-value 9
-frame 9
-
-Textures/LANCER_BOUNCE_i_10
-key Textures/LANCER_BOUNCE
-value 10
-frame 10
-
-Textures/LANCER_BOUNCE_i_11
-key Textures/LANCER_BOUNCE
-value 11
-frame 11
 
 %
