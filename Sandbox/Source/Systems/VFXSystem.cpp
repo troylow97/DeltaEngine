@@ -2,7 +2,7 @@
 * \file   VFXSystem.cpp
 * \brief  The file contains the system for getting upgrading the player's stat
 * \author Chin, Clara,       0% Code Contribution
-* \author Low , Troy ,       0% Code Contribution
+* \author Low , Troy ,       0% Code Contribution 
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
