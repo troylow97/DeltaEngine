@@ -298,20 +298,7 @@ namespace DeltaEngine
     {
         CheckEdges(monster);
         auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-        const auto trans = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster);
         RigidBody& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
-        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
-        //const Vector2 pos = ai.original_point;
-        //
-        //std::cout << "Burrow state is: " << BurrowState << std::endl;
-        //std::cout << "Moving to: " << pos.x + SerpentData.Points[CurrentPoint].x << std::endl;
-        //std::cout << "Current point: " << trans.position.x << std::endl;
-        //std::cout << "Direction is " << rb.Direction.x << std::endl;
-        //
-        //std::cout << "points " << 0 << " is " << pos.x + SerpentData.Points[0].x << "," << pos.y + SerpentData.Points[0].y << std::endl;
-        //std::cout << "points " << 1 << " is " << pos.x + SerpentData.Points[1].x << "," << pos.y + SerpentData.Points[1].y << std::endl;
-        //std::cout << "points " << 2 << " is " << pos.x + SerpentData.Points[2].x << "," << pos.y + SerpentData.Points[2].y << std::endl;
-        //s.SetBool("PlayerDetected", true);
 
         //Seen and attacking
         if (BurrowState == 0)
@@ -319,7 +306,8 @@ namespace DeltaEngine
             rb.Direction = Vector2::zero();
             if (CooldownTimer <= 0)
             {
-                AITools::FaceEntity(monster, UnitManager::GetPlayerID());
+                EntityID player = UnitManager::GetPlayerID();
+                AITools::FaceEntity(monster, player);
                 auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
                 attack.RangeAttack = true;
                 //Burrow Serpentipede
@@ -376,7 +364,6 @@ namespace DeltaEngine
         //Hidden
         if (BurrowState == 2)
         {
-            auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
             //auto current_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
 
             //Move towards next point
@@ -386,7 +373,8 @@ namespace DeltaEngine
                 BurrowState = 3;
                 rb.Direction = Vector2::zero();
             }
-            AITools::MoveTowardsPoint(monster, ai.original_point + SerpentData.Points[CurrentPoint]);
+            Vector2 move_point = ai.original_point + SerpentData.Points[CurrentPoint];
+            AITools::MoveTowardsPoint(monster, move_point);
             rb.Direction.y = 0;
             return;
         }

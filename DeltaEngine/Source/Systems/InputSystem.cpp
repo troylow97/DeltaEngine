@@ -70,7 +70,7 @@ namespace DeltaEngine
           a.MeleeComboDamage *= 2;
           a.MeleeDamage *= 2;
           a.RangedDamage *= 2;
-          a.SMGAttack *= 2;
+          a.SMGDamage *= 2;
         });
         god_mode = true;
       }
@@ -82,7 +82,7 @@ namespace DeltaEngine
           a.MeleeComboDamage /= 2;
           a.MeleeDamage /= 2;
           a.RangedDamage /= 2;
-          a.SMGAttack /= 2;
+          a.SMGDamage /= 2;
         });
         god_mode = false;
       }
@@ -292,6 +292,13 @@ namespace DeltaEngine
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
       {
+        if (a1.Blocking)
+        {
+            a.SetBool("ShieldUp", false);
+            a.SetBool("isJumping", true);
+            a1.Blocking = false;
+        }
+      	
         a1.MeleeAttack = true;
         idle_timer = 0.0f;
         range_attack_cooldown = 0.0f;

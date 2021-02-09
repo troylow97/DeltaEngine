@@ -40,6 +40,10 @@ Exit
 652 256
 
 pos
+Any State
+200 0
+
+pos
 Clip/FID_WALK
 263 45
 
@@ -56,62 +60,5 @@ Clip/FID_ATTACK
 -47 341
 
 %Transitions:
-
-transition
-start
-Clip/FID_WALK
-end
-Clip/FID_DEATH
-condition
-IsDead
-? 1
-endTransition
-
-transition
-start
-Clip/FID_DEATH
-end
-Exit
-endTransition
-
-transition
-start
-Clip/FID_ALERT_RUN
-end
-Clip/FID_ATTACK
-condition
-MeleeAttack
-? 1
-endTransition
-
-transition
-start
-Clip/FID_ATTACK
-end
-Clip/FID_ALERT_RUN
-condition
-MeleeAttack
-? 0
-endTransition
-
-transition
-start
-Clip/FID_ATTACK
-end
-Clip/FID_DEATH
-condition
-IsDead
-? 1
-endTransition
-
-transition
-start
-Clip/FID_WALK
-end
-Clip/FID_ALERT_RUN
-condition
-IsAlertRunning
-? 1
-endTransition
 
 %endfile
