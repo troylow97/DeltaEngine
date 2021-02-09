@@ -10,7 +10,67 @@ isRunning
 0 0
 
 param
-NewParam
+isDashing
+0 0
+
+param
+isStretching
+0 0
+
+param
+punch1
+0 0
+
+param
+punch2
+0 0
+
+param
+punch3
+0 0
+
+param
+shieldUp
+0 0
+
+param
+shieldOn
+0 0
+
+param
+shieldBlock
+0 0
+
+param
+fireReady
+0 0
+
+param
+fireOn
+0 0
+
+param
+fire
+0 0
+
+param
+lance
+0 0
+
+param
+velY
+0 0
+
+param
+jumpTime
+0 0
+
+param
+endJump
+0 0
+
+param
+dead
 0 0
 
 %EditorPositions:
@@ -21,15 +81,15 @@ Entry
 
 pos
 Exit
-1058 0
+1054 -202
 
 pos
 Any State
-1140 -137
+699 -298
 
 pos
 Clip/DAVE_SHIELD_UP
-401 144
+400 130
 
 pos
 Clip/DAVE_FALL
@@ -37,11 +97,11 @@ Clip/DAVE_FALL
 
 pos
 Clip/DAVE_FIRE
-911 227
+914 199
 
 pos
 Clip/DAVE_FIRE_READY
-394 221
+398 199
 
 pos
 Clip/DAVE_IDLE
@@ -61,7 +121,7 @@ Clip/DAVE_JUMP
 
 pos
 Clip/DAVE_LANCE
-398 300
+401 265
 
 pos
 Clip/DAVE_LAND
@@ -81,7 +141,7 @@ Clip/DAVE_PUNCH3_NEW
 
 pos
 Clip/DAVE_RECOVER
-703 -129
+581 -64
 
 pos
 Clip/DAVE_RUN
@@ -89,19 +149,19 @@ Clip/DAVE_RUN
 
 pos
 Clip/DAVE_SHIELD_BLOCK
-928 145
+928 129
 
 pos
 Clip/DAVE_SHIELD_ON
-660 147
+657 133
 
 pos
 Clip/DAVE_FIRE_ON
-665 227
+659 199
 
 pos
 Clip/DAVE_DEATH
-990 -301
+901 -298
 
 %Transitions:
 
@@ -110,6 +170,9 @@ start
 Clip/DAVE_IDLE
 end
 Clip/DAVE_RUN
+condition
+isRunning
+? 1
 endTransition
 
 transition
@@ -117,6 +180,9 @@ start
 Clip/DAVE_JUMP
 end
 Clip/DAVE_FALL
+condition
+velY
+< 0
 endTransition
 
 transition
@@ -124,6 +190,12 @@ start
 Clip/DAVE_FALL
 end
 Clip/DAVE_LAND
+condition
+jumpTime
+< 1.1
+condition
+velY
+? 0
 endTransition
 
 transition
@@ -131,6 +203,9 @@ start
 Clip/DAVE_IDLE
 end
 Clip/DAVE_JUMP
+condition
+velY
+> 0
 endTransition
 
 transition
@@ -138,6 +213,9 @@ start
 Clip/DAVE_IDLE
 end
 Clip/DAVE_IDLE_STRETCH
+condition
+isStretching
+? 1
 endTransition
 
 transition
@@ -145,6 +223,9 @@ start
 Clip/DAVE_IDLE
 end
 Clip/DAVE_DASH
+condition
+isDashing
+? 1
 endTransition
 
 transition
@@ -152,6 +233,9 @@ start
 Clip/DAVE_IDLE
 end
 Clip/DAVE_PUNCH1_NEW
+condition
+punch1
+? 1
 endTransition
 
 transition
@@ -159,6 +243,12 @@ start
 Clip/DAVE_PUNCH1_NEW
 end
 Clip/DAVE_PUNCH2_NEW
+condition
+punch1
+? 0
+condition
+punch2
+? 1
 endTransition
 
 transition
@@ -166,6 +256,12 @@ start
 Clip/DAVE_PUNCH2_NEW
 end
 Clip/DAVE_PUNCH3_NEW
+condition
+punch2
+? 0
+condition
+punch3
+? 1
 endTransition
 
 transition
@@ -173,6 +269,9 @@ start
 Clip/DAVE_SHIELD_UP
 end
 Clip/DAVE_SHIELD_ON
+condition
+shieldUp
+? 1
 endTransition
 
 transition
@@ -180,6 +279,12 @@ start
 Clip/DAVE_SHIELD_ON
 end
 Clip/DAVE_SHIELD_BLOCK
+condition
+shieldOn
+? 1
+condition
+shieldBlock
+? 1
 endTransition
 
 transition
@@ -187,6 +292,9 @@ start
 Clip/DAVE_IDLE
 end
 Clip/DAVE_FIRE_READY
+condition
+fireReady
+? 1
 endTransition
 
 transition
@@ -194,6 +302,12 @@ start
 Clip/DAVE_FALL
 end
 Clip/DAVE_RECOVER
+condition
+jumpTime
+> 1
+condition
+velY
+? 0
 endTransition
 
 transition
@@ -201,6 +315,12 @@ start
 Clip/DAVE_SHIELD_BLOCK
 end
 Clip/DAVE_SHIELD_ON
+condition
+shieldBlock
+? 0
+condition
+shieldOn
+? 1
 endTransition
 
 transition
@@ -208,6 +328,9 @@ start
 Clip/DAVE_IDLE
 end
 Clip/DAVE_SHIELD_UP
+condition
+shieldUp
+? 1
 endTransition
 
 transition
@@ -215,6 +338,9 @@ start
 Clip/DAVE_FIRE_READY
 end
 Clip/DAVE_FIRE_ON
+condition
+fireOn
+? 1
 endTransition
 
 transition
@@ -222,6 +348,12 @@ start
 Clip/DAVE_FIRE_ON
 end
 Clip/DAVE_FIRE
+condition
+fireOn
+? 1
+condition
+fire
+? 1
 endTransition
 
 transition
@@ -229,6 +361,12 @@ start
 Clip/DAVE_FIRE
 end
 Clip/DAVE_FIRE_ON
+condition
+fireOn
+? 1
+condition
+fire
+? 0
 endTransition
 
 transition
@@ -236,11 +374,44 @@ start
 Any State
 end
 Clip/DAVE_DEATH
+condition
+dead
+? 1
 endTransition
 
 transition
 start
-Any State
+Clip/DAVE_IDLE
+end
+Clip/DAVE_LANCE
+condition
+lance
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_RECOVER
+end
+Exit
+condition
+endJump
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_LAND
+end
+Exit
+condition
+endJump
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_RUN
 end
 Exit
 condition
@@ -250,9 +421,124 @@ endTransition
 
 transition
 start
-Clip/DAVE_IDLE
+Clip/DAVE_DASH
 end
+Exit
+condition
+isDashing
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE_STRETCH
+end
+Exit
+condition
+isStretching
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH1_NEW
+end
+Exit
+condition
+punch1
+? 0
+condition
+punch2
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH2_NEW
+end
+Exit
+condition
+punch2
+? 0
+condition
+punch3
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH3_NEW
+end
+Exit
+condition
+punch3
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_ON
+end
+Exit
+condition
+shieldOn
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_BLOCK
+end
+Exit
+condition
+shieldBlock
+? 0
+condition
+shieldOn
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE_ON
+end
+Exit
+condition
+fireOn
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE
+end
+Exit
+condition
+fireOn
+? 0
+condition
+fire
+? 0
+endTransition
+
+transition
+start
 Clip/DAVE_LANCE
+end
+Exit
+condition
+lance
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_DEATH
+end
+Exit
+condition
+dead
+? 0
 endTransition
 
 %endfile

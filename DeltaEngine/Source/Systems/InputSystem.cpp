@@ -99,11 +99,11 @@ namespace DeltaEngine
             r1.Direction = Vector2::left();
             if (r1.InherentAcceleration < r1.MaxAcceleration)
               r1.InherentAcceleration++;
-            a.SetBool("IsRunning", true);
+            a.SetBool("isRunning", true);
             a.SetBool("MeleeAttack", false);
-            a.SetBool("Punch1", false);
-            a.SetBool("Punch2", false);
-            a.SetBool("Punch3", false);
+            a.SetBool("punch1", false);
+            a.SetBool("punch2", false);
+            a.SetBool("punch3", false);
             att.MeleeAttack = false;
             att.RangeAttack = false;
             att.SMGAttack = false;
@@ -117,7 +117,7 @@ namespace DeltaEngine
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a)
       {
-        a.SetBool("IsRunning", false);
+        a.SetBool("isRunning", false);
       });
     }
     if (InputManager::Instance().IsKeyPressed(DEVK_D) && !InputManager::Instance().IsKeyPressed(DEVK_LBUTTON) && !InputManager::Instance().IsKeyPressed(DEVK_E))
@@ -132,7 +132,7 @@ namespace DeltaEngine
             if (r1.InherentAcceleration < r1.MaxAcceleration)
               r1.InherentAcceleration++;
 
-            a.SetBool("IsRunning", true);
+            a.SetBool("isRunning", true);
             a.SetBool("MeleeAttack", false);
             a.SetBool("Punch1", false);
             a.SetBool("Punch2", false);
@@ -149,7 +149,7 @@ namespace DeltaEngine
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a)
       {
-        a.SetBool("IsRunning", false);
+        a.SetBool("isRunning", false);
       });
     }
 
@@ -300,23 +300,25 @@ namespace DeltaEngine
 
     if (InputManager::Instance().IsKeyTriggered(DEVK_LSHIFT))
     {
-        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a,RigidBody& r1)
-            {
-        		if(a1.Blocking == true)
-        		{
-                    a1.Blocking = false;
-                    a.SetBool("ShieldUp", false);
-                    std::cout << "Blocking Off" << std::endl;
-        		}
-                else //Toggle Block
-                {
-                    a1.Blocking = true;
-                    a.SetBool("ShieldUp", true);
-                    std::cout << "Blocking On" << std::endl;
-                }
-        
-        
-            });
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a, RigidBody& r1)
+        {
+          if (a1.Blocking == true)
+          {
+            a1.Blocking = false;
+            a.SetBool("shieldUp", false);
+            a.SetBool("shieldOn", false);
+            std::cout << "Blocking Off" << std::endl;
+          }
+          else //Toggle Block
+          {
+            a1.Blocking = true;
+            a.SetBool("shieldUp", true);
+            a.SetBool("shieldOn", true);
+            std::cout << "Blocking On" << std::endl;
+          }
+
+
+        });
     }
 
     if (InputManager::Instance().IsKeyPressed(DEVK_E))
