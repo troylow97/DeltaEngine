@@ -1,0 +1,133 @@
+Textures/SIDEWALK_PROPS_i_0
+offset 69 0
+size 6 3
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_1
+offset 71 23
+size 301 214
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_2
+offset 106 430
+size 172 79
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_3
+offset 111 333
+size 181 74
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_4
+offset 168 510
+size 13 1
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_5
+offset 205 338
+size 0 0
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_6
+offset 210 332
+size 6 1
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_7
+offset 216 332
+size 0 0
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_8
+offset 312 398
+size 160 109
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_9
+offset 387 499
+size 1 0
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_10
+offset 388 499
+size 0 0
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_11
+offset 391 503
+size 0 0
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_12
+offset 399 503
+size 1 0
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_13
+offset 400 503
+size 0 0
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_14
+offset 402 503
+size 0 0
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_15
+offset 403 23
+size 302 214
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_16
+offset 480 398
+size 161 109
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_17
+offset 718 101
+size 85 115
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_18
+offset 741 427
+size 23 88
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_19
+offset 812 101
+size 87 115
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_20
+offset 819 427
+size 23 88
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_21
+offset 847 325
+size 164 72
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_22
+offset 892 427
+size 23 88
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_23
+offset 931 353
+size 1 1
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_24
+offset 943 423
+size 50 92
+pivot 0.5 0.5
+
+Textures/SIDEWALK_PROPS_i_25
+offset 953 351
+size 1 2
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0
