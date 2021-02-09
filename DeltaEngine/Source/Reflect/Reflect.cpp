@@ -686,7 +686,7 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
   if ( str == "Entity Name" )
     em.GetComponent<EntityName>( id ) = var.get_value<EntityName>();
   else if ( str == "Parent" )
-    em.GetComponent<Parent>( id ) = var.get_value<Parent>();
+    em.AddComponent<Parent>( id , var.get_value<Parent>());
   else if ( str == "Transform" )
     em.GetComponent<Transform>( id ) = var.get_value<Transform>();
   else if ( str == "Entity Type" )

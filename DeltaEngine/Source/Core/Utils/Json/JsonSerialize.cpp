@@ -114,26 +114,26 @@ namespace DeltaEngine::Serialize
     writer.StartObject();
     writer.String("Entities");
     writer.StartArray();
-
-    for (auto arch : em.m_archetypes)
-      for (auto chunk : arch->chunks)
-        for (size_t i = 0; i < chunk->header.index; i++)
+    for (auto ref : em.m_entities)
+    {
+      if (ref.chunk)
+      {
+        writer.StartObject();
+        for (auto comp : ref.chunk->header.owner->components_desc->metalist)
         {
-          writer.StartObject();
-          for (auto comp : arch->components_desc->metalist)
+          type t = RT_Reflect::RT_Checker(comp.meta->bits);
+          if (!t.is_arithmetic())
           {
-            type t = RT_Reflect::RT_Checker(comp.meta->bits);
-            if (!t.is_arithmetic())
-            {
-              writer.String(t.get_name().to_string());
-              writer.StartObject();
-              void* ptr = reinterpret_cast<void*>(reinterpret_cast<byte*>(chunk) + comp.offset + (i * comp.meta->size));
-              RT_Reflect::SerializeType(t.get_name().to_string(), writer, ptr);
-              writer.EndObject();
-            }
+            writer.String(t.get_name().to_string());
+            writer.StartObject();
+            void* ptr = reinterpret_cast<void*>(reinterpret_cast<byte*>(ref.chunk) + comp.offset + (ref.chunk_index * comp.meta->size));
+            RT_Reflect::SerializeType(t.get_name().to_string(), writer, ptr);
+            writer.EndObject();
           }
-          writer.EndObject();
         }
+        writer.EndObject();
+      }
+    }
     writer.EndArray();
     writer.EndObject();
   }
