@@ -72,6 +72,9 @@
     <ClInclude Include="Source\Systems\UpgradeSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\VFXSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\SandboxApp.cpp" />
@@ -121,6 +124,9 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\UpgradeSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\VFXSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>

@@ -195,7 +195,7 @@ namespace DeltaEngine
                 {
                     ReduceHealth(id1, att.MeleeComboDamage);
                     ReduceHealth(id2, att.MeleeComboDamage);
-                    ShowHitVFX(em.GetComponent<Transform>(id1).position,"Textures/DAVE_HITFX","Animation/DaveHitVFX");
+                    //ShowHitVFX(em.GetComponent<Transform>(id1).position,"Textures/DAVE_HITFX","Animation/DaveHitVFX");
                     env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * att.
                         KnockbackComboAmount; // direction * force
                     att.NumberOfCombos = 0;
