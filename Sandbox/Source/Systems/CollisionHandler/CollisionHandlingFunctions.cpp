@@ -20,17 +20,6 @@ namespace DeltaEngine
     EnemyData CollisionHandlerFunctions::CollisionHandlerLancerData{};
     EnemyData CollisionHandlerFunctions::CollisionHandlerSerpentipedeData{};
 
-    void CollisionHandlerFunctions::ShowHitVFX(Vector2 pos, std::string image,std::string animation)
-    {
-        auto& em = env.pECS->GetWorld().GetEntityManager();
-        EntityID vfx = em.CreateEntity<Animator,Renderer2D, Image>();
-        em.GetComponent<Transform>(vfx).position = pos;
-        em.GetComponent<Renderer2D>(vfx).m_SortingLayer = 5;
-        em.GetComponent<EntityType>(vfx).type = EntityCategory::E_VFX;
-        em.GetComponent<Image>(vfx).m_Sprite.m_Key = image;
-        em.GetComponent<Animator>(vfx).m_ControllerKey = animation;
-    }
-
     void CollisionHandlerFunctions::Initialise()
     {
         JsonFile file;
@@ -206,7 +195,7 @@ namespace DeltaEngine
                 {
                     ReduceHealth(id1, att.MeleeComboDamage);
                     ReduceHealth(id2, att.MeleeComboDamage);
-                    ShowHitVFX(em.GetComponent<Transform>(id1).position,"Textures/DAVE_HITFX","Animation/DaveHitVFX");
+                    //ShowHitVFX(em.GetComponent<Transform>(id1).position,"Textures/DAVE_HITFX","Animation/DaveHitVFX");
                     env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * att.
                         KnockbackComboAmount; // direction * force
                     att.NumberOfCombos = 0;

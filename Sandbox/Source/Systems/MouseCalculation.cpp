@@ -28,7 +28,9 @@ namespace DeltaEngine
     bool ShootRight()
     {
       auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
-      
+
+      FlipShooting();
+
       if (IsMouseOnRight() && IsWithinRange(true)) // mouse on right side of player
       {
         if (AITools::isFacingRight(player_id)) // player facing right
@@ -37,13 +39,14 @@ namespace DeltaEngine
         }
         return false;
       }
-
       return false;
     }
     
     bool ShootLeft()
     {
       auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+
+      FlipShooting();
       
       if (!IsMouseOnRight() && IsWithinRange(false)) // mouse on left side of player
       {
@@ -102,23 +105,6 @@ namespace DeltaEngine
       return false;
     }
 
-    Vector2 MouseCalculation::CalculateDirectionVector()
-    {
-      auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-#ifdef DE_EDITOR
-      auto p_x = CalculateGameCoordinate().x;
-      auto p_y = CalculateGameCoordinate().y;
-#else
-      auto p_x = CalculateScreenCoordinate().x;
-      auto p_y = CalculateScreenCoordinate().y;
-#endif
-      Vector2 direction_vector = { p_x - player_pos.position.x, p_y - player_pos.position.y };
-      float magnitude = direction_vector.Magnitude();
-      Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
-
-      return normalized_direction_vector;
-    }
-
     Vector2 MouseCalculation::CalculateGameCoordinate()
     {
       auto p_x = GamePanel::curr_mouse.point_x;
@@ -147,6 +133,43 @@ namespace DeltaEngine
       auto p_y = screen_coordinate_max.y - ((cursorViewPortDistanceY / GetEnv().pWin->ClientRect().point_y) * cameraHeight);
       
       return Vector2{ p_x, p_y };
+    }
+
+    Vector2 MouseCalculation::CalculateDirectionVector()
+    {
+      auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+#ifdef DE_EDITOR
+      auto p_x = CalculateGameCoordinate().x;
+      auto p_y = CalculateGameCoordinate().y;
+#else
+      auto p_x = CalculateScreenCoordinate().x;
+      auto p_y = CalculateScreenCoordinate().y;
+#endif
+      Vector2 direction_vector = { p_x - player_pos.position.x, p_y - player_pos.position.y };
+      float magnitude = direction_vector.Magnitude();
+      Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
+      
+      return normalized_direction_vector;
+    }
+
+    void MouseCalculation::FlipShooting()
+    {
+      auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+      auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+      if (!IsMouseOnRight() && IsWithinRange(false))
+      {
+        if (AITools::isFacingRight(player_id))
+        {
+          player_image.m_FlipX = true;
+        }
+      }
+      if (IsMouseOnRight() && IsWithinRange(true))
+      {
+        if (AITools::isFacingLeft(player_id))
+        {
+          player_image.m_FlipX = false;
+        }
+      }
     }
   }
 }

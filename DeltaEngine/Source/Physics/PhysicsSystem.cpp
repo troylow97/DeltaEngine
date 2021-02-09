@@ -133,17 +133,35 @@ namespace DeltaEngine
           r.AccumulatedForce -= Vector2{5000 + r.Mass * 100, 0};
         }
       }
+      else if (p.IsDodging && CurrentDashTicks < MaxDashTicks)
+      {
+        CurrentDashTicks++;
+        if (p.DashDirectionRight)
+        {
+          r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
+        }
+        else
+        {
+          r.AccumulatedForce -= Vector2{ 5000 + r.Mass * 100, 0 };
+        }
+      }
     }
     else if (p.IsDashing)
     {
       CurrentDashTicks = 0;
       p.IsDashing = false;
     }
+    else if (p.IsDodging)
+    {
+        CurrentDashTicks = 0;
+        p.IsDodging = false;
+    }
 
     if (CurrentDashTicks >= MaxDashTicks)
     {
       CurrentDashTicks = 0;
       p.IsDashing = false;
+      p.IsDodging = false;
     }
   }
 
@@ -166,7 +184,7 @@ namespace DeltaEngine
      }
 
      //Apply Gravity for player
-     if (r.hasGravity && !c.isCollidingOnFloor && !p.IsDashing)
+     if (r.hasGravity && !c.isCollidingOnFloor && !p.IsDashing && !p.IsDodging)
          r.Acceleration = m_gravity_amount;
      else
          r.Acceleration = { 0, 0 };
