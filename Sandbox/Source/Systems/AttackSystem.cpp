@@ -27,7 +27,7 @@ namespace DeltaEngine
     {
       auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
       auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-      if (p.IsDashing)
+      if (p.IsDashing || p.IsDodging)
       {
         em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
         p.StartDashingTimer = true;
@@ -76,7 +76,7 @@ namespace DeltaEngine
       }
     }
     // melee and ranged attack ----------------------------------------------------------------------------------
-    em.ForEach([&](EntityID& id, Attack& a, Image& im, Animator& anim, State& st)
+    em.ForEach([&](EntityID& id,RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
     {
       //Reduce Cooldowns   	
       if (a.MeleeCooldownTimer > -0.2)
@@ -87,14 +87,17 @@ namespace DeltaEngine
       if (a.RangeCooldownTimer > -0.2)
         a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
 
-	  //Toggle Block    	
-      if(a.Blocking)
-      {
-	      
-      }
       //Toggle Ranged Attack
-      else if (a.RangeAttack && a.RangeCooldownTimer <= 0)
+      if (a.RangeAttack && a.RangeCooldownTimer <= 0)
       {
+      	if(a.Blocking)
+      	{
+            a.Blocking = false;
+			r.Movespeed /= 0.2;
+            r.FrictionCoeff -= 4.0f;
+            r.MaxAcceleration += 10.0f;
+            st.SetBool("ShieldUp", false);
+      	}
         em.GetComponent<State>(id).SetBool("Ranged", true);
         RangedAttackingEntities.push_back(id);
         a.RangeCooldownTimer = a.RangeCooldown;
@@ -104,8 +107,16 @@ namespace DeltaEngine
           em.GetComponent<State>(id).SetBool("Ranged", false);
 
        //Toggle Melee Attack   	
-      else if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
+      if (a.MeleeAttack && a.MeleeCooldownTimer <= 0)
       {
+          if (a.Blocking)
+          {
+              a.Blocking = false;
+              r.Movespeed /= 0.2;
+              r.FrictionCoeff -= 4.0f;
+              r.MaxAcceleration += 10.0f;
+              st.SetBool("ShieldUp", false);
+          }
         if (em.HasComponent<AI>(id))
             st.SetBool("MeleeAttack", true);
       	
@@ -215,28 +226,29 @@ namespace DeltaEngine
     }
     else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
     {
-      EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
+      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 0.35f, EntityCategory::E_ENEMY_BULLET);
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = {1.0f, 1.0f};
-      em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
+      em.GetComponent<Image>(missile).m_Size = { 0.25f, 0.25f };
+      em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
 
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {8000, 3500};
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {5000, -3500};
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-8000, 3500};
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-5000, -3500};
       }
     }
   }
 
   void AttackSystem::MeleeAttack(EntityID& id)
   {
+      std::cout << "punching" << std::endl;
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().
       HasComponent<Attack>(id))
     {
@@ -333,14 +345,14 @@ namespace DeltaEngine
       if (MouseCalculation::ShootRight())
       {
         Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
-        em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
-        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 10000, direction_to_shoot.y * 10000 };
+        //em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
       }
       else if (MouseCalculation::ShootLeft())
       {
         Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
-        em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
-        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 10000, direction_to_shoot.y * 10000 };
+        //em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
       }
     }
   }

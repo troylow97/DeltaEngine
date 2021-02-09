@@ -1,0 +1,25 @@
+frames 4
+fps 12
+loop 0
+
+Textures/LANCER_COLLAPSE_i_0
+key Textures/LANCER_COLLAPSE
+value 0
+frame 0
+
+Textures/LANCER_COLLAPSE_i_1
+key Textures/LANCER_COLLAPSE
+value 1
+frame 1
+
+Textures/LANCER_COLLAPSE_i_2
+key Textures/LANCER_COLLAPSE
+value 2
+frame 2
+
+Textures/LANCER_COLLAPSE_i_3
+key Textures/LANCER_COLLAPSE
+value 3
+frame 3
+
+%

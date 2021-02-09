@@ -1,0 +1,20 @@
+frames 3
+fps 12
+loop 0
+
+Textures/GROUNDPOUND_i_0
+key Textures/GROUNDPOUND
+value 0
+frame 0
+
+Textures/GROUNDPOUND_i_1
+key Textures/GROUNDPOUND
+value 1
+frame 1
+
+Textures/GROUNDPOUND_i_2
+key Textures/GROUNDPOUND
+value 2
+frame 2
+
+%

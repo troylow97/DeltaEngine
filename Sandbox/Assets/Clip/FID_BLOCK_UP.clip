@@ -1,0 +1,45 @@
+frames 8
+fps 12
+loop 0
+
+Textures/FID_BLOCK_UP_i_0
+key Textures/FID_BLOCK_UP
+value 0
+frame 0
+
+Textures/FID_BLOCK_UP_i_1
+key Textures/FID_BLOCK_UP
+value 1
+frame 1
+
+Textures/FID_BLOCK_UP_i_2
+key Textures/FID_BLOCK_UP
+value 2
+frame 2
+
+Textures/FID_BLOCK_UP_i_3
+key Textures/FID_BLOCK_UP
+value 3
+frame 3
+
+Textures/FID_BLOCK_UP_i_4
+key Textures/FID_BLOCK_UP
+value 4
+frame 4
+
+Textures/FID_BLOCK_UP_i_5
+key Textures/FID_BLOCK_UP
+value 5
+frame 5
+
+Textures/FID_BLOCK_UP_i_6
+key Textures/FID_BLOCK_UP
+value 6
+frame 6
+
+Textures/FID_BLOCK_UP_i_7
+key Textures/FID_BLOCK_UP
+value 7
+frame 7
+
+%

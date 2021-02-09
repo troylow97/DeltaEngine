@@ -57,23 +57,30 @@ namespace DeltaEngine
 
         return id2;
     }
-
+	
+    void CollisionHandlerFunctions::ApplyKnockBack(EntityID& defender, EntityID& attacker,const float amount)
+    {
+        const Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(attacker).Velocity.Normalize();
+        auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(defender);
+        rb.AccumulatedForce += kb_vector * amount;
+    }
+	
     bool CollisionHandlerFunctions::CheckBlock(EntityID& defender, EntityID& attacker)
     {
-        auto& block = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(defender);
-        auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(defender);
-        Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(attacker).Velocity.Normalize();
+       auto& block = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(defender);
 
-        if (block.Blocking && ((kb_vector.x > 0 && AITools::isFacingLeft(defender)) || (kb_vector.x < 0 && AITools::isFacingRight(defender))))
-        {
-            rb.AccumulatedForce += kb_vector * 1000.0f;
-            return true;
-        }
+       const Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(attacker).Velocity.Normalize();
+       
+       if (block.Blocking && ((kb_vector.x > 0 && AITools::isFacingLeft(defender)) || (kb_vector.x < 0 && AITools::isFacingRight(defender))))
+       {
+           return true;
+       }
         return false;
     }
 
     void CollisionHandlerFunctions::TakeDamage(EntityID& id1, EntityID& id2)
     {
+        return;
         auto& em = env.pECS->GetWorld().GetEntityManager();
         const auto& et1 = em.GetComponent<EntityType>(id1);
         const auto& et2 = em.GetComponent<EntityType>(id2);
@@ -86,12 +93,14 @@ namespace DeltaEngine
                 {
                 	if(!CheckBlock(id2,id1))
 						ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+                    ApplyKnockBack(id2, id1,1000.0f);
                     return;
                 }
                 if (CheckEntityType(id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER))
                 {
                     if (!CheckBlock(id1, id2))
 						ReduceHealth(id1, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+                    ApplyKnockBack(id1, id2, 1000.0f);
                     return;
                 }
             }
@@ -101,11 +110,13 @@ namespace DeltaEngine
                 if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
                 {
                     ReduceHealth(id2, static_cast<int>(CollisionHandlerLancerData.Damage));
+                    ApplyKnockBack(id2, id1, 600.0f);
                     return;
                 }
                 if (CheckEntityType(id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER))
                 {
                     ReduceHealth(id1, static_cast<int>(CollisionHandlerLancerData.Damage));
+                    ApplyKnockBack(id1, id2, 600.0f);
                     return;
                 }
             }
@@ -115,11 +126,13 @@ namespace DeltaEngine
                 if (CheckEntityType(id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER))
                 {
                     ReduceHealth(id2, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
+                    ApplyKnockBack(id2, id1, 600.0f);
                     return;
                 }
                 if (CheckEntityType(id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER))
                 {
                     ReduceHealth(id1, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
+                    ApplyKnockBack(id2, id1, 600.0f);
                     return;
                 }
             }
@@ -177,11 +190,12 @@ namespace DeltaEngine
             {
                 const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
                 const EntityID punch = GetEntityID(id1, id2, EntityCategory::E_PLAYER_PUNCH);
-                Vector2 kb_vector = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(punch).Velocity.Normalize();
+                Vector2 kb_vector = em.GetComponent<RigidBody>(punch).Velocity.Normalize();
                 if (att.NumberOfCombos == att.MaxComboNumber)
                 {
                     ReduceHealth(id1, att.MeleeComboDamage);
                     ReduceHealth(id2, att.MeleeComboDamage);
+                    //ShowHitVFX(em.GetComponent<Transform>(id1).position,"Textures/DAVE_HITFX","Animation/DaveHitVFX");
                     env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).AccumulatedForce += kb_vector * att.
                         KnockbackComboAmount; // direction * force
                     att.NumberOfCombos = 0;

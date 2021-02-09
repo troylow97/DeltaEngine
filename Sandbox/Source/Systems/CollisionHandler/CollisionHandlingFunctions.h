@@ -9,6 +9,8 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
+#include <string>
+
 #include "../EnemySpawner/EnemyData.h"
 #include "ECS/Entities.h"
 #include "Components/EntityType.h"
@@ -25,6 +27,7 @@ namespace DeltaEngine
         static void Initialise();
         static void TakeDamage(EntityID& id1, EntityID& id2);
         static bool CheckEntityType(EntityID, EntityCategory, EntityID, EntityCategory);
+        static void ApplyKnockBack(EntityID& defender, EntityID& attacker,const float amount);
 
         static void ReduceHealth(EntityID& id, int health);
         static bool CheckBlock(EntityID& defender, EntityID& attacker);

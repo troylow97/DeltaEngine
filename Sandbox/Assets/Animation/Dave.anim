@@ -1,40 +1,20 @@
 %Entry:
 
 entry
-Clip/IdleSpritesheet
+Clip/DAVE_IDLE
 
 %Parameters:
-
-param
-Speed
-0 0
-
-param
-IsJumping
-0 0
-
-param
-Punch
-0 0
-
-param
-IsIdle
-0 0
 
 param
 IsRunning
 0 0
 
 param
-IsDodge
+IsDashing
 0 0
 
 param
-Ranged
-0 0
-
-param
-PlayerVelocityY
+IsStretching
 0 0
 
 param
@@ -50,82 +30,146 @@ Punch3
 0 0
 
 param
-LancerAttack
+ShieldUp
 0 0
 
 param
-ShieldUp
+ShieldOn
+0 0
+
+param
+ShieldBlock
+0 0
+
+param
+FireReady
+0 0
+
+param
+FireOn
+0 0
+
+param
+Fire
+0 0
+
+param
+Lance
+0 0
+
+param
+VelY
+0 0
+
+param
+JumpTime
+0 0
+
+param
+EndJump
+0 0
+
+param
+Dead
 0 0
 
 %EditorPositions:
 
 pos
 Entry
--138 -91
+0 -2
 
 pos
 Exit
-371 551
+1054 -202
 
 pos
-Clip/IdleSpritesheet
--5 73
-
-pos
-Clip/RunningSpritesheet
-161 261
-
-pos
-Clip/RangeAttackSpritesheet
--126 273
-
-pos
-Clip/FallingSpritesheet
-647 -44
-
-pos
-Clip/LandingSpriteSheet
-340 -21
-
-pos
-Clip/DashSpritesheet
--55 428
-
-pos
-Clip/InitialJump
-602 82
-
-pos
-Clip/ReachingTop
-830 29
-
-pos
-Clip/Punch1
-445 214
-
-pos
-Clip/Punch2
-690 181
-
-pos
-Clip/Punch3
-929 203
-
-pos
-Clip/LancerAttack
-759 484
+Any State
+699 -298
 
 pos
 Clip/DAVE_SHIELD_UP
-138 -170
+400 130
+
+pos
+Clip/DAVE_FALL
+600 -1
+
+pos
+Clip/DAVE_FIRE
+914 199
+
+pos
+Clip/DAVE_FIRE_READY
+399 230
+
+pos
+Clip/DAVE_IDLE
+101 0
+
+pos
+Clip/DAVE_DASH
+401 -136
+
+pos
+Clip/DAVE_IDLE_STRETCH
+402 -199
+
+pos
+Clip/DAVE_JUMP
+400 1
+
+pos
+Clip/DAVE_LANCE
+402 300
+
+pos
+Clip/DAVE_LAND
+772 -1
+
+pos
+Clip/DAVE_PUNCH1_NEW
+401 64
+
+pos
+Clip/DAVE_PUNCH2_NEW
+657 65
+
+pos
+Clip/DAVE_PUNCH3_NEW
+915 64
+
+pos
+Clip/DAVE_RECOVER
+581 -64
+
+pos
+Clip/DAVE_RUN
+400 -69
+
+pos
+Clip/DAVE_SHIELD_BLOCK
+658 168
+
+pos
+Clip/DAVE_SHIELD_ON
+663 113
+
+pos
+Clip/DAVE_FIRE_ON
+659 230
+
+pos
+Clip/DAVE_DEATH
+901 -298
 
 %Transitions:
 
 transition
 start
-Clip/IdleSpritesheet
+Clip/DAVE_IDLE
 end
-Clip/RunningSpritesheet
+Clip/DAVE_RUN
 condition
 IsRunning
 ? 1
@@ -133,59 +177,62 @@ endTransition
 
 transition
 start
-Clip/RunningSpritesheet
+Clip/DAVE_JUMP
 end
-Clip/IdleSpritesheet
+Clip/DAVE_FALL
 condition
-IsRunning
+VelY
+< 0
+endTransition
+
+transition
+start
+Clip/DAVE_FALL
+end
+Clip/DAVE_LAND
+condition
+JumpTime
+< 1.1
+condition
+VelY
 ? 0
 endTransition
 
 transition
 start
-Clip/IdleSpritesheet
+Clip/DAVE_IDLE
 end
-Clip/RangeAttackSpritesheet
+Clip/DAVE_JUMP
 condition
-Ranged
+VelY
+> 0
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_IDLE_STRETCH
+condition
+IsStretching
 ? 1
 endTransition
 
 transition
 start
-Clip/RangeAttackSpritesheet
+Clip/DAVE_IDLE
 end
-Exit
+Clip/DAVE_DASH
 condition
-Ranged
-? 0
-endTransition
-
-transition
-start
-Clip/IdleSpritesheet
-end
-Clip/DashSpritesheet
-condition
-IsDodge
+IsDashing
 ? 1
 endTransition
 
 transition
 start
-Clip/DashSpritesheet
+Clip/DAVE_IDLE
 end
-Exit
-condition
-IsDodge
-? 0
-endTransition
-
-transition
-start
-Clip/IdleSpritesheet
-end
-Clip/Punch1
+Clip/DAVE_PUNCH1_NEW
 condition
 Punch1
 ? 1
@@ -193,9 +240,12 @@ endTransition
 
 transition
 start
-Clip/Punch1
+Clip/DAVE_PUNCH1_NEW
 end
-Clip/Punch2
+Clip/DAVE_PUNCH2_NEW
+condition
+Punch1
+? 0
 condition
 Punch2
 ? 1
@@ -203,280 +253,69 @@ endTransition
 
 transition
 start
-Clip/Punch2
+Clip/DAVE_PUNCH2_NEW
 end
-Clip/Punch3
-condition
-Punch3
-? 1
-endTransition
-
-transition
-start
-Clip/Punch1
-end
-Exit
-condition
-Punch1
-? 0
-endTransition
-
-transition
-start
-Clip/Punch2
-end
-Exit
+Clip/DAVE_PUNCH3_NEW
 condition
 Punch2
 ? 0
-endTransition
-
-transition
-start
-Clip/Punch3
-end
-Exit
 condition
 Punch3
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_ON
+end
+Clip/DAVE_SHIELD_BLOCK
+condition
+ShieldOn
+? 1
+condition
+ShieldBlock
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_FIRE_READY
+condition
+FireReady
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_FALL
+end
+Clip/DAVE_RECOVER
+condition
+JumpTime
+> 1
+condition
+VelY
 ? 0
 endTransition
 
 transition
 start
-Clip/IdleSpritesheet
+Clip/DAVE_SHIELD_BLOCK
 end
-Clip/InitialJump
+Clip/DAVE_SHIELD_ON
 condition
-PlayerVelocityY
-> 5
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/InitialJump
-condition
-PlayerVelocityY
-> 5
-endTransition
-
-transition
-start
-Clip/InitialJump
-end
-Clip/ReachingTop
-condition
-PlayerVelocityY
-> -0.1
-condition
-PlayerVelocityY
-< 5
-endTransition
-
-transition
-start
-Clip/ReachingTop
-end
-Clip/FallingSpritesheet
-condition
-PlayerVelocityY
-< 0
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/FallingSpritesheet
-condition
-PlayerVelocityY
-< 0
-condition
-IsJumping
+ShieldBlock
 ? 0
-endTransition
-
-transition
-start
-Clip/FallingSpritesheet
-end
-Clip/LandingSpriteSheet
 condition
-PlayerVelocityY
-> -0.1
-endTransition
-
-transition
-start
-Clip/LandingSpriteSheet
-end
-Clip/IdleSpritesheet
-condition
-IsRunning
-? 0
-endTransition
-
-transition
-start
-Clip/LandingSpriteSheet
-end
-Clip/RunningSpritesheet
-condition
-IsRunning
+ShieldOn
 ? 1
 endTransition
 
 transition
 start
-Clip/IdleSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/RangeAttackSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/FallingSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/LandingSpriteSheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/DashSpritesheet
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/InitialJump
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/ReachingTop
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/Punch1
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/Punch2
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/Punch3
-end
-Clip/LancerAttack
-condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/LancerAttack
-end
-Exit
-condition
-LancerAttack
-? 0
-endTransition
-
-transition
-start
-Clip/RunningSpritesheet
-end
-Clip/Punch1
-condition
-Punch1
-? 1
-endTransition
-
-transition
-start
-Clip/RangeAttackSpritesheet
-end
-Clip/IdleSpritesheet
-condition
-Ranged
-? 0
-endTransition
-
-transition
-start
-Clip/IdleSpritesheet
-end
-Clip/IdleSpritesheet
-endTransition
-
-transition
-start
-Clip/IdleSpritesheet
+Clip/DAVE_IDLE
 end
 Clip/DAVE_SHIELD_UP
 condition
@@ -486,11 +325,245 @@ endTransition
 
 transition
 start
+Clip/DAVE_FIRE_READY
+end
+Clip/DAVE_FIRE_ON
+condition
+FireOn
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE_ON
+end
+Clip/DAVE_FIRE
+condition
+FireOn
+? 1
+condition
+Fire
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE
+end
+Clip/DAVE_FIRE_ON
+condition
+FireOn
+? 1
+condition
+Fire
+? 0
+endTransition
+
+transition
+start
+Any State
+end
+Clip/DAVE_DEATH
+condition
+Dead
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_LANCE
+condition
+Lance
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_RECOVER
+end
+Exit
+condition
+EndJump
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_LAND
+end
+Exit
+condition
+EndJump
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_RUN
+end
+Exit
+condition
+IsRunning
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_DASH
+end
+Exit
+condition
+IsDashing
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE_STRETCH
+end
+Exit
+condition
+IsStretching
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH1_NEW
+end
+Exit
+condition
+Punch1
+? 0
+condition
+Punch2
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH2_NEW
+end
+Exit
+condition
+Punch2
+? 0
+condition
+Punch3
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH3_NEW
+end
+Exit
+condition
+Punch3
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_ON
+end
+Exit
+condition
+ShieldOn
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_BLOCK
+end
+Exit
+condition
+ShieldBlock
+? 0
+condition
+ShieldOn
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE_ON
+end
+Exit
+condition
+FireOn
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE
+end
+Exit
+condition
+FireOn
+? 0
+condition
+Fire
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_LANCE
+end
+Exit
+condition
+Lance
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_DEATH
+end
+Exit
+condition
+Dead
+? 0
+endTransition
+
+transition
+start
 Clip/DAVE_SHIELD_UP
 end
-Clip/IdleSpritesheet
+Clip/DAVE_SHIELD_BLOCK
+condition
+ShieldOn
+? 1
+condition
+ShieldBlock
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_UP
+end
+Clip/DAVE_SHIELD_ON
+condition
+ShieldOn
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_SHIELD_UP
+end
+Exit
 condition
 ShieldUp
+? 0
+condition
+ShieldOn
 ? 0
 endTransition
 

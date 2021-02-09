@@ -25,7 +25,8 @@ namespace DeltaEngine
     E_PLAYER_SMG,
     E_ENEMY_BULLET,
     E_ENEMY_FIDDLER_PUNCH,
-    E_ENEMY_LANCER_PUNCH
+    E_ENEMY_LANCER_PUNCH,
+  	E_VFX
   };
 
   struct EntityType

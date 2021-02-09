@@ -112,17 +112,17 @@ namespace DeltaEngine
     }
     else
     {
-      if (ImGui::IsKeyDown(DEVK_W) && !ImGui::IsKeyDown(DEVK_S))
+      if (ImGui::IsKeyDown(DEVK_I) && !ImGui::IsKeyDown(DEVK_K))
         Camera::editorCameraTransform.position.y += speed * delta;
-      else if (ImGui::IsKeyDown(DEVK_S) && !ImGui::IsKeyDown(DEVK_W))
+      else if (ImGui::IsKeyDown(DEVK_K) && !ImGui::IsKeyDown(DEVK_I))
         Camera::editorCameraTransform.position.y -= speed * delta;
-      if (ImGui::IsKeyDown(DEVK_A) && !ImGui::IsKeyDown(DEVK_D))
+      if (ImGui::IsKeyDown(DEVK_J) && !ImGui::IsKeyDown(DEVK_L))
         Camera::editorCameraTransform.position.x -= speed * delta;
-      else if (ImGui::IsKeyDown(DEVK_D) && !ImGui::IsKeyDown(DEVK_A))
+      else if (ImGui::IsKeyDown(DEVK_L) && !ImGui::IsKeyDown(DEVK_J))
         Camera::editorCameraTransform.position.x += speed * delta;
-      if (ImGui::IsKeyDown(DEVK_Q) && !ImGui::IsKeyDown(DEVK_E))
+      if (ImGui::IsKeyDown(DEVK_U) && !ImGui::IsKeyDown(DEVK_O))
         Camera::editorCamera->m_Size -= speed * delta;
-      else if (ImGui::IsKeyDown(DEVK_E) && !ImGui::IsKeyDown(DEVK_Q))
+      else if (ImGui::IsKeyDown(DEVK_O) && !ImGui::IsKeyDown(DEVK_U))
         Camera::editorCamera->m_Size += speed * delta;
       dragging = false;
     }
