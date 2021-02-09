@@ -21,7 +21,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  class World
+  class World 
   {
     std::unique_ptr<EntityManager> em;
     std::unordered_map<size_t, std::unique_ptr<SystemBase>> systems;
@@ -97,6 +97,8 @@ namespace DeltaEngine
         late_update_sequence.push_back(hash.digest);
       }
     }
+
+    void CleanUpEntities();
 
     void Save(std::string filename);
 

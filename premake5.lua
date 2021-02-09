@@ -213,7 +213,8 @@ project "Sandbox"
   staticruntime "On"
   flags 
   {
-    "NoPCH"
+    "NoPCH",
+    "LinkTimeOptimization"
   }
   
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")

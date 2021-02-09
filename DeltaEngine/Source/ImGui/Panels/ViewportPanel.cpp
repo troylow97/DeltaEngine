@@ -213,7 +213,6 @@ namespace DeltaEngine
             env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Index = 0;
           }
         }
-
         ImGui::EndDragDropTarget();
       }
     }

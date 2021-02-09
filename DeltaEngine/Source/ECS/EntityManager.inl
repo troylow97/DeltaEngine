@@ -123,7 +123,6 @@ namespace DeltaEngine
       if (meta_vec.empty())
       {
         ( meta_vec.push_back(ComponentMeta::GetComponentMeta<C>()), ... );
-        meta_vec.push_back(ComponentMeta::GetComponentMeta<Parent>());
         meta_vec.push_back(ComponentMeta::GetComponentMeta<EntityName>());
         meta_vec.push_back(ComponentMeta::GetComponentMeta<EntityType>());
         meta_vec.push_back(ComponentMeta::GetComponentMeta<Transform>());
@@ -171,6 +170,7 @@ namespace DeltaEngine
     ASSERT_ERROR(IsEntityValid(id), "EntityManager: destroying invalid entity")
     EraseEntityChunk(m_entities[id.index].chunk, m_entities[id.index].chunk_index);
     DeallocateEntity(id);
+    DeltaEngine_CORE_INFO( "Entity - {} deleted", id.index );
   }
 
   template <typename C>
@@ -597,7 +597,6 @@ namespace DeltaEngine
   {
     auto* empty_arch = new Archetype();
     std::vector<const ComponentMeta*> empty_vec;
-    empty_vec.push_back(ComponentMeta::GetComponentMeta<Parent>());
     empty_vec.push_back(ComponentMeta::GetComponentMeta<EntityName>());
     empty_vec.push_back(ComponentMeta::GetComponentMeta<EntityType>());
     empty_vec.push_back(ComponentMeta::GetComponentMeta<Transform>());
