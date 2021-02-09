@@ -105,7 +105,7 @@ namespace DeltaEngine
                   m_editor.m_panels[0]->Enable();
                   if (!m_editor.m_panels[0]->IsEnabled())
                     m_editor.m_panels[0]->Enable();
-                  m_editor.m_panels[0]->SelectFile(key);
+                  m_editor.selectedFile.assign(key);
                 }
 
 

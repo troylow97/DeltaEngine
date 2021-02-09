@@ -1,16 +1,15 @@
 /**********************************************************************************
 * \file   Entities.h
-* \brief  The file contains BLAHBLAHBLAH
-* \author Chin, Clara,   X% Code Contribution
-* \author Low, Troy,     X% Code Contribution
-* \author Ong, Graeme,   X% Code Contribution
-* \author Tan, Tong Wee, X% Code Contribution
+* \brief  This file contains the definition of an Entity and the EntityID information
+*         used by the ECS
 *
+* \author Tan, Tong Wee, 100% Code Contribution
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
+
 #pragma once
 
 namespace DeltaEngine
@@ -19,24 +18,14 @@ namespace DeltaEngine
 
   struct EntityID
   {
-      size_t index{ 0 };
-      size_t generation{ 1 };
+    size_t index{0};
+    size_t generation{1};
 
-      bool operator==(const EntityID& rhs) const
-      {
-          return generation == rhs.generation &&
-              index == rhs.index;
-      }
-      bool operator>(const EntityID& rhs) const
-      {
-          return generation > rhs.generation &&
-              index > rhs.index;
-      }
-      bool operator<(const EntityID& rhs) const
-      {
-          return generation < rhs.generation &&
-              index < rhs.index;
-      }
+    bool operator==(const EntityID& rhs) const
+    {
+      return generation == rhs.generation &&
+        index == rhs.index;
+    }
   };
 
   struct Entity

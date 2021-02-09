@@ -217,7 +217,7 @@ namespace DeltaEngine
                         m_editor.m_panels[10]->Enable();
 
                       auto key = str.substr(0, str.find_last_of('.'));
-                      m_editor.m_panels[10]->SelectFile(key);
+                      m_editor.selectedFile.assign(key);
                     }
 
                 if (ref.extension() == ".anim")
@@ -229,7 +229,7 @@ namespace DeltaEngine
                         m_editor.m_panels[11]->Enable();
 
                       auto key = str.substr(0, str.find_last_of('.'));
-                      m_editor.m_panels[11]->SelectFile(key);
+                      m_editor.selectedFile.assign(key);
                     }
 
                 ImGui::PopID();

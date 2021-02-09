@@ -28,13 +28,6 @@ namespace DeltaEngine
         l.Timer -= env.pClock->FixedDeltaTime();
     });
 
-  	//Clear VFX
-    em.ForEach([&](EntityID& id, EntityType& et,Animator& anim)
-    {
-        if (et.type == EntityCategory::E_VFX && anim.LoopsCompleted() > 0)
-            DestroyedEntities.push_back(id);
-    });
-
     for (auto& ref : DestroyedEntities)
       em.DestroyEntity(ref);
 

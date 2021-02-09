@@ -22,11 +22,9 @@ namespace DeltaEngine
     E_PLAYER_BULLET_DETECTION,
     E_PLAYER_PUNCH,
     E_PLAYER_DASH,
-    E_PLAYER_SMG,
     E_ENEMY_BULLET,
     E_ENEMY_FIDDLER_PUNCH,
-    E_ENEMY_LANCER_PUNCH,
-  	E_VFX
+    E_ENEMY_LANCER_PUNCH
   };
 
   struct EntityType

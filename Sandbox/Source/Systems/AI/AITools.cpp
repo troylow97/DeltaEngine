@@ -129,13 +129,13 @@ namespace DeltaEngine
       if (EntityisOnTheRight(id1, id2))
       {
         FaceRight(id1);
-        //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = Vector2::right();
+        env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = Vector2::right();
         return;
       }
 
       if (EntityisOnTheLeft(id1, id2))
       {
-        //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = Vector2::left();
+        env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = Vector2::left();
         FaceLeft(id1);
       }
     }
