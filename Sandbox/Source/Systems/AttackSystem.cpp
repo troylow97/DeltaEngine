@@ -226,22 +226,22 @@ namespace DeltaEngine
     }
     else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
     {
-      EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, true, 0.35f, EntityCategory::E_ENEMY_BULLET);
+      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 0.35f, EntityCategory::E_ENEMY_BULLET);
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = {1.0f, 1.0f};
-      em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
+      em.GetComponent<Image>(missile).m_Size = { 0.25f, 0.25f };
+      em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
 
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {8000, 3500};
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {5000, -3500};
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-8000, 3500};
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-5000, -3500};
       }
     }
   }
