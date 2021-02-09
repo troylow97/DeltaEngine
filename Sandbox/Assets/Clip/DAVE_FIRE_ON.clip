@@ -1,0 +1,10 @@
+frames 1
+fps 12
+loop 0
+
+Textures/DAVE_FIRE_READY_i_5
+key Textures/DAVE_FIRE_READY
+value 1
+frame 5
+
+%

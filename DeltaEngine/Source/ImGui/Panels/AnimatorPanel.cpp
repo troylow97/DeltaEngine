@@ -333,6 +333,8 @@ namespace DeltaEngine
           node_bg_color = IM_COL32(0, 102, 0, 255);
         if (node.nID == 1)
           node_bg_color = IM_COL32(102, 0, 0, 255);
+        if (node.nID == 2)
+          node_bg_color = IM_COL32(0, 0, 102, 255);
         draw_list->AddRectFilled(node_rect_min, node_rect_max, node_bg_color, 4.0f);
         if (nodeSelected == node.nID)
           draw_list->AddRect(node_rect_min, node_rect_max, IM_COL32(0, 102, 153, 255), 4.0f, 15, 3.f);

@@ -256,24 +256,27 @@ namespace DeltaEngine
         i1.previousKey = DEVK_Q;
       });
     }
-
-    if (InputManager::Instance().IsKeyTriggered(DEVK_RBUTTON)) //DASH DODGE
-    {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1)
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Transform& t1, RigidBody r1, State& s, Image& a, Collider& c1, Player& p1, Input& i1)
       {
-        if (c1.isCollidingOnFloor && p1.AllowDashing)
+        if (!p1.IsDodging)
+          s.SetBool("IsDashing", false);
+
+        if (InputManager::Instance().IsKeyTriggered(DEVK_RBUTTON)) //DASH DODGE
         {
-          if (a.m_FlipX)
-            p1.DashDirectionRight = false;
-          else
-            p1.DashDirectionRight = true;
-          p1.IsDodging = true;
-          p1.AllowDashing = false;
-          //s.SetBool("SOMEDASHINGANIMATION", true);
+          if (c1.isCollidingOnFloor && p1.AllowDashing)
+          {
+            if (a.m_FlipX)
+              p1.DashDirectionRight = false;
+            else
+              p1.DashDirectionRight = true;
+            p1.IsDodging = true;
+            p1.AllowDashing = false;
+            s.SetBool("IsDashing", true);
+          }
+          i1.previousKey = DEVK_RBUTTON;
         }
-        i1.previousKey = DEVK_RBUTTON;
       });
-    }
+
 
     //if (InputManager::Instance().IsKeyTriggered(DEVK_Z))
     //{

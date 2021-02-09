@@ -28,6 +28,10 @@ Exit
 79 112
 
 pos
+Any State
+200 0
+
+pos
 Clip/SERP_FULL_IDLE
 -438 88
 
@@ -48,72 +52,5 @@ Clip/SERP_CHARGE
 -68 241
 
 %Transitions:
-
-transition
-start
-Clip/SERP_FULL_IDLE
-end
-Clip/SERP_FULL_ALERT
-condition
-PlayerDetected
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_FULL_ALERT
-end
-Clip/SERP_CHARGE
-condition
-IsAttacking
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_CHARGE
-end
-Clip/SERP_FIRE
-endTransition
-
-transition
-start
-Clip/SERP_FULL_ALERT
-end
-Clip/SERP_DEATH
-condition
-HP
-< 1
-endTransition
-
-transition
-start
-Clip/SERP_FIRE
-end
-Clip/SERP_FULL_ALERT
-condition
-PlayerDetected
-? 0
-endTransition
-
-transition
-start
-Clip/SERP_FIRE
-end
-Clip/SERP_DEATH
-condition
-HP
-< 1
-endTransition
-
-transition
-start
-Clip/SERP_CHARGE
-end
-Clip/SERP_DEATH
-condition
-HP
-< 1
-endTransition
 
 %endfile
