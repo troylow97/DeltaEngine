@@ -6,32 +6,32 @@ Clip/SERP_IDLE
 %Parameters:
 
 param
-Alert
-0 0
+IsAlerted
+1 0
 
 param
 Damaged
 0 0
 
 param
-Burrow
+IsBurrowing
 0 0
 
 param
-Unburrow
+IsUnborrowing
 0 0
 
 param
-Charge
+IsDead
+1 0
+
+param
+MoveBurrowing
 0 0
 
 param
-Fire
-0 0
-
-param
-Dead
-0 0
+RangedAttack
+1 0
 
 %EditorPositions:
 
@@ -49,57 +49,37 @@ Any State
 
 pos
 Clip/SERP_IDLE
--227 28
+-365 14
 
 pos
 Clip/SERP_ALERT
--198 101
+-317 130
 
 pos
 Clip/SERP_BURROW
-1 33
+-156 215
 
 pos
 Clip/SERP_CHARGE
-1 165
-
-pos
-Clip/SERP_DEATH
-144 -102
+-116 397
 
 pos
 Clip/SERP_DMG
-0 -36
-
-pos
-Clip/SERP_FIRE
-1 226
+140 390
 
 pos
 Clip/SERP_UNBURROW
-3 100
+82 124
+
+pos
+Clip/SERP_BURROW_MOVE
+-93 319
+
+pos
+Clip/SERP_FIRE
+-352 237
 
 %Transitions:
-
-transition
-start
-Any State
-end
-Clip/SERP_DEATH
-condition
-Dead
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_DEATH
-end
-Exit
-condition
-Dead
-? 0
-endTransition
 
 transition
 start
@@ -107,27 +87,27 @@ Clip/SERP_IDLE
 end
 Clip/SERP_ALERT
 condition
-Alert
+IsAlerted
 ? 1
 endTransition
 
 transition
 start
-Clip/SERP_ALERT
-end
-Clip/SERP_DMG
-condition
-Damaged
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_ALERT
-end
 Clip/SERP_BURROW
+end
+Clip/SERP_BURROW_MOVE
 condition
-Burrow
+MoveBurrowing
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_BURROW_MOVE
+end
+Clip/SERP_UNBURROW
+condition
+IsUnborrowing
 ? 1
 endTransition
 
@@ -137,78 +117,34 @@ Clip/SERP_ALERT
 end
 Clip/SERP_FIRE
 condition
-Fire
+RangedAttack
 ? 1
-endTransition
-
-transition
-start
-Clip/SERP_ALERT
-end
-Clip/SERP_CHARGE
-condition
-Charge
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_ALERT
-end
-Clip/SERP_UNBURROW
-condition
-Unburrow
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_UNBURROW
-end
-Exit
-condition
-Unburrow
-? 0
-endTransition
-
-transition
-start
-Clip/SERP_CHARGE
-end
-Exit
-condition
-Charge
-? 0
 endTransition
 
 transition
 start
 Clip/SERP_FIRE
 end
-Exit
-condition
-Fire
-? 0
-endTransition
-
-transition
-start
 Clip/SERP_BURROW
-end
-Exit
 condition
-Burrow
+RangedAttack
 ? 0
+condition
+IsBurrowing
+? 1
 endTransition
 
 transition
 start
-Clip/SERP_DMG
+Clip/SERP_UNBURROW
 end
-Exit
+Clip/SERP_ALERT
 condition
-Damaged
+IsUnborrowing
 ? 0
+condition
+IsAlerted
+? 1
 endTransition
 
 %endfile

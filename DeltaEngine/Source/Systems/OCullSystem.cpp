@@ -53,13 +53,41 @@ namespace DeltaEngine
       Query q;
       q.Exclude<UI>();
 
-      em.ForEach(q, [&](Transform& t, Image& i, Renderer2D& r)
+      em.ForEach(q, [&](Transform& t, Image& i, Renderer2D& r, EntityType& et)
       {
         Vector2 e_t{t.position.x, t.position.y};
         if (CollisionIntersection_RectRect_Static(e_t, i.GetWorldSize(), c_center, c_size))
           r.m_Active = true;
         else
           r.m_Active = false;
+
+        em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
+        {
+          if (et.type == EntityCategory::E_PLAYER)
+          {
+            auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(id);
+            if (a.SMGAttack)
+            {
+              r2d.m_Active = false;
+              EnableShootingAnimation = true;
+            }
+            else
+            {
+              r2d.m_Active = true;
+              EnableShootingAnimation = false;
+            }
+          }
+          if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
+          {
+            //auto& player_bodypart_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
+
+            if (EnableShootingAnimation)
+              r2d.m_Active = true;
+            else
+              r2d.m_Active = false;
+
+          }
+        });
       });
     }
   }

@@ -46,6 +46,7 @@ namespace DeltaEngine
 
     void LancerSpawn::onEnter(EntityID& id)
     {
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
     }
 
     void LancerSpawn::onExit(EntityID& id)
@@ -78,11 +79,16 @@ namespace DeltaEngine
 
     void IdleLancer::onExit(EntityID& id)
     {
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsIdle", false);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
     }
 
     void IdleLancer::Update(EntityID& monster)
     {
         CheckEdges(monster);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlerted", true);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("MeleeAttack", false);
+
         //auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
 
         //if (ref.y < 2.0)
@@ -98,8 +104,7 @@ namespace DeltaEngine
 
     void ChaseEnemyLancer::onEnter(EntityID& id)
     {
-        //env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
-        //env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlertIdle", true);
+
     }
 
     void ChaseEnemyLancer::onExit(EntityID& id)
@@ -111,7 +116,7 @@ namespace DeltaEngine
     {
         //CheckEdges(monster); lancer continues chasing so no transition edge
         EntityID player = UnitManager::GetPlayerID();
-        //auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
+        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
         const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
 
         //Move towards player
@@ -127,8 +132,17 @@ namespace DeltaEngine
             GetComponent<Attack>(monster).
             MeleeCooldownTimer <= 0)
         {
-            AITools::FaceEntity(monster, player);
+            if (AITools::EntityisOnTheRight(monster, player))
+            {
+                env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
+            }
+            else
+            {
+                env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
+            }
             a.MeleeAttack = true;
+            s.SetBool("MeleeAttack", true);
+            s.SetBool("IsAlerted", false);
             //if (Random::RandomFloatRange(0, 100) < 20)
             //{
             //    static size_t c_id{ u64_max };
@@ -138,20 +152,22 @@ namespace DeltaEngine
             //}
         }
 
-        //if(!Bouncing && !a.MeleeAttack && a.MeleeCooldownTimer > 0.3f && a.MeleeCooldownTimer < 0.8f)
-        //{
-        //    s.SetBool("IsBouncing", true);
-        //    s.SetBool("MeleeAttack", false);
-        //    Bouncing = true;
-        //}
-        //
-        //if (Bouncing && env.pClock->FixedDeltaTime() > 0.0f)
-        //    BouncingTimer -= env.pClock->FixedDeltaTime();
-        //else
-        //{
-        //    BouncingTimer = 0.7f;
-        //    Bouncing = false;
-        //}
+        if(!Bouncing && !a.MeleeAttack && a.MeleeCooldownTimer > 0.3f && a.MeleeCooldownTimer < 0.8f)
+        {
+            s.SetBool("IsBouncing", true);
+            s.SetBool("MeleeAttack", false);
+            Bouncing = true;
+        }
+        
+        if (Bouncing && BouncingTimer > 0.0f) 
+            BouncingTimer -= env.pClock->FixedDeltaTime();
+        else
+        {
+            BouncingTimer = 0.7f;
+            Bouncing = false;
+            s.SetBool("IsBouncing", false);
+            s.SetBool("IsAlerted", true);
+        }
 
 
     }
@@ -174,6 +190,7 @@ namespace DeltaEngine
     void IdleFiddler::onExit(EntityID& id)
     {
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsPatrolling", false);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
     }
 
     void IdleFiddler::Update(EntityID& monster)
@@ -192,6 +209,7 @@ namespace DeltaEngine
 
     void ChaseEnemyFiddler::onEnter(EntityID& id)
     {
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", false);
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
         s.SetBool("IsAlertRunning", true);
 
@@ -201,6 +219,7 @@ namespace DeltaEngine
     {
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
         env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0, 0 };
+        s.SetBool("IsAlerted", false);
         s.SetBool("IsAlertRunning", false);
         s.SetBool("IsPatrolling", true);
     }
@@ -271,6 +290,7 @@ namespace DeltaEngine
     void IdleSerpentipede::Update(EntityID& monster)
     {
         CheckEdges(monster);
+
     }
 
     ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :
@@ -291,14 +311,16 @@ namespace DeltaEngine
     void ChaseEnemySerpentipede::onExit(EntityID& id)
     {
         env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0, 0 };
-        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("PlayerDetected", false);
     }
 
     void ChaseEnemySerpentipede::Update(EntityID& monster)
     {
         CheckEdges(monster);
         auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-        RigidBody& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
+        auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
+        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
+        auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
+        auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
 
         //Seen and attacking
         if (BurrowState == 0)
@@ -307,10 +329,18 @@ namespace DeltaEngine
             if (CooldownTimer <= 0)
             {
                 EntityID player = UnitManager::GetPlayerID();
-                AITools::FaceEntity(monster, player);
-                auto& attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
-                attack.RangeAttack = true;
-                //Burrow Serpentipede
+                if (AITools::EntityisOnTheRight(monster, player))
+                {
+                    env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
+                }
+                else
+                {
+                    env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
+                }
+
+                a.RangeAttack = true;
+                s.SetBool("RangedAttack", true);
+                a.AttackDelay = 0.2f;
                 BurrowState = 1;
                 CooldownTimer = 1.0f;
             }
@@ -321,24 +351,37 @@ namespace DeltaEngine
             return;
         }
 
+        if (a.AttackDelay < 0.0f)
+        {
+            s.SetBool("IsBurrowing", true);
+            s.SetBool("RangedAttack", false);
+        }
+        else
+        {
+            return;
+        }
+
+
         //Burrowing Down
         if (BurrowState == 1)
         {
             if (BurrowDownDuration > 0.0f)
             {
                 BurrowDownDuration -= env.pClock->FixedDeltaTime();
-                //Add burrow down animation
             }
 
             else
             {
+                s.SetBool("IsBurrowing", false);
+                s.SetBool("MoveBurrowing", true);
                 BurrowState = 2;
                 auto& renderer = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster);
                 auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
-                auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
                 health.isInvulnerable = true;
                 renderer.m_Active = false;
-                collider.CollisionLayerCheck = 1;
+                collider.isTrigger = true;
+                rb.hasGravity = false;
+                rb.Movespeed *= 1.2f;
                 BurrowDownDuration = 0.5f;
                 switch (CurrentPoint)
                 {
@@ -372,6 +415,8 @@ namespace DeltaEngine
                 //Monster is at point
                 BurrowState = 3;
                 rb.Direction = Vector2::zero();
+                s.SetBool("IsUnborrowing", true);
+                s.SetBool("MoveBurrowing", false);
             }
             Vector2 move_point = ai.original_point + SerpentData.Points[CurrentPoint];
             AITools::MoveTowardsPoint(monster, move_point);
@@ -386,13 +431,17 @@ namespace DeltaEngine
             if (BurrowUpDuration > 0.0f)
             {
                 BurrowUpDuration -= env.pClock->FixedDeltaTime();
-                //Play burrowing up animation
                 env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster).m_Active = true;
             }
             else
             {
+                s.SetBool("IsUnborrowing", false);
+                s.SetBool("IsAlerted", true);
                 BurrowState = 0;
                 BurrowUpDuration = 0.5f;
+                collider.isTrigger = false;
+                rb.hasGravity = true;
+                rb.Movespeed /= 1.2f;
                 auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
                 auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
                 health.isInvulnerable = false;

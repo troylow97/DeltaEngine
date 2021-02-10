@@ -1,44 +1,32 @@
 %Entry:
 
 entry
-Clip/LANCER_IDLE
+Clip/LANCER_ALERT_IDLE
 
 %Parameters:
 
 param
-AlertIdle
+IsDead
 0 0
 
 param
-Alert
+IsAlerted
+1 1
+
+param
+MeleeAttack
+1 0
+
+param
+IsBouncing
+1 0
+
+param
+IsIdle
 0 0
 
 param
-Bounce
-0 0
-
-param
-Reaction
-0 0
-
-param
-Damaged
-0 0
-
-param
-Attack
-0 0
-
-param
-Fall
-0 0
-
-param
-Collapse
-0 0
-
-param
-Dead
+IsDamaged
 0 0
 
 %EditorPositions:
@@ -53,87 +41,41 @@ Exit
 
 pos
 Any State
-200 0
-
-pos
-Clip/LANCER_IDLE
-8 123
+320 -6
 
 pos
 Clip/LANCER_ALERT_IDLE
-8 204
-
-pos
-Clip/LANCER_ATTACK
-298 328
-
-pos
-Clip/LANCER_BOUNCE
-302 133
-
-pos
-Clip/LANCER_DEATH
-467 16
-
-pos
-Clip/LANCER_ALERT
-300 67
-
-pos
-Clip/LANCER_COLLAPSE
-301 465
-
-pos
-Clip/LANCER_DMG
-302 265
+-326 250
 
 pos
 Clip/LANCER_FALL
-300 400
+274 480
 
 pos
 Clip/LANCER_REACTION
-301 200
+-61 559
+
+pos
+Clip/LANCER_IDLE
+473 197
+
+pos
+Clip/LANCER_BOUNCE
+-33 354
+
+pos
+Clip/LANCER_ATTACK
+-14 214
 
 %Transitions:
 
 transition
 start
-Any State
-end
-Clip/LANCER_DEATH
-condition
-Dead
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_DEATH
-end
-Exit
-condition
-Dead
-? 0
-endTransition
-
-transition
-start
-Clip/LANCER_IDLE
-end
-Clip/LANCER_ALERT_IDLE
-condition
-AlertIdle
-? 1
-endTransition
-
-transition
-start
 Clip/LANCER_ALERT_IDLE
 end
 Clip/LANCER_ATTACK
 condition
-Attack
+MeleeAttack
 ? 1
 endTransition
 
@@ -141,119 +83,12 @@ transition
 start
 Clip/LANCER_ATTACK
 end
-Exit
-condition
-Attack
-? 0
-endTransition
-
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
 Clip/LANCER_BOUNCE
 condition
-Bounce
+IsBouncing
 ? 1
-endTransition
-
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_REACTION
 condition
-Reaction
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_DMG
-condition
-Damaged
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_ALERT
-condition
-Alert
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_FALL
-condition
-Fall
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_COLLAPSE
-condition
-Collapse
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_COLLAPSE
-end
-Exit
-condition
-Collapse
-? 0
-endTransition
-
-transition
-start
-Clip/LANCER_FALL
-end
-Exit
-condition
-Fall
-? 0
-endTransition
-
-transition
-start
-Clip/LANCER_ALERT
-end
-Exit
-condition
-Alert
-? 0
-endTransition
-
-transition
-start
-Clip/LANCER_DMG
-end
-Exit
-condition
-Damaged
-? 0
-endTransition
-
-transition
-start
-Clip/LANCER_REACTION
-end
-Exit
-condition
-Reaction
+MeleeAttack
 ? 0
 endTransition
 
@@ -261,10 +96,13 @@ transition
 start
 Clip/LANCER_BOUNCE
 end
-Exit
+Clip/LANCER_ALERT_IDLE
 condition
-Bounce
+IsBouncing
 ? 0
+condition
+IsAlerted
+? 1
 endTransition
 
 %endfile

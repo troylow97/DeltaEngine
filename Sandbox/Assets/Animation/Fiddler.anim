@@ -41,11 +41,11 @@ Exit
 
 pos
 Any State
-200 0
+210 -41
 
 pos
 Clip/FID_WALK
--9 164
+3 239
 
 pos
 Clip/FID_DEATH
@@ -53,27 +53,27 @@ Clip/FID_DEATH
 
 pos
 Clip/FID_ATTACK
-200 264
+369 188
 
 pos
 Clip/FID_ALERT_RUN
-201 131
+169 350
 
 pos
 Clip/FID_ALERT
-200 63
+290 522
 
 pos
 Clip/FID_BLOCK_READY
-198 401
+437 542
 
 pos
 Clip/FID_BLOCK_UP
-200 333
+133 532
 
 pos
 Clip/FID_DMG
-199 199
+468 486
 
 %Transitions:
 
@@ -82,6 +82,9 @@ start
 Any State
 end
 Clip/FID_DEATH
+condition
+IsDead
+? 1
 endTransition
 
 transition
@@ -95,91 +98,30 @@ transition
 start
 Clip/FID_WALK
 end
-Clip/FID_ALERT
-endTransition
-
-transition
-start
-Clip/FID_WALK
-end
 Clip/FID_ALERT_RUN
-endTransition
-
-transition
-start
-Clip/FID_WALK
-end
-Clip/FID_DMG
-endTransition
-
-transition
-start
-Clip/FID_WALK
-end
-Clip/FID_ATTACK
-endTransition
-
-transition
-start
-Clip/FID_WALK
-end
-Clip/FID_WALK
-endTransition
-
-transition
-start
-Clip/FID_WALK
-end
-Clip/FID_BLOCK_UP
-endTransition
-
-transition
-start
-Clip/FID_WALK
-end
-Clip/FID_BLOCK_READY
-endTransition
-
-transition
-start
-Clip/FID_ALERT
-end
-Exit
+condition
+IsAlertRunning
+? 1
 endTransition
 
 transition
 start
 Clip/FID_ALERT_RUN
 end
-Exit
-endTransition
-
-transition
-start
-Clip/FID_DMG
-end
-Exit
+Clip/FID_ATTACK
+condition
+MeleeAttack
+? 1
 endTransition
 
 transition
 start
 Clip/FID_ATTACK
 end
-Exit
-endTransition
-
-transition
-start
-Clip/FID_BLOCK_UP
-end
-Exit
-endTransition
-
-transition
-start
-Clip/FID_BLOCK_READY
-end
-Exit
+Clip/FID_ALERT_RUN
+condition
+MeleeAttack
+? 0
 endTransition
 
 %endfile

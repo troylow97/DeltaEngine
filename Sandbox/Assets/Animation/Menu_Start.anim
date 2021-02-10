@@ -25,23 +25,13 @@ Any State
 
 pos
 Clip/StartGame_S
-202 240
+300 210
 
 pos
 Clip/StartGame_D
-219 153
+198 299
 
 %Transitions:
-
-transition
-start
-Clip/StartGame_D
-end
-Clip/StartGame_S
-condition
-Hover
-? 1
-endTransition
 
 transition
 start
@@ -51,6 +41,16 @@ Exit
 condition
 Hover
 ? 0
+endTransition
+
+transition
+start
+Clip/StartGame_D
+end
+Clip/StartGame_S
+condition
+Hover
+? 1
 endTransition
 
 %endfile

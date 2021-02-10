@@ -157,7 +157,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
   (
     rttr::value( "none", EntityCategory::E_NONE ),
     rttr::value( "wall", EntityCategory::E_WALL ),
-    rttr::value( "player", EntityCategory::E_PLAYER ),
+    rttr::value( "player", EntityCategory::E_PLAYER),
+    rttr::value( "player body part rotatable", EntityCategory::E_PLAYER_BODYPART_ROTATABLE),
+    rttr::value( "player body part", EntityCategory::E_PLAYER_BODYPART ),
     rttr::value( "enemy", EntityCategory::E_ENEMY),
     rttr::value( "player bullet", EntityCategory::E_PLAYER_BULLET),
     rttr::value( "player bullet detection", EntityCategory::E_PLAYER_BULLET_DETECTION),
