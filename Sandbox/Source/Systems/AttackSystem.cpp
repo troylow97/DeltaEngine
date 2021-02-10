@@ -74,7 +74,7 @@ namespace DeltaEngine
               {
                 if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
                 {
-                  Vector2 direction = { MouseCalculation::CalculateCalculatedDirectionVector(1.0f).x, MouseCalculation::CalculateCalculatedDirectionVector(1.0f).y };
+                  Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
                   player_bodypart_pos.rotation = { direction.x, direction.y, 0.0f, 0.0f };
                 }
                 else
