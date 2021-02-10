@@ -50,7 +50,7 @@ FireOn
 0 0
 
 param
-Fire
+RangedAttack
 0 0
 
 param
@@ -58,12 +58,8 @@ Lance
 0 0
 
 param
-VelY
-0 0
-
-param
-JumpTime
-0 0
+JumpStart
+1 0
 
 param
 EndJump
@@ -72,6 +68,18 @@ EndJump
 param
 Dead
 0 0
+
+param
+JumpLanding
+1 0
+
+param
+IsIdle
+1 0
+
+param
+JumpRecover
+1 0
 
 %EditorPositions:
 
@@ -92,12 +100,8 @@ Clip/DAVE_SHIELD_UP
 400 130
 
 pos
-Clip/DAVE_FALL
-600 -1
-
-pos
 Clip/DAVE_FIRE
-914 199
+1010 219
 
 pos
 Clip/DAVE_FIRE_READY
@@ -105,7 +109,7 @@ Clip/DAVE_FIRE_READY
 
 pos
 Clip/DAVE_IDLE
-101 0
+186 22
 
 pos
 Clip/DAVE_DASH
@@ -113,19 +117,11 @@ Clip/DAVE_DASH
 
 pos
 Clip/DAVE_IDLE_STRETCH
-402 -199
-
-pos
-Clip/DAVE_JUMP
-400 1
+261 -210
 
 pos
 Clip/DAVE_LANCE
-402 300
-
-pos
-Clip/DAVE_LAND
-772 -1
+321 322
 
 pos
 Clip/DAVE_PUNCH1_NEW
@@ -137,11 +133,7 @@ Clip/DAVE_PUNCH2_NEW
 
 pos
 Clip/DAVE_PUNCH3_NEW
-915 64
-
-pos
-Clip/DAVE_RECOVER
-581 -64
+870 74
 
 pos
 Clip/DAVE_RUN
@@ -149,7 +141,7 @@ Clip/DAVE_RUN
 
 pos
 Clip/DAVE_SHIELD_BLOCK
-658 168
+292 173
 
 pos
 Clip/DAVE_SHIELD_ON
@@ -163,6 +155,14 @@ pos
 Clip/DAVE_DEATH
 901 -298
 
+pos
+Clip/DAVE_JUMP
+-127 108
+
+pos
+Clip/DAVE_FALL
+-37 227
+
 %Transitions:
 
 transition
@@ -173,39 +173,6 @@ Clip/DAVE_RUN
 condition
 IsRunning
 ? 1
-endTransition
-
-transition
-start
-Clip/DAVE_JUMP
-end
-Clip/DAVE_FALL
-condition
-VelY
-< 0
-endTransition
-
-transition
-start
-Clip/DAVE_FALL
-end
-Clip/DAVE_LAND
-condition
-JumpTime
-< 1.1
-condition
-VelY
-? 0
-endTransition
-
-transition
-start
-Clip/DAVE_IDLE
-end
-Clip/DAVE_JUMP
-condition
-VelY
-> 0
 endTransition
 
 transition
@@ -289,19 +256,6 @@ endTransition
 
 transition
 start
-Clip/DAVE_FALL
-end
-Clip/DAVE_RECOVER
-condition
-JumpTime
-> 1
-condition
-VelY
-? 0
-endTransition
-
-transition
-start
 Clip/DAVE_SHIELD_BLOCK
 end
 Clip/DAVE_SHIELD_ON
@@ -329,7 +283,7 @@ Clip/DAVE_FIRE_READY
 end
 Clip/DAVE_FIRE_ON
 condition
-FireOn
+RangedAttack
 ? 1
 endTransition
 
@@ -339,7 +293,7 @@ Clip/DAVE_FIRE_ON
 end
 Clip/DAVE_FIRE
 condition
-FireOn
+RangedAttack
 ? 1
 condition
 Fire
@@ -376,26 +330,6 @@ end
 Clip/DAVE_LANCE
 condition
 Lance
-? 1
-endTransition
-
-transition
-start
-Clip/DAVE_RECOVER
-end
-Exit
-condition
-EndJump
-? 1
-endTransition
-
-transition
-start
-Clip/DAVE_LAND
-end
-Exit
-condition
-EndJump
 ? 1
 endTransition
 
@@ -565,6 +499,33 @@ ShieldUp
 condition
 ShieldOn
 ? 0
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE_STRETCH
+end
+Clip/DAVE_IDLE
+condition
+IsIdle
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_IDLE
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_JUMP
+condition
+IsRunning
+? 1
 endTransition
 
 %endfile

@@ -255,25 +255,28 @@ namespace DeltaEngine
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = { 0.25f, 0.25f };
+      em.GetComponent<Image>(missile).m_Size = { 1.0f, 1.0f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
+
+      //Calculate Direction Vector
+      Vector2 direction_vector = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position - em.GetComponent<Transform>(id).position;
+      direction_vector = direction_vector.Normalize();
 
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {5000, -3500};
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = direction_vector * 3000;
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-5000, -3500};
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = direction_vector * 3000;
       }
     }
   }
 
   void AttackSystem::MeleeAttack(EntityID& id)
   {
-      std::cout << "punching" << std::endl;
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().
       HasComponent<Attack>(id))
     {

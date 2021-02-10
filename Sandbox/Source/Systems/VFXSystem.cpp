@@ -18,20 +18,24 @@ namespace DeltaEngine
 {
   void VFXSystem::Update()
   {
-    auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-    auto& player_attack = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+  	if(em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Attack>(UnitManager::GetPlayerID()) && em.HasComponent<Transform>(UnitManager::GetPlayerID()))
+  	{
+        auto& player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID());
+        auto& player_attack = em.GetComponent<Attack>(UnitManager::GetPlayerID());
 
-    if (player_attack.DamageEnemy)
-    {
-      ShowVFX++;
-      
-      if (ShowVFX == 3)
-      {
-        ShowHitVFX(player_pos.position, { 2.0f, 2.0f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
-        player_attack.DamageEnemy = false;
-        ShowVFX = 0;
-      }
-    }
+        if (player_attack.DamageEnemy)
+        {
+            ShowVFX++;
+
+            if (ShowVFX == 3)
+            {
+                ShowHitVFX(player_pos.position, { 2.0f, 2.0f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
+                player_attack.DamageEnemy = false;
+                ShowVFX = 0;
+            }
+        }
+  	}
+
   }
   
   void VFXSystem::LateUpdate()

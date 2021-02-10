@@ -38,16 +38,6 @@ offset 760 320
 size 380 320
 pivot 0.5 0.5
 
-Textures/FID_ALERT_RUN_i_8
-offset 1140 320
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID_ALERT_RUN_i_9
-offset 1520 320
-size 380 320
-pivot 0.5 0.5
-
 %
 
 wrap_mode 0

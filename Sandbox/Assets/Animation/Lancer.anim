@@ -1,32 +1,32 @@
 %Entry:
 
 entry
-Clip/LANCER_IDLE
+Clip/LANCER_ALERT_IDLE
 
 %Parameters:
+
+param
+IsDead
+0 0
+
+param
+IsAlerted
+1 1
+
+param
+MeleeAttack
+1 0
+
+param
+IsBouncing
+1 0
 
 param
 IsIdle
 0 0
 
 param
-IsAlerted
-0 0
-
-param
-IsAlertIdle
-0 0
-
-param
-IsBouncing
-0 0
-
-param
-MeleeAttack
-0 0
-
-param
-IsDead
+IsDamaged
 0 0
 
 %EditorPositions:
@@ -41,32 +41,68 @@ Exit
 
 pos
 Any State
-200 0
-
-pos
-Clip/LANCER_IDLE
-223 127
-
-pos
-Clip/AlertSpritesheet
-305 266
+320 -6
 
 pos
 Clip/LANCER_ALERT_IDLE
-263 344
+-326 250
 
 pos
-Clip/LANCER_ATTACK
-20 375
+Clip/LANCER_FALL
+274 480
+
+pos
+Clip/LANCER_REACTION
+-61 559
+
+pos
+Clip/LANCER_IDLE
+473 197
 
 pos
 Clip/LANCER_BOUNCE
-72 498
+-33 354
 
 pos
-Clip/LANCER_DEATH
-373 474
+Clip/LANCER_ATTACK
+-14 214
 
 %Transitions:
+
+transition
+start
+Clip/LANCER_ALERT_IDLE
+end
+Clip/LANCER_ATTACK
+condition
+MeleeAttack
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_ATTACK
+end
+Clip/LANCER_BOUNCE
+condition
+IsBouncing
+? 1
+condition
+MeleeAttack
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_BOUNCE
+end
+Clip/LANCER_ALERT_IDLE
+condition
+IsBouncing
+? 0
+condition
+IsAlerted
+? 1
+endTransition
 
 %endfile

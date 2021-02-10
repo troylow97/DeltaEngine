@@ -48,16 +48,6 @@ offset 990 320
 size 330 320
 pivot 0.5 0.5
 
-Textures/FID_DMG_i_10
-offset 1320 320
-size 330 320
-pivot 0.5 0.5
-
-Textures/FID_DMG_i_11
-offset 1650 320
-size 330 320
-pivot 0.5 0.5
-
 %
 
 wrap_mode 0

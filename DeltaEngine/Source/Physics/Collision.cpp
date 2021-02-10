@@ -243,8 +243,6 @@ namespace DeltaEngine
 
   bool CollisionIntersection_CircleLineSegment(Collider& col1, const Vector2& vel1, LineSegment line, Manifold& m)
   {
-    //if (col1.type != ColliderType::CIRCLE)
-    //  std::cout << "WRONG!";
     Circle circle{col1.center, col1.size.x};
     Vector2 posNext;
     posNext = col1.center + vel1 * env.pClock->FixedDeltaTime();
