@@ -1,61 +1,6 @@
 Textures/TALL_PROPS_i_0
-offset 4 9
-size 219 431
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_1
-offset 234 11
-size 155 426
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_2
-offset 327 68
-size 0 0
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_3
-offset 396 12
-size 155 426
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_4
-offset 489 69
-size 0 0
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_5
-offset 572 202
-size 59 114
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_6
-offset 581 326
-size 51 115
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_7
-offset 657 371
-size 69 70
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_8
-offset 739 167
-size 92 273
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_9
-offset 842 163
-size 105 277
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_10
-offset 961 17
-size 94 421
-pivot 0.5 0.5
-
-Textures/TALL_PROPS_i_11
-offset 1079 70
-size 208 368
+offset 0 0
+size 1299 450
 pivot 0.5 0.5
 
 %

@@ -1,16 +1,6 @@
 Textures/BUILDING_SMALL_1_i_0
 offset 0 0
-size 620 822
-pivot 0.5 0.5
-
-Textures/BUILDING_SMALL_1_i_1
-offset 620 0
-size 620 822
-pivot 0.5 0.5
-
-Textures/BUILDING_SMALL_1_i_2
-offset 1240 0
-size 620 822
+size 1860 822
 pivot 0.5 0.5
 
 %

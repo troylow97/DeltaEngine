@@ -1,16 +1,6 @@
 Textures/DAVE_SHIELD_BLOCK_i_0
 offset 0 0
-size 198 241
-pivot 0.5 0.5
-
-Textures/DAVE_SHIELD_BLOCK_i_1
-offset 198 0
-size 198 241
-pivot 0.5 0.5
-
-Textures/DAVE_SHIELD_BLOCK_i_2
-offset 396 0
-size 198 241
+size 594 241
 pivot 0.5 0.5
 
 %

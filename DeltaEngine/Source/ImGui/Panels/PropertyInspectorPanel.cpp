@@ -173,7 +173,8 @@ void PropertyInspectorPanel::Render()
               instance.get_type() == rttr::type::get<AI>() ||
               instance.get_type() == rttr::type::get<EntityName>() ||
               instance.get_type() == rttr::type::get<Text>() ||
-              instance.get_type() == rttr::type::get<UI>() ) )
+              instance.get_type() == rttr::type::get<UI>() ||
+              instance.get_type() == rttr::type::get<GUI>()) )
             {
               auto &str = *value.get_value<std::string *>();
               char buffer[256] {};

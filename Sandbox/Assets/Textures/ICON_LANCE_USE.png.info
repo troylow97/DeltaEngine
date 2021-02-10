@@ -1,21 +1,6 @@
 Textures/ICON_LANCE_USE_i_0
 offset 0 0
-size 360 360
-pivot 0.5 0.5
-
-Textures/ICON_LANCE_USE_i_1
-offset 360 0
-size 360 360
-pivot 0.5 0.5
-
-Textures/ICON_LANCE_USE_i_2
-offset 720 0
-size 360 360
-pivot 0.5 0.5
-
-Textures/ICON_LANCE_USE_i_3
-offset 1080 0
-size 360 360
+size 1440 360
 pivot 0.5 0.5
 
 %

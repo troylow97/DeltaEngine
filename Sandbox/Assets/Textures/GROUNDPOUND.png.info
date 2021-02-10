@@ -1,16 +1,6 @@
 Textures/GROUNDPOUND_i_0
 offset 0 0
-size 512 128
-pivot 0.5 0.5
-
-Textures/GROUNDPOUND_i_1
-offset 512 0
-size 512 128
-pivot 0.5 0.5
-
-Textures/GROUNDPOUND_i_2
-offset 1024 0
-size 512 128
+size 1536 128
 pivot 0.5 0.5
 
 %

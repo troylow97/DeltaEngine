@@ -274,6 +274,8 @@ void ExtractPointerType( variant &obj_dat, variant &extracted )
       *obj_dat.get_value<EntityCategory *>() = v.get_value<EntityCategory>();
     else if ( obj_dat.get_type() == type::get<UIType *>() )
       *obj_dat.get_value<UIType *>() = v.get_value<UIType>();
+    else if ( obj_dat.get_type() == type::get<GUIType *>() )
+      *obj_dat.get_value<GUIType *>() = v.get_value<GUIType>();
     else if ( obj_dat.get_type() == type::get<FillType *>() )
       *obj_dat.get_value<FillType *>() = v.get_value<FillType>();
   }

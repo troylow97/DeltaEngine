@@ -1,7 +1,7 @@
 {
     "window": "Nomasaur - DeltaEngine",
-    "width": 1600,
-    "height": 900,
+    "width": 1920,
+    "height": 1080,
     "fps": 60.0,
     "cam_size": 2.0,
     "fullscreen": false
