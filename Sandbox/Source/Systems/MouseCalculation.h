@@ -24,7 +24,6 @@ namespace DeltaEngine
     Vector2 CalculateGameCoordinate();
     Vector2 CalculateScreenCoordinate();
     Vector2 CalculateDirectionVector();
-    Vector2 CalculateCalculatedDirectionVector(float _magnitude);
     void FlipShooting();
   }
 }
