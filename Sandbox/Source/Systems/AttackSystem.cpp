@@ -75,10 +75,12 @@ namespace DeltaEngine
                 if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
                 {
                   Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
-                  player_bodypart_pos.rotation = { direction.x, direction.y, 0.0f, 0.0f };
+                  direction.Normalize();
+                  float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+                  player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
                 }
                 else
-                  player_bodypart_pos.rotation = { 0.0f, 0.0f, 0.0f, 0.0f };
+                  player_bodypart_pos.rotation = Quaternion::Identity();
 
                 auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
                 auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
