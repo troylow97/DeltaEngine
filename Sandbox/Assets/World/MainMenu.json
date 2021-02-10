@@ -272,11 +272,11 @@
             "RendererOverlay": {
                 "Pos": {
                     "x": -640.0,
-                    "y": 75.0
+                    "y": 120.0
                 },
                 "Width/Height": {
                     "x": 450.0,
-                    "y": 100.0
+                    "y": 450.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -350,8 +350,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Controls_D",
-                    "index": 0
+                    "key": "Textures/Controls_S",
+                    "index": 29
                 },
                 "Size": {
                     "x": 1.0,
@@ -376,7 +376,7 @@
             "RendererOverlay": {
                 "Pos": {
                     "x": -665.0,
-                    "y": -50.0
+                    "y": -30.0
                 },
                 "Width/Height": {
                     "x": 400.0,
@@ -584,7 +584,7 @@
             "RendererOverlay": {
                 "Pos": {
                     "x": -665.0,
-                    "y": -300.0
+                    "y": -330.0
                 },
                 "Width/Height": {
                     "x": 400.0,

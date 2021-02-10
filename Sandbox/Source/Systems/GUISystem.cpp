@@ -31,6 +31,7 @@ namespace DeltaEngine
 {
 
 std::vector<unsigned> current;
+bool s { false };
 
 
 void GUISystem::PopScreen()
@@ -54,6 +55,7 @@ void GUISystem::PushScreen( unsigned screen )
     if ( gui.screen == screen )
       r.m_Active = true;
   } );
+  s = true;
 }
 
 void GUISystem::Initialize()
@@ -91,6 +93,9 @@ void GUISystem::LateUpdate()
 
   em.ForEach( [&]( EntityID &id, EntityName &name, RendererOverlay &r, Image &i, GUI &gui )
   {
+    if ( s )
+      return;
+
     if ( !r.m_Active || gui.screen != current.back() )
       return;
 
@@ -162,7 +167,7 @@ void GUISystem::LateUpdate()
   //}
 
 
-
+  s = false;
 }
 
 
