@@ -1,0 +1,56 @@
+%Entry:
+
+entry
+Clip/Credits_D
+
+%Parameters:
+
+param
+Hover
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+51 189
+
+pos
+Exit
+480 197
+
+pos
+Any State
+246 34
+
+pos
+Clip/Credits_D
+111 112
+
+pos
+Clip/Credits_S
+283 180
+
+%Transitions:
+
+transition
+start
+Clip/Credits_D
+end
+Clip/Credits_S
+condition
+Hover
+? 1
+endTransition
+
+transition
+start
+Clip/Credits_S
+end
+Exit
+condition
+Hover
+? 0
+endTransition
+
+%endfile

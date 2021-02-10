@@ -11,9 +11,13 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "GUISystem.h"
 
+
+#include <vector>
 #include <rttr/registration.h>
 #include <rttr/detail/registration/registration_impl.h>
 
+
+#include "UISystem.h"
 #include "UnitManager.h"
 #include "Components/Components.h"
 #include "EnemySpawner/EnemySpawner.h"
@@ -22,46 +26,78 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Physics/Collision.h"
 #include "Input/InputManager.h"
 #include "Input/Keys.h"
-#include "Systems/OCullSystem.h"
 
 namespace DeltaEngine
 {
 
-void GUISystem::Initialize()
-{
+std::vector<unsigned> current;
 
+
+void GUISystem::PopScreen()
+{
+  em.ForEach( [&]( GUI &gui, RendererOverlay &r )
+  {
+    if ( gui.screen == current.back() )
+      r.m_Active = false;
+  } );
+
+  if ( current.size() != 1 )
+    current.pop_back();
 }
 
 
+void GUISystem::PushScreen( unsigned screen )
+{
+  current.push_back( screen );
+  em.ForEach( [&]( GUI &gui, RendererOverlay &r )
+  {
+    if ( gui.screen == screen )
+      r.m_Active = true;
+  } );
+}
+
+void GUISystem::Initialize()
+{
+  current.push_back( 0 );
+}
 
 void GUISystem::Update()
 {}
 
 void GUISystem::LateUpdate()
 {
-  auto cameraWidth = GamePanel::render_size.x;
-  auto cameraHeight = GamePanel::render_size.y;
+
 
 #ifdef DE_EDITOR
+  auto cameraWidth = GamePanel::render_size.x;
+  auto cameraHeight = GamePanel::render_size.y;
   auto p_x = InputManager::Instance().CurrentPosition().point_x - GamePanel::render_pos.x;
   auto p_y = InputManager::Instance().CurrentPosition().point_y - GamePanel::render_pos.y;
+  auto t_aspect = GamePanel::render_size.x / GamePanel::render_size.y;
+
 #else
+  auto cameraWidth = GetEnv().pWin->Width();
+  auto cameraHeight = GetEnv().pWin->Height();
   auto p_x = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
   auto p_y = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
+  auto t_aspect = cameraWidth / cameraHeight;
+
 #endif
-  auto t_aspect = GamePanel::render_size.x / GamePanel::render_size.y;
 
   auto width = Camera::allCameras[0]->GetTrueViewportSize();
   auto height = width / t_aspect;
 
   Camera &c = *Camera::allCameras[0];
 
-  em.ForEach( [&]( EntityID& id, EntityName& name, RendererOverlay &r, Image &i )
+  em.ForEach( [&]( EntityID &id, EntityName &name, RendererOverlay &r, Image &i, GUI &gui )
   {
+    if ( !r.m_Active || gui.screen != current.back() )
+      return;
+
     auto coords = r.GetScreenspaceBounds( i );
     if ( c.GetFixedAspectRatio() > c.GetAspectRatio() )
     {
-      float zeroPos = (1 - t_aspect / c.GetFixedAspectRatio()) / 2;
+      float zeroPos = ( 1 - t_aspect / c.GetFixedAspectRatio() ) / 2;
       float halfRatioY = coords.y < 0.5f ? coords.y * 2 : ( 1 - coords.y ) * 2;
       float halfRatioW = coords.w < 0.5f ? coords.w * 2 : ( 1 - coords.w ) * 2;
 
@@ -70,7 +106,7 @@ void GUISystem::LateUpdate()
     }
     else
     {
-      float zeroPos = (1 - c.GetFixedAspectRatio() / t_aspect) / 2;
+      float zeroPos = ( 1 - c.GetFixedAspectRatio() / t_aspect ) / 2;
       float halfRatioX = coords.x < 0.5f ? coords.x * 2 : ( 1 - coords.x ) * 2;
       float halfRatioZ = coords.z < 0.5f ? coords.z * 2 : ( 1 - coords.z ) * 2;
 
@@ -84,27 +120,38 @@ void GUISystem::LateUpdate()
 
     if ( CollisionIntersection_RectMinMaxMouse( { coords.x, coords.y }, { coords.z, coords.w }, { p_x, p_y } ) )
     {
-      if (em.HasComponent<State>(id) )
+      if ( em.HasComponent<State>( id ) )
       {
-        auto s = em.GetComponent<State>( id );
+        auto& s = em.GetComponent<State>( id );
         s.SetBool( "Hover", true );
-        DeltaEngine_CORE_INFO( "IS HOVERED" );
       }
 
-      DeltaEngine_CORE_INFO( "Entity Name: {}", name.name);
-      DeltaEngine_CORE_INFO( "Coords Min: {},{}    Max: {},{}", coords.x, coords.y, coords.z, coords.w );
-      DeltaEngine_CORE_INFO( "Mouse: {},{}", p_x, p_y );
-      DeltaEngine_CORE_INFO( "width: {}, height: {}", width, height );
-      DeltaEngine_CORE_INFO( "name: {}", name.name );
+      if ( InputManager::Instance().IsMouseReleased( DEVK_LBUTTON ) )
+      {
+        if ( gui.type == GUIType::Button )
+        {
+          if ( !gui.func.empty() )
+          {
+            if ( gui.func == "Start" )
+              rttr::type::get<GUISystem>().get_method( gui.func ).invoke( { *this }, gui.file );
+            else
+              rttr::type::get<GUISystem>().get_method( gui.func ).invoke( { *this } );
+          }
+          else
+            PushScreen( gui.target );
+        }
+      }
     }
     else
     {
-      if (em.HasComponent<State>(id) )
+      if ( em.HasComponent<State>( id ) )
       {
-        auto s = em.GetComponent<State>( id );
+        auto& s = em.GetComponent<State>( id );
         s.SetBool( "Hover", false );
       }
     }
+
+
   } );
 
   //( 1 - c.GetFixedAspectRatio() / c.GetAspectRatio() ) / 2;
@@ -120,36 +167,38 @@ void GUISystem::LateUpdate()
 
 
 
-//RTTR_REGISTRATION
-//{
-//  rttr::registration::class_<UISystem>("UISystem")
-//    .method("Return", &UISystem::Return);
 
-//  rttr::registration::class_<UISystem>("UpgradeDamageButton")
-//    .method("UpgradeDamageButton", &UISystem::UpgradeDamageButton);
+void GUISystem::Pause()
+{
+  env.pClock->TimeScale( 0.0f );
+}
 
-//  rttr::registration::class_<UISystem>("UpgradeHPButton")
-//    .method("UpgradeHPButton", &UISystem::UpgradeHPButton);
+void GUISystem::Unpause()
+{
+  env.pClock->TimeScale( 1.0f );
+}
 
-//  rttr::registration::class_<UISystem>("PauseGame")
-//    .method("PauseGame", &UISystem::PauseGame);
+void GUISystem::Start( const std::string &file )
+{
+  std::string tmp { file };
+  env.pECS->GetWorld().GetEntityManager().Clear();
+  env.pECS->GetWorld().Load( tmp );
+}
 
-//  rttr::registration::class_<UISystem>("UnpauseGame")
-//    .method("UnpauseGame", &UISystem::UnpauseGame);
 
-//  rttr::registration::class_<UISystem>("StartGame")
-//    .method("StartGame", &UISystem::StartGame);
+void GUISystem::Quit()
+{
+  env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Shutdown();
+  env.pWin->Running( false );
+}
 
-//  rttr::registration::class_<UISystem>("RestartGame")
-//    .method("RestartGame", &UISystem::RestartGame);
-
-//  rttr::registration::class_<UISystem>("QuitGame")
-//    .method("QuitGame", &UISystem::QuitGame);
-
-//  rttr::registration::class_<UISystem>("BackToMainMenu")
-//    .method("BackToMainMenu", &UISystem::BackToMainMenu);
-
-//  rttr::registration::class_<UISystem>("PauseGame")
-//    .method("PauseGame", &UISystem::PauseGame);
-//}
+RTTR_REGISTRATION
+{
+  rttr::registration::class_<GUISystem>( "GUISystem" )
+    .method( "Pause", &GUISystem::Pause )
+    .method( "Unpause", &GUISystem::Unpause )
+    .method( "Start", &GUISystem::Start )
+    .method( "Quit", &GUISystem::Quit )
+    .method("PopScreen", &GUISystem::PopScreen);
+}
 }

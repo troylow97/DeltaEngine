@@ -1,0 +1,56 @@
+%Entry:
+
+entry
+Clip/Controls_D
+
+%Parameters:
+
+param
+Hover
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+51 189
+
+pos
+Exit
+298 203
+
+pos
+Any State
+246 34
+
+pos
+Clip/Controls_S
+129 278
+
+pos
+Clip/Controls_D
+165 106
+
+%Transitions:
+
+transition
+start
+Clip/Controls_D
+end
+Clip/Controls_S
+condition
+Hover
+? 1
+endTransition
+
+transition
+start
+Clip/Controls_S
+end
+Exit
+condition
+Hover
+? 0
+endTransition
+
+%endfile

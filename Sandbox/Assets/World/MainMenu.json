@@ -221,7 +221,7 @@
         },
         {
             "Entity Name": {
-                "Name": "Start Game"
+                "Name": "Button_Start"
             },
             "Entity Type": {
                 "Category": "none"
@@ -311,14 +311,21 @@
                 "Wireframe": false
             },
             "Animator": {
-                "Controller Key": "Animation/StartMenu",
+                "Controller Key": "Animation/Menu_Start",
                 "Speed": 1.0
             },
-            "State": {}
+            "State": {},
+            "GUI": {
+                "Func": "Start",
+                "File": "World/gam250alphaWithCollider.json",
+                "GUI Type": "Button",
+                "Screen No.": 0,
+                "Target No.": 0
+            }
         },
         {
             "Entity Name": {
-                "Name": "Controls"
+                "Name": "Button_Controls"
             },
             "Entity Type": {
                 "Category": "none"
@@ -406,11 +413,23 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Controls",
+                "Speed": 1.0
+            },
+            "State": {},
+            "GUI": {
+                "Func": "",
+                "File": "",
+                "GUI Type": "Button",
+                "Screen No.": 0,
+                "Target No.": 1
             }
         },
         {
             "Entity Name": {
-                "Name": "Credits"
+                "Name": "Button_Credits"
             },
             "Entity Type": {
                 "Category": "none"
@@ -498,11 +517,23 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Credits",
+                "Speed": 1.0
+            },
+            "State": {},
+            "GUI": {
+                "Func": "",
+                "File": "",
+                "GUI Type": "Button",
+                "Screen No.": 0,
+                "Target No.": 2
             }
         },
         {
             "Entity Name": {
-                "Name": "Exit"
+                "Name": "Button_Quit"
             },
             "Entity Type": {
                 "Category": "none"
@@ -590,6 +621,216 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Quit",
+                "Speed": 1.0
+            },
+            "State": {},
+            "GUI": {
+                "Func": "Quit",
+                "File": "",
+                "GUI Type": "Button",
+                "Screen No.": 0,
+                "Target No.": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Screen_Controls"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Mainmenu_Popup_Controls",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1920.0,
+                    "y": 1080.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "GUI": {
+                "Func": "PopScreen",
+                "File": "",
+                "GUI Type": "Button",
+                "Screen No.": 1,
+                "Target No.": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Screen_Credits"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Credits_Page_Full",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1920.0,
+                    "y": 1080.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "GUI": {
+                "Func": "PopScreen",
+                "File": "",
+                "GUI Type": "Button",
+                "Screen No.": 2,
+                "Target No.": 0
             }
         }
     ]

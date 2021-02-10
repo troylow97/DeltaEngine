@@ -1,31 +1,6 @@
 Textures/BUILDING_LARGE_2_i_0
-offset 2 638
-size 9 14
-pivot 0.5 0.5
-
-Textures/BUILDING_LARGE_2_i_1
-offset 2 874
-size 2 4
-pivot 0.5 0.5
-
-Textures/BUILDING_LARGE_2_i_2
-offset 10 861
-size 1 50
-pivot 0.5 0.5
-
-Textures/BUILDING_LARGE_2_i_3
-offset 12 0
-size 799 1325
-pivot 0.5 0.5
-
-Textures/BUILDING_LARGE_2_i_4
-offset 830 0
-size 799 1325
-pivot 0.5 0.5
-
-Textures/BUILDING_LARGE_2_i_5
-offset 830 137
-size 0 0
+offset 0 0
+size 1662 1326
 pivot 0.5 0.5
 
 %
