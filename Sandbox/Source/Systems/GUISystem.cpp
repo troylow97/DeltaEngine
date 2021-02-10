@@ -87,7 +87,9 @@ void GUISystem::LateUpdate()
       if (em.HasComponent<State>(id) )
       {
         auto s = em.GetComponent<State>( id );
-        s.SetBool( "Hover", true );
+        std::cerr << s.GetBool("Hover") << std::endl;
+        std::cerr << s.SetBool("Hover", true) << std::endl;
+        std::cerr << s.GetBool("Hover") << std::endl;
         DeltaEngine_CORE_INFO( "IS HOVERED" );
       }
 
@@ -101,8 +103,8 @@ void GUISystem::LateUpdate()
     {
       if (em.HasComponent<State>(id) )
       {
-        auto s = em.GetComponent<State>( id );
-        s.SetBool( "Hover", false );
+        //auto s = em.GetComponent<State>( id );
+        //s.SetBool( "Hover", false );
       }
     }
   } );
