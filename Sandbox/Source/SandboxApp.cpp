@@ -29,6 +29,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/HealthSystem.h"
 #include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
 #include "Audio/AudioEngine.h"
+#include "Systems/GUISystem.h"
 
 
 class Sandbox : public Application
@@ -46,11 +47,11 @@ public:
 
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::TakeDamage);
     env.pECS->GetWorld().CreateSystems<AttackSystem, VFXSystem, /*EnemySpawner*/ LifespanSystem, RespawnSystem, GCameraSystem,
-                                       UISystem/*, UpgradeSystem, ExitSceneCinematic*/, HealthSystem>();
+                                       GUISystem/*, UpgradeSystem, ExitSceneCinematic*/, HealthSystem>();
     env.pECS->GetWorld().SetUpdateSequence<AttackSystem, VFXSystem, /*EnemySpawner*/ HealthSystem, RespawnSystem, LifespanSystem>();
     //env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, UpgradeSystem,
     //    ExitSceneCinematic, LifespanSystem>();
-    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem/*, UISystem*/>();
+    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, GUISystem>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
 

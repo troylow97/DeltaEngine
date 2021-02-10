@@ -123,7 +123,6 @@ void World::CleanUpEntities()
     em->DestroyEntity( { id } );
 }
 
-
 void World::Save( std::string filename )
 {
   JsonFile file;

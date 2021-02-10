@@ -795,4 +795,14 @@ namespace DeltaEngine
 
     return false;
   }
+
+  bool CollisionIntersection_RectMinMaxMouse( Vector2 top_left, Vector2 btm_right, Vector2 mouse )
+  {
+
+    if ( top_left.x <= mouse.x && btm_right.x >= mouse.x )
+      if ( top_left.y <= mouse.y && btm_right.y >= mouse.y )
+        return true;
+    return false;
+  }
+
 }

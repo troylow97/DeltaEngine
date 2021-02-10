@@ -55,6 +55,8 @@ namespace DeltaEngine
 
   //bool CollisionIntersection_CircleMouse(Vector2 Center1, Vector2 Size1, Point Center2);
 
+  bool CollisionIntersection_RectMinMaxMouse( Vector2 top_left, Vector2 btm_right, Vector2 mouse );
+
   //Dynamic Collision Checks
   bool CollisionIntersection_RectRect(const Vector2&, const Vector2&, const Vector2&, const Vector2&, const Vector2&,
                                       const Vector2&);
