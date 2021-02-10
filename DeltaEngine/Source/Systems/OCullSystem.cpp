@@ -53,7 +53,7 @@ namespace DeltaEngine
       Query q;
       q.Exclude<UI>();
 
-      em.ForEach(q, [&](Transform& t, Image& i, Renderer2D& r)
+      em.ForEach(q, [&](Transform& t, Image& i, Renderer2D& r, EntityType& et)
       {
         Vector2 e_t{t.position.x, t.position.y};
         if (CollisionIntersection_RectRect_Static(e_t, i.GetWorldSize(), c_center, c_size))
