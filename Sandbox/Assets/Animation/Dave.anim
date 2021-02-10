@@ -71,19 +71,19 @@ Dead
 
 param
 JumpLanding
-1 0
+0 0
 
 param
 IsIdle
-1 0
+0 0
 
 param
 JumpRecover
-1 0
+0 0
 
 param
 SMGAttack
-1 0
+0 0
 
 %EditorPositions:
 
@@ -525,13 +525,6 @@ Clip/DAVE_IDLE
 condition
 IsIdle
 ? 1
-endTransition
-
-transition
-start
-Clip/DAVE_IDLE
-end
-Clip/DAVE_IDLE
 endTransition
 
 transition

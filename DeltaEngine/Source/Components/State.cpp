@@ -24,6 +24,8 @@ namespace DeltaEngine
   {
     if (!parameters.count(paramName))
       parameters[paramName] = Parameter();
+    if (parameters[paramName].boolValue == value)
+      return parameters.at(paramName).boolValue;
     parameters[paramName].boolValue = value;
     return parameters[paramName].boolValue;
   }
@@ -37,6 +39,8 @@ namespace DeltaEngine
   {
     if (!parameters.count(paramName))
       parameters[paramName] = Parameter();
+    if (parameters[paramName].floatValue == value)
+      return parameters.at(paramName).floatValue;
     parameters[paramName].floatValue = value;
     return parameters[paramName].floatValue;
   }

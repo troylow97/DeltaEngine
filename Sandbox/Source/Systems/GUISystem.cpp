@@ -39,20 +39,19 @@ void GUISystem::Update()
 
 void GUISystem::LateUpdate()
 {
+#ifdef DE_EDITOR
   auto cameraWidth = GamePanel::render_size.x;
   auto cameraHeight = GamePanel::render_size.y;
-
-#ifdef DE_EDITOR
   auto p_x = InputManager::Instance().CurrentPosition().point_x - GamePanel::render_pos.x;
   auto p_y = InputManager::Instance().CurrentPosition().point_y - GamePanel::render_pos.y;
+  auto t_aspect = GamePanel::render_size.x / GamePanel::render_size.y;
 #else
+  auto cameraWidth = GetEnv().pWin->Width();
+  auto cameraHeight = GetEnv().pWin->Height();
   auto p_x = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
   auto p_y = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
+  auto t_aspect = cameraWidth / cameraHeight;
 #endif
-  auto t_aspect = GamePanel::render_size.x / GamePanel::render_size.y;
-
-  auto width = Camera::allCameras[0]->GetTrueViewportSize();
-  auto height = width / t_aspect;
 
   Camera &c = *Camera::allCameras[0];
 
@@ -86,38 +85,27 @@ void GUISystem::LateUpdate()
     {
       if (em.HasComponent<State>(id) )
       {
-        auto s = em.GetComponent<State>( id );
-        std::cerr << s.GetBool("Hover") << std::endl;
-        std::cerr << s.SetBool("Hover", true) << std::endl;
-        std::cerr << s.GetBool("Hover") << std::endl;
+        auto& s = em.GetComponent<State>( id );
+        s.SetBool("Hover", true);
         DeltaEngine_CORE_INFO( "IS HOVERED" );
+        for (auto& [paramName, param] : s.parameters)
+          std::cerr << paramName << " a: " << param.boolValue << std::endl;
       }
 
       DeltaEngine_CORE_INFO( "Entity Name: {}", name.name);
       DeltaEngine_CORE_INFO( "Coords Min: {},{}    Max: {},{}", coords.x, coords.y, coords.z, coords.w );
       DeltaEngine_CORE_INFO( "Mouse: {},{}", p_x, p_y );
-      DeltaEngine_CORE_INFO( "width: {}, height: {}", width, height );
       DeltaEngine_CORE_INFO( "name: {}", name.name );
     }
     else
     {
       if (em.HasComponent<State>(id) )
       {
-        //auto s = em.GetComponent<State>( id );
-        //s.SetBool( "Hover", false );
+        auto& s = em.GetComponent<State>( id );
+        s.SetBool( "Hover", false );
       }
     }
   } );
-
-  //( 1 - c.GetFixedAspectRatio() / c.GetAspectRatio() ) / 2;
-
-  //if ( c.GetFixedAspectRatio() / c.GetAspectRatio() )
-  //{
-  //  coords
-  //}
-
-
-
 }
 
 

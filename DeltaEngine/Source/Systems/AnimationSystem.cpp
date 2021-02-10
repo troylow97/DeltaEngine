@@ -18,7 +18,7 @@ namespace DeltaEngine
   void AnimationSystem::Update()
   {
     for (size_t step = 0; step < env.pClock->Timesteps(); ++step)
-      em.ForEach([&](EntityID id, Animator& a, State& s, Image& i)
+      em.ForEach([&](EntityID id, EntityName name, Animator& a, State& s, Image& i)
       {
         AnimationController* controller = GetEnv().pManager->Get<AnimationController>(a.m_ControllerKey);
         AnimationClip* newClip = nullptr;
@@ -63,7 +63,9 @@ namespace DeltaEngine
               else
               {
                 if (a.m_Timer < 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+                {
                   a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+                }
               }
             }
 

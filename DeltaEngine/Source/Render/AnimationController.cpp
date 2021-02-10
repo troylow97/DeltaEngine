@@ -29,6 +29,8 @@ namespace DeltaEngine
       if (std::strcmp(StartingState.c_str(), currentAnim.c_str()) == 0 ||
         std::strcmp(StartingState.c_str(), "Any State") == 0)
       {
+        if (std::strcmp(StartingState.c_str(), EndingState.c_str()) == 0)
+          continue;
         bool conditionPass = true;
         // next check if all conditions are fulfilled
         for (auto& [ParamName, Condition, Value] : Conditions)
