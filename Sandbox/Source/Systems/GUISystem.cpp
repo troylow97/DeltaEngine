@@ -80,7 +80,7 @@ void GUISystem::LateUpdate()
   auto cameraHeight = GetEnv().pWin->Height();
   auto p_x = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
   auto p_y = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
-  auto t_aspect = cameraWidth / cameraHeight;
+  auto t_aspect = 1.0f * cameraWidth / cameraHeight;
 
 #endif
 
@@ -88,8 +88,6 @@ void GUISystem::LateUpdate()
   auto height = width / t_aspect;
 
   Camera &c = *Camera::allCameras[0];
-
-  std::cerr << c.GetTrueViewportSize() << "," << c.GetFixedAspectRatio() << std::endl;
 
   em.ForEach( [&]( EntityID &id, EntityName &name, RendererOverlay &r, Image &i, GUI &gui )
   {
