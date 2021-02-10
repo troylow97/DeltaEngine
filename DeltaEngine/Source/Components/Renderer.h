@@ -126,10 +126,10 @@ namespace DeltaEngine
       }
 
       return Vector4(
-        (t.position.x * refRes.x - tmpXscale * pivot.x) / refRes.x,
-        (t.position.y * refRes.y - tmpYscale * (1 - pivot.y)) / refRes.y,
-        (t.position.x * refRes.x + tmpXscale * (1 - pivot.x)) / refRes.x,
-        (t.position.y * refRes.y + tmpYscale * pivot.y) / refRes.y);
+        (t.position.x * refRes.x - tmpXscale * pivot.x + pos.x) / refRes.x,
+        (t.position.y * refRes.y - tmpYscale * (1 - pivot.y) - pos.y) / refRes.y,
+        (t.position.x * refRes.x + tmpXscale * (1 - pivot.x) + pos.x) / refRes.x,
+        (t.position.y * refRes.y + tmpYscale * pivot.y - pos.y) / refRes.y);
     }
   };
 
