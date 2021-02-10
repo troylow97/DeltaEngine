@@ -89,6 +89,8 @@ void GUISystem::LateUpdate()
 
   Camera &c = *Camera::allCameras[0];
 
+  std::cerr << c.GetTrueViewportSize() << "," << c.GetFixedAspectRatio() << std::endl;
+
   em.ForEach( [&]( EntityID &id, EntityName &name, RendererOverlay &r, Image &i, GUI &gui )
   {
     if ( !r.m_Active || gui.screen != current.back() )

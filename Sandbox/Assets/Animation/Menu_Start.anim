@@ -1,7 +1,7 @@
 %Entry:
 
 entry
-Clip/StartGame_S
+Clip/StartGame_D
 
 %Parameters:
 
@@ -25,7 +25,7 @@ Any State
 
 pos
 Clip/StartGame_S
-201 201
+300 210
 
 pos
 Clip/StartGame_D
@@ -37,20 +37,20 @@ transition
 start
 Clip/StartGame_S
 end
-Clip/StartGame_D
+Exit
 condition
 Hover
-? 1
+? 0
 endTransition
 
 transition
 start
 Clip/StartGame_D
 end
-Exit
+Clip/StartGame_S
 condition
 Hover
-? 0
+? 1
 endTransition
 
 %endfile
