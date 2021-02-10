@@ -290,7 +290,7 @@ namespace DeltaEngine
     void IdleSerpentipede::Update(EntityID& monster)
     {
         CheckEdges(monster);
-        std::cout << "State is " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
+
     }
 
     ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :

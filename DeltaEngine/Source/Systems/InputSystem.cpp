@@ -47,7 +47,7 @@ namespace DeltaEngine
 
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, RigidBody& r1, Input& i, State& a)
     {
-      a.SetFloat("IsIdle", idle_timer);
+      a.SetFloat("IsStretching", idle_timer);
     
       if (melee_attack_cooldown > 0.5f )
       {
@@ -204,9 +204,10 @@ namespace DeltaEngine
       	if(att.Blocking)
       	{
             a.SetBool("ShieldUp", false);
-            a.SetBool("isJumping", true);
             att.Blocking = false;
       	}
+        a.SetBool("IsIdle", false);
+        a.SetBool("JumpStart", true);
 
         AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
       });
@@ -217,9 +218,7 @@ namespace DeltaEngine
       {
         i1.previousKey = DEVK_W;
         p1.IsJumping = false;
-        a.SetBool("JumpEnd", true);
-        if (anim.m_ClipKey == "JumpEnd" && anim.LoopsCompleted() > 0)
-            a.SetBool("isIdle", true);
+
       });
     }
 
@@ -314,13 +313,13 @@ namespace DeltaEngine
         {
           a1.Blocking = false;
           a.SetBool("ShieldUp", false);
-          std::cout << "Blocking Off" << std::endl;
+
         }
         else //Toggle Block
         {
           a1.Blocking = true;
           a.SetBool("ShieldUp", true);
-          std::cout << "Blocking On" << std::endl;
+
         }
       });
     }
