@@ -98,7 +98,7 @@ namespace DeltaEngine
 
     void ChaseEnemyLancer::onEnter(EntityID& id)
     {
-        //env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
         //env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlertIdle", true);
     }
 
@@ -174,6 +174,7 @@ namespace DeltaEngine
     void IdleFiddler::onExit(EntityID& id)
     {
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsPatrolling", false);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
     }
 
     void IdleFiddler::Update(EntityID& monster)
@@ -192,6 +193,7 @@ namespace DeltaEngine
 
     void ChaseEnemyFiddler::onEnter(EntityID& id)
     {
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", false);
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
         s.SetBool("IsAlertRunning", true);
 
@@ -201,6 +203,7 @@ namespace DeltaEngine
     {
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
         env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0, 0 };
+        s.SetBool("IsAlerted", false);
         s.SetBool("IsAlertRunning", false);
         s.SetBool("IsPatrolling", true);
     }

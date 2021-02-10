@@ -6,19 +6,19 @@ Clip/SERP_IDLE
 %Parameters:
 
 param
-Alert
-0 0
+IsAlerted
+1 0
 
 param
 Damaged
 0 0
 
 param
-Burrow
+IsBurrowing
 0 0
 
 param
-Unburrow
+IsUnborrowing
 0 0
 
 param
@@ -30,8 +30,8 @@ Fire
 0 0
 
 param
-Dead
-0 0
+IsDead
+1 0
 
 %EditorPositions:
 
@@ -49,35 +49,35 @@ Any State
 
 pos
 Clip/SERP_IDLE
--227 28
+-365 14
 
 pos
 Clip/SERP_ALERT
--198 101
+-317 130
 
 pos
 Clip/SERP_BURROW
-1 33
+-168 228
 
 pos
 Clip/SERP_CHARGE
-1 165
+-116 397
 
 pos
 Clip/SERP_DEATH
-144 -102
+241 -98
 
 pos
 Clip/SERP_DMG
-0 -36
+140 390
 
 pos
 Clip/SERP_FIRE
-1 226
+-305 378
 
 pos
 Clip/SERP_UNBURROW
-3 100
+202 248
 
 %Transitions:
 
@@ -87,7 +87,7 @@ Any State
 end
 Clip/SERP_DEATH
 condition
-Dead
+IsDead
 ? 1
 endTransition
 
@@ -97,8 +97,8 @@ Clip/SERP_DEATH
 end
 Exit
 condition
-Dead
-? 0
+IsDead
+? 1
 endTransition
 
 transition
@@ -107,17 +107,7 @@ Clip/SERP_IDLE
 end
 Clip/SERP_ALERT
 condition
-Alert
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_ALERT
-end
-Clip/SERP_DMG
-condition
-Damaged
+IsAlerted
 ? 1
 endTransition
 
@@ -127,88 +117,8 @@ Clip/SERP_ALERT
 end
 Clip/SERP_BURROW
 condition
-Burrow
+IsBurrowing
 ? 1
-endTransition
-
-transition
-start
-Clip/SERP_ALERT
-end
-Clip/SERP_FIRE
-condition
-Fire
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_ALERT
-end
-Clip/SERP_CHARGE
-condition
-Charge
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_ALERT
-end
-Clip/SERP_UNBURROW
-condition
-Unburrow
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_UNBURROW
-end
-Exit
-condition
-Unburrow
-? 0
-endTransition
-
-transition
-start
-Clip/SERP_CHARGE
-end
-Exit
-condition
-Charge
-? 0
-endTransition
-
-transition
-start
-Clip/SERP_FIRE
-end
-Exit
-condition
-Fire
-? 0
-endTransition
-
-transition
-start
-Clip/SERP_BURROW
-end
-Exit
-condition
-Burrow
-? 0
-endTransition
-
-transition
-start
-Clip/SERP_DMG
-end
-Exit
-condition
-Damaged
-? 0
 endTransition
 
 %endfile
