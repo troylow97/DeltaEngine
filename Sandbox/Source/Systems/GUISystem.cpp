@@ -62,29 +62,19 @@ void GUISystem::LateUpdate()
     float zeroPos = ( 1 - c.GetFixedAspectRatio() / t_aspect ) / 2;
     if ( c.GetFixedAspectRatio() > c.GetAspectRatio() )
     {
-      float halfRatioY = coords.y < 0.5f ? coords.y * 2 : ( coords.y - 0.5f ) * 2;
-      float halfRatioW = coords.w < 0.5f ? coords.w * 2 : ( coords.w - 0.5f ) * 2;
-
-      std::cerr << coords.y << ", " << coords.w << std::endl;
-      std::cerr << c.GetFixedAspectRatio() << ", " << t_aspect << std::endl;
+      float halfRatioY = coords.y < 0.5f ? coords.y * 2 : ( 1 - coords.y ) * 2;
+      float halfRatioW = coords.w < 0.5f ? coords.w * 2 : ( 1 - coords.w ) * 2;
 
       coords.y = coords.y < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioY : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioY;
       coords.w = coords.w < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioW : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioW;
-
-      std::cerr << coords.y << ", " << coords.w << std::endl;
     }
     else
     {
       float halfRatioX = coords.x < 0.5f ? coords.x * 2 : ( 1 - coords.x ) * 2;
       float halfRatioZ = coords.z < 0.5f ? coords.z * 2 : ( 1 - coords.z ) * 2;
 
-      std::cerr << coords.x << ", " << coords.z << std::endl;
-      std::cerr << c.GetFixedAspectRatio() << ", " << t_aspect << std::endl;
-
       coords.x = coords.x < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioX : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioX;
       coords.z = coords.z < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioZ : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioZ;
-
-      std::cerr << coords.x << ", " << coords.z << std::endl;
     }
     coords.x *= cameraWidth;
     coords.y *= cameraHeight;
@@ -104,6 +94,7 @@ void GUISystem::LateUpdate()
       DeltaEngine_CORE_INFO( "Coords Min: {},{}    Max: {},{}", coords.x, coords.y, coords.z, coords.w );
       DeltaEngine_CORE_INFO( "Mouse: {},{}", p_x, p_y );
       DeltaEngine_CORE_INFO( "width: {}, height: {}", width, height );
+      DeltaEngine_CORE_INFO( "name: {}", name.name );
     }
     else
     {
