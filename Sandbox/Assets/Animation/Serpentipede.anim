@@ -22,15 +22,15 @@ IsUnborrowing
 0 0
 
 param
-Charge
-0 0
-
-param
-Fire
-0 0
-
-param
 IsDead
+1 0
+
+param
+MoveBurrowing
+0 0
+
+param
+RangedAttack
 1 0
 
 %EditorPositions:
@@ -57,49 +57,29 @@ Clip/SERP_ALERT
 
 pos
 Clip/SERP_BURROW
--168 228
+-156 215
 
 pos
 Clip/SERP_CHARGE
 -116 397
 
 pos
-Clip/SERP_DEATH
-241 -98
-
-pos
 Clip/SERP_DMG
 140 390
 
 pos
-Clip/SERP_FIRE
--305 378
+Clip/SERP_UNBURROW
+82 124
 
 pos
-Clip/SERP_UNBURROW
-202 248
+Clip/SERP_BURROW_MOVE
+-93 319
+
+pos
+Clip/SERP_FIRE
+-352 237
 
 %Transitions:
-
-transition
-start
-Any State
-end
-Clip/SERP_DEATH
-condition
-IsDead
-? 1
-endTransition
-
-transition
-start
-Clip/SERP_DEATH
-end
-Exit
-condition
-IsDead
-? 1
-endTransition
 
 transition
 start
@@ -113,11 +93,57 @@ endTransition
 
 transition
 start
+Clip/SERP_BURROW
+end
+Clip/SERP_BURROW_MOVE
+condition
+MoveBurrowing
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_BURROW_MOVE
+end
+Clip/SERP_UNBURROW
+condition
+IsUnborrowing
+? 1
+endTransition
+
+transition
+start
 Clip/SERP_ALERT
+end
+Clip/SERP_FIRE
+condition
+RangedAttack
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_FIRE
 end
 Clip/SERP_BURROW
 condition
+RangedAttack
+? 0
+condition
 IsBurrowing
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_UNBURROW
+end
+Clip/SERP_ALERT
+condition
+IsUnborrowing
+? 0
+condition
+IsAlerted
 ? 1
 endTransition
 

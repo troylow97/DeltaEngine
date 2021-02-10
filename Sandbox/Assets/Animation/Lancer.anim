@@ -1,13 +1,13 @@
 %Entry:
 
 entry
-Clip/LANCER_IDLE
+Clip/LANCER_ALERT_IDLE
 
 %Parameters:
 
 param
 IsDead
-1 0
+0 0
 
 param
 IsAlerted
@@ -19,6 +19,14 @@ MeleeAttack
 
 param
 IsBouncing
+1 0
+
+param
+IsIdle
+0 0
+
+param
+IsDamaged
 0 0
 
 %EditorPositions:
@@ -33,31 +41,11 @@ Exit
 
 pos
 Any State
-200 0
-
-pos
-Clip/LANCER_IDLE
--112 137
+320 -6
 
 pos
 Clip/LANCER_ALERT_IDLE
-1 335
-
-pos
-Clip/LANCER_DEATH
-467 16
-
-pos
-Clip/LANCER_ALERT
-352 547
-
-pos
-Clip/LANCER_COLLAPSE
--25 520
-
-pos
-Clip/LANCER_DMG
-486 448
+-326 250
 
 pos
 Clip/LANCER_FALL
@@ -67,33 +55,51 @@ pos
 Clip/LANCER_REACTION
 -61 559
 
+pos
+Clip/LANCER_IDLE
+473 197
+
+pos
+Clip/LANCER_BOUNCE
+-33 354
+
+pos
+Clip/LANCER_ATTACK
+-14 214
+
 %Transitions:
 
 transition
 start
-Any State
+Clip/LANCER_ALERT_IDLE
 end
-Clip/LANCER_DEATH
+Clip/LANCER_ATTACK
 condition
-IsDead
+MeleeAttack
 ? 1
 endTransition
 
 transition
 start
-Clip/LANCER_DEATH
+Clip/LANCER_ATTACK
 end
-Exit
+Clip/LANCER_BOUNCE
 condition
-IsDead
+IsBouncing
 ? 1
+condition
+MeleeAttack
+? 0
 endTransition
 
 transition
 start
-Clip/LANCER_IDLE
+Clip/LANCER_BOUNCE
 end
 Clip/LANCER_ALERT_IDLE
+condition
+IsBouncing
+? 0
 condition
 IsAlerted
 ? 1
