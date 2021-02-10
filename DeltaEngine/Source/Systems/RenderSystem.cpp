@@ -17,6 +17,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Render/Window.h"
 #include "Render/OpenGLSystem.h"
 #include "Assets/AssetManager.h"
+#include "Components/ParticleEmitter.h"
 
 namespace DeltaEngine
 {

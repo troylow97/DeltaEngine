@@ -94,7 +94,6 @@ namespace DeltaEngine
 
   class ChaseEnemyFiddler : public AIState
   {
-      float AttackDelay;
   public:
     ChaseEnemyFiddler(Vector2& lost_range);
     void onEnter(EntityID& id) override;

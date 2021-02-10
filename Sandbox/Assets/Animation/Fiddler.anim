@@ -45,24 +45,141 @@ Any State
 
 pos
 Clip/FID_WALK
-461 124
+-9 164
 
 pos
 Clip/FID_DEATH
--78 465
+601 2
 
 pos
 Clip/FID_ATTACK
-220 466
+200 264
 
 pos
 Clip/FID_ALERT_RUN
-189 232
+201 131
 
 pos
 Clip/FID_ALERT
--61 157
+200 63
+
+pos
+Clip/FID_BLOCK_READY
+198 401
+
+pos
+Clip/FID_BLOCK_UP
+200 333
+
+pos
+Clip/FID_DMG
+199 199
 
 %Transitions:
+
+transition
+start
+Any State
+end
+Clip/FID_DEATH
+endTransition
+
+transition
+start
+Clip/FID_DEATH
+end
+Exit
+endTransition
+
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_ALERT
+endTransition
+
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_ALERT_RUN
+endTransition
+
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_DMG
+endTransition
+
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_ATTACK
+endTransition
+
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_WALK
+endTransition
+
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_BLOCK_UP
+endTransition
+
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_BLOCK_READY
+endTransition
+
+transition
+start
+Clip/FID_ALERT
+end
+Exit
+endTransition
+
+transition
+start
+Clip/FID_ALERT_RUN
+end
+Exit
+endTransition
+
+transition
+start
+Clip/FID_DMG
+end
+Exit
+endTransition
+
+transition
+start
+Clip/FID_ATTACK
+end
+Exit
+endTransition
+
+transition
+start
+Clip/FID_BLOCK_UP
+end
+Exit
+endTransition
+
+transition
+start
+Clip/FID_BLOCK_READY
+end
+Exit
+endTransition
 
 %endfile

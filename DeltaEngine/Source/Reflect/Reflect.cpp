@@ -32,6 +32,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "../../Sandbox/Source/Systems/AttackSystem.h"
 #include "Audio/AudioConfig.h"
+#include "Components/ParticleEmitter.h"
 
 namespace DeltaEngine
 {
@@ -406,32 +407,34 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property("TakenDamageTimer", &Health::isDamagedTimer)(rttr::policy::prop::bind_as_ptr)
     .property( "Invulnerable", &Health::isInvulnerable )( rttr::policy::prop::bind_as_ptr );
 
-    rttr::registration::class_<Attack>("Attack")
-        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
-        .constructor<>()(rttr::policy::ctor::as_object)
-        .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
-        .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
-        .property("SMG Damage", &Attack::SMGDamage)(rttr::policy::prop::bind_as_ptr)
-        .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
-        .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
-        .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
-        .property("Melee Cooldown", &Attack::MeleeCooldown)(rttr::policy::prop::bind_as_ptr)
-        .property("Range Cooldown", &Attack::RangeCooldown)(rttr::policy::prop::bind_as_ptr)
-        .property("SMG Cooldown", &Attack::SMGCooldown)(rttr::policy::prop::bind_as_ptr)
-        .property("Melee Cooldown Timer", &Attack::MeleeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Range Cooldown Timer", &Attack::RangeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
-        .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)
-        .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
-        .property("SMG Fire Rate", &Attack::SMGFireRate)(rttr::policy::prop::bind_as_ptr)
-        .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("SMG Attack", &Attack::SMGAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Allow SMG Attack", &Attack::AllowSMGAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Blocking", &Attack::Blocking)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Start SMG Cooldown Timer", &Attack::StartSMGCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+  rttr::registration::class_<Attack>("Attack")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("SMG Damage", &Attack::SMGDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
+      .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Cooldown", &Attack::MeleeCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("Range Cooldown", &Attack::RangeCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("SMG Cooldown", &Attack::SMGCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Cooldown Timer", &Attack::MeleeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Range Cooldown Timer", &Attack::RangeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
+      .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)
+      .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
+      .property("SMG Fire Rate", &Attack::SMGFireRate)(rttr::policy::prop::bind_as_ptr)
+      .property("Attack Delay", &Attack::AttackDelay)(rttr::policy::prop::bind_as_ptr)
+      .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("SMG Attack", &Attack::SMGAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow SMG Attack", &Attack::AllowSMGAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Blocking", &Attack::Blocking)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Start SMG Cooldown Timer", &Attack::StartSMGCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Damage Enemy", &Attack::DamageEnemy)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
     rttr::registration::class_<Lifespan>( "Lifespan" )
       ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits ) )

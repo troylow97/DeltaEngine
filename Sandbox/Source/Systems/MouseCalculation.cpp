@@ -64,10 +64,8 @@ namespace DeltaEngine
       auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
 #ifdef DE_EDITOR
       auto p_x = GamePanel::curr_mouse.point_x;
-      auto p_y = GamePanel::curr_mouse.point_y;
 #else
       auto p_x = CalculateScreenCoordinate().x;
-      auto p_y = CalculateScreenCoordinate().y;
 #endif
       if (p_x > player_pos.position.x)
         return true;
@@ -81,7 +79,7 @@ namespace DeltaEngine
         float dot_product = 1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y; // dot product between [x1, y1] and [x2, y2], x1*x2 + y1*y2
         float determinant = 1.0f * CalculateDirectionVector().y - 0.0f * CalculateDirectionVector().x;
         float angle = atan2(determinant, dot_product);
-        angle *= (180.0 / 3.141592653589793238463);
+        angle *= (180.0f / 3.141592653589793238463f);
         
         if (angle > -45.0f && angle < 45.0f)
         {
@@ -94,7 +92,7 @@ namespace DeltaEngine
         float dot_product = -1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y; // dot product between [x1, y1] and [x2, y2], x1*x2 + y1*y2
         float determinant = -1.0f * CalculateDirectionVector().y - 0.0f * CalculateDirectionVector().x;
         float angle = atan2(determinant, dot_product);
-        angle *= (180.0 / 3.141592653589793238463);
+        angle *= (180.0f / 3.141592653589793238463f);
         
         if (angle > -45.0f && angle < 45.0f)
         {
