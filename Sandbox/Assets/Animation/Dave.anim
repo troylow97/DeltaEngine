@@ -81,6 +81,10 @@ param
 JumpRecover
 1 0
 
+param
+SMGAttack
+1 0
+
 %EditorPositions:
 
 pos
@@ -109,7 +113,7 @@ Clip/DAVE_FIRE_READY
 
 pos
 Clip/DAVE_IDLE
-186 22
+111 47
 
 pos
 Clip/DAVE_DASH
@@ -157,11 +161,23 @@ Clip/DAVE_DEATH
 
 pos
 Clip/DAVE_JUMP
--127 108
+-219 53
 
 pos
 Clip/DAVE_FALL
--37 227
+-205 103
+
+pos
+Clip/DAVE_FIRE_BODY
+-76 266
+
+pos
+Clip/DAVE_FIRE_HEAD
+95 221
+
+pos
+Clip/DAVE_FIRE_ARM
+-188 216
 
 %Transitions:
 
@@ -525,6 +541,36 @@ end
 Clip/DAVE_JUMP
 condition
 IsRunning
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_FIRE_HEAD
+condition
+SMGAttack
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_FIRE_BODY
+condition
+SMGAttack
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_FIRE_ARM
+condition
+SMGAttack
 ? 1
 endTransition
 
