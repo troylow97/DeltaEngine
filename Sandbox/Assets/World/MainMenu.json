@@ -309,7 +309,12 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
-            }
+            },
+            "Animator": {
+                "Controller Key": "Animation/StartMenu",
+                "Speed": 1.0
+            },
+            "State": {}
         },
         {
             "Entity Name": {

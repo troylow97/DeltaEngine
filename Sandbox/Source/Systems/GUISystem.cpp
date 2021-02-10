@@ -56,7 +56,7 @@ void GUISystem::LateUpdate()
 
   Camera &c = *Camera::allCameras[0];
 
-  em.ForEach( [&]( RendererOverlay &r, Image &i )
+  em.ForEach( [&]( EntityID& id, EntityName& name, RendererOverlay &r, Image &i )
   {
     auto coords = r.GetScreenspaceBounds( i );
     float zeroPos = ( 1 - c.GetFixedAspectRatio() / t_aspect ) / 2;
@@ -86,17 +86,32 @@ void GUISystem::LateUpdate()
 
       std::cerr << coords.x << ", " << coords.z << std::endl;
     }
-    coords.x *= width;
-    coords.y *= height;
-    coords.z *= width;
-    coords.w *= height;
+    coords.x *= cameraWidth;
+    coords.y *= cameraHeight;
+    coords.z *= cameraWidth;
+    coords.w *= cameraHeight;
 
     if ( CollisionIntersection_RectMinMaxMouse( { coords.x, coords.y }, { coords.z, coords.w }, { p_x, p_y } ) )
     {
+      if (em.HasComponent<State>(id) )
+      {
+        auto s = em.GetComponent<State>( id );
+        s.SetBool( "Hover", true );
+        DeltaEngine_CORE_INFO( "IS HOVERED" );
+      }
+
+      DeltaEngine_CORE_INFO( "Entity Name: {}", name.name);
       DeltaEngine_CORE_INFO( "Coords Min: {},{}    Max: {},{}", coords.x, coords.y, coords.z, coords.w );
       DeltaEngine_CORE_INFO( "Mouse: {},{}", p_x, p_y );
-
       DeltaEngine_CORE_INFO( "width: {}, height: {}", width, height );
+    }
+    else
+    {
+      if (em.HasComponent<State>(id) )
+      {
+        auto s = em.GetComponent<State>( id );
+        s.SetBool( "Hover", false );
+      }
     }
   } );
 
