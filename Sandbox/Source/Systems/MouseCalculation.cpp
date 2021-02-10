@@ -150,6 +150,23 @@ namespace DeltaEngine
       return normalized_direction_vector;
     }
 
+    Vector2 CalculateCalculatedDirectionVector(float _magnitude)
+    {
+      auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+#ifdef DE_EDITOR
+      auto p_x = CalculateGameCoordinate().x;
+      auto p_y = CalculateGameCoordinate().y;
+#else
+      auto p_x = CalculateScreenCoordinate().x;
+      auto p_y = CalculateScreenCoordinate().y;
+#endif
+      Vector2 direction_vector = { p_x - player_pos.position.x, p_y - player_pos.position.y };
+      float magnitude = direction_vector.Magnitude();
+      Vector2 normalized_direction_vector = { direction_vector.x / (magnitude * _magnitude), direction_vector.y / (magnitude * _magnitude) };
+     
+      return normalized_direction_vector;
+    }
+
     void MouseCalculation::FlipShooting()
     {
       auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());

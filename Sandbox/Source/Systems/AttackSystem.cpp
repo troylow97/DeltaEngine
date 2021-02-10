@@ -58,20 +58,57 @@ namespace DeltaEngine
         }
 
         if (a.SMGAttack)
-            a.StartSMGCooldownTimer = true;
+        {
+          a.StartSMGCooldownTimer = true;
+          em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
+          {
+            if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
+            {
+              auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+              auto& player_bodypart_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
+
+              player_bodypart_pos.position.x = player_pos.position.x;
+              player_bodypart_pos.position.y = player_pos.position.y;
+
+              if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE)
+              {
+                if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
+                {
+                  Vector2 direction = { MouseCalculation::CalculateCalculatedDirectionVector(1.0f).x, MouseCalculation::CalculateCalculatedDirectionVector(1.0f).y };
+                  player_bodypart_pos.rotation = { direction.x, direction.y, 0.0f, 0.0f };
+                }
+                else
+                  player_bodypart_pos.rotation = { 0.0f, 0.0f, 0.0f, 0.0f };
+
+                auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+                auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
+                player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
+                player_bodypart_image.m_FlipY = true;
+              }
+              else
+              {
+                auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+                auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
+                player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
+                player_bodypart_image.m_FlipY = false;
+              }
+
+            }
+          });
+        }
         if (a.StartSMGCooldownTimer)
         {
-            if (a.SMGFireRate >= 0.0f)
-            {
-                a.SMGFireRate -= env.pClock->FixedDeltaTime();
-                a.AllowSMGAttack = false;
-            }
-            else
-            {
-                a.SMGFireRate = a.SMGCooldown;
-                a.AllowSMGAttack = true;
-                a.StartSMGCooldownTimer = false;
-            }
+          if (a.SMGFireRate >= 0.0f)
+          {
+            a.SMGFireRate -= env.pClock->FixedDeltaTime();
+            a.AllowSMGAttack = false;
+          }
+          else
+          {
+            a.SMGFireRate = a.SMGCooldown;
+            a.AllowSMGAttack = true;
+            a.StartSMGCooldownTimer = false;
+          }
         }
   	}
 
@@ -218,25 +255,28 @@ namespace DeltaEngine
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = { 0.25f, 0.25f };
+      em.GetComponent<Image>(missile).m_Size = { 1.0f, 1.0f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
+
+      //Calculate Direction Vector
+      Vector2 direction_vector = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position - em.GetComponent<Transform>(id).position;
+      direction_vector = direction_vector.Normalize();
 
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {5000, -3500};
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = direction_vector * 3000;
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-5000, -3500};
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = direction_vector * 3000;
       }
     }
   }
 
   void AttackSystem::MeleeAttack(EntityID& id)
   {
-      std::cout << "punching" << std::endl;
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().
       HasComponent<Attack>(id))
     {
