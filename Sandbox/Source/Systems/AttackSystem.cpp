@@ -77,8 +77,7 @@ namespace DeltaEngine
                 {
                   Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
                   direction.Normalize();
-                  float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-                  player_bodypart_pos.rotation = { direction.x, direction.y, 0.0f, 0.0f };
+                  float angle = std::atan(-direction.y / direction.x) * 180 / Math::pi;
                   player_bodypart_pos.rotation = Quaternion::AngleAxis(angle, Vector3::forward());
                 }
                 else
