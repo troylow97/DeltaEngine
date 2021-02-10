@@ -1,0 +1,104 @@
+%Entry:
+
+entry
+Entry 0 0
+
+%Parameters:
+
+param
+SMGAttack
+1 0
+
+%EditorPositions:
+
+pos
+Entry
+-62 74
+
+pos
+Exit
+200 200
+
+pos
+Any State
+200 0
+
+pos
+Entry 0 0
+0 0
+
+pos
+Clip/DAVE_FIRE_HEAD
+63 108
+
+pos
+Clip/DAVE_FIRE_BODY
+-70 175
+
+pos
+Clip/DAVE_FIRE_ARM
+245 78
+
+%Transitions:
+
+transition
+start
+Entry 0 0
+end
+Clip/DAVE_FIRE_BODY
+condition
+SMGAttack
+? 1
+endTransition
+
+transition
+start
+Entry 0 0
+end
+Clip/DAVE_FIRE_HEAD
+condition
+SMGAttack
+? 1
+endTransition
+
+transition
+start
+Entry 0 0
+end
+Clip/DAVE_FIRE_ARM
+condition
+SMGAttack
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE_BODY
+end
+Exit
+condition
+SMGAttack
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE_HEAD
+end
+Exit
+condition
+SMGAttack
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_FIRE_ARM
+end
+Exit
+condition
+SMGAttack
+? 0
+endTransition
+
+%endfile

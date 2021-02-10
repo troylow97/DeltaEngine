@@ -60,6 +60,34 @@ namespace DeltaEngine
           r.m_Active = true;
         else
           r.m_Active = false;
+
+        em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
+        {
+          if (et.type == EntityCategory::E_PLAYER)
+          {
+            auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(id);
+            if (a.SMGAttack)
+            {
+              r2d.m_Active = false;
+              EnableShootingAnimation = true;
+            }
+            else
+            {
+              r2d.m_Active = true;
+              EnableShootingAnimation = false;
+            }
+          }
+          if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
+          {
+            //auto& player_bodypart_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
+
+            if (EnableShootingAnimation)
+              r2d.m_Active = true;
+            else
+              r2d.m_Active = false;
+
+          }
+        });
       });
     }
   }

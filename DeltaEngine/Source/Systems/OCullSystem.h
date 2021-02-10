@@ -17,6 +17,7 @@ namespace DeltaEngine
     void Update() override;
     void LateUpdate() override;
     static void Enable(bool b);
-
+private:
+    bool EnableShootingAnimation = false;
   END_DEFINE_SYSTEM(OCullSystem)
 }
