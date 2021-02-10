@@ -77,13 +77,11 @@ namespace DeltaEngine
                 {
                   Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
                   direction.Normalize();
-                  float angle = std::atan(-direction.y / direction.x) * 180 / Math::pi;
-                  player_bodypart_pos.rotation = Quaternion::AngleAxis(angle, Vector3::forward());
+                  float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+                  player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
                 }
                 else
-                {
                   player_bodypart_pos.rotation = Quaternion::Identity();
-                }
 
                 auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
                 auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);

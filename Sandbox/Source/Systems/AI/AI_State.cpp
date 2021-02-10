@@ -443,7 +443,6 @@ namespace DeltaEngine
                 rb.hasGravity = true;
                 rb.Movespeed /= 1.2f;
                 auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
-                auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
                 health.isInvulnerable = false;
                 CooldownTimer = 3.0f;
 
