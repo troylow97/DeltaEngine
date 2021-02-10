@@ -329,11 +329,18 @@ namespace DeltaEngine
             if (CooldownTimer <= 0)
             {
                 EntityID player = UnitManager::GetPlayerID();
-                AITools::FaceEntity(monster, player);
+                if (AITools::EntityisOnTheRight(monster, player))
+                {
+                    env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
+                }
+                else
+                {
+                    env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
+                }
 
                 a.RangeAttack = true;
                 s.SetBool("RangedAttack", true);
-                a.AttackDelay = 0.3f;
+                a.AttackDelay = 0.2f;
                 BurrowState = 1;
                 CooldownTimer = 1.0f;
             }
@@ -372,9 +379,9 @@ namespace DeltaEngine
                 auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
                 health.isInvulnerable = true;
                 renderer.m_Active = false;
-                collider.CollisionLayerCheck = 1;
-                collider.CollisionLayerID = 1;
-                collider.offset.y = 0.6f;
+                collider.isTrigger = true;
+                rb.hasGravity = false;
+                rb.Movespeed *= 1.2f;
                 BurrowDownDuration = 0.5f;
                 switch (CurrentPoint)
                 {
@@ -432,9 +439,9 @@ namespace DeltaEngine
                 s.SetBool("IsAlerted", true);
                 BurrowState = 0;
                 BurrowUpDuration = 0.5f;
-                collider.CollisionLayerCheck = 1;
-                collider.CollisionLayerID = 1;
-                collider.offset.y = -0.1f;
+                collider.isTrigger = false;
+                rb.hasGravity = true;
+                rb.Movespeed /= 1.2f;
                 auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
                 auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
                 health.isInvulnerable = false;
