@@ -59,9 +59,9 @@ void GUISystem::LateUpdate()
   em.ForEach( [&]( EntityID& id, EntityName& name, RendererOverlay &r, Image &i )
   {
     auto coords = r.GetScreenspaceBounds( i );
-    float zeroPos = ( 1 - c.GetFixedAspectRatio() / t_aspect ) / 2;
     if ( c.GetFixedAspectRatio() > c.GetAspectRatio() )
     {
+      float zeroPos = (1 - t_aspect / c.GetFixedAspectRatio()) / 2;
       float halfRatioY = coords.y < 0.5f ? coords.y * 2 : ( 1 - coords.y ) * 2;
       float halfRatioW = coords.w < 0.5f ? coords.w * 2 : ( 1 - coords.w ) * 2;
 
@@ -70,6 +70,7 @@ void GUISystem::LateUpdate()
     }
     else
     {
+      float zeroPos = (1 - c.GetFixedAspectRatio() / t_aspect) / 2;
       float halfRatioX = coords.x < 0.5f ? coords.x * 2 : ( 1 - coords.x ) * 2;
       float halfRatioZ = coords.z < 0.5f ? coords.z * 2 : ( 1 - coords.z ) * 2;
 
