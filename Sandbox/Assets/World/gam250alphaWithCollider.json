@@ -20262,11 +20262,11 @@
                 }
             },
             "Camera": {
-                "Camera Size": 6.0,
+                "Camera Size": 2.0,
                 "Background Color": {
-                    "r": 0.1921568661928177,
-                    "g": 0.3019607961177826,
-                    "b": 0.4745098054409027,
+                    "r": 4.086021760940639e-7,
+                    "g": 6.385957931343e-7,
+                    "b": 9.999999974752428e-7,
                     "a": 1.0
                 }
             }
@@ -20302,7 +20302,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 20
+                    "index": 8
                 },
                 "Size": {
                     "x": 0.5,
@@ -20377,7 +20377,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 2
+                    "index": 8
                 },
                 "Size": {
                     "x": 0.5,
@@ -20452,7 +20452,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 2
+                    "index": 8
                 },
                 "Size": {
                     "x": 0.5,
@@ -20527,7 +20527,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 2
+                    "index": 8
                 },
                 "Size": {
                     "x": 0.5,
@@ -20602,7 +20602,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 2
+                    "index": 8
                 },
                 "Size": {
                     "x": 0.5,
@@ -20677,7 +20677,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 2
+                    "index": 8
                 },
                 "Size": {
                     "x": 0.5,
@@ -20752,7 +20752,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 15
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -20827,7 +20827,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 10
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -20902,7 +20902,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 13
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -20977,7 +20977,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 13
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -21052,7 +21052,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 13
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -21127,7 +21127,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 13
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -21202,7 +21202,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 13
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -21277,7 +21277,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 13
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -21352,7 +21352,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 13
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -21427,7 +21427,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 13
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -21502,7 +21502,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 13
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -21545,6 +21545,823 @@
                 "Speed": 1.0
             },
             "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "Menu_PauseBG"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pausemenu_Overlay",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1920.0,
+                    "y": 1080.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "GUI": {
+                "Func": "",
+                "File": "",
+                "GUI Type": "Interface",
+                "Screen No.": 1,
+                "Target No.": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Menu_Button_Resume"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Resume_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": -280.0
+                },
+                "Width/Height": {
+                    "x": 420.0,
+                    "y": 120.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Resume",
+                "Speed": 1.0
+            },
+            "State": {},
+            "GUI": {
+                "Func": "Unpause",
+                "File": "",
+                "GUI Type": "Button",
+                "Screen No.": 1,
+                "Target No.": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Menu_PauseTitle"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pause_Title",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 600.0,
+                    "y": 600.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "GUI": {
+                "Func": "",
+                "File": "",
+                "GUI Type": "Interface",
+                "Screen No.": 1,
+                "Target No.": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Menu_Button_Restart"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Restart_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 5.0,
+                    "y": -400.0
+                },
+                "Width/Height": {
+                    "x": 420.0,
+                    "y": 120.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Restart",
+                "Speed": 1.0
+            },
+            "State": {},
+            "GUI": {
+                "Func": "Start",
+                "File": "World/gam250alphaWithCollider.json",
+                "GUI Type": "Button",
+                "Screen No.": 1,
+                "Target No.": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Menu_Button_Quit"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/QuitGame_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 25.0,
+                    "y": -760.0
+                },
+                "Width/Height": {
+                    "x": 420.0,
+                    "y": 120.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Quit",
+                "Speed": 1.0
+            },
+            "State": {},
+            "GUI": {
+                "Func": "Quit",
+                "File": "",
+                "GUI Type": "Button",
+                "Screen No.": 1,
+                "Target No.": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Menu_Button_ExitToMenu"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/ExitTM_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 15.0,
+                    "y": -640.0
+                },
+                "Width/Height": {
+                    "x": 620.0,
+                    "y": 130.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_ExitToMenu",
+                "Speed": 1.0
+            },
+            "State": {},
+            "GUI": {
+                "Func": "Start",
+                "File": "World/MainMenu.json",
+                "GUI Type": "Button",
+                "Screen No.": 1,
+                "Target No.": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Menu_Button_Controls"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Controls_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 20.0,
+                    "y": -520.0
+                },
+                "Width/Height": {
+                    "x": 420.0,
+                    "y": 120.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Controls",
+                "Speed": 1.0
+            },
+            "State": {},
+            "GUI": {
+                "Func": "",
+                "File": "",
+                "GUI Type": "Button",
+                "Screen No.": 1,
+                "Target No.": 2
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Menu_Controls"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Mainmenu_Popup_Controls",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1920.0,
+                    "y": 100.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Anchor Max": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "GUI": {
+                "Func": "PopScreen",
+                "File": "",
+                "GUI Type": "Button",
+                "Screen No.": 2,
+                "Target No.": 0
+            }
         }
     ]
 }

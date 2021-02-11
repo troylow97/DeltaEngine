@@ -34,4 +34,20 @@ namespace DeltaEngine
     int previous_screen{-1};
     bool overlay{false};
   };
+
+  enum class GUIType : unsigned
+  {
+    Interface,
+    Button
+  };
+
+  struct GUI
+  {
+    std::string func;
+    std::string file;
+    GUIType type;
+    unsigned screen{0};
+    unsigned target{0};
+  };
+
 }

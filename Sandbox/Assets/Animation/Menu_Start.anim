@@ -1,0 +1,56 @@
+%Entry:
+
+entry
+Clip/StartGame_D
+
+%Parameters:
+
+param
+Hover
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+73 147
+
+pos
+Exit
+467 298
+
+pos
+Any State
+418 72
+
+pos
+Clip/StartGame_S
+300 210
+
+pos
+Clip/StartGame_D
+198 299
+
+%Transitions:
+
+transition
+start
+Clip/StartGame_S
+end
+Exit
+condition
+Hover
+? 0
+endTransition
+
+transition
+start
+Clip/StartGame_D
+end
+Clip/StartGame_S
+condition
+Hover
+? 1
+endTransition
+
+%endfile

@@ -58,20 +58,59 @@ namespace DeltaEngine
         }
 
         if (a.SMGAttack)
-            a.StartSMGCooldownTimer = true;
+        {
+          a.StartSMGCooldownTimer = true;
+          em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
+          {
+            if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
+            {
+              auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+              auto& player_bodypart_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
+
+              player_bodypart_pos.position.x = player_pos.position.x;
+              player_bodypart_pos.position.y = player_pos.position.y;
+
+              if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE)
+              {
+                if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
+                {
+                  Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
+                  direction.Normalize();
+                  float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+                  player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
+                }
+                else
+                  player_bodypart_pos.rotation = Quaternion::Identity();
+
+                auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+                auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
+                player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
+                player_bodypart_image.m_FlipY = true;
+              }
+              else
+              {
+                auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+                auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
+                player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
+                player_bodypart_image.m_FlipY = false;
+              }
+
+            }
+          });
+        }
         if (a.StartSMGCooldownTimer)
         {
-            if (a.SMGFireRate >= 0.0f)
-            {
-                a.SMGFireRate -= env.pClock->FixedDeltaTime();
-                a.AllowSMGAttack = false;
-            }
-            else
-            {
-                a.SMGFireRate = a.SMGCooldown;
-                a.AllowSMGAttack = true;
-                a.StartSMGCooldownTimer = false;
-            }
+          if (a.SMGFireRate >= 0.0f)
+          {
+            a.SMGFireRate -= env.pClock->FixedDeltaTime();
+            a.AllowSMGAttack = false;
+          }
+          else
+          {
+            a.SMGFireRate = a.SMGCooldown;
+            a.AllowSMGAttack = true;
+            a.StartSMGCooldownTimer = false;
+          }
         }
   	}
 

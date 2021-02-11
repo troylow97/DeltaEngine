@@ -1,6 +1,11 @@
 Textures/HealthBar_BG_i_0
-offset 0 0
-size 512 256
+offset 8 67
+size 492 153
+pivot 0.5 0.5
+
+Textures/HealthBar_BG_i_1
+offset 501 213
+size 1 4
 pivot 0.5 0.5
 
 %

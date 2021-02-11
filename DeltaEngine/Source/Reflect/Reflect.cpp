@@ -157,7 +157,9 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
   (
     rttr::value( "none", EntityCategory::E_NONE ),
     rttr::value( "wall", EntityCategory::E_WALL ),
-    rttr::value( "player", EntityCategory::E_PLAYER ),
+    rttr::value( "player", EntityCategory::E_PLAYER),
+    rttr::value( "player body part rotatable", EntityCategory::E_PLAYER_BODYPART_ROTATABLE),
+    rttr::value( "player body part", EntityCategory::E_PLAYER_BODYPART ),
     rttr::value( "enemy", EntityCategory::E_ENEMY),
     rttr::value( "player bullet", EntityCategory::E_PLAYER_BULLET),
     rttr::value( "player bullet detection", EntityCategory::E_PLAYER_BULLET_DETECTION),
@@ -214,6 +216,12 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       rttr::value("HealthBar_Base", UIType::Healthbar_base)
     );
 
+  rttr::registration::enumeration<GUIType>( "GUIType" )
+    (
+    rttr::value( "Interface", GUIType::Interface ),
+    rttr::value( "Button", GUIType::Button )
+    );
+
   rttr::registration::class_<UI>( "UI" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<UI>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
@@ -224,7 +232,14 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Previous", &UI::previous_screen )( rttr::policy::prop::bind_as_ptr )
     .property( "Overlay", &UI::overlay)( rttr::policy::prop::bind_as_ptr );
 
-
+  rttr::registration::class_<GUI>( "GUI" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<GUI>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "Func", &GUI::func )( rttr::policy::prop::bind_as_ptr )
+    .property( "File", &GUI::file )( rttr::policy::prop::bind_as_ptr )
+    .property( "GUI Type", &GUI::type)( rttr::policy::prop::bind_as_ptr )
+    .property( "Screen No.", &GUI::screen )( rttr::policy::prop::bind_as_ptr )
+    .property( "Target No.", &GUI::target)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<EntityName>( "Entity Name" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<EntityName>()->bits ) )
@@ -513,6 +528,8 @@ rttr::type RT_Checker( size_t bits )
     return rttr::type::get_by_name( "Camera" );
   if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
     return rttr::type::get_by_name( "UI" );
+  if ( ComponentMeta::GetComponentMeta<GUI>()->bits == bits )
+    return rttr::type::get_by_name( "GUI" );
   return rttr::type::get<int>();
 }
 
@@ -560,6 +577,8 @@ void RT_Destroy( EntityManager &em, EntityID id, size_t bits )
     em.RemoveComponent<Camera>( id );
   if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
     em.RemoveComponent<UI>( id );
+  if ( ComponentMeta::GetComponentMeta<GUI>()->bits == bits )
+    em.RemoveComponent<GUI>( id );
 }
 
 void RT_Setter( EntityManager &em, EntityID id, size_t bits )
@@ -606,6 +625,8 @@ void RT_Setter( EntityManager &em, EntityID id, size_t bits )
     em.AddComponent<Camera>( id );
   if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
     em.AddComponent<UI>( id );
+  if ( ComponentMeta::GetComponentMeta<GUI>()->bits == bits )
+    em.AddComponent<GUI>( id );
 }
 
 rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
@@ -652,6 +673,8 @@ rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
     return rttr::instance( em.GetComponent<Camera>( id ) );
   if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
     return rttr::instance( em.GetComponent<UI>( id ) );
+  if ( ComponentMeta::GetComponentMeta<GUI>()->bits == bits )
+    return rttr::instance( em.GetComponent<GUI>( id ) );
   return rttr::instance();
 }
 
@@ -699,6 +722,8 @@ void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::F
     Serialize::WriteObject( *static_cast<Camera *>( ptr ), writer );
   else if ( str == "UI" )
     Serialize::WriteObject( *static_cast<UI *>( ptr ), writer );
+  else if ( str == "GUI" )
+    Serialize::WriteObject( *static_cast<GUI *>( ptr ), writer );
 }
 
 void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rttr::variant var )
@@ -745,5 +770,7 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
     em.AddComponent<Camera>( id, var.get_value<Camera>() );
   else if ( str == "UI" )
     em.AddComponent<UI>( id, var.get_value<UI>() );
+  else if ( str == "GUI" )
+    em.AddComponent<GUI>( id, var.get_value<GUI>() );
 }
 }

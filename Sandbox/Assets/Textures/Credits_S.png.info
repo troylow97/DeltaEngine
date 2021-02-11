@@ -1,6 +1,151 @@
 Textures/Credits_S_i_0
 offset 0 0
-size 2048 1024
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_1
+offset 512 0
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_2
+offset 1024 0
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_3
+offset 1536 0
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_4
+offset 0 128
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_5
+offset 512 128
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_6
+offset 1024 128
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_7
+offset 1536 128
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_8
+offset 0 256
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_9
+offset 512 256
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_10
+offset 1024 256
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_11
+offset 1536 256
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_12
+offset 0 384
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_13
+offset 512 384
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_14
+offset 1024 384
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_15
+offset 1536 384
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_16
+offset 0 512
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_17
+offset 512 512
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_18
+offset 1024 512
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_19
+offset 1536 512
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_20
+offset 0 640
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_21
+offset 512 640
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_22
+offset 1024 640
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_23
+offset 1536 640
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_24
+offset 0 768
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_25
+offset 512 768
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_26
+offset 1024 768
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_27
+offset 1536 768
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_28
+offset 0 896
+size 512 128
+pivot 0.5 0.5
+
+Textures/Credits_S_i_29
+offset 512 896
+size 512 128
 pivot 0.5 0.5
 
 %

@@ -123,14 +123,13 @@ void World::CleanUpEntities()
     em->DestroyEntity( { id } );
 }
 
-
-void World::Save( std::string filename )
+void World::Save( const std::string& filename )
 {
   JsonFile file;
   file.StartWriter( filename ).WriteEntities( *em ).EndWriter();
 }
 
-void World::Load( std::string filename )
+void World::Load( const std::string& filename )
 {
   JsonFile file;
   file.StartReader( filename ).LoadEntities( *em ).EndReader();

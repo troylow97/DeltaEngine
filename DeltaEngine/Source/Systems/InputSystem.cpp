@@ -331,6 +331,7 @@ namespace DeltaEngine
         if (a1.AllowSMGAttack)
         {
           a1.SMGAttack = true;
+          a.SetBool("SMGAttack", true);
           idle_timer = 0.0f; // what's this troy low yee?
         }
       });
@@ -340,6 +341,7 @@ namespace DeltaEngine
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
       {
         a1.SMGAttack = false;
+        a.SetBool("SMGAttack", false);
         idle_timer = 0.0f; // what's this troy low yee?
         i1.previousKey = DEVK_E;
       });

@@ -54,23 +54,35 @@ RangedAttack
 0 0
 
 param
-LancerAttack
+Lance
 0 0
 
 param
-VelY
-0 0
+JumpStart
+1 0
 
 param
-JumpTime
-0 0
-
-param
-JumpEnd
+EndJump
 0 0
 
 param
 Dead
+0 0
+
+param
+JumpLanding
+0 0
+
+param
+IsIdle
+0 0
+
+param
+JumpRecover
+0 0
+
+param
+SMGAttack
 0 0
 
 %EditorPositions:
@@ -92,10 +104,6 @@ Clip/DAVE_SHIELD_UP
 400 130
 
 pos
-Clip/DAVE_FALL
-595 1
-
-pos
 Clip/DAVE_FIRE
 1010 219
 
@@ -105,7 +113,7 @@ Clip/DAVE_FIRE_READY
 
 pos
 Clip/DAVE_IDLE
-101 0
+111 47
 
 pos
 Clip/DAVE_DASH
@@ -113,19 +121,11 @@ Clip/DAVE_DASH
 
 pos
 Clip/DAVE_IDLE_STRETCH
-402 -199
-
-pos
-Clip/DAVE_JUMP
-382 -4
+261 -210
 
 pos
 Clip/DAVE_LANCE
 321 322
-
-pos
-Clip/DAVE_LAND
-772 -1
 
 pos
 Clip/DAVE_PUNCH1_NEW
@@ -140,16 +140,12 @@ Clip/DAVE_PUNCH3_NEW
 870 74
 
 pos
-Clip/DAVE_RECOVER
-587 -76
-
-pos
 Clip/DAVE_RUN
 400 -69
 
 pos
 Clip/DAVE_SHIELD_BLOCK
-658 168
+292 173
 
 pos
 Clip/DAVE_SHIELD_ON
@@ -163,6 +159,26 @@ pos
 Clip/DAVE_DEATH
 901 -298
 
+pos
+Clip/DAVE_JUMP
+-219 53
+
+pos
+Clip/DAVE_FALL
+-205 103
+
+pos
+Clip/DAVE_FIRE_BODY
+-76 266
+
+pos
+Clip/DAVE_FIRE_HEAD
+95 221
+
+pos
+Clip/DAVE_FIRE_ARM
+-188 216
+
 %Transitions:
 
 transition
@@ -173,39 +189,6 @@ Clip/DAVE_RUN
 condition
 IsRunning
 ? 1
-endTransition
-
-transition
-start
-Clip/DAVE_JUMP
-end
-Clip/DAVE_FALL
-condition
-VelY
-< 0
-endTransition
-
-transition
-start
-Clip/DAVE_FALL
-end
-Clip/DAVE_LAND
-condition
-JumpTime
-< 1.1
-condition
-VelY
-? 0
-endTransition
-
-transition
-start
-Clip/DAVE_IDLE
-end
-Clip/DAVE_JUMP
-condition
-VelY
-> 0
 endTransition
 
 transition
@@ -289,19 +272,6 @@ endTransition
 
 transition
 start
-Clip/DAVE_FALL
-end
-Clip/DAVE_RECOVER
-condition
-JumpTime
-> 1
-condition
-VelY
-? 0
-endTransition
-
-transition
-start
 Clip/DAVE_SHIELD_BLOCK
 end
 Clip/DAVE_SHIELD_ON
@@ -375,27 +345,7 @@ Clip/DAVE_IDLE
 end
 Clip/DAVE_LANCE
 condition
-LancerAttack
-? 1
-endTransition
-
-transition
-start
-Clip/DAVE_RECOVER
-end
-Exit
-condition
-JumpEnd
-? 1
-endTransition
-
-transition
-start
-Clip/DAVE_LAND
-end
-Exit
-condition
-JumpEnd
+Lance
 ? 1
 endTransition
 
@@ -517,7 +467,7 @@ Clip/DAVE_LANCE
 end
 Exit
 condition
-LancerAttack
+Lance
 ? 0
 endTransition
 
@@ -565,6 +515,56 @@ ShieldUp
 condition
 ShieldOn
 ? 0
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE_STRETCH
+end
+Clip/DAVE_IDLE
+condition
+IsIdle
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_JUMP
+condition
+IsRunning
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_FIRE_HEAD
+condition
+SMGAttack
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_FIRE_BODY
+condition
+SMGAttack
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_FIRE_ARM
+condition
+SMGAttack
+? 1
 endTransition
 
 %endfile
