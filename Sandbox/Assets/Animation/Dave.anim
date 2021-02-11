@@ -54,32 +54,24 @@ RangedAttack
 0 0
 
 param
-Lance
+LancerAttack
 0 0
 
 param
-JumpStart
-1 0
+VelY
+0 0
 
 param
-EndJump
+JumpTime
+0 0
+
+param
+JumpEnd
 0 0
 
 param
 Dead
 0 0
-
-param
-JumpLanding
-1 0
-
-param
-IsIdle
-1 0
-
-param
-JumpRecover
-1 0
 
 %EditorPositions:
 
@@ -100,6 +92,10 @@ Clip/DAVE_SHIELD_UP
 400 130
 
 pos
+Clip/DAVE_FALL
+595 1
+
+pos
 Clip/DAVE_FIRE
 1010 219
 
@@ -109,7 +105,7 @@ Clip/DAVE_FIRE_READY
 
 pos
 Clip/DAVE_IDLE
-186 22
+101 0
 
 pos
 Clip/DAVE_DASH
@@ -117,11 +113,19 @@ Clip/DAVE_DASH
 
 pos
 Clip/DAVE_IDLE_STRETCH
-261 -210
+402 -199
+
+pos
+Clip/DAVE_JUMP
+382 -4
 
 pos
 Clip/DAVE_LANCE
 321 322
+
+pos
+Clip/DAVE_LAND
+772 -1
 
 pos
 Clip/DAVE_PUNCH1_NEW
@@ -136,12 +140,16 @@ Clip/DAVE_PUNCH3_NEW
 870 74
 
 pos
+Clip/DAVE_RECOVER
+587 -76
+
+pos
 Clip/DAVE_RUN
 400 -69
 
 pos
 Clip/DAVE_SHIELD_BLOCK
-292 173
+658 168
 
 pos
 Clip/DAVE_SHIELD_ON
@@ -155,14 +163,6 @@ pos
 Clip/DAVE_DEATH
 901 -298
 
-pos
-Clip/DAVE_JUMP
--127 108
-
-pos
-Clip/DAVE_FALL
--37 227
-
 %Transitions:
 
 transition
@@ -173,6 +173,39 @@ Clip/DAVE_RUN
 condition
 IsRunning
 ? 1
+endTransition
+
+transition
+start
+Clip/DAVE_JUMP
+end
+Clip/DAVE_FALL
+condition
+VelY
+< 0
+endTransition
+
+transition
+start
+Clip/DAVE_FALL
+end
+Clip/DAVE_LAND
+condition
+JumpTime
+< 1.1
+condition
+VelY
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_JUMP
+condition
+VelY
+> 0
 endTransition
 
 transition
@@ -256,6 +289,19 @@ endTransition
 
 transition
 start
+Clip/DAVE_FALL
+end
+Clip/DAVE_RECOVER
+condition
+JumpTime
+> 1
+condition
+VelY
+? 0
+endTransition
+
+transition
+start
 Clip/DAVE_SHIELD_BLOCK
 end
 Clip/DAVE_SHIELD_ON
@@ -329,7 +375,27 @@ Clip/DAVE_IDLE
 end
 Clip/DAVE_LANCE
 condition
-Lance
+LancerAttack
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_RECOVER
+end
+Exit
+condition
+JumpEnd
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_LAND
+end
+Exit
+condition
+JumpEnd
 ? 1
 endTransition
 
@@ -451,7 +517,7 @@ Clip/DAVE_LANCE
 end
 Exit
 condition
-Lance
+LancerAttack
 ? 0
 endTransition
 
@@ -499,33 +565,6 @@ ShieldUp
 condition
 ShieldOn
 ? 0
-endTransition
-
-transition
-start
-Clip/DAVE_IDLE_STRETCH
-end
-Clip/DAVE_IDLE
-condition
-IsIdle
-? 1
-endTransition
-
-transition
-start
-Clip/DAVE_IDLE
-end
-Clip/DAVE_IDLE
-endTransition
-
-transition
-start
-Clip/DAVE_IDLE
-end
-Clip/DAVE_JUMP
-condition
-IsRunning
-? 1
 endTransition
 
 %endfile
