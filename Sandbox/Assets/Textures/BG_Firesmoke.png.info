@@ -1,6 +1,121 @@
 Textures/BG_Firesmoke_i_0
 offset 0 0
-size 2048 1536
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_1
+offset 256 0
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_2
+offset 512 0
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_3
+offset 768 0
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_4
+offset 1024 0
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_5
+offset 1280 0
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_6
+offset 1536 0
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_7
+offset 1792 0
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_8
+offset 0 512
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_9
+offset 256 512
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_10
+offset 512 512
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_11
+offset 768 512
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_12
+offset 1024 512
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_13
+offset 1280 512
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_14
+offset 1536 512
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_15
+offset 1792 512
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_16
+offset 0 1024
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_17
+offset 256 1024
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_18
+offset 512 1024
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_19
+offset 768 1024
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_20
+offset 1024 1024
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_21
+offset 1280 1024
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_22
+offset 1536 1024
+size 256 512
+pivot 0.5 0.5
+
+Textures/BG_Firesmoke_i_23
+offset 1792 1024
+size 256 512
 pivot 0.5 0.5
 
 %

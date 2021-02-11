@@ -125,11 +125,18 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
+            },
+            "GUI": {
+                "Func": "",
+                "File": "",
+                "GUI Type": "Interface",
+                "Screen No.": 0,
+                "Target No.": 0
             }
         },
         {
             "Entity Name": {
-                "Name": "Title"
+                "Name": "MenuTitle"
             },
             "Entity Type": {
                 "Category": "none"
@@ -217,6 +224,13 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
+            },
+            "GUI": {
+                "Func": "",
+                "File": "",
+                "GUI Type": "Interface",
+                "Screen No.": 0,
+                "Target No.": 0
             }
         },
         {
@@ -271,28 +285,28 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -640.0,
-                    "y": 120.0
+                    "x": 10.0,
+                    "y": -400.0
                 },
                 "Width/Height": {
                     "x": 450.0,
-                    "y": 450.0
+                    "y": 120.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
                 "Top": 0.0,
                 "Bottom": 0.0,
                 "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -305,7 +319,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.30000001192092898,
-                "Preserve Aspect": true,
+                "Preserve Aspect": false,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
@@ -350,8 +364,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Controls_S",
-                    "index": 29
+                    "key": "Textures/Controls_D",
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -375,28 +389,28 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -665.0,
-                    "y": -30.0
+                    "x": 10.0,
+                    "y": -520.0
                 },
                 "Width/Height": {
                     "x": 400.0,
-                    "y": 150.0
+                    "y": 120.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
                 "Top": 0.0,
                 "Bottom": 0.0,
                 "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -409,7 +423,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.30000001192092898,
-                "Preserve Aspect": true,
+                "Preserve Aspect": false,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
@@ -479,28 +493,28 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -690.0,
-                    "y": -180.0
+                    "x": 10.0,
+                    "y": -640.0
                 },
                 "Width/Height": {
                     "x": 350.0,
-                    "y": 100.0
+                    "y": 120.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
                 "Top": 0.0,
                 "Bottom": 0.0,
                 "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -513,7 +527,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.30000001192092898,
-                "Preserve Aspect": true,
+                "Preserve Aspect": false,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
@@ -583,28 +597,28 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -665.0,
-                    "y": -330.0
+                    "x": 0.0,
+                    "y": -760.0
                 },
                 "Width/Height": {
-                    "x": 400.0,
-                    "y": 100.0
+                    "x": 450.0,
+                    "y": 120.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
                 "Top": 0.0,
                 "Bottom": 0.0,
                 "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -617,7 +631,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.30000001192092898,
-                "Preserve Aspect": true,
+                "Preserve Aspect": false,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false

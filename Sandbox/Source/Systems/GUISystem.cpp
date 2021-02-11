@@ -32,18 +32,22 @@ namespace DeltaEngine
 
 std::vector<unsigned> current;
 bool s { false };
+bool menu { false };
+bool change { false };
+std::string tmp {};
 
 
 void GUISystem::PopScreen()
 {
-  em.ForEach( [&]( GUI &gui, RendererOverlay &r )
+  if ( current.size() > 1 )
   {
-    if ( gui.screen == current.back() )
-      r.m_Active = false;
-  } );
-
-  if ( current.size() != 1 )
+    em.ForEach( [&]( GUI &gui, RendererOverlay &r )
+    {
+      if ( gui.screen == current.back() )
+        r.m_Active = false;
+    } );
     current.pop_back();
+  }
 }
 
 
@@ -93,6 +97,9 @@ void GUISystem::LateUpdate()
 
   em.ForEach( [&]( EntityID &id, EntityName &name, RendererOverlay &r, Image &i, GUI &gui )
   {
+    if ( !name.name.compare( "MenuTitle" ))
+      menu = true;
+
     if ( s )
       return;
 
@@ -156,38 +163,59 @@ void GUISystem::LateUpdate()
       }
     }
 
-
   } );
 
-  //( 1 - c.GetFixedAspectRatio() / c.GetAspectRatio() ) / 2;
+  if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) )
+  {
+    if (!menu )
+    {
+      if ( env.pClock->TimeScale() > 0.1f )
+        Pause();
+      else
+        Unpause();
+    }
+    else if ( current.back() != 0 )
+      PopScreen();
+  }
 
-  //if ( c.GetFixedAspectRatio() / c.GetAspectRatio() )
-  //{
-  //  coords
-  //}
-
+    
 
   s = false;
+  menu = false;
+
+  if ( change )
+    ChangeState();
+
 }
 
+void GUISystem::ChangeState()
+{
+  env.pECS->GetWorld().GetEntityManager().Clear();
+  env.pECS->GetWorld().Load( tmp );
+  current.clear();
+  PushScreen( 0 );
+  tmp.clear();
+  change = false;
+}
 
 
 
 void GUISystem::Pause()
 {
   env.pClock->TimeScale( 0.0f );
+  PushScreen( 1 );
 }
 
 void GUISystem::Unpause()
 {
   env.pClock->TimeScale( 1.0f );
+  PopScreen();
 }
 
 void GUISystem::Start( const std::string &file )
 {
-  std::string tmp { file };
-  env.pECS->GetWorld().GetEntityManager().Clear();
-  env.pECS->GetWorld().Load( tmp );
+  tmp.assign( file );
+  change = true;
 }
 
 

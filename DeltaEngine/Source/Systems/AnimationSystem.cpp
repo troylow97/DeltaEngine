@@ -54,7 +54,7 @@ namespace DeltaEngine
 
               if (newClip->looping)
               {
-                a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+                a.m_Timer += static_cast<float>(FixedUnscaledDeltaTime()) * a.m_Speed;
                 while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                 {
                   a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
@@ -64,7 +64,7 @@ namespace DeltaEngine
               {
                 if (a.m_Timer < 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                 {
-                  a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+                  a.m_Timer += static_cast<float>(FixedUnscaledDeltaTime()) * a.m_Speed;
                 }
               }
             }
@@ -94,7 +94,7 @@ namespace DeltaEngine
           {
             if (newClip->looping)
             {
-              a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+              a.m_Timer += static_cast<float>(FixedUnscaledDeltaTime()) * a.m_Speed;
               while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
               {
                 a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
@@ -103,7 +103,7 @@ namespace DeltaEngine
             else
             {
               if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
-                a.m_Timer += static_cast<float>(FixedDeltaTime()) * a.m_Speed;
+                a.m_Timer += static_cast<float>(FixedUnscaledDeltaTime()) * a.m_Speed;
             }
 
             frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());

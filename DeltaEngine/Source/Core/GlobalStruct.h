@@ -42,4 +42,5 @@ namespace DeltaEngine
 
   DeltaEngineGlobalEnvironment& GetEnv();
   double FixedDeltaTime();
+  double FixedUnscaledDeltaTime();
 }

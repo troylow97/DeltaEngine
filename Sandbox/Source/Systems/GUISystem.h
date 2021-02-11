@@ -22,6 +22,8 @@ void LateUpdate() override;
 void PushScreen( unsigned screen );
 void PopScreen();
 
+void ChangeState();
+
 void Pause();
 void Unpause();
 void Start( const std::string &file );

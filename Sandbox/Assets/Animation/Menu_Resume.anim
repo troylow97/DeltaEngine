@@ -1,0 +1,56 @@
+%Entry:
+
+entry
+Clip/Resume_D
+
+%Parameters:
+
+param
+Hover
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+23 122
+
+pos
+Exit
+472 260
+
+pos
+Any State
+200 0
+
+pos
+Clip/Resume_D
+117 101
+
+pos
+Clip/Resume_S
+212 190
+
+%Transitions:
+
+transition
+start
+Clip/Resume_D
+end
+Clip/Resume_S
+condition
+Hover
+? 1
+endTransition
+
+transition
+start
+Clip/Resume_S
+end
+Exit
+condition
+Hover
+? 0
+endTransition
+
+%endfile

@@ -1,6 +1,11 @@
 Textures/FID_BLOCK_i_0
 offset 0 0
-size 800 400
+size 400 400
+pivot 0.5 0.5
+
+Textures/FID_BLOCK_i_1
+offset 400 0
+size 400 400
 pivot 0.5 0.5
 
 %
