@@ -65,6 +65,10 @@ namespace DeltaEngine
     }
     entities.clear();
 
+   
+
+
+
     Profiler::Instance().Record("Health System");
   }
 

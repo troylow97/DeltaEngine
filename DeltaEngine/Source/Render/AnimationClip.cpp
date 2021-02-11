@@ -19,147 +19,148 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  AnimationClip::AnimationClip(std::string filepath) : m_Name{filepath}, totalFrames{0}, fps{12}, looping{true}
-  {
-    LoadAnimation(filepath);
+AnimationClip::AnimationClip( std::string filepath ) : m_Name { filepath }, totalFrames { 0 }, fps { 12 }, looping { true }
+{
+  LoadAnimation( filepath );
 
-    std::size_t pos;
-    pos = m_Name.find(".");
-    if (pos != std::string::npos)
-      m_Name.erase(pos);
+  std::size_t pos;
+  pos = m_Name.find( "." );
+  if ( pos != std::string::npos )
+    m_Name.erase( pos );
+}
+
+unsigned int AnimationClip::GetTotalFrames() const
+{
+  return static_cast<unsigned int>( m_Sprites.size() );
+}
+
+unsigned int AnimationClip::GetFps() const
+{
+  return fps;
+}
+
+Sprite AnimationClip::GetSprite( unsigned int frame )
+{
+  frame = Math::Clamp( frame + 1, 1, totalFrames );
+  for ( ; frame > 0; --frame )
+  {
+    if ( m_Sprites.count( frame - 1 ) )
+      return m_Sprites[frame - 1];
   }
+  return Sprite();
+}
 
-  unsigned int AnimationClip::GetTotalFrames() const
-  {
-    return static_cast<unsigned int>(m_Sprites.size());
-  }
+std::string AnimationClip::GetName() const
+{
+  return m_Name;
+}
 
-  unsigned int AnimationClip::GetFps() const
-  {
-    return fps;
-  }
-
-  Sprite AnimationClip::GetSprite(unsigned int frame)
-  {
-    frame = Math::Clamp(frame + 1, 1, totalFrames);
-    for (; frame > 0; --frame)
-    {
-      if (m_Sprites.count(frame - 1))
-        return m_Sprites[frame - 1];
-    }
-    return Sprite();
-  }
-
-  std::string AnimationClip::GetName() const
-  {
-    return m_Name;
-  }
-
-  void AnimationClip::CreateNew(
-    std::string textureName,
-    std::string filepath,
-    unsigned int fps,
-    bool loop,
-    unsigned int start,
-    unsigned int end)
-  {
+void AnimationClip::CreateNew(
+  std::string textureName,
+  std::string filepath,
+  unsigned int fps,
+  bool loop,
+  unsigned int start,
+  unsigned int end )
+{
 #ifndef DE_EDITOR
-    return;
+  return;
 #endif
-    std::ofstream file{filepath.c_str()};
+  std::ofstream file { filepath.c_str() };
 
-    Texture2D* texture = GetEnv().pManager->Get<Texture2D>(std::string(textureName));
+  Texture2D *texture = GetEnv().pManager->Get<Texture2D>( std::string( textureName ) );
 
-    if (start > end)
-      end = start;
-    if (start > texture->textureInfo.size())
-      start = static_cast<unsigned>(texture->textureInfo.size() - 1);
-    if (end > texture->textureInfo.size())
-      end = static_cast<unsigned>(texture->textureInfo.size() - 1);
+  if ( start > end )
+    end = start;
+  if ( start > texture->textureInfo.size() )
+    start = static_cast<unsigned>( texture->textureInfo.size() - 1 );
+  if ( end > texture->textureInfo.size() )
+    end = static_cast<unsigned>( texture->textureInfo.size() - 1 );
 
-    if (file.is_open())
-    {
-      file << "frames " << end - start + 1 << std::endl;
-      file << "fps " << fps << std::endl;
-      file << "loop " << loop << std::endl << std::endl;
-
-      for (size_t i = start; i <= end; ++i)
-      {
-        file << texture->GetName() << "_i_" << i << std::endl;
-        file << "key " << texture->GetName() << std::endl;
-        file << "value " << i << std::endl;
-        file << "frame " << i - start << std::endl << std::endl;
-      }
-      file << "%" << std::endl;
-      file.close();
-    }
-    else
-    {
-      DeltaEngine_CORE_ERROR("Failed to create animation clip \"{}\"!", filepath);
-    }
-  }
-
-  void AnimationClip::LoadAnimation(std::string filepath)
+  if ( file.is_open() )
   {
-    std::ifstream file;
-    DeltaEngine_CORE_TRACE("Loading animation clip \"{}\"...", filepath.c_str());
-    file.open((filepath).c_str());
+    file << "frames " << end - start + 1 << std::endl;
+    file << "fps " << fps << std::endl;
+    file << "loop " << loop << std::endl << std::endl;
 
-    std::string str, spriteKey;
-    unsigned int spriteIndex, frameNumber;
-
-    if (file.is_open())
+    for ( size_t i = start; i <= end; ++i )
     {
-      file >> str >> totalFrames;
-      file >> str >> fps;
-      file >> str >> looping;
-
-      while (file.good())
-      {
-        file >> str;
-        if (str[0] == '%')
-          break;
-        file >> str >> spriteKey;
-        file >> str >> spriteIndex;
-        file >> str >> frameNumber;
-        m_Sprites[frameNumber] = Sprite(spriteKey, spriteIndex);
-      }
-      file.close();
+      file << texture->GetName() << "_i_" << i << std::endl;
+      file << "key " << texture->GetName() << std::endl;
+      file << "value " << i << std::endl;
+      file << "frame " << i - start << std::endl << std::endl;
     }
-    else
-    {
-      DeltaEngine_CORE_WARN("Animation clip file \"{}\" doesn't exist, creating automatically", filepath.c_str());
-
-      UpdateAnimation(filepath);
-    }
-    DeltaEngine_CORE_TRACE("Animation clip {} was loaded successfully", filepath);
+    file << "%" << std::endl;
+    file.close();
   }
-
-  void AnimationClip::UpdateAnimation(std::string filepath)
+  else
   {
-#ifndef DE_EDITOR
-    return;
+    DeltaEngine_CORE_ERROR( "Failed to create animation clip \"{}\"!", filepath );
+  }
+}
+
+void AnimationClip::LoadAnimation( std::string filepath )
+{
+  std::ifstream file;
+  DeltaEngine_CORE_TRACE( "Loading animation clip \"{}\"...", filepath.c_str() );
+  file.open( ( filepath ).c_str() );
+
+  std::string str, spriteKey;
+  unsigned int spriteIndex, frameNumber;
+
+  if ( file.is_open() )
+  {
+    file >> str >> totalFrames;
+    file >> str >> fps;
+    file >> str >> looping;
+
+    while ( file.good() )
+    {
+      file >> str;
+      if ( str[0] == '%' )
+        break;
+      file >> str >> spriteKey;
+      file >> str >> spriteIndex;
+      file >> str >> frameNumber;
+      m_Sprites[frameNumber] = Sprite( spriteKey, spriteIndex );
+    }
+    file.close();
+  }
+  else
+  {
+#
+    DeltaEngine_CORE_WARN( "Animation clip file \"{}\" doesn't exist, creating automatically", filepath.c_str() );
+
+    UpdateAnimation( filepath );
+  }
+  DeltaEngine_CORE_TRACE( "Animation clip {} was loaded successfully", filepath );
+}
+
+void AnimationClip::UpdateAnimation( std::string filepath )
+{
+#ifdef DE_EDITOR
+  std::ofstream file { filepath.c_str() };
+  if ( file.is_open() )
+  {
+    file << "frames " << totalFrames << std::endl;
+    file << "fps " << fps << std::endl;
+    file << "loop " << looping << std::endl << std::endl;
+
+    for ( auto &[FrameNo, Value] : m_Sprites )
+    {
+      file << Value.m_Key << "_i_" << Value.m_Index << std::endl;
+      file << "key " << Value.m_Key << std::endl;
+      file << "value " << Value.m_Index << std::endl;
+      file << "frame " << FrameNo << std::endl << std::endl;
+    }
+    file << "%" << std::endl;
+    file.close();
+  }
+  else
+  {
+    DeltaEngine_CORE_ERROR( "Failed to create animation clip \"{}\"!", filepath );
+  }
 #endif
-    std::ofstream file{filepath.c_str()};
-    if (file.is_open())
-    {
-      file << "frames " << totalFrames << std::endl;
-      file << "fps " << fps << std::endl;
-      file << "loop " << looping << std::endl << std::endl;
 
-      for (auto& [FrameNo, Value] : m_Sprites)
-      {
-        file << Value.m_Key << "_i_" << Value.m_Index << std::endl;
-        file << "key " << Value.m_Key << std::endl;
-        file << "value " << Value.m_Index << std::endl;
-        file << "frame " << FrameNo << std::endl << std::endl;
-      }
-      file << "%" << std::endl;
-      file.close();
-    }
-    else
-    {
-      DeltaEngine_CORE_ERROR("Failed to create animation clip \"{}\"!", filepath);
-    }
-  }
+}
 }
