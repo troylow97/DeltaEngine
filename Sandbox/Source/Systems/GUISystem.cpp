@@ -97,8 +97,18 @@ void GUISystem::LateUpdate()
 
   em.ForEach( [&]( EntityID &id, EntityName &name, RendererOverlay &r, Image &i, GUI &gui )
   {
-    if ( !name.name.compare( "MenuTitle" ))
+    if ( !name.name.compare( "MenuTitle" ) )
       menu = true;
+
+    if ( !name.name.compare( "UI_Health" ) )
+      if ( em.IsEntityValid( UnitManager::GetPlayerID() ) )
+      {
+        if ( em.HasComponent<Health>( UnitManager::GetPlayerID() ) )
+        {
+          auto &health = em.GetComponent<Health>( UnitManager::GetPlayerID() );
+          i.m_FillAmount = static_cast<float>( health.CurrentHealth ) / static_cast<float>( health.MaxHealth );
+        }
+      }
 
     if ( s )
       return;
@@ -134,7 +144,7 @@ void GUISystem::LateUpdate()
     {
       if ( em.HasComponent<State>( id ) )
       {
-        auto& s = em.GetComponent<State>( id );
+        auto &s = em.GetComponent<State>( id );
         s.SetBool( "Hover", true );
       }
 
@@ -158,18 +168,17 @@ void GUISystem::LateUpdate()
     {
       if ( em.HasComponent<State>( id ) )
       {
-        auto& s = em.GetComponent<State>( id );
+        auto &s = em.GetComponent<State>( id );
         s.SetBool( "Hover", false );
       }
     }
-
   } );
 
   if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) )
   {
-    if (!menu )
+    if ( !menu )
     {
-      if ( env.pClock->TimeScale() > 0.1f )
+      if ( env.pClock->TimeScale() > 0.1f)
         Pause();
       else if ( current.back() == 0 )
         Unpause();
@@ -180,14 +189,11 @@ void GUISystem::LateUpdate()
       PopScreen();
   }
 
-    
-
   s = false;
   menu = false;
 
   if ( change )
     ChangeState();
-
 }
 
 void GUISystem::ChangeState()
@@ -234,6 +240,6 @@ RTTR_REGISTRATION
     .method( "Unpause", &GUISystem::Unpause )
     .method( "Start", &GUISystem::Start )
     .method( "Quit", &GUISystem::Quit )
-    .method("PopScreen", &GUISystem::PopScreen);
+    .method( "PopScreen", &GUISystem::PopScreen );
 }
 }
