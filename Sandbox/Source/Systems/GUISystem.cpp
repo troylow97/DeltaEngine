@@ -31,18 +31,23 @@ namespace DeltaEngine
 {
 
 std::vector<unsigned> current;
+bool s { false };
+bool menu { false };
+bool change { false };
+std::string tmp {};
 
 
 void GUISystem::PopScreen()
 {
-  em.ForEach( [&]( GUI &gui, RendererOverlay &r )
+  if ( current.size() > 1 )
   {
-    if ( gui.screen == current.back() )
-      r.m_Active = false;
-  } );
-
-  if ( current.size() != 1 )
+    em.ForEach( [&]( GUI &gui, RendererOverlay &r )
+    {
+      if ( gui.screen == current.back() )
+        r.m_Active = false;
+    } );
     current.pop_back();
+  }
 }
 
 
@@ -54,6 +59,7 @@ void GUISystem::PushScreen( unsigned screen )
     if ( gui.screen == screen )
       r.m_Active = true;
   } );
+  s = true;
 }
 
 void GUISystem::Initialize()
@@ -91,6 +97,22 @@ void GUISystem::LateUpdate()
 
   em.ForEach( [&]( EntityID &id, EntityName &name, RendererOverlay &r, Image &i, GUI &gui )
   {
+    if ( !name.name.compare( "MenuTitle" ) )
+      menu = true;
+
+    if ( !name.name.compare( "UI_Health" ) )
+      if ( em.IsEntityValid( UnitManager::GetPlayerID() ) )
+      {
+        if ( em.HasComponent<Health>( UnitManager::GetPlayerID() ) )
+        {
+          auto &health = em.GetComponent<Health>( UnitManager::GetPlayerID() );
+          i.m_FillAmount = static_cast<float>( health.CurrentHealth ) / static_cast<float>( health.MaxHealth );
+        }
+      }
+
+    if ( s )
+      return;
+
     if ( !r.m_Active || gui.screen != current.back() )
       return;
 
@@ -122,7 +144,7 @@ void GUISystem::LateUpdate()
     {
       if ( em.HasComponent<State>( id ) )
       {
-        auto& s = em.GetComponent<State>( id );
+        auto &s = em.GetComponent<State>( id );
         s.SetBool( "Hover", true );
       }
 
@@ -146,43 +168,62 @@ void GUISystem::LateUpdate()
     {
       if ( em.HasComponent<State>( id ) )
       {
-        auto& s = em.GetComponent<State>( id );
+        auto &s = em.GetComponent<State>( id );
         s.SetBool( "Hover", false );
       }
     }
-
-
   } );
 
-  //( 1 - c.GetFixedAspectRatio() / c.GetAspectRatio() ) / 2;
+  if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) )
+  {
+    if ( !menu )
+    {
+      if ( env.pClock->TimeScale() > 0.1f)
+        Pause();
+      else if ( current.back() == 0 )
+        Unpause();
+      else
+        PopScreen();
+    }
+    else if ( current.back() != 0 )
+      PopScreen();
+  }
 
-  //if ( c.GetFixedAspectRatio() / c.GetAspectRatio() )
-  //{
-  //  coords
-  //}
+  s = false;
+  menu = false;
 
-
-
+  if ( change )
+    ChangeState();
 }
 
+void GUISystem::ChangeState()
+{
+  env.pECS->GetWorld().GetEntityManager().Clear();
+  env.pECS->GetWorld().Load( tmp );
+  current.clear();
+  PushScreen( 0 );
+  tmp.clear();
+  change = false;
+}
 
 
 
 void GUISystem::Pause()
 {
   env.pClock->TimeScale( 0.0f );
+  PushScreen( 1 );
 }
 
 void GUISystem::Unpause()
 {
   env.pClock->TimeScale( 1.0f );
+  PopScreen();
 }
 
 void GUISystem::Start( const std::string &file )
 {
-  std::string tmp { file };
-  env.pECS->GetWorld().GetEntityManager().Clear();
-  env.pECS->GetWorld().Load( tmp );
+  tmp.assign( file );
+  change = true;
 }
 
 
@@ -199,6 +240,6 @@ RTTR_REGISTRATION
     .method( "Unpause", &GUISystem::Unpause )
     .method( "Start", &GUISystem::Start )
     .method( "Quit", &GUISystem::Quit )
-    .method("PopScreen", &GUISystem::PopScreen);
+    .method( "PopScreen", &GUISystem::PopScreen );
 }
 }

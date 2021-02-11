@@ -17,7 +17,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Audio/AudioEngine.h"
 #include "Core/Utils/Random.h"
 #include "MouseCalculation.h"
-#include <math.h>
 
 namespace DeltaEngine
 {
@@ -229,7 +228,7 @@ namespace DeltaEngine
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = {1.0f, 1.0f};
+      em.GetComponent<Image>(missile).m_Size = {0.6f, 0.6f};
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
       em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
       em.GetComponent<State>(id).SetBool("Ranged", true);
@@ -241,15 +240,11 @@ namespace DeltaEngine
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
         em.GetComponent<RigidBody>(missile).AccumulatedForce = {8000, 3500};
-        em.GetComponent<Transform>(missile2).position.x += 0.5f;
-        em.GetComponent<RigidBody>(missile2).AccumulatedForce = {8000, 3500};
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
         em.GetComponent<RigidBody>(missile).AccumulatedForce = {-8000, 3500};
-        em.GetComponent<Transform>(missile2).position.x -= 0.5f;
-        em.GetComponent<RigidBody>(missile2).AccumulatedForce = {-8000, 3500};
       }
     }
     else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
@@ -258,22 +253,22 @@ namespace DeltaEngine
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = { 1.0f, 1.0f };
+      em.GetComponent<Image>(missile).m_Size = { 0.6f, 0.6f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
 
       //Calculate Direction Vector
-      Vector2 direction_vector = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position - em.GetComponent<Transform>(id).position;
-      direction_vector = direction_vector.Normalize();
+      //Vector2 direction_vector = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position - em.GetComponent<Transform>(id).position;
+      //direction_vector = direction_vector.Normalize();
 
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = direction_vector * 3000;
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { -7000, -2500 };
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = direction_vector * 3000;
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { 7000, -2500 };
       }
     }
   }

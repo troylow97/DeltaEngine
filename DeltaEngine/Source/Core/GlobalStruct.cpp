@@ -25,4 +25,9 @@ namespace DeltaEngine
   {
     return env.pClock->FixedDeltaTime();
   }
+
+  double FixedUnscaledDeltaTime()
+  {
+    return env.pClock->FixedUnscaledDeltaTime();
+  }
 }
