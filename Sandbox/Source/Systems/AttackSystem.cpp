@@ -240,15 +240,11 @@ namespace DeltaEngine
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
         em.GetComponent<RigidBody>(missile).AccumulatedForce = {8000, 3500};
-        em.GetComponent<Transform>(missile2).position.x += 0.5f;
-        em.GetComponent<RigidBody>(missile2).AccumulatedForce = {8000, 3500};
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
         em.GetComponent<RigidBody>(missile).AccumulatedForce = {-8000, 3500};
-        em.GetComponent<Transform>(missile2).position.x -= 0.5f;
-        em.GetComponent<RigidBody>(missile2).AccumulatedForce = {-8000, 3500};
       }
     }
     else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
@@ -267,12 +263,12 @@ namespace DeltaEngine
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { 4000, 2500 };
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { -7000, -2500 };
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { -4000, 2500 };
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { 7000, -2500 };
       }
     }
   }

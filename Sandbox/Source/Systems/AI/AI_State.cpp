@@ -127,7 +127,7 @@ namespace DeltaEngine
 
         //Attack if player  is close AND attack cooldown is 0
         auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
-        if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.3f &&
+        if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.5f &&
             AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1 && env.pECS->GetWorld().GetEntityManager().
             GetComponent<Attack>(monster).
             MeleeCooldownTimer <= 0)

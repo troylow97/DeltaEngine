@@ -23709,7 +23709,7 @@
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
-                "Gravity": false,
+                "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
