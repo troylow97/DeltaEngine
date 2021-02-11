@@ -171,8 +171,10 @@ void GUISystem::LateUpdate()
     {
       if ( env.pClock->TimeScale() > 0.1f )
         Pause();
-      else
+      else if ( current.back() == 0 )
         Unpause();
+      else
+        PopScreen();
     }
     else if ( current.back() != 0 )
       PopScreen();

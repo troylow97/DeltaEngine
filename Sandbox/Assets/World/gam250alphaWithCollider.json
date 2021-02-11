@@ -21698,7 +21698,7 @@
             "RendererOverlay": {
                 "Pos": {
                     "x": 0.0,
-                    "y": -400.0
+                    "y": -280.0
                 },
                 "Width/Height": {
                     "x": 420.0,
@@ -21901,7 +21901,7 @@
             "RendererOverlay": {
                 "Pos": {
                     "x": 5.0,
-                    "y": -520.0
+                    "y": -400.0
                 },
                 "Width/Height": {
                     "x": 420.0,
@@ -22004,7 +22004,7 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 20.0,
+                    "x": 25.0,
                     "y": -760.0
                 },
                 "Width/Height": {
@@ -22108,8 +22108,8 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 10.0,
-                    "y": -280.0
+                    "x": 15.0,
+                    "y": -640.0
                 },
                 "Width/Height": {
                     "x": 620.0,
@@ -22213,7 +22213,7 @@
             "RendererOverlay": {
                 "Pos": {
                     "x": 20.0,
-                    "y": -640.0
+                    "y": -520.0
                 },
                 "Width/Height": {
                     "x": 420.0,
@@ -22356,9 +22356,9 @@
                 "Wireframe": false
             },
             "GUI": {
-                "Func": "",
+                "Func": "PopScreen",
                 "File": "",
-                "GUI Type": "Interface",
+                "GUI Type": "Button",
                 "Screen No.": 2,
                 "Target No.": 0
             }
