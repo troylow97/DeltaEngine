@@ -1,6 +1,61 @@
 Textures/FID_ATTACK_i_0
 offset 0 0
-size 2000 1200
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_1
+offset 500 0
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_2
+offset 1000 0
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_3
+offset 1500 0
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_4
+offset 0 400
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_5
+offset 500 400
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_6
+offset 1000 400
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_7
+offset 1500 400
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_8
+offset 0 800
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_9
+offset 500 800
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_10
+offset 1000 800
+size 500 400
+pivot 0.5 0.5
+
+Textures/FID_ATTACK_i_11
+offset 1500 800
+size 500 400
 pivot 0.5 0.5
 
 %
