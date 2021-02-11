@@ -100,6 +100,16 @@ void GUISystem::LateUpdate()
     if ( !name.name.compare( "MenuTitle" ) )
       menu = true;
 
+    if ( !name.name.compare( "UI_Health" ) )
+      if ( em.IsEntityValid( UnitManager::GetPlayerID() ) )
+      {
+        if ( em.HasComponent<Health>( UnitManager::GetPlayerID() ) )
+        {
+          auto &health = em.GetComponent<Health>( UnitManager::GetPlayerID() );
+          i.m_FillAmount = static_cast<float>( health.CurrentHealth ) / static_cast<float>( health.MaxHealth );
+        }
+      }
+
     if ( s )
       return;
 
@@ -162,23 +172,13 @@ void GUISystem::LateUpdate()
         s.SetBool( "Hover", false );
       }
     }
-
-    if ( name.name.compare( "UI_Health" ) )
-      if ( em.IsEntityValid( UnitManager::GetPlayerID() ) )
-      {
-        if ( em.HasComponent<Health>( UnitManager::GetPlayerID() ) )
-        {
-          auto &health = em.GetComponent<Health>( UnitManager::GetPlayerID() );
-          i.m_FillAmount = static_cast<float>( health.CurrentHealth ) / static_cast<float>( health.MaxHealth );
-        }
-      }
   } );
 
   if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) )
   {
     if ( !menu )
     {
-      if ( env.pClock->TimeScale() > 0.1f )
+      if ( env.pClock->TimeScale() > 0.1f)
         Pause();
       else if ( current.back() == 0 )
         Unpause();
