@@ -85,7 +85,6 @@ namespace DeltaEngine
               r2d.m_Active = true;
             else
               r2d.m_Active = false;
-
           }
         });
       });
