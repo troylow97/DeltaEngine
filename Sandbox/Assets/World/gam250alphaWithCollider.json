@@ -22389,12 +22389,12 @@
                 }
             },
             "Rigidbody": {
-                "Mass": 20.0,
+                "Mass": 40.0,
                 "Move Speed": 12.0,
-                "Restitution": 1.0,
+                "Restitution": 3.0,
                 "Friction Coefficient": 1.5,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 12.0,
+                "Max Acceleration": 15.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": true,
                 "Moveable": true
@@ -22413,8 +22413,8 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Collision Layer": 255,
-                "Collision Layer ID": 255,
+                "Collision Layer": 9,
+                "Collision Layer ID": 2,
                 "Trigger": false,
                 "Platform": false
             },
