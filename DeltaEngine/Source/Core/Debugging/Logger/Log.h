@@ -65,5 +65,5 @@ namespace DeltaEngine
 #define DeltaEngine_ERROR_TO_FILE(...) spdlog::get("client_file_logger")->error(__VA_ARGS__);
 #define DeltaEngine_FATAL_TO_FILE(...) spdlog::get("client_file_logger")->fatal(__VA_ARGS__);
 
-#define DeltaEngine_LOG_TO_FILE(...) spdlog::get("core_file_logger")->info(__VA_ARGS__);
+//#define DeltaEngine_LOG_TO_FILE(...) spdlog::get("core_file_logger")->info(__VA_ARGS__);
 //DeltaEngine_LOG_TO_FILE("TESTING123"); -> will write to DeltaEngine\Sandbox\Logs

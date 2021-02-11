@@ -22,8 +22,8 @@ namespace DeltaEngine
 
   void Log::Init()
   {
-    FileUtils::CreateDir(LOG_DIR);
-    FileUtils::CreateFile(LOG_TEXT_NAME);
+    //FileUtils::CreateDir(LOG_DIR);
+    //FileUtils::CreateFile(LOG_TEXT_NAME);
 
     spdlog::set_pattern("%^[%T] %n: %v%$");
     _coreLogger = spdlog::stdout_color_mt("DELTAENGINE");
@@ -41,7 +41,7 @@ namespace DeltaEngine
 #else
     _coreLogger->set_level(spdlog::level::off);
 #endif
-    core_file_logger = spdlog::basic_logger_mt("core_file_logger", LOG_TEXT_NAME);
+    //core_file_logger = spdlog::basic_logger_mt("core_file_logger", LOG_TEXT_NAME);
 
     spdlog::flush_on(spdlog::level::info);
   }

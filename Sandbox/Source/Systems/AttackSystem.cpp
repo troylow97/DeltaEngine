@@ -56,7 +56,11 @@ namespace DeltaEngine
             EntityID player = UnitManager::GetPlayerID();
             SMGAttack(player);
         }
-
+        em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
+          {
+            if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
+              r2d.m_Active = a.SMGAttack;
+          });
         if (a.SMGAttack)
         {
           a.StartSMGCooldownTimer = true;
@@ -94,7 +98,6 @@ namespace DeltaEngine
                 player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
                 player_bodypart_image.m_FlipY = false;
               }
-
             }
           });
         }

@@ -567,4 +567,14 @@ SMGAttack
 ? 1
 endTransition
 
+transition
+start
+Clip/DAVE_FIRE_HEAD
+end
+Clip/DAVE_IDLE
+condition
+SMGAttack
+? 0
+endTransition
+
 %endfile
