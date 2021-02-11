@@ -257,22 +257,22 @@ namespace DeltaEngine
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = { 1.0f, 1.0f };
+      em.GetComponent<Image>(missile).m_Size = { 0.6f, 0.6f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
 
       //Calculate Direction Vector
-      Vector2 direction_vector = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position - em.GetComponent<Transform>(id).position;
-      direction_vector = direction_vector.Normalize();
+      //Vector2 direction_vector = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position - em.GetComponent<Transform>(id).position;
+      //direction_vector = direction_vector.Normalize();
 
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = direction_vector * 3000;
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { 4000, 2500 };
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = direction_vector * 3000;
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { -4000, 2500 };
       }
     }
   }

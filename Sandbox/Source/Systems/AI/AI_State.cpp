@@ -122,7 +122,7 @@ namespace DeltaEngine
         //Move towards player
         AITools::FlyTowardsPoint(monster, Vector2{
                                    player_pos.x + Random::RandomFloatRange(-0.3f, 0.3f),
-                                   player_pos.y + Random::RandomFloatRange(-0.2f, 0.4f)
+                                   player_pos.y + Random::RandomFloatRange(-0.2f, 0.0f)
             });
 
         //Attack if player  is close AND attack cooldown is 0
@@ -321,7 +321,7 @@ namespace DeltaEngine
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
         auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
         auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
-
+        auto& rend = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster);
         //Seen and attacking
         if (BurrowState == 0)
         {
@@ -382,6 +382,7 @@ namespace DeltaEngine
                 collider.isTrigger = true;
                 rb.hasGravity = false;
                 rb.Movespeed *= 1.2f;
+                rend.m_SortingLayer = 2;
                 BurrowDownDuration = 0.5f;
                 switch (CurrentPoint)
                 {
@@ -442,6 +443,7 @@ namespace DeltaEngine
                 collider.isTrigger = false;
                 rb.hasGravity = true;
                 rb.Movespeed /= 1.2f;
+                rend.m_SortingLayer = 1;
                 auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
                 health.isInvulnerable = false;
                 CooldownTimer = 3.0f;
