@@ -228,7 +228,7 @@ namespace DeltaEngine
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = {1.0f, 1.0f};
+      em.GetComponent<Image>(missile).m_Size = {0.6f, 0.6f};
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
       em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
       em.GetComponent<State>(id).SetBool("Ranged", true);
