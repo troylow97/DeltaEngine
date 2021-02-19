@@ -143,6 +143,22 @@ namespace DeltaEngine
         }
       });
     }
+    else if (InputManager::Instance().IsKeyPressed(DEVK_D) && InputManager::Instance().IsKeyPressed(DEVK_E))
+    {
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a, Image& i, Attack& att)
+            {});
+        /*
+              env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      {
+        if (i1.previousKey != DEVK_D && a1.AllowSMGAttack)
+        {
+          a1.SMGAttack = true;
+          a.SetBool("SMGAttack", true);
+          idle_timer = 0.0f; // what's this troy low yee?
+        }
+      });
+        */
+    }
     else if (InputManager::Instance().IsKeyReleased(DEVK_D))
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, RigidBody& r1, Input& i1, State& a)
@@ -203,8 +219,8 @@ namespace DeltaEngine
 
       	if(att.Blocking)
       	{
-            a.SetBool("ShieldUp", false);
-            att.Blocking = false;
+          a.SetBool("ShieldUp", false);
+          att.Blocking = false;
       	}
         a.SetBool("IsIdle", false);
         a.SetBool("JumpStart", true);
@@ -324,11 +340,11 @@ namespace DeltaEngine
       });
     }
 
-    if (InputManager::Instance().IsKeyPressed(DEVK_E))
+    if (InputManager::Instance().IsKeyPressed(DEVK_E)/* && !(InputManager::Instance().IsKeyPressed(DEVK_D))*/)
     {
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
       {
-        if (a1.AllowSMGAttack)
+        if (i1.previousKey != DEVK_D && a1.AllowSMGAttack)
         {
           a1.SMGAttack = true;
           a.SetBool("SMGAttack", true);
