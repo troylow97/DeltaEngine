@@ -67,12 +67,12 @@
                 "Name": "Lancer"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "enemy"
             },
             "Transform": {
                 "Position": {
                     "x": 0.838269054889679,
-                    "y": -0.7625400424003601,
+                    "y": -0.7617700099945068,
                     "z": 0.0
                 },
                 "Scale": {
@@ -101,7 +101,7 @@
             "Collider": {
                 "Center": {
                     "x": 0.838269054889679,
-                    "y": -0.7625400424003601
+                    "y": -0.7617700099945068
                 },
                 "Offset": {
                     "x": 0.0,
@@ -119,8 +119,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/FID_WALK",
-                    "index": 6
+                    "key": "Textures/LANCER_ALERT_IDLE",
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -171,29 +171,37 @@
                 "AIState": "idle_lancer"
             },
             "Health": {
-                "Current Health": 10,
-                "Max Health": 10,
+                "Current Health": 1000,
+                "Max Health": 1000,
                 "TakenDamageTimer": 0.0,
                 "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 1,
                 "Melee Damage": 1,
+                "SMG Damage": 1,
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
                 "Melee Cooldown": 1.0,
                 "Range Cooldown": 1.0,
+                "SMG Cooldown": 0.18000000715255738,
                 "Melee Cooldown Timer": -0.20000000298023225,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.18000000715255738,
+                "Attack Delay": -0.20000000298023225,
                 "Ranged Attack": false,
                 "Melee Attack": false,
+                "SMG Attack": false,
+                "Allow SMG Attack": true,
                 "Blocking": false,
-                "Start Combo Cooldown Timer": false
+                "Start SMG Cooldown Timer": false,
+                "Start Combo Cooldown Timer": false,
+                "Damage Enemy": false
             }
         },
         {
@@ -247,7 +255,7 @@
             "Transform": {
                 "Position": {
                     "x": 7.066181182861328,
-                    "y": -0.761760413646698,
+                    "y": -0.7618808746337891,
                     "z": 0.0
                 },
                 "Scale": {
@@ -276,7 +284,7 @@
             "Collider": {
                 "Center": {
                     "x": 7.066181182861328,
-                    "y": -0.761760413646698
+                    "y": -0.7618808746337891
                 },
                 "Offset": {
                     "x": 0.0,
@@ -294,8 +302,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/BreathingSpritesheet",
-                    "index": 7
+                    "key": "Textures/DAVE_PUNCH1_NEW",
+                    "index": 4
                 },
                 "Size": {
                     "x": 1.0,
@@ -339,29 +347,37 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 10,
-                "Max Health": 10,
+                "Current Health": 1000,
+                "Max Health": 1000,
                 "TakenDamageTimer": 0.0,
                 "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 1,
                 "Melee Damage": 1,
+                "SMG Damage": 1,
                 "Melee Combo Damage": 3,
-                "Number Of Combo": 0,
+                "Number Of Combo": 1,
                 "Max Combo Number": 3,
                 "Melee Cooldown": 1.0,
                 "Range Cooldown": 1.0,
-                "Melee Cooldown Timer": -0.21666638553142548,
+                "SMG Cooldown": 0.18000000715255738,
+                "Melee Cooldown Timer": 0.016666946932673456,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 1.5,
+                "Combo Cooldown Timer": 0.5000009536743164,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.18000000715255738,
+                "Attack Delay": -0.20000000298023225,
                 "Ranged Attack": false,
                 "Melee Attack": true,
-                "Blocking": true,
-                "Start Combo Cooldown Timer": false
+                "SMG Attack": false,
+                "Allow SMG Attack": true,
+                "Blocking": false,
+                "Start SMG Cooldown Timer": false,
+                "Start Combo Cooldown Timer": true,
+                "Damage Enemy": false
             },
             "Player": {
                 "Upgrade Points Per Enemy Defeated": 50,
@@ -371,7 +387,7 @@
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
-                "Previous": 68,
+                "Previous": 69,
                 "Current": 0
             }
         }

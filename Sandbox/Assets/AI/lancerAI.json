@@ -1,6 +1,6 @@
 {
     "charge_detection_range": {
-        "x": 2.0,
+        "x": 5.0,
         "y": 5.0
     }
 }

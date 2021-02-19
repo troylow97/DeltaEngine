@@ -29,6 +29,10 @@ param
 IsDamaged
 0 0
 
+param
+LancerCharge
+0 0
+
 %EditorPositions:
 
 pos
@@ -61,23 +65,17 @@ Clip/LANCER_IDLE
 
 pos
 Clip/LANCER_BOUNCE
--33 354
+34 401
 
 pos
 Clip/LANCER_ATTACK
--14 214
+249 188
+
+pos
+Clip/LANCER_CHARGE
+-3 162
 
 %Transitions:
-
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_ATTACK
-condition
-MeleeAttack
-? 1
-endTransition
 
 transition
 start
@@ -102,6 +100,26 @@ IsBouncing
 ? 0
 condition
 IsAlerted
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_ALERT_IDLE
+end
+Clip/LANCER_CHARGE
+condition
+LancerCharge
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_ATTACK
+condition
+MeleeAttack
 ? 1
 endTransition
 
