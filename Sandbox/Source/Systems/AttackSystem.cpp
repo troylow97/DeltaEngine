@@ -274,12 +274,14 @@ namespace DeltaEngine
 
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
-        em.GetComponent<Transform>(missile).position.x += 0.4f;
+        //em.GetComponent<Transform>(missile).position.x += 0.4f;
+        em.GetComponent<Transform>(missile).position.y -= 0.2f;
         em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 }; // -7000, -2500
       }
       else
       {
-        em.GetComponent<Transform>(missile).position.x -= 0.4f;
+        //em.GetComponent<Transform>(missile).position.x -= 0.4f;
+        em.GetComponent<Transform>(missile).position.y -= 0.2f;
         em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 }; //  7000, -2500
       }
     }
