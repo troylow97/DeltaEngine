@@ -20245,8 +20245,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
+                    "x": 17.8799991607666,
+                    "y": 2.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -20302,7 +20302,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 0.5,
@@ -20377,7 +20377,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 0.5,
@@ -20452,7 +20452,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 0.5,
@@ -20527,7 +20527,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 0.5,
@@ -20602,7 +20602,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 0.5,
@@ -20677,7 +20677,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 0.5,
@@ -20752,7 +20752,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -20827,7 +20827,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -20902,7 +20902,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -20977,7 +20977,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -21052,7 +21052,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -21127,7 +21127,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -21202,7 +21202,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -21277,7 +21277,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -21352,7 +21352,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -21427,7 +21427,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -21502,7 +21502,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 8
+                    "index": 19
                 },
                 "Size": {
                     "x": 1.0,
@@ -22373,7 +22373,7 @@
             "Transform": {
                 "Position": {
                     "x": 17.8799991607666,
-                    "y": 0.4699999988079071,
+                    "y": 0.23625776171684266,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22401,8 +22401,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 17.8799991607666,
+                    "y": 0.23625776171684266
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22420,7 +22420,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_IDLE",
+                    "key": "Textures/DAVE_PUNCH1_NEW",
                     "index": 0
                 },
                 "Size": {
@@ -22475,15 +22475,15 @@
                 "Melee Damage": 4,
                 "SMG Damage": 2,
                 "Melee Combo Damage": 6,
-                "Number Of Combo": 0,
+                "Number Of Combo": 1,
                 "Max Combo Number": 3,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": 0.18333333730697633,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
+                "Combo Cooldown Timer": 1.4666666984558106,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -22494,7 +22494,7 @@
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
+                "Start Combo Cooldown Timer": true,
                 "Damage Enemy": false
             },
             "Player": {
@@ -22522,7 +22522,7 @@
             "Transform": {
                 "Position": {
                     "x": 17.8799991607666,
-                    "y": 0.4699999988079071,
+                    "y": -9.546305656433106,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22550,8 +22550,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 17.8799991607666,
+                    "y": -9.546305656433106
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22627,7 +22627,7 @@
             "Transform": {
                 "Position": {
                     "x": 0.0,
-                    "y": 0.0,
+                    "y": -10.016305923461914,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22656,7 +22656,7 @@
             "Collider": {
                 "Center": {
                     "x": 0.0,
-                    "y": 0.0
+                    "y": -10.016305923461914
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22732,7 +22732,7 @@
             "Transform": {
                 "Position": {
                     "x": 0.0,
-                    "y": 0.0,
+                    "y": -10.016305923461914,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22761,7 +22761,7 @@
             "Collider": {
                 "Center": {
                     "x": 0.0,
-                    "y": 0.0
+                    "y": -10.016305923461914
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22862,8 +22862,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 29.719999313354493,
+                    "y": 3.7300000190734865
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22881,8 +22881,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_IDLE_STRETCH",
-                    "index": 0
+                    "key": "Textures/LANCER_ALERT_IDLE",
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -22948,8 +22948,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -23004,8 +23004,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 28.760000228881837,
+                    "y": 3.7200000286102297
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23023,8 +23023,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_IDLE_STRETCH",
-                    "index": 0
+                    "key": "Textures/LANCER_ALERT_IDLE",
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -23090,8 +23090,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -23118,7 +23118,7 @@
             "Transform": {
                 "Position": {
                     "x": 27.729999542236329,
-                    "y": 0.12999999523162843,
+                    "y": 0.4987783133983612,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23146,8 +23146,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 27.729999542236329,
+                    "y": 0.3987783193588257
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23165,8 +23165,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_IDLE_STRETCH",
-                    "index": 0
+                    "key": "Textures/SERP_FIRE",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23232,8 +23232,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 2.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -23288,8 +23288,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 25.510000228881837,
+                    "y": 1.5800000429153443
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23307,8 +23307,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_IDLE_STRETCH",
-                    "index": 0
+                    "key": "Textures/LANCER_ALERT_IDLE",
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -23374,8 +23374,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -23430,8 +23430,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 31.84000015258789,
+                    "y": 1.6399999856948853
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23449,8 +23449,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_IDLE_STRETCH",
-                    "index": 0
+                    "key": "Textures/LANCER_ALERT_IDLE",
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -23516,8 +23516,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -23543,9 +23543,9 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 37.150001525878909,
-                    "y": 0.18000000715255738,
-                    "z": 1.0
+                    "x": 38.014190673828128,
+                    "y": 0.31396666169166567,
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 0.5,
@@ -23572,8 +23572,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 38.014190673828128,
+                    "y": 0.21396666765213014
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23592,7 +23592,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 7
                 },
                 "Size": {
                     "x": 1.0,
@@ -23650,16 +23650,16 @@
             },
             "Attack": {
                 "Range Damage": 0,
-                "Melee Damage": 10,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 1,
-                "Melee Cooldown": 2.0,
+                "Melee Cooldown": 0.800000011920929,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -23685,9 +23685,9 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 43.91999816894531,
-                    "y": 1.1100000143051148,
-                    "z": 1.0
+                    "x": 44.777984619140628,
+                    "y": 1.0616530179977418,
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 0.5,
@@ -23714,8 +23714,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 44.777984619140628,
+                    "y": 0.9616529941558838
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23734,7 +23734,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 7
                 },
                 "Size": {
                     "x": 1.0,
@@ -23792,16 +23792,16 @@
             },
             "Attack": {
                 "Range Damage": 0,
-                "Melee Damage": 10,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
                 "Max Combo Number": 1,
-                "Melee Cooldown": 2.0,
+                "Melee Cooldown": 0.800000011920929,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -23856,8 +23856,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 43.150001525878909,
+                    "y": 1.75
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23876,7 +23876,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -23942,8 +23942,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -23998,8 +23998,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 44.540000915527347,
+                    "y": 1.75
                 },
                 "Offset": {
                     "x": 0.0,
@@ -24018,7 +24018,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24084,8 +24084,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -24140,8 +24140,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 51.2400016784668,
+                    "y": 1.0399999618530274
                 },
                 "Offset": {
                     "x": 0.0,
@@ -24160,7 +24160,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24226,8 +24226,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -24282,8 +24282,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 53.599998474121097,
+                    "y": 0.4099999964237213
                 },
                 "Offset": {
                     "x": 0.0,
@@ -24301,8 +24301,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SERP_CHARGE",
-                    "index": 0
+                    "key": "Textures/SERP_FIRE",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24368,8 +24368,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 2.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -24424,8 +24424,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 57.4900016784668,
+                    "y": 0.4099999964237213
                 },
                 "Offset": {
                     "x": 0.0,
@@ -24443,8 +24443,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SERP_CHARGE",
-                    "index": 0
+                    "key": "Textures/SERP_FIRE",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24510,8 +24510,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 2.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -24566,8 +24566,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 54.52000045776367,
+                    "y": 2.819999933242798
                 },
                 "Offset": {
                     "x": 0.0,
@@ -24586,7 +24586,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24652,8 +24652,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -24708,8 +24708,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 58.20000076293945,
+                    "y": 3.390000104904175
                 },
                 "Offset": {
                     "x": 0.0,
@@ -24728,7 +24728,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24794,8 +24794,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -24850,8 +24850,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 57.40999984741211,
+                    "y": 3.390000104904175
                 },
                 "Offset": {
                     "x": 0.0,
@@ -24870,7 +24870,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24936,8 +24936,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -24992,8 +24992,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 57.88999938964844,
+                    "y": 3.869999885559082
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25012,7 +25012,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -25078,8 +25078,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -25106,8 +25106,8 @@
             "Transform": {
                 "Position": {
                     "x": 72.9000015258789,
-                    "y": 0.12999999523162843,
-                    "z": 0.4699999988079071
+                    "y": 0.13612499833106996,
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 0.5,
@@ -25134,8 +25134,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 72.9000015258789,
+                    "y": 0.13612499833106996
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25154,7 +25154,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -25220,8 +25220,8 @@
                 "Melee Cooldown": 1.5,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0,
-                "Range Cooldown Timer": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 0.0,
                 "Knockback Amount": 0.0,
@@ -25644,6 +25644,65 @@
                 "GUI Type": "Interface",
                 "Screen No.": 0,
                 "Target No.": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "player punch"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 18.479999542236329,
+                    "y": 0.23625776171684266,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.4000000059604645,
+                    "z": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 5.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.009999999776482582,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 18.479999542236329,
+                    "y": 0.23625776171684266
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 7,
+                "Collision Layer ID": 8,
+                "Trigger": true,
+                "Platform": false
+            },
+            "Lifespan": {
+                "Timer": 0.06666667014360428
             }
         }
     ]
