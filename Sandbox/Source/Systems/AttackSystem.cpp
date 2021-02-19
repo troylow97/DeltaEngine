@@ -24,111 +24,114 @@ namespace DeltaEngine
   {
   	if(em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
   	{
-  		//DASH
-        auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-        if (p.IsDashing || p.IsDodging)
+  	  //DASH
+      auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+      auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
+      if (p.IsDashing || p.IsDodging)
+      {
+        em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
+        p.StartDashingTimer = true;
+      }
+      if (p.StartDashingTimer)
+      {
+        p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
+        p.AllowDashing = false;
+        h.isInvulnerable = true;
+      }
+      if (p.DashingTimerCooldown <= 0.0f)
+      {
+        p.StartDashingTimer = false;
+        p.DashingTimerCooldown = p.DashingTimerDuration;
+        h.isInvulnerable = false;
+        p.AllowDashing = true;
+        s.SetBool("LancerAttack", false);
+      }
+      Dash();
+      
+  	  //SMG
+      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+      
+      if (a.SMGAttack && a.SMGFireRate <= 0.0f)
+      {
+          // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
+          //p.StartDashingTimer = true;
+          EntityID player = UnitManager::GetPlayerID();
+          SMGAttack(player);
+      }
+      em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
         {
-            em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
-            p.StartDashingTimer = true;
-        }
-        if (p.StartDashingTimer)
-        {
-            p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
-            p.AllowDashing = false;
-        }
-        if (p.DashingTimerCooldown <= 0.0f)
-        {
-            p.StartDashingTimer = false;
-            p.DashingTimerCooldown = p.DashingTimerDuration;
-            p.AllowDashing = true;
-            s.SetBool("LancerAttack", false);
-        }
-        Dash();
-
-  		//SMG
-        auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
-
-        if (a.SMGAttack && a.SMGFireRate <= 0.0f)
-        {
-            // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
-            //p.StartDashingTimer = true;
-            EntityID player = UnitManager::GetPlayerID();
-            SMGAttack(player);
-        }
+          if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
+            r2d.m_Active = a.SMGAttack;
+        });
+      if (a.SMGAttack)
+      {
+        a.StartSMGCooldownTimer = true;
         em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
-          {
-            if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
-              r2d.m_Active = a.SMGAttack;
-          });
-        if (a.SMGAttack)
         {
-          a.StartSMGCooldownTimer = true;
-          em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
+          if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
           {
-            if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
+            auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+            auto& player_bodypart_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
+      
+            player_bodypart_pos.position.x = player_pos.position.x;
+            player_bodypart_pos.position.y = player_pos.position.y;
+      
+            if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE)
             {
-              auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-              auto& player_bodypart_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
-
-              player_bodypart_pos.position.x = player_pos.position.x;
-              player_bodypart_pos.position.y = player_pos.position.y;
-
-              if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE)
+              if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
               {
-                if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
-                {
-                  Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y }; // CalculateDirectionVectorToShoot
-                  direction.Normalize();
-                  float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-                  player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-                }
-                else if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == false)
-                {
-                  Vector2 direction = { MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
-                  direction.Normalize();
-                  float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-                  player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-                }
-                else if (MouseCalculation::ShootLeft() && MouseCalculation::IsWithinRange(false) == false)
-                {
-                  Vector2 direction = { -MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
-                  direction.Normalize();
-                  float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-                  player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-                }
-                else
-                  player_bodypart_pos.rotation = Quaternion::Identity();
-
-                auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
-                auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
-                player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
-                player_bodypart_image.m_FlipY = true;
+                Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y }; // CalculateDirectionVectorToShoot
+                direction.Normalize();
+                float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+                player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
+              }
+              else if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == false)
+              {
+                Vector2 direction = { MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
+                direction.Normalize();
+                float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+                player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
+              }
+              else if (MouseCalculation::ShootLeft() && MouseCalculation::IsWithinRange(false) == false)
+              {
+                Vector2 direction = { -MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
+                direction.Normalize();
+                float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+                player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
               }
               else
-              {
-                auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
-                auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
-                player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
-                player_bodypart_image.m_FlipY = false;
-              }
+                player_bodypart_pos.rotation = Quaternion::Identity();
+      
+              auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+              auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
+              player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
+              player_bodypart_image.m_FlipY = true;
             }
-          });
-        }
-        if (a.StartSMGCooldownTimer)
+            else
+            {
+              auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+              auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
+              player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
+              player_bodypart_image.m_FlipY = false;
+            }
+          }
+        });
+      }
+      if (a.StartSMGCooldownTimer)
+      {
+        if (a.SMGFireRate >= 0.0f)
         {
-          if (a.SMGFireRate >= 0.0f)
-          {
-            a.SMGFireRate -= env.pClock->FixedDeltaTime();
-            a.AllowSMGAttack = false;
-          }
-          else
-          {
-            a.SMGFireRate = a.SMGCooldown;
-            a.AllowSMGAttack = true;
-            a.StartSMGCooldownTimer = false;
-          }
+          a.SMGFireRate -= env.pClock->FixedDeltaTime();
+          a.AllowSMGAttack = false;
         }
+        else
+        {
+          a.SMGFireRate = a.SMGCooldown;
+          a.AllowSMGAttack = true;
+          a.StartSMGCooldownTimer = false;
+        }
+      }
   	}
 
     // melee and ranged attack ----------------------------------------------------------------------------------
