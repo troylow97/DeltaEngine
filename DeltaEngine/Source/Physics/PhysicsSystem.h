@@ -34,7 +34,7 @@ namespace DeltaEngine
     float JumpForce{4500.0f};
     float InitialJumpForce{4500.0f};
     int CurrentJumpTicks{0};
-    int MaxJumpTicks{10};
+    int MaxJumpTicks{12};
     int CurrentDashTicks{0};
     int MaxDashTicks{10};
   END_DEFINE_SYSTEM(PhysicsSystem)

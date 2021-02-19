@@ -396,6 +396,7 @@ namespace DeltaEngine
                 auto& renderer = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster);
                 auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
                 health.isInvulnerable = true;
+                rb.isMoveable = true;
                 renderer.m_Active = true;
                 collider.isTrigger = true;
                 rb.hasGravity = false;
@@ -434,6 +435,7 @@ namespace DeltaEngine
                 //Monster is at point
                 BurrowState = 3;
                 rb.Direction = Vector2::zero();
+                rb.isMoveable = false;
                 s.SetBool("IsUnborrowing", true);
                 s.SetBool("MoveBurrowing", false);
             }
@@ -459,6 +461,7 @@ namespace DeltaEngine
                 BurrowState = 0;
                 BurrowUpDuration = 0.5f;
                 collider.isTrigger = false;
+                rb.isMoveable = true;
                 rb.hasGravity = true;
                 rb.Movespeed /= 1.2f;
                 rend.m_SortingLayer = 1;

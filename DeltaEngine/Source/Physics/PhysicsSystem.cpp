@@ -19,9 +19,9 @@ namespace DeltaEngine
 {
   void PhysicsSystem::Initialize()
   {
-    m_gravity_amount = {0, -50.0f};
+    m_gravity_amount = {0, -60.0f};
     CurrentJumpTicks = 0;
-    MaxJumpTicks = 7;
+    MaxJumpTicks = 10;
     CurrentDashTicks = 0;
     MaxDashTicks = 8;
     InitialJumpForce = 3500.0f;
@@ -40,9 +40,9 @@ namespace DeltaEngine
     {
       r1.FrictionCoeff = 0.01f;
     }
-    else if (r1.FrictionCoeff > 5)
+    else if (r1.FrictionCoeff > 4)
     {
-      r1.FrictionCoeff = 5.0f;
+      r1.FrictionCoeff = 4.0f;
     }
   }
 
@@ -170,7 +170,7 @@ namespace DeltaEngine
      if (p.IsJumping && CurrentJumpTicks >= 1)
      {
          r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };
-         JumpForce *= 0.7f;
+         JumpForce *= 0.75f;
 
          if (CurrentJumpTicks < MaxJumpTicks)
              CurrentJumpTicks++;

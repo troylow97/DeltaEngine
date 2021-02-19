@@ -75,6 +75,8 @@ namespace DeltaEngine
     
     if (block.Blocking && ((kb_vector.x > 0 && AITools::isFacingLeft(defender)) || (kb_vector.x < 0 && AITools::isFacingRight(defender))))
     {
+      if (env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(attacker).type == EntityCategory::E_ENEMY_BULLET)
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(attacker).CurrentHealth = 0;
       return true;
     }
      return false;
@@ -117,6 +119,8 @@ namespace DeltaEngine
         if (CheckEntityType(id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id1, static_cast<int>(CollisionHandlerLancerData.Damage));
+          EntityID bullet = GetEntityID(id1, id2, EntityCategory::E_ENEMY_LANCER_PUNCH);
+          ReduceHealth(bullet, 100);
           ApplyKnockBack(id1, id2, 400.0f);
           return;
         }
@@ -127,29 +131,33 @@ namespace DeltaEngine
         if (CheckEntityType(id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id2, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
-          ApplyKnockBack(id2, id1, 600.0f);
+          EntityID bullet = GetEntityID(id1, id2, EntityCategory::E_ENEMY_BULLET);
+          ReduceHealth(bullet, 100);
+          //ApplyKnockBack(id2, id1, 600.0f);
           return;
         }
         if (CheckEntityType(id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id1, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
-          ApplyKnockBack(id2, id1, 600.0f);
+          EntityID bullet = GetEntityID(id1, id2, EntityCategory::E_ENEMY_BULLET);
+          ReduceHealth(bullet, 100);
+          //ApplyKnockBack(id2, id1, 600.0f);
           return;
         }
       }
     
       //Player Detection Ranged Attack
-      if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET_DETECTION, id2, EntityCategory::E_ENEMY) ||
-          CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET_DETECTION, id1, EntityCategory::E_ENEMY))
-      {
-        EntityID target = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-        
-        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
-        {
-          if (et.type == EntityCategory::E_PLAYER_BULLET)
-            AITools::BulletTowardsEntity(bullet, target);
-        });
-      }
+      //if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET_DETECTION, id2, EntityCategory::E_ENEMY) ||
+      //    CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET_DETECTION, id1, EntityCategory::E_ENEMY))
+      //{
+      //  EntityID target = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+      //  
+      //  env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
+      //  {
+      //    if (et.type == EntityCategory::E_PLAYER_BULLET)
+      //      AITools::BulletTowardsEntity(bullet, target);
+      //  });
+      //}
     
       const auto player = UnitManager::GetPlayerID();
       auto& att = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(player);
@@ -158,6 +166,7 @@ namespace DeltaEngine
           CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET, id1, EntityCategory::E_ENEMY))
       {
         EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+
         ReduceHealth(enemy, att.RangedDamage);
         if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
           env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
@@ -169,7 +178,9 @@ namespace DeltaEngine
         CheckEntityType(id2, EntityCategory::E_PLAYER_SMG, id1, EntityCategory::E_ENEMY))
       {
         EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+        EntityID bullet = GetEntityID(id1, id2, EntityCategory::E_PLAYER_BULLET);
         ReduceHealth(enemy, att.SMGDamage);
+        ReduceHealth(bullet, 100);
         if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
           env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
         return;
