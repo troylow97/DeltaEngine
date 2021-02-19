@@ -128,9 +128,7 @@ namespace DeltaEngine
         a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
 
       if(a.AttackDelay > 0.0f)
-      {
-          a.AttackDelay -= env.pClock->FixedDeltaTime();
-      }
+        a.AttackDelay -= env.pClock->FixedDeltaTime();
 
       //Toggle Ranged Attack
       if (a.RangeAttack && a.RangeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
@@ -183,9 +181,6 @@ namespace DeltaEngine
         a.MeleeCooldownTimer = a.MeleeCooldown;
         a.MeleeAttack = false;
       }
-
-
-
 
       if (a.StartComboCooldownTimer)
       {
@@ -252,26 +247,26 @@ namespace DeltaEngine
     }
     else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
     {
-      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 0.35f, EntityCategory::E_ENEMY_BULLET);
+      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 1.0f, EntityCategory::E_ENEMY_BULLET);
+      Vector2 direction_to_shoot = { CalculateAttackDirection(id).x, CalculateAttackDirection(id).y };
+      Transform& enemy_pos = em.GetComponent<Transform>(id);
+      Collider& enemy_collider = em.GetComponent<Collider>(id);
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
       em.GetComponent<Image>(missile).m_Size = { 0.6f, 0.6f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
-
-      //Calculate Direction Vector
-      //Vector2 direction_vector = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position - em.GetComponent<Transform>(id).position;
-      //direction_vector = direction_vector.Normalize();
+      em.GetComponent<Transform>(missile).position = { enemy_pos.position.x, enemy_pos.position.y + (enemy_collider.size.y / 2 * 0.75f), enemy_pos.position.z };
 
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { -7000, -2500 };
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 }; // -7000, -2500
       }
       else
       {
         em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { 7000, -2500 };
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 }; //  7000, -2500
       }
     }
   }
@@ -436,5 +431,19 @@ namespace DeltaEngine
     em.GetComponent<EntityType>(smgbullet).type = type;
     em.GetComponent<RigidBody>(smgbullet).FrictionCoeff = 0.0f;
     return smgbullet;
+  }
+
+  Vector2 AttackSystem::CalculateAttackDirection(EntityID& enemy)
+  {
+    Transform& player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID());
+    Transform& enemy_pos = em.GetComponent<Transform>(enemy);
+    Collider& enemy_collider = em.GetComponent<Collider>(enemy);
+
+    Vector3 serpentipede_head = { enemy_pos.position.x, enemy_pos.position.y + (enemy_collider.size.y / 2 * 0.6f), enemy_pos.position.z };
+    Vector2 direction_vector = { player_pos.position.x - serpentipede_head.x, player_pos.position.y - serpentipede_head.y };
+    float magnitude = direction_vector.Magnitude();
+    Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
+    
+    return normalized_direction_vector;
   }
 } //Namespace DeltaEngine
