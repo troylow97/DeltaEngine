@@ -237,7 +237,7 @@ namespace DeltaEngine
         //To Add Blocking Mechanic here
 
 
-        if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 1.5f && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1.5f &&
+        if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2.5f && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1.5f &&
             !a.MeleeAttack && a.MeleeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
         {
             if (AITools::EntityisOnTheRight(monster, player))
@@ -261,7 +261,7 @@ namespace DeltaEngine
             s.SetBool("MeleeAttack", false);
     	}
 
-        if (s.GetBool("MeleeAttack") == false)
+        if (s.GetBool("MeleeAttack") == false && a.MeleeAttack && a.MeleeCooldownTimer <= 0)
         {
             s.SetBool("IsAlertRunning", true);
             if (AITools::Distance_X_BetweenEntityAndPoint(monster, ref.original_point) < 1)

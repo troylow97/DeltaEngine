@@ -12,7 +12,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 8.938798904418946,
+                    "x": 4.617987155914307,
                     "y": 2.0,
                     "z": 0.0
                 },
@@ -75,7 +75,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -109,8 +109,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.9435070753097535,
-                    "y": 0.0,
+                    "x": -2.3223021030426027,
+                    "y": -0.0023814840242266657,
                     "z": 0.0
                 },
                 "Scale": {
@@ -133,13 +133,13 @@
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
-                "Gravity": false,
+                "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": -1.9435070753097535,
-                    "y": 0.0
+                    "x": -2.3223021030426027,
+                    "y": -0.0023814840242266657
                 },
                 "Offset": {
                     "x": 0.0,
@@ -158,7 +158,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -177,7 +177,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -209,8 +209,8 @@
                 "AIState": "idle_fiddler"
             },
             "Health": {
-                "Current Health": 10,
-                "Max Health": 10,
+                "Current Health": 30,
+                "Max Health": 30,
                 "TakenDamageTimer": 0.0,
                 "Invulnerable": false
             },
@@ -224,20 +224,22 @@
                 "Melee Cooldown": 1.0,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.20000000298023225,
+                "Melee Cooldown Timer": -0.21666638553142548,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
+                "Combo Cooldown Timer": 1.5,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
+                "Attack Delay": -0.016666388139128686,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false
+                "Start Combo Cooldown Timer": false,
+                "Damage Enemy": false
             }
         },
         {
@@ -252,8 +254,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 8.938798904418946,
-                    "y": 0.0,
+                    "x": 4.617987155914307,
+                    "y": -0.0008848374709486961,
                     "z": 0.0
                 },
                 "Scale": {
@@ -276,13 +278,13 @@
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 12.0,
                 "Acceleration Pickup": 3.0,
-                "Gravity": false,
+                "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 8.938798904418946,
-                    "y": 0.0
+                    "x": 4.617987155914307,
+                    "y": -0.0008848374709486961
                 },
                 "Offset": {
                     "x": 0.0,
@@ -300,8 +302,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_RUN",
-                    "index": 0
+                    "key": "Textures/DAVE_PUNCH1_NEW",
+                    "index": 3
                 },
                 "Size": {
                     "x": 1.0,
@@ -345,10 +347,10 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 10,
-                "Max Health": 10,
-                "TakenDamageTimer": 0.0,
-                "Invulnerable": true
+                "Current Health": 100,
+                "Max Health": 100,
+                "TakenDamageTimer": -3.725290298461914e-9,
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 2,
@@ -360,20 +362,22 @@
                 "Melee Cooldown": 1.0,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.4000003933906555,
+                "Melee Cooldown Timer": 0.7166669368743897,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.8833339214324951,
+                "Combo Cooldown Timer": 1.200000286102295,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
+                "Attack Delay": -0.20000000298023225,
                 "Ranged Attack": false,
-                "Melee Attack": false,
+                "Melee Attack": true,
                 "SMG Attack": false,
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": true
+                "Start Combo Cooldown Timer": true,
+                "Damage Enemy": false
             },
             "Player": {
                 "Upgrade Points Per Enemy Defeated": 50,

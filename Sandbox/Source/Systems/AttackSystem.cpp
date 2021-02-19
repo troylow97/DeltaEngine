@@ -338,7 +338,7 @@ namespace DeltaEngine
         c_id = AudioEngine::Play("Audio/Fiddler/FiddlerAttack.ogg");
         EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.1f,
                                             EntityCategory::E_ENEMY_FIDDLER_PUNCH);
-        if (em.GetComponent<Image>(id).m_FlipX == false)
+        if (em.GetComponent<Image>(id).m_FlipX == true)
         {
           em.GetComponent<Transform>(missile).position.x += 0.5f;
           em.GetComponent<RigidBody>(missile).AccumulatedForce = {500, 0};
