@@ -437,4 +437,16 @@ namespace DeltaEngine
     em.GetComponent<RigidBody>(smgbullet).FrictionCoeff = 0.0f;
     return smgbullet;
   }
+
+  Vector2 AttackSystem::CalculateAttackDirection(EntityID& enemy)
+  {
+    Transform& player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID());
+    Transform& enemy_pos = em.GetComponent<Transform>(enemy);
+    
+    Vector2 direction_vector = { player_pos.position.x - enemy_pos.position.x, player_pos.position.y - enemy_pos.position.y };
+    float magnitude = direction_vector.Magnitude();
+    Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
+    
+    return normalized_direction_vector;
+  }
 } //Namespace DeltaEngine
