@@ -111,13 +111,13 @@ namespace DeltaEngine
         if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id2, static_cast<int>(CollisionHandlerLancerData.Damage));
-          ApplyKnockBack(id2, id1, 600.0f);
+          ApplyKnockBack(id2, id1, 400.0f);
           return;
         }
         if (CheckEntityType(id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id1, static_cast<int>(CollisionHandlerLancerData.Damage));
-          ApplyKnockBack(id1, id2, 600.0f);
+          ApplyKnockBack(id1, id2, 400.0f);
           return;
         }
       }

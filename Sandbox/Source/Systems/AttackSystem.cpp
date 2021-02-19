@@ -321,9 +321,9 @@ namespace DeltaEngine
         em.GetComponent<Transform>(missile).position = monster_pos + kb.Normalize() * 0.5f;
         em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 400.0f;
         em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
-
-        //Apply knockback to lancer
-        em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 1000.0f;
+        //
+        ////Apply knockback to lancer
+        //em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 8000.0f;
       }
       else
       {
