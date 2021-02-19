@@ -78,7 +78,7 @@ namespace DeltaEngine
               {
                 if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
                 {
-                  Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
+                  Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y }; // CalculateDirectionVectorToShoot
                   direction.Normalize();
                   float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
                   player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
@@ -360,22 +360,45 @@ namespace DeltaEngine
       em.GetComponent<Image>(smgbullet).m_Size = { 0.25f, 0.25f };
       em.GetComponent<Image>(smgbullet).m_Sprite.m_Key = "Textures/DAVE_BULLET"; 
       em.GetComponent<Image>(smgbullet).m_Sprite.m_Index = 0;
+
       ////// em.GetComponent<State>(id).SetBool("Ranged", true); // change when have the animation 
       //////static size_t c_id{ u64_max };
       //////if (AudioEngine::IsChannelPlaying(c_id))
       //////  AudioEngine::StopChannel(c_id);
       //////c_id = AudioEngine::Play("Audio/SWORD_GEN-HDF-22317.wav"); 
+
+      /*
+        if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE)
+        {
+          if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
+          {
+            Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y }; // CalculateDirectionVectorToShoot
+            direction.Normalize();
+            float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+            player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
+          }
+          else
+            player_bodypart_pos.rotation = Quaternion::Identity();
+      */
       
-      if (MouseCalculation::ShootRight())
+      if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == true)
       {
         Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
-        //em.GetComponent<Transform>(smgbullet).position.x += 0.1f;
         em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
       }
-      else if (MouseCalculation::ShootLeft())
+      else if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == false)
+      {
+        Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
+      }
+      else if (MouseCalculation::ShootLeft() && MouseCalculation::IsWithinRange(false) == true)
       {
         Vector2 direction_to_shoot = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y };
-        //em.GetComponent<Transform>(smgbullet).position.x -= 0.1f;
+        em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
+      }
+      else if (MouseCalculation::ShootLeft() && MouseCalculation::IsWithinRange(false) == false)
+      {
+        Vector2 direction_to_shoot = { -MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
         em.GetComponent<RigidBody>(smgbullet).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 };
       }
     }
