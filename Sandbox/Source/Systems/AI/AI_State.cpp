@@ -126,7 +126,7 @@ namespace DeltaEngine
 
         if (BouncingTimer > 0.0f)
         {
-            if(!Bouncing && BouncingTimer < 1.0f && BouncingTimer > 0.5f)
+            if(!Bouncing && BouncingTimer < 1.1f && BouncingTimer > 0.5f)
             {
                 a.MeleeAttack = true;
                 Bouncing = true;
@@ -134,7 +134,7 @@ namespace DeltaEngine
                 s.SetBool("MeleeAttack", false);
                 s.SetBool("IsBouncing", true);
             }
-            else if(BouncingTimer < 0.5f)
+            else if(BouncingTimer < 0.4f)
             {
                 Bouncing = false;
                 s.SetBool("IsBouncing", false);
@@ -263,17 +263,13 @@ namespace DeltaEngine
             !a.MeleeAttack && a.MeleeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
         {
             if (AITools::EntityisOnTheRight(monster, player))
-            {
                 env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
-            }
             else
-            {
                 env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
-            }
             s.SetBool("IsAlertRunning", false);
             s.SetBool("MeleeAttack", true);
             a.MeleeAttack = true;
-            a.AttackDelay = 0.8f;
+            a.AttackDelay = 0.9f;
             return;
         }
 
@@ -400,7 +396,7 @@ namespace DeltaEngine
                 auto& renderer = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster);
                 auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
                 health.isInvulnerable = true;
-                renderer.m_Active = false;
+                renderer.m_Active = true;
                 collider.isTrigger = true;
                 rb.hasGravity = false;
                 rb.Movespeed *= 1.2f;

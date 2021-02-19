@@ -16926,7 +16926,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17044,7 +17044,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17103,7 +17103,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17155,14 +17155,14 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 4.900000095367432,
+                    "x": 4.809999942779541,
                     "y": 0.09000000357627869
                 },
                 "Type": "box",
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17221,7 +17221,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17280,7 +17280,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17339,7 +17339,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17398,7 +17398,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17516,7 +17516,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17575,7 +17575,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17634,7 +17634,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17693,7 +17693,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17752,7 +17752,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17870,7 +17870,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17929,7 +17929,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17988,7 +17988,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18047,7 +18047,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18106,7 +18106,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18165,7 +18165,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18224,7 +18224,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18239,8 +18239,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 34.7435188293457,
-                    "y": 0.17989742755889893,
+                    "x": 34.763999938964847,
+                    "y": 0.1899999976158142,
                     "z": 0.0
                 },
                 "Scale": {
@@ -18268,8 +18268,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 34.7435188293457,
-                    "y": 0.17989742755889893
+                    "x": 34.763999938964847,
+                    "y": 0.1899999976158142
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18401,7 +18401,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18460,7 +18460,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18519,7 +18519,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18578,7 +18578,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18755,7 +18755,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18814,7 +18814,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18932,7 +18932,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18991,7 +18991,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19227,7 +19227,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19286,7 +19286,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19345,7 +19345,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19404,7 +19404,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19463,7 +19463,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19522,7 +19522,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19581,7 +19581,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19640,7 +19640,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19699,7 +19699,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19758,7 +19758,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19817,7 +19817,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19876,7 +19876,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19935,7 +19935,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19994,7 +19994,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -20053,7 +20053,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -20112,7 +20112,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -20171,7 +20171,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -20230,7 +20230,7 @@
                 "Collision Layer": 255,
                 "Collision Layer ID": 255,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -20245,7 +20245,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 17.8799991607666,
+                    "x": 20.28473663330078,
                     "y": 2.0,
                     "z": 0.0
                 },
@@ -20302,7 +20302,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 0.5,
@@ -20377,7 +20377,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 0.5,
@@ -20452,7 +20452,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 0.5,
@@ -20527,7 +20527,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 0.5,
@@ -20602,7 +20602,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 0.5,
@@ -20677,7 +20677,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SquareSign_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 0.5,
@@ -20752,7 +20752,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -20827,7 +20827,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -20902,7 +20902,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -20977,7 +20977,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -21052,7 +21052,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -21127,7 +21127,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -21202,7 +21202,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -21277,7 +21277,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -21352,7 +21352,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -21427,7 +21427,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -21502,7 +21502,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 19
+                    "index": 22
                 },
                 "Size": {
                     "x": 1.0,
@@ -22372,8 +22372,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 17.8799991607666,
-                    "y": 0.23625776171684266,
+                    "x": 20.28473663330078,
+                    "y": 0.236250102519989,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22390,9 +22390,9 @@
             },
             "Rigidbody": {
                 "Mass": 40.0,
-                "Move Speed": 12.0,
-                "Restitution": 3.0,
-                "Friction Coefficient": 1.5,
+                "Move Speed": 11.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 3.0,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 15.0,
                 "Acceleration Pickup": 3.0,
@@ -22401,8 +22401,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 17.8799991607666,
-                    "y": 0.23625776171684266
+                    "x": 20.28473663330078,
+                    "y": 0.236250102519989
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22420,8 +22420,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_PUNCH1_NEW",
-                    "index": 0
+                    "key": "Textures/DAVE_PUNCH3_NEW",
+                    "index": 4
                 },
                 "Size": {
                     "x": 1.0,
@@ -22475,15 +22475,15 @@
                 "Melee Damage": 4,
                 "SMG Damage": 2,
                 "Melee Combo Damage": 6,
-                "Number Of Combo": 1,
+                "Number Of Combo": 0,
                 "Max Combo Number": 3,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.18333333730697633,
+                "Melee Cooldown Timer": 1.1175870895385743e-8,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 1.4666666984558106,
+                "Combo Cooldown Timer": 0.03333409130573273,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -22522,7 +22522,7 @@
             "Transform": {
                 "Position": {
                     "x": 17.8799991607666,
-                    "y": -9.546305656433106,
+                    "y": -165.86367797851563,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22551,7 +22551,7 @@
             "Collider": {
                 "Center": {
                     "x": 17.8799991607666,
-                    "y": -9.546305656433106
+                    "y": -165.86367797851563
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22627,7 +22627,7 @@
             "Transform": {
                 "Position": {
                     "x": 0.0,
-                    "y": -10.016305923461914,
+                    "y": -166.33370971679688,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22656,7 +22656,7 @@
             "Collider": {
                 "Center": {
                     "x": 0.0,
-                    "y": -10.016305923461914
+                    "y": -166.33370971679688
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22732,7 +22732,7 @@
             "Transform": {
                 "Position": {
                     "x": 0.0,
-                    "y": -10.016305923461914,
+                    "y": -166.33370971679688,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22761,7 +22761,7 @@
             "Collider": {
                 "Center": {
                     "x": 0.0,
-                    "y": -10.016305923461914
+                    "y": -166.33370971679688
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22874,15 +22874,15 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -23016,15 +23016,15 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -23160,7 +23160,7 @@
                 "Type": "box",
                 "Collision Layer": 5,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -23300,15 +23300,15 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -23442,15 +23442,15 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -23543,7 +23543,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 38.014190673828128,
+                    "x": 37.752716064453128,
                     "y": 0.31396666169166567,
                     "z": 0.0
                 },
@@ -23561,18 +23561,18 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 60.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
+                "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
-                "Gravity": false,
+                "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 38.014190673828128,
+                    "x": 37.752716064453128,
                     "y": 0.21396666765213014
                 },
                 "Offset": {
@@ -23592,7 +23592,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 7
+                    "index": 10
                 },
                 "Size": {
                     "x": 1.0,
@@ -23685,8 +23685,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 44.777984619140628,
-                    "y": 1.0616530179977418,
+                    "x": 44.515533447265628,
+                    "y": 1.039507269859314,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23703,9 +23703,9 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 60.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
+                "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
@@ -23714,8 +23714,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 44.777984619140628,
-                    "y": 0.9616529941558838
+                    "x": 44.515533447265628,
+                    "y": 0.939507246017456
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23734,7 +23734,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 7
+                    "index": 10
                 },
                 "Size": {
                     "x": 1.0,
@@ -23868,7 +23868,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -23876,7 +23876,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -24010,7 +24010,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -24018,7 +24018,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -24152,7 +24152,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -24160,7 +24160,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -24578,7 +24578,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -24586,7 +24586,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -24720,7 +24720,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -24728,7 +24728,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -24862,7 +24862,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -24870,7 +24870,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -25004,7 +25004,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -25012,7 +25012,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -25146,7 +25146,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 2,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -25154,7 +25154,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -25644,65 +25644,6 @@
                 "GUI Type": "Interface",
                 "Screen No.": 0,
                 "Target No.": 0
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": ""
-            },
-            "Entity Type": {
-                "Category": "player punch"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 18.479999542236329,
-                    "y": 0.23625776171684266,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.4000000059604645,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 5.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.009999999776482582,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 18.479999542236329,
-                    "y": 0.23625776171684266
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Type": "box",
-                "Collision Layer": 7,
-                "Collision Layer ID": 8,
-                "Trigger": true,
-                "Platform": false
-            },
-            "Lifespan": {
-                "Timer": 0.06666667014360428
             }
         }
     ]
