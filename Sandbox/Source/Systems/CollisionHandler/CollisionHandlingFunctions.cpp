@@ -131,17 +131,13 @@ namespace DeltaEngine
         if (CheckEntityType(id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id2, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
-          EntityID bullet = GetEntityID(id1, id2, EntityCategory::E_ENEMY_BULLET);
-          ReduceHealth(bullet, 100);
-          //ApplyKnockBack(id2, id1, 600.0f);
+          ApplyKnockBack(id2, id1, 600.0f);
           return;
         }
         if (CheckEntityType(id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id1, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
-          EntityID bullet = GetEntityID(id1, id2, EntityCategory::E_ENEMY_BULLET);
-          ReduceHealth(bullet, 100);
-          //ApplyKnockBack(id2, id1, 600.0f);
+          ApplyKnockBack(id2, id1, 600.0f);
           return;
         }
       }
