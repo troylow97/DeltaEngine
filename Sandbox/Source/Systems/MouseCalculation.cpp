@@ -18,8 +18,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "AI/AITools.h"
 #include "ImGui/Panels/GamePanel.h"
 
-//#include <fstream>
-
 
 namespace DeltaEngine
 {
@@ -84,8 +82,6 @@ namespace DeltaEngine
 #else
       auto p_y = CalculateScreenCoordinate().y;
 #endif
-      std::cout << "p_y is " << p_y << std::endl;
-      std::cout << "player_pos is " << player_pos.position.y << std::endl;
       if (p_y > player_pos.position.y)
         return true;
       return false;
@@ -122,52 +118,6 @@ namespace DeltaEngine
       }
       return false;
     }
-
-    // gets the angle to shoot, force to shoot -45.0f or 45.0f if out of range
-    //float MouseCalculation::CalculateAngleForSMG(bool facing_right)
-    //{
-    //  if (facing_right == true)
-    //  {
-    //    float dot_product = 1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y; // dot product between [x1, y1] and [x2, y2], x1*x2 + y1*y2
-    //    float determinant = 1.0f * CalculateDirectionVector().y - 0.0f * CalculateDirectionVector().x;
-    //    float angle = atan2(determinant, dot_product);
-    //    angle *= (180.0f / Math::pi);// 3.141592653589793238463f);
-    //    
-    //    if (angle > -45.0f && angle < 45.0f)
-    //    {
-    //      return angle;
-    //    }
-    //    if (angle < -45.0f)
-    //    {
-    //      return -45.0f;
-    //    }
-    //    if (angle > 45.0f)
-    //    {
-    //      return 45.0f;
-    //    }
-    //  }
-    //  if (facing_right == false)
-    //  {
-    //    float dot_product = -1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y; // dot product between [x1, y1] and [x2, y2], x1*x2 + y1*y2
-    //    float determinant = -1.0f * CalculateDirectionVector().y - 0.0f * CalculateDirectionVector().x;
-    //    float angle = atan2(determinant, dot_product);
-    //    angle *= (180.0f / Math::pi);// 3.141592653589793238463f);
-    //    
-    //    if (angle > -45.0f && angle < 45.0f)
-    //    {
-    //      return angle;
-    //    }
-    //    if (angle < -45.0f)
-    //    {
-    //      return -45.0f;
-    //    }
-    //    if (angle > 45.0f)
-    //    {
-    //      return 45.0f;
-    //    }
-    //  }
-    //  return 0.0f;
-    //}
 
     // gets the mouse position relative to the game panel
     Vector2 MouseCalculation::CalculateGameCoordinate()
@@ -215,11 +165,6 @@ namespace DeltaEngine
       Vector2 direction_vector = { p_x - player_pos.position.x, p_y - player_pos.position.y };
       float magnitude = direction_vector.Magnitude();
       Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
-      /* ------------------------------------------------------------------
-      * for 45 degree: direction vector is (1, 1)
-      *                magnitude is (square root)(2)
-      *                normalized is 1/(square root)(2), 1/(square root)(2)
-      -------------------------------------------------------------------- */
       
       return normalized_direction_vector;
     }
@@ -236,13 +181,11 @@ namespace DeltaEngine
       {
         if (IsMouseOnTop())
         {
-            std::cout << "mouse is on top" << std::endl;
           Vector2 direction_to_shoot = { 1.0f / sqrtf(2.0f), 1.0f / sqrtf(2.0f) };
           return direction_to_shoot;
         }
         else
         {
-            std::cout << "mouse is below" << std::endl;
           Vector2 direction_to_shoot = { 1.0f / sqrtf(2.0f), -1.0f / sqrtf(2.0f) };
           return direction_to_shoot;
         }

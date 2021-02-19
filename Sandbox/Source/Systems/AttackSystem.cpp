@@ -83,6 +83,20 @@ namespace DeltaEngine
                   float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
                   player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
                 }
+                else if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == false)
+                {
+                  Vector2 direction = { MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
+                  direction.Normalize();
+                  float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+                  player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
+                }
+                else if (MouseCalculation::ShootLeft() && MouseCalculation::IsWithinRange(false) == false)
+                {
+                  Vector2 direction = { -MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
+                  direction.Normalize();
+                  float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+                  player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
+                }
                 else
                   player_bodypart_pos.rotation = Quaternion::Identity();
 
@@ -365,21 +379,7 @@ namespace DeltaEngine
       //////static size_t c_id{ u64_max };
       //////if (AudioEngine::IsChannelPlaying(c_id))
       //////  AudioEngine::StopChannel(c_id);
-      //////c_id = AudioEngine::Play("Audio/SWORD_GEN-HDF-22317.wav"); 
-
-      /*
-        if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE)
-        {
-          if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
-          {
-            Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y }; // CalculateDirectionVectorToShoot
-            direction.Normalize();
-            float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-            player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-          }
-          else
-            player_bodypart_pos.rotation = Quaternion::Identity();
-      */
+      //////c_id = AudioEngine::Play("Audio/SWORD_GEN-HDF-22317.wav");
       
       if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == true)
       {
