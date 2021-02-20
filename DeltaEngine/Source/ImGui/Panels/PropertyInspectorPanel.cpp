@@ -379,6 +379,10 @@ void PropertyInspectorPanel::Render()
               if ( initial != selection )
                 str = shader_key_vec[selection];
             }
+            //else if (prop_type == rttr::type::get<BezierCurve*>())
+            //{
+            //  
+            //}
 
             if ( prop_type == rttr::type::get<bool *>() )
             {
