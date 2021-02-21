@@ -58,19 +58,7 @@ Lance
 0 0
 
 param
-JumpStart
-1 0
-
-param
-EndJump
-0 0
-
-param
 Dead
-0 0
-
-param
-JumpLanding
 0 0
 
 param
@@ -78,11 +66,15 @@ IsIdle
 0 0
 
 param
-JumpRecover
+SMGAttack
 0 0
 
 param
-SMGAttack
+Jump
+0 0
+
+param
+VelocityY
 0 0
 
 %EditorPositions:
@@ -97,11 +89,11 @@ Exit
 
 pos
 Any State
-699 -298
+924 -419
 
 pos
 Clip/DAVE_SHIELD_UP
-400 130
+394 123
 
 pos
 Clip/DAVE_FIRE
@@ -117,11 +109,11 @@ Clip/DAVE_IDLE
 
 pos
 Clip/DAVE_DASH
-401 -136
+474 -164
 
 pos
 Clip/DAVE_IDLE_STRETCH
-261 -210
+407 -237
 
 pos
 Clip/DAVE_LANCE
@@ -129,27 +121,27 @@ Clip/DAVE_LANCE
 
 pos
 Clip/DAVE_PUNCH1_NEW
-401 64
+386 33
 
 pos
 Clip/DAVE_PUNCH2_NEW
-657 65
+669 29
 
 pos
 Clip/DAVE_PUNCH3_NEW
-870 74
+959 35
 
 pos
 Clip/DAVE_RUN
-400 -69
+120 -182
 
 pos
 Clip/DAVE_SHIELD_BLOCK
-292 173
+565 173
 
 pos
 Clip/DAVE_SHIELD_ON
-663 113
+802 126
 
 pos
 Clip/DAVE_FIRE_ON
@@ -161,11 +153,11 @@ Clip/DAVE_DEATH
 
 pos
 Clip/DAVE_JUMP
--219 53
+12 -326
 
 pos
 Clip/DAVE_FALL
--205 103
+263 -330
 
 pos
 Clip/DAVE_FIRE_BODY
@@ -178,6 +170,10 @@ Clip/DAVE_FIRE_HEAD
 pos
 Clip/DAVE_FIRE_ARM
 -188 216
+
+pos
+Clip/DAVE_LAND
+568 -341
 
 %Transitions:
 
@@ -533,8 +529,8 @@ Clip/DAVE_IDLE
 end
 Clip/DAVE_JUMP
 condition
-IsRunning
-? 1
+VelocityY
+> 0
 endTransition
 
 transition
@@ -575,6 +571,66 @@ Clip/DAVE_IDLE
 condition
 SMGAttack
 ? 0
+endTransition
+
+transition
+start
+Clip/DAVE_IDLE
+end
+Clip/DAVE_FALL
+condition
+VelocityY
+< 0
+endTransition
+
+transition
+start
+Clip/DAVE_JUMP
+end
+Clip/DAVE_FALL
+condition
+VelocityY
+< 0
+endTransition
+
+transition
+start
+Clip/DAVE_FALL
+end
+Clip/DAVE_LAND
+condition
+VelocityY
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_LAND
+end
+Exit
+condition
+VelocityY
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_RUN
+end
+Clip/DAVE_JUMP
+condition
+VelocityY
+> 0
+endTransition
+
+transition
+start
+Clip/DAVE_RUN
+end
+Clip/DAVE_FALL
+condition
+VelocityY
+< 0
 endTransition
 
 %endfile
