@@ -38,10 +38,8 @@ namespace DeltaEngine
 
         if (fall)
         {
-          std::cerr << "fall" << std::endl;
           if (c.isCollidingOnFloor)
           {
-            std::cerr << "land" << std::endl;
             s.SetBool("Jump", false);
             s.SetBool("VelocityY", true);
             p.IsJumping = false;
@@ -52,10 +50,8 @@ namespace DeltaEngine
       }
       else if (s.GetBool("VelocityY")) // recovering
       {
-        std::cerr << "recovering" << a.LoopsCompleted() << ' ' << a.m_ClipKey << std::endl;
         if (a.m_ClipKey == "Clip/DAVE_LAND" && a.LoopsCompleted())
         {
-          std::cerr << "recovered" << std::endl;
           s.SetBool("IsIdle", true);
           s.SetBool("VelocityY", false);
         }

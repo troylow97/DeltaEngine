@@ -233,6 +233,7 @@ namespace DeltaEngine
     {
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", false);
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
+        s.SetBool("IsPatrolling", false);
         s.SetBool("IsAlertRunning", true);
 
     }
@@ -251,42 +252,62 @@ namespace DeltaEngine
         auto& em = env.pECS->GetWorld().GetEntityManager();
         auto& s = em.GetComponent<State>(monster);
         auto& a = em.GetComponent<Attack>(monster);
-        s.SetBool("IsPatrolling", false);
+
         CheckEdges(monster);
 
         EntityID player = UnitManager::GetPlayerID();
-        auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+        auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+        auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
+        Vector2 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
+
+        if (AITools::EntityisOnTheRight(monster, player))
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
+        else
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
+    	
         //To Add Blocking Mechanic here
 
-
-        if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2.5f && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1.5f &&
-            !a.MeleeAttack && a.MeleeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
+        if(a.AttackDelay < 0.0f)
         {
-            if (AITools::EntityisOnTheRight(monster, player))
-                env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
-            else
-                env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
-            s.SetBool("IsAlertRunning", false);
-            s.SetBool("MeleeAttack", true);
-            a.MeleeAttack = true;
-            a.AttackDelay = 0.9f;
-            return;
+        	//attacking
+            if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2.5f && AITools::Distance_X_BetweenTwoEntities(monster, player) > 0.5f
+                && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1.5f &&
+                a.MeleeCooldownTimer <= 0)
+            {
+                s.SetBool("IsAlertRunning", false);
+                s.SetBool("MeleeAttack", true);
+                rb.Direction = Vector2::zero();
+                a.MeleeAttack = true;
+                a.AttackDelay = 0.9f;
+                std::cout << "p1" << std::endl;
+                return;
+            }
+
+        	//moving
+            {
+                s.SetBool("IsAlertRunning", true);
+                s.SetBool("MeleeAttack", false);
+                float player_pos_right = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position.x - 2.0f;
+                float player_pos_left = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position.x + 2.0f;
+                if (AITools::Distance_X_BetweenEntityAndPoint(monster, ai.original_point) > 3.0f)
+                {
+                    std::cout << "p2" << std::endl;
+                    AITools::MoveTowardsEntityInX(monster, ai.original_point.x);
+                }
+                else if (AITools::EntityisOnTheRight(monster, player))
+                {
+                    std::cout << "p3" << std::endl;
+                    AITools::MoveTowardsEntityInX(monster, player_pos_right);
+                }
+                else if (AITools::EntityisOnTheLeft(monster, player))
+                {
+                    std::cout << "p4" << std::endl;
+                    AITools::MoveTowardsEntityInX(monster, player_pos_left);
+                }
+
+            }
         }
 
-    	if(a.AttackDelay < 0.0f)
-    	{
-            s.SetBool("IsAlertRunning", true);
-            s.SetBool("MeleeAttack", false);
-    	}
-
-        if (s.GetBool("MeleeAttack") == false && a.MeleeAttack && a.MeleeCooldownTimer <= 0)
-        {
-            s.SetBool("IsAlertRunning", true);
-            if (AITools::Distance_X_BetweenEntityAndPoint(monster, ref.original_point) < 1)
-                AITools::MoveTowardsEntityInX(monster, player);
-            else
-                AITools::MoveTowardsPoint(monster, ref.original_point);
-        }
 
     }
 
