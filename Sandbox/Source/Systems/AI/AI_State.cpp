@@ -287,12 +287,13 @@ namespace DeltaEngine
             {
                 s.SetBool("IsAlertRunning", true);
                 s.SetBool("MeleeAttack", false);
-                float player_pos_right = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position.x - 2.0f;
-                float player_pos_left = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position.x + 2.0f;
+                float rand_point = ai.original_point.x + Random::RandomFloatRange(-0.3f, 0.3f);
+                float player_pos_right = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position.x - Random::RandomFloatRange(1.5f,2.0f);
+                float player_pos_left = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position.x + Random::RandomFloatRange(1.5f, 2.0f);
                 if (AITools::Distance_X_BetweenEntityAndPoint(monster, ai.original_point) > 3.0f)
                 {
                     std::cout << "p2" << std::endl;
-                    AITools::MoveTowardsEntityInX(monster, ai.original_point.x);
+                    AITools::MoveTowardsEntityInX(monster, rand_point);
                 }
                 else if (AITools::EntityisOnTheRight(monster, player))
                 {
