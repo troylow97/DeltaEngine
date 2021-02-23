@@ -196,7 +196,7 @@ namespace DeltaEngine
                     a.MeleeCooldownTimer = a.MeleeCooldown;
                     a.MeleeAttack = false;
                     a.NumberOfCombos = 0;
-                    a.AttackDelay = 0.7f;
+                    a.AttackDelay = 0.65f;
                 }
             	
             }
