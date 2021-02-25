@@ -109,7 +109,7 @@ Clip/DAVE_IDLE
 
 pos
 Clip/DAVE_DASH
-474 -164
+460 -97
 
 pos
 Clip/DAVE_IDLE_STRETCH
@@ -643,6 +643,16 @@ Punch3
 ? 0
 condition
 Punch1
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_FALL
+end
+Clip/DAVE_DASH
+condition
+IsDashing
 ? 1
 endTransition
 

@@ -114,9 +114,9 @@ namespace DeltaEngine
   void PhysicsSystem::Dash(Player& p, RigidBody& r, Collider& c)
   {
     //Jumping,Dashing
-    if (c.isCollidingOnFloor)
+   // if ()
     {
-      if (p.IsJumping)
+      if (p.IsJumping && c.isCollidingOnFloor)
       {
         CurrentJumpTicks = 1;
         JumpForce = InitialJumpForce;
@@ -146,7 +146,8 @@ namespace DeltaEngine
         }
       }
     }
-    else if (p.IsDashing)
+  	
+    if (p.IsDashing)
     {
       CurrentDashTicks = 0;
       p.IsDashing = false;

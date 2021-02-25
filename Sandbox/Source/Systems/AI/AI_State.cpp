@@ -97,8 +97,10 @@ namespace DeltaEngine
 
     //----------------------------------------------------------------------
     ChaseEnemyLancer::ChaseEnemyLancer() :
+		Charging {false },
         Bouncing{ false },
-        BouncingTimer{ 0.7f }
+        BouncingTimer{ 0.7f },
+		ChargeTimer{ 0.0f}
     {
     }
 
@@ -110,6 +112,7 @@ namespace DeltaEngine
     void ChaseEnemyLancer::onExit(EntityID& id)
     {
         env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0, 0 };
+
     }
 
     void ChaseEnemyLancer::Update(EntityID& monster)
@@ -121,20 +124,13 @@ namespace DeltaEngine
         const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
         auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(player);
         auto& player_col = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(player);
+        auto& animator = env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster);
         bool attacking = false;
         auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
 
         if (BouncingTimer > 0.0f)
         {
-            if(!Bouncing && BouncingTimer < 1.1f && BouncingTimer > 0.5f)
-            {
-                a.MeleeAttack = true;
-                Bouncing = true;
-                s.SetBool("LancerCharge", false);
-                s.SetBool("MeleeAttack", false);
-                s.SetBool("IsBouncing", true);
-            }
-            else if(BouncingTimer < 0.4f)
+            if(!Bouncing && BouncingTimer < 0.7f)
             {
                 Bouncing = false;
                 s.SetBool("IsBouncing", false);
@@ -147,9 +143,28 @@ namespace DeltaEngine
         //Check distance
         if(AITools::Distance_X_BetweenTwoEntities(monster, player) > 0.8f && !a.MeleeAttack)
         {
-            s.SetBool("IsAlerted", false);
-            s.SetBool("LancerCharge", true);
-        	//Face player
+        	if(!Charging)
+        	{
+                s.SetBool("IsAlerted", false);
+                s.SetBool("MeleeAttack", true);
+                Charging = true;
+                ChargeTimer = 0.8f;
+        	}
+        	
+        	if(Charging && s.GetBool("MeleeAttack"))
+        	{
+        		if(ChargeTimer < 0.0f)
+        		{
+                    s.SetBool("MeleeAttack", false);
+                    s.SetBool("LancerCharge", true);
+        		}
+                else
+                {
+                    ChargeTimer -= env.pClock->FixedDeltaTime();
+                }
+        	}
+
+            //Face player
             if (AITools::EntityisOnTheRight(monster, player))
                 env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
             else
@@ -168,28 +183,27 @@ namespace DeltaEngine
                                            player_pos.x + Random::RandomFloatRange(-0.5f, 0.3f),
                                            player_pos.y + Random::RandomFloatRange(-0.1f, 0.0f)
                     });
-            }	        
-        }            
+            }
+      
+        }
+    	//Start Attacking
         else if(AITools::Distance_Y_BetweenTwoEntities(monster, player) < 0.3f &&
-                env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeCooldownTimer <= 0 && s.GetBool("LancerCharge"))
+                env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeCooldownTimer <= 0)
         {
             if (AITools::EntityisOnTheRight(monster, player))
                 env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
             else
                 env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
             s.SetBool("LancerCharge", false);
-            s.SetBool("MeleeAttack", true);
+            s.SetBool("MeleeAttack", false);
+            s.SetBool("IsBouncing", true);
+            Charging = false;
             Vector2 monster_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
             Vector2 kb = (player_pos - env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position);
 
             //Apply knockback to lancer
             env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce += -kb.Normalize() * 4000.0f;
             BouncingTimer = 1.5f;
-        }
-        else
-        {
-            s.SetBool("LancerCharge", false);
-            s.SetBool("IsAlerted", true);
         }
 
     }
@@ -225,6 +239,7 @@ namespace DeltaEngine
     }
 
     ChaseEnemyFiddler::ChaseEnemyFiddler(Vector2& lost_range)
+	    : Attacking{false}
     {
         TransitionEdges["lost_enemy_fiddler"] = new LostEnemyFiddler(lost_range);
     }
@@ -272,14 +287,13 @@ namespace DeltaEngine
         	//attacking
             if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2.5f && AITools::Distance_X_BetweenTwoEntities(monster, player) > 0.5f
                 && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 1.5f &&
-                a.MeleeCooldownTimer <= 0)
+                a.MeleeCooldownTimer <= 0 && Attacking == false)
             {
                 s.SetBool("IsAlertRunning", false);
                 s.SetBool("MeleeAttack", true);
                 rb.Direction = Vector2::zero();
-                a.MeleeAttack = true;
-                a.AttackDelay = 0.9f;
-                std::cout << "p1" << std::endl;
+                a.AttackDelay = 1.0f;
+                Attacking = true;
                 return;
             }
 
@@ -292,23 +306,25 @@ namespace DeltaEngine
                 float player_pos_left = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position.x + Random::RandomFloatRange(1.5f, 2.0f);
                 if (AITools::Distance_X_BetweenEntityAndPoint(monster, ai.original_point) > 3.0f)
                 {
-                    std::cout << "p2" << std::endl;
                     AITools::MoveTowardsEntityInX(monster, rand_point);
                 }
                 else if (AITools::EntityisOnTheRight(monster, player))
                 {
-                    std::cout << "p3" << std::endl;
                     AITools::MoveTowardsEntityInX(monster, player_pos_right);
                 }
                 else if (AITools::EntityisOnTheLeft(monster, player))
                 {
-                    std::cout << "p4" << std::endl;
                     AITools::MoveTowardsEntityInX(monster, player_pos_left);
                 }
 
             }
         }
-
+    	
+        if (Attacking && a.AttackDelay < 0.0f)
+        {
+            Attacking = false;
+            a.MeleeAttack = true;
+        }
 
     }
 
@@ -334,9 +350,11 @@ namespace DeltaEngine
     }
 
     ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :
+		Attacking {false},
         CooldownTimer{ 1.0f },
-        BurrowDownDuration{ 0.5f },
+        BurrowDownDuration{ 1.5f },
         BurrowUpDuration{ 0.5f },
+		BurrowDownDelay{0.3f},
         BurrowState{ 0 },
         CurrentPoint{ 0 },
         SerpentData{ d }
@@ -351,19 +369,27 @@ namespace DeltaEngine
     void ChaseEnemySerpentipede::onExit(EntityID& id)
     {
         env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0, 0 };
+
+        //auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id);
+        //auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id);
+        //auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(id);
+        //auto& rend = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(id);
+        //auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
+        std::cout << "exiting" << std::endl;
     }
 
     void ChaseEnemySerpentipede::Update(EntityID& monster)
     {
-        CheckEdges(monster);
         auto ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
         auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
         auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
         auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
         auto& rend = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster);
+        std::cout << "burrow state is: " << BurrowState << std::endl;
+        std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
         //Seen and attacking
-        if (BurrowState == 0)
+        if (BurrowState == 0 && !Attacking)
         {
             rb.Direction = Vector2::zero();
             if (CooldownTimer <= 0)
@@ -378,11 +404,26 @@ namespace DeltaEngine
                     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
                 }
 
-                a.RangeAttack = true;
-                s.SetBool("RangedAttack", true);
-                a.AttackDelay = 0.2f;
-                BurrowState = 1;
-                CooldownTimer = 1.0f;
+                if(AITools::Distance_X_BetweenTwoEntities(monster, player) < 1.5f)
+                {
+                    s.SetBool("RangedAttack", false);
+                    s.SetBool("IsAlerted", false);
+                    s.SetBool("IsBurrowing", true);
+                    BurrowDownDelay = 0.3f;
+                    BurrowState = 1;
+                    return;
+                }
+            	
+                if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 7.5f
+                    && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 3.0f)
+                {
+                    a.RangeAttack = true;
+                    s.SetBool("RangedAttack", true);
+                    a.AttackDelay = 1.5f;
+                    CooldownTimer = 1.0f;
+                    Attacking = true;
+                }
+
             }
             else
             {
@@ -391,17 +432,23 @@ namespace DeltaEngine
             return;
         }
 
-        if (a.AttackDelay < 0.0f)
+        if (a.AttackDelay < 0.0f && s.GetBool("RangedAttack"))
         {
-            s.SetBool("IsBurrowing", true);
             s.SetBool("RangedAttack", false);
+            s.SetBool("IsAlerted", false);
+            s.SetBool("IsBurrowing", true);
+            BurrowDownDelay = 0.3f;
+            Attacking = false;
+            BurrowState = 1;
         }
-        else
+
+        if (BurrowDownDelay > 0.0f)
         {
+            BurrowDownDelay -= env.pClock->FixedDeltaTime();
             return;
         }
 
-
+    	
         //Burrowing Down
         if (BurrowState == 1)
         {
@@ -409,10 +456,10 @@ namespace DeltaEngine
             {
                 BurrowDownDuration -= env.pClock->FixedDeltaTime();
             }
-
             else
             {
                 s.SetBool("IsBurrowing", false);
+                s.SetBool("IsAlerted", false);
                 s.SetBool("MoveBurrowing", true);
                 BurrowState = 2;
                 auto& renderer = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster);
@@ -424,7 +471,7 @@ namespace DeltaEngine
                 rb.hasGravity = false;
                 rb.Movespeed *= 1.2f;
                 rend.m_SortingLayer = 2;
-                BurrowDownDuration = 0.5f;
+                BurrowDownDuration = 1.5f;
                 switch (CurrentPoint)
                 {
                 case 0:
@@ -450,7 +497,8 @@ namespace DeltaEngine
         if (BurrowState == 2)
         {
             //auto current_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
-
+            s.SetBool("IsAlerted", false);
+            s.SetBool("MoveBurrowing", true);
             //Move towards next point
             if (AITools::EntityisAtPointInX(monster, ai.original_point.x + SerpentData.Points[CurrentPoint].x, 0.2f))
             {
@@ -489,7 +537,7 @@ namespace DeltaEngine
                 rend.m_SortingLayer = 1;
                 auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
                 health.isInvulnerable = false;
-                CooldownTimer = 3.0f;
+                CooldownTimer = 1.0f;
 
 
                 collider.CollisionLayerCheck = 9;

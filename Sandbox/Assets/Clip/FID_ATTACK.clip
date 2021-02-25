@@ -1,6 +1,6 @@
 frames 12
-fps 12
-loop 0
+fps 9
+loop 1
 
 Textures/FID_ATTACK_i_0
 key Textures/FID_ATTACK
