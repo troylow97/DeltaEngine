@@ -337,10 +337,14 @@ namespace DeltaEngine
 
     void IdleSerpentipede::onEnter(EntityID& id)
     {
+        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
+        s.SetBool("IsIdle", true);
     }
 
     void IdleSerpentipede::onExit(EntityID& id)
     {
+        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
+        s.SetBool("IsIdle", false);
     }
 
     void IdleSerpentipede::Update(EntityID& monster)
@@ -354,7 +358,7 @@ namespace DeltaEngine
         CooldownTimer{ 1.0f },
         BurrowDownDuration{ 1.5f },
         BurrowUpDuration{ 0.5f },
-		BurrowDownDelay{0.3f},
+		BurrowDownDelay{0.4f},
         BurrowState{ 0 },
         CurrentPoint{ 0 },
         SerpentData{ d }
@@ -364,18 +368,16 @@ namespace DeltaEngine
 
     void ChaseEnemySerpentipede::onEnter(EntityID& id)
     {
+        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
+        s.SetBool("IsAlerted", true);
     }
 
     void ChaseEnemySerpentipede::onExit(EntityID& id)
     {
         env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0, 0 };
-
-        //auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id);
-        //auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(id);
-        //auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(id);
-        //auto& rend = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(id);
-        //auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
-        std::cout << "exiting" << std::endl;
+        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
+        s.SetBool("IsAlerted", false);
+        s.SetBool("IsIdle", true);
     }
 
     void ChaseEnemySerpentipede::Update(EntityID& monster)
@@ -403,18 +405,19 @@ namespace DeltaEngine
                 {
                     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
                 }
-
-                if(AITools::Distance_X_BetweenTwoEntities(monster, player) < 1.5f)
+                const float distX = AITools::Distance_X_BetweenTwoEntities(monster, player);
+            	
+                if(distX < 1.5f)
                 {
                     s.SetBool("RangedAttack", false);
                     s.SetBool("IsAlerted", false);
                     s.SetBool("IsBurrowing", true);
-                    BurrowDownDelay = 0.3f;
+                    BurrowDownDelay = 0.4f;
                     BurrowState = 1;
                     return;
                 }
             	
-                if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 7.5f
+                if (distX < 7.5f
                     && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 3.0f)
                 {
                     a.RangeAttack = true;
@@ -422,6 +425,10 @@ namespace DeltaEngine
                     a.AttackDelay = 1.5f;
                     CooldownTimer = 1.0f;
                     Attacking = true;
+                }
+                else
+                {
+                    CheckEdges(monster);                	
                 }
 
             }
@@ -437,7 +444,7 @@ namespace DeltaEngine
             s.SetBool("RangedAttack", false);
             s.SetBool("IsAlerted", false);
             s.SetBool("IsBurrowing", true);
-            BurrowDownDelay = 0.3f;
+            BurrowDownDelay = 0.4f;
             Attacking = false;
             BurrowState = 1;
         }
