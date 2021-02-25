@@ -233,7 +233,7 @@
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
-                "Previous": 69,
+                "Previous": 1,
                 "Current": 0
             }
         },
@@ -346,10 +346,10 @@
                 "AIState": "idle_fiddler"
             },
             "Health": {
-                "Current Health": 1000,
-                "Max Health": 1000,
+                "Current Health": 1,
+                "Max Health": 1,
                 "TakenDamageTimer": 0.0,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
                 "Range Damage": 1,

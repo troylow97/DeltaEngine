@@ -124,6 +124,8 @@ namespace DeltaEngine
       else if (p.IsDashing && CurrentDashTicks < MaxDashTicks)
       {
         CurrentDashTicks++;
+        p.AllowPunching = false;
+        p.AllowShooting = false;
         if (p.DashDirectionRight)
         {
           r.AccumulatedForce += Vector2{5000 + r.Mass * 100, 0};
@@ -136,6 +138,8 @@ namespace DeltaEngine
       else if (p.IsDodging && CurrentDashTicks < MaxDashTicks)
       {
         CurrentDashTicks++;
+        p.AllowPunching = false;
+        p.AllowShooting = false;
         if (p.DashDirectionRight)
         {
           r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
@@ -153,8 +157,8 @@ namespace DeltaEngine
     }
     else if (p.IsDodging)
     {
-        CurrentDashTicks = 0;
-        p.IsDodging = false;
+      CurrentDashTicks = 0;
+      p.IsDodging = false;
     }
 
     if (CurrentDashTicks >= MaxDashTicks)
@@ -162,32 +166,38 @@ namespace DeltaEngine
       CurrentDashTicks = 0;
       p.IsDashing = false;
       p.IsDodging = false;
+      p.AllowPunching = true;
+      p.AllowShooting = true;
     }
   }
 
   void PhysicsSystem::Jump(Player& p, RigidBody& r, Collider& c)
   {
-     if (p.IsJumping && CurrentJumpTicks >= 1)
-     {
-         r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };
-         JumpForce *= 0.75f;
-
-         if (CurrentJumpTicks < MaxJumpTicks)
-             CurrentJumpTicks++;
-         else
-         {
-             p.IsJumping = false;
-             CurrentJumpTicks = 0;
-             JumpForce = InitialJumpForce;
-
-         }
-     }
-
-     //Apply Gravity for player
-     if (r.hasGravity && !c.isCollidingOnFloor && !p.IsDashing && !p.IsDodging)
-         r.Acceleration = m_gravity_amount;
-     else
-         r.Acceleration = { 0, 0 };
-
+    if (p.IsJumping && CurrentJumpTicks >= 1)
+    {
+      r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };
+      JumpForce *= 0.75f;
+      
+      if (CurrentJumpTicks < MaxJumpTicks)
+      {
+        CurrentJumpTicks++;
+        p.AllowPunching = false;
+        p.AllowShooting = false;
+      }
+      else
+      {
+        p.IsJumping = false;
+        CurrentJumpTicks = 0;
+        JumpForce = InitialJumpForce;
+        p.AllowPunching = true;
+        p.AllowShooting = true;
+      }
+    }
+    
+    //Apply Gravity for player
+    if (r.hasGravity && !c.isCollidingOnFloor && !p.IsDashing && !p.IsDodging)
+      r.Acceleration = m_gravity_amount;
+    else
+      r.Acceleration = { 0, 0 };
   }
 }
