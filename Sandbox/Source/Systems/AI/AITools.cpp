@@ -280,6 +280,28 @@ namespace DeltaEngine
       }
     }
 
+    void MoveTowardsPoint(EntityID& id1, float& x)
+    {
+        Vector2 point = { x,0 };
+        if (PointisOnTheRight(id1, point))
+        {
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.x = 1;
+        }
+        else if (PointisOnTheLeft(id1, point))
+        {
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.x = -1;
+        }
+
+        if (PointisOnTop(id1, point))
+        {
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.y = 1;
+        }
+        else if (PointisOnBot(id1, point))
+        {
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.y = -1;
+        }
+    }
+
     void FlyTowardsPoint(EntityID& id1,const Vector2 point)
     {
       const Vector2 pos{env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position};

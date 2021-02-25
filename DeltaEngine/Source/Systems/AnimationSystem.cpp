@@ -72,8 +72,8 @@ namespace DeltaEngine
             if (newClip)
             {
               frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
-
-              if (frame == newClip->GetTotalFrames() - 1)
+              //std::cerr << newClip->GetTotalFrames() << frame << std::endl;
+              if (frame >= newClip->GetTotalFrames() - 1)
               {
                 if (newClip->looping)
                   ++a.m_LoopsCompleted;

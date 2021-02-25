@@ -69,26 +69,13 @@ Clip/LANCER_BOUNCE
 
 pos
 Clip/LANCER_ATTACK
-249 188
+-6 192
 
 pos
 Clip/LANCER_CHARGE
--3 162
+272 292
 
 %Transitions:
-
-transition
-start
-Clip/LANCER_ATTACK
-end
-Clip/LANCER_BOUNCE
-condition
-IsBouncing
-? 1
-condition
-MeleeAttack
-? 0
-endTransition
 
 transition
 start
@@ -107,19 +94,38 @@ transition
 start
 Clip/LANCER_ALERT_IDLE
 end
+Clip/LANCER_ATTACK
+condition
+MeleeAttack
+? 1
+condition
+IsAlerted
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_ATTACK
+end
 Clip/LANCER_CHARGE
 condition
 LancerCharge
 ? 1
+condition
+MeleeAttack
+? 0
 endTransition
 
 transition
 start
 Clip/LANCER_CHARGE
 end
-Clip/LANCER_ATTACK
+Clip/LANCER_BOUNCE
 condition
-MeleeAttack
+LancerCharge
+? 0
+condition
+IsBouncing
 ? 1
 endTransition
 

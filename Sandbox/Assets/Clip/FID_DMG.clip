@@ -1,6 +1,6 @@
 frames 12
-fps 12
-loop 1
+fps 6
+loop 0
 
 Textures/FID_DMG_i_0
 key Textures/FID_DMG

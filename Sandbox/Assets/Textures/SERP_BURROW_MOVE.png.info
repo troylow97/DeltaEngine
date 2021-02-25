@@ -143,21 +143,6 @@ offset 1024 1152
 size 256 384
 pivot 0.5 0.5
 
-Textures/SERP_BURROW_MOVE_i_29
-offset 1280 1152
-size 256 384
-pivot 0.5 0.5
-
-Textures/SERP_BURROW_MOVE_i_30
-offset 1536 1152
-size 256 384
-pivot 0.5 0.5
-
-Textures/SERP_BURROW_MOVE_i_31
-offset 1792 1152
-size 256 384
-pivot 0.5 0.5
-
 %
 
 wrap_mode 0

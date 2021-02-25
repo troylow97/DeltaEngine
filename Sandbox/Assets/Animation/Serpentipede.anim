@@ -53,11 +53,11 @@ Clip/SERP_IDLE
 
 pos
 Clip/SERP_ALERT
--317 130
+-315 111
 
 pos
 Clip/SERP_BURROW
--156 215
+-350 298
 
 pos
 Clip/SERP_CHARGE
@@ -77,7 +77,7 @@ Clip/SERP_BURROW_MOVE
 
 pos
 Clip/SERP_FIRE
--352 237
+-419 212
 
 %Transitions:
 
@@ -144,6 +144,16 @@ IsUnborrowing
 ? 0
 condition
 IsAlerted
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_BURROW
+condition
+IsBurrowing
 ? 1
 endTransition
 
