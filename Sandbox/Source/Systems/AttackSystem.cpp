@@ -63,6 +63,8 @@ namespace DeltaEngine
         {
           if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
             r2d.m_Active = a.SMGAttack;
+          if (et.type == EntityCategory::E_PLAYER)
+            r2d.m_Active = !a.SMGAttack;
         });
       if (a.SMGAttack)
       {
