@@ -36,6 +36,7 @@ namespace DeltaEngine
     em.ForEach(q, [&](EntityID& id, Health& hp, EntityType& et)
     {
       LimitCurrentHealthToMaxHealth(hp);
+	  
       if (hp.CurrentHealth <= 0)
       {
         if (et.type == EntityCategory::E_ENEMY)
@@ -46,13 +47,20 @@ namespace DeltaEngine
       else
       {
         auto& renderer = em.GetComponent<Renderer2D>(id);
-        if (hp.isDamagedTimer > 0.0f)
+
+        if (hp.isDamagedTimer >= 0.0f)
         {
-          renderer.m_Color = {1, 0, 0};
+          //renderer.m_Color = {1, 0, 0};
           hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
+          PlayAttackedAnimation(id);
         }
         else
-          renderer.m_Color = {1, 1, 1};
+        {
+          //renderer.m_Color = { 1, 1, 1 };
+          em.GetComponent<State>(id).SetBool("IsAttacked", false);
+
+        }
+
       }
     });
 
@@ -72,6 +80,31 @@ namespace DeltaEngine
     Profiler::Instance().Record("Health System");
   }
 
+  void HealthSystem::PlayAttackedAnimation(EntityID id)
+  {
+      auto& et_type = em.GetComponent<EntityType>(id);
+      auto& state = em.GetComponent<State>(id);
+
+	  if(et_type.type == EntityCategory::E_ENEMY || et_type.type == EntityCategory::E_PLAYER)
+	  {
+          state.SetBool("IsIdle", false);
+          state.SetBool("IsAlerted", false);
+          state.SetBool("MeleeAttack", false);
+          state.SetBool("IsAttacked", true);
+	  }
+  }
+
+  void HealthSystem::ResetAttackedAnimation(EntityID id)
+  {
+      auto& et_type = em.GetComponent<EntityType>(id);
+      auto& state = em.GetComponent<State>(id);
+
+      if (et_type.type == EntityCategory::E_ENEMY)
+      {
+          state.SetBool("IsAttacked", false);
+      }
+  }
+	
   void HealthSystem::LateUpdate()
   {
   }

@@ -36,7 +36,7 @@ namespace DeltaEngine
         !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
     {
       env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.3f;
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.4f;
     }
   }
   

@@ -136,6 +136,9 @@ Clip/FID_DMG
 condition
 IsAttacked
 ? 1
+condition
+IsAlerted
+? 0
 endTransition
 
 transition
@@ -156,6 +159,9 @@ Clip/FID_DMG
 condition
 IsAttacked
 ? 1
+condition
+MeleeAttack
+? 0
 endTransition
 
 transition
@@ -163,6 +169,12 @@ start
 Clip/FID_WALK
 end
 Clip/FID_DMG
+condition
+IsAttacked
+? 1
+condition
+IsPatrolling
+? 0
 endTransition
 
 %endfile
