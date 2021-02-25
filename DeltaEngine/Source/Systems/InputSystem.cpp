@@ -246,7 +246,7 @@ namespace DeltaEngine
         p1.AllowPunching = false;
         p1.IsPunching = false;
       }
-      if (p1.IsShooting == false || p1.AllowShooting == false && p1.IsShooting == false && p1.IsPunching == false)
+      if (p1.AllowShooting == false && p1.IsShooting == false && p1.IsPunching == false || p1.IsShooting == false)
       {
         if (c1.isCollidingOnFloor && p1.AllowDashing)
         {
@@ -333,7 +333,7 @@ namespace DeltaEngine
         p1.IsRunning = false;
         StopRun();
       }
-      if (p1.IsRunning == false && p1.AllowShooting == true)
+      if (p1.IsRunning == false && p1.AllowShooting == true && p1.IsDashing == false && p1.IsDodging == false)
       {
         a1.SMGAttack = true;
         p1.IsShooting = true;
@@ -388,11 +388,21 @@ namespace DeltaEngine
     {
       Dash();
     }
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1)
+    {
+      if (p1.IsDashing == false)
+        s1.SetBool("LancerAttack", false);
+    });
     // dodging
     if (InputManager::Instance().IsKeyTriggered(DEVK_RBUTTON))
     {
       Dodge();
     }
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1)
+    {
+      if (p1.IsDodging == false)
+        s1.SetBool("IsDashing", false);
+    });
 
     //if (InputManager::Instance().IsKeyTriggered(DEVK_Z))
     //{

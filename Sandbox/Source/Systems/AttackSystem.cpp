@@ -52,7 +52,7 @@ namespace DeltaEngine
   	  //SMG
       auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
       
-      if (a.SMGAttack && a.SMGFireRate <= 0.0f)
+      if (a.SMGAttack && a.SMGFireRate <= 0.0f && p.AllowShooting)
       {
           // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
           //p.StartDashingTimer = true;

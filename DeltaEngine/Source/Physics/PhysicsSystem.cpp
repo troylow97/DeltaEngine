@@ -163,11 +163,18 @@ namespace DeltaEngine
 
     if (CurrentDashTicks >= MaxDashTicks)
     {
-      CurrentDashTicks = 0;
       p.IsDashing = false;
       p.IsDodging = false;
-      p.AllowPunching = true;
-      p.AllowShooting = true;
+      StartAttackCooldown = true;
+      AttacksCooldown(p);
+      if (AttackCooldown >= 1.0f)
+      {
+        p.AllowPunching = true;
+        p.AllowShooting = true;
+        StartAttackCooldown = false;
+        CurrentDashTicks = 0;
+        AttackCooldown = 0.0f;
+      }
     }
   }
 
@@ -187,10 +194,19 @@ namespace DeltaEngine
       else
       {
         p.IsJumping = false;
-        CurrentJumpTicks = 0;
         JumpForce = InitialJumpForce;
-        p.AllowPunching = true;
-        p.AllowShooting = true;
+        StartAttackCooldown = true;
+        AttacksCooldown(p);
+        if (AttackCooldown >= 1.0f)
+        {
+          p.AllowPunching = true;
+          p.AllowShooting = true;
+          StartAttackCooldown = false;
+          CurrentJumpTicks = 0;
+          AttackCooldown = 0.0f;
+        }
+        //p.AllowPunching = true;
+        //p.AllowShooting = true;
       }
     }
     
@@ -199,5 +215,10 @@ namespace DeltaEngine
       r.Acceleration = m_gravity_amount;
     else
       r.Acceleration = { 0, 0 };
+  }
+  void PhysicsSystem::AttacksCooldown(Player& p)
+  {
+    if (StartAttackCooldown)
+      AttackCooldown += env.pClock->FixedDeltaTime();
   }
 }
