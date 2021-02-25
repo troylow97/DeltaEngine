@@ -48,7 +48,7 @@ namespace DeltaEngine
       {
         auto& renderer = em.GetComponent<Renderer2D>(id);
 
-        if (hp.isDamagedTimer >= 0.0f)
+        if (hp.isDamagedTimer > -0.1f)
         {
           //renderer.m_Color = {1, 0, 0};
           hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
