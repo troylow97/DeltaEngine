@@ -18,8 +18,12 @@ namespace DeltaEngine
 
   EntityID UnitManager::GetPlayerID()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id,Collider& c, Player& p, RigidBody& r, State& s, Animator& a)
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id,Collider& c, Player& p, RigidBody& r, State& s, Animator& a, Health& hp)
     {
+	  if(hp.isDamagedTimer > 0.0f)
+	  {
+          return;
+	  }
       static float jump = 0;
       static bool fall = false;
       s.SetFloat("VelocityY", r.Velocity.y);

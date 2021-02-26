@@ -148,6 +148,9 @@ end
 Clip/FID_ALERT_RUN
 condition
 IsAttacked
+? 0
+condition
+IsAlertRunning
 ? 1
 endTransition
 

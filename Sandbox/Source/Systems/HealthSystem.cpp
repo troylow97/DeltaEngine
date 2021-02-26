@@ -43,7 +43,7 @@ namespace DeltaEngine
           entities.push_back(id);
         else if (et.type == EntityCategory::E_PLAYER)
           em.GetComponent<Player>(id).IsDead = true;
-      }
+      } 
       else
       {
         auto& renderer = em.GetComponent<Renderer2D>(id);
@@ -89,6 +89,7 @@ namespace DeltaEngine
 	  {
           state.SetBool("IsIdle", false);
           state.SetBool("IsAlerted", false);
+          state.SetBool("IsAlertRunning", false);
           state.SetBool("MeleeAttack", false);
           state.SetBool("IsAttacked", true);
 	  }
