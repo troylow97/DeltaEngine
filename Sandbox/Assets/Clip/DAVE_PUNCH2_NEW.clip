@@ -2,49 +2,49 @@ frames 9
 fps 24
 loop 0
 
-Textures/DAVE_PUNCH2_NEW_i_0
-key Textures/DAVE_PUNCH2_NEW
-value 0
+Textures/DAVE_PUNCH_i_4
+key Textures/DAVE_PUNCH
+value 4
 frame 0
 
-Textures/DAVE_PUNCH2_NEW_i_1
-key Textures/DAVE_PUNCH2_NEW
-value 1
+Textures/DAVE_PUNCH_i_5
+key Textures/DAVE_PUNCH
+value 5
 frame 1
 
-Textures/DAVE_PUNCH2_NEW_i_2
-key Textures/DAVE_PUNCH2_NEW
-value 2
+Textures/DAVE_PUNCH_i_6
+key Textures/DAVE_PUNCH
+value 6
 frame 2
 
-Textures/DAVE_PUNCH2_NEW_i_3
-key Textures/DAVE_PUNCH2_NEW
-value 3
+Textures/DAVE_PUNCH_i_7
+key Textures/DAVE_PUNCH
+value 7
 frame 3
 
-Textures/DAVE_PUNCH2_NEW_i_4
-key Textures/DAVE_PUNCH2_NEW
-value 4
+Textures/DAVE_PUNCH_i_8
+key Textures/DAVE_PUNCH
+value 8
 frame 4
 
-Textures/DAVE_PUNCH2_NEW_i_5
-key Textures/DAVE_PUNCH2_NEW
-value 5
+Textures/DAVE_PUNCH_i_9
+key Textures/DAVE_PUNCH
+value 9
 frame 5
 
-Textures/DAVE_PUNCH2_NEW_i_6
-key Textures/DAVE_PUNCH2_NEW
-value 6
+Textures/DAVE_PUNCH_i_10
+key Textures/DAVE_PUNCH
+value 10
 frame 6
 
-Textures/DAVE_PUNCH2_NEW_i_7
-key Textures/DAVE_PUNCH2_NEW
-value 7
+Textures/DAVE_PUNCH_i_11
+key Textures/DAVE_PUNCH
+value 11
 frame 7
 
-Textures/DAVE_PUNCH2_NEW_i_8
-key Textures/DAVE_PUNCH2_NEW
-value 8
+Textures/DAVE_PUNCH_i_12
+key Textures/DAVE_PUNCH
+value 12
 frame 8
 
 %
