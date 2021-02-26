@@ -283,10 +283,10 @@ namespace DeltaEngine
     {
       if (p1.IsRunning)
       {
-        StopRun();
+        return;
       }
     	
-      if (p1.AllowPunching && c1.isCollidingOnFloor)
+      if (p1.AllowPunching && c1.isCollidingOnFloor && !p1.IsShooting)
       {
         p1.IsPunching = true;
         i1.previousKey = DEVK_LBUTTON;

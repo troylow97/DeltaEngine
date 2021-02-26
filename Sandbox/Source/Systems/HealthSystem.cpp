@@ -89,6 +89,7 @@ namespace DeltaEngine
 	  {
           state.SetBool("IsIdle", false);
           state.SetBool("IsAlerted", false);
+          state.SetBool("IsAlertRunning", false);
           state.SetBool("MeleeAttack", false);
           state.SetBool("IsAttacked", true);
 	  }

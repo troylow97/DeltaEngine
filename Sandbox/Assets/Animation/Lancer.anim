@@ -33,6 +33,10 @@ param
 LancerCharge
 0 0
 
+param
+IsAttacked
+1 0
+
 %EditorPositions:
 
 pos
@@ -65,15 +69,19 @@ Clip/LANCER_IDLE
 
 pos
 Clip/LANCER_BOUNCE
-34 401
+-27 465
 
 pos
 Clip/LANCER_ATTACK
--6 192
+-6 163
 
 pos
 Clip/LANCER_CHARGE
 272 292
+
+pos
+Clip/LANCER_DMG
+1 301
 
 %Transitions:
 
@@ -126,6 +134,56 @@ LancerCharge
 ? 0
 condition
 IsBouncing
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_DMG
+end
+Clip/LANCER_ALERT_IDLE
+condition
+IsAttacked
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_ATTACK
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_BOUNCE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_ALERT_IDLE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
 ? 1
 endTransition
 
