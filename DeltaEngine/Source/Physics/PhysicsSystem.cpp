@@ -70,8 +70,10 @@ namespace DeltaEngine
         //Dash and Jump
         if (em.HasComponent<Player>(id1))
         {
-          Dash(em.GetComponent<Player>(id1), r1, c1);
-          Jump(em.GetComponent<Player>(id1), r1, c1);
+          auto& player = em.GetComponent<Player>(id1);
+          UpdateJumpAndDashDelay(player);
+          Dash(player, r1, c1);
+          Jump(player, r1, c1);
         }
 
         //Movement
@@ -114,32 +116,33 @@ namespace DeltaEngine
   void PhysicsSystem::Dash(Player& p, RigidBody& r, Collider& c)
   {
     //Jumping,Dashing
-   // if ()
+	// if ()
     {
       if (p.IsJumping && c.isCollidingOnFloor)
       {
         CurrentJumpTicks = 1;
         JumpForce = InitialJumpForce;
       }
-      else if (p.IsDashing && CurrentDashTicks < MaxDashTicks)
-      {
-        CurrentDashTicks++;
-        p.AllowPunching = false;
-        p.AllowShooting = false;
-        if (p.DashDirectionRight)
-        {
-          r.AccumulatedForce += Vector2{5000 + r.Mass * 100, 0};
-        }
-        else
-        {
-          r.AccumulatedForce -= Vector2{5000 + r.Mass * 100, 0};
-        }
-      }
+      //else if (p.IsDashing && CurrentDashTicks < MaxDashTicks)
+      //{
+      //  CurrentDashTicks++;
+      //  p.AllowPunching = false;
+      //  p.AllowShooting = false;
+      //  if (p.DashDirectionRight)
+      //  {
+      //    r.AccumulatedForce += Vector2{5000 + r.Mass * 100, 0};
+      //  }
+      //  else
+      //  {
+      //    r.AccumulatedForce -= Vector2{5000 + r.Mass * 100, 0};
+      //  }
+      //}
       else if (p.IsDodging && CurrentDashTicks < MaxDashTicks)
       {
         CurrentDashTicks++;
         p.AllowPunching = false;
         p.AllowShooting = false;
+        p.AllowRuning = false;
         if (p.DashDirectionRight)
         {
           r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
@@ -151,31 +154,23 @@ namespace DeltaEngine
       }
     }
   	
-    if (p.IsDashing)
-    {
-      CurrentDashTicks = 0;
-      p.IsDashing = false;
-    }
-    else if (p.IsDodging)
-    {
-      CurrentDashTicks = 0;
-      p.IsDodging = false;
-    }
+    //if (p.IsDashing)
+    //{
+    //  CurrentDashTicks = 0;
+    //  p.IsDashing = false;
+    //}
+    //else if (p.IsDodging)
+    //{
+    //  CurrentDashTicks = 0;
+    //  p.IsDodging = false;
+    //}
 
     if (CurrentDashTicks >= MaxDashTicks)
     {
-      p.IsDashing = false;
+      //p.IsDashing = false;
       p.IsDodging = false;
-      StartAttackCooldown = true;
-      AttacksCooldown(p);
-      if (AttackCooldown >= 1.0f)
-      {
-        p.AllowPunching = true;
-        p.AllowShooting = true;
-        StartAttackCooldown = false;
-        CurrentDashTicks = 0;
-        AttackCooldown = 0.0f;
-      }
+      CurrentDashTicks = 0;
+      DashDelay = 0.5f;
     }
   }
 
@@ -191,23 +186,16 @@ namespace DeltaEngine
         CurrentJumpTicks++;
         p.AllowPunching = false;
         p.AllowShooting = false;
+        p.AllowRuning = false;
       }
       else
       {
+        p.AllowRuning = true;
+        p.AllowPunching = true;
         p.IsJumping = false;
         JumpForce = InitialJumpForce;
-        StartAttackCooldown = true;
-        AttacksCooldown(p);
-        if (AttackCooldown >= 1.0f)
-        {
-          p.AllowPunching = true;
-          p.AllowShooting = true;
-          StartAttackCooldown = false;
-          CurrentJumpTicks = 0;
-          AttackCooldown = 0.0f;
-        }
-        //p.AllowPunching = true;
-        //p.AllowShooting = true;
+        CurrentJumpTicks = 0;
+        JumpDelay = 0.5f;
       }
     }
     
@@ -217,9 +205,24 @@ namespace DeltaEngine
     else
       r.Acceleration = { 0, 0 };
   }
-  void PhysicsSystem::AttacksCooldown(Player& p)
+  void PhysicsSystem::UpdateJumpAndDashDelay(Player& p)
   {
-    if (StartAttackCooldown)
-      AttackCooldown += env.pClock->FixedDeltaTime();
+    if (DashDelay > 0.0f)
+      DashDelay -= env.pClock->FixedDeltaTime();
+    else
+    {
+      p.AllowRuning = true;
+      p.AllowPunching = true;
+      p.AllowShooting = true;
+    }
+
+    if (JumpDelay > 0.0f)
+        JumpDelay -= env.pClock->FixedDeltaTime();
+    else
+    {
+      p.AllowRuning = true;
+      p.AllowPunching = true;
+      p.AllowShooting = true;
+    } 	
   }
 }
