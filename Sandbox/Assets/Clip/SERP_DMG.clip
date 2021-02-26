@@ -1,5 +1,5 @@
-frames 12
-fps 12
+frames 5
+fps 5
 loop 0
 
 Textures/SERP_DMG_i_0
@@ -26,40 +26,5 @@ Textures/SERP_DMG_i_4
 key Textures/SERP_DMG
 value 4
 frame 4
-
-Textures/SERP_DMG_i_5
-key Textures/SERP_DMG
-value 5
-frame 5
-
-Textures/SERP_DMG_i_6
-key Textures/SERP_DMG
-value 6
-frame 6
-
-Textures/SERP_DMG_i_7
-key Textures/SERP_DMG
-value 7
-frame 7
-
-Textures/SERP_DMG_i_8
-key Textures/SERP_DMG
-value 8
-frame 8
-
-Textures/SERP_DMG_i_9
-key Textures/SERP_DMG
-value 9
-frame 9
-
-Textures/SERP_DMG_i_10
-key Textures/SERP_DMG
-value 10
-frame 10
-
-Textures/SERP_DMG_i_11
-key Textures/SERP_DMG
-value 11
-frame 11
 
 %

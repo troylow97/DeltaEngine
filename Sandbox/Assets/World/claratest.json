@@ -346,10 +346,10 @@
                 "AIState": "idle_fiddler"
             },
             "Health": {
-                "Current Health": 1,
-                "Max Health": 1,
+                "Current Health": 100,
+                "Max Health": 100,
                 "TakenDamageTimer": 0.0,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 1,
