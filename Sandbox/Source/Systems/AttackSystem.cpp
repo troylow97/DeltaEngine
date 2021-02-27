@@ -240,6 +240,7 @@ namespace DeltaEngine
             st.SetBool("Punch1", false);
             st.SetBool("Punch2", false);
             st.SetBool("Punch3", false);
+            st.SetBool("IsIdle", true);
             a.NumberOfCombos = 0;
             a.StartComboCooldownTimer = false;
             a.ComboCooldownTimer = a.ComboDuration;

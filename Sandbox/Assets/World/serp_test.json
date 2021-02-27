@@ -9,7 +9,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 4.130793571472168,
+                    "x": -5.085425853729248,
                     "y": 2.0,
                     "z": 0.0
                 },
@@ -100,8 +100,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 4.130793571472168,
-                    "y": 0.9994697570800781,
+                    "x": -5.085425853729248,
+                    "y": 0.9991681575775147,
                     "z": 0.0
                 },
                 "Scale": {
@@ -121,7 +121,7 @@
                 "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 27.0,
+                "Inherent Acceleration": 40.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": true,
@@ -129,8 +129,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 4.130793571472168,
-                    "y": 0.9994697570800781
+                    "x": -5.085425853729248,
+                    "y": 0.9991681575775147
                 },
                 "Offset": {
                     "x": 0.0,
@@ -149,7 +149,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/DAVE_PUNCH",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -199,19 +199,19 @@
                 "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 4,
-                "Melee Damage": 4,
-                "SMG Damage": 4,
-                "Melee Combo Damage": 12,
-                "Number Of Combo": 2,
-                "Max Combo Number": 3,
+                "Range Damage": 8,
+                "Melee Damage": 8,
+                "SMG Damage": 8,
+                "Melee Combo Damage": 24,
+                "Number Of Combo": 3,
+                "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.11666667461395264,
+                "Melee Cooldown Timer": 0.13333334028720857,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 2.0,
-                "Combo Cooldown Timer": 1.7666668891906739,
+                "Combo Cooldown Timer": 1.9166667461395264,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -246,7 +246,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.1826612800359726,
+                    "x": 2.3209726810455324,
                     "y": 1.4594839811325074,
                     "z": 0.0
                 },
@@ -275,7 +275,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -0.1826612800359726,
+                    "x": 2.3209726810455324,
                     "y": 1.3594839572906495
                 },
                 "Offset": {
@@ -294,7 +294,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SERP_DEATH",
+                    "key": "Textures/SERP_FIRE",
                     "index": 5
                 },
                 "Size": {
@@ -314,7 +314,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": true,
+                "Flip X": false,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -368,8 +368,8 @@
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -6.332993507385254e-8,
-                "Ranged Attack": false,
+                "Attack Delay": 0.58333420753479,
+                "Ranged Attack": true,
                 "Melee Attack": false,
                 "SMG Attack": false,
                 "Allow SMG Attack": false,
@@ -500,8 +500,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 3.4504458904266359,
-                    "y": 0.9994697570800781,
+                    "x": -5.746965408325195,
+                    "y": 0.9991681575775147,
                     "z": 0.0
                 },
                 "Scale": {
@@ -529,8 +529,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 3.4504458904266359,
-                    "y": 0.9994697570800781
+                    "x": -5.746965408325195,
+                    "y": 0.9991681575775147
                 },
                 "Offset": {
                     "x": 0.0,
@@ -547,7 +547,7 @@
                 "Platform": false
             },
             "Lifespan": {
-                "Timer": 3.725290298461914e-9
+                "Timer": 0.016666671261191369
             }
         }
     ]
