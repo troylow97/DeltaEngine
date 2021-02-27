@@ -95,7 +95,7 @@ namespace DeltaEngine
     {
       if (p1.AllowRuning == true)
       {
-        //if (!a1.Blocking && a1.MeleeCooldownTimer <= 0.0)
+        if (!a1.Blocking && a1.MeleeCooldownTimer <= 0.0)
         {
           p1.IsRunning = true;
           i1.previousKey = DEVK_A;
@@ -126,7 +126,7 @@ namespace DeltaEngine
     {
       if (p1.AllowRuning == true)
       {
-        //if (!a1.Blocking && a1.MeleeCooldownTimer <= 0.0) //TO edit punching
+        if (!a1.Blocking && a1.MeleeCooldownTimer <= 0.0) //TO edit punching
         {
           p1.IsRunning = true;
           i1.previousKey = DEVK_D;
