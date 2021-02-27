@@ -173,7 +173,7 @@ namespace DeltaEngine
               it1->m.normal == Vector2::up())
             {
               it1->ignore = true;
-              em.GetComponent<Transform>(player).position.y += 0.1f;
+              //em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 250};
               continue;
             }
           }

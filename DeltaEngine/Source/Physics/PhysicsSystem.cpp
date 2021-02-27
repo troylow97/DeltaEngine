@@ -19,12 +19,12 @@ namespace DeltaEngine
 {
   void PhysicsSystem::Initialize()
   {
-    m_gravity_amount = {0, -50.0f};
+    m_gravity_amount = {0, -60.0f};
     CurrentJumpTicks = 0;
-    MaxJumpTicks = 7;
+    MaxJumpTicks = 10;
     CurrentDashTicks = 0;
     MaxDashTicks = 8;
-    InitialJumpForce = 4000.0f;
+    InitialJumpForce = 3500.0f;
     JumpForce = InitialJumpForce;
   }
 
@@ -40,9 +40,9 @@ namespace DeltaEngine
     {
       r1.FrictionCoeff = 0.01f;
     }
-    else if (r1.FrictionCoeff > 5)
+    else if (r1.FrictionCoeff > 4)
     {
-      r1.FrictionCoeff = 5.0f;
+      r1.FrictionCoeff = 4.0f;
     }
   }
 
@@ -70,8 +70,10 @@ namespace DeltaEngine
         //Dash and Jump
         if (em.HasComponent<Player>(id1))
         {
-          Dash(em.GetComponent<Player>(id1), r1, c1);
-          Jump(em.GetComponent<Player>(id1), r1, c1);
+          auto& player = em.GetComponent<Player>(id1);
+          UpdateJumpAndDashDelay(player);
+          Dash(player, r1, c1);
+          Jump(player, r1, c1);
         }
 
         //Movement
@@ -114,28 +116,33 @@ namespace DeltaEngine
   void PhysicsSystem::Dash(Player& p, RigidBody& r, Collider& c)
   {
     //Jumping,Dashing
-    if (c.isCollidingOnFloor)
+	// if ()
     {
-      if (p.IsJumping)
+      if (p.IsJumping && c.isCollidingOnFloor)
       {
         CurrentJumpTicks = 1;
         JumpForce = InitialJumpForce;
       }
-      else if (p.IsDashing && CurrentDashTicks < MaxDashTicks)
-      {
-        CurrentDashTicks++;
-        if (p.DashDirectionRight)
-        {
-          r.AccumulatedForce += Vector2{5000 + r.Mass * 100, 0};
-        }
-        else
-        {
-          r.AccumulatedForce -= Vector2{5000 + r.Mass * 100, 0};
-        }
-      }
+      //else if (p.IsDashing && CurrentDashTicks < MaxDashTicks)
+      //{
+      //  CurrentDashTicks++;
+      //  p.AllowPunching = false;
+      //  p.AllowShooting = false;
+      //  if (p.DashDirectionRight)
+      //  {
+      //    r.AccumulatedForce += Vector2{5000 + r.Mass * 100, 0};
+      //  }
+      //  else
+      //  {
+      //    r.AccumulatedForce -= Vector2{5000 + r.Mass * 100, 0};
+      //  }
+      //}
       else if (p.IsDodging && CurrentDashTicks < MaxDashTicks)
       {
         CurrentDashTicks++;
+        p.AllowPunching = false;
+        p.AllowShooting = false;
+        p.AllowRuning = false;
         if (p.DashDirectionRight)
         {
           r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
@@ -146,48 +153,76 @@ namespace DeltaEngine
         }
       }
     }
-    else if (p.IsDashing)
-    {
-      CurrentDashTicks = 0;
-      p.IsDashing = false;
-    }
-    else if (p.IsDodging)
-    {
-        CurrentDashTicks = 0;
-        p.IsDodging = false;
-    }
+  	
+    //if (p.IsDashing)
+    //{
+    //  CurrentDashTicks = 0;
+    //  p.IsDashing = false;
+    //}
+    //else if (p.IsDodging)
+    //{
+    //  CurrentDashTicks = 0;
+    //  p.IsDodging = false;
+    //}
 
     if (CurrentDashTicks >= MaxDashTicks)
     {
-      CurrentDashTicks = 0;
-      p.IsDashing = false;
+      //p.IsDashing = false;
       p.IsDodging = false;
+      CurrentDashTicks = 0;
+      DashDelay = 0.5f;
     }
   }
 
   void PhysicsSystem::Jump(Player& p, RigidBody& r, Collider& c)
   {
-     if (p.IsJumping && CurrentJumpTicks >= 1)
-     {
-         r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };
-         JumpForce *= 0.7f;
+    if (p.IsJumping && CurrentJumpTicks >= 1)
+    {
+      r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };
+      JumpForce *= 0.75f;
+      
+      if (CurrentJumpTicks < MaxJumpTicks)
+      {
+        CurrentJumpTicks++;
+        p.AllowPunching = false;
+        p.AllowShooting = false;
+        p.AllowRuning = false;
+      }
+      else
+      {
+        p.AllowRuning = true;
+        p.AllowPunching = true;
+        p.IsJumping = false;
+        JumpForce = InitialJumpForce;
+        CurrentJumpTicks = 0;
+        JumpDelay = 0.5f;
+      }
+    }
+    
+    //Apply Gravity for player
+    if (r.hasGravity && !c.isCollidingOnFloor && !p.IsDashing && !p.IsDodging)
+      r.Acceleration = m_gravity_amount;
+    else
+      r.Acceleration = { 0, 0 };
+  }
+  void PhysicsSystem::UpdateJumpAndDashDelay(Player& p)
+  {
+    if (DashDelay > 0.0f)
+      DashDelay -= env.pClock->FixedDeltaTime();
+    else
+    {
+      p.AllowRuning = true;
+      p.AllowPunching = true;
+      p.AllowShooting = true;
+    }
 
-         if (CurrentJumpTicks < MaxJumpTicks)
-             CurrentJumpTicks++;
-         else
-         {
-             p.IsJumping = false;
-             CurrentJumpTicks = 0;
-             JumpForce = InitialJumpForce;
-
-         }
-     }
-
-     //Apply Gravity for player
-     if (r.hasGravity && !c.isCollidingOnFloor && !p.IsDashing && !p.IsDodging)
-         r.Acceleration = m_gravity_amount;
-     else
-         r.Acceleration = { 0, 0 };
-
+    if (JumpDelay > 0.0f)
+        JumpDelay -= env.pClock->FixedDeltaTime();
+    else
+    {
+      p.AllowRuning = true;
+      p.AllowPunching = true;
+      p.AllowShooting = true;
+    } 	
   }
 }

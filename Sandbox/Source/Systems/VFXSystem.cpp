@@ -27,9 +27,9 @@ namespace DeltaEngine
         {
             ShowVFX++;
 
-            if (ShowVFX == 3)
+            if (ShowVFX == 10)
             {
-                ShowHitVFX(player_pos.position, { 0.55f, 0.55f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
+                ShowHitVFX(player_pos.position, { 1.0f, 1.0f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
                 player_attack.DamageEnemy = false;
                 ShowVFX = 0;
             }

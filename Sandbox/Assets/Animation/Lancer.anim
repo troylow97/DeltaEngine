@@ -29,6 +29,14 @@ param
 IsDamaged
 0 0
 
+param
+LancerCharge
+0 0
+
+param
+IsAttacked
+1 0
+
 %EditorPositions:
 
 pos
@@ -61,36 +69,21 @@ Clip/LANCER_IDLE
 
 pos
 Clip/LANCER_BOUNCE
--33 354
+-27 465
 
 pos
 Clip/LANCER_ATTACK
--14 214
+-6 163
+
+pos
+Clip/LANCER_CHARGE
+272 292
+
+pos
+Clip/LANCER_DMG
+1 301
 
 %Transitions:
-
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_ATTACK
-condition
-MeleeAttack
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_ATTACK
-end
-Clip/LANCER_BOUNCE
-condition
-IsBouncing
-? 1
-condition
-MeleeAttack
-? 0
-endTransition
 
 transition
 start
@@ -102,6 +95,95 @@ IsBouncing
 ? 0
 condition
 IsAlerted
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_ALERT_IDLE
+end
+Clip/LANCER_ATTACK
+condition
+MeleeAttack
+? 1
+condition
+IsAlerted
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_ATTACK
+end
+Clip/LANCER_CHARGE
+condition
+LancerCharge
+? 1
+condition
+MeleeAttack
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_BOUNCE
+condition
+LancerCharge
+? 0
+condition
+IsBouncing
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_DMG
+end
+Clip/LANCER_ALERT_IDLE
+condition
+IsAttacked
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_ATTACK
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_BOUNCE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_ALERT_IDLE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
 ? 1
 endTransition
 

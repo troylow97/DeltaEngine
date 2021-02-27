@@ -29,6 +29,10 @@ param
 IsDead
 0 0
 
+param
+IsAttacked
+1 0
+
 %EditorPositions:
 
 pos
@@ -53,7 +57,7 @@ Clip/FID_DEATH
 
 pos
 Clip/FID_ATTACK
-369 188
+374 190
 
 pos
 Clip/FID_ALERT_RUN
@@ -73,7 +77,7 @@ Clip/FID_BLOCK_UP
 
 pos
 Clip/FID_DMG
-468 486
+191 124
 
 %Transitions:
 
@@ -121,6 +125,58 @@ end
 Clip/FID_ALERT_RUN
 condition
 MeleeAttack
+? 0
+endTransition
+
+transition
+start
+Clip/FID_ALERT_RUN
+end
+Clip/FID_DMG
+condition
+IsAttacked
+? 1
+condition
+IsAlerted
+? 0
+endTransition
+
+transition
+start
+Clip/FID_DMG
+end
+Clip/FID_ALERT_RUN
+condition
+IsAttacked
+? 0
+condition
+IsAlertRunning
+? 1
+endTransition
+
+transition
+start
+Clip/FID_ATTACK
+end
+Clip/FID_DMG
+condition
+IsAttacked
+? 1
+condition
+MeleeAttack
+? 0
+endTransition
+
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_DMG
+condition
+IsAttacked
+? 1
+condition
+IsPatrolling
 ? 0
 endTransition
 

@@ -36,7 +36,7 @@ namespace DeltaEngine
         !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
     {
       env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.3f;
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.4f;
     }
   }
   
@@ -75,6 +75,8 @@ namespace DeltaEngine
     
     if (block.Blocking && ((kb_vector.x > 0 && AITools::isFacingLeft(defender)) || (kb_vector.x < 0 && AITools::isFacingRight(defender))))
     {
+      if (env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(attacker).type == EntityCategory::E_ENEMY_BULLET)
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(attacker).CurrentHealth = 0;
       return true;
     }
      return false;
@@ -94,6 +96,7 @@ namespace DeltaEngine
         {
           if(!CheckBlock(id2,id1))
             ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+          em.GetComponent<Lifespan>(id1).Timer = -0.1f;
           ApplyKnockBack(id2, id1,1000.0f);
           return;
         }
@@ -101,6 +104,7 @@ namespace DeltaEngine
         {
           if (!CheckBlock(id1, id2))
             ReduceHealth(id1, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+          em.GetComponent<Lifespan>(id2).Timer = -0.1f;
           ApplyKnockBack(id1, id2, 1000.0f);
           return;
         }
@@ -111,13 +115,15 @@ namespace DeltaEngine
         if (CheckEntityType(id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id2, static_cast<int>(CollisionHandlerLancerData.Damage));
-          ApplyKnockBack(id2, id1, 600.0f);
+          ApplyKnockBack(id2, id1, 400.0f);
+          em.GetComponent<Lifespan>(id1).Timer = -0.1f;
           return;
         }
         if (CheckEntityType(id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id1, static_cast<int>(CollisionHandlerLancerData.Damage));
-          ApplyKnockBack(id1, id2, 600.0f);
+          ApplyKnockBack(id1, id2, 400.0f);
+          em.GetComponent<Lifespan>(id2).Timer = -0.1f;
           return;
         }
       }
@@ -127,29 +133,31 @@ namespace DeltaEngine
         if (CheckEntityType(id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id2, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
-          ApplyKnockBack(id2, id1, 600.0f);
+          em.GetComponent<Lifespan>(id1).Timer = -0.1f;
+          //ApplyKnockBack(id2, id1, 600.0f);
           return;
         }
         if (CheckEntityType(id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER))
         {
           ReduceHealth(id1, static_cast<int>(CollisionHandlerSerpentipedeData.Damage));
-          ApplyKnockBack(id2, id1, 600.0f);
+          em.GetComponent<Lifespan>(id2).Timer = -0.1f;
+          //ApplyKnockBack(id2, id1, 600.0f);
           return;
         }
       }
     
       //Player Detection Ranged Attack
-      if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET_DETECTION, id2, EntityCategory::E_ENEMY) ||
-          CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET_DETECTION, id1, EntityCategory::E_ENEMY))
-      {
-        EntityID target = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-        
-        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
-        {
-          if (et.type == EntityCategory::E_PLAYER_BULLET)
-            AITools::BulletTowardsEntity(bullet, target);
-        });
-      }
+      //if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET_DETECTION, id2, EntityCategory::E_ENEMY) ||
+      //    CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET_DETECTION, id1, EntityCategory::E_ENEMY))
+      //{
+      //  EntityID target = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+      //  
+      //  env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& bullet, EntityType et)
+      //  {
+      //    if (et.type == EntityCategory::E_PLAYER_BULLET)
+      //      AITools::BulletTowardsEntity(bullet, target);
+      //  });
+      //}
     
       const auto player = UnitManager::GetPlayerID();
       auto& att = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(player);
@@ -158,7 +166,9 @@ namespace DeltaEngine
           CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET, id1, EntityCategory::E_ENEMY))
       {
         EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+
         ReduceHealth(enemy, att.RangedDamage);
+
         if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
           env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
         return;
@@ -169,7 +179,9 @@ namespace DeltaEngine
         CheckEntityType(id2, EntityCategory::E_PLAYER_SMG, id1, EntityCategory::E_ENEMY))
       {
         EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+        EntityID bullet = GetEntityID(id1, id2, EntityCategory::E_PLAYER_BULLET);
         ReduceHealth(enemy, att.SMGDamage);
+        em.GetComponent<Lifespan>(bullet).Timer = -0.1f;
         if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
           env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
         return;
@@ -192,7 +204,8 @@ namespace DeltaEngine
         const EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
         const EntityID punch = GetEntityID(id1, id2, EntityCategory::E_PLAYER_PUNCH);
         Vector2 kb_vector = em.GetComponent<RigidBody>(punch).Velocity.Normalize();
-        att.DamageEnemy = true;
+      	if(!em.GetComponent<Health>(enemy).isInvulnerable)
+			att.DamageEnemy = true;
         if (att.NumberOfCombos == att.MaxComboNumber)
         {
           ReduceHealth(id1, att.MeleeComboDamage);
