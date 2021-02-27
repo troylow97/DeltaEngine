@@ -7,6 +7,14 @@ namespace DeltaEngine
 {
   struct Gradient
   {
+    enum class Type
+    {
+      ConstantColor,
+      ConstantGradient,
+      RandomBetweenColors,
+      RandomBetweenGradients,
+    };
+
     // value, location (0 - 1)
     // alpha is active
     std::array<std::pair<Color, float>, 8> colorKeys;
@@ -17,5 +25,11 @@ namespace DeltaEngine
 
     // time is location
     Color Evaluate(float time);
+  };
+
+  struct GradientRange
+  {
+    Gradient min, max;
+    Gradient::Type type = Gradient::Type::ConstantGradient;
   };
 }

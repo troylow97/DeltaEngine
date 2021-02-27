@@ -17,12 +17,13 @@ namespace DeltaEngine
 {
   class BezierPanel : public IPanel
   {
-    BezierCurve* curve = nullptr;
     bool loaded = false;
   public:
     BezierPanel(std::string str, Editor& e);
     ~BezierPanel();
     void Enable() override;
     void Render() override;
+
+    std::vector<BezierCurve*> curves;
   };
 }

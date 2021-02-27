@@ -74,7 +74,7 @@ namespace DeltaEngine
             {
             case ParticleEmitter::Shape::None:
               particle.transform.position = Vector3();
-              particle.velocity = Vector3::up() + Vector3::right() * (2 * Random::RandomFloat() - 1);
+              particle.velocity = Vector3::up();
               break;
             case ParticleEmitter::Shape::Circle:
               particle.transform.position = Vector3(
@@ -86,13 +86,23 @@ namespace DeltaEngine
               break;
             case ParticleEmitter::Shape::Line:
               particle.transform.position = Vector3(
-                ps.radius * disp,
-                0);
-              particle.velocity = Vector3::up() + Vector3::right() * (2 * Random::RandomFloat() - 1);
+                ps.shapeTransform.position.x + (ps.radius + ps.shapeTransform.scale.x) * disp,
+                ps.shapeTransform.position.y);
+              particle.velocity = Vector3::up();
               break;
             case ParticleEmitter::Shape::Box:
-              particle.transform.position = Vector3();
-              particle.velocity = Vector3::up() + Vector3::right() * (2 * Random::RandomFloat() - 1);
+              particle.transform.position = Vector3(
+                Random::RandomFloatRange(
+                  ps.shapeTransform.position.x - ps.shapeTransform.scale.x,
+                  ps.shapeTransform.position.x + ps.shapeTransform.scale.x),
+                Random::RandomFloatRange(
+                  ps.shapeTransform.position.y - ps.shapeTransform.scale.y,
+                  ps.shapeTransform.position.y + ps.shapeTransform.scale.y),
+                Random::RandomFloatRange(
+                  ps.shapeTransform.position.z - ps.shapeTransform.scale.z,
+                  ps.shapeTransform.position.z + ps.shapeTransform.scale.z)
+              );
+              particle.velocity = Vector3::up();
               break;
             }
             particle.transform.scale = Vector3(
@@ -109,10 +119,10 @@ namespace DeltaEngine
           }
         };
 
-        for (auto burst : ps.bursts)
-          if (ps.durationTimer <  burst.time &&
-            ps.durationTimer + static_cast<float>(FixedDeltaTime()) > burst.time)
-            Emit(burst.count);
+        //for (auto burst : ps.bursts)
+        //  if (ps.durationTimer <  burst.time &&
+        //    ps.durationTimer + static_cast<float>(FixedDeltaTime()) > burst.time)
+        //    Emit(burst.count);
 
         ps.emissionTimer += static_cast<float>(FixedDeltaTime());
         ps.durationTimer += static_cast<float>(FixedDeltaTime());
@@ -143,25 +153,93 @@ namespace DeltaEngine
             continue;
           }
 
-          particle.lifeTimer += static_cast<float>(FixedDeltaTime());
-          particle.transform.position += particle.velocity * static_cast<float>(FixedDeltaTime());
-          particle.transform.scale = Vector3(
-            Random::RandomFloatRange(
-              ps.sizeOverLifetimeXMin.Evaluate(particle.lifeTimer / particle.lifeTime),
-              ps.sizeOverLifetimeXMax.Evaluate(particle.lifeTimer / particle.lifeTime)),
-            Random::RandomFloatRange(
-              ps.sizeOverLifetimeYMin.Evaluate(particle.lifeTimer / particle.lifeTime),
-              ps.sizeOverLifetimeYMax.Evaluate(particle.lifeTimer / particle.lifeTime)),
-            Random::RandomFloatRange(
-              ps.sizeOverLifetimeZMin.Evaluate(particle.lifeTimer / particle.lifeTime),
-              ps.sizeOverLifetimeZMax.Evaluate(particle.lifeTimer / particle.lifeTime))
+          particle.transform.position += particle.velocity * static_cast<float>(DeltaTime());
+
+          switch (ps.sizeOverLifetime.type)
+          {
+          case BezierCurve::Type::Constant:
+            particle.transform.scale = Vector3(
+              ps.sizeOverLifetime.minX.Evaluate(0),
+              ps.sizeOverLifetime.minY.Evaluate(0),
+              ps.sizeOverLifetime.minZ.Evaluate(0)
             );
+            break;
+          case BezierCurve::Type::ConstantCurve:
+            particle.transform.scale = Vector3(
+              ps.sizeOverLifetime.minX.Evaluate(particle.lifeTimer / particle.lifeTime),
+              ps.sizeOverLifetime.minY.Evaluate(particle.lifeTimer / particle.lifeTime),
+              ps.sizeOverLifetime.minZ.Evaluate(particle.lifeTimer / particle.lifeTime)
+              );
+            break;
+          case BezierCurve::Type::RandomBetweenConstants:
+            particle.transform.scale = Vector3(
+              Random::RandomFloatRange(
+                ps.sizeOverLifetime.minX.Evaluate(0),
+                ps.sizeOverLifetime.maxX.Evaluate(0)),
+              Random::RandomFloatRange(
+                ps.sizeOverLifetime.minY.Evaluate(0),
+                ps.sizeOverLifetime.maxY.Evaluate(0)),
+              Random::RandomFloatRange(
+                ps.sizeOverLifetime.minZ.Evaluate(0),
+                ps.sizeOverLifetime.maxZ.Evaluate(0))
+            );
+            break;
+          case BezierCurve::Type::RandomBetweenCurves:
+            particle.transform.scale = Vector3(
+              Random::RandomFloatRange(
+                ps.sizeOverLifetime.minX.Evaluate(particle.lifeTimer / particle.lifeTime),
+                ps.sizeOverLifetime.maxX.Evaluate(particle.lifeTimer / particle.lifeTime)),
+              Random::RandomFloatRange(
+                ps.sizeOverLifetime.minY.Evaluate(particle.lifeTimer / particle.lifeTime),
+                ps.sizeOverLifetime.maxY.Evaluate(particle.lifeTimer / particle.lifeTime)),
+              Random::RandomFloatRange(
+                ps.sizeOverLifetime.minZ.Evaluate(particle.lifeTimer / particle.lifeTime),
+                ps.sizeOverLifetime.maxZ.Evaluate(particle.lifeTimer / particle.lifeTime))
+            );
+          }
 
           particle.transform.rotation = Quaternion::AngleAxis(particle.lifeTimer * index / 50, Vector3::forward());
 
+          particle.velocity = Vector3(
+            Random::RandomFloatRange(
+              ps.velocityOverLifetime.minX.Evaluate(particle.lifeTimer / particle.lifeTime),
+              ps.velocityOverLifetime.maxX.Evaluate(particle.lifeTimer / particle.lifeTime)),
+            Random::RandomFloatRange(
+              ps.velocityOverLifetime.minY.Evaluate(particle.lifeTimer / particle.lifeTime),
+              ps.velocityOverLifetime.maxY.Evaluate(particle.lifeTimer / particle.lifeTime)),
+            Random::RandomFloatRange(
+              ps.velocityOverLifetime.minZ.Evaluate(particle.lifeTimer / particle.lifeTime),
+              ps.velocityOverLifetime.maxZ.Evaluate(particle.lifeTimer / particle.lifeTime))
+          );
+
+          Color min = ps.colorOverLifetime.min.Evaluate(particle.lifeTimer / particle.lifeTime);
+          Color max = ps.colorOverLifetime.max.Evaluate(particle.lifeTimer / particle.lifeTime);
+
+          switch (ps.colorOverLifetime.type)
+          {
+          case Gradient::Type::ConstantColor:
+          case Gradient::Type::ConstantGradient:
+            particle.color = Color(min);
+            break;
+          case Gradient::Type::RandomBetweenColors:
+          case Gradient::Type::RandomBetweenGradients:
+            particle.color = Color(
+              Random::RandomFloatRange(min.r, max.r),
+              Random::RandomFloatRange(min.g, max.g),
+              Random::RandomFloatRange(min.b, max.b),
+              Random::RandomFloatRange(min.a, max.a)
+            );
+            break;
+          }
+
+          for (int f = 0; f <= 10; f += 1)
+          {
+            std::cerr << f << ": " << ps.sizeOverLifetime.minX.Evaluate(f / 10.0f) << std::endl;
+          }
+
+          particle.lifeTimer += static_cast<float>(DeltaTime());
           ++index;
         }
-
       });
   }
 
