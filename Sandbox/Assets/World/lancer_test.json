@@ -350,16 +350,16 @@
                 "Current Health": 1000,
                 "Max Health": 1000,
                 "TakenDamageTimer": 0.0,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 1,
-                "Melee Damage": 1,
-                "SMG Damage": 1,
-                "Melee Combo Damage": 3,
+                "Range Damage": 2,
+                "Melee Damage": 2,
+                "SMG Damage": 2,
+                "Melee Combo Damage": 6,
                 "Number Of Combo": 1,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
+                "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
                 "Melee Cooldown Timer": 0.016666946932673456,

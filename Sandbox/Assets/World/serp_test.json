@@ -9,7 +9,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 6.3515448570251469,
+                    "x": 4.130793571472168,
                     "y": 2.0,
                     "z": 0.0
                 },
@@ -100,8 +100,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 6.3515448570251469,
-                    "y": 0.9990321397781372,
+                    "x": 4.130793571472168,
+                    "y": 0.9994697570800781,
                     "z": 0.0
                 },
                 "Scale": {
@@ -121,7 +121,7 @@
                 "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 0.0,
+                "Inherent Acceleration": 27.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": true,
@@ -129,8 +129,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 6.3515448570251469,
-                    "y": 0.9990321397781372
+                    "x": 4.130793571472168,
+                    "y": 0.9994697570800781
                 },
                 "Offset": {
                     "x": 0.0,
@@ -148,8 +148,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_PUNCH2_NEW",
-                    "index": 1
+                    "key": "Textures/DAVE_PUNCH",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -195,7 +195,7 @@
             "Health": {
                 "Current Health": 10,
                 "Max Health": 10,
-                "TakenDamageTimer": 0.0,
+                "TakenDamageTimer": -0.10000000149011612,
                 "Invulnerable": true
             },
             "Attack": {
@@ -208,16 +208,16 @@
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.13333334028720857,
+                "Melee Cooldown Timer": 0.11666667461395264,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 2.0,
-                "Combo Cooldown Timer": 1.9666666984558106,
+                "Combo Cooldown Timer": 1.7666668891906739,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.20000000298023225,
+                "Attack Delay": -6.332993507385254e-8,
                 "Ranged Attack": false,
-                "Melee Attack": true,
+                "Melee Attack": false,
                 "SMG Attack": false,
                 "Allow SMG Attack": true,
                 "Blocking": false,
@@ -233,7 +233,7 @@
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
-                "Previous": 69,
+                "Previous": 1,
                 "Current": 0
             }
         },
@@ -246,8 +246,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -2.320950746536255,
-                    "y": 1.4594794511795045,
+                    "x": -0.1826612800359726,
+                    "y": 1.4594839811325074,
                     "z": 0.0
                 },
                 "Scale": {
@@ -275,8 +275,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -2.320950746536255,
-                    "y": 1.3594794273376465
+                    "x": -0.1826612800359726,
+                    "y": 1.3594839572906495
                 },
                 "Offset": {
                     "x": 0.0,
@@ -294,8 +294,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SERP_BURROW",
-                    "index": 16
+                    "key": "Textures/SERP_DEATH",
+                    "index": 5
                 },
                 "Size": {
                     "x": 1.0,
@@ -346,9 +346,9 @@
                 "AIState": "chase_enemy_serpentipede"
             },
             "Health": {
-                "Current Health": 1000,
+                "Current Health": 5,
                 "Max Health": 1000,
-                "TakenDamageTimer": 0.0,
+                "TakenDamageTimer": -0.10000000149011612,
                 "Invulnerable": false
             },
             "Attack": {
@@ -500,8 +500,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 5.6900835037231449,
-                    "y": 0.9990321397781372,
+                    "x": 3.4504458904266359,
+                    "y": 0.9994697570800781,
                     "z": 0.0
                 },
                 "Scale": {
@@ -529,8 +529,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 5.6900835037231449,
-                    "y": 0.9990321397781372
+                    "x": 3.4504458904266359,
+                    "y": 0.9994697570800781
                 },
                 "Offset": {
                     "x": 0.0,
@@ -547,7 +547,7 @@
                 "Platform": false
             },
             "Lifespan": {
-                "Timer": 0.016666671261191369
+                "Timer": 3.725290298461914e-9
             }
         }
     ]
