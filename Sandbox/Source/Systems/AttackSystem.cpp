@@ -189,7 +189,28 @@ namespace DeltaEngine
 
                 }
                 else if (a.NumberOfCombos == 3)
-                {                	
+                {
+                    st.SetBool("Punch1", true);
+                    st.SetBool("Punch2", false);
+                    st.SetBool("Punch3", false);
+                    AudioEngine::SetGlobalParameterByName("Punch", 1);
+                    MeleeAttackingEntities.push_back(id);
+                    a.MeleeCooldownTimer = a.MeleeCooldown;
+                    a.MeleeAttack = false;
+                }
+                else if (a.NumberOfCombos == 4)
+                {
+                    st.SetBool("Punch2", true);
+                    st.SetBool("Punch1", false);
+                    st.SetBool("Punch3", false);
+                    AudioEngine::SetGlobalParameterByName("Punch", 2);
+                    MeleeAttackingEntities.push_back(id);
+                    MeleeAttackingEntities.push_back(id);
+                    a.MeleeCooldownTimer = a.MeleeCooldown;
+                    a.MeleeAttack = false;
+                }
+                else if (a.NumberOfCombos == a.MaxComboNumber)
+                {
                     st.SetBool("Punch3", true);
                     st.SetBool("Punch1", false);
                     st.SetBool("Punch2", false);

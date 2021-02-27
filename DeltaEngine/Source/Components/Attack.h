@@ -45,7 +45,7 @@ struct Attack
     SMGDamage{1},
     MeleeComboDamage{3},
     NumberOfCombos{-1},
-    MaxComboNumber{3},
+    MaxComboNumber{5},
     MeleeCooldown{1.0f},
     RangeCooldown{1.0f},
     SMGCooldown{0.18f},
