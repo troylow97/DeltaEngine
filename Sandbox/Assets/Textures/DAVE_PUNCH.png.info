@@ -1,101 +1,101 @@
 Textures/DAVE_PUNCH_i_0
 offset 0 0
-size 300 200
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_1
-offset 300 0
-size 300 200
+offset 400 0
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_2
-offset 600 0
-size 300 200
+offset 800 0
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_3
-offset 900 0
-size 300 200
+offset 1200 0
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_4
-offset 1200 0
-size 300 200
+offset 1600 0
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_5
-offset 0 200
-size 300 200
+offset 0 250
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_6
-offset 300 200
-size 300 200
+offset 400 250
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_7
-offset 600 200
-size 300 200
+offset 800 250
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_8
-offset 900 200
-size 300 200
+offset 1200 250
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_9
-offset 1200 200
-size 300 200
+offset 1600 250
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_10
-offset 0 400
-size 300 200
+offset 0 500
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_11
-offset 300 400
-size 300 200
+offset 400 500
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_12
-offset 600 400
-size 300 200
+offset 800 500
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_13
-offset 900 400
-size 300 200
+offset 1200 500
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_14
-offset 1200 400
-size 300 200
+offset 1600 500
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_15
-offset 0 600
-size 300 200
+offset 0 750
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_16
-offset 300 600
-size 300 200
+offset 400 750
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_17
-offset 600 600
-size 300 200
+offset 800 750
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_18
-offset 900 600
-size 300 200
+offset 1200 750
+size 400 250
 pivot 0.5 0.5
 
 Textures/DAVE_PUNCH_i_19
-offset 1200 600
-size 300 200
+offset 1600 750
+size 400 250
 pivot 0.5 0.5
 
 %

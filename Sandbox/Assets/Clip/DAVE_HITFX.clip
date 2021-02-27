@@ -1,4 +1,4 @@
-frames 9
+frames 6
 fps 12
 loop 0
 
@@ -31,20 +31,5 @@ Textures/DAVE_HITFX_i_5
 key Textures/DAVE_HITFX
 value 5
 frame 5
-
-Textures/DAVE_HITFX_i_6
-key Textures/DAVE_HITFX
-value 6
-frame 6
-
-Textures/DAVE_HITFX_i_7
-key Textures/DAVE_HITFX
-value 7
-frame 7
-
-Textures/DAVE_HITFX_i_8
-key Textures/DAVE_HITFX
-value 8
-frame 8
 
 %

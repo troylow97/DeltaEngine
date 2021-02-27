@@ -18,22 +18,22 @@ namespace DeltaEngine
 {
   void VFXSystem::Update()
   {
-  	if(em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Attack>(UnitManager::GetPlayerID()) && em.HasComponent<Transform>(UnitManager::GetPlayerID()))
+  	if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Attack>(UnitManager::GetPlayerID()) && em.HasComponent<Transform>(UnitManager::GetPlayerID()))
   	{
-        auto& player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID());
-        auto& player_attack = em.GetComponent<Attack>(UnitManager::GetPlayerID());
-
-        if (player_attack.DamageEnemy)
+      auto& player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID());
+      auto& player_attack = em.GetComponent<Attack>(UnitManager::GetPlayerID());
+      
+      if (player_attack.DamageEnemy)
+      {
+        ShowVFX++;
+        
+        if (ShowVFX == 10)
         {
-            ShowVFX++;
-
-            if (ShowVFX == 10)
-            {
-                ShowHitVFX(player_pos.position, { 1.0f, 1.0f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
-                player_attack.DamageEnemy = false;
-                ShowVFX = 0;
-            }
+          ShowHitVFX(player_pos.position, { 1.0f, 1.0f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
+          player_attack.DamageEnemy = false;
+          ShowVFX = 0;
         }
+      }
   	}
 
   }
