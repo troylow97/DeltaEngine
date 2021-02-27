@@ -361,8 +361,17 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "startRotationMax", &ParticleEmitter::startRotationMax)( rttr::policy::prop::bind_as_ptr )
     .property( "startSizeMin", &ParticleEmitter::startSizeMin)( rttr::policy::prop::bind_as_ptr )
     .property( "startSizeMax", &ParticleEmitter::startSizeMax)( rttr::policy::prop::bind_as_ptr )
+    .property( "velocityOverLifetime", &ParticleEmitter::velocityOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "colorOverLifetime", &ParticleEmitter::colorOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "rotationOverLifetime", &ParticleEmitter::rotationOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "sizeOverLifetime", &ParticleEmitter::sizeOverLifetime)( rttr::policy::prop::bind_as_ptr )
     .property( "maxParticles", &ParticleEmitter::maxParticles)( rttr::policy::prop::bind_as_ptr )
-    .property( "rateOverTime", &ParticleEmitter::rateOverTime)( rttr::policy::prop::bind_as_ptr );
+    .property( "rateOverTime", &ParticleEmitter::rateOverTime)( rttr::policy::prop::bind_as_ptr )
+    .property( "shape", &ParticleEmitter::shape)( rttr::policy::prop::bind_as_ptr )
+    .property( "genType", &ParticleEmitter::genType)( rttr::policy::prop::bind_as_ptr )
+    .property( "radius", &ParticleEmitter::radius)( rttr::policy::prop::bind_as_ptr )
+    .property( "shapeTransform", &ParticleEmitter::shapeTransform)( rttr::policy::prop::bind_as_ptr )
+    ;
 
   rttr::registration::class_<Renderer2D>( "Renderer2D" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits ) )

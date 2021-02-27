@@ -159,8 +159,9 @@ namespace DeltaEngine
         particleMat.SetUniformMatrix4f("_V", view);
         particleMat.SetUniformMatrix4f("_P", proj);
         particleMat.SetUniform1i("_MainTex", 0);
+        particleMat.SetUniformColor4f("_Color", r.m_Color);
 
-        std::vector<float> locationSizes { 4, 4, 4 };
+        std::vector<float> locationSizes { 4, 4, 4, 4 };
         std::vector<float> particleMats;
         for (auto& particle : ps.particlePools[ID])
         {
@@ -173,6 +174,10 @@ namespace DeltaEngine
           {
             particleMats.push_back(pMat.m[j]);
           }
+          particleMats.push_back(particle.color.r);
+          particleMats.push_back(particle.color.g);
+          particleMats.push_back(particle.color.b);
+          particleMats.push_back(particle.color.a);
         }
 
         glEnable(GL_BLEND);

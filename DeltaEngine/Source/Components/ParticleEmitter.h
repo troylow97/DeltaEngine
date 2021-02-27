@@ -39,41 +39,37 @@ namespace DeltaEngine
 
     //instantiate props
     float startDelay = 0;
-    float startLifetimeMin = 1, startLifetimeMax = 1;
+    float startLifetimeMin = 5, startLifetimeMax = 5;
     Vector3 startVelocityMin, startVelocityMax;
     Color startColorMin, startColorMax;
-    float startRotationMin, startRotationMax;
+    float startRotationMin = 0, startRotationMax = 0;
     Vector3 startSizeMin = Vector3::one(), startSizeMax = Vector3::one();
 
     //over time props
-    BezierCurve velocityOverLifetimeXMin, velocityOverLifetimeYMin, velocityOverLifetimeZMin;
-    BezierCurve velocityOverLifetimeXMax, velocityOverLifetimeYMax, velocityOverLifetimeZMax;
-    Gradient colorOverLifetimeMin;
-    Gradient colorOverLifetimeMax;
-    float rotationOverLifetimeMin = 0;
-    float rotationOverLifetimeMax = 0;
-    BezierCurve sizeOverLifetimeXMin, sizeOverLifetimeYMin, sizeOverLifetimeZMin;
-    BezierCurve sizeOverLifetimeXMax, sizeOverLifetimeYMax, sizeOverLifetimeZMax;
+    BezierRange3 velocityOverLifetime;
+    GradientRange colorOverLifetime;
+    BezierRange rotationOverLifetime;
+    BezierRange3 sizeOverLifetime;
 
     bool playOnAwake = true;
-    unsigned int maxParticles = 100;
+    unsigned int maxParticles = 1;
 
     //emission
-    int rateOverTime = 30;
-    std::vector<Burst> bursts{/* {1, 3} */};
+    int rateOverTime = 1;
+    //std::vector<Burst> bursts{/* {1, 3} */};
 
     //shape
     Shape shape = Shape::Circle;
     GenType genType = GenType::Spread;
     float radius = 1.f;
-    //Transform shapeTransform = Transform();
+    Transform shapeTransform = Transform();
 
     // these should not be easily editable
     // they are public for system access
 
     struct Particle
     {
-      float lifeTime = 1.0f;
+      float lifeTime = 5.0f;
       float lifeTimer = 0.0f;
 
       Transform transform;
