@@ -38,6 +38,7 @@ namespace DeltaEngine
     Texture2D(std::string filepath = "dog.png");
     ~Texture2D();
 
+    static void BindID(unsigned id, unsigned slot = 0);
     void Bind(unsigned slot = 0) const;
     void Unbind() const;
 

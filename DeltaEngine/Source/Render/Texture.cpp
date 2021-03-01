@@ -35,6 +35,12 @@ Texture2D::~Texture2D()
   DeltaEngine_CORE_INFO( "Texture deleted" );
 }
 
+void Texture2D::BindID( unsigned id, unsigned slot )
+{
+  glActiveTexture( GL_TEXTURE0 + slot );
+  GLCall( glBindTexture( GL_TEXTURE_2D, id ) );
+}
+
 void Texture2D::Bind( unsigned slot ) const
 {
   glActiveTexture( GL_TEXTURE0 + slot );

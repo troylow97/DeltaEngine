@@ -50,4 +50,12 @@ void main()
   vertexPosition = v1.xyz;
   vertexColor = color * col;
   vertexTexCoord = texCoord;
+
+  iFillType = fillType;
+  iFillAmount = fillAmount;
+  iSpriteUV = spriteUV;
+  
+  iRRot = rRot;
+  iRStart = rStart;
+  iREnd = rEnd;
 }

@@ -232,11 +232,6 @@ namespace DeltaEngine
             break;
           }
 
-          for (int f = 0; f <= 10; f += 1)
-          {
-            std::cerr << f << ": " << ps.sizeOverLifetime.minX.Evaluate(f / 10.0f) << std::endl;
-          }
-
           particle.lifeTimer += static_cast<float>(DeltaTime());
           ++index;
         }

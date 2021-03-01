@@ -470,6 +470,15 @@ namespace DeltaEngine
   void Mesh::DrawQuadInst(unsigned count, std::vector<float> instData, std::vector<float> locations,
     Vector2 offset, Vector2 tiling, Vector2 pivot)
   {
+    quadInst->vertices[0] = Vector3(0.0f, 1.0f, 0.0f) - pivot;
+    quadInst->vertices[1] = Vector3(1.0f, 1.0f, 0.0f) - pivot;
+    quadInst->vertices[2] = Vector3(1.0f, 0.0f, 0.0f) - pivot;
+    quadInst->vertices[3] = Vector3(0.0f, 0.0f, 0.0f) - pivot;
+    quadInst->texCoords[0] = Vector2(offset.x, offset.y);
+    quadInst->texCoords[1] = Vector2(offset.x + tiling.x, offset.y);
+    quadInst->texCoords[2] = Vector2(offset.x + tiling.x, offset.y + tiling.y);
+    quadInst->texCoords[3] = Vector2(offset.x, offset.y + tiling.y);
+
     if (locations.empty())
     {
       // location size data is required for instancing

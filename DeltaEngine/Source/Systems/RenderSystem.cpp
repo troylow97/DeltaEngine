@@ -24,6 +24,7 @@ namespace DeltaEngine
   Color wireframeColor = Color::Black();
   std::vector<EntityID> sortedRenderers2D;
   std::vector<EntityID> sortedRenderersOverlay;
+  const unsigned NO_SPRITE_INDEX = unsigned(~0);
 
   bool SortSprites(EntityID a, EntityID b)
   {
@@ -55,9 +56,35 @@ namespace DeltaEngine
     Matrix4x4 proj = c.GetProjectionMatrix(tr);
     Matrix4x4 view = c.GetViewMatrix(tr);
 
-    std::vector<float> spriteLocationSizes{ 4, 4, 4, 4, 1, 1, 1, 4, 1, 1, 1 };
+    std::vector<float> spriteLocationSizes{ 4, 4, 4, 4, 1, 1, 4, 1, 1, 1 };
     std::vector<float> spriteInstProps;
-    unsigned currentTextureID = ~0;
+    unsigned currentTextureID = NO_SPRITE_INDEX; // treating ~0 as no sprite
+    unsigned batches = 0;
+    unsigned batchCount = 0;
+    bool batchingSprites = false;
+
+    auto DrawSpriteBatch = [&]()
+    {
+      // need to flush and start a new batch
+      // draw the previous batch of sprites
+      glEnable(GL_BLEND);
+      glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+      glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+      if (currentTextureID != NO_SPRITE_INDEX)
+      {
+        Texture2D::BindID(currentTextureID);
+      }
+      spriteMat.Bind();
+      spriteMat.SetUniformMatrix4f("_M", Matrix4x4::identity);
+      spriteMat.SetUniformMatrix4f("_V", view);
+      spriteMat.SetUniformMatrix4f("_P", proj);
+      spriteMat.SetUniform1i("_MainTex", 0);
+
+      Mesh::DrawQuadInst(batchCount, spriteInstProps, spriteLocationSizes);
+
+      ++batches;
+    };
     
     for (EntityID ID : sortedRenderers2D)
     {
@@ -83,41 +110,52 @@ namespace DeltaEngine
 
         if (r.m_Shaded)
         {
-          if (img.m_Sprite)
+          // first check if a batch has started
+          if (batchingSprites)
           {
-            img.m_Sprite.GetTexture()->Bind();
-            currentTextureID = img.m_Sprite.GetTexture()->GetRendererID();
+            // then check if the current batch shares the same texture
+            if ((img.m_Sprite && currentTextureID != img.m_Sprite.GetTexture()->GetRendererID()) ||
+              (!img.m_Sprite && currentTextureID != NO_SPRITE_INDEX))
+            {
+              DrawSpriteBatch();
+
+              // then reset vars appropriately
+              currentTextureID = img.m_Sprite ? img.m_Sprite.GetTexture()->GetRendererID() : NO_SPRITE_INDEX;
+              spriteInstProps.clear();
+              batchCount = 0;
+            }
+          }
+          else
+          {
+            // start a new batch
+            batchingSprites = true;
+            currentTextureID = img.m_Sprite ? img.m_Sprite.GetTexture()->GetRendererID() : NO_SPRITE_INDEX;
+            spriteInstProps.clear();
+            batchCount = 0;
+            // then add data as normal
           }
 
-          defaultMat.SetUniformMatrix4f("_M", model);
-          defaultMat.SetUniformMatrix4f("_V", view);
-          defaultMat.SetUniformMatrix4f("_P", proj);
-          defaultMat.SetUniformColor4f("_Color", r.m_Color);
-          defaultMat.SetUniform1i("_MainTex", 0);
-
-          defaultMat.SetUniform1i("_FillType", static_cast<int>(img.m_FillType));
-          defaultMat.SetUniform1f("_FillAmount", img.m_FillAmount);
-          defaultMat.SetUniform1f("_RRot", img.m_OverallAngle);
-          defaultMat.SetUniform1f("_RStart", img.m_StartAngle);
-          defaultMat.SetUniform1f("_REnd", img.m_EndAngle);
-          defaultMat.SetUniformVector4f("_SpriteUV", Vector4(
-            img.m_Sprite.GetOffset().x,
-            img.m_Sprite.GetOffset().y,
-            img.m_Sprite.GetOffset().x + img.m_Sprite.GetTiling().x,
-            img.m_Sprite.GetOffset().y + img.m_Sprite.GetTiling().y));
-
-          glEnable(GL_BLEND);
-          glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-          glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-          Mesh::DrawQuad(offset, tiling, pivot);
-          //Mesh::DrawQuadInst(0, spriteInstProps, spriteLocationSizes,
-          //  offset, tiling, pivot);
-
-          if (img.m_Sprite)
+          Matrix4x4 sMat = Matrix4x4::Transpose(model);
+          //vertex position
+          for (unsigned j = 0; j < 12; ++j)
           {
-            img.m_Sprite.GetTexture()->Unbind();
+            spriteInstProps.push_back(sMat.m[j]);
           }
+          spriteInstProps.push_back(r.m_Color.r);
+          spriteInstProps.push_back(r.m_Color.g);
+          spriteInstProps.push_back(r.m_Color.b);
+          spriteInstProps.push_back(r.m_Color.a);
+          spriteInstProps.push_back(static_cast<float>(img.m_FillType));
+          spriteInstProps.push_back(img.m_FillAmount);
+          spriteInstProps.push_back(img.m_Sprite.GetOffset().x);
+          spriteInstProps.push_back(img.m_Sprite.GetOffset().y);
+          spriteInstProps.push_back(img.m_Sprite.GetOffset().x + img.m_Sprite.GetTiling().x);
+          spriteInstProps.push_back(img.m_Sprite.GetOffset().y + img.m_Sprite.GetTiling().y);
+          spriteInstProps.push_back(img.m_OverallAngle);
+          spriteInstProps.push_back(img.m_StartAngle);
+          spriteInstProps.push_back(img.m_EndAngle);
+          
+          ++batchCount;
         }
         if (r.m_Wireframe)
         {
@@ -131,6 +169,12 @@ namespace DeltaEngine
       }
       if (em.HasComponent<Text>(ID))
       {
+        if (batchingSprites)
+        {
+          DrawSpriteBatch();
+          batchingSprites = false;
+        }
+        
         Text& x = em.GetComponent<Text>(ID);
         glClear(GL_DEPTH_BUFFER_BIT);
         Matrix4x4 model = t.LocalToWorldMatrix();
@@ -158,6 +202,11 @@ namespace DeltaEngine
       }
       if (em.HasComponent<ParticleEmitter>(ID))
       {
+        if (batchingSprites)
+        {
+          DrawSpriteBatch();
+          batchingSprites = false;
+        }
         ParticleEmitter& ps = em.GetComponent<ParticleEmitter>(ID);
 
         Matrix4x4 model = t.LocalToWorldMatrix();
@@ -195,6 +244,13 @@ namespace DeltaEngine
         Mesh::DrawQuadInst(ps.m_ActiveParticles, particleProps, locationSizes);
       }
     }
+    if (batchingSprites)
+    {
+      DrawSpriteBatch();
+      batchingSprites = false;
+    }
+    //std::cerr << "Batches = " << batches << std::endl;
+    //std::cerr << "FPS = " << 1 / DeltaTime() << std::endl;
   }
 
   void DrawRendererOverlay(EntityManager& em, Camera& c)
@@ -212,13 +268,13 @@ namespace DeltaEngine
       if (em.HasComponent<Image>(ID))
       {
         Transform t{};
-        Image& i = em.GetComponent<Image>(ID);
+        Image& img = em.GetComponent<Image>(ID);
         float refAspect = r.refRes.x / r.refRes.y;
         float cw = r.refRes.x;
         float ch = r.refRes.y;
 
-        Vector2 offset = i.m_Offset + i.m_Sprite.GetOffset();
-        Vector2 tiling = i.m_Tiling * i.m_Sprite.GetTiling();
+        Vector2 offset = img.m_Offset + img.m_Sprite.GetOffset();
+        Vector2 tiling = img.m_Tiling * img.m_Sprite.GetTiling();
         Vector2 pivot = r.pivot;
 
         Matrix4x4 scale = Matrix4x4::Scale(Vector3(1, 1, 1));
@@ -259,7 +315,7 @@ namespace DeltaEngine
 
         if (r.m_PreserveAspect)
         {
-          float sprAspect = 1.0f * i.m_Sprite.GetWidth() / i.m_Sprite.GetHeight();
+          float sprAspect = 1.0f * img.m_Sprite.GetWidth() / img.m_Sprite.GetHeight();
 
           if (tmpXscale / tmpYscale > sprAspect)
           {
@@ -279,9 +335,9 @@ namespace DeltaEngine
 
         if (r.m_Shaded)
         {
-          if (i.m_Sprite)
+          if (img.m_Sprite)
           {
-            i.m_Sprite.GetTexture()->Bind(0);
+            img.m_Sprite.GetTexture()->Bind(0);
           }
 
           spriteMat.SetUniformMatrix4f("_M", model);
@@ -290,21 +346,21 @@ namespace DeltaEngine
           spriteMat.SetUniformColor4f("_Color", r.m_Color);
           spriteMat.SetUniform1i("_MainTex", 0);
           spriteMat.SetUniform1f("_FadeAmt", 0);
-          spriteMat.SetUniform1i("_FillType", static_cast<int>(i.m_FillType));
-          spriteMat.SetUniform1f("_FillAmount", i.m_FillAmount);
-          spriteMat.SetUniform1f("_RRot", i.m_OverallAngle);
-          spriteMat.SetUniform1f("_RStart", i.m_StartAngle);
-          spriteMat.SetUniform1f("_REnd", i.m_EndAngle);
+          spriteMat.SetUniform1i("_FillType", static_cast<int>(img.m_FillType));
+          spriteMat.SetUniform1f("_FillAmount", img.m_FillAmount);
+          spriteMat.SetUniform1f("_RRot", img.m_OverallAngle);
+          spriteMat.SetUniform1f("_RStart", img.m_StartAngle);
+          spriteMat.SetUniform1f("_REnd", img.m_EndAngle);
           spriteMat.SetUniformVector4f("_SpriteUV", Vector4(
-            i.m_Sprite.GetOffset().x,
-            i.m_Sprite.GetOffset().y,
-            i.m_Sprite.GetOffset().x + i.m_Sprite.GetTiling().x,
-            i.m_Sprite.GetOffset().y + i.m_Sprite.GetTiling().y));
+            img.m_Sprite.GetOffset().x,
+            img.m_Sprite.GetOffset().y,
+            img.m_Sprite.GetOffset().x + img.m_Sprite.GetTiling().x,
+            img.m_Sprite.GetOffset().y + img.m_Sprite.GetTiling().y));
           Mesh::DrawQuad(offset, tiling, pivot);
 
-          if (i.m_Sprite)
+          if (img.m_Sprite)
           {
-            i.m_Sprite.GetTexture()->Unbind();
+            img.m_Sprite.GetTexture()->Unbind();
           }
         }
         if (r.m_Wireframe)
