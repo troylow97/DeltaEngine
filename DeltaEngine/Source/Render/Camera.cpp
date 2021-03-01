@@ -208,8 +208,8 @@ namespace DeltaEngine
 
     void Camera::Start()
     {
-        frameBuffer.Resize(static_cast<unsigned int>(camWidth),
-            static_cast<unsigned int>(camWidth / fixedAspect));
+        frameBuffer.Resize(static_cast<unsigned>(camWidth),
+            static_cast<unsigned>(camWidth / fixedAspect));
         frameBuffer.Bind();
 
         //glEnable(GL_DEPTH_TEST);

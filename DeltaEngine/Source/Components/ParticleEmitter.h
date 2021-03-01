@@ -52,7 +52,7 @@ namespace DeltaEngine
     BezierRange3 sizeOverLifetime;
 
     bool playOnAwake = true;
-    unsigned int maxParticles = 1;
+    unsigned maxParticles = 1;
 
     //emission
     int rateOverTime = 1;
@@ -80,7 +80,7 @@ namespace DeltaEngine
       bool active = false;
     };
 
-    unsigned int m_ActiveParticles = 0;
+    unsigned m_ActiveParticles = 0;
     float emissionTimer = 0;
     float durationTimer = 0;
     

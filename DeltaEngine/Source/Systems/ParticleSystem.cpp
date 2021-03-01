@@ -22,7 +22,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  const unsigned int MAX_PARTICLES_PER_EMITTER = 1024;
+  const unsigned MAX_PARTICLES_PER_EMITTER = 1024;
 
   void ParticleSystem::Update()
   {
@@ -32,11 +32,11 @@ namespace DeltaEngine
           ParticleEmitter::particlePools[id] = std::vector<ParticleEmitter::Particle>();
         ParticleEmitter::particlePools[id].resize(ps.maxParticles);
 
-        auto Emit = [&id, &ps](unsigned int count)
+        auto Emit = [&id, &ps](unsigned count)
         {
           auto FindInactiveParticle = [&id, &ps]()
           {
-            for (unsigned int i = 0; i < ps.maxParticles; ++i)
+            for (unsigned i = 0; i < ps.maxParticles; ++i)
             {
               if (!ps.particlePools[id][i].active)
                 return i;
@@ -44,7 +44,7 @@ namespace DeltaEngine
             return ps.maxParticles;
           };
           using Particle = ParticleEmitter::Particle;
-          for (unsigned int i = 0; i < count; ++i)
+          for (unsigned i = 0; i < count; ++i)
           {
             if (ps.m_ActiveParticles >= ps.maxParticles ||
               FindInactiveParticle() >= ps.particlePools[id].size())

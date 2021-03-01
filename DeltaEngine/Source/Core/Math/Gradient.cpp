@@ -6,8 +6,8 @@ namespace DeltaEngine
   Gradient::Gradient()
   {
     colorKeys[0] = { Color(1,1,1,1), 0 };
-    colorKeys[1] = { Color(1,1,1,1), 0.5f };
-    colorKeys[2] = { Color(1,1,1,1), 1 };
+    colorKeys[1] = { Color(1,1,1,1), 1 };
+    colorKeys[2] = { Color(1,1,1,1), -1 };
     colorKeys[3] = { Color(1,1,1,1), -1 };
     colorKeys[4] = { Color(1,1,1,1), -1 };
     colorKeys[5] = { Color(1,1,1,1), -1 };

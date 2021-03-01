@@ -36,7 +36,7 @@ namespace DeltaEngine
 		//av_dump_format(data.fmt_ctx, 0, name.c_str(), 0);
 
 		//// find the video stream
-		//for (unsigned int i = 0; i < data.fmt_ctx->nb_streams; ++i)
+		//for (unsigned i = 0; i < data.fmt_ctx->nb_streams; ++i)
 		//{
 		//	if (data.fmt_ctx->streams[i]->codec->codec_type == AVMEDIA_TYPE_VIDEO)
 		//	{

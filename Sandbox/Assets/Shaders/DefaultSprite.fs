@@ -3,10 +3,6 @@
 in vec3 vertexPosition;
 in vec4 vertexColor;
 in vec2 vertexTexCoord;
-out vec4 color;
-
-uniform sampler2D _MainTex[2];
-uniform vec4 _Color = vec4(1, 1, 1, 1);
 
 //****************
 // 0 - no fill
@@ -16,43 +12,50 @@ uniform vec4 _Color = vec4(1, 1, 1, 1);
 // 4 - vertical bottom to top
 // 5 - radial clockwise
 // 6 - radial anti-clockwise
-uniform int _FillType = 0;
-uniform float _FillAmount = 1;
-uniform vec4 _SpriteUV = vec4(0, 0, 1, 1);
+
+in float iFillType;
+in float iFillAmount;
+in vec4 iSpriteUV;
 
 //***************
 // radial properties
-uniform float _RRot = 0;
-uniform float _RStart = 0;
-uniform float _REnd = 180;
+
+in float iRRot;
+in float iRStart;
+in float iREnd;
+
+out vec4 color;
+
+uniform sampler2D _MainTex;
+uniform vec4 _Color = vec4(1, 1, 1, 1);
 
 void main()
 {
-  if (_FillType == 1)
+  if (iFillType == 1)
   {
-  	if (vertexTexCoord.x > _FillAmount * (_SpriteUV.z - _SpriteUV.x) + _SpriteUV.x)
+  	if (vertexTexCoord.x > iFillAmount * (iSpriteUV.z - iSpriteUV.x) + iSpriteUV.x)
   		discard;
   }
-  else if (_FillType == 2)
+  else if (iFillType == 2)
   {
-  	if (vertexTexCoord.x < (1 - _FillAmount) * (_SpriteUV.z - _SpriteUV.x) + _SpriteUV.x)
+  	if (vertexTexCoord.x < (1 - iFillAmount) * (iSpriteUV.z - iSpriteUV.x) + iSpriteUV.x)
   		discard;
   }
-  else if (_FillType == 3)
+  else if (iFillType == 3)
   {
-  	if (vertexTexCoord.y > _FillAmount * (_SpriteUV.w - _SpriteUV.y) + _SpriteUV.y)
+  	if (vertexTexCoord.y > iFillAmount * (iSpriteUV.w - iSpriteUV.y) + iSpriteUV.y)
   		discard;
   }
-  else if (_FillType == 4)
+  else if (iFillType == 4)
   {
-  	if (vertexTexCoord.y < (1 - _FillAmount) * (_SpriteUV.w - _SpriteUV.y) + _SpriteUV.y)
+  	if (vertexTexCoord.y < (1 - iFillAmount) * (iSpriteUV.w - iSpriteUV.y) + iSpriteUV.y)
   		discard;
   }
-  else if (_FillType == 5)
+  else if (iFillType == 5)
   {
-  	float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, _FillAmount)));
-  	float startAngle = _RRot - _REnd;
-      float endAngle = _RRot + _REnd + rotAngle;
+  	float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, iFillAmount)));
+  	float startAngle = iRRot - iREnd;
+      float endAngle = iRRot + iREnd + rotAngle;
   
       // check offsets
       float offset0 = clamp(0, 360, startAngle + 360);
@@ -60,8 +63,8 @@ void main()
   
       // convert uv to atan coordinates
       vec2 atan2Coord = vec2(
-  		mix(-1, 1, (vertexTexCoord.x - _SpriteUV.x) / (_SpriteUV.z - _SpriteUV.x)),
-  		mix(-1, 1, (vertexTexCoord.y - _SpriteUV.y) / (_SpriteUV.w - _SpriteUV.y)));
+  		mix(-1, 1, (vertexTexCoord.x - iSpriteUV.x) / (iSpriteUV.z - iSpriteUV.x)),
+  		mix(-1, 1, (vertexTexCoord.y - iSpriteUV.y) / (iSpriteUV.w - iSpriteUV.y)));
       float atanAngle = atan(atan2Coord.y, atan2Coord.x) * 57.3; // angle in degrees
   
       // convert angle to 360 system
@@ -71,11 +74,11 @@ void main()
       if(atanAngle <= offset360) discard;
       if(atanAngle >= offset0) discard;
   }
-  else if (_FillType == 6)
+  else if (iFillType == 6)
   {
-  	float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, _FillAmount)));
-  	float startAngle = _RRot - _RStart - rotAngle;
-      float endAngle = _RRot + _REnd;
+  	float rotAngle = clamp(0, 360, 360 * (1 - clamp(0, 1, iFillAmount)));
+  	float startAngle = iRRot - iRStart - rotAngle;
+      float endAngle = iRRot + iREnd;
   
       // check offsets
       float offset0 = clamp(0, 360, startAngle + 360);
@@ -83,8 +86,8 @@ void main()
   
       // convert uv to atan coordinates
       vec2 atan2Coord = vec2(
-  		mix(-1, 1, (vertexTexCoord.x - _SpriteUV.x) / (_SpriteUV.z - _SpriteUV.x)),
-  		mix(-1, 1, (vertexTexCoord.y - _SpriteUV.y) / (_SpriteUV.w - _SpriteUV.y)));
+  		mix(-1, 1, (vertexTexCoord.x - iSpriteUV.x) / (iSpriteUV.z - iSpriteUV.x)),
+  		mix(-1, 1, (vertexTexCoord.y - iSpriteUV.y) / (iSpriteUV.w - iSpriteUV.y)));
       float atanAngle = atan(atan2Coord.y, atan2Coord.x) * 57.3; // angle in degrees
   
       // convert angle to 360 system
@@ -94,5 +97,5 @@ void main()
       if(atanAngle <= offset360) discard;
       if(atanAngle >= offset0) discard;
   }
-  color = texture(_MainTex[0], vertexTexCoord) * vertexColor * _Color;
+  color = texture(_MainTex, vertexTexCoord) * vertexColor * _Color;
 }

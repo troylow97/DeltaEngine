@@ -22,7 +22,7 @@ namespace DeltaEngine
       {
         AnimationController* controller = GetEnv().pManager->Get<AnimationController>(a.m_ControllerKey);
         AnimationClip* newClip = nullptr;
-        unsigned int frame = 0;
+        unsigned frame = 0;
         if (controller)
         {
           s.parameters.insert(controller->startingParameters.begin(), controller->startingParameters.end());
