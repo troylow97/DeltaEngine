@@ -285,7 +285,7 @@ namespace DeltaEngine
         auto& s = em.GetComponent<State>(monster);
         auto& a = em.GetComponent<Attack>(monster);
         auto& hp = em.GetComponent <Health> (monster);
-        std::cout << "clip is: " << em.GetComponent<Animator>(monster).m_ClipKey << std::endl;
+        //std::cout << "clip is: " << em.GetComponent<Animator>(monster).m_ClipKey << std::endl;
     	if(hp.isDamagedTimer <= 0.0f)
     	{
             s.SetBool("IsAttacked", false);
@@ -315,7 +315,7 @@ namespace DeltaEngine
                     s.SetBool("IsAlertRunning", false);
                     s.SetBool("MeleeAttack", true);
                     rb.Direction = Vector2::zero();
-                    a.AttackDelay = 1.0f;
+                    a.AttackDelay = 0.8f;
                     Attacking = true;
                     //std::cout << "here1" << std::endl;
                     return;
