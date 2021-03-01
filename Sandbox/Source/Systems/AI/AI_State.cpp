@@ -86,6 +86,7 @@ namespace DeltaEngine
     void IdleLancer::Update(EntityID& monster)
     {
         CheckEdges(monster);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsDead", false);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlerted", true);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("MeleeAttack", false);
 
@@ -132,6 +133,8 @@ namespace DeltaEngine
 
         if (hp.isDamagedTimer <= 0.0f)
         {
+            s.SetBool("IsDead", false);
+            s.SetBool("IsAttacked", false);
             auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
 
             if (BouncingTimer > 0.0f)
@@ -282,10 +285,11 @@ namespace DeltaEngine
         auto& s = em.GetComponent<State>(monster);
         auto& a = em.GetComponent<Attack>(monster);
         auto& hp = em.GetComponent <Health> (monster);
-        std::cout << "clip is: " << em.GetComponent<Animator>(monster).m_ClipKey << std::endl;
+        //std::cout << "clip is: " << em.GetComponent<Animator>(monster).m_ClipKey << std::endl;
     	if(hp.isDamagedTimer <= 0.0f)
     	{
             s.SetBool("IsAttacked", false);
+            s.SetBool("IsDead", false);
             s.SetBool("IsAlertRunning", true);
             CheckEdges(monster);
 
@@ -311,9 +315,9 @@ namespace DeltaEngine
                     s.SetBool("IsAlertRunning", false);
                     s.SetBool("MeleeAttack", true);
                     rb.Direction = Vector2::zero();
-                    a.AttackDelay = 1.0f;
+                    a.AttackDelay = 0.8f;
                     Attacking = true;
-                    std::cout << "here1" << std::endl;
+                    //std::cout << "here1" << std::endl;
                     return;
                 }
 
@@ -345,10 +349,10 @@ namespace DeltaEngine
                 Attacking = false;
                 a.MeleeAttack = true;
             }
-            std::cout << "here3" << std::endl;
+            //std::cout << "here3" << std::endl;
     	}
         em.GetComponent<RigidBody>(monster).Direction = Vector2{ 0,0 };
-        std::cout << "here4" << std::endl;
+        //std::cout << "here4" << std::endl;
     }
 
     //----------------------------------------------------------------------
@@ -411,26 +415,31 @@ namespace DeltaEngine
         auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
         auto& collider = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(monster);
         auto& rend = env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster);
-        std::cout << "burrow state is: " << BurrowState << std::endl;
-        std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
+        auto& hp = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
+        //std::cout << "burrow state is: " << BurrowState << std::endl;
+        //std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
+
+        if (hp.isDamagedTimer > 0.0f)
+        {
+            return;
+        }
+    	
         //Seen and attacking
         if (BurrowState == 0 && !Attacking)
         {
+            s.SetBool("IsDead", false);
             rb.Direction = Vector2::zero();
             if (CooldownTimer <= 0)
             {
                 EntityID player = UnitManager::GetPlayerID();
                 if (AITools::EntityisOnTheRight(monster, player))
-                {
                     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
-                }
                 else
-                {
                     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
-                }
+
                 const float distX = AITools::Distance_X_BetweenTwoEntities(monster, player);
-            	
-                if(distX < 1.5f)
+                s.SetBool("IsAlerted", true);
+                if(distX < 2.5f)
                 {
                     s.SetBool("RangedAttack", false);
                     s.SetBool("IsAlerted", false);
@@ -485,6 +494,7 @@ namespace DeltaEngine
             if (BurrowDownDuration > 0.0f)
             {
                 BurrowDownDuration -= env.pClock->FixedDeltaTime();
+                s.SetBool("IsAlerted", true);
             }
             else
             {
@@ -553,6 +563,7 @@ namespace DeltaEngine
             {
                 BurrowUpDuration -= env.pClock->FixedDeltaTime();
                 env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(monster).m_Active = true;
+                s.SetBool("IsUnborrowing", true);
             }
             else
             {

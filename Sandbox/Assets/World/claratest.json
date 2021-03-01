@@ -204,7 +204,7 @@
                 "SMG Damage": 1,
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
-                "Max Combo Number": 3,
+                "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
@@ -346,10 +346,10 @@
                 "AIState": "idle_fiddler"
             },
             "Health": {
-                "Current Health": 1,
-                "Max Health": 1,
+                "Current Health": 100,
+                "Max Health": 100,
                 "TakenDamageTimer": 0.0,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 1,

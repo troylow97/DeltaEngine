@@ -109,8 +109,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.9497460722923279,
-                    "y": -0.0009894004324451089,
+                    "x": -1.0712411403656006,
+                    "y": 0.005757438950240612,
                     "z": 0.0
                 },
                 "Scale": {
@@ -138,8 +138,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -0.9497460722923279,
-                    "y": -0.0009894004324451089
+                    "x": -1.0712411403656006,
+                    "y": 0.005757438950240612
                 },
                 "Offset": {
                     "x": 0.0,
@@ -211,7 +211,7 @@
             "Health": {
                 "Current Health": 3000,
                 "Max Health": 3000,
-                "TakenDamageTimer": 0.0,
+                "TakenDamageTimer": -0.10000000149011612,
                 "Invulnerable": false
             },
             "Attack": {
@@ -255,7 +255,7 @@
             "Transform": {
                 "Position": {
                     "x": 4.432875633239746,
-                    "y": -0.0005161389708518982,
+                    "y": -0.000516137108206749,
                     "z": 0.0
                 },
                 "Scale": {
@@ -284,7 +284,7 @@
             "Collider": {
                 "Center": {
                     "x": 4.432875633239746,
-                    "y": -0.0005161389708518982
+                    "y": -0.000516137108206749
                 },
                 "Offset": {
                     "x": 0.0,
@@ -302,8 +302,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_PUNCH3_NEW",
-                    "index": 1
+                    "key": "Textures/DAVE_PUNCH",
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -349,7 +349,7 @@
             "Health": {
                 "Current Health": 100,
                 "Max Health": 100,
-                "TakenDamageTimer": -3.725290298461914e-9,
+                "TakenDamageTimer": -0.10000000149011612,
                 "Invulnerable": false
             },
             "Attack": {
@@ -357,19 +357,19 @@
                 "Melee Damage": 8,
                 "SMG Damage": 4,
                 "Melee Combo Damage": 24,
-                "Number Of Combo": 0,
-                "Max Combo Number": 3,
+                "Number Of Combo": 1,
+                "Max Combo Number": 5,
                 "Melee Cooldown": 0.3499999940395355,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.28333327174186709,
+                "Melee Cooldown Timer": 0.3499999940395355,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.7000000476837159,
-                "Combo Cooldown Timer": 1.6500000953674317,
+                "Combo Cooldown Timer": 1.450000286102295,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": 0.5833333730697632,
+                "Attack Delay": -6.332993507385254e-8,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -387,7 +387,7 @@
                 "Dashing Timer Duration": 1.0
             },
             "Input": {
-                "Previous": 69,
+                "Previous": 1,
                 "Current": 0
             }
         },
@@ -400,8 +400,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 3.771414279937744,
-                    "y": -0.0005161389708518982,
+                    "x": 3.8328757286071779,
+                    "y": -0.000516137108206749,
                     "z": 0.0
                 },
                 "Scale": {
@@ -420,7 +420,7 @@
                 "Mass": 5.0,
                 "Move Speed": 10.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 0.009999999776482582,
+                "Friction Coefficient": 0.0,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
@@ -429,8 +429,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 3.771414279937744,
-                    "y": -0.0005161389708518982
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -447,7 +447,7 @@
                 "Platform": false
             },
             "Lifespan": {
-                "Timer": 0.016666671261191369
+                "Timer": 0.0833333358168602
             }
         }
     ]
