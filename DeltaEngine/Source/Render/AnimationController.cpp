@@ -27,7 +27,7 @@ namespace DeltaEngine
     {
       // first check if the start of the transition has the same clip as the currently playing clip
       if (std::strcmp(StartingState.c_str(), currentAnim.c_str()) == 0 ||
-        std::strcmp(StartingState.c_str(), "Any State") == 0)
+        (std::strcmp(StartingState.c_str(), "Any State") == 0 && std::strcmp(EndingState.c_str(), currentAnim.c_str())))
       {
         if (std::strcmp(StartingState.c_str(), EndingState.c_str()) == 0)
           continue;

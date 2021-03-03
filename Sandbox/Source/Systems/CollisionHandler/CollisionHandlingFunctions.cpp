@@ -35,6 +35,10 @@ namespace DeltaEngine
     if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
         !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
     {
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, Collider& c, Player& p, RigidBody& r, State& s, Animator& a, Health& hp)
+        {
+          s.SetBool("IsAttacked", true);
+        });
       env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
       env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.4f;
     }

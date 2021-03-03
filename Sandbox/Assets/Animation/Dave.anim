@@ -77,6 +77,10 @@ param
 VelocityY
 0 0
 
+param
+IsAttacked
+0 0
+
 %EditorPositions:
 
 pos
@@ -89,7 +93,7 @@ Exit
 
 pos
 Any State
-924 -419
+991 -440
 
 pos
 Clip/DAVE_SHIELD_UP
@@ -149,7 +153,7 @@ Clip/DAVE_FIRE_ON
 
 pos
 Clip/DAVE_DEATH
-901 -298
+902 -334
 
 pos
 Clip/DAVE_JUMP
@@ -174,6 +178,10 @@ Clip/DAVE_FIRE_ARM
 pos
 Clip/DAVE_LAND
 568 -341
+
+pos
+Clip/DAVE_DMG
+1098 -331
 
 %Transitions:
 
@@ -654,6 +662,26 @@ Clip/DAVE_DASH
 condition
 IsDashing
 ? 1
+endTransition
+
+transition
+start
+Any State
+end
+Clip/DAVE_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_DMG
+end
+Exit
+condition
+IsAttacked
+? 0
 endTransition
 
 %endfile
