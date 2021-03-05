@@ -1,0 +1,45 @@
+frames 8
+fps 12
+loop 1
+
+Textures/LANCEHITFX_SPRITESHEET_i_0
+key Textures/LANCEHITFX_SPRITESHEET
+value 0
+frame 0
+
+Textures/LANCEHITFX_SPRITESHEET_i_1
+key Textures/LANCEHITFX_SPRITESHEET
+value 1
+frame 1
+
+Textures/LANCEHITFX_SPRITESHEET_i_2
+key Textures/LANCEHITFX_SPRITESHEET
+value 2
+frame 2
+
+Textures/LANCEHITFX_SPRITESHEET_i_3
+key Textures/LANCEHITFX_SPRITESHEET
+value 3
+frame 3
+
+Textures/LANCEHITFX_SPRITESHEET_i_4
+key Textures/LANCEHITFX_SPRITESHEET
+value 4
+frame 4
+
+Textures/LANCEHITFX_SPRITESHEET_i_5
+key Textures/LANCEHITFX_SPRITESHEET
+value 5
+frame 5
+
+Textures/LANCEHITFX_SPRITESHEET_i_6
+key Textures/LANCEHITFX_SPRITESHEET
+value 6
+frame 6
+
+Textures/LANCEHITFX_SPRITESHEET_i_7
+key Textures/LANCEHITFX_SPRITESHEET
+value 7
+frame 7
+
+%
