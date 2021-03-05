@@ -65,7 +65,7 @@ Clip/SERP_BURROW
 
 pos
 Clip/SERP_CHARGE
--144 473
+-526 104
 
 pos
 Clip/SERP_DMG
@@ -81,7 +81,7 @@ Clip/SERP_BURROW_MOVE
 
 pos
 Clip/SERP_FIRE
--552 202
+-555 225
 
 pos
 Clip/SERP_DEATH
@@ -121,16 +121,6 @@ endTransition
 
 transition
 start
-Clip/SERP_ALERT
-end
-Clip/SERP_FIRE
-condition
-RangedAttack
-? 1
-endTransition
-
-transition
-start
 Clip/SERP_FIRE
 end
 Clip/SERP_BURROW
@@ -261,6 +251,23 @@ IsDead
 condition
 IsBurrowing
 ? 0
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_CHARGE
+condition
+RangedAttack
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_CHARGE
+end
+Clip/SERP_FIRE
 endTransition
 
 %endfile

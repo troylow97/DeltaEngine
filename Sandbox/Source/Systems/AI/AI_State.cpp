@@ -37,6 +37,7 @@ namespace DeltaEngine
         }
     }
 
+#pragma region Lancer
     /////////////////////////////////////////////////////////////////////////////////////
 
     LancerSpawn::LancerSpawn(Vector2& charge_range)
@@ -219,7 +220,9 @@ namespace DeltaEngine
 
 
     }
+#pragma endregion
 
+#pragma region Fiddler
     //----------------------------------------------------------------------
 
     IdleFiddler::IdleFiddler(Waypoint& wp, Vector2& charge_range) :
@@ -354,7 +357,9 @@ namespace DeltaEngine
         em.GetComponent<RigidBody>(monster).Direction = Vector2{ 0,0 };
         //std::cout << "here4" << std::endl;
     }
+#pragma endregion
 
+#pragma region Serpentipede
     //----------------------------------------------------------------------
 
     IdleSerpentipede::IdleSerpentipede(Vector2 detection_range)
@@ -383,9 +388,9 @@ namespace DeltaEngine
     ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :
 		Attacking {false},
         CooldownTimer{ 1.0f },
-        BurrowDownDuration{ 1.5f },
-        BurrowUpDuration{ 0.5f },
-		BurrowDownDelay{0.4f},
+        BurrowDownDuration{ 2.0f },
+        BurrowUpDuration{ 1.0f },
+		BurrowDownDelay{1.2f},
         BurrowState{ 0 },
         CurrentPoint{ 0 },
         SerpentData{ d }
@@ -444,7 +449,7 @@ namespace DeltaEngine
                     s.SetBool("RangedAttack", false);
                     s.SetBool("IsAlerted", false);
                     s.SetBool("IsBurrowing", true);
-                    BurrowDownDelay = 0.4f;
+                    BurrowDownDelay = 1.5f;
                     BurrowState = 1;
                     return;
                 }
@@ -454,7 +459,7 @@ namespace DeltaEngine
                 {
                     a.RangeAttack = true;
                     s.SetBool("RangedAttack", true);
-                    a.AttackDelay = 1.5f;
+                    a.AttackDelay = 0.1f;
                     CooldownTimer = 1.0f;
                     Attacking = true;
                 }
@@ -476,7 +481,7 @@ namespace DeltaEngine
             s.SetBool("RangedAttack", false);
             s.SetBool("IsAlerted", false);
             s.SetBool("IsBurrowing", true);
-            BurrowDownDelay = 0.4f;
+            BurrowDownDelay = 1.2f;
             Attacking = false;
             BurrowState = 1;
         }
@@ -511,7 +516,7 @@ namespace DeltaEngine
                 rb.hasGravity = false;
                 rb.Movespeed *= 1.2f;
                 rend.m_SortingLayer = 2;
-                BurrowDownDuration = 1.5f;
+                BurrowDownDuration = 1.2f;
                 switch (CurrentPoint)
                 {
                 case 0:
@@ -570,7 +575,7 @@ namespace DeltaEngine
                 s.SetBool("IsUnborrowing", false);
                 s.SetBool("IsAlerted", true);
                 BurrowState = 0;
-                BurrowUpDuration = 0.5f;
+                BurrowUpDuration = 1.0f;
                 collider.isTrigger = false;
                 rb.isMoveable = true;
                 rb.hasGravity = true;
@@ -587,7 +592,7 @@ namespace DeltaEngine
 
 
     }
-
+#pragma endregion
     LancerAIData::LancerAIData() :
         ChargeDetectionRange{ Vector2::zero() }
     {
