@@ -283,6 +283,8 @@ namespace DeltaEngine
     {
       if (p1.IsRunning)
       {
+        //p1.IsRunning = false;
+        //p1.AllowRuning = false;
         return;
       }
     	

@@ -22478,7 +22478,7 @@
                 "Melee Damage": 1,
                 "SMG Damage": 32,
                 "Melee Combo Damage": 1,
-                "Number Of Combo": 4,
+                "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,

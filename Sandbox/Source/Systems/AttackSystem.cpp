@@ -204,7 +204,6 @@ namespace DeltaEngine
             st.SetBool("Punch3", false);
             AudioEngine::SetGlobalParameterByName("Punch", 2);
             MeleeAttackingEntities.push_back(id);
-            MeleeAttackingEntities.push_back(id);
             a.MeleeCooldownTimer = a.MeleeCooldown;
             a.MeleeAttack = false;
           }
