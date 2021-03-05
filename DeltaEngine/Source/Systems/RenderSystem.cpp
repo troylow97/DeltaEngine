@@ -147,10 +147,10 @@ namespace DeltaEngine
           spriteInstProps.push_back(r.m_Color.a);
           spriteInstProps.push_back(static_cast<float>(img.m_FillType));
           spriteInstProps.push_back(img.m_FillAmount);
-          spriteInstProps.push_back(img.m_Sprite.GetOffset().x);
-          spriteInstProps.push_back(img.m_Sprite.GetOffset().y);
-          spriteInstProps.push_back(img.m_Sprite.GetOffset().x + img.m_Sprite.GetTiling().x);
-          spriteInstProps.push_back(img.m_Sprite.GetOffset().y + img.m_Sprite.GetTiling().y);
+          spriteInstProps.push_back(offset.x);
+          spriteInstProps.push_back(offset.y);
+          spriteInstProps.push_back(offset.x + tiling.x);
+          spriteInstProps.push_back(offset.y + tiling.y);
           spriteInstProps.push_back(img.m_OverallAngle);
           spriteInstProps.push_back(img.m_StartAngle);
           spriteInstProps.push_back(img.m_EndAngle);

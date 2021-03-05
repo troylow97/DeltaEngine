@@ -22,16 +22,37 @@ namespace DeltaEngine
     ImGui::Combo(("##bezier type" + std::string(label)).c_str(), &current, c_ptr_vec.data(), static_cast<int>(c_ptr_vec.size()));
     bezier->type = static_cast<BezierCurve::Type>(current);
 
-    if (ImGui::Button("Edit Curve..."))
+    if (bezier->type == BezierCurve::Type::Constant ||
+      bezier->type == BezierCurve::Type::RandomBetweenConstants)
     {
-      dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.clear();
-
-      Editor::inst->m_panels[12]->Enable();
-      dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->min);
-      if (bezier->maxActive)
-        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->max);
+      ImGui::DragFloat((std::string(label) + " bezier const 1").c_str(), &bezier->min.min, 0.01f);
     }
-    ImGui::Checkbox("Enable Range", &bezier->maxActive);
+    else if (bezier->type == BezierCurve::Type::ConstantCurve ||
+      bezier->type == BezierCurve::Type::RandomBetweenCurves)
+    {
+      if (ImGui::Button("Edit Curve 1..."))
+      {
+        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.clear();
+
+        Editor::inst->m_panels[12]->Enable();
+        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->min);
+      }
+    }
+
+    if (bezier->type == BezierCurve::Type::RandomBetweenConstants)
+    {
+      ImGui::DragFloat((std::string(label) + " bezier const 1").c_str(), &bezier->min.min, 0.01f);
+    }
+    else if (bezier->type == BezierCurve::Type::RandomBetweenCurves)
+    {
+      if (ImGui::Button("Edit Curve 2..."))
+      {
+        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.clear();
+
+        Editor::inst->m_panels[12]->Enable();
+        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->min);
+      }
+    }
     ImGui::PopID();
 
     return true;
@@ -398,79 +419,185 @@ namespace DeltaEngine
     ImGui::Combo(("##gradient type" + std::string(label)).c_str(), &current, c_ptr_vec.data(), static_cast<int>(c_ptr_vec.size()));
     gradient->type = static_cast<Gradient::Type>(current);
 
-    float maxWidth = ImMax(250.0f, ImGui::GetContentRegionAvailWidth() - 100.0f);
-    ImVec2 bar_pos = ImGui::GetCursorScreenPos();
-    static int draggingAlpha = 0;
-    static int selectedAlpha = 0;
-    static int draggingColor = 0;
-    static int selectedColor = 0;
-    
-    DrawGradientBar(&gradient->min, bar_pos + ImVec2(0, 18), maxWidth, 25);
-    DrawAlphaMarks(&gradient->min, &draggingAlpha, &selectedAlpha, bar_pos, maxWidth, 25);
-    DrawGradientMarks(&gradient->min, &draggingColor, &selectedColor, bar_pos + ImVec2(0, 18), maxWidth, 25);
-
-    if (selectedColor >= 0 && selectedColor < gradient->min.colorKeys.size())
+    if (gradient->type == Gradient::Type::ConstantColor ||
+      gradient->type == Gradient::Type::RandomBetweenColors)
     {
-      float col[3] =
+      float col[4] =
       {
-        gradient->min.colorKeys[selectedColor].first.r,
-        gradient->min.colorKeys[selectedColor].first.g,
-        gradient->min.colorKeys[selectedColor].first.b
+        gradient->min.colorKeys[0].first.r,
+        gradient->min.colorKeys[0].first.g,
+        gradient->min.colorKeys[0].first.b,
+        gradient->min.alphaKeys[0].first
       };
-      ImGui::TextEx("Color");
-      ImGui::ColorEdit3((std::string(label) + " color " + std::to_string(selectedColor)).c_str(), col);
-      gradient->min.colorKeys[selectedColor].first = Color(col[0], col[1], col[2]);
-      ImGui::TextEx("Color Location");
-      ImGui::DragFloat((std::string(label) + " color location " + std::to_string(selectedColor)).c_str(),
-        &gradient->min.colorKeys[selectedColor].second, 0.01f, 0, 1);
+      ImGui::ColorEdit4((std::string(label) + " color 1").c_str(), col);
+      gradient->min.colorKeys[0].first = Color(col[0], col[1], col[2]);
+      gradient->min.alphaKeys[0].first = col[3];
     }
-
-    if (selectedAlpha >= 0 && selectedAlpha < gradient->min.colorKeys.size())
+    else if (gradient->type == Gradient::Type::ConstantGradient ||
+      gradient->type == Gradient::Type::RandomBetweenGradients)
     {
-      ImGui::TextEx("Alpha");
-      ImGui::DragFloat((std::string(label) + " alpha " + std::to_string(selectedAlpha)).c_str(),
-        &gradient->min.alphaKeys[selectedAlpha].first, 0.01f, 0, 1);
-      ImGui::TextEx("Alpha Location");
-      ImGui::DragFloat((std::string(label) + " alpha location " + std::to_string(selectedAlpha)).c_str(),
-        &gradient->min.alphaKeys[selectedAlpha].second, 0.01f, 0, 1);
-    }
+      float maxWidth = ImMax(250.0f, ImGui::GetContentRegionAvailWidth() - 100.0f);
+      ImVec2 bar_pos = ImGui::GetCursorScreenPos();
+      static int draggingAlpha = 0;
+      static int selectedAlpha = 0;
+      static int draggingColor = 0;
+      static int selectedColor = 0;
 
-    if (!ImGui::IsMouseDown(0) && draggingColor >= 0)
-    {
-      draggingColor = -1;
-    }
+      DrawGradientBar(&gradient->min, bar_pos + ImVec2(0, 18), maxWidth, 25);
+      DrawAlphaMarks(&gradient->min, &draggingAlpha, &selectedAlpha, bar_pos, maxWidth, 25);
+      DrawGradientMarks(&gradient->min, &draggingColor, &selectedColor, bar_pos + ImVec2(0, 18), maxWidth, 25);
 
-    if (ImGui::IsMouseDragging(0) && draggingColor >= 0)
-    {
-      float increment = ImGui::GetIO().MouseDelta.x / maxWidth;
-      bool insideZone = (ImGui::GetIO().MousePos.x > bar_pos.x) &&
-        (ImGui::GetIO().MousePos.x < bar_pos.x + maxWidth);
-
-      if (increment != 0.0f && insideZone)
+      if (selectedColor >= 0 && selectedColor < gradient->min.colorKeys.size())
       {
-        gradient->min.colorKeys[draggingColor].second += increment;
-        gradient->min.colorKeys[draggingColor].second = Math::Clamp01(gradient->min.colorKeys[draggingColor].second);
+        float col[3] =
+        {
+          gradient->min.colorKeys[selectedColor].first.r,
+          gradient->min.colorKeys[selectedColor].first.g,
+          gradient->min.colorKeys[selectedColor].first.b
+        };
+        ImGui::TextEx("Color");
+        ImGui::ColorEdit3((std::string(label) + " gradient 1 color " + std::to_string(selectedColor)).c_str(), col);
+        gradient->min.colorKeys[selectedColor].first = Color(col[0], col[1], col[2]);
+        ImGui::TextEx("Color Location");
+        ImGui::DragFloat((std::string(label) + " color location " + std::to_string(selectedColor)).c_str(),
+          &gradient->min.colorKeys[selectedColor].second, 0.01f, 0, 1);
+      }
+
+      if (selectedAlpha >= 0 && selectedAlpha < gradient->min.colorKeys.size())
+      {
+        ImGui::TextEx("Alpha");
+        ImGui::DragFloat((std::string(label) + " alpha " + std::to_string(selectedAlpha)).c_str(),
+          &gradient->min.alphaKeys[selectedAlpha].first, 0.01f, 0, 1);
+        ImGui::TextEx("Alpha Location");
+        ImGui::DragFloat((std::string(label) + " alpha location " + std::to_string(selectedAlpha)).c_str(),
+          &gradient->min.alphaKeys[selectedAlpha].second, 0.01f, 0, 1);
+      }
+
+      if (!ImGui::IsMouseDown(0) && draggingColor >= 0)
+      {
+        draggingColor = -1;
+      }
+
+      if (ImGui::IsMouseDragging(0) && draggingColor >= 0)
+      {
+        float increment = ImGui::GetIO().MouseDelta.x / maxWidth;
+        bool insideZone = (ImGui::GetIO().MousePos.x > bar_pos.x) &&
+          (ImGui::GetIO().MousePos.x < bar_pos.x + maxWidth);
+
+        if (increment != 0.0f && insideZone)
+        {
+          gradient->min.colorKeys[draggingColor].second += increment;
+          gradient->min.colorKeys[draggingColor].second = Math::Clamp01(gradient->min.colorKeys[draggingColor].second);
+        }
+      }
+
+      if (!ImGui::IsMouseDown(0) && draggingAlpha >= 0)
+      {
+        draggingAlpha = -1;
+      }
+
+      if (ImGui::IsMouseDragging(0) && draggingAlpha >= 0)
+      {
+        float increment = ImGui::GetIO().MouseDelta.x / maxWidth;
+        bool insideZone = (ImGui::GetIO().MousePos.x > bar_pos.x) &&
+          (ImGui::GetIO().MousePos.x < bar_pos.x + maxWidth);
+
+        if (increment != 0.0f && insideZone)
+        {
+          gradient->min.alphaKeys[draggingAlpha].second += increment;
+          gradient->min.alphaKeys[draggingAlpha].second = Math::Clamp01(gradient->min.alphaKeys[draggingAlpha].second);
+        }
       }
     }
 
-    if (!ImGui::IsMouseDown(0) && draggingAlpha >= 0)
+    if (gradient->type == Gradient::Type::RandomBetweenColors)
     {
-      draggingAlpha = -1;
-    }
-
-    if (ImGui::IsMouseDragging(0) && draggingAlpha >= 0)
-    {
-      float increment = ImGui::GetIO().MouseDelta.x / maxWidth;
-      bool insideZone = (ImGui::GetIO().MousePos.x > bar_pos.x) &&
-        (ImGui::GetIO().MousePos.x < bar_pos.x + maxWidth);
-
-      if (increment != 0.0f && insideZone)
+      float col[4] =
       {
-        gradient->min.alphaKeys[draggingAlpha].second += increment;
-        gradient->min.alphaKeys[draggingAlpha].second = Math::Clamp01(gradient->min.alphaKeys[draggingAlpha].second);
+        gradient->max.colorKeys[0].first.r,
+        gradient->max.colorKeys[0].first.g,
+        gradient->max.colorKeys[0].first.b,
+        gradient->max.alphaKeys[0].first
+      };
+      ImGui::ColorEdit4((std::string(label) + " color 2").c_str(), col);
+      gradient->max.colorKeys[0].first = Color(col[0], col[1], col[2]);
+      gradient->max.alphaKeys[0].first = col[3];
+    }
+    else if (gradient->type == Gradient::Type::RandomBetweenGradients)
+    {
+      float maxWidth = ImMax(250.0f, ImGui::GetContentRegionAvailWidth() - 100.0f);
+      ImVec2 bar_pos = ImGui::GetCursorScreenPos();
+      static int draggingAlpha = 0;
+      static int selectedAlpha = 0;
+      static int draggingColor = 0;
+      static int selectedColor = 0;
+
+      DrawGradientBar(&gradient->max, bar_pos + ImVec2(0, 18), maxWidth, 25);
+      DrawAlphaMarks(&gradient->max, &draggingAlpha, &selectedAlpha, bar_pos, maxWidth, 25);
+      DrawGradientMarks(&gradient->max, &draggingColor, &selectedColor, bar_pos + ImVec2(0, 18), maxWidth, 25);
+
+      if (selectedColor >= 0 && selectedColor < gradient->max.colorKeys.size())
+      {
+        float col[3] =
+        {
+          gradient->max.colorKeys[selectedColor].first.r,
+          gradient->max.colorKeys[selectedColor].first.g,
+          gradient->max.colorKeys[selectedColor].first.b
+        };
+        ImGui::TextEx("Color");
+        ImGui::ColorEdit3((std::string(label) + " gradient 2 color " + std::to_string(selectedColor)).c_str(), col);
+        gradient->max.colorKeys[selectedColor].first = Color(col[0], col[1], col[2]);
+        ImGui::TextEx("Color Location");
+        ImGui::DragFloat((std::string(label) + " color location " + std::to_string(selectedColor)).c_str(),
+          &gradient->max.colorKeys[selectedColor].second, 0.01f, 0, 1);
+      }
+
+      if (selectedAlpha >= 0 && selectedAlpha < gradient->max.colorKeys.size())
+      {
+        ImGui::TextEx("Alpha");
+        ImGui::DragFloat((std::string(label) + " alpha " + std::to_string(selectedAlpha)).c_str(),
+          &gradient->max.alphaKeys[selectedAlpha].first, 0.01f, 0, 1);
+        ImGui::TextEx("Alpha Location");
+        ImGui::DragFloat((std::string(label) + " alpha location " + std::to_string(selectedAlpha)).c_str(),
+          &gradient->max.alphaKeys[selectedAlpha].second, 0.01f, 0, 1);
+      }
+
+      if (!ImGui::IsMouseDown(0) && draggingColor >= 0)
+      {
+        draggingColor = -1;
+      }
+
+      if (ImGui::IsMouseDragging(0) && draggingColor >= 0)
+      {
+        float increment = ImGui::GetIO().MouseDelta.x / maxWidth;
+        bool insideZone = (ImGui::GetIO().MousePos.x > bar_pos.x) &&
+          (ImGui::GetIO().MousePos.x < bar_pos.x + maxWidth);
+
+        if (increment != 0.0f && insideZone)
+        {
+          gradient->max.colorKeys[draggingColor].second += increment;
+          gradient->max.colorKeys[draggingColor].second = Math::Clamp01(gradient->max.colorKeys[draggingColor].second);
+        }
+      }
+
+      if (!ImGui::IsMouseDown(0) && draggingAlpha >= 0)
+      {
+        draggingAlpha = -1;
+      }
+
+      if (ImGui::IsMouseDragging(0) && draggingAlpha >= 0)
+      {
+        float increment = ImGui::GetIO().MouseDelta.x / maxWidth;
+        bool insideZone = (ImGui::GetIO().MousePos.x > bar_pos.x) &&
+          (ImGui::GetIO().MousePos.x < bar_pos.x + maxWidth);
+
+        if (increment != 0.0f && insideZone)
+        {
+          gradient->max.alphaKeys[draggingAlpha].second += increment;
+          gradient->max.alphaKeys[draggingAlpha].second = Math::Clamp01(gradient->max.alphaKeys[draggingAlpha].second);
+        }
       }
     }
-
     return true;
   }
 }
