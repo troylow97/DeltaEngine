@@ -112,6 +112,7 @@ namespace DeltaEngine
           
           a1.MeleeAttack = false;
           a1.RangeAttack = false;
+          a1.NumberOfCombos = 0;
           
           im1.m_FlipX = true;
           idle_timer = 0.0f;
@@ -143,6 +144,7 @@ namespace DeltaEngine
           
           a1.MeleeAttack = false;
           a1.RangeAttack = false;
+          a1.NumberOfCombos = 0;
           
           im1.m_FlipX = false;
           idle_timer = 0.0f;
@@ -159,6 +161,7 @@ namespace DeltaEngine
       r1.Direction = Vector2::zero();
       s1.SetBool("IsRunning", false);
       p1.AllowShooting = true;
+      a1.NumberOfCombos = 0;
     });
   }
   
@@ -176,6 +179,7 @@ namespace DeltaEngine
         s1.SetBool("ShieldUp", false);
         a1.Blocking = false;
       }
+      a1.NumberOfCombos = 0;
       p1.AllowShooting = false;
       p1.AllowPunching = false;
       s1.SetBool("IsIdle", false);
@@ -265,6 +269,8 @@ namespace DeltaEngine
           //  a1.Blocking = false;
           //}
           s1.SetBool("IsDashing", true);
+
+          a1.NumberOfCombos = 0;
           
           if (im1.m_FlipX)
             p1.DashDirectionRight = false;
@@ -283,6 +289,8 @@ namespace DeltaEngine
     {
       if (p1.IsRunning)
       {
+        //p1.IsRunning = false;
+        //p1.AllowRuning = false;
         return;
       }
     	
@@ -316,6 +324,7 @@ namespace DeltaEngine
         p1.AllowDashing = true;
         p1.AllowPunching = true;
         a1.Blocking = false;
+        a1.NumberOfCombos = 0;
         p1.AllowShooting = true;
         s1.SetBool("ShieldUp", false);
       }
@@ -325,6 +334,7 @@ namespace DeltaEngine
         p1.AllowDashing = false;
         p1.AllowPunching = false;
         a1.Blocking = true;
+        a1.NumberOfCombos = 0;
         p1.AllowShooting = false;
         s1.SetBool("ShieldUp", true);
       }
@@ -344,6 +354,7 @@ namespace DeltaEngine
       if (p1.AllowShooting)
       {
         a1.SMGAttack = true;
+        a1.NumberOfCombos = 0;
         p1.IsShooting = true;
         i1.previousKey = DEVK_E;
         s1.SetBool("SMGAttack", true);

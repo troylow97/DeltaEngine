@@ -166,9 +166,9 @@ namespace DeltaEngine
         if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f)
         {  	
           ++a.NumberOfCombos;
+          a.StartComboCooldownTimer = true;
           if (a.NumberOfCombos == 1)
           {
-            a.StartComboCooldownTimer = true;
             st.SetBool("Punch1", true);
             st.SetBool("Punch2", false);
             st.SetBool("Punch3", false);
@@ -204,7 +204,6 @@ namespace DeltaEngine
             st.SetBool("Punch3", false);
             AudioEngine::SetGlobalParameterByName("Punch", 2);
             MeleeAttackingEntities.push_back(id);
-            MeleeAttackingEntities.push_back(id);
             a.MeleeCooldownTimer = a.MeleeCooldown;
             a.MeleeAttack = false;
           }
@@ -232,23 +231,30 @@ namespace DeltaEngine
           st.SetBool("Punch3", false);
         }
         
-        if (a.StartComboCooldownTimer)
-        {
-          a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
-          if (a.ComboCooldownTimer < 0.0f)
-          {
-            st.SetBool("Punch1", false);
-            st.SetBool("Punch2", false);
-            st.SetBool("Punch3", false);
-            st.SetBool("IsIdle", true);
-            a.NumberOfCombos = 0;
-            a.StartComboCooldownTimer = false;
-            a.ComboCooldownTimer = a.ComboDuration;
-          }
-        }
       }
     });
-  	
+ 
+    //Reset attack for player
+    if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
+    {
+      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+      auto& st = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+      if (a.StartComboCooldownTimer)
+      {
+        a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
+        if (a.ComboCooldownTimer < 0.0f)
+        {
+          st.SetBool("Punch1", false);
+          st.SetBool("Punch2", false);
+          st.SetBool("Punch3", false);
+          st.SetBool("IsIdle", true);
+          a.NumberOfCombos = 0;
+          a.StartComboCooldownTimer = false;
+          a.ComboCooldownTimer = a.ComboDuration;
+        }
+      }
+    }
+
 
     for (auto& id1 : RangedAttackingEntities)
     {
