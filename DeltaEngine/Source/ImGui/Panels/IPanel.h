@@ -38,9 +38,17 @@ namespace DeltaEngine
 
     const std::string& Name() const { return m_name; }
 
+    void SelectFile(std::string name) { selectedFile = name; }
+
   protected:
+
     Editor& m_editor;
+
     std::string m_name;
+
+    // Selected File
+    std::string selectedFile{""};
+
     bool m_enabled{false};
     bool m_active{false};
   };

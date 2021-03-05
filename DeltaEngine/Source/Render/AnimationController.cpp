@@ -26,8 +26,11 @@ namespace DeltaEngine
     for (auto& [StartingState, EndingState, Conditions] : transitions)
     {
       // first check if the start of the transition has the same clip as the currently playing clip
-      if (std::strcmp(StartingState.c_str(), currentAnim.c_str()) == 0)
+      if (std::strcmp(StartingState.c_str(), currentAnim.c_str()) == 0 ||
+        std::strcmp(StartingState.c_str(), "Any State") == 0)
       {
+        if (std::strcmp(StartingState.c_str(), EndingState.c_str()) == 0)
+          continue;
         bool conditionPass = true;
         // next check if all conditions are fulfilled
         for (auto& [ParamName, Condition, Value] : Conditions)
@@ -184,6 +187,31 @@ namespace DeltaEngine
         file >> pos.x >> pos.y;
         editorPositions.push_back(std::pair<AssetKey, Vector2>(str, pos));
       }
+#ifdef DE_EDITOR
+      bool modified = false;
+      if (editorPositions[0].first != "Entry")
+      {
+        editorPositions.insert(editorPositions.begin() + 0, {"Entry", Vector2()});
+        modified = true;
+      }
+      if (editorPositions[1].first != "Exit")
+      {
+        editorPositions.insert(editorPositions.begin() + 1, {"Exit", Vector2(200, 200)});
+        modified = true;
+      }
+      if (editorPositions[2].first != "Any State")
+      {
+        editorPositions.insert(editorPositions.begin() + 2, {"Any State", Vector2(200, 0)});
+        modified = true;
+      }
+      if (modified)
+      {
+        SaveToFile();
+        LoadFromFile();
+        return;
+      }
+#endif // !DE_EDITOR
+
       while (file.good()) // transitions and conditions
       {
         std::string paramName, condition;

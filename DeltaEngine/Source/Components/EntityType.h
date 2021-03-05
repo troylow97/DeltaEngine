@@ -17,6 +17,8 @@ namespace DeltaEngine
     E_NONE,
     E_WALL,
     E_PLAYER,
+    E_PLAYER_BODYPART_ROTATABLE,
+    E_PLAYER_BODYPART,
     E_ENEMY,
     E_PLAYER_BULLET,
     E_PLAYER_BULLET_DETECTION,
@@ -25,7 +27,8 @@ namespace DeltaEngine
     E_PLAYER_SMG,
     E_ENEMY_BULLET,
     E_ENEMY_FIDDLER_PUNCH,
-    E_ENEMY_LANCER_PUNCH
+    E_ENEMY_LANCER_PUNCH,
+  	E_VFX
   };
 
   struct EntityType

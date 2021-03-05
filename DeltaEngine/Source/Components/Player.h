@@ -23,8 +23,17 @@ namespace DeltaEngine
     float DashingTimerDuration; // max
     float DashingTimerCooldown; // timer
     bool IsDead;
+    bool IsRunning;
     bool IsJumping;
     bool IsDashing;
+    bool IsDodging;
+    bool IsPunching;
+    bool IsShooting;
+    bool IsBlocking;
+    bool AllowRuning;
+    bool AllowPunching;
+    bool AllowJumping;
+    bool AllowShooting;
     bool StartDashingTimer;
     bool AllowDashing;
     bool DashDirectionRight;
@@ -43,8 +52,17 @@ namespace DeltaEngine
       DashingTimerDuration{1.0f},
       DashingTimerCooldown{1.0f},
       IsDead{false},
+      IsRunning{false},
       IsJumping{false},
       IsDashing{false},
+      IsDodging{false},
+      IsPunching{false},
+      IsShooting{false},
+      IsBlocking{false},
+      AllowRuning{true},
+      AllowPunching{true},
+      AllowJumping{true},
+      AllowShooting{true},
       StartDashingTimer{false},
       AllowDashing{true},
       DashDirectionRight{true},

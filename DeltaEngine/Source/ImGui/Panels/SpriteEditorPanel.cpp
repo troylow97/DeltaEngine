@@ -62,10 +62,10 @@ void SpriteEditorPanel::Render()
     previousPos = initialPos;
     initialPos = ImGui::GetMousePos();
 
-    if ( !m_editor.selectedFile.empty() )
+    if ( !selectedFile.empty() )
     {
-      ImGui::Text( ( "Texture - " + m_editor.selectedFile ).c_str() );
-      Texture2D *texture = GetEnv().pManager->Get<Texture2D>( m_editor.selectedFile );
+      ImGui::Text( ( "Texture - " + selectedFile ).c_str() );
+      Texture2D *texture = GetEnv().pManager->Get<Texture2D>( selectedFile );
 
       if ( texture && ImGui::IsMouseDragging( 0 ) )
       {
@@ -190,9 +190,8 @@ void SpriteEditorPanel::Render()
         if ( ImGui::BeginChild( "Texture Editing" ), ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoMove )
         {
           static float zoom = 1.0f;
-          if ( ImGui::IsWindowHovered() )
-            if ( ImGui::IsKeyDown( DEVK_LCTRL ) )
-              zoom += 0.02f * ImGui::GetIO().MouseWheel;
+          if (ImGui::IsKeyDown(DEVK_LCTRL))
+            zoom += 0.02f * ImGui::GetIO().MouseWheel;
 
           if ( selectedInfoID >= 0 )
             if ( ImGui::IsKeyPressed( DEVK_DELETE ) )
@@ -219,9 +218,9 @@ void SpriteEditorPanel::Render()
                 assetpayload_n.erase( pos );
               pos = assetpayload_n.find( "Texture" );
               assetpayload_n.erase( 0, pos );
-              m_editor.selectedFile.assign( assetpayload_n );
+              selectedFile.assign( assetpayload_n );
               loaded = false;
-              texture = GetEnv().pManager->Get<Texture2D>( m_editor.selectedFile );
+              texture = GetEnv().pManager->Get<Texture2D>( selectedFile );
             }
             ImGui::EndDragDropTarget();
           }
@@ -327,7 +326,7 @@ void SpriteEditorPanel::Render()
             }
             else
             {
-              if ( ImGui::IsWindowHovered() && ImGui::IsKeyDown( DEVK_LCTRL ) )
+              if ( ImGui::IsKeyDown( DEVK_LCTRL ) )
               {
                 ImGui::GetWindowDrawList()->AddRectFilled( min, max, IM_COL32( 0, 255, 0, 17 ) );
                 ImGui::GetWindowDrawList()->AddRect( min, max, IM_COL32( 0, 255, 0, 255 ) );

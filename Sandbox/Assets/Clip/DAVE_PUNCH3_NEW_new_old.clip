@@ -1,0 +1,45 @@
+frames 8
+fps 24
+loop 0
+
+Textures/DAVE_PUNCH_i_12
+key Textures/DAVE_PUNCH
+value 12
+frame 0
+
+Textures/DAVE_PUNCH_i_13
+key Textures/DAVE_PUNCH
+value 13
+frame 1
+
+Textures/DAVE_PUNCH_i_14
+key Textures/DAVE_PUNCH
+value 14
+frame 2
+
+Textures/DAVE_PUNCH_i_15
+key Textures/DAVE_PUNCH
+value 15
+frame 3
+
+Textures/DAVE_PUNCH_i_16
+key Textures/DAVE_PUNCH
+value 16
+frame 4
+
+Textures/DAVE_PUNCH_i_17
+key Textures/DAVE_PUNCH
+value 17
+frame 5
+
+Textures/DAVE_PUNCH_i_18
+key Textures/DAVE_PUNCH
+value 18
+frame 6
+
+Textures/DAVE_PUNCH_i_19
+key Textures/DAVE_PUNCH
+value 19
+frame 7
+
+%

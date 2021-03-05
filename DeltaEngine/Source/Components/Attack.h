@@ -29,6 +29,7 @@ struct Attack
   float KnockbackAmount;
   float KnockbackComboAmount;
   float SMGFireRate;
+  float AttackDelay;
   bool RangeAttack;
   bool MeleeAttack;
   bool SMGAttack;
@@ -36,31 +37,34 @@ struct Attack
   bool Blocking;
   bool StartSMGCooldownTimer;
   bool StartComboCooldownTimer;
+  bool DamageEnemy;
 
   Attack() :
     RangedDamage{1},
     MeleeDamage{1},
     SMGDamage{1},
     MeleeComboDamage{3},
-    NumberOfCombos{0},
-    MaxComboNumber{3},
+    NumberOfCombos{-1},
+    MaxComboNumber{5},
     MeleeCooldown{1.0f},
     RangeCooldown{1.0f},
-    SMGCooldown{0.25f},
+    SMGCooldown{0.18f},
     MeleeCooldownTimer{0.0f},
     RangeCooldownTimer{0.0f},
     ComboDuration{1.5f},
     ComboCooldownTimer{0.0f},
     KnockbackAmount{0.0f},
     KnockbackComboAmount{0.0f},
-    SMGFireRate{0.25f},
+    SMGFireRate{0.18f},
+    AttackDelay{-0.2f},
     RangeAttack{false},
     MeleeAttack{false},
     SMGAttack{false},
     AllowSMGAttack{true},
     Blocking{false},
     StartSMGCooldownTimer{false},
-    StartComboCooldownTimer{false}
+    StartComboCooldownTimer{false},
+	DamageEnemy{false}
   {
   }
 };

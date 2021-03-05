@@ -243,8 +243,6 @@ namespace DeltaEngine
 
   bool CollisionIntersection_CircleLineSegment(Collider& col1, const Vector2& vel1, LineSegment line, Manifold& m)
   {
-    //if (col1.type != ColliderType::CIRCLE)
-    //  std::cout << "WRONG!";
     Circle circle{col1.center, col1.size.x};
     Vector2 posNext;
     posNext = col1.center + vel1 * env.pClock->FixedDeltaTime();
@@ -795,4 +793,14 @@ namespace DeltaEngine
 
     return false;
   }
+
+  bool CollisionIntersection_RectMinMaxMouse( Vector2 top_left, Vector2 btm_right, Vector2 mouse )
+  {
+
+    if ( top_left.x < mouse.x && btm_right.x > mouse.x )
+      if ( top_left.y < mouse.y && btm_right.y > mouse.y )
+        return true;
+    return false;
+  }
+
 }

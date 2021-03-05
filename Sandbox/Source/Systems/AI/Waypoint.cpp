@@ -31,7 +31,7 @@ namespace DeltaEngine
       else
         CurrentWaypoint = 0;
     }
-
-    AITools::MoveTowardsPoint(id, original_pos + Waypoints[CurrentWaypoint]);
+    Vector2 point = original_pos + Waypoints[CurrentWaypoint];
+    AITools::MoveTowardsPoint(id, point);
   }
 }

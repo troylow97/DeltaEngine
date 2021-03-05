@@ -20,7 +20,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
   DEFINE_SYSTEM(AttackSystem, Attack, Collider, Health, Lifespan, Transform, EntityType, Image)
-    //void Initialize() override;
+    // void Initialize() override;
     void Update() override;
     void LateUpdate() override;
     void RangedAttack(EntityID&);
@@ -33,6 +33,7 @@ namespace DeltaEngine
     EntityID CreateSMGBullet(EntityID id, Vector2 scale, bool gravity, float Lifetime, EntityCategory type);
     std::vector<EntityID> MeleeAttackingEntities;
     std::vector<EntityID> RangedAttackingEntities;
-    //PlayerAttackCombo _pac;
+    Vector2 CalculateAttackDirection(EntityID& enemy);
+    // PlayerAttackCombo _pac;
   END_DEFINE_SYSTEM(AttackSystem)
 }

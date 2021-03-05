@@ -6,6 +6,7 @@ layout (location = 2) in vec2 texCoord;
 layout (location = 3) in vec4 p0;
 layout (location = 4) in vec4 p1;
 layout (location = 5) in vec4 p2;
+layout (location = 6) in vec4 col;
 
 out vec3 vertexPosition;
 out vec4 vertexColor;
@@ -36,6 +37,6 @@ void main()
 	gl_Position = v3;
 
 	vertexPosition = v1.xyz;
-    vertexColor = color;
+    vertexColor = color * col;
 	vertexTexCoord = texCoord;
 }

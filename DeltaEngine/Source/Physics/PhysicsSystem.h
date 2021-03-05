@@ -30,11 +30,14 @@ namespace DeltaEngine
     void PhysicsSystem::UpdateVelocity();
     void PhysicsSystem::Dash(Player& p, RigidBody& r, Collider& c);
     void PhysicsSystem::Jump(Player& p, RigidBody& r, Collider& c);
+    void PhysicsSystem::UpdateJumpAndDashDelay(Player& p1);
     Vector2 m_gravity_amount{0, -60.0f};
     float JumpForce{4500.0f};
     float InitialJumpForce{4500.0f};
-    int CurrentJumpTicks{0};
-    int MaxJumpTicks{10};
+    float JumpDelay;
+    float DashDelay;
+    int CurrentJumpTicks{0};	
+    int MaxJumpTicks{12};
     int CurrentDashTicks{0};
     int MaxDashTicks{10};
   END_DEFINE_SYSTEM(PhysicsSystem)

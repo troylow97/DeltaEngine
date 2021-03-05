@@ -20,7 +20,7 @@ struct Health
   Health() :
     CurrentHealth{10},
     MaxHealth{10},
-    isDamagedTimer{0.0f},
+    isDamagedTimer{-0.1f},
     isInvulnerable{false}
   {
   }

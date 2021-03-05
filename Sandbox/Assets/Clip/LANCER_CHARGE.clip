@@ -1,0 +1,40 @@
+frames 7
+fps 12
+loop 1
+
+Textures/LANCER_ATTACK_i_6
+key Textures/LANCER_ATTACK
+value 6
+frame 0
+
+Textures/LANCER_ATTACK_i_7
+key Textures/LANCER_ATTACK
+value 7
+frame 1
+
+Textures/LANCER_ATTACK_i_8
+key Textures/LANCER_ATTACK
+value 8
+frame 2
+
+Textures/LANCER_ATTACK_i_9
+key Textures/LANCER_ATTACK
+value 9
+frame 3
+
+Textures/LANCER_ATTACK_i_10
+key Textures/LANCER_ATTACK
+value 10
+frame 4
+
+Textures/LANCER_ATTACK_i_11
+key Textures/LANCER_ATTACK
+value 11
+frame 5
+
+Textures/LANCER_ATTACK_i_12
+key Textures/LANCER_ATTACK
+value 12
+frame 6
+
+%

@@ -1,21 +1,41 @@
 %Entry:
 
 entry
-Clip/SERP_FULL_IDLE
+Clip/SERP_IDLE
 
 %Parameters:
 
 param
-PlayerDetected
+IsAlerted
+1 0
+
+param
+Damaged
 0 0
 
 param
-HP
+IsBurrowing
 0 0
 
 param
-IsAttacking
+IsUnborrowing
 0 0
+
+param
+IsDead
+1 0
+
+param
+MoveBurrowing
+0 0
+
+param
+RangedAttack
+1 0
+
+param
+IsAttacked
+1 0
 
 %EditorPositions:
 
@@ -25,95 +45,229 @@ Entry
 
 pos
 Exit
-79 112
+384 48
 
 pos
-Clip/SERP_FULL_IDLE
--438 88
+Any State
+0 -102
 
 pos
-Clip/SERP_FIRE
--34 119
+Clip/SERP_IDLE
+-365 14
 
 pos
-Clip/SERP_FULL_ALERT
--375 248
+Clip/SERP_ALERT
+-315 111
 
 pos
-Clip/SERP_DEATH
--188 65
+Clip/SERP_BURROW
+-308 425
 
 pos
 Clip/SERP_CHARGE
--68 241
+-526 104
+
+pos
+Clip/SERP_DMG
+-201 223
+
+pos
+Clip/SERP_UNBURROW
+82 124
+
+pos
+Clip/SERP_BURROW_MOVE
+-35 366
+
+pos
+Clip/SERP_FIRE
+-555 225
+
+pos
+Clip/SERP_DEATH
+-569 377
 
 %Transitions:
 
 transition
 start
-Clip/SERP_FULL_IDLE
+Clip/SERP_IDLE
 end
-Clip/SERP_FULL_ALERT
+Clip/SERP_ALERT
 condition
-PlayerDetected
+IsAlerted
 ? 1
 endTransition
 
 transition
 start
-Clip/SERP_FULL_ALERT
+Clip/SERP_BURROW
 end
-Clip/SERP_CHARGE
+Clip/SERP_BURROW_MOVE
 condition
-IsAttacking
+MoveBurrowing
 ? 1
 endTransition
 
 transition
 start
-Clip/SERP_CHARGE
+Clip/SERP_BURROW_MOVE
 end
+Clip/SERP_UNBURROW
+condition
+IsUnborrowing
+? 1
+endTransition
+
+transition
+start
 Clip/SERP_FIRE
+end
+Clip/SERP_BURROW
+condition
+RangedAttack
+? 0
+condition
+IsBurrowing
+? 1
 endTransition
 
 transition
 start
-Clip/SERP_FULL_ALERT
+Clip/SERP_UNBURROW
+end
+Clip/SERP_ALERT
+condition
+IsUnborrowing
+? 0
+condition
+IsAlerted
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_BURROW
+condition
+IsBurrowing
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_UNBURROW
+end
+Clip/SERP_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_DMG
+end
+Clip/SERP_ALERT
+condition
+IsAttacked
+? 0
+condition
+IsAlerted
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_FIRE
 end
 Clip/SERP_DEATH
 condition
-HP
-< 1
+RangedAttack
+? 0
+condition
+IsDead
+? 1
 endTransition
 
 transition
 start
-Clip/SERP_FIRE
+Clip/SERP_ALERT
 end
-Clip/SERP_FULL_ALERT
+Clip/SERP_DEATH
 condition
-PlayerDetected
+IsAlerted
+? 0
+condition
+IsDead
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_DMG
+end
+Clip/SERP_DEATH
+condition
+IsDead
+? 1
+condition
+IsAttacked
 ? 0
 endTransition
 
 transition
 start
-Clip/SERP_FIRE
+Clip/SERP_UNBURROW
 end
 Clip/SERP_DEATH
 condition
-HP
-< 1
+IsUnborrowing
+? 0
+condition
+IsDead
+? 1
+endTransition
+
+transition
+start
+Clip/SERP_BURROW
+end
+Clip/SERP_DEATH
+condition
+IsDead
+? 1
+condition
+IsBurrowing
+? 0
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_CHARGE
+condition
+RangedAttack
+? 1
 endTransition
 
 transition
 start
 Clip/SERP_CHARGE
 end
-Clip/SERP_DEATH
-condition
-HP
-< 1
+Clip/SERP_FIRE
 endTransition
 
 %endfile

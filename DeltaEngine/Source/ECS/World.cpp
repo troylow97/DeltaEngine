@@ -95,6 +95,7 @@ void World::Run()
   systems[CHash::Hash<RenderSystem>().digest]->Update();
   systems[CHash::Hash<PhysicsDrawSystem>().digest]->Update();
   systems[CHash::Hash<RenderSystem>().digest]->LateUpdate();
+  CleanUpEntities();
 }
 
 void World::Update()
@@ -109,13 +110,26 @@ void World::LateUpdate()
     systems[hash]->LateUpdate();
 }
 
-void World::Save( std::string filename )
+void World::CleanUpEntities()
+{
+  std::vector<size_t> e_vec;
+  em->ForEach( [&]( EntityID& id, Parent &p )
+  {
+    if ( p.p_id != u64_max && !em->IsEntityValid( { p.p_id } ) )
+      e_vec.push_back( id.index );
+  } );
+
+  for ( auto &id : e_vec )
+    em->DestroyEntity( { id } );
+}
+
+void World::Save( const std::string& filename )
 {
   JsonFile file;
   file.StartWriter( filename ).WriteEntities( *em ).EndWriter();
 }
 
-void World::Load( std::string filename )
+void World::Load( const std::string& filename )
 {
   JsonFile file;
   file.StartReader( filename ).LoadEntities( *em ).EndReader();

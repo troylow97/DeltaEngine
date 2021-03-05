@@ -1,5 +1,5 @@
-frames 5
-fps 12
+frames 3
+fps 42
 loop 0
 
 Textures/DAVE_DASH_i_0
@@ -16,15 +16,5 @@ Textures/DAVE_DASH_i_2
 key Textures/DAVE_DASH
 value 2
 frame 2
-
-Textures/DAVE_DASH_i_3
-key Textures/DAVE_DASH
-value 3
-frame 3
-
-Textures/DAVE_DASH_i_4
-key Textures/DAVE_DASH
-value 4
-frame 4
 
 %

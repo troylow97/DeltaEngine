@@ -1,87 +1,108 @@
 %Entry:
 
 entry
-Clip/LANCER_IDLE
+Clip/LANCER_ALERT_IDLE
 
 %Parameters:
+
+param
+IsDead
+1 0
+
+param
+IsAlerted
+1 1
+
+param
+MeleeAttack
+1 0
+
+param
+IsBouncing
+1 0
 
 param
 IsIdle
 0 0
 
 param
-IsAlerted
+IsDamaged
 0 0
 
 param
-IsAlertIdle
+LancerCharge
 0 0
 
 param
-IsBouncing
-0 0
-
-param
-MeleeAttack
-0 0
-
-param
-IsDead
-0 0
+IsAttacked
+1 0
 
 %EditorPositions:
 
 pos
 Entry
-3 4
+-304 32
 
 pos
 Exit
 652 256
 
 pos
-Clip/LANCER_IDLE
-223 127
-
-pos
-Clip/AlertSpritesheet
-305 266
+Any State
+320 -6
 
 pos
 Clip/LANCER_ALERT_IDLE
-263 344
+-326 250
 
 pos
-Clip/LANCER_ATTACK
-20 375
+Clip/LANCER_FALL
+274 480
+
+pos
+Clip/LANCER_REACTION
+-565 455
+
+pos
+Clip/LANCER_IDLE
+473 197
 
 pos
 Clip/LANCER_BOUNCE
-72 498
+-27 465
+
+pos
+Clip/LANCER_ATTACK
+-6 163
+
+pos
+Clip/LANCER_CHARGE
+272 292
+
+pos
+Clip/LANCER_DMG
+-12 294
 
 pos
 Clip/LANCER_DEATH
-373 474
+-259 669
+
+pos
+Clip/LANCER_COLLAPSE
+-530 579
 
 %Transitions:
 
 transition
 start
-Clip/LANCER_IDLE
-end
-Clip/AlertSpritesheet
-condition
-IsAlerted
-? 1
-endTransition
-
-transition
-start
-Clip/AlertSpritesheet
+Clip/LANCER_BOUNCE
 end
 Clip/LANCER_ALERT_IDLE
 condition
-IsAlertIdle
+IsBouncing
+? 0
+condition
+IsAlerted
 ? 1
 endTransition
 
@@ -93,13 +114,32 @@ Clip/LANCER_ATTACK
 condition
 MeleeAttack
 ? 1
+condition
+IsAlerted
+? 0
 endTransition
 
 transition
 start
 Clip/LANCER_ATTACK
 end
+Clip/LANCER_CHARGE
+condition
+LancerCharge
+? 1
+condition
+MeleeAttack
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
 Clip/LANCER_BOUNCE
+condition
+LancerCharge
+? 0
 condition
 IsBouncing
 ? 1
@@ -107,11 +147,41 @@ endTransition
 
 transition
 start
-Clip/AlertSpritesheet
+Clip/LANCER_DMG
 end
-Clip/LANCER_DEATH
+Clip/LANCER_ALERT_IDLE
 condition
-IsDead
+IsAttacked
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_ATTACK
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_BOUNCE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
 ? 1
 endTransition
 
@@ -119,7 +189,53 @@ transition
 start
 Clip/LANCER_ALERT_IDLE
 end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_DMG
+end
+Clip/LANCER_REACTION
+condition
+IsDead
+? 1
+condition
+IsAttacked
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_COLLAPSE
+end
 Clip/LANCER_DEATH
+endTransition
+
+transition
+start
+Clip/LANCER_ALERT_IDLE
+end
+Clip/LANCER_REACTION
+condition
+IsDead
+? 1
+condition
+IsIdle
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_BOUNCE
+end
+Clip/LANCER_REACTION
+condition
+IsBouncing
+? 0
 condition
 IsDead
 ? 1
@@ -129,7 +245,23 @@ transition
 start
 Clip/LANCER_ATTACK
 end
-Clip/LANCER_DEATH
+Clip/LANCER_REACTION
+condition
+IsDead
+? 1
+condition
+MeleeAttack
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_REACTION
+condition
+LancerCharge
+? 0
 condition
 IsDead
 ? 1
@@ -137,22 +269,9 @@ endTransition
 
 transition
 start
-Clip/LANCER_BOUNCE
+Clip/LANCER_REACTION
 end
-Clip/LANCER_DEATH
-condition
-IsDead
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_BOUNCE
-end
-Clip/LANCER_ALERT_IDLE
-condition
-IsAlertIdle
-? 1
+Clip/LANCER_COLLAPSE
 endTransition
 
 %endfile

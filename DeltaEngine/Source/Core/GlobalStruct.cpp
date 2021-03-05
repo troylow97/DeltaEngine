@@ -21,8 +21,18 @@ namespace DeltaEngine
     return env;
   }
 
+  double DeltaTime()
+  {
+    return env.pClock->DeltaTime();
+  }
+
   double FixedDeltaTime()
   {
     return env.pClock->FixedDeltaTime();
+  }
+
+  double FixedUnscaledDeltaTime()
+  {
+    return env.pClock->FixedUnscaledDeltaTime();
   }
 }

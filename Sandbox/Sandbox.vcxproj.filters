@@ -51,6 +51,9 @@
     <ClInclude Include="Source\Systems\GCameraSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GUISystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\HealthSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -70,6 +73,9 @@
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\UpgradeSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\VFXSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
@@ -102,6 +108,9 @@
     <ClCompile Include="Source\Systems\GCameraSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\GUISystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Systems\HealthSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
@@ -121,6 +130,9 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\UpgradeSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\VFXSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>

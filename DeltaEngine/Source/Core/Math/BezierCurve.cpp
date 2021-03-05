@@ -51,31 +51,34 @@ namespace DeltaEngine
   float BezierCurve::Evaluate(float time)
   {
     int i = 0;
-    float lastCheck = 0;
-    int startInd = -1, endInd = -1;
+    float firstCheck = 0, lastCheck = 1;
+    int startInd = 0, endInd = -1;
     for (auto [position, active] : anchors)
     {
       if (!active)
         continue;
       if (position.x < time)
       {
-        if (position.x > lastCheck)
+        if (position.x > firstCheck)
         {
-          lastCheck = position.x;
+          firstCheck = position.x;
           startInd = i;
         }
       }
       else
       {
-        endInd = i;
-        break;
+        if (position.x <= lastCheck)
+        {
+          lastCheck = position.x;
+          endInd = i;
+        }
       }
       ++i;
     }
-    
-    if (startInd == -1)
+
+    if (endInd == 0)
       return anchors[0].first.y;
-    if (endInd == -1)
+    else if (endInd == -1)
       return anchors.back().first.y;
 
     float t0 = anchors[startInd].first.x;
@@ -109,5 +112,21 @@ namespace DeltaEngine
       Vector2 p1 = anchors[endInd].first;
       return min + (max - min) * EvaluateLinear(p0, p1, time).y;
     }
+  }
+
+  BezierRange::BezierRange(int constant)
+  {
+    min = constant;
+    max = constant;
+  }
+
+  BezierRange3::BezierRange3(int constant)
+  {
+    minX = constant;
+    maxX = constant;
+    minY = constant;
+    maxY = constant;
+    minZ = constant;
+    maxZ = constant;
   }
 }

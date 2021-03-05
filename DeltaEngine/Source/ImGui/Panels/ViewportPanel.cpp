@@ -88,14 +88,15 @@ namespace DeltaEngine
     else if (ImGui::IsMouseDown(0))
     {
       auto offset = curr_mouse - prev_mouse;
+      ImGuiIO& io = ImGui::GetIO();
 
       if (Editor::tool_selection == Editor::Tool::Camera)
       {
         if (std::abs(offset.point_x) > FLT_EPSILON)
-          Camera::editorCameraTransform.position.x -= offset.point_x;
+          Camera::editorCameraTransform.position.x -= io.MouseDelta.x / 100;
 
         if (std::abs(offset.point_y) > FLT_EPSILON)
-          Camera::editorCameraTransform.position.y -= offset.point_y;
+          Camera::editorCameraTransform.position.y += io.MouseDelta.y / 100;
       }
       else if (Editor::tool_selection == Editor::Tool::EntitySelector)
       {
@@ -112,17 +113,17 @@ namespace DeltaEngine
     }
     else
     {
-      if (ImGui::IsKeyDown(DEVK_W) && !ImGui::IsKeyDown(DEVK_S))
+      if (ImGui::IsKeyDown(DEVK_I) && !ImGui::IsKeyDown(DEVK_K))
         Camera::editorCameraTransform.position.y += speed * delta;
-      else if (ImGui::IsKeyDown(DEVK_S) && !ImGui::IsKeyDown(DEVK_W))
+      else if (ImGui::IsKeyDown(DEVK_K) && !ImGui::IsKeyDown(DEVK_I))
         Camera::editorCameraTransform.position.y -= speed * delta;
-      if (ImGui::IsKeyDown(DEVK_A) && !ImGui::IsKeyDown(DEVK_D))
+      if (ImGui::IsKeyDown(DEVK_J) && !ImGui::IsKeyDown(DEVK_L))
         Camera::editorCameraTransform.position.x -= speed * delta;
-      else if (ImGui::IsKeyDown(DEVK_D) && !ImGui::IsKeyDown(DEVK_A))
+      else if (ImGui::IsKeyDown(DEVK_L) && !ImGui::IsKeyDown(DEVK_J))
         Camera::editorCameraTransform.position.x += speed * delta;
-      if (ImGui::IsKeyDown(DEVK_Q) && !ImGui::IsKeyDown(DEVK_E))
+      if (ImGui::IsKeyDown(DEVK_U) && !ImGui::IsKeyDown(DEVK_O))
         Camera::editorCamera->m_Size -= speed * delta;
-      else if (ImGui::IsKeyDown(DEVK_E) && !ImGui::IsKeyDown(DEVK_Q))
+      else if (ImGui::IsKeyDown(DEVK_O) && !ImGui::IsKeyDown(DEVK_U))
         Camera::editorCamera->m_Size += speed * delta;
       dragging = false;
     }
@@ -213,7 +214,6 @@ namespace DeltaEngine
             env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(tile).m_Sprite.m_Index = 0;
           }
         }
-
         ImGui::EndDragDropTarget();
       }
     }

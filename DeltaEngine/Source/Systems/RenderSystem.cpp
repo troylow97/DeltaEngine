@@ -17,6 +17,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Render/Window.h"
 #include "Render/OpenGLSystem.h"
 #include "Assets/AssetManager.h"
+#include "Components/ParticleEmitter.h"
 
 namespace DeltaEngine
 {
@@ -28,6 +29,16 @@ namespace DeltaEngine
   {
     Renderer2D& i = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(a);
     Renderer2D& j = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(b);
+    return
+      (i.m_SortingLayer < j.m_SortingLayer) ||
+      (i.m_SortingLayer == j.m_SortingLayer) &&
+      (i.m_SortingOrder < j.m_SortingOrder);
+  }
+
+  bool SortOverlay(EntityID a, EntityID b)
+  {
+    RendererOverlay& i = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<RendererOverlay>(a);
+    RendererOverlay& j = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<RendererOverlay>(b);
     return
       (i.m_SortingLayer < j.m_SortingLayer) ||
       (i.m_SortingLayer == j.m_SortingLayer) &&
@@ -148,8 +159,9 @@ namespace DeltaEngine
         particleMat.SetUniformMatrix4f("_V", view);
         particleMat.SetUniformMatrix4f("_P", proj);
         particleMat.SetUniform1i("_MainTex", 0);
+        particleMat.SetUniformColor4f("_Color", r.m_Color);
 
-        std::vector<float> locationSizes { 4, 4, 4 };
+        std::vector<float> locationSizes { 4, 4, 4, 4 };
         std::vector<float> particleMats;
         for (auto& particle : ps.particlePools[ID])
         {
@@ -162,6 +174,10 @@ namespace DeltaEngine
           {
             particleMats.push_back(pMat.m[j]);
           }
+          particleMats.push_back(particle.color.r);
+          particleMats.push_back(particle.color.g);
+          particleMats.push_back(particle.color.b);
+          particleMats.push_back(particle.color.a);
         }
 
         glEnable(GL_BLEND);
@@ -250,7 +266,6 @@ namespace DeltaEngine
           Matrix4x4 view = Matrix4x4::Scale(2) * Matrix4x4::identity;
           Matrix4x4 model = scale * t.LocalToWorldMatrix();
 
-
           if (r.m_Shaded)
           {
             if (i.m_Sprite)
@@ -334,7 +349,7 @@ namespace DeltaEngine
 
     sortedRenderersOverlay.clear();
     em.ForEach(e_query, [&](EntityID id, RendererOverlay& r) { sortedRenderersOverlay.push_back(id); });
-    std::sort(sortedRenderersOverlay.begin(), sortedRenderersOverlay.end(), SortSprites);
+    std::sort(sortedRenderersOverlay.begin(), sortedRenderersOverlay.end(), SortOverlay);
 
     // camera entities
     em.ForEach([&](EntityID id, Transform& tr, Camera& c)

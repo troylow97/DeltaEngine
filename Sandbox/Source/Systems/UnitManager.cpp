@@ -11,18 +11,59 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "UnitManager.h"
 
 #include "Core/GlobalStruct.h"
-
+#include "Core/GameClock/EngineClock.h"
 namespace DeltaEngine
 {
   EntityID UnitManager::player;
 
   EntityID UnitManager::GetPlayerID()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id, Player& p, RigidBody& r, State& s, Animator& a)
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id,Collider& c, Player& p, RigidBody& r, State& s, Animator& a, Health& hp)
     {
+	  if(hp.isDamagedTimer > 0.0f)
+	  {
+          return;
+	  }
+      static float jump = 0;
+      static bool fall = false;
+      s.SetFloat("VelocityY", r.Velocity.y);
+      if (r.Velocity.y)
+      {
+        s.SetBool("Jump", true);
+      }
+      if (s.GetBool("Jump"))
+      {
+        if (r.Velocity.y < 0)
+        {
+          fall = true;
+          jump += static_cast<float>(GetEnv().pClock->FixedDeltaTime());
+          s.SetFloat("Jump", jump);
+        }
+
+        if (fall)
+        {
+          if (c.isCollidingOnFloor)
+          {
+            s.SetBool("Jump", false);
+            s.SetBool("VelocityY", true);
+            p.IsJumping = false;
+            fall = false;
+            jump = 0;
+          }
+        }
+      }
+      else if (s.GetBool("VelocityY")) // recovering
+      {
+        if (a.m_ClipKey == "Clip/DAVE_LAND" && a.LoopsCompleted())
+        {
+          s.SetBool("IsIdle", true);
+          s.SetBool("VelocityY", false);
+        }
+      }
+
       player = id;
-      //std::cout << "Player state is: " << a.m_ClipKey << std::endl;
     });
+  	
     return player;
   }
 }

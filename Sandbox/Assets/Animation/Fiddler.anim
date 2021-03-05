@@ -27,7 +27,11 @@ MeleeAttack
 
 param
 IsDead
-0 0
+1 0
+
+param
+IsAttacked
+1 0
 
 %EditorPositions:
 
@@ -40,24 +44,40 @@ Exit
 652 256
 
 pos
+Any State
+210 -41
+
+pos
 Clip/FID_WALK
-461 124
+3 239
 
 pos
 Clip/FID_DEATH
--78 465
+135 40
 
 pos
 Clip/FID_ATTACK
-220 466
+545 135
 
 pos
 Clip/FID_ALERT_RUN
-189 232
+166 407
 
 pos
 Clip/FID_ALERT
--61 157
+121 522
+
+pos
+Clip/FID_BLOCK_READY
+242 477
+
+pos
+Clip/FID_BLOCK_UP
+-5 474
+
+pos
+Clip/FID_DMG
+271 160
 
 %Transitions:
 
@@ -65,16 +85,6 @@ transition
 start
 Clip/FID_WALK
 end
-Clip/FID_ALERT
-condition
-IsAlerted
-? 1
-endTransition
-
-transition
-start
-Clip/FID_ALERT
-end
 Clip/FID_ALERT_RUN
 condition
 IsAlertRunning
@@ -89,6 +99,12 @@ Clip/FID_ATTACK
 condition
 MeleeAttack
 ? 1
+condition
+IsAttacked
+? 0
+condition
+IsDead
+? 0
 endTransition
 
 transition
@@ -101,39 +117,32 @@ MeleeAttack
 ? 0
 condition
 IsAlertRunning
-? 0
-endTransition
-
-transition
-start
-Clip/FID_ATTACK
-end
-Clip/FID_DEATH
-condition
-IsDead
 ? 1
-condition
-MeleeAttack
-? 0
 endTransition
 
 transition
 start
 Clip/FID_ALERT_RUN
 end
-Clip/FID_DEATH
+Clip/FID_DMG
 condition
-IsDead
+IsAttacked
 ? 1
+condition
+IsAlerted
+? 0
 endTransition
 
 transition
 start
-Clip/FID_ALERT
+Clip/FID_DMG
 end
-Clip/FID_DEATH
+Clip/FID_ALERT_RUN
 condition
-IsDead
+IsAttacked
+? 0
+condition
+IsAlertRunning
 ? 1
 endTransition
 
@@ -141,9 +150,9 @@ transition
 start
 Clip/FID_ATTACK
 end
-Clip/FID_ALERT
+Clip/FID_DMG
 condition
-IsAlerted
+IsAttacked
 ? 1
 condition
 MeleeAttack
@@ -152,14 +161,53 @@ endTransition
 
 transition
 start
-Clip/FID_ATTACK
-end
 Clip/FID_WALK
+end
+Clip/FID_DMG
+condition
+IsAttacked
+? 1
 condition
 IsPatrolling
+? 0
+endTransition
+
+transition
+start
+Clip/FID_WALK
+end
+Clip/FID_DEATH
+condition
+IsDead
 ? 1
 condition
-MeleeAttack
+IsPatrolling
+? 0
+endTransition
+
+transition
+start
+Clip/FID_DMG
+end
+Clip/FID_DEATH
+condition
+IsDead
+? 1
+condition
+IsAttacked
+? 0
+endTransition
+
+transition
+start
+Clip/FID_ALERT_RUN
+end
+Clip/FID_DEATH
+condition
+IsDead
+? 1
+condition
+IsAlertRunning
 ? 0
 endTransition
 

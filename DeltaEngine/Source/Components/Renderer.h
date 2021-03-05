@@ -13,7 +13,10 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
 #include "DEpch.h"
+#include "Image.h"
+#include "Transform.h"
 #include "Render/Material.h"
+#include "Render/Window.h"
 #include "Core/Math/Color.h"
 #include "Core/Debugging/Logger/Log.h"
 
@@ -67,6 +70,67 @@ namespace DeltaEngine
       m_Wireframe{ false }
     {
     };
+
+    Vector4 GetScreenspaceBounds(Image& i)
+    {
+      Transform t{};
+      float refAspect = refRes.x / refRes.y;
+
+      float tmpXscale = 1;
+      float tmpYscale = 1;
+
+      anchorMin.x = Math::Clamp01(anchorMin.x);
+      anchorMin.y = Math::Clamp01(anchorMin.y);
+      anchorMax.x = Math::Clamp01(anchorMax.x);
+      anchorMax.y = Math::Clamp01(anchorMax.y);
+
+      if (Math::Abs(anchorMax.x - anchorMin.x) > .01f)
+      {
+        float anch = (anchorMax.x - anchorMin.x) / 2 - .5f;
+        float midpt = (left - right) / 2;
+        t.position.x = anch + midpt;
+        tmpXscale = (1 - (left + right));
+        pivot = Vector2(.5f, .5f);
+      }
+      else
+      {
+        t.position.x = anchorMin.x;
+        tmpXscale = size.x;
+      }
+      if (Math::Abs(anchorMax.y - anchorMin.y) > .01f)
+      {
+        float anch = (anchorMax.y - anchorMin.y) / 2 - .5f;
+        float midpt = (bottom - top) / 2;
+        t.position.y = anch + midpt;
+        tmpYscale = (1 - (top + bottom));
+        pivot = Vector2(.5f, .5f);
+      }
+      else
+      {
+        t.position.y = 1 - anchorMin.y;
+        tmpYscale = size.y;
+      }
+
+      if (m_PreserveAspect)
+      {
+        float sprAspect = 1.0f * i.m_Sprite.GetWidth() / i.m_Sprite.GetHeight();
+
+        if (tmpXscale / tmpYscale > sprAspect)
+        {
+          tmpXscale = tmpYscale * sprAspect / refAspect;
+        }
+        else
+        {
+          tmpYscale = tmpXscale / sprAspect * refAspect;
+        }
+      }
+
+      return Vector4(
+        (t.position.x * refRes.x - tmpXscale * pivot.x + pos.x) / refRes.x,
+        (t.position.y * refRes.y - tmpYscale * (1 - pivot.y) - pos.y) / refRes.y,
+        (t.position.x * refRes.x + tmpXscale * (1 - pivot.x) + pos.x) / refRes.x,
+        (t.position.y * refRes.y + tmpYscale * pivot.y - pos.y) / refRes.y);
+    }
   };
 
   struct Renderer2D

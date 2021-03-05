@@ -105,9 +105,10 @@ void DeleteEntity(Editor& e)
     GetEnv().pECS->GetWorld().GetEntityManager().DestroyEntity( { id } );
     e.entity_selected = false;
     e.entity_id = u64_max;
-    DeltaEngine_CORE_INFO( "Deleted Entity - {}", id );
   }
 }
+
+Editor* Editor::inst = nullptr;
 
 void Editor::MenuBar()
 {
@@ -227,6 +228,8 @@ Editor::Editor()
   m_panels.push_back( std::make_unique<SpriteEditorPanel>( "Sprite Editor", *this ) ); // 10
   m_panels.push_back( std::make_unique<AnimatorPanel>( "Animator", *this ) ); // 11 
   m_panels.push_back( std::make_unique<BezierPanel>( "Curve Editor", *this ) ); // 12
+
+  inst = this;
 
   DeltaEngine_CORE_INFO( "Initializing Editor successful" );
 }

@@ -32,6 +32,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "../../Sandbox/Source/Systems/AttackSystem.h"
 #include "Audio/AudioConfig.h"
+#include "Components/ParticleEmitter.h"
 
 namespace DeltaEngine
 {
@@ -152,13 +153,24 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     rttr::value( "ray", ColliderType::RAY )
   );
 
-    rttr::registration::enumeration<EntityCategory>( "EntityCategory" )
-    (
-      rttr::value( "none", EntityCategory::E_NONE ),
-      rttr::value( "wall", EntityCategory::E_WALL ),
-      rttr::value( "player", EntityCategory::E_PLAYER ),
-      rttr::value( "enemy", EntityCategory::E_ENEMY )
-    );
+  rttr::registration::enumeration<EntityCategory>( "EntityCategory" )
+  (
+    rttr::value( "none", EntityCategory::E_NONE ),
+    rttr::value( "wall", EntityCategory::E_WALL ),
+    rttr::value( "player", EntityCategory::E_PLAYER),
+    rttr::value( "player body part rotatable", EntityCategory::E_PLAYER_BODYPART_ROTATABLE),
+    rttr::value( "player body part", EntityCategory::E_PLAYER_BODYPART ),
+    rttr::value( "enemy", EntityCategory::E_ENEMY),
+    rttr::value( "player bullet", EntityCategory::E_PLAYER_BULLET),
+    rttr::value( "player bullet detection", EntityCategory::E_PLAYER_BULLET_DETECTION),
+    rttr::value( "player punch", EntityCategory::E_PLAYER_PUNCH),
+    rttr::value( "player dash", EntityCategory::E_PLAYER_DASH),
+    rttr::value( "player smg", EntityCategory::E_PLAYER_SMG),
+    rttr::value( "enemy bullet", EntityCategory::E_ENEMY_BULLET),
+    rttr::value( "enemy fiddler punch", EntityCategory::E_ENEMY_FIDDLER_PUNCH),
+    rttr::value( "enemy lancer punch", EntityCategory::E_ENEMY_LANCER_PUNCH),
+    rttr::value( "vfx", EntityCategory::E_VFX )
+  );
 
   rttr::registration::enumeration<Alignment>( "Alignment" )
   (
@@ -204,6 +216,12 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       rttr::value("HealthBar_Base", UIType::Healthbar_base)
     );
 
+  rttr::registration::enumeration<GUIType>( "GUIType" )
+    (
+    rttr::value( "Interface", GUIType::Interface ),
+    rttr::value( "Button", GUIType::Button )
+    );
+
   rttr::registration::class_<UI>( "UI" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<UI>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
@@ -214,7 +232,14 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "Previous", &UI::previous_screen )( rttr::policy::prop::bind_as_ptr )
     .property( "Overlay", &UI::overlay)( rttr::policy::prop::bind_as_ptr );
 
-
+  rttr::registration::class_<GUI>( "GUI" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<GUI>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "Func", &GUI::func )( rttr::policy::prop::bind_as_ptr )
+    .property( "File", &GUI::file )( rttr::policy::prop::bind_as_ptr )
+    .property( "GUI Type", &GUI::type)( rttr::policy::prop::bind_as_ptr )
+    .property( "Screen No.", &GUI::screen )( rttr::policy::prop::bind_as_ptr )
+    .property( "Target No.", &GUI::target)(rttr::policy::prop::bind_as_ptr);
 
   rttr::registration::class_<EntityName>( "Entity Name" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<EntityName>()->bits ) )
@@ -336,8 +361,17 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property( "startRotationMax", &ParticleEmitter::startRotationMax)( rttr::policy::prop::bind_as_ptr )
     .property( "startSizeMin", &ParticleEmitter::startSizeMin)( rttr::policy::prop::bind_as_ptr )
     .property( "startSizeMax", &ParticleEmitter::startSizeMax)( rttr::policy::prop::bind_as_ptr )
+    .property( "velocityOverLifetime", &ParticleEmitter::velocityOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "colorOverLifetime", &ParticleEmitter::colorOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "rotationOverLifetime", &ParticleEmitter::rotationOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "sizeOverLifetime", &ParticleEmitter::sizeOverLifetime)( rttr::policy::prop::bind_as_ptr )
     .property( "maxParticles", &ParticleEmitter::maxParticles)( rttr::policy::prop::bind_as_ptr )
-    .property( "rateOverTime", &ParticleEmitter::rateOverTime)( rttr::policy::prop::bind_as_ptr );
+    .property( "rateOverTime", &ParticleEmitter::rateOverTime)( rttr::policy::prop::bind_as_ptr )
+    .property( "shape", &ParticleEmitter::shape)( rttr::policy::prop::bind_as_ptr )
+    .property( "genType", &ParticleEmitter::genType)( rttr::policy::prop::bind_as_ptr )
+    .property( "radius", &ParticleEmitter::radius)( rttr::policy::prop::bind_as_ptr )
+    .property( "shapeTransform", &ParticleEmitter::shapeTransform)( rttr::policy::prop::bind_as_ptr )
+    ;
 
   rttr::registration::class_<Renderer2D>( "Renderer2D" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Renderer2D>()->bits ) )
@@ -397,32 +431,34 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     .property("TakenDamageTimer", &Health::isDamagedTimer)(rttr::policy::prop::bind_as_ptr)
     .property( "Invulnerable", &Health::isInvulnerable )( rttr::policy::prop::bind_as_ptr );
 
-    rttr::registration::class_<Attack>("Attack")
-        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
-        .constructor<>()(rttr::policy::ctor::as_object)
-        .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
-        .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
-        .property("SMG Damage", &Attack::SMGDamage)(rttr::policy::prop::bind_as_ptr)
-        .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
-        .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
-        .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
-        .property("Melee Cooldown", &Attack::MeleeCooldown)(rttr::policy::prop::bind_as_ptr)
-        .property("Range Cooldown", &Attack::RangeCooldown)(rttr::policy::prop::bind_as_ptr)
-        .property("SMG Cooldown", &Attack::SMGCooldown)(rttr::policy::prop::bind_as_ptr)
-        .property("Melee Cooldown Timer", &Attack::MeleeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Range Cooldown Timer", &Attack::RangeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
-        .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)
-        .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
-        .property("SMG Fire Rate", &Attack::SMGFireRate)(rttr::policy::prop::bind_as_ptr)
-        .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("SMG Attack", &Attack::SMGAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Allow SMG Attack", &Attack::AllowSMGAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Blocking", &Attack::Blocking)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Start SMG Cooldown Timer", &Attack::StartSMGCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-        .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+  rttr::registration::class_<Attack>("Attack")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Attack>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Range Damage", &Attack::RangedDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Damage", &Attack::MeleeDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("SMG Damage", &Attack::SMGDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Combo Damage", &Attack::MeleeComboDamage)(rttr::policy::prop::bind_as_ptr)
+      .property("Number Of Combo", &Attack::NumberOfCombos)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true))
+      .property("Max Combo Number", &Attack::MaxComboNumber)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Cooldown", &Attack::MeleeCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("Range Cooldown", &Attack::RangeCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("SMG Cooldown", &Attack::SMGCooldown)(rttr::policy::prop::bind_as_ptr)
+      .property("Melee Cooldown Timer", &Attack::MeleeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Range Cooldown Timer", &Attack::RangeCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Combo Duration", &Attack::ComboDuration)(rttr::policy::prop::bind_as_ptr)
+      .property("Combo Cooldown Timer", &Attack::ComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Knockback Amount", &Attack::KnockbackAmount)(rttr::policy::prop::bind_as_ptr)
+      .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
+      .property("SMG Fire Rate", &Attack::SMGFireRate)(rttr::policy::prop::bind_as_ptr)
+      .property("Attack Delay", &Attack::AttackDelay)(rttr::policy::prop::bind_as_ptr)
+      .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("SMG Attack", &Attack::SMGAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow SMG Attack", &Attack::AllowSMGAttack)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Blocking", &Attack::Blocking)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Start SMG Cooldown Timer", &Attack::StartSMGCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Start Combo Cooldown Timer", &Attack::StartComboCooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Damage Enemy", &Attack::DamageEnemy)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
 
     rttr::registration::class_<Lifespan>( "Lifespan" )
       ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Lifespan>()->bits ) )
@@ -441,8 +477,17 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
       .property("Dashing Timer Duration", &Player::DashingTimerDuration)(rttr::policy::prop::bind_as_ptr)
       .property("Dashing Timer Cooldown", &Player::DashingTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Running", &Player::IsRunning)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Jumping", &Player::IsJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Dashing", &Player::IsDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Dodging", &Player::IsDodging)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Punching", &Player::IsPunching)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Shooting", &Player::IsShooting)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Blocking", &Player::IsBlocking)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Running", &Player::AllowRuning)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Punching", &Player::AllowPunching)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Jumping", &Player::AllowJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Shooting", &Player::AllowShooting)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Start Dashing Timer", &Player::StartDashingTimer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Allow Dashing", &Player::AllowDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
@@ -500,6 +545,8 @@ rttr::type RT_Checker( size_t bits )
     return rttr::type::get_by_name( "Camera" );
   if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
     return rttr::type::get_by_name( "UI" );
+  if ( ComponentMeta::GetComponentMeta<GUI>()->bits == bits )
+    return rttr::type::get_by_name( "GUI" );
   return rttr::type::get<int>();
 }
 
@@ -547,6 +594,8 @@ void RT_Destroy( EntityManager &em, EntityID id, size_t bits )
     em.RemoveComponent<Camera>( id );
   if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
     em.RemoveComponent<UI>( id );
+  if ( ComponentMeta::GetComponentMeta<GUI>()->bits == bits )
+    em.RemoveComponent<GUI>( id );
 }
 
 void RT_Setter( EntityManager &em, EntityID id, size_t bits )
@@ -593,6 +642,8 @@ void RT_Setter( EntityManager &em, EntityID id, size_t bits )
     em.AddComponent<Camera>( id );
   if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
     em.AddComponent<UI>( id );
+  if ( ComponentMeta::GetComponentMeta<GUI>()->bits == bits )
+    em.AddComponent<GUI>( id );
 }
 
 rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
@@ -639,6 +690,8 @@ rttr::instance RT_Getter( EntityManager &em, EntityID &id, size_t bits )
     return rttr::instance( em.GetComponent<Camera>( id ) );
   if ( ComponentMeta::GetComponentMeta<UI>()->bits == bits )
     return rttr::instance( em.GetComponent<UI>( id ) );
+  if ( ComponentMeta::GetComponentMeta<GUI>()->bits == bits )
+    return rttr::instance( em.GetComponent<GUI>( id ) );
   return rttr::instance();
 }
 
@@ -686,6 +739,8 @@ void SerializeType( const std::string &str, rapidjson::PrettyWriter<rapidjson::F
     Serialize::WriteObject( *static_cast<Camera *>( ptr ), writer );
   else if ( str == "UI" )
     Serialize::WriteObject( *static_cast<UI *>( ptr ), writer );
+  else if ( str == "GUI" )
+    Serialize::WriteObject( *static_cast<GUI *>( ptr ), writer );
 }
 
 void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rttr::variant var )
@@ -693,7 +748,7 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
   if ( str == "Entity Name" )
     em.GetComponent<EntityName>( id ) = var.get_value<EntityName>();
   else if ( str == "Parent" )
-    em.GetComponent<Parent>( id ) = var.get_value<Parent>();
+    em.AddComponent<Parent>( id , var.get_value<Parent>());
   else if ( str == "Transform" )
     em.GetComponent<Transform>( id ) = var.get_value<Transform>();
   else if ( str == "Entity Type" )
@@ -732,5 +787,7 @@ void DeserializeType( const std::string &str, EntityManager &em, EntityID id, rt
     em.AddComponent<Camera>( id, var.get_value<Camera>() );
   else if ( str == "UI" )
     em.AddComponent<UI>( id, var.get_value<UI>() );
+  else if ( str == "GUI" )
+    em.AddComponent<GUI>( id, var.get_value<GUI>() );
 }
 }

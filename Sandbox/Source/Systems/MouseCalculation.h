@@ -20,10 +20,13 @@ namespace DeltaEngine
     bool ShootRight();
     bool ShootLeft();
     bool IsMouseOnRight();
-    bool IsMouseOnLeft();
+    bool IsMouseOnTop();
     bool IsWithinRange(bool right);
-    Vector2 CalculateDirectionVector();
+    //float CalculateAngleForSMG(bool facing_right);
     Vector2 CalculateGameCoordinate();
     Vector2 CalculateScreenCoordinate();
+    Vector2 CalculateDirectionVector();
+    Vector2 CalculateDirectionVectorToShoot();
+    void FlipShooting();
   }
 }

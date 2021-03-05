@@ -1,0 +1,56 @@
+%Entry:
+
+entry
+Clip/QuitGame_D
+
+%Parameters:
+
+param
+Hover
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+30 133
+
+pos
+Exit
+459 221
+
+pos
+Any State
+200 0
+
+pos
+Clip/QuitGame_S
+276 219
+
+pos
+Clip/QuitGame_D
+68 231
+
+%Transitions:
+
+transition
+start
+Clip/QuitGame_D
+end
+Clip/QuitGame_S
+condition
+Hover
+? 1
+endTransition
+
+transition
+start
+Clip/QuitGame_S
+end
+Exit
+condition
+Hover
+? 0
+endTransition
+
+%endfile

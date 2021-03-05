@@ -1,0 +1,45 @@
+frames 8
+fps 12
+loop 1
+
+Textures/DAVE_RUN_old_i_0
+key Textures/DAVE_RUN_old
+value 0
+frame 0
+
+Textures/DAVE_RUN_old_i_1
+key Textures/DAVE_RUN_old
+value 1
+frame 1
+
+Textures/DAVE_RUN_old_i_2
+key Textures/DAVE_RUN_old
+value 2
+frame 2
+
+Textures/DAVE_RUN_old_i_3
+key Textures/DAVE_RUN_old
+value 3
+frame 3
+
+Textures/DAVE_RUN_old_i_4
+key Textures/DAVE_RUN_old
+value 4
+frame 4
+
+Textures/DAVE_RUN_old_i_5
+key Textures/DAVE_RUN_old
+value 5
+frame 5
+
+Textures/DAVE_RUN_old_i_6
+key Textures/DAVE_RUN_old
+value 6
+frame 6
+
+Textures/DAVE_RUN_old_i_7
+key Textures/DAVE_RUN_old
+value 7
+frame 7
+
+%

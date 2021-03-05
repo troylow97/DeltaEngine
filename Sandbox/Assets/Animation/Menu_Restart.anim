@@ -1,0 +1,56 @@
+%Entry:
+
+entry
+Clip/Restart_D
+
+%Parameters:
+
+param
+Hover
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+74 149
+
+pos
+Exit
+514 213
+
+pos
+Any State
+200 0
+
+pos
+Clip/Restart_D
+194 130
+
+pos
+Clip/Restart_S
+255 225
+
+%Transitions:
+
+transition
+start
+Clip/Restart_D
+end
+Clip/Restart_S
+condition
+Hover
+? 1
+endTransition
+
+transition
+start
+Clip/Restart_S
+end
+Exit
+condition
+Hover
+? 0
+endTransition
+
+%endfile

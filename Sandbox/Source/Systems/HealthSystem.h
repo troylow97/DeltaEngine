@@ -20,5 +20,7 @@ namespace DeltaEngine
     void LateUpdate() override;
   private:
     void LimitCurrentHealthToMaxHealth(Health& hp);
+    void PlayAttackedAnimation(EntityID id);
+    void ResetAttackedAnimation(EntityID id);
   END_DEFINE_SYSTEM(HealthSystem)
 }
