@@ -24,7 +24,7 @@ namespace DeltaEngine
     MaxJumpTicks = 10;
     CurrentDashTicks = 0;
     MaxDashTicks = 8;
-    InitialJumpForce = 2500.0f;
+    InitialJumpForce = 3500.0f;
     JumpForce = InitialJumpForce;
   }
 
@@ -93,12 +93,12 @@ namespace DeltaEngine
         }
 
         //Apply Friction
-        if (c1.isCollidingOnFloor)
-        {
+        //if (c1.isCollidingOnFloor)
+        //{
           const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
           const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
           r1.Velocity += dragForceVector;
-        }
+        //}
 
 
         //Apply Acceleration
