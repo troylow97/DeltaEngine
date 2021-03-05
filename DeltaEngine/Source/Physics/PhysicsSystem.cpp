@@ -145,7 +145,7 @@ namespace DeltaEngine
         CurrentDashTicks++;
         p.AllowPunching = false;
         p.AllowShooting = false;
-        p.AllowRuning = false;
+        p.AllowRunning = false;
         if (p.DashDirectionRight)
         {
           r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
@@ -189,11 +189,11 @@ namespace DeltaEngine
         CurrentJumpTicks++;
         p.AllowPunching = false;
         p.AllowShooting = false;
-        p.AllowRuning = false;
+        p.AllowRunning = false;
       }
       else
       {
-        p.AllowRuning = true;
+        p.AllowRunning = true;
         p.AllowPunching = true;
         p.IsJumping = false;
         JumpForce = InitialJumpForce;
@@ -214,7 +214,7 @@ namespace DeltaEngine
       DashDelay -= env.pClock->FixedDeltaTime();
     else
     {
-      p.AllowRuning = true;
+      p.AllowRunning = true;
       p.AllowPunching = true;
       p.AllowShooting = true;
     }
@@ -223,7 +223,7 @@ namespace DeltaEngine
         JumpDelay -= env.pClock->FixedDeltaTime();
     else
     {
-      p.AllowRuning = true;
+      p.AllowRunning = true;
       p.AllowPunching = true;
       p.AllowShooting = true;
     } 	

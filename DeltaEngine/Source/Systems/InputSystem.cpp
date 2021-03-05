@@ -93,7 +93,7 @@ namespace DeltaEngine
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1)
     {
-      if (p1.AllowRuning == true)
+      if (p1.AllowRunning == true)
       {
         if (/*!a1.Blocking && */ a1.MeleeCooldownTimer <= 0.0)
         {
@@ -125,7 +125,7 @@ namespace DeltaEngine
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1)
     {
-      if (p1.AllowRuning == true)
+      if (p1.AllowRunning == true)
       {
         if (/*!a1.Blocking && */ a1.MeleeCooldownTimer <= 0.0) //TO edit punching
         {
@@ -290,8 +290,11 @@ namespace DeltaEngine
       if (p1.IsRunning)
       {
         //p1.IsRunning = false;
-        //p1.AllowRuning = false;
-        return;
+        //p1.AllowRunning = false;
+        p1.AllowRunning = false;
+        p1.IsRunning = false;
+        StopRun();
+        //return;
       }
     	
       if (p1.AllowPunching && c1.isCollidingOnFloor && !p1.IsShooting)
@@ -347,7 +350,7 @@ namespace DeltaEngine
     {
       if (p1.IsRunning)
       {
-        p1.AllowRuning = false;
+        p1.AllowRunning = false;
         p1.IsRunning = false;
         StopRun();
       }
@@ -462,7 +465,7 @@ namespace DeltaEngine
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
       {
         p1.IsShooting = false;
-        p1.AllowRuning = true;
+        p1.AllowRunning = true;
         p1.AllowPunching = true;
         p1.AllowJumping = true;
         s1.SetBool("SMGAttack", false);

@@ -17,6 +17,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Audio/AudioEngine.h"
 #include "Core/Utils/Random.h"
 #include "MouseCalculation.h"
+#include "AI/AITools.h"
 
 namespace DeltaEngine
 {
@@ -159,7 +160,8 @@ namespace DeltaEngine
       }
       if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
           em.GetComponent<State>(id).SetBool("Ranged", false);
-
+      
+      FlipPunching();
        //Toggle Player Melee Attack
       if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f)
       {
@@ -338,7 +340,7 @@ namespace DeltaEngine
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().
       HasComponent<Attack>(id))
     {
-      EntityID missile = CreateProjectile(id, Vector2{0.5f, 0.4f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+      EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
       static size_t c_id{u64_max};
    	
       AudioEngine::Play2DEvent( "event:/Player/PlayerPunch" );
@@ -519,5 +521,25 @@ namespace DeltaEngine
     Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
     
     return normalized_direction_vector;
+  }
+
+  void AttackSystem::FlipPunching()
+  {
+    auto & player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+    auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+    if (!MouseCalculation::IsMouseOnRight())
+    {
+      if (AITools::isFacingRight(player_id))
+      {
+        player_image.m_FlipX = true;
+      }
+    }
+    if (MouseCalculation::IsMouseOnRight())
+    {
+      if (AITools::isFacingLeft(player_id))
+      {
+        player_image.m_FlipX = false;
+      }
+    }
   }
 } //Namespace DeltaEngine
