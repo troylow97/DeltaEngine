@@ -1,4 +1,4 @@
-frames 10
+frames 8
 fps 12
 loop 1
 
@@ -41,15 +41,5 @@ Textures/FID_ALERT_RUN_i_7
 key Textures/FID_ALERT_RUN
 value 7
 frame 7
-
-Textures/FID_ALERT_RUN_i_8
-key Textures/FID_ALERT_RUN
-value 8
-frame 8
-
-Textures/FID_ALERT_RUN_i_9
-key Textures/FID_ALERT_RUN
-value 9
-frame 9
 
 %

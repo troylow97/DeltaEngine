@@ -24,6 +24,7 @@ namespace DeltaEngine
 
     void ChangeShader(Shader* shaderRef);
     void ChangeShader(std::string shaderName);
+    void Bind();
     // Set uniforms
     void SetUniform1i(std::string name, int i0);
     void SetUniform1f(std::string name, float f0);

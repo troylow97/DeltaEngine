@@ -157,6 +157,12 @@ namespace DeltaEngine
     GLCall(glUniform4f( GetUniformLocation( name ), c.r, c.g, c.b, c.a ));
   }
 
+  void Shader::SetUniformVector2f(std::string name, Vector2 v)
+  {
+    Bind();
+    GLCall(glUniform2f( GetUniformLocation( name ), v.x, v.y ));
+  }
+
   void Shader::SetUniformVector3f(std::string name, Vector3 v)
   {
     Bind();

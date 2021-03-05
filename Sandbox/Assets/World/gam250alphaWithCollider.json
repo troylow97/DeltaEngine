@@ -13225,7 +13225,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13295,7 +13295,7 @@
                 },
                 "Layer": -3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13505,7 +13505,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13575,7 +13575,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -13645,7 +13645,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -14905,7 +14905,7 @@
                 },
                 "Layer": -5,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -14975,7 +14975,7 @@
                 },
                 "Layer": -5,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -15115,7 +15115,7 @@
                 },
                 "Layer": -5,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -15185,7 +15185,7 @@
                 },
                 "Layer": -5,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -15465,7 +15465,7 @@
                 },
                 "Layer": -4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -15535,7 +15535,7 @@
                 },
                 "Layer": -3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -15605,7 +15605,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -15675,7 +15675,7 @@
                 },
                 "Layer": -4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -15885,7 +15885,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -15955,7 +15955,7 @@
                 },
                 "Layer": 1,
                 "Order": 1.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16025,7 +16025,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16095,7 +16095,7 @@
                 },
                 "Layer": -5,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16165,7 +16165,7 @@
                 },
                 "Layer": -5,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16235,7 +16235,7 @@
                 },
                 "Layer": -4,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16305,7 +16305,7 @@
                 },
                 "Layer": -3,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16375,7 +16375,7 @@
                 },
                 "Layer": -2,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16445,7 +16445,7 @@
                 },
                 "Layer": 0,
                 "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16725,147 +16725,7 @@
                 },
                 "Layer": 2,
                 "Order": 0.0,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": ""
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 89.42413330078125,
-                    "y": 1.4500000476837159,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WALL_END",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 2,
-                "Order": 0.0,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "NormalToBrown"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 86.58000183105469,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/TILESET_GROUND_DETAILS",
-                    "index": 8
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": false,
+                "Active": true,
                 "Shaded": true,
                 "Wireframe": false
             }
@@ -16911,8 +16771,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 15.812989234924317,
-                    "y": 1.3079986572265626
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -16970,8 +16830,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 51.944000244140628,
-                    "y": -0.07800000160932541
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17029,8 +16889,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 24.449485778808595,
-                    "y": 0.308979332447052
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17088,8 +16948,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.729331970214845,
-                    "y": 2.7176120281219484
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17147,8 +17007,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 30.086999893188478,
-                    "y": 3.071526527404785
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17206,8 +17066,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 33.90170669555664,
-                    "y": 3.0721828937530519
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17265,8 +17125,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 26.30699920654297,
-                    "y": 1.1326051950454713
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17324,8 +17184,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 26.80632209777832,
-                    "y": 1.6747288703918458
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17383,8 +17243,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.338598251342775,
-                    "y": 2.3540139198303224
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17442,8 +17302,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 29.57710075378418,
-                    "y": 0.6911263465881348
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17501,8 +17361,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 31.7426700592041,
-                    "y": 1.1360762119293213
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17560,8 +17420,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 34.14026641845703,
-                    "y": 2.47219181060791
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17619,8 +17479,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 29.848369598388673,
-                    "y": 1.1480000019073487
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17678,8 +17538,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.087528228759767,
-                    "y": 2.0199999809265138
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17737,8 +17597,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 32.62421798706055,
-                    "y": 1.332517385482788
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17796,8 +17656,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.163999557495118,
-                    "y": 0.6865854859352112
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17855,8 +17715,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 33.34476089477539,
-                    "y": 1.6787205934524537
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17914,8 +17774,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 30.357999801635743,
-                    "y": 1.565000057220459
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -17973,8 +17833,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.907434463500978,
-                    "y": 0.8661463856697083
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18032,8 +17892,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 26.528860092163087,
-                    "y": 1.4021044969558716
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18091,8 +17951,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 34.06663131713867,
-                    "y": 1.8257085084915162
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18150,8 +18010,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 30.96462059020996,
-                    "y": 1.3205558061599732
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18209,8 +18069,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 34.12221908569336,
-                    "y": 3.9204163551330568
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18268,8 +18128,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 34.7435188293457,
-                    "y": 0.17989742755889893
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18327,8 +18187,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 39.74918746948242,
-                    "y": 0.17989742755889893
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18386,8 +18246,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 43.37300109863281,
-                    "y": 0.5315184593200684
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18445,8 +18305,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 47.02830505371094,
-                    "y": 0.18744051456451417
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18504,8 +18364,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 49.10150909423828,
-                    "y": 0.1802668571472168
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18563,8 +18423,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 49.92884826660156,
-                    "y": 0.5127903819084168
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18622,8 +18482,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 52.21198272705078,
-                    "y": 1.5307543277740479
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18681,8 +18541,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 51.16884994506836,
-                    "y": 0.5961106419563294
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18740,8 +18600,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 52.95800018310547,
-                    "y": 1.9730000495910645
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18799,8 +18659,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 54.37699890136719,
-                    "y": 1.5879570245742798
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18858,8 +18718,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 54.37699890136719,
-                    "y": 2.4679999351501467
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18917,8 +18777,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 55.998477935791019,
-                    "y": 2.935332775115967
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -18976,8 +18836,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 57.65974426269531,
-                    "y": 2.9711544513702394
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19035,8 +18895,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 60.8965950012207,
-                    "y": 0.7073872089385986
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19094,8 +18954,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 55.48381042480469,
-                    "y": 1.0333325862884522
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19153,8 +19013,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 55.99293899536133,
-                    "y": 0.5954810380935669
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19212,8 +19072,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 58.75606918334961,
-                    "y": 2.33001708984375
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19271,8 +19131,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 59.490745544433597,
-                    "y": 1.4556539058685303
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19330,8 +19190,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 52.44399642944336,
-                    "y": 1.7441760301589966
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19389,8 +19249,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 53.63328170776367,
-                    "y": 1.7822331190109254
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19448,8 +19308,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 58.52168273925781,
-                    "y": 2.5323879718780519
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19507,8 +19367,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 55.249149322509769,
-                    "y": 1.3038095235824586
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19566,8 +19426,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 58.39113998413086,
-                    "y": 2.784365177154541
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19625,8 +19485,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 59.008079528808597,
-                    "y": 1.648499846458435
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19684,8 +19544,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 58.99161911010742,
-                    "y": 2.0205414295196535
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19743,8 +19603,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 87.00292205810547,
-                    "y": 0.7388570308685303
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19802,8 +19662,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 62.07561111450195,
-                    "y": 0.34812575578689577
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19861,8 +19721,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 66.70001220703125,
-                    "y": 0.18177896738052369
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19920,8 +19780,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 67.85894775390625,
-                    "y": 1.0249603986740113
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19979,8 +19839,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 67.36622619628906,
-                    "y": 0.5183575749397278
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -20038,8 +19898,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 68.34819793701172,
-                    "y": 1.4656355381011963
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -20097,8 +19957,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 68.09944152832031,
-                    "y": 1.238828182220459
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -20156,8 +20016,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 67.5799789428711,
-                    "y": 0.7925296425819397
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -20215,8 +20075,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 68.59695434570313,
-                    "y": 0.6901004314422607
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -20238,7 +20098,2051 @@
                 "ID": 18446744073709551615
             },
             "Entity Name": {
-                "Name": "camera"
+                "Name": "Player"
+            },
+            "Entity Type": {
+                "Category": "player"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 16.656692504882814,
+                    "y": 1.6149115562438965,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 50.0,
+                "Move Speed": 15.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 2.0,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 12.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 0.5409597158432007,
+                    "y": -1.0429999828338624
+                },
+                "Offset": {
+                    "x": 0.029999999329447748,
+                    "y": -0.03999999910593033
+                },
+                "Size": {
+                    "x": 0.5,
+                    "y": 0.7799999713897705
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 2,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/BreathingSpritesheet",
+                    "index": 5
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 5,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Dave",
+                "Speed": 1.0
+            },
+            "State": {},
+            "Health": {
+                "Current Health": 500,
+                "Max Health": 500,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": true
+            },
+            "Attack": {
+                "Range Damage": 2,
+                "Melee Damage": 5,
+                "Melee Combo Damage": 10,
+                "Number Of Combo": 0,
+                "Max Combo Number": 3,
+                "Melee Cooldown": 0.20000000298023225,
+                "Range Cooldown": 0.4000000059604645,
+                "Melee Cooldown Timer": -0.20000018179416657,
+                "Range Cooldown Timer": -0.2000000923871994,
+                "Combo Duration": 2.0,
+                "Combo Cooldown Timer": 2.0,
+                "Knockback Amount": 500.0,
+                "Knockback Combo Amount": 1000.0,
+                "Ranged Attack": false,
+                "Melee Attack": true,
+                "Start Combo Cooldown Timer": false
+            },
+            "Player": {
+                "Upgrade Points Per Enemy Defeated": 50,
+                "Points Needed For Upgrade": 50,
+                "Attack Upgrade Increase": 1,
+                "Health Upgrade Attack": 2,
+                "Dashing Timer Duration": 1.0
+            },
+            "Input": {
+                "Previous": 32,
+                "Current": 0
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 19.42256736755371,
+                    "y": 0.9941583871841431,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 42.352684020996097,
+                    "y": 1.4568090438842774,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 21.04184341430664,
+                    "y": 0.8495804071426392,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 44.55027389526367,
+                    "y": 1.4278931617736817,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 50.96955490112305,
+                    "y": 1.2833147048950196,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 31.306903839111329,
+                    "y": 3.9435555934906008,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 32.174373626708987,
+                    "y": 4.059217929840088,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Lancer_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 30.49726676940918,
+                    "y": 3.9435551166534426,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_IDLE",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 3.440000057220459,
+                    "y": 0.9700000286102295
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Fiddler_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 43.55204772949219,
+                    "y": 1.2083103656768799,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 7.670000076293945,
+                    "y": 0.9191531538963318
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": -0.14000000059604646
+                },
+                "Size": {
+                    "x": 1.5800000429153443,
+                    "y": 0.7900000214576721
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/FID_BLOCK_READY",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Fiddler",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 13.739999771118164,
+                    "y": 0.9190000295639038
+                },
+                "AIState": "idle_fiddler"
+            },
+            "Health": {
+                "Current Health": 50,
+                "Max Health": 50,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 10,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 2.0,
+                "Range Cooldown": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Fiddler_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 36.06289291381836,
+                    "y": 0.5143344402313232,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 7.670000076293945,
+                    "y": 0.9191531538963318
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": -0.14000000059604646
+                },
+                "Size": {
+                    "x": 1.5800000429153443,
+                    "y": 0.7900000214576721
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/FID_BLOCK_READY",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Fiddler",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 13.739999771118164,
+                    "y": 0.9190000295639038
+                },
+                "AIState": "idle_fiddler"
+            },
+            "Health": {
+                "Current Health": 50,
+                "Max Health": 50,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 10,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 2.0,
+                "Range Cooldown": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Fiddler_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 58.761688232421878,
+                    "y": 0.745659351348877,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 7.670000076293945,
+                    "y": 0.9191531538963318
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": -0.14000000059604646
+                },
+                "Size": {
+                    "x": 1.5800000429153443,
+                    "y": 0.7900000214576721
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/FID_BLOCK_READY",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Fiddler",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 13.739999771118164,
+                    "y": 0.9190000295639038
+                },
+                "AIState": "idle_fiddler"
+            },
+            "Health": {
+                "Current Health": 50,
+                "Max Health": 50,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 10,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 2.0,
+                "Range Cooldown": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Fiddler_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 57.5472297668457,
+                    "y": 3.723973274230957,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 7.670000076293945,
+                    "y": 0.9191531538963318
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": -0.14000000059604646
+                },
+                "Size": {
+                    "x": 1.5800000429153443,
+                    "y": 0.7900000214576721
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/FID_BLOCK_READY",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Fiddler",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 13.739999771118164,
+                    "y": 0.9190000295639038
+                },
+                "AIState": "idle_fiddler"
+            },
+            "Health": {
+                "Current Health": 50,
+                "Max Health": 50,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 10,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 2.0,
+                "Range Cooldown": 0.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Serpentipede_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 28.055540084838868,
+                    "y": 0.7661089897155762,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 7.670000076293945,
+                    "y": 0.9191531538963318
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.8100000023841858,
+                    "y": 1.7200000286102296
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SERP_FULL_IDLE",
+                    "index": 8
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Serpentipede",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 7.670000076293945,
+                    "y": 3.8889999389648439
+                },
+                "AIState": "idle_serpentipede"
+            },
+            "Health": {
+                "Current Health": 50,
+                "Max Health": 50,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 5,
+                "Melee Damage": 0,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 2.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Serpentipede_1"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 57.404937744140628,
+                    "y": 0.7661089897155762,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 7.670000076293945,
+                    "y": 0.9191531538963318
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.8100000023841858,
+                    "y": 1.7200000286102296
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SERP_FULL_IDLE",
+                    "index": 8
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Serpentipede",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 7.670000076293945,
+                    "y": 3.8889999389648439
+                },
+                "AIState": "idle_serpentipede"
+            },
+            "Health": {
+                "Current Health": 50,
+                "Max Health": 50,
+                "TakenDamageTimer": 0.0,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 5,
+                "Melee Damage": 0,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 0,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 2.0,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "Start Combo Cooldown Timer": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": ""
             },
             "Entity Type": {
                 "Category": "none"
@@ -20262,1289 +22166,14 @@
                 }
             },
             "Camera": {
-                "Camera Size": 6.0,
+                "Camera Size": 2.5,
                 "Background Color": {
-                    "r": 0.1921568661928177,
-                    "g": 0.3019607961177826,
-                    "b": 0.4745098054409027,
+                    "r": 9.999899930335233e-7,
+                    "g": 9.999938583860058e-7,
+                    "b": 9.999999974752428e-7,
                     "a": 1.0
                 }
             }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "sign"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 27.680408477783204,
-                    "y": 0.5530002117156982,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SquareSign_Anim",
-                    "index": 20
-                },
-                "Size": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Sign",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "sign"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 32.58196258544922,
-                    "y": 0.5530002117156982,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SquareSign_Anim",
-                    "index": 2
-                },
-                "Size": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Sign",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "sign"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 40.97200012207031,
-                    "y": 0.5530002117156982,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SquareSign_Anim",
-                    "index": 2
-                },
-                "Size": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Sign",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "sign"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 44.20199966430664,
-                    "y": 0.5530002117156982,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SquareSign_Anim",
-                    "index": 2
-                },
-                "Size": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Sign",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "sign"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 53.571998596191409,
-                    "y": 0.5530002117156982,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SquareSign_Anim",
-                    "index": 2
-                },
-                "Size": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Sign",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "sign"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 58.46200180053711,
-                    "y": 0.5530002117156982,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SquareSign_Anim",
-                    "index": 2
-                },
-                "Size": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Sign",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 27.22077751159668,
-                    "y": 1.0286521911621094,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 15
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 26.216697692871095,
-                    "y": 2.6656076908111574,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 10
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 28.850080490112306,
-                    "y": 2.214679718017578,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 13
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 33.757537841796878,
-                    "y": 1.0094155073165894,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 13
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 33.25098419189453,
-                    "y": 2.630488157272339,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 13
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 43.31965637207031,
-                    "y": 2.274099111557007,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 13
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 43.821441650390628,
-                    "y": 1.8410649299621583,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 13
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 53.12910461425781,
-                    "y": 1.4009195566177369,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 13
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 52.132015228271487,
-                    "y": 2.709322452545166,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 13
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 57.510719299316409,
-                    "y": 2.653400182723999,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 13
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "window"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 58.003421783447269,
-                    "y": 1.4647808074951172,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.49000000953674319,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/WindowLight_Anim",
-                    "index": 13
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Window",
-                "Speed": 1.0
-            },
-            "State": {}
         }
     ]
 }
