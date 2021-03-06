@@ -18,6 +18,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Render/OpenGLSystem.h"
 #include "Assets/AssetManager.h"
 #include "Components/ParticleEmitter.h"
+#include "Core/Utils/Random.h"
 
 namespace DeltaEngine
 {
@@ -277,60 +278,63 @@ namespace DeltaEngine
         Vector2 tiling = img.m_Tiling * img.m_Sprite.GetTiling();
         Vector2 pivot = r.pivot;
 
-        Matrix4x4 scale = Matrix4x4::Scale(Vector3(1, 1, 1));
+        Matrix4x4 scale = Matrix4x4::identity;
         float tmpXscale = 1;
         float tmpYscale = 1;
 
-        r.anchorMin.x = Math::Clamp01(r.anchorMin.x);
-        r.anchorMin.y = Math::Clamp01(r.anchorMin.y);
-        r.anchorMax.x = Math::Clamp01(r.anchorMax.x);
-        r.anchorMax.y = Math::Clamp01(r.anchorMax.y);
+        // screen space math
+        {
+          r.anchorMin.x = Math::Clamp01(r.anchorMin.x);
+          r.anchorMin.y = Math::Clamp01(r.anchorMin.y);
+          r.anchorMax.x = Math::Clamp01(r.anchorMax.x);
+          r.anchorMax.y = Math::Clamp01(r.anchorMax.y);
 
-        if (Math::Abs(r.anchorMax.x - r.anchorMin.x) > .01f)
-        {
-          float anch = (r.anchorMax.x - r.anchorMin.x) / 2 - .5f;
-          float midpt = (r.left - r.right) / 2 / cw;
-          t.position.x = anch + midpt;
-          tmpXscale = (1 - (r.left + r.right) / cw);
-          pivot = Vector2(.5f, .5f);
-        }
-        else
-        {
-          t.position.x = r.pos.x / cw + r.anchorMin.x - .5f;
-          tmpXscale = r.size.x / cw;
-        }
-        if (Math::Abs(r.anchorMax.y - r.anchorMin.y) > .01f)
-        {
-          float anch = (r.anchorMax.y - r.anchorMin.y) / 2 - .5f;
-          float midpt = (r.bottom - r.top) / 2 / ch;
-          t.position.y = anch + midpt;
-          tmpYscale = (1 - (r.top + r.bottom) / ch);
-          pivot = Vector2(.5f, .5f);
-        }
-        else
-        {
-          t.position.y = r.pos.y / ch + r.anchorMin.y - .5f;
-          tmpYscale = r.size.y / ch;
-        }
-
-        if (r.m_PreserveAspect)
-        {
-          float sprAspect = 1.0f * img.m_Sprite.GetWidth() / img.m_Sprite.GetHeight();
-
-          if (tmpXscale / tmpYscale > sprAspect)
+          if (Math::Abs(r.anchorMax.x - r.anchorMin.x) > .01f)
           {
-            tmpXscale = tmpYscale * sprAspect / refAspect;
+            float anch = (r.anchorMax.x - r.anchorMin.x) / 2 - .5f;
+            float midpt = (r.left - r.right) / 2 / cw;
+            t.position.x = anch + midpt;
+            tmpXscale = (1 - (r.left + r.right) / cw);
+            pivot = Vector2(.5f, .5f);
           }
           else
           {
-            tmpYscale = tmpXscale / sprAspect * refAspect;
+            t.position.x = r.pos.x / cw + r.anchorMin.x - .5f;
+            tmpXscale = r.size.x / cw;
+          }
+          if (Math::Abs(r.anchorMax.y - r.anchorMin.y) > .01f)
+          {
+            float anch = (r.anchorMax.y - r.anchorMin.y) / 2 - .5f;
+            float midpt = (r.bottom - r.top) / 2 / ch;
+            t.position.y = anch + midpt;
+            tmpYscale = (1 - (r.top + r.bottom) / ch);
+            pivot = Vector2(.5f, .5f);
+          }
+          else
+          {
+            t.position.y = r.pos.y / ch + r.anchorMin.y - .5f;
+            tmpYscale = r.size.y / ch;
+          }
+
+          if (r.m_PreserveAspect)
+          {
+            float sprAspect = 1.0f * img.m_Sprite.GetWidth() / img.m_Sprite.GetHeight();
+
+            if (tmpXscale / tmpYscale > sprAspect)
+            {
+              tmpXscale = tmpYscale * sprAspect / refAspect;
+            }
+            else
+            {
+              tmpYscale = tmpXscale / sprAspect * refAspect;
+            }
           }
         }
 
         scale *= Matrix4x4::Scale(Vector3(tmpXscale, tmpYscale, 1));
 
         Matrix4x4 proj = Matrix4x4::identity;
-        Matrix4x4 view = Matrix4x4::Scale(2) * Matrix4x4::identity;
+        Matrix4x4 view = Matrix4x4::Scale(2);
         Matrix4x4 model = scale * t.LocalToWorldMatrix();
 
         if (r.m_Shaded)
@@ -423,6 +427,28 @@ namespace DeltaEngine
         c.SetViewportSize(1.0f * GetEnv().pWin->Width());
         c.SetAspectRatio(1.0f * GetEnv().pWin->Width(), 1.0f * GetEnv().pWin->Height());
 #endif // !DE_EDITOR
+
+        if (c.shakeMagnitude > 0)
+        {
+          tr.position -= c.shakeDisp;
+
+          c.shakeDisp = Vector2(
+            Random::RandomFloatRange(-.5f, .5f) * c.shakeMagnitude / 10,
+            Random::RandomFloatRange(-.5f, .5f) * c.shakeMagnitude / 10);
+
+          tr.position += c.shakeDisp;
+
+          c.shakeMagnitude -= static_cast<float>(DeltaTime()) * c.shakeFade;
+          if (c.shakeMagnitude < 0)
+            c.shakeMagnitude = 0;
+        }
+        Matrix4x4 proj = c.GetProjectionMatrix(tr);
+
+        for (size_t i = 0; i < 16; i++)
+        {
+          std::cerr << proj.m[i] << ",";
+        }
+        std::cerr << std::endl;
 
         c.Start();
 

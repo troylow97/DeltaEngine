@@ -110,6 +110,7 @@ Application::Application()
     auto id = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
     env.pECS->GetWorld().GetEntityManager().GetComponent<EntityName>( id).name.assign( "Camera");
   env.pECS->GetWorld().GetEntityManager().GetComponent<Camera>( id ).m_Size = c.cam_size;
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( id ).position.z = 10;
   Editor::Instance();
   SystemDirectory::Instance().StartWatch();
 #endif

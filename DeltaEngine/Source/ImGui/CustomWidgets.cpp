@@ -75,62 +75,108 @@ namespace DeltaEngine
     ImGui::Combo(("##bezier3 type" + std::string(label)).c_str(), &current, c_ptr_vec.data(), static_cast<int>(c_ptr_vec.size()));
     bezier->type = static_cast<BezierCurve::Type>(current);
 
-    ImGui::Text("Min");
-
-    ImGui::PushMultiItemsWidths(3, ImGui::CalcItemWidth());
-    for (int i = 0; i < 3; i++)
+    if (bezier->type == BezierCurve::Type::Constant ||
+      bezier->type == BezierCurve::Type::RandomBetweenConstants)
     {
-      ImGui::PushID((std::string(label) + " Min " + std::to_string(i)).c_str());
-      if (i > 0)
-        ImGui::SameLine(0, g.Style.ItemInnerSpacing.x);
+      ImGui::PushID((std::string(label) + " bezier3 const 2").c_str());
+      float col[3] =
+      {
+        bezier->minX.min,
+        bezier->minY.min,
+        bezier->minZ.min
+      };
 
-      if (i == 0)
-        ImGui::Checkbox("X", &bezier->minXActive);
-      if (i == 1)
-        ImGui::Checkbox("Y", &bezier->minYActive);
-      if (i == 2)
-        ImGui::Checkbox("Z", &bezier->minZActive);
+      ImGui::DragFloat3("min", col, 0.01f);
 
+      bezier->minX.min = col[0];
+      bezier->minY.min = col[1];
+      bezier->minZ.min = col[2];
       ImGui::PopID();
-      ImGui::PopItemWidth();
     }
-
-    ImGui::Text("Max");
-
-    ImGui::PushMultiItemsWidths(3, ImGui::CalcItemWidth());
-    for (int i = 0; i < 3; i++)
+    if (bezier->type == BezierCurve::Type::RandomBetweenConstants)
     {
-      ImGui::PushID((std::string(label) + "Max " + std::to_string(i)).c_str());
-      if (i > 0)
-        ImGui::SameLine(0, g.Style.ItemInnerSpacing.x);
+      ImGui::PushID((std::string(label) + " bezier3 const 2").c_str());
+      float col[3] =
+      {
+        bezier->maxX.min,
+        bezier->maxY.min,
+        bezier->maxZ.min
+      };
 
-      if (i == 0)
-        ImGui::Checkbox("X", &bezier->maxXActive);
-      if (i == 1)
-        ImGui::Checkbox("Y", &bezier->maxYActive);
-      if (i == 2)
-        ImGui::Checkbox("Z", &bezier->maxZActive);
+      ImGui::DragFloat3("max", col, 0.01f);
 
+      bezier->minX.min = col[0];
+      bezier->minY.min = col[1];
+      bezier->minZ.min = col[2];
       ImGui::PopID();
-      ImGui::PopItemWidth();
     }
-    if (ImGui::Button("Edit Curve..."))
+    if (bezier->type == BezierCurve::Type::ConstantCurve ||
+      bezier->type == BezierCurve::Type::RandomBetweenCurves)
     {
-      dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.clear();
+      if (bezier->type == BezierCurve::Type::RandomBetweenCurves)
+        ImGui::Text("Min");
 
-      Editor::inst->m_panels[12]->Enable();
-      if (bezier->minXActive)
-        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->minX);
-      if (bezier->maxXActive)
-        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->maxX);
-      if (bezier->minYActive)
-        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->minY);
-      if (bezier->maxYActive)
-        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->maxY);
-      if (bezier->minZActive)
-        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->minZ);
-      if (bezier->maxZActive)
-        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->maxZ);
+      ImGui::PushMultiItemsWidths(3, ImGui::CalcItemWidth());
+      for (int i = 0; i < 3; i++)
+      {
+        ImGui::PushID((std::string(label) + " Min " + std::to_string(i)).c_str());
+        if (i > 0)
+          ImGui::SameLine(0, g.Style.ItemInnerSpacing.x);
+
+        if (i == 0)
+          ImGui::Checkbox("X", &bezier->minXActive);
+        if (i == 1)
+          ImGui::Checkbox("Y", &bezier->minYActive);
+        if (i == 2)
+          ImGui::Checkbox("Z", &bezier->minZActive);
+
+        ImGui::PopID();
+        ImGui::PopItemWidth();
+      }
+    }
+    if (bezier->type == BezierCurve::Type::RandomBetweenCurves)
+    {
+      ImGui::Text("Max");
+
+      ImGui::PushMultiItemsWidths(3, ImGui::CalcItemWidth());
+      for (int i = 0; i < 3; i++)
+      {
+        ImGui::PushID((std::string(label) + "Max " + std::to_string(i)).c_str());
+        if (i > 0)
+          ImGui::SameLine(0, g.Style.ItemInnerSpacing.x);
+
+        if (i == 0)
+          ImGui::Checkbox("X", &bezier->maxXActive);
+        if (i == 1)
+          ImGui::Checkbox("Y", &bezier->maxYActive);
+        if (i == 2)
+          ImGui::Checkbox("Z", &bezier->maxZActive);
+
+        ImGui::PopID();
+        ImGui::PopItemWidth();
+      }
+    }
+    if (bezier->type == BezierCurve::Type::ConstantCurve ||
+      bezier->type == BezierCurve::Type::RandomBetweenCurves)
+    {
+      if (ImGui::Button("Edit Curve..."))
+      {
+        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.clear();
+
+        Editor::inst->m_panels[12]->Enable();
+        if (bezier->minXActive)
+          dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->minX);
+        if (bezier->maxXActive)
+          dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->maxX);
+        if (bezier->minYActive)
+          dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->minY);
+        if (bezier->maxYActive)
+          dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->maxY);
+        if (bezier->minZActive)
+          dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->minZ);
+        if (bezier->maxZActive)
+          dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->maxZ);
+      }
     }
     ImGui::PopID();
 
@@ -459,17 +505,17 @@ namespace DeltaEngine
         ImGui::ColorEdit3((std::string(label) + " gradient 1 color " + std::to_string(selectedColor)).c_str(), col);
         gradient->min.colorKeys[selectedColor].first = Color(col[0], col[1], col[2]);
         ImGui::TextEx("Color Location");
-        ImGui::DragFloat((std::string(label) + " color location " + std::to_string(selectedColor)).c_str(),
+        ImGui::DragFloat((std::string(label) + " color 1 location " + std::to_string(selectedColor)).c_str(),
           &gradient->min.colorKeys[selectedColor].second, 0.01f, 0, 1);
       }
 
       if (selectedAlpha >= 0 && selectedAlpha < gradient->min.colorKeys.size())
       {
         ImGui::TextEx("Alpha");
-        ImGui::DragFloat((std::string(label) + " alpha " + std::to_string(selectedAlpha)).c_str(),
+        ImGui::DragFloat((std::string(label) + " alpha 1 " + std::to_string(selectedAlpha)).c_str(),
           &gradient->min.alphaKeys[selectedAlpha].first, 0.01f, 0, 1);
         ImGui::TextEx("Alpha Location");
-        ImGui::DragFloat((std::string(label) + " alpha location " + std::to_string(selectedAlpha)).c_str(),
+        ImGui::DragFloat((std::string(label) + " alpha 1 location " + std::to_string(selectedAlpha)).c_str(),
           &gradient->min.alphaKeys[selectedAlpha].second, 0.01f, 0, 1);
       }
 
@@ -548,17 +594,17 @@ namespace DeltaEngine
         ImGui::ColorEdit3((std::string(label) + " gradient 2 color " + std::to_string(selectedColor)).c_str(), col);
         gradient->max.colorKeys[selectedColor].first = Color(col[0], col[1], col[2]);
         ImGui::TextEx("Color Location");
-        ImGui::DragFloat((std::string(label) + " color location " + std::to_string(selectedColor)).c_str(),
+        ImGui::DragFloat((std::string(label) + " color 2 location " + std::to_string(selectedColor)).c_str(),
           &gradient->max.colorKeys[selectedColor].second, 0.01f, 0, 1);
       }
 
       if (selectedAlpha >= 0 && selectedAlpha < gradient->max.colorKeys.size())
       {
         ImGui::TextEx("Alpha");
-        ImGui::DragFloat((std::string(label) + " alpha " + std::to_string(selectedAlpha)).c_str(),
+        ImGui::DragFloat((std::string(label) + " alpha 2 " + std::to_string(selectedAlpha)).c_str(),
           &gradient->max.alphaKeys[selectedAlpha].first, 0.01f, 0, 1);
         ImGui::TextEx("Alpha Location");
-        ImGui::DragFloat((std::string(label) + " alpha location " + std::to_string(selectedAlpha)).c_str(),
+        ImGui::DragFloat((std::string(label) + " alpha 2 location " + std::to_string(selectedAlpha)).c_str(),
           &gradient->max.alphaKeys[selectedAlpha].second, 0.01f, 0, 1);
       }
 

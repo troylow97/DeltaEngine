@@ -59,6 +59,10 @@ void NewFile(Editor& e)
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
   e.entity_selected = false;
   e.entity_id = u64_max;
+
+  auto id = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
+  env.pECS->GetWorld().GetEntityManager().GetComponent<EntityName>(id).name.assign("Camera");
+  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position.z = 10;
 }
 
 void OpenFile(Editor& e)

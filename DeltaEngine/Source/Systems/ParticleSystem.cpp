@@ -13,7 +13,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "ECS/EntityManager.h"
 #include "Render/Camera.h"
-#include "Render/VideoClip.h"
 #include "Render/Mesh.h"
 #include "Render/Window.h"
 #include "Render/OpenGLSystem.h"
@@ -159,9 +158,9 @@ namespace DeltaEngine
           {
           case BezierCurve::Type::Constant:
             particle.transform.scale = Vector3(
-              ps.sizeOverLifetime.minX.Evaluate(0),
-              ps.sizeOverLifetime.minY.Evaluate(0),
-              ps.sizeOverLifetime.minZ.Evaluate(0)
+              ps.sizeOverLifetime.minX.min,
+              ps.sizeOverLifetime.minY.min,
+              ps.sizeOverLifetime.minZ.min
             );
             break;
           case BezierCurve::Type::ConstantCurve:
@@ -174,14 +173,14 @@ namespace DeltaEngine
           case BezierCurve::Type::RandomBetweenConstants:
             particle.transform.scale = Vector3(
               Random::RandomFloatRange(
-                ps.sizeOverLifetime.minX.Evaluate(0),
-                ps.sizeOverLifetime.maxX.Evaluate(0)),
+                ps.sizeOverLifetime.minX.min,
+                ps.sizeOverLifetime.maxX.min),
               Random::RandomFloatRange(
-                ps.sizeOverLifetime.minY.Evaluate(0),
-                ps.sizeOverLifetime.maxY.Evaluate(0)),
+                ps.sizeOverLifetime.minY.min,
+                ps.sizeOverLifetime.maxY.min),
               Random::RandomFloatRange(
-                ps.sizeOverLifetime.minZ.Evaluate(0),
-                ps.sizeOverLifetime.maxZ.Evaluate(0))
+                ps.sizeOverLifetime.minZ.min,
+                ps.sizeOverLifetime.maxZ.min)
             );
             break;
           case BezierCurve::Type::RandomBetweenCurves:
