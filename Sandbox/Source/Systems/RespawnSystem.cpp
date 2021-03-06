@@ -24,12 +24,23 @@ namespace DeltaEngine
     //auto& seq = v.create_sequential_view();
     //file.StartWriter("Player/respawn_points.json").StartObject().WriteObject(v).EndObject().EndWriter();
 
-    file.StartReader("Player/respawn_points.json").LoadObject(respawns).EndReader();
+    //file.StartReader("Player/respawn_points.json").LoadObject(respawns).EndReader(); // respawn_points_clara
+    file.StartReader("Player/respawn_points_clara.json").LoadObject(respawns).EndReader();
   }
 
   void RespawnSystem::Update()
   {
+    Respawning();
+  }
+
+  void RespawnSystem::LateUpdate()
+  {
+  }
+
+  void  RespawnSystem::Respawning()
+  {
     if (em.IsEntityValid(UnitManager::GetPlayerID()))
+    { 
       if (em.HasComponent<Player>(UnitManager::GetPlayerID()))
       {
         EntityID id = UnitManager::GetPlayerID();
@@ -83,9 +94,6 @@ namespace DeltaEngine
           }
         }
       }
-  }
-
-  void RespawnSystem::LateUpdate()
-  {
+    }
   }
 }

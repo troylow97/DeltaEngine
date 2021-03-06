@@ -248,8 +248,6 @@ namespace DeltaEngine
       if (a.StartComboCooldownTimer)
       {
         a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
-        std::cout << "a.ComboCooldownTimer is " << a.ComboCooldownTimer << std::endl;
-        std::cout << "a.NumberOfCombos is " << a.NumberOfCombos << std::endl;
         if (a.ComboCooldownTimer < 0.0f)
         {
           st.SetBool("Punch1", false);
