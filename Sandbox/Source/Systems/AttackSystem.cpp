@@ -161,14 +161,17 @@ namespace DeltaEngine
       if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
           em.GetComponent<State>(id).SetBool("Ranged", false);
       
-      FlipPunching();
-       //Toggle Player Melee Attack
-      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f)
+      //FlipPunching();
+
+      //Toggle Player Melee Attack
+      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f && a.ComboCooldownTimer > 0.0f)
       {
         if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f)
         {  	
           ++a.NumberOfCombos;
+          a.ComboCooldownTimer = a.ComboDuration;
           a.StartComboCooldownTimer = true;
+
           if (a.NumberOfCombos == 1)
           {
             st.SetBool("Punch1", true);
@@ -220,6 +223,8 @@ namespace DeltaEngine
             a.MeleeAttack = false;
             a.NumberOfCombos = 0;
             a.AttackDelay = 0.65f;
+            a.StartComboCooldownTimer = false;
+            a.ComboCooldownTimer = a.ComboDuration;
           }
         }
         else if(et.type != EntityCategory::E_PLAYER)
@@ -232,11 +237,10 @@ namespace DeltaEngine
         {
           st.SetBool("Punch3", false);
         }
-        
       }
     });
  
-    //Reset attack for player
+    // reset combo back to 0 for player
     if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
     {
       auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
@@ -244,6 +248,8 @@ namespace DeltaEngine
       if (a.StartComboCooldownTimer)
       {
         a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
+        std::cout << "a.ComboCooldownTimer is " << a.ComboCooldownTimer << std::endl;
+        std::cout << "a.NumberOfCombos is " << a.NumberOfCombos << std::endl;
         if (a.ComboCooldownTimer < 0.0f)
         {
           st.SetBool("Punch1", false);
