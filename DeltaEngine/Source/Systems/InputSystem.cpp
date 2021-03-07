@@ -170,23 +170,27 @@ namespace DeltaEngine
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, Collider& c1, State& s1, Attack& a1)
     {
       i1.previousKey = DEVK_W;
+    	
       if (c1.isCollidingOnFloor)
-        p1.IsJumping = true;
-      p1.IsRunning = false;
-    
-      if (a1.Blocking) // if shield is on, deactivate shield
       {
-        s1.SetBool("ShieldUp", false);
-        a1.Blocking = false;
+        p1.IsJumping = true;
+        p1.IsRunning = false;
+
+        //if (a1.Blocking) // if shield is on, deactivate shield
+        //{
+        //  s1.SetBool("ShieldUp", false);
+        //  a1.Blocking = false;
+        //}
+        a1.NumberOfCombos = 0;
+        p1.AllowShooting = false;
+        p1.AllowPunching = false;
+        s1.SetBool("IsIdle", false);
+        s1.SetBool("JumpStart", true);
+        idle_timer = 0.0f;
+
+        AudioEngine::Play2DEvent("event:/Player/PlayerJump");
       }
-      a1.NumberOfCombos = 0;
-      p1.AllowShooting = false;
-      p1.AllowPunching = false;
-      s1.SetBool("IsIdle", false);
-      s1.SetBool("JumpStart", true);
-      idle_timer = 0.0f;
-    
-      AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
+
     });
   }
 
