@@ -181,7 +181,7 @@ namespace DeltaEngine
         CurrentDashTicks++;
         p.AllowPunching = false;
         p.AllowShooting = false;
-        p.AllowRuning = false;
+        p.AllowRunning = false;
       	if(c.isCollidingOnFloor)
       	{
             if (p.DashDirectionRight)
