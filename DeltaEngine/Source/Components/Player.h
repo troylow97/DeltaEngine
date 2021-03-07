@@ -30,7 +30,7 @@ namespace DeltaEngine
     bool IsPunching;
     bool IsShooting;
     bool IsBlocking;
-    bool AllowRuning;
+    bool AllowRunning;
     bool AllowPunching;
     bool AllowJumping;
     bool AllowShooting;
@@ -59,7 +59,7 @@ namespace DeltaEngine
       IsPunching{false},
       IsShooting{false},
       IsBlocking{false},
-      AllowRuning{true},
+      AllowRunning{true},
       AllowPunching{true},
       AllowJumping{true},
       AllowShooting{true},

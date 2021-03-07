@@ -34,6 +34,7 @@ namespace DeltaEngine
     std::vector<EntityID> MeleeAttackingEntities;
     std::vector<EntityID> RangedAttackingEntities;
     Vector2 CalculateAttackDirection(EntityID& enemy);
+    void FlipPunching();
     // PlayerAttackCombo _pac;
   END_DEFINE_SYSTEM(AttackSystem)
 }
