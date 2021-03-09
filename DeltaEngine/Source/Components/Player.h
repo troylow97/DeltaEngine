@@ -22,6 +22,8 @@ namespace DeltaEngine
     int HealthUpgradeIncrease;
     float DashingTimerDuration; // max
     float DashingTimerCooldown; // timer
+    float FadingTimer;
+    float FadingCountdown;
     bool IsDead;
     bool IsRunning;
     bool IsJumping;
@@ -30,7 +32,7 @@ namespace DeltaEngine
     bool IsPunching;
     bool IsShooting;
     bool IsBlocking;
-    bool AllowRuning;
+    bool AllowRunning;
     bool AllowPunching;
     bool AllowJumping;
     bool AllowShooting;
@@ -51,6 +53,8 @@ namespace DeltaEngine
       HealthUpgradeIncrease{2},
       DashingTimerDuration{1.0f},
       DashingTimerCooldown{1.0f},
+      FadingTimer{1.0f},
+      FadingCountdown{1.0f},
       IsDead{false},
       IsRunning{false},
       IsJumping{false},
@@ -59,7 +63,7 @@ namespace DeltaEngine
       IsPunching{false},
       IsShooting{false},
       IsBlocking{false},
-      AllowRuning{true},
+      AllowRunning{true},
       AllowPunching{true},
       AllowJumping{true},
       AllowShooting{true},

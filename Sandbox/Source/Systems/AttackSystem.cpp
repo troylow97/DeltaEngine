@@ -17,6 +17,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Audio/AudioEngine.h"
 #include "Core/Utils/Random.h"
 #include "MouseCalculation.h"
+#include "AI/AITools.h"
 
 namespace DeltaEngine
 {
@@ -159,16 +160,20 @@ namespace DeltaEngine
       }
       if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
           em.GetComponent<State>(id).SetBool("Ranged", false);
+      
+      //FlipPunching();
 
-       //Toggle Player Melee Attack
-      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f)
+      //Toggle Player Melee Attack
+      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f && a.ComboCooldownTimer > 0.0f)
       {
         if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f)
         {  	
           ++a.NumberOfCombos;
+          a.ComboCooldownTimer = a.ComboDuration;
+          a.StartComboCooldownTimer = true;
+
           if (a.NumberOfCombos == 1)
           {
-            a.StartComboCooldownTimer = true;
             st.SetBool("Punch1", true);
             st.SetBool("Punch2", false);
             st.SetBool("Punch3", false);
@@ -204,7 +209,6 @@ namespace DeltaEngine
             st.SetBool("Punch3", false);
             AudioEngine::SetGlobalParameterByName("Punch", 2);
             MeleeAttackingEntities.push_back(id);
-            MeleeAttackingEntities.push_back(id);
             a.MeleeCooldownTimer = a.MeleeCooldown;
             a.MeleeAttack = false;
           }
@@ -219,6 +223,8 @@ namespace DeltaEngine
             a.MeleeAttack = false;
             a.NumberOfCombos = 0;
             a.AttackDelay = 0.65f;
+            a.StartComboCooldownTimer = false;
+            a.ComboCooldownTimer = a.ComboDuration;
           }
         }
         else if(et.type != EntityCategory::E_PLAYER)
@@ -231,24 +237,30 @@ namespace DeltaEngine
         {
           st.SetBool("Punch3", false);
         }
-        
-        if (a.StartComboCooldownTimer)
-        {
-          a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
-          if (a.ComboCooldownTimer < 0.0f)
-          {
-            st.SetBool("Punch1", false);
-            st.SetBool("Punch2", false);
-            st.SetBool("Punch3", false);
-            st.SetBool("IsIdle", true);
-            a.NumberOfCombos = 0;
-            a.StartComboCooldownTimer = false;
-            a.ComboCooldownTimer = a.ComboDuration;
-          }
-        }
       }
     });
-  	
+ 
+    // reset combo back to 0 for player
+    if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
+    {
+      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+      auto& st = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+      if (a.StartComboCooldownTimer)
+      {
+        a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
+        if (a.ComboCooldownTimer < 0.0f)
+        {
+          st.SetBool("Punch1", false);
+          st.SetBool("Punch2", false);
+          st.SetBool("Punch3", false);
+          st.SetBool("IsIdle", true);
+          a.NumberOfCombos = 0;
+          a.StartComboCooldownTimer = false;
+          a.ComboCooldownTimer = a.ComboDuration;
+        }
+      }
+    }
+
 
     for (auto& id1 : RangedAttackingEntities)
     {
@@ -332,7 +344,7 @@ namespace DeltaEngine
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().
       HasComponent<Attack>(id))
     {
-      EntityID missile = CreateProjectile(id, Vector2{0.5f, 0.4f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+      EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
       static size_t c_id{u64_max};
    	
       AudioEngine::Play2DEvent( "event:/Player/PlayerPunch" );
@@ -513,5 +525,25 @@ namespace DeltaEngine
     Vector2 normalized_direction_vector = { direction_vector.x / magnitude, direction_vector.y / magnitude };
     
     return normalized_direction_vector;
+  }
+
+  void AttackSystem::FlipPunching()
+  {
+    auto & player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+    auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+    if (!MouseCalculation::IsMouseOnRight())
+    {
+      if (AITools::isFacingRight(player_id))
+      {
+        player_image.m_FlipX = true;
+      }
+    }
+    if (MouseCalculation::IsMouseOnRight())
+    {
+      if (AITools::isFacingLeft(player_id))
+      {
+        player_image.m_FlipX = false;
+      }
+    }
   }
 } //Namespace DeltaEngine

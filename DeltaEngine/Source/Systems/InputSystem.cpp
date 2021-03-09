@@ -93,7 +93,7 @@ namespace DeltaEngine
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1)
     {
-      if (p1.AllowRuning == true)
+      if (p1.AllowRunning == true && a1.NumberOfCombos == 0)
       {
         if (/*!a1.Blocking && */ a1.MeleeCooldownTimer <= 0.0)
         {
@@ -112,6 +112,9 @@ namespace DeltaEngine
           
           a1.MeleeAttack = false;
           a1.RangeAttack = false;
+          a1.NumberOfCombos = 0;
+          a1.StartComboCooldownTimer = false;
+          a1.ComboCooldownTimer = a1.ComboDuration;
           
           im1.m_FlipX = true;
           idle_timer = 0.0f;
@@ -124,7 +127,7 @@ namespace DeltaEngine
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1)
     {
-      if (p1.AllowRuning == true)
+      if (p1.AllowRunning == true && a1.NumberOfCombos == 0)
       {
         if (/*!a1.Blocking && */ a1.MeleeCooldownTimer <= 0.0) //TO edit punching
         {
@@ -143,6 +146,9 @@ namespace DeltaEngine
           
           a1.MeleeAttack = false;
           a1.RangeAttack = false;
+          a1.NumberOfCombos = 0;
+          a1.StartComboCooldownTimer = false;
+          a1.ComboCooldownTimer = a1.ComboDuration;
           
           im1.m_FlipX = false;
           idle_timer = 0.0f;
@@ -159,6 +165,9 @@ namespace DeltaEngine
       r1.Direction = Vector2::zero();
       s1.SetBool("IsRunning", false);
       p1.AllowShooting = true;
+      a1.NumberOfCombos = 0;
+      a1.StartComboCooldownTimer = false;
+      a1.ComboCooldownTimer = a1.ComboDuration;
     });
   }
   
@@ -176,6 +185,9 @@ namespace DeltaEngine
         s1.SetBool("ShieldUp", false);
         a1.Blocking = false;
       }
+      a1.NumberOfCombos = 0;
+      a1.StartComboCooldownTimer = false;
+      a1.ComboCooldownTimer = a1.ComboDuration;
       p1.AllowShooting = false;
       p1.AllowPunching = false;
       s1.SetBool("IsIdle", false);
@@ -265,6 +277,10 @@ namespace DeltaEngine
           //  a1.Blocking = false;
           //}
           s1.SetBool("IsDashing", true);
+
+          a1.NumberOfCombos = 0;
+          a1.StartComboCooldownTimer = false;
+          a1.ComboCooldownTimer = a1.ComboDuration;
           
           if (im1.m_FlipX)
             p1.DashDirectionRight = false;
@@ -283,7 +299,12 @@ namespace DeltaEngine
     {
       if (p1.IsRunning)
       {
-        return;
+        //p1.IsRunning = false;
+        //p1.AllowRunning = false;
+        p1.AllowRunning = false;
+        p1.IsRunning = false;
+        StopRun();
+        //return;
       }
     	
       if (p1.AllowPunching && c1.isCollidingOnFloor && !p1.IsShooting)
@@ -316,6 +337,9 @@ namespace DeltaEngine
         p1.AllowDashing = true;
         p1.AllowPunching = true;
         a1.Blocking = false;
+        a1.NumberOfCombos = 0;
+        a1.StartComboCooldownTimer = false;
+        a1.ComboCooldownTimer = a1.ComboDuration;
         p1.AllowShooting = true;
         s1.SetBool("ShieldUp", false);
       }
@@ -325,6 +349,9 @@ namespace DeltaEngine
         p1.AllowDashing = false;
         p1.AllowPunching = false;
         a1.Blocking = true;
+        a1.NumberOfCombos = 0;
+        a1.StartComboCooldownTimer = false;
+        a1.ComboCooldownTimer = a1.ComboDuration;
         p1.AllowShooting = false;
         s1.SetBool("ShieldUp", true);
       }
@@ -337,13 +364,16 @@ namespace DeltaEngine
     {
       if (p1.IsRunning)
       {
-        p1.AllowRuning = false;
+        p1.AllowRunning = false;
         p1.IsRunning = false;
         StopRun();
       }
       if (p1.AllowShooting)
       {
         a1.SMGAttack = true;
+        a1.NumberOfCombos = 0;
+        a1.StartComboCooldownTimer = false;
+        a1.ComboCooldownTimer = a1.ComboDuration;
         p1.IsShooting = true;
         i1.previousKey = DEVK_E;
         s1.SetBool("SMGAttack", true);
@@ -451,7 +481,7 @@ namespace DeltaEngine
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
       {
         p1.IsShooting = false;
-        p1.AllowRuning = true;
+        p1.AllowRunning = true;
         p1.AllowPunching = true;
         p1.AllowJumping = true;
         s1.SetBool("SMGAttack", false);
