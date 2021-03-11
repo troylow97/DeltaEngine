@@ -1,6 +1,91 @@
 Textures/SPRITES_TILESET_FE_i_0
-offset 0 0
-size 800 1215
+offset 7 415
+size 414 405
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_1
+offset 33 106
+size 55 268
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_2
+offset 37 6
+size 679 68
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_3
+offset 50 841
+size 727 359
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_4
+offset 124 168
+size 125 83
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_5
+offset 126 88
+size 281 68
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_6
+offset 131 258
+size 95 121
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_7
+offset 287 393
+size 4 5
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_8
+offset 292 179
+size 111 67
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_9
+offset 293 216
+size 0 0
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_10
+offset 302 188
+size 0 0
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_11
+offset 403 479
+size 4 5
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_12
+offset 410 237
+size 0 0
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_13
+offset 442 461
+size 329 359
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_14
+offset 489 393
+size 4 5
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_15
+offset 491 126
+size 211 293
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_16
+offset 679 13
+size 4 5
+pivot 0.5 0.5
+
+Textures/SPRITES_TILESET_FE_i_17
+offset 795 99
+size 4 5
 pivot 0.5 0.5
 
 %
