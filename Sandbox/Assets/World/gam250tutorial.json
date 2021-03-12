@@ -25686,12 +25686,12 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 40.0,
+                "Move Speed": 30.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 10.0,
-                "Max Acceleration": 80.0,
-                "Acceleration Pickup": 10.0,
+                "Max Acceleration": 10.0,
+                "Acceleration Pickup": 1.0,
                 "Gravity": true,
                 "Moveable": true
             },
@@ -25764,7 +25764,7 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 256,
