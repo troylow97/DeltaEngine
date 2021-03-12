@@ -22392,7 +22392,7 @@
                 }
             },
             "Rigidbody": {
-                "Mass": 20.0,
+                "Mass": 50.0,
                 "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
