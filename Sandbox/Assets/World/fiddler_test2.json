@@ -12,7 +12,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 4.432875633239746,
+                    "x": 3.792954921722412,
                     "y": 2.0,
                     "z": 0.0
                 },
@@ -109,8 +109,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -1.0712411403656006,
-                    "y": 0.005757438950240612,
+                    "x": -0.8468606472015381,
+                    "y": 0.002993178553879261,
                     "z": 0.0
                 },
                 "Scale": {
@@ -138,8 +138,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -1.0712411403656006,
-                    "y": 0.005757438950240612
+                    "x": -0.8468606472015381,
+                    "y": 0.002993178553879261
                 },
                 "Offset": {
                     "x": 0.0,
@@ -158,7 +158,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 11
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -254,8 +254,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 4.432875633239746,
-                    "y": -0.000516137108206749,
+                    "x": 3.792954921722412,
+                    "y": -0.0007569602457806468,
                     "z": 0.0
                 },
                 "Scale": {
@@ -271,20 +271,20 @@
                 }
             },
             "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Mass": 50.0,
+                "Move Speed": 30.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 1.0,
+                "Friction Coefficient": 2.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 12.0,
-                "Acceleration Pickup": 3.0,
+                "Max Acceleration": 10.0,
+                "Acceleration Pickup": 2.0,
                 "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 4.432875633239746,
-                    "y": -0.000516137108206749
+                    "x": 3.792954921722412,
+                    "y": -0.0007569602457806468
                 },
                 "Offset": {
                     "x": 0.0,
@@ -303,7 +303,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/DAVE_PUNCH",
-                    "index": 0
+                    "index": 12
                 },
                 "Size": {
                     "x": 1.0,
@@ -353,19 +353,19 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 8,
-                "SMG Damage": 4,
-                "Melee Combo Damage": 24,
-                "Number Of Combo": 1,
+                "Range Damage": 16,
+                "Melee Damage": 16,
+                "SMG Damage": 8,
+                "Melee Combo Damage": 48,
+                "Number Of Combo": 2,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.3499999940395355,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.3499999940395355,
+                "Melee Cooldown Timer": 0.16666659712791444,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.7000000476837159,
-                "Combo Cooldown Timer": 1.450000286102295,
+                "Combo Cooldown Timer": 1.1500005722045899,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -389,65 +389,6 @@
             "Input": {
                 "Previous": 1,
                 "Current": 0
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": ""
-            },
-            "Entity Type": {
-                "Category": "player punch"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 3.8328757286071779,
-                    "y": -0.000516137108206749,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.5,
-                    "y": 0.4000000059604645,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 5.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Type": "box",
-                "Collision Layer": 7,
-                "Collision Layer ID": 8,
-                "Trigger": true,
-                "Platform": false
-            },
-            "Lifespan": {
-                "Timer": 0.0833333358168602
             }
         }
     ]

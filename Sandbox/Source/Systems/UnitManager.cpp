@@ -20,30 +20,39 @@ namespace DeltaEngine
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id,Collider& c, Player& p, RigidBody& r, State& s, Animator& a, Health& hp)
     {
-	  if(hp.isDamagedTimer > 0.0f)
-	  {
-          return;
-	  }
+	  //if(hp.isDamagedTimer > 0.0f)
+	  //{
+      //    return;
+	  //}
+      std::cout << "player clip is " << a.m_ClipKey << std::endl;
+      const int velocity = static_cast<int>(r.Velocity.y);
+      std::cout << "velocity is: " << velocity << std::endl;
+    	
+      s.SetFloat("VelocityY", velocity);
+    
       static float jump = 0;
       static bool fall = false;
-      s.SetFloat("VelocityY", r.Velocity.y);
-      if (r.Velocity.y)
+      s.SetFloat("VelocityY", velocity);
+      if (r.Velocity.y > 0)
       {
+        std::cout << "here1" << std::endl;
         s.SetBool("Jump", true);
       }
       if (s.GetBool("Jump"))
       {
         if (r.Velocity.y < 0)
         {
+          std::cout << "here2" << std::endl;
           fall = true;
           jump += static_cast<float>(GetEnv().pClock->FixedDeltaTime());
           s.SetFloat("Jump", jump);
         }
-
+      
         if (fall)
         {
           if (c.isCollidingOnFloor)
           {
+            std::cout << "here3" << std::endl;
             s.SetBool("Jump", false);
             s.SetBool("VelocityY", true);
             p.IsJumping = false;
@@ -61,6 +70,8 @@ namespace DeltaEngine
         }
       }
 
+
+    	
       player = id;
     });
   	
