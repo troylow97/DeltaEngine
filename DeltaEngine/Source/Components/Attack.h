@@ -51,7 +51,7 @@ struct Attack
     SMGCooldown{0.18f},
     MeleeCooldownTimer{0.0f},
     RangeCooldownTimer{0.0f},
-    ComboDuration{1.5f},
+    ComboDuration{0.4f},
     ComboCooldownTimer{0.0f},
     KnockbackAmount{0.0f},
     KnockbackComboAmount{0.0f},
