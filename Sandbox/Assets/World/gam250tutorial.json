@@ -34,7 +34,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -112,7 +112,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -190,7 +190,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -268,7 +268,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -346,7 +346,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -424,7 +424,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -502,7 +502,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -580,7 +580,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -658,7 +658,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -736,7 +736,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -814,7 +814,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -892,7 +892,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -970,7 +970,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1048,7 +1048,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1126,7 +1126,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1204,7 +1204,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1282,7 +1282,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1360,7 +1360,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1438,7 +1438,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1516,7 +1516,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1594,7 +1594,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1672,7 +1672,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1750,7 +1750,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1828,7 +1828,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1906,7 +1906,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -1984,7 +1984,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2062,7 +2062,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2140,7 +2140,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2218,7 +2218,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2296,7 +2296,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2374,7 +2374,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2452,7 +2452,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2530,7 +2530,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2608,7 +2608,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2686,7 +2686,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2764,7 +2764,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2842,7 +2842,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2920,7 +2920,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -2998,7 +2998,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3076,7 +3076,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3154,7 +3154,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3232,7 +3232,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3310,7 +3310,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3388,7 +3388,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3466,7 +3466,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3544,7 +3544,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3622,7 +3622,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3700,7 +3700,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3778,7 +3778,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3856,7 +3856,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -3934,7 +3934,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4012,7 +4012,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4090,7 +4090,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4168,7 +4168,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4246,7 +4246,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4324,7 +4324,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4402,7 +4402,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4480,7 +4480,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4558,7 +4558,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4636,7 +4636,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4714,7 +4714,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4792,7 +4792,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4870,7 +4870,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -4948,7 +4948,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5026,7 +5026,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5104,7 +5104,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5182,7 +5182,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5260,7 +5260,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5338,7 +5338,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5416,7 +5416,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5494,7 +5494,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5572,7 +5572,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5650,7 +5650,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5728,7 +5728,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5806,7 +5806,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5884,7 +5884,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -5962,7 +5962,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6040,7 +6040,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6118,7 +6118,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6196,7 +6196,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6274,7 +6274,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6352,7 +6352,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6430,7 +6430,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6508,7 +6508,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6586,7 +6586,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6664,7 +6664,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6742,7 +6742,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6820,7 +6820,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6898,7 +6898,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -6976,7 +6976,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7054,7 +7054,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7132,7 +7132,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7210,7 +7210,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7288,7 +7288,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7366,7 +7366,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7444,7 +7444,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7522,7 +7522,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7600,7 +7600,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7678,7 +7678,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7756,7 +7756,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7834,7 +7834,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7912,7 +7912,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -7990,7 +7990,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8068,7 +8068,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8146,7 +8146,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8224,7 +8224,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8302,7 +8302,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8380,7 +8380,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8458,7 +8458,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8536,7 +8536,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8614,7 +8614,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8692,7 +8692,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8770,7 +8770,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8848,7 +8848,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -8926,7 +8926,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9004,7 +9004,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9082,7 +9082,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9160,7 +9160,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9238,7 +9238,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9316,7 +9316,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9394,7 +9394,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9472,7 +9472,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9550,7 +9550,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9628,7 +9628,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9706,7 +9706,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9784,7 +9784,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9862,7 +9862,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -9940,7 +9940,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10018,7 +10018,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10096,7 +10096,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10174,7 +10174,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10252,7 +10252,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10330,7 +10330,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10408,7 +10408,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10486,7 +10486,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10564,7 +10564,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10642,7 +10642,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10720,7 +10720,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10798,7 +10798,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10876,7 +10876,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -10954,7 +10954,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11032,7 +11032,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11110,7 +11110,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11188,7 +11188,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11266,7 +11266,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11344,7 +11344,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11422,7 +11422,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11500,7 +11500,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11578,7 +11578,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11656,7 +11656,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11734,7 +11734,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11812,7 +11812,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11890,7 +11890,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -11968,7 +11968,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12046,7 +12046,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12124,7 +12124,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12202,7 +12202,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12280,7 +12280,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12358,7 +12358,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12436,7 +12436,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12514,7 +12514,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12592,7 +12592,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12670,7 +12670,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12748,7 +12748,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12826,7 +12826,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12904,7 +12904,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -12982,7 +12982,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13060,7 +13060,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13138,7 +13138,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13216,7 +13216,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13294,7 +13294,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13372,7 +13372,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13450,7 +13450,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13528,7 +13528,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13606,7 +13606,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13684,7 +13684,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13762,7 +13762,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13840,7 +13840,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13918,7 +13918,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -13996,7 +13996,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14074,7 +14074,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14152,7 +14152,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14230,7 +14230,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14308,7 +14308,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14386,7 +14386,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14464,7 +14464,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14542,7 +14542,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14620,7 +14620,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14698,7 +14698,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14776,7 +14776,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14854,7 +14854,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -14932,7 +14932,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15010,7 +15010,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15088,7 +15088,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15166,7 +15166,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15244,7 +15244,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15322,7 +15322,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15400,7 +15400,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15478,7 +15478,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15556,7 +15556,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15634,7 +15634,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15712,7 +15712,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15790,7 +15790,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15868,7 +15868,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -15946,7 +15946,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16024,7 +16024,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16102,7 +16102,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16180,7 +16180,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16258,7 +16258,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16336,7 +16336,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16414,7 +16414,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16492,7 +16492,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16570,7 +16570,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16648,7 +16648,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16726,7 +16726,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16804,7 +16804,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16882,7 +16882,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -16960,7 +16960,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17038,7 +17038,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17116,7 +17116,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17194,7 +17194,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17272,7 +17272,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17350,7 +17350,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17428,7 +17428,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17506,7 +17506,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17584,7 +17584,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17662,7 +17662,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17740,7 +17740,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17818,7 +17818,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17896,7 +17896,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -17974,7 +17974,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18052,7 +18052,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18130,7 +18130,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18208,7 +18208,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18286,7 +18286,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18364,7 +18364,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18442,7 +18442,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18520,7 +18520,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18598,7 +18598,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18676,7 +18676,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18754,7 +18754,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18832,7 +18832,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18910,7 +18910,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -18988,7 +18988,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19066,7 +19066,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19144,7 +19144,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19222,7 +19222,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19300,7 +19300,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19378,7 +19378,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19456,7 +19456,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19534,7 +19534,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19612,7 +19612,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19690,7 +19690,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19768,7 +19768,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19846,7 +19846,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -19924,7 +19924,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20002,7 +20002,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20080,7 +20080,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20158,7 +20158,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20236,7 +20236,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20314,7 +20314,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20392,7 +20392,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20470,7 +20470,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20548,7 +20548,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20626,7 +20626,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20704,7 +20704,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20782,7 +20782,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20860,7 +20860,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -20938,7 +20938,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -21016,7 +21016,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Image": {
                 "Sprite": {
@@ -21094,7 +21094,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21150,7 +21150,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21206,7 +21206,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21262,7 +21262,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21318,7 +21318,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21374,7 +21374,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21430,7 +21430,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21486,7 +21486,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21542,7 +21542,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21598,7 +21598,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21654,7 +21654,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21710,7 +21710,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21766,7 +21766,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21822,7 +21822,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21878,7 +21878,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21934,7 +21934,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -21990,7 +21990,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22046,7 +22046,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22102,7 +22102,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22158,7 +22158,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22214,7 +22214,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22270,7 +22270,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22326,7 +22326,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22382,7 +22382,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22438,7 +22438,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22494,7 +22494,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22550,7 +22550,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22606,7 +22606,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22662,7 +22662,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22718,7 +22718,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22774,7 +22774,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22830,7 +22830,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22886,7 +22886,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22942,7 +22942,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -22998,7 +22998,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23054,7 +23054,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23110,7 +23110,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23166,7 +23166,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23222,7 +23222,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23278,7 +23278,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23334,7 +23334,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23390,7 +23390,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23446,7 +23446,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23502,7 +23502,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23558,7 +23558,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23614,7 +23614,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23670,7 +23670,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23726,7 +23726,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23782,7 +23782,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23838,7 +23838,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23894,7 +23894,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -23950,7 +23950,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24006,7 +24006,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24062,7 +24062,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24118,7 +24118,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24174,7 +24174,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24230,7 +24230,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24286,7 +24286,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24342,7 +24342,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24398,7 +24398,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24454,7 +24454,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24510,7 +24510,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24566,7 +24566,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24622,7 +24622,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24678,7 +24678,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24734,7 +24734,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24790,7 +24790,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24846,7 +24846,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24902,7 +24902,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -24958,7 +24958,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -25014,7 +25014,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -25070,7 +25070,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -25126,7 +25126,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -25182,7 +25182,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -25238,7 +25238,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -25294,7 +25294,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -25350,7 +25350,7 @@
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
-                "Moveable": true
+                "Moveable": false
             },
             "Collider": {
                 "Center": {
@@ -25370,6 +25370,440 @@
                 "Collision Layer ID": 255,
                 "Trigger": false,
                 "Platform": false
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Lancer"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 25.103797912597658,
+                    "y": 2.2107436656951906,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.5,
+                    "y": 1.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 30.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 4.0,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 29.719999313354493,
+                    "y": 3.7300000190734865
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.6000000238418579,
+                    "y": 0.6000000238418579
+                },
+                "Type": "box",
+                "Collision Layer": 2,
+                "Collision Layer ID": 4,
+                "Trigger": true,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/LANCER_ALERT_IDLE",
+                    "index": 1
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Lancer",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 24.80299949645996,
+                    "y": 1.5800000429153443
+                },
+                "AIState": "idle_lancer"
+            },
+            "Health": {
+                "Current Health": 10,
+                "Max Health": 10,
+                "TakenDamageTimer": -0.10000000149011612,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 2,
+                "SMG Damage": 0,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 1,
+                "Melee Cooldown": 1.5,
+                "Range Cooldown": 1.0,
+                "SMG Cooldown": 0.18000000715255738,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.18000000715255738,
+                "Attack Delay": -0.20000000298023225,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "SMG Attack": false,
+                "Allow SMG Attack": false,
+                "Blocking": false,
+                "Start SMG Cooldown Timer": false,
+                "Start Combo Cooldown Timer": false,
+                "Damage Enemy": false
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Fiddler"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 27.799072265625,
+                    "y": 1.0275288820266724,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.5,
+                    "y": 1.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 1.0,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 27.319658279418947,
+                    "y": 0.21305325627326966
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": -0.4000000059604645
+                },
+                "Size": {
+                    "x": 1.5800000429153443,
+                    "y": 0.9100000262260437
+                },
+                "Type": "box",
+                "Collision Layer": 5,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/FID_WALK",
+                    "index": 6
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Fiddler",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 28.0,
+                    "y": 0.3199999928474426
+                },
+                "AIState": "idle_fiddler"
+            },
+            "Health": {
+                "Current Health": 20,
+                "Max Health": 20,
+                "TakenDamageTimer": -0.10000000149011612,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 0,
+                "Melee Damage": 5,
+                "SMG Damage": 0,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 1,
+                "Melee Cooldown": 0.800000011920929,
+                "Range Cooldown": 1.0,
+                "SMG Cooldown": 0.18000000715255738,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.18000000715255738,
+                "Attack Delay": -0.20000000298023225,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "SMG Attack": false,
+                "Allow SMG Attack": false,
+                "Blocking": false,
+                "Start SMG Cooldown Timer": false,
+                "Start Combo Cooldown Timer": false,
+                "Damage Enemy": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 18446744073709551615
+            },
+            "Entity Name": {
+                "Name": "Player"
+            },
+            "Entity Type": {
+                "Category": "player"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 17.563201904296876,
+                    "y": 0.6200602054595947,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.5,
+                    "y": 1.5,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 40.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 4.0,
+                "Inherent Acceleration": 10.0,
+                "Max Acceleration": 80.0,
+                "Acceleration Pickup": 10.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 17.576948165893556,
+                    "y": 0.21102961897850038
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 0.38999998569488528,
+                    "y": 0.8999999761581421
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/DAVE_IDLE",
+                    "index": 8
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 10,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Dave",
+                "Speed": 1.0
+            },
+            "State": {},
+            "Health": {
+                "Current Health": 100,
+                "Max Health": 100,
+                "TakenDamageTimer": -0.10000000149011612,
+                "Invulnerable": true
+            },
+            "Attack": {
+                "Range Damage": 128,
+                "Melee Damage": 2,
+                "SMG Damage": 64,
+                "Melee Combo Damage": 2,
+                "Number Of Combo": 0,
+                "Max Combo Number": 5,
+                "Melee Cooldown": 0.20000000298023225,
+                "Range Cooldown": 1.0,
+                "SMG Cooldown": 0.18000000715255738,
+                "Melee Cooldown Timer": -0.21666665375232697,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.7000000476837159,
+                "Combo Cooldown Timer": 1.7000000476837159,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.18000000715255738,
+                "Attack Delay": -6.332993507385254e-8,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "SMG Attack": false,
+                "Allow SMG Attack": true,
+                "Blocking": false,
+                "Start SMG Cooldown Timer": false,
+                "Start Combo Cooldown Timer": false,
+                "Damage Enemy": false
+            },
+            "Player": {
+                "Upgrade Points Per Enemy Defeated": 50,
+                "Points Needed For Upgrade": 50,
+                "Attack Upgrade Increase": 1,
+                "Health Upgrade Attack": 2,
+                "Dashing Timer Duration": 1.0,
+                "Fading Timer": 1.0
+            },
+            "Input": {
+                "Previous": 68,
+                "Current": 0
             }
         }
     ]
