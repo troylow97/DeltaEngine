@@ -132,29 +132,33 @@ namespace DeltaEngine
         //Apply Acceleration
         const Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
         r1.Velocity += newAcceleration * env.pClock->FixedDeltaTime();
-      	
-        //Apply static Friction -> when no input
-        if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
-        {
-            const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-            const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-            r1.Velocity += dragForceVector;
-        }
-        else //kinetic one
-        {
-            if (c1.isCollidingOnFloor) 
+
+      	if(em.HasComponent<Player>(id1) && !em.GetComponent<Player>(id1).IsDodging)
+      	{
+            //Apply static Friction -> when no input
+            if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
             {
                 const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-                const Vector2 dragForceVector = (0.5f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+                const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
                 r1.Velocity += dragForceVector;
             }
-            else 
+            else //kinetic one
             {
-                const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
-                const Vector2 dragForceVector = (0.1f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-                r1.Velocity += dragForceVector;
+                if (c1.isCollidingOnFloor)
+                {
+                    const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
+                    const Vector2 dragForceVector = (0.5f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+                    r1.Velocity += dragForceVector;
+                }
+                else
+                {
+                    const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
+                    const Vector2 dragForceVector = (0.1f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+                    r1.Velocity += dragForceVector;
+                }
             }
-        }
+
+      	}
 
         //Apply Soft Drag
         r1.Velocity *= 0.96f;
@@ -200,9 +204,9 @@ namespace DeltaEngine
       	if(c.isCollidingOnFloor)
       	{
             if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 20000 + r.Mass * 100, 0 };
+                r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
             else
-                r.AccumulatedForce -= Vector2{ 20000 + r.Mass * 100, 0 };
+                r.AccumulatedForce -= Vector2{ 5000 + r.Mass * 100, 0 };
       	}
         else //dashing in mid air
         {
