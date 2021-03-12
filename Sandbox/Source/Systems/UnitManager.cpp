@@ -24,9 +24,9 @@ namespace DeltaEngine
 	  //{
       //    return;
 	  //}
-      std::cout << "player clip is " << a.m_ClipKey << std::endl;
+      //std::cout << "player clip is " << a.m_ClipKey << std::endl;
       const int velocity = static_cast<int>(r.Velocity.y);
-      std::cout << "velocity is: " << velocity << std::endl;
+      //std::cout << "velocity is: " << velocity << std::endl;
     	
       s.SetFloat("VelocityY", velocity);
     
