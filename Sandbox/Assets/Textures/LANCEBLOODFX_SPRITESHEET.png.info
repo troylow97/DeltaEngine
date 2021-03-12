@@ -1,0 +1,43 @@
+Textures/LANCEBLOODFX_SPRITESHEET_i_0
+offset 0 0
+size 400 150
+pivot 0.5 0.5
+
+Textures/LANCEBLOODFX_SPRITESHEET_i_1
+offset 400 0
+size 400 150
+pivot 0.5 0.5
+
+Textures/LANCEBLOODFX_SPRITESHEET_i_2
+offset 800 0
+size 400 150
+pivot 0.5 0.5
+
+Textures/LANCEBLOODFX_SPRITESHEET_i_3
+offset 1200 0
+size 400 150
+pivot 0.5 0.5
+
+Textures/LANCEBLOODFX_SPRITESHEET_i_4
+offset 0 150
+size 400 150
+pivot 0.5 0.5
+
+Textures/LANCEBLOODFX_SPRITESHEET_i_5
+offset 400 150
+size 400 150
+pivot 0.5 0.5
+
+Textures/LANCEBLOODFX_SPRITESHEET_i_6
+offset 800 150
+size 400 150
+pivot 0.5 0.5
+
+Textures/LANCEBLOODFX_SPRITESHEET_i_7
+offset 1200 150
+size 400 150
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

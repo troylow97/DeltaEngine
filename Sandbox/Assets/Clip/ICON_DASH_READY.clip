@@ -1,0 +1,25 @@
+frames 4
+fps 12
+loop 1
+
+Textures/ICON_DASH_READY_i_0
+key Textures/ICON_DASH_READY
+value 0
+frame 0
+
+Textures/ICON_DASH_READY_i_1
+key Textures/ICON_DASH_READY
+value 1
+frame 1
+
+Textures/ICON_DASH_READY_i_2
+key Textures/ICON_DASH_READY
+value 2
+frame 2
+
+Textures/ICON_DASH_READY_i_3
+key Textures/ICON_DASH_READY
+value 3
+frame 3
+
+%
