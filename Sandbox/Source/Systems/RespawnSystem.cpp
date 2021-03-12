@@ -32,8 +32,8 @@ namespace DeltaEngine
 
   void RespawnSystem::Update()
   {
-    DeathEffect();
-    //Respawning();
+    //DeathEffect();
+    Respawning();
   }
 
   void RespawnSystem::LateUpdate()
@@ -57,8 +57,8 @@ namespace DeltaEngine
         Transform& t = em.GetComponent<Transform>(id);
         Health& hp = em.GetComponent<Health>(id);
 
-        //if (p.IsDead)
-        //{
+        if (p.IsDead)
+        {
           float temp_x = 0.541f, temp_y = 3.0f;
           float new_x = 0.0f, new_y = 0.0f;
           //if (AITools::isFacingRight(id))
@@ -95,7 +95,7 @@ namespace DeltaEngine
           //  hp.CurrentHealth = hp.MaxHealth;
           //  p.IsDead = false;
           //}
-        //}
+        }
       }
     }
   }
