@@ -65,9 +65,19 @@ namespace DeltaEngine
       {
         if (a.m_ClipKey == "Clip/DAVE_LAND" && a.LoopsCompleted())
         {
-          s.SetBool("IsIdle", true);
           s.SetBool("VelocityY", false);
+          s.SetBool("IsIdle", true);
         }
+      }
+
+      if(c.isCollidingOnFloor && a.m_ClipKey == "Clip/DAVE_FALL")
+      {
+          s.SetBool("Jump", false);
+          s.SetBool("VelocityY", true);
+          p.IsJumping = false;
+          fall = false;
+          jump = 0;
+
       }
     	
       player = id;

@@ -78,6 +78,7 @@ namespace DeltaEngine
     bool Attacking;
     float BouncingTimer;
     float ChargeTimer;
+    Vector2 Direction;
   public:
     ChaseEnemyLancer();
     void onEnter(EntityID& id) override;

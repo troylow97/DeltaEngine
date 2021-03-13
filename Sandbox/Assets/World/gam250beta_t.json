@@ -22331,7 +22331,7 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 128,
@@ -22400,11 +22400,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 20.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -22542,11 +22542,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 20.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
                 "Moveable": true
@@ -22684,7 +22684,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
                 "Inherent Acceleration": 0.0,
@@ -22826,11 +22826,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 20.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -22968,11 +22968,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 20.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -23110,12 +23110,12 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 5.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
-                "Acceleration Pickup": 2.0,
+                "Max Acceleration": 5.0,
+                "Acceleration Pickup": 1.0,
                 "Gravity": true,
                 "Moveable": true
             },
@@ -23252,12 +23252,12 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 5.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
-                "Acceleration Pickup": 2.0,
+                "Max Acceleration": 5.0,
+                "Acceleration Pickup": 1.0,
                 "Gravity": true,
                 "Moveable": true
             },
@@ -23394,11 +23394,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -23536,11 +23536,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -23678,11 +23678,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -24104,11 +24104,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -24246,11 +24246,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -24388,11 +24388,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -24530,11 +24530,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true
@@ -24672,11 +24672,11 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 8.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 10.0,
+                "Max Acceleration": 0.0,
                 "Acceleration Pickup": 2.0,
                 "Gravity": false,
                 "Moveable": true

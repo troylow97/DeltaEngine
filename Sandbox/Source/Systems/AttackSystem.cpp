@@ -319,7 +319,7 @@ namespace DeltaEngine
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = { 0.6f, 0.6f };
+      em.GetComponent<Image>(missile).m_Size = { 0.5f, 0.5f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
       em.GetComponent<Transform>(missile).position = { enemy_pos.position.x, enemy_pos.position.y + (enemy_collider.size.y / 2 * 0.75f), enemy_pos.position.z };
 
@@ -327,13 +327,13 @@ namespace DeltaEngine
       {
         //em.GetComponent<Transform>(missile).position.x += 0.4f;
         em.GetComponent<Transform>(missile).position.y -= 0.2f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 }; // -7000, -2500
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 4000, direction_to_shoot.y * 4000 }; // -7000, -2500
       }
       else
       {
         //em.GetComponent<Transform>(missile).position.x -= 0.4f;
         em.GetComponent<Transform>(missile).position.y -= 0.2f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 }; //  7000, -2500
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 4000, direction_to_shoot.y * 4000 }; //  7000, -2500
       }
     }
   }
