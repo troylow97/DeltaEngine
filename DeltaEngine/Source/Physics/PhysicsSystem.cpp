@@ -96,7 +96,7 @@ namespace DeltaEngine
         else
         {
             //Movement
-            if (static_cast<int>(r1.Direction.x) != 0)
+            if (static_cast<int>(r1.Direction.x) != 0 || static_cast<int>(r1.Direction.y) != 0)
             {
                 if (c1.isCollidingOnFloor)
                 {
@@ -105,8 +105,8 @@ namespace DeltaEngine
                 }
                 else
                 {
-                    const float move = (r1.Direction.x * r1.Movespeed);
-                    r1.AccumulatedForce.x += move * r1.Mass;
+                    const Vector2 move = (r1.Direction * r1.Movespeed);
+                    r1.AccumulatedForce += move * r1.Mass;
                 }
             }
             else
@@ -140,7 +140,7 @@ namespace DeltaEngine
             {
                 const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
                 const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-                r1.Velocity *= 0.4f;
+                r1.Velocity *= 0.8f;
             }
             else //kinetic one
             {

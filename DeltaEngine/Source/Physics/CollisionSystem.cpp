@@ -48,13 +48,13 @@ namespace DeltaEngine
     //Collision Intersection
     em.ForEach([&](EntityID id1, RigidBody& r1, Transform& t1, Collider& c1)
     {
-      if (c1.CollisionLayerCheck != 0)
+      //if (c1.CollisionLayerCheck != 0)
       {
         c1.isCollidingOnFloor = false;
         c1.center = c1.offset + t1.position;
         em.ForEach([&](EntityID id2, RigidBody& r2, Transform& t2, Collider& c2)
         {
-          if (c2.CollisionLayerCheck != 0 && id2.index != id1.index)
+          if (/*c2.CollisionLayerCheck != 0 && */id2.index != id1.index)
           {
             c2.isCollidingOnFloor = false;
             c2.center = c2.offset + t2.position;
@@ -138,7 +138,7 @@ namespace DeltaEngine
     //        return a.m.penetration < b.m.penetration;
     //});
 
-    for (int i = 0; i < 2; ++i)
+    //for (int i = 0; i < 2; ++i)
     {
       for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); ++it1)
       {

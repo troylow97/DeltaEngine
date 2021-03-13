@@ -211,4 +211,17 @@ IsAlertRunning
 ? 0
 endTransition
 
+transition
+start
+Clip/FID_ALERT_RUN
+end
+Clip/FID_WALK
+condition
+IsPatrolling
+? 1
+condition
+IsAlertRunning
+? 0
+endTransition
+
 %endfile

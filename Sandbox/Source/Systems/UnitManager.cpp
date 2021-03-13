@@ -24,25 +24,25 @@ namespace DeltaEngine
 	  //{
       //    return;
 	  //}
-      std::cout << "player clip is " << a.m_ClipKey << std::endl;
+      //std::cout << "player clip is " << a.m_ClipKey << std::endl;
       const int velocity = static_cast<int>(r.Velocity.y);
-      std::cout << "velocity is: " << velocity << std::endl;
+      //std::cout << "velocity is: " << velocity << std::endl;
     	
       s.SetFloat("VelocityY", velocity);
     
       static float jump = 0;
       static bool fall = false;
       s.SetFloat("VelocityY", velocity);
-      if (r.Velocity.y > 0)
+      if (velocity > 0)
       {
-        std::cout << "here1" << std::endl;
+        //std::cout << "here1" << std::endl;
         s.SetBool("Jump", true);
       }
       if (s.GetBool("Jump"))
       {
-        if (r.Velocity.y < 0)
+        if (velocity < 0)
         {
-          std::cout << "here2" << std::endl;
+          //std::cout << "here2" << std::endl;
           fall = true;
           jump += static_cast<float>(GetEnv().pClock->FixedDeltaTime());
           s.SetFloat("Jump", jump);
@@ -52,7 +52,7 @@ namespace DeltaEngine
         {
           if (c.isCollidingOnFloor)
           {
-            std::cout << "here3" << std::endl;
+            //std::cout << "here3" << std::endl;
             s.SetBool("Jump", false);
             s.SetBool("VelocityY", true);
             p.IsJumping = false;
@@ -69,8 +69,6 @@ namespace DeltaEngine
           s.SetBool("VelocityY", false);
         }
       }
-
-
     	
       player = id;
     });

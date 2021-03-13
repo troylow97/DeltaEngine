@@ -86,6 +86,7 @@ namespace DeltaEngine
 
   class IdleFiddler : public AIState
   {
+    float DurationBeforeExitState;
     Waypoint waypoint;
   public:
     IdleFiddler(Waypoint& wp, Vector2& charge_range);
@@ -96,7 +97,9 @@ namespace DeltaEngine
 
   class ChaseEnemyFiddler : public AIState
   {
-      bool Attacking;
+    float DurationBeforeExitState;
+    float FacePlayerTimer;
+    bool Attacking;
   public:
     ChaseEnemyFiddler(Vector2& lost_range);
     void onEnter(EntityID& id) override;

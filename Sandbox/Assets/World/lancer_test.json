@@ -71,8 +71,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.838269054889679,
-                    "y": -0.7617700099945068,
+                    "x": 2.2749338150024416,
+                    "y": -0.7616124153137207,
                     "z": 0.0
                 },
                 "Scale": {
@@ -89,19 +89,19 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 30.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
+                "Friction Coefficient": 0.009999999776482582,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
+                "Max Acceleration": 10.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 0.838269054889679,
-                    "y": -0.7617700099945068
+                    "x": 2.2749338150024416,
+                    "y": -0.7616124153137207
                 },
                 "Offset": {
                     "x": 0.0,
@@ -168,7 +168,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_lancer"
+                "AIState": "chase_enemy_lancer"
             },
             "Health": {
                 "Current Health": 1000,
@@ -195,7 +195,7 @@
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
                 "Ranged Attack": false,
-                "Melee Attack": false,
+                "Melee Attack": true,
                 "SMG Attack": false,
                 "Allow SMG Attack": true,
                 "Blocking": false,
@@ -216,7 +216,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 6.783227920532227,
+                    "x": -6.324146270751953,
                     "y": 2.0,
                     "z": 0.0
                 },
@@ -254,8 +254,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 6.783227920532227,
-                    "y": -0.7615275382995606,
+                    "x": -6.324146270751953,
+                    "y": -0.7618864178657532,
                     "z": 0.0
                 },
                 "Scale": {
@@ -275,16 +275,16 @@
                 "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 5.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 10.0,
+                "Acceleration Pickup": 2.0,
                 "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 6.783227920532227,
-                    "y": -0.7615275382995606
+                    "x": -6.324146270751953,
+                    "y": -0.7618864178657532
                 },
                 "Offset": {
                     "x": 0.0,
@@ -303,7 +303,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/DAVE_PUNCH",
-                    "index": 5
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -322,7 +322,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": true,
+                "Flip X": false,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -353,19 +353,19 @@
                 "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 2,
-                "Melee Damage": 2,
-                "SMG Damage": 2,
-                "Melee Combo Damage": 6,
+                "Range Damage": 4,
+                "Melee Damage": 4,
+                "SMG Damage": 4,
+                "Melee Combo Damage": 12,
                 "Number Of Combo": 2,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.13333334028720857,
+                "Melee Cooldown Timer": 0.15000000596046449,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.8666672706604004,
+                "Combo Cooldown Timer": 1.433333396911621,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -384,7 +384,8 @@
                 "Points Needed For Upgrade": 50,
                 "Attack Upgrade Increase": 1,
                 "Health Upgrade Attack": 2,
-                "Dashing Timer Duration": 1.0
+                "Dashing Timer Duration": 1.0,
+                "Fading Timer": 1.0
             },
             "Input": {
                 "Previous": 1,
@@ -400,13 +401,13 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 6.121766567230225,
-                    "y": -0.7615275382995606,
+                    "x": -5.682332992553711,
+                    "y": -0.7618864178657532,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 0.5,
-                    "y": 0.4000000059604645,
+                    "x": 0.30000001192092898,
+                    "y": 0.30000001192092898,
                     "z": 0.0
                 },
                 "Rotation": {
@@ -429,8 +430,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 6.121766567230225,
-                    "y": -0.7615275382995606
+                    "x": -5.682332992553711,
+                    "y": -0.7618864178657532
                 },
                 "Offset": {
                     "x": 0.0,
@@ -447,7 +448,7 @@
                 "Platform": false
             },
             "Lifespan": {
-                "Timer": 0.016666671261191369
+                "Timer": 0.03333333879709244
             }
         }
     ]

@@ -94,18 +94,18 @@ namespace DeltaEngine
       {
         if (CheckEntityType(id1, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id2, EntityCategory::E_PLAYER))
         {
-          if(!CheckBlock(id2,id1))
-            ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+          //if(!CheckBlock(id2,id1))
+          ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));
           em.GetComponent<Lifespan>(id1).Timer = -0.1f;
-          ApplyKnockBack(id2, id1,1000.0f);
+          ApplyKnockBack(id2, id1,15000.0f);
           return;
         }
         if (CheckEntityType(id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER))
         {
-          if (!CheckBlock(id1, id2))
-            ReduceHealth(id1, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+          //if (!CheckBlock(id1, id2))
+          ReduceHealth(id1, static_cast<int>(CollisionHandlerFiddlerData.Damage));
           em.GetComponent<Lifespan>(id2).Timer = -0.1f;
-          ApplyKnockBack(id1, id2, 1000.0f);
+          ApplyKnockBack(id1, id2, 15000.0f);
           return;
         }
       }
@@ -162,30 +162,30 @@ namespace DeltaEngine
       const auto player = UnitManager::GetPlayerID();
       auto& att = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(player);
       //Player Ranged Attack
-      if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET, id2, EntityCategory::E_ENEMY) ||
-          CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET, id1, EntityCategory::E_ENEMY))
-      {
-        EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-
-        ReduceHealth(enemy, att.RangedDamage);
-
-        if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
-        return;
-      }
+      //if (CheckEntityType(id1, EntityCategory::E_PLAYER_BULLET, id2, EntityCategory::E_ENEMY) ||
+      //    CheckEntityType(id2, EntityCategory::E_PLAYER_BULLET, id1, EntityCategory::E_ENEMY))
+      //{
+      //  EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+      //
+      //  ReduceHealth(enemy, att.RangedDamage);
+      //
+      //  if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
+      //    env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
+      //  return;
+      //}
     
       //Player SMG Attack
-      if (CheckEntityType(id1, EntityCategory::E_PLAYER_SMG, id2, EntityCategory::E_ENEMY) ||
-        CheckEntityType(id2, EntityCategory::E_PLAYER_SMG, id1, EntityCategory::E_ENEMY))
-      {
-        EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-        EntityID bullet = GetEntityID(id1, id2, EntityCategory::E_PLAYER_BULLET);
-        ReduceHealth(enemy, att.SMGDamage);
-        em.GetComponent<Lifespan>(bullet).Timer = -0.1f;
-        if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
-        return;
-      }
+      //if (CheckEntityType(id1, EntityCategory::E_PLAYER_SMG, id2, EntityCategory::E_ENEMY) ||
+      //  CheckEntityType(id2, EntityCategory::E_PLAYER_SMG, id1, EntityCategory::E_ENEMY))
+      //{
+      //  EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+      //  EntityID bullet = GetEntityID(id1, id2, EntityCategory::E_PLAYER_BULLET);
+      //  ReduceHealth(enemy, att.SMGDamage);
+      //  em.GetComponent<Lifespan>(bullet).Timer = -0.1f;
+      //  if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
+      //    env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
+      //  return;
+      //}
   
       //Player Dash
       if (CheckEntityType(id1, EntityCategory::E_PLAYER_DASH, id2, EntityCategory::E_ENEMY) ||
