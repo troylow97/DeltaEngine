@@ -69,6 +69,7 @@ void OpenFile(Editor& e)
   {
     NewFile(e);
     GetEnv().pECS->GetWorld().Load( *path );
+    Editor::mounted_path = *path;
   }
 }
 
@@ -77,7 +78,10 @@ void SaveFile()
   std::optional<std::string> path = FileDialogs::SaveFile( "DeltaEngine Scene (*.json)\0*\0" );
 
   if ( path )
+  {
     GetEnv().pECS->GetWorld().Save( *path );
+    Editor::mounted_path = *path;
+  }
 }
 
 void AddEntity()
@@ -105,6 +109,9 @@ void DeleteEntity(Editor& e)
     GetEnv().pECS->GetWorld().GetEntityManager().DestroyEntity( { id } );
     e.entity_selected = false;
     e.entity_id = u64_max;
+    GetEnv().pECS->GetWorld().GetEntityManager().CleanEntities();
+    GetEnv().pECS->GetWorld().GetEntityManager().TidyEntities();
+
   }
 }
 

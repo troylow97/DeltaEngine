@@ -25,11 +25,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 
-class AudioFile
-{
-  std::string path;
-};
-
 namespace DeltaEngine
 {
   FMODWrapper* fmod{nullptr};
@@ -88,8 +83,6 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(fmod->pSystem->createSound(name.c_str(), mode, nullptr, &sound));
       if (sound)
         fmod->sounds[name] = sound;
-
-      std::cout << name << std::endl;
     }
   }
 
@@ -109,7 +102,7 @@ namespace DeltaEngine
     if ( result == fmod->sounds.end() )
     {
       DeltaEngine_CORE_WARN( "Audio - \"{}\" not found", name);
-      return u64_max;
+      return 0;
     }
 
     FMOD::Channel* channel{nullptr};
@@ -152,10 +145,32 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(result->second->setPitch(pitch));
   }
 
-  void AudioEngine::SetChannelVolume(const ChannelID id, const float dB)
+  void AudioEngine::SetChannelVolume(const ChannelID id, const float volume)
   {
     if (auto result = fmod->channels.find(id); result != fmod->channels.end())
-      FMODWrapper::ErrorChecker(result->second->setVolume(dBToVolume(dB)));
+      FMODWrapper::ErrorChecker(result->second->setVolume(volume));
+  }
+
+  void AudioEngine::SetChannelMode(ChannelID id, unsigned mode)
+  {
+    if (auto result = fmod->channels.find(id); result != fmod->channels.end())
+      FMODWrapper::ErrorChecker(result->second->setMode(mode));
+  }
+
+  void AudioEngine::SetChannelLoop(ChannelID id)
+  {
+    if (auto result = fmod->channels.find(id); result != fmod->channels.end())
+    {
+      FMOD_MODE mode;
+      FMODWrapper::ErrorChecker( result->second->getMode( &mode ) );
+      SetChannelMode( id, mode | FMOD_LOOP_NORMAL );
+    }
+  }
+
+  void AudioEngine::SetChannelLoopCount(ChannelID id, int count)
+  {
+    if (auto result = fmod->channels.find(id); result != fmod->channels.end())
+      FMODWrapper::ErrorChecker(result->second->setLoopCount(count));
   }
 
   void AudioEngine::StopChannel(const ChannelID id)
@@ -336,10 +351,10 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(result->second->setPitch(pitch));
   }
 
-  void AudioEngine::SetEventVolume(const EventID id, const float dB)
+  void AudioEngine::SetEventVolume(const EventID id, const float volume)
   {
     if (auto result = fmod->events.find(id); result != fmod->events.end())
-      FMODWrapper::ErrorChecker(result->second->setVolume(dBToVolume(dB)));
+      FMODWrapper::ErrorChecker(result->second->setVolume(volume));
   }
 
   void AudioEngine::StopEvent(const EventID id, const bool fade)
@@ -394,12 +409,12 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(bus->setPaused(pause));
   }
 
-  void AudioEngine::SetBusVolume(const std::string& name, const float dB)
+  void AudioEngine::SetBusVolume(const std::string& name, const float volume)
   {
     FMOD::Studio::Bus* bus{nullptr};
     FMODWrapper::ErrorChecker(fmod->pStudioSystem->getBus(name.c_str(), &bus));
     if (bus->isValid())
-      FMODWrapper::ErrorChecker(bus->setVolume(dBToVolume(dB)));
+      FMODWrapper::ErrorChecker(bus->setVolume(volume));
   }
 
   void AudioEngine::StopAllBusEvents(const std::string& name, bool fade)

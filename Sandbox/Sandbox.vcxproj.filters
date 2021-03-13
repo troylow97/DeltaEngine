@@ -51,22 +51,19 @@
     <ClInclude Include="Source\Systems\GCameraSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\GUISystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Systems\HealthSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\LifespanSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\Menus.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\MouseCalculation.h">
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\RespawnSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Systems\UISystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\UnitManager.h">
@@ -108,22 +105,19 @@
     <ClCompile Include="Source\Systems\GCameraSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\GUISystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Systems\HealthSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\LifespanSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\Menus.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Systems\MouseCalculation.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\RespawnSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Systems\UISystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\UnitManager.cpp">

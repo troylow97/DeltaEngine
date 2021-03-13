@@ -1,0 +1,56 @@
+%Entry:
+
+entry
+Clip/NO_D
+
+%Parameters:
+
+param
+Hover
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+200 200
+
+pos
+Any State
+200 0
+
+pos
+Clip/NO_D
+21 93
+
+pos
+Clip/NO_HL
+211 145
+
+%Transitions:
+
+transition
+start
+Clip/NO_D
+end
+Clip/NO_HL
+condition
+Hover
+? 1
+endTransition
+
+transition
+start
+Clip/NO_HL
+end
+Exit
+condition
+Hover
+? 0
+endTransition
+
+%endfile

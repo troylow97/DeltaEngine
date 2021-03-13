@@ -27,11 +27,6 @@ using e_p_pair = std::pair<size_t, size_t>;
 size_t selection;
 
 
-void ListChild( EntityManager &em, size_t id )
-{
-
-}
-
 WorldPanel::WorldPanel( std::string str, Editor &e ) :
   IPanel( str, e )
 {
@@ -103,10 +98,7 @@ void WorldPanel::Render()
           if ( const ImGuiPayload *payload = ImGui::AcceptDragDropPayload( "EntityParent" ); payload )
           {
             size_t id = *static_cast<size_t *>( payload->Data );
-            if ( !em.HasComponent<Parent>( { id } ) )
-              em.AddComponent<Parent>( { id } );
-
-            em.GetComponent<Parent>( { id } ).p_id = entities[e_id].id ;
+            em.SetParents( entities[e_id].id, id );
           }
 
           ImGui::EndDragDropTarget();

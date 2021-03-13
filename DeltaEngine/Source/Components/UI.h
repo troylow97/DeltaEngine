@@ -9,45 +9,46 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #pragma once
-#include "DEpch.h"
-#include "Render/Font.h"
-#include "Core/Math/Color.h"
 
 namespace DeltaEngine
 {
-  enum class UIType : unsigned
-  {
-    Screen,
-    Interface,
-    Button,
-    Slider,
-    Healthbar,
-    Healthbar_base
-  };
 
-  struct UI
-  {
-    std::string functor_key;
-    UIType ui_type{UIType::Screen};
-    unsigned screen{0};
-    int target_screen{-1};
-    int previous_screen{-1};
-    bool overlay{false};
-  };
+enum class GUIType : unsigned
+{
+  Canvas,
+  Text,
+  Image,
+  Button,
+  Toggle,
+  Slider
+};
 
-  enum class GUIType : unsigned
-  {
-    Interface,
-    Button
-  };
+struct GUI
+{
+  GUIType type {GUIType::Canvas};
+  unsigned screen { 0 };
+};
 
-  struct GUI
-  {
-    std::string func;
-    std::string file;
-    GUIType type;
-    unsigned screen{0};
-    unsigned target{0};
-  };
+struct Button
+{
+  std::string on_hover {};
+  std::string on_click {};
+  std::string on_exit {};
+};
+
+struct Toggle
+{
+  std::string on_change {};
+  bool value { false };
+};
+
+struct Slider
+{
+  unsigned fill_entity;
+  unsigned handle_entity;
+  float min { 0 };
+  float max { 0 };
+  float value { 0 };
+};
 
 }

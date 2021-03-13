@@ -1,0 +1,25 @@
+%Entry:
+
+%Parameters:
+
+param
+Hover
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+32 147
+
+pos
+Exit
+200 200
+
+pos
+Any State
+200 0
+
+%Transitions:
+
+%endfile

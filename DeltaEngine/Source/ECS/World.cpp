@@ -21,9 +21,11 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/PhysicsDrawSystem.h"
 #include "Systems/RenderSystem.h"
 #include "Systems/ParticleSystem.h"
+#include "Systems/UISystem.h"
 
 namespace DeltaEngine
 {
+
 bool World::SystemExist( size_t digest )
 {
   if ( systems.find( digest ) == systems.end() )
@@ -35,7 +37,7 @@ World::World() : em( std::make_unique<EntityManager>() )
 {
   DeltaEngine_CORE_INFO( "Initializing World..." );
   CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem,
-    PhysicsDrawSystem, ParticleSystem, OCullSystem>();
+    PhysicsDrawSystem, ParticleSystem, OCullSystem, UISystem>();
   DeltaEngine_CORE_INFO( "Initializing World successful" );
 
 #ifndef DE_EDITOR
@@ -85,10 +87,12 @@ void World::Run()
     // Logic Update
     Update();
 
+    systems[CHash::Hash<UISystem>().digest]->Update();
     systems[CHash::Hash<AnimationSystem>().digest]->Update();
 
     // Logic Late Update
     LateUpdate();
+    systems[CHash::Hash<UISystem>().digest]->LateUpdate();
   }
   systems[CHash::Hash<ParticleSystem>().digest]->Update();
   systems[CHash::Hash<OCullSystem>().digest]->Update();
@@ -112,15 +116,7 @@ void World::LateUpdate()
 
 void World::CleanUpEntities()
 {
-  std::vector<size_t> e_vec;
-  em->ForEach( [&]( EntityID& id, Parent &p )
-  {
-    if ( p.p_id != u64_max && !em->IsEntityValid( { p.p_id } ) )
-      e_vec.push_back( id.index );
-  } );
-
-  for ( auto &id : e_vec )
-    em->DestroyEntity( { id } );
+  em->CleanEntities();
 }
 
 void World::Save( const std::string& filename )
@@ -133,5 +129,6 @@ void World::Load( const std::string& filename )
 {
   JsonFile file;
   file.StartReader( filename ).LoadEntities( *em ).EndReader();
+  em->LinkParents();
 }
 }

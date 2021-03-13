@@ -42,8 +42,8 @@ namespace DeltaEngine
 
   class AudioEngine
   {
-    using EventID = size_t;
-    using ChannelID = size_t;
+    using EventID = unsigned;
+    using ChannelID = unsigned;
 
   public:
     using ParametersMap = std::unordered_map<std::string, float>;
@@ -51,6 +51,11 @@ namespace DeltaEngine
     static void Initialize();
     static void Shutdown();
     static void Update();
+
+
+    static void AudioSourcePlay( struct AudioSource &, const std::string &name );
+    static void AudioSourcePlay2DEvent( struct AudioSource &, const std::string &name, ParametersMap = ParametersMap() );
+    static void AudioSourcePlay3DEvent( struct AudioSource &, const std::string &name, Audio3DAttributes attributes, ParametersMap = ParametersMap() );
 
     // Core 
     static void LoadSound(const std::string& name, bool loop = false, bool stream = false, bool is3D = false); // shift
@@ -60,12 +65,14 @@ namespace DeltaEngine
     static bool IsChannelPlaying(ChannelID id);
     static void SetChannelPause(ChannelID id, bool pause = true);
     static void SetChannelPitch(ChannelID id, float pitch);
-    static void SetChannelVolume(ChannelID id, float dB);
+    static void SetChannelVolume(ChannelID id, float volume);
+    static void SetChannelMode( ChannelID id, unsigned mode );
+    static void SetChannelLoop( ChannelID id );
+    static void SetChannelLoopCount( ChannelID id, int count );
     static void StopChannel(ChannelID id);
     static void StopChannels();
 
     static void SetChannel3DPosition(ChannelID id, Vector3 attributes);
-
     static unsigned GetChannelPlaybackPosition(ChannelID id);
     static unsigned GetSoundLength(const std::string& name);
 
@@ -80,7 +87,7 @@ namespace DeltaEngine
     static bool IsEventPlaying(EventID id);
     static void SetEventPause(EventID id, bool pause = true);
     static void SetEventPitch(EventID id, float pitch);
-    static void SetEventVolume(EventID id, float dB);
+    static void SetEventVolume(EventID id, float volume);
     static void StopEvent(EventID id, bool fade = true);
 
     static void SetEvent3DAttribute(EventID id, Audio3DAttributes attributes);
@@ -89,7 +96,7 @@ namespace DeltaEngine
 
     static void SetBusMute(const std::string& name, bool mute = true);
     static void SetBusPause(const std::string& name, bool pause = true);
-    static void SetBusVolume(const std::string& name, float dB);
+    static void SetBusVolume(const std::string& name, float volume);
     static void StopAllBusEvents(const std::string& name, bool fade = true);
 
     // Misc

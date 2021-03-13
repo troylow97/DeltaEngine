@@ -1,0 +1,56 @@
+%Entry:
+
+entry
+Clip/YES_D
+
+%Parameters:
+
+param
+Hover
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+200 200
+
+pos
+Any State
+200 0
+
+pos
+Clip/YES_D
+-3 105
+
+pos
+Clip/YES_HL
+246 120
+
+%Transitions:
+
+transition
+start
+Clip/YES_D
+end
+Clip/YES_HL
+condition
+Hover
+? 1
+endTransition
+
+transition
+start
+Clip/YES_HL
+end
+Exit
+condition
+Hover
+? 0
+endTransition
+
+%endfile

@@ -62,6 +62,7 @@ namespace DeltaEngine
 
     // Can consider DIP Simulation toggle To be implemented
     static inline bool simulation_running;
+    static inline std::string mounted_path;
 
     ~Editor();
     void Begin();

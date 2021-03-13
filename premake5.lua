@@ -213,8 +213,7 @@ project "Sandbox"
   staticruntime "On"
   flags 
   {
-    "NoPCH",
-    "LinkTimeOptimization"
+    "NoPCH"
   }
   
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -286,4 +285,5 @@ project "Sandbox"
     defines "DE_RELEASE"
     defines "DE_EDITOR"
     runtime "Release"
+    flags "LinkTimeOptimization"
     optimize "On"

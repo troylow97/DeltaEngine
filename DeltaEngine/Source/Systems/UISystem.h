@@ -14,20 +14,13 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-DEFINE_SYSTEM( GUISystem, Transform, Image, Renderer2D )
+DEFINE_SYSTEM( UISystem, GUI)
 void Initialize() override;
 void Update() override;
 void LateUpdate() override;
 
-void PushScreen( unsigned screen );
-void PopScreen();
+static void PopScreen();
+static void PushScreen(unsigned screen);
 
-void ChangeState();
-
-void Pause();
-void Unpause();
-void Start( const std::string &file );
-void Quit();
-
-END_DEFINE_SYSTEM( GCameraSystem )
+END_DEFINE_SYSTEM( UISystem )
 }

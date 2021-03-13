@@ -37,9 +37,13 @@ namespace DeltaEngine
 
   class EntityManager
   {
+    using Childrens = std::vector<size_t>;
+    using ParentMap = std::pair<size_t, Childrens>;
+
     std::vector<Entity> m_entities;
     std::vector<size_t> m_entities_deleted;
     std::vector<Archetype*> m_archetypes;
+    std::vector<ParentMap> m_parents;
 
     size_t m_entities_live{0};
 
@@ -92,6 +96,16 @@ namespace DeltaEngine
     const Archetype* GetEntityArchetype(size_t id);
 
     bool IsEntityValid(EntityID id);
+
+    void LinkParents();
+
+    void SetParents(size_t parent, size_t child);
+
+    std::vector<size_t> GetChildrens( size_t parent );
+
+    void CleanEntities();
+
+    void TidyEntities();
   private:
 
     EntityID AllocateEntity();

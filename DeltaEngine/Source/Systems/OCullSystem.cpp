@@ -51,7 +51,7 @@ namespace DeltaEngine
       c_size = {(max.x - min.x) * 10, (max.y - min.y) * 10};
 
       Query q;
-      q.Exclude<UI>();
+      q.Exclude<GUI>();
 
       em.ForEach(q, [&](Transform& t, Image& i, Renderer2D& r, EntityType& et)
       {
