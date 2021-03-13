@@ -134,7 +134,7 @@ namespace DeltaEngine
         const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
         auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(player);
         auto& player_col = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(player);
-
+    	
         if (hp.isDamagedTimer <= 0.0f)
         {
             s.SetBool("IsDead", false);
@@ -157,11 +157,12 @@ namespace DeltaEngine
                     a.MeleeAttack = true;
                     Attacking = false;
                     rb.Direction = -Direction;
+                    rb.Direction.y *= 0.3f;
                     //Apply Bounce Force
                     Vector2 monster_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
                     Vector2 kb = (player_pos - env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position);
                     env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.y += 50.0f;
-                    env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.x = rb.Direction.x * 400.0f;
+                    env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.x = rb.Direction.x * 200.0f;
 
                 }
 
@@ -188,8 +189,8 @@ namespace DeltaEngine
                     s.SetBool("IsAlerted", false);
                     s.SetBool("LancerCharge", true);
                     AITools::FlyTowardsPoint(monster, Vector2{
-                                           player_pos.x + Random::RandomFloatRange(0.5f, 0.3f),
-                                           player_pos.y + Random::RandomFloatRange(-0.1f, 0.0f)
+                                           player_pos.x + Random::RandomFloatRange(0.1f, 0.3f),
+                                           player_pos.y + Random::RandomFloatRange(0.1f, 0.3f)
                         });
                 }
             	
