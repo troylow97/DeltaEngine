@@ -117,7 +117,7 @@ namespace DeltaEngine
         const Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
         r1.Velocity += newAcceleration * env.pClock->FixedDeltaTime();
 
-      	if(em.HasComponent<Player>(id1) && (!em.GetComponent<Player>(id1).IsDodging || em.GetComponent<RigidBody>(id1).AccumulatedForce > 0))
+      	if(em.HasComponent<Player>(id1))
       	{
             //Apply Friction -> when no input
             if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
