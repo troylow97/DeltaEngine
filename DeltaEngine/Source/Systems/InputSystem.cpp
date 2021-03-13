@@ -93,7 +93,7 @@ namespace DeltaEngine
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1)
     {
-      if (p1.AllowRunning == true && a1.NumberOfCombos == 0)
+      if (p1.AllowRunning == true/* && a1.NumberOfCombos == 0*/)
       {
         if (/*!a1.Blocking && */ a1.MeleeCooldownTimer <= 0.0)
         {
@@ -190,6 +190,9 @@ namespace DeltaEngine
         a1.NumberOfCombos = 0;
         p1.AllowShooting = false;
         p1.AllowPunching = false;
+        s1.SetBool("Punch1", false);
+        s1.SetBool("Punch2", false);
+        s1.SetBool("Punch3", false);
         s1.SetBool("IsIdle", false);
         s1.SetBool("JumpStart", true);
         idle_timer = 0.0f;
@@ -278,6 +281,10 @@ namespace DeltaEngine
           //  //s1.SetBool("isJumping", true);
           //  a1.Blocking = false;
           //}
+          s1.SetBool("Punch1", false);
+          s1.SetBool("Punch2", false);
+          s1.SetBool("Punch3", false);
+          s1.SetBool("JumpStart", false);
           s1.SetBool("IsDashing", true);
 
           a1.NumberOfCombos = 0;
@@ -330,61 +337,61 @@ namespace DeltaEngine
 
   void InputSystem::Shield()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
-    {
-      i1.previousKey = DEVK_LSHIFT;
-      if (a1.Blocking == true) // unshielding
-      {
-        p1.IsBlocking = false;
-        p1.AllowDashing = true;
-        p1.AllowPunching = true;
-        a1.Blocking = false;
-        a1.NumberOfCombos = 0;
-        a1.StartComboCooldownTimer = false;
-        a1.ComboCooldownTimer = a1.ComboDuration;
-        p1.AllowShooting = true;
-        s1.SetBool("ShieldUp", false);
-      }
-      else // shielding
-      {
-        p1.IsBlocking = true;
-        p1.AllowDashing = false;
-        p1.AllowPunching = false;
-        a1.Blocking = true;
-        a1.NumberOfCombos = 0;
-        a1.StartComboCooldownTimer = false;
-        a1.ComboCooldownTimer = a1.ComboDuration;
-        p1.AllowShooting = false;
-        s1.SetBool("ShieldUp", true);
-      }
-    });
+    //env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
+    //{
+    //  i1.previousKey = DEVK_LSHIFT;
+    //  if (a1.Blocking == true) // unshielding
+    //  {
+    //    p1.IsBlocking = false;
+    //    p1.AllowDashing = true;
+    //    p1.AllowPunching = true;
+    //    a1.Blocking = false;
+    //    a1.NumberOfCombos = 0;
+    //    a1.StartComboCooldownTimer = false;
+    //    a1.ComboCooldownTimer = a1.ComboDuration;
+    //    p1.AllowShooting = true;
+    //    s1.SetBool("ShieldUp", false);
+    //  }
+    //  else // shielding
+    //  {
+    //    p1.IsBlocking = true;
+    //    p1.AllowDashing = false;
+    //    p1.AllowPunching = false;
+    //    a1.Blocking = true;
+    //    a1.NumberOfCombos = 0;
+    //    a1.StartComboCooldownTimer = false;
+    //    a1.ComboCooldownTimer = a1.ComboDuration;
+    //    p1.AllowShooting = false;
+    //    s1.SetBool("ShieldUp", true);
+    //  }
+    //});
   }
 
   void InputSystem::Shoot()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
-    {
-      if (p1.IsRunning)
-      {
-        p1.AllowRunning = false;
-        p1.IsRunning = false;
-        StopRun();
-      }
-      if (p1.AllowShooting)
-      {
-        a1.SMGAttack = true;
-        a1.NumberOfCombos = 0;
-        a1.StartComboCooldownTimer = false;
-        a1.ComboCooldownTimer = a1.ComboDuration;
-        p1.IsShooting = true;
-        i1.previousKey = DEVK_E;
-        s1.SetBool("SMGAttack", true);
-        idle_timer = 0.0f; // what's this troy low yee?
-        p1.AllowPunching = false;
-        p1.AllowJumping = false;
-        p1.AllowDashing = false;
-      }
-    });
+    //env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
+    //{
+    //  if (p1.IsRunning)
+    //  {
+    //    p1.AllowRunning = false;
+    //    p1.IsRunning = false;
+    //    StopRun();
+    //  }
+    //  if (p1.AllowShooting)
+    //  {
+    //    a1.SMGAttack = true;
+    //    a1.NumberOfCombos = 0;
+    //    a1.StartComboCooldownTimer = false;
+    //    a1.ComboCooldownTimer = a1.ComboDuration;
+    //    p1.IsShooting = true;
+    //    i1.previousKey = DEVK_E;
+    //    s1.SetBool("SMGAttack", true);
+    //    idle_timer = 0.0f; // what's this troy low yee?
+    //    p1.AllowPunching = false;
+    //    p1.AllowJumping = false;
+    //    p1.AllowDashing = false;
+    //  }
+    //});
   }
 
   void InputSystem::Update()
@@ -465,6 +472,7 @@ namespace DeltaEngine
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1)
       {
         p1.IsPunching = false;
+        p1.AllowRunning = true;
       });
     }
     // shield up and down
