@@ -196,7 +196,7 @@
                 "Current Health": 5,
                 "Max Health": 5,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
                 "Range Damage": 1,

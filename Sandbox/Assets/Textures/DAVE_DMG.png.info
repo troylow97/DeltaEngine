@@ -13,16 +13,6 @@ offset 500 0
 size 250 200
 pivot 0.5 0.5
 
-Textures/DAVE_DMG_i_3
-offset 750 0
-size 250 200
-pivot 0.5 0.5
-
-Textures/DAVE_DMG_i_4
-offset 1000 0
-size 250 200
-pivot 0.5 0.5
-
 %
 
 wrap_mode 0
