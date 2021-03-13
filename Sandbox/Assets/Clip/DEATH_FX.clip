@@ -1,0 +1,35 @@
+frames 6
+fps 6
+loop 0
+
+Textures/DEATH_FX_i_0
+key Textures/DEATH_FX
+value 0
+frame 0
+
+Textures/DEATH_FX_i_1
+key Textures/DEATH_FX
+value 1
+frame 1
+
+Textures/DEATH_FX_i_2
+key Textures/DEATH_FX
+value 2
+frame 2
+
+Textures/DEATH_FX_i_3
+key Textures/DEATH_FX
+value 3
+frame 3
+
+Textures/DEATH_FX_i_4
+key Textures/DEATH_FX
+value 4
+frame 4
+
+Textures/DEATH_FX_i_5
+key Textures/DEATH_FX
+value 5
+frame 5
+
+%
