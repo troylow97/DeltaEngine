@@ -95,24 +95,8 @@ namespace DeltaEngine
         }
         else
         {
-            //Movement
-            if (static_cast<int>(r1.Direction.x) != 0 || static_cast<int>(r1.Direction.y) != 0)
-            {
-                if (c1.isCollidingOnFloor)
-                {
-                    const Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
-                    r1.AccumulatedForce += move * r1.Mass * 0.5f;
-                }
-                else
-                {
-                    const Vector2 move = (r1.Direction * r1.Movespeed);
-                    r1.AccumulatedForce += move * r1.Mass;
-                }
-            }
-            else
-            {
-                r1.InherentAcceleration = 0;
-            }
+            const Vector2 move = (r1.Direction * r1.Movespeed);
+            r1.AccumulatedForce += move * r1.Mass;
         }
 
 

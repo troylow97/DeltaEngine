@@ -75,6 +75,7 @@ namespace DeltaEngine
   {
     bool Charging;
     bool Bouncing;
+    bool Attacking;
     float BouncingTimer;
     float ChargeTimer;
   public:

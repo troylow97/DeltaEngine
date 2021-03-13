@@ -48,7 +48,7 @@ namespace DeltaEngine
         p.AllowDashing = true;
         s.SetBool("LancerAttack", false);
       }
-      Dash();
+    //  Dash();
       
   	  //SMG
      // auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
@@ -164,9 +164,9 @@ namespace DeltaEngine
       //FlipPunching();
 
       //Toggle Player Melee Attack
-      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f && a.ComboCooldownTimer > 0.0f)
+      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f)
       {
-        if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f)
+        if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f && a.ComboCooldownTimer > 0.0f)
         {  	
           ++a.NumberOfCombos;
           a.ComboCooldownTimer = a.ComboDuration;
@@ -380,8 +380,8 @@ namespace DeltaEngine
           AudioEngine::Play("Audio/Lancer/LancerCharge3.ogg");
           break;
         }
-
-        EntityID missile = CreateProjectile(id, Vector2{0.2f, 0.2f}, false, 0.2f, EntityCategory::E_ENEMY_LANCER_PUNCH);
+        
+        EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.2f, EntityCategory::E_ENEMY_LANCER_PUNCH);
         const Vector2 player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
         const Vector2 monster_pos = em.GetComponent<Transform>(id).position;
         Vector2 kb = (player_pos - em.GetComponent<Transform>(id).position);
