@@ -157,7 +157,7 @@ namespace DeltaEngine
                     a.MeleeAttack = true;
                     Attacking = false;
                     rb.Direction = -Direction;
-                    rb.Direction.y *= 0.3f;
+                    rb.Direction.y *= 0.6f;
                     //Apply Bounce Force
                     Vector2 monster_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
                     Vector2 kb = (player_pos - env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position);
@@ -175,15 +175,13 @@ namespace DeltaEngine
                 env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
             else
                 env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
-        	
-            if (AITools::Distance_X_BetweenTwoEntities(monster, player) > 1.2f && !Attacking)
+            //If Lancer is below player, fly up first
+            if (t.position.y < player_pos.y - Random::RandomFloat())
             {
-	           	//If Lancer is below player, fly up first
-            	if(t.position.y < player_pos.y + Random::RandomFloat())
-            	{
-                    rb.Direction.y = 1;
-            	}
-                else
+                rb.Direction.y = 1;
+            }
+            else if (AITools::Distance_X_BetweenTwoEntities(monster, player) > 1.2f && !Attacking)
+            {
                 {
                     //Move towards player
                     s.SetBool("IsAlerted", false);
