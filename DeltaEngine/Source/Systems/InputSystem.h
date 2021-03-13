@@ -19,6 +19,19 @@ namespace DeltaEngine
     void Initialize() override;
     void Update() override;
     void LateUpdate() override;
+    void SetIdleAnimation();
+    void GodMode();
+    void RunLeft();
+    void RunRight();
+    void StopRun();
+    void Jump();
+    void Dash();
+    void Dodge();
+    void Punch();
+    void Shield();
+    void Shoot();
+    // void Upgrade();
+
 
     void Shutdown() override;
   END_DEFINE_SYSTEM(InputSystem)

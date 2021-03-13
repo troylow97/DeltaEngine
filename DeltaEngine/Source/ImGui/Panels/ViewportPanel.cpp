@@ -88,14 +88,15 @@ namespace DeltaEngine
     else if (ImGui::IsMouseDown(0))
     {
       auto offset = curr_mouse - prev_mouse;
+      ImGuiIO& io = ImGui::GetIO();
 
       if (Editor::tool_selection == Editor::Tool::Camera)
       {
         if (std::abs(offset.point_x) > FLT_EPSILON)
-          Camera::editorCameraTransform.position.x -= offset.point_x;
+          Camera::editorCameraTransform.position.x -= io.MouseDelta.x / 100;
 
         if (std::abs(offset.point_y) > FLT_EPSILON)
-          Camera::editorCameraTransform.position.y -= offset.point_y;
+          Camera::editorCameraTransform.position.y += io.MouseDelta.y / 100;
       }
       else if (Editor::tool_selection == Editor::Tool::EntitySelector)
       {

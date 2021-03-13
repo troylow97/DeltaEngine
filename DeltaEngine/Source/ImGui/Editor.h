@@ -46,6 +46,8 @@ namespace DeltaEngine
       EntitySelector
     };
 
+    static Editor* inst;
+
     // Drop Manager
     static inline bool drag;
 

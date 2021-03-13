@@ -1,4 +1,4 @@
-frames 29
+frames 30
 fps 12
 loop 1
 
@@ -146,5 +146,10 @@ Textures/SERP_BURROW_MOVE_i_28
 key Textures/SERP_BURROW_MOVE
 value 28
 frame 28
+
+Textures/SERP_BURROW_MOVE_i_29
+key Textures/SERP_BURROW_MOVE
+value 29
+frame 29
 
 %

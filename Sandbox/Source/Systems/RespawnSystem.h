@@ -24,5 +24,7 @@ namespace DeltaEngine
     void LateUpdate() override;
   private:
     RespawnPoints respawns;
+    void Respawning();
+    void DeathEffect();
   END_DEFINE_SYSTEM(RespawnSystem)
 }

@@ -71,8 +71,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.838269054889679,
-                    "y": -0.7617700099945068,
+                    "x": 2.2749338150024416,
+                    "y": -0.7616124153137207,
                     "z": 0.0
                 },
                 "Scale": {
@@ -91,17 +91,17 @@
                 "Mass": 20.0,
                 "Move Speed": 10.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
+                "Friction Coefficient": 0.009999999776482582,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
+                "Max Acceleration": 10.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": false,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 0.838269054889679,
-                    "y": -0.7617700099945068
+                    "x": 2.2749338150024416,
+                    "y": -0.7616124153137207
                 },
                 "Offset": {
                     "x": 0.0,
@@ -120,7 +120,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -168,12 +168,12 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_lancer"
+                "AIState": "chase_enemy_lancer"
             },
             "Health": {
                 "Current Health": 1000,
                 "Max Health": 1000,
-                "TakenDamageTimer": 0.0,
+                "TakenDamageTimer": -0.10000000149011612,
                 "Invulnerable": false
             },
             "Attack": {
@@ -216,7 +216,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 7.066181182861328,
+                    "x": -6.324146270751953,
                     "y": 2.0,
                     "z": 0.0
                 },
@@ -254,8 +254,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 7.066181182861328,
-                    "y": -0.7618808746337891,
+                    "x": -6.324146270751953,
+                    "y": -0.7618864178657532,
                     "z": 0.0
                 },
                 "Scale": {
@@ -272,19 +272,19 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 30.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
+                "Max Acceleration": 10.0,
+                "Acceleration Pickup": 2.0,
                 "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 7.066181182861328,
-                    "y": -0.7618808746337891
+                    "x": -6.324146270751953,
+                    "y": -0.7618864178657532
                 },
                 "Offset": {
                     "x": 0.0,
@@ -302,8 +302,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_PUNCH1_NEW",
-                    "index": 4
+                    "key": "Textures/DAVE_PUNCH",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -349,34 +349,34 @@
             "Health": {
                 "Current Health": 1000,
                 "Max Health": 1000,
-                "TakenDamageTimer": 0.0,
-                "Invulnerable": false
+                "TakenDamageTimer": -0.10000000149011612,
+                "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 1,
-                "Melee Damage": 1,
-                "SMG Damage": 1,
-                "Melee Combo Damage": 3,
-                "Number Of Combo": 1,
-                "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
+                "Range Damage": 16,
+                "Melee Damage": 16,
+                "SMG Damage": 16,
+                "Melee Combo Damage": 48,
+                "Number Of Combo": 0,
+                "Max Combo Number": 5,
+                "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.016666946932673456,
+                "Melee Cooldown Timer": 0.15000000596046449,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.5000009536743164,
+                "Combo Cooldown Timer": 1.5,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.20000000298023225,
+                "Attack Delay": -6.332993507385254e-8,
                 "Ranged Attack": false,
-                "Melee Attack": true,
+                "Melee Attack": false,
                 "SMG Attack": false,
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": true,
+                "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
             },
             "Player": {
@@ -384,11 +384,71 @@
                 "Points Needed For Upgrade": 50,
                 "Attack Upgrade Increase": 1,
                 "Health Upgrade Attack": 2,
-                "Dashing Timer Duration": 1.0
+                "Dashing Timer Duration": 1.0,
+                "Fading Timer": 1.0
             },
             "Input": {
-                "Previous": 69,
+                "Previous": 1,
                 "Current": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "player punch"
+            },
+            "Transform": {
+                "Position": {
+                    "x": -5.682332992553711,
+                    "y": -0.7618864178657532,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.30000001192092898,
+                    "y": 0.30000001192092898,
+                    "z": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 5.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.009999999776482582,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": -5.682332992553711,
+                    "y": -0.7618864178657532
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 7,
+                "Collision Layer ID": 8,
+                "Trigger": true,
+                "Platform": false
+            },
+            "Lifespan": {
+                "Timer": 0.03333333879709244
             }
         }
     ]

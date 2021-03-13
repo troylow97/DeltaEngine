@@ -24,7 +24,6 @@ namespace DeltaEngine
     : IPanel(str, e)
   {
     m_enabled = false;
-    curve = new BezierCurve();
   }
 
   BezierPanel::~BezierPanel()
@@ -40,17 +39,30 @@ namespace DeltaEngine
 
   void BezierPanel::Render()
   {
-    if (ImGui::Begin("Bezier Curve Editor", &m_enabled))
+    if (ImGui::Begin("Bezier Curve Editor", &m_enabled,
+      ImGuiWindowFlags_MenuBar |
+      ImGuiWindowFlags_NoNavInputs |
+      ImGuiWindowFlags_NoDocking))
     {
       static int anchorDragged = -1;
       static int controlDraggedL = -1;
       static int controlDraggedR = -1;
       static int selectedKey = -1;
+      static int selectedCurve = -1;
       static ImVec2 keyPropsPos = ImVec2(0.f, 0.f);
       static bool draggingKeyProps = false;
       static bool hoveringKeyProps = false;
 
       ImGuiIO& io = ImGui::GetIO();
+      ImColor cols[] =
+      {
+        {100, 17, 17, 255},
+        {17, 100, 17, 255},
+        {17, 17, 100, 255},
+        {17, 100, 100, 255},
+        {100, 17, 100, 255},
+        {100, 100, 17, 255},
+      };
       
       if (ImGui::IsMouseDragging(0))
       {
@@ -126,223 +138,233 @@ namespace DeltaEngine
             CENTRE_COLOR, (std::to_string((10 - y) / 10) + "." + std::to_string((10 - y) % 10)).c_str()
           );
         }
-        // actual curve
-        size_t last = 0;
-        for (size_t i = 0; i < curve->anchors.size() - 1; ++i)
+        int curveCount = 0;
+        for (auto& curve : curves)
         {
-          if (!curve->anchors[i].second)
-            continue;
-
-          last = i;
-
-          if (!curve->anchors[i + 1].second)
-            continue;
-
-          ImVec2 p1 = offset + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
-          ImVec2 p2 = offset + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i + 1].first.x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i + 1].first.y) + canvas_bleed.y);
-          ImVec2 c1 = curve->controlsRight[i].second ? ImVec2(
-            canvas_sz_wbleed.x * curve->controlsRight[i].first.x,
-            canvas_sz_wbleed.y * -curve->controlsRight[i].first.y) : ImVec2();
-          ImVec2 c2 = curve->controlsLeft[i + 1].second ? ImVec2(
-            canvas_sz_wbleed.x * curve->controlsLeft[i + 1].first.x,
-            canvas_sz_wbleed.y * -curve->controlsLeft[i + 1].first.y) : ImVec2();
-
-          draw_list->AddBezierCurve(
-            p1, p1 + c1,
-            p2 + c2, p2,
-            IM_COL32(100, 17, 17, 255), 1);
-        }
-
-        if (curve->anchors[0].second && curve->anchors[0].first.x > 0)
-          draw_list->AddLine(
-            ImVec2(canvas_bleed.x,
-              canvas_sz_wbleed.y * (1 - curve->anchors[0].first.y) + canvas_bleed.y) + offset,
-            ImVec2(canvas_sz_wbleed.x * curve->anchors[0].first.x + canvas_bleed.x,
-              canvas_sz_wbleed.y * (1 - curve->anchors[0].first.y) + canvas_bleed.y) + offset,
-            IM_COL32(51, 17, 17, 255), 1);
-
-        if (curve->anchors[last].second && curve->anchors[last].first.x > 0)
-          draw_list->AddLine(
-            ImVec2(canvas_sz_wbleed.x * curve->anchors[last].first.x + canvas_bleed.x,
-              canvas_sz_wbleed.y * (1 - curve->anchors[last].first.y) + canvas_bleed.y) + offset,
-            ImVec2(canvas_bleed.x + canvas_sz_wbleed.x,
-              canvas_sz_wbleed.y * (1 - curve->anchors[last].first.y) + canvas_bleed.y) + offset,
-            IM_COL32(51, 17, 17, 255), 1);
-
-        for (size_t i = 0; i < curve->anchors.size(); ++i)
-        {
-          if (!curve->anchors[i].second)
-            continue;
-          ImVec2 p = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
-
-          ImGui::SetCursorScreenPos(p);
-          ImGui::Button(("##BezKey" + std::to_string(i)).c_str(), { 7.f, 7.f });
-          if (ImGui::IsItemClicked())
+          // actual curve
+          size_t last = 0;
+          for (size_t i = 0; i < curve->anchors.size() - 1; ++i)
           {
-            anchorDragged = static_cast<int>(i);
-            selectedKey = static_cast<int>(i);
-          }
-        }
-        if (anchorDragged >= 0 && anchorDragged < curve->anchors.size())
-        {
-          curve->anchors[anchorDragged].first.x += io.MouseDelta.x / canvas_sz_wbleed.x;
-          curve->anchors[anchorDragged].first.y -= io.MouseDelta.y / canvas_sz_wbleed.y;
+            if (!curve->anchors[i].second)
+              continue;
 
-          curve->anchors[anchorDragged].first.x = Math::Clamp01(curve->anchors[anchorDragged].first.x);
-          curve->anchors[anchorDragged].first.y = Math::Clamp01(curve->anchors[anchorDragged].first.y);
-        }
-        for (size_t i = 1; i < curve->controlsLeft.size(); ++i)
-        {
-          if (!curve->anchors[i].second)
-            continue;
-          if (!curve->controlsLeft[i].second)
-            continue;
-          ImVec2 p1 = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
-          ImVec2 p2 = p1 + ImVec2(
-            canvas_sz_wbleed.x * curve->controlsLeft[i].first.x,
-            canvas_sz_wbleed.y * -curve->controlsLeft[i].first.y);
+            last = i;
 
-          draw_list->AddLine(
-            p1 - ImVec2(-3.5f, -3.5f), p2 - ImVec2(-3.5f, -3.5f),
-            IM_COL32(100, 100, 100, 255),
-            1);
+            if (!curve->anchors[i + 1].second)
+              continue;
 
-          ImGui::SetCursorScreenPos(p2);
-          ImGui::Button(("##BezConL" + std::to_string(i)).c_str(), { 7.f, 7.f });
-          if (ImGui::IsItemClicked())
-          {
-            controlDraggedL = static_cast<int>(i);
+            ImVec2 p1 = offset + ImVec2(
+              canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
+              canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
+            ImVec2 p2 = offset + ImVec2(
+              canvas_sz_wbleed.x * curve->anchors[i + 1].first.x + canvas_bleed.x,
+              canvas_sz_wbleed.y * (1 - curve->anchors[i + 1].first.y) + canvas_bleed.y);
+            ImVec2 c1 = curve->controlsRight[i].second ? ImVec2(
+              canvas_sz_wbleed.x * curve->controlsRight[i].first.x,
+              canvas_sz_wbleed.y * -curve->controlsRight[i].first.y) : ImVec2();
+            ImVec2 c2 = curve->controlsLeft[i + 1].second ? ImVec2(
+              canvas_sz_wbleed.x * curve->controlsLeft[i + 1].first.x,
+              canvas_sz_wbleed.y * -curve->controlsLeft[i + 1].first.y) : ImVec2();
+
+            draw_list->AddBezierCurve(
+              p1, p1 + c1,
+              p2 + c2, p2,
+              cols[curveCount], 1);
           }
 
-          curve->controlsLeft[i].first.x = Math::Clamp(curve->controlsLeft[i].first.x, -.1f, .0f);
-          curve->controlsLeft[i].first.y = Math::Clamp(curve->controlsLeft[i].first.y, -.1f, .1f);
-        }
-        if (controlDraggedL >= 0 && controlDraggedL < curve->controlsLeft.size())
-        {
-          curve->controlsLeft[controlDraggedL].first.x += io.MouseDelta.x / canvas_sz_wbleed.x;
-          curve->controlsLeft[controlDraggedL].first.y -= io.MouseDelta.y / canvas_sz_wbleed.y;
-        }
-        for (size_t i = 0; i < curve->controlsRight.size() - 1; ++i)
-        {
-          if (!curve->anchors[i].second)
-            continue;
-          if (!curve->controlsRight[i].second)
-            continue;
-          ImVec2 p1 = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
-            canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
-            canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
-          ImVec2 p2 = p1 + ImVec2(
-            canvas_sz_wbleed.x * curve->controlsRight[i].first.x,
-            canvas_sz_wbleed.y * -curve->controlsRight[i].first.y);
+          if (curve->anchors[0].second && curve->anchors[0].first.x > 0)
+            draw_list->AddLine(
+              ImVec2(canvas_bleed.x,
+                canvas_sz_wbleed.y * (1 - curve->anchors[0].first.y) + canvas_bleed.y) + offset,
+              ImVec2(canvas_sz_wbleed.x * curve->anchors[0].first.x + canvas_bleed.x,
+                canvas_sz_wbleed.y * (1 - curve->anchors[0].first.y) + canvas_bleed.y) + offset,
+              IM_COL32(51, 17, 17, 255), 1);
 
-          draw_list->AddLine(
-            p1 - ImVec2(-3.5f, -3.5f), p2 - ImVec2(-3.5f, -3.5f),
-            IM_COL32(100, 100, 100, 255),
-            1);
+          if (curve->anchors[last].second && curve->anchors[last].first.x > 0)
+            draw_list->AddLine(
+              ImVec2(canvas_sz_wbleed.x * curve->anchors[last].first.x + canvas_bleed.x,
+                canvas_sz_wbleed.y * (1 - curve->anchors[last].first.y) + canvas_bleed.y) + offset,
+              ImVec2(canvas_bleed.x + canvas_sz_wbleed.x,
+                canvas_sz_wbleed.y * (1 - curve->anchors[last].first.y) + canvas_bleed.y) + offset,
+              IM_COL32(51, 17, 17, 255), 1);
 
-          ImGui::SetCursorScreenPos(p2);
-          ImGui::Button(("##BezConR" + std::to_string(i)).c_str(), { 7.f, 7.f });
-          if (ImGui::IsItemClicked())
+          for (size_t i = 0; i < curve->anchors.size(); ++i)
           {
-            controlDraggedR = static_cast<int>(i);
+            if (!curve->anchors[i].second)
+              continue;
+            ImVec2 p = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
+              canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
+              canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
+
+            ImGui::SetCursorScreenPos(p);
+            ImGui::Button(("##BezKey" + std::to_string(i) + " " + std::to_string(curveCount)).c_str(), { 7.f, 7.f });
+            if (ImGui::IsItemClicked())
+            {
+              anchorDragged = static_cast<int>(i);
+              selectedKey = static_cast<int>(i);
+              selectedCurve = static_cast<int>(curveCount);
+            }
           }
+          if (selectedCurve == curveCount &&
+            anchorDragged >= 0 && anchorDragged < curve->anchors.size())
+          {
+            curve->anchors[anchorDragged].first.x += io.MouseDelta.x / canvas_sz_wbleed.x;
+            curve->anchors[anchorDragged].first.y -= io.MouseDelta.y / canvas_sz_wbleed.y;
 
-          curve->controlsRight[i].first.x = Math::Clamp(curve->controlsRight[i].first.x, .0f, .1f);
-          curve->controlsRight[i].first.y = Math::Clamp(curve->controlsRight[i].first.y, -.1f, .1f);
-        }
-        if (controlDraggedR >= 0 && controlDraggedR < curve->controlsRight.size())
-        {
-          curve->controlsRight[controlDraggedR].first.x += io.MouseDelta.x / canvas_sz_wbleed.x;
-          curve->controlsRight[controlDraggedR].first.y -= io.MouseDelta.y / canvas_sz_wbleed.y;
-        }
-        ImGui::SetCursorScreenPos(offset);
-        ImGui::DragFloat("CurveMax", &curve->max, 0.05f);
-        ImGui::SetItemAllowOverlap();
+            curve->anchors[anchorDragged].first.x = Math::Clamp01(curve->anchors[anchorDragged].first.x);
+            curve->anchors[anchorDragged].first.y = Math::Clamp01(curve->anchors[anchorDragged].first.y);
+          }
+          for (size_t i = 1; i < curve->controlsLeft.size(); ++i)
+          {
+            if (!curve->anchors[i].second)
+              continue;
+            if (!curve->controlsLeft[i].second)
+              continue;
+            ImVec2 p1 = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
+              canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
+              canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
+            ImVec2 p2 = p1 + ImVec2(
+              canvas_sz_wbleed.x * curve->controlsLeft[i].first.x,
+              canvas_sz_wbleed.y * -curve->controlsLeft[i].first.y);
 
-        ImGui::SetCursorScreenPos(offset + ImVec2(0, canvas_sz.y - 20));
-        ImGui::DragFloat("CurveMin", &curve->min, 0.05f);
-        ImGui::SetItemAllowOverlap();
-      }
+            draw_list->AddLine(
+              p1 - ImVec2(-3.5f, -3.5f), p2 - ImVec2(-3.5f, -3.5f),
+              IM_COL32(100, 100, 100, 255),
+              1);
 
-      ImGui::PopItemWidth();
-      ImGui::PopStyleColor();
-      ImGui::PopStyleVar();
+            ImGui::SetCursorScreenPos(p2);
+            ImGui::Button(("##BezConL" + std::to_string(i)).c_str(), { 7.f, 7.f });
+            if (ImGui::IsItemClicked())
+            {
+              controlDraggedL = static_cast<int>(i);
+            }
 
-      ImGui::SetItemAllowOverlap();
-      if (selectedKey >= 0 && selectedKey < curve->anchors.size())
-      {
-        ImVec2 p = offset + keyPropsPos;
-        ImGui::SetCursorScreenPos(p);
-        ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(51, 51, 51, 255));
-        if (ImGui::BeginChild("Curve Key Properties", ImVec2(300, 300), true, ImGuiWindowFlags_NoScrollbar))
-        {
-          static bool denyDrag = true;
+            curve->controlsLeft[i].first.x = Math::Clamp(curve->controlsLeft[i].first.x, -.1f, .0f);
+            curve->controlsLeft[i].first.y = Math::Clamp(curve->controlsLeft[i].first.y, -.1f, .1f);
+          }
+          if (selectedCurve == curveCount &&
+            controlDraggedL >= 0 && controlDraggedL < curve->controlsLeft.size())
+          {
+            curve->controlsLeft[controlDraggedL].first.x += io.MouseDelta.x / canvas_sz_wbleed.x;
+            curve->controlsLeft[controlDraggedL].first.y -= io.MouseDelta.y / canvas_sz_wbleed.y;
+          }
+          for (size_t i = 0; i < curve->controlsRight.size() - 1; ++i)
+          {
+            if (!curve->anchors[i].second)
+              continue;
+            if (!curve->controlsRight[i].second)
+              continue;
+            ImVec2 p1 = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
+              canvas_sz_wbleed.x * curve->anchors[i].first.x + canvas_bleed.x,
+              canvas_sz_wbleed.y * (1 - curve->anchors[i].first.y) + canvas_bleed.y);
+            ImVec2 p2 = p1 + ImVec2(
+              canvas_sz_wbleed.x * curve->controlsRight[i].first.x,
+              canvas_sz_wbleed.y * -curve->controlsRight[i].first.y);
 
-          hoveringKeyProps = ImGui::IsWindowHovered();
+            draw_list->AddLine(
+              p1 - ImVec2(-3.5f, -3.5f), p2 - ImVec2(-3.5f, -3.5f),
+              IM_COL32(100, 100, 100, 255),
+              1);
 
-          ImGui::SetCursorScreenPos(p);
-          ImGui::InvisibleButton("##Curve Key Properties Area", ImVec2(300, 300));
+            ImGui::SetCursorScreenPos(p2);
+            ImGui::Button(("##BezConR" + std::to_string(i)).c_str(), { 7.f, 7.f });
+            if (ImGui::IsItemClicked())
+            {
+              controlDraggedR = static_cast<int>(i);
+            }
+
+            curve->controlsRight[i].first.x = Math::Clamp(curve->controlsRight[i].first.x, .0f, .1f);
+            curve->controlsRight[i].first.y = Math::Clamp(curve->controlsRight[i].first.y, -.1f, .1f);
+          }
+          if (selectedCurve == curveCount &&
+            controlDraggedR >= 0 && controlDraggedR < curve->controlsRight.size())
+          {
+            curve->controlsRight[controlDraggedR].first.x += io.MouseDelta.x / canvas_sz_wbleed.x;
+            curve->controlsRight[controlDraggedR].first.y -= io.MouseDelta.y / canvas_sz_wbleed.y;
+          }
+          ImGui::SetCursorScreenPos(offset);
+          ImGui::DragFloat("CurveMax", &curve->max, 0.05f);
           ImGui::SetItemAllowOverlap();
-          if (ImGui::IsItemClicked(0))
-            denyDrag = false;
 
-          ImGui::SetCursorScreenPos(p);
-          ImGui::Text("Key Properties");
-
-          {
-            float keyPos[2] = { curve->anchors[selectedKey].first.x, curve->anchors[selectedKey].first.y };
-            ImGui::DragFloat2("Pos", keyPos, .001f, 0, 1);
-            ImGui::SetItemAllowOverlap();
-            if (ImGui::IsItemClicked(0))
-              denyDrag = true;
-            curve->anchors[selectedKey].first = Vector2(keyPos[0], keyPos[1]);
-          }
-
-          ImGui::Checkbox("Left Control", &curve->controlsLeft[selectedKey].second);
+          ImGui::SetCursorScreenPos(offset + ImVec2(0, canvas_sz.y - 20));
+          ImGui::DragFloat("CurveMin", &curve->min, 0.05f);
           ImGui::SetItemAllowOverlap();
-          if (ImGui::IsItemClicked(0))
-            denyDrag = true;
-          ImGui::Checkbox("Right Control", &curve->controlsRight[selectedKey].second);
-          ImGui::SetItemAllowOverlap();
-          if (ImGui::IsItemClicked(0))
-            denyDrag = true;
 
-          if (curve->controlsLeft[selectedKey].second)
-          {
-            float conPos[2] = { curve->controlsLeft[selectedKey].first.x, curve->controlsLeft[selectedKey].first.y };
-            ImGui::DragFloat2("ConL", conPos, .001f, -.1f, .1f);
-            ImGui::SetItemAllowOverlap();
-            if (ImGui::IsItemClicked(0))
-              denyDrag = true;
-            curve->controlsLeft[selectedKey].first = Vector2(conPos[0], conPos[1]);
-          }
-          if (curve->controlsRight[selectedKey].second)
-          {
-            float conPos[2] = { curve->controlsRight[selectedKey].first.x, curve->controlsRight[selectedKey].first.y };
-            ImGui::DragFloat2("ConR", conPos, .001f, -.1f, .1f);
-            ImGui::SetItemAllowOverlap();
-            if (ImGui::IsItemClicked(0))
-              denyDrag = true;
-            curve->controlsRight[selectedKey].first = Vector2(conPos[0], conPos[1]);
-          }
-
-          draggingKeyProps = !denyDrag;
-
-          if (ImGui::IsMouseReleased(0))
-            denyDrag = true;
+          ++curveCount;
         }
-        ImGui::EndChild();
+
+        ImGui::PopItemWidth();
         ImGui::PopStyleColor();
-      }
+        ImGui::PopStyleVar();
 
+        ImGui::SetItemAllowOverlap();
+        if (selectedCurve >= 0 && selectedCurve < curves.size() &&
+          selectedKey >= 0 && selectedKey < curves[selectedCurve]->anchors.size())
+        {
+          ImVec2 p = offset + keyPropsPos;
+          ImGui::SetCursorScreenPos(p);
+          ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(51, 51, 51, 255));
+          if (ImGui::BeginChild("Curve Key Properties", ImVec2(300, 300), true, ImGuiWindowFlags_NoScrollbar))
+          {
+            static bool denyDrag = true;
+
+            hoveringKeyProps = ImGui::IsWindowHovered();
+
+            ImGui::SetCursorScreenPos(p);
+            ImGui::InvisibleButton("##Curve Key Properties Area", ImVec2(300, 300));
+            ImGui::SetItemAllowOverlap();
+            if (ImGui::IsItemClicked(0))
+              denyDrag = false;
+
+            ImGui::SetCursorScreenPos(p);
+            ImGui::Text("Key Properties");
+
+            {
+              float keyPos[2] = { curves[selectedCurve]->anchors[selectedKey].first.x, curves[selectedCurve]->anchors[selectedKey].first.y };
+              ImGui::DragFloat2("Pos", keyPos, .001f, 0, 1);
+              ImGui::SetItemAllowOverlap();
+              if (ImGui::IsItemClicked(0))
+                denyDrag = true;
+              curves[selectedCurve]->anchors[selectedKey].first = Vector2(keyPos[0], keyPos[1]);
+            }
+
+            ImGui::Checkbox("Left Control", &curves[selectedCurve]->controlsLeft[selectedKey].second);
+            ImGui::SetItemAllowOverlap();
+            if (ImGui::IsItemClicked(0))
+              denyDrag = true;
+            ImGui::Checkbox("Right Control", &curves[selectedCurve]->controlsRight[selectedKey].second);
+            ImGui::SetItemAllowOverlap();
+            if (ImGui::IsItemClicked(0))
+              denyDrag = true;
+
+            if (curves[selectedCurve]->controlsLeft[selectedKey].second)
+            {
+              float conPos[2] = { curves[selectedCurve]->controlsLeft[selectedKey].first.x, curves[selectedCurve]->controlsLeft[selectedKey].first.y };
+              ImGui::DragFloat2("ConL", conPos, .001f, -.1f, .1f);
+              ImGui::SetItemAllowOverlap();
+              if (ImGui::IsItemClicked(0))
+                denyDrag = true;
+              curves[selectedCurve]->controlsLeft[selectedKey].first = Vector2(conPos[0], conPos[1]);
+            }
+            if (curves[selectedCurve]->controlsRight[selectedKey].second)
+            {
+              float conPos[2] = { curves[selectedCurve]->controlsRight[selectedKey].first.x, curves[selectedCurve]->controlsRight[selectedKey].first.y };
+              ImGui::DragFloat2("ConR", conPos, .001f, -.1f, .1f);
+              ImGui::SetItemAllowOverlap();
+              if (ImGui::IsItemClicked(0))
+                denyDrag = true;
+              curves[selectedCurve]->controlsRight[selectedKey].first = Vector2(conPos[0], conPos[1]);
+            }
+
+            draggingKeyProps = !denyDrag;
+
+            if (ImGui::IsMouseReleased(0))
+              denyDrag = true;
+          }
+          ImGui::EndChild();
+          ImGui::PopStyleColor();
+        }
+      }
       ImGui::EndChild();
     }
     ImGui::End();

@@ -656,4 +656,24 @@ IsDashing
 ? 1
 endTransition
 
+transition
+start
+Clip/DAVE_RUN
+end
+Clip/DAVE_PUNCH1_NEW
+condition
+Punch1
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_JUMP
+end
+Clip/DAVE_DASH
+condition
+IsDashing
+? 1
+endTransition
+
 %endfile

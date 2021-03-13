@@ -19,6 +19,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include <filesystem>
 
 #include "ImGui/Editor.h"
+#include "ImGui/CustomWidgets.h"
 
 namespace DeltaEngine
 {
@@ -379,10 +380,18 @@ void PropertyInspectorPanel::Render()
               if ( initial != selection )
                 str = shader_key_vec[selection];
             }
-            //else if (prop_type == rttr::type::get<BezierCurve*>())
-            //{
-            //  
-            //}
+            else if (prop_type == rttr::type::get<BezierRange*>())
+            {
+              BezierEdit(("##" + prop_name).c_str(), (value.get_value<BezierRange*>()));
+            }
+            else if (prop_type == rttr::type::get<BezierRange3*>())
+            {
+              BezierEdit3(("##" + prop_name).c_str(), (value.get_value<BezierRange3*>()));
+            }
+            else if (prop_type == rttr::type::get<GradientRange*>())
+            {
+              GradientEdit(("##" + prop_name).c_str(), (value.get_value<GradientRange*>()));
+            }
 
             if ( prop_type == rttr::type::get<bool *>() )
             {

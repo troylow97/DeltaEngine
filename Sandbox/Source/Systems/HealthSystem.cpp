@@ -43,20 +43,20 @@ namespace DeltaEngine
           entities.push_back(id);
         else if (et.type == EntityCategory::E_PLAYER)
           em.GetComponent<Player>(id).IsDead = true;
-      }
+      } 
       else
       {
         auto& renderer = em.GetComponent<Renderer2D>(id);
 
         if (hp.isDamagedTimer > -0.1f)
         {
-          //renderer.m_Color = {1, 0, 0};
+          renderer.m_Color = {1, 0, 0};
           hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
           PlayAttackedAnimation(id);
         }
         else
         {
-          //renderer.m_Color = { 1, 1, 1 };
+          renderer.m_Color = { 1, 1, 1 };
           em.GetComponent<State>(id).SetBool("IsAttacked", false);
 
         }
@@ -64,12 +64,20 @@ namespace DeltaEngine
       }
     });
 
-    for (auto entity : entities)
+    for (auto& entity : entities)
     {
-      em.AddComponent<Lifespan>(entity);
-      em.GetComponent<Lifespan>(entity).Timer = 1.0f;
-      em.GetComponent<RigidBody>(entity).isMoveable = false;
+      em.GetComponent<State>(entity).SetBool("IsAlertRunning", false);
+      em.GetComponent<State>(entity).SetBool("IsAttacked", true);
+      em.GetComponent<State>(entity).SetBool("IsAttacked", false);
+      em.GetComponent<State>(entity).SetBool("LancerCharge", false);
+      em.GetComponent<State>(entity).SetBool("MeleeAttack", false);    	
+      em.GetComponent<State>(entity).SetBool("IsAlerted", false);
+      em.GetComponent<State>(entity).SetBool("IsBouncing", false);
+      em.GetComponent<State>(entity).SetBool("IsIdle", false);
       em.GetComponent<State>(entity).SetBool("IsDead", true);
+      em.AddComponent<Lifespan>(entity);
+      em.GetComponent<Lifespan>(entity).Timer = 3.0f;
+      em.GetComponent<RigidBody>(entity).isMoveable = false;
     }
     entities.clear();
 
@@ -89,6 +97,7 @@ namespace DeltaEngine
 	  {
           state.SetBool("IsIdle", false);
           state.SetBool("IsAlerted", false);
+          state.SetBool("IsAlertRunning", false);
           state.SetBool("MeleeAttack", false);
           state.SetBool("IsAttacked", true);
 	  }

@@ -437,14 +437,33 @@ namespace DeltaEngine
       .property("Detail", &Text::m_Text)(rttr::policy::prop::bind_as_ptr)
       .property("Alignment", &Text::alignment)(rttr::policy::prop::bind_as_ptr);
 
-    rttr::registration::class_<Animator>("Animator")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Animator>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Controller Key", &Animator::m_ControllerKey)(rttr::policy::prop::bind_as_ptr)
-      .property("Clip Key", &Animator::m_ClipKey)(rttr::metadata("NO_SERIALIZE", true),
-                                                  (rttr::metadata("NO_EDITOR", true)))
-      .property("Timer", &Animator::m_Timer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("Speed", &Animator::m_Speed)(rttr::policy::prop::bind_as_ptr);
+  rttr::registration::class_<ParticleEmitter>( "ParticleEmitter" )
+    ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<ParticleEmitter>()->bits ) )
+    .constructor<>()( rttr::policy::ctor::as_object )
+    .property( "playOnAwake", &ParticleEmitter::playOnAwake)( rttr::policy::prop::bind_as_ptr )
+    .property( "duration", &ParticleEmitter::duration)( rttr::policy::prop::bind_as_ptr )
+    .property( "looping", &ParticleEmitter::looping)( rttr::policy::prop::bind_as_ptr )
+    .property( "prewarm", &ParticleEmitter::prewarm)( rttr::policy::prop::bind_as_ptr )
+    .property( "startDelay", &ParticleEmitter::startDelay)( rttr::policy::prop::bind_as_ptr )
+    .property( "startLifetimeMin", &ParticleEmitter::startLifetimeMin)( rttr::policy::prop::bind_as_ptr )
+    .property( "startLifetimeMax", &ParticleEmitter::startLifetimeMax)( rttr::policy::prop::bind_as_ptr )
+    .property( "startColorMin", &ParticleEmitter::startColorMin)( rttr::policy::prop::bind_as_ptr )
+    .property( "startColorMax", &ParticleEmitter::startColorMax)( rttr::policy::prop::bind_as_ptr )
+    .property( "startRotationMin", &ParticleEmitter::startRotationMin)( rttr::policy::prop::bind_as_ptr )
+    .property( "startRotationMax", &ParticleEmitter::startRotationMax)( rttr::policy::prop::bind_as_ptr )
+    .property( "startSizeMin", &ParticleEmitter::startSizeMin)( rttr::policy::prop::bind_as_ptr )
+    .property( "startSizeMax", &ParticleEmitter::startSizeMax)( rttr::policy::prop::bind_as_ptr )
+    .property( "velocityOverLifetime", &ParticleEmitter::velocityOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "colorOverLifetime", &ParticleEmitter::colorOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "rotationOverLifetime", &ParticleEmitter::rotationOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "sizeOverLifetime", &ParticleEmitter::sizeOverLifetime)( rttr::policy::prop::bind_as_ptr )
+    .property( "maxParticles", &ParticleEmitter::maxParticles)( rttr::policy::prop::bind_as_ptr )
+    .property( "rateOverTime", &ParticleEmitter::rateOverTime)( rttr::policy::prop::bind_as_ptr )
+    .property( "shape", &ParticleEmitter::shape)( rttr::policy::prop::bind_as_ptr )
+    .property( "genType", &ParticleEmitter::genType)( rttr::policy::prop::bind_as_ptr )
+    .property( "radius", &ParticleEmitter::radius)( rttr::policy::prop::bind_as_ptr )
+    .property( "shapeTransform", &ParticleEmitter::shapeTransform)( rttr::policy::prop::bind_as_ptr )
+    ;
 
     rttr::registration::class_<State>("State")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<State>()->bits))
@@ -563,29 +582,28 @@ namespace DeltaEngine
       .property("Attack Upgrade Increase", &Player::AttackUpgradeIncrease)(rttr::policy::prop::bind_as_ptr)
       .property("Health Upgrade Attack", &Player::HealthUpgradeIncrease)(rttr::policy::prop::bind_as_ptr)
       .property("Dashing Timer Duration", &Player::DashingTimerDuration)(rttr::policy::prop::bind_as_ptr)
-      .property("Dashing Timer Cooldown", &Player::DashingTimerCooldown)(
-        rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Dashing Timer Cooldown", &Player::DashingTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Fading Timer", &Player::FadingTimer)(rttr::policy::prop::bind_as_ptr)
+      .property("Fading Countdown", &Player::FadingCountdown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("Is Jumping", &Player::IsJumping)(rttr::metadata("NO_SERIALIZE", true),
-                                                  (rttr::metadata("NO_EDITOR", true)))
-      .property("Is Dashing", &Player::IsDashing)(rttr::metadata("NO_SERIALIZE", true),
-                                                  (rttr::metadata("NO_EDITOR", true)))
-      .property("Is Dodging", &Player::IsDodging)(rttr::metadata("NO_SERIALIZE", true),
-                                                  (rttr::metadata("NO_EDITOR", true)))
-      .property("Start Dashing Timer", &Player::StartDashingTimer)(rttr::metadata("NO_SERIALIZE", true),
-                                                                   (rttr::metadata("NO_EDITOR", true)))
-      .property("Allow Dashing", &Player::AllowDashing)(rttr::metadata("NO_SERIALIZE", true),
-                                                        (rttr::metadata("NO_EDITOR", true)))
-      .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true),
-                                                               (rttr::metadata("NO_EDITOR", true)))
-      .property("Upgrade Attack", &Player::UpgradeAtk)(rttr::metadata("NO_SERIALIZE", true),
-                                                       (rttr::metadata("NO_EDITOR", true)))
-      .property("Upgrade Health", &Player::UpgradeHP)(rttr::metadata("NO_SERIALIZE", true),
-                                                      (rttr::metadata("NO_EDITOR", true)))
-      .property("Upgraded Attack", &Player::UpgradedAtk)(rttr::metadata("NO_SERIALIZE", true),
-                                                         (rttr::metadata("NO_EDITOR", true)))
-      .property("Upgraded Health", &Player::UpgradedHP)(rttr::metadata("NO_SERIALIZE", true),
-                                                        (rttr::metadata("NO_EDITOR", true)));
+      .property("Is Running", &Player::IsRunning)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Jumping", &Player::IsJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Dashing", &Player::IsDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Dodging", &Player::IsDodging)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Punching", &Player::IsPunching)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Shooting", &Player::IsShooting)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Blocking", &Player::IsBlocking)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Running", &Player::AllowRunning)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Punching", &Player::AllowPunching)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Jumping", &Player::AllowJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Shooting", &Player::AllowShooting)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Start Dashing Timer", &Player::StartDashingTimer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Allow Dashing", &Player::AllowDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgrade Attack", &Player::UpgradeAtk)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgrade Health", &Player::UpgradeHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgraded Attack", &Player::UpgradedAtk)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Upgraded Health", &Player::UpgradedHP)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
   }
 }
 

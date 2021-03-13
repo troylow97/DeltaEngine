@@ -39,7 +39,8 @@ public:
 #ifndef DE_EDITOR
     AudioEngine::SetEventVolume(AudioEngine::Play2DEvent("event:/BGM/BGM1"),-12.0f);
     JsonFile file;
-    env.pECS->GetWorld().Load("World/MainMenu.json");
+    //env.pECS->GetWorld().Load("World/MainMenu.json");
+    env.pECS->GetWorld().Load("World/gam250beta_t.json");
 #endif
 
 
