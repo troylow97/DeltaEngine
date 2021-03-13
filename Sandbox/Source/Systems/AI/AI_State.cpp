@@ -178,7 +178,6 @@ namespace DeltaEngine
             if (AITools::Distance_X_BetweenTwoEntities(monster, player) > 1.2f && !Attacking)
             {
 	           	//If Lancer is below player, fly up first
-
             	if(t.position.y < player_pos.y + Random::RandomFloat())
             	{
                     rb.Direction.y = 1;
@@ -201,6 +200,8 @@ namespace DeltaEngine
                                        player_pos.x + Random::RandomFloatRange(0.5f, 0.3f),
                                        player_pos.y + Random::RandomFloatRange(-0.1f, 0.0f)
                     });
+                s.SetBool("IsAlerted", false);
+                s.SetBool("LancerCharge", true);
             }
             else if (
                 AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.5f && 

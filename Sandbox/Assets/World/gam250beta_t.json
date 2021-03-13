@@ -16845,7 +16845,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17317,7 +17317,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -17671,7 +17671,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18143,7 +18143,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18202,7 +18202,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18497,7 +18497,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18556,7 +18556,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18733,7 +18733,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18910,7 +18910,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -18969,7 +18969,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
@@ -19028,7 +19028,7 @@
                 "Collision Layer": 11,
                 "Collision Layer ID": 1,
                 "Trigger": false,
-                "Platform": true
+                "Platform": false
             }
         },
         {
