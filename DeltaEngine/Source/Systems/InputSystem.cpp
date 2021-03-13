@@ -254,12 +254,15 @@ namespace DeltaEngine
 
   void InputSystem::Dodge()
   {  	
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, Collider& c1, State& s1, Attack& a1, Image& im1)
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, Collider& c1, State& s1, Attack& a1, Image& im1,RigidBody& r1)
     {
 	  if(p1.IsRunning)
 	  {
         StopRun();
 	  }
+
+      if (static_cast<int>(r1.Velocity.y) < 0)
+          return;
     	
       //if ((p1.IsShooting == true && p1.IsPunching == true) || p1.IsShooting == true || p1.IsPunching == true)
       {

@@ -195,9 +195,9 @@ namespace DeltaEngine
         else //dashing in mid air
         {
             if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 200 + r.Mass * 30, 0 };
+                r.AccumulatedForce += Vector2{ 800 + r.Mass * 30, 0 };
             else
-                r.AccumulatedForce -= Vector2{ 200 + r.Mass * 30, 0 };
+                r.AccumulatedForce -= Vector2{ 800 + r.Mass * 30, 0 };
         }
 
       }

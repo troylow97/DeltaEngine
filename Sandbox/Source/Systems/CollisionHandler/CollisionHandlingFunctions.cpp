@@ -188,14 +188,14 @@ namespace DeltaEngine
       //}
   
       //Player Dash
-      if (CheckEntityType(id1, EntityCategory::E_PLAYER_DASH, id2, EntityCategory::E_ENEMY) ||
-        CheckEntityType(id2, EntityCategory::E_PLAYER_DASH, id1, EntityCategory::E_ENEMY))
-      {
-        EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
-        ReduceHealth(enemy, 1); // 1
-        if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
-          env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
-      }
+      //if (CheckEntityType(id1, EntityCategory::E_PLAYER_DASH, id2, EntityCategory::E_ENEMY) ||
+      //  CheckEntityType(id2, EntityCategory::E_PLAYER_DASH, id1, EntityCategory::E_ENEMY))
+      //{
+      //  EntityID enemy = GetEntityID(id1, id2, EntityCategory::E_ENEMY);
+      //  ReduceHealth(enemy, 1); // 1
+      //  if (env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).CurrentHealth <= 0)
+      //    env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID()).EnemiesDefeated++;
+      //}
   
       //Player Melee Attack
       if (CheckEntityType(id1, EntityCategory::E_PLAYER_PUNCH, id2, EntityCategory::E_ENEMY) ||
