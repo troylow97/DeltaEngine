@@ -221,59 +221,6 @@ namespace DeltaEngine
 
 
     /*
-     ********************************************************************************
-     * GUI System
-     * Components for GUI
-     ********************************************************************************
-    */
-#pragma region 
-
-    rttr::registration::enumeration<GUIType>("GUIType")
-    (
-      rttr::value("Canvas", GUIType::Canvas),
-      rttr::value("Text", GUIType::Text),
-      rttr::value("Image", GUIType::Image),
-      rttr::value("Button", GUIType::Button),
-      rttr::value("Toggle", GUIType::Toggle),
-      rttr::value("Slider", GUIType::Slider)
-    );
-
-    rttr::registration::class_<GUI>("GUI")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<GUI>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Type", &GUI::type)(rttr::policy::prop::bind_as_ptr)
-      .property("Screen", &GUI::screen)(rttr::policy::prop::bind_as_ptr);
-
-    rttr::registration::class_<Button>( "Button" )
-      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Button>()->bits ) )
-      .constructor<>()( rttr::policy::ctor::as_object )
-      .property( "On Hover", &Button::on_hover )( rttr::policy::prop::bind_as_ptr )
-      .property( "On Click", &Button::on_click )( rttr::policy::prop::bind_as_ptr )
-      .property( "On Exit", &Button::on_exit )( rttr::policy::prop::bind_as_ptr )
-("NO_SERIALIZE", true),
-                                                                                     (rttr::metadata("NO_EDITOR", true));
-
-
-    rttr::registration::class_<Toggle>( "Toggle" )
-      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Toggle>()->bits ) )
-      .constructor<>()( rttr::policy::ctor::as_object )
-      .property( "On Change", &Toggle::on_change )( rttr::policy::prop::bind_as_ptr )
-      .property( "Value", &Toggle::value )( rttr::policy::prop::bind_as_ptr );
-
-    rttr::registration::class_<Slider>("Slider")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Slider>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Fill Entity", &Slider::fill_entity)(rttr::policy::prop::bind_as_ptr)
-      .property("Handle Entity", &Slider::handle_entity)(rttr::policy::prop::bind_as_ptr)
-      .property("Min", &Slider::min)(rttr::policy::prop::bind_as_ptr)
-      .property("Max", &Slider::max)(rttr::policy::prop::bind_as_ptr)
-      .property("Value", &Slider::value)(rttr::policy::prop::bind_as_ptr);
-
-#pragma endregion  
-    /*
-    ********************************************************************************
-    */
-    /*
     ********************************************************************************
     * Core System
     * Components for Core
@@ -299,12 +246,69 @@ namespace DeltaEngine
     rttr::registration::class_<AudioSource>( "Audio Source" )
       ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<AudioSource>()->bits ) )
       .constructor<>()( rttr::policy::ctor::as_object )
-      .property( "Source ID", &AudioSource::id )( rttr::policy::prop::bind_as_ptr )
+      .property("Audio File", &AudioSource::clip)(rttr::policy::prop::bind_as_ptr )
+      .property( "Source ID", &AudioSource::id )(rttr::metadata("NO_SERIALIZE", true),
+                                                  (rttr::metadata("NO_EDITOR", true)))
       .property( "Volume", &AudioSource::volume )( rttr::policy::prop::bind_as_ptr )
       .property( "Pitch", &AudioSource::pitch )( rttr::policy::prop::bind_as_ptr )
       .property( "Loop", &AudioSource::loop )( rttr::policy::prop::bind_as_ptr )
       .property( "Is Loop", &AudioSource::isLoop )( rttr::policy::prop::bind_as_ptr )
-      .property( "Is Event", &AudioSource::isEvent )( rttr::policy::prop::bind_as_ptr );
+      .property( "Is Event", &AudioSource::isEvent )( rttr::policy::prop::bind_as_ptr )
+      .property("Is Start", &AudioSource::isStart)(rttr::metadata("NO_SERIALIZE", true),
+                                                    (rttr::metadata("NO_EDITOR", true)));
+
+#pragma endregion  
+    /*
+    ********************************************************************************
+    */
+    /*
+    ********************************************************************************
+    * GUI System
+    * Components for GUI
+    ********************************************************************************
+    */
+#pragma region 
+
+    rttr::registration::enumeration<GUIType>("GUIType")
+      (
+      rttr::value("Canvas", GUIType::Canvas),
+      rttr::value("Text", GUIType::Text),
+      rttr::value("Image", GUIType::Image),
+      rttr::value("Button", GUIType::Button),
+      rttr::value("Toggle", GUIType::Toggle),
+      rttr::value("Slider", GUIType::Slider)
+      );
+
+    rttr::registration::class_<GUI>("GUI")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<GUI>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Type", &GUI::type)(rttr::policy::prop::bind_as_ptr)
+      .property("Screen", &GUI::screen)(rttr::policy::prop::bind_as_ptr);
+
+    rttr::registration::class_<Button>( "Button" )
+      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Button>()->bits ) )
+      .constructor<>()( rttr::policy::ctor::as_object )
+      .property( "On Hover", &Button::on_hover )( rttr::policy::prop::bind_as_ptr )
+      .property( "On Click", &Button::on_click )( rttr::policy::prop::bind_as_ptr )
+      .property( "On Exit", &Button::on_exit )( rttr::policy::prop::bind_as_ptr )
+      ("NO_SERIALIZE", true),
+      (rttr::metadata("NO_EDITOR", true));
+
+
+    rttr::registration::class_<Toggle>( "Toggle" )
+      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Toggle>()->bits ) )
+      .constructor<>()( rttr::policy::ctor::as_object )
+      .property( "On Change", &Toggle::on_change )( rttr::policy::prop::bind_as_ptr )
+      .property( "Value", &Toggle::value )( rttr::policy::prop::bind_as_ptr );
+
+    rttr::registration::class_<Slider>("Slider")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Slider>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Fill Entity", &Slider::fill_entity)(rttr::policy::prop::bind_as_ptr)
+      .property("Handle Entity", &Slider::handle_entity)(rttr::policy::prop::bind_as_ptr)
+      .property("Min", &Slider::min)(rttr::policy::prop::bind_as_ptr)
+      .property("Max", &Slider::max)(rttr::policy::prop::bind_as_ptr)
+      .property("Value", &Slider::value)(rttr::policy::prop::bind_as_ptr);
 
 #pragma endregion  
     /*
@@ -437,6 +441,27 @@ namespace DeltaEngine
       .property("Detail", &Text::m_Text)(rttr::policy::prop::bind_as_ptr)
       .property("Alignment", &Text::alignment)(rttr::policy::prop::bind_as_ptr);
 
+    rttr::registration::class_<Animator>( "Animator" )
+      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Animator>()->bits ) )
+      .constructor<>()( rttr::policy::ctor::as_object )
+      .property( "Controller Key", &Animator::m_ControllerKey )( rttr::policy::prop::bind_as_ptr )
+      .property( "Clip Key", &Animator::m_ClipKey )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                     ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Timer", &Animator::m_Timer )( rttr::metadata( "NO_SERIALIZE", true ), ( rttr::metadata( "NO_EDITOR", true ) ) )
+      .property( "Speed", &Animator::m_Speed )( rttr::policy::prop::bind_as_ptr );
+
+
+    rttr::registration::class_<State>("State")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<State>()->bits))
+      .property("Parameters", &State::parameters)(rttr::metadata("NO_SERIALIZE", true),
+                                                  (rttr::metadata("NO_EDITOR", true)));
+
+    rttr::registration::class_<Camera>("Camera")
+      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Camera>()->bits))
+      .constructor<>()(rttr::policy::ctor::as_object)
+      .property("Camera Size", &Camera::m_Size)(rttr::policy::prop::bind_as_ptr)
+      .property("Background Color", &Camera::backgroundColor)(rttr::policy::prop::bind_as_ptr);
+
   rttr::registration::class_<ParticleEmitter>( "ParticleEmitter" )
     ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<ParticleEmitter>()->bits ) )
     .constructor<>()( rttr::policy::ctor::as_object )
@@ -462,38 +487,7 @@ namespace DeltaEngine
     .property( "shape", &ParticleEmitter::shape)( rttr::policy::prop::bind_as_ptr )
     .property( "genType", &ParticleEmitter::genType)( rttr::policy::prop::bind_as_ptr )
     .property( "radius", &ParticleEmitter::radius)( rttr::policy::prop::bind_as_ptr )
-    .property( "shapeTransform", &ParticleEmitter::shapeTransform)( rttr::policy::prop::bind_as_ptr )
-    ;
-
-    rttr::registration::class_<State>("State")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<State>()->bits))
-      .property("Parameters", &State::parameters)(rttr::metadata("NO_SERIALIZE", true),
-                                                  (rttr::metadata("NO_EDITOR", true)));
-
-    rttr::registration::class_<Camera>("Camera")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Camera>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Camera Size", &Camera::m_Size)(rttr::policy::prop::bind_as_ptr)
-      .property("Background Color", &Camera::backgroundColor)(rttr::policy::prop::bind_as_ptr);
-
-    rttr::registration::class_<ParticleEmitter>("ParticleEmitter")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<ParticleEmitter>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("playOnAwake", &ParticleEmitter::playOnAwake)(rttr::policy::prop::bind_as_ptr)
-      .property("duration", &ParticleEmitter::duration)(rttr::policy::prop::bind_as_ptr)
-      .property("looping", &ParticleEmitter::looping)(rttr::policy::prop::bind_as_ptr)
-      .property("prewarm", &ParticleEmitter::prewarm)(rttr::policy::prop::bind_as_ptr)
-      .property("startDelay", &ParticleEmitter::startDelay)(rttr::policy::prop::bind_as_ptr)
-      .property("startLifetimeMin", &ParticleEmitter::startLifetimeMin)(rttr::policy::prop::bind_as_ptr)
-      .property("startLifetimeMax", &ParticleEmitter::startLifetimeMax)(rttr::policy::prop::bind_as_ptr)
-      .property("startColorMin", &ParticleEmitter::startColorMin)(rttr::policy::prop::bind_as_ptr)
-      .property("startColorMax", &ParticleEmitter::startColorMax)(rttr::policy::prop::bind_as_ptr)
-      .property("startRotationMin", &ParticleEmitter::startRotationMin)(rttr::policy::prop::bind_as_ptr)
-      .property("startRotationMax", &ParticleEmitter::startRotationMax)(rttr::policy::prop::bind_as_ptr)
-      .property("startSizeMin", &ParticleEmitter::startSizeMin)(rttr::policy::prop::bind_as_ptr)
-      .property("startSizeMax", &ParticleEmitter::startSizeMax)(rttr::policy::prop::bind_as_ptr)
-      .property("maxParticles", &ParticleEmitter::maxParticles)(rttr::policy::prop::bind_as_ptr)
-      .property("rateOverTime", &ParticleEmitter::rateOverTime)(rttr::policy::prop::bind_as_ptr);
+    .property( "shapeTransform", &ParticleEmitter::shapeTransform)( rttr::policy::prop::bind_as_ptr );
 
 #pragma endregion
     /*
@@ -513,8 +507,6 @@ namespace DeltaEngine
       .property("AIState", &AI::key)(rttr::policy::prop::bind_as_ptr)
       .property("Transition", &AI::transition)(rttr::metadata("NO_SERIALIZE", true),
                                                (rttr::metadata("NO_EDITOR", true)));
-
- 
 
     rttr::registration::class_<Health>("Health")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Health>()->bits))
@@ -662,7 +654,7 @@ namespace DeltaEngine::RT_Reflect
     case ComponentMeta::ComponentBits<Slider>():
       return rttr::type::get_by_name("Slider");
     case ComponentMeta::ComponentBits<AudioSource>():
-      return rttr::type::get_by_name("AudioSource");
+      return rttr::type::get_by_name("Audio Source");
     default:
       return rttr::type::get<int>();
     }
@@ -941,7 +933,7 @@ namespace DeltaEngine::RT_Reflect
       Serialize::WriteObject(*static_cast<Toggle*>(ptr), writer);
     else if (str == "Slider")
       Serialize::WriteObject(*static_cast<Slider*>(ptr), writer);
-    else if (str == "AudioSource" )
+    else if (str == "Audio Source" )
       Serialize::WriteObject(*static_cast<AudioSource*>(ptr), writer);
   }
 
@@ -995,7 +987,7 @@ namespace DeltaEngine::RT_Reflect
       em.AddComponent<Toggle>(id, var.get_value<Toggle>());
     else if (str == "Slider")
       em.AddComponent<Slider>(id, var.get_value<Slider>());
-    else if (str == "AudioSource")
+    else if (str == "Audio Source")
       em.AddComponent<AudioSource>(id, var.get_value<AudioSource>());
   }
 }

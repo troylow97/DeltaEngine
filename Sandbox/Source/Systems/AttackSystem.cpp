@@ -347,7 +347,7 @@ namespace DeltaEngine
       EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
       static size_t c_id{u64_max};
    	
-      AudioEngine::Play2DEvent( "event:/Player/PlayerPunch" );
+      AudioEngine::Play2DEvent( "event:/Player/Player Punch Wind" );
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.6f; //offset of spawn from player

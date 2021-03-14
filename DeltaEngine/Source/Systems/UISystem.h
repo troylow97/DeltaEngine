@@ -21,6 +21,8 @@ void LateUpdate() override;
 
 static void PopScreen();
 static void PushScreen(unsigned screen);
+static void ClearScreens();
+static unsigned CurrentScreen();
 
 END_DEFINE_SYSTEM( UISystem )
 }

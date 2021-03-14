@@ -1,9 +1,1708 @@
 {
     "Entities": [
         {
-            "Parent": {
-                "ID": 18446744073709551615
+            "Entity Name": {
+                "Name": "camera"
             },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 17.6269474029541,
+                    "y": 2.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 2.0,
+                "Background Color": {
+                    "r": 4.086021760940639e-7,
+                    "g": 6.385957931343e-7,
+                    "b": 9.999999974752428e-7,
+                    "a": 1.0
+                }
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Pause Menu Overlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 1
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pausemenu_Overlay",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 960.0,
+                    "y": 1080.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 1
+            },
+            "Entity Name": {
+                "Name": "Pause Menu Text"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 1
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Pause_Title",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 641.0,
+                    "y": 255.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": -0.05000000074505806,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 1
+            },
+            "Entity Name": {
+                "Name": "Resume Button"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 1
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "Resume",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Resume_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 435.0,
+                    "y": 117.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 3.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Resume",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
+            "Parent": {
+                "ID": 1
+            },
+            "Entity Name": {
+                "Name": "Restart Button"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 1
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "Restart1",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Restart_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 447.0,
+                    "y": 117.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 4.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Restart",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
+            "Parent": {
+                "ID": 1
+            },
+            "Entity Name": {
+                "Name": "Control Button"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 1
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "OpenControls",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Controls_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 504.0,
+                    "y": 117.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 5.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Controls",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
+            "Parent": {
+                "ID": 1
+            },
+            "Entity Name": {
+                "Name": "Options Button"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 1
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "OpenOptions",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Options_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 447.0,
+                    "y": 117.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 6.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Options",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
+            "Parent": {
+                "ID": 1
+            },
+            "Entity Name": {
+                "Name": "Credits Button"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 1
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "OpenCredits",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Credits_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 438.0,
+                    "y": 117.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 7.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Credits",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
+            "Parent": {
+                "ID": 1
+            },
+            "Entity Name": {
+                "Name": "Quit Game Button"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 1
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "QuitGame",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/QuitGame_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 522.0,
+                    "y": 117.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 8.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Quit",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "Control Overlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 2
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 9
+            },
+            "Entity Name": {
+                "Name": "Control Page"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 2
+            },
+            "Button": {
+                "On Hover": "",
+                "On Click": "Back",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Mainmenu_Popup_Controls",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1920.0,
+                    "y": 1080.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 0.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "Option Overlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 3
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 11
+            },
+            "Entity Name": {
+                "Name": "Option Button"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 3
+            },
+            "Button": {
+                "On Hover": "",
+                "On Click": "Back",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Mainmenu_Popup_Options",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1920.0,
+                    "y": 1080.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 0.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "Credits Overlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 4
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 13
+            },
+            "Entity Name": {
+                "Name": "Credits Page"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 4
+            },
+            "Button": {
+                "On Hover": "",
+                "On Click": "Back",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Credits_Page_Full",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1920.0,
+                    "y": 1080.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "Quit Game Overlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 5
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Confirmation_Popup",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1080.0,
+                    "y": 1000.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 15
+            },
+            "Entity Name": {
+                "Name": "Quit Game Text"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 5
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/AREYOUSURE_HL",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 120.0
+                },
+                "Width/Height": {
+                    "x": 848.0,
+                    "y": 116.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 4,
+                "Order": 1.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 15
+            },
+            "Entity Name": {
+                "Name": "Quit Game Yes"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 5
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "ConfirmQuitInGame",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/YES_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": -300.0,
+                    "y": -80.0
+                },
+                "Width/Height": {
+                    "x": 374.0,
+                    "y": 156.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 4,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Yes",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
+            "Parent": {
+                "ID": 15
+            },
+            "Entity Name": {
+                "Name": "Quit Game No"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 5
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "Back",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/NO_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 80.0,
+                    "y": -80.0
+                },
+                "Width/Height": {
+                    "x": 374.0,
+                    "y": 156.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 4,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_No",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -71,9 +1770,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -141,9 +1837,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPlatform"
             },
@@ -211,9 +1904,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPlatformV2"
             },
@@ -281,9 +1971,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPlatform"
             },
@@ -351,9 +2038,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Scaffolding"
             },
@@ -421,9 +2105,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -491,9 +2172,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -561,9 +2239,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LeftCornerPlatform"
             },
@@ -631,9 +2306,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -701,9 +2373,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -771,9 +2440,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -841,9 +2507,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "RightBuildingPlatform"
             },
@@ -911,9 +2574,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingPillars"
             },
@@ -981,9 +2641,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBlue1"
             },
@@ -1051,9 +2708,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBlue2"
             },
@@ -1121,9 +2775,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBlue3"
             },
@@ -1191,9 +2842,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBrown1"
             },
@@ -1261,9 +2909,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBrown2"
             },
@@ -1331,9 +2976,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBrown3"
             },
@@ -1401,9 +3043,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalToBrown"
             },
@@ -1471,9 +3110,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownToNormal"
             },
@@ -1541,9 +3177,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails1"
             },
@@ -1611,9 +3244,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails2"
             },
@@ -1681,9 +3311,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails3"
             },
@@ -1751,9 +3378,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails4"
             },
@@ -1821,9 +3445,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails5"
             },
@@ -1891,9 +3512,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails6"
             },
@@ -1961,9 +3579,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -2031,9 +3646,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBrown2"
             },
@@ -2101,9 +3713,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails2"
             },
@@ -2171,9 +3780,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -2241,9 +3847,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails5"
             },
@@ -2311,9 +3914,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBrown3"
             },
@@ -2381,9 +3981,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -2451,9 +4048,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBlue1"
             },
@@ -2521,9 +4115,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails6"
             },
@@ -2591,9 +4182,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails5"
             },
@@ -2661,9 +4249,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails1"
             },
@@ -2731,9 +4316,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -2801,9 +4383,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBrown1"
             },
@@ -2871,9 +4450,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails3"
             },
@@ -2941,9 +4517,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -3011,9 +4584,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalToBrown"
             },
@@ -3081,9 +4651,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBrown3"
             },
@@ -3151,9 +4718,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -3221,9 +4785,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBrown1"
             },
@@ -3291,9 +4852,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -3361,9 +4919,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "DetailsBrown2"
             },
@@ -3431,9 +4986,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -3501,9 +5053,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building"
             },
@@ -3571,9 +5120,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -3641,9 +5187,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building2"
             },
@@ -3711,9 +5254,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building2"
             },
@@ -3781,9 +5321,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LeftCornerPlatform"
             },
@@ -3851,9 +5388,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -3921,9 +5455,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -3991,9 +5522,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -4061,9 +5589,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -4131,9 +5656,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -4201,9 +5723,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -4271,9 +5790,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -4341,9 +5857,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building"
             },
@@ -4411,9 +5924,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -4481,9 +5991,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building"
             },
@@ -4551,9 +6058,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -4621,9 +6125,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building2"
             },
@@ -4691,9 +6192,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -4761,9 +6259,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -4831,9 +6326,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -4901,9 +6393,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -4971,9 +6460,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -5041,9 +6527,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -5111,9 +6594,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -5181,9 +6661,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -5251,9 +6728,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -5321,9 +6795,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -5391,9 +6862,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -5461,9 +6929,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "RightBuildingPlatform"
             },
@@ -5531,9 +6996,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPlatform"
             },
@@ -5601,9 +7063,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -5671,9 +7130,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -5741,9 +7197,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -5811,9 +7264,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPlatform"
             },
@@ -5881,9 +7331,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownToNormal"
             },
@@ -5951,9 +7398,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -6021,9 +7465,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building"
             },
@@ -6091,9 +7532,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails2"
             },
@@ -6161,9 +7599,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails4"
             },
@@ -6231,9 +7666,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -6301,9 +7733,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails1"
             },
@@ -6371,9 +7800,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -6441,9 +7867,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails3"
             },
@@ -6511,9 +7934,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails6"
             },
@@ -6581,9 +8001,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -6651,9 +8068,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails5"
             },
@@ -6721,9 +8135,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -6791,9 +8202,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Scaffolding"
             },
@@ -6861,9 +8269,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -6931,9 +8336,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -7001,9 +8403,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -7071,9 +8470,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Scaffolding"
             },
@@ -7141,9 +8537,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building3"
             },
@@ -7211,9 +8604,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building4"
             },
@@ -7281,9 +8671,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -7351,9 +8738,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -7421,9 +8805,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -7491,9 +8872,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -7561,9 +8939,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -7631,9 +9006,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -7701,9 +9073,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -7771,9 +9140,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPlatformV2"
             },
@@ -7841,9 +9207,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building4"
             },
@@ -7911,9 +9274,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Scaffolding"
             },
@@ -7981,9 +9341,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPlatformV2"
             },
@@ -8051,9 +9408,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -8121,9 +9475,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -8191,9 +9542,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -8261,9 +9609,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -8331,9 +9676,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -8401,9 +9743,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -8471,9 +9810,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -8541,9 +9877,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -8611,9 +9944,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -8681,9 +10011,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -8751,9 +10078,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -8821,9 +10145,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -8891,9 +10212,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -8961,9 +10279,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -9031,9 +10346,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -9101,9 +10413,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -9171,9 +10480,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -9241,9 +10547,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -9311,9 +10614,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -9381,9 +10681,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -9451,9 +10748,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -9521,9 +10815,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -9591,9 +10882,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -9661,9 +10949,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -9731,9 +11016,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -9801,9 +11083,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -9871,9 +11150,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -9941,9 +11217,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10011,9 +11284,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10081,9 +11351,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10151,9 +11418,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10221,9 +11485,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10291,9 +11552,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10361,9 +11619,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10431,9 +11686,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10501,9 +11753,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10571,9 +11820,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -10641,9 +11887,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building3"
             },
@@ -10711,9 +11954,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building"
             },
@@ -10781,9 +12021,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building4"
             },
@@ -10851,9 +12088,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -10921,9 +12155,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -10991,9 +12222,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -11061,9 +12289,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -11131,9 +12356,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -11201,9 +12423,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -11271,9 +12490,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -11341,9 +12557,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -11411,9 +12624,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -11481,9 +12691,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -11551,9 +12758,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -11621,9 +12825,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building2"
             },
@@ -11691,9 +12892,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -11761,9 +12959,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -11831,9 +13026,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -11901,9 +13093,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -11971,9 +13160,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavementDetails4"
             },
@@ -12041,9 +13227,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -12111,9 +13294,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building4"
             },
@@ -12181,9 +13361,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -12251,9 +13428,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -12321,9 +13495,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -12391,9 +13562,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -12461,9 +13629,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -12531,9 +13696,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building"
             },
@@ -12601,9 +13763,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "LongBuildingPlatform"
             },
@@ -12671,9 +13830,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -12741,9 +13897,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Scaffolding"
             },
@@ -12811,9 +13964,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingShort"
             },
@@ -12881,9 +14031,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ScaffoldingPillars"
             },
@@ -12951,9 +14098,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPlatformV2"
             },
@@ -13021,9 +14165,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -13091,9 +14232,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -13161,9 +14299,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -13231,9 +14366,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -13301,9 +14433,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalToBrown"
             },
@@ -13371,9 +14500,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -13441,9 +14567,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -13511,9 +14634,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -13581,9 +14701,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -13651,9 +14768,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Building4"
             },
@@ -13721,9 +14835,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -13791,9 +14902,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -13861,9 +14969,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "ShortBuildingPlatform"
             },
@@ -13931,9 +15036,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPlatformV2"
             },
@@ -14001,9 +15103,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -14071,9 +15170,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Railings"
             },
@@ -14141,9 +15237,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -14211,9 +15304,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -14281,9 +15371,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -14351,9 +15438,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -14421,9 +15505,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -14491,9 +15572,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -14561,9 +15639,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -14631,9 +15706,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -14701,9 +15773,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -14771,9 +15840,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -14841,9 +15907,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -14911,9 +15974,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -14981,9 +16041,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -15051,9 +16108,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -15121,9 +16175,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -15191,9 +16242,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -15261,9 +16309,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -15331,9 +16376,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -15401,9 +16443,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -15471,9 +16510,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -15541,9 +16577,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -15611,9 +16644,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -15681,9 +16711,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -15751,9 +16778,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownPavement"
             },
@@ -15821,9 +16845,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "subway"
             },
@@ -15891,9 +16912,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "BrownToNormal"
             },
@@ -15961,9 +16979,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalPavement"
             },
@@ -16031,9 +17046,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -16101,9 +17113,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -16171,9 +17180,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg4"
             },
@@ -16241,9 +17247,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg3"
             },
@@ -16311,9 +17314,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "bg2"
             },
@@ -16381,9 +17381,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": ""
             },
@@ -16451,9 +17448,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -16521,9 +17515,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -16591,9 +17582,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": ""
             },
@@ -16661,9 +17649,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "NormalToBrown"
             },
@@ -16731,9 +17716,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "leftworldcollider"
             },
@@ -16790,9 +17772,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "floorcollider"
             },
@@ -16849,9 +17828,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "laddercollider"
             },
@@ -16908,9 +17884,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "laddercollider"
             },
@@ -16967,9 +17940,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17026,9 +17996,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17085,9 +18052,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17144,9 +18108,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17203,9 +18164,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17262,9 +18220,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17321,9 +18276,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17380,9 +18332,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "laddercollider"
             },
@@ -17439,9 +18388,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "laddercollider"
             },
@@ -17498,9 +18444,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "laddercollider"
             },
@@ -17557,9 +18500,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "laddercollider"
             },
@@ -17616,9 +18556,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17675,9 +18612,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17734,9 +18668,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -17793,9 +18724,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -17852,9 +18780,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -17911,9 +18836,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -17970,9 +18892,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -18029,9 +18948,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -18088,9 +19004,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18147,9 +19060,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18206,9 +19116,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18265,9 +19172,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18324,9 +19228,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18383,9 +19284,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18442,9 +19340,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18501,9 +19396,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18560,9 +19452,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18619,9 +19508,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18678,9 +19564,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18737,9 +19620,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18796,9 +19676,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18855,9 +19732,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18914,9 +19788,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -18973,9 +19844,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -19032,9 +19900,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -19091,9 +19956,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -19150,9 +20012,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -19209,9 +20068,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -19268,9 +20124,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -19327,9 +20180,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -19386,9 +20236,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -19445,9 +20292,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -19504,9 +20348,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "laddercollider"
             },
@@ -19563,9 +20404,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "rightworldcollider"
             },
@@ -19622,9 +20460,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -19681,9 +20516,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -19740,9 +20572,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -19799,9 +20628,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -19858,9 +20684,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "platformcollider"
             },
@@ -19917,9 +20740,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -19976,9 +20796,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -20035,9 +20852,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "railingcollider"
             },
@@ -20094,47 +20908,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
-            "Entity Name": {
-                "Name": "camera"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 17.6269474029541,
-                    "y": 2.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Camera": {
-                "Camera Size": 2.0,
-                "Background Color": {
-                    "r": 4.086021760940639e-7,
-                    "g": 6.385957931343e-7,
-                    "b": 9.999999974752428e-7,
-                    "a": 1.0
-                }
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "sign"
             },
@@ -20207,9 +20980,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "sign"
             },
@@ -20282,9 +21052,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "sign"
             },
@@ -20357,9 +21124,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "sign"
             },
@@ -20432,9 +21196,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "sign"
             },
@@ -20507,9 +21268,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "sign"
             },
@@ -20582,9 +21340,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -20657,9 +21412,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -20732,9 +21484,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -20807,9 +21556,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -20882,9 +21628,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -20957,9 +21700,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -21032,9 +21772,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -21107,9 +21844,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -21182,9 +21916,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -21257,9 +21988,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -21332,9 +22060,6 @@
             "State": {}
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "window"
             },
@@ -21407,826 +22132,6 @@
             "State": {}
         },
         {
-            "Entity Name": {
-                "Name": "Menu_PauseBG"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Pausemenu_Overlay",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 1920.0,
-                    "y": 1080.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 0.5
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 0.5
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 0.5
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Preserve Aspect": true,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Interface",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Menu_Button_Resume"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Resume_D",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": -280.0
-                },
-                "Width/Height": {
-                    "x": 420.0,
-                    "y": 120.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Menu_Resume",
-                "Speed": 1.0
-            },
-            "State": {},
-            "GUI": {
-                "Func": "Unpause",
-                "File": "",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Menu_PauseTitle"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Pause_Title",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 600.0,
-                    "y": 600.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": true,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Interface",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Menu_Button_Restart"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Restart_D",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 5.0,
-                    "y": -400.0
-                },
-                "Width/Height": {
-                    "x": 420.0,
-                    "y": 120.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Menu_Restart",
-                "Speed": 1.0
-            },
-            "State": {},
-            "GUI": {
-                "Func": "Start",
-                "File": "World/gam250alphaWithCollider.json",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Menu_Button_Quit"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/QuitGame_D",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 25.0,
-                    "y": -760.0
-                },
-                "Width/Height": {
-                    "x": 420.0,
-                    "y": 120.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Menu_Quit",
-                "Speed": 1.0
-            },
-            "State": {},
-            "GUI": {
-                "Func": "Quit",
-                "File": "",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Menu_Button_ExitToMenu"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ExitTM_D",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 15.0,
-                    "y": -640.0
-                },
-                "Width/Height": {
-                    "x": 620.0,
-                    "y": 130.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Menu_ExitToMenu",
-                "Speed": 1.0
-            },
-            "State": {},
-            "GUI": {
-                "Func": "Start",
-                "File": "World/MainMenu.json",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Menu_Button_Controls"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Controls_D",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 20.0,
-                    "y": -520.0
-                },
-                "Width/Height": {
-                    "x": 420.0,
-                    "y": 120.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Menu_Controls",
-                "Speed": 1.0
-            },
-            "State": {},
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 2
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Menu_Controls"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Mainmenu_Popup_Controls",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 1920.0,
-                    "y": 100.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Anchor Max": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 2,
-                "Order": 0.0,
-                "Preserve Aspect": true,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "GUI": {
-                "Func": "PopScreen",
-                "File": "",
-                "GUI Type": "Button",
-                "Screen No.": 2,
-                "Target No.": 0
-            }
-        },
-        {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Player"
             },
@@ -22331,13 +22236,13 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 128,
-                "Melee Damage": 2,
-                "SMG Damage": 64,
-                "Melee Combo Damage": 2,
+                "Range Damage": 512,
+                "Melee Damage": 8,
+                "SMG Damage": 256,
+                "Melee Combo Damage": 8,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
@@ -24788,9 +24693,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "WallEnd"
             },
@@ -24858,9 +24760,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -24928,9 +24827,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 18446744073709551615
-            },
             "Entity Name": {
                 "Name": "Bg"
             },
@@ -25003,6 +24899,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -25087,13 +24987,6 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
-            },
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Interface",
-                "Screen No.": 0,
-                "Target No.": 0
             }
         },
         {
@@ -25102,6 +24995,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -25186,13 +25083,6 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
-            },
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Interface",
-                "Screen No.": 0,
-                "Target No.": 0
             }
         }
     ]

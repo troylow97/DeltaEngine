@@ -30,7 +30,9 @@ namespace DeltaEngine
 
   void GamePanel::Render()
   {
-    if (ImGui::Begin(m_name.c_str(), nullptr, ImGuiWindowFlags_MenuBar))
+    m_active = ImGui::Begin(m_name.c_str(), nullptr,ImGuiWindowFlags_MenuBar);
+
+    if (m_active)
     {     
       ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
       render_pos = {ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y};

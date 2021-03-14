@@ -24,6 +24,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/TypeAlias.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/Debugging/Profiler/Profiler.h"
+#include "Components/AudioSource.h"
 
 namespace DeltaEngine
 {
@@ -69,6 +70,30 @@ namespace DeltaEngine
     Profiler::Instance().Record("Audio Update");
   }
 
+  void AudioEngine::AudioSourcePlay( AudioSource &a )
+  {
+    a.id = Play( a.clip, a.volume );
+    SetChannelPitch( a.id, a.pitch );
+  }
+
+  void AudioEngine::AudioSourcePlay2DEvent( AudioSource &a, ParametersMap params )
+  {
+    a.id = Play2DEvent( a.clip, params );
+    SetEventVolume( a.id, a.volume );
+    SetEventPitch( a.id, a.pitch );
+  }
+  void AudioEngine::AudioSourcePlay3DEvent( AudioSource &a, Audio3DAttributes attributes, ParametersMap params )
+  {
+    a.id = Play3DEvent( a.clip, attributes, params );
+    SetEventVolume( a.id, a.volume );
+    SetEventPitch( a.id, a.pitch );
+  }
+
+  void AudioEngine::StopAllAudio()
+  {
+    StopChannels();
+    StopAllBusEvents( "bus:/" );
+  }
   // Core
   void AudioEngine::LoadSound(const std::string& name, bool loop, bool stream, bool is3D)
   {
@@ -95,7 +120,7 @@ namespace DeltaEngine
     }
   }
 
-  AudioEngine::ChannelID AudioEngine::Play(const std::string& name, const float dB, Vector3 pos)
+  AudioEngine::ChannelID AudioEngine::Play(const std::string& name, const float volume, Vector3 pos)
   {
     ChannelID id = fmod->nextChannelID++;
     auto result = fmod->sounds.find(name);
@@ -116,7 +141,7 @@ namespace DeltaEngine
         auto f_vec = ToFMODVector(pos);
         FMODWrapper::ErrorChecker(channel->set3DAttributes(&f_vec, nullptr));
       }
-      FMODWrapper::ErrorChecker(channel->setVolume(dBToVolume(dB)));
+      FMODWrapper::ErrorChecker(channel->setVolume(volume));
       FMODWrapper::ErrorChecker(channel->setPaused(false));
       fmod->channels[id] = channel;
     }

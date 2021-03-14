@@ -2,49 +2,14 @@
     "Entities": [
         {
             "Entity Name": {
-                "Name": "Camera"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Camera": {
-                "Camera Size": 2.0,
-                "Background Color": {
-                    "r": 0.1921568661928177,
-                    "g": 0.3019607961177826,
-                    "b": 0.4745098054409027,
-                    "a": 1.0
-                }
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Base Overlay"
+                "Name": "Pause Menu Overlay"
             },
             "Entity Type": {
                 "Category": "none"
             },
             "GUI": {
                 "Type": "Canvas",
-                "Screen": 0
+                "Screen": 1
             },
             "Transform": {
                 "Position": {
@@ -66,7 +31,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/MAINMENU_BG",
+                    "key": "Textures/Pausemenu_Overlay",
                     "index": 0
                 },
                 "Size": {
@@ -95,8 +60,8 @@
                     "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 100.0,
-                    "y": 100.0
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -107,12 +72,12 @@
                     "y": 0.0
                 },
                 "Anchor Max": {
-                    "x": 1.0,
+                    "x": 0.5,
                     "y": 1.0
                 },
                 "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
+                    "x": 0.0,
+                    "y": 1.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -123,9 +88,9 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 0,
+                "Layer": 1,
                 "Order": 0.0,
-                "Preserve Aspect": false,
+                "Preserve Aspect": true,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
@@ -133,17 +98,17 @@
         },
         {
             "Parent": {
-                "ID": 1
+                "ID": 0
             },
             "Entity Name": {
-                "Name": "Menu Title"
+                "Name": "Pause Menu Text"
             },
             "Entity Type": {
                 "Category": "none"
             },
             "GUI": {
-                "Type": "Image",
-                "Screen": 0
+                "Type": "Canvas",
+                "Screen": 1
             },
             "Transform": {
                 "Position": {
@@ -165,7 +130,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/MainMenu_Title",
+                    "key": "Textures/Pause_Title",
                     "index": 0
                 },
                 "Size": {
@@ -194,23 +159,23 @@
                     "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 1800.0,
-                    "y": 322.0
+                    "x": 641.0,
+                    "y": 255.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
                 "Top": 0.0,
                 "Bottom": 0.0,
                 "Anchor Min": {
-                    "x": 0.5,
+                    "x": 0.0,
                     "y": 1.0
                 },
                 "Anchor Max": {
-                    "x": 0.5,
+                    "x": 0.0,
                     "y": 1.0
                 },
                 "Pivot": {
-                    "x": 0.5,
+                    "x": -0.05000000074505806,
                     "y": 1.0
                 },
                 "Materials": {
@@ -222,7 +187,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 0,
+                "Layer": 2,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": true,
@@ -232,21 +197,21 @@
         },
         {
             "Parent": {
-                "ID": 1
+                "ID": 0
             },
             "Entity Name": {
-                "Name": "Start Game Button"
+                "Name": "Resume Button"
             },
             "Entity Type": {
                 "Category": "none"
             },
             "GUI": {
                 "Type": "Button",
-                "Screen": 0
+                "Screen": 1
             },
             "Button": {
                 "On Hover": "ButtonHover",
-                "On Click": "StartGame",
+                "On Click": "",
                 "On Exit": ""
             },
             "Transform": {
@@ -269,7 +234,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/StartGame_D",
+                    "key": "Textures/Resume_D",
                     "index": 0
                 },
                 "Size": {
@@ -294,12 +259,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 15.0,
-                    "y": -400.0
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 92.0
+                    "x": 435.0,
+                    "y": 117.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -315,7 +280,7 @@
                 },
                 "Pivot": {
                     "x": 0.0,
-                    "y": 1.0
+                    "y": 3.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -326,7 +291,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 0,
+                "Layer": 2,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": true,
@@ -334,14 +299,123 @@
                 "Wireframe": false
             },
             "Animator": {
-                "Controller Key": "Animation/Menu_Start",
+                "Controller Key": "Animation/Menu_Resume",
                 "Speed": 1.0
             },
             "State": {}
         },
         {
             "Parent": {
-                "ID": 1
+                "ID": 0
+            },
+            "Entity Name": {
+                "Name": "Restart Button"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 1
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Restart_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 447.0,
+                    "y": 117.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 4.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 2,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_Restart",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
+            "Parent": {
+                "ID": 0
             },
             "Entity Name": {
                 "Name": "Control Button"
@@ -351,7 +425,7 @@
             },
             "GUI": {
                 "Type": "Button",
-                "Screen": 0
+                "Screen": 1
             },
             "Button": {
                 "On Hover": "ButtonHover",
@@ -403,12 +477,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -5.0,
-                    "y": -500.0
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 94.0
+                    "x": 504.0,
+                    "y": 117.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -424,7 +498,7 @@
                 },
                 "Pivot": {
                     "x": 0.0,
-                    "y": 1.0
+                    "y": 5.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -435,7 +509,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 0,
+                "Layer": 2,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": true,
@@ -450,7 +524,7 @@
         },
         {
             "Parent": {
-                "ID": 1
+                "ID": 0
             },
             "Entity Name": {
                 "Name": "Options Button"
@@ -460,7 +534,7 @@
             },
             "GUI": {
                 "Type": "Button",
-                "Screen": 0
+                "Screen": 1
             },
             "Button": {
                 "On Hover": "ButtonHover",
@@ -512,12 +586,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -20.0,
-                    "y": -600.0
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 92.0
+                    "x": 447.0,
+                    "y": 117.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -533,7 +607,7 @@
                 },
                 "Pivot": {
                     "x": 0.0,
-                    "y": 1.0
+                    "y": 6.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -544,7 +618,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 0,
+                "Layer": 2,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": true,
@@ -559,7 +633,7 @@
         },
         {
             "Parent": {
-                "ID": 1
+                "ID": 0
             },
             "Entity Name": {
                 "Name": "Credits Button"
@@ -569,7 +643,7 @@
             },
             "GUI": {
                 "Type": "Button",
-                "Screen": 0
+                "Screen": 1
             },
             "Button": {
                 "On Hover": "ButtonHover",
@@ -621,12 +695,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -20.0,
-                    "y": -700.0
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 92.0
+                    "x": 438.0,
+                    "y": 117.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -642,7 +716,7 @@
                 },
                 "Pivot": {
                     "x": 0.0,
-                    "y": 1.0
+                    "y": 7.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -653,7 +727,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 0,
+                "Layer": 2,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": true,
@@ -668,7 +742,7 @@
         },
         {
             "Parent": {
-                "ID": 1
+                "ID": 0
             },
             "Entity Name": {
                 "Name": "Quit Game Button"
@@ -678,7 +752,7 @@
             },
             "GUI": {
                 "Type": "Button",
-                "Screen": 0
+                "Screen": 1
             },
             "Button": {
                 "On Hover": "ButtonHover",
@@ -730,12 +804,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 5.0,
-                    "y": -800.0
+                    "x": 0.0,
+                    "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 92.0
+                    "x": 522.0,
+                    "y": 117.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -751,7 +825,7 @@
                 },
                 "Pivot": {
                     "x": 0.0,
-                    "y": 1.0
+                    "y": 8.0
                 },
                 "Materials": {
                     "key": "Default"
@@ -762,7 +836,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 0,
+                "Layer": 2,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": true,
@@ -785,284 +859,6 @@
             "GUI": {
                 "Type": "Canvas",
                 "Screen": 2
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "Parent": {
-                "ID": 10
-            },
-            "Entity Name": {
-                "Name": "Option Button"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Button",
-                "Screen": 3
-            },
-            "Button": {
-                "On Hover": "",
-                "On Click": "Back",
-                "On Exit": ""
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Mainmenu_Popup_Controls",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 100.0,
-                    "y": 100.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/EmptyButton",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "Option Overlay"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Canvas",
-                "Screen": 3
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "Parent": {
-                "ID": 12
-            },
-            "Entity Name": {
-                "Name": "Credits Page"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Button",
-                "Screen": 4
-            },
-            "Button": {
-                "On Hover": "",
-                "On Click": "Back",
-                "On Exit": ""
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Credits_Page_Full",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 1920.0,
-                    "y": 1080.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": true,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/EmptyButton",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "Credits Overlay"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Canvas",
-                "Screen": 4
             },
             "Transform": {
                 "Position": {
@@ -1179,7 +975,577 @@
                     "b": 1.0,
                     "a": 0.0
                 },
-                "Layer": 1,
+                "Layer": 3,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "Option Overlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 3
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 10
+            },
+            "Entity Name": {
+                "Name": "Option Button"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 3
+            },
+            "Button": {
+                "On Hover": "",
+                "On Click": "Back",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Mainmenu_Popup_Options",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1920.0,
+                    "y": 1080.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 0.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "Credits Overlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 4
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 12
+            },
+            "Entity Name": {
+                "Name": "Credits Page"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 4
+            },
+            "Button": {
+                "On Hover": "",
+                "On Click": "Back",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Credits_Page_Full",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1920.0,
+                    "y": 1080.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "Quit Game Overlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 5
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Confirmation_Popup",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 1080.0,
+                    "y": 1000.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 14
+            },
+            "Entity Name": {
+                "Name": "Quit Game Text"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 5
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/AREYOUSURE_HL",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 120.0
+                },
+                "Width/Height": {
+                    "x": 848.0,
+                    "y": 116.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 4,
+                "Order": 1.0,
+                "Preserve Aspect": true,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 14
+            },
+            "Entity Name": {
+                "Name": "Quit Game Yes"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 5
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "ConfirmQuitGame",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/YES_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": -300.0,
+                    "y": -80.0
+                },
+                "Width/Height": {
+                    "x": 374.0,
+                    "y": 156.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 4,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
@@ -1187,7 +1553,116 @@
                 "Wireframe": false
             },
             "Animator": {
-                "Controller Key": "Animation/EmptyButton",
+                "Controller Key": "Animation/Menu_Yes",
+                "Speed": 1.0
+            },
+            "State": {}
+        },
+        {
+            "Parent": {
+                "ID": 14
+            },
+            "Entity Name": {
+                "Name": "Quit Game No"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Button",
+                "Screen": 5
+            },
+            "Button": {
+                "On Hover": "ButtonHover",
+                "On Click": "Back",
+                "On Exit": ""
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/NO_D",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 80.0,
+                    "y": -80.0
+                },
+                "Width/Height": {
+                    "x": 374.0,
+                    "y": 156.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 4,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Menu_No",
                 "Speed": 1.0
             },
             "State": {}

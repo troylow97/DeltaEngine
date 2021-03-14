@@ -24,6 +24,7 @@ namespace DeltaEngine
 
 std::vector<unsigned> screens;
 unsigned transitioning_screen;
+bool end { true };
 
 bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight, float &p_x, float &p_y )
 {
@@ -68,11 +69,33 @@ void UISystem::Initialize()
 }
 
 void UISystem::Update()
-{}
+{
+
+}
 
 void UISystem::LateUpdate()
 {
 
+  if ( transitioning_screen )
+  {
+    GetEnv().pECS->GetWorld().GetEntityManager().ForEach( [&]( GUI &gui, RendererOverlay &o )
+    {
+      if ( transitioning_screen == gui.screen )
+      {
+        o.m_Color.a = Math::Clamp01( o.m_Color.a - 0.02f );
+        if ( o.m_Color.a == 0.0f )
+        {
+          o.m_Active = false;
+          end = true;
+        }
+      }
+    } );
+  }
+
+  if ( !end )
+    return;
+  else
+    transitioning_screen = 0;
 
 #ifdef DE_EDITOR
   auto cameraWidth = GamePanel::render_size.x;
@@ -128,29 +151,6 @@ void UISystem::LateUpdate()
       render.m_Color.a = Math::Clamp01( render.m_Color.a + 0.02f );
     }
 
-  }
-
-  bool end { false };
-  if ( transitioning_screen )
-  {
-    GetEnv().pECS->GetWorld().GetEntityManager().ForEach( [&]( GUI &gui, RendererOverlay &o )
-    {
-      if ( transitioning_screen == gui.screen )
-      {
-        o.m_Color.a = Math::Clamp01( o.m_Color.a - 0.02f );
-        if ( o.m_Color.a == 0.0f )
-        {
-          o.m_Active = false;
-          end = true;
-        }
-      }
-    } );
-  }
-
-  if ( end )
-  {
-    transitioning_screen = 0;
-    return;
   }
 
   // Check Interactable
@@ -213,6 +213,7 @@ void UISystem::PopScreen()
 {
   transitioning_screen = screens.back();
   screens.pop_back();
+  end = false;
 }
 
 void UISystem::PushScreen( unsigned screen )
@@ -223,6 +224,17 @@ void UISystem::PushScreen( unsigned screen )
     if ( g.screen == screen )
       o.m_Color.a = 0.0f;
   } );
+}
+
+void UISystem::ClearScreens()
+{
+  screens.clear();
+  screens.push_back( 0 );
+}
+
+unsigned UISystem::CurrentScreen()
+{
+  return screens.back();
 }
 
 }

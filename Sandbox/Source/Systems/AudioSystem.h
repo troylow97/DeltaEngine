@@ -14,8 +14,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-DEFINE_SYSTEM( MenuSystem, GUI )
+DEFINE_SYSTEM( AudioSystem, AudioSource )
 void Update() override;
 void LateUpdate() override;
-END_DEFINE_SYSTEM( MenuSystem )
+END_DEFINE_SYSTEM( AudioSystem )
 }

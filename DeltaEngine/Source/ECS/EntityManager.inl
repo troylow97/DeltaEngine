@@ -181,8 +181,6 @@ inline void EntityManager::DestroyEntity( EntityID id )
       {
         return cid == id.index;
       } ), it->second.end() );
-      for ( auto child : it->second )
-        std::cout << child << std::endl;
     }
   EraseEntityChunk( m_entities[id.index].chunk, m_entities[id.index].chunk_index );
   DeallocateEntity( id );
@@ -368,9 +366,11 @@ inline void EntityManager::CleanEntities()
   for ( auto it = m_parents.rbegin(); it < m_parents.rend(); ++it )
     if ( !IsEntityValid( { it->first } ) )
     {
+      if ( it->first == u64_max )
+        continue;
       DeltaEngine_CORE_INFO( "Parent: {}", it->first );
-      for ( auto c_id : it->second )
-        DestroyEntity( { c_id } );
+      while(!it->second.empty())
+        DestroyEntity( { it->second[0]} );
       m_parents.erase( ( it + 1 ).base() );
     }
 }
@@ -404,9 +404,11 @@ inline void EntityManager::TidyEntities()
               return pm.first == j;
             } );
             if ( it != m_parents.end() )
+            {
               for ( auto &child : it->second )
                 GetComponent<Parent>( { child } ).p_id = i;
-            it->first = i;
+              it->first = i;
+            }
           }
 
           reinterpret_cast<EntityID *>( m_entities[j].chunk )[m_entities[j].chunk_index].index = i;
@@ -585,6 +587,11 @@ inline void EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
             *static_cast<Toggle *>( ptr ) = *static_cast<Toggle *>( pop_ptr );
             break;
           }
+          case ComponentMeta::ComponentBits<AudioSource>() :
+          {
+            *static_cast<AudioSource *>( ptr ) = *static_cast<AudioSource *>( pop_ptr );
+            break;
+          }
           default:
             std::memcpy( ptr, pop_ptr, type->size );
         }
@@ -703,6 +710,11 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
           *static_cast<Toggle *>( target ) = *static_cast<Toggle *>( current );
           break;
         }
+        case ComponentMeta::ComponentBits<AudioSource>() :
+        {
+          *static_cast<AudioSource *>( target ) = *static_cast<AudioSource *>( current );
+          break;
+        }
         default:
           std::memcpy( target, current, type->size );
       }
@@ -791,6 +803,11 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
             case ComponentMeta::ComponentBits<Toggle>() :
             {
               std::swap( *static_cast<Toggle *>( current ), *static_cast<Toggle *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<AudioSource>() :
+            {
+              std::swap( *static_cast<AudioSource *>( current ), *static_cast<AudioSource *>( target ) );
               break;
             }
             default:

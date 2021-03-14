@@ -30,6 +30,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/Utils/Random.h"
 
+#include <future>
+
 /*-----------------------------------
 #include "Event/ApplicationEvent.h"
 #include "Log.h"
@@ -44,6 +46,39 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
 DeltaEngineGlobalEnvironment env;
+
+void LoadFont()
+{
+  env.pManager->SetLoader<Font>( new FontLoader() ).Load<Font>()
+    .SetFallback<Font>( new Font( "Fonts/Arial.ttf" ) );
+}
+
+void LoadShader()
+{
+  env.pManager->SetLoader<Shader>( new ShaderLoader() ).Load<Shader>()
+    .SetFallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
+}
+
+void LoadTexture()
+{
+  env.pManager->SetLoader<Texture2D>( new TextureLoader() ).Load<Texture2D>()
+    .SetFallback<Texture2D>( new Texture2D( "Default/ERROR.png" ) );
+}
+
+void LoadAnimClip()
+{
+  env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() ).Load<AnimationClip>();
+}
+
+void LoadAnimController()
+{
+  env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() ).Load<AnimationController>();
+}
+
+void LoadAudio()
+{
+  AudioLoader().Load();
+}
 
 Application::Application()
 {
@@ -66,7 +101,6 @@ Application::Application()
 
   // Audio Initialization
   AudioEngine::Initialize();
-  AudioLoader().Load();
 
   // Clock Initialization
   env.pClock = new EngineClock( c.fps );
@@ -80,26 +114,34 @@ Application::Application()
   RenderModule::openGLSystem->Init();
 
   // Asset Manager Initialization and Loading
-  env.pManager = new AM();
   DeltaEngine_CORE_INFO( "Initializing AssetManager..." );
-  DeltaEngine_CORE_INFO( "Asset Manager Setting FontLoader with fallback, Fonts/Arial.ttf" );
-  env.pManager->SetLoader<Font>( new FontLoader() ).Load<Font>()
-    .SetFallback<Font>( new Font( "Fonts/Arial.ttf" ) );
+  env.pManager = new AM();
 
-  DeltaEngine_CORE_INFO( "AssetManager Setting ShaderLoader with fallback, Shaders/ErrorShader" );
-  env.pManager->SetLoader<Shader>( new ShaderLoader() ).Load<Shader>()
-    .SetFallback<Shader>( new Shader( "Shaders/ErrorShader" ) );
-
-  DeltaEngine_CORE_INFO( "AssetManager Setting TextureLoader with no fallback" );
-  env.pManager->SetLoader<Texture2D>( new TextureLoader() ).Load<Texture2D>()
-    .SetFallback<Texture2D>( new Texture2D( "Default/ERROR.png" ) );
+  std::vector<std::future<void>> future;
 
   DeltaEngine_CORE_INFO( "AssetManager Setting AnimationClipLoader with no fallback" );
-  env.pManager->SetLoader<AnimationClip>( new AnimationClipLoader() ).Load<AnimationClip>();
+  future.push_back(std::async(std::launch::async, &LoadAnimClip ));
 
   DeltaEngine_CORE_INFO( "AssetManager Setting AnimationControllerLoader with no fallback" );
-  env.pManager->SetLoader<AnimationController>( new AnimationControllerLoader() ).Load<AnimationController>();
+  future.push_back(std::async( std::launch::async,&LoadAnimController ));
+
+  DeltaEngine_CORE_INFO( "Load Audio" );
+  future.push_back(std::async(std::launch::async, &LoadAudio ));
+
+  DeltaEngine_CORE_INFO( "AssetManager Setting TextureLoader with no fallback" );
+  LoadTexture();
+
+  DeltaEngine_CORE_INFO( "AssetManager Setting ShaderLoader with fallback, Shaders/ErrorShader" );
+  LoadShader();
+
+  DeltaEngine_CORE_INFO( "Asset Manager Setting FontLoader with fallback, Fonts/Arial.ttf" );
+  LoadFont();
+
+  for ( auto &fin : future )
+    fin.get();
+
   DeltaEngine_CORE_INFO( "Initializing AssetManager successful" );
+
 
   // Event Manager Initialization
   env.eventManager = new EventManager;

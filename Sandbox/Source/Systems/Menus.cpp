@@ -17,39 +17,89 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Audio/AudioEngine.h"
 #include "EnemySpawner/EnemySpawner.h"
 #include "Systems/UISystem.h"
+#include "Input/InputManager.h"
+#include "Input/Keys.h"
 
 namespace DeltaEngine
 {
+bool in_game { false };
 
+void MenuSystem::Update()
+{
+  if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) && !InputManager::Instance().IsKeyPressed(DEVK_ESCAPE) )
+  {
+    if ( in_game )
+    {
+
+      if ( !UISystem::CurrentScreen() )
+      {
+        AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
+        UISystem::PushScreen( 1 );
+        GetEnv().pClock->TimeScale( 0.0f );
+
+      }
+      else
+      {
+        UISystem::PopScreen();
+
+        if ( !UISystem::CurrentScreen() )
+        {
+          AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
+          GetEnv().pClock->TimeScale( 1.0f );
+        }
+      }
+    }
+    else if ( UISystem::CurrentScreen() )
+    {
+      AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
+      UISystem::PopScreen();
+    }
+  }
+
+}
+
+void MenuSystem::LateUpdate()
+{
+
+}
 
 void ButtonHover()
 {
-  AudioEngine::Play2DEvent( "event:/UI/ButtonMouseOver4" );
+  AudioEngine::SetEventVolume( AudioEngine::Play2DEvent( "event:/UI Sounds/Button Mouse Over 4") , 0.5f );
+
 }
 
 void Back()
 {
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PopScreen();
 }
 
 void StartGame()
 {
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-  GetEnv().pECS->GetWorld().Load( "World/gam250.json" );
+  GetEnv().pECS->GetWorld().Load( "World/gam250beta_t.json" );
+  GetEnv().pClock->TimeScale( 1.0f );
+  in_game = true;
+  AudioEngine::StopAllAudio();
 }
 
 void OpenControls()
 {
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 2 );
 }
 
 void OpenOptions()
 {
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 3 );
 }
 
 void OpenCredits()
 {
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 4 );
 }
 
@@ -59,11 +109,13 @@ void OpenCredits()
 
 void QuitGame()
 {
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 5 );
 }
 
 void ConfirmQuitGame()
 {
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Shutdown();
   env.pWin->Running( false );
 }
@@ -75,22 +127,41 @@ void ConfirmQuitGame()
 
 void QuitInGame()
 {
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 6 );
 }
 
 void ConfirmQuitInGame()
 {
-  UISystem::PopScreen();
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
+  UISystem::ClearScreens();
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
   GetEnv().pECS->GetWorld().Load( "World/MainMenuScreen.json" );
+  GetEnv().pClock->TimeScale( 1.0f );
+  in_game = false;
+  AudioEngine::StopAllAudio();
 }
 
 /*
-* Pause Game
+* In-Game Menu
 */
-void PauseGame()
+void Resume()
 {
-  UISystem::PushScreen( 1 );
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
+  UISystem::PopScreen();
+  GetEnv().pClock->TimeScale( 1.0f );
+}
+
+void Restart1()
+{
+  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
+  UISystem::ClearScreens();
+  GetEnv().pECS->GetWorld().GetEntityManager().Clear();
+  GetEnv().pECS->GetWorld().Load( "World/gam250beta_t.json" );
+  GetEnv().pClock->TimeScale( 1.0f );
+  in_game = true;
+  AudioEngine::StopAllAudio();
+
 }
 
 RTTR_REGISTRATION
@@ -105,6 +176,8 @@ rttr::registration::method( "QuitGame", &QuitGame );
 rttr::registration::method( "ConfirmQuitGame", &ConfirmQuitGame );
 rttr::registration::method( "QuitInGame", &QuitInGame );
 rttr::registration::method( "ConfirmQuitInGame", &ConfirmQuitInGame );
-rttr::registration::method( "PauseGame", &PauseGame );
+rttr::registration::method( "Resume", &Resume );
+rttr::registration::method( "Restart1", &Restart1 );
+
 }
 }

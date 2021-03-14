@@ -14,6 +14,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
 #include "ImGui/Editor.h"
+#include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
@@ -79,6 +80,7 @@ void ButtonsPanel::Render()
       GetEnv().pECS->GetWorld().SetPause( true );
       GetEnv().pECS->GetWorld().GetEntityManager().Clear();
       GetEnv().pECS->GetWorld().Load( Editor::mounted_path );
+      AudioEngine::StopAllAudio();
     }
   }
 

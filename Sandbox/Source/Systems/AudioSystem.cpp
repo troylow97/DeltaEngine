@@ -1,5 +1,5 @@
 /**********************************************************************************
-* \file   UISystem.h
+* \file   UISystem.cpp
 * \brief  The file contains the system for updating and displaying UI in the game
 * \author Chin, Clara,     70% Code Contribution
 * \author Low, Troy,       30% Code Contribution
@@ -9,13 +9,36 @@
 or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
-#pragma once
-#include "DeltaEngine.h"
+#include "AudioSystem.h"
+
+
+#include <rttr/registration.h>
+
+#include "Audio/AudioEngine.h"
+#include "Components/AudioSource.h"
 
 namespace DeltaEngine
 {
-DEFINE_SYSTEM( MenuSystem, GUI )
-void Update() override;
-void LateUpdate() override;
-END_DEFINE_SYSTEM( MenuSystem )
+
+void AudioSystem::Update()
+{
+
+}
+
+void AudioSystem::LateUpdate()
+{
+  em.ForEach( [](EntityID& id, AudioSource& a)
+  {
+    if ( !a.isStart && !a.clip.empty())
+    {
+      if ( a.isEvent )
+        AudioEngine::AudioSourcePlay2DEvent( a );
+      else
+        AudioEngine::AudioSourcePlay( a );
+
+      a.isStart = true;
+    } 
+  } );
+}
+
 }

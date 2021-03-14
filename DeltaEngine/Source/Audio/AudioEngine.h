@@ -53,15 +53,16 @@ namespace DeltaEngine
     static void Update();
 
 
-    static void AudioSourcePlay( struct AudioSource &, const std::string &name );
-    static void AudioSourcePlay2DEvent( struct AudioSource &, const std::string &name, ParametersMap = ParametersMap() );
-    static void AudioSourcePlay3DEvent( struct AudioSource &, const std::string &name, Audio3DAttributes attributes, ParametersMap = ParametersMap() );
+    static void AudioSourcePlay( struct AudioSource & );
+    static void AudioSourcePlay2DEvent( struct AudioSource &, ParametersMap = ParametersMap() );
+    static void AudioSourcePlay3DEvent( struct AudioSource &, Audio3DAttributes attributes, ParametersMap = ParametersMap() );
+    static void StopAllAudio();
 
     // Core 
     static void LoadSound(const std::string& name, bool loop = false, bool stream = false, bool is3D = false); // shift
     static void UnloadSound(const std::string& name); // shift
 
-    static ChannelID Play(const std::string& name, float dB = 0.0f, Vector3 pos = {0.0f, 0.0f, 0.0f}); // shift
+    static ChannelID Play(const std::string& name, float volume = 1.0f, Vector3 pos = {0.0f, 0.0f, 0.0f}); // shift
     static bool IsChannelPlaying(ChannelID id);
     static void SetChannelPause(ChannelID id, bool pause = true);
     static void SetChannelPitch(ChannelID id, float pitch);

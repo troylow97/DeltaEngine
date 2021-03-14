@@ -39,6 +39,9 @@
     <ClInclude Include="Source\Systems\AttackSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\AudioSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\CollisionHandler\CollisionHandlingFunctions.h">
       <Filter>Systems\CollisionHandler</Filter>
     </ClInclude>
@@ -94,6 +97,9 @@
       <Filter>Systems\AI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\AttackSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\AudioSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\CollisionHandler\CollisionHandlingFunctions.cpp">

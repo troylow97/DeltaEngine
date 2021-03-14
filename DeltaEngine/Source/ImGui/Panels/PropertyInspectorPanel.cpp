@@ -175,7 +175,8 @@ void PropertyInspectorPanel::Render()
               instance.get_type() == rttr::type::get<EntityName>() ||
               instance.get_type() == rttr::type::get<Text>() ||
               instance.get_type() == rttr::type::get<Button>() ||
-              instance.get_type() == rttr::type::get<Toggle>()) )
+              instance.get_type() == rttr::type::get<Toggle>() ||
+              instance.get_type() == rttr::type::get<AudioSource>()) )
             {
               auto &str = *value.get_value<std::string *>();
               char buffer[256] {};
