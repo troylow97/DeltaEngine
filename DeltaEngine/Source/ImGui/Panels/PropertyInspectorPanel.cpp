@@ -160,7 +160,7 @@ void PropertyInspectorPanel::Render()
 
                   const bool is_selected = ( selection == i );
                   if ( ImGui::Selectable( id_label.c_str(), is_selected ) )
-                    id = i-1;
+                    em.SetParents( i - 1, Editor::entity_id );
 
                   if ( is_selected )
                     ImGui::SetItemDefaultFocus();
@@ -174,8 +174,9 @@ void PropertyInspectorPanel::Render()
               instance.get_type() == rttr::type::get<AI>() ||
               instance.get_type() == rttr::type::get<EntityName>() ||
               instance.get_type() == rttr::type::get<Text>() ||
-              instance.get_type() == rttr::type::get<UI>() ||
-              instance.get_type() == rttr::type::get<GUI>()) )
+              instance.get_type() == rttr::type::get<Button>() ||
+              instance.get_type() == rttr::type::get<Toggle>() ||
+              instance.get_type() == rttr::type::get<AudioSource>()) )
             {
               auto &str = *value.get_value<std::string *>();
               char buffer[256] {};

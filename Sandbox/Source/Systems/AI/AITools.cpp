@@ -221,9 +221,9 @@ namespace DeltaEngine
     {
       Vector2 pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position;
       if (pos.x > pointX)
-        env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = Vector2::left();
+        env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.x = -1;
 
-      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = Vector2::right();
+      env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction.x = 1;
     }
 
     void MoveTowardsEntity(EntityID& id1, EntityID& id2)

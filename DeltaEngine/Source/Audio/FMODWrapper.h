@@ -20,8 +20,8 @@ namespace DeltaEngine
   struct FMODWrapper
   {
     using SoundMap = std::unordered_map<std::string, FMOD::Sound*>;
-    using ChannelMap = std::unordered_map<size_t, FMOD::Channel*>;
-    using EventMap = std::unordered_map<size_t, FMOD::Studio::EventInstance*>;
+    using ChannelMap = std::unordered_map<unsigned, FMOD::Channel*>;
+    using EventMap = std::unordered_map<unsigned, FMOD::Studio::EventInstance*>;
     using BankMap = std::unordered_map<std::string, FMOD::Studio::Bank*>;
 
     // Maps
@@ -34,8 +34,8 @@ namespace DeltaEngine
     FMOD::System* pSystem{nullptr};
     FMOD::Studio::System* pStudioSystem{nullptr};
 
-    size_t nextEventID{0};
-    size_t nextChannelID{0};
+    unsigned nextEventID{1};
+    unsigned nextChannelID{1};
 
     FMODWrapper();
     ~FMODWrapper();

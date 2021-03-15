@@ -34,13 +34,15 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "UI.h"
 #include "VideoPlayer.h"
 #include "Render/Camera.h"
+#include "AudioSource.h"
 #include "Core/Typelist/Typelist.h"
 
 namespace DeltaEngine
 {
-	using CoreBase = Typelist<EntityID, Parent, EntityName, EntityType>;
-	using PhysicsBase = CoreBase::Append<Transform, RigidBody, Collider>;
-	using RenderBase = PhysicsBase::Append<Image, Renderer2D, RendererOverlay, Text, Animator, State, Camera, VideoPlayer, ParticleEmitter>;
-	using GameBase = RenderBase::Append< AI, Health, Attack, Lifespan, Player, Input, UI, GUI>;
+	using CoreBase = Typelist<EntityID, Parent, EntityName, EntityType, AudioSource>;
+	using GUIBase = CoreBase::Append<GUI, Button, Toggle, Slider>;
+	using PhysicsBase = GUIBase::Append<Transform, RigidBody, Collider>;
+	using RenderBase = PhysicsBase::Append<Image, Renderer2D, RendererOverlay, Text, Animator, State, Camera, ParticleEmitter>;
+	using GameBase = RenderBase::Append< AI, Health, Attack, Lifespan, Player, Input>;
 	using ComponentList = GameBase;
 }

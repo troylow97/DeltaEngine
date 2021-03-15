@@ -29,7 +29,7 @@ namespace DeltaEngine
       auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
       auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
       auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
-      if (p.IsDashing || p.IsDodging)
+      if (/*p.IsDashing || */p.IsDodging)
       {
         em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
         p.StartDashingTimer = true;
@@ -48,93 +48,93 @@ namespace DeltaEngine
         p.AllowDashing = true;
         s.SetBool("LancerAttack", false);
       }
-      Dash();
+    //  Dash();
       
   	  //SMG
-      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
-      
-      if (a.SMGAttack && a.SMGFireRate <= 0.0f && p.AllowShooting)
-      {
-        // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
-        //p.StartDashingTimer = true;
-        EntityID player = UnitManager::GetPlayerID();
-        SMGAttack(player);
-      }
-      em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
-      {
-        if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
-          r2d.m_Active = a.SMGAttack;
-        if (et.type == EntityCategory::E_PLAYER)
-          r2d.m_Active = !a.SMGAttack;
-      });
-      if (a.SMGAttack)
-      {
-        a.StartSMGCooldownTimer = true;
-        em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
-        {
-          if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
-          {
-            auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-            auto& player_bodypart_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
-      
-            player_bodypart_pos.position.x = player_pos.position.x;
-            player_bodypart_pos.position.y = player_pos.position.y;
-      
-            if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE)
-            {
-              if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
-              {
-                Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y }; // CalculateDirectionVectorToShoot
-                direction.Normalize();
-                float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-                player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-              }
-              else if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == false)
-              {
-                Vector2 direction = { MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
-                direction.Normalize();
-                float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-                player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-              }
-              else if (MouseCalculation::ShootLeft() && MouseCalculation::IsWithinRange(false) == false)
-              {
-                Vector2 direction = { -MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
-                direction.Normalize();
-                float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-                player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-              }
-              else
-                player_bodypart_pos.rotation = Quaternion::Identity();
-      
-              auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
-              auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
-              player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
-              player_bodypart_image.m_FlipY = true;
-            }
-            else
-            {
-              auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
-              auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
-              player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
-              player_bodypart_image.m_FlipY = false;
-            }
-          }
-        });
-      }
-      if (a.StartSMGCooldownTimer)
-      {
-        if (a.SMGFireRate >= 0.0f)
-        {
-          a.SMGFireRate -= env.pClock->FixedDeltaTime();
-          a.AllowSMGAttack = false;
-        }
-        else
-        {
-          a.SMGFireRate = a.SMGCooldown;
-          a.AllowSMGAttack = true;
-          a.StartSMGCooldownTimer = false;
-        }
-      }
+     // auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+     // 
+     // if (a.SMGAttack && a.SMGFireRate <= 0.0f && p.AllowShooting)
+     // {
+     //   // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
+     //   //p.StartDashingTimer = true;
+     //   EntityID player = UnitManager::GetPlayerID();
+     //   SMGAttack(player);
+     // }
+     // em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
+     // {
+     //   if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
+     //     r2d.m_Active = a.SMGAttack;
+     //   if (et.type == EntityCategory::E_PLAYER)
+     //     r2d.m_Active = !a.SMGAttack;
+     // });
+     // if (a.SMGAttack)
+     // {
+     //   a.StartSMGCooldownTimer = true;
+     //   em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
+     //   {
+     //     if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
+     //     {
+     //       auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
+     //       auto& player_bodypart_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
+     // 
+     //       player_bodypart_pos.position.x = player_pos.position.x;
+     //       player_bodypart_pos.position.y = player_pos.position.y;
+     // 
+     //       if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE)
+     //       {
+     //         if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
+     //         {
+     //           Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y }; // CalculateDirectionVectorToShoot
+     //           direction.Normalize();
+     //           float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+     //           player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
+     //         }
+     //         else if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == false)
+     //         {
+     //           Vector2 direction = { MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
+     //           direction.Normalize();
+     //           float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+     //           player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
+     //         }
+     //         else if (MouseCalculation::ShootLeft() && MouseCalculation::IsWithinRange(false) == false)
+     //         {
+     //           Vector2 direction = { -MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
+     //           direction.Normalize();
+     //           float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
+     //           player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
+     //         }
+     //         else
+     //           player_bodypart_pos.rotation = Quaternion::Identity();
+     // 
+     //         auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+     //         auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
+     //         player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
+     //         player_bodypart_image.m_FlipY = true;
+     //       }
+     //       else
+     //       {
+     //         auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
+     //         auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
+     //         player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
+     //         player_bodypart_image.m_FlipY = false;
+     //       }
+     //     }
+     //   });
+     // }
+     // if (a.StartSMGCooldownTimer)
+     // {
+     //   if (a.SMGFireRate >= 0.0f)
+     //   {
+     //     a.SMGFireRate -= env.pClock->FixedDeltaTime();
+     //     a.AllowSMGAttack = false;
+     //   }
+     //   else
+     //   {
+     //     a.SMGFireRate = a.SMGCooldown;
+     //     a.AllowSMGAttack = true;
+     //     a.StartSMGCooldownTimer = false;
+     //   }
+     // }
   	}
 
     // melee and ranged attack ----------------------------------------------------------------------------------
@@ -164,9 +164,9 @@ namespace DeltaEngine
       //FlipPunching();
 
       //Toggle Player Melee Attack
-      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f && a.ComboCooldownTimer > 0.0f)
+      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f)
       {
-        if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f)
+        if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f && a.ComboCooldownTimer > 0.0f)
         {  	
           ++a.NumberOfCombos;
           a.ComboCooldownTimer = a.ComboDuration;
@@ -283,43 +283,43 @@ namespace DeltaEngine
 
   void AttackSystem::RangedAttack(EntityID& id)
   {
-    if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
+    //if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
+    //{
+    //  EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
+    //  EntityID missile2 = CreateProjectile(id, Vector2{1.7f, 1.7f}, true, 0.35f,
+    //                                       EntityCategory::E_PLAYER_BULLET_DETECTION);
+    //  em.AddComponent<Renderer2D>(missile);
+    //  em.AddComponent<Image>(missile);
+    //  em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
+    //  em.GetComponent<Image>(missile).m_Size = {0.6f, 0.6f};
+    //  em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
+    //  em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
+    //  em.GetComponent<State>(id).SetBool("Ranged", true);
+    //  static size_t c_id{u64_max};
+    //  AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
+    //
+    //
+    //  if (em.GetComponent<Image>(id).m_FlipX == false)
+    //  {
+    //    em.GetComponent<Transform>(missile).position.x += 0.4f;
+    //    em.GetComponent<RigidBody>(missile).AccumulatedForce = {8000, 3500};
+    //  }
+    //  else
+    //  {
+    //    em.GetComponent<Transform>(missile).position.x -= 0.4f;
+    //    em.GetComponent<RigidBody>(missile).AccumulatedForce = {-8000, 3500};
+    //  }
+    //}
+    //else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
     {
-      EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
-      EntityID missile2 = CreateProjectile(id, Vector2{1.7f, 1.7f}, true, 0.35f,
-                                           EntityCategory::E_PLAYER_BULLET_DETECTION);
-      em.AddComponent<Renderer2D>(missile);
-      em.AddComponent<Image>(missile);
-      em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = {0.6f, 0.6f};
-      em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
-      em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
-      em.GetComponent<State>(id).SetBool("Ranged", true);
-      static size_t c_id{u64_max};
-      AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
-
-
-      if (em.GetComponent<Image>(id).m_FlipX == false)
-      {
-        em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {8000, 3500};
-      }
-      else
-      {
-        em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-8000, 3500};
-      }
-    }
-    else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
-    {
-      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 1.0f, EntityCategory::E_ENEMY_BULLET);
+      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 0.7f, EntityCategory::E_ENEMY_BULLET);
       Vector2 direction_to_shoot = { CalculateAttackDirection(id).x, CalculateAttackDirection(id).y };
       Transform& enemy_pos = em.GetComponent<Transform>(id);
       Collider& enemy_collider = em.GetComponent<Collider>(id);
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = { 0.6f, 0.6f };
+      em.GetComponent<Image>(missile).m_Size = { 0.5f, 0.5f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
       em.GetComponent<Transform>(missile).position = { enemy_pos.position.x, enemy_pos.position.y + (enemy_collider.size.y / 2 * 0.75f), enemy_pos.position.z };
 
@@ -327,13 +327,13 @@ namespace DeltaEngine
       {
         //em.GetComponent<Transform>(missile).position.x += 0.4f;
         em.GetComponent<Transform>(missile).position.y -= 0.2f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 }; // -7000, -2500
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 4000, direction_to_shoot.y * 4000 }; // -7000, -2500
       }
       else
       {
         //em.GetComponent<Transform>(missile).position.x -= 0.4f;
         em.GetComponent<Transform>(missile).position.y -= 0.2f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 7000, direction_to_shoot.y * 7000 }; //  7000, -2500
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 4000, direction_to_shoot.y * 4000 }; //  7000, -2500
       }
     }
   }
@@ -347,7 +347,7 @@ namespace DeltaEngine
       EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
       static size_t c_id{u64_max};
    	
-      AudioEngine::Play2DEvent( "event:/Player/PlayerPunch" );
+      AudioEngine::Play2DEvent( "event:/Player/Player Punch Wind" );
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
         em.GetComponent<Transform>(missile).position.x += 0.6f; //offset of spawn from player
@@ -380,8 +380,8 @@ namespace DeltaEngine
           AudioEngine::Play("Audio/Lancer/LancerCharge3.ogg");
           break;
         }
-
-        EntityID missile = CreateProjectile(id, Vector2{0.2f, 0.2f}, false, 0.2f, EntityCategory::E_ENEMY_LANCER_PUNCH);
+        
+        EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.2f, EntityCategory::E_ENEMY_LANCER_PUNCH);
         const Vector2 player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
         const Vector2 monster_pos = em.GetComponent<Transform>(id).position;
         Vector2 kb = (player_pos - em.GetComponent<Transform>(id).position);
@@ -402,18 +402,18 @@ namespace DeltaEngine
         if (AudioEngine::IsChannelPlaying(c_id))
           AudioEngine::StopChannel(c_id);
         c_id = AudioEngine::Play("Audio/Fiddler/FiddlerAttack.ogg");
-        EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.1f,
+        EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, false, 0.2f,
                                             EntityCategory::E_ENEMY_FIDDLER_PUNCH);
         if (em.GetComponent<Image>(id).m_FlipX == true)
         {
           em.GetComponent<Transform>(missile).position.x += 0.5f;
-          em.GetComponent<RigidBody>(missile).AccumulatedForce = {500, 0};
+          em.GetComponent<RigidBody>(missile).AccumulatedForce = {600, 0};
           em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
         }
         else
         {
           em.GetComponent<Transform>(missile).position.x -= 0.5f;
-          em.GetComponent<RigidBody>(missile).AccumulatedForce = {-500, 0};
+          em.GetComponent<RigidBody>(missile).AccumulatedForce = {-600, 0};
           em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
         }
       }

@@ -128,8 +128,6 @@ void ReadRecursive( instance obj2, Value &json_object )
   const auto prop_list = obj.get_derived_type().get_properties();
   for ( auto prop : prop_list )
   {
-    if ( prop.get_name() == "ID" )
-      DeltaEngine_CORE_INFO( "ID" );
     Value::MemberIterator ret = json_object.FindMember( prop.get_name().data() );
     if ( ret == json_object.MemberEnd() )
       continue;
@@ -272,8 +270,6 @@ void ExtractPointerType( variant &obj_dat, variant &extracted )
       *obj_dat.get_value<Alignment *>() = v.get_value<Alignment>();
     else if ( obj_dat.get_type() == type::get<EntityCategory *>() )
       *obj_dat.get_value<EntityCategory *>() = v.get_value<EntityCategory>();
-    else if ( obj_dat.get_type() == type::get<UIType *>() )
-      *obj_dat.get_value<UIType *>() = v.get_value<UIType>();
     else if ( obj_dat.get_type() == type::get<GUIType *>() )
       *obj_dat.get_value<GUIType *>() = v.get_value<GUIType>();
     else if ( obj_dat.get_type() == type::get<FillType *>() )

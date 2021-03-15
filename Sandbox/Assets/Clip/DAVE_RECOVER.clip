@@ -1,5 +1,5 @@
-frames 2
-fps 12
+frames 4
+fps 2
 loop 0
 
 Textures/DAVE_RECOVER_i_0
@@ -11,5 +11,15 @@ Textures/DAVE_RECOVER_i_1
 key Textures/DAVE_RECOVER
 value 1
 frame 1
+
+Textures/DAVE_RECOVER_i_2
+key Textures/DAVE_RECOVER
+value 2
+frame 2
+
+Textures/DAVE_RECOVER_i_3
+key Textures/DAVE_RECOVER
+value 3
+frame 3
 
 %

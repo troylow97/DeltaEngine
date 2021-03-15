@@ -104,11 +104,13 @@ inline void EntityManager::Clear()
   m_archetypes.clear();
   m_entities.clear();
   m_entities_deleted.clear();
+  m_parents.clear();
   m_entities_live = 0;
 
   Archetype *empty_arch = CreateEmptyArchetype();
   m_archetypes.push_back( empty_arch );
   CreateChunk( empty_arch );
+
 }
 
 template <typename... C>
@@ -167,7 +169,20 @@ inline const std::vector<Entity> &EntityManager::GetEntities()
 inline void EntityManager::DestroyEntity( EntityID id )
 {
   ASSERT_ERROR( IsEntityValid( id ), "EntityManager: destroying invalid entity" )
-    EraseEntityChunk( m_entities[id.index].chunk, m_entities[id.index].chunk_index );
+    if ( HasComponent<Parent>( id ) )
+    {
+      auto p = GetComponent<Parent>( id );
+      auto it = std::find_if( m_parents.begin(), m_parents.end(), [&]( ParentMap &pm )
+      {
+        return pm.first == p.p_id;
+      } );
+      if ( it != m_parents.end() )
+        it->second.erase( std::remove_if( it->second.begin(), it->second.end(), [&]( size_t &cid )
+      {
+        return cid == id.index;
+      } ), it->second.end() );
+    }
+  EraseEntityChunk( m_entities[id.index].chunk, m_entities[id.index].chunk_index );
   DeallocateEntity( id );
   DeltaEngine_CORE_INFO( "Entity - {} deleted", id.index );
 }
@@ -299,6 +314,123 @@ inline const Archetype *EntityManager::GetEntityArchetype( size_t id )
   return nullptr;
 }
 
+inline void EntityManager::LinkParents()
+{
+  ForEach( [&]( EntityID &c, Parent &p )
+  {
+    SetParents( p.p_id, c.index );
+  } );
+}
+
+
+inline void EntityManager::SetParents( size_t parent, size_t child )
+{
+  if ( !HasComponent<Parent>( { child } ) )
+    AddComponent<Parent>( { child }, { parent } );
+  else
+  {
+    auto &p = GetComponent<Parent>( { child } );
+    auto it = std::find_if( m_parents.begin(), m_parents.end(), [&]( ParentMap &pm )
+    {
+      return pm.first == p.p_id;
+    } );
+    if ( it != m_parents.end() )
+      it->second.erase( std::remove_if( it->second.begin(), it->second.end(), [&]( size_t &id )
+    {
+      return id == child;
+    } ), it->second.end() );
+    p.p_id = parent;
+  }
+
+  auto it = std::find_if( m_parents.begin(), m_parents.end(), [&]( ParentMap &pm )
+  {
+    return pm.first == parent;
+  } );
+  if ( it != m_parents.end() )
+    it->second.push_back( child );
+  else
+    m_parents.push_back( { parent, {child} } );
+}
+
+inline std::vector<size_t> EntityManager::GetChildrens( size_t parent )
+{
+  for ( auto [p_id, c_vec] : m_parents )
+    if ( p_id == parent )
+      return c_vec;
+  return {};
+}
+
+
+inline void EntityManager::CleanEntities()
+{
+  for ( auto it = m_parents.rbegin(); it < m_parents.rend(); ++it )
+    if ( !IsEntityValid( { it->first } ) )
+    {
+      if ( it->first == u64_max )
+        continue;
+      DeltaEngine_CORE_INFO( "Parent: {}", it->first );
+      while(!it->second.empty())
+        DestroyEntity( { it->second[0]} );
+      m_parents.erase( ( it + 1 ).base() );
+    }
+}
+
+
+inline void EntityManager::TidyEntities()
+{
+  size_t end { 0 };
+  bool flag { false };
+  for ( size_t i = 0; i < m_entities.size(); i++ )
+    if ( !IsEntityValid( { i } ) )
+    {
+      for ( size_t j = i + 1; j < m_entities.size(); j++ )
+        if ( IsEntityValid( { j } ) )
+        {
+          if ( HasComponent<Parent>( { j } ) )
+          {
+            auto it = std::find_if( m_parents.begin(), m_parents.end(), [&]( ParentMap &pm )
+            {
+              return pm.first == GetComponent<Parent>( { j } ).p_id;
+            } );
+            if ( it != m_parents.end() )
+              for ( auto &child : it->second )
+                if ( child == j )
+                  child = i;
+          }
+          else
+          {
+            auto it = std::find_if( m_parents.begin(), m_parents.end(), [&]( ParentMap &pm )
+            {
+              return pm.first == j;
+            } );
+            if ( it != m_parents.end() )
+            {
+              for ( auto &child : it->second )
+                GetComponent<Parent>( { child } ).p_id = i;
+              it->first = i;
+            }
+          }
+
+          reinterpret_cast<EntityID *>( m_entities[j].chunk )[m_entities[j].chunk_index].index = i;
+
+          std::swap( m_entities[i], m_entities[j] );
+          flag = true;
+          break;
+        }
+      if ( !flag )
+      {
+        end = i;
+        break;
+      }
+      flag = false;
+    }
+
+  m_entities.erase( m_entities.begin() + end, m_entities.end() );
+  m_entities.shrink_to_fit();
+  m_entities_deleted.clear();
+}
+
+
 //******************************************************************************
 // EntityManager Private Methods
 //******************************************************************************
@@ -397,6 +529,72 @@ inline void EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
         void *pop_ptr = static_cast<void *>(
           reinterpret_cast<byte *>( chunk ) + offset + ( type->size * pop_index ) );
         std::memcpy( ptr, pop_ptr, type->size );
+
+        switch ( type->bits )
+        {
+          case ComponentMeta::ComponentBits<Animator>() :
+          {
+            *static_cast<Animator *>( ptr ) = *static_cast<Animator *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<State>() :
+          {
+            *static_cast<State *>( ptr ) = *static_cast<State *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<Image>() :
+          {
+            *static_cast<Image *>( ptr ) = *static_cast<Image *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<Renderer2D>() :
+          {
+            *static_cast<Renderer2D *>( ptr ) = *static_cast<Renderer2D *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<RendererOverlay>() :
+          {
+            std::swap( *static_cast<RendererOverlay *>( ptr ), *static_cast<RendererOverlay *>( pop_ptr ) );
+            break;
+          }
+          case ComponentMeta::ComponentBits<EntityName>() :
+          {
+            *static_cast<EntityName *>( ptr ) = *static_cast<EntityName *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<EntityType>() :
+          {
+            *static_cast<EntityType *>( ptr ) = *static_cast<EntityType *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<AI>() :
+          {
+            *static_cast<AI *>( ptr ) = *static_cast<AI *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<Text>() :
+          {
+            *static_cast<Text *>( ptr ) = *static_cast<Text *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<Button>() :
+          {
+            *static_cast<Button *>( ptr ) = *static_cast<Button *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<Toggle>() :
+          {
+            *static_cast<Toggle *>( ptr ) = *static_cast<Toggle *>( pop_ptr );
+            break;
+          }
+          case ComponentMeta::ComponentBits<AudioSource>() :
+          {
+            *static_cast<AudioSource *>( ptr ) = *static_cast<AudioSource *>( pop_ptr );
+            break;
+          }
+          default:
+            std::memcpy( ptr, pop_ptr, type->size );
+        }
       }
     }
 
@@ -477,6 +675,11 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
           *static_cast<Renderer2D *>( target ) = *static_cast<Renderer2D *>( current );
           break;
         }
+        case ComponentMeta::ComponentBits<RendererOverlay>() :
+        {
+          std::swap( *static_cast<RendererOverlay *>( current ), *static_cast<RendererOverlay *>( target ) );
+          break;
+        }
         case ComponentMeta::ComponentBits<EntityName>() :
         {
           *static_cast<EntityName *>( target ) = *static_cast<EntityName *>( current );
@@ -497,14 +700,19 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
           *static_cast<Text *>( target ) = *static_cast<Text *>( current );
           break;
         }
-        case ComponentMeta::ComponentBits<UI>() :
+        case ComponentMeta::ComponentBits<Button>() :
         {
-          *static_cast<UI *>( target ) = *static_cast<UI *>( current );
+          *static_cast<Button *>( target ) = *static_cast<Button *>( current );
           break;
         }
-        case ComponentMeta::ComponentBits<GUI>() :
+        case ComponentMeta::ComponentBits<Toggle>() :
         {
-          *static_cast<GUI *>( target ) = *static_cast<GUI *>( current );
+          *static_cast<Toggle *>( target ) = *static_cast<Toggle *>( current );
+          break;
+        }
+        case ComponentMeta::ComponentBits<AudioSource>() :
+        {
+          *static_cast<AudioSource *>( target ) = *static_cast<AudioSource *>( current );
           break;
         }
         default:
@@ -562,6 +770,11 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
               std::swap( *static_cast<Renderer2D *>( current ), *static_cast<Renderer2D *>( target ) );
               break;
             }
+            case ComponentMeta::ComponentBits<RendererOverlay>() :
+            {
+              std::swap( *static_cast<RendererOverlay *>( current ), *static_cast<RendererOverlay *>( target ) );
+              break;
+            }
             case ComponentMeta::ComponentBits<EntityName>() :
             {
               std::swap( *static_cast<EntityName *>( current ), *static_cast<EntityName *>( target ) );
@@ -582,14 +795,19 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
               std::swap( *static_cast<Text *>( current ), *static_cast<Text *>( target ) );
               break;
             }
-            case ComponentMeta::ComponentBits<UI>() :
+            case ComponentMeta::ComponentBits<Button>() :
             {
-              std::swap( *static_cast<UI *>( current ), *static_cast<UI *>( target ) );
+              std::swap( *static_cast<Button *>( current ), *static_cast<Button *>( target ) );
               break;
             }
-            case ComponentMeta::ComponentBits<GUI>() :
+            case ComponentMeta::ComponentBits<Toggle>() :
             {
-              std::swap( *static_cast<GUI *>( current ), *static_cast<GUI *>( target ) );
+              std::swap( *static_cast<Toggle *>( current ), *static_cast<Toggle *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<AudioSource>() :
+            {
+              std::swap( *static_cast<AudioSource *>( current ), *static_cast<AudioSource *>( target ) );
               break;
             }
             default:

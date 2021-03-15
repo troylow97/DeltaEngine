@@ -19,12 +19,12 @@ namespace DeltaEngine
 {
   void PhysicsSystem::Initialize()
   {
-    m_gravity_amount = {0, -50.0f};
+    m_gravity_amount = {0, -70.0f};
     CurrentJumpTicks = 0;
-    MaxJumpTicks = 10;
+    MaxJumpTicks = 8;
     CurrentDashTicks = 0;
     MaxDashTicks = 8;
-    InitialJumpForce = 2500.0f;
+    InitialJumpForce = 800.0f;
     JumpForce = InitialJumpForce;
   }
 
@@ -95,24 +95,8 @@ namespace DeltaEngine
         }
         else
         {
-            //Movement
-            if (static_cast<int>(r1.Direction.x) != 0)
-            {
-                if (c1.isCollidingOnFloor)
-                {
-                    const Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
-                    r1.AccumulatedForce += move * r1.Mass * 0.5f;
-                }
-                else
-                {
-                    const float move = (r1.Direction.x * r1.Movespeed);
-                    r1.AccumulatedForce.x += move * r1.Mass;
-                }
-            }
-            else
-            {
-                r1.InherentAcceleration = 0;
-            }
+            const Vector2 move = (r1.Direction * r1.Movespeed);
+            r1.AccumulatedForce += move * r1.Mass;
         }
 
 
@@ -133,26 +117,26 @@ namespace DeltaEngine
         const Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
         r1.Velocity += newAcceleration * env.pClock->FixedDeltaTime();
 
-      	if(em.HasComponent<Player>(id1) && !em.GetComponent<Player>(id1).IsDodging)
+      	if(em.HasComponent<Player>(id1))
       	{
-            //Apply static Friction -> when no input
+            //Apply Friction -> when no input
             if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
             {
-                const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
+                const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
                 const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-                r1.Velocity += dragForceVector;
+                r1.Velocity *= 0.8f;
             }
             else //kinetic one
             {
                 if (c1.isCollidingOnFloor)
                 {
-                    const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
+                    const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
                     const Vector2 dragForceVector = (0.5f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
                     r1.Velocity += dragForceVector;
                 }
                 else
                 {
-                    const float dragForceMagnitude = (r1.Velocity.Length() * r1.FrictionCoeff);
+                    const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
                     const Vector2 dragForceVector = (0.1f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
                     r1.Velocity += dragForceVector;
                 }
@@ -204,16 +188,16 @@ namespace DeltaEngine
       	if(c.isCollidingOnFloor)
       	{
             if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
+                r.AccumulatedForce += Vector2{ 3000 + r.Mass * 100, 0 };
             else
-                r.AccumulatedForce -= Vector2{ 5000 + r.Mass * 100, 0 };
+                r.AccumulatedForce -= Vector2{ 3000 + r.Mass * 100, 0 };
       	}
         else //dashing in mid air
         {
             if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 1500 + r.Mass * 100, 0 };
+                r.AccumulatedForce += Vector2{ 800 + r.Mass * 30, 0 };
             else
-                r.AccumulatedForce -= Vector2{ 1500 + r.Mass * 100, 0 };
+                r.AccumulatedForce -= Vector2{ 800 + r.Mass * 30, 0 };
         }
 
       }
@@ -244,7 +228,7 @@ namespace DeltaEngine
     if (p.IsJumping && CurrentJumpTicks >= 1)
     {
       r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };
-      JumpForce *= 0.75f;
+      JumpForce *= 0.60f;
       
       if (CurrentJumpTicks < MaxJumpTicks)
       {

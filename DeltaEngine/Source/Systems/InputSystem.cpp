@@ -36,6 +36,7 @@ namespace DeltaEngine
   float melee_attack_cooldown{0.0f};
   float range_attack_cooldown{0.0f};
   bool god_mode = false;
+  unsigned run_sound_id { 0 };
 
   void InputSystem::SetIdleAnimation()
   {
@@ -93,7 +94,7 @@ namespace DeltaEngine
   {
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1)
     {
-      if (p1.AllowRunning == true && a1.NumberOfCombos == 0)
+      if (p1.AllowRunning == true/* && a1.NumberOfCombos == 0*/)
       {
         if (/*!a1.Blocking && */ a1.MeleeCooldownTimer <= 0.0)
         {
@@ -118,6 +119,11 @@ namespace DeltaEngine
           
           im1.m_FlipX = true;
           idle_timer = 0.0f;
+          if ( !AudioEngine::IsEventPlaying( run_sound_id ) )
+          {
+            run_sound_id = AudioEngine::Play2DEvent( "event:/Player/Player Run Pavement" );
+            AudioEngine::SetEventVolume( run_sound_id, .5f );
+          }
         }
       }
     });
@@ -152,6 +158,11 @@ namespace DeltaEngine
           
           im1.m_FlipX = false;
           idle_timer = 0.0f;
+          if ( !AudioEngine::IsEventPlaying( run_sound_id ) )
+          {
+            run_sound_id = AudioEngine::Play2DEvent( "event:/Player/Player Run Pavement" );
+            AudioEngine::SetEventVolume( run_sound_id, .5f );
+          }
         }
       }
     });
@@ -168,6 +179,8 @@ namespace DeltaEngine
       a1.NumberOfCombos = 0;
       a1.StartComboCooldownTimer = false;
       a1.ComboCooldownTimer = a1.ComboDuration;
+      AudioEngine::StopEvent( run_sound_id );
+      run_sound_id = 0;
     });
   }
   
@@ -190,11 +203,16 @@ namespace DeltaEngine
         a1.NumberOfCombos = 0;
         p1.AllowShooting = false;
         p1.AllowPunching = false;
+        s1.SetBool("Punch1", false);
+        s1.SetBool("Punch2", false);
+        s1.SetBool("Punch3", false);
         s1.SetBool("IsIdle", false);
         s1.SetBool("JumpStart", true);
         idle_timer = 0.0f;
 
-        AudioEngine::Play2DEvent("event:/Player/PlayerJump");
+        AudioEngine::Play2DEvent("event:/Player/Player Jump");
+        AudioEngine::StopEvent( run_sound_id );
+        run_sound_id = 0;
       }
 
     });
@@ -251,12 +269,15 @@ namespace DeltaEngine
 
   void InputSystem::Dodge()
   {  	
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, Collider& c1, State& s1, Attack& a1, Image& im1)
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, Collider& c1, State& s1, Attack& a1, Image& im1,RigidBody& r1)
     {
 	  if(p1.IsRunning)
 	  {
         StopRun();
 	  }
+
+      if (static_cast<int>(r1.Velocity.y) < 0)
+          return;
     	
       //if ((p1.IsShooting == true && p1.IsPunching == true) || p1.IsShooting == true || p1.IsPunching == true)
       {
@@ -267,6 +288,8 @@ namespace DeltaEngine
       {
         //if (c1.isCollidingOnFloor && )
         {
+          AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/Player/Player Dash" ),0.5f);
+
           p1.IsDodging = true;
           p1.AllowDashing = false;
           
@@ -278,6 +301,10 @@ namespace DeltaEngine
           //  //s1.SetBool("isJumping", true);
           //  a1.Blocking = false;
           //}
+          s1.SetBool("Punch1", false);
+          s1.SetBool("Punch2", false);
+          s1.SetBool("Punch3", false);
+          s1.SetBool("JumpStart", false);
           s1.SetBool("IsDashing", true);
 
           a1.NumberOfCombos = 0;
@@ -330,166 +357,171 @@ namespace DeltaEngine
 
   void InputSystem::Shield()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
-    {
-      i1.previousKey = DEVK_LSHIFT;
-      if (a1.Blocking == true) // unshielding
-      {
-        p1.IsBlocking = false;
-        p1.AllowDashing = true;
-        p1.AllowPunching = true;
-        a1.Blocking = false;
-        a1.NumberOfCombos = 0;
-        a1.StartComboCooldownTimer = false;
-        a1.ComboCooldownTimer = a1.ComboDuration;
-        p1.AllowShooting = true;
-        s1.SetBool("ShieldUp", false);
-      }
-      else // shielding
-      {
-        p1.IsBlocking = true;
-        p1.AllowDashing = false;
-        p1.AllowPunching = false;
-        a1.Blocking = true;
-        a1.NumberOfCombos = 0;
-        a1.StartComboCooldownTimer = false;
-        a1.ComboCooldownTimer = a1.ComboDuration;
-        p1.AllowShooting = false;
-        s1.SetBool("ShieldUp", true);
-      }
-    });
+    //env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
+    //{
+    //  i1.previousKey = DEVK_LSHIFT;
+    //  if (a1.Blocking == true) // unshielding
+    //  {
+    //    p1.IsBlocking = false;
+    //    p1.AllowDashing = true;
+    //    p1.AllowPunching = true;
+    //    a1.Blocking = false;
+    //    a1.NumberOfCombos = 0;
+    //    a1.StartComboCooldownTimer = false;
+    //    a1.ComboCooldownTimer = a1.ComboDuration;
+    //    p1.AllowShooting = true;
+    //    s1.SetBool("ShieldUp", false);
+    //  }
+    //  else // shielding
+    //  {
+    //    p1.IsBlocking = true;
+    //    p1.AllowDashing = false;
+    //    p1.AllowPunching = false;
+    //    a1.Blocking = true;
+    //    a1.NumberOfCombos = 0;
+    //    a1.StartComboCooldownTimer = false;
+    //    a1.ComboCooldownTimer = a1.ComboDuration;
+    //    p1.AllowShooting = false;
+    //    s1.SetBool("ShieldUp", true);
+    //  }
+    //});
   }
 
   void InputSystem::Shoot()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
-    {
-      if (p1.IsRunning)
-      {
-        p1.AllowRunning = false;
-        p1.IsRunning = false;
-        StopRun();
-      }
-      if (p1.AllowShooting)
-      {
-        a1.SMGAttack = true;
-        a1.NumberOfCombos = 0;
-        a1.StartComboCooldownTimer = false;
-        a1.ComboCooldownTimer = a1.ComboDuration;
-        p1.IsShooting = true;
-        i1.previousKey = DEVK_E;
-        s1.SetBool("SMGAttack", true);
-        idle_timer = 0.0f; // what's this troy low yee?
-        p1.AllowPunching = false;
-        p1.AllowJumping = false;
-        p1.AllowDashing = false;
-      }
-    });
+    //env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
+    //{
+    //  if (p1.IsRunning)
+    //  {
+    //    p1.AllowRunning = false;
+    //    p1.IsRunning = false;
+    //    StopRun();
+    //  }
+    //  if (p1.AllowShooting)
+    //  {
+    //    a1.SMGAttack = true;
+    //    a1.NumberOfCombos = 0;
+    //    a1.StartComboCooldownTimer = false;
+    //    a1.ComboCooldownTimer = a1.ComboDuration;
+    //    p1.IsShooting = true;
+    //    i1.previousKey = DEVK_E;
+    //    s1.SetBool("SMGAttack", true);
+    //    idle_timer = 0.0f; // what's this troy low yee?
+    //    p1.AllowPunching = false;
+    //    p1.AllowJumping = false;
+    //    p1.AllowDashing = false;
+    //  }
+    //});
   }
 
   void InputSystem::Update()
   {
+
+    if ( GetEnv().pClock->TimeScale() )
+    {
     // setting the animation for when the player does not have any input
-    SetIdleAnimation();
+      SetIdleAnimation();
 
-    // god mode 
-    if (InputManager::Instance().IsKeyTriggered(DEVK_0))
-    {
-      GodMode();
-    }
-    
-    // moving left 
-    if (InputManager::Instance().IsKeyPressed(DEVK_A))
-    {
-      RunLeft();
-    }
-    else if (InputManager::Instance().IsKeyReleased(DEVK_A))
-    {
-      StopRun();
-    }
-
-    // moving right
-    if (InputManager::Instance().IsKeyPressed(DEVK_D))
-    {
-      RunRight();
-    }
-    else if (InputManager::Instance().IsKeyReleased(DEVK_D))
-    {
-      StopRun();
-    }
-
-    // jumping 
-    if (InputManager::Instance().IsKeyTriggered(DEVK_W) || InputManager::Instance().IsKeyTriggered(DEVK_SPACE))
-    {
-      Jump();
-    }
-
-    // dashing
-    if (InputManager::Instance().IsKeyTriggered(DEVK_Q)) 
-    {
-      Dash();
-    }
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1)
-    {
-      if (p1.IsDashing == false)
-        s1.SetBool("LancerAttack", false);
-    });
-    // dodging
-    if (InputManager::Instance().IsKeyTriggered(DEVK_RBUTTON))
-    {
-      Dodge();
-    }
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1)
-    {
-      if (p1.IsDodging == false)
-        s1.SetBool("IsDashing", false);
-    });
-
-    //if (InputManager::Instance().IsKeyTriggered(DEVK_Z))
-    //{
-    //  env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
-    //  {
-    //    a1.RangeAttack = true;
-    //    idle_timer = 0.0f;
-    //    melee_attack_cooldown = 0.0f;
-    //  });
-    //}
-
-    // punching
-    if (InputManager::Instance().IsKeyTriggered(DEVK_LBUTTON))
-    {
-      Punch();
-    }
-    else if (InputManager::Instance().IsKeyReleased(DEVK_LBUTTON))
-    {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1)
+      // god mode 
+      if ( InputManager::Instance().IsKeyTriggered( DEVK_0 ) )
       {
-        p1.IsPunching = false;
-      });
-    }
-    // shield up and down
-    if (InputManager::Instance().IsKeyTriggered(DEVK_LSHIFT))
-    {
-      Shield();
-    }
-    
-    // shooting
-    if (InputManager::Instance().IsKeyPressed(DEVK_E))
-    {
-      Shoot();
-    }
-    else if (InputManager::Instance().IsKeyReleased(DEVK_E))
-    {
-      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, State& s1, Attack& a1)
+        GodMode();
+      }
+
+      // moving left 
+      if ( InputManager::Instance().IsKeyPressed( DEVK_A ) )
       {
-        p1.IsShooting = false;
-        p1.AllowRunning = true;
-        p1.AllowPunching = true;
-        p1.AllowJumping = true;
-        s1.SetBool("SMGAttack", false);
-        a1.SMGAttack = false;
-        //idle_timer = 0.0f;
-      });
+        RunLeft();
+      }
+      else if ( InputManager::Instance().IsKeyReleased( DEVK_A ) )
+      {
+        StopRun();
+      }
+
+      // moving right
+      if ( InputManager::Instance().IsKeyPressed( DEVK_D ) )
+      {
+        RunRight();
+      }
+      else if ( InputManager::Instance().IsKeyReleased( DEVK_D ) )
+      {
+        StopRun();
+      }
+
+      // jumping 
+      if ( InputManager::Instance().IsKeyTriggered( DEVK_W ) || InputManager::Instance().IsKeyTriggered( DEVK_SPACE ) )
+      {
+        Jump();
+      }
+
+      // dashing
+      if ( InputManager::Instance().IsKeyTriggered( DEVK_Q ) )
+      {
+        Dash();
+      }
+      env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Player &p1, Input &i1, State &s1 )
+      {
+        if ( p1.IsDashing == false )
+          s1.SetBool( "LancerAttack", false );
+      } );
+      // dodging
+      if ( InputManager::Instance().IsKeyTriggered( DEVK_RBUTTON ) )
+      {
+        Dodge();
+      }
+      env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Player &p1, Input &i1, State &s1 )
+      {
+        if ( p1.IsDodging == false )
+          s1.SetBool( "IsDashing", false );
+      } );
+
+      //if (InputManager::Instance().IsKeyTriggered(DEVK_Z))
+      //{
+      //  env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Attack& a1, Image& im, State& a)
+      //  {
+      //    a1.RangeAttack = true;
+      //    idle_timer = 0.0f;
+      //    melee_attack_cooldown = 0.0f;
+      //  });
+      //}
+
+      // punching
+      if ( InputManager::Instance().IsKeyTriggered( DEVK_LBUTTON ) )
+      {
+        Punch();
+      }
+      else if ( InputManager::Instance().IsKeyReleased( DEVK_LBUTTON ) )
+      {
+        env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Input &i1, Player &p1 )
+        {
+          p1.IsPunching = false;
+          p1.AllowRunning = true;
+        } );
+      }
+      // shield up and down
+      if ( InputManager::Instance().IsKeyTriggered( DEVK_LSHIFT ) )
+      {
+        Shield();
+      }
+
+      // shooting
+      if ( InputManager::Instance().IsKeyPressed( DEVK_E ) )
+      {
+        Shoot();
+      }
+      else if ( InputManager::Instance().IsKeyReleased( DEVK_E ) )
+      {
+        env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Player &p1, Input &i1, State &s1, Attack &a1 )
+        {
+          p1.IsShooting = false;
+          p1.AllowRunning = true;
+          p1.AllowPunching = true;
+          p1.AllowJumping = true;
+          s1.SetBool( "SMGAttack", false );
+          a1.SMGAttack = false;
+          //idle_timer = 0.0f;
+        } );
+      }
     }
 
     //if (InputManager::Instance().IsKeyTriggered(DEVK_COMMA))
@@ -502,6 +534,9 @@ namespace DeltaEngine
     //  auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
     //  p.UpgradeHP = true;
     //}
+
+
+
 
 #ifdef DE_EDITOR
   if ( InputManager::Instance().IsKeyTriggered( DEVK_BACKSLASH ) ) // '\'

@@ -24,11 +24,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/TypeAlias.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/Debugging/Profiler/Profiler.h"
-
-class AudioFile
-{
-  std::string path;
-};
+#include "Components/AudioSource.h"
 
 namespace DeltaEngine
 {
@@ -74,6 +70,30 @@ namespace DeltaEngine
     Profiler::Instance().Record("Audio Update");
   }
 
+  void AudioEngine::AudioSourcePlay( AudioSource &a )
+  {
+    a.id = Play( a.clip, a.volume );
+    SetChannelPitch( a.id, a.pitch );
+  }
+
+  void AudioEngine::AudioSourcePlay2DEvent( AudioSource &a, ParametersMap params )
+  {
+    a.id = Play2DEvent( a.clip, params );
+    SetEventVolume( a.id, a.volume );
+    SetEventPitch( a.id, a.pitch );
+  }
+  void AudioEngine::AudioSourcePlay3DEvent( AudioSource &a, Audio3DAttributes attributes, ParametersMap params )
+  {
+    a.id = Play3DEvent( a.clip, attributes, params );
+    SetEventVolume( a.id, a.volume );
+    SetEventPitch( a.id, a.pitch );
+  }
+
+  void AudioEngine::StopAllAudio()
+  {
+    StopChannels();
+    StopAllBusEvents( "bus:/" );
+  }
   // Core
   void AudioEngine::LoadSound(const std::string& name, bool loop, bool stream, bool is3D)
   {
@@ -88,8 +108,6 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(fmod->pSystem->createSound(name.c_str(), mode, nullptr, &sound));
       if (sound)
         fmod->sounds[name] = sound;
-
-      std::cout << name << std::endl;
     }
   }
 
@@ -102,14 +120,14 @@ namespace DeltaEngine
     }
   }
 
-  AudioEngine::ChannelID AudioEngine::Play(const std::string& name, const float dB, Vector3 pos)
+  AudioEngine::ChannelID AudioEngine::Play(const std::string& name, const float volume, Vector3 pos)
   {
     ChannelID id = fmod->nextChannelID++;
     auto result = fmod->sounds.find(name);
     if ( result == fmod->sounds.end() )
     {
       DeltaEngine_CORE_WARN( "Audio - \"{}\" not found", name);
-      return u64_max;
+      return 0;
     }
 
     FMOD::Channel* channel{nullptr};
@@ -123,7 +141,7 @@ namespace DeltaEngine
         auto f_vec = ToFMODVector(pos);
         FMODWrapper::ErrorChecker(channel->set3DAttributes(&f_vec, nullptr));
       }
-      FMODWrapper::ErrorChecker(channel->setVolume(dBToVolume(dB)));
+      FMODWrapper::ErrorChecker(channel->setVolume(volume));
       FMODWrapper::ErrorChecker(channel->setPaused(false));
       fmod->channels[id] = channel;
     }
@@ -152,10 +170,32 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(result->second->setPitch(pitch));
   }
 
-  void AudioEngine::SetChannelVolume(const ChannelID id, const float dB)
+  void AudioEngine::SetChannelVolume(const ChannelID id, const float volume)
   {
     if (auto result = fmod->channels.find(id); result != fmod->channels.end())
-      FMODWrapper::ErrorChecker(result->second->setVolume(dBToVolume(dB)));
+      FMODWrapper::ErrorChecker(result->second->setVolume(volume));
+  }
+
+  void AudioEngine::SetChannelMode(ChannelID id, unsigned mode)
+  {
+    if (auto result = fmod->channels.find(id); result != fmod->channels.end())
+      FMODWrapper::ErrorChecker(result->second->setMode(mode));
+  }
+
+  void AudioEngine::SetChannelLoop(ChannelID id)
+  {
+    if (auto result = fmod->channels.find(id); result != fmod->channels.end())
+    {
+      FMOD_MODE mode;
+      FMODWrapper::ErrorChecker( result->second->getMode( &mode ) );
+      SetChannelMode( id, mode | FMOD_LOOP_NORMAL );
+    }
+  }
+
+  void AudioEngine::SetChannelLoopCount(ChannelID id, int count)
+  {
+    if (auto result = fmod->channels.find(id); result != fmod->channels.end())
+      FMODWrapper::ErrorChecker(result->second->setLoopCount(count));
   }
 
   void AudioEngine::StopChannel(const ChannelID id)
@@ -336,10 +376,10 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(result->second->setPitch(pitch));
   }
 
-  void AudioEngine::SetEventVolume(const EventID id, const float dB)
+  void AudioEngine::SetEventVolume(const EventID id, const float volume)
   {
     if (auto result = fmod->events.find(id); result != fmod->events.end())
-      FMODWrapper::ErrorChecker(result->second->setVolume(dBToVolume(dB)));
+      FMODWrapper::ErrorChecker(result->second->setVolume(volume));
   }
 
   void AudioEngine::StopEvent(const EventID id, const bool fade)
@@ -394,12 +434,12 @@ namespace DeltaEngine
       FMODWrapper::ErrorChecker(bus->setPaused(pause));
   }
 
-  void AudioEngine::SetBusVolume(const std::string& name, const float dB)
+  void AudioEngine::SetBusVolume(const std::string& name, const float volume)
   {
     FMOD::Studio::Bus* bus{nullptr};
     FMODWrapper::ErrorChecker(fmod->pStudioSystem->getBus(name.c_str(), &bus));
     if (bus->isValid())
-      FMODWrapper::ErrorChecker(bus->setVolume(dBToVolume(dB)));
+      FMODWrapper::ErrorChecker(bus->setVolume(volume));
   }
 
   void AudioEngine::StopAllBusEvents(const std::string& name, bool fade)

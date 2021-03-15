@@ -18,7 +18,12 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Render/OpenGLSystem.h"
 #include "Assets/AssetManager.h"
 #include "Components/ParticleEmitter.h"
+#ifdef DE_EDITOR
+#include "ImGui/Panels/IPanel.h"
+#include "ImGui/Editor.h"
+#endif
 
+#include <future>
 namespace DeltaEngine
 {
   Color wireframeColor = Color::Black();
@@ -56,8 +61,6 @@ namespace DeltaEngine
     
     for (EntityID ID : sortedRenderers2D)
     {
-      if (!em.HasComponent<Transform>(ID) || !em.HasComponent<Renderer2D>(ID))
-        continue;
       Transform& t = em.GetComponent<Transform>(ID);
       Renderer2D& r = em.GetComponent<Renderer2D>(ID);
       if (em.HasComponent<Image>(ID))
@@ -193,8 +196,6 @@ namespace DeltaEngine
   {
     for (EntityID ID : sortedRenderersOverlay)
     {
-      if (!em.HasComponent<Transform>(ID) || !em.HasComponent<RendererOverlay>(ID))
-        continue;
       if (em.HasComponent<Image>(ID))
       {
         Transform t{};
@@ -337,62 +338,77 @@ namespace DeltaEngine
       }
     }
   }
-  VideoClip* video = nullptr;
+
+  void SortRender()
+  {
+    sortedRenderers2D.clear();
+    GetEnv().pECS->GetWorld().GetEntityManager().ForEach( [&](EntityID id, Renderer2D& r) { sortedRenderers2D.push_back(id); });
+    std::sort(sortedRenderers2D.begin(), sortedRenderers2D.end(), SortSprites);
+  }
+
+  void SortRenderOverlay()
+  {
+    sortedRenderersOverlay.clear();
+    GetEnv().pECS->GetWorld().GetEntityManager().ForEach( [&](EntityID id, RendererOverlay& r) { sortedRenderersOverlay.push_back(id); });
+    std::sort(sortedRenderersOverlay.begin(), sortedRenderersOverlay.end(), SortOverlay);
+  }
+
+
   void RenderSystem::Update()
   {
     RenderModule::openGLSystem->Update();
+    std::vector<std::future<void>> futures;
+    futures.push_back(std::async(std::launch::async, &SortRender));
+    futures.push_back(std::async(std::launch::async, &SortRenderOverlay));
 
-    // sort renderers by layer
-    sortedRenderers2D.clear();
-    em.ForEach(e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers2D.push_back(id); });
-    std::sort(sortedRenderers2D.begin(), sortedRenderers2D.end(), SortSprites);
-
-    sortedRenderersOverlay.clear();
-    em.ForEach(e_query, [&](EntityID id, RendererOverlay& r) { sortedRenderersOverlay.push_back(id); });
-    std::sort(sortedRenderersOverlay.begin(), sortedRenderersOverlay.end(), SortOverlay);
+    for ( auto &f : futures )
+      f.get();
+    if ( Editor::Instance().m_panels[7]->IsActive() )
+    {
 
     // camera entities
-    em.ForEach([&](EntityID id, Transform& tr, Camera& c)
+      em.ForEach( [&]( EntityID id, Transform &tr, Camera &c )
       {
 #ifndef DE_EDITOR
-        c.SetViewportSize(1.0f * GetEnv().pWin->Width());
-        c.SetAspectRatio(1.0f * GetEnv().pWin->Width(), 1.0f * GetEnv().pWin->Height());
+        c.SetViewportSize( 1.0f * GetEnv().pWin->Width() );
+        c.SetAspectRatio( 1.0f * GetEnv().pWin->Width(), 1.0f * GetEnv().pWin->Height() );
 #endif // !DE_EDITOR
 
         c.Start();
 
         // loop through every object
-        DrawRenderer2D(em, c, tr);
-        DrawRendererOverlay(em, c);
+        DrawRenderer2D( em, c, tr );
+        DrawRendererOverlay( em, c );
 
         c.End();
 
 #ifndef DE_EDITOR
-        Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
-        shader->SetUniform1i("_MainTex", 0);
-        glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+        Shader *shader = GetEnv().pManager->Get<Shader>( "DefaultScreen" );
+        shader->SetUniform1i( "_MainTex", 0 );
+        glBindTexture( GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment() );
 
         Mesh::DrawQuad();
 #endif // !DE_EDITOR
-      });
-    if (Camera::allCameras.size())
-    {
-      Camera::finalFrameBuffer->Resize(static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize()),
-        static_cast<unsigned int>(Camera::allCameras[0]->GetTrueViewportSize() / Camera::allCameras[0]->GetAspectRatio()));
-    }
+      } );
 
-    Camera::finalFrameBuffer->Bind();
-
-    glClearColor(0, 0, 0, 1);
-    glClear(GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/);
-
-    em.ForEach([&](EntityID id, Transform& tr, Camera& c)
+      if ( Camera::allCameras.size() )
       {
-        Vector2 cameraAspect{ 1, 1 };
+        Camera::finalFrameBuffer->Resize( static_cast<unsigned int>( Camera::allCameras[0]->GetTrueViewportSize() ),
+                                          static_cast<unsigned int>( Camera::allCameras[0]->GetTrueViewportSize() / Camera::allCameras[0]->GetAspectRatio() ) );
+      }
 
-        if (Camera::GetFixedAspectRatio() > .01f)
+      Camera::finalFrameBuffer->Bind();
+
+      glClearColor( 0, 0, 0, 1 );
+      glClear( GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/ );
+
+      em.ForEach( [&]( EntityID id, Transform &tr, Camera &c )
+      {
+        Vector2 cameraAspect { 1, 1 };
+
+        if ( Camera::GetFixedAspectRatio() > .01f )
         {
-          if (c.GetAspectRatio() > Camera::GetFixedAspectRatio())
+          if ( c.GetAspectRatio() > Camera::GetFixedAspectRatio() )
           {
             cameraAspect.x = Camera::GetFixedAspectRatio() / c.GetAspectRatio();
           }
@@ -404,19 +420,23 @@ namespace DeltaEngine
 
         // cameraAspect may be modified further depending on advanced camera settings
 
-        Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
-        shader->SetUniform1i("_MainTex", 0);
-        shader->SetUniformVector2f("_ScreenAspect", cameraAspect);
-        glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+        Shader *shader = GetEnv().pManager->Get<Shader>( "DefaultScreen" );
+        shader->SetUniform1i( "_MainTex", 0 );
+        shader->SetUniformVector2f( "_ScreenAspect", cameraAspect );
+        glBindTexture( GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment() );
 
         Mesh::DrawQuad();
-      });
+      } );
 
-    Camera::finalFrameBuffer->Unbind();
+      Camera::finalFrameBuffer->Unbind();
+    }
 
 #ifdef DE_EDITOR
-    Camera::editorCamera->Start();
-    DrawRenderer2D(em, *Camera::editorCamera, Camera::editorCameraTransform);
+    if ( Editor::Instance().m_panels[8]->IsActive() )
+    {
+      Camera::editorCamera->Start();
+      DrawRenderer2D( em, *Camera::editorCamera, Camera::editorCameraTransform );
+    }
 #endif // DE_EDITOR
 
     Profiler::Instance().Record("Render System Update");
@@ -425,6 +445,7 @@ namespace DeltaEngine
   void RenderSystem::LateUpdate()
   {
 #ifdef DE_EDITOR
+    if ( Editor::Instance().m_panels[8]->IsActive() )
     Camera::editorCamera->End();
 #endif // DE_EDITOR
 

@@ -1,6 +1,6 @@
-frames 5
-fps 12
-loop 1
+frames 3
+fps 6
+loop 0
 
 Textures/DAVE_DMG_i_0
 key Textures/DAVE_DMG
@@ -16,15 +16,5 @@ Textures/DAVE_DMG_i_2
 key Textures/DAVE_DMG
 value 2
 frame 2
-
-Textures/DAVE_DMG_i_3
-key Textures/DAVE_DMG
-value 3
-frame 3
-
-Textures/DAVE_DMG_i_4
-key Textures/DAVE_DMG
-value 4
-frame 4
 
 %

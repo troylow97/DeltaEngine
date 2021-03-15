@@ -11,8 +11,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Render/Camera.h"
 #include "Components/Components.h"
 #include "Physics/Collision.h"
-#include "ImGui/Panels/IPanel.h"
 #ifdef DE_EDITOR
+#include "ImGui/Panels/IPanel.h"
 #include "ImGui/Editor.h"
 #endif
 
@@ -48,10 +48,10 @@ namespace DeltaEngine
           c_center = {t.position.x, t.position.y};
         }
       }
-      c_size = {(max.x - min.x) * 20, (max.y - min.y) * 20};
+      c_size = {(max.x - min.x) * 15, (max.y - min.y) * 15};
 
       Query q;
-      q.Exclude<UI>();
+      q.Exclude<GUI>();
 
       em.ForEach(q, [&](Transform& t, Image& i, Renderer2D& r, EntityType& et)
       {

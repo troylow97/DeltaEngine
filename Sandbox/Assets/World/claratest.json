@@ -196,7 +196,7 @@
                 "Current Health": 5,
                 "Max Health": 5,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
                 "Range Damage": 1,
@@ -210,8 +210,8 @@
                 "SMG Cooldown": 0.18000000715255738,
                 "Melee Cooldown Timer": 0.0,
                 "Range Cooldown Timer": 0.0,
-                "Combo Duration": 2.0,
-                "Combo Cooldown Timer": 2.0,
+                "Combo Duration": 10.0,
+                "Combo Cooldown Timer": 10.0,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
