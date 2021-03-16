@@ -1,0 +1,46 @@
+%Entry:
+
+entry
+Clip/CLARA_CHECKPOINT_NOTREACHED
+
+%Parameters:
+
+param
+CheckpointReached
+1 0
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+216 279
+
+pos
+Any State
+200 0
+
+pos
+Clip/CLARA_CHECKPOINT_REACHED
+-25 190
+
+pos
+Clip/CLARA_CHECKPOINT_NOTREACHED
+-19 76
+
+%Transitions:
+
+transition
+start
+Clip/CLARA_CHECKPOINT_NOTREACHED
+end
+Clip/CLARA_CHECKPOINT_REACHED
+condition
+CheckpointReached
+? 1
+endTransition
+
+%endfile

@@ -82,8 +82,8 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
   rttr::registration::class_<GauntletsList>( "Gauntlets" )
       .property( "gauntlets", &GauntletsList::Gauntlets );
 
-  rttr::registration::class_<RespawnPoints>( "RespawnPoints" )
-      .property( "respawn_points", &RespawnPoints::m_respawns );
+  rttr::registration::class_<RespawnPoints>("RespawnPoints")
+      .property("respawn_points", &RespawnPoints::m_respawns);
 
   rttr::registration::class_<EngineConfig>( "Config" )
     .property( "window", &EngineConfig::win_name )
@@ -169,7 +169,10 @@ rttr::registration::class_<EnemyWave>( "EnemyWave" )
     rttr::value( "enemy bullet", EntityCategory::E_ENEMY_BULLET),
     rttr::value( "enemy fiddler punch", EntityCategory::E_ENEMY_FIDDLER_PUNCH),
     rttr::value( "enemy lancer punch", EntityCategory::E_ENEMY_LANCER_PUNCH),
-    rttr::value( "vfx", EntityCategory::E_VFX )
+    rttr::value( "vfx", EntityCategory::E_VFX ),
+    rttr::value( "checkpoints", EntityCategory::E_CHECKPOINT ),
+    rttr::value( "mud", EntityCategory::E_MUD ),
+    rttr::value( "concrete", EntityCategory::E_CONCRETE )
   );
 
   rttr::registration::enumeration<Alignment>( "Alignment" )

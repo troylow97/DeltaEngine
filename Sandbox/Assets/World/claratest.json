@@ -100,7 +100,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
+                    "x": -10.0,
                     "y": 1.5,
                     "z": 0.0
                 },
@@ -193,10 +193,10 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 5,
-                "Max Health": 5,
+                "Current Health": 15,
+                "Max Health": 15,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 1,
@@ -389,7 +389,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -10.0,
+                    "x": -11.0,
                     "y": 0.0,
                     "z": 0.0
                 },
@@ -817,7 +817,7 @@
             "Transform": {
                 "Position": {
                     "x": -9.0,
-                    "y": 1.0,
+                    "y": 5.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -873,7 +873,7 @@
             "Transform": {
                 "Position": {
                     "x": -6.0,
-                    "y": 1.0,
+                    "y": 5.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -929,7 +929,7 @@
             "Transform": {
                 "Position": {
                     "x": -3.0,
-                    "y": 1.0,
+                    "y": 5.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -985,7 +985,7 @@
             "Transform": {
                 "Position": {
                     "x": 0.0,
-                    "y": 1.0,
+                    "y": 5.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -1041,7 +1041,7 @@
             "Transform": {
                 "Position": {
                     "x": 3.0,
-                    "y": 1.0,
+                    "y": 5.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -1097,7 +1097,7 @@
             "Transform": {
                 "Position": {
                     "x": 6.0,
-                    "y": 1.0,
+                    "y": 5.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -1153,7 +1153,7 @@
             "Transform": {
                 "Position": {
                     "x": 9.0,
-                    "y": 1.0,
+                    "y": 5.0,
                     "z": 0.0
                 },
                 "Scale": {

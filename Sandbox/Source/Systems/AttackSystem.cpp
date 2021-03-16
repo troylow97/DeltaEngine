@@ -312,7 +312,7 @@ namespace DeltaEngine
     //}
     //else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
     {
-      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 0.7f, EntityCategory::E_ENEMY_BULLET);
+      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 1.5f, EntityCategory::E_ENEMY_BULLET);
       Vector2 direction_to_shoot = { CalculateAttackDirection(id).x, CalculateAttackDirection(id).y };
       Transform& enemy_pos = em.GetComponent<Transform>(id);
       Collider& enemy_collider = em.GetComponent<Collider>(id);
