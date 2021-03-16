@@ -28,7 +28,10 @@ namespace DeltaEngine
     E_ENEMY_BULLET,
     E_ENEMY_FIDDLER_PUNCH,
     E_ENEMY_LANCER_PUNCH,
-  	E_VFX
+  	E_VFX,
+  	E_CHECKPOINT,
+  	E_MUD,
+  	E_CONCRETE
   };
 
   struct EntityType

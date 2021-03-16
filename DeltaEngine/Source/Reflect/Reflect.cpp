@@ -98,7 +98,7 @@ namespace DeltaEngine
       .property("cooldown", &SerpentipedeAIData::AttackCooldown)
       .property("points", &SerpentipedeAIData::Points)
       .property("detection_range", &SerpentipedeAIData::DetectionRange);
-
+    
     rttr::registration::class_<EnemyWave>("EnemyWave")
       .property("enemy_count", &EnemyWave::EnemyCount)
       .property("enemy_type", &EnemyWave::EnemyType)
@@ -182,7 +182,10 @@ namespace DeltaEngine
       rttr::value("enemy bullet", EntityCategory::E_ENEMY_BULLET),
       rttr::value("enemy fiddler punch", EntityCategory::E_ENEMY_FIDDLER_PUNCH),
       rttr::value("enemy lancer punch", EntityCategory::E_ENEMY_LANCER_PUNCH),
-      rttr::value("vfx", EntityCategory::E_VFX)
+      rttr::value("vfx", EntityCategory::E_VFX),
+      rttr::value("checkpoint", EntityCategory::E_CHECKPOINT),
+      rttr::value("mud", EntityCategory::E_MUD),
+      rttr::value("concrete", EntityCategory::E_CONCRETE)
     );
 
     rttr::registration::enumeration<Alignment>("Alignment")

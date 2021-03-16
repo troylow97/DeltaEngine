@@ -84,7 +84,7 @@ bool CollisionHandlerFunctions::CheckBlock( EntityID &defender, EntityID &attack
 
 unsigned player_impact_id { 0 };
 
-void CollisionHandlerFunctions::TakeDamage( EntityID &id1, EntityID &id2 )
+void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
 {
   auto &em = env.pECS->GetWorld().GetEntityManager();
   const auto &et1 = em.GetComponent<EntityType>( id1 );
@@ -229,5 +229,21 @@ void CollisionHandlerFunctions::TakeDamage( EntityID &id1, EntityID &id2 )
         env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( UnitManager::GetPlayerID() ).EnemiesDefeated++;
     }
   }
+}
+
+void CollisionHandlerFunctions::CheckGroundType(EntityID& id1, EntityID& id2)
+{
+    auto& em = env.pECS->GetWorld().GetEntityManager();
+    const auto& et1 = em.GetComponent<EntityType>(id1);
+    const auto& et2 = em.GetComponent<EntityType>(id2);
+
+	if(et1.type == EntityCategory::E_MUD || et2.type == EntityCategory::E_PLAYER)
+	{
+        //MUD
+	}
+    else if(et1.type == EntityCategory::E_PLAYER || et2.type == EntityCategory::E_MUD)
+    {
+	    
+    }
 }
 }
