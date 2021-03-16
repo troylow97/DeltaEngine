@@ -233,17 +233,27 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
 
 void CollisionHandlerFunctions::CheckGroundType(EntityID& id1, EntityID& id2)
 {
-    auto& em = env.pECS->GetWorld().GetEntityManager();
-    const auto& et1 = em.GetComponent<EntityType>(id1);
-    const auto& et2 = em.GetComponent<EntityType>(id2);
-
-	if(et1.type == EntityCategory::E_MUD || et2.type == EntityCategory::E_PLAYER)
-	{
-        //MUD
-	}
-    else if(et1.type == EntityCategory::E_PLAYER || et2.type == EntityCategory::E_MUD)
-    {
-	    
-    }
+    //auto& em = env.pECS->GetWorld().GetEntityManager();
+    //const auto& et1 = em.GetComponent<EntityType>(id1);
+    //const auto& et2 = em.GetComponent<EntityType>(id2);
+    //
+	//if(et1.type == EntityCategory::E_MUD || et2.type == EntityCategory::E_PLAYER)
+	//{
+    //    //MUD
+	//}
+    //else if(et1.type == EntityCategory::E_PLAYER || et2.type == EntityCategory::E_MUD)
+    //{
+	//    //MUD
+    //}
+    //
+    //if (et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_PLAYER)
+    //{
+    //    //CONCRETE
+    //}
+    //else if (et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_MUD)
+    //{
+    //    //CONCRETE
+    //}
+	
 }
 }
