@@ -105,8 +105,8 @@ void UISystem::LateUpdate()
   auto t_aspect = GamePanel::render_size.x / GamePanel::render_size.y;
 
 #else
-  auto cameraWidth = GetEnv().pWin->Width();
-  auto cameraHeight = GetEnv().pWin->Height();
+  auto cameraWidth = static_cast<float>(GetEnv().pWin->Width());
+  auto cameraHeight = static_cast<float>(GetEnv().pWin->Height());
   auto p_x = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
   auto p_y = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
   auto t_aspect = 1.0f * cameraWidth / cameraHeight;

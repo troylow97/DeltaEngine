@@ -363,9 +363,11 @@ namespace DeltaEngine
 
     for ( auto &f : futures )
       f.get();
+
+#ifdef DE_EDITOR
     if ( Editor::Instance().m_panels[7]->IsActive() )
     {
-
+#endif
     // camera entities
       em.ForEach( [&]( EntityID id, Transform &tr, Camera &c )
       {
@@ -429,7 +431,9 @@ namespace DeltaEngine
       } );
 
       Camera::finalFrameBuffer->Unbind();
+#ifdef DE_EDITOR
     }
+#endif
 
 #ifdef DE_EDITOR
     if ( Editor::Instance().m_panels[8]->IsActive() )
