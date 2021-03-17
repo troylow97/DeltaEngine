@@ -161,8 +161,8 @@ namespace DeltaEngine
                     //Apply Bounce Force
                     Vector2 monster_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
                     Vector2 kb = (player_pos - env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position);
-                    env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.y += 50.0f;
-                    env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.x = rb.Direction.x * 200.0f;
+                    env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.y += 30.0f;
+                    env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.x = rb.Direction.x * 150.0f;
 
                 }
 
@@ -188,7 +188,7 @@ namespace DeltaEngine
                     s.SetBool("LancerCharge", true);
                     AITools::FlyTowardsPoint(monster, Vector2{
                                            player_pos.x + Random::RandomFloatRange(0.1f, 0.3f),
-                                           player_pos.y + Random::RandomFloatRange(0.1f, 0.3f)
+                                           player_pos.y - Random::RandomFloatRange(0.1f, 0.3f)
                         });
                 }
             	

@@ -344,20 +344,20 @@ namespace DeltaEngine
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().
       HasComponent<Attack>(id))
     {                                         /*collider box size*/     /*duration*/
-      EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+      EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.2f, EntityCategory::E_PLAYER_PUNCH);
       static size_t c_id{u64_max};
    	
       AudioEngine::Play2DEvent( "event:/Player/Player Punch Wind" );
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
-        em.GetComponent<Transform>(missile).position.x += 0.6f; //offset of spawn from player
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {400, 0}; //punch range
+        em.GetComponent<Transform>(missile).position.x += 0.5f; //offset of spawn from player
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {500, 0}; //punch range
         em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
       }
       else
       {
-        em.GetComponent<Transform>(missile).position.x -= 0.6f; //offset of spawn from player
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-400, 0}; //punch range
+        em.GetComponent<Transform>(missile).position.x -= 0.5f; //offset of spawn from player
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-500, 0}; //punch range
         em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
       }
       return;
