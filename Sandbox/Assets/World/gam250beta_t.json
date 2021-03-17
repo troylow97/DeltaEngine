@@ -22161,7 +22161,7 @@
                 "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
-                "Inherent Acceleration": 10.0,
+                "Inherent Acceleration": 0.0,
                 "Max Acceleration": 10.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": true,
@@ -22236,7 +22236,7 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 512,
