@@ -394,15 +394,12 @@ namespace DeltaEngine
         //em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 8000.0f;
       }
       else
-      {
-        if (em.GetComponent<Animator>(id).m_ClipKey != "Clip/FID_ATTACK")
-          return;
-      	
+      {  	
         static size_t c_id{u64_max};
         if (AudioEngine::IsChannelPlaying(c_id))
           AudioEngine::StopChannel(c_id);
         c_id = AudioEngine::Play("Audio/Fiddler/FiddlerAttack.ogg");
-        EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, false, 0.2f,
+        EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, false, 0.3f,
                                             EntityCategory::E_ENEMY_FIDDLER_PUNCH);
         if (em.GetComponent<Image>(id).m_FlipX == true)
         {

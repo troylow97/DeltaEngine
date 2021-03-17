@@ -97,7 +97,7 @@ namespace DeltaEngine
   void CollisionSystem::CollisionHandling()
   {
     bool Handled = false;
-    if (!current_manifold_vector.empty())
+    if (!current_manifold_vector.empty()) //if vector is full
     {
       for (auto it1 = current_manifold_vector.begin(); it1 !=
            current_manifold_vector.end(); ++it1)
@@ -109,23 +109,27 @@ namespace DeltaEngine
           {
             collision_handler.OnStay(it1->id1, it1->id2);
             Handled = true;
+            it1->handled = true;
+            it2->handled = true;
           }
         }
 
-        if (!Handled)
+        if (!it1->handled)
         {
           collision_handler.OnEnter(it1->id1, it1->id2);
+          it1->handled = true;
         }
       }
     }
 
 
-    if (!Handled && !old_manifold_vector.empty())
+    if (!old_manifold_vector.empty())
     {
       //handle previous pair exit
       for (auto it3 = old_manifold_vector.begin(); it3 != old_manifold_vector.end(); ++it3)
       {
-        collision_handler.OnExit(it3->id1, it3->id2);
+      	if(!it3->handled)
+			collision_handler.OnExit(it3->id1, it3->id2);
       }
     }
   }
