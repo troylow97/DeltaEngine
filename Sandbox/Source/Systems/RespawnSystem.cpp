@@ -19,7 +19,7 @@ namespace DeltaEngine
   void RespawnSystem::Initialize()
   {
     //RespawnPoints res;
-    //res.m_respawns.push_back({ 0,0 });
+    //res.m_respawns.push_back({ 0,0,0 });
 
     JsonFile file;
     //rttr::variant v{ res };
@@ -32,12 +32,82 @@ namespace DeltaEngine
 
   void RespawnSystem::Update()
   {
-    //DeathEffect();
+    if (level_1 && em.IsEntityValid(UnitManager::GetPlayerID()))
+    {
+      CreateCheckpoints();
+      level_1 = false;
+    }
+    CheckpointsLightUp();
     Respawning();
+    //DeatheEffect();
   }
 
   void RespawnSystem::LateUpdate()
   {
+  }
+
+  void RespawnSystem::CreateCheckpoints()
+  {
+    for (size_t i = 0; i < respawns.m_respawns.size(); i++)
+    {
+      EntityID checkpoints = em.CreateEntity<Animator, Renderer2D, Image, EntityName, State>();
+      em.GetComponent<EntityName>(checkpoints).name = "Checkpoint";
+     
+      em.GetComponent<Transform>(checkpoints).position.x = respawns.m_respawns[i].x;
+      em.GetComponent<Transform>(checkpoints).position.y = respawns.m_respawns[i].y;
+      em.GetComponent<Transform>(checkpoints).scale = { 1.0f, 1.0f, 1.0f };
+     
+      em.GetComponent<Renderer2D>(checkpoints).m_SortingLayer = 3;
+      em.GetComponent<Image>(checkpoints).m_Sprite.m_Key = "Textures/CLARA_CHECKPOINT_NOTREACHED"; // e.g. "Textures/DAVE_HITFX"
+      em.GetComponent<Image>(checkpoints).m_Sprite.m_Index = 0;
+      em.GetComponent<Image>(checkpoints).m_Size = { 1.0f, 1.0f };
+      em.GetComponent<EntityType>(checkpoints).type = EntityCategory::E_CHECKPOINT;
+      em.GetComponent<Animator>(checkpoints).m_ControllerKey = "Animation/CLARA_CHECKPOINT"; // e.g. "Animation/DaveHitVFX"
+      em.GetComponent<State>(checkpoints).SetBool("CheckpointReached", false);
+    }
+  }
+
+  void RespawnSystem::CheckpointsLightUp()
+  {
+    if (em.IsEntityValid(UnitManager::GetPlayerID()))
+    {
+      if (em.HasComponent<Player>(UnitManager::GetPlayerID()))
+      {
+        EntityID id = UnitManager::GetPlayerID();
+        
+        //Stop crash by checking for components	
+        if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id)
+            || !em.HasComponent<Health>(id) || !em.HasComponent<Image>(id))
+            return;
+        
+        Player& p = em.GetComponent<Player>(id);
+        Transform& t = em.GetComponent<Transform>(id);
+        
+        for (size_t i = 0; i < respawns.m_respawns.size(); i++)
+        {
+          if (t.position.x >= respawns.m_respawns[i].x)
+          {
+            respawns.m_respawns[i].z = 1.0f;
+          }
+        }
+        for (size_t i = 0; i < respawns.m_respawns.size(); i++)
+        {
+          if (respawns.m_respawns[i].z == 1.0f)
+          {
+            env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, EntityType& et1, State& s1, Transform& t1, Animator& AA)
+            {
+              if (et1.type == EntityCategory::E_CHECKPOINT)
+              {
+                if (t.position.x >= t1.position.x)
+                {
+                  s1.SetBool("CheckpointReached", true);
+                }
+              }
+            });
+          }
+        }
+      }
+    }
   }
 
   void  RespawnSystem::Respawning()
@@ -59,42 +129,20 @@ namespace DeltaEngine
 
         if (p.IsDead)
         {
-          float temp_x = 0.541f, temp_y = 3.0f;
-          float new_x = 0.0f, new_y = 0.0f;
-          //if (AITools::isFacingRight(id))
-          //{
-          for (size_t i = 0; i < respawns.m_respawns.size(); i++)
+          float temp_x = 0.0f, temp_y = 0.0f;
+          for (size_t i = respawns.m_respawns.size() - 1; i >= 0; i--)
           {
-            if (t.position.x >= respawns.m_respawns[i].x)
+            if (respawns.m_respawns[i].z == 1.0f)
             {
               temp_x = respawns.m_respawns[i].x;
               temp_y = respawns.m_respawns[i].y;
+              break;
             }
           }
-          new_x = temp_x;
-          new_y = temp_y;
-          t.position.x = new_x;
-          t.position.y = new_y;
+          t.position.x = temp_x;
+          t.position.y = temp_y;
           hp.CurrentHealth = hp.MaxHealth;
           p.IsDead = false;
-          //}
-          //else if (AITools::isFacingLeft(id))
-          //{
-          //  for (int i = static_cast<int>(respawns.m_respawns.size() - 1); i >= 0; i--)
-          //  {
-          //    if (t.position.x <= respawns.m_respawns[i].x)
-          //    {
-          //      temp_x = respawns.m_respawns[i].x;
-          //      temp_y = respawns.m_respawns[i].y;
-          //    }
-          //  }
-          //  new_x = temp_x;
-          //  new_y = temp_y;
-          //  t.position.x = new_x;
-          //  t.position.y = new_y;
-          //  hp.CurrentHealth = hp.MaxHealth;
-          //  p.IsDead = false;
-          //}
         }
       }
     }
