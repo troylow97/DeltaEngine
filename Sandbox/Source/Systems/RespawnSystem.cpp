@@ -50,7 +50,7 @@ namespace DeltaEngine
   {
     for (size_t i = 0; i < respawns.m_respawns.size(); i++)
     {
-      EntityID checkpoints = em.CreateEntity<Animator, Renderer2D, Image, EntityName, State>();
+      EntityID checkpoints = em.CreateEntity<Animator, Renderer2D, Image, State>();
       em.GetComponent<EntityName>(checkpoints).name = "Checkpoint";
      
       em.GetComponent<Transform>(checkpoints).position.x = respawns.m_respawns[i].x;
@@ -58,11 +58,11 @@ namespace DeltaEngine
       em.GetComponent<Transform>(checkpoints).scale = { 1.0f, 1.0f, 1.0f };
      
       em.GetComponent<Renderer2D>(checkpoints).m_SortingLayer = 3;
-      em.GetComponent<Image>(checkpoints).m_Sprite.m_Key = "Textures/CLARA_CHECKPOINT_NOTREACHED"; // e.g. "Textures/DAVE_HITFX"
+      em.GetComponent<Image>(checkpoints).m_Sprite.m_Key = "Textures/CHECKPOINT_OFF"; // e.g. "Textures/DAVE_HITFX"
       em.GetComponent<Image>(checkpoints).m_Sprite.m_Index = 0;
       em.GetComponent<Image>(checkpoints).m_Size = { 1.0f, 1.0f };
       em.GetComponent<EntityType>(checkpoints).type = EntityCategory::E_CHECKPOINT;
-      em.GetComponent<Animator>(checkpoints).m_ControllerKey = "Animation/CLARA_CHECKPOINT"; // e.g. "Animation/DaveHitVFX"
+      em.GetComponent<Animator>(checkpoints).m_ControllerKey = "Animation/Checkpoint"; // e.g. "Animation/DaveHitVFX"
       em.GetComponent<State>(checkpoints).SetBool("CheckpointReached", false);
     }
   }
@@ -79,32 +79,30 @@ namespace DeltaEngine
         if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id)
             || !em.HasComponent<Health>(id) || !em.HasComponent<Image>(id))
             return;
-        
-        Player& p = em.GetComponent<Player>(id);
+
         Transform& t = em.GetComponent<Transform>(id);
         
         for (size_t i = 0; i < respawns.m_respawns.size(); i++)
         {
-          if (t.position.x >= respawns.m_respawns[i].x)
+          if (t.position.x >= respawns.m_respawns[i].x && ((t.position.y - respawns.m_respawns[i].y) < 0.75f && (t.position.y - respawns.m_respawns[i].y) > -0.75f))
           {
             respawns.m_respawns[i].z = 1.0f;
           }
         }
+
         for (size_t i = 0; i < respawns.m_respawns.size(); i++)
         {
-          if (respawns.m_respawns[i].z == 1.0f)
+          Vector2 checkpoint_coordinates = { respawns.m_respawns[i].x, respawns.m_respawns[i].y };
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, EntityType& et1, State& s1, Transform& t1)
           {
-            env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, EntityType& et1, State& s1, Transform& t1, Animator& AA)
+            if (et1.type == EntityCategory::E_CHECKPOINT)
             {
-              if (et1.type == EntityCategory::E_CHECKPOINT)
+              if (t.position.x >= t1.position.x && ((t.position.y - t1.position.y) < 0.75f && (t.position.y - t1.position.y) > -0.75f))
               {
-                if (t.position.x >= t1.position.x)
-                {
-                  s1.SetBool("CheckpointReached", true);
-                }
+                s1.SetBool("CheckpointReached", true);
               }
-            });
-          }
+            }
+          });
         }
       }
     }
@@ -130,12 +128,12 @@ namespace DeltaEngine
         if (p.IsDead)
         {
           float temp_x = 0.0f, temp_y = 0.0f;
-          for (size_t i = respawns.m_respawns.size() - 1; i >= 0; i--)
+          for (size_t i = respawns.m_respawns.size(); i > 0; i--)
           {
-            if (respawns.m_respawns[i].z == 1.0f)
+            if (respawns.m_respawns[i - 1].z == 1.0f)
             {
-              temp_x = respawns.m_respawns[i].x;
-              temp_y = respawns.m_respawns[i].y;
+              temp_x = respawns.m_respawns[i - 1].x;
+              temp_y = respawns.m_respawns[i - 1].y;
               break;
             }
           }
