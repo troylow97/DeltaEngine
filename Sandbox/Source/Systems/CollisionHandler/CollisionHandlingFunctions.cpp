@@ -86,6 +86,7 @@ unsigned player_impact_id { 0 };
 
 void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
 {
+  //std::cout << "TAKE DAMAGE" << std::endl;
   auto &em = env.pECS->GetWorld().GetEntityManager();
   const auto &et1 = em.GetComponent<EntityType>( id1 );
   const auto &et2 = em.GetComponent<EntityType>( id2 );
@@ -94,22 +95,26 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
   {
     //Fiddler Melee Attack
     {
-      if ( CheckEntityType( id1, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id2, EntityCategory::E_PLAYER ) )
-      {
-        //if(!CheckBlock(id2,id1))
-        ReduceHealth( id2, static_cast<int>( CollisionHandlerFiddlerData.Damage ) );
-        em.GetComponent<Lifespan>( id1 ).Timer = -0.1f;
-        ApplyKnockBack( id2, id1, 15000.0f );
-        return;
-      }
-      if ( CheckEntityType( id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER ) )
-      {
-        //if (!CheckBlock(id1, id2))
-        ReduceHealth( id1, static_cast<int>( CollisionHandlerFiddlerData.Damage ) );
-        em.GetComponent<Lifespan>( id2 ).Timer = -0.1f;
-        ApplyKnockBack( id1, id2, 15000.0f );
-        return;
-      }
+    	//if(AITools::isFacingEachOther(id1,id2))
+    	{
+            if (CheckEntityType(id1, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id2, EntityCategory::E_PLAYER))
+            {
+                //if(!CheckBlock(id2,id1))
+                ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+                em.GetComponent<Lifespan>(id1).Timer = -0.1f;
+                ApplyKnockBack(id2, id1, 15000.0f);
+                return;
+            }
+            else if (CheckEntityType(id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER))
+            {
+                //if (!CheckBlock(id1, id2))
+                ReduceHealth(id1, static_cast<int>(CollisionHandlerFiddlerData.Damage));
+                em.GetComponent<Lifespan>(id2).Timer = -0.1f;
+                ApplyKnockBack(id1, id2, 15000.0f);
+                return;
+            }
+    	}
+
     }
 
     //Lancer Melee Attack
@@ -121,7 +126,7 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
         em.GetComponent<Lifespan>( id1 ).Timer = -0.1f;
         return;
       }
-      if ( CheckEntityType( id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER ) )
+      else if ( CheckEntityType( id2, EntityCategory::E_ENEMY_LANCER_PUNCH, id1, EntityCategory::E_PLAYER ) )
       {
         ReduceHealth( id1, static_cast<int>( CollisionHandlerLancerData.Damage ) );
         ApplyKnockBack( id1, id2, 400.0f );
@@ -139,7 +144,7 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
         //ApplyKnockBack(id2, id1, 600.0f);
         return;
       }
-      if ( CheckEntityType( id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER ) )
+      else if ( CheckEntityType( id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER ) )
       {
         ReduceHealth( id1, static_cast<int>( CollisionHandlerSerpentipedeData.Damage ) );
         em.GetComponent<Lifespan>( id2 ).Timer = -0.1f;

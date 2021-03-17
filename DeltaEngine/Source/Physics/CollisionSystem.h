@@ -24,14 +24,15 @@ namespace DeltaEngine
     EntityID id1;
     EntityID id2;
     bool ignore;
+    bool handled;
 
     CollisionPairInfo(Manifold man, EntityID i1, EntityID i2) :
       m{man},
       id1{i1},
       id2{i2},
-      ignore{false}
-    {
-    }
+      ignore{false},
+  	  handled{false}
+    {}
   };
 
   DEFINE_SYSTEM(CollisionSystem, Collider, RigidBody, Transform)
