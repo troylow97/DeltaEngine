@@ -38,7 +38,7 @@ namespace DeltaEngine
 		//	bool ReadFrame();
 		//};
 		//AppData data{};
-		unsigned int m_RendererID;
+		unsigned m_RendererID;
 	public:
 
     static void Init();

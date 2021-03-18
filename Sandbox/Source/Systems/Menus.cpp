@@ -17,6 +17,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Audio/AudioEngine.h"
 #include "EnemySpawner/EnemySpawner.h"
 #include "Systems/UISystem.h"
+#include "RespawnSystem.h"
 #include "Input/InputManager.h"
 #include "Input/Keys.h"
 
@@ -81,6 +82,7 @@ void StartGame()
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
   GetEnv().pECS->GetWorld().Load( "World/gam250beta_t.json" );
   GetEnv().pClock->TimeScale( 1.0f );
+  RespawnSystem::CreateCheckpoints(0); // 0 = tutorial
   in_game = true;
   AudioEngine::StopAllAudio();
 }

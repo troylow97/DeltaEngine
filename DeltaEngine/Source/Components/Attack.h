@@ -30,6 +30,8 @@ struct Attack
   float KnockbackComboAmount;
   float SMGFireRate;
   float AttackDelay;
+  float CurrentDodgeCooldown;
+  float DodgeCooldown;
   bool RangeAttack;
   bool MeleeAttack;
   bool SMGAttack;
@@ -57,6 +59,8 @@ struct Attack
     KnockbackComboAmount{0.0f},
     SMGFireRate{0.18f},
     AttackDelay{-0.2f},
+    CurrentDodgeCooldown{-0.1f},
+	DodgeCooldown{1.0f},
     RangeAttack{false},
     MeleeAttack{false},
     SMGAttack{false},

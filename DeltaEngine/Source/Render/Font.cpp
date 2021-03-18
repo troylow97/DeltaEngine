@@ -75,7 +75,7 @@ namespace DeltaEngine
         m_RendererID,
         Vector2(static_cast<float>(face->glyph->bitmap.width), static_cast<float>(face->glyph->bitmap.rows)),
         Vector2(static_cast<float>(face->glyph->bitmap_left), static_cast<float>(face->glyph->bitmap_top)),
-        static_cast<unsigned int>(face->glyph->advance.x)
+        static_cast<unsigned>(face->glyph->advance.x)
       };
       m_CharacterInfo.insert(std::pair<char, CharacterInfo>(c, character));
     }
@@ -89,7 +89,7 @@ namespace DeltaEngine
     return m_CharacterInfo;
   }
 
-  unsigned int Font::GetID() const
+  unsigned Font::GetID() const
   {
     return m_RendererID;
   }

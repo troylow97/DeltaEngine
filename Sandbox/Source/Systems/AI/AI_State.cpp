@@ -56,6 +56,9 @@ namespace DeltaEngine
 
     void LancerSpawn::Update(EntityID& monster)
     {
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsDead", false);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlerted", true);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("MeleeAttack", false);
         CheckEdges(monster);
         auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
         Vector2 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;
@@ -353,13 +356,13 @@ namespace DeltaEngine
 
         if (AttackDelay > 0.0f)
         {
-            if (AttackDelay < 2.0f && !hasAttacked)
+            if (AttackDelay < 1.0f && !hasAttacked)
             {
                 hasAttacked = true;
                 a.MeleeAttack = true;
                 std::cout << "setting melee attack to true" << std::endl;
             }
-            else if (AttackDelay < 0.3f)
+            else if (AttackDelay < 0.2f)
             {
                 s.SetBool("IsAlertRunning", true);
                 s.SetBool("MeleeAttack", false);
@@ -406,8 +409,6 @@ namespace DeltaEngine
                 }
             }
 
-
-
             //To Add Blocking Mechanic here
 
             //if (a.AttackDelay < 0.0f)
@@ -419,7 +420,7 @@ namespace DeltaEngine
                     s.SetBool("IsAlertRunning", false);
                     s.SetBool("MeleeAttack", true);
                     rb.Direction = Vector2::zero();
-                    AttackDelay = 2.8f; //time taken for attack animation to reset                	
+                    AttackDelay = 1.6f; //time taken for attack animation to reset                	
                     hasAttacked = false;
                     return;
                 }

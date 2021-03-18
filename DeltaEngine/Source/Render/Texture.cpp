@@ -35,7 +35,13 @@ Texture2D::~Texture2D()
   DeltaEngine_CORE_INFO( "Texture deleted" );
 }
 
-void Texture2D::Bind( unsigned int slot ) const
+void Texture2D::BindID( unsigned id, unsigned slot )
+{
+  glActiveTexture( GL_TEXTURE0 + slot );
+  GLCall( glBindTexture( GL_TEXTURE_2D, id ) );
+}
+
+void Texture2D::Bind( unsigned slot ) const
 {
   glActiveTexture( GL_TEXTURE0 + slot );
   GLCall( glBindTexture( GL_TEXTURE_2D, m_RendererID ) );
@@ -56,7 +62,7 @@ int Texture2D::GetHeight() const
   return m_Height;
 }
 
-unsigned int Texture2D::GetRendererID() const
+unsigned Texture2D::GetRendererID() const
 {
   return m_RendererID;
 }
@@ -83,16 +89,16 @@ std::vector<TextureInfo> Texture2D::AutoSlice( Vector2 pivot, bool noOverlap )
   }
   else
   {
-    std::stack<std::pair<unsigned int, unsigned int>> stack;
-    for ( unsigned int x = 0; x < static_cast<unsigned>( m_Width ); ++x )
-      for ( unsigned int y = 0; y < static_cast<unsigned>( m_Height ); ++y )
+    std::stack<std::pair<unsigned, unsigned>> stack;
+    for ( unsigned x = 0; x < static_cast<unsigned>( m_Width ); ++x )
+      for ( unsigned y = 0; y < static_cast<unsigned>( m_Height ); ++y )
       {
         // check for a non-transparent pixel
         if ( *( m_Data + ( static_cast<long long>( x ) + static_cast<long long>( y ) * m_Width ) * 4 + 3 ) != 0 )
         {
-          unsigned int minX = m_Width, maxX = 0, minY = m_Height, maxY = 0;
-          unsigned int a = x, b = y;
-          stack.push( std::pair<unsigned int, unsigned int>{x, y} );
+          unsigned minX = m_Width, maxX = 0, minY = m_Height, maxY = 0;
+          unsigned a = x, b = y;
+          stack.push( std::pair<unsigned, unsigned>{x, y} );
           do
           {
             // mark as visited by making it transparent, the data is not actually being used for anything else anyway
@@ -114,11 +120,11 @@ std::vector<TextureInfo> Texture2D::AutoSlice( Vector2 pivot, bool noOverlap )
                 if ( ( i || j ) &&
                      !( ( a == 0 && i == -1 ) ||
                      ( b == 0 && j == -1 ) ||
-                     ( a == static_cast<unsigned int>( m_Width ) - 1 && i == 1 ) ||
-                     ( b == static_cast<unsigned int>( m_Height ) - 1 && j == 1 ) ) )
+                     ( a == static_cast<unsigned>( m_Width ) - 1 && i == 1 ) ||
+                     ( b == static_cast<unsigned>( m_Height ) - 1 && j == 1 ) ) )
                   if ( *( m_Data + ( static_cast<long long>( a ) + i + ( static_cast<long long>( b ) + j ) * m_Width ) * 4 + 3 )
                        != 0 )
-                    stack.push( std::pair<unsigned int, unsigned int>{a + i, b + j} );
+                    stack.push( std::pair<unsigned, unsigned>{a + i, b + j} );
           } while ( !stack.empty() );
 
           // add the info
@@ -143,7 +149,7 @@ std::vector<TextureInfo> Texture2D::AutoSlice( Vector2 pivot, bool noOverlap )
   return slicedInfo;
 }
 
-std::vector<TextureInfo> Texture2D::SliceAll( unsigned int columns, unsigned int rows, Vector2 pivot )
+std::vector<TextureInfo> Texture2D::SliceAll( unsigned columns, unsigned rows, Vector2 pivot )
 {
   std::vector<TextureInfo> slicedInfo;
   for ( size_t y = 0; y < rows; ++y )
@@ -160,17 +166,17 @@ std::vector<TextureInfo> Texture2D::SliceAll( unsigned int columns, unsigned int
   return slicedInfo;
 }
 
-Vector2 Texture2D::GetOffset( unsigned int index )
+Vector2 Texture2D::GetOffset( unsigned index )
 {
   return Vector2( textureInfo[index].offset.x / m_Width, textureInfo[index].offset.y / m_Height );
 }
 
-Vector2 Texture2D::GetSize( unsigned int index )
+Vector2 Texture2D::GetSize( unsigned index )
 {
   return textureInfo[index].size;
 }
 
-Vector2 Texture2D::GetPivot( unsigned int index )
+Vector2 Texture2D::GetPivot( unsigned index )
 {
   return textureInfo[index].pivot;
 }

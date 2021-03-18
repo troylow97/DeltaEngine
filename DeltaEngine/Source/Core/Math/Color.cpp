@@ -115,9 +115,23 @@ namespace DeltaEngine
     return *this;
   }
 
+  Color Color::operator*(const Color f) const
+  {
+    return Color(r * f.r, g * f.g, b * f.b, a * f.a);
+  }
+
   Color Color::operator*(const float f) const
   {
     return Color(r * f, g * f, b * f, a * f);
+  }
+
+  Color Color::operator*=(const Color f)
+  {
+    this->r *= f.r;
+    this->g *= f.g;
+    this->b *= f.b;
+    this->a *= f.a;
+    return *this;
   }
 
   Color Color::operator*=(const float f)
