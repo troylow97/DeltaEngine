@@ -7,26 +7,102 @@
                         "enemy_count": 1,
                         "enemy_type": "lancer",
                         "spawn_area": {
-                            "x": 66.0,
-                            "y": 2.5
+                            "x": 198.0,
+                            "y": 1.5
+                        }
+                    },
+					{
+                        "enemy_count": 1,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 199.0,
+                            "y": 1.5
                         }
                     },
                     {
                         "enemy_count": 1,
                         "enemy_type": "fiddler",
                         "spawn_area": {
-                            "x": 68.5,
-                            "y": 0.5
+                            "x": 200,
+                            "y": 0.7
+                        }
+                    }
+                ],
+                [
+                    {
+                        "enemy_count": 1,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 198.0,
+                            "y": 1.2
+                        }
+                    },
+					{
+                        "enemy_count": 1,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 197.0,
+                            "y": 1.2
+                        }
+                    },
+					                    {
+                        "enemy_count": 1,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 199.0,
+                            "y": 1.2
+                        }
+                    },
+					{
+                        "enemy_count": 1,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 197.0,
+                            "y": 1.2
+                        }
+                    },
+					{					
+                        "enemy_count": 1,
+                        "enemy_type": "serpentipede",
+                        "spawn_area": {
+                            "x": 196.5,
+                            "y": 0.79
+                        }
+                    }
+                ],
+                [
+                    {
+                        "enemy_count": 2,
+                        "enemy_type": "lancer",
+                        "spawn_area": {
+                            "x": 198.0,
+                            "y": 1.5
+                        }
+                    },
+					{
+                        "enemy_count": 1,
+                        "enemy_type": "fiddler",
+                        "spawn_area": {
+                            "x": 196.5,
+                            "y": 0.7
+                        }
+                    },
+					{					
+                        "enemy_count": 1,
+                        "enemy_type": "serpentipede",
+                        "spawn_area": {
+                            "x": 198.5,
+                            "y": 0.79
                         }
                     }
                 ]
             ],
             "activation_point": {
-                "x": 70.870,
-                "y": 0.130
+                "x": 198.5,
+                "y": 0.436
             },
-            "wall_offset_right": 6.5,
-            "wall_offset_left": 6.7,
+            "wall_offset_right": 6.0,
+            "wall_offset_left": 5.0,
             "current_enemy_wave": 0,
             "is_activated": false,
             "is_finished": false

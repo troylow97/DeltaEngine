@@ -19,12 +19,12 @@ namespace DeltaEngine
 {
   void PhysicsSystem::Initialize()
   {
-    m_gravity_amount = {0, -70.0f};
+    m_gravity_amount = {0, -50.0f};
     CurrentJumpTicks = 0;
     MaxJumpTicks = 8;
     CurrentDashTicks = 0;
     MaxDashTicks = 8;
-    InitialJumpForce = 800.0f;
+    InitialJumpForce = 2000.0f;
     JumpForce = InitialJumpForce;
   }
 

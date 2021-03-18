@@ -1,0 +1,93 @@
+Textures/ANIM_Lamp1_02_i_0
+offset 0 0
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_1
+offset 512 0
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_2
+offset 1024 0
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_3
+offset 1536 0
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_4
+offset 0 512
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_5
+offset 512 512
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_6
+offset 1024 512
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_7
+offset 1536 512
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_8
+offset 0 1024
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_9
+offset 512 1024
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_10
+offset 1024 1024
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_11
+offset 1536 1024
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_12
+offset 0 1536
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_13
+offset 512 1536
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_14
+offset 1024 1536
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_15
+offset 1536 1536
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_16
+offset 0 2048
+size 512 512
+pivot 0.5 0.5
+
+Textures/ANIM_Lamp1_02_i_17
+offset 512 2048
+size 512 512
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0
