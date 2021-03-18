@@ -270,7 +270,7 @@ namespace DeltaEngine
   void InputSystem::Dodge()
   {  	
     env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, Collider& c1, State& s1, Attack& a1, Image& im1,RigidBody& r1)
-    {
+    {   	
 	  if(p1.IsRunning)
 	  {
         StopRun();
@@ -324,8 +324,8 @@ namespace DeltaEngine
 
   void InputSystem::Punch()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Collider& c1, Player& p1, Input& i1, State& s1, Attack& a1)
-    {
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1,Collider& c1, Player& p1, Input& i1, State& s1, Attack& a1,Image& i)
+    {    	
       if (p1.IsRunning)
       {
         //p1.IsRunning = false;
@@ -421,7 +421,35 @@ namespace DeltaEngine
     {
     // setting the animation for when the player does not have any input
       SetIdleAnimation();
-
+	  //Set proper facing    	
+      if (InputManager::Instance().IsKeyPressed(DEVK_D))
+      {
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1, Image& i)
+          {
+              i.m_FlipX = false;
+          });
+      }
+      else if (InputManager::Instance().IsKeyPressed(DEVK_A))
+      {
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1, Image& i)
+          {
+              i.m_FlipX = true;
+          });
+      }
+      // punching
+      if (InputManager::Instance().IsKeyTriggered(DEVK_LBUTTON))
+      {
+          Punch();
+      }
+      else if (InputManager::Instance().IsKeyReleased(DEVK_LBUTTON))
+      {
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1)
+              {
+                  p1.IsPunching = false;
+                  p1.AllowRunning = true;
+              });
+      }
+    	
       // god mode 
       if ( InputManager::Instance().IsKeyTriggered( DEVK_0 ) )
       {
@@ -485,19 +513,7 @@ namespace DeltaEngine
       //  });
       //}
 
-      // punching
-      if ( InputManager::Instance().IsKeyTriggered( DEVK_LBUTTON ) )
-      {
-        Punch();
-      }
-      else if ( InputManager::Instance().IsKeyReleased( DEVK_LBUTTON ) )
-      {
-        env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Input &i1, Player &p1 )
-        {
-          p1.IsPunching = false;
-          p1.AllowRunning = true;
-        } );
-      }
+
       // shield up and down
       if ( InputManager::Instance().IsKeyTriggered( DEVK_LSHIFT ) )
       {

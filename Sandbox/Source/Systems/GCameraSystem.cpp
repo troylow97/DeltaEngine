@@ -35,6 +35,7 @@ namespace DeltaEngine
       {
         c_t->position = t.position;
         c_t->position.y = 2.0f;
+        c_t->position.z = 10.0f;
       });
   }
 }

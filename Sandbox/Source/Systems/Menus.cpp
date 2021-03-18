@@ -83,6 +83,7 @@ void StartGame()
   GetEnv().pECS->GetWorld().Load( "World/gam250beta_t.json" );
   GetEnv().pClock->TimeScale( 1.0f );
   RespawnSystem::CreateCheckpoints(0); // 0 = tutorial
+  EnemySpawner::ActivateGauntlet = true;
   in_game = true;
   AudioEngine::StopAllAudio();
 }

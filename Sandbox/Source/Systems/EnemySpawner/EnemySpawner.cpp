@@ -51,6 +51,9 @@ namespace DeltaEngine
 
   void EnemySpawner::Update()
   {
+    if (!ActivateGauntlet)
+        return;
+  	
     if (env.pECS->GetWorld().GetEntityManager().IsEntityValid(UnitManager::GetPlayerID()))
       if (env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(UnitManager::GetPlayerID()))
       {
@@ -192,6 +195,7 @@ namespace DeltaEngine
     em.GetComponent<Collider>(wall).offset.y = -1;
     em.GetComponent<Collider>(wall).size = { 2,3 };
     em.GetComponent<Renderer2D>(wall).m_Wireframe = false;
+    em.GetComponent<Renderer2D>(wall).m_SortingLayer = 2;
     em.GetComponent<Image>(wall).m_Sprite.m_Key = "Textures/BLOCKER_SPAWN";
     em.GetComponent<Animator>(wall).m_ControllerKey = "Animation/Blocker";
     em.GetComponent<State>(wall).SetBool("BlockerUp", true);

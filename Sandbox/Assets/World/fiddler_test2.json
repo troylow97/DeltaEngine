@@ -13,7 +13,7 @@
             "Transform": {
                 "Position": {
                     "x": 4.8202104568481449,
-                    "y": 2.0,
+                    "y": 0.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -257,7 +257,7 @@
             "Transform": {
                 "Position": {
                     "x": 4.8202104568481449,
-                    "y": 0.009012812748551369,
+                    "y": 2.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -355,19 +355,19 @@
                 "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 64,
-                "Melee Damage": 64,
-                "SMG Damage": 32,
-                "Melee Combo Damage": 192,
-                "Number Of Combo": 2,
+                "Range Damage": 256,
+                "Melee Damage": 256,
+                "SMG Damage": 128,
+                "Melee Combo Damage": 768,
+                "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.3499999940395355,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
                 "Melee Cooldown Timer": 0.24999992549419404,
                 "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.7000000476837159,
-                "Combo Cooldown Timer": 1.5833334922790528,
+                "Combo Duration": 0.20000000298023225,
+                "Combo Cooldown Timer": 0.20000000298023225,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -380,7 +380,7 @@
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": true,
+                "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
             },
             "Player": {
