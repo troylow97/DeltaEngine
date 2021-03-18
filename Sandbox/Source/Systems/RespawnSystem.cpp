@@ -144,7 +144,8 @@ namespace DeltaEngine
 
         //Stop crash by checking for components	
         if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id)
-          || !em.HasComponent<Health>(id) || !em.HasComponent<Image>(id))
+          || !em.HasComponent<Health>(id) || !em.HasComponent<Image>(id)
+          || !em.HasComponent<State>(id))
           return;
 
         Player& p = em.GetComponent<Player>(id);
@@ -154,7 +155,7 @@ namespace DeltaEngine
 
         if (p.IsDead)
         {
-          //s.SetBool("Dead", true);
+          s.SetBool("Dead", true);
           float temp_x = 1.0f, temp_y = 1.0f;
           for (size_t i = respawns.m_respawns.size(); i > 0; i--)
           {
@@ -166,15 +167,16 @@ namespace DeltaEngine
             }
           }
           dying_countdown += env.pClock->FixedDeltaTime();
-          //if (dying_countdown > 3.0f)
-          //{
+          if (dying_countdown > 3.0f)
+          {
             t.position.x = temp_x;
             t.position.y = temp_y;
             hp.CurrentHealth = hp.MaxHealth;
-            //s.SetBool("IsIdle", true);
-            //dying_countdown = 0.0f;
+            s.SetBool("Dead", false);
+            s.SetBool("IsIdle", true);
+            dying_countdown = 0.0f;
             p.IsDead = false;
-          //}
+          }
         }
       }
     }
@@ -189,15 +191,29 @@ namespace DeltaEngine
         EntityID id = UnitManager::GetPlayerID();
        
         //Stop crash by checking for components	
-        if (!em.HasComponent<Player>(id) || !em.HasComponent<Renderer2D>(id))
+        if (!em.HasComponent<Player>(id) || !em.HasComponent<Renderer2D>(id)
+            || !em.HasComponent<State>(id))
           return;
        
         Player& p = em.GetComponent<Player>(id);
         Renderer2D& r = em.GetComponent<Renderer2D>(id);
+        State& s = em.GetComponent<State>(id);
 
         if (p.IsDead)
         {
           //r.m_Color.a = 0.5f;
+          s.SetBool("Dead", true);
+
+          dying_countdown += env.pClock->FixedDeltaTime();
+          if (dying_countdown > 10.0f)
+          {
+            // flickering effect
+            
+            //s.SetBool("Dead", false);
+            //s.SetBool("IsIdle", true);
+            //dying_countdown = 0.0f;
+            //p.IsDead = false;
+          }
           while (p.FadingCountdown > 0.0f)
           {
             p.FadingCountdown -= (env.pClock->FixedDeltaTime() * 0.1f);
