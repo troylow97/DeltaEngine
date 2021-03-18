@@ -360,7 +360,6 @@ namespace DeltaEngine
             {
                 hasAttacked = true;
                 a.MeleeAttack = true;
-                std::cout << "setting melee attack to true" << std::endl;
             }
             else if (AttackDelay < 0.2f)
             {
