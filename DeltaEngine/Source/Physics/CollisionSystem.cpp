@@ -175,15 +175,11 @@ namespace DeltaEngine
 
 
           	
-            if ((em.GetComponent<Transform>(player).position.y) < em.GetComponent<Transform>(platform).position.y)
+            if ((em.GetComponent<Transform>(player).position.y - 0.25f) < em.GetComponent<Transform>(platform).position.y)
             {
               it1->ignore = true;
               em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 1000};
               continue;
-            }
-            else
-            {
-              em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 150};
             }
           }
 
