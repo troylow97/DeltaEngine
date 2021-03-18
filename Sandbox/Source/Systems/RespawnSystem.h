@@ -28,6 +28,7 @@ namespace DeltaEngine
     static bool in_tutorial;
     static bool in_level_1;
     static RespawnPoints respawns;
+    float dying_countdown = 0.0f;
     void CheckpointsLightUp();
     void Respawning();
     void DeathEffect();

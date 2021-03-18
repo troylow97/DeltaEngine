@@ -154,8 +154,8 @@ namespace DeltaEngine
 
         if (p.IsDead)
         {
-          s.SetBool("Dead", true);
-          float temp_x = 0.0f, temp_y = 0.0f;
+          //s.SetBool("Dead", true);
+          float temp_x = 1.0f, temp_y = 1.0f;
           for (size_t i = respawns.m_respawns.size(); i > 0; i--)
           {
             if (respawns.m_respawns[i - 1].z == 1.0f)
@@ -165,11 +165,16 @@ namespace DeltaEngine
               break;
             }
           }
-          t.position.x = temp_x;
-          t.position.y = temp_y;
-          hp.CurrentHealth = hp.MaxHealth;
-          s.SetBool("IsIdle", true);
-          p.IsDead = false;
+          dying_countdown += env.pClock->FixedDeltaTime();
+          //if (dying_countdown > 3.0f)
+          //{
+            t.position.x = temp_x;
+            t.position.y = temp_y;
+            hp.CurrentHealth = hp.MaxHealth;
+            //s.SetBool("IsIdle", true);
+            //dying_countdown = 0.0f;
+            p.IsDead = false;
+          //}
         }
       }
     }
