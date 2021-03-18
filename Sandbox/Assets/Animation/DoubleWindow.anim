@@ -1,0 +1,28 @@
+%Entry:
+
+entry
+Clip/ANIM_DoubleWindow_1
+
+%Parameters:
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+200 200
+
+pos
+Any State
+200 0
+
+pos
+Clip/ANIM_DoubleWindow_1
+333 159
+
+%Transitions:
+
+%endfile
