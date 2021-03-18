@@ -81,22 +81,26 @@ namespace DeltaEngine
 
     void FaceLeft(EntityID& id1)
     {
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX = true;
+       //if (env.pECS->GetWorld().GetEntityManager().HasComponent<Image>(id1))
+		env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX = true;
     }
 
     void FaceRight(EntityID& id1)
     {
+        //if (env.pECS->GetWorld().GetEntityManager().HasComponent<Image>(id1))
       env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX = false;
     }
 
     bool isFacingLeft(EntityID& id1)
     {
-      return env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
+       //if (env.pECS->GetWorld().GetEntityManager().HasComponent<Image>(id1))
+		return env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
     }
 
     bool isFacingRight(EntityID& id1)
     {
-      return !env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
+      //if (env.pECS->GetWorld().GetEntityManager().HasComponent<Image>(id1))
+		return !env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
     }
 
     bool isFacingEachOther(EntityID& id1, EntityID& id2)

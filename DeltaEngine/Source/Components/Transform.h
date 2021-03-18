@@ -19,7 +19,6 @@ namespace DeltaEngine
   struct Transform
   {
   public:
-    Vector3 old_position;
     Vector3 position;
     Vector3 scale;
     Quaternion rotation;

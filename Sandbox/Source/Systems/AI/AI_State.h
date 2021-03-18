@@ -101,7 +101,8 @@ namespace DeltaEngine
   {
     float DurationBeforeExitState;
     float FacePlayerTimer;
-    bool Attacking;
+    float AttackDelay;
+    bool hasAttacked;
   public:
     ChaseEnemyFiddler(Vector2& lost_range);
     void onEnter(EntityID& id) override;

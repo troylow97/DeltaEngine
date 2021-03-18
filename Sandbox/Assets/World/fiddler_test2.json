@@ -12,7 +12,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 3.792954921722412,
+                    "x": 2.5117552280426027,
                     "y": 2.0,
                     "z": 0.0
                 },
@@ -50,8 +50,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
-                    "y": -1.0,
+                    "x": 50.0,
+                    "y": -0.9300000071525574,
                     "z": 0.0
                 },
                 "Scale": {
@@ -109,8 +109,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -0.8468606472015381,
-                    "y": 0.002993178553879261,
+                    "x": -3.3889338970184328,
+                    "y": 0.2191838026046753,
                     "z": 0.0
                 },
                 "Scale": {
@@ -138,12 +138,12 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -0.8468606472015381,
-                    "y": 0.002993178553879261
+                    "x": -3.3889338970184328,
+                    "y": -0.0008161962032318115
                 },
                 "Offset": {
                     "x": 0.0,
-                    "y": 0.0
+                    "y": -0.2199999988079071
                 },
                 "Size": {
                     "x": 1.0,
@@ -158,7 +158,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 4
                 },
                 "Size": {
                     "x": 1.0,
@@ -221,7 +221,7 @@
                 "Melee Combo Damage": 3,
                 "Number Of Combo": 0,
                 "Max Combo Number": 3,
-                "Melee Cooldown": 1.0,
+                "Melee Cooldown": 2.799999952316284,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
                 "Melee Cooldown Timer": -0.21666638553142548,
@@ -232,6 +232,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.016666388139128686,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -254,8 +256,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 3.792954921722412,
-                    "y": -0.0007569602457806468,
+                    "x": 69.0,
+                    "y": 0.11900000274181366,
                     "z": 0.0
                 },
                 "Scale": {
@@ -283,12 +285,12 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 3.792954921722412,
-                    "y": -0.0007569602457806468
+                    "x": 2.5117552280426027,
+                    "y": -0.0009455643594264984
                 },
                 "Offset": {
                     "x": 0.0,
-                    "y": 0.0
+                    "y": 0.05999999865889549
                 },
                 "Size": {
                     "x": 1.0,
@@ -303,7 +305,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/DAVE_PUNCH",
-                    "index": 12
+                    "index": 7
                 },
                 "Size": {
                     "x": 1.0,
@@ -350,7 +352,7 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 32,
@@ -362,14 +364,16 @@
                 "Melee Cooldown": 0.3499999940395355,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.16666659712791444,
+                "Melee Cooldown Timer": 0.28333327174186709,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.7000000476837159,
-                "Combo Cooldown Timer": 1.1500005722045899,
+                "Combo Cooldown Timer": 1.6166667938232422,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -6.332993507385254e-8,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -390,6 +394,65 @@
             "Input": {
                 "Previous": 1,
                 "Current": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "player punch"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 1.9349126815795899,
+                    "y": -0.06094556301832199,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.30000001192092898,
+                    "y": 0.30000001192092898,
+                    "z": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 5.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.009999999776482582,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 1.9349126815795899,
+                    "y": -0.06094556301832199
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 7,
+                "Collision Layer ID": 8,
+                "Trigger": true,
+                "Platform": false
+            },
+            "Lifespan": {
+                "Timer": 0.11666667461395264
             }
         }
     ]

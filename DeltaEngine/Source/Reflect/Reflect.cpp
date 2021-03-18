@@ -70,7 +70,16 @@ namespace DeltaEngine
     /*
     ********************************************************************************
     */
-
+    rttr::registration::enumeration<FillType>("Filltype")
+        (
+            rttr::value("none", FillType::None),
+            rttr::value("horizontal_left_to_right", FillType::HorizontalLeftToRight),
+            rttr::value("horizontal_right_to_left", FillType::HorizontalRightToLeft),
+            rttr::value("vertical_top_to_bottom", FillType::VerticalTopToBottom),
+            rttr::value("vertical_bottom_to_top", FillType::VerticalBottomToTop),
+            rttr::value("radial_360_clockwise", FillType::Radial360Clockwise),
+            rttr::value("radial_360_anticlockwise", FillType::Radial360AntiClockwise)
+            );
 
     rttr::registration::class_<Waypoint>("Waypoint")
       .property("Waypoints", &Waypoint::Waypoints)
@@ -140,9 +149,38 @@ namespace DeltaEngine
       .property("z", &Quaternion::z)
       .property("w", &Quaternion::w);
 
-    rttr::registration::class_<Point>("Point")
-      .property("x", &Point::point_x)
-      .property("y", &Point::point_y);
+  rttr::registration::class_<BezierCurve>("BezierCurve")
+    .property("Anchors", &BezierCurve::anchors)
+    .property("ControlsLeft", &BezierCurve::controlsLeft)
+    .property("ControlsRight", &BezierCurve::controlsRight)
+    .property("Min", &BezierCurve::min)
+    .property("Max", &BezierCurve::max);
+
+  rttr::registration::class_<BezierRange>("BezierRange")
+    .property("min", &BezierRange::min)
+    .property("max", &BezierRange::max)
+    .property("type", &BezierRange::type);
+
+  rttr::registration::class_<BezierRange3>("BezierRange3")
+    .property("minX", &BezierRange3::minX)
+    .property("maxX", &BezierRange3::maxX)
+    .property("minY", &BezierRange3::minY)
+    .property("maxY", &BezierRange3::maxY)
+    .property("minZ", &BezierRange3::minZ)
+    .property("maxZ", &BezierRange3::maxZ)
+    .property("type", &BezierRange3::type);
+
+  rttr::registration::class_<Gradient>("Gradient")
+    .property("AlphaKeys", &Gradient::alphaKeys)
+    .property("ColorKeys", &Gradient::colorKeys);
+
+  rttr::registration::class_<GradientRange>("GradientRange")
+    .property("min", &GradientRange::min)
+    .property("max", &GradientRange::max)
+    .property("type", &GradientRange::type);
+
+  rttr::registration::class_<Material>( "Material" )
+    .property( "key", &Material::m_ShaderKey );
 
     rttr::registration::class_<Color>("Color")
       .property("r", &Color::r)
@@ -195,24 +233,37 @@ namespace DeltaEngine
       rttr::value("center", Alignment::Centralize)
     );
 
-    rttr::registration::enumeration<FillType>("Filltype")
-    (
-      rttr::value("none", FillType::None),
-      rttr::value("horizontal_left_to_right", FillType::HorizontalLeftToRight),
-      rttr::value("horizontal_right_to_left", FillType::HorizontalRightToLeft),
-      rttr::value("vertical_top_to_bottom", FillType::VerticalTopToBottom),
-      rttr::value("vertical_bottom_to_top", FillType::VerticalBottomToTop),
-      rttr::value("radial_360_clockwise", FillType::Radial360Clockwise),
-      rttr::value("radial_360_anticlockwise", FillType::Radial360AntiClockwise)
-    );
+  rttr::registration::enumeration<Gradient::Type>( "Gradient Type" )
+  (
+    rttr::value( "ConstantColor", Gradient::Type::ConstantColor ),
+    rttr::value( "ConstantGradient", Gradient::Type::ConstantGradient ),
+    rttr::value( "RandomBetweenColors", Gradient::Type::RandomBetweenColors ),
+    rttr::value( "RandomBetweenGradients", Gradient::Type::RandomBetweenGradients )
+  );
 
-    rttr::registration::enumeration<ParticleEmitter::Shape>("Shape")
-    (
-      rttr::value("None", ParticleEmitter::Shape::None),
-      rttr::value("Circle", ParticleEmitter::Shape::Circle),
-      rttr::value("Line", ParticleEmitter::Shape::Line),
-      rttr::value("Box", ParticleEmitter::Shape::Box)
-    );
+  rttr::registration::enumeration<BezierCurve::Type>( "Bezier Type" )
+  (
+    rttr::value( "Constant", BezierCurve::Type::Constant ),
+    rttr::value( "ConstantCurve", BezierCurve::Type::ConstantCurve ),
+    rttr::value( "RandomBetweenConstants", BezierCurve::Type::RandomBetweenConstants ),
+    rttr::value( "RandomBetweenCurves", BezierCurve::Type::RandomBetweenCurves )
+  );
+
+  rttr::registration::enumeration<ParticleEmitter::Shape>( "Particle Emitter Shape" )
+  (
+    rttr::value( "None", ParticleEmitter::Shape::None ),
+    rttr::value( "Circle", ParticleEmitter::Shape::Circle ),
+    rttr::value( "Line", ParticleEmitter::Shape::Line ),
+    rttr::value( "Box", ParticleEmitter::Shape::Box )
+  );
+
+  rttr::registration::enumeration<ParticleEmitter::GenType>( "Particle Emitter Generation Mode" )
+  (
+    rttr::value( "Random", ParticleEmitter::GenType::Random ),
+    rttr::value( "Loop", ParticleEmitter::GenType::Loop ),
+    rttr::value( "PingPong", ParticleEmitter::GenType::PingPong ),
+    rttr::value( "Spread", ParticleEmitter::GenType::Spread )
+  );
 
     rttr::registration::enumeration<ParticleEmitter::GenType>("Generation Mode")
     (
@@ -313,23 +364,35 @@ namespace DeltaEngine
       .property("Max", &Slider::max)(rttr::policy::prop::bind_as_ptr)
       .property("Value", &Slider::value)(rttr::policy::prop::bind_as_ptr);
 
-#pragma endregion  
-    /*
-    ********************************************************************************
-    */
-    /*
-    ********************************************************************************
-    * Physics System
-    * Components for Physics
-    ********************************************************************************
-    */
-#pragma region
+  rttr::registration::class_<RigidBody>("Rigidbody")
+    (rttr::metadata("bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits))
+    .constructor<>()(rttr::policy::ctor::as_object)
+    .property("Direction", &RigidBody::Direction)(rttr::metadata("NO_SERIALIZE", true),
+      (rttr::metadata("NO_EDITOR", true)))
+    .property("Velocity", &RigidBody::Velocity)(rttr::metadata("NO_SERIALIZE", true),
+      (rttr::metadata("NO_EDITOR", true)))
+    .property("Reflected Vector", &RigidBody::ReflectedVector)(rttr::metadata("NO_SERIALIZE", true),
+      (rttr::metadata("NO_EDITOR", true)))
+    .property("Acceleration", &RigidBody::Acceleration)(rttr::metadata("NO_SERIALIZE", true),
+      (rttr::metadata("NO_EDITOR", true)))
+    .property("Accumulated Force", &RigidBody::AccumulatedForce)(rttr::metadata("NO_SERIALIZE", true),
+      (rttr::metadata("NO_EDITOR", true)))
+    .property("Point End", &RigidBody::PointEnd)(rttr::metadata("NO_SERIALIZE", true),
+      (rttr::metadata("NO_EDITOR", true)))
+    .property("Mass", &RigidBody::Mass)(rttr::policy::prop::bind_as_ptr)
+    .property("Move Speed", &RigidBody::Movespeed)(rttr::policy::prop::bind_as_ptr)
+    .property("Restitution", &RigidBody::Restitution)(rttr::policy::prop::bind_as_ptr)
+    .property("Friction Coefficient", &RigidBody::FrictionCoeff)(rttr::policy::prop::bind_as_ptr)
+    .property("Inherent Acceleration", &RigidBody::InherentAcceleration)(rttr::policy::prop::bind_as_ptr)(
+      rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+    .property("Max Acceleration", &RigidBody::MaxAcceleration)(rttr::policy::prop::bind_as_ptr)
+    .property("Acceleration Pickup", &RigidBody::AccelerationPickup)(rttr::policy::prop::bind_as_ptr)
+    .property("Gravity", &RigidBody::hasGravity)(rttr::policy::prop::bind_as_ptr)
+    .property("Moveable", &RigidBody::isMoveable)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Transform>("Transform")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Transform>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Old Position", &Transform::old_position)(rttr::metadata("NO_SERIALIZE", true),
-                                                          (rttr::metadata("NO_EDITOR", true)))
       .property("Position", &Transform::position)(rttr::policy::prop::bind_as_ptr)
       .property("Scale", &Transform::scale)(rttr::policy::prop::bind_as_ptr)
       .property("Rotation", &Transform::rotation)(rttr::policy::prop::bind_as_ptr);
@@ -471,8 +534,8 @@ namespace DeltaEngine
     .property( "playOnAwake", &ParticleEmitter::playOnAwake)( rttr::policy::prop::bind_as_ptr )
     .property( "duration", &ParticleEmitter::duration)( rttr::policy::prop::bind_as_ptr )
     .property( "looping", &ParticleEmitter::looping)( rttr::policy::prop::bind_as_ptr )
-    .property( "prewarm", &ParticleEmitter::prewarm)( rttr::policy::prop::bind_as_ptr )
-    .property( "startDelay", &ParticleEmitter::startDelay)( rttr::policy::prop::bind_as_ptr )
+    //.property( "prewarm", &ParticleEmitter::prewarm)( rttr::policy::prop::bind_as_ptr )
+    //.property( "startDelay", &ParticleEmitter::startDelay)( rttr::policy::prop::bind_as_ptr )
     .property( "startLifetimeMin", &ParticleEmitter::startLifetimeMin)( rttr::policy::prop::bind_as_ptr )
     .property( "startLifetimeMax", &ParticleEmitter::startLifetimeMax)( rttr::policy::prop::bind_as_ptr )
     .property( "startColorMin", &ParticleEmitter::startColorMin)( rttr::policy::prop::bind_as_ptr )
@@ -543,6 +606,9 @@ namespace DeltaEngine
       .property("Knockback Combo Amount", &Attack::KnockbackComboAmount)(rttr::policy::prop::bind_as_ptr)
       .property("SMG Fire Rate", &Attack::SMGFireRate)(rttr::policy::prop::bind_as_ptr)
       .property("Attack Delay", &Attack::AttackDelay)(rttr::policy::prop::bind_as_ptr)
+      .property("Current Dodge Cooldown", &Attack::CurrentDodgeCooldown)(rttr::policy::prop::bind_as_ptr)(
+          rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Dodge Cooldown", &Attack::DodgeCooldown)(rttr::policy::prop::bind_as_ptr)
       .property("Ranged Attack", &Attack::RangeAttack)(rttr::policy::prop::bind_as_ptr)(
         rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Melee Attack", &Attack::MeleeAttack)(rttr::policy::prop::bind_as_ptr)(

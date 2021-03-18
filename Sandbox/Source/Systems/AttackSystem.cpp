@@ -26,13 +26,19 @@ namespace DeltaEngine
   	if(em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
   	{
   	  //DASH
+      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
       auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
       auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
       auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
+
+      if (a.CurrentDodgeCooldown > 0.0f)
+          a.CurrentDodgeCooldown -= env.pClock->FixedDeltaTime();
+  		
       if (/*p.IsDashing || */p.IsDodging)
       {
         em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
         p.StartDashingTimer = true;
+        a.CurrentDodgeCooldown = a.DodgeCooldown;
       }
       if (p.StartDashingTimer)
       {
@@ -312,7 +318,7 @@ namespace DeltaEngine
     //}
     //else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
     {
-      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 0.7f, EntityCategory::E_ENEMY_BULLET);
+      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 1.5f, EntityCategory::E_ENEMY_BULLET);
       Vector2 direction_to_shoot = { CalculateAttackDirection(id).x, CalculateAttackDirection(id).y };
       Transform& enemy_pos = em.GetComponent<Transform>(id);
       Collider& enemy_collider = em.GetComponent<Collider>(id);
@@ -344,20 +350,20 @@ namespace DeltaEngine
     if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER && env.pECS->GetWorld().GetEntityManager().
       HasComponent<Attack>(id))
     {                                         /*collider box size*/     /*duration*/
-      EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.1f, EntityCategory::E_PLAYER_PUNCH);
+      EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.2f, EntityCategory::E_PLAYER_PUNCH);
       static size_t c_id{u64_max};
    	
       AudioEngine::Play2DEvent( "event:/Player/Player Punch Wind" );
       if (em.GetComponent<Image>(id).m_FlipX == false)
       {
-        em.GetComponent<Transform>(missile).position.x += 0.6f; //offset of spawn from player
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {400, 0}; //punch range
+        em.GetComponent<Transform>(missile).position.x += 0.5f; //offset of spawn from player
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {500, 0}; //punch range
         em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
       }
       else
       {
-        em.GetComponent<Transform>(missile).position.x -= 0.6f; //offset of spawn from player
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-400, 0}; //punch range
+        em.GetComponent<Transform>(missile).position.x -= 0.5f; //offset of spawn from player
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = {-500, 0}; //punch range
         em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
       }
       return;
@@ -394,15 +400,12 @@ namespace DeltaEngine
         //em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 8000.0f;
       }
       else
-      {
-        if (em.GetComponent<Animator>(id).m_ClipKey != "Clip/FID_ATTACK")
-          return;
-      	
+      {  	
         static size_t c_id{u64_max};
         if (AudioEngine::IsChannelPlaying(c_id))
           AudioEngine::StopChannel(c_id);
         c_id = AudioEngine::Play("Audio/Fiddler/FiddlerAttack.ogg");
-        EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, false, 0.2f,
+        EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, false, 0.3f,
                                             EntityCategory::E_ENEMY_FIDDLER_PUNCH);
         if (em.GetComponent<Image>(id).m_FlipX == true)
         {
