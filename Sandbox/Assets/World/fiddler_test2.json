@@ -359,7 +359,7 @@
                 "Melee Damage": 128,
                 "SMG Damage": 64,
                 "Melee Combo Damage": 384,
-                "Number Of Combo": 2,
+                "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.3499999940395355,
                 "Range Cooldown": 1.0,
@@ -367,7 +367,7 @@
                 "Melee Cooldown Timer": 0.24999992549419404,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.7000000476837159,
-                "Combo Cooldown Timer": 1.5833334922790528,
+                "Combo Cooldown Timer": 1.7000000476837159,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -380,7 +380,7 @@
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": true,
+                "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
             },
             "Player": {

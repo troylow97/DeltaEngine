@@ -12,7 +12,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 70.50747680664063,
+                    "x": 72.13949584960938,
                     "y": 2.0,
                     "z": 0.0
                 },
@@ -109,8 +109,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -3.0102832317352297,
-                    "y": -866.8560791015625,
+                    "x": -2.3762757778167726,
+                    "y": -1180.926513671875,
                     "z": 0.0
                 },
                 "Scale": {
@@ -138,8 +138,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -3.0102832317352297,
-                    "y": -867.0760498046875
+                    "x": -2.3762757778167726,
+                    "y": -1181.146484375
                 },
                 "Offset": {
                     "x": 0.0,
@@ -158,7 +158,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 4
+                    "index": 7
                 },
                 "Size": {
                     "x": 1.0,
@@ -256,8 +256,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 70.50747680664063,
-                    "y": 0.00924639031291008,
+                    "x": 72.13949584960938,
+                    "y": 0.009207050316035748,
                     "z": 0.0
                 },
                 "Scale": {
@@ -285,8 +285,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 70.50747680664063,
-                    "y": 0.06924638897180557
+                    "x": 72.13949584960938,
+                    "y": 0.06920704990625382
                 },
                 "Offset": {
                     "x": 0.0,
@@ -305,7 +305,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/DAVE_PUNCH",
-                    "index": 8
+                    "index": 7
                 },
                 "Size": {
                     "x": 1.0,
@@ -324,7 +324,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": true,
+                "Flip X": false,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -359,20 +359,20 @@
                 "Melee Damage": 32,
                 "SMG Damage": 16,
                 "Melee Combo Damage": 96,
-                "Number Of Combo": 0,
+                "Number Of Combo": 2,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.3499999940395355,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.26666659116744997,
+                "Melee Cooldown Timer": 0.28333327174186709,
                 "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.7000000476837159,
-                "Combo Cooldown Timer": 1.7000000476837159,
+                "Combo Duration": 1.0,
+                "Combo Cooldown Timer": 0.9166667461395264,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -6.332993507385254e-8,
-                "Current Dodge Cooldown": -0.10000000149011612,
+                "Current Dodge Cooldown": -0.016666388139128686,
                 "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
@@ -380,7 +380,7 @@
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
+                "Start Combo Cooldown Timer": true,
                 "Damage Enemy": false
             },
             "Player": {
@@ -405,8 +405,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 69.90705108642578,
-                    "y": 0.00924639031291008,
+                    "x": 72.7163314819336,
+                    "y": 0.009207050316035748,
                     "z": 0.0
                 },
                 "Scale": {
@@ -434,8 +434,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 69.90705108642578,
-                    "y": 0.00924639031291008
+                    "x": 72.7163314819336,
+                    "y": 0.009207050316035748
                 },
                 "Offset": {
                     "x": 0.0,
@@ -452,7 +452,7 @@
                 "Platform": false
             },
             "Lifespan": {
-                "Timer": 0.10000000894069672
+                "Timer": 0.11666667461395264
             }
         },
         {
@@ -842,7 +842,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/CHECKPOINT_OFF",
+                    "key": "Textures/CHECKPOINT_ON",
                     "index": 0
                 },
                 "Size": {
@@ -914,7 +914,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/CHECKPOINT_OFF",
+                    "key": "Textures/CHECKPOINT_ON",
                     "index": 0
                 },
                 "Size": {

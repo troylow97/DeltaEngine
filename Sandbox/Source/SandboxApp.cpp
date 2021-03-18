@@ -51,6 +51,7 @@ public:
     env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, AudioSystem>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
+    //EnemySpawner::ActivateGauntlet = true;
 
 
   }
