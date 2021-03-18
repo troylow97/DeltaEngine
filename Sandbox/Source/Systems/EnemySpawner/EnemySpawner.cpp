@@ -51,6 +51,9 @@ namespace DeltaEngine
 
   void EnemySpawner::Update()
   {
+    if (!ActivateGauntlet)
+        return;
+  	
     if (env.pECS->GetWorld().GetEntityManager().IsEntityValid(UnitManager::GetPlayerID()))
       if (env.pECS->GetWorld().GetEntityManager().HasComponent<Player>(UnitManager::GetPlayerID()))
       {

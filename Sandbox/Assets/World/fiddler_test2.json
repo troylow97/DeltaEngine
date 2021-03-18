@@ -13,7 +13,7 @@
             "Transform": {
                 "Position": {
                     "x": 4.8202104568481449,
-                    "y": 2.0,
+                    "y": 0.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -257,7 +257,7 @@
             "Transform": {
                 "Position": {
                     "x": 4.8202104568481449,
-                    "y": 0.009012812748551369,
+                    "y": 2.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -355,10 +355,10 @@
                 "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 64,
-                "Melee Damage": 64,
-                "SMG Damage": 32,
-                "Melee Combo Damage": 192,
+                "Range Damage": 128,
+                "Melee Damage": 128,
+                "SMG Damage": 64,
+                "Melee Combo Damage": 384,
                 "Number Of Combo": 2,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.3499999940395355,
