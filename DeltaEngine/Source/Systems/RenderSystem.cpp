@@ -20,6 +20,11 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Components/ParticleEmitter.h"
 #include "Core/Utils/Random.h"
 
+#ifdef DE_EDITOR	
+#include "ImGui/Editor.h"
+#include "ImGui/Panels/IPanel.h"
+#endif
+
 namespace DeltaEngine
 {
   Color wireframeColor = Color::Black();
@@ -415,99 +420,109 @@ namespace DeltaEngine
 
   void RenderSystem::Update()
   {
-    RenderModule::openGLSystem->Update();
+      RenderModule::openGLSystem->Update();
 
-    // sort renderers by layer
-    sortedRenderers2D.clear();
-    em.ForEach(e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers2D.push_back(id); });
-    std::sort(sortedRenderers2D.begin(), sortedRenderers2D.end(), SortSprites);
+      // sort renderers by layer
+      sortedRenderers2D.clear();
+      em.ForEach(e_query, [&](EntityID id, Renderer2D& r) { sortedRenderers2D.push_back(id); });
+      std::sort(sortedRenderers2D.begin(), sortedRenderers2D.end(), SortSprites);
 
-    sortedRenderersOverlay.clear();
-    em.ForEach(e_query, [&](EntityID id, RendererOverlay& r) { sortedRenderersOverlay.push_back(id); });
-    std::sort(sortedRenderersOverlay.begin(), sortedRenderersOverlay.end(), SortOverlay);
-
-    // camera entities
-    em.ForEach([&](EntityID id, Transform& tr, Camera& c)
-      {
+      sortedRenderersOverlay.clear();
+      em.ForEach(e_query, [&](EntityID id, RendererOverlay& r) { sortedRenderersOverlay.push_back(id); });
+      std::sort(sortedRenderersOverlay.begin(), sortedRenderersOverlay.end(), SortOverlay);
+  	
+#ifdef DE_EDITOR	
+  if (Editor::Instance().m_panels[7]->IsActive())
+  {
+#endif  	
+      // camera entities
+      em.ForEach([&](EntityID id, Transform& tr, Camera& c)
+          {
 #ifndef DE_EDITOR
-        c.SetViewportSize(1.0f * GetEnv().pWin->Width());
-        c.SetAspectRatio(1.0f * GetEnv().pWin->Width(), 1.0f * GetEnv().pWin->Height());
+              c.SetViewportSize(1.0f * GetEnv().pWin->Width());
+              c.SetAspectRatio(1.0f * GetEnv().pWin->Width(), 1.0f * GetEnv().pWin->Height());
 #endif // !DE_EDITOR
 
-        if (c.shakeMagnitude > 0)
-        {
-          tr.position -= c.shakeDisp;
+              if (c.shakeMagnitude > 0)
+              {
+                  tr.position -= c.shakeDisp;
 
-          c.shakeDisp = Vector2(
-            Random::RandomFloatRange(-.5f, .5f) * c.shakeMagnitude / 10,
-            Random::RandomFloatRange(-.5f, .5f) * c.shakeMagnitude / 10);
+                  c.shakeDisp = Vector2(
+                      Random::RandomFloatRange(-.5f, .5f) * c.shakeMagnitude / 10,
+                      Random::RandomFloatRange(-.5f, .5f) * c.shakeMagnitude / 10);
 
-          tr.position += c.shakeDisp;
+                  tr.position += c.shakeDisp;
 
-          c.shakeMagnitude -= static_cast<float>(DeltaTime()) * c.shakeFade;
-          if (c.shakeMagnitude < 0)
-            c.shakeMagnitude = 0;
-        }
-        Matrix4x4 proj = c.GetProjectionMatrix(tr);
+                  c.shakeMagnitude -= static_cast<float>(DeltaTime()) * c.shakeFade;
+                  if (c.shakeMagnitude < 0)
+                      c.shakeMagnitude = 0;
+              }
+              Matrix4x4 proj = c.GetProjectionMatrix(tr);
 
-        c.Start();
+              c.Start();
 
-        // loop through every object
-        DrawRenderer2D(em, c, tr);
-        DrawRendererOverlay(em, c);
+              // loop through every object
+              DrawRenderer2D(em, c, tr);
+              DrawRendererOverlay(em, c);
 
-        c.End();
+              c.End();
 
 #ifndef DE_EDITOR
-        Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
-        shader->SetUniform1i("_MainTex", 0);
-        glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+              Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
+              shader->SetUniform1i("_MainTex", 0);
+              glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
 
-        Mesh::DrawQuad();
+              Mesh::DrawQuad();
 #endif // !DE_EDITOR
-      });
-    if (Camera::allCameras.size())
-    {
-      Camera::finalFrameBuffer->Resize(static_cast<unsigned>(Camera::allCameras[0]->GetTrueViewportSize()),
-        static_cast<unsigned>(Camera::allCameras[0]->GetTrueViewportSize() / Camera::allCameras[0]->GetAspectRatio()));
-    }
-
-    Camera::finalFrameBuffer->Bind();
-
-    glClearColor(0, 0, 0, 1);
-    glClear(GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/);
-
-    em.ForEach([&](EntityID id, Transform& tr, Camera& c)
+          });
+      if (Camera::allCameras.size())
       {
-        Vector2 cameraAspect{ 1, 1 };
+          Camera::finalFrameBuffer->Resize(static_cast<unsigned>(Camera::allCameras[0]->GetTrueViewportSize()),
+              static_cast<unsigned>(Camera::allCameras[0]->GetTrueViewportSize() / Camera::allCameras[0]->GetAspectRatio()));
+      }
 
-        if (Camera::GetFixedAspectRatio() > .01f)
-        {
-          if (c.GetAspectRatio() > Camera::GetFixedAspectRatio())
+      Camera::finalFrameBuffer->Bind();
+
+      glClearColor(0, 0, 0, 1);
+      glClear(GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/);
+
+      em.ForEach([&](EntityID id, Transform& tr, Camera& c)
           {
-            cameraAspect.x = Camera::GetFixedAspectRatio() / c.GetAspectRatio();
-          }
-          else
-          {
-            cameraAspect.y = c.GetAspectRatio() / Camera::GetFixedAspectRatio();
-          }
-        }
+              Vector2 cameraAspect{ 1, 1 };
 
-        // cameraAspect may be modified further depending on advanced camera settings
+              if (Camera::GetFixedAspectRatio() > .01f)
+              {
+                  if (c.GetAspectRatio() > Camera::GetFixedAspectRatio())
+                  {
+                      cameraAspect.x = Camera::GetFixedAspectRatio() / c.GetAspectRatio();
+                  }
+                  else
+                  {
+                      cameraAspect.y = c.GetAspectRatio() / Camera::GetFixedAspectRatio();
+                  }
+              }
 
-        Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
-        shader->SetUniform1i("_MainTex", 0);
-        shader->SetUniformVector2f("_ScreenAspect", cameraAspect);
-        glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+              // cameraAspect may be modified further depending on advanced camera settings
 
-        Mesh::DrawQuad();
-      });
+              Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
+              shader->SetUniform1i("_MainTex", 0);
+              shader->SetUniformVector2f("_ScreenAspect", cameraAspect);
+              glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
 
-    Camera::finalFrameBuffer->Unbind();
+              Mesh::DrawQuad();
+          });
 
+      Camera::finalFrameBuffer->Unbind();
+#ifdef DE_EDITOR  	
+  }
+#endif
+  	
 #ifdef DE_EDITOR
-    Camera::editorCamera->Start();
-    DrawRenderer2D(em, *Camera::editorCamera, Camera::editorCameraTransform);
+    if (Editor::Instance().m_panels[8]->IsActive())
+    {
+        Camera::editorCamera->Start();
+        DrawRenderer2D(em, *Camera::editorCamera, Camera::editorCameraTransform);
+    }
 #endif // DE_EDITOR
 
     Profiler::Instance().Record("Render System Update");
@@ -516,9 +531,10 @@ namespace DeltaEngine
   void RenderSystem::LateUpdate()
   {
 #ifdef DE_EDITOR
-    Camera::editorCamera->End();
+      if (Editor::Instance().m_panels[8]->IsActive())
+          Camera::editorCamera->End();
 #endif // DE_EDITOR
 
-    Profiler::Instance().Record("Render System Late Update");
+      Profiler::Instance().Record("Render System Late Update");
   }
 }

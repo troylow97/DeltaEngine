@@ -12,8 +12,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 2.5117552280426027,
-                    "y": 2.0,
+                    "x": 4.8202104568481449,
+                    "y": 0.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -50,7 +50,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 50.0,
+                    "x": 0.0,
                     "y": -0.9300000071525574,
                     "z": 0.0
                 },
@@ -80,7 +80,7 @@
             "Collider": {
                 "Center": {
                     "x": 0.0,
-                    "y": -1.0
+                    "y": -0.9300000071525574
                 },
                 "Offset": {
                     "x": 0.0,
@@ -109,8 +109,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": -3.3889338970184328,
-                    "y": 0.2191838026046753,
+                    "x": -0.6924151182174683,
+                    "y": 0.2894335985183716,
                     "z": 0.0
                 },
                 "Scale": {
@@ -138,8 +138,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": -3.3889338970184328,
-                    "y": -0.0008161962032318115
+                    "x": -0.6924151182174683,
+                    "y": 0.06943359971046448
                 },
                 "Offset": {
                     "x": 0.0,
@@ -158,7 +158,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 4
+                    "index": 3
                 },
                 "Size": {
                     "x": 1.0,
@@ -209,9 +209,9 @@
                 "AIState": "idle_fiddler"
             },
             "Health": {
-                "Current Health": 3000,
+                "Current Health": 2744,
                 "Max Health": 3000,
-                "TakenDamageTimer": -0.10000000149011612,
+                "TakenDamageTimer": -0.10000009089708328,
                 "Invulnerable": false
             },
             "Attack": {
@@ -224,14 +224,14 @@
                 "Melee Cooldown": 2.799999952316284,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.21666638553142548,
+                "Melee Cooldown Timer": 1.533334493637085,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.5,
                 "Combo Cooldown Timer": 1.5,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.016666388139128686,
+                "Attack Delay": 0.7333335876464844,
                 "Current Dodge Cooldown": -0.10000000149011612,
                 "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
@@ -256,8 +256,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 69.0,
-                    "y": 0.11900000274181366,
+                    "x": 4.8202104568481449,
+                    "y": 2.0,
                     "z": 0.0
                 },
                 "Scale": {
@@ -285,8 +285,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 2.5117552280426027,
-                    "y": -0.0009455643594264984
+                    "x": 4.8202104568481449,
+                    "y": 0.06901281327009201
                 },
                 "Offset": {
                     "x": 0.0,
@@ -305,7 +305,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/DAVE_PUNCH",
-                    "index": 7
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -352,22 +352,22 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 32,
-                "Melee Damage": 32,
-                "SMG Damage": 16,
-                "Melee Combo Damage": 96,
+                "Range Damage": 128,
+                "Melee Damage": 128,
+                "SMG Damage": 64,
+                "Melee Combo Damage": 384,
                 "Number Of Combo": 2,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.3499999940395355,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.28333327174186709,
+                "Melee Cooldown Timer": 0.24999992549419404,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 1.7000000476837159,
-                "Combo Cooldown Timer": 1.6166667938232422,
+                "Combo Cooldown Timer": 1.5833334922790528,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -405,8 +405,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 1.9349126815795899,
-                    "y": -0.06094556301832199,
+                    "x": 4.197125434875488,
+                    "y": 0.009012812748551369,
                     "z": 0.0
                 },
                 "Scale": {
@@ -434,8 +434,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 1.9349126815795899,
-                    "y": -0.06094556301832199
+                    "x": 4.197125434875488,
+                    "y": 0.009012812748551369
                 },
                 "Offset": {
                     "x": 0.0,
@@ -452,7 +452,7 @@
                 "Platform": false
             },
             "Lifespan": {
-                "Timer": 0.11666667461395264
+                "Timer": 0.0833333432674408
             }
         }
     ]

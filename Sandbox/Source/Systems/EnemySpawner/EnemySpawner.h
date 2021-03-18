@@ -50,7 +50,7 @@ namespace DeltaEngine
     void EnemySpawner::LateUpdate() override;
     GauntletsList list;
     void EnemySpawner::ResetActivationPointBool();
-
+    inline static bool ActivateGauntlet{ false };
   private:
     void LoadEnemyData();
     bool CheckForOutsideEnemies();
@@ -66,6 +66,7 @@ namespace DeltaEngine
     Vector2 ActivationPoint;
     int CurrentGauntlet{0};
     bool GauntletIsActive{false};
+
 
   END_DEFINE_SYSTEM(EnemySpawner)
 }
