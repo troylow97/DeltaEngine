@@ -36269,7 +36269,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36413,7 +36413,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36557,7 +36557,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36701,7 +36701,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36845,7 +36845,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36989,7 +36989,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37133,7 +37133,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37277,7 +37277,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37421,7 +37421,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37565,7 +37565,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37709,7 +37709,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37853,7 +37853,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37997,7 +37997,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38141,7 +38141,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38285,7 +38285,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38429,7 +38429,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38573,7 +38573,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38717,7 +38717,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38861,7 +38861,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39005,7 +39005,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39149,7 +39149,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39293,7 +39293,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39437,7 +39437,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39581,7 +39581,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39725,7 +39725,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39869,7 +39869,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40013,7 +40013,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40157,7 +40157,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40301,7 +40301,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40445,7 +40445,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40589,7 +40589,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40733,7 +40733,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40877,7 +40877,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41021,7 +41021,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41165,7 +41165,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41309,7 +41309,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41453,7 +41453,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41597,7 +41597,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41741,7 +41741,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41885,7 +41885,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -42029,7 +42029,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -42173,7 +42173,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 1,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
