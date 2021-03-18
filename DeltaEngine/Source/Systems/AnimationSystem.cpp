@@ -20,7 +20,6 @@ namespace DeltaEngine
     for (size_t step = 0; step < env.pClock->Timesteps(); ++step)
       em.ForEach([&](EntityID id, EntityName name, Animator& a, State& s, Image& i)
         {
-          std::cerr << name.name << ", " << a.m_Timer << std::endl;
           AnimationController* controller = GetEnv().pManager->Get<AnimationController>(a.m_ControllerKey);
           AnimationClip* newClip = nullptr;
           unsigned frame = 0;

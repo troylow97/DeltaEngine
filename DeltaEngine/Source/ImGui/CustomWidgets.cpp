@@ -41,7 +41,7 @@ namespace DeltaEngine
 
     if (bezier->type == BezierCurve::Type::RandomBetweenConstants)
     {
-      ImGui::DragFloat((std::string(label) + " bezier const 1").c_str(), &bezier->min.min, 0.01f);
+      ImGui::DragFloat((std::string(label) + " bezier const 2").c_str(), &bezier->max.min, 0.01f);
     }
     else if (bezier->type == BezierCurve::Type::RandomBetweenCurves)
     {
@@ -50,7 +50,7 @@ namespace DeltaEngine
         dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.clear();
 
         Editor::inst->m_panels[12]->Enable();
-        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->min);
+        dynamic_cast<BezierPanel*>(Editor::inst->m_panels[12].get())->curves.push_back(&bezier->max);
       }
     }
     ImGui::PopID();
@@ -78,7 +78,9 @@ namespace DeltaEngine
     if (bezier->type == BezierCurve::Type::Constant ||
       bezier->type == BezierCurve::Type::RandomBetweenConstants)
     {
-      ImGui::PushID((std::string(label) + " bezier3 const 2").c_str());
+      if (bezier->type == BezierCurve::Type::RandomBetweenConstants)
+        ImGui::Text("Min");
+      ImGui::PushID((std::string(label) + " bezier3 const 1").c_str());
       float col[3] =
       {
         bezier->minX.min,
@@ -92,25 +94,27 @@ namespace DeltaEngine
       bezier->minY.min = col[1];
       bezier->minZ.min = col[2];
       ImGui::PopID();
-    }
-    if (bezier->type == BezierCurve::Type::RandomBetweenConstants)
-    {
-      ImGui::PushID((std::string(label) + " bezier3 const 2").c_str());
-      float col[3] =
+
+      if (bezier->type == BezierCurve::Type::RandomBetweenConstants)
       {
-        bezier->maxX.min,
-        bezier->maxY.min,
-        bezier->maxZ.min
-      };
+        ImGui::Text("Max");
+        ImGui::PushID((std::string(label) + " bezier3 const 2").c_str());
+        float col[3] =
+        {
+          bezier->maxX.min,
+          bezier->maxY.min,
+          bezier->maxZ.min
+        };
 
-      ImGui::DragFloat3("max", col, 0.01f);
+        ImGui::DragFloat3("max", col, 0.01f);
 
-      bezier->minX.min = col[0];
-      bezier->minY.min = col[1];
-      bezier->minZ.min = col[2];
-      ImGui::PopID();
+        bezier->maxX.min = col[0];
+        bezier->maxY.min = col[1];
+        bezier->maxZ.min = col[2];
+        ImGui::PopID();
+      }
     }
-    if (bezier->type == BezierCurve::Type::ConstantCurve ||
+    else if (bezier->type == BezierCurve::Type::ConstantCurve ||
       bezier->type == BezierCurve::Type::RandomBetweenCurves)
     {
       if (bezier->type == BezierCurve::Type::RandomBetweenCurves)
@@ -133,27 +137,27 @@ namespace DeltaEngine
         ImGui::PopID();
         ImGui::PopItemWidth();
       }
-    }
-    if (bezier->type == BezierCurve::Type::RandomBetweenCurves)
-    {
-      ImGui::Text("Max");
-
-      ImGui::PushMultiItemsWidths(3, ImGui::CalcItemWidth());
-      for (int i = 0; i < 3; i++)
+      if (bezier->type == BezierCurve::Type::RandomBetweenCurves)
       {
-        ImGui::PushID((std::string(label) + "Max " + std::to_string(i)).c_str());
-        if (i > 0)
-          ImGui::SameLine(0, g.Style.ItemInnerSpacing.x);
+        ImGui::Text("Max");
 
-        if (i == 0)
-          ImGui::Checkbox("X", &bezier->maxXActive);
-        if (i == 1)
-          ImGui::Checkbox("Y", &bezier->maxYActive);
-        if (i == 2)
-          ImGui::Checkbox("Z", &bezier->maxZActive);
+        ImGui::PushMultiItemsWidths(3, ImGui::CalcItemWidth());
+        for (int i = 0; i < 3; i++)
+        {
+          ImGui::PushID((std::string(label) + "Max " + std::to_string(i)).c_str());
+          if (i > 0)
+            ImGui::SameLine(0, g.Style.ItemInnerSpacing.x);
 
-        ImGui::PopID();
-        ImGui::PopItemWidth();
+          if (i == 0)
+            ImGui::Checkbox("X", &bezier->maxXActive);
+          if (i == 1)
+            ImGui::Checkbox("Y", &bezier->maxYActive);
+          if (i == 2)
+            ImGui::Checkbox("Z", &bezier->maxZActive);
+
+          ImGui::PopID();
+          ImGui::PopItemWidth();
+        }
       }
     }
     if (bezier->type == BezierCurve::Type::ConstantCurve ||
@@ -296,9 +300,9 @@ namespace DeltaEngine
     Color previousColor = Color();
     int count = 0;
 
-    for (auto& [color, location] : gradient->colorKeys)
+    for (auto& color : gradient->colorKeys)
     {
-      float to = bar_pos.x + location * maxWidth;
+      float to = bar_pos.x + color.a * maxWidth;
 
       if (previousLocation < 0)
       {
@@ -365,7 +369,7 @@ namespace DeltaEngine
         }
       }
 
-      previousLocation = location;
+      previousLocation = color.a;
       previousColor = color;
       ++count;
     }
@@ -401,15 +405,15 @@ namespace DeltaEngine
     float previousLocation = -1;
     Color previousColor = Color();
 
-    for (auto& [color, location] : gradient->colorKeys)
+    for (auto& color : gradient->colorKeys)
     {
-      if (location < 0)
+      if (color.a < 0)
       {
         continue;
       }
 
       float from = prevX;
-      float to = prevX = bar_pos.x + location * maxWidth;
+      float to = prevX = bar_pos.x + color.a * maxWidth;
 
       if (previousLocation < 0)
       {
@@ -431,14 +435,14 @@ namespace DeltaEngine
       colorAU32 = ImGui::ColorConvertFloat4ToU32(colorA);
       colorBU32 = ImGui::ColorConvertFloat4ToU32(colorB);
 
-      if (location >= 0.0)
+      if (color.a >= 0.0)
       {
         draw_list->AddRectFilledMultiColor(ImVec2(from, bar_pos.y),
           ImVec2(to, barBottom),
           colorAU32, colorBU32, colorBU32, colorAU32);
       }
 
-      previousLocation = location;
+      previousLocation = color.a;
       previousColor = color;
     }
 
@@ -470,14 +474,16 @@ namespace DeltaEngine
     {
       float col[4] =
       {
-        gradient->min.colorKeys[0].first.r,
-        gradient->min.colorKeys[0].first.g,
-        gradient->min.colorKeys[0].first.b,
-        gradient->min.alphaKeys[0].first
+        gradient->min.colorKeys[0].r,
+        gradient->min.colorKeys[0].g,
+        gradient->min.colorKeys[0].b,
+        gradient->min.alphaKeys[0].x
       };
       ImGui::ColorEdit4((std::string(label) + " color 1").c_str(), col);
-      gradient->min.colorKeys[0].first = Color(col[0], col[1], col[2]);
-      gradient->min.alphaKeys[0].first = col[3];
+      gradient->min.colorKeys[0].r = col[0];
+      gradient->min.colorKeys[0].g = col[1];
+      gradient->min.colorKeys[0].b = col[2];
+      gradient->min.alphaKeys[0].x = col[3];
     }
     else if (gradient->type == Gradient::Type::ConstantGradient ||
       gradient->type == Gradient::Type::RandomBetweenGradients)
@@ -497,26 +503,28 @@ namespace DeltaEngine
       {
         float col[3] =
         {
-          gradient->min.colorKeys[selectedColor].first.r,
-          gradient->min.colorKeys[selectedColor].first.g,
-          gradient->min.colorKeys[selectedColor].first.b
+          gradient->min.colorKeys[selectedColor].r,
+          gradient->min.colorKeys[selectedColor].g,
+          gradient->min.colorKeys[selectedColor].b
         };
         ImGui::TextEx("Color");
         ImGui::ColorEdit3((std::string(label) + " gradient 1 color " + std::to_string(selectedColor)).c_str(), col);
-        gradient->min.colorKeys[selectedColor].first = Color(col[0], col[1], col[2]);
+        gradient->min.colorKeys[selectedColor].r = col[0];
+        gradient->min.colorKeys[selectedColor].g = col[1];
+        gradient->min.colorKeys[selectedColor].b = col[2];
         ImGui::TextEx("Color Location");
         ImGui::DragFloat((std::string(label) + " color 1 location " + std::to_string(selectedColor)).c_str(),
-          &gradient->min.colorKeys[selectedColor].second, 0.01f, 0, 1);
+          &gradient->min.colorKeys[selectedColor].a, 0.01f, 0, 1);
       }
 
       if (selectedAlpha >= 0 && selectedAlpha < gradient->min.colorKeys.size())
       {
         ImGui::TextEx("Alpha");
         ImGui::DragFloat((std::string(label) + " alpha 1 " + std::to_string(selectedAlpha)).c_str(),
-          &gradient->min.alphaKeys[selectedAlpha].first, 0.01f, 0, 1);
+          &gradient->min.alphaKeys[selectedAlpha].x, 0.01f, 0, 1);
         ImGui::TextEx("Alpha Location");
         ImGui::DragFloat((std::string(label) + " alpha 1 location " + std::to_string(selectedAlpha)).c_str(),
-          &gradient->min.alphaKeys[selectedAlpha].second, 0.01f, 0, 1);
+          &gradient->min.alphaKeys[selectedAlpha].y, 0.01f, 0, 1);
       }
 
       if (!ImGui::IsMouseDown(0) && draggingColor >= 0)
@@ -532,8 +540,8 @@ namespace DeltaEngine
 
         if (increment != 0.0f && insideZone)
         {
-          gradient->min.colorKeys[draggingColor].second += increment;
-          gradient->min.colorKeys[draggingColor].second = Math::Clamp01(gradient->min.colorKeys[draggingColor].second);
+          gradient->min.colorKeys[draggingColor].a += increment;
+          gradient->min.colorKeys[draggingColor].a = Math::Clamp01(gradient->min.colorKeys[draggingColor].a);
         }
       }
 
@@ -550,8 +558,8 @@ namespace DeltaEngine
 
         if (increment != 0.0f && insideZone)
         {
-          gradient->min.alphaKeys[draggingAlpha].second += increment;
-          gradient->min.alphaKeys[draggingAlpha].second = Math::Clamp01(gradient->min.alphaKeys[draggingAlpha].second);
+          gradient->min.alphaKeys[draggingAlpha].y += increment;
+          gradient->min.alphaKeys[draggingAlpha].y = Math::Clamp01(gradient->min.alphaKeys[draggingAlpha].y);
         }
       }
     }
@@ -560,14 +568,16 @@ namespace DeltaEngine
     {
       float col[4] =
       {
-        gradient->max.colorKeys[0].first.r,
-        gradient->max.colorKeys[0].first.g,
-        gradient->max.colorKeys[0].first.b,
-        gradient->max.alphaKeys[0].first
+        gradient->max.colorKeys[0].r,
+        gradient->max.colorKeys[0].g,
+        gradient->max.colorKeys[0].b,
+        gradient->max.alphaKeys[0].x
       };
       ImGui::ColorEdit4((std::string(label) + " color 2").c_str(), col);
-      gradient->max.colorKeys[0].first = Color(col[0], col[1], col[2]);
-      gradient->max.alphaKeys[0].first = col[3];
+      gradient->max.colorKeys[0].r = col[0];
+      gradient->max.colorKeys[0].g = col[1];
+      gradient->max.colorKeys[0].b = col[2];
+      gradient->max.alphaKeys[0].x = col[3];
     }
     else if (gradient->type == Gradient::Type::RandomBetweenGradients)
     {
@@ -586,26 +596,28 @@ namespace DeltaEngine
       {
         float col[3] =
         {
-          gradient->max.colorKeys[selectedColor].first.r,
-          gradient->max.colorKeys[selectedColor].first.g,
-          gradient->max.colorKeys[selectedColor].first.b
+          gradient->max.colorKeys[selectedColor].r,
+          gradient->max.colorKeys[selectedColor].g,
+          gradient->max.colorKeys[selectedColor].b
         };
         ImGui::TextEx("Color");
         ImGui::ColorEdit3((std::string(label) + " gradient 2 color " + std::to_string(selectedColor)).c_str(), col);
-        gradient->max.colorKeys[selectedColor].first = Color(col[0], col[1], col[2]);
+        gradient->max.colorKeys[selectedColor].r = col[0];
+        gradient->max.colorKeys[selectedColor].g = col[1];
+        gradient->max.colorKeys[selectedColor].b = col[2];
         ImGui::TextEx("Color Location");
         ImGui::DragFloat((std::string(label) + " color 2 location " + std::to_string(selectedColor)).c_str(),
-          &gradient->max.colorKeys[selectedColor].second, 0.01f, 0, 1);
+          &gradient->max.colorKeys[selectedColor].a, 0.01f, 0, 1);
       }
 
       if (selectedAlpha >= 0 && selectedAlpha < gradient->max.colorKeys.size())
       {
         ImGui::TextEx("Alpha");
         ImGui::DragFloat((std::string(label) + " alpha 2 " + std::to_string(selectedAlpha)).c_str(),
-          &gradient->max.alphaKeys[selectedAlpha].first, 0.01f, 0, 1);
+          &gradient->max.alphaKeys[selectedAlpha].x, 0.01f, 0, 1);
         ImGui::TextEx("Alpha Location");
         ImGui::DragFloat((std::string(label) + " alpha 2 location " + std::to_string(selectedAlpha)).c_str(),
-          &gradient->max.alphaKeys[selectedAlpha].second, 0.01f, 0, 1);
+          &gradient->max.alphaKeys[selectedAlpha].y, 0.01f, 0, 1);
       }
 
       if (!ImGui::IsMouseDown(0) && draggingColor >= 0)
@@ -621,8 +633,8 @@ namespace DeltaEngine
 
         if (increment != 0.0f && insideZone)
         {
-          gradient->max.colorKeys[draggingColor].second += increment;
-          gradient->max.colorKeys[draggingColor].second = Math::Clamp01(gradient->max.colorKeys[draggingColor].second);
+          gradient->max.colorKeys[draggingColor].a += increment;
+          gradient->max.colorKeys[draggingColor].a = Math::Clamp01(gradient->max.colorKeys[draggingColor].a);
         }
       }
 
@@ -639,8 +651,8 @@ namespace DeltaEngine
 
         if (increment != 0.0f && insideZone)
         {
-          gradient->max.alphaKeys[draggingAlpha].second += increment;
-          gradient->max.alphaKeys[draggingAlpha].second = Math::Clamp01(gradient->max.alphaKeys[draggingAlpha].second);
+          gradient->max.alphaKeys[draggingAlpha].y += increment;
+          gradient->max.alphaKeys[draggingAlpha].y = Math::Clamp01(gradient->max.alphaKeys[draggingAlpha].y);
         }
       }
     }

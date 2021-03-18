@@ -16,7 +16,7 @@ namespace DeltaEngine
       int count;
     };
 
-    enum class Shape
+    enum class Shape : unsigned
     {
       None,
       Circle,
@@ -24,7 +24,7 @@ namespace DeltaEngine
       Box
     };
 
-    enum class GenType
+    enum class GenType : unsigned
     {
       Random,
       Loop,
@@ -35,10 +35,10 @@ namespace DeltaEngine
     //properties
     float duration = 10;
     bool looping = true;
-    bool prewarm = false;
+    //bool prewarm = false;
 
     //instantiate props
-    float startDelay = 0;
+    //float startDelay = 0;
     float startLifetimeMin = 5, startLifetimeMax = 5;
     Vector3 startVelocityMin, startVelocityMax;
     Color startColorMin, startColorMax;
@@ -46,9 +46,9 @@ namespace DeltaEngine
     Vector3 startSizeMin = Vector3::one(), startSizeMax = Vector3::one();
 
     //over time props
-    BezierRange3 velocityOverLifetime;
+    BezierRange3 velocityOverLifetime = 0;
     GradientRange colorOverLifetime;
-    BezierRange rotationOverLifetime;
+    BezierRange rotationOverLifetime = 0;
     BezierRange3 sizeOverLifetime;
 
     bool playOnAwake = true;
@@ -73,9 +73,13 @@ namespace DeltaEngine
       float lifeTimer = 0.0f;
 
       Transform transform;
+      Transform modifier;
 
       Vector3 velocity;
       Color color;
+      Color multiplier;
+
+      unsigned seed = 0;
 
       bool active = false;
     };

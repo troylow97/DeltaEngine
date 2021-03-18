@@ -225,17 +225,23 @@ namespace DeltaEngine
         {
           if (!particle.active)
             continue;
-          Matrix4x4 pMat = Matrix4x4::Transpose(particle.transform.LocalToWorldMatrix());
+          Transform transform = particle.transform;
+          Color color = particle.color;
+          transform.rotation *= particle.modifier.rotation;
+          transform.scale *= particle.modifier.scale;
+          color *= particle.multiplier;
+          Matrix4x4 pMat = Matrix4x4::Transpose(transform.LocalToWorldMatrix());
 
           //vertex position
           for (unsigned j = 0; j < 12; ++j)
           {
             particleProps.push_back(pMat.m[j]);
           }
-          particleProps.push_back(particle.color.r);
-          particleProps.push_back(particle.color.g);
-          particleProps.push_back(particle.color.b);
-          particleProps.push_back(particle.color.a);
+
+          particleProps.push_back(color.r);
+          particleProps.push_back(color.g);
+          particleProps.push_back(color.b);
+          particleProps.push_back(color.a);
         }
 
         glEnable(GL_BLEND);
@@ -443,12 +449,6 @@ namespace DeltaEngine
             c.shakeMagnitude = 0;
         }
         Matrix4x4 proj = c.GetProjectionMatrix(tr);
-
-        for (size_t i = 0; i < 16; i++)
-        {
-          std::cerr << proj.m[i] << ",";
-        }
-        std::cerr << std::endl;
 
         c.Start();
 

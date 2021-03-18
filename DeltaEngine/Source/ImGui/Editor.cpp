@@ -71,7 +71,9 @@ void OpenFile(Editor& e)
 
   if ( path )
   {
-    NewFile(e);
+    GetEnv().pECS->GetWorld().GetEntityManager().Clear();
+    e.entity_selected = false;
+    e.entity_id = u64_max;
     GetEnv().pECS->GetWorld().Load( *path );
   }
 }
