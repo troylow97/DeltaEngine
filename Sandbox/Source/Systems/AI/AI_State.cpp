@@ -56,6 +56,9 @@ namespace DeltaEngine
 
     void LancerSpawn::Update(EntityID& monster)
     {
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsDead", false);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlerted", true);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("MeleeAttack", false);
         CheckEdges(monster);
         auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
         Vector2 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID()).position;

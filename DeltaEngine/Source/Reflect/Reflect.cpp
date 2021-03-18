@@ -70,7 +70,16 @@ namespace DeltaEngine
     /*
     ********************************************************************************
     */
-
+    rttr::registration::enumeration<FillType>("Filltype")
+        (
+            rttr::value("none", FillType::None),
+            rttr::value("horizontal_left_to_right", FillType::HorizontalLeftToRight),
+            rttr::value("horizontal_right_to_left", FillType::HorizontalRightToLeft),
+            rttr::value("vertical_top_to_bottom", FillType::VerticalTopToBottom),
+            rttr::value("vertical_bottom_to_top", FillType::VerticalBottomToTop),
+            rttr::value("radial_360_clockwise", FillType::Radial360Clockwise),
+            rttr::value("radial_360_anticlockwise", FillType::Radial360AntiClockwise)
+            );
 
     rttr::registration::class_<Waypoint>("Waypoint")
       .property("Waypoints", &Waypoint::Waypoints)
@@ -384,8 +393,6 @@ namespace DeltaEngine
     rttr::registration::class_<Transform>("Transform")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Transform>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Old Position", &Transform::old_position)(rttr::metadata("NO_SERIALIZE", true),
-                                                          (rttr::metadata("NO_EDITOR", true)))
       .property("Position", &Transform::position)(rttr::policy::prop::bind_as_ptr)
       .property("Scale", &Transform::scale)(rttr::policy::prop::bind_as_ptr)
       .property("Rotation", &Transform::rotation)(rttr::policy::prop::bind_as_ptr);

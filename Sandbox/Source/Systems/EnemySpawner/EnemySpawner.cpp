@@ -229,7 +229,7 @@ namespace DeltaEngine
       if (type == "lancer")
       {
         em.GetComponent<AI>(enemy).key = "lancer_spawn";
-        em.GetComponent<Collider>(enemy).CollisionLayerCheck = 1;
+        em.GetComponent<Collider>(enemy).CollisionLayerCheck = 8;
         em.GetComponent<RigidBody>(enemy).Movespeed = LancerData.Movespeed;
         em.GetComponent<RigidBody>(enemy).Mass = LancerData.Mass;
         em.GetComponent<Health>(enemy).CurrentHealth = LancerData.Health;
