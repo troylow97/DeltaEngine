@@ -71,13 +71,11 @@ void ButtonHover()
 
 void Back()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PopScreen();
 }
 
 void StartGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
   GetEnv().pECS->GetWorld().Load( "World/gam250beta_t.json" );
   GetEnv().pClock->TimeScale( 1.0f );
@@ -87,19 +85,16 @@ void StartGame()
 
 void OpenControls()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 2 );
 }
 
 void OpenOptions()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 3 );
 }
 
 void OpenCredits()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 4 );
 }
 
@@ -109,13 +104,11 @@ void OpenCredits()
 
 void QuitGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 5 );
 }
 
 void ConfirmQuitGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Shutdown();
   env.pWin->Running( false );
 }
@@ -127,13 +120,11 @@ void ConfirmQuitGame()
 
 void QuitInGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 6 );
 }
 
 void ConfirmQuitInGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::ClearScreens();
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
   GetEnv().pECS->GetWorld().Load( "World/MainMenuScreen.json" );
@@ -147,14 +138,12 @@ void ConfirmQuitInGame()
 */
 void Resume()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PopScreen();
   GetEnv().pClock->TimeScale( 1.0f );
 }
 
 void Restart1()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::ClearScreens();
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
   GetEnv().pECS->GetWorld().Load( "World/gam250beta_t.json" );

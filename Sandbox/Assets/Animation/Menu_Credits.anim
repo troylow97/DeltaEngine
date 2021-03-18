@@ -9,6 +9,10 @@ param
 Hover
 0 0
 
+param
+Click
+0 0
+
 %EditorPositions:
 
 pos
@@ -25,19 +29,33 @@ Any State
 
 pos
 Clip/Credits_D
-111 112
+33 111
 
 pos
 Clip/Credits_S
-283 180
+259 209
+
+pos
+Clip/Credits_HL
+221 112
 
 %Transitions:
 
 transition
 start
+Clip/Credits_S
+end
+Exit
+condition
+Click
+? 0
+endTransition
+
+transition
+start
 Clip/Credits_D
 end
-Clip/Credits_S
+Clip/Credits_HL
 condition
 Hover
 ? 1
@@ -45,9 +63,19 @@ endTransition
 
 transition
 start
-Clip/Credits_S
+Clip/Credits_HL
 end
-Exit
+Clip/Credits_S
+condition
+Click
+? 1
+endTransition
+
+transition
+start
+Clip/Credits_HL
+end
+Clip/Credits_D
 condition
 Hover
 ? 0

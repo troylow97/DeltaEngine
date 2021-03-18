@@ -9,6 +9,10 @@ param
 Hover
 0 0
 
+param
+Click
+0 0
+
 %EditorPositions:
 
 pos
@@ -25,19 +29,33 @@ Any State
 
 pos
 Clip/QuitGame_S
-276 219
+264 259
 
 pos
 Clip/QuitGame_D
 68 231
 
+pos
+Clip/QuitGame_HL
+187 162
+
 %Transitions:
+
+transition
+start
+Clip/QuitGame_S
+end
+Exit
+condition
+Click
+? 0
+endTransition
 
 transition
 start
 Clip/QuitGame_D
 end
-Clip/QuitGame_S
+Clip/QuitGame_HL
 condition
 Hover
 ? 1
@@ -45,9 +63,19 @@ endTransition
 
 transition
 start
-Clip/QuitGame_S
+Clip/QuitGame_HL
 end
-Exit
+Clip/QuitGame_S
+condition
+Click
+? 1
+endTransition
+
+transition
+start
+Clip/QuitGame_HL
+end
+Clip/QuitGame_D
 condition
 Hover
 ? 0

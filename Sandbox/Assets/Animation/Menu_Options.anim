@@ -9,6 +9,10 @@ param
 Hover
 0 0
 
+param
+Click
+0 0
+
 %EditorPositions:
 
 pos
@@ -29,15 +33,29 @@ Clip/Options_D
 
 pos
 Clip/Options_S
-260 115
+282 102
+
+pos
+Clip/Options_HL
+79 192
 
 %Transitions:
 
 transition
 start
+Clip/Options_S
+end
+Exit
+condition
+Click
+? 0
+endTransition
+
+transition
+start
 Clip/Options_D
 end
-Clip/Options_S
+Clip/Options_HL
 condition
 Hover
 ? 1
@@ -45,9 +63,19 @@ endTransition
 
 transition
 start
-Clip/Options_S
+Clip/Options_HL
 end
-Exit
+Clip/Options_S
+condition
+Click
+? 1
+endTransition
+
+transition
+start
+Clip/Options_HL
+end
+Clip/Options_D
 condition
 Hover
 ? 0
