@@ -16,43 +16,43 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Audio/AudioEngine.h"
 namespace DeltaEngine
 {
-EnemyData CollisionHandlerFunctions::CollisionHandlerFiddlerData {};
-EnemyData CollisionHandlerFunctions::CollisionHandlerLancerData {};
-EnemyData CollisionHandlerFunctions::CollisionHandlerSerpentipedeData {};
-
-void CollisionHandlerFunctions::Initialise()
-{
-  JsonFile file;
-  file.StartReader( "Enemy/Lancer.json" ).LoadObject( CollisionHandlerLancerData ).EndReader();
-  JsonFile file2;
-  file.StartReader( "Enemy/Fiddler.json" ).LoadObject( CollisionHandlerFiddlerData ).EndReader();
-  JsonFile file3;
-  file.StartReader( "Enemy/Serpentipede.json" ).LoadObject( CollisionHandlerSerpentipedeData ).EndReader();
-}
-
-void CollisionHandlerFunctions::ReduceHealth( EntityID &id1, int amount )
-{
-  if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Health>( id1 ) &&
-       !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).isInvulnerable )
+  EnemyData CollisionHandlerFunctions::CollisionHandlerFiddlerData{};
+  EnemyData CollisionHandlerFunctions::CollisionHandlerLancerData{};
+  EnemyData CollisionHandlerFunctions::CollisionHandlerSerpentipedeData{};
+  
+  void CollisionHandlerFunctions::Initialise()
   {
-    env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).CurrentHealth -= amount;
-    env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).isDamagedTimer = 0.4f;
+    JsonFile file;
+    file.StartReader("Enemy/Lancer.json").LoadObject(CollisionHandlerLancerData).EndReader();
+    JsonFile file2;
+    file.StartReader("Enemy/Fiddler.json").LoadObject(CollisionHandlerFiddlerData).EndReader();
+    JsonFile file3;
+    file.StartReader("Enemy/Serpentipede.json").LoadObject(CollisionHandlerSerpentipedeData).EndReader();
   }
-}
-
-bool CollisionHandlerFunctions::CheckEntityType( EntityID id1, EntityCategory typecheck1, EntityID id2,
-                                                 EntityCategory typecheck2 )
-{
-  auto &type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( id1 ).type;
-  auto &type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( id2 ).type;
-  return ( type1 == typecheck1 && type2 == typecheck2 );
-}
-
-EntityID GetEntityID( EntityID id1, EntityID id2, EntityCategory type )
-{
-  auto &type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( id1 ).type;
-  auto &type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( id2 ).type;
-  (void) type2;
+  
+  void CollisionHandlerFunctions::ReduceHealth(EntityID& id1, int amount)
+  {
+    if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
+        !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
+    {
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
+      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.4f;
+    }
+  }
+  
+  bool CollisionHandlerFunctions::CheckEntityType(EntityID id1, EntityCategory typecheck1, EntityID id2,
+      EntityCategory typecheck2)
+  {
+    auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
+    auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
+    return (type1 == typecheck1 && type2 == typecheck2);
+  }
+  
+  EntityID GetEntityID(EntityID id1, EntityID id2, EntityCategory type)
+  {
+    auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
+    auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
+    (void)type2;
 
   if ( type1 == type )
     return id1;
