@@ -112,7 +112,7 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Collision Layer": 9,
+                "Collision Layer": 0,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -355,10 +355,10 @@
                 "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 16,
-                "Melee Damage": 16,
-                "SMG Damage": 16,
-                "Melee Combo Damage": 48,
+                "Range Damage": 32,
+                "Melee Damage": 32,
+                "SMG Damage": 32,
+                "Melee Combo Damage": 96,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
