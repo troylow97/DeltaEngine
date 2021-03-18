@@ -676,4 +676,14 @@ IsDashing
 ? 1
 endTransition
 
+transition
+start
+Clip/DAVE_DEATH
+end
+Clip/DAVE_IDLE
+condition
+IsIdle
+? 1
+endTransition
+
 %endfile
