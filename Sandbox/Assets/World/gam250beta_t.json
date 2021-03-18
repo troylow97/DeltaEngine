@@ -26,7 +26,7 @@
                 }
             },
             "Camera": {
-                "Camera Size": 2.0,
+                "Camera Size": 4.0,
                 "Background Color": {
                     "r": 4.086021760940639e-7,
                     "g": 6.385957931343e-7,
@@ -4117,8 +4117,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 25.431076049804689,
-                    "y": 0.4971463680267334,
+                    "x": 25.0,
+                    "y": 0.5,
                     "z": 0.0
                 },
                 "Scale": {
@@ -4185,7 +4185,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": true,
+                "Flip X": false,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -4216,10 +4216,10 @@
                 "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 4096,
-                "Melee Damage": 64,
-                "SMG Damage": 2048,
-                "Melee Combo Damage": 64,
+                "Range Damage": 8192,
+                "Melee Damage": 2,
+                "SMG Damage": 4096,
+                "Melee Combo Damage": 128,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
@@ -4227,12 +4227,14 @@
                 "SMG Cooldown": 0.18000000715255738,
                 "Melee Cooldown Timer": -0.21666665375232697,
                 "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.7000000476837159,
-                "Combo Cooldown Timer": 1.7000000476837159,
+                "Combo Duration": 0.4000000059604645,
+                "Combo Cooldown Timer": 0.4000000059604645,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -6.332993507385254e-8,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -4251,7 +4253,7 @@
                 "Fading Timer": 1.0
             },
             "Input": {
-                "Previous": 65,
+                "Previous": 68,
                 "Current": 0
             }
         },
@@ -4305,7 +4307,7 @@
                     "y": 1.5
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -4387,6 +4389,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -4447,7 +4451,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -4529,6 +4533,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -36263,7 +36269,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36345,6 +36351,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -36405,7 +36413,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36487,6 +36495,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -36547,7 +36557,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36629,6 +36639,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -36689,7 +36701,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36771,6 +36783,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -36831,7 +36845,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -36913,6 +36927,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -36973,7 +36989,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37055,6 +37071,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -37115,7 +37133,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37197,6 +37215,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -37257,7 +37277,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37339,6 +37359,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -37399,7 +37421,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37481,6 +37503,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -37541,7 +37565,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37623,6 +37647,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -37683,7 +37709,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37765,6 +37791,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -37825,7 +37853,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -37907,6 +37935,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -37967,7 +37997,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38049,6 +38079,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -38109,7 +38141,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38191,6 +38223,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -38251,7 +38285,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38333,6 +38367,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -38393,7 +38429,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38475,6 +38511,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -38535,7 +38573,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38617,6 +38655,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -38677,7 +38717,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38759,6 +38799,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -38819,7 +38861,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -38901,6 +38943,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -38961,7 +39005,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39043,6 +39087,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -39103,7 +39149,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39185,6 +39231,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -39245,7 +39293,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39327,6 +39375,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -39387,7 +39437,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39469,6 +39519,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -39529,7 +39581,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39611,6 +39663,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -39671,7 +39725,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39753,6 +39807,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -39813,7 +39869,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -39895,6 +39951,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -39955,7 +40013,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40037,6 +40095,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -40097,7 +40157,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40179,6 +40239,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -40239,7 +40301,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40321,6 +40383,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -40381,7 +40445,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40463,6 +40527,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -40523,7 +40589,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40605,6 +40671,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -40665,7 +40733,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40747,6 +40815,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -40807,7 +40877,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -40889,6 +40959,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -40949,7 +41021,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41031,6 +41103,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -41091,7 +41165,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41173,6 +41247,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -41233,7 +41309,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41315,6 +41391,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -41375,7 +41453,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41457,6 +41535,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -41517,7 +41597,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41599,6 +41679,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -41659,7 +41741,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41741,6 +41823,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -41801,7 +41885,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -41883,6 +41967,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -41943,7 +42029,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -42025,6 +42111,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -42085,7 +42173,7 @@
                     "y": 0.6000000238418579
                 },
                 "Type": "box",
-                "Collision Layer": 2,
+                "Collision Layer": 5,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -42167,6 +42255,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -42227,7 +42317,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -42309,6 +42399,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -42369,7 +42461,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -42451,6 +42543,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -42511,7 +42605,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -42593,6 +42687,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -42653,7 +42749,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -42735,6 +42831,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -42795,7 +42893,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -42877,6 +42975,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -43434,7 +43534,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -43516,6 +43616,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -43576,7 +43678,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -43658,6 +43760,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -43718,7 +43822,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -43800,6 +43904,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -43860,7 +43966,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -43942,6 +44048,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -44002,7 +44110,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -44084,6 +44192,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -44144,7 +44254,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -44226,6 +44336,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -44286,7 +44398,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -44368,6 +44480,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -44428,7 +44542,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -44510,6 +44624,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -44570,7 +44686,7 @@
                     "y": 0.800000011920929
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -44652,6 +44768,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -44712,7 +44830,7 @@
                     "y": 1.5
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -44794,6 +44912,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -44854,7 +44974,7 @@
                     "y": 1.5
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -44936,6 +45056,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -44996,7 +45118,7 @@
                     "y": 1.5
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -45078,6 +45200,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -45138,7 +45262,7 @@
                     "y": 1.5
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -45220,6 +45344,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -45280,7 +45406,7 @@
                     "y": 1.5
                 },
                 "Type": "box",
-                "Collision Layer": 5,
+                "Collision Layer": 9,
                 "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
@@ -45362,6 +45488,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
