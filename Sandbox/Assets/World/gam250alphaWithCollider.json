@@ -4492,8 +4492,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 29.85300064086914,
-                    "y": 1.7740000486373902,
+                    "x": 33.157535552978519,
+                    "y": 2.42722225189209,
                     "z": 0.0
                 },
                 "Scale": {
@@ -5262,8 +5262,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 29.56999969482422,
-                    "y": 0.7200000286102295,
+                    "x": 30.76885414123535,
+                    "y": 0.8199045658111572,
                     "z": 0.0
                 },
                 "Scale": {
@@ -21553,6 +21553,10 @@
             "Entity Type": {
                 "Category": "none"
             },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
+            },
             "Transform": {
                 "Position": {
                     "x": 0.0,
@@ -21636,13 +21640,6 @@
                 "Active": false,
                 "Shaded": true,
                 "Wireframe": false
-            },
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Interface",
-                "Screen No.": 1,
-                "Target No.": 0
             }
         },
         {
@@ -21651,6 +21648,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -21740,14 +21741,7 @@
                 "Controller Key": "Animation/Menu_Resume",
                 "Speed": 1.0
             },
-            "State": {},
-            "GUI": {
-                "Func": "Unpause",
-                "File": "",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
+            "State": {}
         },
         {
             "Entity Name": {
@@ -21755,6 +21749,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -21839,13 +21837,6 @@
                 "Active": false,
                 "Shaded": true,
                 "Wireframe": false
-            },
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Interface",
-                "Screen No.": 1,
-                "Target No.": 0
             }
         },
         {
@@ -21854,6 +21845,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -21943,14 +21938,7 @@
                 "Controller Key": "Animation/Menu_Restart",
                 "Speed": 1.0
             },
-            "State": {},
-            "GUI": {
-                "Func": "Start",
-                "File": "World/gam250alphaWithCollider.json",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
+            "State": {}
         },
         {
             "Entity Name": {
@@ -21958,6 +21946,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -22047,14 +22039,7 @@
                 "Controller Key": "Animation/Menu_Quit",
                 "Speed": 1.0
             },
-            "State": {},
-            "GUI": {
-                "Func": "Quit",
-                "File": "",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
+            "State": {}
         },
         {
             "Entity Name": {
@@ -22062,6 +22047,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -22151,14 +22140,7 @@
                 "Controller Key": "Animation/Menu_ExitToMenu",
                 "Speed": 1.0
             },
-            "State": {},
-            "GUI": {
-                "Func": "Start",
-                "File": "World/MainMenu.json",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 0
-            }
+            "State": {}
         },
         {
             "Entity Name": {
@@ -22166,6 +22148,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -22255,14 +22241,7 @@
                 "Controller Key": "Animation/Menu_Controls",
                 "Speed": 1.0
             },
-            "State": {},
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Button",
-                "Screen No.": 1,
-                "Target No.": 2
-            }
+            "State": {}
         },
         {
             "Entity Name": {
@@ -22270,6 +22249,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -22354,13 +22337,6 @@
                 "Active": false,
                 "Shaded": true,
                 "Wireframe": false
-            },
-            "GUI": {
-                "Func": "PopScreen",
-                "File": "",
-                "GUI Type": "Button",
-                "Screen No.": 2,
-                "Target No.": 0
             }
         },
         {
@@ -22502,7 +22478,8 @@
                 "Points Needed For Upgrade": 50,
                 "Attack Upgrade Increase": 1,
                 "Health Upgrade Attack": 2,
-                "Dashing Timer Duration": 1.0
+                "Dashing Timer Duration": 1.0,
+                "Fading Timer": 1.0
             },
             "Input": {
                 "Previous": 69,
@@ -25455,6 +25432,10 @@
             "Entity Type": {
                 "Category": "none"
             },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
+            },
             "Transform": {
                 "Position": {
                     "x": 0.0,
@@ -25538,13 +25519,6 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
-            },
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Interface",
-                "Screen No.": 0,
-                "Target No.": 0
             }
         },
         {
@@ -25553,6 +25527,10 @@
             },
             "Entity Type": {
                 "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
             },
             "Transform": {
                 "Position": {
@@ -25637,13 +25615,6 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
-            },
-            "GUI": {
-                "Func": "",
-                "File": "",
-                "GUI Type": "Interface",
-                "Screen No.": 0,
-                "Target No.": 0
             }
         }
     ]
