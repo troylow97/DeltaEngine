@@ -121,7 +121,7 @@
                 "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 14.0,
+                "Inherent Acceleration": 40.0,
                 "Max Acceleration": 40.0,
                 "Acceleration Pickup": 3.0,
                 "Gravity": true,
@@ -168,7 +168,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": true,
+                "Flip X": false,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -193,8 +193,8 @@
             },
             "State": {},
             "Health": {
-                "Current Health": 15,
-                "Max Health": 15,
+                "Current Health": 3,
+                "Max Health": 3,
                 "TakenDamageTimer": -0.10000000149011612,
                 "Invulnerable": false
             },
@@ -234,7 +234,7 @@
                 "Fading Timer": 1.0
             },
             "Input": {
-                "Previous": 87,
+                "Previous": 68,
                 "Current": 0
             }
         },
