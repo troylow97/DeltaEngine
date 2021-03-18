@@ -76,9 +76,9 @@ namespace DeltaEngine
     return output;
   }
 
-  unsigned int Shader::CompileShader(unsigned int type, std::string source)
+  unsigned Shader::CompileShader(unsigned type, std::string source)
   {
-    unsigned int id = glCreateShader(type);
+    unsigned id = glCreateShader(type);
     const char* src = source.c_str();
     GLCall(glShaderSource( id, 1, &src, nullptr ));
     GLCall(glCompileShader( id ));
@@ -101,11 +101,11 @@ namespace DeltaEngine
     return id;
   }
 
-  unsigned int Shader::CreateShader(std::string vertexShader, std::string fragmentShader)
+  unsigned Shader::CreateShader(std::string vertexShader, std::string fragmentShader)
   {
-    unsigned int program = glCreateProgram();
-    unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-    unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
+    unsigned program = glCreateProgram();
+    unsigned vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
+    unsigned fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
     if (!vs)
       vs = CompileShader(GL_VERTEX_SHADER, LoadShader("Shaders/ErrorShader.vs"));
@@ -123,7 +123,7 @@ namespace DeltaEngine
     return program;
   }
 
-  unsigned int Shader::GetShaderID()
+  unsigned Shader::GetShaderID()
   {
     return m_RendererID;
   }

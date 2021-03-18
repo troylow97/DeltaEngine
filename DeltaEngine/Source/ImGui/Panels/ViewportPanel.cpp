@@ -35,6 +35,7 @@ namespace DeltaEngine
 
 
     Camera::editorCamera->m_Size -= 2 * speed * ImGui::GetIO().MouseWheel * GetEnv().pClock->DeltaTime();
+    Camera::editorCamera->m_Size = Math::Clamp(Camera::editorCamera->m_Size, 1.f, 100.f);
 
     if (ImGui::IsMouseReleased(0) && !dragging)
     {

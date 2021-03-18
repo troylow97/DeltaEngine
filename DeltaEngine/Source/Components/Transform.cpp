@@ -16,7 +16,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
   Transform::Transform() :
-    old_position{0.0f, 0.0f},
     position{0.0f, 0.0f},
     scale{1.0f, 1.0f, 1.0f},
     rotation{0, 0, 0, 1}

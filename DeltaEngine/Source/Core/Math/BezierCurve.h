@@ -8,7 +8,7 @@ namespace DeltaEngine
 {
   struct BezierCurve
   {
-    enum class Type
+    enum class Type : unsigned
     {
       Constant,
       ConstantCurve,
@@ -18,11 +18,11 @@ namespace DeltaEngine
 
     // positions are saved as normalized vectors
     // position, active
-    std::array<std::pair<Vector2, bool>, 8> anchors;
+    std::array<Vector3, 4> anchors;
     // controls are local to anchors
     // position, active
-    std::array<std::pair<Vector2, bool>, 8> controlsLeft;
-    std::array<std::pair<Vector2, bool>, 8> controlsRight;
+    std::array<Vector3, 4> controlsLeft;
+    std::array<Vector3, 4> controlsRight;
 
     // determines the true positions
     float min = 0.0f, max = 1.0f;

@@ -30,7 +30,7 @@ namespace DeltaEngine
 
   class Texture2D
   {
-    unsigned int m_RendererID;
+    unsigned m_RendererID;
     int m_Channels;
     int m_Width, m_Height;
     std::string m_Filepath, m_Name;
@@ -38,21 +38,22 @@ namespace DeltaEngine
     Texture2D(std::string filepath = "dog.png");
     ~Texture2D();
 
-    void Bind(unsigned int slot = 0) const;
+    static void BindID(unsigned id, unsigned slot = 0);
+    void Bind(unsigned slot = 0) const;
     void Unbind() const;
 
     int GetWidth() const;
     int GetHeight() const;
 
-    unsigned int GetRendererID() const;
+    unsigned GetRendererID() const;
 
     void Slice(std::vector<TextureInfo>);
     std::vector<TextureInfo> AutoSlice(Vector2 pivot = Vector2(0.5f, 0.5f), bool noOverlap = true);
-    std::vector<TextureInfo> SliceAll(unsigned int columns, unsigned int rows, Vector2 pivot = Vector2(0.5f, 0.5f));
+    std::vector<TextureInfo> SliceAll(unsigned columns, unsigned rows, Vector2 pivot = Vector2(0.5f, 0.5f));
 
-    Vector2 GetOffset(unsigned int index);
-    Vector2 GetSize(unsigned int index);
-    Vector2 GetPivot(unsigned int index);
+    Vector2 GetOffset(unsigned index);
+    Vector2 GetSize(unsigned index);
+    Vector2 GetPivot(unsigned index);
 
     std::string GetName();
     std::string GetFilepath();

@@ -5,23 +5,15 @@ namespace DeltaEngine
 {
   Gradient::Gradient()
   {
-    colorKeys[0] = { Color(1,1,1,1), 0 };
-    colorKeys[1] = { Color(1,1,1,1), 0.5f };
-    colorKeys[2] = { Color(1,1,1,1), 1 };
-    colorKeys[3] = { Color(1,1,1,1), -1 };
-    colorKeys[4] = { Color(1,1,1,1), -1 };
-    colorKeys[5] = { Color(1,1,1,1), -1 };
-    colorKeys[6] = { Color(1,1,1,1), -1 };
-    colorKeys[7] = { Color(1,1,1,1), -1 };
+    colorKeys[0] = Color(1,1,1,0);
+    colorKeys[1] = Color(1,1,1,1);
+    colorKeys[2] = Color(1,1,1,-1);
+    colorKeys[3] = Color(1,1,1,-1);
 
-    alphaKeys[0] = { 1, 0 };
-    alphaKeys[1] = { 1, 1 };
-    alphaKeys[2] = { 1, -1 };
-    alphaKeys[3] = { 1, -1 };
-    alphaKeys[4] = { 1, -1 };
-    alphaKeys[5] = { 1, -1 };
-    alphaKeys[6] = { 1, -1 };
-    alphaKeys[7] = { 1, -1 };
+    alphaKeys[0] = Vector2(1, 0 );
+    alphaKeys[1] = Vector2(1, 1 );
+    alphaKeys[2] = Vector2(1, -1);
+    alphaKeys[3] = Vector2(1, -1);
   }
 
   Color Gradient::Evaluate(float time)
@@ -31,23 +23,23 @@ namespace DeltaEngine
     int i = 0;
     float firstCheck = 0, lastCheck = 1;
     int startInd = 0, endInd = -1;
-    for (auto [color, location] : colorKeys)
+    for (auto color : colorKeys)
     {
-      if (location < 0)
+      if (color.a < 0)
         continue;
-      if (location < time)
+      if (color.a < time)
       {
-        if (location > firstCheck)
+        if (color.a > firstCheck)
         {
-          firstCheck = location;
+          firstCheck = color.a;
           startInd = i;
         }
       }
       else
       {
-        if (location <= lastCheck)
+        if (color.a <= lastCheck)
         {
-          lastCheck = location;
+          lastCheck = color.a;
           endInd = i;
         }
       }
@@ -55,37 +47,37 @@ namespace DeltaEngine
     }
 
     if (endInd == 0)
-      ret = colorKeys[0].first;
+      ret = colorKeys[0];
     else if (endInd == -1)
-      ret = colorKeys.back().first;
+      ret = colorKeys.back();
     else
     {
-      float t0 = colorKeys[startInd].second;
-      float t1 = colorKeys[endInd].second;
+      float t0 = colorKeys[startInd].a;
+      float t1 = colorKeys[endInd].a;
       float t = (time - t0) / (t1 - t0);
-      ret = Color::Lerp(colorKeys[startInd].first, colorKeys[endInd].first, t);
+      ret = Color::Lerp(colorKeys[startInd], colorKeys[endInd], t);
     }
 
     i = 0;
     firstCheck = 0, lastCheck = 1;
     startInd = 0, endInd = -1;
-    for (auto [value, location] : alphaKeys)
+    for (auto value : alphaKeys)
     {
-      if (location < 0)
+      if (value.y < 0)
         continue;
-      if (location < time)
+      if (value.y < time)
       {
-        if (location > firstCheck)
+        if (value.y > firstCheck)
         {
-          firstCheck = location;
+          firstCheck = value.y;
           startInd = i;
         }
       }
       else
       {
-        if (location <= lastCheck)
+        if (value.y <= lastCheck)
         {
-          lastCheck = location;
+          lastCheck = value.y;
           endInd = i;
         }
       }
@@ -93,15 +85,15 @@ namespace DeltaEngine
     }
 
     if (endInd == 0)
-      ret.a = alphaKeys[0].first;
+      ret.a = alphaKeys[0].x;
     else if (endInd == -1)
-      ret.a = alphaKeys.back().first;
+      ret.a = alphaKeys.back().x;
     else
     {
-      float t0 = alphaKeys[startInd].second;
-      float t1 = alphaKeys[endInd].second;
+      float t0 = alphaKeys[startInd].y;
+      float t1 = alphaKeys[endInd].y;
       float t = (time - t0) / (t1 - t0);
-      ret.a = Math::Lerp(alphaKeys[startInd].first, alphaKeys[endInd].first, t);
+      ret.a = Math::Lerp(alphaKeys[startInd].x, alphaKeys[endInd].x, t);
     }
 
     return ret;

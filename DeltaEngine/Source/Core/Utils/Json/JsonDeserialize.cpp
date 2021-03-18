@@ -274,6 +274,14 @@ void ExtractPointerType( variant &obj_dat, variant &extracted )
       *obj_dat.get_value<GUIType *>() = v.get_value<GUIType>();
     else if ( obj_dat.get_type() == type::get<FillType *>() )
       *obj_dat.get_value<FillType *>() = v.get_value<FillType>();
+    else if ( obj_dat.get_type() == type::get<Gradient::Type *>() )
+      *obj_dat.get_value<Gradient::Type *>() = v.get_value<Gradient::Type>();
+    else if ( obj_dat.get_type() == type::get<BezierCurve::Type*>() )
+      *obj_dat.get_value<BezierCurve::Type*>() = v.get_value<BezierCurve::Type>();
+    else if ( obj_dat.get_type() == type::get<ParticleEmitter::Shape *>() )
+      *obj_dat.get_value<ParticleEmitter::Shape *>() = v.get_value<ParticleEmitter::Shape>();
+    else if ( obj_dat.get_type() == type::get<ParticleEmitter::GenType*>() )
+      *obj_dat.get_value<ParticleEmitter::GenType*>() = v.get_value<ParticleEmitter::GenType>();
   }
 }
 }

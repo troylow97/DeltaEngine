@@ -28,6 +28,21 @@ public:
 
   /**************************************************************************/
   /*!
+    \brief	Changes the seed
+
+    \param	seed: the seed to change to, 0 means random seed
+  */
+  /**************************************************************************/
+  static void Seed(unsigned seed = 0)
+  {
+    if (!seed)
+      seed = static_cast<unsigned int>(std::chrono::system_clock::now().time_since_epoch().count());
+
+    s_RandomEngine.seed(seed);
+  }
+
+  /**************************************************************************/
+  /*!
     \brief	Returns a float between 0 and 1
   */
   /**************************************************************************/
@@ -39,11 +54,26 @@ public:
 
   /**************************************************************************/
   /*!
-    \brief	Returns an int between a range.
+    \brief	Returns an unsigned between a range.
             Example min = 0, max = 3. Numbers given would be 0,1,2
   
     \param	min: mininum number in the range
   
+    \param	max: maximum number in the range
+  */
+  /**************************************************************************/
+  static unsigned RandomUIntRange(unsigned min, unsigned max)
+  {
+    return static_cast<unsigned>(min + (RandomFloat() * (max - min)));
+  }
+
+  /**************************************************************************/
+  /*!
+    \brief	Returns an int between a range.
+            Example min = 0, max = 3. Numbers given would be 0,1,2
+
+    \param	min: mininum number in the range
+
     \param	max: maximum number in the range
   */
   /**************************************************************************/

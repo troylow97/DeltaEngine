@@ -59,12 +59,12 @@ namespace DeltaEngine
     return *this;
   }
 
-  unsigned int FrameBuffer::GetColorAttachment() const
+  unsigned FrameBuffer::GetColorAttachment() const
   {
     return m_ColorAttachment;
   }
 
-  unsigned int FrameBuffer::GetDepthAttachment() const
+  unsigned FrameBuffer::GetDepthAttachment() const
   {
     return m_DepthAttachment;
   }
@@ -110,7 +110,7 @@ namespace DeltaEngine
     GLCall(glBindFramebuffer( GL_FRAMEBUFFER, 0 ));
   }
 
-  void FrameBuffer::Resize(unsigned int width, unsigned int height)
+  void FrameBuffer::Resize(unsigned width, unsigned height)
   {
     if (width == 0 || height == 0 || width > s_MaxFramebufferSize || height > s_MaxFramebufferSize)
     {
