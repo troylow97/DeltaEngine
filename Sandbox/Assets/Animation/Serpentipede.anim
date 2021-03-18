@@ -37,6 +37,10 @@ param
 IsAttacked
 1 0
 
+param
+IsIdle
+1 0
+
 %EditorPositions:
 
 pos
@@ -65,7 +69,7 @@ Clip/SERP_BURROW
 
 pos
 Clip/SERP_CHARGE
--526 104
+-717 115
 
 pos
 Clip/SERP_DMG
@@ -81,7 +85,7 @@ Clip/SERP_BURROW_MOVE
 
 pos
 Clip/SERP_FIRE
--555 225
+-647 230
 
 pos
 Clip/SERP_DEATH
@@ -268,6 +272,29 @@ start
 Clip/SERP_CHARGE
 end
 Clip/SERP_FIRE
+endTransition
+
+transition
+start
+Clip/SERP_ALERT
+end
+Clip/SERP_IDLE
+condition
+IsIdle
+? 1
+condition
+IsAlerted
+? 0
+endTransition
+
+transition
+start
+Clip/SERP_FIRE
+end
+Clip/SERP_IDLE
+condition
+IsIdle
+? 1
 endTransition
 
 %endfile

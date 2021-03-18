@@ -318,7 +318,7 @@ namespace DeltaEngine
     //}
     //else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
     {
-      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 1.5f, EntityCategory::E_ENEMY_BULLET);
+      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 1.7f, EntityCategory::E_ENEMY_BULLET);
       Vector2 direction_to_shoot = { CalculateAttackDirection(id).x, CalculateAttackDirection(id).y };
       Transform& enemy_pos = em.GetComponent<Transform>(id);
       Collider& enemy_collider = em.GetComponent<Collider>(id);
@@ -327,6 +327,7 @@ namespace DeltaEngine
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
       em.GetComponent<Image>(missile).m_Size = { 0.5f, 0.5f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
+      //em.GetComponent<RigidBody>(missile).Mass = 0.2f;
       em.GetComponent<Transform>(missile).position = { enemy_pos.position.x, enemy_pos.position.y + (enemy_collider.size.y / 2 * 0.75f), enemy_pos.position.z };
 
       if (em.GetComponent<Image>(id).m_FlipX == false)

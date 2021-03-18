@@ -4,27 +4,27 @@ loop 1
 
 Textures/DAVE_HITFX_i_2
 key Textures/DAVE_HITFX
+value 0
+frame 0
+
+Textures/DAVE_HITFX_i_3
+key Textures/DAVE_HITFX
 value 1
 frame 1
 
-Textures/DAVE_HITFX_i_3
+Textures/DAVE_HITFX_i_4
 key Textures/DAVE_HITFX
 value 2
 frame 2
 
-Textures/DAVE_HITFX_i_4
+Textures/DAVE_HITFX_i_5
 key Textures/DAVE_HITFX
 value 3
 frame 3
 
-Textures/DAVE_HITFX_i_5
+Textures/DAVE_HITFX_i_6
 key Textures/DAVE_HITFX
 value 4
 frame 4
-
-Textures/DAVE_HITFX_i_6
-key Textures/DAVE_HITFX
-value 5
-frame 5
 
 %
