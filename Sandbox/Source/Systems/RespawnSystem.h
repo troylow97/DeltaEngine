@@ -22,10 +22,12 @@ namespace DeltaEngine
     void Initialize() override;
     void Update() override;
     void LateUpdate() override;
+    static void CreateCheckpoints(int level);
+
   private:
-    bool level_1 = true;
-    RespawnPoints respawns;
-    void CreateCheckpoints();
+    static bool in_tutorial;
+    static bool in_level_1;
+    static RespawnPoints respawns;
     void CheckpointsLightUp();
     void Respawning();
     void DeathEffect();
