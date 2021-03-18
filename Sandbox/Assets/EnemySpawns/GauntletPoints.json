@@ -7,7 +7,7 @@
                         "enemy_count": 1,
                         "enemy_type": "lancer",
                         "spawn_area": {
-                            "x": 25.0,
+                            "x": 66.0,
                             "y": 2.5
                         }
                     },
@@ -15,59 +15,7 @@
                         "enemy_count": 1,
                         "enemy_type": "fiddler",
                         "spawn_area": {
-                            "x": 25.5,
-                            "y": 0.5
-                        }
-                    }
-                ],
-                [
-                    {
-                        "enemy_count": 1,
-                        "enemy_type": "lancer",
-                        "spawn_area": {
-                            "x": 25.0,
-                            "y": 2.5
-                        }
-                    },
-					{
-                        "enemy_count": 1,
-                        "enemy_type": "lancer",
-                        "spawn_area": {
-                            "x": 25.5,
-                            "y": 2.5
-                        }
-                    },
-					{					
-                        "enemy_count": 1,
-                        "enemy_type": "serpentipede",
-                        "spawn_area": {
-                            "x": 25.0,
-                            "y": 0.5
-                        }
-                    }
-                ],
-                [
-                    {
-                        "enemy_count": 2,
-                        "enemy_type": "lancer",
-                        "spawn_area": {
-                            "x": 26.0,
-                            "y": 2.5
-                        }
-                    },
-					{
-                        "enemy_count": 1,
-                        "enemy_type": "fiddler",
-                        "spawn_area": {
-                            "x": 25.0,
-                            "y": 0.5
-                        }
-                    },
-					{					
-                        "enemy_count": 1,
-                        "enemy_type": "serpentipede",
-                        "spawn_area": {
-                            "x": 26.0,
+                            "x": 68.5,
                             "y": 0.5
                         }
                     }
@@ -77,8 +25,8 @@
                 "x": 70.870,
                 "y": 0.130
             },
-            "wall_offset_right": 2.5,
-            "wall_offset_left": 2.7,
+            "wall_offset_right": 6.5,
+            "wall_offset_left": 6.7,
             "current_enemy_wave": 0,
             "is_activated": false,
             "is_finished": false

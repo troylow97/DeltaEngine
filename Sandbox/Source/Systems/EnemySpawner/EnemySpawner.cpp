@@ -56,7 +56,7 @@ namespace DeltaEngine
       {
         EntityID player = UnitManager::GetPlayerID();
 
-        for (int i = 0; i < list.Gauntlets.size(); ++i)
+        for (auto i = 0; i < list.Gauntlets.size(); ++i)
         {
           auto& Gauntlet = list.Gauntlets[i];
           if (AITools::EntityisAtPointInX(player, list.Gauntlets[i].ActivationPoint.x, 0.3f) && !Gauntlet.isActivated &&
@@ -119,8 +119,16 @@ namespace DeltaEngine
             }
             else
             {
-              em.DestroyEntity(GauntletWalls[0]);
-              em.DestroyEntity(GauntletWalls[1]);
+              //em.DestroyEntity(GauntletWalls[0]);
+              //em.DestroyEntity(GauntletWalls[1]);
+              env.pECS->GetWorld().GetEntityManager().AddComponent<Lifespan>(GauntletWalls[0]);
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Lifespan>(GauntletWalls[0]).Timer = 1.0f;
+              env.pECS->GetWorld().GetEntityManager().AddComponent<Lifespan>(GauntletWalls[1]);
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Lifespan>(GauntletWalls[1]).Timer = 1.0f;
+              em.GetComponent<State>(GauntletWalls[0]).SetBool("BlockerUp", false);
+              em.GetComponent<State>(GauntletWalls[0]).SetBool("BlockerDown", true);
+              em.GetComponent<State>(GauntletWalls[1]).SetBool("BlockerUp", false);
+              em.GetComponent<State>(GauntletWalls[1]).SetBool("BlockerDown", true);
               list.Gauntlets[CurrentGauntlet].isActivated = false;
               list.Gauntlets[CurrentGauntlet].isFinished = true;
               GauntletIsActive = false;
@@ -169,14 +177,24 @@ namespace DeltaEngine
     EntityID wall = env.pECS->GetWorld().GetEntityManager().CreateEntity();
     em.AddComponent<RigidBody>(wall);
     em.AddComponent<Collider>(wall);
-    //env.pECS->GetWorld().GetEntityManager().AddComponent<Image>(wall);
-    //env.pECS->GetWorld().GetEntityManager().AddComponent<Renderer2D>(wall);
+    em.AddComponent<Image>(wall);
+    em.AddComponent<Renderer2D>(wall);
+    em.AddComponent<Animator>(wall);
+    em.AddComponent<State>(wall);
+  	
     em.GetComponent<EntityType>(wall).type = EntityCategory::E_WALL;
     em.GetComponent<Transform>(wall).position = position;
-    em.GetComponent<Transform>(wall).scale = Vector2{1.0, 6.0};
+    em.GetComponent<Transform>(wall).position.y += 2.0f;
+    em.GetComponent<Transform>(wall).scale = Vector2{1.0, 1.0};
     em.GetComponent<RigidBody>(wall).isMoveable = false;
     em.GetComponent<Collider>(wall).CollisionLayerID = 1;
-    em.GetComponent<Collider>(wall).CollisionLayerCheck = 14;
+    em.GetComponent<Collider>(wall).CollisionLayerCheck = 11;
+    em.GetComponent<Collider>(wall).offset.y = -1;
+    em.GetComponent<Collider>(wall).size = { 2,3 };
+    em.GetComponent<Renderer2D>(wall).m_Wireframe = false;
+    em.GetComponent<Image>(wall).m_Sprite.m_Key = "Textures/BLOCKER_SPAWN";
+    em.GetComponent<Animator>(wall).m_ControllerKey = "Animation/Blocker";
+    em.GetComponent<State>(wall).SetBool("BlockerUp", true);
     return wall;
   }
 

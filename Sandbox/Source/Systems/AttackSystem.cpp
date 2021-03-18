@@ -26,13 +26,19 @@ namespace DeltaEngine
   	if(em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
   	{
   	  //DASH
+      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
       auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
       auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
       auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
+
+      if (a.CurrentDodgeCooldown > 0.0f)
+          a.CurrentDodgeCooldown -= env.pClock->FixedDeltaTime();
+  		
       if (/*p.IsDashing || */p.IsDodging)
       {
         em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
         p.StartDashingTimer = true;
+        a.CurrentDodgeCooldown = a.DodgeCooldown;
       }
       if (p.StartDashingTimer)
       {
