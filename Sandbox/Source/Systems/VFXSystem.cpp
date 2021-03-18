@@ -26,10 +26,10 @@ namespace DeltaEngine
       if (player_attack.DamageEnemy)
       {
         ShowVFX++;
-        std::cout << "ShowVFX is " << ShowVFX << std::endl;
+        //std::cout << "ShowVFX is " << ShowVFX << std::endl;
         if (ShowVFX == 10)
         {
-          ShowHitVFX(player_pos.position, { 1.0f, 1.0f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
+          ShowHitVFX(player_pos.position, { 1.2f, 1.2f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
           player_attack.DamageEnemy = false;
           ShowVFX = 0;
         }
@@ -48,8 +48,8 @@ namespace DeltaEngine
     auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
 
     EntityID vfx = em.CreateEntity<Animator, Renderer2D, Image, Lifespan, State, EntityName>();
-    float random_x = Random::RandomFloatRange(-0.2f, 0.2f);
-    float random_y = Random::RandomFloatRange(-0.2f, 0.2f);
+    float random_x = Random::RandomFloatRange(-0.1f, 0.1f);
+    float random_y = Random::RandomFloatRange(-0.1f, 0.1f);
 
     if (em.GetComponent<Image>(player_id).m_FlipX == false)
     {
@@ -67,6 +67,7 @@ namespace DeltaEngine
     em.GetComponent<Image>(vfx).m_Sprite.m_Key = image; // e.g. "Textures/DAVE_HITFX"
     em.GetComponent<Image>(vfx).m_Sprite.m_Index = 0;
     em.GetComponent<Image>(vfx).m_Size = size;
+    em.GetComponent<Image>(vfx).m_FlipX = em.GetComponent<Image>(player_id).m_FlipX;
     em.GetComponent<Lifespan>(vfx).Timer = duration;
     em.GetComponent<EntityType>(vfx).type = EntityCategory::E_VFX;
     em.GetComponent<Animator>(vfx).m_ControllerKey = animation; // e.g. "Animation/DaveHitVFX"

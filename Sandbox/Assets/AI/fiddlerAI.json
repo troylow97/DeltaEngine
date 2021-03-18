@@ -1,17 +1,17 @@
 {
     "Waypoints": [
         {
-            "x": -1.0,
+            "x": -1.5,
             "y": 0.0
         },
         {
-            "x": 1.0,
+            "x": 1.5,
             "y": 0.0
         }
     ],
     "lost_detection_range": {
         "x": 3.0,
-        "y": 3.0
+        "y": 1.5
     },
     "charge_detection_range": {
         "x": 1.5,

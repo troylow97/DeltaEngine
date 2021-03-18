@@ -1,18 +1,58 @@
 Textures/BUILDING_SMALL_1_i_0
-offset 0 0
-size 620 822
+offset 3 58
+size 607 763
 pivot 0.5 0.5
 
 Textures/BUILDING_SMALL_1_i_1
-offset 620 0
-size 620 822
+offset 12 136
+size 0 0
 pivot 0.5 0.5
 
 Textures/BUILDING_SMALL_1_i_2
-offset 1240 0
-size 620 822
+offset 20 155
+size 4 2
+pivot 0.5 0.5
+
+Textures/BUILDING_SMALL_1_i_3
+offset 258 59
+size 2 0
+pivot 0.5 0.5
+
+Textures/BUILDING_SMALL_1_i_4
+offset 260 59
+size 0 0
+pivot 0.5 0.5
+
+Textures/BUILDING_SMALL_1_i_5
+offset 618 7
+size 626 814
+pivot 0.5 0.5
+
+Textures/BUILDING_SMALL_1_i_6
+offset 660 133
+size 4 2
+pivot 0.5 0.5
+
+Textures/BUILDING_SMALL_1_i_7
+offset 763 24
+size 2 3
+pivot 0.5 0.5
+
+Textures/BUILDING_SMALL_1_i_8
+offset 1250 17
+size 602 804
+pivot 0.5 0.5
+
+Textures/BUILDING_SMALL_1_i_9
+offset 1254 135
+size 0 0
+pivot 0.5 0.5
+
+Textures/BUILDING_SMALL_1_i_10
+offset 1262 154
+size 4 2
 pivot 0.5 0.5
 
 %
 
-wrap_mode 0
+wrap_mode 2

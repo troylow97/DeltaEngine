@@ -1,0 +1,28 @@
+%Entry:
+
+entry
+Clip/ANIM_Lamp1_01
+
+%Parameters:
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+200 200
+
+pos
+Any State
+200 0
+
+pos
+Clip/ANIM_Lamp1_01
+333 159
+
+%Transitions:
+
+%endfile

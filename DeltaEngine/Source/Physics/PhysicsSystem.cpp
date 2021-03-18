@@ -19,12 +19,12 @@ namespace DeltaEngine
 {
   void PhysicsSystem::Initialize()
   {
-    m_gravity_amount = {0, -70.0f};
+    m_gravity_amount = {0, -50.0f};
     CurrentJumpTicks = 0;
     MaxJumpTicks = 8;
     CurrentDashTicks = 0;
     MaxDashTicks = 8;
-    InitialJumpForce = 800.0f;
+    InitialJumpForce = 2500.0f;
     JumpForce = InitialJumpForce;
   }
 
@@ -128,16 +128,16 @@ namespace DeltaEngine
             }
             else //kinetic one
             {
-                if (c1.isCollidingOnFloor)
+                if (c1.isCollidingOnFloor) //on ground
                 {
                     const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
                     const Vector2 dragForceVector = (0.5f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
                     r1.Velocity += dragForceVector;
                 }
-                else
+                else //in the air
                 {
                     const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-                    const Vector2 dragForceVector = (0.1f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+                    const Vector2 dragForceVector = (0.2f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
                     r1.Velocity += dragForceVector;
                 }
             }
@@ -198,6 +198,7 @@ namespace DeltaEngine
                 r.AccumulatedForce += Vector2{ 800 + r.Mass * 30, 0 };
             else
                 r.AccumulatedForce -= Vector2{ 800 + r.Mass * 30, 0 };
+            r.InherentAcceleration = 0.0f;
         }
 
       }
@@ -228,7 +229,7 @@ namespace DeltaEngine
     if (p.IsJumping && CurrentJumpTicks >= 1)
     {
       r.AccumulatedForce += Vector2{ 0, JumpForce + r.Mass * 100 };
-      JumpForce *= 0.60f;
+      JumpForce *= 0.75f;
       
       if (CurrentJumpTicks < MaxJumpTicks)
       {
@@ -239,6 +240,7 @@ namespace DeltaEngine
       }
       else
       {
+        r.InherentAcceleration = 0.0f;
         p.AllowRunning = true;
         p.AllowPunching = true;
         p.IsJumping = false;

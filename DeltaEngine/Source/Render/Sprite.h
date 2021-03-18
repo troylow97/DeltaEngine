@@ -21,20 +21,20 @@ namespace DeltaEngine
 #pragma warning(disable:4251)
     std::string m_Key;
 #pragma warning(default:4251)
-    unsigned int m_Index;
-    Sprite(std::string textureName = "", unsigned int index = 0);
+    unsigned m_Index;
+    Sprite(std::string textureName = "", unsigned index = 0);
     Sprite(const Sprite&);
     ~Sprite() = default;
     Sprite& operator=(const Sprite&);
     operator bool() const;
-    unsigned int GetWidth() const;
-    unsigned int GetHeight() const;
+    unsigned GetWidth() const;
+    unsigned GetHeight() const;
     Vector2 GetOffset() const;
     Vector2 GetTiling() const;
     Vector2 GetPivot() const;
     Texture2D* GetTexture() const;
     std::string GetName() const;
     std::string GetKey() const;
-    unsigned int GetIndex() const;
+    unsigned GetIndex() const;
   };
 }

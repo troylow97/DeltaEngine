@@ -25,7 +25,7 @@ namespace DeltaEngine
   {
     ShaderProgramSource m_filepath;
     std::string m_Name;
-    unsigned int m_RendererID;
+    unsigned m_RendererID;
     std::unordered_map<std::string, int> m_uniformLocationCache;
   public:
     Shader(std::string filepath);
@@ -35,7 +35,7 @@ namespace DeltaEngine
     void Bind() const;
     void Unbind() const;
 
-    unsigned int GetShaderID();
+    unsigned GetShaderID();
     std::string GetName();
     // Set uniforms
     void SetUniform1i(std::string name, int i0);
@@ -48,8 +48,8 @@ namespace DeltaEngine
     void SetUniformVector4f(std::string name, float v0, float v1, float v2, float v3);
   private:
     std::string LoadShader(std::string filepath);
-    unsigned int CompileShader(unsigned int type, std::string source);
-    unsigned int CreateShader(std::string vertexShader, std::string fragmentShader);
+    unsigned CompileShader(unsigned type, std::string source);
+    unsigned CreateShader(std::string vertexShader, std::string fragmentShader);
     int GetUniformLocation(std::string name);
   };
 }

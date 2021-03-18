@@ -1,0 +1,46 @@
+%Entry:
+
+entry
+Clip/CHECKPOINT_OFF
+
+%Parameters:
+
+param
+CheckpointReached
+1 0
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+216 279
+
+pos
+Any State
+200 0
+
+pos
+Clip/CHECKPOINT_OFF
+-25 190
+
+pos
+Clip/CHECKPOINT_ON
+108 81
+
+%Transitions:
+
+transition
+start
+Clip/CHECKPOINT_OFF
+end
+Clip/CHECKPOINT_ON
+condition
+CheckpointReached
+? 1
+endTransition
+
+%endfile

@@ -29,17 +29,17 @@ AnimationClip::AnimationClip( std::string filepath ) : m_Name { filepath }, tota
     m_Name.erase( pos );
 }
 
-unsigned int AnimationClip::GetTotalFrames() const
+unsigned AnimationClip::GetTotalFrames() const
 {
-  return static_cast<unsigned int>( m_Sprites.size() );
+  return static_cast<unsigned>( m_Sprites.size() );
 }
 
-unsigned int AnimationClip::GetFps() const
+unsigned AnimationClip::GetFps() const
 {
   return fps;
 }
 
-Sprite AnimationClip::GetSprite( unsigned int frame )
+Sprite AnimationClip::GetSprite( unsigned frame )
 {
   frame = Math::Clamp( frame + 1, 1, totalFrames );
   for ( ; frame > 0; --frame )
@@ -58,10 +58,10 @@ std::string AnimationClip::GetName() const
 void AnimationClip::CreateNew(
   std::string textureName,
   std::string filepath,
-  unsigned int fps,
+  unsigned fps,
   bool loop,
-  unsigned int start,
-  unsigned int end )
+  unsigned start,
+  unsigned end )
 {
 #ifndef DE_EDITOR
   return;
@@ -106,7 +106,7 @@ void AnimationClip::LoadAnimation( std::string filepath )
   file.open( ( filepath ).c_str() );
 
   std::string str, spriteKey;
-  unsigned int spriteIndex, frameNumber;
+  unsigned spriteIndex, frameNumber;
 
   if ( file.is_open() )
   {

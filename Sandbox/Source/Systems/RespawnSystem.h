@@ -15,15 +15,21 @@ namespace DeltaEngine
 {
   struct RespawnPoints
   {
-    std::vector<Vector2> m_respawns;
+    std::vector<Vector3> m_respawns;
   };
 
   DEFINE_SYSTEM(RespawnSystem, Player)
     void Initialize() override;
     void Update() override;
     void LateUpdate() override;
+    static void CreateCheckpoints(int level);
+
   private:
-    RespawnPoints respawns;
+    static bool in_tutorial;
+    static bool in_level_1;
+    static RespawnPoints respawns;
+    float dying_countdown = 0.0f;
+    void CheckpointsLightUp();
     void Respawning();
     void DeathEffect();
   END_DEFINE_SYSTEM(RespawnSystem)

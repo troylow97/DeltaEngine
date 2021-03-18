@@ -1,77 +1,62 @@
 Textures/FID_WALK_i_0
 offset 0 0
-size 380 320
-pivot 0.5 0.5
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_1
-offset 380 0
-size 380 320
-pivot 0.5 0.5
+offset 400 0
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_2
-offset 760 0
-size 380 320
-pivot 0.5 0.5
+offset 800 0
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_3
-offset 1140 0
-size 380 320
-pivot 0.5 0.5
+offset 1200 0
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_4
-offset 1520 0
-size 380 320
-pivot 0.5 0.5
+offset 0 400
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_5
-offset 0 320
-size 380 320
-pivot 0.5 0.5
+offset 400 400
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_6
-offset 380 320
-size 380 320
-pivot 0.5 0.5
+offset 800 400
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_7
-offset 760 320
-size 380 320
-pivot 0.5 0.5
+offset 1200 400
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_8
-offset 1140 320
-size 380 320
-pivot 0.5 0.5
+offset 0 800
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_9
-offset 1520 320
-size 380 320
-pivot 0.5 0.5
+offset 400 800
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_10
-offset 0 640
-size 380 320
-pivot 0.5 0.5
+offset 800 800
+size 400 400
+pivot 1 0
 
 Textures/FID_WALK_i_11
-offset 380 640
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID_WALK_i_12
-offset 760 640
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID_WALK_i_13
-offset 1140 640
-size 380 320
-pivot 0.5 0.5
-
-Textures/FID_WALK_i_14
-offset 1520 640
-size 380 320
-pivot 0.5 0.5
+offset 1200 800
+size 400 400
+pivot 1 0
 
 %
 

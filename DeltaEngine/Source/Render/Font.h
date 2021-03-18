@@ -16,20 +16,20 @@ namespace DeltaEngine
 {
   struct CharacterInfo
   {
-    unsigned int textureID = 0;
+    unsigned textureID = 0;
     Vector2 size = Vector2();
     Vector2 bearing = Vector2();
-    unsigned int advance = 0;
+    unsigned advance = 0;
   };
 
   class Font
   {
     std::unordered_map<char, CharacterInfo> m_CharacterInfo;
-    unsigned int m_RendererID;
+    unsigned m_RendererID;
   public:
     Font(const std::string& filepath);
     std::unordered_map<char, CharacterInfo>& characterInfo();
-    unsigned int GetID() const;
+    unsigned GetID() const;
     static void Init();
     static void Exit();
   };

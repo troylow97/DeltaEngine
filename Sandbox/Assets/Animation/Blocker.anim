@@ -1,0 +1,57 @@
+%Entry:
+
+entry
+Clip/BLOCKER_SPAWN
+
+%Parameters:
+
+param
+BlockerUp
+1 0
+
+param
+BlockerDown
+1 0
+
+%EditorPositions:
+
+pos
+Entry
+-30 10
+
+pos
+Exit
+200 200
+
+pos
+Any State
+200 0
+
+pos
+Entry 0 0
+-101 189
+
+pos
+Clip/BLOCKER_SPAWN
+-119 107
+
+pos
+Clip/BLOCKER_DEATH
+109 64
+
+%Transitions:
+
+transition
+start
+Clip/BLOCKER_SPAWN
+end
+Clip/BLOCKER_DEATH
+condition
+BlockerDown
+? 1
+condition
+BlockerUp
+? 0
+endTransition
+
+%endfile

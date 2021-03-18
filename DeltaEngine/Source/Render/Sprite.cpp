@@ -13,7 +13,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  Sprite::Sprite(std::string textureName, unsigned int index)
+  Sprite::Sprite(std::string textureName, unsigned index)
     : m_Key{textureName}, m_Index{index}
   {
   }
@@ -35,17 +35,17 @@ namespace DeltaEngine
     return GetTexture() != nullptr;
   }
 
-  unsigned int Sprite::GetWidth() const
+  unsigned Sprite::GetWidth() const
   {
     if (*this)
-      return static_cast<unsigned int>(GetTexture()->GetSize(m_Index).x);
+      return static_cast<unsigned>(GetTexture()->GetSize(m_Index).x);
     return 0;
   }
 
-  unsigned int Sprite::GetHeight() const
+  unsigned Sprite::GetHeight() const
   {
     if (*this)
-      return static_cast<unsigned int>(GetTexture()->GetSize(m_Index).y);
+      return static_cast<unsigned>(GetTexture()->GetSize(m_Index).y);
     return 0;
   }
 
@@ -90,7 +90,7 @@ namespace DeltaEngine
     return m_Key;
   }
 
-  unsigned int Sprite::GetIndex() const
+  unsigned Sprite::GetIndex() const
   {
     return m_Index;
   }

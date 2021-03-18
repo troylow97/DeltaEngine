@@ -29,10 +29,14 @@ namespace DeltaEngine
         static Camera* editorCamera;
         static Transform editorCameraTransform;
         static float fixedAspect;
-        float m_Size;
+        float m_Size, m_FieldOfView;
         float m_zNear, m_zFar;
         Color backgroundColor;
         float fadeColorAmt = 0;
+        Vector2 shakeDisp;
+        float shakeMagnitude = 0, shakeFade = 10;
+
+        bool perspective;
 
         Camera(bool editor = false);
         Camera(const Camera&);
@@ -40,7 +44,9 @@ namespace DeltaEngine
         ~Camera();
         Camera& operator=(const Camera&);
         Camera& operator=(Camera&&);
-        Matrix4x4 GetProjectionMatrix(Transform transform) const;
+        Matrix4x4 GetOrthographicMatrix(Transform transform) const;
+        Matrix4x4 GetPerspectiveMatrix(Transform transform) const;
+        Matrix4x4 GetProjectionMatrix(Transform transform);
         Matrix4x4 GetViewMatrix(Transform transform) const;
         Vector3 Max(Transform transform) const;
         Vector3 Min(Transform transform) const;
@@ -55,5 +61,7 @@ namespace DeltaEngine
 
         void Start();
         void End();
+
+        void Shake(float magnitude = 1.f, float fade = 10.f);
     };
 }

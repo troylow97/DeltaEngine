@@ -42,7 +42,9 @@ namespace DeltaEngine
     Color operator+=(Color a);
     Color operator-(Color a) const;
     Color operator-=(Color a);
+    Color operator*(Color a) const;
     Color operator*(float a) const;
+    Color operator*=(Color a);
     Color operator*=(float a);
 
     static Color Lerp(Color a, Color b, float t);
