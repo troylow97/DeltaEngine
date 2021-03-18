@@ -25504,6 +25504,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -25646,6 +25648,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -25736,7 +25740,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -25764,13 +25768,13 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 256,
-                "Melee Damage": 4,
-                "SMG Damage": 128,
-                "Melee Combo Damage": 4,
+                "Range Damage": 512,
+                "Melee Damage": 8,
+                "SMG Damage": 256,
+                "Melee Combo Damage": 8,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
@@ -25784,6 +25788,8 @@
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
                 "Attack Delay": -6.332993507385254e-8,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
                 "Ranged Attack": false,
                 "Melee Attack": false,
                 "SMG Attack": false,
@@ -25802,8 +25808,43 @@
                 "Fading Timer": 1.0
             },
             "Input": {
-                "Previous": 1,
+                "Previous": 65,
                 "Current": 0
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Camera"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 10.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Camera": {
+                "Camera Size": 6.0,
+                "Background Color": {
+                    "r": 9.999899930335233e-7,
+                    "g": 9.999938583860058e-7,
+                    "b": 9.999999974752428e-7,
+                    "a": 1.0
+                }
             }
         }
     ]
