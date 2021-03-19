@@ -9,11 +9,15 @@ param
 Hover
 0 0
 
+param
+Click
+0 0
+
 %EditorPositions:
 
 pos
 Entry
-51 189
+-24 53
 
 pos
 Exit
@@ -25,19 +29,33 @@ Any State
 
 pos
 Clip/Controls_S
-129 278
+92 279
 
 pos
 Clip/Controls_D
-165 106
+-26 127
+
+pos
+Clip/Controls_HL
+5 204
 
 %Transitions:
 
 transition
 start
+Clip/Controls_S
+end
+Exit
+condition
+Click
+? 0
+endTransition
+
+transition
+start
 Clip/Controls_D
 end
-Clip/Controls_S
+Clip/Controls_HL
 condition
 Hover
 ? 1
@@ -45,9 +63,19 @@ endTransition
 
 transition
 start
-Clip/Controls_S
+Clip/Controls_HL
 end
-Exit
+Clip/Controls_S
+condition
+Click
+? 1
+endTransition
+
+transition
+start
+Clip/Controls_HL
+end
+Clip/Controls_D
 condition
 Hover
 ? 0

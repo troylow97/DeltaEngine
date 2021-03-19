@@ -18,6 +18,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "ImGui/Panels/GamePanel.h"
 #include "Input/InputManager.h"
 #include "Input/Keys.h"
+#include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
@@ -25,6 +26,8 @@ namespace DeltaEngine
 std::vector<unsigned> screens;
 unsigned transitioning_screen;
 bool end { true };
+size_t e_id { u64_max };
+std::string on_click {};
 
 bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight, float &p_x, float &p_y )
 {
@@ -52,15 +55,20 @@ bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, fl
   coords.z *= cameraWidth;
   coords.w *= cameraHeight;
 
-  if ( CollisionIntersection_RectMinMaxMouse( { coords.x, coords.y }, { coords.z, coords.w }, { p_x, p_y } ) )
+  auto x_size = (coords.z - coords.x) * 0.25f;
+  auto y_size = (coords.w - coords.y) * 0.25f;
+
+  if ( CollisionIntersection_RectMinMaxMouse(  {coords.x + x_size , coords.y + y_size},{ coords.z - x_size, coords.w - y_size}, { p_x, p_y } ) )
     return true;
   return false;
 }
 
-void InvokeFunc( const std::string &name )
+bool InvokeFunc( const std::string &name )
 {
-  if ( !name.empty() )
-    rttr::type::get_global_method( name ).invoke( {} );
+  if ( name.empty() )
+    return false;
+  rttr::type::get_global_method( name ).invoke( {} );
+  return true;
 }
 
 void UISystem::Initialize()
@@ -78,7 +86,7 @@ void UISystem::LateUpdate()
 
   if ( transitioning_screen )
   {
-    GetEnv().pECS->GetWorld().GetEntityManager().ForEach( [&]( GUI &gui, RendererOverlay &o )
+    em.ForEach( [&]( GUI &gui, RendererOverlay &o )
     {
       if ( transitioning_screen == gui.screen )
       {
@@ -97,6 +105,28 @@ void UISystem::LateUpdate()
   else
     transitioning_screen = 0;
 
+  if ( e_id != u64_max )
+  {
+    if ( em.HasComponent<Animator>( { e_id } ) )
+    {
+      if ( em.GetComponent<Animator>( { e_id } ).m_ControllerKey != "Animation/EmptyButton" && em.GetComponent<Animator>( { e_id } ).LoopsCompleted() )
+      {
+        em.GetComponent<State>( { e_id } ).SetBool( "Click", false );
+        e_id = u64_max;
+        InvokeFunc( on_click );
+        on_click = {};      
+      }
+    }
+    else
+    {
+      em.GetComponent<State>( { e_id } ).SetBool( "Click", false );
+      e_id = u64_max;
+      InvokeFunc( on_click );
+      on_click = {};
+    }
+    return;
+  }
+
 #ifdef DE_EDITOR
   auto cameraWidth = GamePanel::render_size.x;
   auto cameraHeight = GamePanel::render_size.y;
@@ -105,8 +135,8 @@ void UISystem::LateUpdate()
   auto t_aspect = GamePanel::render_size.x / GamePanel::render_size.y;
 
 #else
-  auto cameraWidth = static_cast<float>(GetEnv().pWin->Width());
-  auto cameraHeight = static_cast<float>(GetEnv().pWin->Height());
+  auto cameraWidth = static_cast<float>( GetEnv().pWin->Width() );
+  auto cameraHeight = static_cast<float>( GetEnv().pWin->Height() );
   auto p_x = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
   auto p_y = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
   auto t_aspect = 1.0f * cameraWidth / cameraHeight;
@@ -154,6 +184,8 @@ void UISystem::LateUpdate()
   }
 
   // Check Interactable
+  //std::cout << canvas_ids.back() << std::endl;
+
   auto top_childrens = em.GetChildrens( canvas_ids.back() );
   for ( auto child : top_childrens )
   {
@@ -173,8 +205,18 @@ void UISystem::LateUpdate()
           }
           if ( InputManager::Instance().IsMouseReleased( DEVK_LBUTTON ) )
           {
+            if ( !button.on_click.empty() )
+            {
+            AudioEngine::SetEventVolume( AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f );
+
+            if ( em.HasComponent<Animator>( { child } ) )
+              em.GetComponent<Animator>( {child} ).m_LoopsCompleted = 0;
+
             state.SetBool( "Hover", false );
-            InvokeFunc( button.on_click );
+            state.SetBool( "Click", true );
+            e_id = child;
+            on_click = button.on_click;
+            }
             return;
           }
 

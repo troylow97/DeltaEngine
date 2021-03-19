@@ -19,12 +19,12 @@ namespace DeltaEngine
 {
   void PhysicsSystem::Initialize()
   {
-    m_gravity_amount = {0, -50.0f};
+    m_gravity_amount = {0, -100.0f};
     CurrentJumpTicks = 0;
-    MaxJumpTicks = 8;
+    MaxJumpTicks = 10;
     CurrentDashTicks = 0;
     MaxDashTicks = 8;
-    InitialJumpForce = 2500.0f;
+    InitialJumpForce = 5000.0f;
     JumpForce = InitialJumpForce;
   }
 
@@ -75,8 +75,8 @@ namespace DeltaEngine
           Dash(player, r1, c1);
           Jump(player, r1, c1);
           //Player Movement
-          if (!player.IsDashing && static_cast<int>(r1.Direction.x) != 0)
-          {
+          if (!player.IsDodging && static_cast<int>(r1.Direction.x) != 0)
+          {         	
               if (c1.isCollidingOnFloor)
               {
                   const Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
@@ -115,34 +115,47 @@ namespace DeltaEngine
 
         //Apply Acceleration
         const Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
-        r1.Velocity += newAcceleration * env.pClock->FixedDeltaTime();
+        r1.Velocity += (newAcceleration) * env.pClock->FixedDeltaTime();
 
-      	if(em.HasComponent<Player>(id1))
-      	{
-            //Apply Friction -> when no input
-            if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
-            {
-                const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-                const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-                r1.Velocity *= 0.8f;
-            }
-            else //kinetic one
-            {
-                if (c1.isCollidingOnFloor) //on ground
-                {
-                    const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-                    const Vector2 dragForceVector = (0.5f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-                    r1.Velocity += dragForceVector;
-                }
-                else //in the air
-                {
-                    const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-                    const Vector2 dragForceVector = (0.2f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-                    r1.Velocity += dragForceVector;
-                }
-            }
+      	//Friction
+        const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
+        const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+        r1.Velocity.x += dragForceVector.x;
 
-      	}
+        //Apply Friction -> when no input (prevents sliding)
+        if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
+        {
+            const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
+            const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+            r1.Velocity *= 0.8f;
+        }
+      	
+      	//if(em.HasComponent<Player>(id1))
+      	//{
+        //    //Apply Friction -> when no input (prevents sliding)
+        //    if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
+        //    {
+        //        const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
+        //        const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+        //        r1.Velocity *= 0.8f;
+        //    }
+        //    else //Apply Friction normally
+        //    {
+        //        //if (c1.isCollidingOnFloor) //on ground
+        //        { //reason why the jump has increased x is due to this and the one on top
+        //            const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
+        //            const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+        //            r1.Velocity += dragForceVector;
+        //        }
+        //        //else //in the air
+        //        //{
+        //        //    const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
+        //        //    const Vector2 dragForceVector = (0.4f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+        //        //    r1.Velocity += dragForceVector;
+        //        //}
+        //    }
+        //
+      	//}
 
         //Apply Soft Drag
         r1.Velocity *= 0.96f;
@@ -185,21 +198,21 @@ namespace DeltaEngine
         p.AllowPunching = false;
         p.AllowShooting = false;
         p.AllowRunning = false;
-      	if(c.isCollidingOnFloor)
+      	//if(c.isCollidingOnFloor)
       	{
             if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 3000 + r.Mass * 100, 0 };
+                r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
             else
-                r.AccumulatedForce -= Vector2{ 3000 + r.Mass * 100, 0 };
+                r.AccumulatedForce -= Vector2{ 5000 + r.Mass * 100, 0 };
       	}
-        else //dashing in mid air
-        {
-            if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 800 + r.Mass * 30, 0 };
-            else
-                r.AccumulatedForce -= Vector2{ 800 + r.Mass * 30, 0 };
-            r.InherentAcceleration = 0.0f;
-        }
+        //else //dashing in mid air
+        //{
+        //    if (p.DashDirectionRight)
+        //        r.AccumulatedForce += Vector2{ 1000 + r.Mass * 30, 0 };
+        //    else
+        //        r.AccumulatedForce -= Vector2{ 1000 + r.Mass * 30, 0 };
+        //    r.InherentAcceleration = 0.0f;
+        //}
 
       }
     }

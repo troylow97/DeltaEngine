@@ -53,7 +53,7 @@ Any State
 
 pos
 Clip/LANCER_ALERT_IDLE
--326 250
+-454 244
 
 pos
 Clip/LANCER_FALL
@@ -81,15 +81,15 @@ Clip/LANCER_CHARGE
 
 pos
 Clip/LANCER_DMG
--12 294
+-21 272
 
 pos
 Clip/LANCER_DEATH
--259 669
+-129 717
 
 pos
 Clip/LANCER_COLLAPSE
--530 579
+-432 622
 
 %Transitions:
 
@@ -272,6 +272,19 @@ start
 Clip/LANCER_REACTION
 end
 Clip/LANCER_COLLAPSE
+endTransition
+
+transition
+start
+Clip/LANCER_DMG
+end
+Clip/LANCER_CHARGE
+condition
+IsAttacked
+? 0
+condition
+LancerCharge
+? 1
 endTransition
 
 %endfile

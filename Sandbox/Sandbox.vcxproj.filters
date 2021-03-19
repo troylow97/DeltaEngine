@@ -16,6 +16,9 @@
     <Filter Include="Systems\EnemySpawner">
       <UniqueIdentifier>{2AD34AD0-1662-D499-BF80-E894ABEEE43F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\LevelManager">
+      <UniqueIdentifier>{BF8F2C28-AB1E-B6F1-543D-CAEC40ABC697}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Systems\AI\AITools.h">
@@ -54,8 +57,14 @@
     <ClInclude Include="Source\Systems\GCameraSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GUISystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\HealthSystem.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\LevelManager\LevelManager.h">
+      <Filter>Systems\LevelManager</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\LifespanSystem.h">
       <Filter>Systems</Filter>
@@ -111,8 +120,14 @@
     <ClCompile Include="Source\Systems\GCameraSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\GUISystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Systems\HealthSystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\LevelManager\LevelManager.cpp">
+      <Filter>Systems\LevelManager</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\LifespanSystem.cpp">
       <Filter>Systems</Filter>

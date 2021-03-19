@@ -95,8 +95,8 @@
                     "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 100.0,
-                    "y": 100.0
+                    "x": 1920.0,
+                    "y": 1080.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -190,27 +190,27 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 20.0,
+                    "y": -100.0
                 },
                 "Width/Height": {
-                    "x": 1800.0,
-                    "y": 322.0
+                    "x": 1040.0,
+                    "y": 186.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
                 "Top": 0.0,
                 "Bottom": 0.0,
                 "Anchor Min": {
-                    "x": 0.5,
+                    "x": 0.0,
                     "y": 1.0
                 },
                 "Anchor Max": {
-                    "x": 0.5,
+                    "x": 0.0,
                     "y": 1.0
                 },
                 "Pivot": {
-                    "x": 0.5,
+                    "x": 0.0,
                     "y": 1.0
                 },
                 "Materials": {
@@ -294,12 +294,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 15.0,
-                    "y": -400.0
+                    "x": 40.0,
+                    "y": -420.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 92.0
+                    "x": 512.0,
+                    "y": 128.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -403,12 +403,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -5.0,
+                    "x": 40.0,
                     "y": -500.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 94.0
+                    "x": 512.0,
+                    "y": 128.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -512,12 +512,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -20.0,
-                    "y": -600.0
+                    "x": 40.0,
+                    "y": -580.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 92.0
+                    "x": 512.0,
+                    "y": 128.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -621,12 +621,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -20.0,
-                    "y": -700.0
+                    "x": 40.0,
+                    "y": -660.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 92.0
+                    "x": 512.0,
+                    "y": 128.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -730,12 +730,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 5.0,
-                    "y": -800.0
+                    "x": 40.0,
+                    "y": -740.0
                 },
                 "Width/Height": {
-                    "x": 450.0,
-                    "y": 92.0
+                    "x": 512.0,
+                    "y": 128.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -908,10 +908,6 @@
                 "Shaded": true,
                 "Wireframe": false
             },
-            "Animator": {
-                "Controller Key": "Animation/EmptyButton",
-                "Speed": 1.0
-            },
             "State": {}
         },
         {
@@ -1007,8 +1003,8 @@
                     "y": 120.0
                 },
                 "Width/Height": {
-                    "x": 848.0,
-                    "y": 116.0
+                    "x": 424.0,
+                    "y": 58.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -1176,10 +1172,6 @@
                 "Shaded": true,
                 "Wireframe": false
             },
-            "Animator": {
-                "Controller Key": "Animation/EmptyButton",
-                "Speed": 1.0
-            },
             "State": {}
         },
         {
@@ -1242,8 +1234,8 @@
                     "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 1080.0,
-                    "y": 1000.0
+                    "x": 846.0,
+                    "y": 397.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -1272,7 +1264,7 @@
                 },
                 "Layer": 1,
                 "Order": 0.0,
-                "Preserve Aspect": true,
+                "Preserve Aspect": false,
                 "Active": false,
                 "Shaded": true,
                 "Wireframe": false
@@ -1342,12 +1334,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": -300.0,
+                    "x": -200.0,
                     "y": -80.0
                 },
                 "Width/Height": {
-                    "x": 374.0,
-                    "y": 156.0
+                    "x": 187.0,
+                    "y": 78.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -1490,10 +1482,6 @@
                 "Shaded": true,
                 "Wireframe": false
             },
-            "Animator": {
-                "Controller Key": "Animation/EmptyButton",
-                "Speed": 1.0
-            },
             "State": {}
         },
         {
@@ -1560,12 +1548,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 80.0,
+                    "x": 120.0,
                     "y": -80.0
                 },
                 "Width/Height": {
-                    "x": 374.0,
-                    "y": 156.0
+                    "x": 187.0,
+                    "y": 78.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -1614,7 +1602,7 @@
             },
             "Audio Source": {
                 "Audio File": "event:/BGM/Stage 1 BGM",
-                "Volume": 0.30000001192092898,
+                "Volume": 0.10000000149011612,
                 "Pitch": 1.0,
                 "Loop": 0,
                 "Is Loop": false,

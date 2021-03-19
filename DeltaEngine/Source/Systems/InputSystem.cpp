@@ -92,11 +92,11 @@ namespace DeltaEngine
 
   void InputSystem::RunLeft()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1)
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1, Collider& c1)
     {
-      if (p1.AllowRunning == true/* && a1.NumberOfCombos == 0*/)
+      if (p1.AllowRunning == true && c1.isCollidingOnFloor)
       {
-        if (/*!a1.Blocking && */ a1.MeleeCooldownTimer <= 0.0)
+        //if (/*!a1.Blocking && */ a1.MeleeCooldownTimer < 0.0f)
         {
           p1.IsRunning = true;
           i1.previousKey = DEVK_A;
@@ -131,11 +131,11 @@ namespace DeltaEngine
   
   void InputSystem::RunRight()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1)
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1,Collider& c1)
     {
-      if (p1.AllowRunning == true && a1.NumberOfCombos == 0)
+      if (p1.AllowRunning == true && c1.isCollidingOnFloor)
       {
-        if (/*!a1.Blocking && */ a1.MeleeCooldownTimer <= 0.0) //TO edit punching
+        //if (/*!a1.Blocking && */ a1.MeleeCooldownTimer < 0.0f) //TO edit punching
         {
           p1.IsRunning = true;
           i1.previousKey = DEVK_D;

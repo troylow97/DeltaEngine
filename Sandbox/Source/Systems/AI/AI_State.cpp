@@ -138,7 +138,7 @@ namespace DeltaEngine
         auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(player);
         auto& player_col = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(player);
     	
-        if (hp.isDamagedTimer <= 0.0f)
+        if (hp.isDamagedTimer < 0.0f)
         {
             s.SetBool("IsDead", false);
             if (BouncingTimer > 0.0f)
@@ -222,6 +222,14 @@ namespace DeltaEngine
                 BouncingTimer = 1.5f;
 
             }
+        }
+        else
+        {
+            rb.Direction = { 0,0 };
+            s.SetBool("IsBouncing", false);
+            s.SetBool("IsAlerted", false);
+            s.SetBool("LancerCharge", false);
+            s.SetBool("IsAttacked", true);
         }
     	
         //if (hp.isDamagedTimer <= 0.0f)
@@ -495,8 +503,8 @@ namespace DeltaEngine
 
     void IdleSerpentipede::Update(EntityID& monster)
     {
-        std::cout << "state is idle" << std::endl;
-        std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
+        //std::cout << "state is idle" << std::endl;
+        //std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
         CheckEdges(monster);
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
         s.SetBool("IsAlerted", false);
@@ -542,8 +550,8 @@ namespace DeltaEngine
         auto& rend = em.GetComponent<Renderer2D>(monster);
         auto& hp = em.GetComponent<Health>(monster);
         //std::cout << "burrow state is: " << BurrowState << std::endl;
-        std::cout << "state is chase" << std::endl;
-        std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
+        //std::cout << "state is chase" << std::endl;
+        //std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
 
         if (hp.isDamagedTimer > 0.0f)
         {

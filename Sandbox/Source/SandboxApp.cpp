@@ -29,6 +29,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Audio/AudioEngine.h"
 #include "Systems/Menus.h"
 #include "Systems/AudioSystem.h"
+#include "Systems/GUISystem.h"
+#include "Systems/LevelManager/LevelManager.h"
 
 class Sandbox : public Application
 {
@@ -38,14 +40,15 @@ public:
 
 #ifndef DE_EDITOR
     JsonFile file;
-    env.pECS->GetWorld().Load("World/MainMenuScreen.json");
+    //env.pECS->GetWorld().Load("World/gam250beta_t.json");
+    env.pECS->GetWorld().Load("World/MainMenuScreen.json");  	
 #endif
 
 
     CollisionSystem::collision_handler.RegisterOnEnter(CollisionHandlerFunctions::TakeDamage);
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::CheckGroundType);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, VFXSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, HealthSystem, MenuSystem,AudioSystem>();
-    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, VFXSystem, EnemySpawner, HealthSystem, RespawnSystem, LifespanSystem, MenuSystem>();
+    env.pECS->GetWorld().CreateSystems<AttackSystem, VFXSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, HealthSystem, MenuSystem,AudioSystem, GUISystem,LevelManager>();
+    env.pECS->GetWorld().SetUpdateSequence<AttackSystem, VFXSystem, EnemySpawner, HealthSystem, RespawnSystem, LifespanSystem, MenuSystem, GUISystem, LevelManager>();
     //env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, UpgradeSystem,
     //    ExitSceneCinematic, LifespanSystem>();
     env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, AudioSystem>();

@@ -20,6 +20,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "RespawnSystem.h"
 #include "Input/InputManager.h"
 #include "Input/Keys.h"
+#include "LevelManager/LevelManager.h"
 
 namespace DeltaEngine
 {
@@ -72,37 +73,33 @@ void ButtonHover()
 
 void Back()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PopScreen();
 }
 
 void StartGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-  GetEnv().pECS->GetWorld().Load( "World/gam250beta_t.json" );
+  GetEnv().pECS->GetWorld().Load( "World/gam250tutorial.json" );
+  LevelManager::level = LevelType::Tutorial;
   GetEnv().pClock->TimeScale( 1.0f );
-  RespawnSystem::CreateCheckpoints(0); // 0 = tutorial
-  EnemySpawner::ActivateGauntlet = true;
+  //RespawnSystem::CreateCheckpoints(0); // 0 = tutorial
+  //EnemySpawner::ActivateGauntlet = true;
   in_game = true;
   AudioEngine::StopAllAudio();
 }
 
 void OpenControls()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 2 );
 }
 
 void OpenOptions()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 3 );
 }
 
 void OpenCredits()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 4 );
 }
 
@@ -112,13 +109,11 @@ void OpenCredits()
 
 void QuitGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 5 );
 }
 
 void ConfirmQuitGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   env.pECS->GetWorld().FindOrCreateSystem<EnemySpawner>().Shutdown();
   env.pWin->Running( false );
 }
@@ -130,13 +125,11 @@ void ConfirmQuitGame()
 
 void QuitInGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PushScreen( 6 );
 }
 
 void ConfirmQuitInGame()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::ClearScreens();
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
   GetEnv().pECS->GetWorld().Load( "World/MainMenuScreen.json" );
@@ -150,17 +143,15 @@ void ConfirmQuitInGame()
 */
 void Resume()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::PopScreen();
   GetEnv().pClock->TimeScale( 1.0f );
 }
 
 void Restart1()
 {
-  AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
   UISystem::ClearScreens();
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-  GetEnv().pECS->GetWorld().Load( "World/gam250beta_t.json" );
+  GetEnv().pECS->GetWorld().Load( "World/gam250tutorial.json" );
   GetEnv().pClock->TimeScale( 1.0f );
   in_game = true;
   AudioEngine::StopAllAudio();
