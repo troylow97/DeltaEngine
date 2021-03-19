@@ -218,7 +218,7 @@ namespace DeltaEngine
           {
             p.FadingCountdown -= (env.pClock->FixedDeltaTime() * 0.1f);
             r.m_Color.a = /*(((*/p.FadingCountdown / p.FadingTimer/*) * 255.0f) / 255.0f) * 1.0f*/;
-            std::cout << "r.m_Color.a is " << r.m_Color.a << std::endl;
+            //std::cout << "r.m_Color.a is " << r.m_Color.a << std::endl;
           }
           p.IsDead = false;
           //Respawning();

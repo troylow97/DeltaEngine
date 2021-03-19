@@ -184,7 +184,7 @@ void UISystem::LateUpdate()
   }
 
   // Check Interactable
-  std::cout << canvas_ids.back() << std::endl;
+  //std::cout << canvas_ids.back() << std::endl;
 
   auto top_childrens = em.GetChildrens( canvas_ids.back() );
   for ( auto child : top_childrens )

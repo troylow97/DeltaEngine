@@ -21,7 +21,7 @@ namespace DeltaEngine
   {
     m_gravity_amount = {0, -50.0f};
     CurrentJumpTicks = 0;
-    MaxJumpTicks = 8;
+    MaxJumpTicks = 7;
     CurrentDashTicks = 0;
     MaxDashTicks = 8;
     InitialJumpForce = 2500.0f;
@@ -119,27 +119,27 @@ namespace DeltaEngine
 
       	if(em.HasComponent<Player>(id1))
       	{
-            //Apply Friction -> when no input
+            //Apply Friction -> when no input (prevents sliding)
             if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
             {
                 const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
                 const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
                 r1.Velocity *= 0.8f;
             }
-            else //kinetic one
+            else //Apply Friction normally
             {
-                if (c1.isCollidingOnFloor) //on ground
-                {
+                //if (c1.isCollidingOnFloor) //on ground
+                { //reason why the jump has increased x is due to this and the one on top
                     const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-                    const Vector2 dragForceVector = (0.5f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+                    const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
                     r1.Velocity += dragForceVector;
                 }
-                else //in the air
-                {
-                    const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-                    const Vector2 dragForceVector = (0.2f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-                    r1.Velocity += dragForceVector;
-                }
+                //else //in the air
+                //{
+                //    const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
+                //    const Vector2 dragForceVector = (0.4f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
+                //    r1.Velocity += dragForceVector;
+                //}
             }
 
       	}
