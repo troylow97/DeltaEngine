@@ -205,7 +205,7 @@ namespace DeltaEngine
                 s.SetBool("IsAlerted", false);
                 s.SetBool("LancerCharge", true);
             }
-            else if (
+            else if ( //Attacking
                 AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.5f && 
                 AITools::Distance_Y_BetweenTwoEntities(monster, player) < 0.5f &&
 				env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeCooldownTimer <= 0)
