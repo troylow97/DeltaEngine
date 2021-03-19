@@ -55,7 +55,10 @@ bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, fl
   coords.z *= cameraWidth;
   coords.w *= cameraHeight;
 
-  if ( CollisionIntersection_RectMinMaxMouse( { coords.x, coords.y }, { coords.z, coords.w }, { p_x, p_y } ) )
+  auto x_size = (coords.z - coords.x) * 0.25f;
+  auto y_size = (coords.w - coords.y) * 0.25f;
+
+  if ( CollisionIntersection_RectMinMaxMouse(  {coords.x + x_size , coords.y + y_size},{ coords.z - x_size, coords.w - y_size}, { p_x, p_y } ) )
     return true;
   return false;
 }
@@ -81,6 +84,27 @@ void UISystem::Update()
 void UISystem::LateUpdate()
 {
 
+  if ( transitioning_screen )
+  {
+    em.ForEach( [&]( GUI &gui, RendererOverlay &o )
+    {
+      if ( transitioning_screen == gui.screen )
+      {
+        o.m_Color.a = Math::Clamp01( o.m_Color.a - 0.02f );
+        if ( o.m_Color.a == 0.0f )
+        {
+          o.m_Active = false;
+          end = true;
+        }
+      }
+    } );
+  }
+
+  if ( !end )
+    return;
+  else
+    transitioning_screen = 0;
+
   if ( e_id != u64_max )
   {
     if ( em.HasComponent<Animator>( { e_id } ) )
@@ -102,29 +126,6 @@ void UISystem::LateUpdate()
     }
     return;
   }
-
-
-
-  if ( transitioning_screen )
-  {
-    em.ForEach( [&]( GUI &gui, RendererOverlay &o )
-    {
-      if ( transitioning_screen == gui.screen )
-      {
-        o.m_Color.a = Math::Clamp01( o.m_Color.a - 0.02f );
-        if ( o.m_Color.a == 0.0f )
-        {
-          o.m_Active = false;
-          end = true;
-        }
-      }
-    } );
-  }
-
-  if ( !end )
-    return;
-  else
-    transitioning_screen = 0;
 
 #ifdef DE_EDITOR
   auto cameraWidth = GamePanel::render_size.x;
@@ -183,6 +184,8 @@ void UISystem::LateUpdate()
   }
 
   // Check Interactable
+  std::cout << canvas_ids.back() << std::endl;
+
   auto top_childrens = em.GetChildrens( canvas_ids.back() );
   for ( auto child : top_childrens )
   {

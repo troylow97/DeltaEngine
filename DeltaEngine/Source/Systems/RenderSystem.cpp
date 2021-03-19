@@ -272,10 +272,10 @@ namespace DeltaEngine
     
     for (EntityID ID : sortedRenderersOverlay)
     {
-      if (!em.HasComponent<Transform>(ID) || !em.HasComponent<RendererOverlay>(ID))
+      if ( !em.HasComponent<RendererOverlay>(ID))
         continue;
       RendererOverlay& r = em.GetComponent<RendererOverlay>(ID);
-      if (r.m_Active)
+      if (!r.m_Active)
         continue;
       if (em.HasComponent<Image>(ID))
       {
