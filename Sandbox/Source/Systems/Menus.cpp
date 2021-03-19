@@ -80,7 +80,7 @@ void StartGame()
   GetEnv().pECS->GetWorld().GetEntityManager().Clear();
   GetEnv().pECS->GetWorld().Load( "World/gam250tutorial.json" );
   GetEnv().pClock->TimeScale( 1.0f );
-  //RespawnSystem::CreateCheckpoints(0); // 0 = tutorial
+  RespawnSystem::CreateCheckpoints(0); // 0 = tutorial
   //EnemySpawner::ActivateGauntlet = true;
   in_game = true;
   AudioEngine::StopAllAudio();
