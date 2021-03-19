@@ -75,8 +75,8 @@ namespace DeltaEngine
           Dash(player, r1, c1);
           Jump(player, r1, c1);
           //Player Movement
-          if (!player.IsDashing && static_cast<int>(r1.Direction.x) != 0)
-          {
+          if (!player.IsDodging && static_cast<int>(r1.Direction.x) != 0)
+          {         	
               if (c1.isCollidingOnFloor)
               {
                   const Vector2 move = (r1.Direction * r1.Movespeed) + (r1.Direction * r1.InherentAcceleration * r1.AccelerationPickup);
@@ -198,21 +198,21 @@ namespace DeltaEngine
         p.AllowPunching = false;
         p.AllowShooting = false;
         p.AllowRunning = false;
-      	if(c.isCollidingOnFloor)
+      	//if(c.isCollidingOnFloor)
       	{
             if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 3000 + r.Mass * 100, 0 };
+                r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
             else
-                r.AccumulatedForce -= Vector2{ 3000 + r.Mass * 100, 0 };
+                r.AccumulatedForce -= Vector2{ 5000 + r.Mass * 100, 0 };
       	}
-        else //dashing in mid air
-        {
-            if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 800 + r.Mass * 30, 0 };
-            else
-                r.AccumulatedForce -= Vector2{ 800 + r.Mass * 30, 0 };
-            r.InherentAcceleration = 0.0f;
-        }
+        //else //dashing in mid air
+        //{
+        //    if (p.DashDirectionRight)
+        //        r.AccumulatedForce += Vector2{ 1000 + r.Mass * 30, 0 };
+        //    else
+        //        r.AccumulatedForce -= Vector2{ 1000 + r.Mass * 30, 0 };
+        //    r.InherentAcceleration = 0.0f;
+        //}
 
       }
     }

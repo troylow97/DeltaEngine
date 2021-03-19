@@ -157,31 +157,31 @@ namespace DeltaEngine
           Transform& t2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(it1->id2);
 
           //Platform logic
-          if ((c1.isPlatform || c2.isPlatform) && (em.HasComponent<Player>(it1->id1) || em.HasComponent<Player
-          >(it1->id2)))
-          {
-            EntityID player;
-            EntityID platform;
-            if (em.HasComponent<Player>(it1->id1))
-            {
-              player = it1->id1;
-              platform = it1->id2;
-            }
-            else
-            {
-              player = it1->id2;
-              platform = it1->id1;
-            }
-
-
-          	
-            if ((em.GetComponent<Transform>(player).position.y - 0.25f) < em.GetComponent<Transform>(platform).position.y)
-            {
-              it1->ignore = true;
-              em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 500};
-              continue;
-            }
-          }
+          //if ((c1.isPlatform || c2.isPlatform) && (em.HasComponent<Player>(it1->id1) || em.HasComponent<Player
+          //>(it1->id2)))
+          //{
+          //  EntityID player;
+          //  EntityID platform;
+          //  if (em.HasComponent<Player>(it1->id1))
+          //  {
+          //    player = it1->id1;
+          //    platform = it1->id2;
+          //  }
+          //  else
+          //  {
+          //    player = it1->id2;
+          //    platform = it1->id1;
+          //  }
+          //
+          //
+          //	
+          //  if ((em.GetComponent<Transform>(player).position.y - 0.25f) < em.GetComponent<Transform>(platform).position.y)
+          //  {
+          //    it1->ignore = true;
+          //    em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 500};
+          //    continue;
+          //  }
+          //}
 
           //Standard Collision Response
           if ((AABBvsAABB_Manifold(c1, t1.scale, c2, t2.scale, it1->m) && it1->m.penetration > 0.001f))
