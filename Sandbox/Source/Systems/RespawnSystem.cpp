@@ -145,17 +145,19 @@ namespace DeltaEngine
         //Stop crash by checking for components	
         if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id)
           || !em.HasComponent<Health>(id) || !em.HasComponent<Image>(id)
-          || !em.HasComponent<State>(id))
+          || !em.HasComponent<State>(id) || !em.HasComponent<RigidBody>(id))
           return;
 
         Player& p = em.GetComponent<Player>(id);
         Transform& t = em.GetComponent<Transform>(id);
         Health& hp = em.GetComponent<Health>(id);
         State& s = em.GetComponent<State>(id);
+        RigidBody& r = em.GetComponent<RigidBody>(id);
 
         if (p.IsDead)
         {
           s.SetBool("Dead", true);
+          r.isMoveable = false;
           float temp_x = 1.0f, temp_y = 1.0f;
           for (size_t i = respawns.m_respawns.size(); i > 0; i--)
           {
@@ -174,6 +176,7 @@ namespace DeltaEngine
             hp.CurrentHealth = hp.MaxHealth;
             s.SetBool("Dead", false);
             s.SetBool("IsIdle", true);
+            r.isMoveable = true;
             dying_countdown = 0.0f;
             p.IsDead = false;
           }
