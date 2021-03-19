@@ -40,7 +40,8 @@ public:
 
 #ifndef DE_EDITOR
     JsonFile file;
-    env.pECS->GetWorld().Load("World/MainMenuScreen.json");
+    //env.pECS->GetWorld().Load("World/gam250beta_t.json");
+    env.pECS->GetWorld().Load("World/MainMenuScreen.json");  	
 #endif
 
 
