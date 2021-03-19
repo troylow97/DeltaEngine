@@ -9,6 +9,10 @@ param
 Hover
 0 0
 
+param
+Click
+0 0
+
 %EditorPositions:
 
 pos
@@ -31,13 +35,27 @@ pos
 Clip/Restart_S
 255 225
 
+pos
+Clip/Restart_HL
+375 128
+
 %Transitions:
+
+transition
+start
+Clip/Restart_S
+end
+Exit
+condition
+Click
+? 0
+endTransition
 
 transition
 start
 Clip/Restart_D
 end
-Clip/Restart_S
+Clip/Restart_HL
 condition
 Hover
 ? 1
@@ -45,9 +63,19 @@ endTransition
 
 transition
 start
-Clip/Restart_S
+Clip/Restart_HL
 end
-Exit
+Clip/Restart_S
+condition
+Click
+? 1
+endTransition
+
+transition
+start
+Clip/Restart_HL
+end
+Clip/Restart_D
 condition
 Hover
 ? 0

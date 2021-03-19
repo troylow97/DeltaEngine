@@ -9,6 +9,10 @@ param
 Hover
 0 0
 
+param
+Click
+0 0
+
 %EditorPositions:
 
 pos
@@ -31,13 +35,27 @@ pos
 Clip/Resume_S
 212 190
 
+pos
+Clip/Resume_HL
+280 97
+
 %Transitions:
+
+transition
+start
+Clip/Resume_S
+end
+Exit
+condition
+Click
+? 0
+endTransition
 
 transition
 start
 Clip/Resume_D
 end
-Clip/Resume_S
+Clip/Resume_HL
 condition
 Hover
 ? 1
@@ -45,9 +63,19 @@ endTransition
 
 transition
 start
-Clip/Resume_S
+Clip/Resume_HL
 end
-Exit
+Clip/Resume_S
+condition
+Click
+? 1
+endTransition
+
+transition
+start
+Clip/Resume_HL
+end
+Clip/Resume_D
 condition
 Hover
 ? 0

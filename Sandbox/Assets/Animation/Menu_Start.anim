@@ -9,6 +9,10 @@ param
 Hover
 0 0
 
+param
+Click
+0 0
+
 %EditorPositions:
 
 pos
@@ -29,15 +33,29 @@ Clip/StartGame_S
 
 pos
 Clip/StartGame_D
-198 299
+34 235
+
+pos
+Clip/StartGame_HL
+111 370
 
 %Transitions:
 
 transition
 start
-Clip/StartGame_S
+Clip/StartGame_HL
 end
-Exit
+Clip/StartGame_S
+condition
+Click
+? 1
+endTransition
+
+transition
+start
+Clip/StartGame_HL
+end
+Clip/StartGame_D
 condition
 Hover
 ? 0
@@ -45,9 +63,19 @@ endTransition
 
 transition
 start
+Clip/StartGame_S
+end
+Exit
+condition
+Click
+? 0
+endTransition
+
+transition
+start
 Clip/StartGame_D
 end
-Clip/StartGame_S
+Clip/StartGame_HL
 condition
 Hover
 ? 1
