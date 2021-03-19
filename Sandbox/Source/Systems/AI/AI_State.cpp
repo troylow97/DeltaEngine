@@ -416,6 +416,10 @@ namespace DeltaEngine
                 if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2.0f && AITools::Distance_X_BetweenTwoEntities(monster, player) > 0.5f
                     && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 0.7f && a.MeleeCooldownTimer < 0.0f)
                 {
+                    if (AITools::EntityisOnTheRight(monster, player))
+                        env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
+                    else
+                        env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
                     s.SetBool("IsAlertRunning", false);
                     s.SetBool("MeleeAttack", true);
                     rb.Direction = Vector2::zero();
@@ -491,8 +495,13 @@ namespace DeltaEngine
 
     void IdleSerpentipede::Update(EntityID& monster)
     {
+        std::cout << "state is idle" << std::endl;
+        std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
         CheckEdges(monster);
-
+        auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
+        s.SetBool("IsAlerted", false);
+        s.SetBool("RangedAttack", false);
+        s.SetBool("IsIdle", true);
     }
 
     ChaseEnemySerpentipede::ChaseEnemySerpentipede(SerpentipedeAIData& d) :
@@ -533,7 +542,8 @@ namespace DeltaEngine
         auto& rend = em.GetComponent<Renderer2D>(monster);
         auto& hp = em.GetComponent<Health>(monster);
         //std::cout << "burrow state is: " << BurrowState << std::endl;
-        //std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
+        std::cout << "state is chase" << std::endl;
+        std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
 
         if (hp.isDamagedTimer > 0.0f)
         {
@@ -544,6 +554,7 @@ namespace DeltaEngine
         if (BurrowState == 0 && !Attacking)
         {
             s.SetBool("IsDead", false);
+            s.SetBool("IsIdle", false);
             rb.Direction = Vector2::zero();
             if (CooldownTimer <= 0)
             {
@@ -555,28 +566,38 @@ namespace DeltaEngine
 
                 const float distX = AITools::Distance_X_BetweenTwoEntities(monster, player);
                 s.SetBool("IsAlerted", true);
-                if(distX < 2.5f)
-                {
+                if(distX < 1.5f)
+                { //Burrow instead of attacking
                     s.SetBool("RangedAttack", false);
                     s.SetBool("IsAlerted", false);
                     s.SetBool("IsBurrowing", true);
-                    BurrowDownDelay = 1.5f;
+                    BurrowDownDelay = 0.6f;
                     BurrowState = 1;
                     return;
                 }
             	
                 if (distX < 5.0f
                     && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 2.5f)
-                {
+                { //Attack since distance is far enough
                     a.RangeAttack = true;
                     s.SetBool("RangedAttack", true);
                     a.AttackDelay = 0.1f;
                     CooldownTimer = 1.0f;
+                	BurrowDownDelay = 0.6f;
                     Attacking = true;
                 }
                 else
                 {
-                    CheckEdges(monster);                	
+                    CheckEdges(monster);
+                	if (Random::RandomIntRange(1,15) < 2)
+                	{
+                        s.SetBool("RangedAttack", false);
+                        s.SetBool("IsAlerted", false);
+                        s.SetBool("IsBurrowing", true);
+                        BurrowDownDelay = 0.6f;
+                        BurrowState = 1;
+                        return;
+                	}
                 }
 
             }
@@ -627,7 +648,7 @@ namespace DeltaEngine
                 rb.hasGravity = false;
                 rb.Movespeed *= 1.2f;
                 rend.m_SortingLayer = 2;
-                BurrowDownDuration = 1.2f;
+                BurrowDownDuration = 0.7f;
                 switch (CurrentPoint)
                 {
                 case 0:
