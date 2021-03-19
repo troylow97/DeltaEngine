@@ -37,6 +37,7 @@ void CollisionHandlerFunctions::ReduceHealth( EntityID &id1, int amount )
   {
     env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).CurrentHealth -= amount;
     env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).isDamagedTimer = 0.4f;
+    Camera::allCameras[0]->Shake(2);
   }
 }
 

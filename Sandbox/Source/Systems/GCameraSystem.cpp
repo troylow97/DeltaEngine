@@ -32,10 +32,11 @@ namespace DeltaEngine
 
     if (exist)
       em.ForEach([&](Transform& t, Player& p)
-      {
-        c_t->position = t.position;
-        c_t->position.y = 2.0f;
-        c_t->position.z = 10.0f;
-      });
+        {
+          float dist = Vector2::Distance(c_t->position, t.position);
+          c_t->position = Vector3::MoveTowards(c_t->position, t.position, dist * dist * DeltaTimef());
+          c_t->position.y = 2.0f;
+          c_t->position.z = 8.0f;
+        });
   }
 }
