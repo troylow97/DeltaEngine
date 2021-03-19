@@ -58,6 +58,7 @@ namespace DeltaEngine
                   while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                   {
                     a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
+                    ++a.m_LoopsCompleted;
                   }
                 }
                 else
@@ -65,6 +66,11 @@ namespace DeltaEngine
                   if (a.m_Timer < 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                   {
                     a.m_Timer += static_cast<float>(FixedUnscaledDeltaTime()) * a.m_Speed;
+                    a.m_LoopsCompleted = 0;
+                  }
+                  else
+                  {
+                    a.m_LoopsCompleted = 1;
                   }
                 }
               }
@@ -73,13 +79,13 @@ namespace DeltaEngine
               {
                 frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
                 //std::cerr << newClip->GetTotalFrames() << frame << std::endl;
-                if (frame >= newClip->GetTotalFrames() - 1)
-                {
-                  if (newClip->looping)
-                    ++a.m_LoopsCompleted;
-                  else
-                    a.m_LoopsCompleted = 1;
-                }
+                //if (frame >= newClip->GetTotalFrames() - 1)
+                //{
+                //  if (newClip->looping)
+                //    ++a.m_LoopsCompleted;
+                //  else
+                //    a.m_LoopsCompleted = 1;
+                //}
 
                 Sprite newSprite = newClip->GetSprite(frame);
                 if (newSprite)
@@ -98,27 +104,36 @@ namespace DeltaEngine
                 while (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
                 {
                   a.m_Timer -= 1.0f * newClip->GetTotalFrames() / newClip->GetFps();
+                  ++a.m_LoopsCompleted;
                 }
               }
               else
               {
-                if (a.m_Timer > 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+                if (a.m_Timer < 1.0f * newClip->GetTotalFrames() / newClip->GetFps())
+                {
                   a.m_Timer += static_cast<float>(FixedUnscaledDeltaTime()) * a.m_Speed;
+                  a.m_LoopsCompleted = 0;
+                }
+                else
+                {
+                  a.m_LoopsCompleted = 1;
+                }
               }
 
               frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
-              if (frame == newClip->GetTotalFrames() - 1)
-              {
-                if (newClip->looping)
-                  ++a.m_LoopsCompleted;
-                else
-                  a.m_LoopsCompleted = 1;
-              }
+              //if (frame == newClip->GetTotalFrames() - 1)
+              //{
+              //  if (newClip->looping)
+              //    ++a.m_LoopsCompleted;
+              //  else
+              //    a.m_LoopsCompleted = 1;
+              //}
               Sprite newSprite = newClip->GetSprite(frame);
               if (newSprite)
                 i.m_Sprite = newSprite;
             }
           }
+          //std::cerr << a.m_ClipKey << ": " << a.m_LoopsCompleted << std::endl;
         });
     Profiler::Instance().Record("Animation System");
   }
