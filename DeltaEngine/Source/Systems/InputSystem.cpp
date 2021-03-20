@@ -36,7 +36,7 @@ namespace DeltaEngine
   float melee_attack_cooldown{0.0f};
   float range_attack_cooldown{0.0f};
   bool god_mode = false;
-  unsigned run_sound_id { 0 };
+  size_t run_sound_id { 0 };
 
   void InputSystem::SetIdleAnimation()
   {

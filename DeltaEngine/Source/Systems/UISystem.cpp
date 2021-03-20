@@ -152,7 +152,7 @@ void UISystem::LateUpdate()
 
   Query q;
 
-  std::set<unsigned> canvas_ids;
+  std::set<size_t> canvas_ids;
 
   q.Exclude<Button, Toggle, Slider>();
 
@@ -232,13 +232,13 @@ void UISystem::LateUpdate()
       }
       case GUIType::Toggle:
       {
-        auto &toggle = em.GetComponent<Toggle>( { child } );
+        //auto &toggle = em.GetComponent<Toggle>( { child } );
 
         break;
       }
       case GUIType::Slider:
       {
-        auto &slider = em.GetComponent<Slider>( { child } );
+        //auto &slider = em.GetComponent<Slider>( { child } );
 
         break;
       }

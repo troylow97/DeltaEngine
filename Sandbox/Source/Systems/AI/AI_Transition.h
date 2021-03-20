@@ -83,7 +83,7 @@ namespace DeltaEngine
       bool TestEdge(EntityID& monster) override
       {
           auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-          auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
+          //auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
           auto player = UnitManager::GetPlayerID();
       	
           if (

@@ -17,30 +17,28 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Audio/AudioEngine.h"
 #include "Core/GlobalStruct.h"
 #include "Systems/UISystem.h"
+#include "../../GameState.h"
 
 namespace DeltaEngine
 {
-	LevelType LevelManager::level;
 	
 	void LevelManager::Update()
 	{
-		switch(level)
+		switch(GameStateCurrent())
 		{
-			case LevelType::MainMenu:
+			case GameState::MAIN_MENU:
 			{
 				break;
 			}
-			case LevelType::Tutorial:
+			case GameState::TUTORIAL:
 			{
 				auto player = UnitManager::GetPlayerID();
-				Vector2 EndPoint{ 290,0.2 };
+				Vector2 EndPoint{ 290.0f,0.2f };
 				if(AITools::EntityisAtPoint(player, EndPoint,0.2f))
-				{
-					Init_Level1();
-				}
+					GameStateLoad(GameState::LEVEL_1);
 				break;
 			}
-			case LevelType::Level1:
+			case GameState::LEVEL_1:
 			{
 				break;
 			}
@@ -53,28 +51,6 @@ namespace DeltaEngine
 	void LevelManager::LateUpdate()
 	{
 		
-	}
-	
-	void LevelManager::Init_MainMenu()
-	{
-		level = LevelType::MainMenu;
-	}
-	
-	void LevelManager::Init_Tutorial()
-	{
-		level = LevelType::Tutorial;
-	}
-
-	void LevelManager::Init_Level1()
-	{
-		GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-		level = LevelType::Level1;
-		GetEnv().pECS->GetWorld().Load("World/gam250beta_t.json");
-		RespawnSystem::CreateCheckpoints(1);
-		EnemySpawner::ActivateGauntlet = true;
-		UISystem::ClearScreens();
-		GetEnv().pClock->TimeScale(1.0f);
-		AudioEngine::StopAllAudio();
 	}
 
 }

@@ -31,7 +31,7 @@ variant extract_value( Value::MemberIterator &itr, const type &t );
 variant ExtractBasicType( Value &json_value );
 void ExtractPointerType( variant &obj_dat, variant &extracted );
 
-unsigned count { 0 };
+size_t count { 0 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
 

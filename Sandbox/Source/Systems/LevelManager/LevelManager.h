@@ -24,10 +24,6 @@ namespace DeltaEngine
     // void Initialize() override;
     void Update() override;
     void LateUpdate() override;
-    static void Init_MainMenu();
-    static void Init_Tutorial();
-    static void Init_Level1();
-    static LevelType level;
 private:
 
     END_DEFINE_SYSTEM(LevelManager)

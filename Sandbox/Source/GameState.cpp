@@ -36,20 +36,24 @@ void GameStateLoad( GameState state )
   {
     case GameState::MAIN_MENU :
     {
-      world.Load( "World/MainMenuScreen.json" );
       current = GameState::MAIN_MENU;
+      world.Load( "World/MainMenuScreen.json" );
       break;
     }
     case GameState::TUTORIAL :
     {
-      world.Load( "World/gam250tutorial.json" );
       current = GameState::TUTORIAL;
+      world.Load( "World/gam250tutorial.json" );
       break;
     }
     case GameState::LEVEL_1 :
     {
-
       current = GameState::LEVEL_1;
+      world.Load( "World/gam250beta_t.json" );
+      RespawnSystem::CreateCheckpoints(1);
+      EnemySpawner::ActivateGauntlet = true;
+
+
       break;
     }
   }

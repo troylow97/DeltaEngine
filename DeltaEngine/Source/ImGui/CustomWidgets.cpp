@@ -99,18 +99,18 @@ namespace DeltaEngine
       {
         ImGui::Text("Max");
         ImGui::PushID((std::string(label) + " bezier3 const 2").c_str());
-        float col[3] =
+        float cols[3] =
         {
           bezier->maxX.min,
           bezier->maxY.min,
           bezier->maxZ.min
         };
 
-        ImGui::DragFloat3("max", col, 0.01f);
+        ImGui::DragFloat3("max", cols, 0.01f);
 
-        bezier->maxX.min = col[0];
-        bezier->maxY.min = col[1];
-        bezier->maxZ.min = col[2];
+        bezier->maxX.min = cols[0];
+        bezier->maxY.min = cols[1];
+        bezier->maxZ.min = cols[2];
         ImGui::PopID();
       }
     }

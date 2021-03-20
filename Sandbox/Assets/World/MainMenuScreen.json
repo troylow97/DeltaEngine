@@ -1898,8 +1898,8 @@
                 "Category": "none"
             },
             "Audio Source": {
-                "Audio File": "event:/BGM/Stage 1 BGM",
-                "Volume": 0.30000001192092898,
+                "Audio File": "event:/BGM/Main Title",
+                "Volume": 0.10000000149011612,
                 "Pitch": 1.0,
                 "Loop": 0,
                 "Is Loop": false,

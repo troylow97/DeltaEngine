@@ -42,8 +42,8 @@ namespace DeltaEngine
 
   class AudioEngine
   {
-    using EventID = unsigned;
-    using ChannelID = unsigned;
+    using EventID = size_t;
+    using ChannelID = size_t;
 
   public:
     using ParametersMap = std::unordered_map<std::string, float>;

@@ -153,7 +153,7 @@ namespace DeltaEngine
           std::cerr << std::endl;
 
           // actual curve
-          size_t first = ~0;
+          size_t first = ~0U;
           size_t last = 0;
           for (size_t i = 0; i < curve->anchors.size() - 1; ++i)
           {

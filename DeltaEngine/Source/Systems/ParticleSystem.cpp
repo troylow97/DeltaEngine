@@ -212,26 +212,26 @@ namespace DeltaEngine
           {
           case BezierCurve::Type::Constant:
             particle.modifier.rotation *= Quaternion::AngleAxis(
-              ps.rotationOverLifetime.min.min * DeltaTime(),
+              ps.rotationOverLifetime.min.min * static_cast<float>(DeltaTime()),
               Vector3::forward());
             break;
           case BezierCurve::Type::ConstantCurve:
             particle.modifier.rotation *= Quaternion::AngleAxis(
-              ps.rotationOverLifetime.min.Evaluate(particle.lifeTimer / particle.lifeTime) * DeltaTime(),
+              ps.rotationOverLifetime.min.Evaluate(particle.lifeTimer / particle.lifeTime) * static_cast<float>(DeltaTime()),
               Vector3::forward());
             break;
           case BezierCurve::Type::RandomBetweenConstants:
             particle.modifier.rotation *= Quaternion::AngleAxis(
               Random::RandomFloatRange(
                 ps.rotationOverLifetime.min.min,
-                ps.rotationOverLifetime.max.min) * DeltaTime(),
+                ps.rotationOverLifetime.max.min) * static_cast<float>(DeltaTime()),
               Vector3::forward());
             break;
           case BezierCurve::Type::RandomBetweenCurves:
             particle.modifier.rotation *= Quaternion::AngleAxis(
               Random::RandomFloatRange(
                 ps.rotationOverLifetime.min.Evaluate(particle.lifeTimer / particle.lifeTime),
-                ps.rotationOverLifetime.max.Evaluate(particle.lifeTimer / particle.lifeTime)) * DeltaTime(),
+                ps.rotationOverLifetime.max.Evaluate(particle.lifeTimer / particle.lifeTime)) * static_cast<float>(DeltaTime()),
               Vector3::forward());
           }
           switch (ps.sizeOverLifetime.type)

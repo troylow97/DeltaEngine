@@ -5,7 +5,7 @@ namespace DeltaEngine
   struct AudioSource
   {
     std::string clip {};
-    unsigned id {0};
+    size_t id {0};
     float volume {1.0f};
     float pitch {0.0f};
     int loop {0};

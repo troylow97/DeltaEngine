@@ -28,11 +28,11 @@ namespace DeltaEngine
       const int velocity = static_cast<int>(r.Velocity.y);
       //std::cout << "velocity is: " << velocity << std::endl;
     	
-      s.SetFloat("VelocityY", velocity);
+      s.SetFloat("VelocityY", static_cast<float>(velocity));
     
       static float jump = 0;
       static bool fall = false;
-      s.SetFloat("VelocityY", velocity);
+      s.SetFloat("VelocityY", static_cast<float>(velocity));
       if (velocity > 0)
       {
         //std::cout << "here1" << std::endl;
