@@ -98,6 +98,7 @@ namespace DeltaEngine
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsDead", false);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlerted", true);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("MeleeAttack", false);
+        //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).Movespeed = 32.0f;
         //std::cout << "IdleLancer Update" << std::endl;
         //auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
 
@@ -651,15 +652,15 @@ namespace DeltaEngine
         //std::cout << "state is chase" << std::endl;
         //std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
 
-        if (hp.isDamagedTimer > 0.0f)
+        if (hp.isDamagedTimer > 0.0f || a.AttackDelay > 0.0f || hp.CurrentHealth < 0.0f)
         {
             return;
         }
-    	
+
+        s.SetBool("IsDead", false);
         //Seen and attacking
         if (BurrowState == 0 && !Attacking)
         {
-            s.SetBool("IsDead", false);
             s.SetBool("IsIdle", false);
             rb.Direction = Vector2::zero();
             if (CooldownTimer <= 0)
@@ -687,7 +688,7 @@ namespace DeltaEngine
                 { //Attack since distance is far enough
                     a.RangeAttack = true;
                     s.SetBool("RangedAttack", true);
-                    a.AttackDelay = 0.1f;
+                    a.AttackDelay = 0.4f;
                     CooldownTimer = 1.0f;
                 	BurrowDownDelay = 0.6f;
                     Attacking = true;

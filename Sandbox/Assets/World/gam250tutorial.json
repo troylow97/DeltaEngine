@@ -25324,7 +25324,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -25450,8 +25450,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 245.18862915039063,
-                    "y": 0.7942848205566406,
+                    "x": 248.1651153564453,
+                    "y": 0.7941398620605469,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25468,7 +25468,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -25479,8 +25479,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 245.18862915039063,
-                    "y": 0.39428481459617617
+                    "x": 248.1651153564453,
+                    "y": 0.3941398561000824
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25499,7 +25499,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -25595,7 +25595,7 @@
             "Transform": {
                 "Position": {
                     "x": 18.49704360961914,
-                    "y": 0.3892667591571808,
+                    "y": 0.3891398012638092,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25611,7 +25611,7 @@
                 }
             },
             "Rigidbody": {
-                "Mass": 20.0,
+                "Mass": 50.0,
                 "Move Speed": 85.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
@@ -25624,7 +25624,7 @@
             "Collider": {
                 "Center": {
                     "x": 18.49704360961914,
-                    "y": 0.3892667591571808
+                    "y": 0.3891398012638092
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25643,7 +25643,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/DAVE_PUNCH",
-                    "index": 6
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -25697,15 +25697,15 @@
                 "Melee Damage": 4,
                 "SMG Damage": 128,
                 "Melee Combo Damage": 4,
-                "Number Of Combo": 2,
+                "Number Of Combo": 1,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.15000000596046449,
+                "Melee Cooldown Timer": 0.0833333432674408,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 0.4000000059604645,
-                "Combo Cooldown Timer": 0.333333283662796,
+                "Combo Cooldown Timer": 0.26666656136512759,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -25761,7 +25761,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -25905,7 +25905,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26049,7 +26049,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26193,7 +26193,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26337,7 +26337,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26481,7 +26481,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26625,7 +26625,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26769,7 +26769,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26913,7 +26913,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27057,7 +27057,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27201,7 +27201,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27345,7 +27345,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27489,7 +27489,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27633,7 +27633,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27777,7 +27777,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27921,7 +27921,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28065,7 +28065,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28209,7 +28209,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28335,8 +28335,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 181.68862915039063,
-                    "y": 4.508333683013916,
+                    "x": 184.6651153564453,
+                    "y": 4.5080485343933109,
                     "z": 0.0
                 },
                 "Scale": {
@@ -28353,7 +28353,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -28364,8 +28364,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 181.68862915039063,
-                    "y": 4.108333587646484
+                    "x": 184.6651153564453,
+                    "y": 4.108048439025879
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28384,7 +28384,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -28497,7 +28497,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28623,8 +28623,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 199.78863525390626,
-                    "y": 0.7942848205566406,
+                    "x": 202.76512145996095,
+                    "y": 0.7941398620605469,
                     "z": 0.0
                 },
                 "Scale": {
@@ -28641,7 +28641,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -28652,8 +28652,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 199.78863525390626,
-                    "y": 0.39428481459617617
+                    "x": 202.76512145996095,
+                    "y": 0.3941398561000824
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28672,7 +28672,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -28785,7 +28785,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28929,7 +28929,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29073,7 +29073,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29217,7 +29217,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29361,7 +29361,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29505,7 +29505,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29649,7 +29649,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29775,8 +29775,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 224.68862915039063,
-                    "y": 0.7944791316986084,
+                    "x": 227.6651153564453,
+                    "y": 0.7941398620605469,
                     "z": 0.0
                 },
                 "Scale": {
@@ -29793,7 +29793,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -29804,8 +29804,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 224.68862915039063,
-                    "y": 0.3944791257381439
+                    "x": 227.6651153564453,
+                    "y": 0.3941398561000824
                 },
                 "Offset": {
                     "x": 0.0,
@@ -29824,7 +29824,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -29937,7 +29937,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30081,7 +30081,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30207,8 +30207,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 252.18862915039063,
-                    "y": 0.7944791316986084,
+                    "x": 255.1651153564453,
+                    "y": 0.7941398620605469,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30225,7 +30225,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -30236,8 +30236,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 252.18862915039063,
-                    "y": 0.3944791257381439
+                    "x": 255.1651153564453,
+                    "y": 0.3941398561000824
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30256,7 +30256,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -30351,8 +30351,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 253.7898406982422,
-                    "y": 0.7944791316986084,
+                    "x": 256.7662658691406,
+                    "y": 0.7941398620605469,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30369,7 +30369,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -30380,8 +30380,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 253.7898406982422,
-                    "y": 0.3944791257381439
+                    "x": 256.7662658691406,
+                    "y": 0.3941398561000824
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30400,7 +30400,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -30513,7 +30513,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30657,7 +30657,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30801,7 +30801,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30945,7 +30945,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -31071,8 +31071,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 262.48846435546877,
-                    "y": 0.7944791316986084,
+                    "x": 265.4649353027344,
+                    "y": 0.7941398620605469,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31089,7 +31089,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -31100,8 +31100,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 262.48846435546877,
-                    "y": 0.3944791257381439
+                    "x": 265.4649353027344,
+                    "y": 0.3941398561000824
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31120,7 +31120,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -31215,8 +31215,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 277.0884704589844,
-                    "y": 0.7944791316986084,
+                    "x": 280.06494140625,
+                    "y": 0.7941398620605469,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31233,7 +31233,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -31244,8 +31244,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 277.0884704589844,
-                    "y": 0.3944791257381439
+                    "x": 280.06494140625,
+                    "y": 0.3941398561000824
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31264,7 +31264,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -31359,8 +31359,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 264.0884704589844,
-                    "y": 0.7944791316986084,
+                    "x": 267.06494140625,
+                    "y": 0.7941398620605469,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31377,7 +31377,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -31388,8 +31388,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 264.0884704589844,
-                    "y": 0.3944791257381439
+                    "x": 267.06494140625,
+                    "y": 0.3941398561000824
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31408,7 +31408,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -31521,7 +31521,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -31665,7 +31665,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -31809,7 +31809,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -31935,8 +31935,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 267.6884765625,
-                    "y": 3.995907783508301,
+                    "x": 270.6649475097656,
+                    "y": 3.99566388130188,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31953,7 +31953,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -31964,8 +31964,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 267.6884765625,
-                    "y": 3.595907688140869
+                    "x": 270.6649475097656,
+                    "y": 3.5956637859344484
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31984,7 +31984,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 2
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -32097,7 +32097,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -32241,7 +32241,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -32385,7 +32385,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -32513,7 +32513,7 @@
                 "Position": {
                     "x": 18.49704360961914,
                     "y": 2.0,
-                    "z": 0.0
+                    "z": 10.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -49474,7 +49474,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -49546,7 +49546,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -49618,7 +49618,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -49690,7 +49690,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -49762,7 +49762,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -49834,7 +49834,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -49906,7 +49906,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -49978,7 +49978,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50050,7 +50050,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50122,7 +50122,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50194,7 +50194,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50266,7 +50266,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50338,7 +50338,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 11
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50410,7 +50410,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 29
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50482,7 +50482,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 0
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50554,7 +50554,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 28
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50626,7 +50626,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 25
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50698,7 +50698,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 16
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50770,7 +50770,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 35
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50842,7 +50842,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 13
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -50914,7 +50914,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 8
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51187,7 +51187,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51259,7 +51259,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51331,7 +51331,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51403,7 +51403,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51475,7 +51475,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51547,7 +51547,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51619,7 +51619,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51691,7 +51691,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51763,7 +51763,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51835,7 +51835,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51907,7 +51907,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 14
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -51979,7 +51979,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 16
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -52051,7 +52051,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 3
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -52123,7 +52123,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 11
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -52195,7 +52195,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 30
+                    "index": 24
                 },
                 "Size": {
                     "x": 1.0,
@@ -52267,7 +52267,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_02",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52339,7 +52339,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 2
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -52411,7 +52411,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 5
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -52483,7 +52483,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_02",
-                    "index": 5
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52555,7 +52555,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_02",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52627,7 +52627,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 4
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -52699,7 +52699,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 2
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -52771,7 +52771,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 3
+                    "index": 8
                 },
                 "Size": {
                     "x": 1.0,
@@ -52843,7 +52843,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 12
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52915,7 +52915,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52987,7 +52987,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53059,7 +53059,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53131,7 +53131,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53203,7 +53203,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53275,7 +53275,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53347,7 +53347,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53419,7 +53419,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53491,7 +53491,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53563,7 +53563,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53635,7 +53635,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53707,7 +53707,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53779,7 +53779,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53851,7 +53851,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53923,7 +53923,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_02",
-                    "index": 14
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -54146,7 +54146,7 @@
                     "y": 1.0
                 },
                 "Fill Type": "horizontal_right_to_left",
-                "Fill Amount": 1.0,
+                "Fill Amount": 0.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
@@ -56202,8 +56202,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 17.94477653503418,
-                    "y": 0.3892667591571808,
+                    "x": 17.852298736572267,
+                    "y": 0.3891398012638092,
                     "z": 0.0
                 },
                 "Scale": {
@@ -56231,8 +56231,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 17.94477653503418,
-                    "y": 0.3892667591571808
+                    "x": 17.852298736572267,
+                    "y": 0.3891398012638092
                 },
                 "Offset": {
                     "x": 0.0,
@@ -56249,7 +56249,7 @@
                 "Platform": false
             },
             "Lifespan": {
-                "Timer": 0.13333334028720857
+                "Timer": 0.06666667759418488
             }
         }
     ]
