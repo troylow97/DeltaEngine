@@ -10,7 +10,7 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "Menus.h"
-
+#include "../GameState.h"
 
 #include <rttr/registration.h>
 
@@ -23,32 +23,26 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-bool in_game { false };
-
 void MenuSystem::Update()
 {
   if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) && !InputManager::Instance().IsKeyPressed(DEVK_ESCAPE) )
   {
-    if ( in_game )
+    if ( GameStateCurrent() != GameState::MAIN_MENU )
     {
-
       if ( !UISystem::CurrentScreen() )
       {
-        AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
         UISystem::PushScreen( 1 );
         GetEnv().pClock->TimeScale( 0.0f );
-
       }
       else
       {
         UISystem::PopScreen();
 
         if ( !UISystem::CurrentScreen() )
-        {
-          AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
           GetEnv().pClock->TimeScale( 1.0f );
-        }
       }
+      AudioEngine::SetEventVolume(AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f);
+
     }
     else if ( UISystem::CurrentScreen() )
     {
@@ -56,7 +50,6 @@ void MenuSystem::Update()
       UISystem::PopScreen();
     }
   }
-
 }
 
 void MenuSystem::LateUpdate()
@@ -77,13 +70,7 @@ void Back()
 
 void StartGame()
 {
-  GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-  GetEnv().pECS->GetWorld().Load( "World/gam250tutorial.json" );
-  GetEnv().pClock->TimeScale( 1.0f );
-  //RespawnSystem::CreateCheckpoints(0); // 0 = tutorial
-  //EnemySpawner::ActivateGauntlet = true;
-  in_game = true;
-  AudioEngine::StopAllAudio();
+  GameStateLoad( GameState::TUTORIAL );
 }
 
 void OpenControls()
@@ -128,12 +115,7 @@ void QuitInGame()
 
 void ConfirmQuitInGame()
 {
-  UISystem::ClearScreens();
-  GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-  GetEnv().pECS->GetWorld().Load( "World/MainMenuScreen.json" );
-  GetEnv().pClock->TimeScale( 1.0f );
-  in_game = false;
-  AudioEngine::StopAllAudio();
+  GameStateLoad( GameState::MAIN_MENU );
 }
 
 /*
@@ -145,15 +127,9 @@ void Resume()
   GetEnv().pClock->TimeScale( 1.0f );
 }
 
-void Restart1()
+void Restart()
 {
-  UISystem::ClearScreens();
-  GetEnv().pECS->GetWorld().GetEntityManager().Clear();
-  GetEnv().pECS->GetWorld().Load( "World/gam250tutorial.json" );
-  GetEnv().pClock->TimeScale( 1.0f );
-  in_game = true;
-  AudioEngine::StopAllAudio();
-
+  GameStateLoad( GameStateCurrent() );
 }
 
 RTTR_REGISTRATION
@@ -169,7 +145,7 @@ rttr::registration::method( "ConfirmQuitGame", &ConfirmQuitGame );
 rttr::registration::method( "QuitInGame", &QuitInGame );
 rttr::registration::method( "ConfirmQuitInGame", &ConfirmQuitInGame );
 rttr::registration::method( "Resume", &Resume );
-rttr::registration::method( "Restart1", &Restart1 );
+rttr::registration::method( "Restart", &Restart );
 
 }
 }

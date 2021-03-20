@@ -34,5 +34,5 @@ namespace DeltaEngine::RT_Reflect
 
   void SerializeType(const std::string& str, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer, void* ptr);
 
-  void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var);
+  void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var, unsigned p_adj);
 }

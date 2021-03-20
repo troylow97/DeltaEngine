@@ -30,6 +30,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/Menus.h"
 #include "Systems/AudioSystem.h"
 #include "Systems/GUISystem.h"
+#include "GameState.h"
 
 class Sandbox : public Application
 {
@@ -38,8 +39,7 @@ public:
   {
 
 #ifndef DE_EDITOR
-    JsonFile file;
-    env.pECS->GetWorld().Load("World/MainMenuScreen.json");
+    GameStateLoad( GameState::MAIN_MENU );
 #endif
 
 

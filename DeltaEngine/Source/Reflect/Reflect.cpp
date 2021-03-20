@@ -1006,12 +1006,12 @@ namespace DeltaEngine::RT_Reflect
       Serialize::WriteObject(*static_cast<AudioSource*>(ptr), writer);
   }
 
-  void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var)
+  void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var, unsigned p_adj)
   {
     if (str == "Entity Name")
       em.GetComponent<EntityName>(id) = var.get_value<EntityName>();
     else if (str == "Parent")
-      em.AddComponent<Parent>(id, var.get_value<Parent>());
+      em.AddComponent<Parent>( id, { var.get_value<Parent>().p_id + p_adj } );
     else if (str == "Transform")
       em.GetComponent<Transform>(id) = var.get_value<Transform>();
     else if (str == "Entity Type")

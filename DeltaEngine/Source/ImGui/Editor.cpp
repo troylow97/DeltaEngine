@@ -50,19 +50,26 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "Style.h"
 #include "Panels/AudioPanel.h"
-
+#include "Audio/AudioEngine.h"
 namespace DeltaEngine
 {
 
 void NewFile(Editor& e)
 {
-  GetEnv().pECS->GetWorld().GetEntityManager().Clear();
+  auto &em = env.pECS->GetWorld().GetEntityManager();
+  em.Clear();
   e.entity_selected = false;
   e.entity_id = u64_max;
 
-  auto id = env.pECS->GetWorld().GetEntityManager().CreateEntity<Camera>();
-  env.pECS->GetWorld().GetEntityManager().GetComponent<EntityName>(id).name.assign("Camera");
-  env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id).position.z = 10;
+  auto id = em.CreateEntity<Camera>();
+  em.GetComponent<EntityName>(id).name.assign("Camera");
+  em.GetComponent<Transform>(id).position.z = 10;
+
+  Editor::mounted_path.clear();
+  env.pECS->GetWorld().SetPause( true );
+  AudioEngine::StopAllAudio();
+  Editor::simulation_running = false;
+
 }
 
 void OpenFile(Editor& e)
@@ -76,6 +83,27 @@ void OpenFile(Editor& e)
     e.entity_id = u64_max;
     GetEnv().pECS->GetWorld().Load( *path );
     Editor::mounted_path = *path;
+    env.pECS->GetWorld().SetPause( true );
+    AudioEngine::StopAllAudio();
+    Editor::simulation_running = false;
+  }
+}
+
+void LoadFile()
+{
+  std::optional<std::string> path = FileDialogs::OpenFile( "DeltaEngine Scene (*.json)\0*\0" );
+
+  if ( path )
+  {
+    if ( Editor::simulation_running )
+    {
+      Editor::simulation_running = false;
+      GetEnv().pECS->GetWorld().SetPause( true );
+      GetEnv().pECS->GetWorld().GetEntityManager().Clear();
+      GetEnv().pECS->GetWorld().Load( Editor::mounted_path );
+      AudioEngine::StopAllAudio();
+    }
+    GetEnv().pECS->GetWorld().Load( *path );
   }
 }
 
@@ -87,6 +115,9 @@ void SaveFile()
   {
     GetEnv().pECS->GetWorld().Save( *path );
     Editor::mounted_path = *path;
+    env.pECS->GetWorld().SetPause( true );
+    AudioEngine::StopAllAudio();
+    Editor::simulation_running = false;
   }
 }
 
@@ -129,6 +160,8 @@ void Editor::MenuBar()
     NewFile(*this);
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_O ) )
     OpenFile(*this);
+  else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_L ) )
+    LoadFile();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyReleased( DEVK_S ) )
     SaveFile();
   else if ( ImGui::IsKeyDown( DEVK_LCTRL ) && ImGui::IsKeyDown( DEVK_LSHIFT ) && ImGui::IsKeyReleased( DEVK_A ) )
@@ -163,6 +196,8 @@ void Editor::MenuBar()
         NewFile(*this);
       if ( ImGui::MenuItem( "Open", " Ctrl+O" ) )
         OpenFile(*this);
+      if ( ImGui::MenuItem( "Load", "Ctrl+L" ) )
+        LoadFile();
       if ( ImGui::MenuItem( "Save", " Ctrl+S" ) )
         SaveFile();
       ImGui::EndMenu();

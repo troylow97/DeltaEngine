@@ -31,6 +31,8 @@ variant extract_value( Value::MemberIterator &itr, const type &t );
 variant ExtractBasicType( Value &json_value );
 void ExtractPointerType( variant &obj_dat, variant &extracted );
 
+unsigned count { 0 };
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 void ReadObject( instance obj, Document &doc )
@@ -101,6 +103,7 @@ void ReadAssociative( variant_associative_view &view, Value &json_array_value )
 
 void ReadEntities( EntityManager &em, Value::MemberIterator it )
 {
+  count = em.GetEntities().size();
   for ( Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++ )
   {
     EntityID id = em.CreateEntity();
@@ -115,7 +118,7 @@ void ReadEntities( EntityManager &em, Value::MemberIterator it )
       variant obj = type.get_constructor().invoke();
       auto &value = mitr->value;
       ReadRecursive( obj, value );
-      RT_Reflect::DeserializeType( type.get_name().to_string(), em, id, obj );
+      RT_Reflect::DeserializeType( type.get_name().to_string(), em, id, obj, count );
     }
   }
 }

@@ -18,6 +18,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\GameState.h" />
     <ClInclude Include="Source\Systems\AI\AITools.h">
       <Filter>Systems\AI</Filter>
     </ClInclude>
@@ -83,6 +84,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameState.cpp" />
     <ClCompile Include="Source\SandboxApp.cpp" />
     <ClCompile Include="Source\Systems\AI\AITools.cpp">
       <Filter>Systems\AI</Filter>

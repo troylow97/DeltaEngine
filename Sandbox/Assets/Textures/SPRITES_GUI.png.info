@@ -1,0 +1,38 @@
+Textures/SPRITES_GUI_i_0
+offset 12 8
+size 592 213
+pivot 0.5 0.5
+
+Textures/SPRITES_GUI_i_1
+offset 12 223
+size 1 0
+pivot 0.5 0.5
+
+Textures/SPRITES_GUI_i_2
+offset 13 223
+size 0 0
+pivot 0.5 0.5
+
+Textures/SPRITES_GUI_i_3
+offset 32 308
+size 114 114
+pivot 0.5 0.5
+
+Textures/SPRITES_GUI_i_4
+offset 100 227
+size 423 27
+pivot 0.5 0.5
+
+Textures/SPRITES_GUI_i_5
+offset 157 308
+size 114 114
+pivot 0.5 0.5
+
+Textures/SPRITES_GUI_i_6
+offset 183 265
+size 63 28
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

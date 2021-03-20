@@ -58,7 +58,7 @@ void ButtonsPanel::Render()
   ImGui::SetCursorPos( simulation_pos );
   if ( ImGui::Button( ICON_FA_PLAY, buttonSize ) )
   {
-    if ( !Editor::simulation_running )
+    if ( !Editor::simulation_running && !Editor::mounted_path.empty() )
     {
       Editor::simulation_running = true;
       GetEnv().pECS->GetWorld().Save( Editor::mounted_path );

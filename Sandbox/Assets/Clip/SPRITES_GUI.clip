@@ -1,0 +1,40 @@
+frames 7
+fps 12
+loop 0
+
+Textures/SPRITES_GUI_i_0
+key Textures/SPRITES_GUI
+value 0
+frame 0
+
+Textures/SPRITES_GUI_i_1
+key Textures/SPRITES_GUI
+value 1
+frame 1
+
+Textures/SPRITES_GUI_i_2
+key Textures/SPRITES_GUI
+value 2
+frame 2
+
+Textures/SPRITES_GUI_i_3
+key Textures/SPRITES_GUI
+value 3
+frame 3
+
+Textures/SPRITES_GUI_i_4
+key Textures/SPRITES_GUI
+value 4
+frame 4
+
+Textures/SPRITES_GUI_i_5
+key Textures/SPRITES_GUI
+value 5
+frame 5
+
+Textures/SPRITES_GUI_i_6
+key Textures/SPRITES_GUI
+value 6
+frame 6
+
+%

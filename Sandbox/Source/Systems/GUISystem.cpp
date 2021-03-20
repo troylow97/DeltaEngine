@@ -35,22 +35,24 @@ void GUISystem::Update()
     player_health = &h;
   } );
 
-  em.ForEach( [&]( EntityName &name, GUI &g, Image &i )
+  if ( player_attack && player_health )
   {
-    if ( name.name == "Dodge Cooldown" )
+    em.ForEach( [&]( EntityName &name, GUI &g, Image &i )
     {
-      if ( player_attack->CurrentDodgeCooldown <= player_attack->DodgeCooldown )
-        i.m_FillAmount = Math::Clamp01( player_attack->CurrentDodgeCooldown / player_attack->DodgeCooldown );
-      else
-        i.m_FillAmount = 1.0f;
-    }
+      if ( name.name == "Dodge Cooldown" )
+      {
+        if ( player_attack->CurrentDodgeCooldown <= player_attack->DodgeCooldown )
+          i.m_FillAmount = Math::Clamp01( player_attack->CurrentDodgeCooldown / player_attack->DodgeCooldown );
+        else
+          i.m_FillAmount = 1.0f;
+      }
 
-    if ( name.name == "Health" )
-    {
-      i.m_FillAmount = Math::Clamp01(static_cast<float>(player_health->CurrentHealth) / static_cast<float>(player_health->MaxHealth));
-    }
-  } );
-
+      if ( name.name == "Health" )
+      {
+        i.m_FillAmount = Math::Clamp01( static_cast<float>( player_health->CurrentHealth ) / static_cast<float>( player_health->MaxHealth ) );
+      }
+    } );
+  }
 }
 
 void GUISystem::LateUpdate()

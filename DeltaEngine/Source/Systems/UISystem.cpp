@@ -23,7 +23,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
 
-std::vector<unsigned> screens;
+std::set<unsigned> screens;
 unsigned transitioning_screen;
 bool end { true };
 size_t e_id { u64_max };
@@ -55,10 +55,10 @@ bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, fl
   coords.z *= cameraWidth;
   coords.w *= cameraHeight;
 
-  auto x_size = (coords.z - coords.x) * 0.25f;
-  auto y_size = (coords.w - coords.y) * 0.25f;
+  auto x_size = ( coords.z - coords.x ) * 0.25f;
+  auto y_size = ( coords.w - coords.y ) * 0.25f;
 
-  if ( CollisionIntersection_RectMinMaxMouse(  {coords.x + x_size , coords.y + y_size},{ coords.z - x_size, coords.w - y_size}, { p_x, p_y } ) )
+  if ( CollisionIntersection_RectMinMaxMouse( { coords.x + x_size , coords.y + y_size }, { coords.z - x_size, coords.w - y_size }, { p_x, p_y } ) )
     return true;
   return false;
 }
@@ -73,7 +73,7 @@ bool InvokeFunc( const std::string &name )
 
 void UISystem::Initialize()
 {
-  screens.push_back( 0 );
+  screens.insert( 0 );
 }
 
 void UISystem::Update()
@@ -90,20 +90,25 @@ void UISystem::LateUpdate()
     {
       if ( transitioning_screen == gui.screen )
       {
-        o.m_Color.a = Math::Clamp01( o.m_Color.a - 0.02f );
-        if ( o.m_Color.a == 0.0f )
-        {
+        if ( gui.type == GUIType::Canvas )
           o.m_Active = false;
-          end = true;
+        else
+        {
+          o.m_Color.a = Math::Clamp01( o.m_Color.a - 0.04f );
+          if ( o.m_Color.a == 0.0f )
+          {
+            o.m_Active = false;
+            end = true;
+          }
         }
       }
     } );
-  }
 
-  if ( !end )
-    return;
-  else
-    transitioning_screen = 0;
+    if ( !end )
+      return;
+    else
+      transitioning_screen = 0;
+  }
 
   if ( e_id != u64_max )
   {
@@ -114,7 +119,7 @@ void UISystem::LateUpdate()
         em.GetComponent<State>( { e_id } ).SetBool( "Click", false );
         e_id = u64_max;
         InvokeFunc( on_click );
-        on_click = {};      
+        on_click = {};
       }
     }
     else
@@ -147,7 +152,7 @@ void UISystem::LateUpdate()
 
   Query q;
 
-  std::vector<unsigned> canvas_ids;
+  std::set<unsigned> canvas_ids;
 
   q.Exclude<Button, Toggle, Slider>();
 
@@ -156,37 +161,30 @@ void UISystem::LateUpdate()
   {
     for ( auto screen : screens )
       if ( gui.type == GUIType::Canvas && gui.screen == screen )
-        canvas_ids.push_back( id.index );
+        canvas_ids.insert( id.index );
   } );
 
   if ( canvas_ids.empty() )
     return;
-
-  std::sort( canvas_ids.begin(), canvas_ids.end() );
 
   // Set to render
   for ( auto id : canvas_ids )
   {
     auto childrens = em.GetChildrens( id );
     if ( em.HasComponent<RendererOverlay>( { id } ) )
-    {
-      auto &p_render = em.GetComponent<RendererOverlay>( { id } );
-      p_render.m_Active = true;
-      p_render.m_Color.a = Math::Clamp01( p_render.m_Color.a + 0.02f );
-    }
+      em.GetComponent<RendererOverlay>( { id } ).m_Active = true;
+
     for ( auto child : childrens )
     {
       auto &render = em.GetComponent<RendererOverlay>( { child } );
       render.m_Active = true;
-      render.m_Color.a = Math::Clamp01( render.m_Color.a + 0.02f );
+      render.m_Color.a = Math::Clamp01( render.m_Color.a + 0.04f );
     }
 
   }
 
-  // Check Interactable
-  std::cout << canvas_ids.back() << std::endl;
-
-  auto top_childrens = em.GetChildrens( canvas_ids.back() );
+  auto top_parent = std::prev( canvas_ids.end() );
+  auto top_childrens = em.GetChildrens( *top_parent );
   for ( auto child : top_childrens )
   {
     switch ( em.GetComponent<GUI>( { child } ).type )
@@ -207,15 +205,15 @@ void UISystem::LateUpdate()
           {
             if ( !button.on_click.empty() )
             {
-            AudioEngine::SetEventVolume( AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f );
+              AudioEngine::SetEventVolume( AudioEngine::Play2DEvent( "event:/UI Sounds/Button Click" ), 0.4f );
 
-            if ( em.HasComponent<Animator>( { child } ) )
-              em.GetComponent<Animator>( {child} ).m_LoopsCompleted = 0;
+              if ( em.HasComponent<Animator>( { child } ) )
+                em.GetComponent<Animator>( { child } ).m_LoopsCompleted = 0;
 
-            state.SetBool( "Hover", false );
-            state.SetBool( "Click", true );
-            e_id = child;
-            on_click = button.on_click;
+              state.SetBool( "Hover", false );
+              state.SetBool( "Click", true );
+              e_id = child;
+              on_click = button.on_click;
             }
             return;
           }
@@ -253,17 +251,21 @@ void UISystem::LateUpdate()
 
 void UISystem::PopScreen()
 {
-  transitioning_screen = screens.back();
-  screens.pop_back();
-  end = false;
+  if ( auto screen = std::prev( screens.end() ); *screen )
+  {
+    transitioning_screen = *screen;
+    screens.erase( screen );
+    end = false;
+  }
 }
 
 void UISystem::PushScreen( unsigned screen )
 {
-  screens.push_back( screen );
-  GetEnv().pECS->GetWorld().GetEntityManager().ForEach( [&]( GUI &g, RendererOverlay &o )
+  auto [it, result] = screens.insert( screen );
+  if ( result )
+    GetEnv().pECS->GetWorld().GetEntityManager().ForEach( [&]( GUI &g, RendererOverlay &o )
   {
-    if ( g.screen == screen )
+    if ( g.screen == screen && g.type != GUIType::Canvas )
       o.m_Color.a = 0.0f;
   } );
 }
@@ -271,12 +273,13 @@ void UISystem::PushScreen( unsigned screen )
 void UISystem::ClearScreens()
 {
   screens.clear();
-  screens.push_back( 0 );
+  screens.insert( 0 );
 }
 
 unsigned UISystem::CurrentScreen()
 {
-  return screens.back();
+  auto it = std::prev( screens.end() );
+  return *it;
 }
 
 }
