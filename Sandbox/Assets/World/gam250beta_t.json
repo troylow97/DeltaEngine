@@ -4135,12 +4135,12 @@
             },
             "Rigidbody": {
                 "Mass": 50.0,
-                "Move Speed": 85.0,
+                "Move Speed": 60.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 3.5,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 20.0,
-                "Acceleration Pickup": 2.0,
+                "Max Acceleration": 10.0,
+                "Acceleration Pickup": 1.0,
                 "Gravity": true,
                 "Moveable": true
             },
@@ -4217,9 +4217,9 @@
             },
             "Attack": {
                 "Range Damage": 8192,
-                "Melee Damage": 2,
+                "Melee Damage": 4,
                 "SMG Damage": 4096,
-                "Melee Combo Damage": 128,
+                "Melee Combo Damage": 6,
                 "Number Of Combo": 1,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,

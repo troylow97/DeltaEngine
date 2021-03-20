@@ -22,8 +22,8 @@ namespace DeltaEngine
     void UpgradeMaxHealth();
   private:
     int PointsCollected{0};
-    int Number_Of_Times_Attack_Upgraded;
-    int Number_Of_Times_HP_Upgraded;
+    int Number_Of_Times_Attack_Upgraded{ 0 };
+    int Number_Of_Times_HP_Upgraded{ 0 };
     EntityID UpgradePointsNumber;
     bool UpgradeTextFirstTime = true;
   END_DEFINE_SYSTEM(UpgradeSystem)

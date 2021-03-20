@@ -130,7 +130,7 @@ namespace DeltaEngine
             env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).AccumulatedForce.x += 3000;
         }
         //std::cout << "ChaseEnemyLancer onEnter" << std::endl;
-        TransitionTimer = 0.8f;
+        TransitionTimer = 0.4f;
         HasEntered = true;
     }
 
