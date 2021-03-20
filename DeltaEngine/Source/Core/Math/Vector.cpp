@@ -59,7 +59,7 @@ namespace DeltaEngine
 
   Vector2 Vector2::Normalize()
   {
-    if (SqrMagnitude() < (1 << 8))
+    if (SqrMagnitude() < 0.01f)
       return *this;
     return *this /= Magnitude();
   }
@@ -71,7 +71,7 @@ namespace DeltaEngine
 
   Vector2 Vector2::normalized() const
   {
-    if (SqrMagnitude() < (1 << 8))
+    if (SqrMagnitude() < 0.01f)
       return *this;
     Vector2 v{x, y};
     return v /= Magnitude();
@@ -325,7 +325,7 @@ namespace DeltaEngine
 
   Vector3 Vector3::normalized() const
   {
-    if (SqrMagnitude() < (1 << 8))
+    if (SqrMagnitude() < 0.01f)
       return *this;
     Vector3 v{x, y, z};
     return v /= Magnitude();
