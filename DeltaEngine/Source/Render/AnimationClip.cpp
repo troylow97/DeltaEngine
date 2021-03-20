@@ -63,9 +63,11 @@ void AnimationClip::CreateNew(
   unsigned start,
   unsigned end )
 {
-#ifndef DE_EDITOR
-  return;
-#endif
+  (void) end;
+  (void) start;
+  (void) loop;
+  (void) fps;
+#ifdef DE_EDITOR
   std::ofstream file { filepath.c_str() };
 
   Texture2D *texture = GetEnv().pManager->Get<Texture2D>( std::string( textureName ) );
@@ -97,6 +99,7 @@ void AnimationClip::CreateNew(
   {
     DeltaEngine_CORE_ERROR( "Failed to create animation clip \"{}\"!", filepath );
   }
+#endif
 }
 
 void AnimationClip::LoadAnimation( std::string filepath )
