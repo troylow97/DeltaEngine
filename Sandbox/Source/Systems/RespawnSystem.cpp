@@ -19,6 +19,7 @@ namespace DeltaEngine
   bool RespawnSystem::in_tutorial = true;
   bool RespawnSystem::in_level_1 = true;
   RespawnPoints RespawnSystem::respawns;
+  Vector2 RespawnSystem::player_initial_position = { 0.0f, 0.0f };
 
   void RespawnSystem::Initialize()
   {
@@ -70,6 +71,15 @@ namespace DeltaEngine
     });
     if (in_tutorial || in_level_1)
     {
+      EntityID id = UnitManager::GetPlayerID();
+      
+      //Stop crash by checking for components	
+      if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id))
+        return;
+      
+      Transform& t = em.GetComponent<Transform>(id);
+      player_initial_position = { t.position.x, t.position.y };
+
       for (size_t i = 0; i < respawns.m_respawns.size(); i++)
       {
         //auto& em = GetEnv().pECS->GetWorld().GetEntityManager();
@@ -159,6 +169,7 @@ namespace DeltaEngine
           s.SetBool("Dead", true);
           r.isMoveable = false;
           float temp_x = 1.0f, temp_y = 1.0f;
+          temp_y = respawns.m_respawns[respawns.m_respawns.size() - 1].y;
           for (size_t i = respawns.m_respawns.size(); i > 0; i--)
           {
             if (respawns.m_respawns[i - 1].z == 1.0f)
@@ -167,6 +178,8 @@ namespace DeltaEngine
               temp_y = respawns.m_respawns[i - 1].y;
               break;
             }
+            temp_x = player_initial_position.x;
+            temp_y = player_initial_position.y;
           }
           dying_countdown += env.pClock->FixedDeltaTime();
           if (dying_countdown > 3.0f)

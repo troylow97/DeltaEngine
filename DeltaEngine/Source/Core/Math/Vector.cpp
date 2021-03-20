@@ -59,7 +59,7 @@ namespace DeltaEngine
 
   Vector2 Vector2::Normalize()
   {
-    if (SqrMagnitude() < (1 << 8))
+    if (SqrMagnitude() < 0.01f)
       return *this;
     return *this /= Magnitude();
   }
@@ -71,7 +71,7 @@ namespace DeltaEngine
 
   Vector2 Vector2::normalized() const
   {
-    if (SqrMagnitude() < (1 << 8))
+    if (SqrMagnitude() < 0.01f)
       return *this;
     Vector2 v{x, y};
     return v /= Magnitude();
@@ -108,6 +108,11 @@ namespace DeltaEngine
     y *= y;
 
     return *this;
+  }
+
+  float Vector2::Distance(Vector2 a, Vector2 b)
+  {
+    return (b - a).Magnitude();
   }
 
   Vector2 Vector2::Lerp(Vector2 a, Vector2 b, float t)
@@ -320,7 +325,7 @@ namespace DeltaEngine
 
   Vector3 Vector3::normalized() const
   {
-    if (SqrMagnitude() < (1 << 8))
+    if (SqrMagnitude() < 0.01f)
       return *this;
     Vector3 v{x, y, z};
     return v /= Magnitude();
@@ -334,6 +339,11 @@ namespace DeltaEngine
   float Vector3::Magnitude() const
   {
     return sqrtf(SqrMagnitude());
+  }
+
+  Vector3 Vector3::MoveTowards(Vector3 a, Vector3 b, float t)
+  {
+    return a + (b - a).normalized() * t;
   }
 
   Vector3 Vector3::Lerp(Vector3 a, Vector3 b, float t)

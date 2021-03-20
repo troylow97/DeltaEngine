@@ -20992,7 +20992,7 @@
             "Transform": {
                 "Position": {
                     "x": 161.92999267578126,
-                    "y": -0.10999999940395355,
+                    "y": -0.6899999976158142,
                     "z": 0.0
                 },
                 "Scale": {
@@ -21021,7 +21021,7 @@
             "Collider": {
                 "Center": {
                     "x": 161.92999267578126,
-                    "y": -0.10999999940395355
+                    "y": -0.6899999976158142
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21029,7 +21029,7 @@
                 },
                 "Size": {
                     "x": 300.0,
-                    "y": 0.10000000149011612
+                    "y": 1.0
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -25450,8 +25450,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 248.1651153564453,
-                    "y": 0.7941398620605469,
+                    "x": 245.92019653320313,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25479,8 +25479,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 248.1651153564453,
-                    "y": 0.3941398561000824
+                    "x": 245.92019653320313,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25499,7 +25499,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -25594,8 +25594,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 18.49704360961914,
-                    "y": 0.3891398012638092,
+                    "x": 18.213520050048829,
+                    "y": 0.2592238485813141,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25623,8 +25623,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 18.49704360961914,
-                    "y": 0.3891398012638092
+                    "x": 18.213520050048829,
+                    "y": 0.2592238485813141
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25643,7 +25643,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/DAVE_PUNCH",
-                    "index": 2
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -25662,7 +25662,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -25693,19 +25693,19 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 256,
-                "Melee Damage": 4,
-                "SMG Damage": 128,
-                "Melee Combo Damage": 6,
-                "Number Of Combo": 0,
+                "Range Damage": 512,
+                "Melee Damage": 8,
+                "SMG Damage": 256,
+                "Melee Combo Damage": 12,
+                "Number Of Combo": 2,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.0833333432674408,
+                "Melee Cooldown Timer": 0.15000000596046449,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 0.4000000059604645,
-                "Combo Cooldown Timer": 0.4000000059604645,
+                "Combo Cooldown Timer": 0.333333283662796,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -25718,7 +25718,7 @@
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
+                "Start Combo Cooldown Timer": true,
                 "Damage Enemy": false
             },
             "Player": {
@@ -28335,8 +28335,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 184.6651153564453,
-                    "y": 4.5080485343933109,
+                    "x": 182.42019653320313,
+                    "y": 4.508065700531006,
                     "z": 0.0
                 },
                 "Scale": {
@@ -28364,8 +28364,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 184.6651153564453,
-                    "y": 4.108048439025879
+                    "x": 182.42019653320313,
+                    "y": 4.108065605163574
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28384,7 +28384,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -28623,8 +28623,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 202.76512145996095,
-                    "y": 0.7941398620605469,
+                    "x": 200.52020263671876,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -28652,8 +28652,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 202.76512145996095,
-                    "y": 0.3941398561000824
+                    "x": 200.52020263671876,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28672,7 +28672,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -29775,8 +29775,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 227.6651153564453,
-                    "y": 0.7941398620605469,
+                    "x": 225.42019653320313,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -29804,8 +29804,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 227.6651153564453,
-                    "y": 0.3941398561000824
+                    "x": 225.42019653320313,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -29824,7 +29824,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -30207,8 +30207,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 255.1651153564453,
-                    "y": 0.7941398620605469,
+                    "x": 252.92019653320313,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30236,8 +30236,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 255.1651153564453,
-                    "y": 0.3941398561000824
+                    "x": 252.92019653320313,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30256,7 +30256,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -30351,8 +30351,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 256.7662658691406,
-                    "y": 0.7941398620605469,
+                    "x": 254.52142333984376,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30380,8 +30380,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 256.7662658691406,
-                    "y": 0.3941398561000824
+                    "x": 254.52142333984376,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30400,7 +30400,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -31071,8 +31071,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 265.4649353027344,
-                    "y": 0.7941398620605469,
+                    "x": 263.22027587890627,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31100,8 +31100,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 265.4649353027344,
-                    "y": 0.3941398561000824
+                    "x": 263.22027587890627,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31120,7 +31120,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -31215,8 +31215,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 280.06494140625,
-                    "y": 0.7941398620605469,
+                    "x": 277.8202819824219,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31244,8 +31244,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 280.06494140625,
-                    "y": 0.3941398561000824
+                    "x": 277.8202819824219,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31264,7 +31264,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -31359,8 +31359,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 267.06494140625,
-                    "y": 0.7941398620605469,
+                    "x": 264.8202819824219,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31388,8 +31388,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 267.06494140625,
-                    "y": 0.3941398561000824
+                    "x": 264.8202819824219,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31408,7 +31408,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -31935,8 +31935,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 270.6649475097656,
-                    "y": 3.99566388130188,
+                    "x": 268.4202880859375,
+                    "y": 3.995681047439575,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31964,8 +31964,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 270.6649475097656,
-                    "y": 3.5956637859344484
+                    "x": 268.4202880859375,
+                    "y": 3.5956809520721437
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31984,7 +31984,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -32511,9 +32511,9 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 18.49704360961914,
-                    "y": 2.0,
-                    "z": 10.0
+                    "x": 18.213533401489259,
+                    "y": 2.2592222690582277,
+                    "z": 5.0018768310546879
                 },
                 "Scale": {
                     "x": 1.0,
@@ -49474,7 +49474,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49546,7 +49546,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49618,7 +49618,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49690,7 +49690,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49762,7 +49762,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49834,7 +49834,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49906,7 +49906,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49978,7 +49978,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50050,7 +50050,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50122,7 +50122,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50194,7 +50194,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50266,7 +50266,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50338,7 +50338,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50410,7 +50410,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50482,7 +50482,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50554,7 +50554,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50626,7 +50626,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50698,7 +50698,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50770,7 +50770,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50842,7 +50842,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50914,7 +50914,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51187,7 +51187,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51259,7 +51259,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51331,7 +51331,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51403,7 +51403,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51475,7 +51475,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51547,7 +51547,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51619,7 +51619,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51691,7 +51691,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51763,7 +51763,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51835,7 +51835,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51907,7 +51907,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51979,7 +51979,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52051,7 +52051,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52123,7 +52123,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52195,7 +52195,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 24
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52339,7 +52339,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 8
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -52411,7 +52411,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 8
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -52627,7 +52627,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 8
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -52699,7 +52699,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 8
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -52771,7 +52771,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 8
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -53969,40 +53969,6 @@
         },
         {
             "Entity Name": {
-                "Name": "BGM Audio"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Audio Source": {
-                "Audio File": "event:/BGM/Stage 1 BGM",
-                "Volume": 0.20000000298023225,
-                "Pitch": 1.0,
-                "Loop": 0,
-                "Is Loop": false,
-                "Is Event": true
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            }
-        },
-        {
-            "Entity Name": {
                 "Name": "GUI Overlay"
             },
             "Entity Type": {
@@ -54033,7 +53999,7 @@
         },
         {
             "Parent": {
-                "ID": 713
+                "ID": 712
             },
             "Entity Name": {
                 "Name": "Health Base"
@@ -54065,7 +54031,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SPRITES_GUI",
+                    "key": "Textures/SPRITES_GUI_",
                     "index": 0
                 },
                 "Size": {
@@ -54132,7 +54098,7 @@
         },
         {
             "Parent": {
-                "ID": 713
+                "ID": 712
             },
             "Entity Name": {
                 "Name": "Dodge Cooldown"
@@ -54164,7 +54130,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SPRITES_GUI",
+                    "key": "Textures/SPRITES_GUI_",
                     "index": 3
                 },
                 "Size": {
@@ -54180,7 +54146,7 @@
                     "y": 1.0
                 },
                 "Fill Type": "horizontal_right_to_left",
-                "Fill Amount": 1.0,
+                "Fill Amount": 0.0,
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
@@ -54189,12 +54155,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 80.0,
-                    "y": 75.0
+                    "x": 50.0,
+                    "y": 50.0
                 },
                 "Width/Height": {
-                    "x": 114.0,
-                    "y": 114.0
+                    "x": 227.0,
+                    "y": 227.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -54231,7 +54197,7 @@
         },
         {
             "Parent": {
-                "ID": 713
+                "ID": 712
             },
             "Entity Name": {
                 "Name": "Health"
@@ -54263,7 +54229,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SPRITES_GUI",
+                    "key": "Textures/SPRITES_GUI_",
                     "index": 4
                 },
                 "Size": {
@@ -54292,7 +54258,7 @@
                     "y": -60.0
                 },
                 "Width/Height": {
-                    "x": 423.0,
+                    "x": 448.0,
                     "y": 27.0
                 },
                 "Left": 0.0,
@@ -54330,7 +54296,7 @@
         },
         {
             "Parent": {
-                "ID": 713
+                "ID": 712
             },
             "Entity Name": {
                 "Name": "Dodge Base Text"
@@ -54362,7 +54328,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SPRITES_GUI",
+                    "key": "Textures/SPRITES_GUI_",
                     "index": 6
                 },
                 "Size": {
@@ -54387,12 +54353,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 105.0,
-                    "y": 200.0
+                    "x": 100.0,
+                    "y": 300.0
                 },
                 "Width/Height": {
-                    "x": 63.0,
-                    "y": 28.0
+                    "x": 125.0,
+                    "y": 55.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -54429,7 +54395,7 @@
         },
         {
             "Parent": {
-                "ID": 713
+                "ID": 712
             },
             "Entity Name": {
                 "Name": "Dodge Base"
@@ -54461,7 +54427,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/SPRITES_GUI",
+                    "key": "Textures/SPRITES_GUI_",
                     "index": 5
                 },
                 "Size": {
@@ -54486,12 +54452,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 80.0,
-                    "y": 75.0
+                    "x": 50.0,
+                    "y": 50.0
                 },
                 "Width/Height": {
-                    "x": 114.0,
-                    "y": 114.0
+                    "x": 227.0,
+                    "y": 227.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -54535,105 +54501,6 @@
             },
             "GUI": {
                 "Type": "Canvas",
-                "Screen": 1
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Black",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 1920.0,
-                    "y": 1080.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 0.3137255012989044
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 719
-            },
-            "Entity Name": {
-                "Name": "Pause Menu Base"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Image",
                 "Screen": 1
             },
             "Transform": {
@@ -54723,7 +54590,7 @@
         },
         {
             "Parent": {
-                "ID": 719
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Pause Menu Text"
@@ -54822,7 +54689,7 @@
         },
         {
             "Parent": {
-                "ID": 719
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Resume Button"
@@ -54931,7 +54798,7 @@
         },
         {
             "Parent": {
-                "ID": 719
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Restart Button"
@@ -54945,7 +54812,7 @@
             },
             "Button": {
                 "On Hover": "ButtonHover",
-                "On Click": "Restart",
+                "On Click": "Restart1",
                 "On Exit": ""
             },
             "Transform": {
@@ -55040,7 +54907,7 @@
         },
         {
             "Parent": {
-                "ID": 719
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Control Button"
@@ -55149,7 +55016,7 @@
         },
         {
             "Parent": {
-                "ID": 719
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Options Button"
@@ -55258,7 +55125,7 @@
         },
         {
             "Parent": {
-                "ID": 719
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Credits Button"
@@ -55367,7 +55234,7 @@
         },
         {
             "Parent": {
-                "ID": 719
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Quit Game Button"
@@ -55502,77 +55369,11 @@
                     "z": 0.0,
                     "w": 1.0
                 }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Black",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 1920.0,
-                    "y": 1080.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 0.3137255012989044
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
             }
         },
         {
             "Parent": {
-                "ID": 728
+                "ID": 726
             },
             "Entity Name": {
                 "Name": "Control Page"
@@ -55703,77 +55504,11 @@
                     "z": 0.0,
                     "w": 1.0
                 }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Black",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 1920.0,
-                    "y": 1080.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 0.3137255012989044
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
             }
         },
         {
             "Parent": {
-                "ID": 730
+                "ID": 728
             },
             "Entity Name": {
                 "Name": "Option Button"
@@ -55904,77 +55639,11 @@
                     "z": 0.0,
                     "w": 1.0
                 }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/Black",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 1920.0,
-                    "y": 1080.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 0.3137255012989044
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
             }
         },
         {
             "Parent": {
-                "ID": 732
+                "ID": 730
             },
             "Entity Name": {
                 "Name": "Credits Page"
@@ -56108,105 +55777,6 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/Black",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 1920.0,
-                    "y": 1080.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Anchor Max": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Pivot": {
-                    "x": 0.5,
-                    "y": 0.5
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 0.3137255012989044
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": false,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 734
-            },
-            "Entity Name": {
-                "Name": "Quit Game Base"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Image",
-                "Screen": 5
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
                     "key": "Textures/Confirmation_Popup",
                     "index": 0
                 },
@@ -56274,7 +55844,7 @@
         },
         {
             "Parent": {
-                "ID": 734
+                "ID": 732
             },
             "Entity Name": {
                 "Name": "Quit Game Text"
@@ -56373,7 +55943,7 @@
         },
         {
             "Parent": {
-                "ID": 734
+                "ID": 732
             },
             "Entity Name": {
                 "Name": "Quit Game Yes"
@@ -56439,8 +56009,8 @@
                     "y": -80.0
                 },
                 "Width/Height": {
-                    "x": 512.0,
-                    "y": 128.0
+                    "x": 187.0,
+                    "y": 78.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -56482,7 +56052,7 @@
         },
         {
             "Parent": {
-                "ID": 734
+                "ID": 732
             },
             "Entity Name": {
                 "Name": "Quit Game No"
@@ -56548,8 +56118,8 @@
                     "y": -80.0
                 },
                 "Width/Height": {
-                    "x": 512.0,
-                    "y": 128.0
+                    "x": 187.0,
+                    "y": 78.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -56588,6 +56158,99 @@
                 "Speed": 1.0
             },
             "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "BGM Audio"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Audio Source": {
+                "Audio File": "event:/BGM/Stage 1 BGM",
+                "Volume": 0.30000001192092898,
+                "Pitch": 1.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": true
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "player punch"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 17.657962799072267,
+                    "y": 0.2592238485813141,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.30000001192092898,
+                    "y": 0.30000001192092898,
+                    "z": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 5.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.0,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 17.657962799072267,
+                    "y": 0.2592238485813141
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 7,
+                "Collision Layer ID": 8,
+                "Trigger": true,
+                "Platform": false
+            },
+            "Lifespan": {
+                "Timer": 0.13333334028720857
+            }
         }
     ]
 }
