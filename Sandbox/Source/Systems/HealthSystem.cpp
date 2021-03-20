@@ -77,7 +77,7 @@ namespace DeltaEngine
       em.GetComponent<State>(entity).SetBool("IsIdle", false);
       em.GetComponent<State>(entity).SetBool("IsDead", true);
       em.AddComponent<Lifespan>(entity);
-      em.GetComponent<Lifespan>(entity).Timer = 3.0f;
+      em.GetComponent<Lifespan>(entity).Timer = 1.0f;
       em.GetComponent<RigidBody>(entity).isMoveable = false;
     }
     entities.clear();
