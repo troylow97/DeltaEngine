@@ -36271,7 +36271,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36415,7 +36415,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36559,7 +36559,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36703,7 +36703,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36847,7 +36847,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36991,7 +36991,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37135,7 +37135,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37279,7 +37279,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37423,7 +37423,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37567,7 +37567,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37711,7 +37711,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37855,7 +37855,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37999,7 +37999,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38143,7 +38143,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38287,7 +38287,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38431,7 +38431,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38575,7 +38575,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38719,7 +38719,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38863,7 +38863,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39007,7 +39007,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39151,7 +39151,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39295,7 +39295,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39439,7 +39439,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39583,7 +39583,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39727,7 +39727,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39871,7 +39871,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40015,7 +40015,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40159,7 +40159,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40303,7 +40303,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40447,7 +40447,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40591,7 +40591,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40735,7 +40735,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40879,7 +40879,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41023,7 +41023,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41167,7 +41167,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41311,7 +41311,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41455,7 +41455,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41599,7 +41599,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41743,7 +41743,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41887,7 +41887,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -42031,7 +42031,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -42175,7 +42175,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
