@@ -43821,6 +43821,40 @@
             "Lifespan": {
                 "Timer": 0.11666667461395264
             }
+        },
+        {
+            "Entity Name": {
+                "Name": "BGM Audio"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Audio Source": {
+                "Audio File": "event:/BGM/Stage 2 BGM",
+                "Volume": 0.10000000149011612,
+                "Pitch": 1.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": true
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
         }
     ]
 }
