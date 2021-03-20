@@ -683,12 +683,12 @@ namespace DeltaEngine
                     return;
                 }
             	
-                if (distX < 5.0f
+                if (distX < 6.0f
                     && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 2.5f)
                 { //Attack since distance is far enough
                     a.RangeAttack = true;
                     s.SetBool("RangedAttack", true);
-                    a.AttackDelay = 0.4f;
+                    a.AttackDelay = 0.8f;
                     CooldownTimer = 1.0f;
                 	BurrowDownDelay = 0.6f;
                     Attacking = true;

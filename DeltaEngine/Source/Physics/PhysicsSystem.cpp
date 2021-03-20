@@ -36,7 +36,7 @@ namespace DeltaEngine
       r1.Mass = 1.0f;
     }
 
-    if (r1.FrictionCoeff <= 0)
+    if (r1.FrictionCoeff < 0)
     {
       r1.FrictionCoeff = 0.01f;
     }
@@ -117,18 +117,20 @@ namespace DeltaEngine
         const Vector2 newAcceleration = r1.AccumulatedForce * (1 / r1.Mass) + r1.Acceleration;
         r1.Velocity += (newAcceleration) * env.pClock->FixedDeltaTime();
 
-      	//Friction
-        const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-        const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-        r1.Velocity.x += dragForceVector.x;
-
-        //Apply Friction -> when no input (prevents sliding)
-        if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0 && r1.hasGravity)
-        {
+      	if(r1.FrictionCoeff > 0.1f)
+      	{
+            //Friction
             const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
             const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-            r1.Velocity *= 0.8f;
-        }
+            r1.Velocity.x += dragForceVector.x;
+
+            //Apply Friction -> when no input (prevents sliding)
+            if (em.HasComponent<Player>(id1) && !em.GetComponent<Player>(id1).IsDodging && c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0 && r1.hasGravity)
+            {
+                r1.Velocity *= 0.8f;
+            }
+      	}
+
       	
       	//if(em.HasComponent<Player>(id1))
       	//{
@@ -201,9 +203,9 @@ namespace DeltaEngine
       	//if(c.isCollidingOnFloor)
       	{
             if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
+                r.AccumulatedForce += Vector2{ 3000 + r.Mass * 100, 0 };
             else
-                r.AccumulatedForce -= Vector2{ 5000 + r.Mass * 100, 0 };
+                r.AccumulatedForce -= Vector2{ 3000 + r.Mass * 100, 0 };
       	}
         //else //dashing in mid air
         //{
