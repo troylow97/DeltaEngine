@@ -123,7 +123,7 @@ namespace DeltaEngine
         r1.Velocity.x += dragForceVector.x;
 
         //Apply Friction -> when no input (prevents sliding)
-        if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
+        if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0 && r1.hasGravity)
         {
             const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
             const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();

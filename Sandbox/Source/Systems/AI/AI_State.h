@@ -19,7 +19,9 @@ namespace DeltaEngine
   class AIState
   {
   protected:
+    float TransitionTimer{-0.1f};
     bool CheckEdges(EntityID&);
+  	
   public:
     std::unordered_map<std::string, Transition*> TransitionEdges;
     virtual void onEnter(EntityID& id) = 0;
@@ -73,17 +75,52 @@ namespace DeltaEngine
 
   class ChaseEnemyLancer : public AIState
   {
-    bool Charging;
-    bool Bouncing;
-    bool Attacking;
-    float BouncingTimer;
-    float ChargeTimer;
-    Vector2 Direction;
+      bool HasEntered;
+      Vector2 ChargeDetectRange;
   public:
-    ChaseEnemyLancer();
+    ChaseEnemyLancer(Vector2);
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;
     void Update(EntityID& id1) override;
+  };
+
+  class GotHitEnemyLancer : public AIState
+  {
+
+  public:
+      GotHitEnemyLancer();
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
+  };
+
+  class ChargingEnemyLancer : public AIState
+  {
+
+  public:
+      ChargingEnemyLancer();
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
+  };
+
+  class AttackingEnemyLancer : public AIState
+  {
+  public:
+      AttackingEnemyLancer();
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
+  };
+
+  class BounceEnemyLancer : public AIState
+  {
+      Vector2 original_direction;
+  public:
+      BounceEnemyLancer();
+      void onEnter(EntityID& id) override;
+      void onExit(EntityID& id) override;
+      void Update(EntityID& id1) override;
   };
 
   class IdleFiddler : public AIState

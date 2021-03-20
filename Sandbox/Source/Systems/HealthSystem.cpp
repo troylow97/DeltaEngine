@@ -69,7 +69,8 @@ namespace DeltaEngine
       em.GetComponent<State>(entity).SetBool("IsAlertRunning", false);
       em.GetComponent<State>(entity).SetBool("IsAttacked", true);
       em.GetComponent<State>(entity).SetBool("IsAttacked", false);
-      em.GetComponent<State>(entity).SetBool("LancerCharge", false);
+      em.GetComponent<State>(entity).SetBool("BeginCharging", false);
+      em.GetComponent<State>(entity).SetBool("Charge", false);
       em.GetComponent<State>(entity).SetBool("MeleeAttack", false);    	
       em.GetComponent<State>(entity).SetBool("IsAlerted", false);
       em.GetComponent<State>(entity).SetBool("IsBouncing", false);
