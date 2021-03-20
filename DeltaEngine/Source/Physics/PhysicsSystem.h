@@ -34,8 +34,8 @@ namespace DeltaEngine
     Vector2 m_gravity_amount{0, -60.0f};
     float JumpForce{4500.0f};
     float InitialJumpForce{4500.0f};
-    float JumpDelay;
-    float DashDelay;
+    float JumpDelay{0.5f};
+    float DashDelay{ 0.5f };
     int CurrentJumpTicks{0};	
     int MaxJumpTicks{12};
     int CurrentDashTicks{0};

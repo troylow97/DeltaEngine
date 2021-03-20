@@ -187,7 +187,7 @@ namespace DeltaEngine
   	
     em.GetComponent<EntityType>(wall).type = EntityCategory::E_WALL;
     em.GetComponent<Transform>(wall).position = position;
-    em.GetComponent<Transform>(wall).position.y += 2.0f;
+    em.GetComponent<Transform>(wall).position.y += 1.8f;
     em.GetComponent<Transform>(wall).scale = Vector2{1.0, 1.0};
     em.GetComponent<RigidBody>(wall).isMoveable = false;
     em.GetComponent<Collider>(wall).CollisionLayerID = 1;

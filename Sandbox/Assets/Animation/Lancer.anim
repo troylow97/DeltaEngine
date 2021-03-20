@@ -30,11 +30,15 @@ IsDamaged
 0 0
 
 param
-LancerCharge
+Charging
 0 0
 
 param
 IsAttacked
+1 0
+
+param
+BeginCharging
 1 0
 
 %EditorPositions:
@@ -53,15 +57,11 @@ Any State
 
 pos
 Clip/LANCER_ALERT_IDLE
--326 250
+-502 205
 
 pos
 Clip/LANCER_FALL
 274 480
-
-pos
-Clip/LANCER_REACTION
--565 455
 
 pos
 Clip/LANCER_IDLE
@@ -73,23 +73,27 @@ Clip/LANCER_BOUNCE
 
 pos
 Clip/LANCER_ATTACK
--6 163
+-8 82
 
 pos
 Clip/LANCER_CHARGE
-272 292
+282 266
 
 pos
 Clip/LANCER_DMG
--12 294
+-32 256
 
 pos
 Clip/LANCER_DEATH
--259 669
+-129 717
 
 pos
 Clip/LANCER_COLLAPSE
--530 579
+-445 449
+
+pos
+Clip/LANCER_REACTION
+-561 352
 
 %Transitions:
 
@@ -101,9 +105,6 @@ Clip/LANCER_ALERT_IDLE
 condition
 IsBouncing
 ? 0
-condition
-IsAlerted
-? 1
 endTransition
 
 transition
@@ -112,7 +113,7 @@ Clip/LANCER_ALERT_IDLE
 end
 Clip/LANCER_ATTACK
 condition
-MeleeAttack
+BeginCharging
 ? 1
 condition
 IsAlerted
@@ -125,11 +126,8 @@ Clip/LANCER_ATTACK
 end
 Clip/LANCER_CHARGE
 condition
-LancerCharge
+Charging
 ? 1
-condition
-MeleeAttack
-? 0
 endTransition
 
 transition
@@ -137,74 +135,11 @@ start
 Clip/LANCER_CHARGE
 end
 Clip/LANCER_BOUNCE
-condition
-LancerCharge
-? 0
 condition
 IsBouncing
 ? 1
-endTransition
-
-transition
-start
-Clip/LANCER_DMG
-end
-Clip/LANCER_ALERT_IDLE
 condition
-IsAttacked
-? 0
-endTransition
-
-transition
-start
-Clip/LANCER_ATTACK
-end
-Clip/LANCER_DMG
-condition
-IsAttacked
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_CHARGE
-end
-Clip/LANCER_DMG
-condition
-IsAttacked
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_BOUNCE
-end
-Clip/LANCER_DMG
-condition
-IsAttacked
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_ALERT_IDLE
-end
-Clip/LANCER_DMG
-condition
-IsAttacked
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_DMG
-end
-Clip/LANCER_REACTION
-condition
-IsDead
-? 1
-condition
-IsAttacked
+Charging
 ? 0
 endTransition
 
@@ -219,13 +154,92 @@ transition
 start
 Clip/LANCER_ALERT_IDLE
 end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+condition
+IsDead
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_ATTACK
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_BOUNCE
+end
+Clip/LANCER_DMG
+condition
+IsAttacked
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_DMG
+end
+Clip/LANCER_ALERT_IDLE
+condition
+IsDamaged
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_ALERT_IDLE
+end
 Clip/LANCER_REACTION
 condition
 IsDead
 ? 1
 condition
-IsIdle
+IsAttacked
 ? 0
+condition
+Charging
+? 0
+condition
+BeginCharging
+? 0
+condition
+IsAlerted
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_REACTION
+end
+Clip/LANCER_COLLAPSE
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_REACTION
+condition
+IsDead
+? 1
 endTransition
 
 transition
@@ -233,9 +247,6 @@ start
 Clip/LANCER_BOUNCE
 end
 Clip/LANCER_REACTION
-condition
-IsBouncing
-? 0
 condition
 IsDead
 ? 1
@@ -249,29 +260,6 @@ Clip/LANCER_REACTION
 condition
 IsDead
 ? 1
-condition
-MeleeAttack
-? 0
-endTransition
-
-transition
-start
-Clip/LANCER_CHARGE
-end
-Clip/LANCER_REACTION
-condition
-LancerCharge
-? 0
-condition
-IsDead
-? 1
-endTransition
-
-transition
-start
-Clip/LANCER_REACTION
-end
-Clip/LANCER_COLLAPSE
 endTransition
 
 %endfile

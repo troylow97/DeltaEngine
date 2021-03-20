@@ -9,9 +9,9 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 17.6269474029541,
+                    "x": 25.0,
                     "y": 2.0,
-                    "z": 0.0
+                    "z": 10.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -4018,7 +4018,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 100.0,
+                    "x": 120.0,
                     "y": -0.07800000160932541
                 },
                 "Offset": {
@@ -4064,7 +4064,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/WindowLight_Anim",
-                    "index": 6
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -4118,7 +4118,7 @@
             "Transform": {
                 "Position": {
                     "x": 25.0,
-                    "y": 0.5,
+                    "y": 0.4361119270324707,
                     "z": 0.0
                 },
                 "Scale": {
@@ -4135,19 +4135,19 @@
             },
             "Rigidbody": {
                 "Mass": 50.0,
-                "Move Speed": 20.0,
+                "Move Speed": 60.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 4.0,
-                "Inherent Acceleration": 10.0,
+                "Friction Coefficient": 3.5,
+                "Inherent Acceleration": 0.0,
                 "Max Acceleration": 10.0,
-                "Acceleration Pickup": 3.0,
+                "Acceleration Pickup": 1.0,
                 "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 17.576948165893556,
-                    "y": 0.21102961897850038
+                    "x": 25.0,
+                    "y": 0.4361119270324707
                 },
                 "Offset": {
                     "x": 0.0,
@@ -4165,8 +4165,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_IDLE",
-                    "index": 8
+                    "key": "Textures/DAVE_PUNCH",
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -4213,22 +4213,22 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 8192,
-                "Melee Damage": 2,
+                "Melee Damage": 4,
                 "SMG Damage": 4096,
-                "Melee Combo Damage": 128,
-                "Number Of Combo": 0,
+                "Melee Combo Damage": 6,
+                "Number Of Combo": 1,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.21666665375232697,
+                "Melee Cooldown Timer": 0.1666666716337204,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 0.4000000059604645,
-                "Combo Cooldown Timer": 0.4000000059604645,
+                "Combo Cooldown Timer": 0.34999996423721316,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -4241,7 +4241,7 @@
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
+                "Start Combo Cooldown Timer": true,
                 "Damage Enemy": false
             },
             "Player": {
@@ -4253,7 +4253,7 @@
                 "Fading Timer": 1.0
             },
             "Input": {
-                "Previous": 68,
+                "Previous": 1,
                 "Current": 0
             }
         },
@@ -4284,7 +4284,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
                 "Inherent Acceleration": 0.0,
@@ -4295,8 +4295,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 37.5,
-                    "y": 0.3699999749660492
+                    "x": 111.5,
+                    "y": 0.739924967288971
                 },
                 "Offset": {
                     "x": 0.0,
@@ -4315,7 +4315,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SERP_IDLE",
-                    "index": 23
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -4410,8 +4410,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 37.20000076293945,
-                    "y": 0.699999988079071,
+                    "x": 36.2791633605957,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -4439,8 +4439,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 36.2791633605957,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -4459,7 +4459,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -5752,8 +5752,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 30.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -6056,8 +6056,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 43.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -8317,8 +8317,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 63.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -8697,8 +8697,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 63.900001525878909,
+                    "y": 0.6000000238418579
                 },
                 "Offset": {
                     "x": 0.0,
@@ -9217,8 +9217,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 74.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -9597,8 +9597,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 103.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -13124,8 +13124,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 85.0999984741211,
+                    "y": 0.9000000357627869
                 },
                 "Offset": {
                     "x": 0.0,
@@ -14405,8 +14405,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 153.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -19392,7 +19392,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22056,8 +22056,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22132,7 +22132,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22206,8 +22206,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22281,8 +22281,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22357,7 +22357,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22432,7 +22432,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22506,8 +22506,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22581,8 +22581,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22657,7 +22657,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22732,7 +22732,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22806,8 +22806,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22881,8 +22881,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -22957,7 +22957,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23032,7 +23032,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23107,7 +23107,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23181,8 +23181,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23256,8 +23256,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23332,7 +23332,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23407,7 +23407,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23481,8 +23481,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23556,8 +23556,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23631,8 +23631,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23707,7 +23707,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23782,7 +23782,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23856,8 +23856,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -23931,8 +23931,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24007,7 +24007,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24082,7 +24082,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24156,8 +24156,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24231,8 +24231,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24307,7 +24307,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24382,7 +24382,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24456,8 +24456,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24531,8 +24531,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24606,8 +24606,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24682,7 +24682,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24757,7 +24757,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24832,7 +24832,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24904,7 +24904,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -24978,8 +24978,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25054,7 +25054,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25128,8 +25128,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25203,8 +25203,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25279,7 +25279,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25354,7 +25354,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25429,7 +25429,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25503,8 +25503,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25578,8 +25578,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25654,7 +25654,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25729,7 +25729,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25803,8 +25803,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25878,8 +25878,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -25954,7 +25954,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26029,7 +26029,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26103,8 +26103,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26178,8 +26178,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26254,7 +26254,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26329,7 +26329,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26404,7 +26404,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26478,8 +26478,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26551,7 +26551,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26626,7 +26626,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26701,7 +26701,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26776,7 +26776,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26850,8 +26850,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp1_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -26925,8 +26925,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp1_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27001,7 +27001,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27076,7 +27076,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27150,8 +27150,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp1_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27225,8 +27225,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp1_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27301,7 +27301,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27375,8 +27375,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp1_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27448,7 +27448,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27523,7 +27523,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27598,7 +27598,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27672,8 +27672,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27747,8 +27747,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27823,7 +27823,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27897,8 +27897,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -27973,7 +27973,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -28048,7 +28048,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -28122,8 +28122,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -28198,7 +28198,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -28273,7 +28273,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -31642,8 +31642,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 33.70000076293945,
+                    "y": 1.4500000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31701,8 +31701,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 33.70000076293945,
+                    "y": 3.1500000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31760,8 +31760,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 34.20000076293945,
+                    "y": 4.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31819,8 +31819,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 33.20000076293945,
+                    "y": 4.900000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31878,8 +31878,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 35.900001525878909,
+                    "y": 4.900000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31937,8 +31937,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 37.5,
+                    "y": 4.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31996,8 +31996,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 40.70000076293945,
+                    "y": 4.900000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32055,8 +32055,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 40.70000076293945,
+                    "y": 3.1500000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32114,8 +32114,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 45.79999923706055,
+                    "y": 4.650000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32173,8 +32173,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 46.29999923706055,
+                    "y": 2.25
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32232,8 +32232,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 49.04999923706055,
+                    "y": 4.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32291,8 +32291,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 51.20000076293945,
+                    "y": 3.1500000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32350,8 +32350,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 55.04999923706055,
+                    "y": 4.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32409,8 +32409,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 55.349998474121097,
+                    "y": 2.25
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32468,8 +32468,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 59.45000076293945,
+                    "y": 3.700000047683716
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32527,8 +32527,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 62.04999923706055,
+                    "y": 4.599999904632568
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32586,8 +32586,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 66.05000305175781,
+                    "y": 4.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32645,8 +32645,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 68.55000305175781,
+                    "y": 4.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32704,8 +32704,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 71.05000305175781,
+                    "y": 4.900000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32763,8 +32763,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 73.05000305175781,
+                    "y": 4.900000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32822,8 +32822,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 72.55000305175781,
+                    "y": 3.1500000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32881,8 +32881,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 76.75,
+                    "y": 3.799999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32940,8 +32940,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 75.25,
+                    "y": 5.650000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32999,8 +32999,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 77.25,
+                    "y": 5.650000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33058,8 +33058,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 79.55000305175781,
+                    "y": 5.650000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33117,8 +33117,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 79.55000305175781,
+                    "y": 3.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33176,8 +33176,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 80.55000305175781,
+                    "y": 4.699999809265137
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33235,8 +33235,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 82.75,
+                    "y": 3.9000000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33294,8 +33294,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 91.05000305175781,
+                    "y": 3.049999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33353,8 +33353,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 94.55000305175781,
+                    "y": 3.950000047683716
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33412,8 +33412,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 95.55000305175781,
+                    "y": 2.1500000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33471,8 +33471,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 98.55000305175781,
+                    "y": 3.049999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33530,8 +33530,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 101.55000305175781,
+                    "y": 5.75
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33589,8 +33589,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 105.0,
+                    "y": 4.760000228881836
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33648,8 +33648,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 108.25,
+                    "y": 3.950000047683716
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33707,8 +33707,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 106.0,
+                    "y": 3.049999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33766,8 +33766,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 104.0,
+                    "y": 2.2100000381469728
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33825,8 +33825,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 117.75,
+                    "y": 3.1500000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33884,8 +33884,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 120.05000305175781,
+                    "y": 3.9800000190734865
                 },
                 "Offset": {
                     "x": 0.0,
@@ -33943,8 +33943,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 120.0,
+                    "y": 2.200000047683716
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34002,8 +34002,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 123.3499984741211,
+                    "y": 3.9000000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34061,8 +34061,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 126.5999984741211,
+                    "y": 4.599999904632568
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34120,8 +34120,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 128.85000610351563,
+                    "y": 5.599999904632568
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34179,8 +34179,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 129.8000030517578,
+                    "y": 3.9200000762939455
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34238,8 +34238,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 130.89999389648438,
+                    "y": 4.75
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34297,8 +34297,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 130.89999389648438,
+                    "y": 2.1500000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34356,8 +34356,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 133.10000610351563,
+                    "y": 2.9000000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34415,8 +34415,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 143.5500030517578,
+                    "y": 4.849999904632568
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34474,8 +34474,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 143.5500030517578,
+                    "y": 3.0999999046325685
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34533,8 +34533,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 146.89999389648438,
+                    "y": 4.650000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34592,8 +34592,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 147.39999389648438,
+                    "y": 3.1500000953674318
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34651,8 +34651,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 146.89999389648438,
+                    "y": 1.399999976158142
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34710,8 +34710,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 149.1300048828125,
+                    "y": 2.3499999046325685
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34769,8 +34769,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 150.14999389648438,
+                    "y": 1.4199999570846558
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34828,8 +34828,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 155.4499969482422,
+                    "y": 3.950000047683716
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34887,8 +34887,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 157.6999969482422,
+                    "y": 4.800000190734863
                 },
                 "Offset": {
                     "x": 0.0,
@@ -34946,8 +34946,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 158.75,
+                    "y": 5.699999809265137
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35005,8 +35005,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 158.75,
+                    "y": 3.9700000286102297
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35064,8 +35064,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 158.75,
+                    "y": 2.200000047683716
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35123,8 +35123,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 159.75,
+                    "y": 3.0999999046325685
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35182,8 +35182,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 162.0,
+                    "y": 5.699999809265137
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35241,8 +35241,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 162.0,
+                    "y": 3.75
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35300,8 +35300,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 165.3000030517578,
+                    "y": 4.650000095367432
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35359,8 +35359,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 165.3000030517578,
+                    "y": 2.9200000762939455
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35418,8 +35418,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 167.50173950195313,
+                    "y": 3.8499999046325685
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35477,8 +35477,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 168.5500030517578,
+                    "y": 3.0199999809265138
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35536,8 +35536,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 39.79999923706055,
+                    "y": 1.4497084617614747
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35595,8 +35595,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 68.32534790039063,
+                    "y": 1.4500000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35654,8 +35654,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 79.25,
+                    "y": 1.4500000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35713,8 +35713,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 88.80000305175781,
+                    "y": 1.4500000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35772,8 +35772,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 154.89999389648438,
+                    "y": 1.4500000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35831,8 +35831,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 160.39999389648438,
+                    "y": 1.4500000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35890,8 +35890,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 164.3000030517578,
+                    "y": 1.4500000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -35949,8 +35949,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 169.25,
+                    "y": 1.4500000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -36145,8 +36145,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 23.700000762939454,
+                    "y": 2.450000047683716
                 },
                 "Offset": {
                     "x": 0.0,
@@ -36201,8 +36201,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 215.0,
+                    "y": 2.450000047683716
                 },
                 "Offset": {
                     "x": 0.0,
@@ -36246,7 +36246,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -36257,8 +36257,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 34.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -36271,7 +36271,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36390,7 +36390,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -36401,8 +36401,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 39.5,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -36415,7 +36415,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36534,7 +36534,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -36545,8 +36545,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 36.5,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -36559,7 +36559,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36678,7 +36678,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -36689,8 +36689,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 40.5,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -36703,7 +36703,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36822,7 +36822,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -36833,8 +36833,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 38.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -36847,7 +36847,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -36966,7 +36966,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -36977,8 +36977,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 37.25,
+                    "y": 1.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -36991,7 +36991,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37110,7 +37110,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -37121,8 +37121,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 37.5,
+                    "y": 4.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -37135,7 +37135,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37254,7 +37254,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -37265,8 +37265,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 45.5,
+                    "y": 5.199999809265137
                 },
                 "Offset": {
                     "x": 0.0,
@@ -37279,7 +37279,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37398,7 +37398,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -37409,8 +37409,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 49.0,
+                    "y": 4.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -37423,7 +37423,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37542,7 +37542,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -37553,8 +37553,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 52.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -37567,7 +37567,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37686,7 +37686,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -37697,8 +37697,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 51.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -37711,7 +37711,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37830,7 +37830,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -37841,8 +37841,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 53.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -37855,7 +37855,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -37974,7 +37974,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -37985,8 +37985,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 54.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -37999,7 +37999,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38118,7 +38118,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -38129,8 +38129,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 55.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -38143,7 +38143,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38262,7 +38262,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -38273,8 +38273,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 56.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -38287,7 +38287,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38406,7 +38406,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -38417,8 +38417,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 59.0,
+                    "y": 4.199999809265137
                 },
                 "Offset": {
                     "x": 0.0,
@@ -38431,7 +38431,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38550,7 +38550,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -38561,8 +38561,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 67.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -38575,7 +38575,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38694,7 +38694,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -38705,8 +38705,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 70.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -38719,7 +38719,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38838,7 +38838,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -38849,8 +38849,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 77.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -38863,7 +38863,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -38982,7 +38982,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -38993,8 +38993,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 78.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -39007,7 +39007,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39126,7 +39126,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -39137,8 +39137,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 79.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -39151,7 +39151,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39270,7 +39270,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -39281,8 +39281,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 73.0,
+                    "y": 3.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -39295,7 +39295,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39414,7 +39414,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -39425,8 +39425,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 69.0,
+                    "y": 4.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -39439,7 +39439,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39558,7 +39558,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -39569,8 +39569,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 73.0,
+                    "y": 3.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -39583,7 +39583,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39702,7 +39702,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -39713,8 +39713,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 82.5,
+                    "y": 4.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -39727,7 +39727,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39846,7 +39846,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -39857,8 +39857,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 88.5,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -39871,7 +39871,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -39990,7 +39990,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -40001,8 +40001,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 91.0,
+                    "y": 3.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -40015,7 +40015,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40134,7 +40134,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -40145,8 +40145,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 93.5,
+                    "y": 4.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -40159,7 +40159,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40278,7 +40278,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -40289,8 +40289,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 98.5,
+                    "y": 3.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -40303,7 +40303,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40422,7 +40422,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -40433,8 +40433,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 135.0,
+                    "y": 1.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -40447,7 +40447,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40566,7 +40566,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -40577,8 +40577,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 137.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -40591,7 +40591,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40710,7 +40710,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -40721,8 +40721,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 150.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -40735,7 +40735,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40854,7 +40854,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -40865,8 +40865,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 148.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -40879,7 +40879,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -40998,7 +40998,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -41009,8 +41009,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 149.0,
+                    "y": 1.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -41023,7 +41023,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41142,7 +41142,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -41153,8 +41153,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 146.5,
+                    "y": 3.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -41167,7 +41167,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41286,7 +41286,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -41297,8 +41297,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 160.0,
+                    "y": 3.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -41311,7 +41311,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41430,7 +41430,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -41441,8 +41441,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 154.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -41455,7 +41455,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41574,7 +41574,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -41585,8 +41585,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 156.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -41599,7 +41599,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41718,7 +41718,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -41729,8 +41729,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 160.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -41743,7 +41743,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -41862,7 +41862,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -41873,8 +41873,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 165.0,
+                    "y": 2.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -41887,7 +41887,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -42006,7 +42006,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -42017,8 +42017,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 165.0,
+                    "y": 5.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -42031,7 +42031,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -42150,7 +42150,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -42161,8 +42161,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 25.510000228881837,
-                    "y": 1.5800000429153443
+                    "x": 180.0,
+                    "y": 1.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -42175,7 +42175,7 @@
                 "Type": "box",
                 "Collision Layer": 1,
                 "Collision Layer ID": 4,
-                "Trigger": false,
+                "Trigger": true,
                 "Platform": false
             },
             "Image": {
@@ -42276,8 +42276,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 55.5,
-                    "y": 3.0,
+                    "x": 54.60137939453125,
+                    "y": 2.9991400241851808,
                     "z": 0.0
                 },
                 "Scale": {
@@ -42305,8 +42305,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 54.60137939453125,
+                    "y": 2.6991400718688967
                 },
                 "Offset": {
                     "x": 0.0,
@@ -42325,7 +42325,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -42420,8 +42420,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 68.5,
-                    "y": 2.200000047683716,
+                    "x": 67.6013412475586,
+                    "y": 2.1991400718688967,
                     "z": 0.0
                 },
                 "Scale": {
@@ -42449,8 +42449,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 67.6013412475586,
+                    "y": 1.8991401195526124
                 },
                 "Offset": {
                     "x": 0.0,
@@ -42469,7 +42469,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -42564,8 +42564,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 80.0,
-                    "y": 2.200000286102295,
+                    "x": 79.1013412475586,
+                    "y": 2.1991400718688967,
                     "z": 0.0
                 },
                 "Scale": {
@@ -42593,8 +42593,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 79.1013412475586,
+                    "y": 1.8991401195526124
                 },
                 "Offset": {
                     "x": 0.0,
@@ -42613,7 +42613,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -42708,8 +42708,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 78.0,
-                    "y": 2.200000286102295,
+                    "x": 77.1013412475586,
+                    "y": 2.1991400718688967,
                     "z": 0.0
                 },
                 "Scale": {
@@ -42737,8 +42737,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 77.1013412475586,
+                    "y": 1.8991401195526124
                 },
                 "Offset": {
                     "x": 0.0,
@@ -42757,7 +42757,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -42852,8 +42852,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 94.5,
-                    "y": 4.699999809265137,
+                    "x": 93.6013412475586,
+                    "y": 4.699140548706055,
                     "z": 0.0
                 },
                 "Scale": {
@@ -42881,8 +42881,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 93.6013412475586,
+                    "y": 4.399140357971191
                 },
                 "Offset": {
                     "x": 0.0,
@@ -42901,7 +42901,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -43025,8 +43025,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 119.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43125,8 +43125,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 131.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43225,8 +43225,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 143.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43325,8 +43325,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 175.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43425,8 +43425,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 0.0,
-                    "y": 0.0
+                    "x": 190.0,
+                    "y": 0.30000001192092898
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43493,8 +43493,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 94.5,
-                    "y": 0.699999988079071,
+                    "x": 93.6013412475586,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -43522,8 +43522,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 93.6013412475586,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43542,7 +43542,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -43637,8 +43637,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 99.0,
-                    "y": 0.699999988079071,
+                    "x": 98.1013412475586,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -43666,8 +43666,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 98.1013412475586,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43686,7 +43686,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -43781,8 +43781,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 97.0,
-                    "y": 0.699999988079071,
+                    "x": 96.1013412475586,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -43810,8 +43810,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 96.1013412475586,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43830,7 +43830,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -43925,8 +43925,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 158.0,
-                    "y": 0.699999988079071,
+                    "x": 157.98960876464845,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -43954,8 +43954,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 157.98960876464845,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43974,7 +43974,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -44069,8 +44069,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 165.0,
-                    "y": 0.699999988079071,
+                    "x": 164.98960876464845,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -44098,8 +44098,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 164.98960876464845,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -44118,7 +44118,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -44213,8 +44213,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 168.5,
-                    "y": 0.699999988079071,
+                    "x": 167.57180786132813,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -44242,8 +44242,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 167.57180786132813,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -44262,7 +44262,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -44357,8 +44357,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 180.0,
-                    "y": 0.699999988079071,
+                    "x": 179.07923889160157,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -44386,8 +44386,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 179.07923889160157,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -44406,7 +44406,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -44501,8 +44501,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 185.0,
-                    "y": 0.699999988079071,
+                    "x": 184.07923889160157,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -44530,8 +44530,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 184.07923889160157,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -44550,7 +44550,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -44645,8 +44645,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 182.5,
-                    "y": 0.699999988079071,
+                    "x": 181.57923889160157,
+                    "y": 0.6861398220062256,
                     "z": 0.0
                 },
                 "Scale": {
@@ -44674,8 +44674,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 27.319658279418947,
-                    "y": 0.21305325627326966
+                    "x": 181.57923889160157,
+                    "y": 0.38613981008529665
                 },
                 "Offset": {
                     "x": 0.0,
@@ -44694,7 +44694,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -44807,7 +44807,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
                 "Inherent Acceleration": 0.0,
@@ -44818,8 +44818,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 37.5,
-                    "y": 0.3699999749660492
+                    "x": 124.0,
+                    "y": 0.739924967288971
                 },
                 "Offset": {
                     "x": 0.0,
@@ -44838,7 +44838,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SERP_IDLE",
-                    "index": 23
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -44951,7 +44951,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
                 "Inherent Acceleration": 0.0,
@@ -44962,8 +44962,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 37.5,
-                    "y": 0.3699999749660492
+                    "x": 126.0,
+                    "y": 0.739924967288971
                 },
                 "Offset": {
                     "x": 0.0,
@@ -44982,7 +44982,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SERP_IDLE",
-                    "index": 23
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -45095,7 +45095,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
                 "Inherent Acceleration": 0.0,
@@ -45106,8 +45106,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 37.5,
-                    "y": 0.3699999749660492
+                    "x": 135.5,
+                    "y": 0.739924967288971
                 },
                 "Offset": {
                     "x": 0.0,
@@ -45126,7 +45126,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SERP_IDLE",
-                    "index": 23
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -45239,7 +45239,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
                 "Inherent Acceleration": 0.0,
@@ -45250,8 +45250,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 37.5,
-                    "y": 0.3699999749660492
+                    "x": 136.5,
+                    "y": 0.739924967288971
                 },
                 "Offset": {
                     "x": 0.0,
@@ -45270,7 +45270,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SERP_IDLE",
-                    "index": 23
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -45383,7 +45383,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 0.8500000238418579,
                 "Inherent Acceleration": 0.0,
@@ -45394,8 +45394,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 37.5,
-                    "y": 0.3699999749660492
+                    "x": 182.0,
+                    "y": 0.739924967288971
                 },
                 "Offset": {
                     "x": 0.0,
@@ -45414,7 +45414,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/SERP_IDLE",
-                    "index": 23
+                    "index": 13
                 },
                 "Size": {
                     "x": 1.0,
@@ -45498,6 +45498,65 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": ""
+            },
+            "Entity Type": {
+                "Category": "player punch"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 25.526662826538087,
+                    "y": 0.4361119270324707,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.30000001192092898,
+                    "y": 0.30000001192092898,
+                    "z": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 5.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.009999999776482582,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 25.526662826538087,
+                    "y": 0.4361119270324707
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 7,
+                "Collision Layer ID": 8,
+                "Trigger": true,
+                "Platform": false
+            },
+            "Lifespan": {
+                "Timer": 0.15000000596046449
             }
         }
     ]

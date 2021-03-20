@@ -34,8 +34,12 @@ namespace DeltaEngine
 
     StateList["lancer_spawn"] = new LancerSpawn(lancer_data.ChargeDetectionRange);
     StateList["idle_lancer"] = new IdleLancer(lancer_data.ChargeDetectionRange);
-    StateList["chase_enemy_lancer"] = new ChaseEnemyLancer();
-
+    StateList["chase_enemy_lancer"] = new ChaseEnemyLancer(lancer_data.ChargeDetectionRange);
+    StateList["hit_enemy_lancer"] = new GotHitEnemyLancer();
+    StateList["charging_enemy_lancer"] = new ChargingEnemyLancer();
+    StateList["attack_enemy_lancer"] = new AttackingEnemyLancer();
+    StateList["bounce_enemy_lancer"] = new BounceEnemyLancer();
+  	
     StateList["idle_fiddler"] = new IdleFiddler(fiddler_data.waypoint, fiddler_data.ChargeDetectionRange);
     StateList["chase_enemy_fiddler"] = new ChaseEnemyFiddler(fiddler_data.LostDetectionRange);
 
