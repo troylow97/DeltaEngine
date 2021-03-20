@@ -44,8 +44,8 @@ struct Toggle
 
 struct Slider
 {
-  unsigned fill_entity;
-  unsigned handle_entity;
+  unsigned fill_entity {u32_max};
+  unsigned handle_entity { u32_max };
   float min { 0 };
   float max { 0 };
   float value { 0 };

@@ -44,16 +44,16 @@ void GameStateLoad( GameState state )
     {
       current = GameState::TUTORIAL;
       world.Load( "World/gam250tutorial.json" );
+      world.Load( "World/GameMenuScreen.json" );
       break;
     }
     case GameState::LEVEL_1 :
     {
       current = GameState::LEVEL_1;
       world.Load( "World/gam250beta_t.json" );
+      world.Load( "World/GameMenuScreen.json" );
       RespawnSystem::CreateCheckpoints(1);
       EnemySpawner::ActivateGauntlet = true;
-
-
       break;
     }
   }
