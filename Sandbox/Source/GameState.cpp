@@ -38,6 +38,7 @@ void GameStateLoad( GameState state )
     {
       current = GameState::MAIN_MENU;
       world.Load( "World/MainMenuScreen.json" );
+      EnemySpawner::ActivateGauntlet = false;
       break;
     }
     case GameState::TUTORIAL :
@@ -45,6 +46,7 @@ void GameStateLoad( GameState state )
       current = GameState::TUTORIAL;
       world.Load( "World/gam250tutorial.json" );
       world.Load( "World/GameMenuScreen.json" );
+      EnemySpawner::ActivateGauntlet = false;
       break;
     }
     case GameState::LEVEL_1 :
