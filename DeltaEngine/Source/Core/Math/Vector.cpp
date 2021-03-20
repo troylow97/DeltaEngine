@@ -110,6 +110,11 @@ namespace DeltaEngine
     return *this;
   }
 
+  float Vector2::Distance(Vector2 a, Vector2 b)
+  {
+    return (b - a).Magnitude();
+  }
+
   Vector2 Vector2::Lerp(Vector2 a, Vector2 b, float t)
   {
     return a + (b - a) * t;
@@ -334,6 +339,11 @@ namespace DeltaEngine
   float Vector3::Magnitude() const
   {
     return sqrtf(SqrMagnitude());
+  }
+
+  Vector3 Vector3::MoveTowards(Vector3 a, Vector3 b, float t)
+  {
+    return a + (b - a).normalized() * t;
   }
 
   Vector3 Vector3::Lerp(Vector3 a, Vector3 b, float t)

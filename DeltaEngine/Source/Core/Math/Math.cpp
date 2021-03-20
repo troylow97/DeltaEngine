@@ -42,6 +42,11 @@ namespace DeltaEngine::Math
     return value;
   }
 
+  float MoveTowards(float a, float b, float t)
+  {
+    return a < b ? a + t : a - t;
+  }
+
   float Lerp(float a, float b, float t)
   {
     return a + (b - a) * t;

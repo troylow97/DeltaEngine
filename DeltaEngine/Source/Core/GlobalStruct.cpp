@@ -21,9 +21,19 @@ namespace DeltaEngine
     return env;
   }
 
+  float DeltaTimef()
+  {
+    return static_cast<float>(env.pClock->DeltaTime());
+  }
+
   double DeltaTime()
   {
     return env.pClock->DeltaTime();
+  }
+
+  float FixedDeltaTimef()
+  {
+    return static_cast<float>(env.pClock->FixedDeltaTime());
   }
 
   double FixedDeltaTime()
