@@ -41,7 +41,9 @@ namespace DeltaEngine
   extern DeltaEngineGlobalEnvironment env;
 
   DeltaEngineGlobalEnvironment& GetEnv();
+  float DeltaTimef();
   double DeltaTime();
+  float FixedDeltaTimef();
   double FixedDeltaTime();
   double FixedUnscaledDeltaTime();
 }

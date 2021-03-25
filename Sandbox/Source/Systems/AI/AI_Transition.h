@@ -13,6 +13,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/GlobalStruct.h"
 #include "ECS/Entities.h"
 #include "AITools.h"
+#include "../UnitManager.h"
 
 namespace DeltaEngine
 {
@@ -52,6 +53,52 @@ namespace DeltaEngine
     {
       return "chase_enemy_lancer";
     }
+  };
+
+  class DamagedEnemyLancer : public Transition
+  {
+
+  public:
+
+      bool TestEdge(EntityID& monster) override
+      {
+          auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+          auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
+          if (health.isDamagedTimer > 0.0f)
+              ref.transition = getTargetState();
+          if (ref.transition == getTargetState()) { return true; }
+          return false;
+      }
+
+      std::string getTargetState() override
+      {
+          return "hit_enemy_lancer";
+      }
+  };
+
+  class AttackEnemyLancer : public Transition
+  {
+
+  public:
+      bool TestEdge(EntityID& monster) override
+      {
+          auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+          auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
+          auto player = UnitManager::GetPlayerID();
+      	
+          if (
+              AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.5f &&
+              AITools::Distance_Y_BetweenTwoEntities(monster, player) < 0.5f &&
+              env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeCooldownTimer <= 0)
+              ref.transition = getTargetState();
+          if (ref.transition == getTargetState()) { return true; }
+          return false;
+      }
+
+      std::string getTargetState() override
+      {
+          return "chase_enemy_lancer";
+      }
   };
 
   class DetectEnemyFiddler : public Transition

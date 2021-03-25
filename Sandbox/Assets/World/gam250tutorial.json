@@ -16703,7 +16703,7 @@
                 "Position": {
                     "x": 244.1699981689453,
                     "y": 0.0,
-                    "z": -2.2200000286102297
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -16781,7 +16781,7 @@
                 "Position": {
                     "x": 250.50999450683595,
                     "y": 0.0,
-                    "z": -2.2200000286102297
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -17405,7 +17405,7 @@
                 "Position": {
                     "x": 256.7900085449219,
                     "y": 0.0,
-                    "z": -2.2200000286102297
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -18653,7 +18653,7 @@
                 "Position": {
                     "x": 303.7099914550781,
                     "y": 0.0,
-                    "z": -2.2200000286102297
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -18731,7 +18731,7 @@
                 "Position": {
                     "x": 297.30999755859377,
                     "y": 0.0,
-                    "z": -2.2200000286102297
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -20992,7 +20992,7 @@
             "Transform": {
                 "Position": {
                     "x": 161.92999267578126,
-                    "y": -0.10999999940395355,
+                    "y": -0.6899999976158142,
                     "z": 0.0
                 },
                 "Scale": {
@@ -21021,7 +21021,7 @@
             "Collider": {
                 "Center": {
                     "x": 161.92999267578126,
-                    "y": -0.10999999940395355
+                    "y": -0.6899999976158142
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21029,7 +21029,7 @@
                 },
                 "Size": {
                     "x": 300.0,
-                    "y": 0.10000000149011612
+                    "y": 1.0
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -21356,7 +21356,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 92.65699768066406,
+                    "x": 94.99700164794922,
                     "y": 0.43946099281311037
                 },
                 "Offset": {
@@ -21412,8 +21412,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 97.88099670410156,
-                    "y": 1.6621792316436768
+                    "x": 97.85099792480469,
+                    "y": 1.7419999837875367
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21468,7 +21468,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 96.1393051147461,
+                    "x": 96.7490005493164,
                     "y": 1.055711030960083
                 },
                 "Offset": {
@@ -25324,7 +25324,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -25335,8 +25335,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 34.484798431396487,
-                    "y": 1.0906245708465577
+                    "x": 34.400001525878909,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25355,7 +25355,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -25450,8 +25450,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 246.5,
-                    "y": 0.8500000238418579,
+                    "x": 245.92019653320313,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25468,7 +25468,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -25479,8 +25479,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 246.9683074951172,
-                    "y": 0.6218982934951782
+                    "x": 245.92019653320313,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25499,7 +25499,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -25594,8 +25594,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 18.49704360961914,
-                    "y": 0.4170401096343994,
+                    "x": 18.213520050048829,
+                    "y": 0.2592238485813141,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25612,19 +25612,19 @@
             },
             "Rigidbody": {
                 "Mass": 50.0,
-                "Move Speed": 85.0,
+                "Move Speed": 60.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 3.5,
+                "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 20.0,
-                "Acceleration Pickup": 2.0,
+                "Max Acceleration": 10.0,
+                "Acceleration Pickup": 1.0,
                 "Gravity": true,
                 "Moveable": true
             },
             "Collider": {
                 "Center": {
-                    "x": 21.091405868530275,
-                    "y": 0.6143991947174072
+                    "x": 18.213520050048829,
+                    "y": 0.2592238485813141
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25642,8 +25642,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_IDLE",
-                    "index": 0
+                    "key": "Textures/DAVE_PUNCH",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -25696,16 +25696,16 @@
                 "Range Damage": 512,
                 "Melee Damage": 8,
                 "SMG Damage": 256,
-                "Melee Combo Damage": 8,
-                "Number Of Combo": 0,
+                "Melee Combo Damage": 12,
+                "Number Of Combo": 2,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.11666667461395264,
+                "Melee Cooldown Timer": 0.15000000596046449,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 0.4000000059604645,
-                "Combo Cooldown Timer": 0.4000000059604645,
+                "Combo Cooldown Timer": 0.333333283662796,
                 "Knockback Amount": 0.0,
                 "Knockback Combo Amount": 0.0,
                 "SMG Fire Rate": 0.18000000715255738,
@@ -25718,7 +25718,7 @@
                 "Allow SMG Attack": true,
                 "Blocking": false,
                 "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
+                "Start Combo Cooldown Timer": true,
                 "Damage Enemy": false
             },
             "Player": {
@@ -25730,7 +25730,7 @@
                 "Fading Timer": 1.0
             },
             "Input": {
-                "Previous": 87,
+                "Previous": 1,
                 "Current": 0
             }
         },
@@ -25761,7 +25761,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -25772,8 +25772,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 53.4604606628418,
-                    "y": 1.155548095703125
+                    "x": 52.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25792,7 +25792,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -25905,7 +25905,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -25916,8 +25916,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 92.87791442871094,
-                    "y": 1.8162250518798829
+                    "x": 93.0,
+                    "y": 1.2000000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -25936,7 +25936,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -26049,7 +26049,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26060,8 +26060,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 66.50931549072266,
-                    "y": 1.1276063919067383
+                    "x": 65.69999694824219,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -26080,7 +26080,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -26193,7 +26193,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26204,8 +26204,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 78.49638366699219,
-                    "y": 2.1893982887268068
+                    "x": 78.0,
+                    "y": 1.75
                 },
                 "Offset": {
                     "x": 0.0,
@@ -26224,7 +26224,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -26337,7 +26337,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26348,8 +26348,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 91.87321472167969,
-                    "y": 1.8162250518798829
+                    "x": 92.0,
+                    "y": 1.2000000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -26368,7 +26368,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -26481,7 +26481,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26492,8 +26492,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 158.2938690185547,
-                    "y": 6.709517478942871
+                    "x": 158.3000030517578,
+                    "y": 6.699999809265137
                 },
                 "Offset": {
                     "x": 0.0,
@@ -26512,7 +26512,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -26625,7 +26625,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26636,8 +26636,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 105.65193176269531,
-                    "y": 2.3903379440307619
+                    "x": 105.5,
+                    "y": 1.899999976158142
                 },
                 "Offset": {
                     "x": 0.0,
@@ -26656,7 +26656,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -26769,7 +26769,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26780,8 +26780,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 122.45515441894531,
-                    "y": 1.9069318771362305
+                    "x": 122.5,
+                    "y": 1.899999976158142
                 },
                 "Offset": {
                     "x": 0.0,
@@ -26800,7 +26800,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -26913,7 +26913,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -26924,8 +26924,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 140.4718780517578,
-                    "y": 1.098583698272705
+                    "x": 140.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -26944,7 +26944,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -27057,7 +27057,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27068,8 +27068,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 139.53887939453126,
-                    "y": 1.112867832183838
+                    "x": 140.6999969482422,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27088,7 +27088,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -27201,7 +27201,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27212,8 +27212,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 138.66900634765626,
-                    "y": 1.112867832183838
+                    "x": 139.3000030517578,
+                    "y": 0.500175952911377
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27232,7 +27232,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -27345,7 +27345,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27356,8 +27356,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 149.7525634765625,
-                    "y": 1.8993253707885743
+                    "x": 149.6999969482422,
+                    "y": 1.899999976158142
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27376,7 +27376,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -27489,7 +27489,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27500,8 +27500,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 159.3363800048828,
-                    "y": 1.862745761871338
+                    "x": 159.5,
+                    "y": 1.899999976158142
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27520,7 +27520,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -27633,7 +27633,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27644,8 +27644,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 198.01158142089845,
-                    "y": 3.8058390617370607
+                    "x": 198.0,
+                    "y": 3.799999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27664,7 +27664,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -27777,7 +27777,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27788,8 +27788,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 159.4095458984375,
-                    "y": 3.6185574531555177
+                    "x": 159.5,
+                    "y": 3.5999999046325685
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27808,7 +27808,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -27921,7 +27921,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -27932,8 +27932,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 174.4436798095703,
-                    "y": 2.2834091186523439
+                    "x": 174.5,
+                    "y": 2.299999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27952,7 +27952,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -28065,7 +28065,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28076,8 +28076,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 209.11875915527345,
-                    "y": 1.7039566040039063
+                    "x": 208.39999389648438,
+                    "y": 1.100000023841858
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28096,7 +28096,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -28209,7 +28209,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28220,8 +28220,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 196.16038513183595,
-                    "y": 0.4891071319580078
+                    "x": 196.39999389648438,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28240,7 +28240,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -28335,8 +28335,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 183.0,
-                    "y": 4.550000190734863,
+                    "x": 182.42019653320313,
+                    "y": 4.508065700531006,
                     "z": 0.0
                 },
                 "Scale": {
@@ -28353,7 +28353,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -28364,8 +28364,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 172.0718994140625,
-                    "y": 2.4444503784179689
+                    "x": 182.42019653320313,
+                    "y": 4.108065605163574
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28384,7 +28384,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -28497,7 +28497,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28508,8 +28508,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 199.95919799804688,
-                    "y": 0.5276732444763184
+                    "x": 200.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28528,7 +28528,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -28623,8 +28623,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 201.10000610351563,
-                    "y": 0.8500000238418579,
+                    "x": 200.52020263671876,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -28641,7 +28641,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -28652,8 +28652,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 196.31161499023438,
-                    "y": 0.6218870878219605
+                    "x": 200.52020263671876,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28672,7 +28672,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -28785,7 +28785,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28796,8 +28796,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 203.41091918945313,
-                    "y": 0.5276732444763184
+                    "x": 202.1999969482422,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28816,7 +28816,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -28929,7 +28929,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -28940,8 +28940,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 208.11605834960938,
-                    "y": 0.6819396018981934
+                    "x": 208.39999389648438,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28960,7 +28960,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -29073,7 +29073,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29084,8 +29084,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 213.39967346191407,
-                    "y": 0.6240901947021484
+                    "x": 213.5,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -29104,7 +29104,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -29217,7 +29217,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29228,8 +29228,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 209.0994873046875,
-                    "y": 0.6626567840576172
+                    "x": 209.0,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -29248,7 +29248,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -29361,7 +29361,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29372,8 +29372,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 210.1022186279297,
-                    "y": 0.6433734893798828
+                    "x": 207.8000030517578,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -29392,7 +29392,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -29505,7 +29505,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29516,8 +29516,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 258.34100341796877,
-                    "y": 3.699432849884033
+                    "x": 258.3999938964844,
+                    "y": 3.700000047683716
                 },
                 "Offset": {
                     "x": 0.0,
@@ -29536,7 +29536,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -29649,7 +29649,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29660,8 +29660,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 216.48500061035157,
-                    "y": 2.9573721885681154
+                    "x": 216.5,
+                    "y": 3.0
                 },
                 "Offset": {
                     "x": 0.0,
@@ -29680,7 +29680,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -29775,8 +29775,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 226.0,
-                    "y": 0.800000011920929,
+                    "x": 225.42019653320313,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -29793,7 +29793,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -29804,8 +29804,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 222.23211669921876,
-                    "y": 0.6218982934951782
+                    "x": 225.42019653320313,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -29824,7 +29824,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -29937,7 +29937,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -29948,8 +29948,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 245.41921997070313,
-                    "y": 0.4708380699157715
+                    "x": 245.39999389648438,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -29968,7 +29968,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -30081,7 +30081,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30092,8 +30092,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 248.90037536621095,
-                    "y": 0.4708380699157715
+                    "x": 247.60000610351563,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30112,7 +30112,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -30207,8 +30207,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 253.5,
-                    "y": 0.800000011920929,
+                    "x": 252.92019653320313,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30225,7 +30225,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -30236,8 +30236,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 242.23887634277345,
-                    "y": 0.6218982934951782
+                    "x": 252.92019653320313,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30256,7 +30256,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -30351,8 +30351,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 255.10000610351563,
-                    "y": 0.800000011920929,
+                    "x": 254.52142333984376,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30369,7 +30369,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -30380,8 +30380,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 244.60887145996095,
-                    "y": 0.6218999624252319
+                    "x": 254.52142333984376,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30400,7 +30400,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -30513,7 +30513,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30524,8 +30524,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 253.232421875,
-                    "y": 0.5117058753967285
+                    "x": 252.39999389648438,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30544,7 +30544,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -30657,7 +30657,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30668,8 +30668,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 256.5836486816406,
-                    "y": 1.9216618537902833
+                    "x": 255.0,
+                    "y": 1.2999999523162842
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30688,7 +30688,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -30801,7 +30801,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30812,8 +30812,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 259.0561828613281,
-                    "y": 0.4708375930786133
+                    "x": 256.20001220703127,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30832,7 +30832,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -30945,7 +30945,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -30956,8 +30956,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 276.3434753417969,
-                    "y": 0.4504055976867676
+                    "x": 277.29998779296877,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30976,7 +30976,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -31071,8 +31071,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 263.79998779296877,
-                    "y": 0.800000011920929,
+                    "x": 263.22027587890627,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31089,7 +31089,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -31100,8 +31100,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 264.8389587402344,
-                    "y": 0.6218931674957275
+                    "x": 263.22027587890627,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31120,7 +31120,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -31215,8 +31215,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 278.3999938964844,
-                    "y": 0.800000011920929,
+                    "x": 277.8202819824219,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31233,7 +31233,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -31244,8 +31244,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 267.1984558105469,
-                    "y": 0.6218937635421753
+                    "x": 277.8202819824219,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31264,7 +31264,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -31359,8 +31359,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 265.3999938964844,
-                    "y": 0.800000011920929,
+                    "x": 264.8202819824219,
+                    "y": -1111.703369140625,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31377,7 +31377,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -31388,8 +31388,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 262.4689636230469,
-                    "y": 0.621889591217041
+                    "x": 264.8202819824219,
+                    "y": -1112.1033935546876
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31408,7 +31408,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -31521,7 +31521,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -31532,8 +31532,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 260.42529296875,
-                    "y": 6.315003395080566
+                    "x": 260.0,
+                    "y": 6.300000190734863
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31552,7 +31552,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -31665,7 +31665,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -31676,8 +31676,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 276.3639221191406,
-                    "y": 1.4312434196472169
+                    "x": 278.0,
+                    "y": 1.2000000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31696,7 +31696,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -31809,7 +31809,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -31820,8 +31820,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 283.2502136230469,
-                    "y": 3.5972628593444826
+                    "x": 283.20001220703127,
+                    "y": 3.5999999046325685
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31840,7 +31840,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -31935,8 +31935,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 269.0,
-                    "y": 4.0,
+                    "x": 268.4202880859375,
+                    "y": 3.995681047439575,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31953,7 +31953,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 8.0,
+                "Move Speed": 10.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 1.0,
                 "Inherent Acceleration": 0.0,
@@ -31964,8 +31964,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 255.69192504882813,
-                    "y": 3.8274588584899904
+                    "x": 268.4202880859375,
+                    "y": 3.5956809520721437
                 },
                 "Offset": {
                     "x": 0.0,
@@ -31984,7 +31984,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 9
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -32097,7 +32097,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -32108,8 +32108,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 277.97821044921877,
-                    "y": 2.8820676803588869
+                    "x": 278.0,
+                    "y": 2.799999952316284
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32128,7 +32128,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -32241,7 +32241,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -32252,8 +32252,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 279.7559814453125,
-                    "y": 0.45040464401245119
+                    "x": 279.5,
+                    "y": 0.5
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32272,7 +32272,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -32385,7 +32385,7 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 32.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 4.0,
                 "Inherent Acceleration": 0.0,
@@ -32396,8 +32396,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 279.7559814453125,
-                    "y": 1.4312434196472169
+                    "x": 278.79998779296877,
+                    "y": 1.2000000476837159
                 },
                 "Offset": {
                     "x": 0.0,
@@ -32416,7 +32416,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 1
+                    "index": 0
                 },
                 "Size": {
                     "x": 1.0,
@@ -32511,9 +32511,9 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 18.489999771118165,
-                    "y": 0.4169999957084656,
-                    "z": 10.0
+                    "x": 18.213533401489259,
+                    "y": 2.2592222690582277,
+                    "z": 5.0018768310546879
                 },
                 "Scale": {
                     "x": 1.0,
@@ -37410,8 +37410,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 287.1579895019531,
-                    "y": 0.45557522773742678
+                    "x": 292.14471435546877,
+                    "y": 3.7190001010894777
                 },
                 "Offset": {
                     "x": 0.0,
@@ -43052,7 +43052,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43119,7 +43119,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43186,7 +43186,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43253,7 +43253,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43320,7 +43320,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43387,7 +43387,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43454,7 +43454,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43521,7 +43521,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43588,7 +43588,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43655,7 +43655,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43722,7 +43722,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43789,7 +43789,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43856,7 +43856,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43923,7 +43923,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -43990,7 +43990,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44057,7 +44057,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44124,7 +44124,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44191,7 +44191,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44258,7 +44258,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44325,7 +44325,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44392,7 +44392,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44459,7 +44459,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44526,7 +44526,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44593,7 +44593,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44660,7 +44660,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44727,7 +44727,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44794,7 +44794,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44861,7 +44861,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44928,7 +44928,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -44995,7 +44995,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 15,
+                "Layer": 2,
                 "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
@@ -49379,7 +49379,7 @@
                 "Position": {
                     "x": 290.92999267578127,
                     "y": 0.0,
-                    "z": -2.2200000286102297
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -49474,7 +49474,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49546,7 +49546,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49618,7 +49618,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49689,8 +49689,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49761,8 +49761,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49834,79 +49834,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 76.82391357421875,
-                    "y": 3.6026859283447267,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -49977,8 +49905,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50018,222 +49946,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 80.01266479492188,
-                    "y": 2.968148708343506,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 89.49515533447266,
-                    "y": 2.812095880508423,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 91.48712158203125,
-                    "y": 4.565393924713135,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
                 "Speed": 1.0
             },
             "State": {}
@@ -50266,7 +49978,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50306,150 +50018,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 115.30809783935547,
-                    "y": 4.463271141052246,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 113.3218765258789,
-                    "y": 3.602686643600464,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
                 "Speed": 1.0
             },
             "State": {}
@@ -50481,8 +50049,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50553,8 +50121,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50625,8 +50193,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50666,150 +50234,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 151.5077667236328,
-                    "y": 3.7862775325775148,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 149.48367309570313,
-                    "y": 5.54531192779541,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
                 "Speed": 1.0
             },
             "State": {}
@@ -50842,7 +50266,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -50882,150 +50306,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 161.33103942871095,
-                    "y": 3.738084554672241,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 160.3350372314453,
-                    "y": 5.48105525970459,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
                 "Speed": 1.0
             },
             "State": {}
@@ -51058,7 +50338,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51111,78 +50391,6 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 167.7842559814453,
-                    "y": 2.793736219406128,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
                     "x": 170.08831787109376,
                     "y": 4.657188892364502,
                     "z": 0.0
@@ -51201,8 +50409,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51273,8 +50481,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51314,294 +50522,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 172.36485290527345,
-                    "y": 2.9130699634552,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 174.4027099609375,
-                    "y": 5.529247283935547,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 177.65228271484376,
-                    "y": 2.041010856628418,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 183.2059326171875,
-                    "y": 2.90389084815979,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
                 "Speed": 1.0
             },
             "State": {}
@@ -51633,8 +50553,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51706,7 +50626,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -51746,150 +50666,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 198.96726989746095,
-                    "y": 5.538427352905273,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 199.98619079589845,
-                    "y": 3.794309139251709,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
                 "Speed": 1.0
             },
             "State": {}
@@ -51921,80 +50697,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 249.38414001464845,
-                    "y": 2.911923408508301,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52066,79 +50770,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 255.9383544921875,
-                    "y": 4.606701374053955,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52210,7 +50842,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52281,8 +50913,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
+                    "key": "Textures/ANIM_DoubleWindow_2",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52322,294 +50954,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 270.0106506347656,
-                    "y": 4.65489387512207,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 272.2355651855469,
-                    "y": 2.020357847213745,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 277.7937927246094,
-                    "y": 4.62276554107666,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "DoubleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 279.7857666015625,
-                    "y": 2.8637306690216066,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/DoubleWindow",
                 "Speed": 1.0
             },
             "State": {}
@@ -52824,78 +51168,6 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 282.02178955078127,
-                    "y": 1.8944344520568848,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
                     "x": 86.15933227539063,
                     "y": 2.870907783508301,
                     "z": 0.0
@@ -52914,8 +51186,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -52955,78 +51227,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/SingleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 88.1524429321289,
-                    "y": 1.9931120872497559,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow",
                 "Speed": 1.0
             },
             "State": {}
@@ -53059,7 +51259,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53130,80 +51330,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 130.85287475585938,
-                    "y": 5.456103324890137,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53275,7 +51403,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53347,79 +51475,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 154.77481079101563,
-                    "y": 2.839928388595581,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53490,80 +51546,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 163.59634399414063,
-                    "y": 3.6477303504943849,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53635,79 +51619,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 194.6691436767578,
-                    "y": 2.0413057804107668,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53778,80 +51690,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 201.21417236328126,
-                    "y": 2.0045876502990724,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53923,7 +51763,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -53963,222 +51803,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/SingleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 206.5199432373047,
-                    "y": 2.9133636951446535,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 208.80564880371095,
-                    "y": 5.355128288269043,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 208.7964630126953,
-                    "y": 2.7573113441467287,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow2",
                 "Speed": 1.0
             },
             "State": {}
@@ -54210,8 +51834,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -54282,8 +51906,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -54355,7 +51979,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -54427,7 +52051,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -54467,150 +52091,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/SingleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 259.1738586425781,
-                    "y": 1.8944339752197266,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 258.191650390625,
-                    "y": 4.501430511474609,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow2",
                 "Speed": 1.0
             },
             "State": {}
@@ -54642,8 +52122,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "key": "Textures/ANIM_SingleWindow_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -54683,78 +52163,6 @@
             },
             "Animator": {
                 "Controller Key": "Animation/SingleWindow2",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 274.50372314453127,
-                    "y": 2.83074951171875,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow",
                 "Speed": 1.0
             },
             "State": {}
@@ -54787,79 +52195,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 1,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/SingleWindow",
-                "Speed": 1.0
-            },
-            "State": {}
-        },
-        {
-            "Entity Name": {
-                "Name": "SingleWindows"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 281.0212097167969,
-                    "y": 4.519790172576904,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -54930,8 +52266,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp1_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -55003,7 +52339,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -55075,7 +52411,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -55146,8 +52482,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp1_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -55218,8 +52554,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp1_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -55291,7 +52627,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -55363,7 +52699,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -55435,7 +52771,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "index": 2
                 },
                 "Size": {
                     "x": 1.0,
@@ -55507,7 +52843,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -55579,7 +52915,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -55650,8 +52986,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -55722,8 +53058,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -55795,7 +53131,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -55867,7 +53203,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -55939,7 +53275,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56010,8 +53346,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56082,8 +53418,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56154,8 +53490,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56227,7 +53563,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56299,7 +53635,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56370,8 +53706,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56442,8 +53778,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp2_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56515,7 +53851,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 0
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56586,8 +53922,8 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/ANIM_Lamp1_01",
-                    "index": 0
+                    "key": "Textures/ANIM_Lamp1_02",
+                    "index": 6
                 },
                 "Size": {
                     "x": 1.0,
@@ -56630,6 +53966,531 @@
                 "Speed": 1.0
             },
             "State": {}
+        },
+        {
+            "Entity Name": {
+                "Name": "GUI Overlay"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Canvas",
+                "Screen": 0
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 712
+            },
+            "Entity Name": {
+                "Name": "Health Base"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 0
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SPRITES_GUI_",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 592.0,
+                    "y": 213.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 712
+            },
+            "Entity Name": {
+                "Name": "Dodge Cooldown"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 0
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SPRITES_GUI_",
+                    "index": 3
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "horizontal_right_to_left",
+                "Fill Amount": 0.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 50.0,
+                    "y": 50.0
+                },
+                "Width/Height": {
+                    "x": 227.0,
+                    "y": 227.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 1.0,
+                "Preserve Aspect": false,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 712
+            },
+            "Entity Name": {
+                "Name": "Health"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 0
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SPRITES_GUI_",
+                    "index": 4
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "horizontal_left_to_right",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 75.0,
+                    "y": -60.0
+                },
+                "Width/Height": {
+                    "x": 448.0,
+                    "y": 27.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 1.0,
+                "Preserve Aspect": false,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 712
+            },
+            "Entity Name": {
+                "Name": "Dodge Base Text"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 0
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SPRITES_GUI_",
+                    "index": 6
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 100.0,
+                    "y": 300.0
+                },
+                "Width/Height": {
+                    "x": 125.0,
+                    "y": 55.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 712
+            },
+            "Entity Name": {
+                "Name": "Dodge Base"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 0
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SPRITES_GUI_",
+                    "index": 5
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "horizontal_left_to_right",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 50.0,
+                    "y": 50.0
+                },
+                "Width/Height": {
+                    "x": 227.0,
+                    "y": 227.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            }
         },
         {
             "Entity Name": {
@@ -56729,7 +54590,7 @@
         },
         {
             "Parent": {
-                "ID": 749
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Pause Menu Text"
@@ -56828,7 +54689,7 @@
         },
         {
             "Parent": {
-                "ID": 749
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Resume Button"
@@ -56937,7 +54798,7 @@
         },
         {
             "Parent": {
-                "ID": 749
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Restart Button"
@@ -57046,7 +54907,7 @@
         },
         {
             "Parent": {
-                "ID": 749
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Control Button"
@@ -57155,7 +55016,7 @@
         },
         {
             "Parent": {
-                "ID": 749
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Options Button"
@@ -57264,7 +55125,7 @@
         },
         {
             "Parent": {
-                "ID": 749
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Credits Button"
@@ -57373,7 +55234,7 @@
         },
         {
             "Parent": {
-                "ID": 749
+                "ID": 718
             },
             "Entity Name": {
                 "Name": "Quit Game Button"
@@ -57512,7 +55373,7 @@
         },
         {
             "Parent": {
-                "ID": 757
+                "ID": 726
             },
             "Entity Name": {
                 "Name": "Control Page"
@@ -57647,7 +55508,7 @@
         },
         {
             "Parent": {
-                "ID": 759
+                "ID": 728
             },
             "Entity Name": {
                 "Name": "Option Button"
@@ -57782,7 +55643,7 @@
         },
         {
             "Parent": {
-                "ID": 761
+                "ID": 730
             },
             "Entity Name": {
                 "Name": "Credits Page"
@@ -57983,7 +55844,7 @@
         },
         {
             "Parent": {
-                "ID": 763
+                "ID": 732
             },
             "Entity Name": {
                 "Name": "Quit Game Text"
@@ -58082,7 +55943,7 @@
         },
         {
             "Parent": {
-                "ID": 763
+                "ID": 732
             },
             "Entity Name": {
                 "Name": "Quit Game Yes"
@@ -58096,7 +55957,7 @@
             },
             "Button": {
                 "On Hover": "ButtonHover",
-                "On Click": "QuitInGame",
+                "On Click": "ConfirmQuitInGame",
                 "On Exit": ""
             },
             "Transform": {
@@ -58191,7 +56052,7 @@
         },
         {
             "Parent": {
-                "ID": 763
+                "ID": 732
             },
             "Entity Name": {
                 "Name": "Quit Game No"
@@ -58300,14 +56161,18 @@
         },
         {
             "Entity Name": {
-                "Name": "GUI Overlay"
+                "Name": "BGM Audio"
             },
             "Entity Type": {
                 "Category": "none"
             },
-            "GUI": {
-                "Type": "Canvas",
-                "Screen": 0
+            "Audio Source": {
+                "Audio File": "event:/BGM/Stage 1 BGM",
+                "Volume": 0.30000001192092898,
+                "Pitch": 1.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": true
             },
             "Transform": {
                 "Position": {
@@ -58329,29 +56194,22 @@
             }
         },
         {
-            "Parent": {
-                "ID": 767
-            },
             "Entity Name": {
-                "Name": "Health Base"
+                "Name": ""
             },
             "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Image",
-                "Screen": 0
+                "Category": "player punch"
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
+                    "x": 17.657962799072267,
+                    "y": 0.2592238485813141,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
+                    "x": 0.30000001192092898,
+                    "y": 0.30000001192092898,
+                    "z": 0.0
                 },
                 "Rotation": {
                     "x": 0.0,
@@ -58360,467 +56218,38 @@
                     "w": 1.0
                 }
             },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_GUI_",
-                    "index": 0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
+            "Rigidbody": {
+                "Mass": 5.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.0,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 17.657962799072267,
+                    "y": 0.2592238485813141
                 },
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Width/Height": {
-                    "x": 592.0,
-                    "y": 213.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 767
-            },
-            "Entity Name": {
-                "Name": "Dodge Cooldown"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Image",
-                "Screen": 0
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_GUI_",
-                    "index": 3
-                },
                 "Size": {
                     "x": 1.0,
                     "y": 1.0
                 },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "horizontal_right_to_left",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
+                "Type": "box",
+                "Collision Layer": 7,
+                "Collision Layer ID": 8,
+                "Trigger": true,
+                "Platform": false
             },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 50.0,
-                    "y": 50.0
-                },
-                "Width/Height": {
-                    "x": 227.0,
-                    "y": 227.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Preserve Aspect": false,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 767
-            },
-            "Entity Name": {
-                "Name": "Health"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Image",
-                "Screen": 0
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_GUI_",
-                    "index": 4
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "horizontal_left_to_right",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 75.0,
-                    "y": -60.0
-                },
-                "Width/Height": {
-                    "x": 448.0,
-                    "y": 27.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 1.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 1.0,
-                "Preserve Aspect": false,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 767
-            },
-            "Entity Name": {
-                "Name": "Dodge Base Text"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Image",
-                "Screen": 0
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_GUI_",
-                    "index": 6
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 100.0,
-                    "y": 300.0
-                },
-                "Width/Height": {
-                    "x": 125.0,
-                    "y": 55.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 767
-            },
-            "Entity Name": {
-                "Name": "Dodge Base"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Image",
-                "Screen": 0
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_GUI_",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "horizontal_left_to_right",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 50.0,
-                    "y": 50.0
-                },
-                "Width/Height": {
-                    "x": 227.0,
-                    "y": 227.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
+            "Lifespan": {
+                "Timer": 0.13333334028720857
             }
         }
     ]
