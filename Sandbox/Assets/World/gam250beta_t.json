@@ -4253,7 +4253,7 @@
                 "Fading Timer": 1.0
             },
             "Input": {
-                "Previous": 87,
+                "Previous": 2,
                 "Current": 0
             }
         },
@@ -7028,8 +7028,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 51.150001525878909,
-                    "y": 3.200000047683716,
+                    "x": 51.20000076293945,
+                    "y": 3.0999999046325685,
                     "z": 0.0
                 },
                 "Scale": {
@@ -7238,8 +7238,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 54.349998474121097,
-                    "y": 2.299999952316284,
+                    "x": 54.360931396484378,
+                    "y": 2.2453372478485109,
                     "z": 0.0
                 },
                 "Scale": {
@@ -7378,8 +7378,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 56.349998474121097,
-                    "y": 2.299999952316284,
+                    "x": 56.33757781982422,
+                    "y": 2.2503268718719484,
                     "z": 0.0
                 },
                 "Scale": {
@@ -7448,8 +7448,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 57.349998474121097,
-                    "y": 2.299999952316284,
+                    "x": 57.32516098022461,
+                    "y": 2.2503268718719484,
                     "z": 0.0
                 },
                 "Scale": {
@@ -7728,8 +7728,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 62.0,
-                    "y": 4.650000095367432,
+                    "x": 62.089447021484378,
+                    "y": 4.719570636749268,
                     "z": 0.0
                 },
                 "Scale": {
@@ -10495,76 +10495,6 @@
         },
         {
             "Parent": {
-                "ID": 81
-            },
-            "Entity Name": {
-                "Name": "ShortFireEscape"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 80.5,
-                    "y": 4.75,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 0.9999899864196777,
-                    "b": 0.9999899864196777,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -0.003000000026077032,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
                 "ID": 80
             },
             "Entity Name": {
@@ -11065,8 +10995,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 91.85423278808594,
-                    "y": 3.6353182792663576,
+                    "x": 91.93098449707031,
+                    "y": 3.5649657249450685,
                     "z": 0.0
                 },
                 "Scale": {
@@ -12966,7 +12896,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -13036,7 +12966,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -13106,7 +13036,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -13176,7 +13106,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -13246,7 +13176,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -13316,7 +13246,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -14606,7 +14536,7 @@
         },
         {
             "Parent": {
-                "ID": 173
+                "ID": 172
             },
             "Entity Name": {
                 "Name": "NormalToBrown"
@@ -14676,7 +14606,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -14746,7 +14676,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -14816,7 +14746,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -14886,7 +14816,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -14956,7 +14886,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -15026,7 +14956,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -15096,7 +15026,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -15166,7 +15096,7 @@
         },
         {
             "Parent": {
-                "ID": 172
+                "ID": 171
             },
             "Entity Name": {
                 "Name": "BrownPavement"
@@ -15439,76 +15369,6 @@
                 },
                 "Layer": -1,
                 "Order": -1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 88
-            },
-            "Entity Name": {
-                "Name": "LongFireEscape"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 104.98020935058594,
-                    "y": 4.8378753662109379,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 2
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -0.029999999329447748,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
@@ -16086,8 +15946,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 105.93515014648438,
-                    "y": 3.111250162124634,
+                    "x": 103.96238708496094,
+                    "y": 4.748348712921143,
                     "z": 0.0
                 },
                 "Scale": {
@@ -16349,76 +16209,6 @@
                 },
                 "Layer": -1,
                 "Order": -0.07000000029802323,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 88
-            },
-            "Entity Name": {
-                "Name": "LongFireEscape"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 146.8638153076172,
-                    "y": 1.4603276252746583,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 2
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -0.029999999329447748,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
@@ -16926,8 +16716,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 150.12913513183595,
-                    "y": 1.4936046600341797,
+                    "x": 150.1643524169922,
+                    "y": 2.3854405879974367,
                     "z": 0.0
                 },
                 "Scale": {
@@ -19928,7 +19718,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20003,7 +19793,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20078,7 +19868,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20153,7 +19943,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20228,7 +20018,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20303,7 +20093,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20378,7 +20168,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20453,7 +20243,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20528,7 +20318,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20603,7 +20393,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20678,7 +20468,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20753,7 +20543,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20828,7 +20618,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20903,7 +20693,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -20978,7 +20768,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21053,7 +20843,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21128,7 +20918,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21203,7 +20993,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21278,7 +21068,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21353,7 +21143,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21428,7 +21218,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21503,7 +21293,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21578,7 +21368,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21653,7 +21443,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21728,7 +21518,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21803,7 +21593,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21878,7 +21668,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -21953,7 +21743,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -22028,7 +21818,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -22103,7 +21893,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -22178,7 +21968,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -22253,7 +22043,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -22328,7 +22118,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -22403,7 +22193,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -22478,7 +22268,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -22553,7 +22343,7 @@
         },
         {
             "Parent": {
-                "ID": 236
+                "ID": 233
             },
             "Entity Name": {
                 "Name": "DoubleWindows"
@@ -22700,7 +22490,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -22775,7 +22565,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -22850,7 +22640,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -22925,7 +22715,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23000,7 +22790,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23075,7 +22865,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23150,7 +22940,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23225,7 +23015,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23300,7 +23090,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23375,7 +23165,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23450,7 +23240,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23525,7 +23315,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23600,7 +23390,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23675,7 +23465,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23750,7 +23540,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23825,7 +23615,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23900,7 +23690,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -23975,7 +23765,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -24050,7 +23840,7 @@
         },
         {
             "Parent": {
-                "ID": 310
+                "ID": 307
             },
             "Entity Name": {
                 "Name": "SingleWindows"
@@ -24197,7 +23987,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24272,7 +24062,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24347,7 +24137,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24422,7 +24212,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24497,7 +24287,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24572,7 +24362,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24647,7 +24437,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24722,7 +24512,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24797,7 +24587,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24872,7 +24662,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -24947,7 +24737,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -25094,7 +24884,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25169,7 +24959,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25244,7 +25034,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25319,7 +25109,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25394,7 +25184,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25469,7 +25259,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25544,7 +25334,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25619,7 +25409,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25694,7 +25484,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25769,7 +25559,7 @@
         },
         {
             "Parent": {
-                "ID": 342
+                "ID": 339
             },
             "Entity Name": {
                 "Name": "LampVer2"
@@ -25844,7 +25634,7 @@
         },
         {
             "Parent": {
-                "ID": 330
+                "ID": 327
             },
             "Entity Name": {
                 "Name": "LampVer1"
@@ -27806,7 +27596,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -27876,7 +27666,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -27946,7 +27736,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28016,7 +27806,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28086,7 +27876,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28156,7 +27946,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28226,7 +28016,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28296,7 +28086,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28366,7 +28156,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28436,7 +28226,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28506,7 +28296,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28576,7 +28366,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28646,7 +28436,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28716,7 +28506,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28786,7 +28576,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28856,7 +28646,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28926,7 +28716,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -28996,7 +28786,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -29066,7 +28856,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -29136,7 +28926,7 @@
         },
         {
             "Parent": {
-                "ID": 380
+                "ID": 377
             },
             "Entity Name": {
                 "Name": "Foreground"
@@ -29251,7 +29041,7 @@
                 },
                 "Size": {
                     "x": 4.5,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29262,7 +29052,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 2.3"
@@ -29310,7 +29100,7 @@
                 },
                 "Size": {
                     "x": 1.399999976158142,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29321,7 +29111,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -29369,7 +29159,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29380,7 +29170,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 2.3"
@@ -29428,7 +29218,7 @@
                 },
                 "Size": {
                     "x": 2.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29439,7 +29229,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -29487,7 +29277,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29498,7 +29288,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -29546,7 +29336,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29557,7 +29347,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -29605,7 +29395,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29616,7 +29406,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -29664,7 +29454,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29675,7 +29465,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -29723,7 +29513,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29734,7 +29524,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -29745,7 +29535,7 @@
             "Transform": {
                 "Position": {
                     "x": 51.20000076293945,
-                    "y": 3.1500000953674318,
+                    "y": 3.0799999237060549,
                     "z": 0.0
                 },
                 "Scale": {
@@ -29782,7 +29572,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29793,7 +29583,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 2.3"
@@ -29804,7 +29594,7 @@
             "Transform": {
                 "Position": {
                     "x": 54.5,
-                    "y": 4.0,
+                    "y": 3.950000047683716,
                     "z": 0.0
                 },
                 "Scale": {
@@ -29841,7 +29631,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29852,7 +29642,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 5.3"
@@ -29862,8 +29652,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 55.349998474121097,
-                    "y": 2.25,
+                    "x": 55.415592193603519,
+                    "y": 2.1844046115875246,
                     "z": 0.0
                 },
                 "Scale": {
@@ -29900,7 +29690,7 @@
                 },
                 "Size": {
                     "x": 5.300000190734863,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29911,7 +29701,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 4.3"
@@ -29959,7 +29749,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -29970,7 +29760,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -29980,8 +29770,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 62.04999923706055,
-                    "y": 4.599999904632568,
+                    "x": 62.149383544921878,
+                    "y": 4.669569969177246,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30018,7 +29808,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30029,7 +29819,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -30077,7 +29867,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30088,7 +29878,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 2.3"
@@ -30136,7 +29926,7 @@
                 },
                 "Size": {
                     "x": 2.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30147,7 +29937,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -30195,7 +29985,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30206,7 +29996,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -30254,7 +30044,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30265,7 +30055,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -30313,7 +30103,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30324,7 +30114,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -30372,7 +30162,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30383,7 +30173,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -30431,7 +30221,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30442,66 +30232,7 @@
         },
         {
             "Parent": {
-                "ID": 401
-            },
-            "Entity Name": {
-                "Name": "Jump across Colliders - 1.3"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 80.55000305175781,
-                    "y": 4.699999809265137,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 80.55000305175781,
-                    "y": 4.699999809265137
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": true
-            }
-        },
-        {
-            "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -30549,7 +30280,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30560,7 +30291,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -30608,7 +30339,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30619,7 +30350,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 5.3"
@@ -30667,7 +30398,7 @@
                 },
                 "Size": {
                     "x": 5.300000190734863,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30678,7 +30409,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -30726,7 +30457,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30737,7 +30468,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -30747,8 +30478,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 98.53307342529297,
-                    "y": 2.940005302429199,
+                    "x": 98.53934478759766,
+                    "y": 2.899610996246338,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30785,7 +30516,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30796,7 +30527,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -30844,7 +30575,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30855,7 +30586,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -30865,8 +30596,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 105.0,
-                    "y": 4.760000228881836,
+                    "x": 104.46897888183594,
+                    "y": 4.6866631507873539,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30902,8 +30633,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "x": 2.299999952316284,
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30914,7 +30645,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -30962,7 +30693,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -30973,7 +30704,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -31021,7 +30752,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31032,7 +30763,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -31080,7 +30811,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31091,7 +30822,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -31139,7 +30870,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31150,7 +30881,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -31198,7 +30929,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31209,7 +30940,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 2.3"
@@ -31257,7 +30988,7 @@
                 },
                 "Size": {
                     "x": 2.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31268,66 +30999,7 @@
         },
         {
             "Parent": {
-                "ID": 401
-            },
-            "Entity Name": {
-                "Name": "Jump across Colliders - 3.3"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 146.89999389648438,
-                    "y": 1.399999976158142,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 146.89999389648438,
-                    "y": 1.399999976158142
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 3.299999952316284,
-                    "y": 0.10000000149011612
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": true
-            }
-        },
-        {
-            "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -31337,8 +31009,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 150.14999389648438,
-                    "y": 1.4199999570846558,
+                    "x": 150.19949340820313,
+                    "y": 2.36409854888916,
                     "z": 0.0
                 },
                 "Scale": {
@@ -31375,7 +31047,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31386,7 +31058,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -31434,7 +31106,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31445,7 +31117,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -31493,7 +31165,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31504,7 +31176,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -31552,7 +31224,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31563,7 +31235,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -31611,7 +31283,7 @@
                 },
                 "Size": {
                     "x": 3.299999952316284,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31622,7 +31294,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -31670,7 +31342,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31681,7 +31353,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -31729,7 +31401,7 @@
                 },
                 "Size": {
                     "x": 1.2999999523162842,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31740,7 +31412,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.5"
@@ -31788,7 +31460,7 @@
                 },
                 "Size": {
                     "x": 3.5,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31799,7 +31471,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 7.5"
@@ -31847,7 +31519,7 @@
                 },
                 "Size": {
                     "x": 7.5,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31858,7 +31530,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 9.5"
@@ -31906,7 +31578,7 @@
                 },
                 "Size": {
                     "x": 9.5,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31917,7 +31589,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 7.5"
@@ -31965,7 +31637,7 @@
                 },
                 "Size": {
                     "x": 4.5,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -31976,7 +31648,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 4.5"
@@ -32024,7 +31696,7 @@
                 },
                 "Size": {
                     "x": 4.5,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -32035,7 +31707,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.5"
@@ -32083,7 +31755,7 @@
                 },
                 "Size": {
                     "x": 3.5,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -32094,7 +31766,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.5"
@@ -32142,7 +31814,7 @@
                 },
                 "Size": {
                     "x": 3.5,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -32153,7 +31825,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.5"
@@ -32201,7 +31873,7 @@
                 },
                 "Size": {
                     "x": 3.5,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -32282,7 +31954,7 @@
         },
         {
             "Parent": {
-                "ID": 454
+                "ID": 449
             },
             "Entity Name": {
                 "Name": "Subway Base"
@@ -39185,7 +38857,7 @@
         },
         {
             "Parent": {
-                "ID": 502
+                "ID": 497
             },
             "Entity Name": {
                 "Name": "BrownPlatform"
@@ -39285,7 +38957,7 @@
         },
         {
             "Parent": {
-                "ID": 502
+                "ID": 497
             },
             "Entity Name": {
                 "Name": "BrownPlatform"
@@ -39385,7 +39057,7 @@
         },
         {
             "Parent": {
-                "ID": 502
+                "ID": 497
             },
             "Entity Name": {
                 "Name": "BrownPlatform"
@@ -39485,7 +39157,7 @@
         },
         {
             "Parent": {
-                "ID": 502
+                "ID": 497
             },
             "Entity Name": {
                 "Name": "BrownPlatform"
@@ -41516,7 +41188,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -41575,7 +41247,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -41634,7 +41306,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -41644,8 +41316,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 91.85670471191406,
-                    "y": 3.5249710083007814,
+                    "x": 91.94806671142578,
+                    "y": 3.590073823928833,
                     "z": 0.0
                 },
                 "Scale": {
@@ -41693,7 +41365,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 3.3"
@@ -42342,7 +42014,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -42401,7 +42073,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -42460,7 +42132,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -42519,7 +42191,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -42578,7 +42250,7 @@
         },
         {
             "Parent": {
-                "ID": 401
+                "ID": 398
             },
             "Entity Name": {
                 "Name": "Jump across Colliders - 1.3"
@@ -42633,6 +42305,146 @@
                 "Collision Layer ID": 1,
                 "Trigger": false,
                 "Platform": true
+            }
+        },
+        {
+            "Parent": {
+                "ID": 81
+            },
+            "Entity Name": {
+                "Name": "ShortFireEscape"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 105.93515014648438,
+                    "y": 3.111250162124634,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SPRITES_TILESET_FE",
+                    "index": 5
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 0.9999899864196777,
+                    "b": 0.9999899864196777,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": -0.003000000026077032,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 81
+            },
+            "Entity Name": {
+                "Name": "ShortFireEscape"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 104.93426513671875,
+                    "y": 4.750383377075195,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SPRITES_TILESET_FE",
+                    "index": 5
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 0.9999899864196777,
+                    "b": 0.9999899864196777,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": -0.003000000026077032,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
             }
         }
     ]

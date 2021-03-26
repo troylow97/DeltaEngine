@@ -34,20 +34,21 @@ namespace DeltaEngine
       em.ForEach([&](Transform& t, Player& p, RigidBody& r)
         {
           float dist = Vector2::Distance(c_t->position, t.position);
-          Vector3 pos = t.position;
+          //Tried to give player an offset.
+          Vector3 pos = Vector3 (t.position.x + 1.f, t.position.y, t.position.z);
           pos.y = Math::Clamp(pos.y + 2, 2.f, 4.f);
           pos.z = c_t->position.z;
           c_t->position = Vector3::MoveTowards(c_t->position, pos, dist * dist * DeltaTimef());
           //c_t->position.y = 2.0f;
 
-          float zspeed = 0.5f;
+          float zspeed = 0.2f;
           if (r.Velocity.x < 0.1f && r.Velocity.y < 0.1f &&
             r.Velocity.x > -0.1f && r.Velocity.y > -0.1f)
-            pos.z = 5;
+            pos.z = 4.5;
           else
           {
-            pos.z = 8;
-            zspeed = 1;
+            pos.z = 6;
+            zspeed = 0.8f;
           }
           c_t->position.z = Math::MoveTowards(c_t->position.z, pos.z, Math::Abs(c_t->position.z - pos.z) * DeltaTimef() * zspeed);
         });

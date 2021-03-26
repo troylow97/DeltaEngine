@@ -99,7 +99,7 @@
             ],
             "activation_point": {
                 "x": 198.5,
-                "y": 0.436
+                "y": 0.376
             },
             "wall_offset_right": 6.0,
             "wall_offset_left": 5.0,
