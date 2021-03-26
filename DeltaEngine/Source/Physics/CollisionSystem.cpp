@@ -142,7 +142,7 @@ namespace DeltaEngine
     //        return a.m.penetration < b.m.penetration;
     //});
 
-    //for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 2; ++i)
     {
       for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); ++it1)
       {
