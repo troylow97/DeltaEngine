@@ -141,6 +141,7 @@ namespace DeltaEngine
         int curveCount = 0;
         for (auto& curve : curves)
         {
+          curve->Sort();
           std::cerr << "curve " << curveCount << ":" << std::endl;
           for (size_t i = 0; i < 4; i++)
           {

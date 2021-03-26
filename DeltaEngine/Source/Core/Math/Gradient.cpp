@@ -98,4 +98,25 @@ namespace DeltaEngine
 
     return ret;
   }
+
+  void Gradient::Sort()
+  {
+    for (size_t i = 0; i < 4; ++i)
+      for (size_t j = 0; j < 3 - i; ++j)
+        if (colorKeys[j].a == -1 || colorKeys[j].a > colorKeys[j + 1].a)
+        {
+          auto temp = colorKeys[j];
+          colorKeys[j] = colorKeys[j + 1];
+          colorKeys[j + 1] = temp;
+        }
+
+    for (size_t i = 0; i < 4; ++i)
+      for (size_t j = 0; j < 3 - i; ++j)
+        if (alphaKeys[j].y == -1 || alphaKeys[j].y > alphaKeys[j + 1].y)
+        {
+          auto temp = alphaKeys[j];
+          alphaKeys[j] = alphaKeys[j + 1];
+          alphaKeys[j + 1] = temp;
+        }
+  }
 }
