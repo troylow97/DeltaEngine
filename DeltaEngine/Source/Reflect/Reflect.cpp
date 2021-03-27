@@ -223,7 +223,9 @@ namespace DeltaEngine
       rttr::value("vfx", EntityCategory::E_VFX),
       rttr::value("checkpoint", EntityCategory::E_CHECKPOINT),
       rttr::value("mud", EntityCategory::E_MUD),
-      rttr::value("concrete", EntityCategory::E_CONCRETE)
+      rttr::value("concrete", EntityCategory::E_CONCRETE),
+      rttr::value("healthup", EntityCategory::E_HEALTHUP),
+      rttr::value("healthup_used", EntityCategory::E_HEALTHUP_USED)
     );
 
     rttr::registration::enumeration<Alignment>("Alignment")

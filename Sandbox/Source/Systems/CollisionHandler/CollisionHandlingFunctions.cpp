@@ -261,4 +261,27 @@ void CollisionHandlerFunctions::CheckGroundType(EntityID& id1, EntityID& id2)
     //}
 	
 }
+
+void CollisionHandlerFunctions::PickupHealthOrb(EntityID& id1, EntityID& id2)
+{
+    auto& em = env.pECS->GetWorld().GetEntityManager();
+    const auto& et1 = em.GetComponent<EntityType>(id1);
+    const auto& et2 = em.GetComponent<EntityType>(id2);
+    
+    if(et1.type == EntityCategory::E_HEALTHUP && et2.type == EntityCategory::E_PLAYER)
+    {
+        em.GetComponent<Lifespan>(id1).Timer = 0.1f;
+        em.GetComponent<Health>(id2).CurrentHealth *= 1.30f;
+        em.GetComponent<EntityType>(id1).type = EntityCategory::E_HEALTHUP_USED;
+        std::cout << "picked up\n";
+    }
+    else if(et1.type == EntityCategory::E_PLAYER && et2.type == EntityCategory::E_HEALTHUP)
+    {
+        em.GetComponent<Lifespan>(id2).Timer = 0.1f;
+        em.GetComponent<Health>(id1).CurrentHealth *= 1.30f;
+        em.GetComponent<EntityType>(id2).type = EntityCategory::E_HEALTHUP_USED;
+        std::cout << "picked up\n";
+    }
+
+}
 }

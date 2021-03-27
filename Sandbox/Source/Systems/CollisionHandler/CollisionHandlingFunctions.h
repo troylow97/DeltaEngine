@@ -26,11 +26,14 @@ namespace DeltaEngine
     public:
         static void Initialise();
         static void TakeDamage(EntityID& id1, EntityID& id2);
+        static void PickupHealthOrb(EntityID& id1, EntityID& id2);
+    	
         static bool CheckEntityType(EntityID, EntityCategory, EntityID, EntityCategory);
         static void ApplyKnockBack(EntityID& defender, EntityID& attacker,const float amount);
         static void CheckGroundType(EntityID& id1, EntityID& id2);
 
         static void ReduceHealth(EntityID& id, int health);
         static bool CheckBlock(EntityID& defender, EntityID& attacker);
+
     };
 }

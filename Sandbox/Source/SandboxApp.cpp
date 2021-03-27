@@ -31,6 +31,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/AudioSystem.h"
 #include "Systems/GUISystem.h"
 #include "GameState.h"
+#include "Systems/HealthPickUpSystem/HealthPickupSystem.h"
 #include "Systems/LevelManager/LevelManager.h"
 
 class Sandbox : public Application
@@ -45,8 +46,9 @@ public:
 
 
     CollisionSystem::collision_handler.RegisterOnEnter(CollisionHandlerFunctions::TakeDamage);
+    CollisionSystem::collision_handler.RegisterOnEnter(CollisionHandlerFunctions::PickupHealthOrb);
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::CheckGroundType);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, VFXSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, HealthSystem, MenuSystem,AudioSystem, GUISystem,LevelManager>();
+    env.pECS->GetWorld().CreateSystems<AttackSystem, VFXSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, HealthSystem, MenuSystem,AudioSystem, GUISystem,LevelManager,HealthPickupSystem>();
     env.pECS->GetWorld().SetUpdateSequence<AttackSystem, VFXSystem, EnemySpawner, HealthSystem, RespawnSystem, LifespanSystem, MenuSystem, GUISystem, LevelManager>();
     //env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, UpgradeSystem,
     //    ExitSceneCinematic, LifespanSystem>();

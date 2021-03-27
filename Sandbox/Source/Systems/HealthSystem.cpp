@@ -16,6 +16,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/GameClock/EngineClock.h"
+#include "HealthPickUpSystem/HealthPickupSystem.h"
 
 namespace DeltaEngine
 {
@@ -79,6 +80,7 @@ namespace DeltaEngine
       em.AddComponent<Lifespan>(entity);
       em.GetComponent<Lifespan>(entity).Timer = 1.0f;
       em.GetComponent<RigidBody>(entity).isMoveable = false;
+      HealthPickupSystem::SpawnHealthOrbOnDeath(em.GetComponent<Transform>(entity).position);
     }
     entities.clear();
 

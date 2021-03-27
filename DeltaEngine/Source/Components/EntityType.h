@@ -31,7 +31,9 @@ namespace DeltaEngine
   	E_VFX,
   	E_CHECKPOINT,
   	E_MUD,
-  	E_CONCRETE
+  	E_CONCRETE,
+  	E_HEALTHUP,
+    E_HEALTHUP_USED
   };
 
   struct EntityType
