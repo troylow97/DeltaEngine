@@ -46,6 +46,7 @@ void GameStateLoad( GameState state )
       current = GameState::TUTORIAL;
       world.Load( "World/gam250tutorial.json" );
       world.Load( "World/GameMenuScreen.json" );
+      RespawnSystem::CreateCheckpoints(0);
       EnemySpawner::ActivateGauntlet = false;
       break;
     }
