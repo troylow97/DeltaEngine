@@ -15,7 +15,7 @@ struct Serpentipede
         CooldownTimer{false},
         BurrowDownDuration{1.0f},
         BurrowUpDuration{2.0f},
-        BurrowDownDelay{1.0f},
+        BurrowDownDelay{0.4f},
         BurrowState{0},
 		CurrentPoint{0},
         Attacking{false}

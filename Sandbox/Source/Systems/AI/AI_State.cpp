@@ -189,7 +189,7 @@ namespace DeltaEngine
     	{
             ai.transition = "idle_enemy_lancer";
             rb.isMoveable = false;
-            a.AttackDelay = 10.0f;
+            a.AttackDelay = 1.0f;
             state.SetBool("IsAttacked", false);
             state.SetBool("BeginCharging", false);
             state.SetBool("Charging", false);
@@ -201,7 +201,7 @@ namespace DeltaEngine
 
         state.SetBool("IsAttacked", true);
         state.SetBool("IsDead", false);
-        lancer.TransitionTimer = 1.3f;
+        lancer.TransitionTimer = 1.0f;
     }
 	
     void GotHitEnemyLancer::Update(EntityID& monster)
@@ -237,6 +237,10 @@ namespace DeltaEngine
     void GotHitEnemyLancer::onExit(EntityID& monster)
     {
         auto& state = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
+        if (AITools::EntityisOnTheRight(monster, UnitManager::GetPlayerID()))
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
+        else
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
         state.SetBool("IsAttacked", false);
     }
 	
@@ -662,7 +666,7 @@ namespace DeltaEngine
                     s.SetBool("RangedAttack", false);
                     s.SetBool("IsAlerted", false);
                     s.SetBool("IsBurrowing", true);
-                    serp.BurrowDownDelay = 0.6f;
+                    serp.BurrowDownDelay = 0.4f;
                     serp.BurrowState = 1;
                     return;
                 }
@@ -674,7 +678,7 @@ namespace DeltaEngine
                     s.SetBool("RangedAttack", true);
                     a.AttackDelay = 0.8f;
                     serp.CooldownTimer = 1.0f;
-                    serp.BurrowDownDelay = 0.6f;
+                    serp.BurrowDownDelay = 0.4f;
                     serp.Attacking = true;
                 }
                 else
@@ -685,7 +689,7 @@ namespace DeltaEngine
                         s.SetBool("RangedAttack", false);
                         s.SetBool("IsAlerted", false);
                         s.SetBool("IsBurrowing", true);
-                        serp.BurrowDownDelay = 0.6f;
+                        serp.BurrowDownDelay = 0.4f;
                         serp.BurrowState = 1;
                         return;
                 	}

@@ -118,12 +118,12 @@
             },
             "Rigidbody": {
                 "Mass": 20.0,
-                "Move Speed": 10.0,
+                "Move Speed": 20.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 3.0,
                 "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
+                "Max Acceleration": 10.0,
+                "Acceleration Pickup": 1.0,
                 "Gravity": true,
                 "Moveable": true
             },
@@ -199,10 +199,10 @@
                 "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 1,
-                "Melee Damage": 1,
-                "SMG Damage": 1,
-                "Melee Combo Damage": 3,
+                "Range Damage": 0,
+                "Melee Damage": 0,
+                "SMG Damage": 0,
+                "Melee Combo Damage": 2,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 1.0,
@@ -290,8 +290,8 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Collision Layer": 255,
-                "Collision Layer ID": 255,
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
             },
@@ -382,6 +382,15 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Serpentipede": {
+                "CooldownTimer": 0.0,
+                "BurrownDownDuration": 1.0,
+                "BurrowUpDuration": 2.0,
+                "BurrowDownDelay": 1.0,
+                "BurrowState": 0,
+                "CurrentPoint": 0,
+                "Attacking": false
             }
         },
         {
@@ -434,8 +443,8 @@
                     "y": 1.0
                 },
                 "Type": "box",
-                "Collision Layer": 255,
-                "Collision Layer ID": 255,
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
                 "Trigger": false,
                 "Platform": false
             },
@@ -526,6 +535,15 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Serpentipede": {
+                "CooldownTimer": 0.0,
+                "BurrownDownDuration": 1.0,
+                "BurrowUpDuration": 2.0,
+                "BurrowDownDelay": 1.0,
+                "BurrowState": 0,
+                "CurrentPoint": 0,
+                "Attacking": false
             }
         }
     ]
