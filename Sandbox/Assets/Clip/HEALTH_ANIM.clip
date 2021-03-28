@@ -1,0 +1,126 @@
+frames 24
+fps 12
+loop 1
+
+Textures/HEALTH_ANIM_i_0
+key Textures/HEALTH_ANIM
+value 0
+frame 0
+
+Textures/HEALTH_ANIM_i_1
+key Textures/HEALTH_ANIM
+value 1
+frame 1
+
+Textures/HEALTH_ANIM_i_2
+key Textures/HEALTH_ANIM
+value 2
+frame 2
+
+Textures/HEALTH_ANIM_i_3
+key Textures/HEALTH_ANIM
+value 3
+frame 3
+
+Textures/HEALTH_ANIM_i_4
+key Textures/HEALTH_ANIM
+value 4
+frame 4
+
+Textures/HEALTH_ANIM_i_5
+key Textures/HEALTH_ANIM
+value 5
+frame 5
+
+Textures/HEALTH_ANIM_i_6
+key Textures/HEALTH_ANIM
+value 6
+frame 6
+
+Textures/HEALTH_ANIM_i_7
+key Textures/HEALTH_ANIM
+value 7
+frame 7
+
+Textures/HEALTH_ANIM_i_8
+key Textures/HEALTH_ANIM
+value 8
+frame 8
+
+Textures/HEALTH_ANIM_i_9
+key Textures/HEALTH_ANIM
+value 9
+frame 9
+
+Textures/HEALTH_ANIM_i_10
+key Textures/HEALTH_ANIM
+value 10
+frame 10
+
+Textures/HEALTH_ANIM_i_11
+key Textures/HEALTH_ANIM
+value 11
+frame 11
+
+Textures/HEALTH_ANIM_i_12
+key Textures/HEALTH_ANIM
+value 12
+frame 12
+
+Textures/HEALTH_ANIM_i_13
+key Textures/HEALTH_ANIM
+value 13
+frame 13
+
+Textures/HEALTH_ANIM_i_14
+key Textures/HEALTH_ANIM
+value 14
+frame 14
+
+Textures/HEALTH_ANIM_i_15
+key Textures/HEALTH_ANIM
+value 15
+frame 15
+
+Textures/HEALTH_ANIM_i_16
+key Textures/HEALTH_ANIM
+value 16
+frame 16
+
+Textures/HEALTH_ANIM_i_17
+key Textures/HEALTH_ANIM
+value 17
+frame 17
+
+Textures/HEALTH_ANIM_i_18
+key Textures/HEALTH_ANIM
+value 18
+frame 18
+
+Textures/HEALTH_ANIM_i_19
+key Textures/HEALTH_ANIM
+value 19
+frame 19
+
+Textures/HEALTH_ANIM_i_20
+key Textures/HEALTH_ANIM
+value 20
+frame 20
+
+Textures/HEALTH_ANIM_i_21
+key Textures/HEALTH_ANIM
+value 21
+frame 21
+
+Textures/HEALTH_ANIM_i_22
+key Textures/HEALTH_ANIM
+value 22
+frame 22
+
+Textures/HEALTH_ANIM_i_23
+key Textures/HEALTH_ANIM
+value 23
+frame 23
+
+
+%

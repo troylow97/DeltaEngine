@@ -1,0 +1,28 @@
+Textures/HEALTH_PICKUP_i_0
+offset 0 0
+size 128 128
+pivot 0.5 0.5
+
+Textures/HEALTH_PICKUP_i_1
+offset 128 0
+size 128 128
+pivot 0.5 0.5
+
+Textures/HEALTH_PICKUP_i_2
+offset 256 0
+size 128 128
+pivot 0.5 0.5
+
+Textures/HEALTH_PICKUP_i_3
+offset 384 0
+size 128 128
+pivot 0.5 0.5
+
+Textures/HEALTH_PICKUP_i_4
+offset 512 0
+size 128 128
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

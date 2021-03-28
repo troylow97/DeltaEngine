@@ -1,0 +1,30 @@
+frames 5
+fps 6
+loop 0
+
+Textures/HEALTH_PICKUP_i_0
+key Textures/HEALTH_PICKUP
+value 0
+frame 0
+
+Textures/HEALTH_PICKUP_i_1
+key Textures/HEALTH_PICKUP
+value 1
+frame 1
+
+Textures/HEALTH_PICKUP_i_2
+key Textures/HEALTH_PICKUP
+value 2
+frame 2
+
+Textures/HEALTH_PICKUP_i_3
+key Textures/HEALTH_PICKUP
+value 3
+frame 3
+
+Textures/HEALTH_PICKUP_i_4
+key Textures/HEALTH_PICKUP
+value 4
+frame 4
+
+%
