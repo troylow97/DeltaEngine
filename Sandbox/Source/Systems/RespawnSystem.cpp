@@ -13,12 +13,14 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "UnitManager.h"
 #include "Core/GameClock/EngineClock.h"
 #include "Core/GlobalStruct.h"
-#include "Core/Utils/FileUtils.h"
+#include "EnemySpawner/EnemySpawner.h"
 
 namespace DeltaEngine
 {
-  bool RespawnSystem::in_tutorial = true;
-  bool RespawnSystem::in_level_1 = true;
+  bool RespawnSystem::opening_tutorial = true;
+  bool RespawnSystem::opening_level_1 = true;
+  bool RespawnSystem::in_tutorial = false;
+  bool RespawnSystem::in_level_1 = false;
   RespawnPoints RespawnSystem::respawns;
   Vector2 RespawnSystem::player_initial_position = { 0.0f, 0.0f };
 
@@ -54,36 +56,36 @@ namespace DeltaEngine
   {
   }
 
-  void RespawnSystem::temp_create_checkpoints()
-  {
-      EntityID id = UnitManager::GetPlayerID();
-
-      //Stop crash by checking for components	
-      if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id))
-          return;
-
-      Transform& t = em.GetComponent<Transform>(id);
-      player_initial_position = { t.position.x, t.position.y };
-
-      for (size_t i = 0; i < respawns.m_respawns.size(); i++)
-      {
-          //auto& em = GetEnv().pECS->GetWorld().GetEntityManager();
-          EntityID checkpoints = em.CreateEntity<Animator, Renderer2D, Image, State>();
-          em.GetComponent<EntityName>(checkpoints).name = "Checkpoint";
-
-          em.GetComponent<Transform>(checkpoints).position.x = respawns.m_respawns[i].x;
-          em.GetComponent<Transform>(checkpoints).position.y = respawns.m_respawns[i].y;
-          em.GetComponent<Transform>(checkpoints).scale = { 1.0f, 1.0f, 1.0f };
-
-          em.GetComponent<Renderer2D>(checkpoints).m_SortingLayer = 3;
-          em.GetComponent<Image>(checkpoints).m_Sprite.m_Key = "Textures/CHECKPOINT_OFF"; // e.g. "Textures/DAVE_HITFX"
-          em.GetComponent<Image>(checkpoints).m_Sprite.m_Index = 0;
-          em.GetComponent<Image>(checkpoints).m_Size = { 1.0f, 1.0f };
-          em.GetComponent<EntityType>(checkpoints).type = EntityCategory::E_CHECKPOINT;
-          em.GetComponent<Animator>(checkpoints).m_ControllerKey = "Animation/Checkpoint"; // e.g. "Animation/DaveHitVFX"
-          em.GetComponent<State>(checkpoints).SetBool("CheckpointReached", false);
-      }
-  }
+  //void RespawnSystem::temp_create_checkpoints()
+  //{
+  //    EntityID id = UnitManager::GetPlayerID();
+  //
+  //    //Stop crash by checking for components	
+  //    if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id))
+  //        return;
+  //
+  //    Transform& t = em.GetComponent<Transform>(id);
+  //    player_initial_position = { t.position.x, t.position.y };
+  //
+  //    for (size_t i = 0; i < respawns.m_respawns.size(); i++)
+  //    {
+  //        //auto& em = GetEnv().pECS->GetWorld().GetEntityManager();
+  //        EntityID checkpoints = em.CreateEntity<Animator, Renderer2D, Image, State>();
+  //        em.GetComponent<EntityName>(checkpoints).name = "Checkpoint";
+  //
+  //        em.GetComponent<Transform>(checkpoints).position.x = respawns.m_respawns[i].x;
+  //        em.GetComponent<Transform>(checkpoints).position.y = respawns.m_respawns[i].y;
+  //        em.GetComponent<Transform>(checkpoints).scale = { 1.0f, 1.0f, 1.0f };
+  //
+  //        em.GetComponent<Renderer2D>(checkpoints).m_SortingLayer = 3;
+  //        em.GetComponent<Image>(checkpoints).m_Sprite.m_Key = "Textures/CHECKPOINT_OFF"; // e.g. "Textures/DAVE_HITFX"
+  //        em.GetComponent<Image>(checkpoints).m_Sprite.m_Index = 0;
+  //        em.GetComponent<Image>(checkpoints).m_Size = { 1.0f, 1.0f };
+  //        em.GetComponent<EntityType>(checkpoints).type = EntityCategory::E_CHECKPOINT;
+  //        em.GetComponent<Animator>(checkpoints).m_ControllerKey = "Animation/Checkpoint"; // e.g. "Animation/DaveHitVFX"
+  //        em.GetComponent<State>(checkpoints).SetBool("CheckpointReached", false);
+  //    }
+  //}
 
   void RespawnSystem::CreateCheckpoints(int level)
   {
@@ -91,12 +93,16 @@ namespace DeltaEngine
     if (level == 0) // tutorial
     {
       file.StartReader("Player/tutorial_respawn_points.json").LoadObject(respawns).EndReader();
+      opening_tutorial = true;
+      opening_level_1 = false;
       in_tutorial = true;
       in_level_1 = false;
     }
     if (level == 1) // tutorial
     {
       file.StartReader("Player/level1_respawn_points.json").LoadObject(respawns).EndReader();
+      opening_tutorial = false;
+      opening_level_1 = true;
       in_tutorial = false;
       in_level_1 = true;
     }
@@ -108,7 +114,7 @@ namespace DeltaEngine
         em.DestroyEntity(id1);
       }
     });
-    if (in_tutorial || in_level_1)
+    if (opening_tutorial || opening_level_1)
     {
       EntityID id = UnitManager::GetPlayerID();
       
@@ -137,8 +143,8 @@ namespace DeltaEngine
         em.GetComponent<Animator>(checkpoints).m_ControllerKey = "Animation/Checkpoint"; // e.g. "Animation/DaveHitVFX"
         em.GetComponent<State>(checkpoints).SetBool("CheckpointReached", false);
       }
-      in_tutorial = false;
-      in_level_1 = false;
+      opening_tutorial = false;
+      opening_level_1 = false;
     }
   }
 
@@ -233,6 +239,7 @@ namespace DeltaEngine
 
         if (p.IsDead)
         {
+          //auto& world = GetEnv().pECS->GetWorld();
           s.SetBool("Dead", true);
           r.isMoveable = false;
           float temp_x = 1.0f, temp_y = 1.0f;
@@ -252,6 +259,20 @@ namespace DeltaEngine
           dying_countdown += env.pClock->FixedDeltaTime();
           if (dying_countdown > 3.0f)
           {
+            //if (in_tutorial)
+            //{
+            //  world.Load("World/gam250tutorial.json");
+            //  world.Load("World/GameMenuScreen.json");
+            //  EnemySpawner::ActivateGauntlet = false;
+            //}
+            //else if (in_level_1)
+            //{
+            //  world.Load("World/gam250beta_t.json");
+            //  world.Load("World/GameMenuScreen.json");
+            //  EnemySpawner::ActivateGauntlet = true;
+            //}
+            ////EntityID new_player = UnitManager::GetPlayerID();
+            ////Transform& t = em.GetComponent<Transform>(new_player);
             t.position.x = temp_x;
             t.position.y = temp_y;
             hp.CurrentHealth = hp.MaxHealth;

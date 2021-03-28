@@ -25,6 +25,8 @@ namespace DeltaEngine
     static void CreateCheckpoints(int level);
 
   private:
+    static bool opening_tutorial;
+    static bool opening_level_1;
     static bool in_tutorial;
     static bool in_level_1;
     static RespawnPoints respawns;
