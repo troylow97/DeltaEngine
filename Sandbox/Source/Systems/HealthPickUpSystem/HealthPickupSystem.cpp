@@ -19,7 +19,7 @@ namespace DeltaEngine
 	
 	void HealthPickupSystem::Initialize()
 	{
-		PickupChance = 100.0f;
+		PickupChance = 0.0f;
 	}
 
 	void HealthPickupSystem::Update()
@@ -37,11 +37,11 @@ namespace DeltaEngine
 		if(Random::RandomFloatRange(0.0f,100.0f) < PickupChance)
 		{
 			EntityID orb = SpawnHealthOrb(position);
-			PickupChance = 100.0f;
+			PickupChance = 0.0f;
 		}
 		else
 		{
-			PickupChance += 5.0f;
+			PickupChance += 0.0f;
 		}
 	}
 

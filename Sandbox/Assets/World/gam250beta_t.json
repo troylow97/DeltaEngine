@@ -2546,7 +2546,7 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": true
+                "Invulnerable": false
             },
             "Attack": {
                 "Range Damage": 8192,
@@ -2732,6 +2732,15 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Serpentipede": {
+                "CooldownTimer": 0.0,
+                "BurrownDownDuration": 1.0,
+                "BurrowUpDuration": 2.0,
+                "BurrowDownDelay": 1.0,
+                "BurrowState": 0,
+                "CurrentPoint": 0,
+                "Attacking": false
             }
         },
         {
@@ -2876,6 +2885,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -34624,6 +34639,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -34768,6 +34791,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -34912,6 +34943,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -35056,6 +35095,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -35200,6 +35247,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -35344,6 +35399,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -35488,6 +35551,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -35632,6 +35703,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -35776,6 +35855,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -35920,6 +36007,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -36064,6 +36159,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -36208,6 +36311,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -36352,6 +36463,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -36496,6 +36615,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -36640,6 +36767,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -36784,6 +36919,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -36928,6 +37071,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -37072,6 +37223,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -37216,6 +37375,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -37360,6 +37527,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -37504,6 +37679,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -37648,6 +37831,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -37792,6 +37983,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -37936,6 +38135,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -38080,6 +38287,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -38224,6 +38439,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -38368,6 +38591,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -38512,6 +38743,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -38656,6 +38895,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -38800,6 +39047,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -38944,6 +39199,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -39088,6 +39351,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -39232,6 +39503,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -39376,6 +39655,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -39520,6 +39807,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -39664,6 +39959,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -39808,6 +40111,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -39952,6 +40263,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -40096,6 +40415,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -40240,6 +40567,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -40384,6 +40719,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -40528,6 +40871,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -40672,6 +41023,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -40816,6 +41173,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -40960,6 +41323,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -41104,6 +41473,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -41248,6 +41623,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -41889,6 +42270,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -42033,6 +42420,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -42177,6 +42570,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -42321,6 +42720,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -42465,6 +42870,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -42609,6 +43020,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -42753,6 +43170,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -42897,6 +43320,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -43041,6 +43470,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -43053,7 +43488,7 @@
             "Transform": {
                 "Position": {
                     "x": 124.0,
-                    "y": 0.9562022089958191,
+                    "y": 0.7260000109672546,
                     "z": 0.0
                 },
                 "Scale": {
@@ -43147,7 +43582,7 @@
             "AI": {
                 "Original Point": {
                     "x": 124.0,
-                    "y": 0.7900000214576721
+                    "y": 0.7260000109672546
                 },
                 "AIState": "idle_serpentipede"
             },
@@ -43185,6 +43620,15 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Serpentipede": {
+                "CooldownTimer": 0.0,
+                "BurrownDownDuration": 1.0,
+                "BurrowUpDuration": 2.0,
+                "BurrowDownDelay": 1.0,
+                "BurrowState": 0,
+                "CurrentPoint": 0,
+                "Attacking": false
             }
         },
         {
@@ -43197,7 +43641,7 @@
             "Transform": {
                 "Position": {
                     "x": 126.0,
-                    "y": 0.9562022089958191,
+                    "y": 0.7260000109672546,
                     "z": 0.0
                 },
                 "Scale": {
@@ -43291,7 +43735,7 @@
             "AI": {
                 "Original Point": {
                     "x": 126.0,
-                    "y": 0.7900000214576721
+                    "y": 0.7260000109672546
                 },
                 "AIState": "idle_serpentipede"
             },
@@ -43329,6 +43773,15 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Serpentipede": {
+                "CooldownTimer": 0.0,
+                "BurrownDownDuration": 1.0,
+                "BurrowUpDuration": 2.0,
+                "BurrowDownDelay": 1.0,
+                "BurrowState": 0,
+                "CurrentPoint": 0,
+                "Attacking": false
             }
         },
         {
@@ -43341,7 +43794,7 @@
             "Transform": {
                 "Position": {
                     "x": 135.5,
-                    "y": 0.9562022089958191,
+                    "y": 0.7360000014305115,
                     "z": 0.0
                 },
                 "Scale": {
@@ -43435,7 +43888,7 @@
             "AI": {
                 "Original Point": {
                     "x": 135.5,
-                    "y": 0.7900000214576721
+                    "y": 0.7360000014305115
                 },
                 "AIState": "idle_serpentipede"
             },
@@ -43473,6 +43926,15 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Serpentipede": {
+                "CooldownTimer": 0.0,
+                "BurrownDownDuration": 1.0,
+                "BurrowUpDuration": 2.0,
+                "BurrowDownDelay": 1.0,
+                "BurrowState": 0,
+                "CurrentPoint": 0,
+                "Attacking": false
             }
         },
         {
@@ -43485,7 +43947,7 @@
             "Transform": {
                 "Position": {
                     "x": 136.5,
-                    "y": 0.9562022089958191,
+                    "y": 0.7260000109672546,
                     "z": 0.0
                 },
                 "Scale": {
@@ -43579,7 +44041,7 @@
             "AI": {
                 "Original Point": {
                     "x": 136.5,
-                    "y": 0.7900000214576721
+                    "y": 0.7260000109672546
                 },
                 "AIState": "idle_serpentipede"
             },
@@ -43617,6 +44079,15 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Serpentipede": {
+                "CooldownTimer": 0.0,
+                "BurrownDownDuration": 1.0,
+                "BurrowUpDuration": 2.0,
+                "BurrowDownDelay": 1.0,
+                "BurrowState": 0,
+                "CurrentPoint": 0,
+                "Attacking": false
             }
         },
         {
@@ -43629,7 +44100,7 @@
             "Transform": {
                 "Position": {
                     "x": 182.0,
-                    "y": 0.9562022089958191,
+                    "y": 0.7260000109672546,
                     "z": 0.0
                 },
                 "Scale": {
@@ -43723,7 +44194,7 @@
             "AI": {
                 "Original Point": {
                     "x": 182.0,
-                    "y": 0.7900000214576721
+                    "y": 0.7260000109672546
                 },
                 "AIState": "idle_serpentipede"
             },
@@ -43761,6 +44232,15 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Serpentipede": {
+                "CooldownTimer": 0.0,
+                "BurrownDownDuration": 1.0,
+                "BurrowUpDuration": 2.0,
+                "BurrowDownDelay": 1.0,
+                "BurrowState": 0,
+                "CurrentPoint": 0,
+                "Attacking": false
             }
         },
         {

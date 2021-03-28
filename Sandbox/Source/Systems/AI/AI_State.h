@@ -19,7 +19,6 @@ namespace DeltaEngine
   class AIState
   {
   protected:
-    float TransitionTimer{-0.1f};
     bool CheckEdges(EntityID&);
   	
   public:
@@ -75,8 +74,7 @@ namespace DeltaEngine
 
   class ChaseEnemyLancer : public AIState
   {
-      bool HasEntered;
-      Vector2 ChargeDetectRange;
+    Vector2 ChargeDetectRange;
   public:
     ChaseEnemyLancer(Vector2);
     void onEnter(EntityID& id) override;
@@ -115,7 +113,6 @@ namespace DeltaEngine
 
   class BounceEnemyLancer : public AIState
   {
-      Vector2 original_direction;
   public:
       BounceEnemyLancer();
       void onEnter(EntityID& id) override;
@@ -125,7 +122,6 @@ namespace DeltaEngine
 
   class IdleFiddler : public AIState
   {
-    float DurationBeforeExitState;
     Waypoint waypoint;
   public:
     IdleFiddler(Waypoint& wp, Vector2& charge_range);
@@ -136,10 +132,6 @@ namespace DeltaEngine
 
   class ChaseEnemyFiddler : public AIState
   {
-    float DurationBeforeExitState;
-    float FacePlayerTimer;
-    float AttackDelay;
-    bool hasAttacked;
   public:
     ChaseEnemyFiddler(Vector2& lost_range);
     void onEnter(EntityID& id) override;
@@ -159,13 +151,6 @@ namespace DeltaEngine
   class ChaseEnemySerpentipede : public AIState
   {
   public:
-    bool Attacking;
-    float CooldownTimer;
-    float BurrowDownDuration;
-    float BurrowUpDuration;
-    float BurrowDownDelay;
-    unsigned int BurrowState; //0: Seen, 1: Burrowing Down, 2: Hidden, 3: Burrowing Up
-    int CurrentPoint;
     SerpentipedeAIData SerpentData;
 
     ChaseEnemySerpentipede(SerpentipedeAIData& d);

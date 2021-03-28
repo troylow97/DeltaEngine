@@ -210,6 +210,12 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
     {
       const EntityID enemy = GetEntityID( id1, id2, EntityCategory::E_ENEMY );
       const EntityID punch = GetEntityID( id1, id2, EntityCategory::E_PLAYER_PUNCH );
+
+      if(env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).isInvulnerable)
+      {
+          return;
+      }
+    	
       Vector2 kb_vector = em.GetComponent<RigidBody>( punch ).Velocity.Normalize();
       if ( !em.GetComponent<Health>( enemy ).isInvulnerable )
         att.DamageEnemy = true;

@@ -17,6 +17,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Reflect.h"
 
 #include "EngineConfig.h"
+#include "../../../Sandbox/Source/Systems/AI/AIComponents/FiddlerComponent.h"
+#include "../../../Sandbox/Source/Systems/AI/AIComponents/LancerComponent.h"
 
 #include "Core/Math/DE_Math.h"
 #include "ECS/ComponentMeta.h"
@@ -33,6 +35,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "../../Sandbox/Source/Systems/AttackSystem.h"
 #include "Audio/AudioConfig.h"
 #include "Components/ParticleEmitter.h"
+#include "../../Sandbox/Source/Systems/AI/AIComponents/SerpentipedeComponent.h"
 
 namespace DeltaEngine
 {
@@ -449,6 +452,43 @@ namespace DeltaEngine
     */
     /*
     ********************************************************************************
+    * In game AI System
+    * Components for AI
+    ********************************************************************************
+    */
+#pragma region
+    rttr::registration::class_<Serpentipede>("Serpentipede")
+        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Serpentipede>()->bits))
+        .constructor<>()(rttr::policy::ctor::as_object)
+        .property("CooldownTimer", &Serpentipede::CooldownTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true),(rttr::metadata("NO_EDITOR", true)))
+        .property("BurrownDownDuration", &Serpentipede::BurrowDownDuration)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("BurrowUpDuration", &Serpentipede::BurrowUpDuration)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("BurrowDownDelay", &Serpentipede::BurrowDownDelay)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("BurrowState", &Serpentipede::BurrowState)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("CurrentPoint", &Serpentipede::CurrentPoint)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("Attacking", &Serpentipede::Attacking)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+
+    rttr::registration::class_<Fiddler>("Fiddler")
+        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Fiddler>()->bits))
+        .constructor<>()(rttr::policy::ctor::as_object)
+        .property("DurationBeforeExitState", &Fiddler::DurationBeforeExitState)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("FacePlayerTimer", &Fiddler::FacePlayerTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("AttackDelay", &Fiddler::AttackDelay)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("hasAttacked", &Fiddler::hasAttacked)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+
+    rttr::registration::class_<Lancer>("Lancer")
+        (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Lancer>()->bits))
+        .constructor<>()(rttr::policy::ctor::as_object)
+        .property("ChargeDetectRange", &Lancer::ChargeDetectRange)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("TransitionTimer", &Lancer::TransitionTimer)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+        .property("HasEntered", &Lancer::HasEntered)(rttr::policy::prop::bind_as_ptr)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)));
+  	
+#pragma endregion 	
+    /*
+    ********************************************************************************
+    */
+    /*
+    ********************************************************************************
     * Render System
     * Components for Render
     ********************************************************************************
@@ -726,6 +766,12 @@ namespace DeltaEngine::RT_Reflect
       return rttr::type::get_by_name("Slider");
     case ComponentMeta::ComponentBits<AudioSource>():
       return rttr::type::get_by_name("Audio Source");
+    case ComponentMeta::ComponentBits<Serpentipede>() :
+        return rttr::type::get_by_name("Serpentipede");
+    case ComponentMeta::ComponentBits<Fiddler>() :
+        return rttr::type::get_by_name("Fiddler");
+    case ComponentMeta::ComponentBits<Lancer>() :
+        return rttr::type::get_by_name("Lancer");
     default:
       return rttr::type::get<int>();
     }
@@ -810,6 +856,15 @@ namespace DeltaEngine::RT_Reflect
     case ComponentMeta::ComponentBits<AudioSource>():
       em.RemoveComponent<AudioSource>(id);
       break;
+     case ComponentMeta::ComponentBits<Serpentipede>() :
+     em.RemoveComponent<Serpentipede>(id);
+     break;
+    case ComponentMeta::ComponentBits<Fiddler>() :
+        em.RemoveComponent<Fiddler>(id);
+        break;
+    case ComponentMeta::ComponentBits<Lancer>() :
+        em.RemoveComponent<Lancer>(id);
+        break;
     }
   }
 
@@ -892,6 +947,15 @@ namespace DeltaEngine::RT_Reflect
     case ComponentMeta::ComponentBits<AudioSource>():
       em.AddComponent<AudioSource>(id);
       break;
+    case ComponentMeta::ComponentBits<Serpentipede>() :
+      em.AddComponent<Serpentipede>(id);
+      break;
+    case ComponentMeta::ComponentBits<Fiddler>() :
+        em.AddComponent<Fiddler>(id);
+      break;
+    case ComponentMeta::ComponentBits<Lancer>() :
+        em.AddComponent<Lancer>(id);
+        break;
     }
   }
 
@@ -949,6 +1013,12 @@ namespace DeltaEngine::RT_Reflect
       return rttr::instance(em.GetComponent<Slider>(id));
     case ComponentMeta::ComponentBits<AudioSource>() :
       return rttr::instance( em.GetComponent<AudioSource>( id ) );
+    case ComponentMeta::ComponentBits<Serpentipede>() :
+        return rttr::instance(em.GetComponent<Serpentipede>(id));
+    case ComponentMeta::ComponentBits<Fiddler>() :
+        return rttr::instance(em.GetComponent<Fiddler>(id));
+    case ComponentMeta::ComponentBits<Lancer>() :
+        return rttr::instance(em.GetComponent<Lancer>(id));
     default:
       return rttr::instance();
     }
@@ -1006,6 +1076,12 @@ namespace DeltaEngine::RT_Reflect
       Serialize::WriteObject(*static_cast<Slider*>(ptr), writer);
     else if (str == "Audio Source" )
       Serialize::WriteObject(*static_cast<AudioSource*>(ptr), writer);
+    else if (str == "Serpentipede")
+        Serialize::WriteObject(*static_cast<Serpentipede*>(ptr), writer);
+    else if (str == "Fiddler")
+        Serialize::WriteObject(*static_cast<Fiddler*>(ptr), writer);
+    else if (str == "Lancer")
+        Serialize::WriteObject(*static_cast<Lancer*>(ptr), writer);
   }
 
   void DeserializeType(const std::string& str, EntityManager& em, EntityID id, rttr::variant var, size_t p_adj)
@@ -1060,5 +1136,11 @@ namespace DeltaEngine::RT_Reflect
       em.AddComponent<Slider>(id, var.get_value<Slider>());
     else if (str == "Audio Source")
       em.AddComponent<AudioSource>(id, var.get_value<AudioSource>());
+    else if (str == "Serpentipede")
+        em.AddComponent<Serpentipede>(id, var.get_value<Serpentipede>());
+    else if (str == "Fiddler")
+        em.AddComponent<Fiddler>(id, var.get_value<Fiddler>());
+    else if (str == "Lancer")
+        em.AddComponent<Lancer>(id, var.get_value<Lancer>());
   }
 }

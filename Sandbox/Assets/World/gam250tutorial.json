@@ -25439,150 +25439,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Fiddler"
             },
-            "Entity Type": {
-                "Category": "enemy"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 245.92019653320313,
-                    "y": -1111.703369140625,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 245.92019653320313,
-                    "y": -1112.1033935546876
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": -0.4000000059604645
-                },
-                "Size": {
-                    "x": 1.5800000429153443,
-                    "y": 0.9100000262260437
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 4,
-                "Trigger": false,
-                "Platform": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/FID_WALK",
-                    "index": 6
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
+            "Lancer": {
+                "ChargeDetectRange": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 5,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Fiddler",
-                "Speed": 1.0
-            },
-            "State": {},
-            "AI": {
-                "Original Point": {
-                    "x": 246.5,
-                    "y": 0.8500000238418579
-                },
-                "AIState": "idle_fiddler"
-            },
-            "Health": {
-                "Current Health": 20,
-                "Max Health": 20,
-                "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
-            },
-            "Attack": {
-                "Range Damage": 0,
-                "Melee Damage": 5,
-                "SMG Damage": 0,
-                "Melee Combo Damage": 0,
-                "Number Of Combo": 0,
-                "Max Combo Number": 1,
-                "Melee Cooldown": 0.800000011920929,
-                "Range Cooldown": 1.0,
-                "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.20000000298023225,
-                "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
-                "Knockback Amount": 0.0,
-                "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.20000000298023225,
-                "Current Dodge Cooldown": -0.10000000149011612,
-                "Dodge Cooldown": 1.0,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "SMG Attack": false,
-                "Allow SMG Attack": false,
-                "Blocking": false,
-                "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
-                "Damage Enemy": false
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -25730,7 +25594,7 @@
                 "Fading Timer": 1.0
             },
             "Input": {
-                "Previous": 1,
+                "Previous": 2,
                 "Current": 0
             }
         },
@@ -25876,6 +25740,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -26020,6 +25892,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -26164,6 +26044,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -26308,6 +26196,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -26452,6 +26348,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -26596,6 +26500,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -26740,6 +26652,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -26884,6 +26804,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -27028,6 +26956,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -27172,6 +27108,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -27316,6 +27260,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -27460,6 +27412,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -27604,6 +27564,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -27748,6 +27716,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -27892,6 +27868,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -28036,6 +28020,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -28180,6 +28172,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -28324,6 +28324,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -28468,6 +28476,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -28612,6 +28626,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -28756,6 +28778,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -28900,6 +28928,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -29044,6 +29080,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -29188,6 +29232,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -29332,6 +29384,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -29476,6 +29536,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -29620,6 +29688,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -29764,6 +29840,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -29908,6 +29992,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -30052,6 +30142,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -30196,294 +30294,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Fiddler"
             },
-            "Entity Type": {
-                "Category": "enemy"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 252.92019653320313,
-                    "y": -1111.703369140625,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 252.92019653320313,
-                    "y": -1112.1033935546876
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": -0.4000000059604645
-                },
-                "Size": {
-                    "x": 1.5800000429153443,
-                    "y": 0.9100000262260437
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 4,
-                "Trigger": false,
-                "Platform": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/FID_WALK",
-                    "index": 6
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
+            "Lancer": {
+                "ChargeDetectRange": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 5,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Fiddler",
-                "Speed": 1.0
-            },
-            "State": {},
-            "AI": {
-                "Original Point": {
-                    "x": 253.5,
-                    "y": 0.800000011920929
-                },
-                "AIState": "idle_fiddler"
-            },
-            "Health": {
-                "Current Health": 20,
-                "Max Health": 20,
-                "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
-            },
-            "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
-                "SMG Damage": 0,
-                "Melee Combo Damage": 0,
-                "Number Of Combo": 0,
-                "Max Combo Number": 1,
-                "Melee Cooldown": 0.800000011920929,
-                "Range Cooldown": 1.0,
-                "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.20000000298023225,
-                "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
-                "Knockback Amount": 0.0,
-                "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.20000000298023225,
-                "Current Dodge Cooldown": -0.10000000149011612,
-                "Dodge Cooldown": 1.0,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "SMG Attack": false,
-                "Allow SMG Attack": false,
-                "Blocking": false,
-                "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
-                "Damage Enemy": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Fiddler"
-            },
-            "Entity Type": {
-                "Category": "enemy"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 254.52142333984376,
-                    "y": -1111.703369140625,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 254.52142333984376,
-                    "y": -1112.1033935546876
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": -0.4000000059604645
-                },
-                "Size": {
-                    "x": 1.5800000429153443,
-                    "y": 0.9100000262260437
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 4,
-                "Trigger": false,
-                "Platform": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/FID_WALK",
-                    "index": 6
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 5,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Fiddler",
-                "Speed": 1.0
-            },
-            "State": {},
-            "AI": {
-                "Original Point": {
-                    "x": 255.10000610351563,
-                    "y": 0.800000011920929
-                },
-                "AIState": "idle_fiddler"
-            },
-            "Health": {
-                "Current Health": 20,
-                "Max Health": 20,
-                "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
-            },
-            "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
-                "SMG Damage": 0,
-                "Melee Combo Damage": 0,
-                "Number Of Combo": 0,
-                "Max Combo Number": 1,
-                "Melee Cooldown": 0.800000011920929,
-                "Range Cooldown": 1.0,
-                "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.20000000298023225,
-                "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
-                "Knockback Amount": 0.0,
-                "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.20000000298023225,
-                "Current Dodge Cooldown": -0.10000000149011612,
-                "Dodge Cooldown": 1.0,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "SMG Attack": false,
-                "Allow SMG Attack": false,
-                "Blocking": false,
-                "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
-                "Damage Enemy": false
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -30628,6 +30446,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -30772,6 +30598,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -30916,6 +30750,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -31060,438 +30902,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Fiddler"
             },
-            "Entity Type": {
-                "Category": "enemy"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 263.22027587890627,
-                    "y": -1111.703369140625,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 263.22027587890627,
-                    "y": -1112.1033935546876
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": -0.4000000059604645
-                },
-                "Size": {
-                    "x": 1.5800000429153443,
-                    "y": 0.9100000262260437
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 4,
-                "Trigger": false,
-                "Platform": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/FID_WALK",
-                    "index": 6
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
+            "Lancer": {
+                "ChargeDetectRange": {
                     "x": 0.0,
                     "y": 0.0
                 },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 5,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Fiddler",
-                "Speed": 1.0
-            },
-            "State": {},
-            "AI": {
-                "Original Point": {
-                    "x": 263.79998779296877,
-                    "y": 0.800000011920929
-                },
-                "AIState": "idle_fiddler"
-            },
-            "Health": {
-                "Current Health": 20,
-                "Max Health": 20,
-                "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
-            },
-            "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
-                "SMG Damage": 0,
-                "Melee Combo Damage": 0,
-                "Number Of Combo": 0,
-                "Max Combo Number": 1,
-                "Melee Cooldown": 0.800000011920929,
-                "Range Cooldown": 1.0,
-                "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.20000000298023225,
-                "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
-                "Knockback Amount": 0.0,
-                "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.20000000298023225,
-                "Current Dodge Cooldown": -0.10000000149011612,
-                "Dodge Cooldown": 1.0,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "SMG Attack": false,
-                "Allow SMG Attack": false,
-                "Blocking": false,
-                "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
-                "Damage Enemy": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Fiddler"
-            },
-            "Entity Type": {
-                "Category": "enemy"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 277.8202819824219,
-                    "y": -1111.703369140625,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 277.8202819824219,
-                    "y": -1112.1033935546876
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": -0.4000000059604645
-                },
-                "Size": {
-                    "x": 1.5800000429153443,
-                    "y": 0.9100000262260437
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 4,
-                "Trigger": false,
-                "Platform": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/FID_WALK",
-                    "index": 6
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 5,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Fiddler",
-                "Speed": 1.0
-            },
-            "State": {},
-            "AI": {
-                "Original Point": {
-                    "x": 278.3999938964844,
-                    "y": 0.800000011920929
-                },
-                "AIState": "idle_fiddler"
-            },
-            "Health": {
-                "Current Health": 20,
-                "Max Health": 20,
-                "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
-            },
-            "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
-                "SMG Damage": 0,
-                "Melee Combo Damage": 0,
-                "Number Of Combo": 0,
-                "Max Combo Number": 1,
-                "Melee Cooldown": 0.800000011920929,
-                "Range Cooldown": 1.0,
-                "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.20000000298023225,
-                "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
-                "Knockback Amount": 0.0,
-                "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.20000000298023225,
-                "Current Dodge Cooldown": -0.10000000149011612,
-                "Dodge Cooldown": 1.0,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "SMG Attack": false,
-                "Allow SMG Attack": false,
-                "Blocking": false,
-                "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
-                "Damage Enemy": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Fiddler"
-            },
-            "Entity Type": {
-                "Category": "enemy"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 264.8202819824219,
-                    "y": -1111.703369140625,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 264.8202819824219,
-                    "y": -1112.1033935546876
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": -0.4000000059604645
-                },
-                "Size": {
-                    "x": 1.5800000429153443,
-                    "y": 0.9100000262260437
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 4,
-                "Trigger": false,
-                "Platform": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/FID_WALK",
-                    "index": 6
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 5,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Fiddler",
-                "Speed": 1.0
-            },
-            "State": {},
-            "AI": {
-                "Original Point": {
-                    "x": 265.3999938964844,
-                    "y": 0.800000011920929
-                },
-                "AIState": "idle_fiddler"
-            },
-            "Health": {
-                "Current Health": 20,
-                "Max Health": 20,
-                "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
-            },
-            "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
-                "SMG Damage": 0,
-                "Melee Combo Damage": 0,
-                "Number Of Combo": 0,
-                "Max Combo Number": 1,
-                "Melee Cooldown": 0.800000011920929,
-                "Range Cooldown": 1.0,
-                "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.20000000298023225,
-                "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
-                "Knockback Amount": 0.0,
-                "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.20000000298023225,
-                "Current Dodge Cooldown": -0.10000000149011612,
-                "Dodge Cooldown": 1.0,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "SMG Attack": false,
-                "Allow SMG Attack": false,
-                "Blocking": false,
-                "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
-                "Damage Enemy": false
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -31636,6 +31054,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -31780,6 +31206,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -31924,6 +31358,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -32068,6 +31510,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -32212,6 +31660,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -32356,6 +31812,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -32500,6 +31964,14 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -39842,7 +39314,7 @@
         },
         {
             "Parent": {
-                "ID": 507
+                "ID": 501
             },
             "Entity Name": {
                 "Name": "Bg3"
@@ -53976,7 +53448,7 @@
             },
             "Audio Source": {
                 "Audio File": "event:/BGM/Stage 1 BGM",
-                "Volume": 0.15,
+                "Volume": 0.15000000596046449,
                 "Pitch": 1.0,
                 "Loop": 0,
                 "Is Loop": false,
@@ -53999,6 +53471,156 @@
                     "z": 0.0,
                     "w": 1.0
                 }
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Fiddler"
+            },
+            "Entity Type": {
+                "Category": "enemy"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 277.8202819824219,
+                    "y": -1111.703369140625,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 1.0,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": true,
+                "Moveable": true
+            },
+            "Collider": {
+                "Center": {
+                    "x": 277.8202819824219,
+                    "y": -1112.1033935546876
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": -0.4000000059604645
+                },
+                "Size": {
+                    "x": 1.5800000429153443,
+                    "y": 0.9100000262260437
+                },
+                "Type": "box",
+                "Collision Layer": 9,
+                "Collision Layer ID": 4,
+                "Trigger": false,
+                "Platform": false
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/FID_WALK",
+                    "index": 6
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "Renderer2D": {
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 5,
+                "Order": 0.0,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            },
+            "Animator": {
+                "Controller Key": "Animation/Fiddler",
+                "Speed": 1.0
+            },
+            "State": {},
+            "AI": {
+                "Original Point": {
+                    "x": 278.3999938964844,
+                    "y": 0.800000011920929
+                },
+                "AIState": "idle_fiddler"
+            },
+            "Health": {
+                "Current Health": 20,
+                "Max Health": 20,
+                "TakenDamageTimer": -0.10000000149011612,
+                "Invulnerable": false
+            },
+            "Attack": {
+                "Range Damage": 12,
+                "Melee Damage": 8,
+                "SMG Damage": 0,
+                "Melee Combo Damage": 0,
+                "Number Of Combo": 0,
+                "Max Combo Number": 1,
+                "Melee Cooldown": 0.800000011920929,
+                "Range Cooldown": 1.0,
+                "SMG Cooldown": 0.18000000715255738,
+                "Melee Cooldown Timer": -0.20000000298023225,
+                "Range Cooldown Timer": -0.20000000298023225,
+                "Combo Duration": 1.5,
+                "Combo Cooldown Timer": 0.0,
+                "Knockback Amount": 0.0,
+                "Knockback Combo Amount": 0.0,
+                "SMG Fire Rate": 0.18000000715255738,
+                "Attack Delay": -0.20000000298023225,
+                "Current Dodge Cooldown": -0.10000000149011612,
+                "Dodge Cooldown": 1.0,
+                "Ranged Attack": false,
+                "Melee Attack": false,
+                "SMG Attack": false,
+                "Allow SMG Attack": false,
+                "Blocking": false,
+                "Start SMG Cooldown Timer": false,
+                "Start Combo Cooldown Timer": false,
+                "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         }
     ]
