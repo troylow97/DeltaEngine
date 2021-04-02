@@ -504,10 +504,15 @@ namespace DeltaEngine
 
               // cameraAspect may be modified further depending on advanced camera settings
 
+              glActiveTexture(GL_TEXTURE0);
+              glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+              GetEnv().pManager->Get<Texture2D>("Textures/screentrans2")->Bind(1);
+
               Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
               shader->SetUniform1i("_MainTex", 0);
+              shader->SetUniform1i("_DispTex", 1);
               shader->SetUniformVector2f("_ScreenAspect", cameraAspect);
-              glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+              shader->SetUniform1f("_Cutoff", c.backgroundColor.a * (1.f + c.blurAmt) - c.blurAmt);
 
               Mesh::DrawQuad();
           });

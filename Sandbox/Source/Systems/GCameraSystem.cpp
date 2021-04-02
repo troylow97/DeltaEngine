@@ -45,12 +45,15 @@ namespace DeltaEngine
           //pos.y = Math::Clamp(pos.y + 2, 2.f, 4.25f);
           if (distX > offsetX)
           {
+            float speed = Math::Clamp(distX - offsetX, 0.f, 32.f);
             c_t->position.x = Math::MoveTowards(c_t->position.x, pos.x,
-              (distX - offsetX) * (distX - offsetX) * DeltaTimef());
+              speed * speed * DeltaTimef());
           }
           if (distY > offsetY)
           {
-            c_t->position.y = Math::MoveTowards(c_t->position.y, pos.y, (distY - offsetY) * (distY - offsetY) * DeltaTimef());
+            float speed = Math::Clamp(distY - offsetY, 0.f, 32.f);
+            c_t->position.y = Math::MoveTowards(c_t->position.y, pos.y,
+              speed * speed * DeltaTimef());
           }
 
           float zspeed = 0.75f;
@@ -69,7 +72,8 @@ namespace DeltaEngine
             pos.z = 6.5f;
             zspeed = 1.5f;
           }
-          c_t->position.z = Math::MoveTowards(c_t->position.z, pos.z, Math::Abs(c_t->position.z - pos.z) * DeltaTimef() * zspeed);
+          c_t->position.z = Math::MoveTowards(c_t->position.z, pos.z,
+            Math::Abs(c_t->position.z - pos.z) * DeltaTimef() * zspeed);
         });
   }
 }
