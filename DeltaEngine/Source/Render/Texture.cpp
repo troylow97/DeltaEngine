@@ -250,7 +250,7 @@ void Texture2D::InitTexture()
       glWrapMode = GL_CLAMP;
       break;
   }
-
+  glWrapMode = GL_CLAMP;
   GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR ) );
   GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR ) );
   GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, glWrapMode ) );

@@ -32,9 +32,13 @@ namespace DeltaEngine
         float m_Size, m_FieldOfView;
         float m_zNear, m_zFar;
         Color backgroundColor;
-        float fadeColorAmt = 0;
+        float fadeAmt = 0;
+        float blurAmt = 0.25f;
         Vector2 shakeDisp;
         float shakeMagnitude = 0, shakeFade = 10;
+#pragma warning(disable:4251)
+        std::string transitionTexKey;
+#pragma warning(default:4251)
 
         bool perspective;
 

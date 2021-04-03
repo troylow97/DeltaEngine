@@ -78,14 +78,6 @@ namespace DeltaEngine
               if (newClip)
               {
                 frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
-                //std::cerr << newClip->GetTotalFrames() << frame << std::endl;
-                //if (frame >= newClip->GetTotalFrames() - 1)
-                //{
-                //  if (newClip->looping)
-                //    ++a.m_LoopsCompleted;
-                //  else
-                //    a.m_LoopsCompleted = 1;
-                //}
 
                 Sprite newSprite = newClip->GetSprite(frame);
                 if (newSprite)
@@ -121,13 +113,6 @@ namespace DeltaEngine
               }
 
               frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
-              //if (frame == newClip->GetTotalFrames() - 1)
-              //{
-              //  if (newClip->looping)
-              //    ++a.m_LoopsCompleted;
-              //  else
-              //    a.m_LoopsCompleted = 1;
-              //}
               Sprite newSprite = newClip->GetSprite(frame);
               if (newSprite)
                 i.m_Sprite = newSprite;
