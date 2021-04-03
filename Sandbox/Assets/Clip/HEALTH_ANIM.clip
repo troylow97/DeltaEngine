@@ -1,4 +1,4 @@
-frames 24
+frames 40
 fps 12
 loop 1
 
@@ -122,5 +122,84 @@ key Textures/HEALTH_ANIM
 value 23
 frame 23
 
+Textures/HEALTH_ANIM_i_24
+key Textures/HEALTH_ANIM
+value 24
+frame 24
+
+Textures/HEALTH_ANIM_i_25
+key Textures/HEALTH_ANIM
+value 25
+frame 25
+
+Textures/HEALTH_ANIM_i_26
+key Textures/HEALTH_ANIM
+value 26
+frame 26
+
+Textures/HEALTH_ANIM_i_27
+key Textures/HEALTH_ANIM
+value 27
+frame 27
+
+Textures/HEALTH_ANIM_i_28
+key Textures/HEALTH_ANIM
+value 28
+frame 28
+
+Textures/HEALTH_ANIM_i_29
+key Textures/HEALTH_ANIM
+value 29
+frame 29
+
+Textures/HEALTH_ANIM_i_30
+key Textures/HEALTH_ANIM
+value 30
+frame 30
+
+Textures/HEALTH_ANIM_i_31
+key Textures/HEALTH_ANIM
+value 31
+frame 31
+
+Textures/HEALTH_ANIM_i_32
+key Textures/HEALTH_ANIM
+value 32
+frame 32
+
+Textures/HEALTH_ANIM_i_33
+key Textures/HEALTH_ANIM
+value 33
+frame 33
+
+Textures/HEALTH_ANIM_i_34
+key Textures/HEALTH_ANIM
+value 34
+frame 34
+
+Textures/HEALTH_ANIM_i_35
+key Textures/HEALTH_ANIM
+value 35
+frame 35
+
+Textures/HEALTH_ANIM_i_36
+key Textures/HEALTH_ANIM
+value 36
+frame 36
+
+Textures/HEALTH_ANIM_i_37
+key Textures/HEALTH_ANIM
+value 37
+frame 37
+
+Textures/HEALTH_ANIM_i_38
+key Textures/HEALTH_ANIM
+value 38
+frame 38
+
+Textures/HEALTH_ANIM_i_39
+key Textures/HEALTH_ANIM
+value 39
+frame 39
 
 %

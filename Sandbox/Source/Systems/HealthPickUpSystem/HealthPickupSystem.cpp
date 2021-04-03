@@ -15,7 +15,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-	float HealthPickupSystem::PickupChance = 100.0f;
+	float HealthPickupSystem::PickupChance = 20.0f;
 	
 	void HealthPickupSystem::Initialize()
 	{
@@ -34,24 +34,25 @@ namespace DeltaEngine
 	
 	void HealthPickupSystem::SpawnHealthOrbOnDeath(const Vector2 position)
 	{
+		std::cout << "SPAWNING" << std::endl;
 		if(Random::RandomFloatRange(0.0f,100.0f) < PickupChance)
 		{
 			EntityID orb = SpawnHealthOrb(position);
-			PickupChance = 0.0f;
+			PickupChance = 20.0f;
 		}
 		else
 		{
-			PickupChance += 0.0f;
+			PickupChance += 5.0f;
 		}
 	}
 
 	EntityID HealthPickupSystem::SpawnHealthOrb(const Vector2 position)
 	{
 		auto& em = env.pECS->GetWorld().GetEntityManager();
-        const EntityID pickup = em.CreateEntity<Collider, Lifespan, RigidBody,Renderer2D,Image>();
+        const EntityID pickup = em.CreateEntity<Collider, Lifespan, RigidBody,Renderer2D,Image,Animator,State>();
         em.GetComponent<Transform>(pickup).position = position;
         em.GetComponent<RigidBody>(pickup).Mass = 5.0f;
-        em.GetComponent<Transform>(pickup).scale = {0.5f,0.5f,0.0f};
+        em.GetComponent<Transform>(pickup).scale = {1.0f,1.0f,0.0f};
         em.GetComponent<Lifespan>(pickup).Timer = {5.0f};
         em.GetComponent<RigidBody>(pickup).hasGravity = false;
 		em.GetComponent<Collider>(pickup).isTrigger = true;
@@ -59,7 +60,8 @@ namespace DeltaEngine
         em.GetComponent<RigidBody>(pickup).FrictionCoeff = 0.0f;
 		em.GetComponent<Renderer2D>(pickup).m_Wireframe = false;
 		em.GetComponent<Renderer2D>(pickup).m_SortingLayer = 2;
-		em.GetComponent<Image>(pickup).m_Sprite.m_Key = "Textures/BLOCKER_SPAWN";
+		em.GetComponent<Animator>(pickup).m_ClipKey = "Animation/HealthPickup";
+		em.GetComponent<Image>(pickup).m_Sprite.m_Key = "Textures/HEALTH_PICKUP";
         return pickup;
 	}
 

@@ -40,7 +40,7 @@ namespace DeltaEngine
 	  
       if (hp.CurrentHealth <= 0)
       {
-        if (et.type == EntityCategory::E_ENEMY)
+        if (et.type == EntityCategory::E_ENEMY || et.type == EntityCategory::E_ENEMY_BULLET || et.type == EntityCategory::E_HEALTHUP)
           entities.push_back(id);
         else if (et.type == EntityCategory::E_PLAYER)
           em.GetComponent<Player>(id).IsDead = true;
@@ -67,6 +67,8 @@ namespace DeltaEngine
 
     for (auto& entity : entities)
     {
+      if (!em.HasComponent<State>(entity))
+          continue;
       em.GetComponent<State>(entity).SetBool("IsAlertRunning", false);
       em.GetComponent<State>(entity).SetBool("IsAttacked", true);
       em.GetComponent<State>(entity).SetBool("IsAttacked", false);
