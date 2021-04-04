@@ -36,7 +36,8 @@ namespace DeltaEngine
     });
 
     for (auto& ref : DestroyedEntities)
-      em.DestroyEntity(ref);
+	  if(em.IsEntityValid(ref))
+		em.DestroyEntity(ref);
 
     DestroyedEntities.clear();
 

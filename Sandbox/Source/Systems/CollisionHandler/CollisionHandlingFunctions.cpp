@@ -288,7 +288,7 @@ void CollisionHandlerFunctions::PickupHealthOrb(EntityID& id1, EntityID& id2)
         em.GetComponent<Health>(id2).CurrentHealth *= 1.30f;
         em.GetComponent<EntityType>(id1).type = EntityCategory::E_HEALTHUP_USED;
         em.GetComponent<State>(id1).SetBool("IsDead", true);
-        //std::cout << "picked up\n";
+        std::cout << "picked up\n";
     }
     else if(et1.type == EntityCategory::E_PLAYER && et2.type == EntityCategory::E_HEALTHUP)
     {
@@ -296,7 +296,7 @@ void CollisionHandlerFunctions::PickupHealthOrb(EntityID& id1, EntityID& id2)
         em.GetComponent<Health>(id1).CurrentHealth *= 1.30f;
         em.GetComponent<EntityType>(id2).type = EntityCategory::E_HEALTHUP_USED;
         em.GetComponent<State>(id2).SetBool("IsDead", true);
-        //std::cout << "picked up\n";
+        std::cout << "picked up\n";
     }
 
 }

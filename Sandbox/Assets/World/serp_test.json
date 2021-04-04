@@ -200,9 +200,9 @@
             },
             "Attack": {
                 "Range Damage": 0,
-                "Melee Damage": 0,
+                "Melee Damage": 10,
                 "SMG Damage": 0,
-                "Melee Combo Damage": 2,
+                "Melee Combo Damage": 4,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 1.0,
