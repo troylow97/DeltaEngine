@@ -29,7 +29,7 @@ Any State
 
 pos
 Clip/SERP_BULLET_ANIM
--289 75
+-283 74
 
 pos
 Clip/SERP_BULLET_FX
@@ -42,19 +42,6 @@ start
 Clip/SERP_BULLET_ANIM
 end
 Clip/SERP_BULLET_FX
-condition
-IsDead
-? 1
-condition
-Start
-? 0
-endTransition
-
-transition
-start
-Clip/SERP_BULLET_FX
-end
-Exit
 condition
 IsDead
 ? 1
