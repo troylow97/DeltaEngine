@@ -142,9 +142,7 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
         ReduceHealth( id2, static_cast<int>( CollisionHandlerSerpentipedeData.Damage ) );
         em.GetComponent<EntityType>(id1).type = EntityCategory::E_ENEMY_BULLET;
         em.GetComponent<Lifespan>( id1 ).Timer = 0.4f;
-  
-        em.GetComponent<Animator>(id1).m_ClipKey = "Textures/SERP_BULLET_FX";
-        std::cout << "clip key is " << em.GetComponent<Animator>(id1).m_ClipKey << std::endl;
+        em.GetComponent<State>(id2).SetBool("IsDead", true);
         em.GetComponent<RigidBody>(id1).Velocity *= 0.6f;
         //em.GetComponent<RigidBody>(id1).isMoveable = false;
         //ApplyKnockBack(id2, id1, 600.0f);
@@ -156,7 +154,6 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
         em.GetComponent<EntityType>(id2).type = EntityCategory::E_ENEMY_BULLET;
         em.GetComponent<Lifespan>( id2 ).Timer = 0.4f;
         em.GetComponent<State>(id2).SetBool("IsDead", true);
-        std::cout << "clip key is " << em.GetComponent<Animator>(id2).m_ClipKey << std::endl;
         em.GetComponent<RigidBody>(id2).Velocity *= 0.6f;
         //em.GetComponent<RigidBody>(id2).isMoveable = false;
         //ApplyKnockBack(id2, id1, 600.0f);
@@ -291,7 +288,6 @@ void CollisionHandlerFunctions::PickupHealthOrb(EntityID& id1, EntityID& id2)
     em.GetComponent<Health>(id2).CurrentHealth += em.GetComponent<Health>(id2).MaxHealth * 0.30f;
     em.GetComponent<State>(id1).SetBool("IsDead", true);
     em.GetComponent<EntityType>(id1).type = EntityCategory::E_HEALTHUP_USED;
-    std::cout << "picked up with id1\n";
   }
   else if(et1.type == EntityCategory::E_PLAYER && et2.type == EntityCategory::E_HEALTHUP)
   {
@@ -299,7 +295,6 @@ void CollisionHandlerFunctions::PickupHealthOrb(EntityID& id1, EntityID& id2)
     em.GetComponent<Health>(id1).CurrentHealth += em.GetComponent<Health>(id1).MaxHealth * 0.30f;
     em.GetComponent<State>(id2).SetBool("IsDead", true);
     em.GetComponent<EntityType>(id2).type = EntityCategory::E_HEALTHUP_USED;
-    std::cout << "picked up with id2\n";
   }
 }
 }

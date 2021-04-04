@@ -15,7 +15,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  float HealthPickupSystem::PickupChance = 100.0f;
+  float HealthPickupSystem::PickupChance = 20.0f;
   
   void HealthPickupSystem::Initialize()
   {
@@ -34,15 +34,14 @@ namespace DeltaEngine
   
   void HealthPickupSystem::SpawnHealthOrbOnDeath(const Vector2 position)
   {
-    if(Random::RandomFloatRange(0.0f,100.0f) < PickupChance)
+    if(Random::RandomFloatRange(0.0f,20.0f) < PickupChance)
     {
-      std::cout << "SPAWNING" << std::endl;
       EntityID orb = SpawnHealthOrb(position);
-      PickupChance = 100.0f;
+      PickupChance = 20.0f;
     }
     else
     {
-      PickupChance += 5.0f;
+      PickupChance += 3.0f;
     }
   }
   
