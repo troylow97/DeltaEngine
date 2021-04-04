@@ -512,7 +512,7 @@ namespace DeltaEngine
               shader->SetUniform1i("_MainTex", 0);
               shader->SetUniform1i("_DispTex", 1);
               shader->SetUniformVector2f("_ScreenAspect", cameraAspect);
-              shader->SetUniform1f("_Cutoff", (1 - c.backgroundColor.a) * (1.f + c.blurAmt) - c.blurAmt);
+              shader->SetUniform1f("_Cutoff", c.backgroundColor.a * (1.f + c.blurAmt) - c.blurAmt);
 
               Mesh::DrawQuad();
           });
