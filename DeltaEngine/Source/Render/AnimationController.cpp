@@ -66,6 +66,11 @@ namespace DeltaEngine
         {
           if (strcmp(EndingState.c_str(), "Exit"))
             return GetEnv().pManager->Get<AnimationClip>(EndingState);
+          for (auto& [ParamName, Value] : parameters)
+          {
+            Value.boolValue = 0;
+            Value.floatValue = 0;
+          }
           return GetEnv().pManager->Get<AnimationClip>(entryAnimation);
         }
       }
