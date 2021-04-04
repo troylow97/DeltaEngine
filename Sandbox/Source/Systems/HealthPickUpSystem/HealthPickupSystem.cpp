@@ -34,7 +34,7 @@ namespace DeltaEngine
   
   void HealthPickupSystem::SpawnHealthOrbOnDeath(const Vector2 position)
   {
-    if(Random::RandomFloatRange(0.0f,100.0f) < PickupChance)
+    if(Random::RandomFloatRange(0.0f,20.0f) < PickupChance)
     {
       EntityID orb = SpawnHealthOrb(position);
       PickupChance = 20.0f;

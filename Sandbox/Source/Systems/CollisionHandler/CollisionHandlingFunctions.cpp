@@ -142,7 +142,11 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
         ReduceHealth( id2, static_cast<int>( CollisionHandlerSerpentipedeData.Damage ) );
         em.GetComponent<EntityType>(id1).type = EntityCategory::E_ENEMY_BULLET_DEAD;
         em.GetComponent<Lifespan>( id1 ).Timer = 0.4f;
+<<<<<<< HEAD
         em.GetComponent<State>(id1).SetBool("IsDead", true);
+=======
+        em.GetComponent<State>(id2).SetBool("IsDead", true);
+>>>>>>> 5f8f410752433a8eff3e62e2671f1ce8e841e5bd
         em.GetComponent<RigidBody>(id1).Velocity *= 0.6f;
         //em.GetComponent<RigidBody>(id1).isMoveable = false;
         //ApplyKnockBack(id2, id1, 600.0f);
