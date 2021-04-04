@@ -141,11 +141,12 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
       {
         ReduceHealth( id2, static_cast<int>( CollisionHandlerSerpentipedeData.Damage ) );
         em.GetComponent<EntityType>(id1).type = EntityCategory::E_ENEMY_BULLET;
-        em.GetComponent<Lifespan>( id1 ).Timer = 5.55f;
+        em.GetComponent<Lifespan>( id1 ).Timer = 0.4f;
   
         em.GetComponent<Animator>(id1).m_ClipKey = "Textures/SERP_BULLET_FX";
         std::cout << "clip key is " << em.GetComponent<Animator>(id1).m_ClipKey << std::endl;
-        em.GetComponent<RigidBody>(id1).isMoveable = false;
+        em.GetComponent<RigidBody>(id1).Velocity *= 0.6f;
+        //em.GetComponent<RigidBody>(id1).isMoveable = false;
         //ApplyKnockBack(id2, id1, 600.0f);
         return;
       }
@@ -153,9 +154,11 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
       {
         ReduceHealth( id1, static_cast<int>( CollisionHandlerSerpentipedeData.Damage ) );
         em.GetComponent<EntityType>(id2).type = EntityCategory::E_ENEMY_BULLET;
-        em.GetComponent<Lifespan>( id2 ).Timer = 0.55f;
+        em.GetComponent<Lifespan>( id2 ).Timer = 0.4f;
         em.GetComponent<State>(id2).SetBool("IsDead", true);
-        std::cout << "clip key is " << em.GetComponent<Animator>(id2).m_ClipKey << std::endl;        em.GetComponent<RigidBody>(id2).isMoveable = false;
+        std::cout << "clip key is " << em.GetComponent<Animator>(id2).m_ClipKey << std::endl;
+        em.GetComponent<RigidBody>(id2).Velocity *= 0.6f;
+        //em.GetComponent<RigidBody>(id2).isMoveable = false;
         //ApplyKnockBack(id2, id1, 600.0f);
         return;
       }
@@ -278,26 +281,25 @@ void CollisionHandlerFunctions::CheckGroundType(EntityID& id1, EntityID& id2)
 
 void CollisionHandlerFunctions::PickupHealthOrb(EntityID& id1, EntityID& id2)
 {
-    auto& em = env.pECS->GetWorld().GetEntityManager();
-    const auto& et1 = em.GetComponent<EntityType>(id1);
-    const auto& et2 = em.GetComponent<EntityType>(id2);
-    
-    if(et1.type == EntityCategory::E_HEALTHUP && et2.type == EntityCategory::E_PLAYER)
-    {
-        em.GetComponent<Lifespan>(id1).Timer = 1.0f;
-        em.GetComponent<Health>(id2).CurrentHealth *= 1.30f;
-        em.GetComponent<EntityType>(id1).type = EntityCategory::E_HEALTHUP_USED;
-        em.GetComponent<State>(id1).SetBool("IsDead", true);
-        std::cout << "picked up\n";
-    }
-    else if(et1.type == EntityCategory::E_PLAYER && et2.type == EntityCategory::E_HEALTHUP)
-    {
-        em.GetComponent<Lifespan>(id2).Timer = 1.0f;
-        em.GetComponent<Health>(id1).CurrentHealth *= 1.30f;
-        em.GetComponent<EntityType>(id2).type = EntityCategory::E_HEALTHUP_USED;
-        em.GetComponent<State>(id2).SetBool("IsDead", true);
-        std::cout << "picked up\n";
-    }
-
+  auto& em = env.pECS->GetWorld().GetEntityManager();
+  const auto& et1 = em.GetComponent<EntityType>(id1);
+  const auto& et2 = em.GetComponent<EntityType>(id2);
+  
+  if(et1.type == EntityCategory::E_HEALTHUP && et2.type == EntityCategory::E_PLAYER)
+  {
+    em.GetComponent<Lifespan>(id1).Timer = 1.0f;
+    em.GetComponent<Health>(id2).CurrentHealth += em.GetComponent<Health>(id2).MaxHealth * 0.30f;
+    em.GetComponent<State>(id1).SetBool("IsDead", true);
+    em.GetComponent<EntityType>(id1).type = EntityCategory::E_HEALTHUP_USED;
+    std::cout << "picked up with id1\n";
+  }
+  else if(et1.type == EntityCategory::E_PLAYER && et2.type == EntityCategory::E_HEALTHUP)
+  {
+    em.GetComponent<Lifespan>(id2).Timer = 1.0f;
+    em.GetComponent<Health>(id1).CurrentHealth += em.GetComponent<Health>(id1).MaxHealth * 0.30f;
+    em.GetComponent<State>(id2).SetBool("IsDead", true);
+    em.GetComponent<EntityType>(id2).type = EntityCategory::E_HEALTHUP_USED;
+    std::cout << "picked up with id2\n";
+  }
 }
 }

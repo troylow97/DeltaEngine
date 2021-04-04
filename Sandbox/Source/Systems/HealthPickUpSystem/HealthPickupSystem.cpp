@@ -15,11 +15,11 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  float HealthPickupSystem::PickupChance = 20.0f;
+  float HealthPickupSystem::PickupChance = 100.0f;
   
   void HealthPickupSystem::Initialize()
   {
-    PickupChance = 20.0f;
+    PickupChance = 100.0f;
   }
   
   void HealthPickupSystem::Update()
@@ -38,11 +38,11 @@ namespace DeltaEngine
     {
       std::cout << "SPAWNING" << std::endl;
       EntityID orb = SpawnHealthOrb(position);
-      PickupChance = 20.0f;
+      PickupChance = 100.0f;
     }
     else
     {
-      PickupChance += 3.0f;
+      PickupChance += 5.0f;
     }
   }
   
