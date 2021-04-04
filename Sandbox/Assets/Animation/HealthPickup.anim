@@ -29,7 +29,7 @@ Clip/HEALTH_PICKUP
 
 pos
 Clip/HEALTH_ANIM
--62 102
+-78 75
 
 %Transitions:
 
@@ -38,6 +38,16 @@ start
 Clip/HEALTH_ANIM
 end
 Clip/HEALTH_PICKUP
+condition
+IsDead
+? 1
+endTransition
+
+transition
+start
+Clip/HEALTH_PICKUP
+end
+Exit
 endTransition
 
 %endfile

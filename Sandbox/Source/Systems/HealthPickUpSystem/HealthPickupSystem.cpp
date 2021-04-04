@@ -60,7 +60,7 @@ namespace DeltaEngine
         em.GetComponent<RigidBody>(pickup).FrictionCoeff = 0.0f;
 		em.GetComponent<Renderer2D>(pickup).m_Wireframe = false;
 		em.GetComponent<Renderer2D>(pickup).m_SortingLayer = 2;
-		em.GetComponent<Animator>(pickup).m_ClipKey = "Animation/HealthPickup";
+		em.GetComponent<Animator>(pickup).m_ControllerKey = "Animation/HealthPickup";
 		em.GetComponent<Image>(pickup).m_Sprite.m_Key = "Textures/HEALTH_PICKUP";
         return pickup;
 	}

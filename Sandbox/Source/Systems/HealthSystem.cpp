@@ -40,7 +40,7 @@ namespace DeltaEngine
 	  
       if (hp.CurrentHealth <= 0)
       {
-        if (et.type == EntityCategory::E_ENEMY || et.type == EntityCategory::E_ENEMY_BULLET || et.type == EntityCategory::E_HEALTHUP)
+        if (et.type == EntityCategory::E_ENEMY || et.type == EntityCategory::E_ENEMY_BULLET_DEAD || et.type == EntityCategory::E_HEALTHUP_USED)
           entities.push_back(id);
         else if (et.type == EntityCategory::E_PLAYER)
           em.GetComponent<Player>(id).IsDead = true;
