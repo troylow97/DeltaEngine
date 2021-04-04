@@ -330,6 +330,7 @@ namespace DeltaEngine
       em.GetComponent<Image>(missile).m_Size = { 0.5f, 0.5f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
       em.GetComponent<Animator>(missile).m_ControllerKey = "Animation/SerpBullet";
+      em.GetComponent<State>(missile).SetBool("IsDead", false);
       //em.GetComponent<RigidBody>(missile).Mass = 0.2f;
       em.GetComponent<Transform>(missile).position = { enemy_pos.position.x, enemy_pos.position.y + (enemy_collider.size.y / 2 * 0.75f), enemy_pos.position.z };
 
