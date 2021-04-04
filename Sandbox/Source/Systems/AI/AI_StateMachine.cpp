@@ -65,13 +65,9 @@ namespace DeltaEngine
 
       auto it = StateList.find(ai.key);
       if (it != StateList.end())
-      {
         ai_state = it->second;
-      }
       else
-      {
         return;
-      }
 
 
       if (ai_state != nullptr)
@@ -89,13 +85,9 @@ namespace DeltaEngine
 
         const auto find = StateList.find(ai.key);
         if (find != StateList.end())
-        {
           ai_state = find->second;
-        }
         else
-        {
           return;
-        }
 
         ai_state->onEnter(id);
       }

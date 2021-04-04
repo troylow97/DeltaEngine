@@ -16,6 +16,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/GameClock/EngineClock.h"
+#include "HealthPickUpSystem/HealthPickupSystem.h"
 
 namespace DeltaEngine
 {
@@ -39,7 +40,7 @@ namespace DeltaEngine
 	  
       if (hp.CurrentHealth <= 0)
       {
-        if (et.type == EntityCategory::E_ENEMY)
+        if (et.type == EntityCategory::E_ENEMY || et.type == EntityCategory::E_ENEMY_BULLET_DEAD || et.type == EntityCategory::E_HEALTHUP_USED)
           entities.push_back(id);
         else if (et.type == EntityCategory::E_PLAYER)
           em.GetComponent<Player>(id).IsDead = true;
@@ -66,6 +67,8 @@ namespace DeltaEngine
 
     for (auto& entity : entities)
     {
+      if (!em.HasComponent<State>(entity))
+          continue;
       em.GetComponent<State>(entity).SetBool("IsAlertRunning", false);
       em.GetComponent<State>(entity).SetBool("IsAttacked", true);
       em.GetComponent<State>(entity).SetBool("IsAttacked", false);
@@ -79,6 +82,7 @@ namespace DeltaEngine
       em.AddComponent<Lifespan>(entity);
       em.GetComponent<Lifespan>(entity).Timer = 1.0f;
       em.GetComponent<RigidBody>(entity).isMoveable = false;
+      HealthPickupSystem::SpawnHealthOrbOnDeath(em.GetComponent<Transform>(entity).position);
     }
     entities.clear();
 

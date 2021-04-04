@@ -25,13 +25,26 @@ namespace DeltaEngine
     static void CreateCheckpoints(int level);
 
   private:
+    static bool opening_tutorial;
+    static bool opening_level_1;
     static bool in_tutorial;
     static bool in_level_1;
+    static int checkpoint_passed;
     static RespawnPoints respawns;
     static Vector2 player_initial_position;
+    static Vector2 player_spawning_position;
+    bool need_refill_health = false;
+    bool respawn_now = false;
     float dying_countdown = 0.0f;
     void CheckpointsLightUp();
+    void PassedCheckpointsLightUp();
+    void RefillHealth();
+    void DeathAnimation();
+    void ClearScreen();
     void Respawning();
     void DeathEffect();
+
+    //bool temp_checkpoints = true;
+    //void temp_create_checkpoints();
   END_DEFINE_SYSTEM(RespawnSystem)
 }

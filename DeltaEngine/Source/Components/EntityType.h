@@ -26,12 +26,15 @@ namespace DeltaEngine
     E_PLAYER_DASH,
     E_PLAYER_SMG,
     E_ENEMY_BULLET,
+    E_ENEMY_BULLET_DEAD,
     E_ENEMY_FIDDLER_PUNCH,
     E_ENEMY_LANCER_PUNCH,
   	E_VFX,
   	E_CHECKPOINT,
   	E_MUD,
-  	E_CONCRETE
+  	E_CONCRETE,
+  	E_HEALTHUP,
+    E_HEALTHUP_USED
   };
 
   struct EntityType

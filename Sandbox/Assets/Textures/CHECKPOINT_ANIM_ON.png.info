@@ -1,0 +1,78 @@
+Textures/CHECKPOINT_ANIM_ON_i_0
+offset 0 0
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_1
+offset 570 0
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_2
+offset 1140 0
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_3
+offset 1710 0
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_4
+offset 2280 0
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_5
+offset 0 710
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_6
+offset 570 710
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_7
+offset 1140 710
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_8
+offset 1710 710
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_9
+offset 2280 710
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_10
+offset 0 1420
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_11
+offset 570 1420
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_12
+offset 1140 1420
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_13
+offset 1710 1420
+size 570 710
+pivot 0.5 0.5
+
+Textures/CHECKPOINT_ANIM_ON_i_14
+offset 2280 1420
+size 570 710
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

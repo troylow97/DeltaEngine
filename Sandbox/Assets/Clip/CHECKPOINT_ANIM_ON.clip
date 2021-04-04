@@ -1,0 +1,80 @@
+frames 15
+fps 12
+loop 0
+
+Textures/CHECKPOINT_ANIM_ON_i_0
+key Textures/CHECKPOINT_ANIM_ON
+value 0
+frame 0
+
+Textures/CHECKPOINT_ANIM_ON_i_1
+key Textures/CHECKPOINT_ANIM_ON
+value 1
+frame 1
+
+Textures/CHECKPOINT_ANIM_ON_i_2
+key Textures/CHECKPOINT_ANIM_ON
+value 2
+frame 2
+
+Textures/CHECKPOINT_ANIM_ON_i_3
+key Textures/CHECKPOINT_ANIM_ON
+value 3
+frame 3
+
+Textures/CHECKPOINT_ANIM_ON_i_4
+key Textures/CHECKPOINT_ANIM_ON
+value 4
+frame 4
+
+Textures/CHECKPOINT_ANIM_ON_i_5
+key Textures/CHECKPOINT_ANIM_ON
+value 5
+frame 5
+
+Textures/CHECKPOINT_ANIM_ON_i_6
+key Textures/CHECKPOINT_ANIM_ON
+value 6
+frame 6
+
+Textures/CHECKPOINT_ANIM_ON_i_7
+key Textures/CHECKPOINT_ANIM_ON
+value 7
+frame 7
+
+Textures/CHECKPOINT_ANIM_ON_i_8
+key Textures/CHECKPOINT_ANIM_ON
+value 8
+frame 8
+
+Textures/CHECKPOINT_ANIM_ON_i_9
+key Textures/CHECKPOINT_ANIM_ON
+value 9
+frame 9
+
+Textures/CHECKPOINT_ANIM_ON_i_10
+key Textures/CHECKPOINT_ANIM_ON
+value 10
+frame 10
+
+Textures/CHECKPOINT_ANIM_ON_i_11
+key Textures/CHECKPOINT_ANIM_ON
+value 11
+frame 11
+
+Textures/CHECKPOINT_ANIM_ON_i_12
+key Textures/CHECKPOINT_ANIM_ON
+value 12
+frame 12
+
+Textures/CHECKPOINT_ANIM_ON_i_13
+key Textures/CHECKPOINT_ANIM_ON
+value 13
+frame 13
+
+Textures/CHECKPOINT_ANIM_ON_i_14
+key Textures/CHECKPOINT_ANIM_ON
+value 14
+frame 14
+
+%

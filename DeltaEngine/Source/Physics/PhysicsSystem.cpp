@@ -272,6 +272,7 @@ namespace DeltaEngine
         p.AllowPunching = false;
         p.AllowShooting = false;
         p.AllowRunning = false;
+        r.InherentAcceleration = 0.0f;
       }
       else
       {

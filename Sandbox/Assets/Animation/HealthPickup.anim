@@ -1,0 +1,53 @@
+%Entry:
+
+entry
+Clip/HEALTH_ANIM
+
+%Parameters:
+
+param
+IsDead
+1 0
+
+%EditorPositions:
+
+pos
+Entry
+170 28
+
+pos
+Exit
+200 200
+
+pos
+Any State
+-152 22
+
+pos
+Clip/HEALTH_PICKUP
+-144 170
+
+pos
+Clip/HEALTH_ANIM
+-78 75
+
+%Transitions:
+
+transition
+start
+Clip/HEALTH_ANIM
+end
+Clip/HEALTH_PICKUP
+condition
+IsDead
+? 1
+endTransition
+
+transition
+start
+Clip/HEALTH_PICKUP
+end
+Exit
+endTransition
+
+%endfile

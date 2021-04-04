@@ -88,6 +88,10 @@
     <ClInclude Include="Source\Systems\VFXSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\HealthPickUpSystem\HealthPickupSystem.h" />
+    <ClInclude Include="Source\Systems\AI\AIComponents\SerpentipedeComponent.h" />
+    <ClInclude Include="Source\Systems\AI\AIComponents\FiddlerComponent.h" />
+    <ClInclude Include="Source\Systems\AI\AIComponents\LancerComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameState.cpp" />
@@ -152,5 +156,6 @@
     <ClCompile Include="Source\Systems\VFXSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Systems\HealthPickUpSystem\HealthPickupSystem.cpp" />
   </ItemGroup>
 </Project>

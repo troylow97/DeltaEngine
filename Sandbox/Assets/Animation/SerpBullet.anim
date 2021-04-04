@@ -1,0 +1,63 @@
+%Entry:
+
+entry
+Clip/SERP_BULLET_ANIM
+
+%Parameters:
+
+param
+IsDead
+1 0
+
+param
+Start
+1 0
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+200 200
+
+pos
+Any State
+200 0
+
+pos
+Clip/SERP_BULLET_ANIM
+-289 75
+
+pos
+Clip/SERP_BULLET_FX
+-146 201
+
+%Transitions:
+
+transition
+start
+Clip/SERP_BULLET_ANIM
+end
+Clip/SERP_BULLET_FX
+condition
+IsDead
+? 1
+condition
+Start
+? 0
+endTransition
+
+transition
+start
+Clip/SERP_BULLET_FX
+end
+Exit
+condition
+IsDead
+? 1
+endTransition
+
+%endfile

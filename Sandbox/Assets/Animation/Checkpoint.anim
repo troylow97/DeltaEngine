@@ -28,7 +28,7 @@ Clip/CHECKPOINT_OFF
 -25 190
 
 pos
-Clip/CHECKPOINT_ON
+Clip/CHECKPOINT_ANIM_ON
 108 81
 
 %Transitions:
@@ -37,7 +37,7 @@ transition
 start
 Clip/CHECKPOINT_OFF
 end
-Clip/CHECKPOINT_ON
+Clip/CHECKPOINT_ANIM_ON
 condition
 CheckpointReached
 ? 1
