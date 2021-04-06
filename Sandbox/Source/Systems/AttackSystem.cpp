@@ -378,6 +378,9 @@ namespace DeltaEngine
     {
       if (em.GetComponent<RigidBody>(id).hasGravity == false)
       {
+        if (em.GetComponent<Animator>(id).m_ClipKey == "Clip/LANCER_DMG") //do not attack if damaged
+            return;
+      	
         unsigned rand_sound = Random::RandomIntRange(0, 3);
         switch (rand_sound)
         {
@@ -405,7 +408,10 @@ namespace DeltaEngine
         //em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 8000.0f;
       }
       else
-      {  	
+      {
+        if (em.GetComponent<Animator>(id).m_ClipKey == "Clip/FID_DMG") //do not attack if damaged
+            return;
+      	
         static size_t c_id{u64_max};
         if (AudioEngine::IsChannelPlaying(c_id))
           AudioEngine::StopChannel(c_id);

@@ -201,7 +201,7 @@ namespace DeltaEngine
 
         state.SetBool("IsAttacked", true);
         state.SetBool("IsDead", false);
-        lancer.TransitionTimer = 1.0f;
+        lancer.TransitionTimer = 0.3f;
     }
 	
     void GotHitEnemyLancer::Update(EntityID& monster)
@@ -223,8 +223,6 @@ namespace DeltaEngine
 
         state.SetBool("IsAttacked", true);
         state.SetBool("IsDead", false);
-        //auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
-        //std::cout << "GotHitEnemyLancer" << std::endl;
     	
         rb.Direction = { 0,0 };
 
@@ -341,7 +339,7 @@ namespace DeltaEngine
     	const Vector2 player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
         state.SetBool("IsBouncing", true);
         state.SetBool("Charging", false);
-        lancer.TransitionTimer = 1.4f;
+        lancer.TransitionTimer = 1.2f;
         env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.y += 500;
         if (AITools::EntityisOnTheRight(monster, player))
         {
@@ -454,25 +452,25 @@ namespace DeltaEngine
         if (fid.DurationBeforeExitState > 0.0f)
             fid.DurationBeforeExitState -= env.pClock->FixedDeltaTime();
 
-        if (fid.AttackDelay > 0.0f)
-        {
-            if (fid.AttackDelay < 0.8f && !fid.hasAttacked)
-            {
-                fid.hasAttacked = true;
-                a.MeleeAttack = true;
-            }
-            else if (fid.AttackDelay < 0.2f)
-            {
-                s.SetBool("IsAlertRunning", true);
-                s.SetBool("MeleeAttack", false);
-            }
-            fid.AttackDelay -= env.pClock->FixedDeltaTime();
-            return;
-    	}
-        fid.hasAttacked = false;
-
-    	if(hp.isDamagedTimer <= 0.0f)
-    	{   		
+        if (hp.isDamagedTimer <= 0.0f)
+        {  	
+             if (fid.AttackDelay > 0.0f)
+             {
+                 if (fid.AttackDelay < 0.8f && !fid.hasAttacked)
+                 {
+                    fid.hasAttacked = true;
+					a.MeleeAttack = true;
+                 }
+                 else if (fid.AttackDelay < 0.2f)
+                 {
+                     s.SetBool("IsAlertRunning", true);
+                     s.SetBool("MeleeAttack", false);
+                 }
+                 fid.AttackDelay -= env.pClock->FixedDeltaTime();
+                 return;
+    	        }
+             fid.hasAttacked = false;
+		
             s.SetBool("IsAttacked", false);
             s.SetBool("IsDead", false);
             s.SetBool("IsAlertRunning", true);
@@ -514,7 +512,7 @@ namespace DeltaEngine
             {
                 //attacking
                 if (AITools::Distance_X_BetweenTwoEntities(monster, player) < 2.0f && AITools::Distance_X_BetweenTwoEntities(monster, player) > 0.5f
-                    && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 0.7f && a.MeleeCooldownTimer < 0.0f)
+                    && AITools::Distance_Y_BetweenTwoEntities(monster, player) < 0.7f && a.MeleeCooldownTimer < 0.0f && em.GetComponent<Animator>(monster).m_ClipKey != "Clip/FID_DMG")
                 {
                     if (AITools::EntityisOnTheRight(monster, player))
                         env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
@@ -569,6 +567,7 @@ namespace DeltaEngine
 
     	}
         em.GetComponent<RigidBody>(monster).Direction = Vector2{ 0,0 };
+        fid.hasAttacked = true;
         //std::cout << "here4" << std::endl;
     }
 #pragma endregion

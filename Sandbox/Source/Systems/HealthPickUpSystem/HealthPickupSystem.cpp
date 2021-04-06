@@ -11,7 +11,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "HealthPickupSystem.h"
 #include "../AI/AITools.h"
 #include "Core/GlobalStruct.h"
-#include "../UnitManager.h"
 
 namespace DeltaEngine
 {
