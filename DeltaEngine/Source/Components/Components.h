@@ -32,7 +32,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "ParticleEmitter.h"
 #include "Player.h"
 #include "UI.h"
-#include "VideoPlayer.h"
 #include "Render/Camera.h"
 #include "AudioSource.h"
 #include "../../../Sandbox/Source/Systems/AI/AIComponents/FiddlerComponent.h"

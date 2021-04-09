@@ -40,7 +40,7 @@ namespace DeltaEngine
 
     static void BindID(unsigned id, unsigned slot = 0);
     void Bind(unsigned slot = 0) const;
-    void Unbind() const;
+    static void Unbind();
 
     int GetWidth() const;
     int GetHeight() const;

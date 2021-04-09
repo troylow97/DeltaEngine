@@ -71,7 +71,7 @@ void Back()
 
 void StartGame()
 {
-  GameStateLoad( GameState::TUTORIAL );
+  GameStateLoad( GameState::CUTSCENE_INTRO );
 }
 
 void OpenControls()

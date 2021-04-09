@@ -67,6 +67,7 @@ namespace DeltaEngine
     int startInd = 0, endInd = -1;
     for (auto position : anchors)
     {
+      position.z = 1;
       if (!position.z)
         continue;
       if (position.x < time)
@@ -129,7 +130,7 @@ namespace DeltaEngine
   {
     for (size_t i = 0; i < 4; ++i)
       for (size_t j = 0; j < 3 - i; ++j)
-        if (anchors[j].z == -1 || anchors[j].z > anchors[j + 1].z)
+        if (anchors[j].z < 0 || anchors[j].z > anchors[j + 1].z)
         {
           auto temp1 = anchors[j];
           anchors[j] = anchors[j + 1];

@@ -1,4 +1,5 @@
 #version 330 core
+
 layout (location = 0) in vec3 position;
 layout (location = 1) in vec4 color;
 layout (location = 2) in vec2 texCoord;
@@ -7,13 +8,19 @@ out vec3 vertexPosition;
 out vec4 vertexColor;
 out vec2 vertexTexCoord;
 
-uniform vec2 _ScreenAspect;
+uniform mat4 _M; //ModelMatrix
+uniform mat4 _V; //ViewMatrix
+uniform mat4 _P; //ProjectionMatrix
 
 void main()
 {
-  gl_Position = vec4(position.x * 2 * _ScreenAspect.x, -position.y * 2 * _ScreenAspect.y, 0.0, 1.0);
+  vec4 v = vec4(position, 1.0);
+  vec4 v1 = _M * v;
+  vec4 v2 = _V * v1;
+  vec4 v3 = _P * v2;
+  gl_Position = v3;
   
-  vertexPosition = gl_Position.xyz;
+  vertexPosition = v1.xyz;
   vertexColor = color;
   vertexTexCoord = texCoord;
 }

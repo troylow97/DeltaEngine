@@ -17,6 +17,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/RespawnSystem.h"
 #include "Input/InputManager.h"
 #include "Input/Keys.h"
+#include "Render/Cutscenes.h"
 
 namespace DeltaEngine
 {
@@ -39,6 +40,14 @@ void GameStateLoad( GameState state )
       current = GameState::MAIN_MENU;
       world.Load( "World/MainMenuScreen.json" );
       EnemySpawner::ActivateGauntlet = false;
+      break;
+    }
+    case GameState::CUTSCENE_INTRO :
+    {
+      current = GameState::CUTSCENE_INTRO;
+      world.Load("World/IntroCutscene.json");
+      Cutscene::timer = 0;
+      Cutscene::frame = -1;
       break;
     }
     case GameState::TUTORIAL :

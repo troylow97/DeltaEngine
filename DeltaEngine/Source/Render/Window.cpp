@@ -277,7 +277,7 @@ namespace DeltaEngine
       m_fullscreen = !m_fullscreen;
       Fullscreen();
     }
-    ShowWindow(GetConsoleWindow(), SW_SHOW);
+    ShowWindow(GetConsoleWindow(), SW_HIDE);
 #endif
 
     RegisterDragDrop(m_hwndl, &dropManager);

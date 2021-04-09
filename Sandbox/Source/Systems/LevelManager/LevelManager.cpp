@@ -18,6 +18,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/GlobalStruct.h"
 #include "Systems/UISystem.h"
 #include "../../GameState.h"
+#include "Render/Cutscenes.h"
 
 namespace DeltaEngine
 {
@@ -28,6 +29,20 @@ namespace DeltaEngine
 		{
 			case GameState::MAIN_MENU:
 			{
+				break;
+			}
+			case GameState::CUTSCENE_INTRO:
+			{
+				Cutscene::timer += DeltaTimef() * 2;
+				if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
+				{
+					++Cutscene::frame;
+					Cutscene::timer = 0;
+				}
+				if (Cutscene::frame > 9 && Cutscene::timer > 1)
+				{
+					GameStateLoad(GameState::TUTORIAL);
+				}
 				break;
 			}
 			case GameState::TUTORIAL:

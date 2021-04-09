@@ -35,6 +35,7 @@ namespace DeltaEngine
     m_zNear{ .3f },
     m_zFar{ 1000 },
     backgroundColor{ 49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1 },
+    transitionTexKey{ "Textures/Sharp_swipe_1" },
     perspective{true}
   {
     if (!editor)
