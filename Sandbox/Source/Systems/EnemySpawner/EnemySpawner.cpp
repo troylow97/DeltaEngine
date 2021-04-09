@@ -218,6 +218,7 @@ namespace DeltaEngine
       em.AddComponent<Health>(enemy);
       em.AddComponent<Renderer2D>(enemy);
       em.AddComponent<Animator>(enemy);
+      em.AddComponent<AudioSource>(enemy);
 
       em.GetComponent<Renderer2D>(enemy).m_Wireframe = false;
       em.GetComponent<Transform>(enemy).position = position + rand1;

@@ -101,6 +101,36 @@ namespace DeltaEngine
       }
   };
 
+  class LostEnemyLancer : public Transition
+  {
+      Vector2 LostDetectionRange;
+  public:
+      LostEnemyLancer(Vector2& lost_range) :
+          LostDetectionRange(lost_range)
+      {
+      }
+
+      bool TestEdge(EntityID& monster) override
+      {
+          auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
+              {
+                  if (et.type == EntityCategory::E_PLAYER && !AITools::EntityisWithinDetectionRange(
+                      monster, player, LostDetectionRange.x, LostDetectionRange.y))
+                  {
+                      ref.transition = getTargetState();
+                  }
+              });
+          if (ref.transition == getTargetState()) { return true; }
+          return false;
+      }
+
+      std::string getTargetState() override
+      {
+          return "idle_lancer";
+      }
+  };
+
   class DetectEnemyFiddler : public Transition
   {
     Vector2 ChargeDetectionRange;

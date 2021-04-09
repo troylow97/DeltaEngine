@@ -82,8 +82,11 @@ namespace DeltaEngine
     void IdleLancer::onEnter(EntityID& id)
     {
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAttacked", false);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("BeginCharging", false);
+        env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("Charging", false);  	
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", true);
-        //std::cout << "IdleLancer onEnter" << std::endl;
+
+        env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0,0 };
     }
 
     void IdleLancer::onExit(EntityID& id)
@@ -100,19 +103,14 @@ namespace DeltaEngine
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsDead", false);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlerted", true);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("MeleeAttack", false);
-        //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).Movespeed = 32.0f;
-        //std::cout << "IdleLancer Update" << std::endl;
-        //auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
-
-        //if (ref.y < 2.0)
-        //    AITools::MoveTowardsPoint(monster, Vector2{ ref.x,Random::RandomFloatRange(2.1,2.5) });
     }
 
     //----------------------------------------------------------------------
     ChaseEnemyLancer::ChaseEnemyLancer(Vector2 v) :
 	ChargeDetectRange{v}
     {
-        TransitionEdges["hit_enemy_lancer"] = new DamagedEnemyLancer();    	
+        TransitionEdges["hit_enemy_lancer"] = new DamagedEnemyLancer();
+        TransitionEdges["lost_enemy_lancer"] = new LostEnemyLancer(Vector2{ 8.0f,8.0f });
     }
 
     void ChaseEnemyLancer::onEnter(EntityID& id)
@@ -149,6 +147,7 @@ namespace DeltaEngine
         auto& lancer = env.pECS->GetWorld().GetEntityManager().GetComponent<Lancer>(monster);
         auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
         auto player = UnitManager::GetPlayerID();
+    	
     	if(!lancer.HasEntered)
     	{
             if(AITools::Distance_X_BetweenTwoEntities(monster, player) > lancer.ChargeDetectRange.x)
@@ -161,7 +160,7 @@ namespace DeltaEngine
             lancer.HasEntered = true;
     	}
 
-    	
+        CheckEdges(monster);
 
         state.SetBool("IsAttacked", false);
 
@@ -170,7 +169,6 @@ namespace DeltaEngine
         else
             ai.transition = "charging_enemy_lancer";
 
-        //std::cout << "ChaseEnemyLancer" << std::endl;
     }
 
     //----------------------------------------------------------------------
@@ -246,7 +244,7 @@ namespace DeltaEngine
     ChargingEnemyLancer::ChargingEnemyLancer()
     {
         TransitionEdges["hit_enemy_lancer"] = new DamagedEnemyLancer();
-        // TransitionEdges["attack_enemy_lancer"] = new AttackEnemyLancer();
+        TransitionEdges["lost_enemy_lancer"] = new LostEnemyLancer(Vector2{ 8.0f,8.0f });
     }
 	
     void ChargingEnemyLancer::onEnter(EntityID& monster)
@@ -270,11 +268,9 @@ namespace DeltaEngine
         s.SetBool("IsAttacked", false);
         EntityID player = UnitManager::GetPlayerID();
         const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
-        //auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(player);
-       // auto& player_col = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(player);
+
         CheckEdges(monster);
-        //std::cout << "ChargingEnemyLancer" << std::endl;
-        //Face player
+
         if (AITools::EntityisOnTheRight(monster, player))
             env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
         else
@@ -307,8 +303,6 @@ namespace DeltaEngine
 
     void ChargingEnemyLancer::onExit(EntityID& monster)
     {
-        //auto& state = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
-        //state.SetBool("Charging", false);
     }
 
     AttackingEnemyLancer::AttackingEnemyLancer()
