@@ -46,25 +46,26 @@ namespace DeltaEngine
       {
         p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
         p.AllowDashing = false;
-        //if (!InputSystem::GetGodMode())
-        //  h.isInvulnerable = true;
+        if (p.UnMoveableTimerCooldown > 0.0f)
+          p.AllowRunning = false;
       }
       if (p.DashingTimerCooldown <= 0.0f)
       { // stop dashing
         p.StartDashingTimer = false;
         p.DashingTimerCooldown = p.DashingTimerDuration;
-        //if (!InputSystem::GetGodMode())
-        //  h.isInvulnerable = false;
         s.SetBool("LancerAttack", false);
       }
-      if (!r.isMoveable)
+      if (!p.AllowRunning)
       {
         p.UnMoveableTimerCooldown -= env.pClock->FixedDeltaTime();
       }
-      if (p.UnMoveableTimerCooldown <= 0.0f)
+      if (p.UnMoveableTimerCooldown <= 0.0f || p.AllowRunning)
       {
+          // clara fix thissssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+        std::cout << "hereeeeeeeeeeeeeeee" << std::endl;
+        s.SetBool("IsPanting", false);
         p.AllowDashing = true;
-        //r.isMoveable = true;
+        p.AllowRunning = true;
         p.UnMoveableTimerCooldown = p.UnMoveableTimerDuration;
       }
     //  Dash();

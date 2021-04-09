@@ -229,18 +229,18 @@ namespace DeltaEngine
         p.AllowRunning = false;
       	if(c.isCollidingOnFloor)
       	{
-            if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 4000 + r.Mass * 100, 0 };
-            else
-                r.AccumulatedForce -= Vector2{ 4000 + r.Mass * 100, 0 };
+          if (p.DashDirectionRight)
+            r.AccumulatedForce += Vector2{ 4000 + r.Mass * 100, 0 };
+          else
+            r.AccumulatedForce -= Vector2{ 4000 + r.Mass * 100, 0 };
       	}
         else //dashing in mid air
         {
-            if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 250 + r.Mass * 100, 0 };
-            else
-                r.AccumulatedForce -= Vector2{ 250 + r.Mass * 100, 0 };
-            r.InherentAcceleration = 0.0f;
+          if (p.DashDirectionRight)
+            r.AccumulatedForce += Vector2{ 250 + r.Mass * 100, 0 };
+          else
+            r.AccumulatedForce -= Vector2{ 250 + r.Mass * 100, 0 };
+          r.InherentAcceleration = 0.0f;
         }
 
       }
@@ -260,13 +260,14 @@ namespace DeltaEngine
     if (CurrentDashTicks >= MaxDashTicks)
     {
       auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
+      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
       //p.IsDashing = false;
       p.IsDodging = false;
       DashDelay = 0.5f;
       if (!InputSystem::GetGodMode())
         h.isInvulnerable = false;
-      //r.isMoveable = false;
       r.Velocity.y = 0.0f;
+      s.SetBool("IsPanting", true);
       CurrentDashTicks = 0;
     }
   }
@@ -304,6 +305,7 @@ namespace DeltaEngine
     else
       r.Acceleration = { 0, 0 };
   }
+  
   void PhysicsSystem::UpdateJumpAndDashDelay(Player& p)
   {
     if (DashDelay > 0.0f)

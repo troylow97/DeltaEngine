@@ -77,6 +77,10 @@ param
 VelocityY
 0 0
 
+param
+IsPanting
+0 0
+
 %EditorPositions:
 
 pos
@@ -174,6 +178,10 @@ Clip/DAVE_FIRE_ARM
 pos
 Clip/DAVE_LAND
 568 -341
+
+pos
+Clip/DAVE_PANTING
+722 -152
 
 %Transitions:
 
@@ -357,16 +365,6 @@ endTransition
 
 transition
 start
-Clip/DAVE_DASH
-end
-Exit
-condition
-IsDashing
-? 0
-endTransition
-
-transition
-start
 Clip/DAVE_IDLE_STRETCH
 end
 Exit
@@ -684,6 +682,26 @@ Clip/DAVE_IDLE
 condition
 IsIdle
 ? 1
+endTransition
+
+transition
+start
+Clip/DAVE_DASH
+end
+Clip/DAVE_PANTING
+condition
+IsPanting
+? 1
+endTransition
+
+transition
+start
+Clip/DAVE_PANTING
+end
+Exit
+condition
+IsPanting
+? 0
 endTransition
 
 %endfile
