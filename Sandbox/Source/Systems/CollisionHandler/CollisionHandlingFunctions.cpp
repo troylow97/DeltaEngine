@@ -86,7 +86,6 @@ unsigned player_impact_id { 0 };
 
 void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
 {
-  //std::cout << "TAKE DAMAGE" << std::endl;
   auto &em = env.pECS->GetWorld().GetEntityManager();
   const auto &et1 = em.GetComponent<EntityType>( id1 );
   const auto &et2 = em.GetComponent<EntityType>( id2 );

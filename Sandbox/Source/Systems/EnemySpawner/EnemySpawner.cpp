@@ -59,6 +59,7 @@ namespace DeltaEngine
       {
         EntityID player = UnitManager::GetPlayerID();
 
+      	//Check if player is in any gauntlet
         for (auto i = 0; i < list.Gauntlets.size(); ++i)
         {
           auto& Gauntlet = list.Gauntlets[i];
@@ -73,10 +74,21 @@ namespace DeltaEngine
           }
         }
 
+      	//Activate gauntlet
         if (GauntletIsActive)
         {
           if (CheckForOutsideEnemies())
             return;
+
+          //If player dies, a json file is loaded so just reset all the stuff
+          if(env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(player).IsDead)
+          {
+            GauntletIsActive = false;
+            list.Gauntlets[CurrentGauntlet].isActivated = false;
+            list.Gauntlets[CurrentGauntlet].isFinished = false;
+            GauntletIsActive = false;
+            return;
+          }
 
           for (auto it = SpawnedEnemiesInGauntlet.begin(); it != SpawnedEnemiesInGauntlet.end();)
           {

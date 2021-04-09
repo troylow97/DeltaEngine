@@ -103,9 +103,6 @@ namespace DeltaEngine
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsDead", false);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlerted", true);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("MeleeAttack", false);
-
-
-    	
     }
 
     //----------------------------------------------------------------------
@@ -113,7 +110,9 @@ namespace DeltaEngine
 	ChargeDetectRange{v}
     {
         TransitionEdges["hit_enemy_lancer"] = new DamagedEnemyLancer();
-        TransitionEdges["lost_enemy_lancer"] = new LostEnemyLancer(Vector2{ 8.0f,8.0f });
+
+        Vector2 lost_range = { 8.0f,8.0f };
+        TransitionEdges["lost_enemy_lancer"] = new LostEnemyLancer(lost_range);
     }
 
     void ChaseEnemyLancer::onEnter(EntityID& id)
@@ -121,7 +120,7 @@ namespace DeltaEngine
         auto& state = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
         auto& lancer = env.pECS->GetWorld().GetEntityManager().GetComponent<Lancer>(id);
         auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id);
-        auto& player = UnitManager::GetPlayerID();
+        auto player = UnitManager::GetPlayerID();
     	
         //Randomise Movespeed
         rb.Movespeed = Random::RandomFloatRange(9.2f, 10.8f);
@@ -246,8 +245,9 @@ namespace DeltaEngine
 
     void GotHitEnemyLancer::onExit(EntityID& monster)
     {
+    	auto player = (UnitManager::GetPlayerID());
         auto& state = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
-        if (AITools::EntityisOnTheRight(monster, UnitManager::GetPlayerID()))
+        if (AITools::EntityisOnTheRight(monster, player))
             env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = true;
         else
             env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster).m_FlipX = false;
@@ -258,7 +258,8 @@ namespace DeltaEngine
     ChargingEnemyLancer::ChargingEnemyLancer()
     {
         TransitionEdges["hit_enemy_lancer"] = new DamagedEnemyLancer();
-        TransitionEdges["lost_enemy_lancer"] = new LostEnemyLancer(Vector2{ 8.0f,8.0f });
+        Vector2 lost_range = { 8.0f,8.0f };
+        TransitionEdges["lost_enemy_lancer"] = new LostEnemyLancer(lost_range);
     }
 	
     void ChargingEnemyLancer::onEnter(EntityID& monster)
@@ -275,8 +276,6 @@ namespace DeltaEngine
     {
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
         auto& t = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster);
-        //auto& hp = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
-        //auto& image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster);
         auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
         auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
         auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
@@ -353,10 +352,10 @@ namespace DeltaEngine
         env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.y += 500;
         if (AITools::EntityisOnTheRight(monster, player))
         {
-            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.x -= 9000;
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.x -= Random::RandomFloatRange(8000.0f,9000.0f);
         }
         else
-            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.x += 9000;
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).AccumulatedForce.x += Random::RandomFloatRange(8000.0f, 9000.0f);
     }
 
     void BounceEnemyLancer::onExit(EntityID& monster)
