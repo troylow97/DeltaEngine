@@ -46,15 +46,15 @@ namespace DeltaEngine
       {
         p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
         p.AllowDashing = false;
-        if (!InputSystem::GetGodMode())
-          h.isInvulnerable = true;
+        //if (!InputSystem::GetGodMode())
+        //  h.isInvulnerable = true;
       }
       if (p.DashingTimerCooldown <= 0.0f)
       { // stop dashing
         p.StartDashingTimer = false;
         p.DashingTimerCooldown = p.DashingTimerDuration;
-        if (!InputSystem::GetGodMode())
-          h.isInvulnerable = false;
+        //if (!InputSystem::GetGodMode())
+        //  h.isInvulnerable = false;
         s.SetBool("LancerAttack", false);
       }
       if (!r.isMoveable)

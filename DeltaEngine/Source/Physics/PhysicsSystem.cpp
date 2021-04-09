@@ -10,8 +10,10 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "PhysicsSystem.h"
 #include "Core/GlobalStruct.h"
-#include "Core/GameClock/EngineClock.h"
+//#include "Core/GameClock/EngineClock.h"
 #include "Collision.h"
+#include "Systems/InputSystem.h"
+#include "../../Sandbox/Source/Systems/UnitManager.h"
 
 #include "Audio/AudioEngine.h"
 
@@ -217,6 +219,11 @@ namespace DeltaEngine
       else if (p.IsDodging && CurrentDashTicks < MaxDashTicks)
       {
         CurrentDashTicks++;
+        if (CurrentDashTicks == 1 && !InputSystem::GetGodMode())
+        {
+          auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
+          h.isInvulnerable = true;
+        }
         p.AllowPunching = false;
         p.AllowShooting = false;
         p.AllowRunning = false;
@@ -252,11 +259,14 @@ namespace DeltaEngine
 
     if (CurrentDashTicks >= MaxDashTicks)
     {
+      auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
       //p.IsDashing = false;
       p.IsDodging = false;
-      CurrentDashTicks = 0;
       DashDelay = 0.5f;
+      if (!InputSystem::GetGodMode())
+        h.isInvulnerable = false;
       r.isMoveable = false;
+      CurrentDashTicks = 0;
     }
   }
 
