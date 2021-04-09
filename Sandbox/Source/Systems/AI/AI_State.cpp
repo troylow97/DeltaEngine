@@ -93,7 +93,7 @@ namespace DeltaEngine
     {
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsIdle", false);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id).SetBool("IsAlerted", false);
-
+        env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).Direction = { 0,0 };
     }
 
     void IdleLancer::Update(EntityID& monster)
@@ -103,6 +103,9 @@ namespace DeltaEngine
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsDead", false);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("IsAlerted", true);
         env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster).SetBool("MeleeAttack", false);
+
+
+    	
     }
 
     //----------------------------------------------------------------------
@@ -117,19 +120,30 @@ namespace DeltaEngine
     {
         auto& state = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(id);
         auto& lancer = env.pECS->GetWorld().GetEntityManager().GetComponent<Lancer>(id);
+        auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id);
+        auto& player = UnitManager::GetPlayerID();
+    	
+        //Randomise Movespeed
+        rb.Movespeed = Random::RandomFloatRange(9.2f, 10.8f);
     	
         lancer.ChargeDetectRange = ChargeDetectRange;
         lancer.HasEntered = false;
         state.SetBool("IsAttacked", false);
         state.SetBool("IsAlerted", false);
-        state.SetBool("BeginCharging", true);    	
+        state.SetBool("BeginCharging", true);
+
+        if (AITools::EntityisOnTheRight(id, player))
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id).m_FlipX = true;
+        else
+            env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id).m_FlipX = false;
+    	
     	if(AITools::isFacingLeft(id))
     	{
-            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).AccumulatedForce.x -= 3000;
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).AccumulatedForce.x -= Random::RandomFloatRange(2500.0f, 3000.0f);
     	}
         else
         {
-            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).AccumulatedForce.x += 3000;
+            env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id).AccumulatedForce.x += Random::RandomFloatRange(2500.0f, 3000.0f);
         }
         lancer.TransitionTimer = 0.4f;
         lancer.HasEntered = true;
@@ -199,7 +213,7 @@ namespace DeltaEngine
 
         state.SetBool("IsAttacked", true);
         state.SetBool("IsDead", false);
-        lancer.TransitionTimer = 0.3f;
+        lancer.TransitionTimer = Random::RandomFloatRange(0.2f, 0.4f);
     }
 	
     void GotHitEnemyLancer::Update(EntityID& monster)
@@ -253,6 +267,7 @@ namespace DeltaEngine
         state.SetBool("IsAttacked", false);
         state.SetBool("BeginCharging", true);
         state.SetBool("BeginCharging", false);
+        state.SetBool("IsAlerted", false);
         state.SetBool("Charging", true);
     }
 
@@ -266,6 +281,7 @@ namespace DeltaEngine
         auto& rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster);
         auto& ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
         s.SetBool("IsAttacked", false);
+        s.SetBool("IsAlerted", false);
         EntityID player = UnitManager::GetPlayerID();
         const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(player).position;
 

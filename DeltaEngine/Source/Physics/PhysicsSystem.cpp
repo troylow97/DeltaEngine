@@ -223,16 +223,16 @@ namespace DeltaEngine
       	if(c.isCollidingOnFloor)
       	{
             if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
+                r.AccumulatedForce += Vector2{ 4000 + r.Mass * 100, 0 };
             else
-                r.AccumulatedForce -= Vector2{ 5000 + r.Mass * 100, 0 };
+                r.AccumulatedForce -= Vector2{ 4000 + r.Mass * 100, 0 };
       	}
         else //dashing in mid air
         {
             if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 500 + r.Mass * 100, 0 };
+                r.AccumulatedForce += Vector2{ 250 + r.Mass * 100, 0 };
             else
-                r.AccumulatedForce -= Vector2{ 500 + r.Mass * 100, 0 };
+                r.AccumulatedForce -= Vector2{ 250 + r.Mass * 100, 0 };
             r.InherentAcceleration = 0.0f;
         }
 
