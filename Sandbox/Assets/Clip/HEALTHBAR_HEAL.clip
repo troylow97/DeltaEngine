@@ -1,0 +1,50 @@
+frames 9
+fps 12
+loop 1
+
+Textures/HEALTHBAR_HEAL_i_0
+key Textures/HEALTHBAR_HEAL
+value 0
+frame 0
+
+Textures/HEALTHBAR_HEAL_i_1
+key Textures/HEALTHBAR_HEAL
+value 1
+frame 1
+
+Textures/HEALTHBAR_HEAL_i_2
+key Textures/HEALTHBAR_HEAL
+value 2
+frame 2
+
+Textures/HEALTHBAR_HEAL_i_3
+key Textures/HEALTHBAR_HEAL
+value 3
+frame 3
+
+Textures/HEALTHBAR_HEAL_i_4
+key Textures/HEALTHBAR_HEAL
+value 4
+frame 4
+
+Textures/HEALTHBAR_HEAL_i_5
+key Textures/HEALTHBAR_HEAL
+value 5
+frame 5
+
+Textures/HEALTHBAR_HEAL_i_6
+key Textures/HEALTHBAR_HEAL
+value 6
+frame 6
+
+Textures/HEALTHBAR_HEAL_i_7
+key Textures/HEALTHBAR_HEAL
+value 7
+frame 7
+
+Textures/HEALTHBAR_HEAL_i_8
+key Textures/HEALTHBAR_HEAL
+value 8
+frame 8
+
+%

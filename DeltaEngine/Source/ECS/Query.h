@@ -25,8 +25,7 @@ namespace DeltaEngine
 
     void Initialize()
     {
-      m_required_bits = 0;
-      m_excluded_bits = 0;
+      m_required_bits = m_excluded_bits = 0;
     }
 
     template <typename C>

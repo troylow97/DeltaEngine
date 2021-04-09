@@ -40,7 +40,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
 	using CoreBase = Typelist<EntityID, Parent, EntityName, EntityType, AudioSource>;
-	using GUIBase = CoreBase::Append<GUI, Button, Toggle, Slider>;
+	using GUIBase = CoreBase::Append<GUI, Button, Toggle, Slider, Cursor>;
 	using PhysicsBase = GUIBase::Append<Transform, RigidBody, Collider>;
 	using RenderBase = PhysicsBase::Append<Image, Renderer2D, RendererOverlay, Text, Animator, State, Camera, ParticleEmitter>;
 	using GameBase = RenderBase::Append< AI, Health, Attack, Lifespan, Player, Input>;

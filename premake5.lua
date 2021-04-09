@@ -42,6 +42,7 @@ project "DeltaEngine"
   {
     "%{prj.name}/Dep/imgui/*.h",
     "%{prj.name}/Dep/imgui/*.cpp",
+    "%{prj.name}/Dep/imgui/*.inl",
     "%{prj.name}/Dep/imgui/examples/imgui_impl_opengl3.h",
     "%{prj.name}/Dep/imgui/examples/imgui_impl_opengl3.cpp",
     "%{prj.name}/Dep/imgui/examples/imgui_impl_win32.h",

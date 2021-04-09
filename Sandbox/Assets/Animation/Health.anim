@@ -1,0 +1,122 @@
+%Entry:
+
+entry
+Clip/Health
+
+%Parameters:
+
+param
+Heal
+0 0
+
+param
+Health
+0 0
+
+param
+Hit
+0 0
+
+%EditorPositions:
+
+pos
+Entry
+0 0
+
+pos
+Exit
+453 195
+
+pos
+Any State
+182 -98
+
+pos
+Clip/Health
+9 76
+
+pos
+Clip/HEALTHBAR_DMG_LONG
+444 73
+
+pos
+Clip/HEALTHBAR_HEAL
+213 8
+
+pos
+Clip/HEALTHBAR_LOW
+57 182
+
+%Transitions:
+
+transition
+start
+Clip/Health
+end
+Clip/HEALTHBAR_LOW
+condition
+Health
+< 0.25
+endTransition
+
+transition
+start
+Clip/HEALTHBAR_LOW
+end
+Clip/HEALTHBAR_HEAL
+condition
+Heal
+? 1
+endTransition
+
+transition
+start
+Clip/Health
+end
+Clip/HEALTHBAR_DMG_LONG
+condition
+Heal
+? 1
+endTransition
+
+transition
+start
+Clip/HEALTHBAR_LOW
+end
+Clip/HEALTHBAR_DMG_LONG
+condition
+Hit
+? 1
+endTransition
+
+transition
+start
+Clip/HEALTHBAR_HEAL
+end
+Exit
+condition
+Hit
+? 0
+endTransition
+
+transition
+start
+Clip/HEALTHBAR_DMG_LONG
+end
+Exit
+condition
+Hit
+? 0
+endTransition
+
+transition
+start
+Clip/Health
+end
+Clip/HEALTHBAR_HEAL
+condition
+Hit
+? 1
+endTransition
+
+%endfile

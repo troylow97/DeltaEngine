@@ -79,6 +79,24 @@ void UISystem::Initialize()
 void UISystem::Update()
 {
 
+#ifdef DE_EDITOR
+  auto cameraWidth = GamePanel::render_size.x;
+  auto cameraHeight = GamePanel::render_size.y;
+  auto p_x = InputManager::Instance().CurrentPosition().point_x - GamePanel::render_pos.x;
+  auto p_y = InputManager::Instance().CurrentPosition().point_y - GamePanel::render_pos.y;
+#else
+  auto cameraWidth = static_cast<float>( GetEnv().pWin->Width() );
+  auto cameraHeight = static_cast<float>( GetEnv().pWin->Height() );
+  auto p_x = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
+  auto p_y = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
+#endif
+
+  em.ForEach( [&]( GUI &gui, RendererOverlay &o, Cursor &c )
+  {
+    o.m_SortingLayer = 100;
+    o.m_Active = c.visible;
+    o.pos = {p_x / cameraWidth* 1920.0f ,-p_y / cameraHeight * 1080.0f};
+  } );
 }
 
 void UISystem::LateUpdate()
@@ -145,7 +163,6 @@ void UISystem::LateUpdate()
   auto p_x = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
   auto p_y = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
   auto t_aspect = 1.0f * cameraWidth / cameraHeight;
-
 #endif
 
   Camera &c = *Camera::allCameras[0];
@@ -233,13 +250,13 @@ void UISystem::LateUpdate()
       case GUIType::Toggle:
       {
         //auto &toggle = em.GetComponent<Toggle>( { child } );
-
         break;
       }
       case GUIType::Slider:
       {
-        //auto &slider = em.GetComponent<Slider>( { child } );
-
+        auto &slider = em.GetComponent<Slider>( { child } );
+        unsigned e_fill = slider.fill_entity;
+        unsigned e_handle = slider.handle_entity;
         break;
       }
 

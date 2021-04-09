@@ -1,0 +1,48 @@
+Textures/HEALTHBAR_HEAL_i_0
+offset 12 33
+size 423 27
+pivot 0.5 0.5
+
+Textures/HEALTHBAR_HEAL_i_1
+offset 12 133
+size 423 27
+pivot 0.5 0.5
+
+Textures/HEALTHBAR_HEAL_i_2
+offset 12 233
+size 423 27
+pivot 0.5 0.5
+
+Textures/HEALTHBAR_HEAL_i_3
+offset 462 33
+size 423 27
+pivot 0.5 0.5
+
+Textures/HEALTHBAR_HEAL_i_4
+offset 462 133
+size 423 27
+pivot 0.5 0.5
+
+Textures/HEALTHBAR_HEAL_i_5
+offset 912 33
+size 423 27
+pivot 0.5 0.5
+
+Textures/HEALTHBAR_HEAL_i_6
+offset 912 133
+size 423 27
+pivot 0.5 0.5
+
+Textures/HEALTHBAR_HEAL_i_7
+offset 1362 33
+size 423 27
+pivot 0.5 0.5
+
+Textures/HEALTHBAR_HEAL_i_8
+offset 1362 133
+size 423 27
+pivot 0.5 0.5
+
+%
+
+wrap_mode 0

@@ -43765,65 +43765,6 @@
         },
         {
             "Entity Name": {
-                "Name": ""
-            },
-            "Entity Type": {
-                "Category": "player punch"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 25.583335876464845,
-                    "y": 0.37612977623939516,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 0.30000001192092898,
-                    "y": 0.30000001192092898,
-                    "z": 0.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 5.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 25.583335876464845,
-                    "y": 0.37612977623939516
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Type": "box",
-                "Collision Layer": 7,
-                "Collision Layer ID": 8,
-                "Trigger": true,
-                "Platform": false
-            },
-            "Lifespan": {
-                "Timer": 0.11666667461395264
-            }
-        },
-        {
-            "Entity Name": {
                 "Name": "BGM Audio"
             },
             "Entity Type": {

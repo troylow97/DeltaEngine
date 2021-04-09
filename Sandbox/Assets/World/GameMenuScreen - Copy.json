@@ -220,7 +220,7 @@
                     "b": 1.0,
                     "a": 1.0
                 },
-                "Layer": 0,
+                "Layer": 1,
                 "Order": 1.0,
                 "Preserve Aspect": false,
                 "Active": true,
@@ -229,7 +229,7 @@
             },
             "Animator": {
                 "Controller Key": "Animation/Dash",
-                "Speed": 0.05000000074505806
+                "Speed": 1.0
             },
             "State": {}
         },
@@ -437,6 +437,105 @@
             }
         },
         {
+            "Parent": {
+                "ID": 0
+            },
+            "Entity Name": {
+                "Name": "Dodge Base"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 0
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/SPRITES_GUI",
+                    "index": 5
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "horizontal_left_to_right",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 80.0,
+                    "y": 75.0
+                },
+                "Width/Height": {
+                    "x": 114.0,
+                    "y": 114.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Pivot": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 0,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": true,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
             "Entity Name": {
                 "Name": "Pause Menu Overlay"
             },
@@ -525,7 +624,7 @@
                     "a": 0.3137255012989044
                 },
                 "Layer": 1,
-                "Order": -1.0,
+                "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
                 "Shaded": true,
@@ -534,7 +633,7 @@
         },
         {
             "Parent": {
-                "ID": 5
+                "ID": 6
             },
             "Entity Name": {
                 "Name": "Pause Menu Base"
@@ -624,7 +723,7 @@
                     "a": 1.0
                 },
                 "Layer": 1,
-                "Order": 1.0,
+                "Order": 0.0,
                 "Preserve Aspect": true,
                 "Active": false,
                 "Shaded": true,
@@ -633,7 +732,7 @@
         },
         {
             "Parent": {
-                "ID": 5
+                "ID": 6
             },
             "Entity Name": {
                 "Name": "Pause Menu Text"
@@ -732,7 +831,7 @@
         },
         {
             "Parent": {
-                "ID": 5
+                "ID": 6
             },
             "Entity Name": {
                 "Name": "Resume Button"
@@ -841,7 +940,7 @@
         },
         {
             "Parent": {
-                "ID": 5
+                "ID": 6
             },
             "Entity Name": {
                 "Name": "Restart Button"
@@ -950,7 +1049,7 @@
         },
         {
             "Parent": {
-                "ID": 5
+                "ID": 6
             },
             "Entity Name": {
                 "Name": "Control Button"
@@ -1059,7 +1158,7 @@
         },
         {
             "Parent": {
-                "ID": 5
+                "ID": 6
             },
             "Entity Name": {
                 "Name": "Options Button"
@@ -1168,7 +1267,7 @@
         },
         {
             "Parent": {
-                "ID": 5
+                "ID": 6
             },
             "Entity Name": {
                 "Name": "Credits Button"
@@ -1277,7 +1376,7 @@
         },
         {
             "Parent": {
-                "ID": 5
+                "ID": 6
             },
             "Entity Name": {
                 "Name": "Quit Game Button"
@@ -1472,7 +1571,7 @@
                     "b": 1.0,
                     "a": 0.3137255012989044
                 },
-                "Layer": 3,
+                "Layer": 1,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
@@ -1482,7 +1581,7 @@
         },
         {
             "Parent": {
-                "ID": 14
+                "ID": 15
             },
             "Entity Name": {
                 "Name": "Control Page"
@@ -1673,7 +1772,7 @@
                     "b": 1.0,
                     "a": 0.3137255012989044
                 },
-                "Layer": 3,
+                "Layer": 1,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
@@ -1683,7 +1782,7 @@
         },
         {
             "Parent": {
-                "ID": 16
+                "ID": 17
             },
             "Entity Name": {
                 "Name": "Option Button"
@@ -1874,7 +1973,7 @@
                     "b": 1.0,
                     "a": 0.3137255012989044
                 },
-                "Layer": 3,
+                "Layer": 1,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
@@ -1884,7 +1983,7 @@
         },
         {
             "Parent": {
-                "ID": 18
+                "ID": 19
             },
             "Entity Name": {
                 "Name": "Credits Page"
@@ -2075,7 +2174,7 @@
                     "b": 1.0,
                     "a": 0.3137255012989044
                 },
-                "Layer": 3,
+                "Layer": 1,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
@@ -2085,7 +2184,7 @@
         },
         {
             "Parent": {
-                "ID": 20
+                "ID": 21
             },
             "Entity Name": {
                 "Name": "Quit Game Base"
@@ -2175,7 +2274,7 @@
                     "a": 1.0
                 },
                 "Layer": 3,
-                "Order": 1.0,
+                "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
                 "Shaded": true,
@@ -2184,7 +2283,7 @@
         },
         {
             "Parent": {
-                "ID": 20
+                "ID": 21
             },
             "Entity Name": {
                 "Name": "Quit Game Text"
@@ -2283,7 +2382,7 @@
         },
         {
             "Parent": {
-                "ID": 20
+                "ID": 21
             },
             "Entity Name": {
                 "Name": "Quit Game Yes"
@@ -2392,7 +2491,7 @@
         },
         {
             "Parent": {
-                "ID": 20
+                "ID": 21
             },
             "Entity Name": {
                 "Name": "Quit Game No"
@@ -2501,7 +2600,7 @@
         },
         {
             "Parent": {
-                "ID": 5
+                "ID": 6
             },
             "Entity Name": {
                 "Name": "Cursor"

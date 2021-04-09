@@ -11,10 +11,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include <DeltaEngine.h>
 #include "EntryPoint.h"
-#include <memory>
-#include <string>
-#include <unordered_map>
-#include <chrono>
 #include "../Source/Systems/AI/AI_StateMachine.h"
 #include "Physics/CollisionSystem.h"
 #include "Systems/AttackSystem.h"
@@ -23,10 +19,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/LifespanSystem.h"
 #include "Systems/RespawnSystem.h"
 #include "Systems/GCameraSystem.h"
-#include "Systems/UpgradeSystem.h"
 #include "Systems/HealthSystem.h"
 #include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
-#include "Audio/AudioEngine.h"
 #include "Systems/Menus.h"
 #include "Systems/AudioSystem.h"
 #include "Systems/GUISystem.h"
