@@ -199,10 +199,10 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 1,
-                "Melee Damage": 1,
-                "SMG Damage": 1,
-                "Melee Combo Damage": 3,
+                "Range Damage": 2,
+                "Melee Damage": 2,
+                "SMG Damage": 2,
+                "Melee Combo Damage": 6,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
@@ -233,7 +233,8 @@
                 "Attack Upgrade Increase": 1,
                 "Health Upgrade Attack": 2,
                 "Dashing Timer Duration": 1.0,
-                "Fading Timer": 1.0
+                "Fading Timer": 1.0,
+                "UnMoveable Timer Duration": 0.30000001192092898
             },
             "Input": {
                 "Previous": 68,

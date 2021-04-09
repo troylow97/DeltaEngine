@@ -688,6 +688,8 @@ namespace DeltaEngine
       .property("Dashing Timer Cooldown", &Player::DashingTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Fading Timer", &Player::FadingTimer)(rttr::policy::prop::bind_as_ptr)
       .property("Fading Countdown", &Player::FadingCountdown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("UnMoveable Timer Duration", &Player::UnMoveableTimerDuration)(rttr::policy::prop::bind_as_ptr)
+      .property("UnMoveable Timer Cooldown", &Player::UnMoveableTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Running", &Player::IsRunning)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Jumping", &Player::IsJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
