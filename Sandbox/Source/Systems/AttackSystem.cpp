@@ -64,7 +64,7 @@ namespace DeltaEngine
       if (p.UnMoveableTimerCooldown <= 0.0f)
       {
         p.AllowDashing = true;
-        r.isMoveable = true;
+        //r.isMoveable = true;
         p.UnMoveableTimerCooldown = p.UnMoveableTimerDuration;
       }
     //  Dash();

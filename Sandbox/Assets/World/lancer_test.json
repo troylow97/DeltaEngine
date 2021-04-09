@@ -233,7 +233,8 @@
                 "Attack Upgrade Increase": 1,
                 "Health Upgrade Attack": 2,
                 "Dashing Timer Duration": 1.0,
-                "Fading Timer": 1.0
+                "Fading Timer": 1.0,
+                "UnMoveable Timer Duration": 0.30000001192092898
             },
             "Input": {
                 "Previous": 1,

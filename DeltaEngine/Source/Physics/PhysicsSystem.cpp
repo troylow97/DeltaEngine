@@ -265,7 +265,8 @@ namespace DeltaEngine
       DashDelay = 0.5f;
       if (!InputSystem::GetGodMode())
         h.isInvulnerable = false;
-      r.isMoveable = false;
+      //r.isMoveable = false;
+      r.Velocity.y = 0.0f;
       CurrentDashTicks = 0;
     }
   }
