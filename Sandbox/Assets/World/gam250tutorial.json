@@ -25612,9 +25612,9 @@
             },
             "Rigidbody": {
                 "Mass": 50.0,
-                "Move Speed": 60.0,
+                "Move Speed": 25.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 4.0,
+                "Friction Coefficient": 3.5,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 10.0,
                 "Acceleration Pickup": 1.0,
@@ -25850,7 +25850,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -25994,7 +25994,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26138,7 +26138,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26282,7 +26282,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26426,7 +26426,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26570,7 +26570,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26714,7 +26714,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26858,7 +26858,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -27002,7 +27002,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -27146,7 +27146,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -27290,7 +27290,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28010,7 +28010,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28154,7 +28154,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28298,7 +28298,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28442,7 +28442,7 @@
             },
             "Attack": {
                 "Range Damage": 12,
-                "Melee Damage": 8,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28586,7 +28586,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28730,7 +28730,7 @@
             },
             "Attack": {
                 "Range Damage": 12,
-                "Melee Damage": 8,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28874,7 +28874,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29018,7 +29018,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29162,7 +29162,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29306,7 +29306,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29450,7 +29450,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29594,7 +29594,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29738,7 +29738,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29882,7 +29882,7 @@
             },
             "Attack": {
                 "Range Damage": 12,
-                "Melee Damage": 8,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30026,7 +30026,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30170,7 +30170,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30314,7 +30314,7 @@
             },
             "Attack": {
                 "Range Damage": 12,
-                "Melee Damage": 8,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30458,7 +30458,7 @@
             },
             "Attack": {
                 "Range Damage": 12,
-                "Melee Damage": 8,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30602,7 +30602,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30746,7 +30746,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30890,7 +30890,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31034,7 +31034,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31178,7 +31178,7 @@
             },
             "Attack": {
                 "Range Damage": 12,
-                "Melee Damage": 8,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31322,7 +31322,7 @@
             },
             "Attack": {
                 "Range Damage": 12,
-                "Melee Damage": 8,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31466,7 +31466,7 @@
             },
             "Attack": {
                 "Range Damage": 12,
-                "Melee Damage": 8,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31610,7 +31610,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31754,7 +31754,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31898,7 +31898,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -32042,7 +32042,7 @@
             },
             "Attack": {
                 "Range Damage": 12,
-                "Melee Damage": 8,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -32186,7 +32186,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -32330,7 +32330,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -32474,7 +32474,7 @@
             },
             "Attack": {
                 "Range Damage": 8,
-                "Melee Damage": 5,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
