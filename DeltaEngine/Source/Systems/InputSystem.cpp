@@ -10,18 +10,20 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "InputSystem.h"
 
+#include "Input/InputManager.h"
+#include "Input/Keys.h"
 #include "PhysicsDrawSystem.h"
 #include "Components/Character.h"
-#include "Input/InputManager.h"
 #include "Components/Attack.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
-#include "Input/Keys.h"
 #include "../../Sandbox/Source/Systems/UnitManager.h"
 #include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
+  bool InputSystem::god_mode = false;
+
   void InputSystem::Initialize()
   {
     DeltaEngine_CORE_TRACE("Initialize Input System");
@@ -35,7 +37,7 @@ namespace DeltaEngine
   float idle_timer{0.0f};
   float melee_attack_cooldown{0.0f};
   float range_attack_cooldown{0.0f};
-  bool god_mode = false;
+  //bool god_mode = false;
   size_t run_sound_id { 0 };
 
   void InputSystem::SetIdleAnimation()
@@ -60,6 +62,11 @@ namespace DeltaEngine
         a.SetBool("RangeAttack", false);
       }
     });
+  }
+
+  bool InputSystem::GetGodMode()
+  {
+    return god_mode;
   }
 
   void InputSystem::GodMode()
@@ -277,7 +284,7 @@ namespace DeltaEngine
 	  }
 
       if (a1.CurrentDodgeCooldown > 0 || static_cast<int>(r1.Velocity.y) < 0)
-          return;
+        return;
     	
       //if ((p1.IsShooting == true && p1.IsPunching == true) || p1.IsShooting == true || p1.IsPunching == true)
       {
@@ -424,30 +431,30 @@ namespace DeltaEngine
 	  //Set proper facing    	
       if (InputManager::Instance().IsKeyPressed(DEVK_D))
       {
-          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1, Image& i)
-          {
-              i.m_FlipX = false;
-          });
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1, Image& i)
+        {
+          i.m_FlipX = false;
+        });
       }
       else if (InputManager::Instance().IsKeyPressed(DEVK_A))
       {
-          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1, Image& i)
-          {
-              i.m_FlipX = true;
-          });
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1, Image& i)
+        {
+          i.m_FlipX = true;
+        });
       }
       // punching
       if (InputManager::Instance().IsKeyTriggered(DEVK_LBUTTON))
       {
-          Punch();
+        Punch();
       }
       else if (InputManager::Instance().IsKeyReleased(DEVK_LBUTTON))
       {
-          env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1)
-              {
-                  p1.IsPunching = false;
-                  p1.AllowRunning = true;
-              });
+        env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Input& i1, Player& p1)
+        {
+          p1.IsPunching = false;
+          p1.AllowRunning = true;
+        });
       }
     	
       // god mode 

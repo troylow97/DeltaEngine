@@ -11,13 +11,14 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "AttackSystem.h"
 #include "UnitManager.h"
-#include "Core/GameClock/EngineClock.h"
+//#include "Core/GameClock/EngineClock.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Audio/AudioEngine.h"
 #include "Core/Utils/Random.h"
 #include "MouseCalculation.h"
 #include "AI/AITools.h"
+#include "../Source/Systems/InputSystem.h"
 
 namespace DeltaEngine
 {
@@ -44,13 +45,15 @@ namespace DeltaEngine
       {
         p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
         p.AllowDashing = false;
-        h.isInvulnerable = true;
+        if (!InputSystem::GetGodMode())
+          h.isInvulnerable = true;
       }
       if (p.DashingTimerCooldown <= 0.0f)
       {
         p.StartDashingTimer = false;
         p.DashingTimerCooldown = p.DashingTimerDuration;
-        h.isInvulnerable = false;
+        if (!InputSystem::GetGodMode())
+          h.isInvulnerable = false;
         p.AllowDashing = true;
         s.SetBool("LancerAttack", false);
       }
