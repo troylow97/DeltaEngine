@@ -256,6 +256,7 @@ namespace DeltaEngine
       p.IsDodging = false;
       CurrentDashTicks = 0;
       DashDelay = 0.5f;
+      r.isMoveable = false;
     }
   }
 
