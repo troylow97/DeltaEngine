@@ -34,6 +34,7 @@ std::string on_click {};
 bool InvokeFunc( const std::string &name );
 bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight, float &p_x, float &p_y, GUIType type );
 Vector2 GUI_LeftRightLimit( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight );
+Vector2 GUI_MouseToOverlay(float p_x, float p_y, RendererOverlay& r, float& cameraWidth, float& cameraHeight);
 
 void UISystem::Initialize()
 {
@@ -226,31 +227,31 @@ void UISystem::LateUpdate()
 
         if ( !slider.selected )
         {
-          if ( GUI_Collision( em.GetComponent<Image>( { child } ), em.GetComponent<RendererOverlay>( { child } ), c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Slider ) ||
-               GUI_Collision( e_handle_image, e_handle_render, c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Slider ) )
-            if ( InputManager::Instance().IsMouseTriggered( DEVK_LBUTTON ) )
+          if ( GUI_Collision( em.GetComponent<Image>( { child } ), em.GetComponent<RendererOverlay>( { child } ), c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Button ) ||
+               GUI_Collision( e_handle_image, e_handle_render, c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Button) )
+            if ( InputManager::Instance().IsMousePressed( DEVK_LBUTTON ) )
             {
               DeltaEngine_CORE_INFO( "Selected" );
 
               slider.selected = true;
             }
         }
-
         if ( slider.selected )
         {
           if(InputManager::Instance().IsMousePressed(DEVK_LBUTTON))
           {
-            //e_handle_render.pos.x = Math::Clamp(static_cast<int>(p_x),static_cast<int>(left_right_limit.x), static_cast<int>(left_right_limit.y));
-            e_handle_render.pos.x = Math::Clamp(static_cast<int>(p_x),static_cast<int>(left_right_limit.x), static_cast<int>(left_right_limit.y));
-            slider.value = e_handle_render.pos.x / left_right_limit.y;
+            auto mospos = GUI_MouseToOverlay(p_x, p_y, em.GetComponent<RendererOverlay>({ child }), cameraWidth, cameraHeight);
+            std::cerr << mospos.x << ", " << left_right_limit.x << ", " << left_right_limit.y << std::endl;
+            slider.value = Math::Clamp01((mospos.x - left_right_limit.x) / (left_right_limit.y - left_right_limit.x));
             DeltaEngine_CORE_INFO( "Selected and sliding" );
           }
           else if ( InputManager::Instance().IsMouseReleased( DEVK_LBUTTON ) )
-          slider.selected = false;
+            slider.selected = false;
         }
-
+        slider.value = Math::Clamp01(slider.value);
+        e_handle_render.pos.x = left_right_limit.x + (left_right_limit.y - left_right_limit.x) * slider.value;
         auto &e_fill_image = em.GetComponent<Image>( { slider.fill_entity } );
-        e_fill_image.m_FillAmount = Math::Clamp01(slider.value / slider.max);
+        e_fill_image.m_FillAmount = slider.value;
         break;
       }
 
@@ -329,9 +330,11 @@ bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, fl
   coords.z *= cameraWidth;
   coords.w *= cameraHeight;
 
-  
   auto x_size = ( coords.z - coords.x ) *0.25f ;
   auto y_size = ( coords.w - coords.y ) *0.25f;
+
+  if (type == GUIType::Slider)
+    std::cerr << CollisionIntersection_RectMinMaxMouse({ coords.x + x_size , coords.y + y_size }, { coords.z - x_size, coords.w - y_size }, { p_x, p_y }) << std::endl;
 
   if ( CollisionIntersection_RectMinMaxMouse( { coords.x + x_size , coords.y + y_size }, { coords.z - x_size, coords.w - y_size }, { p_x, p_y } ) )
     return true;
@@ -340,22 +343,13 @@ bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, fl
 
 Vector2 GUI_LeftRightLimit( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight )
 {
-  auto coords = r.GetScreenspaceBounds( i );
-  if ( c.GetFixedAspectRatio() < c.GetAspectRatio() )
-  {
-    float zeroPos = ( 1 - c.GetFixedAspectRatio() / t_aspect ) / 2;
-    float halfRatioX = coords.x < 0.5f ? coords.x * 2 : ( 1 - coords.x ) * 2;
-    float halfRatioZ = coords.z < 0.5f ? coords.z * 2 : ( 1 - coords.z ) * 2;
-
-    coords.x = coords.x < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioX : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioX;
-    coords.z = coords.z < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioZ : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioZ;
-  }
-  coords.x *= cameraWidth;
-  coords.z *= cameraWidth;
-
-  auto x_size = ( coords.z - coords.x ) * 0.25f;
-
-  return { coords.x + x_size, coords.z - x_size };
+  return { r.pos.x - r.size.x / 2, r.pos.x + r.size.x / 2 };
+}
+Vector2 GUI_MouseToOverlay(float p_x, float p_y, RendererOverlay& r, float& cameraWidth, float& cameraHeight)
+{
+  p_x = p_x / cameraWidth * r.refRes.x - r.refRes.x / 2;
+  p_y = p_y / cameraHeight * r.refRes.y - r.refRes.y / 2;
+  return Vector2(p_x, p_y);
 }
 
 }
