@@ -13,68 +13,82 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Render/Camera.h"
 #include "Core/GlobalStruct.h"
 #include "ECS/ECSModule.h"
+#include "Input/InputManager.h"
 
 namespace DeltaEngine
 {
 
-  GamePanel::GamePanel(std::string str, Editor& e)
-    : IPanel(str, e)
+
+GamePanel::GamePanel( std::string str, Editor &e )
+  : IPanel( str, e )
+{
+  m_enabled = true;
+}
+
+GamePanel::~GamePanel()
+{
+  m_enabled = false;
+}
+
+void GamePanel::Render()
+{
+  m_active = ImGui::Begin( m_name.c_str(), nullptr, ImGuiWindowFlags_MenuBar );
+
+  if ( m_active )
   {
-    m_enabled = true;
-  }
+    ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+    render_pos = { ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y };
+    render_size = { viewportPanelSize.x, viewportPanelSize.y };
 
-  GamePanel::~GamePanel()
-  {
-    m_enabled = false;
-  }
-
-  void GamePanel::Render()
-  {
-    m_active = ImGui::Begin(m_name.c_str(), nullptr,ImGuiWindowFlags_MenuBar);
-
-    if (m_active)
-    {     
-      ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-      render_pos = {ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y};
-      render_size = {viewportPanelSize.x, viewportPanelSize.y};
-      if (ImGui::IsWindowHovered())
-      {
-        ImGui::SetWindowFocus();
-
-        prev_mouse = curr_mouse;
-        if(env.pECS->GetWorld().GetEntityManager().IsEntityValid({0}) && env.pECS->GetWorld().GetEntityManager().HasComponent<Transform>({ 0 }))
-        {
-            auto& t = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>({ 0 });
-            float cameraWidth = Camera::allCameras[0]->Max(t).x - Camera::allCameras[0]->Min(t).x;  // 12.182
-            float cameraHeight = Camera::allCameras[0]->Max(t).y - Camera::allCameras[0]->Min(t).y; //  5.000
-
-            env.pECS->GetWorld().GetEntityManager().ForEach([&](Transform& t, Camera& c)
-                {
-                    game_camera_mid = { t.position.x ,t.position.y }; // (5, 2)
-                    game_camera_min = { game_camera_mid.x - (cameraWidth / 2), game_camera_mid.y - (cameraHeight / 2) };  // (-1.091, -0.5)
-                    game_camera_max = { game_camera_mid.x + (cameraWidth / 2), game_camera_mid.y + (cameraHeight / 2) }; // (11.091,  4.5)
-                });
-
-            float cursorViewPortDistanceX = ImGui::GetMousePos().x - render_pos.x;
-            float cursorViewPortDistanceY = ImGui::GetMousePos().y - render_pos.y;
-            curr_mouse.point_x = ((cursorViewPortDistanceX / render_size.x) * cameraWidth) + game_camera_min.x;
-            curr_mouse.point_y = game_camera_max.y - ((cursorViewPortDistanceY / render_size.y) * cameraHeight);
-        }
-
-
-      }
-      //Camera::allCameras[0]->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
-      //Camera::allCameras[0]->SetViewportSize(viewportPanelSize.x);
-      //uint64_t textureID = Camera::allCameras[0]->GetFrameBuffer().GetColorAttachment();
-      //ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{0, 1}, ImVec2{1, 0});
-      for (size_t i = 0; i < Camera::allCameras.size(); ++i)
-      {
-          Camera::allCameras[i]->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
-          Camera::allCameras[i]->SetViewportSize(viewportPanelSize.x);
-      }     
-      uint64_t textureID = Camera::finalFrameBuffer->GetColorAttachment();
-      ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+    auto cursor = InputManager::Instance().CurrentPosition();
+    if ( Editor::toggle_cursor)
+    {
+      if ( render_pos.x < cursor.point_x && ( render_pos.x + viewportPanelSize.x ) > cursor.point_x &&
+           render_pos.y < cursor.point_y && ( render_pos.y + viewportPanelSize.y ) > cursor.point_y )
+        GetEnv().pWin->Cursor( false );
+      else
+        GetEnv().pWin->Cursor( true );
     }
-    ImGui::End();
+    
+
+    if ( ImGui::IsWindowHovered() )
+    {
+      ImGui::SetWindowFocus();
+
+      prev_mouse = curr_mouse;
+      if ( env.pECS->GetWorld().GetEntityManager().IsEntityValid( { 0 } ) && env.pECS->GetWorld().GetEntityManager().HasComponent<Transform>( { 0 } ) )
+      {
+        auto &t = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( { 0 } );
+        float cameraWidth = Camera::allCameras[0]->Max( t ).x - Camera::allCameras[0]->Min( t ).x;  // 12.182
+        float cameraHeight = Camera::allCameras[0]->Max( t ).y - Camera::allCameras[0]->Min( t ).y; //  5.000
+
+        env.pECS->GetWorld().GetEntityManager().ForEach( [&]( Transform &t, Camera &c )
+        {
+          game_camera_mid = { t.position.x ,t.position.y }; // (5, 2)
+          game_camera_min = { game_camera_mid.x - ( cameraWidth / 2 ), game_camera_mid.y - ( cameraHeight / 2 ) };  // (-1.091, -0.5)
+          game_camera_max = { game_camera_mid.x + ( cameraWidth / 2 ), game_camera_mid.y + ( cameraHeight / 2 ) }; // (11.091,  4.5)
+        } );
+
+        float cursorViewPortDistanceX = ImGui::GetMousePos().x - render_pos.x;
+        float cursorViewPortDistanceY = ImGui::GetMousePos().y - render_pos.y;
+        curr_mouse.point_x = ( ( cursorViewPortDistanceX / render_size.x ) * cameraWidth ) + game_camera_min.x;
+        curr_mouse.point_y = game_camera_max.y - ( ( cursorViewPortDistanceY / render_size.y ) * cameraHeight );
+      }
+
+
+    }
+    //Camera::allCameras[0]->SetAspectRatio(viewportPanelSize.x, viewportPanelSize.y);
+    //Camera::allCameras[0]->SetViewportSize(viewportPanelSize.x);
+    //uint64_t textureID = Camera::allCameras[0]->GetFrameBuffer().GetColorAttachment();
+    //ImGui::Image(reinterpret_cast<void*>(textureID), viewportPanelSize, ImVec2{0, 1}, ImVec2{1, 0});
+    for ( size_t i = 0; i < Camera::allCameras.size(); ++i )
+    {
+      Camera::allCameras[i]->SetAspectRatio( viewportPanelSize.x, viewportPanelSize.y );
+      Camera::allCameras[i]->SetViewportSize( viewportPanelSize.x );
+    }
+    uint64_t textureID = Camera::finalFrameBuffer->GetColorAttachment();
+    ImGui::Image( reinterpret_cast<void *>( textureID ), viewportPanelSize, ImVec2 { 0, 1 }, ImVec2 { 1, 0 } );
   }
+  ImGui::End();
+}
 }

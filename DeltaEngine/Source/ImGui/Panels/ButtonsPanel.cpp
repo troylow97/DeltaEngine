@@ -36,23 +36,26 @@ void ButtonsPanel::Render()
   ImGui::Begin( m_name.c_str(), &m_enabled, window_flags );
 
   ImVec2 tools_pos = { ImGui::GetWindowSize().x * 0.03f, ImGui::GetWindowSize().y * 0.1f };
-  ImVec2 simulation_pos = { ImGui::GetWindowSize().x * 0.45f, ImGui::GetWindowSize().y * 0.1f };
+  ImVec2 simulation_pos = { ImGui::GetWindowSize().x * 0.15f, ImGui::GetWindowSize().y * 0.1f };
+  ImVec2 option_pos = { ImGui::GetWindowSize().x * 0.35f, ImGui::GetWindowSize().y * 0.1f };
 
   float lineHeight = ImGui::GetIO().FontDefault->FontSize + ImGui::GetStyle().FramePadding.y * 2.0f;
   ImVec2 buttonSize = { lineHeight, lineHeight };
-
   const float original = Editor::font_awesome->Scale;
-  Editor::font_awesome->Scale = 0.5f;
-  ImGui::PushFont( Editor::font_awesome );
 
+  // Tools Controls
+  Editor::font_awesome->Scale = 0.8f;
+  ImGui::PushFont( Editor::font_awesome );
   ImGui::SetCursorPos( tools_pos );
   if ( ImGui::Button( ICON_FA_HAND_PAPER, buttonSize ) ) // ICON_FA_ARROWS_ALT
     Editor::tool_selection = Editor::Tool::Camera;
   ImGui::SameLine();
   if ( ImGui::Button( ICON_FA_ARROWS_ALT, buttonSize ) )
     Editor::tool_selection = Editor::Tool::EntitySelector;
+  ImGui::PopFont();
 
-  Editor::font_awesome->Scale = 0.4f;
+  // Simulation Controls
+  Editor::font_awesome->Scale = 0.7f;
   ImGui::PushFont( Editor::font_awesome );
 
   ImGui::SetCursorPos( simulation_pos );
@@ -83,9 +86,19 @@ void ButtonsPanel::Render()
       AudioEngine::StopAllAudio();
     }
   }
+  ImGui::PopFont();
+
+
+  // Options Control
+  Editor::font_awesome->Scale = 0.8f;
+  ImGui::PushFont( Editor::font_awesome );
+
+  ImGui::SetCursorPos( option_pos );
+  if ( ImGui::Button( ICON_FA_MOUSE_POINTER, buttonSize ) )
+    Editor::toggle_cursor = !Editor::toggle_cursor;
 
   ImGui::PopFont();
-  ImGui::PopFont();
+  
   Editor::font_awesome->Scale = original;
 
   ImGui::End();

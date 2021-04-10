@@ -23,53 +23,17 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
 
+// Variables
 std::set<unsigned> screens;
 unsigned transitioning_screen;
 bool end { true };
 size_t e_id { u64_max };
 std::string on_click {};
 
-bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight, float &p_x, float &p_y )
-{
-  auto coords = r.GetScreenspaceBounds( i );
-  if ( c.GetFixedAspectRatio() > c.GetAspectRatio() )
-  {
-    float zeroPos = ( 1 - t_aspect / c.GetFixedAspectRatio() ) / 2;
-    float halfRatioY = coords.y < 0.5f ? coords.y * 2 : ( 1 - coords.y ) * 2;
-    float halfRatioW = coords.w < 0.5f ? coords.w * 2 : ( 1 - coords.w ) * 2;
-
-    coords.y = coords.y < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioY : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioY;
-    coords.w = coords.w < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioW : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioW;
-  }
-  else
-  {
-    float zeroPos = ( 1 - c.GetFixedAspectRatio() / t_aspect ) / 2;
-    float halfRatioX = coords.x < 0.5f ? coords.x * 2 : ( 1 - coords.x ) * 2;
-    float halfRatioZ = coords.z < 0.5f ? coords.z * 2 : ( 1 - coords.z ) * 2;
-
-    coords.x = coords.x < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioX : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioX;
-    coords.z = coords.z < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioZ : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioZ;
-  }
-  coords.x *= cameraWidth;
-  coords.y *= cameraHeight;
-  coords.z *= cameraWidth;
-  coords.w *= cameraHeight;
-
-  auto x_size = ( coords.z - coords.x ) * 0.25f;
-  auto y_size = ( coords.w - coords.y ) * 0.25f;
-
-  if ( CollisionIntersection_RectMinMaxMouse( { coords.x + x_size , coords.y + y_size }, { coords.z - x_size, coords.w - y_size }, { p_x, p_y } ) )
-    return true;
-  return false;
-}
-
-bool InvokeFunc( const std::string &name )
-{
-  if ( name.empty() )
-    return false;
-  rttr::type::get_global_method( name ).invoke( {} );
-  return true;
-}
+// Forward Declaration Function
+bool InvokeFunc( const std::string &name );
+bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight, float &p_x, float &p_y, GUIType type );
+Vector2 GUI_LeftRightLimit( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight );
 
 void UISystem::Initialize()
 {
@@ -79,6 +43,24 @@ void UISystem::Initialize()
 void UISystem::Update()
 {
 
+#ifdef DE_EDITOR
+  auto cameraWidth = GamePanel::render_size.x;
+  auto cameraHeight = GamePanel::render_size.y;
+  auto p_x = InputManager::Instance().CurrentPosition().point_x - GamePanel::render_pos.x;
+  auto p_y = InputManager::Instance().CurrentPosition().point_y - GamePanel::render_pos.y;
+#else
+  auto cameraWidth = static_cast<float>( GetEnv().pWin->Width() );
+  auto cameraHeight = static_cast<float>( GetEnv().pWin->Height() );
+  auto p_x = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
+  auto p_y = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
+#endif
+
+  em.ForEach( [&]( GUI &gui, RendererOverlay &o, Cursor &c )
+  {
+    o.m_SortingLayer = 100;
+    o.m_Active = c.visible;
+    o.pos = { p_x / cameraWidth * 1920.0f ,-p_y / cameraHeight * 1080.0f };
+  } );
 }
 
 void UISystem::LateUpdate()
@@ -145,7 +127,6 @@ void UISystem::LateUpdate()
   auto p_x = InputManager::Instance().CurrentPosition().point_x - GetEnv().pWin->ClientTopLeft().point_x;
   auto p_y = InputManager::Instance().CurrentPosition().point_y - GetEnv().pWin->ClientTopLeft().point_y;
   auto t_aspect = 1.0f * cameraWidth / cameraHeight;
-
 #endif
 
   Camera &c = *Camera::allCameras[0];
@@ -193,7 +174,7 @@ void UISystem::LateUpdate()
       {
         auto &button = em.GetComponent<Button>( { child } );
         auto &state = em.GetComponent<State>( { child } );
-        if ( GUI_Collision( em.GetComponent<Image>( { child } ), em.GetComponent<RendererOverlay>( { child } ), c, t_aspect, cameraWidth, cameraHeight, p_x, p_y ) )
+        if ( GUI_Collision( em.GetComponent<Image>( { child } ), em.GetComponent<RendererOverlay>( { child } ), c, t_aspect, cameraWidth, cameraHeight, p_x, p_y , GUIType::Button) )
         {
           if ( !state.GetBool( "Hover" ) )
           {
@@ -233,13 +214,43 @@ void UISystem::LateUpdate()
       case GUIType::Toggle:
       {
         //auto &toggle = em.GetComponent<Toggle>( { child } );
-
         break;
       }
       case GUIType::Slider:
       {
-        //auto &slider = em.GetComponent<Slider>( { child } );
+        auto &slider = em.GetComponent<Slider>( { child } );
 
+        auto left_right_limit = GUI_LeftRightLimit( em.GetComponent<Image>( { child } ), em.GetComponent<RendererOverlay>( { child } ), c, t_aspect, cameraWidth, cameraHeight );
+        auto &e_handle_render = em.GetComponent<RendererOverlay>( { slider.handle_entity } );
+        auto &e_handle_image = em.GetComponent<Image>( { slider.handle_entity } );
+
+        if ( !slider.selected )
+        {
+          if ( GUI_Collision( em.GetComponent<Image>( { child } ), em.GetComponent<RendererOverlay>( { child } ), c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Slider ) ||
+               GUI_Collision( e_handle_image, e_handle_render, c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Slider ) )
+            if ( InputManager::Instance().IsMouseTriggered( DEVK_LBUTTON ) )
+            {
+              DeltaEngine_CORE_INFO( "Selected" );
+
+              slider.selected = true;
+            }
+        }
+
+        if ( slider.selected )
+        {
+          if(InputManager::Instance().IsMousePressed(DEVK_LBUTTON))
+          {
+            //e_handle_render.pos.x = Math::Clamp(static_cast<int>(p_x),static_cast<int>(left_right_limit.x), static_cast<int>(left_right_limit.y));
+            e_handle_render.pos.x = Math::Clamp(static_cast<int>(p_x),static_cast<int>(left_right_limit.x), static_cast<int>(left_right_limit.y));
+            slider.value = e_handle_render.pos.x / left_right_limit.y;
+            DeltaEngine_CORE_INFO( "Selected and sliding" );
+          }
+          else if ( InputManager::Instance().IsMouseReleased( DEVK_LBUTTON ) )
+          slider.selected = false;
+        }
+
+        auto &e_fill_image = em.GetComponent<Image>( { slider.fill_entity } );
+        e_fill_image.m_FillAmount = Math::Clamp01(slider.value / slider.max);
         break;
       }
 
@@ -280,6 +291,71 @@ unsigned UISystem::CurrentScreen()
 {
   auto it = std::prev( screens.end() );
   return *it;
+}
+
+// Global Func
+
+bool InvokeFunc( const std::string &name )
+{
+  if ( name.empty() )
+    return false;
+  rttr::type::get_global_method( name ).invoke( {} );
+  return true;
+}
+
+bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight, float &p_x, float &p_y, GUIType type )
+{
+  auto coords = r.GetScreenspaceBounds( i );
+  if ( c.GetFixedAspectRatio() > c.GetAspectRatio() )
+  {
+    float zeroPos = ( 1 - t_aspect / c.GetFixedAspectRatio() ) / 2;
+    float halfRatioY = coords.y < 0.5f ? coords.y * 2 : ( 1 - coords.y ) * 2;
+    float halfRatioW = coords.w < 0.5f ? coords.w * 2 : ( 1 - coords.w ) * 2;
+
+    coords.y = coords.y < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioY : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioY;
+    coords.w = coords.w < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioW : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioW;
+  }
+  else
+  {
+    float zeroPos = ( 1 - c.GetFixedAspectRatio() / t_aspect ) / 2;
+    float halfRatioX = coords.x < 0.5f ? coords.x * 2 : ( 1 - coords.x ) * 2;
+    float halfRatioZ = coords.z < 0.5f ? coords.z * 2 : ( 1 - coords.z ) * 2;
+
+    coords.x = coords.x < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioX : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioX;
+    coords.z = coords.z < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioZ : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioZ;
+  }
+  coords.x *= cameraWidth;
+  coords.y *= cameraHeight;
+  coords.z *= cameraWidth;
+  coords.w *= cameraHeight;
+
+  
+  auto x_size = ( coords.z - coords.x ) *0.25f ;
+  auto y_size = ( coords.w - coords.y ) *0.25f;
+
+  if ( CollisionIntersection_RectMinMaxMouse( { coords.x + x_size , coords.y + y_size }, { coords.z - x_size, coords.w - y_size }, { p_x, p_y } ) )
+    return true;
+  return false;
+}
+
+Vector2 GUI_LeftRightLimit( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight )
+{
+  auto coords = r.GetScreenspaceBounds( i );
+  if ( c.GetFixedAspectRatio() < c.GetAspectRatio() )
+  {
+    float zeroPos = ( 1 - c.GetFixedAspectRatio() / t_aspect ) / 2;
+    float halfRatioX = coords.x < 0.5f ? coords.x * 2 : ( 1 - coords.x ) * 2;
+    float halfRatioZ = coords.z < 0.5f ? coords.z * 2 : ( 1 - coords.z ) * 2;
+
+    coords.x = coords.x < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioX : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioX;
+    coords.z = coords.z < 0.5f ? zeroPos + ( 0.5f - zeroPos ) * halfRatioZ : 1 - zeroPos - ( 0.5f - zeroPos ) * halfRatioZ;
+  }
+  coords.x *= cameraWidth;
+  coords.z *= cameraWidth;
+
+  auto x_size = ( coords.z - coords.x ) * 0.25f;
+
+  return { coords.x + x_size, coords.z - x_size };
 }
 
 }

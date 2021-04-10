@@ -63,6 +63,7 @@ namespace DeltaEngine
     Point ClientTopLeft();
     Point ClientRect();
 
+
     void InitWindow();
   };
 }

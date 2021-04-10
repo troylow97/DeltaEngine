@@ -188,7 +188,7 @@ namespace DeltaEngine
                                      ImVec2{128.0f, 128.0f}, {0, 0}, {1, 1}, 0);
                 }
                 else if (!ref.has_extension() )
-                  ImGui::Button(ICON_FA_MUSIC, {128.0f, 128.0f});
+                  ImGui::Button(ICON_FA_EXCLAMATION_CIRCLE, {128.0f, 128.0f});
 
                 ImGui::PopFont();
                 Editor::font_awesome->Scale = original;
