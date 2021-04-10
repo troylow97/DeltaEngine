@@ -19,15 +19,15 @@ IsStretching
 
 param
 Punch1
-0 0
+1 0
 
 param
 Punch2
-0 0
+1 0
 
 param
 Punch3
-0 0
+1 0
 
 param
 ShieldUp
@@ -125,15 +125,11 @@ Clip/DAVE_LANCE
 
 pos
 Clip/DAVE_PUNCH1_NEW
-386 33
+342 29
 
 pos
 Clip/DAVE_PUNCH2_NEW
-669 29
-
-pos
-Clip/DAVE_PUNCH3_NEW
-1089 44
+697 -29
 
 pos
 Clip/DAVE_RUN
@@ -182,6 +178,10 @@ Clip/DAVE_LAND
 pos
 Clip/DAVE_PANTING
 722 -152
+
+pos
+Clip/DAVE_PUNCH3_NEW
+1164 -41
 
 %Transitions:
 
@@ -235,19 +235,6 @@ Punch1
 ? 0
 condition
 Punch2
-? 1
-endTransition
-
-transition
-start
-Clip/DAVE_PUNCH2_NEW
-end
-Clip/DAVE_PUNCH3_NEW
-condition
-Punch2
-? 0
-condition
-Punch3
 ? 1
 endTransition
 
@@ -384,6 +371,9 @@ Punch1
 condition
 Punch2
 ? 0
+condition
+Punch3
+? 0
 endTransition
 
 transition
@@ -397,15 +387,8 @@ Punch2
 condition
 Punch3
 ? 0
-endTransition
-
-transition
-start
-Clip/DAVE_PUNCH3_NEW
-end
-Exit
 condition
-Punch3
+Punch1
 ? 0
 endTransition
 
@@ -633,19 +616,6 @@ endTransition
 
 transition
 start
-Clip/DAVE_PUNCH3_NEW
-end
-Clip/DAVE_PUNCH1_NEW
-condition
-Punch3
-? 0
-condition
-Punch1
-? 1
-endTransition
-
-transition
-start
 Clip/DAVE_FALL
 end
 Clip/DAVE_DASH
@@ -701,6 +671,54 @@ end
 Exit
 condition
 IsPanting
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH2_NEW
+end
+Clip/DAVE_PUNCH1_NEW
+condition
+Punch1
+? 1
+condition
+Punch2
+? 0
+condition
+Punch3
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH2_NEW
+end
+Clip/DAVE_PUNCH3_NEW
+condition
+Punch3
+? 1
+condition
+Punch1
+? 0
+condition
+Punch2
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_PUNCH3_NEW
+end
+Exit
+condition
+Punch1
+? 0
+condition
+Punch2
+? 0
+condition
+Punch3
 ? 0
 endTransition
 
