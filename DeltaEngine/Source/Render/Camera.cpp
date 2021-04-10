@@ -66,6 +66,7 @@ namespace DeltaEngine
     m_zNear{ copy.m_zNear },
     m_zFar{ copy.m_zFar },
     backgroundColor{ copy.backgroundColor },
+    transitionTexKey{ "Textures/Sharp_swipe_1" },
     perspective{ copy.perspective }
   {
     if (&copy == editorCamera)
@@ -88,6 +89,7 @@ namespace DeltaEngine
     m_zNear{ move.m_zNear },
     m_zFar{ move.m_zFar },
     backgroundColor{ move.backgroundColor },
+    transitionTexKey{ "Textures/Sharp_swipe_1" },
     perspective{ move.perspective }
   {
     if (&move == editorCamera)

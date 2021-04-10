@@ -269,6 +269,7 @@ namespace DeltaEngine
   {
     Material spriteMat{ "Shaders/Default" };
     Material textMat{ "Shaders/DefaultText" };
+    Material cutsceneMat{ "Shaders/DefaultTransition" };
 
     for (EntityID ID : sortedRenderersOverlay)
     {
@@ -355,11 +356,10 @@ namespace DeltaEngine
             img.m_Sprite.GetTexture()->Bind(0);
           }
 
-          if (r.m_Material.m_ShaderKey == "DefaultTransition")
+          if (!std::strcmp(r.m_Material.m_ShaderKey.c_str(), "DefaultTransition"))
           {
             if (Cutscene::frame < 10)
             {
-              Material cutsceneMat{ "Shaders/DefaultTransition" };
               cutsceneMat.SetUniformMatrix4f("_M", model);
               cutsceneMat.SetUniformMatrix4f("_V", view);
               cutsceneMat.SetUniformMatrix4f("_P", proj);
@@ -375,18 +375,18 @@ namespace DeltaEngine
 
               if (Cutscene::frame < 9)
               {
-                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 2))->Bind(1);
+                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 2))->Bind(2);
               }
               else
               {
-                GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(1);
+                GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(2);
               }
 
-              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(2);
+              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(1);
 
               cutsceneMat.SetUniform1i("_MainTex", 0);
-              cutsceneMat.SetUniform1i("_NextTex", 1);
-              cutsceneMat.SetUniform1i("_DispTex", 2);
+              cutsceneMat.SetUniform1i("_DispTex", 1);
+              cutsceneMat.SetUniform1i("_NextTex", 2);
               cutsceneMat.SetUniform1f("_Cutoff", (Cutscene::timer) * (1.f + .1f) - .1f);
             }
           }

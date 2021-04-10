@@ -283,7 +283,7 @@ void Window::InitWindow()
     m_fullscreen = !m_fullscreen;
     Fullscreen();
   }
-  ShowWindow( GetConsoleWindow(), SW_HIDE );
+  ShowWindow( GetConsoleWindow(), SW_SHOW );
   ShowCursor( false );
 #endif
 

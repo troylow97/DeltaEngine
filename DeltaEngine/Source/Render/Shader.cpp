@@ -114,6 +114,11 @@ namespace DeltaEngine
 
     GLCall(glAttachShader( program, vs ));
     GLCall(glAttachShader( program, fs ));
+
+    GLCall(glBindAttribLocation(program, 0, "_MainTex"));
+    GLCall(glBindAttribLocation(program, 1, "_DispTex"));
+    GLCall(glBindAttribLocation(program, 2, "_NextTex"));
+    
     GLCall(glLinkProgram( program ));
     GLCall(glValidateProgram( program ));
 
