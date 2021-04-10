@@ -10539,396 +10539,6 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 146.3563690185547,
-                    "y": 5.888188362121582,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 147.348876953125,
-                    "y": 5.88818883895874,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -0.5,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Ladder"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 147.8287811279297,
-                    "y": 5.193225860595703,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 1
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 148.54437255859376,
-                    "y": 4.126349449157715,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -0.5,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 149.54351806640626,
-                    "y": 4.126349449157715,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -1.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
                     "x": 153.96182250976563,
                     "y": 4.054228782653809,
                     "z": 0.0
@@ -11399,162 +11009,6 @@
                 "Position": {
                     "x": 165.93235778808595,
                     "y": 3.123023748397827,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -0.5,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "x3Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 150.89305114746095,
-                    "y": 6.2578864097595219,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 2
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 152.89598083496095,
-                    "y": 6.255991458892822,
                     "z": 0.0
                 },
                 "Scale": {
@@ -14283,7 +13737,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 194.4499969482422,
+                    "x": 197.27999877929688,
                     "y": 0.2922217845916748,
                     "z": 0.0
                 },
@@ -14432,84 +13886,6 @@
         },
         {
             "Entity Name": {
-                "Name": "x3Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 192.5933380126953,
-                    "y": 4.989480972290039,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 2
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
                 "Name": "Building"
             },
             "Entity Type": {
@@ -14517,7 +13893,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 205.25799560546876,
+                    "x": 205.2480010986328,
                     "y": 3.5360000133514406,
                     "z": 0.0
                 },
@@ -14581,162 +13957,6 @@
                 },
                 "Layer": -1,
                 "Order": -2.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 188.95254516601563,
-                    "y": 3.6717941761016847,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -2.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Ladder"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 194.1611328125,
-                    "y": 4.333497524261475,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 1
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -1.0,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
@@ -15687,8 +14907,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 208.9912872314453,
-                    "y": 3.9583988189697267,
+                    "x": 209.00100708007813,
+                    "y": 4.808000087738037,
                     "z": 0.0
                 },
                 "Scale": {
@@ -16078,7 +15298,7 @@
             "Transform": {
                 "Position": {
                     "x": 212.23167419433595,
-                    "y": 5.649768829345703,
+                    "y": 3.4800000190734865,
                     "z": 0.0
                 },
                 "Scale": {
@@ -17559,8 +16779,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 246.27610778808595,
-                    "y": 4.996677398681641,
+                    "x": 259.2623291015625,
+                    "y": 3.1703643798828127,
                     "z": 0.0
                 },
                 "Scale": {
@@ -17935,84 +17155,6 @@
                 },
                 "Layer": 0,
                 "Order": -0.5,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 247.28335571289063,
-                    "y": 4.99501895904541,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -0.9900000095367432,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
@@ -20133,84 +19275,6 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 285.4952087402344,
-                    "y": 4.060800075531006,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_TILESET_FE",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": -0.5,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Platform"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
                     "x": 284.36376953125,
                     "y": 5.746461868286133,
                     "z": 0.0
@@ -21551,8 +20615,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 106.62899780273438,
-                    "y": 1.1158130168914796,
+                    "x": 106.68900299072266,
+                    "y": 0.5659999847412109,
                     "z": 0.0
                 },
                 "Scale": {
@@ -21589,7 +20653,7 @@
                 },
                 "Size": {
                     "x": 5.050000190734863,
-                    "y": 0.5
+                    "y": 1.440000057220459
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -21663,8 +20727,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 113.89900207519531,
-                    "y": 1.1158130168914796,
+                    "x": 113.93900299072266,
+                    "y": 0.5960000157356262,
                     "z": 0.0
                 },
                 "Scale": {
@@ -21700,8 +20764,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 5.980000019073486,
-                    "y": 0.5
+                    "x": 6.380000114440918,
+                    "y": 1.4299999475479127
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -21719,8 +20783,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 121.89900207519531,
-                    "y": 1.2960000038146973,
+                    "x": 122.14900207519531,
+                    "y": 1.1959999799728394,
                     "z": 0.0
                 },
                 "Scale": {
@@ -21757,7 +20821,7 @@
                 },
                 "Size": {
                     "x": 5.980000019073486,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -21831,8 +20895,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 129.95899963378907,
-                    "y": 1.2960000038146973,
+                    "x": 130.15899658203126,
+                    "y": 1.1859999895095826,
                     "z": 0.0
                 },
                 "Scale": {
@@ -21869,7 +20933,7 @@
                 },
                 "Size": {
                     "x": 5.980000019073486,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -21887,8 +20951,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 154.5205841064453,
-                    "y": 4.0204548835754398,
+                    "x": 154.63099670410157,
+                    "y": 3.940000057220459,
                     "z": 0.0
                 },
                 "Scale": {
@@ -21925,7 +20989,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -21936,7 +21000,7 @@
         },
         {
             "Parent": {
-                "ID": 285
+                "ID": 273
             },
             "Entity Name": {
                 "Name": "Collider"
@@ -22002,8 +21066,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 148.37899780273438,
-                    "y": 1.2960000038146973,
+                    "x": 148.57899475097657,
+                    "y": 1.2059999704360963,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22040,7 +21104,7 @@
                 },
                 "Size": {
                     "x": 4.010000228881836,
-                    "y": 0.10000000149011612
+                    "y": 0.14000000059604646
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22058,8 +21122,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 155.5025177001953,
-                    "y": 3.3086929321289064,
+                    "x": 155.5709991455078,
+                    "y": 3.2663328647613527,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22095,8 +21159,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 0.23999999463558198,
-                    "y": 1.1200000047683716
+                    "x": 0.27000001072883608,
+                    "y": 1.0499999523162842
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22114,8 +21178,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 147.79244995117188,
-                    "y": 5.1520538330078129,
+                    "x": 155.11900329589845,
+                    "y": 1.1959999799728394,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22143,63 +21207,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 147.79244995117188,
-                    "y": 5.1520538330078129
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 0.23999999463558198,
-                    "y": 1.1200000047683716
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 154.93899536132813,
-                    "y": 1.2960000038146973,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 154.93899536132813,
+                    "x": 155.0989990234375,
                     "y": 1.2960000038146973
                 },
                 "Offset": {
@@ -22207,8 +21215,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 2.940000057220459,
-                    "y": 0.10000000149011612
+                    "x": 3.0,
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22226,64 +21234,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 151.45748901367188,
-                    "y": 6.206175804138184,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 151.45748901367188,
-                    "y": 6.206175804138184
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 4.010000228881836,
-                    "y": 0.10000000149011612
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": true
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 157.87612915039063,
-                    "y": 6.113821506500244,
+                    "x": 157.96600341796876,
+                    "y": 6.044000148773193,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22320,7 +21272,7 @@
                 },
                 "Size": {
                     "x": 4.010000228881836,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22338,120 +21290,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 146.91673278808595,
-                    "y": 5.852150917053223,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 146.91673278808595,
-                    "y": 5.852150917053223
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 2.0,
-                    "y": 0.10000000149011612
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": true
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 149.11785888671876,
-                    "y": 4.097416877746582,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 149.11785888671876,
-                    "y": 4.097416877746582
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 2.0,
-                    "y": 0.10000000149011612
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": true
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 159.00128173828126,
-                    "y": 3.007232189178467,
+                    "x": 158.9510040283203,
+                    "y": 2.9670000076293947,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22487,8 +21327,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 6.0,
-                    "y": 0.10000000149011612
+                    "x": 6.320000171661377,
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22506,8 +21346,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 160.88137817382813,
-                    "y": 1.2847533226013184,
+                    "x": 161.06100463867188,
+                    "y": 1.1950000524520875,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22544,7 +21384,7 @@
                 },
                 "Size": {
                     "x": 4.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22562,8 +21402,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 169.88780212402345,
-                    "y": 3.1535871028900148,
+                    "x": 169.97799682617188,
+                    "y": 3.114000082015991,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22600,7 +21440,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22618,8 +21458,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 163.30184936523438,
-                    "y": 6.125708103179932,
+                    "x": 163.40199279785157,
+                    "y": 6.076000213623047,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22656,7 +21496,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22674,8 +21514,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 165.54220581054688,
-                    "y": 3.052265167236328,
+                    "x": 165.6219940185547,
+                    "y": 3.0220000743865969,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22712,7 +21552,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22730,8 +21570,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 167.98519897460938,
-                    "y": 1.2734959125518799,
+                    "x": 168.125,
+                    "y": 1.1929999589920045,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22767,8 +21607,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 2.0,
-                    "y": 0.10000000149011612
+                    "x": 2.0299999713897707,
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22786,8 +21626,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 167.07330322265626,
-                    "y": 6.12570858001709,
+                    "x": 167.17300415039063,
+                    "y": 6.065999984741211,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22824,7 +21664,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22842,8 +21682,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 171.46392822265626,
-                    "y": 6.024385929107666,
+                    "x": 171.53399658203126,
+                    "y": 5.973999977111816,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22880,7 +21720,7 @@
                 },
                 "Size": {
                     "x": 3.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22898,8 +21738,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 174.18836975097657,
-                    "y": 3.176103115081787,
+                    "x": 174.2480010986328,
+                    "y": 3.135999917984009,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22936,7 +21776,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -22954,8 +21794,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 176.4287109375,
-                    "y": 6.01312780380249,
+                    "x": 176.48899841308595,
+                    "y": 5.9730000495910648,
                     "z": 0.0
                 },
                 "Scale": {
@@ -22992,7 +21832,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23010,8 +21850,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 174.0870361328125,
-                    "y": 1.7125587463378907,
+                    "x": 174.14700317382813,
+                    "y": 1.6829999685287476,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23048,7 +21888,7 @@
                 },
                 "Size": {
                     "x": 6.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23066,8 +21906,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 183.0052490234375,
-                    "y": 3.6039085388183595,
+                    "x": 183.06500244140626,
+                    "y": 3.553999900817871,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23103,8 +21943,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 8.760000228881836,
-                    "y": 0.10000000149011612
+                    "x": 8.819999694824219,
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23122,8 +21962,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 188.33029174804688,
-                    "y": 2.343008518218994,
+                    "x": 188.38999938964845,
+                    "y": 2.302999973297119,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23160,119 +22000,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": true
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 189.1183624267578,
-                    "y": 3.5926504135131838,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 189.1183624267578,
-                    "y": 3.5926504135131838
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 0.10000000149011612
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": true
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 192.72093200683595,
-                    "y": 4.921098232269287,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 192.72093200683595,
-                    "y": 4.921098232269287
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 3.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23346,7 +22074,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 194.4283905029297,
+                    "x": 197.2480010986328,
                     "y": 0.45557522773742678,
                     "z": 0.0
                 },
@@ -23402,8 +22130,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 191.68626403808595,
-                    "y": 1.2612671852111817,
+                    "x": 191.78599548339845,
+                    "y": 1.2009999752044678,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23440,7 +22168,7 @@
                 },
                 "Size": {
                     "x": 4.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23458,64 +22186,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 194.13555908203126,
-                    "y": 4.2398505210876469,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 194.13555908203126,
-                    "y": 4.2398505210876469
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 0.20999999344348908,
-                    "y": 1.1399999856948853
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 197.12615966796876,
-                    "y": 3.1759300231933595,
+                    "x": 197.21600341796876,
+                    "y": 3.135999917984009,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23552,7 +22224,7 @@
                 },
                 "Size": {
                     "x": 5.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23570,8 +22242,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 203.00531005859376,
-                    "y": 3.6940152645111086,
+                    "x": 203.09500122070313,
+                    "y": 3.614000082015991,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23608,7 +22280,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23626,8 +22298,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 205.78720092773438,
-                    "y": 4.921651840209961,
+                    "x": 205.8769989013672,
+                    "y": 4.861999988555908,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23664,7 +22336,7 @@
                 },
                 "Size": {
                     "x": 3.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23682,8 +22354,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 212.37588500976563,
-                    "y": 5.586153030395508,
+                    "x": 212.42599487304688,
+                    "y": 3.375999927520752,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23720,7 +22392,7 @@
                 },
                 "Size": {
                     "x": 3.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23738,8 +22410,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 209.12095642089845,
-                    "y": 3.8967442512512209,
+                    "x": 209.09100341796876,
+                    "y": 4.686999797821045,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23775,8 +22447,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 3.0,
-                    "y": 0.10000000149011612
+                    "x": 3.240000009536743,
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23794,8 +22466,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 257.3848571777344,
-                    "y": 3.095571517944336,
+                    "x": 257.9750061035156,
+                    "y": 3.0759999752044679,
                     "z": 0.0
                 },
                 "Scale": {
@@ -23831,8 +22503,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 3.0,
-                    "y": 0.10000000149011612
+                    "x": 3.9800000190734865,
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -23962,8 +22634,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 216.1151123046875,
-                    "y": 2.376277208328247,
+                    "x": 216.18499755859376,
+                    "y": 2.3359999656677248,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24000,7 +22672,7 @@
                 },
                 "Size": {
                     "x": 4.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24018,8 +22690,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 243.05992126464845,
-                    "y": 1.474111795425415,
+                    "x": 243.13999938964845,
+                    "y": 1.434000015258789,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24056,7 +22728,7 @@
                 },
                 "Size": {
                     "x": 3.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24074,8 +22746,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 246.36380004882813,
-                    "y": 3.168720006942749,
+                    "x": 246.45399475097657,
+                    "y": 3.128999948501587,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24112,7 +22784,7 @@
                 },
                 "Size": {
                     "x": 3.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24130,8 +22802,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 251.56954956054688,
-                    "y": 5.7167277336120609,
+                    "x": 251.6300048828125,
+                    "y": 5.677000045776367,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24168,7 +22840,7 @@
                 },
                 "Size": {
                     "x": 3.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24186,64 +22858,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 246.88804626464845,
-                    "y": 4.924285411834717,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 246.88804626464845,
-                    "y": 4.924285411834717
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 2.0,
-                    "y": 0.10000000149011612
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": true
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 256.2876281738281,
-                    "y": 5.704536437988281,
+                    "x": 256.3479919433594,
+                    "y": 5.664999961853027,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24280,7 +22896,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24298,8 +22914,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 249.66769409179688,
-                    "y": 4.058693885803223,
+                    "x": 249.7480010986328,
+                    "y": 4.0289998054504398,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24336,7 +22952,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24354,8 +22970,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 251.94747924804688,
-                    "y": 3.0833797454833986,
+                    "x": 251.9969940185547,
+                    "y": 3.052999973297119,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24392,7 +23008,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24410,8 +23026,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 254.00782775878907,
-                    "y": 3.961162567138672,
+                    "x": 254.03799438476563,
+                    "y": 3.940999984741211,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24448,7 +23064,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24466,8 +23082,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 262.7003173828125,
-                    "y": 3.0955710411071779,
+                    "x": 262.7799987792969,
+                    "y": 3.0360000133514406,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24504,7 +23120,7 @@
                 },
                 "Size": {
                     "x": 3.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24522,8 +23138,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 259.4573974609375,
-                    "y": 5.741110801696777,
+                    "x": 259.5369873046875,
+                    "y": 5.710999965667725,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24560,7 +23176,7 @@
                 },
                 "Size": {
                     "x": 3.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24634,8 +23250,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 262.7851257324219,
-                    "y": 5.701807022094727,
+                    "x": 262.8550109863281,
+                    "y": 5.6620001792907719,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24672,7 +23288,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24690,8 +23306,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 266.55828857421877,
-                    "y": 5.701807022094727,
+                    "x": 266.63800048828127,
+                    "y": 5.6620001792907719,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24728,7 +23344,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24746,8 +23362,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 269.6761169433594,
-                    "y": 3.0915238857269289,
+                    "x": 269.72601318359377,
+                    "y": 3.0320000648498537,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24784,7 +23400,7 @@
                 },
                 "Size": {
                     "x": 5.940000057220459,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24802,8 +23418,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 270.2872619628906,
-                    "y": 5.732881546020508,
+                    "x": 270.3970031738281,
+                    "y": 5.683000087738037,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24840,7 +23456,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24858,8 +23474,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 273.5397644042969,
-                    "y": 5.7225236892700199,
+                    "x": 273.6000061035156,
+                    "y": 5.663000106811523,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24896,7 +23512,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20999999344348908
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24914,8 +23530,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 276.8647766113281,
-                    "y": 5.732882022857666,
+                    "x": 276.8949890136719,
+                    "y": 5.703000068664551,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24952,7 +23568,7 @@
                 },
                 "Size": {
                     "x": 1.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -24970,8 +23586,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 277.5003662109375,
-                    "y": 2.3182713985443117,
+                    "x": 277.5400085449219,
+                    "y": 2.23799991607666,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25008,7 +23624,7 @@
                 },
                 "Size": {
                     "x": 4.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -25026,8 +23642,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 280.7275085449219,
-                    "y": 5.923776149749756,
+                    "x": 280.8070068359375,
+                    "y": 5.874000072479248,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25064,7 +23680,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -25082,8 +23698,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 282.8084411621094,
-                    "y": 3.0527265071868898,
+                    "x": 282.87799072265627,
+                    "y": 3.013000011444092,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25120,7 +23736,7 @@
                 },
                 "Size": {
                     "x": 4.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -25138,8 +23754,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 283.9768981933594,
-                    "y": 5.690086364746094,
+                    "x": 284.0669860839844,
+                    "y": 5.639999866485596,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25176,7 +23792,7 @@
                 },
                 "Size": {
                     "x": 2.0,
-                    "y": 0.10000000149011612
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -25194,8 +23810,8 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 286.1246032714844,
-                    "y": 3.9874870777130129,
+                    "x": 286.69500732421877,
+                    "y": 3.947000026702881,
                     "z": 0.0
                 },
                 "Scale": {
@@ -25231,8 +23847,8 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 2.0,
-                    "y": 0.10000000149011612
+                    "x": 1.0,
+                    "y": 0.20000000298023225
                 },
                 "Type": "box",
                 "Collision Layer": 11,
@@ -25303,6 +23919,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -25456,9 +24080,17 @@
             "Entity Type": {
                 "Category": "player"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
-                    "x": 18.213520050048829,
+                    "x": 18.0,
                     "y": 0.2592238485813141,
                     "z": 0.0
                 },
@@ -25476,9 +24108,9 @@
             },
             "Rigidbody": {
                 "Mass": 50.0,
-                "Move Speed": 60.0,
+                "Move Speed": 20.0,
                 "Restitution": 1.0,
-                "Friction Coefficient": 4.0,
+                "Friction Coefficient": 3.5,
                 "Inherent Acceleration": 0.0,
                 "Max Acceleration": 10.0,
                 "Acceleration Pickup": 1.0,
@@ -25605,6 +24237,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 52.0,
@@ -25713,8 +24353,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -25756,6 +24396,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -25865,8 +24513,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -25908,6 +24556,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -26017,8 +24673,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26060,6 +24716,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -26169,8 +24833,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26212,6 +24876,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -26321,8 +24993,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26364,6 +25036,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -26473,8 +25153,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26516,6 +25196,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -26625,8 +25313,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26668,6 +25356,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -26777,8 +25473,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26820,6 +25516,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -26929,8 +25633,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -26972,6 +25676,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -27081,8 +25793,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -27124,6 +25836,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -27233,8 +25953,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -27276,6 +25996,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -27385,8 +26113,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -27428,6 +26156,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -27537,8 +26273,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -27580,6 +26316,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -27689,8 +26433,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -27732,6 +26476,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -27841,8 +26593,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -27884,6 +26636,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -27993,8 +26753,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28036,6 +26796,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -28145,8 +26913,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28189,10 +26957,18 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
-                    "x": 196.39999389648438,
-                    "y": 0.5,
+                    "x": 195.78834533691407,
+                    "y": 0.4026913642883301,
                     "z": 0.0
                 },
                 "Scale": {
@@ -28297,8 +27073,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28340,6 +27116,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -28449,8 +27233,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
+                "Range Damage": 0,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28490,6 +27274,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -28599,8 +27391,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28642,6 +27434,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -28751,8 +27551,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
+                "Range Damage": 0,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28793,6 +27593,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 202.1999969482422,
@@ -28901,8 +27709,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -28944,6 +27752,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -29053,8 +27869,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29096,6 +27912,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -29205,8 +28029,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29248,6 +28072,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -29357,8 +28189,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29400,6 +28232,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -29509,8 +28349,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29552,6 +28392,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -29661,8 +28509,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29704,6 +28552,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -29813,8 +28669,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -29856,6 +28712,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -29965,8 +28829,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
+                "Range Damage": 0,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30007,6 +28871,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 245.39999389648438,
@@ -30115,8 +28987,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30158,6 +29030,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -30267,8 +29147,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30310,6 +29190,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -30419,8 +29307,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30462,6 +29350,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -30571,8 +29467,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30614,6 +29510,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -30723,8 +29627,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30766,6 +29670,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -30875,8 +29787,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -30918,6 +29830,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -31027,8 +29947,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31070,6 +29990,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -31179,8 +30107,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31222,6 +30150,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -31331,8 +30267,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31374,6 +30310,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -31483,8 +30427,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
+                "Range Damage": 0,
+                "Melee Damage": 5,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31524,6 +30468,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -31633,8 +30585,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31676,6 +30628,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -31785,8 +30745,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -31828,6 +30788,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -31937,8 +30905,8 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 8,
-                "Melee Damage": 5,
+                "Range Damage": 0,
+                "Melee Damage": 2,
                 "SMG Damage": 0,
                 "Melee Combo Damage": 0,
                 "Number Of Combo": 0,
@@ -39314,7 +38282,7 @@
         },
         {
             "Parent": {
-                "ID": 501
+                "ID": 481
             },
             "Entity Name": {
                 "Name": "Bg3"
@@ -53471,156 +52439,6 @@
                     "z": 0.0,
                     "w": 1.0
                 }
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Fiddler"
-            },
-            "Entity Type": {
-                "Category": "enemy"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 277.8202819824219,
-                    "y": -1111.703369140625,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 1.0,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": true,
-                "Moveable": true
-            },
-            "Collider": {
-                "Center": {
-                    "x": 277.8202819824219,
-                    "y": -1112.1033935546876
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": -0.4000000059604645
-                },
-                "Size": {
-                    "x": 1.5800000429153443,
-                    "y": 0.9100000262260437
-                },
-                "Type": "box",
-                "Collision Layer": 9,
-                "Collision Layer ID": 4,
-                "Trigger": false,
-                "Platform": false
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/FID_WALK",
-                    "index": 6
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "none",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "Renderer2D": {
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 5,
-                "Order": 0.0,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            },
-            "Animator": {
-                "Controller Key": "Animation/Fiddler",
-                "Speed": 1.0
-            },
-            "State": {},
-            "AI": {
-                "Original Point": {
-                    "x": 278.3999938964844,
-                    "y": 0.800000011920929
-                },
-                "AIState": "idle_fiddler"
-            },
-            "Health": {
-                "Current Health": 20,
-                "Max Health": 20,
-                "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
-            },
-            "Attack": {
-                "Range Damage": 12,
-                "Melee Damage": 8,
-                "SMG Damage": 0,
-                "Melee Combo Damage": 0,
-                "Number Of Combo": 0,
-                "Max Combo Number": 1,
-                "Melee Cooldown": 0.800000011920929,
-                "Range Cooldown": 1.0,
-                "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": -0.20000000298023225,
-                "Range Cooldown Timer": -0.20000000298023225,
-                "Combo Duration": 1.5,
-                "Combo Cooldown Timer": 0.0,
-                "Knockback Amount": 0.0,
-                "Knockback Combo Amount": 0.0,
-                "SMG Fire Rate": 0.18000000715255738,
-                "Attack Delay": -0.20000000298023225,
-                "Current Dodge Cooldown": -0.10000000149011612,
-                "Dodge Cooldown": 1.0,
-                "Ranged Attack": false,
-                "Melee Attack": false,
-                "SMG Attack": false,
-                "Allow SMG Attack": false,
-                "Blocking": false,
-                "Start SMG Cooldown Timer": false,
-                "Start Combo Cooldown Timer": false,
-                "Damage Enemy": false
-            },
-            "Fiddler": {
-                "DurationBeforeExitState": 1.0,
-                "FacePlayerTimer": 2.0,
-                "AttackDelay": 1.0,
-                "hasAttacked": false
             }
         }
     ]
