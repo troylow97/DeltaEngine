@@ -229,7 +229,7 @@
             },
             "Animator": {
                 "Controller Key": "Animation/Dash",
-                "Speed": 1.0
+                "Speed": 0.05000000074505806
             },
             "State": {}
         },
@@ -396,12 +396,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 169.5,
+                    "x": 105.0,
                     "y": 200.0
                 },
                 "Width/Height": {
-                    "x": 34.0,
-                    "y": 50.0
+                    "x": 63.0,
+                    "y": 28.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -2566,8 +2566,8 @@
                     "y": 0.0
                 },
                 "Width/Height": {
-                    "x": 64.0,
-                    "y": 64.0
+                    "x": 100.0,
+                    "y": 100.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,

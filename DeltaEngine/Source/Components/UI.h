@@ -51,6 +51,7 @@ struct Slider
   float min { 0 };
   float max { 0 };
   float value { 0 };
+  bool selected { false };
 };
 
 struct Cursor

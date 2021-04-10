@@ -1,0 +1,10 @@
+frames 1
+fps 12
+loop 0
+
+Textures/ICON_DASH_OFF_i_0
+key Textures/ICON_DASH_OFF
+value 0
+frame 0
+
+%

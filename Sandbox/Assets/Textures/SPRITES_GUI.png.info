@@ -14,7 +14,7 @@ size 0 0
 pivot 0.5 0.5
 
 Textures/SPRITES_GUI_i_3
-offset 32 308
+offset 32 320
 size 114 114
 pivot 0.5 0.5
 
@@ -24,13 +24,13 @@ size 423 27
 pivot 0.5 0.5
 
 Textures/SPRITES_GUI_i_5
-offset 157 308
+offset 157 320
 size 114 114
 pivot 0.5 0.5
 
 Textures/SPRITES_GUI_i_6
-offset 183 265
-size 63 28
+offset 198 263
+size 34 50
 pivot 0.5 0.5
 
 %

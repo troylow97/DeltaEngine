@@ -51,16 +51,19 @@ void GUISystem::Update()
     target = player_health->CurrentHealth;
 
 
-    em.ForEach( [&]( EntityName &name, GUI &g, Image &i, State &s )
+    em.ForEach( [&]( EntityID &id, EntityName &name, GUI &g, Image &i, State &s )
     {
       if ( name.name == "Dodge Cooldown" )
+      {
         s.SetFloat( "Cooldown", player_attack->CurrentDodgeCooldown );
+        auto &a = em.GetComponent<Animator>( id );
+        s.SetBool( "Anim", a.LoopsCompleted() ? false : true );
+      }
 
       if ( name.name == "Health" )
       {
         s.SetBool( "Hit", attacked && changing );
         s.SetBool( "Heal", attacked && changing );
-
         auto p = Math::Clamp01( current / static_cast<float>( player_health->MaxHealth ) );
         s.SetFloat( "Health", p );
         i.m_FillAmount = p;

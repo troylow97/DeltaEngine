@@ -36,16 +36,16 @@ Clip/Health
 9 76
 
 pos
-Clip/HEALTHBAR_DMG_LONG
-444 73
-
-pos
 Clip/HEALTHBAR_HEAL
 213 8
 
 pos
 Clip/HEALTHBAR_LOW
 57 182
+
+pos
+Clip/HEALTHBAR_DMG
+487 30
 
 %Transitions:
 
@@ -71,9 +71,29 @@ endTransition
 
 transition
 start
+Clip/HEALTHBAR_HEAL
+end
+Exit
+condition
+Hit
+? 0
+endTransition
+
+transition
+start
 Clip/Health
 end
-Clip/HEALTHBAR_DMG_LONG
+Clip/HEALTHBAR_DMG
+condition
+Hit
+? 1
+endTransition
+
+transition
+start
+Clip/Health
+end
+Clip/HEALTHBAR_HEAL
 condition
 Heal
 ? 1
@@ -83,7 +103,7 @@ transition
 start
 Clip/HEALTHBAR_LOW
 end
-Clip/HEALTHBAR_DMG_LONG
+Clip/HEALTHBAR_DMG
 condition
 Hit
 ? 1
@@ -91,32 +111,12 @@ endTransition
 
 transition
 start
-Clip/HEALTHBAR_HEAL
+Clip/HEALTHBAR_DMG
 end
 Exit
 condition
 Hit
 ? 0
-endTransition
-
-transition
-start
-Clip/HEALTHBAR_DMG_LONG
-end
-Exit
-condition
-Hit
-? 0
-endTransition
-
-transition
-start
-Clip/Health
-end
-Clip/HEALTHBAR_HEAL
-condition
-Hit
-? 1
 endTransition
 
 %endfile

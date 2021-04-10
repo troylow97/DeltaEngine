@@ -1,12 +1,16 @@
 %Entry:
 
 entry
-Clip/ICON_DASH_ACTIVE
+Clip/ICON_DASH_ON
 
 %Parameters:
 
 param
 Cooldown
+0 0
+
+param
+Anim
 0 0
 
 %EditorPositions:
@@ -24,10 +28,6 @@ Any State
 200 0
 
 pos
-Clip/ICON_DASH_BASE
--78 201
-
-pos
 Clip/ICON_DASH_USE
 -81 129
 
@@ -36,8 +36,12 @@ Clip/ICON_DASH_READY
 -77 272
 
 pos
-Clip/ICON_DASH_ACTIVE
--84 62
+Clip/ICON_DASH_ON
+-71 61
+
+pos
+Clip/ICON_DASH_OFF
+-75 198
 
 %Transitions:
 
@@ -46,33 +50,39 @@ start
 Clip/ICON_DASH_READY
 end
 Exit
-endTransition
-
-transition
-start
-Clip/ICON_DASH_BASE
-end
-Clip/ICON_DASH_READY
 condition
-Cooldown
-< 0
+Anim
+? 0
 endTransition
 
 transition
 start
-Clip/ICON_DASH_USE
-end
-Clip/ICON_DASH_BASE
-endTransition
-
-transition
-start
-Clip/ICON_DASH_ACTIVE
+Clip/ICON_DASH_ON
 end
 Clip/ICON_DASH_USE
 condition
 Cooldown
 > 0
+endTransition
+
+transition
+start
+Clip/ICON_DASH_USE
+end
+Clip/ICON_DASH_OFF
+condition
+Anim
+? 0
+endTransition
+
+transition
+start
+Clip/ICON_DASH_OFF
+end
+Clip/ICON_DASH_READY
+condition
+Cooldown
+< 0
 endTransition
 
 %endfile

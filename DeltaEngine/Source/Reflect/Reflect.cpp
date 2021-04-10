@@ -188,8 +188,6 @@ namespace DeltaEngine
       .property("b", &Color::b)
       .property("a", &Color::a);
 
-    rttr::registration::class_<Material>("Material")
-      .property("key", &Material::m_ShaderKey);
 
     rttr::registration::class_<Sprite>("Sprite")
       .property("key", &Sprite::m_Key)
@@ -363,7 +361,8 @@ namespace DeltaEngine
       .property("Handle Entity", &Slider::handle_entity)(rttr::policy::prop::bind_as_ptr)
       .property("Min", &Slider::min)(rttr::policy::prop::bind_as_ptr)
       .property("Max", &Slider::max)(rttr::policy::prop::bind_as_ptr)
-      .property("Value", &Slider::value)(rttr::policy::prop::bind_as_ptr);
+      .property("Value", &Slider::value)(rttr::policy::prop::bind_as_ptr)
+      .property("Selected", &Slider::selected)(rttr::metadata("NO_SERIALIZE", true));
 
     rttr::registration::class_<Cursor>( "Cursor" )
       ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Cursor>()->bits ) )
@@ -1049,7 +1048,11 @@ namespace DeltaEngine::RT_Reflect
     else if (str == "Toggle")
       em.AddComponent<Toggle>(id, var.get_value<Toggle>());
     else if (str == "Slider")
+    {
       em.AddComponent<Slider>(id, var.get_value<Slider>());
+      em.GetComponent<Slider>( id ).fill_entity += p_adj;
+      em.GetComponent<Slider>( id ).handle_entity += p_adj;
+    }
     else if (str == "Cursor")
       em.AddComponent<Cursor>(id, var.get_value<Cursor>());
     else if (str == "Audio Source")
