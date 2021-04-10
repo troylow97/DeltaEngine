@@ -67,7 +67,6 @@ namespace DeltaEngine
             !Gauntlet.isFinished)
           {
             ActivationPoint = list.Gauntlets[i].ActivationPoint;
-            list.Gauntlets[i].CurrentEnemyWave = 0;
             CurrentGauntlet = i;
             GauntletIsActive = true;
             Gauntlet.isActivated = true;
@@ -78,24 +77,22 @@ namespace DeltaEngine
       	//Activate gauntlet
         if (GauntletIsActive)
         {
+          if (CheckForOutsideEnemies())
+            return;
+
           //If player dies, a json file is loaded so just reset all the stuff
-          if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(player).IsDead)
+          if(env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(player).IsDead)
           {
-              GauntletIsActive = false;
-              list.Gauntlets[CurrentGauntlet].isActivated = false;
-              list.Gauntlets[CurrentGauntlet].isFinished = false;
-              list.Gauntlets[CurrentGauntlet].CurrentEnemyWave = 0;
-              SpawnedEnemiesInGauntlet.clear();
-              ActivateGauntlet = true;
-              return;
+            GauntletIsActive = false;
+            list.Gauntlets[CurrentGauntlet].isActivated = false;
+            list.Gauntlets[CurrentGauntlet].isFinished = false;
+            GauntletIsActive = false;
+            return;
           }
-        	
-          //if (CheckForOutsideEnemies())
-          //  return;
 
           for (auto it = SpawnedEnemiesInGauntlet.begin(); it != SpawnedEnemiesInGauntlet.end();)
           {
-            if (env.pECS->GetWorld().GetEntityManager().IsEntityValid(*it) && !env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it))
+            if (!env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it))
             {
               it = SpawnedEnemiesInGauntlet.erase(it);
               continue;
@@ -106,6 +103,8 @@ namespace DeltaEngine
             {
               it = SpawnedEnemiesInGauntlet.erase(it);
             }
+            else
+              ++it;
           }
 
           if (SpawnedEnemiesInGauntlet.empty())
@@ -114,7 +113,7 @@ namespace DeltaEngine
             auto& CurrentWave = Gauntlet.CurrentEnemyWave;
             //lock player camera
 
-            if (CurrentWave < Gauntlet.EnemyWaves.size())
+            if (CurrentWave < list.Gauntlets[CurrentGauntlet].EnemyWaves.size())
             {
               if (CurrentWave == 0)
               {
@@ -145,7 +144,6 @@ namespace DeltaEngine
               em.GetComponent<State>(GauntletWalls[0]).SetBool("BlockerDown", true);
               em.GetComponent<State>(GauntletWalls[1]).SetBool("BlockerUp", false);
               em.GetComponent<State>(GauntletWalls[1]).SetBool("BlockerDown", true);
-              SpawnedEnemiesInGauntlet.clear();
               list.Gauntlets[CurrentGauntlet].isActivated = false;
               list.Gauntlets[CurrentGauntlet].isFinished = true;
               GauntletIsActive = false;

@@ -4117,7 +4117,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 160.0,
+                    "x": 25.0,
                     "y": 0.37612977623939516,
                     "z": 0.0
                 },
@@ -4213,13 +4213,13 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 16384,
-                "Melee Damage": 8,
-                "SMG Damage": 8192,
-                "Melee Combo Damage": 12,
+                "Range Damage": 8192,
+                "Melee Damage": 4,
+                "SMG Damage": 4096,
+                "Melee Combo Damage": 6,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
@@ -4250,8 +4250,7 @@
                 "Attack Upgrade Increase": 1,
                 "Health Upgrade Attack": 2,
                 "Dashing Timer Duration": 1.0,
-                "Fading Timer": 1.0,
-                "UnMoveable Timer Duration": 0.5
+                "Fading Timer": 1.0
             },
             "Input": {
                 "Previous": 2,

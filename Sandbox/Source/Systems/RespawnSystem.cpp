@@ -13,7 +13,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "UnitManager.h"
 #include "LevelManager/LevelManager.h"
 #include "../GameState.h"
-#include "EnemySpawner/EnemySpawner.h"
 
 namespace DeltaEngine
 {
@@ -274,7 +273,6 @@ namespace DeltaEngine
       {
         GameStateLoad(GameState::LEVEL_1);
         respawn_now = true;
-        EnemySpawner::ActivateGauntlet = true;
       }
     }
   }
