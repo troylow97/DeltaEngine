@@ -382,12 +382,17 @@ namespace DeltaEngine
                 GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(2);
               }
 
-              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(1);
+              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(4);
 
               cutsceneMat.SetUniform1i("_MainTex", 0);
               cutsceneMat.SetUniform1i("_DispTex", 1);
-              cutsceneMat.SetUniform1i("_NextTex", 2);
+              cutsceneMat.SetUniform1i("_NextTex", 4);
               cutsceneMat.SetUniform1f("_Cutoff", (Cutscene::timer) * (1.f + .1f) - .1f);
+
+              spriteMat.SetUniformMatrix4f("_M", model);
+              spriteMat.SetUniformMatrix4f("_V", view);
+              spriteMat.SetUniformMatrix4f("_P", proj);
+              spriteMat.SetUniformColor4f("_Color", r.m_Color);
             }
           }
           else
@@ -554,7 +559,6 @@ namespace DeltaEngine
 
               Mesh::DrawQuad();
           });
-
       Camera::finalFrameBuffer->Unbind();
 #ifdef DE_EDITOR  	
   }

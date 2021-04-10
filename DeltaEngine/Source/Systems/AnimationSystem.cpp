@@ -22,7 +22,7 @@ namespace DeltaEngine
         {
           AnimationController* controller = GetEnv().pManager->Get<AnimationController>(a.m_ControllerKey);
           AnimationClip* newClip = nullptr;
-          unsigned frame = 0;
+          //unsigned frame = 0;
           if (controller)
           {
             s.parameters.insert(controller->startingParameters.begin(), controller->startingParameters.end());
@@ -32,10 +32,10 @@ namespace DeltaEngine
 
               if (newClip)
               {
-                frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
+                a.m_Frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
 
                 a.m_ClipKey = newClip->GetName();
-                i.m_Sprite = newClip->GetSprite(frame);
+                i.m_Sprite = newClip->GetSprite(a.m_Frame);
                 a.m_LoopsCompleted = 0;
               }
             }
@@ -77,9 +77,9 @@ namespace DeltaEngine
 
               if (newClip)
               {
-                frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
+                a.m_Frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
 
-                Sprite newSprite = newClip->GetSprite(frame);
+                Sprite newSprite = newClip->GetSprite(a.m_Frame);
                 if (newSprite)
                   i.m_Sprite = newSprite;
               }
@@ -112,8 +112,8 @@ namespace DeltaEngine
                 }
               }
 
-              frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
-              Sprite newSprite = newClip->GetSprite(frame);
+              a.m_Frame = static_cast<unsigned>(a.m_Timer * newClip->GetFps());
+              Sprite newSprite = newClip->GetSprite(a.m_Frame);
               if (newSprite)
                 i.m_Sprite = newSprite;
             }

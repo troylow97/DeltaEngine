@@ -8,7 +8,7 @@ out vec4 color;
 uniform sampler2D _MainTex;
 uniform sampler2D _NextTex;
 uniform sampler2D _DispTex;
-uniform vec4 _Color = vec4(1, 1, 1, 1);
+uniform vec4 _Color = vec4(0, 1, 1, 1);
 uniform float _Cutoff = 0;
 uniform float _Blur = 0.1;
 
