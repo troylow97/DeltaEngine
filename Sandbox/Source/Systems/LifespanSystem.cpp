@@ -11,7 +11,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "LifespanSystem.h"
 
 #include "UnitManager.h"
-#include "Audio/AudioEngine.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Core/GameClock/EngineClock.h"

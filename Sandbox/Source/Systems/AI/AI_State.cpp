@@ -536,7 +536,6 @@ namespace DeltaEngine
                 }
                 else if(AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.5f) //fiddler is too close to player
                 {
-                    //std::cout << "too close" << std::endl;
                     s.SetBool("IsAlertRunning", true);
                     if (AITools::EntityisOnTheRight(player, monster))
                     {
@@ -577,7 +576,6 @@ namespace DeltaEngine
     	}
         em.GetComponent<RigidBody>(monster).Direction = Vector2{ 0,0 };
         fid.hasAttacked = true;
-        //std::cout << "here4" << std::endl;
     }
 #pragma endregion
 
@@ -603,8 +601,6 @@ namespace DeltaEngine
 
     void IdleSerpentipede::Update(EntityID& monster)
     {
-        //std::cout << "state is idle" << std::endl;
-        //std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
         CheckEdges(monster);
         auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
         s.SetBool("IsAlerted", false);
@@ -642,11 +638,7 @@ namespace DeltaEngine
         auto& collider = em.GetComponent<Collider>(monster);
         auto& rend = em.GetComponent<Renderer2D>(monster);
         auto& hp = em.GetComponent<Health>(monster);
-        auto& serp = em.GetComponent<Serpentipede>(monster);
-    	
-        //std::cout << "burrow state is: " << BurrowState << std::endl;
-        //std::cout << "state is chase" << std::endl;
-        //std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
+        auto& serp = em.GetComponent<Serpentipede>(monster); 
 
         if (hp.isDamagedTimer > 0.0f || a.AttackDelay > 0.0f || hp.CurrentHealth < 0.0f)
         {

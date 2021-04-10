@@ -135,8 +135,6 @@ namespace DeltaEngine
             }
             else
             {
-              //em.DestroyEntity(GauntletWalls[0]);
-              //em.DestroyEntity(GauntletWalls[1]);
               env.pECS->GetWorld().GetEntityManager().AddComponent<Lifespan>(GauntletWalls[0]);
               env.pECS->GetWorld().GetEntityManager().GetComponent<Lifespan>(GauntletWalls[0]).Timer = 1.0f;
               env.pECS->GetWorld().GetEntityManager().AddComponent<Lifespan>(GauntletWalls[1]);
@@ -239,7 +237,6 @@ namespace DeltaEngine
       em.GetComponent<EntityType>(enemy).type = EntityCategory::E_ENEMY;
       em.GetComponent<Collider>(enemy).CollisionLayerID = 4;
       em.GetComponent<Collider>(enemy).CollisionLayerCheck = 9;
-      //env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
       env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(enemy).m_SortingLayer = 4;
 
       env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).MaxAcceleration = 0;
