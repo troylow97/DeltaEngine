@@ -1,0 +1,30 @@
+frames 5
+fps 12
+loop 1
+
+Textures/SERP_BULLET_ANIM_i_0
+key Textures/SERP_BULLET_ANIM
+value 0
+frame 0
+
+Textures/SERP_BULLET_ANIM_i_1
+key Textures/SERP_BULLET_ANIM
+value 1
+frame 1
+
+Textures/SERP_BULLET_ANIM_i_2
+key Textures/SERP_BULLET_ANIM
+value 2
+frame 2
+
+Textures/SERP_BULLET_ANIM_i_3
+key Textures/SERP_BULLET_ANIM
+value 3
+frame 3
+
+Textures/SERP_BULLET_ANIM_i_4
+key Textures/SERP_BULLET_ANIM
+value 4
+frame 4
+
+%

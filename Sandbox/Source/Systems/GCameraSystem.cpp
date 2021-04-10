@@ -31,25 +31,49 @@ namespace DeltaEngine
     });
 
     if (exist)
-      em.ForEach([&](Transform& t, Player& p, RigidBody& r)
+      em.ForEach([&](Transform& t, Player& p, RigidBody& r, Attack& atk, Image& img)
         {
-          float dist = Vector2::Distance(c_t->position, t.position);
           Vector3 pos = t.position;
-          pos.y = Math::Clamp(pos.y + 2, 2.f, 4.f);
-          pos.z = c_t->position.z;
-          c_t->position = Vector3::MoveTowards(c_t->position, pos, dist * dist * DeltaTimef());
-          //c_t->position.y = 2.0f;
+          if (img.m_FlipX)
+            pos.x -= 3;
+          else
+            pos.x += 3;
+          float distX = Math::Abs(c_t->position.x - pos.x);
+          float distY = Math::Abs(c_t->position.y - pos.y);
+          float offsetX = 1.f;
+          float offsetY = 1.f;
+          //pos.y = Math::Clamp(pos.y + 2, 2.f, 4.25f);
+          if (distX > offsetX)
+          {
+            float speed = Math::Clamp(distX - offsetX, 0.f, 32.f);
+            c_t->position.x = Math::MoveTowards(c_t->position.x, pos.x,
+              speed * speed * DeltaTimef());
+          }
+          if (distY > offsetY)
+          {
+            float speed = Math::Clamp(distY - offsetY, 0.f, 32.f);
+            c_t->position.y = Math::MoveTowards(c_t->position.y, pos.y,
+              speed * speed * DeltaTimef());
+          }
 
-          float zspeed = 0.5f;
-          if (r.Velocity.x < 0.1f && r.Velocity.y < 0.1f &&
-            r.Velocity.x > -0.1f && r.Velocity.y > -0.1f)
-            pos.z = 5;
+          float zspeed = 0.75f;
+          if ((r.Velocity.x < 0.1f && r.Velocity.y < 0.1f &&
+            r.Velocity.x > -0.1f && r.Velocity.y > -0.1f) || atk.MeleeCooldownTimer > 0)
+          {
+            pos.z = 4.5f;
+            if (atk.MeleeCooldownTimer > 0)
+            {
+              pos.z = 4.f;
+              zspeed = 5.f;
+            }
+          }
           else
           {
-            pos.z = 8;
-            zspeed = 1;
+            pos.z = 6.5f;
+            zspeed = 1.5f;
           }
-          c_t->position.z = Math::MoveTowards(c_t->position.z, pos.z, Math::Abs(c_t->position.z - pos.z) * DeltaTimef() * zspeed);
+          c_t->position.z = Math::MoveTowards(c_t->position.z, pos.z,
+            Math::Abs(c_t->position.z - pos.z) * DeltaTimef() * zspeed);
         });
   }
 }

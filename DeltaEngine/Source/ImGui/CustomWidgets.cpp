@@ -187,7 +187,9 @@ namespace DeltaEngine
     return true;
   }
 
-  void DrawAlphaMarks(Gradient* gradient,
+  void DrawAlphaMarks(
+    const char* label,
+    Gradient* gradient,
     int* draggingAlpha,
     int* selectedAlpha,
     struct ImVec2 const& bar_pos,
@@ -205,15 +207,15 @@ namespace DeltaEngine
     Color previousColor = Color();
     int count = 0;
 
-    for (auto& [value, location] : gradient->alphaKeys)
+    for (auto& value : gradient->alphaKeys)
     {
-      float to = bar_pos.x + location * maxWidth;
+      float to = bar_pos.x + value.y * maxWidth;
 
       if (previousLocation < 0)
       {
-        colorA.x = value;
-        colorA.y = value;
-        colorA.z = value;
+        colorA.x = value.x;
+        colorA.y = value.x;
+        colorA.z = value.x;
       }
       else
       {
@@ -222,9 +224,9 @@ namespace DeltaEngine
         colorA.z = previousColor.b;
       }
 
-      colorB.x = value;
-      colorB.y = value;
-      colorB.z = value;
+      colorB.x = value.x;
+      colorB.y = value.x;
+      colorB.z = value.x;
 
       colorAU32 = ImGui::ColorConvertFloat4ToU32(colorA);
       colorBU32 = ImGui::ColorConvertFloat4ToU32(colorB);
@@ -260,10 +262,10 @@ namespace DeltaEngine
       draw_list->AddRectFilled(
         ImVec2(to - 3, barTop + 3),
         ImVec2(to + 3, barTop + 9),
-        IM_COL32(value * 255, value * 255, value * 255, 255), 1.0f, 1);
+        IM_COL32(value.x * 255, value.x * 255, value.x * 255, 255), 1.0f, 1);
 
       ImGui::SetCursorScreenPos(ImVec2(to - 6, barTop));
-      ImGui::InvisibleButton("mark", ImVec2(12, 18));
+      ImGui::InvisibleButton((std::string(label) + " alphamark").c_str(), ImVec2(12, 18));
 
       if (ImGui::IsItemHovered())
       {
@@ -274,15 +276,17 @@ namespace DeltaEngine
         }
       }
 
-      previousLocation = location;
-      previousColor = Color(value, value, value);
+      previousLocation = value.y;
+      previousColor = Color(value.x, value.x, value.x);
       ++count;
     }
 
     ImGui::SetCursorScreenPos(ImVec2(bar_pos.x, bar_pos.y + height + 20.0f));
   }
 
-  void DrawGradientMarks(Gradient* gradient,
+  void DrawGradientMarks(
+    const char* label,
+    Gradient* gradient,
     int* draggingColor,
     int* selectedColor,
     struct ImVec2 const& bar_pos,
@@ -358,7 +362,7 @@ namespace DeltaEngine
         colorBU32, colorBU32, colorBU32, colorBU32);
 
       ImGui::SetCursorScreenPos(ImVec2(to - 6, barBottom));
-      ImGui::InvisibleButton("mark", ImVec2(12, 18));
+      ImGui::InvisibleButton((std::string(label) + " gradientmark").c_str(), ImVec2(12, 18));
 
       if (ImGui::IsItemHovered())
       {
@@ -377,7 +381,9 @@ namespace DeltaEngine
     ImGui::SetCursorScreenPos(ImVec2(bar_pos.x, bar_pos.y + height + 20.0f));
   }
 
-  void DrawGradientBar(Gradient* gradient,
+  void DrawGradientBar(
+    const char* label,
+    Gradient* gradient,
     ImVec2 const& bar_pos,
     float maxWidth,
     float height)
@@ -452,7 +458,41 @@ namespace DeltaEngine
         ImVec2(bar_pos.x + maxWidth, barBottom),
         colorBU32, colorBU32, colorBU32, colorBU32);
     }
-
+    ImGui::SetCursorScreenPos(ImVec2(bar_pos.x, bar_pos.y));
+    ImGui::InvisibleButton((std::string(label) + " gradientbar").c_str(), ImVec2(maxWidth, height));
+    if (ImGui::IsItemHovered())
+    {
+      if (ImGui::IsMouseClicked(1))
+      {
+        ImGui::OpenPopup("Gradient Popup Menu");
+      }
+    }
+    if (ImGui::BeginPopup("Gradient Popup Menu"))
+    {
+      if (ImGui::MenuItem("Add Alpha Key"))
+      {
+        if (gradient->alphaKeys[2].y < 0)
+        {
+          gradient->alphaKeys[2].y = 0.33f;
+        }
+        else if (gradient->alphaKeys[3].y < 0)
+        {
+          gradient->alphaKeys[3].y = 0.67f;
+        }
+      }
+      if (ImGui::MenuItem("Add Color Key"))
+      {
+        if (gradient->colorKeys[2].a < 0)
+        {
+          gradient->colorKeys[2].a = 0.33f;
+        }
+        else if (gradient->colorKeys[3].a < 0)
+        {
+          gradient->colorKeys[3].a = 0.67f;
+        }
+      }
+      ImGui::EndPopup();
+    }
     ImGui::SetCursorScreenPos(ImVec2(bar_pos.x, bar_pos.y + height + 10.0f));
   }
 
@@ -495,9 +535,11 @@ namespace DeltaEngine
       static int draggingColor = 0;
       static int selectedColor = 0;
 
-      DrawGradientBar(&gradient->min, bar_pos + ImVec2(0, 18), maxWidth, 25);
-      DrawAlphaMarks(&gradient->min, &draggingAlpha, &selectedAlpha, bar_pos, maxWidth, 25);
-      DrawGradientMarks(&gradient->min, &draggingColor, &selectedColor, bar_pos + ImVec2(0, 18), maxWidth, 25);
+      gradient->min.Sort();
+
+      DrawGradientBar(label, &gradient->min, bar_pos + ImVec2(0, 18), maxWidth, 25);
+      DrawAlphaMarks(label, &gradient->min, &draggingAlpha, &selectedAlpha, bar_pos, maxWidth, 25);
+      DrawGradientMarks(label, &gradient->min, &draggingColor, &selectedColor, bar_pos + ImVec2(0, 18), maxWidth, 25);
 
       if (selectedColor >= 0 && selectedColor < gradient->min.colorKeys.size())
       {
@@ -588,9 +630,11 @@ namespace DeltaEngine
       static int draggingColor = 0;
       static int selectedColor = 0;
 
-      DrawGradientBar(&gradient->max, bar_pos + ImVec2(0, 18), maxWidth, 25);
-      DrawAlphaMarks(&gradient->max, &draggingAlpha, &selectedAlpha, bar_pos, maxWidth, 25);
-      DrawGradientMarks(&gradient->max, &draggingColor, &selectedColor, bar_pos + ImVec2(0, 18), maxWidth, 25);
+      gradient->max.Sort();
+
+      DrawGradientBar(label, &gradient->max, bar_pos + ImVec2(0, 18), maxWidth, 25);
+      DrawAlphaMarks(label, &gradient->max, &draggingAlpha, &selectedAlpha, bar_pos, maxWidth, 25);
+      DrawGradientMarks(label, &gradient->max, &draggingColor, &selectedColor, bar_pos + ImVec2(0, 18), maxWidth, 25);
 
       if (selectedColor >= 0 && selectedColor < gradient->max.colorKeys.size())
       {

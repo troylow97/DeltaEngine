@@ -141,17 +141,7 @@ namespace DeltaEngine
         int curveCount = 0;
         for (auto& curve : curves)
         {
-          std::cerr << "curve " << curveCount << ":" << std::endl;
-          for (size_t i = 0; i < 4; i++)
-          {
-            std::cerr
-              << curve->anchors[i].x << ", "
-              << curve->anchors[i].y << ", "
-              << curve->anchors[i].z << ", "
-              << std::endl;
-          }
-          std::cerr << std::endl;
-
+          //curve->Sort();
           // actual curve
           size_t first = ~0U;
           size_t last = 0;
@@ -160,7 +150,7 @@ namespace DeltaEngine
             if (!curve->anchors[i].z)
               continue;
 
-            if (!~first)
+            if (first == ~0U)
               first = i;
 
             size_t j = 1;

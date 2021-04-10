@@ -26,6 +26,7 @@ namespace DeltaEngine
 
     // time is location
     Color Evaluate(float time);
+    void Sort();
   };
 
   struct GradientRange

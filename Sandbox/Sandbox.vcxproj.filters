@@ -7,6 +7,9 @@
     <Filter Include="Systems\AI">
       <UniqueIdentifier>{96D56F8A-828D-B1D7-EB94-8A33D76B4CC8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\AI\AIComponents">
+      <UniqueIdentifier>{557B38D7-C1B2-806E-CABC-E4913673A767}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Systems\AI\ExitScene">
       <UniqueIdentifier>{8D78F671-7907-803B-2226-94360E9490E1}</UniqueIdentifier>
     </Filter>
@@ -16,12 +19,24 @@
     <Filter Include="Systems\EnemySpawner">
       <UniqueIdentifier>{2AD34AD0-1662-D499-BF80-E894ABEEE43F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Systems\HealthPickUpSystem">
+      <UniqueIdentifier>{93797D32-7F89-2903-E842-8E21D471189C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Systems\LevelManager">
       <UniqueIdentifier>{BF8F2C28-AB1E-B6F1-543D-CAEC40ABC697}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\GameState.h" />
+    <ClInclude Include="Source\Systems\AI\AIComponents\FiddlerComponent.h">
+      <Filter>Systems\AI\AIComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\AIComponents\LancerComponent.h">
+      <Filter>Systems\AI\AIComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\AI\AIComponents\SerpentipedeComponent.h">
+      <Filter>Systems\AI\AIComponents</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\AI\AITools.h">
       <Filter>Systems\AI</Filter>
     </ClInclude>
@@ -60,6 +75,9 @@
     </ClInclude>
     <ClInclude Include="Source\Systems\GUISystem.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\HealthPickUpSystem\HealthPickupSystem.h">
+      <Filter>Systems\HealthPickUpSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\HealthSystem.h">
       <Filter>Systems</Filter>
@@ -124,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GUISystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\HealthPickUpSystem\HealthPickupSystem.cpp">
+      <Filter>Systems\HealthPickUpSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\HealthSystem.cpp">
       <Filter>Systems</Filter>

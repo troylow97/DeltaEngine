@@ -32,6 +32,7 @@ namespace DeltaEngine
 
     // assume that x = time, this returns y
     float Evaluate(float time);
+    void Sort();
   };
 
   struct BezierRange

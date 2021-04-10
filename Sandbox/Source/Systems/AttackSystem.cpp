@@ -318,15 +318,18 @@ namespace DeltaEngine
     //}
     //else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
     {
-      EntityID missile = CreateProjectile(id, Vector2{ 0.25f, 0.25f }, false, 1.7f, EntityCategory::E_ENEMY_BULLET);
+      EntityID missile = CreateProjectile(id, Vector2{ 1.0f, 1.0f }, false, 1.7f, EntityCategory::E_ENEMY_BULLET);
       Vector2 direction_to_shoot = { CalculateAttackDirection(id).x, CalculateAttackDirection(id).y };
       Transform& enemy_pos = em.GetComponent<Transform>(id);
       Collider& enemy_collider = em.GetComponent<Collider>(id);
       em.AddComponent<Renderer2D>(missile);
       em.AddComponent<Image>(missile);
+      em.AddComponent<Animator>(missile);
+      em.AddComponent<State>(missile);
       em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
       em.GetComponent<Image>(missile).m_Size = { 0.5f, 0.5f };
       em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
+      em.GetComponent<Animator>(missile).m_ControllerKey = "Animation/SerpBullet";
       //em.GetComponent<RigidBody>(missile).Mass = 0.2f;
       em.GetComponent<Transform>(missile).position = { enemy_pos.position.x, enemy_pos.position.y + (enemy_collider.size.y / 2 * 0.75f), enemy_pos.position.z };
 
@@ -334,13 +337,13 @@ namespace DeltaEngine
       {
         //em.GetComponent<Transform>(missile).position.x += 0.4f;
         em.GetComponent<Transform>(missile).position.y -= 0.2f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 4000, direction_to_shoot.y * 4000 }; // -7000, -2500
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 3000, direction_to_shoot.y * 3000 }; // -7000, -2500
       }
       else
       {
         //em.GetComponent<Transform>(missile).position.x -= 0.4f;
         em.GetComponent<Transform>(missile).position.y -= 0.2f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 4000, direction_to_shoot.y * 4000 }; //  7000, -2500
+        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 3000, direction_to_shoot.y * 3000 }; //  7000, -2500
       }
     }
   }

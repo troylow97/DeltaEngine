@@ -32,6 +32,7 @@ namespace DeltaEngine
 
     //Calculate velocity using conservation of momentum
     float restitution = Math::MathMin(r1.Restitution, r2.Restitution);
+  	
     float j = Vector2DotProduct(-(1 + restitution) * (r1.Velocity - r2.Velocity), m.normal) / (1 / r1.Mass + 1 / r2.Mass );
 
     if (r1.isMoveable)

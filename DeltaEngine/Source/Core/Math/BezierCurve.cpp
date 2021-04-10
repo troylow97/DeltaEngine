@@ -67,6 +67,7 @@ namespace DeltaEngine
     int startInd = 0, endInd = -1;
     for (auto position : anchors)
     {
+      position.z = 1;
       if (!position.z)
         continue;
       if (position.x < time)
@@ -124,6 +125,25 @@ namespace DeltaEngine
       Vector2 p1 = anchors[endInd];
       return min + (max - min) * EvaluateLinear(p0, p1, time).y;
     }
+  }
+  void BezierCurve::Sort()
+  {
+    for (size_t i = 0; i < 4; ++i)
+      for (size_t j = 0; j < 3 - i; ++j)
+        if (anchors[j].z < 0 || anchors[j].z > anchors[j + 1].z)
+        {
+          auto temp1 = anchors[j];
+          anchors[j] = anchors[j + 1];
+          anchors[j + 1] = temp1;
+
+          auto temp2 = controlsLeft[j];
+          controlsLeft[j] = controlsLeft[j + 1];
+          controlsLeft[j + 1] = temp2;
+
+          auto temp3 = controlsRight[j];
+          controlsRight[j] = controlsRight[j + 1];
+          controlsRight[j + 1] = temp3;
+        }
   }
 
   BezierRange::BezierRange(int constant)

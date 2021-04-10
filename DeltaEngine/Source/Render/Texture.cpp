@@ -47,7 +47,7 @@ void Texture2D::Bind( unsigned slot ) const
   GLCall( glBindTexture( GL_TEXTURE_2D, m_RendererID ) );
 }
 
-void Texture2D::Unbind() const
+void Texture2D::Unbind()
 {
   GLCall( glBindTexture( GL_TEXTURE_2D, 0 ) );
 }
@@ -159,8 +159,7 @@ std::vector<TextureInfo> Texture2D::SliceAll( unsigned columns, unsigned rows, V
       slicedInfo.push_back( {
         Vector2( static_cast<float>( m_Width ) / columns * x, static_cast<float>( m_Height ) / rows * y ),
         Vector2( static_cast<float>( m_Width ) / columns, static_cast<float>( m_Height ) / rows ),
-        pivot
-                            } );
+        pivot } );
     }
   }
   return slicedInfo;
@@ -168,7 +167,7 @@ std::vector<TextureInfo> Texture2D::SliceAll( unsigned columns, unsigned rows, V
 
 Vector2 Texture2D::GetOffset( unsigned index )
 {
-  return Vector2( textureInfo[index].offset.x / m_Width, textureInfo[index].offset.y / m_Height );
+  return Vector2( (textureInfo[index].offset.x - 1) / m_Width, (textureInfo[index].offset.y - 1) / m_Height );
 }
 
 Vector2 Texture2D::GetSize( unsigned index )
@@ -250,9 +249,9 @@ void Texture2D::InitTexture()
       glWrapMode = GL_CLAMP;
       break;
   }
-
-  GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR ) );
-  GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR ) );
+  glWrapMode = GL_CLAMP;
+  GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST ) );
+  GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST ) );
   GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, glWrapMode ) );
   GLCall( glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, glWrapMode ) );
 

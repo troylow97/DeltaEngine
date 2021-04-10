@@ -13,7 +13,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Camera.h"
 #include "Mesh.h"
 #include "Font.h"
-#include "VideoClip.h"
 #include "Core/Debugging/Gizmos.h"
 #include "Core/Debugging/Logger/Log.h"
 #include "Core/GlobalStruct.h"
@@ -72,7 +71,6 @@ namespace DeltaEngine
       Mesh::Init();
       Font::Init();
       Gizmos::Init();
-      VideoClip::Init();
       Camera::finalFrameBuffer = new FrameBuffer();
 
 #ifdef DE_EDITOR

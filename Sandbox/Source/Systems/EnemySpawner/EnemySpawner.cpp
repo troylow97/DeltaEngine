@@ -232,6 +232,7 @@ namespace DeltaEngine
 
       if (type == "lancer")
       {
+        em.AddComponent<Lancer>(enemy);
         em.GetComponent<AI>(enemy).key = "lancer_spawn";
         em.GetComponent<Collider>(enemy).CollisionLayerCheck = 8;
         em.GetComponent<RigidBody>(enemy).Movespeed = LancerData.Movespeed;
@@ -248,6 +249,7 @@ namespace DeltaEngine
       }
       else if (type == "fiddler")
       {
+        em.AddComponent<Fiddler>(enemy);
         em.GetComponent<AI>(enemy).key = "idle_fiddler";
         em.GetComponent<RigidBody>(enemy).hasGravity = true;
         em.GetComponent<RigidBody>(enemy).Movespeed = FiddlerData.Movespeed;
@@ -264,6 +266,7 @@ namespace DeltaEngine
       }
       else if (type == "serpentipede")
       {
+        em.AddComponent<Serpentipede>(enemy);
         em.GetComponent<AI>(enemy).key = "idle_serpentipede";
         em.GetComponent<RigidBody>(enemy).hasGravity = true;
         em.GetComponent<RigidBody>(enemy).Movespeed = SerpentipedeData.Movespeed;

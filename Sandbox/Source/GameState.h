@@ -16,8 +16,10 @@ enum class GameState : unsigned
 {
   NONE,
   MAIN_MENU,
+  CUTSCENE_INTRO,
   TUTORIAL,
-  LEVEL_1
+  LEVEL_1,
+  CUTSCENE_END,
 };
 
 

@@ -142,14 +142,14 @@ namespace DeltaEngine
     //        return a.m.penetration < b.m.penetration;
     //});
 
-    //for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 3; ++i)
     {
       for (auto it1 = current_manifold_vector.begin(); it1 != current_manifold_vector.end(); ++it1)
       {
         Collider& c1 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id1);
         Collider& c2 = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(it1->id2);
       	
-        if (!it1->ignore && (!c1.isTrigger && !c2.isTrigger))
+        if (/*!it1->ignore && */(!c1.isTrigger && !c2.isTrigger))
         {
           RigidBody& r1 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id1);
           RigidBody& r2 = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(it1->id2);
@@ -181,8 +181,9 @@ namespace DeltaEngine
           //    em.GetComponent<RigidBody>(player).AccumulatedForce += {0, 500};
           //    continue;
           //  }
-          //}
+          //} 
 
+        	
           //Standard Collision Response
           if ((AABBvsAABB_Manifold(c1, t1.scale, c2, t2.scale, it1->m) && it1->m.penetration > 0.001f))
           {

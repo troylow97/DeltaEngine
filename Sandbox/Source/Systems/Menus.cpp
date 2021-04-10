@@ -24,6 +24,9 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
+float MenuSystem::fadeTimer = 0;
+bool MenuSystem::fading = false;
+
 void MenuSystem::Update()
 {
   if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) && !InputManager::Instance().IsKeyPressed(DEVK_ESCAPE) )
@@ -71,7 +74,7 @@ void Back()
 
 void StartGame()
 {
-  GameStateLoad( GameState::TUTORIAL );
+  MenuSystem::fading = true;
 }
 
 void OpenControls()
