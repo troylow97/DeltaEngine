@@ -4213,13 +4213,13 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
                 "Range Damage": 0,
-                "Melee Damage": 8,
+                "Melee Damage": 16,
                 "SMG Damage": 0,
-                "Melee Combo Damage": 12,
+                "Melee Combo Damage": 24,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
@@ -5939,7 +5939,7 @@
                     "a": 1.0
                 },
                 "Layer": 0,
-                "Order": 0.20000000298023225,
+                "Order": 1.899999976158142,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
