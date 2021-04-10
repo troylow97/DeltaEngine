@@ -366,33 +366,28 @@ namespace DeltaEngine
               cutsceneMat.SetUniformColor4f("_Color", r.m_Color);
               if (Cutscene::frame >= 0)
               {
-                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 1))->Bind(0);
-              }
-              else
-              {
-                GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(0);
-              }
-
-              if (Cutscene::frame < 9)
-              {
-                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 2))->Bind(2);
+                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 1))->Bind(2);
               }
               else
               {
                 GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(2);
               }
 
-              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(4);
+              if (Cutscene::frame < 9)
+              {
+                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 2))->Bind(1);
+              }
+              else
+              {
+                GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(1);
+              }
 
-              cutsceneMat.SetUniform1i("_MainTex", 0);
-              cutsceneMat.SetUniform1i("_DispTex", 1);
-              cutsceneMat.SetUniform1i("_NextTex", 4);
+              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(0);
+
+              cutsceneMat.SetUniform1i("_MainTex", 2);
+              cutsceneMat.SetUniform1i("_DispTex", 0);
+              cutsceneMat.SetUniform1i("_NextTex", 1);
               cutsceneMat.SetUniform1f("_Cutoff", (Cutscene::timer) * (1.f + .1f) - .1f);
-
-              spriteMat.SetUniformMatrix4f("_M", model);
-              spriteMat.SetUniformMatrix4f("_V", view);
-              spriteMat.SetUniformMatrix4f("_P", proj);
-              spriteMat.SetUniformColor4f("_Color", r.m_Color);
             }
           }
           else
@@ -511,9 +506,28 @@ namespace DeltaEngine
               c.End();
 
 #ifndef DE_EDITOR
+              Vector2 cameraAspect{ 1, 1 };
+
+              if (Camera::GetFixedAspectRatio() > .01f)
+              {
+                if (c.GetAspectRatio() > Camera::GetFixedAspectRatio())
+                {
+                  cameraAspect.x = Camera::GetFixedAspectRatio() / c.GetAspectRatio();
+                }
+                else
+                {
+                  cameraAspect.y = c.GetAspectRatio() / Camera::GetFixedAspectRatio();
+                }
+              }
+              glActiveTexture(GL_TEXTURE0);
+              glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(1);
+              
               Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
               shader->SetUniform1i("_MainTex", 0);
-              glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+              shader->SetUniform1i("_DispTex", 1);
+              shader->SetUniformVector2f("_ScreenAspect", cameraAspect);
+              shader->SetUniform1f("_Cutoff", (1 - c.backgroundColor.a) * (1.f + c.blurAmt) - c.blurAmt);
 
               Mesh::DrawQuad();
 #endif // !DE_EDITOR
@@ -549,7 +563,7 @@ namespace DeltaEngine
 
               glActiveTexture(GL_TEXTURE0);
               glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
-              GetEnv().pManager->Get<Texture2D>(c.transitionTexKey)->Bind(1);
+              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(0);
 
               Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
               shader->SetUniform1i("_MainTex", 0);
@@ -559,6 +573,7 @@ namespace DeltaEngine
 
               Mesh::DrawQuad();
           });
+
       Camera::finalFrameBuffer->Unbind();
 #ifdef DE_EDITOR  	
   }

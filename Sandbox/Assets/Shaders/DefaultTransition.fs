@@ -27,4 +27,5 @@ void main()
   {
     color = texture(_MainTex, vertexTexCoord);
   }
+  color = color * _Color;
 } 

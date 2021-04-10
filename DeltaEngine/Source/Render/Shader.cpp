@@ -42,6 +42,9 @@ namespace DeltaEngine
   {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //GLCall(glBindAttribLocation(m_RendererID, 0, "_MainTex"));
+    //GLCall(glBindAttribLocation(m_RendererID, 1, "_DispTex"));
+    //GLCall(glBindAttribLocation(m_RendererID, 2, "_NextTex"));
     GLCall(glUseProgram( m_RendererID ));
   }
 
@@ -116,8 +119,8 @@ namespace DeltaEngine
     GLCall(glAttachShader( program, fs ));
 
     GLCall(glBindAttribLocation(program, 0, "_MainTex"));
-    GLCall(glBindAttribLocation(program, 1, "_DispTex"));
-    GLCall(glBindAttribLocation(program, 2, "_NextTex"));
+    GLCall(glBindAttribLocation(program, 2, "_DispTex"));
+    GLCall(glBindAttribLocation(program, 4, "_NextTex"));
     
     GLCall(glLinkProgram( program ));
     GLCall(glValidateProgram( program ));
