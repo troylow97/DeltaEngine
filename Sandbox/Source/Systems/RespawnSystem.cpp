@@ -169,7 +169,6 @@ namespace DeltaEngine
             return;
 
         Transform& t = em.GetComponent<Transform>(id);
-        Health& hp = em.GetComponent<Health>(id);
         
         for (size_t i = 0; i < respawns.m_respawns.size(); i++)
         {

@@ -30,8 +30,6 @@ namespace DeltaEngine
       auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
       auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
       auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-      auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
-      auto& r = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(UnitManager::GetPlayerID());
 
       if (a.CurrentDodgeCooldown > 0.0f)
           a.CurrentDodgeCooldown -= env.pClock->FixedDeltaTime();
