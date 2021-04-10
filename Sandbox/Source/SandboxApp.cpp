@@ -48,7 +48,7 @@ public:
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
     //EnemySpawner::ActivateGauntlet = true;
-
+ 
 
   }
 

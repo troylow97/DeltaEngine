@@ -298,16 +298,19 @@ namespace DeltaEngine
     rttr::registration::class_<AudioSource>( "Audio Source" )
       ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<AudioSource>()->bits ) )
       .constructor<>()( rttr::policy::ctor::as_object )
-      .property("Audio File", &AudioSource::clip)(rttr::policy::prop::bind_as_ptr )
-      .property( "Source ID", &AudioSource::id )(rttr::metadata("NO_SERIALIZE", true),
-                                                  (rttr::metadata("NO_EDITOR", true)))
+      .property( "Audio File", &AudioSource::clip )( rttr::policy::prop::bind_as_ptr )
+      .property( "Source ID", &AudioSource::id )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                  ( rttr::metadata( "NO_EDITOR", true ) ) )
       .property( "Volume", &AudioSource::volume )( rttr::policy::prop::bind_as_ptr )
       .property( "Pitch", &AudioSource::pitch )( rttr::policy::prop::bind_as_ptr )
       .property( "Loop", &AudioSource::loop )( rttr::policy::prop::bind_as_ptr )
       .property( "Is Loop", &AudioSource::isLoop )( rttr::policy::prop::bind_as_ptr )
       .property( "Is Event", &AudioSource::isEvent )( rttr::policy::prop::bind_as_ptr )
+      .property( "Is 3D", &AudioSource::is3D)(rttr::policy::prop::bind_as_ptr)
       .property("Is Start", &AudioSource::isStart)(rttr::metadata("NO_SERIALIZE", true),
-                                                    (rttr::metadata("NO_EDITOR", true)));
+                                                    (rttr::metadata("NO_EDITOR", true)))
+    .property("Is Playing", &AudioSource::isPlaying)(rttr::metadata("NO_SERIALIZE", true),
+                                                      (rttr::metadata("NO_EDITOR", true)));
 
 #pragma endregion  
     /*

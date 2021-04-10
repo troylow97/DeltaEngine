@@ -27,17 +27,52 @@ void AudioSystem::Update()
 
 void AudioSystem::LateUpdate()
 {
-  em.ForEach( [](EntityID& id, AudioSource& a)
+
+  em.ForEach( []( EntityID &id, Player &p, Transform &t )
   {
-    if ( !a.isStart && !a.clip.empty())
+    AudioEngine::Set3DListenerAttributes( { t.position, {},{0,0,1},{0,1,0} });
+  } );
+
+  em.ForEach( [&]( EntityID &id, AudioSource &a )
+  {
+    if ( a.isEvent )
+      a.isPlaying = AudioEngine::IsEventPlaying( a.id );
+    else
+      a.isPlaying = AudioEngine::IsChannelPlaying( a.id );
+
+    if ( !a.isPlaying && a.isStart )
+    {
+      if (!a.isLoop )
+        a.clip.clear();
+      a.isStart = false;
+    }
+    std::cout << a.isStart << std::endl;
+
+    if ( !a.isStart && !a.clip.empty() )
     {
       if ( a.isEvent )
-        AudioEngine::AudioSourcePlay2DEvent( a );
+        if ( a.is3D )
+        {
+          auto &t = em.GetComponent<Transform>( id );
+          AudioEngine::AudioSourcePlay3DEvent( a, { t.position, {},{0,0,1},{0,1,0} } );
+        }
+        else
+          AudioEngine::AudioSourcePlay2DEvent( a );
       else
         AudioEngine::AudioSourcePlay( a );
 
       a.isStart = true;
-    } 
+    }
+
+    if ( a.isStart && a.is3D )
+    {
+      auto &t = em.GetComponent<Transform>( id );
+      if ( a.isEvent )
+        AudioEngine::SetEvent3DAttribute( a.id, { t.position, {},{0,0,1},{0,1,0} } );
+      else
+        AudioEngine::SetChannel3DPosition( a.id, t.position);
+    }
+
   } );
 }
 

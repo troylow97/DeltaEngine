@@ -94,6 +94,15 @@ namespace DeltaEngine
     StopChannels();
     StopAllBusEvents( "bus:/" );
   }
+
+  void AudioEngine::SetMasterVolume(float volume)
+  {
+    FMOD::ChannelGroup *master_group{nullptr};
+    FMODWrapper::ErrorChecker( fmod->pSystem->getMasterChannelGroup( &master_group ) );
+    master_group->setVolume( volume );
+  }
+
+
   // Core
   void AudioEngine::LoadSound(const std::string& name, bool loop, bool stream, bool is3D)
   {
@@ -373,7 +382,11 @@ namespace DeltaEngine
   void AudioEngine::SetEventPitch(const EventID id, const float pitch)
   {
     if (auto result = fmod->events.find(id); result != fmod->events.end())
-      FMODWrapper::ErrorChecker(result->second->setPitch(pitch));
+    {
+      float old;
+      FMODWrapper::ErrorChecker( result->second->getPitch( &old ) );
+      FMODWrapper::ErrorChecker(result->second->setPitch(old + pitch));
+    }
   }
 
   void AudioEngine::SetEventVolume(const EventID id, const float volume)

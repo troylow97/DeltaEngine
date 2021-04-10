@@ -1897,7 +1897,8 @@
                 "Pitch": 1.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": true
+                "Is Event": true,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
