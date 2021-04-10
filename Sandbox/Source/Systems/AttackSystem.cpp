@@ -194,7 +194,6 @@ namespace DeltaEngine
             st.SetBool("Punch1", true);
             st.SetBool("Punch2", false);
             st.SetBool("Punch3", false);
-            std::cout << "a.NumberOfCombos is " << a.NumberOfCombos << " and an.m_ClipKey is " << an.m_ClipKey << std::endl;
             AudioEngine::SetGlobalParameterByName("Punch", 1);
             MeleeAttackingEntities.push_back(id);
             a.MeleeCooldownTimer = a.MeleeCooldown;
@@ -205,7 +204,6 @@ namespace DeltaEngine
             st.SetBool("Punch2", true);
             st.SetBool("Punch1", false);
             st.SetBool("Punch3", false);
-            std::cout << "a.NumberOfCombos is " << a.NumberOfCombos << " and an.m_ClipKey is " << an.m_ClipKey << std::endl;
             AudioEngine::SetGlobalParameterByName("Punch", 2);
             MeleeAttackingEntities.push_back(id);
             a.MeleeCooldownTimer = a.MeleeCooldown;
@@ -216,7 +214,6 @@ namespace DeltaEngine
             st.SetBool("Punch1", true);
             st.SetBool("Punch2", false);
             st.SetBool("Punch3", false);
-            std::cout << "a.NumberOfCombos is " << a.NumberOfCombos << " and an.m_ClipKey is " << an.m_ClipKey << std::endl;
             AudioEngine::SetGlobalParameterByName("Punch", 1);
             MeleeAttackingEntities.push_back(id);
             a.MeleeCooldownTimer = a.MeleeCooldown;
@@ -227,7 +224,6 @@ namespace DeltaEngine
             st.SetBool("Punch2", true);
             st.SetBool("Punch1", false);
             st.SetBool("Punch3", false);
-            std::cout << "a.NumberOfCombos is " << a.NumberOfCombos << " and an.m_ClipKey is " << an.m_ClipKey << std::endl;
             AudioEngine::SetGlobalParameterByName("Punch", 2);
             MeleeAttackingEntities.push_back(id);
             a.MeleeCooldownTimer = a.MeleeCooldown;
@@ -238,7 +234,6 @@ namespace DeltaEngine
             st.SetBool("Punch3", true);
             st.SetBool("Punch1", false);
             st.SetBool("Punch2", false);
-            std::cout << "a.NumberOfCombos is " << a.NumberOfCombos << " and an.m_ClipKey is " << an.m_ClipKey << std::endl;
             AudioEngine::SetGlobalParameterByName("Punch", 3);
             MeleeAttackingEntities.push_back(id);
             a.MeleeCooldownTimer = a.MeleeCooldown;
