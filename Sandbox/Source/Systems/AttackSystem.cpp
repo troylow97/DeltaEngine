@@ -40,33 +40,32 @@ namespace DeltaEngine
       {
         em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
         p.StartDashingTimer = true;
+        p.StartUnMoveableTimer = true;
         a.CurrentDodgeCooldown = a.DodgeCooldown;
       }
       if (p.StartDashingTimer)
       {
         p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
         p.AllowDashing = false;
-        if (p.UnMoveableTimerCooldown > 0.0f)
-          p.AllowRunning = false;
       }
       if (p.DashingTimerCooldown <= 0.0f)
-      { // stop dashing
+      {
         p.StartDashingTimer = false;
         p.DashingTimerCooldown = p.DashingTimerDuration;
+        p.AllowDashing = true;
         s.SetBool("LancerAttack", false);
       }
-      if (!p.AllowRunning)
+      if (p.StartUnMoveableTimer)
       {
         p.UnMoveableTimerCooldown -= env.pClock->FixedDeltaTime();
+        p.AllowRunning = false;
       }
-      if (p.UnMoveableTimerCooldown <= 0.0f || p.AllowRunning)
+      if (p.UnMoveableTimerCooldown <= 0.0f)
       {
-          // clara fix thissssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-        std::cout << "hereeeeeeeeeeeeeeee" << std::endl;
-        s.SetBool("IsPanting", false);
-        p.AllowDashing = true;
-        p.AllowRunning = true;
+        p.StartUnMoveableTimer = false;
         p.UnMoveableTimerCooldown = p.UnMoveableTimerDuration;
+        p.AllowRunning = true;
+        s.SetBool("IsPanting", false);
       }
     //  Dash();
       
