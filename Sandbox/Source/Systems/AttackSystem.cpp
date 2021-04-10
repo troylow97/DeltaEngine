@@ -30,8 +30,6 @@ namespace DeltaEngine
       auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
       auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
       auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-      auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
-      auto& r = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(UnitManager::GetPlayerID());
 
       if (a.CurrentDodgeCooldown > 0.0f)
           a.CurrentDodgeCooldown -= env.pClock->FixedDeltaTime();
@@ -40,32 +38,32 @@ namespace DeltaEngine
       {
         em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
         p.StartDashingTimer = true;
+        p.StartUnMoveableTimer = true;
         a.CurrentDodgeCooldown = a.DodgeCooldown;
       }
       if (p.StartDashingTimer)
       {
         p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
         p.AllowDashing = false;
-        //if (!InputSystem::GetGodMode())
-        //  h.isInvulnerable = true;
       }
       if (p.DashingTimerCooldown <= 0.0f)
-      { // stop dashing
+      {
         p.StartDashingTimer = false;
         p.DashingTimerCooldown = p.DashingTimerDuration;
-        //if (!InputSystem::GetGodMode())
-        //  h.isInvulnerable = false;
+        p.AllowDashing = true;
         s.SetBool("LancerAttack", false);
       }
-      if (!r.isMoveable)
+      if (p.StartUnMoveableTimer)
       {
         p.UnMoveableTimerCooldown -= env.pClock->FixedDeltaTime();
+        p.AllowRunning = false;
       }
       if (p.UnMoveableTimerCooldown <= 0.0f)
       {
-        p.AllowDashing = true;
-        r.isMoveable = true;
+        p.StartUnMoveableTimer = false;
         p.UnMoveableTimerCooldown = p.UnMoveableTimerDuration;
+        p.AllowRunning = true;
+        s.SetBool("IsPanting", false);
       }
     //  Dash();
       

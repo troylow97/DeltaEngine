@@ -1899,7 +1899,7 @@
             },
             "Audio Source": {
                 "Audio File": "event:/BGM/Main Title",
-                "Volume": 0.15,
+                "Volume": 0.15000000596046449,
                 "Pitch": 1.0,
                 "Loop": 0,
                 "Is Loop": false,

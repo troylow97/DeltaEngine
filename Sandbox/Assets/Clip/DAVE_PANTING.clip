@@ -1,0 +1,15 @@
+frames 2
+fps 6
+loop 1
+
+Textures/DAVE_PANTING_i_0
+key Textures/DAVE_PANTING
+value 0
+frame 0
+
+Textures/DAVE_PANTING_i_1
+key Textures/DAVE_PANTING
+value 1
+frame 1
+
+%
