@@ -18,7 +18,10 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/GlobalStruct.h"
 #include "Systems/UISystem.h"
 #include "../../GameState.h"
+#include "../Menus.h"
 #include "Render/Cutscenes.h"
+#include "Input/InputManager.h"
+#include "Input/Keys.h"
 
 namespace DeltaEngine
 {
@@ -29,6 +32,17 @@ namespace DeltaEngine
 		{
 			case GameState::MAIN_MENU:
 			{
+				if (MenuSystem::fading)
+				{
+					MenuSystem::fadeTimer += DeltaTimef() / 2;
+					Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5 / 2)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fading = false;
+						GameStateLoad(GameState::CUTSCENE_INTRO);
+					}
+				}
 				break;
 			}
 			case GameState::CUTSCENE_INTRO:
@@ -39,7 +53,8 @@ namespace DeltaEngine
 					++Cutscene::frame;
 					Cutscene::timer = 0;
 				}
-				if (Cutscene::frame > 9 && Cutscene::timer > 1)
+				if (InputManager::Instance().IsKeyPressed(DEVK_SPACE) || 
+					Cutscene::frame > 9 && Cutscene::timer > 1)
 				{
 					GameStateLoad(GameState::TUTORIAL);
 				}
@@ -47,6 +62,18 @@ namespace DeltaEngine
 			}
 			case GameState::TUTORIAL:
 			{
+				if (MenuSystem::fading)
+				{
+					MenuSystem::fadeTimer += DeltaTimef() / 2;
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5 / 2)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fading = false;
+					}
+				}
+
 				auto player = UnitManager::GetPlayerID();
 				Vector2 EndPoint{ 290.0f,0.2f };
 				if(AITools::EntityisAtPoint(player, EndPoint,0.2f))
@@ -55,6 +82,17 @@ namespace DeltaEngine
 			}
 			case GameState::LEVEL_1:
 			{
+				if (MenuSystem::fading)
+				{
+					MenuSystem::fadeTimer += DeltaTimef() / 2;
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5 / 2)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fading = false;
+					}
+				}
 				break;
 			}
 			default:

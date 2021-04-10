@@ -4,8 +4,8 @@ namespace DeltaEngine
 {
   struct Cutscene
   {
-    static char introTimings[11];
-    static char endinTimings[11];
+    static float introTimings[11];
+    static float endinTimings[1];
 
     static float timer;
     static int frame;

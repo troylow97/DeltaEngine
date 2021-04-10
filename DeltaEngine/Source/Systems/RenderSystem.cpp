@@ -367,18 +367,20 @@ namespace DeltaEngine
               if (Cutscene::frame >= 0)
               {
                 GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 1))->Bind(0);
-                std::cerr << 1 << " : " << Cutscene::frame << std::endl;
               }
               else
+              {
                 GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(0);
+              }
 
               if (Cutscene::frame < 9)
               {
                 GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 2))->Bind(1);
-                std::cerr << 2 << " : " << Cutscene::frame + 1 << std::endl;
               }
               else
+              {
                 GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(1);
+              }
 
               GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(2);
 

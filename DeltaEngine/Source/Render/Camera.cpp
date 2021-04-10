@@ -170,6 +170,9 @@ namespace DeltaEngine
 
   Matrix4x4 Camera::GetViewMatrix(Transform transform) const
   {
+    Vector3 pos = -transform.position;
+    pos.x = static_cast<int>(pos.x * 10) / 10.f;
+    pos.y = static_cast<int>(pos.y * 10) / 10.f;
     return Matrix4x4::Transpose(Matrix4x4::Translate(-transform.position));
   }
 
