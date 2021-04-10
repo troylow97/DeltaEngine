@@ -96,11 +96,11 @@ namespace DeltaEngine
     JsonFile file;;
     if (level == 0) // tutorial
     {
-      file.StartReader("Player/tutorial_respawn_points.json").LoadObject(respawns).EndReader();
-      opening_tutorial = true;
-      opening_level_1 = false;
-      in_tutorial = true;
-      in_level_1 = false;
+      //file.StartReader("Player/tutorial_respawn_points.json").LoadObject(respawns).EndReader();
+      //opening_tutorial = true;
+      //opening_level_1 = false;
+      //in_tutorial = true;
+      //in_level_1 = false;
     }
     if (level == 1) // tutorial
     {

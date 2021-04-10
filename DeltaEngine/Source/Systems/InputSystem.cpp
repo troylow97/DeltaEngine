@@ -99,9 +99,9 @@ namespace DeltaEngine
 
   void InputSystem::RunLeft()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1, Collider& c1)
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1/*, Collider& c1*/)
     {
-      if (p1.AllowRunning == true/* && c1.isCollidingOnFloor*/)
+      if (p1.AllowRunning == true || p1.IsJumping/* && c1.isCollidingOnFloor*/)
       {
         if (a1.MeleeCooldownTimer < 0.0f)
         {
@@ -138,9 +138,9 @@ namespace DeltaEngine
   
   void InputSystem::RunRight()
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1,Collider& c1)
+    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, Player& p1, Input& i1, RigidBody& r1, State& s1, Attack& a1, Image& im1/*, Collider& c1*/)
     {
-      if (p1.AllowRunning == true/* && c1.isCollidingOnFloor*/)
+      if (p1.AllowRunning == true || p1.IsJumping/* && c1.isCollidingOnFloor*/)
       {
         if (a1.MeleeCooldownTimer < 0.0f)
         {
