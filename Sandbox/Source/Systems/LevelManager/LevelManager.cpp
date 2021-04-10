@@ -14,9 +14,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "../UnitManager.h"
 #include "../AI/AITools.h"
 #include "../EnemySpawner/EnemySpawner.h"
-#include "Audio/AudioEngine.h"
-#include "Core/GlobalStruct.h"
-#include "Systems/UISystem.h"
 #include "../../GameState.h"
 
 namespace DeltaEngine
