@@ -77,22 +77,23 @@ namespace DeltaEngine
       	//Activate gauntlet
         if (GauntletIsActive)
         {
-          if (CheckForOutsideEnemies())
-            return;
-
-          //If player dies, a json file is loaded so just reset all the stuff
-          if(env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(player).IsDead)
-          {
-            GauntletIsActive = false;
-            list.Gauntlets[CurrentGauntlet].isActivated = false;
-            list.Gauntlets[CurrentGauntlet].isFinished = false;
-            GauntletIsActive = false;
-            return;
-          }
+            //If player dies, a json file is loaded so just reset all the stuff
+            if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(player).IsDead)
+            {
+                GauntletIsActive = false;
+                list.Gauntlets[CurrentGauntlet].isActivated = false;
+                list.Gauntlets[CurrentGauntlet].isFinished = false;
+                list.Gauntlets[CurrentGauntlet].CurrentEnemyWave = 0;
+                ActivateGauntlet = true;
+                return;
+            }
+        	
+          //if (CheckForOutsideEnemies())
+          //  return;
 
           for (auto it = SpawnedEnemiesInGauntlet.begin(); it != SpawnedEnemiesInGauntlet.end();)
           {
-            if (!env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it))
+            if (!env.pECS->GetWorld().GetEntityManager().IsEntityValid(*it))
             {
               it = SpawnedEnemiesInGauntlet.erase(it);
               continue;
@@ -113,7 +114,7 @@ namespace DeltaEngine
             auto& CurrentWave = Gauntlet.CurrentEnemyWave;
             //lock player camera
 
-            if (CurrentWave < list.Gauntlets[CurrentGauntlet].EnemyWaves.size())
+            if (CurrentWave < Gauntlet.EnemyWaves.size())
             {
               if (CurrentWave == 0)
               {
