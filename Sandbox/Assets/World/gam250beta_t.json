@@ -4135,7 +4135,7 @@
             },
             "Rigidbody": {
                 "Mass": 50.0,
-                "Move Speed": 20.0,
+                "Move Speed": 25.0,
                 "Restitution": 1.0,
                 "Friction Coefficient": 3.5,
                 "Inherent Acceleration": 0.0,
