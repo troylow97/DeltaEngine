@@ -99,11 +99,19 @@ void IdleLancer::onExit( EntityID &id )
 
 void IdleLancer::Update( EntityID &monster )
 {
+  auto& em = env.pECS->GetWorld().GetEntityManager();
   CheckEdges( monster );
-  env.pECS->GetWorld().GetEntityManager().GetComponent<State>( monster ).SetBool( "IsAttacked", false );
-  env.pECS->GetWorld().GetEntityManager().GetComponent<State>( monster ).SetBool( "IsDead", false );
-  env.pECS->GetWorld().GetEntityManager().GetComponent<State>( monster ).SetBool( "IsAlerted", true );
-  env.pECS->GetWorld().GetEntityManager().GetComponent<State>( monster ).SetBool( "MeleeAttack", false );
+  em.GetComponent<State>( monster ).SetBool( "IsAttacked", false );
+  em.GetComponent<State>( monster ).SetBool( "IsDead", false );
+  em.GetComponent<State>( monster ).SetBool( "IsAlerted", true );
+  em.GetComponent<State>( monster ).SetBool( "MeleeAttack", false );
+
+  auto& audio = em.GetComponent<AudioSource>(monster);
+  if (!audio.isStart && !audio.isPlayed)
+  {
+    audio.clip = "event:/Enemy/Lancer/Lancer Master Idle";
+    AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(monster).position, {},{0,0,1},{0,1,0} });
+  }
 
 }
 
