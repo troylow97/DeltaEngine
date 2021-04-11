@@ -187,7 +187,7 @@ void InputSystem::StopRun()
 
 void InputSystem::Jump()
 {
-  env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Player &p1, Input &i1, Collider &c1, State &s1, Attack &a1 )
+  env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Player &p1, Input &i1, Collider &c1, State &s1, Attack &a1, AudioSource& audio )
   {
     i1.previousKey = DEVK_W;
 
@@ -211,9 +211,8 @@ void InputSystem::Jump()
       s1.SetBool( "JumpStart", true );
       idle_timer = 0.0f;
 
-      AudioEngine::Play2DEvent( "event:/Player/Player Jump" );
-      AudioEngine::StopEvent( run_sound_id );
-      run_sound_id = 0;
+      audio.clip = "event:/Player/Player Jump";
+      AudioEngine::AudioSourcePlay2DEvent( audio );
     }
 
   } );
@@ -270,7 +269,7 @@ void InputSystem::Dash()
 
 void InputSystem::Dodge()
 {
-  env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Player &p1, Input &i1, Collider &c1, State &s1, Attack &a1, Image &im1, RigidBody &r1 )
+  env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID id1, Player &p1, Input &i1, Collider &c1, State &s1, Attack &a1, Image &im1, RigidBody &r1, AudioSource& audio )
   {
     if ( p1.IsRunning )
     {
@@ -307,6 +306,9 @@ void InputSystem::Dodge()
         s1.SetBool( "Punch3", false );
         s1.SetBool( "JumpStart", false );
         s1.SetBool( "IsDashing", true );
+
+        audio.clip = "event:/Player/Player Dash";
+        AudioEngine::AudioSourcePlay2DEvent( audio );
 
         a1.NumberOfCombos = 0;
         a1.StartComboCooldownTimer = false;

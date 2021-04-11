@@ -42,6 +42,25 @@ void AudioSystem::LateUpdate()
         AudioEngine::SetChannel3DPosition( a.id, t.position );
     }
 
+    // Update all playing status
+    if ( a.isStart )
+    {
+      if ( a.isEvent )
+        a.isPlaying = AudioEngine::IsEventPlaying( a.id );
+      else
+        a.isPlaying = AudioEngine::IsChannelPlaying( a.id );
+    }
+    else
+      a.isPlaying = false;
+
+    if ( a.isPlaying )
+      a.isPlayed = true;
+    else if ( !a.isPlaying && a.isPlayed )
+    {
+      if ( !a.isLoop )
+        a.clip.clear();
+      a.isPlayed = a.isStart = false;
+    }
 
     if ( !a.isPlaying && !a.isPlayed && !a.isStart && !a.clip.empty() )
     {
@@ -66,28 +85,6 @@ void AudioSystem::LateUpdate()
         else
           AudioEngine::AudioSourcePlay( a );
       }
-    }
-
-    // Update all playing status
-    if ( a.isStart )
-    {
-      if ( a.isEvent )
-        a.isPlaying = AudioEngine::IsEventPlaying( a.id );
-      else
-        a.isPlaying = AudioEngine::IsChannelPlaying( a.id );
-    }
-    else
-      a.isPlaying = false;
-    std::cout << a.clip << std::endl;
-    std::cout << a.isPlaying << std::endl;
-
-    if ( a.isPlaying )
-      a.isPlayed = true;
-    else if ( !a.isPlaying && a.isPlayed )
-    {
-      if ( !a.isLoop )
-        a.clip.clear();
-      a.isPlayed = a.isStart = false;
     }
 
   } );
