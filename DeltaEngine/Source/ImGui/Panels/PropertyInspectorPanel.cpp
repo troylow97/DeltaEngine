@@ -278,7 +278,6 @@ void PropertyInspectorPanel::Render()
               rttr::enumeration enum_prop = prop_type.get_raw_type().get_enumeration();
               auto enum_list = enum_prop.get_names();
               std::vector<const char *> c_ptr_vec;
-              c_ptr_vec.push_back( "" );
               for ( auto &e_name : enum_list )
                 c_ptr_vec.push_back( e_name.data() );
               int current = value.get_wrapped_value<unsigned>();
