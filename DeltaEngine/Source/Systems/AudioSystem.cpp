@@ -1,8 +1,7 @@
 /**********************************************************************************
-* \file   UISystem.cpp
-* \brief  The file contains the system for updating and displaying UI in the game
-* \author Chin, Clara,     70% Code Contribution
-* \author Low, Troy,       30% Code Contribution
+* \file   AudioSystem.cpp
+* \brief  The file contains the definition for AudioSystem
+* \author Tan Tong Wee     100% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
