@@ -1137,8 +1137,8 @@ namespace DeltaEngine::RT_Reflect
     else if (str == "Slider")
     {
       em.AddComponent<Slider>(id, var.get_value<Slider>());
-      em.GetComponent<Slider>( id ).fill_entity += p_adj;
-      em.GetComponent<Slider>( id ).handle_entity += p_adj;
+      em.GetComponent<Slider>( id ).fill_entity += static_cast<unsigned int>(p_adj);
+      em.GetComponent<Slider>( id ).handle_entity += static_cast<unsigned int>(p_adj);
     }
     else if (str == "Cursor")
       em.AddComponent<Cursor>(id, var.get_value<Cursor>());

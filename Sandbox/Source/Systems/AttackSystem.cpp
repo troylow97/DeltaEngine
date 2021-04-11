@@ -100,7 +100,6 @@ namespace DeltaEngine
           ++a.NumberOfCombos;
           a.ComboCooldownTimer = a.ComboDuration;
           a.StartComboCooldownTimer = true;
-          auto& an = env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(UnitManager::GetPlayerID());
           if (a.NumberOfCombos == 1)
           {
             st.SetBool("Punch1", true);
@@ -189,7 +188,6 @@ namespace DeltaEngine
         }
       }
     }
-
 
     for (auto& id1 : RangedAttackingEntities)
     {

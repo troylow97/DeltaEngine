@@ -41,7 +41,6 @@ AIState::~AIState()
 }
 
 #pragma region Lancer
-    /////////////////////////////////////////////////////////////////////////////////////
 
 LancerSpawn::LancerSpawn( Vector2 &charge_range )
 {
@@ -54,7 +53,8 @@ void LancerSpawn::onEnter( EntityID &id )
 }
 
 void LancerSpawn::onExit( EntityID &id )
-{    }
+{
+}
 
 void LancerSpawn::Update( EntityID &monster )
 {
@@ -70,8 +70,7 @@ void LancerSpawn::Update( EntityID &monster )
     AITools::FlyTowardsPoint( monster, player_pos );
   }
 }
-
-//////////////////////////////////////////////////////////////////////////////////	
+	
 
 IdleLancer::IdleLancer( Vector2 &charge_range )
 {
@@ -82,17 +81,12 @@ void IdleLancer::onEnter( EntityID &id )
 {
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsAttacked", false );
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsAlerted", true );
-  auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id );
 }
 
 void IdleLancer::onExit( EntityID &id )
 {
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsIdle", false );
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsAlerted", false );
-  auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id );
-
-
-
 }
 
 void IdleLancer::Update( EntityID &monster )
@@ -111,10 +105,8 @@ void IdleLancer::Update( EntityID &monster )
     AudioEngine::SetEventVolume(audio.id, 0.1f);
     AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(monster).position, {},{0,0,1},{0,1,0} });
   }
-
 }
 
-//----------------------------------------------------------------------
 ChaseEnemyLancer::ChaseEnemyLancer( Vector2 v ) :
   ChargeDetectRange { v }
 {
@@ -162,12 +154,9 @@ void ChaseEnemyLancer::Update( EntityID &monster )
       ai.transition = "idle_lancer";
       return;
     }
-
     onEnter( monster );
     lancer.HasEntered = true;
   }
-
-
 
   state.SetBool( "IsAttacked", false );
 
@@ -177,7 +166,6 @@ void ChaseEnemyLancer::Update( EntityID &monster )
     ai.transition = "charging_enemy_lancer";
 }
 
-//----------------------------------------------------------------------
 GotHitEnemyLancer::GotHitEnemyLancer()
 {}
 
@@ -246,7 +234,6 @@ void GotHitEnemyLancer::onExit( EntityID &monster )
   state.SetBool( "IsAttacked", false );
 }
 
-//----------------------------------------------------------------------
 ChargingEnemyLancer::ChargingEnemyLancer()
 {
   TransitionEdges["hit_enemy_lancer"] = new DamagedEnemyLancer();
@@ -279,7 +266,7 @@ void ChargingEnemyLancer::Update( EntityID &monster )
     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( monster ).m_FlipX = true;
   else
     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( monster ).m_FlipX = false;
-//If Lancer is below player, fly up first
+  //If Lancer is below player, fly up first
   if ( t.position.y < player_pos.y - Random::RandomFloat() )
   {
     rb.Direction.y = 1;
@@ -296,17 +283,19 @@ void ChargingEnemyLancer::Update( EntityID &monster )
   else
   {
     {
-      AITools::FlyTowardsPoint( monster, Vector2 {
-                             player_pos.x + Random::RandomFloatRange( 0.1f, 0.3f ),
-                             player_pos.y - Random::RandomFloatRange( 0.1f, 0.3f )
-                                } );
+      AITools::FlyTowardsPoint( monster, Vector2 
+      {
+        player_pos.x + Random::RandomFloatRange( 0.1f, 0.3f ),
+        player_pos.y - Random::RandomFloatRange( 0.1f, 0.3f )
+      } );
     }
 
   }
 }
 
 void ChargingEnemyLancer::onExit( EntityID &monster )
-{}
+{
+}
 
 AttackingEnemyLancer::AttackingEnemyLancer()
 {
@@ -366,7 +355,6 @@ void BounceEnemyLancer::Update( EntityID &monster )
 #pragma endregion
 
 #pragma region Fiddler
-    //----------------------------------------------------------------------
 
 IdleFiddler::IdleFiddler( Waypoint &wp, Vector2 &charge_range ) :
   waypoint { wp }
@@ -499,9 +487,8 @@ void ChaseEnemyFiddler::Update( EntityID &monster )
       }
     }
 
-    //if (a.AttackDelay < 0.0f)
+    //attacking
     {
-        //attacking
       if ( AITools::Distance_X_BetweenTwoEntities( monster, player ) < 2.0f && AITools::Distance_X_BetweenTwoEntities( monster, player ) > 0.5f
            && AITools::Distance_Y_BetweenTwoEntities( monster, player ) < 0.7f && a.MeleeCooldownTimer < 0.0f )
       {
@@ -552,16 +539,13 @@ void ChaseEnemyFiddler::Update( EntityID &monster )
         AITools::MoveTowardsEntityInX( monster, player_pos_left );
         rb.Direction.y = 0;
       }
-
     }
-
   }
   em.GetComponent<RigidBody>( monster ).Direction = Vector2 { 0,0 };
 }
 #pragma endregion
 
 #pragma region Serpentipede
-    //----------------------------------------------------------------------
 
 IdleSerpentipede::IdleSerpentipede( Vector2 detection_range )
 {
@@ -703,7 +687,6 @@ void ChaseEnemySerpentipede::Update( EntityID &monster )
     return;
   }
 
-
   //Burrowing Down
   if ( serp.BurrowState == 1 )
   {
@@ -752,13 +735,12 @@ void ChaseEnemySerpentipede::Update( EntityID &monster )
   //Hidden
   if ( serp.BurrowState == 2 )
   {
-      //auto current_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
     s.SetBool( "IsAlerted", false );
     s.SetBool( "MoveBurrowing", true );
     //Move towards next point
     if ( AITools::EntityisAtPointInX( monster, ai.original_point.x + SerpentData.Points[serp.CurrentPoint].x, 0.2f ) )
     {
-        //Monster is at point
+      //Monster is at point
       serp.BurrowState = 3;
       rb.Direction = Vector2::zero();
       rb.isMoveable = false;
@@ -799,22 +781,20 @@ void ChaseEnemySerpentipede::Update( EntityID &monster )
       auto &health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( monster );
       health.isInvulnerable = false;
       serp.CooldownTimer = 1.0f;
-
-
       collider.CollisionLayerCheck = 9;
     }
   }
-
-
 }
 #pragma endregion
 LancerAIData::LancerAIData() :
   ChargeDetectionRange { Vector2::zero() }
-{    }
+{
+}
 
 LancerAIData::LancerAIData( LancerAIData &d ) :
   ChargeDetectionRange { d.ChargeDetectionRange }
-{    }
+{
+}
 
 FiddlerAIData::FiddlerAIData() :
   waypoint {},
