@@ -131,7 +131,6 @@ void CollisionHandlerFunctions::TakeDamage( EntityID &id1, EntityID &id2 )
         return;
       }
     }
-
     //Lancer Melee Attack
     {
       if ( CheckEntityType( id1, EntityCategory::E_ENEMY_LANCER_PUNCH, id2, EntityCategory::E_PLAYER ) )

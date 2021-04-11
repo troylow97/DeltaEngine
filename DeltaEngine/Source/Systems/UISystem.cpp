@@ -362,9 +362,6 @@ bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, fl
     y_size *= 0.001f;
   }
 
-  if (type == GUIType::Slider)
-    std::cerr << CollisionIntersection_RectMinMaxMouse({ coords.x + x_size , coords.y + y_size }, { coords.z - x_size, coords.w - y_size }, { p_x, p_y }) << std::endl;
-
   if ( CollisionIntersection_RectMinMaxMouse( { coords.x + x_size , coords.y + y_size }, { coords.z - x_size, coords.w - y_size }, { p_x, p_y } ) )
     return true;
   return false;
