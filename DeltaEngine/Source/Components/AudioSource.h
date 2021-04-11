@@ -1,4 +1,5 @@
 #pragma once
+#include "Audio/AudioEngine.h"
 
 namespace DeltaEngine
 {
@@ -15,5 +16,10 @@ namespace DeltaEngine
     bool isStart { false };
     bool isPlaying { false };
     bool isPlayed { false };
+
+    ~AudioSource()
+    {
+      AudioEngine::StopEvent( id );
+    }
   };
 }

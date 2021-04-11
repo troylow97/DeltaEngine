@@ -12,69 +12,98 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/EngineClock.h"
-
+#include "Audio/AudioEngine.h"
 namespace DeltaEngine
 {
-  EntityID UnitManager::player;
+EntityID UnitManager::player;
 
-  EntityID UnitManager::GetPlayerID()
+bool updated { false };
+
+void UnitManager::Update()
+{
+  env.pECS->GetWorld().GetEntityManager().ForEach( [&]( EntityID &id, Collider &c, Player &p, RigidBody &r, State &s, Animator &a, Health &hp, AudioSource &audio )
   {
-    env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& id,Collider& c, Player& p, RigidBody& r, State& s, Animator& a, Health& hp)
+    //if(hp.isDamagedTimer > 0.0f)
+    //{
+    //    return;
+    //}
+    //std::cout << "player clip is " << a.m_ClipKey << std::endl;
+    const int velocity = static_cast<int>( r.Velocity.y );
+    //std::cout << "velocity is: " << velocity << std::endl;
+
+    s.SetFloat( "VelocityY", static_cast<float>( velocity ) );
+
+    static float jump = 0;
+    static bool fall = false;
+    s.SetFloat( "VelocityY", static_cast<float>( velocity ) );
+    if ( velocity > 0 )
     {
-      const int velocity = static_cast<int>(r.Velocity.y);
-    	
-      s.SetFloat("VelocityY", static_cast<float>(velocity));
-    
-      static float jump = 0;
-      static bool fall = false;
-      s.SetFloat("VelocityY", static_cast<float>(velocity));
-      if (velocity > 0)
+      //std::cout << "here1" << std::endl;
+      s.SetBool( "Jump", true );
+    }
+    if ( s.GetBool( "Jump" ) )
+    {
+      if ( velocity < 0 )
       {
-        s.SetBool("Jump", true);
-      }
-      if (s.GetBool("Jump"))
-      {
-        if (velocity < 0)
-        {
-          fall = true;
-          jump += static_cast<float>(GetEnv().pClock->FixedDeltaTime());
-          s.SetFloat("Jump", jump);
-        }
-      
-        if (fall)
-        {
-          if (c.isCollidingOnFloor)
-          {
-            s.SetBool("Jump", false);
-            s.SetBool("VelocityY", true);
-            p.IsJumping = false;
-            fall = false;
-            jump = 0;
-          }
-        }
-      }
-      else if (s.GetBool("VelocityY")) // recovering
-      {
-        if (a.m_ClipKey == "Clip/DAVE_LAND" && a.LoopsCompleted())
-        {
-          s.SetBool("VelocityY", false);
-          s.SetBool("IsIdle", true);
-        }
+        //std::cout << "here2" << std::endl;
+        fall = true;
+        jump += static_cast<float>( GetEnv().pClock->FixedDeltaTime() );
+        s.SetFloat( "Jump", jump );
       }
 
-      if(c.isCollidingOnFloor && a.m_ClipKey == "Clip/DAVE_FALL")
+      if ( fall )
       {
-          s.SetBool("Jump", false);
-          s.SetBool("VelocityY", true);
+        if ( c.isCollidingOnFloor )
+        {
+          //std::cout << "here3" << std::endl;
+          s.SetBool( "Jump", false );
+          s.SetBool( "VelocityY", true );
           p.IsJumping = false;
           fall = false;
           jump = 0;
-
+        }
       }
-    	
-      player = id;
-    });
-  	
-    return player;
-  }
+    }
+    else if ( s.GetBool( "VelocityY" ) ) // recovering
+    {
+      if ( a.m_ClipKey == "Clip/DAVE_LAND" && a.LoopsCompleted() )
+      {
+        s.SetBool( "VelocityY", false );
+        s.SetBool( "IsIdle", true );
+      }
+    }
+
+    if ( c.isCollidingOnFloor && a.m_ClipKey == "Clip/DAVE_FALL" )
+    {
+
+      std::cout << "Landing" << std::endl;
+      audio.clip = "event:/Player/Player Land";
+      AudioEngine::AudioSourcePlay2DEvent( audio );
+
+      s.SetBool( "Jump", false );
+      s.SetBool( "VelocityY", true );
+      p.IsJumping = false;
+      fall = false;
+      jump = 0;
+
+    }
+
+    player = id;
+  } );
+  updated = true;
+}
+
+
+EntityID UnitManager::GetPlayerID()
+{
+  if ( !updated )
+    UnitManager::Update();
+
+  return player;
+}
+
+void UnitManager::Reset()
+{
+  updated = false;
+}
 }

@@ -98,6 +98,10 @@ void AudioEngine::AudioSourcePlay3DEvent( AudioSource &a, Audio3DAttributes attr
 {
 
   a.id = Play3DEvent( a.clip, attributes, std::move(params) );
+
+  if ( a.id == 0 )
+    DeltaEngine_CORE_INFO( "Audio Event - {} is missing", a.clip );
+
   a.isPlayed = false;
   a.isStart = a.is3D = a.isEvent = true;
   SetEventVolume( a.id, a.volume );

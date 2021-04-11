@@ -23926,7 +23926,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24086,7 +24087,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": true
+                "Is Event": true,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24223,7 +24225,8 @@
                 "Attack Upgrade Increase": 1,
                 "Health Upgrade Attack": 2,
                 "Dashing Timer Duration": 1.0,
-                "Fading Timer": 1.0
+                "Fading Timer": 1.0,
+                "UnMoveable Timer Duration": 0.5
             },
             "Input": {
                 "Previous": 2,
@@ -24243,7 +24246,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24403,7 +24407,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24563,7 +24568,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24723,7 +24729,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24883,7 +24890,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25043,7 +25051,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25203,7 +25212,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25363,7 +25373,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25523,7 +25534,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25683,7 +25695,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25843,7 +25856,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26003,7 +26017,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26163,7 +26178,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26323,7 +26339,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26483,7 +26500,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26643,7 +26661,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26803,7 +26822,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26963,7 +26983,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27123,7 +27144,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27281,7 +27303,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27441,7 +27464,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27599,7 +27623,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27759,7 +27784,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27919,7 +27945,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28079,7 +28106,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28239,7 +28267,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28399,7 +28428,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28559,7 +28589,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28719,7 +28750,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28877,7 +28909,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29037,7 +29070,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29197,7 +29231,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29357,7 +29392,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29517,7 +29553,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29677,7 +29714,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29837,7 +29875,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29997,7 +30036,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30157,7 +30197,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30317,7 +30358,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30475,7 +30517,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30635,7 +30678,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30795,7 +30839,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -52417,10 +52462,11 @@
             "Audio Source": {
                 "Audio File": "event:/BGM/Stage 1 BGM",
                 "Volume": 0.15000000596046449,
-                "Pitch": 1.0,
+                "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": true,
-                "Is Event": true
+                "Is Event": true,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -52454,7 +52500,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": true,
-                "Is Event": true
+                "Is Event": true,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {

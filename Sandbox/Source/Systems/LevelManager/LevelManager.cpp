@@ -25,178 +25,192 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-
+bool play { false };
 	void LevelManager::Update()
 	{
-		switch (GameStateCurrent())
+		switch(GameStateCurrent())
 		{
-		case GameState::MAIN_MENU:
-		{
-			if (MenuSystem::fadingOut)
+			case GameState::MAIN_MENU:
 			{
-				MenuSystem::fadeTimer += DeltaTimef();
-				Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-				Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
-				if (MenuSystem::fadeTimer > 5)
+				if (MenuSystem::fadingOut)
 				{
-					MenuSystem::fadeTimer = 0;
-					MenuSystem::fadingOut = false;
-					MenuSystem::fadingIn = false;
-					GameStateLoad(GameState::CUTSCENE_INTRO);
+					MenuSystem::fadeTimer += DeltaTimef();
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fadingOut = false;
+						MenuSystem::fadingIn = false;
+						GameStateLoad(GameState::CUTSCENE_INTRO);
+					}
 				}
-			}
-			else if (MenuSystem::fadingIn)
-			{
-				MenuSystem::fadeTimer += DeltaTimef() * 2;
-				Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-				Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
-				if (MenuSystem::fadeTimer > 3 * 2)
+				else if (MenuSystem::fadingIn)
 				{
-					MenuSystem::fadeTimer = 0;
-					MenuSystem::fadingIn = false;
+					MenuSystem::fadeTimer += DeltaTimef() * 2;
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 3 * 2)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fadingIn = false;
+					}
 				}
+				break;
 			}
-			break;
-		}
-		case GameState::CUTSCENE_INTRO:
-		{
-			Cutscene::timer += DeltaTimef() * 2;
-			if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
+			case GameState::CUTSCENE_INTRO:
 			{
-				++Cutscene::frame;
-				Cutscene::timer = 0;
-			}
-			if (InputManager::Instance().IsKeyPressed(DEVK_SPACE) ||
-				Cutscene::frame > 9 && Cutscene::timer > 1)
-			{
-				GameStateLoad(GameState::TUTORIAL);
-			}
-			break;
-		}
-		case GameState::TUTORIAL:
-		{
-			if (MenuSystem::fadingOut)
-			{
-				MenuSystem::fadeTimer += DeltaTimef() / 2;
-				Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-				Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
-				if (MenuSystem::fadeTimer > 5 / 2)
+				for ( auto i = 0u; i < GetEnv().pClock->Timesteps(); ++i )
+					Cutscene::timer += FixedDeltaTimef() * 2;
+				if ( !play )
 				{
-					MenuSystem::fadeTimer = 0;
-					MenuSystem::fadingOut = false;
-					MenuSystem::fadingIn = false;
-					GameStateLoad(GameState::LEVEL_1);
+					AudioEngine::SetEventVolume( AudioEngine::Play2DEvent( "event:/Opening Cutscene/Overall Cutscene controller" ), 0.2f );
+					play = true;
 				}
-			}
-			else if (MenuSystem::fadingIn)
-			{
-				MenuSystem::fadeTimer += DeltaTimef() / 2;
-				Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-				Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
-				if (MenuSystem::fadeTimer > 5 / 2)
+				if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
 				{
-					MenuSystem::fadeTimer = 0;
-					MenuSystem::fadingIn = false;
-					MenuSystem::fadingOut = false;
+					++Cutscene::frame;
+					Cutscene::timer = 0;
 				}
+				if (InputManager::Instance().IsKeyPressed(DEVK_SPACE) || 
+					Cutscene::frame > 9 && Cutscene::timer > 1)
+				{
+					GameStateLoad(GameState::TUTORIAL);
+					play = false;
+				}
+				break;
 			}
+			case GameState::TUTORIAL:
+			{
+				if (MenuSystem::fadingOut)
+				{
+					MenuSystem::fadeTimer += DeltaTimef() / 2;
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5 / 2)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fadingOut = false;
+						MenuSystem::fadingIn = false;
+						GameStateLoad(GameState::LEVEL_1);
+					}
+				}
+				else if (MenuSystem::fadingIn)
+				{
+					MenuSystem::fadeTimer += DeltaTimef() / 2;
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5 / 2)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fadingIn = false;
+						MenuSystem::fadingOut = false;
+					}
+				}
 
-			auto player = UnitManager::GetPlayerID();
-			Vector2 EndPoint{ 290.0f,0.2f };
-			if (AITools::EntityisAtPoint(player, EndPoint, 0.2f))
-				MenuSystem::fadingOut = true;
-			break;
-		}
-		case GameState::LEVEL_1:
-		{
-			if (MenuSystem::fadingOut)
-			{
-				MenuSystem::fadeTimer += DeltaTimef() / 2;
-				Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-				Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
-				if (MenuSystem::fadeTimer > 5 / 2)
-				{
-					MenuSystem::fadeTimer = 0;
-					MenuSystem::fadingOut = false;
-					MenuSystem::fadingIn = false;
-					GameStateLoad(GameState::CUTSCENE_END);
-				}
+				auto player = UnitManager::GetPlayerID();
+				Vector2 EndPoint{ 290.0f,0.2f };
+				if(AITools::EntityisAtPoint(player, EndPoint,0.2f))
+					MenuSystem::fadingOut = true;
+				break;
 			}
-			else if (MenuSystem::fadingIn)
+			case GameState::LEVEL_1:
 			{
-				MenuSystem::fadeTimer += DeltaTimef() / 2;
-				Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-				Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
-				if (MenuSystem::fadeTimer > 5 / 2)
+				if (MenuSystem::fadingOut)
 				{
-					MenuSystem::fadeTimer = 0;
-					MenuSystem::fadingIn = false;
+					MenuSystem::fadeTimer += DeltaTimef() / 2;
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5 / 2)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fadingOut = false;
+						MenuSystem::fadingIn = false;
+						GameStateLoad(GameState::CUTSCENE_END);
+					}
 				}
-			}
+				else if (MenuSystem::fadingIn)
+				{
+					MenuSystem::fadeTimer += DeltaTimef() / 2;
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5 / 2)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fadingIn = false;
+					}
+				}
 
-			auto player = UnitManager::GetPlayerID();
-			Vector2 EndPoint{ 212.0f,2.2f };
-			if (AITools::EntityisAtPoint(player, EndPoint, 2.2f))
-				MenuSystem::fadingOut = true;
-			break;
-		}
-		case GameState::CUTSCENE_END:
-		{
-			Cutscene::timer += DeltaTimef() * 2;
-			if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
-			{
-				++Cutscene::frame;
-				Cutscene::timer = 0;
+				auto player = UnitManager::GetPlayerID();
+				Vector2 EndPoint{ 212.0f,2.2f };
+				if (AITools::EntityisAtPoint(player, EndPoint, 2.2f))
+					MenuSystem::fadingOut = true;
+				break;
 			}
-			if (InputManager::Instance().IsKeyTriggered(DEVK_SPACE) ||
-				Cutscene::frame > 5 && Cutscene::timer > 1)
+			case GameState::CUTSCENE_END:
 			{
-				GameStateLoad(GameState::CREDITS);
-			}
-			break;
-		}
-		case GameState::CREDITS:
-		{
-			if (InputManager::Instance().IsKeyTriggered(DEVK_SPACE))
-			{
-				MenuSystem::fadingOut = true;
-				MenuSystem::fadeTimer = 1 - MenuSystem::fadeTimer;
-			}
-			if (MenuSystem::fadingOut)
-			{
-				MenuSystem::fadeTimer += DeltaTimef() / 2;
-				Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-				Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
-				if (MenuSystem::fadeTimer > 5 / 2)
+				for ( auto i = 0u; i < GetEnv().pClock->Timesteps(); ++i )
+					Cutscene::timer += FixedDeltaTimef() * 2;
+				if ( !play )
 				{
-					MenuSystem::fadeTimer = 0;
-					MenuSystem::fadingOut = false;
-					MenuSystem::fadingIn = false;
-					GameStateLoad(GameState::MAIN_MENU);
+					AudioEngine::SetEventVolume( AudioEngine::Play2DEvent( "event:/Ending Cutscene/Overall Ending Cutscene" ), 0.2f );
+					play = true;
 				}
-			}
-			else if (MenuSystem::fadingIn)
-			{
-				MenuSystem::fadeTimer += DeltaTimef() / 2;
-				Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-				Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
-				if (MenuSystem::fadeTimer > 5 / 2)
+				if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
 				{
-					MenuSystem::fadeTimer = 1;
-					MenuSystem::fadingIn = false;
+					++Cutscene::frame;
+					Cutscene::timer = 0;
 				}
+				if (InputManager::Instance().IsKeyTriggered(DEVK_SPACE) ||
+					Cutscene::frame > 5 && Cutscene::timer > 1)
+				{
+					GameStateLoad(GameState::CREDITS);
+					play = false;
+				}
+				break;
 			}
-			break;
-		}
-		default:
-		{
-			break;
-		}
+			case GameState::CREDITS:
+			{
+				if (InputManager::Instance().IsKeyTriggered(DEVK_SPACE))
+				{
+					MenuSystem::fadingOut = true;
+					MenuSystem::fadeTimer = 1 - MenuSystem::fadeTimer;
+				}
+				if (MenuSystem::fadingOut)
+				{
+					MenuSystem::fadeTimer += DeltaTimef() / 2;
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5 / 2)
+					{
+						MenuSystem::fadeTimer = 0;
+						MenuSystem::fadingOut = false;
+						MenuSystem::fadingIn = false;
+						GameStateLoad(GameState::MAIN_MENU);
+					}
+				}
+				else if (MenuSystem::fadingIn)
+				{
+					MenuSystem::fadeTimer += DeltaTimef() / 2;
+					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+					Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
+					if (MenuSystem::fadeTimer > 5 / 2)
+					{
+						MenuSystem::fadeTimer = 1;
+						MenuSystem::fadingIn = false;
+					}
+				}
+				break;
+			}
+			default:
+			{
+				break;
+			}
 		}
 	}
 	void LevelManager::LateUpdate()
 	{
-
+		
 	}
 
 }

@@ -2203,7 +2203,7 @@
                 "Category": "none"
             },
             "Audio Source": {
-                "Audio File": "event:/BGM/Main Title",
+                "Audio File": "event:/BGM/Main Title Pre Clear",
                 "Volume": 0.15000000596046449,
                 "Pitch": 0.0,
                 "Loop": 0,
