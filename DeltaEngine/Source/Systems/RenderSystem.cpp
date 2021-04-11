@@ -521,7 +521,7 @@ namespace DeltaEngine
               }
               glActiveTexture(GL_TEXTURE0);
               glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
-              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(1);
+              GetEnv().pManager->Get<Texture2D>(c.transitionTexKey)->Bind(1);
               
               Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
               shader->SetUniform1i("_MainTex", 0);
@@ -563,7 +563,7 @@ namespace DeltaEngine
 
               glActiveTexture(GL_TEXTURE0);
               glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
-              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(1);
+              GetEnv().pManager->Get<Texture2D>(c.transitionTexKey)->Bind(1);
 
               Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
               shader->SetUniform1i("_MainTex", 0);

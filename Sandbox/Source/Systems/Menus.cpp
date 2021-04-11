@@ -75,7 +75,7 @@ void Back()
 
 void StartGame()
 {
-  MenuSystem::fadingIn = true;
+  MenuSystem::fadingOut = true;
 }
 
 void OpenControls()

@@ -20,6 +20,7 @@ enum class GameState : unsigned
   TUTORIAL,
   LEVEL_1,
   CUTSCENE_END,
+  CREDITS,
 };
 
 

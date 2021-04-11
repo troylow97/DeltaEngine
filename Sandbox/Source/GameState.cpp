@@ -40,6 +40,8 @@ void GameStateLoad( GameState state )
     {
       current = GameState::MAIN_MENU;
       world.Load( "World/MainMenuScreen.json" );
+      MenuSystem::fadingIn = true;
+      Camera::allCameras[0]->backgroundColor.a = 0;
       EnemySpawner::ActivateGauntlet = false;
       break;
     }
@@ -85,6 +87,14 @@ void GameStateLoad( GameState state )
       Cutscene::frame = -1;
       Cutscene::totalFrames = 6;
       Cutscene::cutscenePrefix = "Textures/ENDING_";
+      break;
+    }
+    case GameState::CREDITS:
+    {
+      current = GameState::CREDITS;
+      world.Load("World/credits.json");
+      MenuSystem::fadingIn = true;
+      Camera::allCameras[0]->backgroundColor.a = 0;
       break;
     }
   }
