@@ -40,7 +40,6 @@ namespace DeltaEngine
     Vector3 v = axis;
     v.Normalize();
     v *= sinf(angle / 360 * Math::pi);
-    //printf("%f, %f, %f, %f\n", q.x, q.y, q.z, q.w);
 
     return Quaternion{v.x, v.y, v.z, cosf(angle / 360 * Math::pi)};
   }
@@ -95,10 +94,11 @@ namespace DeltaEngine
 
   Quaternion Quaternion::operator*=(Quaternion rhs)
   {
-    x *= rhs.x;
-    y *= rhs.y;
-    z *= rhs.z;
-    w *= rhs.w;
+    return Quaternion(
+      x * rhs.w + w * rhs.x + y * rhs.z - z * rhs.y,
+      w * rhs.y - x * rhs.z + y * rhs.w + z * rhs.x,
+      w * rhs.z + x * rhs.y - y * rhs.x + z * rhs.w,
+      w * rhs.w - x * rhs.x - y * rhs.y - z * rhs.z);
     return *this;
   }
 
