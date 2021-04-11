@@ -261,8 +261,6 @@ namespace DeltaEngine
       DrawSpriteBatch();
       batchingSprites = false;
     }
-    //std::cerr << "Batches = " << batches << std::endl;
-    //std::cerr << "FPS = " << 1 / DeltaTime() << std::endl;
   }
 
   void DrawRendererOverlay(EntityManager& em, Camera& c)

@@ -9,9 +9,6 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "HealthSystem.h"
-
-
-
 #include "GUISystem.h"
 #include "UnitManager.h"
 #include "Audio/AudioEngine.h"
@@ -60,7 +57,6 @@ void HealthSystem::Update()
         renderer.m_Color = { 1, 1, 1 };
         em.GetComponent<State>( id ).SetBool( "IsAttacked", false );
       }
-
     }
   } );
 
@@ -79,13 +75,28 @@ void HealthSystem::Update()
     em.AddComponent<Lifespan>( entity );
     em.GetComponent<Lifespan>( entity ).Timer = 1.0f;
     em.GetComponent<RigidBody>( entity ).isMoveable = false;
+
+    auto& trans = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(entity);
+    if(em.HasComponent<Lancer>(entity))
+    {
+      auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(entity);
+      audio.clip = "event:/Enemy/Lancer/Lancer Master Death";
+      AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+    }
+    else if(em.HasComponent<Fiddler>(entity))
+    {
+      auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(entity);
+      audio.clip = "event:/Enemy/Fiddler/Fiddler Death";
+      AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+    }
+    else if (em.HasComponent<Serpentipede>(entity))
+    {
+      auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(entity);
+      audio.clip = "event:/Enemy/Serpentipede/Serpentipede Death";
+      AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+    }
   }
   entities.clear();
-
-
-
-
-
   Profiler::Instance().Record( "Health System" );
 }
 
@@ -111,13 +122,9 @@ void HealthSystem::ResetAttackedAnimation( EntityID id )
 {
   auto &et_type = em.GetComponent<EntityType>( id );
   auto &state = em.GetComponent<State>( id );
-
-  //if ( et_type.type == EntityCategory::E_ENEMY )
-  //{
-  //  state.SetBool( "IsAttacked", false );
-  //}
 }
 
 void HealthSystem::LateUpdate()
-{  }
+{
+}
 }

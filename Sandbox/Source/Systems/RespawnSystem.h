@@ -43,8 +43,5 @@ namespace DeltaEngine
     void ClearScreen();
     void Respawning();
     void DeathEffect();
-
-    //bool temp_checkpoints = true;
-    //void temp_create_checkpoints();
   END_DEFINE_SYSTEM(RespawnSystem)
 }

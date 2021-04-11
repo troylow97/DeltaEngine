@@ -32,11 +32,34 @@ void CollisionHandlerFunctions::Initialise()
 
 void CollisionHandlerFunctions::ReduceHealth( EntityID &id1, int amount )
 {
-  if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Health>( id1 ) &&
-       !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).isInvulnerable )
+  auto& em = env.pECS->GetWorld().GetEntityManager();
+	
+  if ( em.HasComponent<Health>( id1 ) &&
+       !em.GetComponent<Health>( id1 ).isInvulnerable )
   {
-    env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).CurrentHealth -= amount;
-    env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).isDamagedTimer = 0.4f;
+    em.GetComponent<Health>( id1 ).CurrentHealth -= amount;
+    em.GetComponent<Health>( id1 ).isDamagedTimer = 0.4f;
+
+    auto& trans = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1);
+    if (em.HasComponent<Lancer>(id1))
+    {
+        auto& audio = em.GetComponent<AudioSource>(id1);
+        audio.clip = "event:/Enemy/Lancer/Lancer Hurt";
+        AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+    }
+    else if (em.HasComponent<Fiddler>(id1))
+    {
+        auto& audio = em.GetComponent<AudioSource>(id1);
+        audio.clip = "event:/Enemy/Fiddler/Fiddler Hurt";
+        AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+    }
+    else if (em.HasComponent<Serpentipede>(id1))
+    {
+        auto& audio = em.GetComponent<AudioSource>(id1);
+        audio.clip = "event:/Enemy/Serpentipede/Serpentipede Hurt";
+        AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+    }
+  	
   }
 }
 
@@ -281,6 +304,37 @@ void CollisionHandlerFunctions::CheckGroundType( EntityID &id1, EntityID &id2 )
       AudioEngine::SetEventParameterByName( audio.id, "Player Grounds", 0.0f );
   }
 
+  //For Fiddler Attacks
+  if (et1.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH || et2.type == EntityCategory::E_CONCRETE)
+  {
+      auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id1);
+      AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(id1).position, {},{0,0,1},{0,1,0} });
+      audio.clip = "event:/Enemy/Fiddler/Pavement Smash";
+      AudioEngine::SetEventParameterByName(audio.id, "Ground Type", 1.0f);
+  }
+  else if (et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH)
+  {
+      auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id2);
+      AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(id2).position, {},{0,0,1},{0,1,0} });
+      audio.clip = "event:/Enemy/Fiddler/Pavement Smash";
+      AudioEngine::SetEventParameterByName(audio.id, "Ground Type", 1.0f);
+  }
+
+  if (et1.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH || et2.type == EntityCategory::E_MUD)
+  {
+      auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id1);
+      AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(id1).position, {},{0,0,1},{0,1,0} });
+      audio.clip = "event:/Enemy/Fiddler/Pavement Smash";
+      AudioEngine::SetEventParameterByName(audio.id, "Ground Type", 2.0f);
+  }
+  else if (et1.type == EntityCategory::E_MUD || et2.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH)
+  {
+      auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id2);
+      AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(id2).position, {},{0,0,1},{0,1,0} });
+      audio.clip = "event:/Enemy/Fiddler/Pavement Smash";
+      AudioEngine::SetEventParameterByName(audio.id, "Ground Type", 2.0f);
+  }
+	
 }
 
 void CollisionHandlerFunctions::PickupHealthOrb( EntityID &id1, EntityID &id2 )

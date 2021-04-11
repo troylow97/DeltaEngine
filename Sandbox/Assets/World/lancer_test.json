@@ -168,7 +168,7 @@
                 "Overall Angle": 0.0,
                 "Start Angle": 0.0,
                 "End Angle": 0.0,
-                "Flip X": false,
+                "Flip X": true,
                 "Flip Y": false
             },
             "Renderer2D": {
@@ -233,7 +233,8 @@
                 "Attack Upgrade Increase": 1,
                 "Health Upgrade Attack": 2,
                 "Dashing Timer Duration": 1.0,
-                "Fading Timer": 1.0
+                "Fading Timer": 1.0,
+                "UnMoveable Timer Duration": 0.5
             },
             "Input": {
                 "Previous": 1,
@@ -337,7 +338,7 @@
                 "Wireframe": false
             },
             "Animator": {
-                "Controller Key": "Animation/Fiddler",
+                "Controller Key": "Animation/Lancer",
                 "Speed": 1.0
             },
             "State": {},
@@ -346,7 +347,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_fiddler"
+                "AIState": "idle_lancer"
             },
             "Health": {
                 "Current Health": 100,
@@ -383,11 +384,13 @@
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
             },
-            "Fiddler": {
-                "DurationBeforeExitState": 1.0,
-                "FacePlayerTimer": 2.0,
-                "AttackDelay": 1.0,
-                "hasAttacked": false
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         },
         {
@@ -487,7 +490,7 @@
                 "Wireframe": false
             },
             "Animator": {
-                "Controller Key": "Animation/Fiddler",
+                "Controller Key": "Animation/Lancer",
                 "Speed": 1.0
             },
             "State": {},
@@ -496,7 +499,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
-                "AIState": "idle_fiddler"
+                "AIState": "idle_lancer"
             },
             "Health": {
                 "Current Health": 100,
@@ -533,11 +536,13 @@
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
             },
-            "Fiddler": {
-                "DurationBeforeExitState": 1.0,
-                "FacePlayerTimer": 2.0,
-                "AttackDelay": 1.0,
-                "hasAttacked": false
+            "Lancer": {
+                "ChargeDetectRange": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "TransitionTimer": 0.4000000059604645,
+                "HasEntered": false
             }
         }
     ]

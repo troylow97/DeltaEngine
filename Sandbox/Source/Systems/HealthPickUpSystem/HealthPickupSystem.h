@@ -16,15 +16,13 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(HealthPickupSystem,Collider, Lifespan, Transform, EntityType)
-    void Initialize() override;
-    void Update() override;
-    void LateUpdate() override;
-	
-    static void SpawnHealthOrbOnDeath(const Vector2 position);
+  DEFINE_SYSTEM(HealthPickupSystem,Collider, Lifespan, Transform, EntityType)
+  void Initialize() override;
+  void Update() override;
+  void LateUpdate() override;
+  static void SpawnHealthOrbOnDeath(const Vector2 position);
 private:
-    static float PickupChance;
-	
-    static EntityID SpawnHealthOrb(const Vector2 position);
-    END_DEFINE_SYSTEM(HealthPickupSystem)
+  static float PickupChance;
+  static EntityID SpawnHealthOrb(const Vector2 position);
+  END_DEFINE_SYSTEM(HealthPickupSystem)
 }

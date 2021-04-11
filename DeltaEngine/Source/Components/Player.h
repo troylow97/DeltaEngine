@@ -24,6 +24,8 @@ namespace DeltaEngine
     float DashingTimerCooldown; // timer
     float FadingTimer;
     float FadingCountdown;
+    float UnMoveableTimerDuration; // max
+    float UnMoveableTimerCooldown; // timer
     bool IsDead;
     bool IsRunning;
     bool IsJumping;
@@ -37,6 +39,7 @@ namespace DeltaEngine
     bool AllowJumping;
     bool AllowShooting;
     bool StartDashingTimer;
+    bool StartUnMoveableTimer;
     bool AllowDashing;
     bool DashDirectionRight;
     bool UpgradeAtk;
@@ -55,6 +58,8 @@ namespace DeltaEngine
       DashingTimerCooldown{1.0f},
       FadingTimer{1.0f},
       FadingCountdown{1.0f},
+      UnMoveableTimerDuration{0.5f},
+      UnMoveableTimerCooldown{0.5f},
       IsDead{false},
       IsRunning{false},
       IsJumping{false},
@@ -68,6 +73,7 @@ namespace DeltaEngine
       AllowJumping{true},
       AllowShooting{true},
       StartDashingTimer{false},
+      StartUnMoveableTimer{false},
       AllowDashing{true},
       DashDirectionRight{true},
       UpgradeAtk{false},

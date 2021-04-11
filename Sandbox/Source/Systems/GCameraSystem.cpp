@@ -21,7 +21,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
 void GCameraSystem::Update()
-{  }
+{
+}
 
 void GCameraSystem::LateUpdate()
 {

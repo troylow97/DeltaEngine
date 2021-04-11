@@ -199,10 +199,10 @@
                 "Invulnerable": false
             },
             "Attack": {
-                "Range Damage": 1,
-                "Melee Damage": 1,
-                "SMG Damage": 1,
-                "Melee Combo Damage": 3,
+                "Range Damage": 2,
+                "Melee Damage": 2,
+                "SMG Damage": 2,
+                "Melee Combo Damage": 6,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
@@ -233,7 +233,8 @@
                 "Attack Upgrade Increase": 1,
                 "Health Upgrade Attack": 2,
                 "Dashing Timer Duration": 1.0,
-                "Fading Timer": 1.0
+                "Fading Timer": 1.0,
+                "UnMoveable Timer Duration": 0.5
             },
             "Input": {
                 "Previous": 68,
@@ -382,6 +383,12 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Fiddler": {
+                "DurationBeforeExitState": 1.0,
+                "FacePlayerTimer": 2.0,
+                "AttackDelay": 1.0,
+                "hasAttacked": false
             }
         },
         {
@@ -1345,6 +1352,15 @@
                 "Start SMG Cooldown Timer": false,
                 "Start Combo Cooldown Timer": false,
                 "Damage Enemy": false
+            },
+            "Serpentipede": {
+                "CooldownTimer": 0.0,
+                "BurrownDownDuration": 1.0,
+                "BurrowUpDuration": 2.0,
+                "BurrowDownDelay": 0.4000000059604645,
+                "BurrowState": 0,
+                "CurrentPoint": 0,
+                "Attacking": false
             }
         }
     ]

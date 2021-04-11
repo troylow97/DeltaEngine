@@ -22,7 +22,6 @@ namespace DeltaEngine
     bool IsMouseOnRight();
     bool IsMouseOnTop();
     bool IsWithinRange(bool right);
-    //float CalculateAngleForSMG(bool facing_right);
     Vector2 CalculateGameCoordinate();
     Vector2 CalculateScreenCoordinate();
     Vector2 CalculateDirectionVector();

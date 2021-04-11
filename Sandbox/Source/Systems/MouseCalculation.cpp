@@ -30,7 +30,7 @@ namespace DeltaEngine
 
       FlipShooting();
 
-      if (IsMouseOnRight())// && IsWithinRange(true)) // mouse on right side of player
+      if (IsMouseOnRight()) // mouse on right side of player
       {
         if (AITools::isFacingRight(player_id)) // player facing right
         {
@@ -48,7 +48,7 @@ namespace DeltaEngine
 
       FlipShooting();
       
-      if (!IsMouseOnRight())// && IsWithinRange(false)) // mouse on left side of player
+      if (!IsMouseOnRight()) // mouse on left side of player
       {
         if (AITools::isFacingLeft(player_id)) // player facing left
         {
@@ -95,7 +95,7 @@ namespace DeltaEngine
         float dot_product = 1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y; // dot product between [x1, y1] and [x2, y2], x1*x2 + y1*y2
         float determinant = 1.0f * CalculateDirectionVector().y - 0.0f * CalculateDirectionVector().x;
         float angle = atan2(determinant, dot_product);
-        angle *= (180.0f / Math::pi);// 3.141592653589793238463f);
+        angle *= (180.0f / Math::pi);
         
         if (angle > -45.0f && angle < 45.0f)
         {
@@ -108,7 +108,7 @@ namespace DeltaEngine
         float dot_product = -1.0f * CalculateDirectionVector().x + 0.0f * CalculateDirectionVector().y; // dot product between [x1, y1] and [x2, y2], x1*x2 + y1*y2
         float determinant = -1.0f * CalculateDirectionVector().y - 0.0f * CalculateDirectionVector().x;
         float angle = atan2(determinant, dot_product);
-        angle *= (180.0f / Math::pi);// 3.141592653589793238463f);
+        angle *= (180.0f / Math::pi);
         
         if (angle > -45.0f && angle < 45.0f)
         {

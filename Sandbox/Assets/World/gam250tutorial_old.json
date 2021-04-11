@@ -20051,11 +20051,11 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
-                    "x": 250.47000122070313,
+                    "x": 161.92999267578126,
                     "y": -0.6899999976158142,
                     "z": 0.0
                 },
@@ -20092,7 +20092,7 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 19.09000015258789,
+                    "x": 300.0,
                     "y": 1.0
                 },
                 "Type": "box",
@@ -20107,7 +20107,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20163,7 +20163,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20219,7 +20219,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20275,7 +20275,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20331,7 +20331,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20387,7 +20387,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20443,7 +20443,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20499,7 +20499,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20555,7 +20555,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20667,7 +20667,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -20835,7 +20835,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -21006,7 +21006,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -22070,7 +22070,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -22518,7 +22518,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -22574,7 +22574,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -23190,7 +23190,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -23862,7 +23862,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "mud"
+                "Category": "none"
             },
             "Transform": {
                 "Position": {
@@ -23926,7 +23926,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24086,7 +24087,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": true
+                "Is Event": true,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24243,7 +24245,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24403,7 +24406,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24563,7 +24567,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24723,7 +24728,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -24883,7 +24889,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25043,7 +25050,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25203,7 +25211,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25363,7 +25372,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25523,7 +25533,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25683,7 +25694,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -25843,7 +25855,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26003,7 +26016,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26163,7 +26177,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26323,7 +26338,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26483,7 +26499,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26643,7 +26660,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26803,7 +26821,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -26963,7 +26982,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27123,7 +27143,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27281,7 +27302,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27441,7 +27463,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27599,7 +27622,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27759,7 +27783,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -27919,7 +27944,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28079,7 +28105,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28239,7 +28266,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28399,7 +28427,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28559,7 +28588,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28719,7 +28749,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -28877,7 +28908,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29037,7 +29069,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29197,7 +29230,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29357,7 +29391,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29517,7 +29552,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29677,7 +29713,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29837,7 +29874,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -29997,7 +30035,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30157,7 +30196,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30317,7 +30357,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30475,7 +30516,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30635,7 +30677,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -30795,7 +30838,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -37016,7 +37060,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 182.32000732421876,
+                    "x": 182.22000122070313,
                     "y": 5.388908863067627,
                     "z": 0.0
                 },
@@ -37083,7 +37127,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 192.50999450683595,
+                    "x": 192.39999389648438,
                     "y": 5.388908863067627,
                     "z": 0.0
                 },
@@ -37755,7 +37799,7 @@
                 "Position": {
                     "x": 291.32598876953127,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -37822,7 +37866,7 @@
                 "Position": {
                     "x": 19.986000061035158,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -37889,7 +37933,7 @@
                 "Position": {
                     "x": 28.305999755859376,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -37956,7 +38000,7 @@
                 "Position": {
                     "x": 37.486000061035159,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38023,7 +38067,7 @@
                 "Position": {
                     "x": 48.44599914550781,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38090,7 +38134,7 @@
                 "Position": {
                     "x": 57.92599868774414,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38157,7 +38201,7 @@
                 "Position": {
                     "x": 67.49600219726563,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38224,7 +38268,7 @@
                 "Position": {
                     "x": 76.98600006103516,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38294,7 +38338,7 @@
                 "Position": {
                     "x": 86.5459976196289,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38428,7 +38472,7 @@
                 "Position": {
                     "x": 106.16600036621094,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38495,7 +38539,7 @@
                 "Position": {
                     "x": 115.72599792480469,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38562,7 +38606,7 @@
                 "Position": {
                     "x": 125.2959976196289,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38629,7 +38673,7 @@
                 "Position": {
                     "x": 136.18600463867188,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38696,7 +38740,7 @@
                 "Position": {
                     "x": 145.70599365234376,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38763,7 +38807,7 @@
                 "Position": {
                     "x": 189.88600158691407,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38830,7 +38874,7 @@
                 "Position": {
                     "x": 181.0959930419922,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38897,7 +38941,7 @@
                 "Position": {
                     "x": 210.86599731445313,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -38964,7 +39008,7 @@
                 "Position": {
                     "x": 228.3459930419922,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -39031,7 +39075,7 @@
                 "Position": {
                     "x": 237.92599487304688,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 1.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -46546,7 +46590,7 @@
                 "Position": {
                     "x": 218.78599548339845,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -49409,7 +49453,7 @@
                 "Position": {
                     "x": 8.885988235473633,
                     "y": 2.9981045722961427,
-                    "z": -1.0
+                    "z": 0.0
                 },
                 "Scale": {
                     "x": 1.0,
@@ -52420,7 +52464,8 @@
                 "Pitch": 1.0,
                 "Loop": 0,
                 "Is Loop": true,
-                "Is Event": true
+                "Is Event": true,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -52454,7 +52499,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": true,
-                "Is Event": true
+                "Is Event": true,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -52473,174 +52519,6 @@
                     "z": 0.0,
                     "w": 1.0
                 }
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "mud"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 71.0199966430664,
-                    "y": -0.6899999976158142,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 161.92999267578126,
-                    "y": -0.6899999976158142
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 300.0,
-                    "y": 1.0
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "checkpoint"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 230.97000122070313,
-                    "y": -0.6899999976158142,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 161.92999267578126,
-                    "y": -0.6899999976158142
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 19.809999465942384,
-                    "y": 1.0
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": false
-            }
-        },
-        {
-            "Entity Name": {
-                "Name": "Collider"
-            },
-            "Entity Type": {
-                "Category": "checkpoint"
-            },
-            "Transform": {
-                "Position": {
-                    "x": 273.8999938964844,
-                    "y": -0.6899999976158142,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Rigidbody": {
-                "Mass": 20.0,
-                "Move Speed": 10.0,
-                "Restitution": 1.0,
-                "Friction Coefficient": 0.8500000238418579,
-                "Inherent Acceleration": 0.0,
-                "Max Acceleration": 40.0,
-                "Acceleration Pickup": 3.0,
-                "Gravity": false,
-                "Moveable": false
-            },
-            "Collider": {
-                "Center": {
-                    "x": 161.92999267578126,
-                    "y": -0.6899999976158142
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Size": {
-                    "x": 27.68000030517578,
-                    "y": 1.0
-                },
-                "Type": "box",
-                "Collision Layer": 11,
-                "Collision Layer ID": 1,
-                "Trigger": false,
-                "Platform": false
             }
         }
     ]

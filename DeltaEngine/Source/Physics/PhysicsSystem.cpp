@@ -10,8 +10,10 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "PhysicsSystem.h"
 #include "Core/GlobalStruct.h"
-#include "Core/GameClock/EngineClock.h"
+//#include "Core/GameClock/EngineClock.h"
 #include "Collision.h"
+#include "Systems/InputSystem.h"
+#include "../../Sandbox/Source/Systems/UnitManager.h"
 
 #include "Audio/AudioEngine.h"
 
@@ -151,34 +153,6 @@ namespace DeltaEngine
 
       	}
 
-      	
-      	//if(em.HasComponent<Player>(id1))
-      	//{
-        //    //Apply Friction -> when no input (prevents sliding)
-        //    if (c1.isCollidingOnFloor && static_cast<int>(r1.Direction.x) == 0)
-        //    {
-        //        const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-        //        const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-        //        r1.Velocity *= 0.8f;
-        //    }
-        //    else //Apply Friction normally
-        //    {
-        //        //if (c1.isCollidingOnFloor) //on ground
-        //        { //reason why the jump has increased x is due to this and the one on top
-        //            const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-        //            const Vector2 dragForceVector = (dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-        //            r1.Velocity += dragForceVector;
-        //        }
-        //        //else //in the air
-        //        //{
-        //        //    const float dragForceMagnitude = (r1.Velocity.Magnitude() * r1.FrictionCoeff);
-        //        //    const Vector2 dragForceVector = (0.4f * dragForceMagnitude * -(Normalise(r1.Velocity))) * env.pClock->FixedDeltaTime();
-        //        //    r1.Velocity += dragForceVector;
-        //        //}
-        //    }
-        //
-      	//}
-
         //Apply Soft Drag
         //r1.Velocity *= 0.96f;
 
@@ -217,23 +191,28 @@ namespace DeltaEngine
       else if (p.IsDodging && CurrentDashTicks < MaxDashTicks)
       {
         CurrentDashTicks++;
+        if (CurrentDashTicks == 1 && !InputSystem::GetGodMode())
+        {
+          auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
+          h.isInvulnerable = true;
+        }
         p.AllowPunching = false;
         p.AllowShooting = false;
         p.AllowRunning = false;
       	if(c.isCollidingOnFloor)
       	{
-            if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 5000 + r.Mass * 100, 0 };
-            else
-                r.AccumulatedForce -= Vector2{ 5000 + r.Mass * 100, 0 };
+          if (p.DashDirectionRight)
+            r.AccumulatedForce += Vector2{ 4000 + r.Mass * 100, 0 };
+          else
+            r.AccumulatedForce -= Vector2{ 4000 + r.Mass * 100, 0 };
       	}
         else //dashing in mid air
         {
-            if (p.DashDirectionRight)
-                r.AccumulatedForce += Vector2{ 500 + r.Mass * 100, 0 };
-            else
-                r.AccumulatedForce -= Vector2{ 500 + r.Mass * 100, 0 };
-            r.InherentAcceleration = 0.0f;
+          if (p.DashDirectionRight)
+            r.AccumulatedForce += Vector2{ 250 + r.Mass * 100, 0 };
+          else
+            r.AccumulatedForce -= Vector2{ 250 + r.Mass * 100, 0 };
+          r.InherentAcceleration = 0.0f;
         }
 
       }
@@ -252,10 +231,16 @@ namespace DeltaEngine
 
     if (CurrentDashTicks >= MaxDashTicks)
     {
+      auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
+      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
       //p.IsDashing = false;
       p.IsDodging = false;
-      CurrentDashTicks = 0;
       DashDelay = 0.5f;
+      if (!InputSystem::GetGodMode())
+        h.isInvulnerable = false;
+      r.Velocity.y = 0.0f;
+      s.SetBool("IsPanting", true);
+      CurrentDashTicks = 0;
     }
   }
 
@@ -292,6 +277,7 @@ namespace DeltaEngine
     else
       r.Acceleration = { 0, 0 };
   }
+  
   void PhysicsSystem::UpdateJumpAndDashDelay(Player& p)
   {
     if (DashDelay > 0.0f)

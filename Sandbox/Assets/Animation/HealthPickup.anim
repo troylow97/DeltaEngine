@@ -43,11 +43,4 @@ IsDead
 ? 1
 endTransition
 
-transition
-start
-Clip/HEALTH_PICKUP
-end
-Exit
-endTransition
-
 %endfile
