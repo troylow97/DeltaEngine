@@ -106,7 +106,7 @@ void IdleLancer::Update( EntityID &monster )
   if (!audio.isStart && !audio.isPlayed)
   {
     audio.clip = "event:/Enemy/Lancer/Lancer Master Idle";
-    AudioEngine::SetEventVolume(audio.id, 0.1f);
+    AudioEngine::SetEventVolume(audio.id, 0.05f);
     AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(monster).position, {},{0,0,1},{0,1,0} });
   }
 }
