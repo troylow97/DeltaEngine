@@ -50,6 +50,8 @@ namespace DeltaEngine
     EntityID vfx = em.CreateEntity<Animator, Renderer2D, Image, Lifespan, State, EntityName>();
     float random_x = Random::RandomFloatRange(-0.1f, 0.1f);
     float random_y = Random::RandomFloatRange(-0.1f, 0.1f);
+    float random_flip = Random::RandomIntRange(0, 2);
+    std::cout << random_flip << std::endl;
 
     if (em.GetComponent<Image>(player_id).m_FlipX == false)
     {
@@ -67,7 +69,7 @@ namespace DeltaEngine
     em.GetComponent<Image>(vfx).m_Sprite.m_Key = image; // e.g. "Textures/DAVE_HITFX"
     em.GetComponent<Image>(vfx).m_Sprite.m_Index = 0;
     em.GetComponent<Image>(vfx).m_Size = size;
-    em.GetComponent<Image>(vfx).m_FlipX = em.GetComponent<Image>(player_id).m_FlipX;
+    em.GetComponent<Image>(vfx).m_FlipX = random_flip;// em.GetComponent<Image>(player_id).m_FlipX;
     em.GetComponent<Lifespan>(vfx).Timer = duration;
     em.GetComponent<EntityType>(vfx).type = EntityCategory::E_VFX;
     em.GetComponent<Animator>(vfx).m_ControllerKey = animation; // e.g. "Animation/DaveHitVFX"
