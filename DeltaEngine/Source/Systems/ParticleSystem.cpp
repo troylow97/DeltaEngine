@@ -100,8 +100,8 @@ namespace DeltaEngine
                   ps.shapeTransform.position.y - ps.shapeTransform.scale.y,
                   ps.shapeTransform.position.y + ps.shapeTransform.scale.y),
                 Random::RandomFloatRange(
-                  ps.shapeTransform.position.z - ps.shapeTransform.scale.z,
-                  ps.shapeTransform.position.z + ps.shapeTransform.scale.z)
+                  ps.shapeTransform.position.z - 1,
+                  ps.shapeTransform.position.z + 1)
               );
               particle.velocity = Vector3::up();
               break;
@@ -133,6 +133,11 @@ namespace DeltaEngine
         //  if (ps.durationTimer <  burst.time &&
         //    ps.durationTimer + static_cast<float>(FixedDeltaTime()) > burst.time)
         //    Emit(burst.count);
+        em.ForEach([&](EntityID id, Transform& tr, Camera& c)
+          {
+            ps.shapeTransform.position = tr.position + Vector2(3.5f, -6.5f);
+            ps.shapeTransform.position.z = 0;
+          });
 
         ps.emissionTimer += static_cast<float>(FixedDeltaTime());
         ps.durationTimer += static_cast<float>(FixedDeltaTime());

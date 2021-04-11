@@ -58,6 +58,7 @@ void GameStateLoad( GameState state )
       current = GameState::TUTORIAL;
       world.Load( "World/gam250tutorial.json" );
       world.Load( "World/GameMenuScreen.json" );
+      world.Load( "World/ps.json" );
       MenuSystem::fadingIn = true;
       Camera::allCameras[0]->backgroundColor.a = 0;
       RespawnSystem::CreateCheckpoints(0);
@@ -69,6 +70,7 @@ void GameStateLoad( GameState state )
       current = GameState::LEVEL_1;
       world.Load( "World/gam250beta_t.json" );
       world.Load( "World/GameMenuScreen.json" );
+      world.Load( "World/ps.json" );
       MenuSystem::fadingIn = true;
       Camera::allCameras[0]->backgroundColor.a = 0;
       RespawnSystem::CreateCheckpoints(1);
