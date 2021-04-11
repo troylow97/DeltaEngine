@@ -1,5 +1,5 @@
 /**********************************************************************************
-* \file   UISystem.h
+* \file   GameState.h
 * \brief  The file contains the system for updating and displaying UI in the game
 * \author Chin, Clara,     70% Code Contribution
 * \author Low, Troy,       30% Code Contribution
