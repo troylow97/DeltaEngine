@@ -1,0 +1,40 @@
+frames 7
+fps 12
+loop 0
+
+Textures/LancerAttack_i_0
+key Textures/LancerAttack
+value 0
+frame 0
+
+Textures/LancerAttack_i_1
+key Textures/LancerAttack
+value 1
+frame 1
+
+Textures/LancerAttack_i_2
+key Textures/LancerAttack
+value 2
+frame 2
+
+Textures/LancerAttack_i_3
+key Textures/LancerAttack
+value 3
+frame 3
+
+Textures/LancerAttack_i_4
+key Textures/LancerAttack
+value 4
+frame 4
+
+Textures/LancerAttack_i_5
+key Textures/LancerAttack
+value 5
+frame 5
+
+Textures/LancerAttack_i_6
+key Textures/LancerAttack
+value 6
+frame 6
+
+%

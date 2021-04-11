@@ -30,7 +30,7 @@ namespace DeltaEngine
         if (!ParticleEmitter::particlePools.count(id))
         {
           ParticleEmitter::particlePools[id] = std::vector<ParticleEmitter::Particle>();
-          ParticleEmitter::particlePools[id].resize(100);
+          ParticleEmitter::particlePools[id].resize(101);
         }
 
         auto Emit = [&id, &ps](unsigned count)
@@ -39,6 +39,8 @@ namespace DeltaEngine
           {
             for (unsigned i = 0; i < ps.maxParticles; ++i)
             {
+              if (ps.particlePools[id].size() <= i)
+                break;
               if (!ps.particlePools[id][i].active)
                 return i;
             }
