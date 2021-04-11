@@ -173,7 +173,7 @@ Clip/DAVE_FIRE_ARM
 
 pos
 Clip/DAVE_LAND
-568 -341
+444 -518
 
 pos
 Clip/DAVE_PANTING
@@ -733,6 +733,26 @@ IsDashing
 condition
 IsRunning
 ? 0
+endTransition
+
+transition
+start
+Clip/DAVE_LAND
+end
+Clip/DAVE_JUMP
+condition
+VelocityY
+> 0
+endTransition
+
+transition
+start
+Clip/DAVE_LAND
+end
+Clip/DAVE_FALL
+condition
+VelocityY
+< 0
 endTransition
 
 %endfile

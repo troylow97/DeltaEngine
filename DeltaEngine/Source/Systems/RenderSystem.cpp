@@ -530,6 +530,7 @@ namespace DeltaEngine
               Mesh::DrawQuad();
 #endif // !DE_EDITOR
           });
+#ifdef DE_EDITOR  	
       if (Camera::allCameras.size())
       {
           Camera::finalFrameBuffer->Resize(static_cast<unsigned>(Camera::allCameras[0]->GetTrueViewportSize()),
@@ -573,6 +574,7 @@ namespace DeltaEngine
           });
 
       Camera::finalFrameBuffer->Unbind();
+#endif
 #ifdef DE_EDITOR  	
   }
 #endif

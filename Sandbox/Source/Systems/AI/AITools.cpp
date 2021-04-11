@@ -127,10 +127,10 @@ namespace DeltaEngine
         }
         else if (em.HasComponent<Serpentipede>(id))
         {
-          auto& audio_to_play = em.GetComponent<AudioSource>(id);
+          auto& audio = em.GetComponent<AudioSource>(id);
           AudioEngine::SetEventVolume(audio.id, 0.1f);
-          audio_to_play.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
-          AudioEngine::AudioSourcePlay3DEvent(audio_to_play, { trans.position, {},{0,0,1},{0,1,0} });
+          audio.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
+          AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
         }
       }
     }
@@ -151,10 +151,9 @@ namespace DeltaEngine
         }
         else if (em.HasComponent<Serpentipede>(id))
         {
-          auto& audio_to_play = em.GetComponent<AudioSource>(id);
           AudioEngine::SetEventVolume(audio.id, 0.1f);
-          audio_to_play.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
-          AudioEngine::AudioSourcePlay3DEvent(audio_to_play, { trans.position, {},{0,0,1},{0,1,0} });
+          audio.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
+          AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
         }
       }
     }
