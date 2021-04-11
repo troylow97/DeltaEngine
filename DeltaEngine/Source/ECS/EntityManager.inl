@@ -350,6 +350,8 @@ inline void EntityManager::SetParents( size_t parent, size_t child )
     it->second.push_back( child );
   else
     m_parents.push_back( { parent, {child} } );
+
+
 }
 
 inline std::vector<size_t> EntityManager::GetChildrens( size_t parent )
@@ -587,6 +589,11 @@ inline void EntityManager::EraseEntityChunk( DataChunk *chunk, size_t index )
             *static_cast<Toggle *>( ptr ) = *static_cast<Toggle *>( pop_ptr );
             break;
           }
+          case ComponentMeta::ComponentBits<Slider>() :
+          {
+            *static_cast<Slider *>( ptr ) = *static_cast<Slider *>( pop_ptr );
+            break;
+          }
           case ComponentMeta::ComponentBits<AudioSource>() :
           {
             *static_cast<AudioSource *>( ptr ) = *static_cast<AudioSource *>( pop_ptr );
@@ -710,6 +717,11 @@ inline void EntityManager::CloneEntityArchetype( EntityID new_id, EntityID id )
           *static_cast<Toggle *>( target ) = *static_cast<Toggle *>( current );
           break;
         }
+        case ComponentMeta::ComponentBits<Slider>() :
+        {
+          *static_cast<Slider *>( target ) = *static_cast<Slider *>( current );
+          break;
+        }
         case ComponentMeta::ComponentBits<AudioSource>() :
         {
           *static_cast<AudioSource *>( target ) = *static_cast<AudioSource *>( current );
@@ -803,6 +815,11 @@ inline void EntityManager::MoveEntityToArchetype( EntityID id, Archetype *arch )
             case ComponentMeta::ComponentBits<Toggle>() :
             {
               std::swap( *static_cast<Toggle *>( current ), *static_cast<Toggle *>( target ) );
+              break;
+            }
+            case ComponentMeta::ComponentBits<Slider>() :
+            {
+              std::swap( *static_cast<Slider *>( current ), *static_cast<Slider *>( target ) );
               break;
             }
             case ComponentMeta::ComponentBits<AudioSource>() :

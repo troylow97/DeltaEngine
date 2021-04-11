@@ -23,7 +23,6 @@ enum class GameState : unsigned
   CREDITS,
 };
 
-
 namespace DeltaEngine
 {
 void GameStateLoad( GameState state );

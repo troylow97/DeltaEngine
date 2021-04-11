@@ -1,8 +1,7 @@
 /**********************************************************************************
 * \file   VFXSystem.cpp
 * \brief  The file contains the system for getting upgrading the player's stat
-* \author Chin, Clara,       0% Code Contribution
-* \author Low , Troy ,       0% Code Contribution 
+* \author Chin, Clara,     100% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
@@ -26,7 +25,6 @@ namespace DeltaEngine
       if (player_attack.DamageEnemy)
       {
         ShowVFX++;
-        //std::cout << "ShowVFX is " << ShowVFX << std::endl;
         if (ShowVFX == 10)
         {
           ShowHitVFX(player_pos.position, { 1.2f, 1.2f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
@@ -43,13 +41,14 @@ namespace DeltaEngine
     // 
   }
   
-  void VFXSystem::ShowHitVFX(Vector3 pos, Vector2 size, std::string image, std::string animation, /*std::string animation_bool,*/ float duration)
+  void VFXSystem::ShowHitVFX(Vector3 pos, Vector2 size, std::string image, std::string animation, float duration)
   {
     auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
 
     EntityID vfx = em.CreateEntity<Animator, Renderer2D, Image, Lifespan, State, EntityName>();
-    float random_x = Random::RandomFloatRange(-0.1f, 0.1f);
-    float random_y = Random::RandomFloatRange(-0.1f, 0.1f);
+    const float random_x = Random::RandomFloatRange(-0.1f, 0.1f);
+    const float random_y = Random::RandomFloatRange(-0.1f, 0.1f);
+    const int random_flip = Random::RandomIntRange(0, 2);
 
     if (em.GetComponent<Image>(player_id).m_FlipX == false)
     {
@@ -67,10 +66,9 @@ namespace DeltaEngine
     em.GetComponent<Image>(vfx).m_Sprite.m_Key = image; // e.g. "Textures/DAVE_HITFX"
     em.GetComponent<Image>(vfx).m_Sprite.m_Index = 0;
     em.GetComponent<Image>(vfx).m_Size = size;
-    em.GetComponent<Image>(vfx).m_FlipX = em.GetComponent<Image>(player_id).m_FlipX;
+    em.GetComponent<Image>(vfx).m_FlipX = random_flip;// em.GetComponent<Image>(player_id).m_FlipX;
     em.GetComponent<Lifespan>(vfx).Timer = duration;
     em.GetComponent<EntityType>(vfx).type = EntityCategory::E_VFX;
     em.GetComponent<Animator>(vfx).m_ControllerKey = animation; // e.g. "Animation/DaveHitVFX"
-    //em.GetComponent<State>(vfx).SetBool(animation_bool, true);
   }
 }

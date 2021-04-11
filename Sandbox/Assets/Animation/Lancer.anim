@@ -81,7 +81,7 @@ Clip/LANCER_CHARGE
 
 pos
 Clip/LANCER_DMG
--32 256
+-74 314
 
 pos
 Clip/LANCER_DEATH
@@ -259,6 +259,42 @@ end
 Clip/LANCER_REACTION
 condition
 IsDead
+? 1
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_CHARGE
+endTransition
+
+transition
+start
+Clip/LANCER_CHARGE
+end
+Clip/LANCER_ALERT_IDLE
+condition
+IsAlerted
+? 1
+condition
+Charging
+? 0
+condition
+IsDead
+? 0
+endTransition
+
+transition
+start
+Clip/LANCER_ATTACK
+end
+Clip/LANCER_ALERT_IDLE
+condition
+Charging
+? 0
+condition
+IsAlerted
 ? 1
 endTransition
 

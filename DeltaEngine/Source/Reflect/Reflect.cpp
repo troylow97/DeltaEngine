@@ -303,16 +303,21 @@ namespace DeltaEngine
     rttr::registration::class_<AudioSource>( "Audio Source" )
       ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<AudioSource>()->bits ) )
       .constructor<>()( rttr::policy::ctor::as_object )
-      .property("Audio File", &AudioSource::clip)(rttr::policy::prop::bind_as_ptr )
-      .property( "Source ID", &AudioSource::id )(rttr::metadata("NO_SERIALIZE", true),
-                                                  (rttr::metadata("NO_EDITOR", true)))
+      .property( "Audio File", &AudioSource::clip )( rttr::policy::prop::bind_as_ptr )
+      .property( "Source ID", &AudioSource::id )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                  ( rttr::metadata( "NO_EDITOR", true ) ) )
       .property( "Volume", &AudioSource::volume )( rttr::policy::prop::bind_as_ptr )
       .property( "Pitch", &AudioSource::pitch )( rttr::policy::prop::bind_as_ptr )
       .property( "Loop", &AudioSource::loop )( rttr::policy::prop::bind_as_ptr )
       .property( "Is Loop", &AudioSource::isLoop )( rttr::policy::prop::bind_as_ptr )
       .property( "Is Event", &AudioSource::isEvent )( rttr::policy::prop::bind_as_ptr )
+      .property( "Is 3D", &AudioSource::is3D)(rttr::policy::prop::bind_as_ptr)
       .property("Is Start", &AudioSource::isStart)(rttr::metadata("NO_SERIALIZE", true),
-                                                    (rttr::metadata("NO_EDITOR", true)));
+                                                    (rttr::metadata("NO_EDITOR", true)))
+    .property("Is Playing", &AudioSource::isPlaying)(rttr::metadata("NO_SERIALIZE", true),
+                                                      (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Played", &AudioSource::isPlayed)(rttr::metadata("NO_SERIALIZE", true),
+                                                        (rttr::metadata("NO_EDITOR", true)));
 
 #pragma endregion  
     /*
@@ -362,6 +367,7 @@ namespace DeltaEngine
     rttr::registration::class_<Slider>("Slider")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Slider>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
+      .property("On Change", &Slider::on_change)(rttr::policy::prop::bind_as_ptr )
       .property("Fill Entity", &Slider::fill_entity)(rttr::policy::prop::bind_as_ptr)
       .property("Handle Entity", &Slider::handle_entity)(rttr::policy::prop::bind_as_ptr)
       .property("Min", &Slider::min)(rttr::policy::prop::bind_as_ptr)
@@ -669,6 +675,8 @@ namespace DeltaEngine
       .property("Dashing Timer Cooldown", &Player::DashingTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Fading Timer", &Player::FadingTimer)(rttr::policy::prop::bind_as_ptr)
       .property("Fading Countdown", &Player::FadingCountdown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("UnMoveable Timer Duration", &Player::UnMoveableTimerDuration)(rttr::policy::prop::bind_as_ptr)
+      .property("UnMoveable Timer Cooldown", &Player::UnMoveableTimerCooldown)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Dead", &Player::IsDead)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Running", &Player::IsRunning)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Is Jumping", &Player::IsJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
@@ -682,6 +690,7 @@ namespace DeltaEngine
       .property("Allow Jumping", &Player::AllowJumping)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Allow Shooting", &Player::AllowShooting)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Start Dashing Timer", &Player::StartDashingTimer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
+      .property("Start UnMoveable Timer", &Player::StartUnMoveableTimer)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Allow Dashing", &Player::AllowDashing)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Dash Direction", &Player::DashDirectionRight)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
       .property("Upgrade Attack", &Player::UpgradeAtk)(rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
@@ -1128,8 +1137,8 @@ namespace DeltaEngine::RT_Reflect
     else if (str == "Slider")
     {
       em.AddComponent<Slider>(id, var.get_value<Slider>());
-      em.GetComponent<Slider>( id ).fill_entity += p_adj;
-      em.GetComponent<Slider>( id ).handle_entity += p_adj;
+      em.GetComponent<Slider>( id ).fill_entity += static_cast<unsigned int>(p_adj);
+      em.GetComponent<Slider>( id ).handle_entity += static_cast<unsigned int>(p_adj);
     }
     else if (str == "Cursor")
       em.AddComponent<Cursor>(id, var.get_value<Cursor>());

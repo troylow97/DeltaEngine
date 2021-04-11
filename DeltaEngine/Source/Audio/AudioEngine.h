@@ -54,9 +54,11 @@ namespace DeltaEngine
 
 
     static void AudioSourcePlay( struct AudioSource & );
+    static void AudioSourcePlay3D( struct AudioSource &, const Vector3& pos );
     static void AudioSourcePlay2DEvent( struct AudioSource &, ParametersMap = ParametersMap() );
     static void AudioSourcePlay3DEvent( struct AudioSource &, Audio3DAttributes attributes, ParametersMap = ParametersMap() );
     static void StopAllAudio();
+    static void SetMasterVolume(float volume);
 
     // Core 
     static void LoadSound(const std::string& name, bool loop = false, bool stream = false, bool is3D = false); // shift

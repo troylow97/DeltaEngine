@@ -25,7 +25,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-	
+bool play { false };
 	void LevelManager::Update()
 	{
 		switch(GameStateCurrent())
@@ -60,7 +60,13 @@ namespace DeltaEngine
 			}
 			case GameState::CUTSCENE_INTRO:
 			{
-				Cutscene::timer += DeltaTimef() * 2;
+				for ( auto i = 0u; i < GetEnv().pClock->Timesteps(); ++i )
+					Cutscene::timer += FixedDeltaTimef() * 2;
+				if ( !play )
+				{
+					AudioEngine::SetEventVolume( AudioEngine::Play2DEvent( "event:/Opening Cutscene/Overall Cutscene controller" ), 0.2f );
+					play = true;
+				}
 				if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
 				{
 					++Cutscene::frame;
@@ -70,6 +76,7 @@ namespace DeltaEngine
 					Cutscene::frame > 9 && Cutscene::timer > 1)
 				{
 					GameStateLoad(GameState::TUTORIAL);
+					play = false;
 				}
 				break;
 			}
@@ -142,7 +149,13 @@ namespace DeltaEngine
 			}
 			case GameState::CUTSCENE_END:
 			{
-				Cutscene::timer += DeltaTimef() * 2;
+				for ( auto i = 0u; i < GetEnv().pClock->Timesteps(); ++i )
+					Cutscene::timer += FixedDeltaTimef() * 2;
+				if ( !play )
+				{
+					AudioEngine::SetEventVolume( AudioEngine::Play2DEvent( "event:/Ending Cutscene/Overall Ending Cutscene" ), 0.2f );
+					play = true;
+				}
 				if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
 				{
 					++Cutscene::frame;
@@ -152,6 +165,7 @@ namespace DeltaEngine
 					Cutscene::frame > 5 && Cutscene::timer > 1)
 				{
 					GameStateLoad(GameState::CREDITS);
+					play = false;
 				}
 				break;
 			}

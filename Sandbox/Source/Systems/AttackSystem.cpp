@@ -11,273 +11,196 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "AttackSystem.h"
 #include "UnitManager.h"
-#include "Core/GameClock/EngineClock.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "Audio/AudioEngine.h"
 #include "Core/Utils/Random.h"
 #include "MouseCalculation.h"
 #include "AI/AITools.h"
+#include "../Source/Systems/InputSystem.h"
 
 namespace DeltaEngine
 {
   void AttackSystem::Update()
   {
-  	if(em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
-  	{
-  	  //DASH
-      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
-      auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-      auto& h = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(UnitManager::GetPlayerID());
-
-      if (a.CurrentDodgeCooldown > 0.0f)
-          a.CurrentDodgeCooldown -= env.pClock->FixedDeltaTime();
-  		
-      if (/*p.IsDashing || */p.IsDodging)
+      for (size_t step = 0; step < env.pClock->Timesteps(); ++step)
       {
-        em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
-        p.StartDashingTimer = true;
-        a.CurrentDodgeCooldown = a.DodgeCooldown;
-      }
-      if (p.StartDashingTimer)
-      {
-        p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
-        p.AllowDashing = false;
-        h.isInvulnerable = true;
-      }
-      if (p.DashingTimerCooldown <= 0.0f)
-      {
-        p.StartDashingTimer = false;
-        p.DashingTimerCooldown = p.DashingTimerDuration;
-        h.isInvulnerable = false;
-        p.AllowDashing = true;
-        s.SetBool("LancerAttack", false);
-      }
-    //  Dash();
-      
-  	  //SMG
-     // auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
-     // 
-     // if (a.SMGAttack && a.SMGFireRate <= 0.0f && p.AllowShooting)
-     // {
-     //   // em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true); // set animation
-     //   //p.StartDashingTimer = true;
-     //   EntityID player = UnitManager::GetPlayerID();
-     //   SMGAttack(player);
-     // }
-     // em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
-     // {
-     //   if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
-     //     r2d.m_Active = a.SMGAttack;
-     //   if (et.type == EntityCategory::E_PLAYER)
-     //     r2d.m_Active = !a.SMGAttack;
-     // });
-     // if (a.SMGAttack)
-     // {
-     //   a.StartSMGCooldownTimer = true;
-     //   em.ForEach([&](EntityID& id, EntityType& et, Transform& t, Image& im, Animator& anim, Renderer2D& r2d)
-     //   {
-     //     if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE || et.type == EntityCategory::E_PLAYER_BODYPART)
-     //     {
-     //       auto& player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(UnitManager::GetPlayerID());
-     //       auto& player_bodypart_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id);
-     // 
-     //       player_bodypart_pos.position.x = player_pos.position.x;
-     //       player_bodypart_pos.position.y = player_pos.position.y;
-     // 
-     //       if (et.type == EntityCategory::E_PLAYER_BODYPART_ROTATABLE)
-     //       {
-     //         if (MouseCalculation::IsWithinRange(true) || MouseCalculation::IsWithinRange(false))
-     //         {
-     //           Vector2 direction = { MouseCalculation::CalculateDirectionVector().x, MouseCalculation::CalculateDirectionVector().y }; // CalculateDirectionVectorToShoot
-     //           direction.Normalize();
-     //           float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-     //           player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-     //         }
-     //         else if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == false)
-     //         {
-     //           Vector2 direction = { MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
-     //           direction.Normalize();
-     //           float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-     //           player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-     //         }
-     //         else if (MouseCalculation::ShootLeft() && MouseCalculation::IsWithinRange(false) == false)
-     //         {
-     //           Vector2 direction = { -MouseCalculation::CalculateDirectionVectorToShoot().x, MouseCalculation::CalculateDirectionVectorToShoot().y };
-     //           direction.Normalize();
-     //           float angle = std::atan(direction.y / direction.x) * 180 / Math::pi;
-     //           player_bodypart_pos.rotation = Quaternion::AngleAxis(angle * -1.0f, Vector3::forward());
-     //         }
-     //         else
-     //           player_bodypart_pos.rotation = Quaternion::Identity();
-     // 
-     //         auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
-     //         auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
-     //         player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
-     //         player_bodypart_image.m_FlipY = true;
-     //       }
-     //       else
-     //       {
-     //         auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(UnitManager::GetPlayerID());
-     //         auto& player_bodypart_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id);
-     //         player_bodypart_image.m_FlipX = player_image.m_FlipX * -1;
-     //         player_bodypart_image.m_FlipY = false;
-     //       }
-     //     }
-     //   });
-     // }
-     // if (a.StartSMGCooldownTimer)
-     // {
-     //   if (a.SMGFireRate >= 0.0f)
-     //   {
-     //     a.SMGFireRate -= env.pClock->FixedDeltaTime();
-     //     a.AllowSMGAttack = false;
-     //   }
-     //   else
-     //   {
-     //     a.SMGFireRate = a.SMGCooldown;
-     //     a.AllowSMGAttack = true;
-     //     a.StartSMGCooldownTimer = false;
-     //   }
-     // }
-  	}
-
-    // melee and ranged attack ----------------------------------------------------------------------------------
-    em.ForEach([&](EntityID& id,EntityType et, RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
-    {
-      //Reduce Cooldowns   	
-      if (a.MeleeCooldownTimer > -0.2f)
-        a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
-
-      if (a.RangeCooldownTimer > -0.2f)
-        a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
-
-      if(a.AttackDelay > 0.0f)
-        a.AttackDelay -= env.pClock->FixedDeltaTime();
-
-      //Toggle Ranged Attack
-      if (a.RangeAttack && a.RangeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
-      {
-        em.GetComponent<State>(id).SetBool("Ranged", true);
-        RangedAttackingEntities.push_back(id);
-        a.RangeCooldownTimer = a.RangeCooldown;
-        a.RangeAttack = false;
-      }
-      if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
-          em.GetComponent<State>(id).SetBool("Ranged", false);
-      
-      //FlipPunching();
-
-      //Toggle Player Melee Attack
-      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f)
-      {
-        if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f && a.ComboCooldownTimer > 0.0f)
-        {  	
-          ++a.NumberOfCombos;
-          a.ComboCooldownTimer = a.ComboDuration;
-          a.StartComboCooldownTimer = true;
-
-          if (a.NumberOfCombos == 1)
+          if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
           {
-            st.SetBool("Punch1", true);
-            st.SetBool("Punch2", false);
-            st.SetBool("Punch3", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 1);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
+              //DASH
+              auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+              auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+              auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+
+              if (a.CurrentDodgeCooldown > 0.0f)
+                  a.CurrentDodgeCooldown -= env.pClock->FixedDeltaTime();
+
+              if (p.IsDodging)
+              {
+                  em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
+                  p.StartDashingTimer = true;
+                  p.StartUnMoveableTimer = true;
+                  a.CurrentDodgeCooldown = a.DodgeCooldown;
+              }
+              if (p.StartDashingTimer)
+              {
+                  p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
+                  p.AllowDashing = false;
+              }
+              if (p.DashingTimerCooldown <= 0.0f)
+              {
+                  p.StartDashingTimer = false;
+                  p.DashingTimerCooldown = p.DashingTimerDuration;
+                  p.AllowDashing = true;
+                  s.SetBool("LancerAttack", false);
+              }
+              if (p.StartUnMoveableTimer)
+              {
+                  p.UnMoveableTimerCooldown -= env.pClock->FixedDeltaTime();
+                  p.AllowRunning = false;
+              }
+              if (p.UnMoveableTimerCooldown <= 0.0f)
+              {
+                  p.StartUnMoveableTimer = false;
+                  p.UnMoveableTimerCooldown = p.UnMoveableTimerDuration;
+                  p.AllowRunning = true;
+                  s.SetBool("IsPanting", false);
+              }
           }
-          else if (a.NumberOfCombos == 2)
+
+          // melee and ranged attack ----------------------------------------------------------------------------------
+          em.ForEach([&](EntityID& id, EntityType et, RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
+              {
+                  //Reduce Cooldowns   	
+                  if (a.MeleeCooldownTimer > -0.2f)
+                      a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
+
+                  if (a.RangeCooldownTimer > -0.2f)
+                      a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
+
+                  if (a.AttackDelay > 0.0f)
+                      a.AttackDelay -= env.pClock->FixedDeltaTime();
+
+                  //Toggle Ranged Attack
+                  if (a.RangeAttack && a.RangeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
+                  {
+                      em.GetComponent<State>(id).SetBool("Ranged", true);
+                      RangedAttackingEntities.push_back(id);
+                      a.RangeCooldownTimer = a.RangeCooldown;
+                      a.RangeAttack = false;
+                  }
+                  if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
+                      em.GetComponent<State>(id).SetBool("Ranged", false);
+
+                  //FlipPunching();
+
+                  //Toggle Player Melee Attack
+                  if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f)
+                  {
+                      if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f && a.ComboCooldownTimer > 0.0f)
+                      {
+                          ++a.NumberOfCombos;
+                          a.ComboCooldownTimer = a.ComboDuration;
+                          a.StartComboCooldownTimer = true;
+                          if (a.NumberOfCombos == 1)
+                          {
+                              st.SetBool("Punch1", true);
+                              st.SetBool("Punch2", false);
+                              st.SetBool("Punch3", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 1);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                          }
+                          else if (a.NumberOfCombos == 2)
+                          {
+                              st.SetBool("Punch2", true);
+                              st.SetBool("Punch1", false);
+                              st.SetBool("Punch3", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 2);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                          }
+                          else if (a.NumberOfCombos == 3)
+                          {
+                              st.SetBool("Punch1", true);
+                              st.SetBool("Punch2", false);
+                              st.SetBool("Punch3", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 1);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                          }
+                          else if (a.NumberOfCombos == 4)
+                          {
+                              st.SetBool("Punch2", true);
+                              st.SetBool("Punch1", false);
+                              st.SetBool("Punch3", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 2);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                          }
+                          else if (a.NumberOfCombos == a.MaxComboNumber)
+                          {
+                              st.SetBool("Punch3", true);
+                              st.SetBool("Punch1", false);
+                              st.SetBool("Punch2", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 3);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                              a.NumberOfCombos = 0;
+                              a.AttackDelay = 0.65f;
+                              a.StartComboCooldownTimer = false;
+                              a.ComboCooldownTimer = a.ComboDuration;
+                          }
+                      }
+                      else if (et.type != EntityCategory::E_PLAYER)
+                      {
+                          MeleeAttackingEntities.push_back(id);
+                          a.MeleeCooldownTimer = a.MeleeCooldown;
+                          a.MeleeAttack = false;
+                      }
+                      else if (a.AttackDelay < 0.3f)
+                      {
+                          st.SetBool("Punch3", false);
+                      }
+                  }
+              });
+
+          // reset combo back to 0 for player
+          if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
           {
-            st.SetBool("Punch2", true);
-            st.SetBool("Punch1", false);
-            st.SetBool("Punch3", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 2);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
+              auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+              auto& st = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+              if (a.StartComboCooldownTimer)
+              {
+                  a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
+                  if (a.ComboCooldownTimer < 0.0f)
+                  {
+                      st.SetBool("Punch1", false);
+                      st.SetBool("Punch2", false);
+                      st.SetBool("Punch3", false);
+                      st.SetBool("IsIdle", true);
+                      a.NumberOfCombos = 0;
+                      a.StartComboCooldownTimer = false;
+                      a.ComboCooldownTimer = a.ComboDuration;
+                  }
+              }
           }
-          else if (a.NumberOfCombos == 3)
+
+          for (auto& id1 : RangedAttackingEntities)
           {
-            st.SetBool("Punch1", true);
-            st.SetBool("Punch2", false);
-            st.SetBool("Punch3", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 1);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
+              RangedAttack(id1);
           }
-          else if (a.NumberOfCombos == 4)
+
+          for (auto& id1 : MeleeAttackingEntities)
           {
-            st.SetBool("Punch2", true);
-            st.SetBool("Punch1", false);
-            st.SetBool("Punch3", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 2);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
+              MeleeAttack(id1);
           }
-          else if (a.NumberOfCombos == a.MaxComboNumber)
-          {
-            st.SetBool("Punch3", true);
-            st.SetBool("Punch1", false);
-            st.SetBool("Punch2", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 3);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
-            a.NumberOfCombos = 0;
-            a.AttackDelay = 0.65f;
-            a.StartComboCooldownTimer = false;
-            a.ComboCooldownTimer = a.ComboDuration;
-          }
-        }
-        else if(et.type != EntityCategory::E_PLAYER)
-        {
-          MeleeAttackingEntities.push_back(id);
-          a.MeleeCooldownTimer = a.MeleeCooldown;
-          a.MeleeAttack = false;
-        }
-        else if(a.AttackDelay < 0.3f)
-        {
-          st.SetBool("Punch3", false);
-        }
       }
-    });
- 
-    // reset combo back to 0 for player
-    if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
-    {
-      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
-      auto& st = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-      if (a.StartComboCooldownTimer)
-      {
-        a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
-        if (a.ComboCooldownTimer < 0.0f)
-        {
-          st.SetBool("Punch1", false);
-          st.SetBool("Punch2", false);
-          st.SetBool("Punch3", false);
-          st.SetBool("IsIdle", true);
-          a.NumberOfCombos = 0;
-          a.StartComboCooldownTimer = false;
-          a.ComboCooldownTimer = a.ComboDuration;
-        }
-      }
-    }
-
-
-    for (auto& id1 : RangedAttackingEntities)
-    {
-      RangedAttack(id1);
-    }
-
-    for (auto& id1 : MeleeAttackingEntities)
-    {
-      MeleeAttack(id1);
-    }
-
     RangedAttackingEntities.clear();
     MeleeAttackingEntities.clear();
     Profiler::Instance().Record("Attack System");
@@ -289,62 +212,30 @@ namespace DeltaEngine
 
   void AttackSystem::RangedAttack(EntityID& id)
   {
-    //if (em.GetComponent<EntityType>(id).type == EntityCategory::E_PLAYER)
-    //{
-    //  EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, true, 0.35f, EntityCategory::E_PLAYER_BULLET);
-    //  EntityID missile2 = CreateProjectile(id, Vector2{1.7f, 1.7f}, true, 0.35f,
-    //                                       EntityCategory::E_PLAYER_BULLET_DETECTION);
-    //  em.AddComponent<Renderer2D>(missile);
-    //  em.AddComponent<Image>(missile);
-    //  em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-    //  em.GetComponent<Image>(missile).m_Size = {0.6f, 0.6f};
-    //  em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_HEAD_AIM";
-    //  em.GetComponent<Image>(missile).m_Sprite.m_Index = 0;
-    //  em.GetComponent<State>(id).SetBool("Ranged", true);
-    //  static size_t c_id{u64_max};
-    //  AudioEngine::Play2DEvent( "event:/Player/PlayerJump" );
-    //
-    //
-    //  if (em.GetComponent<Image>(id).m_FlipX == false)
-    //  {
-    //    em.GetComponent<Transform>(missile).position.x += 0.4f;
-    //    em.GetComponent<RigidBody>(missile).AccumulatedForce = {8000, 3500};
-    //  }
-    //  else
-    //  {
-    //    em.GetComponent<Transform>(missile).position.x -= 0.4f;
-    //    em.GetComponent<RigidBody>(missile).AccumulatedForce = {-8000, 3500};
-    //  }
-    //}
-    //else if (em.GetComponent<EntityType>(id).type == EntityCategory::E_ENEMY)
+    EntityID missile = CreateProjectile(id, Vector2{ 1.0f, 1.0f }, false, 1.7f, EntityCategory::E_ENEMY_BULLET);
+    Vector2 direction_to_shoot = { CalculateAttackDirection(id).x, CalculateAttackDirection(id).y };
+    Transform& enemy_pos = em.GetComponent<Transform>(id);
+    Collider& enemy_collider = em.GetComponent<Collider>(id);
+    em.AddComponent<Renderer2D>(missile);
+    em.AddComponent<Image>(missile);
+    em.AddComponent<Animator>(missile);
+    em.AddComponent<State>(missile);
+    em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
+    em.GetComponent<Image>(missile).m_Size = { 0.5f, 0.5f };
+    em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
+    em.GetComponent<Animator>(missile).m_ControllerKey = "Animation/SerpBullet";
+    em.GetComponent<State>(missile).SetBool("IsDead", false);
+    em.GetComponent<Transform>(missile).position = { enemy_pos.position.x, enemy_pos.position.y + (enemy_collider.size.y / 2 * 0.75f), enemy_pos.position.z };
+    
+    if (em.GetComponent<Image>(id).m_FlipX == false)
     {
-      EntityID missile = CreateProjectile(id, Vector2{ 1.0f, 1.0f }, false, 1.7f, EntityCategory::E_ENEMY_BULLET);
-      Vector2 direction_to_shoot = { CalculateAttackDirection(id).x, CalculateAttackDirection(id).y };
-      Transform& enemy_pos = em.GetComponent<Transform>(id);
-      Collider& enemy_collider = em.GetComponent<Collider>(id);
-      em.AddComponent<Renderer2D>(missile);
-      em.AddComponent<Image>(missile);
-      em.AddComponent<Animator>(missile);
-      em.AddComponent<State>(missile);
-      em.GetComponent<Renderer2D>(missile).m_SortingLayer = 4;
-      em.GetComponent<Image>(missile).m_Size = { 0.5f, 0.5f };
-      em.GetComponent<Image>(missile).m_Sprite.m_Key = "Textures/SERP_BULLET";
-      em.GetComponent<Animator>(missile).m_ControllerKey = "Animation/SerpBullet";
-      //em.GetComponent<RigidBody>(missile).Mass = 0.2f;
-      em.GetComponent<Transform>(missile).position = { enemy_pos.position.x, enemy_pos.position.y + (enemy_collider.size.y / 2 * 0.75f), enemy_pos.position.z };
-
-      if (em.GetComponent<Image>(id).m_FlipX == false)
-      {
-        //em.GetComponent<Transform>(missile).position.x += 0.4f;
-        em.GetComponent<Transform>(missile).position.y -= 0.2f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 3000, direction_to_shoot.y * 3000 }; // -7000, -2500
-      }
-      else
-      {
-        //em.GetComponent<Transform>(missile).position.x -= 0.4f;
-        em.GetComponent<Transform>(missile).position.y -= 0.2f;
-        em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 3000, direction_to_shoot.y * 3000 }; //  7000, -2500
-      }
+      em.GetComponent<Transform>(missile).position.y -= 0.2f;
+      em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 3000, direction_to_shoot.y * 3000 }; // -7000, -2500
+    }
+    else
+    {
+      em.GetComponent<Transform>(missile).position.y -= 0.2f;
+      em.GetComponent<RigidBody>(missile).AccumulatedForce = { direction_to_shoot.x * 3000, direction_to_shoot.y * 3000 }; //  7000, -2500
     }
   }
 
@@ -377,6 +268,9 @@ namespace DeltaEngine
     {
       if (em.GetComponent<RigidBody>(id).hasGravity == false)
       {
+        if (em.GetComponent<Animator>(id).m_ClipKey == "Clip/LANCER_DMG") //do not attack if damaged
+            return;
+      	
         unsigned rand_sound = Random::RandomIntRange(0, 3);
         switch (rand_sound)
         {
@@ -399,18 +293,17 @@ namespace DeltaEngine
         em.GetComponent<Transform>(missile).position = monster_pos + kb.Normalize() * 0.5f;
         em.GetComponent<RigidBody>(missile).AccumulatedForce += kb.Normalize() * 400.0f;
         em.GetComponent<RigidBody>(missile).Velocity = em.GetComponent<RigidBody>(id).Velocity;
-        //
-        ////Apply knockback to lancer
-        //em.GetComponent<RigidBody>(id).AccumulatedForce += -kb.Normalize() * 8000.0f;
       }
       else
-      {  	
-        static size_t c_id{u64_max};
-        if (AudioEngine::IsChannelPlaying(c_id))
-          AudioEngine::StopChannel(c_id);
-        c_id = AudioEngine::Play2DEvent("event:/Enemy/Fiddler/Pavement Smash");
-        EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, false, 0.3f,
+      {
+        if (em.GetComponent<Animator>(id).m_ClipKey == "Clip/FID_DMG") //do not attack if damaged
+            return;
+      	
+        EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.6f}, false, 0.3f,
                                             EntityCategory::E_ENEMY_FIDDLER_PUNCH);
+        em.GetComponent<Transform>(missile).position.y -= 0.2f;
+      	
+        em.AddComponent<AudioSource>(missile);
         if (em.GetComponent<Image>(id).m_FlipX == true)
         {
           em.GetComponent<Transform>(missile).position.x += 0.5f;
@@ -438,12 +331,6 @@ namespace DeltaEngine
       em.GetComponent<Image>(smgbullet).m_Size = { 0.25f, 0.25f };
       em.GetComponent<Image>(smgbullet).m_Sprite.m_Key = "Textures/DAVE_BULLET"; 
       em.GetComponent<Image>(smgbullet).m_Sprite.m_Index = 0;
-
-      ////// em.GetComponent<State>(id).SetBool("Ranged", true); // change when have the animation 
-      //////static size_t c_id{ u64_max };
-      //////if (AudioEngine::IsChannelPlaying(c_id))
-      //////  AudioEngine::StopChannel(c_id);
-      //////c_id = AudioEngine::Play("Audio/SWORD_GEN-HDF-22317.wav");
       
       if (MouseCalculation::ShootRight() && MouseCalculation::IsWithinRange(true) == true)
       {

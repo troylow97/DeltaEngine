@@ -59,6 +59,7 @@ namespace DeltaEngine
       {
         EntityID player = UnitManager::GetPlayerID();
 
+      	//Check if player is in any gauntlet
         for (auto i = 0; i < list.Gauntlets.size(); ++i)
         {
           auto& Gauntlet = list.Gauntlets[i];
@@ -73,14 +74,23 @@ namespace DeltaEngine
           }
         }
 
+      	//Activate gauntlet
         if (GauntletIsActive)
         {
-          if (CheckForOutsideEnemies())
+          //If player dies, a json file is loaded so just reset all the stuff
+          if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(player).IsDead)
+          {
+            GauntletIsActive = false;
+            list.Gauntlets[CurrentGauntlet].isActivated = false;
+            list.Gauntlets[CurrentGauntlet].isFinished = false;
+            list.Gauntlets[CurrentGauntlet].CurrentEnemyWave = 0;
+            ActivateGauntlet = true;
             return;
+          }
 
           for (auto it = SpawnedEnemiesInGauntlet.begin(); it != SpawnedEnemiesInGauntlet.end();)
           {
-            if (!env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(*it))
+            if (!env.pECS->GetWorld().GetEntityManager().IsEntityValid(*it))
             {
               it = SpawnedEnemiesInGauntlet.erase(it);
               continue;
@@ -101,7 +111,7 @@ namespace DeltaEngine
             auto& CurrentWave = Gauntlet.CurrentEnemyWave;
             //lock player camera
 
-            if (CurrentWave < list.Gauntlets[CurrentGauntlet].EnemyWaves.size())
+            if (CurrentWave < Gauntlet.EnemyWaves.size())
             {
               if (CurrentWave == 0)
               {
@@ -122,8 +132,6 @@ namespace DeltaEngine
             }
             else
             {
-              //em.DestroyEntity(GauntletWalls[0]);
-              //em.DestroyEntity(GauntletWalls[1]);
               env.pECS->GetWorld().GetEntityManager().AddComponent<Lifespan>(GauntletWalls[0]);
               env.pECS->GetWorld().GetEntityManager().GetComponent<Lifespan>(GauntletWalls[0]).Timer = 1.0f;
               env.pECS->GetWorld().GetEntityManager().AddComponent<Lifespan>(GauntletWalls[1]);
@@ -218,6 +226,7 @@ namespace DeltaEngine
       em.AddComponent<Health>(enemy);
       em.AddComponent<Renderer2D>(enemy);
       em.AddComponent<Animator>(enemy);
+      em.AddComponent<AudioSource>(enemy);
 
       em.GetComponent<Renderer2D>(enemy).m_Wireframe = false;
       em.GetComponent<Transform>(enemy).position = position + rand1;
@@ -225,7 +234,6 @@ namespace DeltaEngine
       em.GetComponent<EntityType>(enemy).type = EntityCategory::E_ENEMY;
       em.GetComponent<Collider>(enemy).CollisionLayerID = 4;
       em.GetComponent<Collider>(enemy).CollisionLayerCheck = 9;
-      //env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Dave";
       env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>(enemy).m_SortingLayer = 4;
 
       env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(enemy).MaxAcceleration = 0;

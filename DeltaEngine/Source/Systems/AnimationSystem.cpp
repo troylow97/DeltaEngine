@@ -118,7 +118,6 @@ namespace DeltaEngine
                 i.m_Sprite = newSprite;
             }
           }
-          //std::cerr << a.m_ClipKey << ": " << a.m_LoopsCompleted << std::endl;
         });
     Profiler::Instance().Record("Animation System");
   }

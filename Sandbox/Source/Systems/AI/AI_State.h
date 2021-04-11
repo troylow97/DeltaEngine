@@ -84,40 +84,38 @@ namespace DeltaEngine
 
   class GotHitEnemyLancer : public AIState
   {
-
   public:
-      GotHitEnemyLancer();
-      void onEnter(EntityID& id) override;
-      void onExit(EntityID& id) override;
-      void Update(EntityID& id1) override;
+    GotHitEnemyLancer();
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
   };
 
   class ChargingEnemyLancer : public AIState
   {
-
   public:
-      ChargingEnemyLancer();
-      void onEnter(EntityID& id) override;
-      void onExit(EntityID& id) override;
-      void Update(EntityID& id1) override;
+    ChargingEnemyLancer();
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
   };
 
   class AttackingEnemyLancer : public AIState
   {
   public:
-      AttackingEnemyLancer();
-      void onEnter(EntityID& id) override;
-      void onExit(EntityID& id) override;
-      void Update(EntityID& id1) override;
+    AttackingEnemyLancer();
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
   };
 
   class BounceEnemyLancer : public AIState
   {
   public:
-      BounceEnemyLancer();
-      void onEnter(EntityID& id) override;
-      void onExit(EntityID& id) override;
-      void Update(EntityID& id1) override;
+    BounceEnemyLancer();
+    void onEnter(EntityID& id) override;
+    void onExit(EntityID& id) override;
+    void Update(EntityID& id1) override;
   };
 
   class IdleFiddler : public AIState
@@ -152,7 +150,6 @@ namespace DeltaEngine
   {
   public:
     SerpentipedeAIData SerpentData;
-
     ChaseEnemySerpentipede(SerpentipedeAIData& d);
     void onEnter(EntityID& id) override;
     void onExit(EntityID& id) override;

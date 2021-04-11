@@ -32,6 +32,9 @@ std::string on_click {};
 
 // Forward Declaration Function
 bool InvokeFunc( const std::string &name );
+
+template <typename... T>
+bool InvokeFunc( const std::string &name, T&... params );
 bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight, float &p_x, float &p_y, GUIType type );
 Vector2 GUI_LeftRightLimit( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, float &cameraWidth, float &cameraHeight );
 Vector2 GUI_MouseToOverlay(float p_x, float p_y, RendererOverlay& r, float& cameraWidth, float& cameraHeight);
@@ -167,8 +170,9 @@ void UISystem::LateUpdate()
 
   auto top_parent = std::prev( canvas_ids.end() );
   auto top_childrens = em.GetChildrens( *top_parent );
-  for ( auto child : top_childrens )
+  for ( auto it = top_childrens.rbegin(); it != top_childrens.rend(); ++it )
   {
+    auto &child = *it;
     switch ( em.GetComponent<GUI>( { child } ).type )
     {
       case GUIType::Button:
@@ -225,33 +229,39 @@ void UISystem::LateUpdate()
         auto &e_handle_render = em.GetComponent<RendererOverlay>( { slider.handle_entity } );
         auto &e_handle_image = em.GetComponent<Image>( { slider.handle_entity } );
 
+        slider.value = Math::Clamp01(slider.value);
+        e_handle_render.pos.x = left_right_limit.x + (left_right_limit.y - left_right_limit.x) * slider.value;
+        auto &e_fill_image = em.GetComponent<Image>( { slider.fill_entity } );
+        e_fill_image.m_FillAmount = slider.value;
+
         if ( !slider.selected )
         {
-          if ( GUI_Collision( em.GetComponent<Image>( { child } ), em.GetComponent<RendererOverlay>( { child } ), c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Button ) ||
-               GUI_Collision( e_handle_image, e_handle_render, c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Button) )
+          if ( GUI_Collision( em.GetComponent<Image>( { child } ), em.GetComponent<RendererOverlay>( { child } ), c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Slider ) ||
+               GUI_Collision( e_handle_image, e_handle_render, c, t_aspect, cameraWidth, cameraHeight, p_x, p_y, GUIType::Slider) )
             if ( InputManager::Instance().IsMousePressed( DEVK_LBUTTON ) )
-            {
-              DeltaEngine_CORE_INFO( "Selected" );
-
               slider.selected = true;
-            }
         }
         if ( slider.selected )
         {
           if(InputManager::Instance().IsMousePressed(DEVK_LBUTTON))
           {
             auto mospos = GUI_MouseToOverlay(p_x, p_y, em.GetComponent<RendererOverlay>({ child }), cameraWidth, cameraHeight);
-            std::cerr << mospos.x << ", " << left_right_limit.x << ", " << left_right_limit.y << std::endl;
-            slider.value = Math::Clamp01((mospos.x - left_right_limit.x) / (left_right_limit.y - left_right_limit.x));
-            DeltaEngine_CORE_INFO( "Selected and sliding" );
+            auto val = Math::Clamp01((mospos.x - left_right_limit.x) / (left_right_limit.y - left_right_limit.x));
+            if ( val <= slider.value || val >= slider.value )
+            {
+              slider.value = val;
+              InvokeFunc( slider.on_change, slider.value );
+              return;
+            }
           }
           else if ( InputManager::Instance().IsMouseReleased( DEVK_LBUTTON ) )
+          {
             slider.selected = false;
+            on_click.clear();
+            return;
+          }
         }
-        slider.value = Math::Clamp01(slider.value);
-        e_handle_render.pos.x = left_right_limit.x + (left_right_limit.y - left_right_limit.x) * slider.value;
-        auto &e_fill_image = em.GetComponent<Image>( { slider.fill_entity } );
-        e_fill_image.m_FillAmount = slider.value;
+
         break;
       }
 
@@ -295,12 +305,20 @@ unsigned UISystem::CurrentScreen()
 }
 
 // Global Func
-
 bool InvokeFunc( const std::string &name )
 {
   if ( name.empty() )
     return false;
   rttr::type::get_global_method( name ).invoke( {} );
+  return true;
+}
+
+template <typename... T>
+bool InvokeFunc(const std::string &name, T&... params )
+{
+  if ( name.empty() )
+    return false;
+  rttr::type::get_global_method( name ).invoke( {}, params... );
   return true;
 }
 
@@ -330,11 +348,19 @@ bool GUI_Collision( Image &i, RendererOverlay &r, Camera &c, float &t_aspect, fl
   coords.z *= cameraWidth;
   coords.w *= cameraHeight;
 
-  auto x_size = ( coords.z - coords.x ) *0.25f ;
-  auto y_size = ( coords.w - coords.y ) *0.25f;
+  auto x_size { ( coords.z - coords.x )  }; 
+  auto y_size { ( coords.w - coords.y ) };
 
-  if (type == GUIType::Slider)
-    std::cerr << CollisionIntersection_RectMinMaxMouse({ coords.x + x_size , coords.y + y_size }, { coords.z - x_size, coords.w - y_size }, { p_x, p_y }) << std::endl;
+  if (type != GUIType::Slider)
+  {
+    x_size *= 0.25f;
+    y_size *= 0.25f;
+  }
+  else
+  {
+    x_size *= 0.001f;
+    y_size *= 0.001f;
+  }
 
   if ( CollisionIntersection_RectMinMaxMouse( { coords.x + x_size , coords.y + y_size }, { coords.z - x_size, coords.w - y_size }, { p_x, p_y } ) )
     return true;

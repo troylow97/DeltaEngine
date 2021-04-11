@@ -104,5 +104,4 @@ GameState GameStateCurrent()
 {
   return current;
 }
-
 }

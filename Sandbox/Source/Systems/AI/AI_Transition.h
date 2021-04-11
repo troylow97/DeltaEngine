@@ -60,45 +60,74 @@ namespace DeltaEngine
 
   public:
 
-      bool TestEdge(EntityID& monster) override
-      {
-          auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-          auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
-          if (health.isDamagedTimer > 0.0f)
-              ref.transition = getTargetState();
-          if (ref.transition == getTargetState()) { return true; }
-          return false;
-      }
-
-      std::string getTargetState() override
-      {
-          return "hit_enemy_lancer";
-      }
+    bool TestEdge(EntityID& monster) override
+    {
+      auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+      auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
+      if (health.isDamagedTimer > 0.0f)
+          ref.transition = getTargetState();
+      if (ref.transition == getTargetState()) { return true; }
+      return false;
+    }
+    
+    std::string getTargetState() override
+    {
+      return "hit_enemy_lancer";
+    }
   };
 
   class AttackEnemyLancer : public Transition
   {
 
   public:
-      bool TestEdge(EntityID& monster) override
-      {
-          auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
-          //auto& health = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
-          auto player = UnitManager::GetPlayerID();
-      	
-          if (
-              AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.5f &&
-              AITools::Distance_Y_BetweenTwoEntities(monster, player) < 0.5f &&
-              env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeCooldownTimer <= 0)
-              ref.transition = getTargetState();
-          if (ref.transition == getTargetState()) { return true; }
-          return false;
-      }
+    bool TestEdge(EntityID& monster) override
+    {
+     auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+     auto player = UnitManager::GetPlayerID();
+     
+     if (
+         AITools::Distance_X_BetweenTwoEntities(monster, player) < 0.5f &&
+         AITools::Distance_Y_BetweenTwoEntities(monster, player) < 0.5f &&
+         env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster).MeleeCooldownTimer <= 0)
+         ref.transition = getTargetState();
+     if (ref.transition == getTargetState()) { return true; }
+     return false;
+    }
+    
+    std::string getTargetState() override
+    {
+        return "chase_enemy_lancer";
+    }
+  };
 
-      std::string getTargetState() override
+  class LostEnemyLancer : public Transition
+  {
+    Vector2 LostDetectionRange;
+  public:
+    LostEnemyLancer(Vector2& lost_range) :
+        LostDetectionRange(lost_range)
+    {
+    }
+    
+    bool TestEdge(EntityID& monster) override
+    {
+      auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>(monster);
+      env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID& player, EntityType& et)
       {
-          return "chase_enemy_lancer";
-      }
+        if (et.type == EntityCategory::E_PLAYER && !AITools::EntityisWithinDetectionRange(
+            monster, player, LostDetectionRange.x, LostDetectionRange.y))
+        {
+          ref.transition = getTargetState();
+        }
+      });
+      if (ref.transition == getTargetState()) { return true; }
+      return false;
+    }
+    
+    std::string getTargetState() override
+    {
+      return "idle_lancer";
+    }
   };
 
   class DetectEnemyFiddler : public Transition

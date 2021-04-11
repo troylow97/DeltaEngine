@@ -16,6 +16,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "../../../Sandbox/Source/Systems/AI/AI_StateMachine.h"
 #include "Physics/PhysicsSystem.h"
 #include "Systems/AnimationSystem.h"
+#include "Systems/AudioSystem.h"
 #include "Systems/InputSystem.h"
 #include "Systems/OCullSystem.h"
 #include "Systems/PhysicsDrawSystem.h"
@@ -37,7 +38,7 @@ World::World() : em( std::make_unique<EntityManager>() )
 {
   DeltaEngine_CORE_INFO( "Initializing World..." );
   CreateSystems<InputSystem, AISystem, PhysicsSystem, CollisionSystem, AnimationSystem, RenderSystem,
-    PhysicsDrawSystem, ParticleSystem, OCullSystem, UISystem>();
+    PhysicsDrawSystem, ParticleSystem, OCullSystem, UISystem, AudioSystem>();
   DeltaEngine_CORE_INFO( "Initializing World successful" );
 
 #ifndef DE_EDITOR
@@ -45,10 +46,10 @@ World::World() : em( std::make_unique<EntityManager>() )
 #endif
 }
 
-  void World::SetPause(bool pause)
-  {
-    m_pause = pause;
-  }
+void World::SetPause( bool pause )
+{
+  m_pause = pause;
+}
 
 
 EntityManager &World::GetEntityManager() const
@@ -71,11 +72,12 @@ void World::ShutdownSystems()
 
 void World::Run()
 {
-  //Input System Update
-  systems[CHash::Hash<InputSystem>().digest]->Update();
 
   if ( !m_pause )
   {
+    //Input System Update
+    systems[CHash::Hash<InputSystem>().digest]->Update();
+
     // State Machine Update
     systems[CHash::Hash<AISystem>().digest]->Update();
 
@@ -94,11 +96,17 @@ void World::Run()
     LateUpdate();
     systems[CHash::Hash<UISystem>().digest]->LateUpdate();
   }
-  systems[CHash::Hash<ParticleSystem>().digest]->Update();
+
+  if ( !m_pause )
+    systems[CHash::Hash<ParticleSystem>().digest]->Update();
+
   systems[CHash::Hash<OCullSystem>().digest]->Update();
   systems[CHash::Hash<RenderSystem>().digest]->Update();
   systems[CHash::Hash<PhysicsDrawSystem>().digest]->Update();
   systems[CHash::Hash<RenderSystem>().digest]->LateUpdate();
+
+  if ( !m_pause )
+    systems[CHash::Hash<AudioSystem>().digest]->LateUpdate();
   CleanUpEntities();
 }
 
@@ -119,13 +127,13 @@ void World::CleanUpEntities()
   em->CleanEntities();
 }
 
-void World::Save( const std::string& filename )
+void World::Save( const std::string &filename )
 {
   JsonFile file;
   file.StartWriter( filename ).WriteEntities( *em ).EndWriter();
 }
 
-void World::Load( const std::string& filename )
+void World::Load( const std::string &filename )
 {
   JsonFile file;
   file.StartReader( filename ).LoadEntities( *em ).EndReader();

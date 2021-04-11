@@ -137,6 +137,11 @@ void Restart()
   GameStateLoad( GameStateCurrent() );
 }
 
+void UpdateVolume(float volume)
+{
+  AudioEngine::SetMasterVolume( volume );
+}
+
 RTTR_REGISTRATION
 {
 rttr::registration::method( "ButtonHover", &ButtonHover );
@@ -151,6 +156,6 @@ rttr::registration::method( "QuitInGame", &QuitInGame );
 rttr::registration::method( "ConfirmQuitInGame", &ConfirmQuitInGame );
 rttr::registration::method( "Resume", &Resume );
 rttr::registration::method( "Restart", &Restart );
-
+rttr::registration::method( "MasterVolumeControl", &UpdateVolume );
 }
 }

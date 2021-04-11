@@ -16,6 +16,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
   DEFINE_SYSTEM(InputSystem, Input)
+  public:
+    static bool GetGodMode();
     void Initialize() override;
     void Update() override;
     void LateUpdate() override;
@@ -31,8 +33,8 @@ namespace DeltaEngine
     void Shield();
     void Shoot();
     // void Upgrade();
-
-
     void Shutdown() override;
+  private:
+    static bool god_mode;
   END_DEFINE_SYSTEM(InputSystem)
 }
