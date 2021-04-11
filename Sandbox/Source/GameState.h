@@ -25,6 +25,8 @@ enum class GameState : unsigned
 
 namespace DeltaEngine
 {
+extern GameState current;
+
 void GameStateLoad( GameState state );
 GameState GameStateCurrent();
 }

@@ -17,6 +17,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "UnitManager.h"
 #include "Audio/AudioEngine.h"
 #include "Components/Components.h"
+#include "../GameState.h"
 
 namespace DeltaEngine
 {
@@ -40,6 +41,10 @@ void GCameraSystem::LateUpdate()
     AudioEngine::Set3DListenerAttributes( { t.position, {},{0,0,1},{0,1,0} } );
 
     Vector3 pos = t.position;
+    if (current == GameState::LEVEL_1)
+    {
+      pos.x = Math::Clamp(pos.x, -100.f, 210.f);
+    }
     if ( img.m_FlipX )
       pos.x -= 3;
     else
