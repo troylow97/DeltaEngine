@@ -62,6 +62,7 @@ namespace DeltaEngine
         //Check and apply transitions
         em.ForEach([&](EntityID& id, AI& ai)
         {
+            em.GetComponent<AudioSource>(id).volume = 0.10f;
             AIState* ai_state = nullptr;
 
             auto it = StateList.find(ai.key);
