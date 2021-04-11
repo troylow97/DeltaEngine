@@ -42,8 +42,8 @@ void GUISystem::Update()
   if ( player_attack && player_health )
   {
     if ( !changing )
-      current = player_health->CurrentHealth;
-    target = player_health->CurrentHealth;
+      current = static_cast<float>(player_health->CurrentHealth);
+    target = static_cast<float>(player_health->CurrentHealth);
 
     em.ForEach( [&]( EntityID &id, EntityName &name, GUI &g, Image &i, State &s )
     {

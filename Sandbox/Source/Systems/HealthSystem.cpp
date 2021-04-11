@@ -120,8 +120,6 @@ void HealthSystem::PlayAttackedAnimation( EntityID id )
 
 void HealthSystem::ResetAttackedAnimation( EntityID id )
 {
-  auto &et_type = em.GetComponent<EntityType>( id );
-  auto &state = em.GetComponent<State>( id );
 }
 
 void HealthSystem::LateUpdate()

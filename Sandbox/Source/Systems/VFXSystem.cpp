@@ -48,7 +48,7 @@ namespace DeltaEngine
     EntityID vfx = em.CreateEntity<Animator, Renderer2D, Image, Lifespan, State, EntityName>();
     const float random_x = Random::RandomFloatRange(-0.1f, 0.1f);
     const float random_y = Random::RandomFloatRange(-0.1f, 0.1f);
-    const float random_flip = Random::RandomIntRange(0, 2);
+    const int random_flip = Random::RandomIntRange(0, 2);
 
     if (em.GetComponent<Image>(player_id).m_FlipX == false)
     {
