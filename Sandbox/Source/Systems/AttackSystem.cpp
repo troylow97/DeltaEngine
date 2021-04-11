@@ -423,12 +423,11 @@ namespace DeltaEngine
         if (em.GetComponent<Animator>(id).m_ClipKey == "Clip/FID_DMG") //do not attack if damaged
             return;
       	
-        static size_t c_id{u64_max};
-        if (AudioEngine::IsChannelPlaying(c_id))
-          AudioEngine::StopChannel(c_id);
-        c_id = AudioEngine::Play2DEvent("event:/Enemy/Fiddler/Pavement Smash");
-        EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.4f}, false, 0.3f,
+        EntityID missile = CreateProjectile(id, Vector2{0.4f, 0.6f}, false, 0.3f,
                                             EntityCategory::E_ENEMY_FIDDLER_PUNCH);
+        em.GetComponent<Transform>(missile).position.y -= 0.2f;
+      	
+        em.AddComponent<AudioSource>(missile);
         if (em.GetComponent<Image>(id).m_FlipX == true)
         {
           em.GetComponent<Transform>(missile).position.x += 0.5f;
