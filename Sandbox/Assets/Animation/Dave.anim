@@ -11,7 +11,7 @@ IsRunning
 
 param
 IsDashing
-0 0
+1 0
 
 param
 IsStretching
@@ -113,7 +113,7 @@ Clip/DAVE_IDLE
 
 pos
 Clip/DAVE_DASH
-460 -97
+463 -141
 
 pos
 Clip/DAVE_IDLE_STRETCH
@@ -133,7 +133,7 @@ Clip/DAVE_PUNCH2_NEW
 
 pos
 Clip/DAVE_RUN
-120 -182
+93 -214
 
 pos
 Clip/DAVE_SHIELD_BLOCK
@@ -153,11 +153,11 @@ Clip/DAVE_DEATH
 
 pos
 Clip/DAVE_JUMP
-12 -326
+-61 -334
 
 pos
 Clip/DAVE_FALL
-263 -330
+269 -364
 
 pos
 Clip/DAVE_FIRE_BODY
@@ -719,6 +719,19 @@ Punch2
 ? 0
 condition
 Punch3
+? 0
+endTransition
+
+transition
+start
+Clip/DAVE_RUN
+end
+Clip/DAVE_DASH
+condition
+IsDashing
+? 1
+condition
+IsRunning
 ? 0
 endTransition
 

@@ -147,18 +147,10 @@ namespace DeltaEngine
           size_t last = 0;
           for (size_t i = 0; i < curve->anchors.size() - 1; ++i)
           {
-            if (!curve->anchors[i].z)
-              continue;
-
             if (first == ~0U)
               first = i;
 
             size_t j = 1;
-
-            while (j < 4 && !curve->anchors[i + j].z)
-              ++j;
-            if (!curve->anchors[i + j].z)
-              continue;
 
             last = i + j;
 
@@ -180,11 +172,8 @@ namespace DeltaEngine
               p2 + c2, p2,
               cols[curveCount], 1);
           }
-          std::cerr << "first = " << first << std::endl;
-          std::cerr << "last = " << last << std::endl;
-          std::cerr << std::endl;
 
-          if (curve->anchors[first].z && curve->anchors[first].x > 0)
+          if (/*curve->anchors[first].z &&*/ curve->anchors[first].x > 0)
             draw_list->AddLine(
               ImVec2(canvas_bleed.x,
                 canvas_sz_wbleed.y * (1 - curve->anchors[first].y) + canvas_bleed.y) + offset,
@@ -192,7 +181,7 @@ namespace DeltaEngine
                 canvas_sz_wbleed.y * (1 - curve->anchors[first].y) + canvas_bleed.y) + offset,
               IM_COL32(51, 17, 17, 255), 1);
 
-          if (curve->anchors[last].z && curve->anchors[last].x < 1)
+          if (/*curve->anchors[last].z &&*/ curve->anchors[last].x < 1)
             draw_list->AddLine(
               ImVec2(canvas_sz_wbleed.x * curve->anchors[last].x + canvas_bleed.x,
                 canvas_sz_wbleed.y * (1 - curve->anchors[last].y) + canvas_bleed.y) + offset,
@@ -202,8 +191,6 @@ namespace DeltaEngine
 
           for (size_t i = 0; i < curve->anchors.size(); ++i)
           {
-            if (!curve->anchors[i].z)
-              continue;
             ImVec2 p = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
               canvas_sz_wbleed.x * curve->anchors[i].x + canvas_bleed.x,
               canvas_sz_wbleed.y * (1 - curve->anchors[i].y) + canvas_bleed.y);
@@ -228,8 +215,6 @@ namespace DeltaEngine
           }
           for (size_t i = 1; i < curve->controlsLeft.size(); ++i)
           {
-            if (!curve->anchors[i].z)
-              continue;
             if (!curve->controlsLeft[i].z)
               continue;
             ImVec2 p1 = offset + ImVec2(-3.5f, -3.5f) + ImVec2(
@@ -262,8 +247,6 @@ namespace DeltaEngine
           }
           for (size_t i = 0; i < curve->controlsRight.size() - 1; ++i)
           {
-            if (!curve->anchors[i].z)
-              continue;
             if (!curve->controlsRight[i].z)
               continue;
             ImVec2 p1 = offset + ImVec2(-3.5f, -3.5f) + ImVec2(

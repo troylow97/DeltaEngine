@@ -469,6 +469,9 @@
             }
         },
         {
+            "Parent": {
+                "ID": 5
+            },
             "Entity Name": {
                 "Name": "Ladder"
             },
@@ -20084,7 +20087,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 161.92999267578126,
+                    "x": 250.47000122070313,
                     "y": -0.6899999976158142
                 },
                 "Offset": {
@@ -20644,8 +20647,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 106.62899780273438,
-                    "y": 1.1158130168914796
+                    "x": 106.68900299072266,
+                    "y": 0.5659999847412109
                 },
                 "Offset": {
                     "x": 0.0,
@@ -20756,8 +20759,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 113.89900207519531,
-                    "y": 1.1158130168914796
+                    "x": 113.93900299072266,
+                    "y": 0.5960000157356262
                 },
                 "Offset": {
                     "x": 0.0,
@@ -20812,8 +20815,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 121.89900207519531,
-                    "y": 1.2960000038146973
+                    "x": 122.14900207519531,
+                    "y": 1.1959999799728394
                 },
                 "Offset": {
                     "x": 0.0,
@@ -20924,8 +20927,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 129.95899963378907,
-                    "y": 1.2960000038146973
+                    "x": 130.15899658203126,
+                    "y": 1.1859999895095826
                 },
                 "Offset": {
                     "x": 0.0,
@@ -20980,8 +20983,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 154.5205841064453,
-                    "y": 4.0204548835754398
+                    "x": 154.63099670410157,
+                    "y": 3.940000057220459
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21092,8 +21095,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 148.37899780273438,
-                    "y": 1.2960000038146973
+                    "x": 148.57899475097657,
+                    "y": 1.2059999704360963
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21148,8 +21151,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 155.5025177001953,
-                    "y": 3.3086929321289064
+                    "x": 155.5709991455078,
+                    "y": 3.2663328647613527
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21204,8 +21207,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 155.0989990234375,
-                    "y": 1.2960000038146973
+                    "x": 155.11900329589845,
+                    "y": 1.1959999799728394
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21260,8 +21263,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 157.87612915039063,
-                    "y": 6.113821506500244
+                    "x": 157.96600341796876,
+                    "y": 6.044000148773193
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21316,8 +21319,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 159.00128173828126,
-                    "y": 3.007232189178467
+                    "x": 158.9510040283203,
+                    "y": 2.9670000076293947
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21372,8 +21375,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 160.88137817382813,
-                    "y": 1.2847533226013184
+                    "x": 161.06100463867188,
+                    "y": 1.1950000524520875
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21428,8 +21431,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 169.88780212402345,
-                    "y": 3.1535871028900148
+                    "x": 169.97799682617188,
+                    "y": 3.114000082015991
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21484,8 +21487,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 163.30184936523438,
-                    "y": 6.125708103179932
+                    "x": 163.40199279785157,
+                    "y": 6.076000213623047
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21540,8 +21543,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 165.54220581054688,
-                    "y": 3.052265167236328
+                    "x": 165.6219940185547,
+                    "y": 3.0220000743865969
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21596,8 +21599,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 167.98519897460938,
-                    "y": 1.2734959125518799
+                    "x": 168.125,
+                    "y": 1.1929999589920045
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21652,8 +21655,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 167.07330322265626,
-                    "y": 6.12570858001709
+                    "x": 167.17300415039063,
+                    "y": 6.065999984741211
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21708,8 +21711,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 171.46392822265626,
-                    "y": 6.024385929107666
+                    "x": 171.53399658203126,
+                    "y": 5.973999977111816
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21764,8 +21767,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 174.18836975097657,
-                    "y": 3.176103115081787
+                    "x": 174.2480010986328,
+                    "y": 3.135999917984009
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21820,8 +21823,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 176.4287109375,
-                    "y": 6.01312780380249
+                    "x": 176.48899841308595,
+                    "y": 5.9730000495910648
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21876,8 +21879,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 174.0870361328125,
-                    "y": 1.7125587463378907
+                    "x": 174.14700317382813,
+                    "y": 1.6829999685287476
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21932,8 +21935,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 183.0052490234375,
-                    "y": 3.6039085388183595
+                    "x": 183.06500244140626,
+                    "y": 3.553999900817871
                 },
                 "Offset": {
                     "x": 0.0,
@@ -21988,8 +21991,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 188.33029174804688,
-                    "y": 2.343008518218994
+                    "x": 188.38999938964845,
+                    "y": 2.302999973297119
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22100,7 +22103,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 194.4283905029297,
+                    "x": 197.2480010986328,
                     "y": 0.45557522773742678
                 },
                 "Offset": {
@@ -22156,8 +22159,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 191.68626403808595,
-                    "y": 1.2612671852111817
+                    "x": 191.78599548339845,
+                    "y": 1.2009999752044678
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22212,8 +22215,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 197.12615966796876,
-                    "y": 3.1759300231933595
+                    "x": 197.21600341796876,
+                    "y": 3.135999917984009
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22268,8 +22271,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 203.00531005859376,
-                    "y": 3.6940152645111086
+                    "x": 203.09500122070313,
+                    "y": 3.614000082015991
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22324,8 +22327,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 205.78720092773438,
-                    "y": 4.921651840209961
+                    "x": 205.8769989013672,
+                    "y": 4.861999988555908
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22380,8 +22383,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 212.37588500976563,
-                    "y": 5.586153030395508
+                    "x": 212.42599487304688,
+                    "y": 3.375999927520752
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22436,8 +22439,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 209.12095642089845,
-                    "y": 3.8967442512512209
+                    "x": 209.09100341796876,
+                    "y": 4.686999797821045
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22492,8 +22495,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 257.3848571777344,
-                    "y": 3.095571517944336
+                    "x": 257.9750061035156,
+                    "y": 3.0759999752044679
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22660,8 +22663,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 216.1151123046875,
-                    "y": 2.376277208328247
+                    "x": 216.18499755859376,
+                    "y": 2.3359999656677248
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22716,8 +22719,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 243.05992126464845,
-                    "y": 1.474111795425415
+                    "x": 243.13999938964845,
+                    "y": 1.434000015258789
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22772,8 +22775,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 246.36380004882813,
-                    "y": 3.168720006942749
+                    "x": 246.45399475097657,
+                    "y": 3.128999948501587
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22828,8 +22831,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 251.56954956054688,
-                    "y": 5.7167277336120609
+                    "x": 251.6300048828125,
+                    "y": 5.677000045776367
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22884,8 +22887,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 256.2876281738281,
-                    "y": 5.704536437988281
+                    "x": 256.3479919433594,
+                    "y": 5.664999961853027
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22940,8 +22943,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 249.66769409179688,
-                    "y": 4.058693885803223
+                    "x": 249.7480010986328,
+                    "y": 4.0289998054504398
                 },
                 "Offset": {
                     "x": 0.0,
@@ -22996,8 +22999,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 251.94747924804688,
-                    "y": 3.0833797454833986
+                    "x": 251.9969940185547,
+                    "y": 3.052999973297119
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23052,8 +23055,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 254.00782775878907,
-                    "y": 3.961162567138672
+                    "x": 254.03799438476563,
+                    "y": 3.940999984741211
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23108,8 +23111,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 262.7003173828125,
-                    "y": 3.0955710411071779
+                    "x": 262.7799987792969,
+                    "y": 3.0360000133514406
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23164,8 +23167,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 259.4573974609375,
-                    "y": 5.741110801696777
+                    "x": 259.5369873046875,
+                    "y": 5.710999965667725
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23276,8 +23279,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 262.7851257324219,
-                    "y": 5.701807022094727
+                    "x": 262.8550109863281,
+                    "y": 5.6620001792907719
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23332,8 +23335,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 266.55828857421877,
-                    "y": 5.701807022094727
+                    "x": 266.63800048828127,
+                    "y": 5.6620001792907719
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23388,8 +23391,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 269.6761169433594,
-                    "y": 3.0915238857269289
+                    "x": 269.72601318359377,
+                    "y": 3.0320000648498537
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23444,8 +23447,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 270.2872619628906,
-                    "y": 5.732881546020508
+                    "x": 270.3970031738281,
+                    "y": 5.683000087738037
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23500,8 +23503,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 273.5397644042969,
-                    "y": 5.7225236892700199
+                    "x": 273.6000061035156,
+                    "y": 5.663000106811523
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23556,8 +23559,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 276.8647766113281,
-                    "y": 5.732882022857666
+                    "x": 276.8949890136719,
+                    "y": 5.703000068664551
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23612,8 +23615,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 277.5003662109375,
-                    "y": 2.3182713985443117
+                    "x": 277.5400085449219,
+                    "y": 2.23799991607666
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23668,8 +23671,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 280.7275085449219,
-                    "y": 5.923776149749756
+                    "x": 280.8070068359375,
+                    "y": 5.874000072479248
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23724,8 +23727,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 282.8084411621094,
-                    "y": 3.0527265071868898
+                    "x": 282.87799072265627,
+                    "y": 3.013000011444092
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23780,8 +23783,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 283.9768981933594,
-                    "y": 5.690086364746094
+                    "x": 284.0669860839844,
+                    "y": 5.639999866485596
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23836,8 +23839,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 286.1246032714844,
-                    "y": 3.9874870777130129
+                    "x": 286.69500732421877,
+                    "y": 3.947000026702881
                 },
                 "Offset": {
                     "x": 0.0,
@@ -23918,13 +23921,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -23977,7 +23980,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24090,7 +24093,7 @@
             "Transform": {
                 "Position": {
                     "x": 18.0,
-                    "y": 0.2592238485813141,
+                    "y": 0.2591504752635956,
                     "z": 0.0
                 },
                 "Scale": {
@@ -24118,8 +24121,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 18.213520050048829,
-                    "y": 0.2592238485813141
+                    "x": 18.0,
+                    "y": 0.2591504752635956
                 },
                 "Offset": {
                     "x": 0.0,
@@ -24137,7 +24140,7 @@
             },
             "Image": {
                 "Sprite": {
-                    "key": "Textures/DAVE_PUNCH",
+                    "key": "Textures/DAVE_IDLE",
                     "index": 6
                 },
                 "Size": {
@@ -24197,7 +24200,7 @@
                 "Melee Cooldown": 0.20000000298023225,
                 "Range Cooldown": 1.0,
                 "SMG Cooldown": 0.18000000715255738,
-                "Melee Cooldown Timer": 0.15000000596046449,
+                "Melee Cooldown Timer": -0.21666665375232697,
                 "Range Cooldown Timer": -0.20000000298023225,
                 "Combo Duration": 0.4000000059604645,
                 "Combo Cooldown Timer": 0.4000000059604645,
@@ -24226,7 +24229,7 @@
                 "UnMoveable Timer Duration": 0.5
             },
             "Input": {
-                "Previous": 2,
+                "Previous": 1,
                 "Current": 0
             }
         },
@@ -24238,13 +24241,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -24297,7 +24300,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24399,13 +24402,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -24458,7 +24461,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24560,13 +24563,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -24619,7 +24622,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24721,13 +24724,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -24780,7 +24783,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -24882,13 +24885,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -24941,7 +24944,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -25043,13 +25046,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -25102,7 +25105,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -25204,13 +25207,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -25263,7 +25266,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -25365,13 +25368,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -25424,7 +25427,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -25526,13 +25529,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -25585,7 +25588,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -25687,13 +25690,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -25746,7 +25749,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -25848,13 +25851,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -25907,7 +25910,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -26009,13 +26012,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -26068,7 +26071,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -26170,13 +26173,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -26229,7 +26232,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -26331,13 +26334,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -26390,7 +26393,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -26492,13 +26495,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -26551,7 +26554,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -26653,13 +26656,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -26712,7 +26715,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -26814,13 +26817,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -26873,7 +26876,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -26975,13 +26978,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -27014,8 +27017,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 196.39999389648438,
-                    "y": 0.5
+                    "x": 195.78834533691407,
+                    "y": 0.4026913642883301
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27034,7 +27037,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -27136,18 +27139,18 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Fiddler/Fiddler Move",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
-                    "x": 182.42019653320313,
-                    "y": 4.508065700531006,
+                    "x": 184.5579376220703,
+                    "y": 4.5084099769592289,
                     "z": 0.0
                 },
                 "Scale": {
@@ -27175,8 +27178,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 182.42019653320313,
-                    "y": 4.108065605163574
+                    "x": 184.5579376220703,
+                    "y": 4.108409881591797
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27195,7 +27198,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 11
                 },
                 "Size": {
                     "x": 1.0,
@@ -27281,7 +27284,7 @@
                 "Damage Enemy": false
             },
             "Fiddler": {
-                "DurationBeforeExitState": 1.0,
+                "DurationBeforeExitState": -0.016666388139128686,
                 "FacePlayerTimer": 2.0,
                 "AttackDelay": 1.0,
                 "hasAttacked": false
@@ -27295,13 +27298,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -27354,7 +27357,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -27456,18 +27459,18 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Fiddler/Fiddler Move",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
-                    "x": 200.52020263671876,
-                    "y": -1111.703369140625,
+                    "x": 202.65794372558595,
+                    "y": -1195.6800537109376,
                     "z": 0.0
                 },
                 "Scale": {
@@ -27495,8 +27498,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 200.52020263671876,
-                    "y": -1112.1033935546876
+                    "x": 202.65794372558595,
+                    "y": -1196.080078125
                 },
                 "Offset": {
                     "x": 0.0,
@@ -27515,7 +27518,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 11
                 },
                 "Size": {
                     "x": 1.0,
@@ -27601,7 +27604,7 @@
                 "Damage Enemy": false
             },
             "Fiddler": {
-                "DurationBeforeExitState": 1.0,
+                "DurationBeforeExitState": -0.016666388139128686,
                 "FacePlayerTimer": 2.0,
                 "AttackDelay": 1.0,
                 "hasAttacked": false
@@ -27615,13 +27618,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -27674,7 +27677,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -27776,13 +27779,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -27835,7 +27838,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -27937,13 +27940,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -27996,7 +27999,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -28098,13 +28101,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -28157,7 +28160,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -28259,13 +28262,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -28318,7 +28321,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -28420,13 +28423,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -28479,7 +28482,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -28581,13 +28584,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -28640,7 +28643,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -28742,18 +28745,18 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Fiddler/Fiddler Move",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
-                    "x": 225.42019653320313,
-                    "y": -1111.703369140625,
+                    "x": 227.5579376220703,
+                    "y": -1195.6800537109376,
                     "z": 0.0
                 },
                 "Scale": {
@@ -28781,8 +28784,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 225.42019653320313,
-                    "y": -1112.1033935546876
+                    "x": 227.5579376220703,
+                    "y": -1196.080078125
                 },
                 "Offset": {
                     "x": 0.0,
@@ -28801,7 +28804,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 11
                 },
                 "Size": {
                     "x": 1.0,
@@ -28887,7 +28890,7 @@
                 "Damage Enemy": false
             },
             "Fiddler": {
-                "DurationBeforeExitState": 1.0,
+                "DurationBeforeExitState": -0.016666388139128686,
                 "FacePlayerTimer": 2.0,
                 "AttackDelay": 1.0,
                 "hasAttacked": false
@@ -28901,13 +28904,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -28960,7 +28963,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -29062,13 +29065,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -29121,7 +29124,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -29223,13 +29226,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -29282,7 +29285,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -29384,13 +29387,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -29443,7 +29446,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -29545,13 +29548,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -29604,7 +29607,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -29706,13 +29709,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -29765,7 +29768,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -29867,13 +29870,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -29926,7 +29929,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -30028,13 +30031,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -30087,7 +30090,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -30189,13 +30192,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -30248,7 +30251,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -30350,18 +30353,18 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Fiddler/Fiddler Move",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
-                    "x": 268.4202880859375,
-                    "y": 3.995681047439575,
+                    "x": 270.5586242675781,
+                    "y": 3.986410140991211,
                     "z": 0.0
                 },
                 "Scale": {
@@ -30389,8 +30392,8 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 268.4202880859375,
-                    "y": 3.5956809520721437
+                    "x": 270.5586242675781,
+                    "y": 3.5864100456237795
                 },
                 "Offset": {
                     "x": 0.0,
@@ -30409,7 +30412,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/FID_WALK",
-                    "index": 6
+                    "index": 11
                 },
                 "Size": {
                     "x": 1.0,
@@ -30495,7 +30498,7 @@
                 "Damage Enemy": false
             },
             "Fiddler": {
-                "DurationBeforeExitState": 1.0,
+                "DurationBeforeExitState": -0.016666388139128686,
                 "FacePlayerTimer": 2.0,
                 "AttackDelay": 1.0,
                 "hasAttacked": false
@@ -30509,13 +30512,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -30568,7 +30571,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -30670,13 +30673,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -30729,7 +30732,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -30831,13 +30834,13 @@
                 "Category": "enemy"
             },
             "Audio Source": {
-                "Audio File": "",
+                "Audio File": "event:/Enemy/Lancer/Lancer Master Idle",
                 "Volume": 1.0,
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
-                "Is 3D": false
+                "Is Event": true,
+                "Is 3D": true
             },
             "Transform": {
                 "Position": {
@@ -30890,7 +30893,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/LANCER_ALERT_IDLE",
-                    "index": 0
+                    "index": 1
                 },
                 "Size": {
                     "x": 1.0,
@@ -30993,9 +30996,9 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 18.213533401489259,
-                    "y": 2.2592222690582277,
-                    "z": 5.0018768310546879
+                    "x": 19.826051712036134,
+                    "y": 1.4209184646606446,
+                    "z": 4.227603435516357
                 },
                 "Scale": {
                     "x": 1.0,
@@ -47953,7 +47956,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48025,7 +48028,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48097,7 +48100,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48169,7 +48172,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48241,7 +48244,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48313,7 +48316,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48385,7 +48388,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48457,7 +48460,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48529,7 +48532,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48601,7 +48604,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48673,7 +48676,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48745,7 +48748,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48817,7 +48820,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48889,7 +48892,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -48961,7 +48964,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49033,7 +49036,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49105,7 +49108,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49177,7 +49180,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49249,7 +49252,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49321,7 +49324,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_1",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49393,7 +49396,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_DoubleWindow_2",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49666,7 +49669,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49738,7 +49741,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49810,7 +49813,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49882,7 +49885,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -49954,7 +49957,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50026,7 +50029,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50098,7 +50101,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50170,7 +50173,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50242,7 +50245,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50314,7 +50317,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50386,7 +50389,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50458,7 +50461,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50530,7 +50533,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50602,7 +50605,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_02",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50674,7 +50677,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_SingleWindow_01",
-                    "index": 6
+                    "index": 35
                 },
                 "Size": {
                     "x": 1.0,
@@ -50746,7 +50749,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -50818,7 +50821,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 2
+                    "index": 3
                 },
                 "Size": {
                     "x": 1.0,
@@ -50890,7 +50893,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 2
+                    "index": 3
                 },
                 "Size": {
                     "x": 1.0,
@@ -50962,7 +50965,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51034,7 +51037,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51106,7 +51109,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 2
+                    "index": 3
                 },
                 "Size": {
                     "x": 1.0,
@@ -51178,7 +51181,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 2
+                    "index": 3
                 },
                 "Size": {
                     "x": 1.0,
@@ -51250,7 +51253,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_01",
-                    "index": 2
+                    "index": 3
                 },
                 "Size": {
                     "x": 1.0,
@@ -51322,7 +51325,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51394,7 +51397,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51466,7 +51469,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51538,7 +51541,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51610,7 +51613,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51682,7 +51685,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51754,7 +51757,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51826,7 +51829,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51898,7 +51901,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -51970,7 +51973,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -52042,7 +52045,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -52114,7 +52117,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -52186,7 +52189,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -52258,7 +52261,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -52330,7 +52333,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp2_01",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -52402,7 +52405,7 @@
             "Image": {
                 "Sprite": {
                     "key": "Textures/ANIM_Lamp1_02",
-                    "index": 6
+                    "index": 17
                 },
                 "Size": {
                     "x": 1.0,
@@ -52554,7 +52557,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 161.92999267578126,
+                    "x": 71.0199966430664,
                     "y": -0.6899999976158142
                 },
                 "Offset": {
@@ -52577,7 +52580,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "checkpoint"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -52610,7 +52613,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 161.92999267578126,
+                    "x": 230.97000122070313,
                     "y": -0.6899999976158142
                 },
                 "Offset": {
@@ -52633,7 +52636,7 @@
                 "Name": "Collider"
             },
             "Entity Type": {
-                "Category": "checkpoint"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -52666,7 +52669,7 @@
             },
             "Collider": {
                 "Center": {
-                    "x": 161.92999267578126,
+                    "x": 273.8999938964844,
                     "y": -0.6899999976158142
                 },
                 "Offset": {
@@ -52675,6 +52678,62 @@
                 },
                 "Size": {
                     "x": 27.68000030517578,
+                    "y": 1.0
+                },
+                "Type": "box",
+                "Collision Layer": 11,
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
+            }
+        },
+        {
+            "Entity Name": {
+                "Name": "Collider"
+            },
+            "Entity Type": {
+                "Category": "mud"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 290.2799987792969,
+                    "y": -0.6899999976158142,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 290.2799987792969,
+                    "y": -0.6899999976158142
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 5.0,
                     "y": 1.0
                 },
                 "Type": "box",

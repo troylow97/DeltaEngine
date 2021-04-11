@@ -282,7 +282,7 @@ void InputSystem::Dodge()
       StopRun();
     }
 
-    if ( a1.CurrentDodgeCooldown > 0 || static_cast<int>( r1.Velocity.y ) < 0 )
+    if ( a1.CurrentDodgeCooldown > 0)
       return;
 
   //if ((p1.IsShooting == true && p1.IsPunching == true) || p1.IsShooting == true || p1.IsPunching == true)
