@@ -9,7 +9,6 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "InputSystem.h"
-
 #include "PhysicsDrawSystem.h"
 #include "Components/Character.h"
 #include "Components/Animator.h"
@@ -23,6 +22,9 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
+
+bool InputSystem::god_mode = false;
+	
 void InputSystem::Initialize()
 {
   DeltaEngine_CORE_TRACE( "Initialize Input System" );
@@ -63,6 +65,11 @@ void InputSystem::SetIdleAnimation()
   } );
 }
 
+bool InputSystem::GetGodMode()
+{
+  return god_mode;
+}
+	
 void InputSystem::GodMode()
 {
   if ( !god_mode )

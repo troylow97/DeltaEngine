@@ -105,12 +105,6 @@ void IdleLancer::Update( EntityID &monster )
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( monster ).SetBool( "IsAlerted", true );
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( monster ).SetBool( "MeleeAttack", false );
 
-  //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(monster).Movespeed = 32.0f;
-  //std::cout << "IdleLancer Update" << std::endl;
-  //auto& ref = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(monster).position;
-
-  //if (ref.y < 2.0)
-  //    AITools::MoveTowardsPoint(monster, Vector2{ ref.x,Random::RandomFloatRange(2.1,2.5) });
 }
 
 //----------------------------------------------------------------------

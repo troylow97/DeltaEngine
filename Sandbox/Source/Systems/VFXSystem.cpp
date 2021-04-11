@@ -26,7 +26,6 @@ namespace DeltaEngine
       if (player_attack.DamageEnemy)
       {
         ShowVFX++;
-        //std::cout << "ShowVFX is " << ShowVFX << std::endl;
         if (ShowVFX == 10)
         {
           ShowHitVFX(player_pos.position, { 1.2f, 1.2f }, "Textures/DAVE_HITFX", "Animation/DaveHitVFX", 0.5f);
@@ -48,10 +47,9 @@ namespace DeltaEngine
     auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
 
     EntityID vfx = em.CreateEntity<Animator, Renderer2D, Image, Lifespan, State, EntityName>();
-    float random_x = Random::RandomFloatRange(-0.1f, 0.1f);
-    float random_y = Random::RandomFloatRange(-0.1f, 0.1f);
-    float random_flip = Random::RandomIntRange(0, 2);
-    std::cout << random_flip << std::endl;
+    const float random_x = Random::RandomFloatRange(-0.1f, 0.1f);
+    const float random_y = Random::RandomFloatRange(-0.1f, 0.1f);
+    const float random_flip = Random::RandomIntRange(0, 2);
 
     if (em.GetComponent<Image>(player_id).m_FlipX == false)
     {
