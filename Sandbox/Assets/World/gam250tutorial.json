@@ -52462,7 +52462,7 @@
             "Audio Source": {
                 "Audio File": "event:/BGM/Stage 1 BGM",
                 "Volume": 0.15000000596046449,
-                "Pitch": 1.0,
+                "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": true,
                 "Is Event": true,
