@@ -687,8 +687,11 @@ void ChaseEnemySerpentipede::Update( EntityID &monster )
           serp.BurrowDownDelay = 0.4f;
           serp.BurrowState = 1;
           auto& audio = em.GetComponent<AudioSource>(monster);
-          audio.clip = "event:/Enemy/Serpentipede/Serpentipede Burrow";
-          AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(monster).position, {},{0,0,1},{0,1,0} });
+          if (!audio.isStart && !audio.isPlayed)
+          {
+              audio.clip = "event:/Enemy/Serpentipede/Serpentipede Burrow";
+              AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(monster).position, {},{0,0,1},{0,1,0} });
+          }
           return;
         }
       }
@@ -796,9 +799,11 @@ void ChaseEnemySerpentipede::Update( EntityID &monster )
       env.pECS->GetWorld().GetEntityManager().GetComponent<Renderer2D>( monster ).m_Active = true;
       s.SetBool( "IsUnborrowing", true );
       auto& audio = em.GetComponent<AudioSource>(monster);
-      audio.clip = "event:/Enemy/Serpentipede/Serpentipede Unburrow";
-      AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(monster).position, {},{0,0,1},{0,1,0} });
-
+      if (!audio.isStart && !audio.isPlayed)
+      {
+        audio.clip = "event:/Enemy/Serpentipede/Serpentipede Unburrow";
+        AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(monster).position, {},{0,0,1},{0,1,0} });
+      }
     }
     else
     {
