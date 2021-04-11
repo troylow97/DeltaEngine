@@ -56,7 +56,12 @@ namespace DeltaEngine
   {
     JsonFile file;;
     if (level == 0) // tutorial
-    {}
+    {
+      opening_tutorial = true;
+      opening_level_1 = false;
+      in_tutorial = true;
+      in_level_1 = false;
+    }
     if (level == 1) // tutorial
     {
       file.StartReader("Player/level1_respawn_points.json").LoadObject(respawns).EndReader();
@@ -76,10 +81,9 @@ namespace DeltaEngine
     if (opening_tutorial || opening_level_1)
     {
       EntityID id = UnitManager::GetPlayerID();
-      
       //Stop crash by checking for components	
-      if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id))
-        return;
+      //if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id))
+      //  return;
       
       Transform& t = em.GetComponent<Transform>(id);
       player_initial_position = { t.position.x, t.position.y };
@@ -126,8 +130,8 @@ namespace DeltaEngine
         
         for (size_t i = 0; i < respawns.m_respawns.size(); i++)
         {
-          if (((t.position.x - respawns.m_respawns[i].x) < 0.1f && (t.position.x - respawns.m_respawns[i].x) > -0.1f)
-              && ((t.position.y - respawns.m_respawns[i].y) < 1.0f && (t.position.y - respawns.m_respawns[i].y) > -1.0f)
+          if (((t.position.x - respawns.m_respawns[i].x) < 0.3f && (t.position.x - respawns.m_respawns[i].x) > -0.3f)
+              && ((t.position.y - respawns.m_respawns[i].y) < 1.5f && (t.position.y - respawns.m_respawns[i].y) > -1.5f)
               && respawns.m_respawns[i].z != 1.0f)
           {
             ++checkpoint_passed;
@@ -166,7 +170,7 @@ namespace DeltaEngine
       }
       env.pECS->GetWorld().GetEntityManager().ForEach([&](EntityID id1, EntityType& et1, State& s1, Transform& t1)
       {
-        if (et1.type == EntityCategory::E_CHECKPOINT && t1.position.z == 1.0f)
+        if (et1.type == EntityCategory::E_CHECKPOINT && (t1.position.z == 1.0f || !(t1.position.z != 1.0f)))
         {
           s1.SetBool("CheckpointReached", true);
         }
