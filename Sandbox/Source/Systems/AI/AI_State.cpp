@@ -85,8 +85,12 @@ void IdleLancer::onEnter( EntityID &id )
 
 void IdleLancer::onExit( EntityID &id )
 {
+  auto& em = env.pECS->GetWorld().GetEntityManager();
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsIdle", false );
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsAlerted", false );
+  auto& audio = em.GetComponent<AudioSource>(id);
+  audio.clip = "event:/Enemy/Lancer/Lancer Master Idle";
+  AudioEngine::StopEvent(audio.id, true);
 }
 
 void IdleLancer::Update( EntityID &monster )
@@ -233,6 +237,11 @@ void GotHitEnemyLancer::onExit( EntityID &monster )
   else
     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( monster ).m_FlipX = false;
   state.SetBool( "IsAttacked", false );
+
+  auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(monster);
+  audio.clip = "event:/Enemy/Lancer/Lancer Hurt";
+  AudioEngine::StopEvent(audio.id, true);
+	
 }
 
 ChargingEnemyLancer::ChargingEnemyLancer()
@@ -421,6 +430,11 @@ void ChaseEnemyFiddler::onExit( EntityID &id )
   s.SetBool( "IsAlerted", false );
   s.SetBool( "IsAlertRunning", false );
   s.SetBool( "IsPatrolling", true );
+  auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id);
+  audio.clip = "event:/Enemy/Fiddler/Fiddler Move";
+  AudioEngine::StopEvent(audio.id, true);
+  audio.clip = "event:/Enemy/Fiddler/Fiddler Smash ";
+  AudioEngine::StopEvent(audio.id, true);
 }
 
 void ChaseEnemyFiddler::Update( EntityID &monster )
@@ -445,6 +459,10 @@ void ChaseEnemyFiddler::Update( EntityID &monster )
     {
       s.SetBool( "IsAlertRunning", true );
       s.SetBool( "MeleeAttack", false );
+      auto& audio = em.GetComponent<AudioSource>(monster);
+      audio.clip = "event:/Enemy/Fiddler/Fiddler Smash";
+      AudioEngine::StopEvent(audio.id, true);
+    	
     }
     fid.AttackDelay -= env.pClock->FixedDeltaTime();
     return;
@@ -497,6 +515,11 @@ void ChaseEnemyFiddler::Update( EntityID &monster )
           env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( monster ).m_FlipX = true;
         else
           env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( monster ).m_FlipX = false;
+
+        auto& audio = em.GetComponent<AudioSource>(monster);
+        audio.clip = "event:/Enemy/Fiddler/Fiddler Move";
+        AudioEngine::StopEvent(audio.id, true);
+      	
         s.SetBool( "IsAlertRunning", false );
         s.SetBool( "MeleeAttack", true );
         rb.Direction = Vector2::zero();
@@ -542,6 +565,9 @@ void ChaseEnemyFiddler::Update( EntityID &monster )
       }
     }
   }
+  auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(monster);
+  audio.clip = "event:/Enemy/Fiddler/Fiddler Hurt";
+  AudioEngine::StopEvent(audio.id, true);
   em.GetComponent<RigidBody>( monster ).Direction = Vector2 { 0,0 };
 }
 #pragma endregion
@@ -608,6 +634,9 @@ void ChaseEnemySerpentipede::Update( EntityID &monster )
 
   if ( hp.isDamagedTimer > 0.0f || a.AttackDelay > 0.0f || hp.CurrentHealth < 0.0f )
   {
+    auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(monster);
+    audio.clip = "event:/Enemy/Serpentipede/Serpentipede Hurt";
+    AudioEngine::StopEvent(audio.id, true);
     return;
   }
 
@@ -695,6 +724,9 @@ void ChaseEnemySerpentipede::Update( EntityID &monster )
     {
       serp.BurrowDownDuration -= env.pClock->FixedDeltaTime();
       s.SetBool( "IsAlerted", true );
+      auto& audio = em.GetComponent<AudioSource>(monster);
+      audio.clip = "event:/Enemy/Serpentipede/Serpentipede Burrow";
+      AudioEngine::StopEvent(audio.id, true);
     }
     else
     {
@@ -770,6 +802,9 @@ void ChaseEnemySerpentipede::Update( EntityID &monster )
     }
     else
     {
+      auto& audio = em.GetComponent<AudioSource>(monster);
+      audio.clip = "event:/Enemy/Serpentipede/Serpentipede Unburrow";
+      AudioEngine::StopEvent(audio.id, true);
       s.SetBool( "IsUnborrowing", false );
       s.SetBool( "IsAlerted", true );
       serp.BurrowState = 0;
