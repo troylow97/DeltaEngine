@@ -10,10 +10,7 @@ or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "GUISystem.h"
-
-
 #include <rttr/registration.h>
-
 #include "Audio/AudioEngine.h"
 #include "EnemySpawner/EnemySpawner.h"
 #include "Systems/UISystem.h"
@@ -23,7 +20,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-
 bool attacked { false };
 bool healed { false };
 bool changing { false };
@@ -45,11 +41,9 @@ void GUISystem::Update()
 
   if ( player_attack && player_health )
   {
-
     if ( !changing )
       current = player_health->CurrentHealth;
     target = player_health->CurrentHealth;
-
 
     em.ForEach( [&]( EntityID &id, EntityName &name, GUI &g, Image &i, State &s )
     {
@@ -69,11 +63,8 @@ void GUISystem::Update()
         i.m_FillAmount = p;
       }
     } );
-
     for ( size_t i = 0; i < GetEnv().pClock->Timesteps(); ++i )
       current += diff * GetEnv().pClock->FixedDeltaTime();
-
-
 
     if ( changing )
     {
@@ -105,7 +96,4 @@ void GUISystem::Heal( bool b )
   diff = target - current;
   diff /= timer;
 }
-
-
-
 }

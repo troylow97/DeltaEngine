@@ -41,19 +41,12 @@ namespace DeltaEngine
 
   void RespawnSystem::Update()
   {
-    //if (temp_checkpoints)
-    //{
-    //  temp_create_checkpoints();
-    //  temp_checkpoints = false;
-    //}
-
     CheckpointsLightUp();
     RefillHealth();
     DeathAnimation();
     ClearScreen();
     PassedCheckpointsLightUp();
     Respawning();
-    //DeatheEffect();
   }
 
   void RespawnSystem::LateUpdate()
@@ -134,7 +127,6 @@ namespace DeltaEngine
 
       for (size_t i = 0; i < respawns.m_respawns.size(); i++)
       {
-        //auto& em = GetEnv().pECS->GetWorld().GetEntityManager();
         EntityID checkpoints = em.CreateEntity<Animator, Renderer2D, Image, State>();
         em.GetComponent<EntityName>(checkpoints).name = "Checkpoint";
         
@@ -312,50 +304,4 @@ namespace DeltaEngine
       }
     }
   }
-
-  //void RespawnSystem::DeathEffect()
-  //{
-  //  if (em.IsEntityValid(UnitManager::GetPlayerID()))
-  //  {
-  //    if (em.HasComponent<Player>(UnitManager::GetPlayerID()))
-  //    {
-  //      EntityID id = UnitManager::GetPlayerID();
-  //     
-  //      //Stop crash by checking for components	
-  //      if (!em.HasComponent<Player>(id) || !em.HasComponent<Renderer2D>(id)
-  //          || !em.HasComponent<State>(id))
-  //        return;
-  //     
-  //      Player& p = em.GetComponent<Player>(id);
-  //      Renderer2D& r = em.GetComponent<Renderer2D>(id);
-  //      State& s = em.GetComponent<State>(id);
-  //
-  //      if (p.IsDead)
-  //      {
-  //        //r.m_Color.a = 0.5f;
-  //        s.SetBool("Dead", true);
-  //
-  //        dying_countdown += env.pClock->FixedDeltaTime();
-  //        if (dying_countdown > 10.0f)
-  //        {
-  //          // flickering effect
-  //          
-  //          //s.SetBool("Dead", false);
-  //          //s.SetBool("IsIdle", true);
-  //          //dying_countdown = 0.0f;
-  //          //p.IsDead = false;
-  //        }
-  //        while (p.FadingCountdown > 0.0f)
-  //        {
-  //          p.FadingCountdown -= (env.pClock->FixedDeltaTime() * 0.1f);
-  //          r.m_Color.a = /*(((*/p.FadingCountdown / p.FadingTimer/*) * 255.0f) / 255.0f) * 1.0f*/;
-  //          //std::cout << "r.m_Color.a is " << r.m_Color.a << std::endl;
-  //        }
-  //        p.IsDead = false;
-  //        //Respawning();
-  //      }
-  //      p.FadingCountdown = p.FadingTimer;
-  //    }
-  //  }
-  //}
 }

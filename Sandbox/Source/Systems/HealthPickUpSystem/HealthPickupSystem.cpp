@@ -14,56 +14,56 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  float HealthPickupSystem::PickupChance = 20.0f;
-  
-  void HealthPickupSystem::Initialize()
+float HealthPickupSystem::PickupChance = 20.0f;
+
+void HealthPickupSystem::Initialize()
+{
+  PickupChance = 20.0f;
+}
+
+void HealthPickupSystem::Update()
+{
+
+}
+
+void HealthPickupSystem::LateUpdate()
+{
+	
+}
+
+void HealthPickupSystem::SpawnHealthOrbOnDeath(const Vector2 position)
+{
+  if(Random::RandomFloatRange(0.0f,100.0f) < PickupChance)
   {
+    EntityID orb = SpawnHealthOrb(position);
     PickupChance = 20.0f;
   }
-  
-  void HealthPickupSystem::Update()
+  else
   {
-  
+    PickupChance += 3.0f;
   }
+}
+
+EntityID HealthPickupSystem::SpawnHealthOrb(const Vector2 position)
+{
+  auto& em = env.pECS->GetWorld().GetEntityManager();
+  const EntityID pickup = em.CreateEntity<Transform, Collider, RigidBody, Lifespan, Renderer2D, Image, EntityType, Animator, State>();
   
-  void HealthPickupSystem::LateUpdate()
-  {
-  	
-  }
+  em.GetComponent<Transform>(pickup).position = position;
+  em.GetComponent<Transform>(pickup).scale = { 1.0f, 1.0f, 0.0f };
+  em.GetComponent<Collider>(pickup).isTrigger = true;
+  em.GetComponent<Collider>(pickup).size = { 0.1f, 0.1f };
+  em.GetComponent<RigidBody>(pickup).hasGravity = false;
+  em.GetComponent<RigidBody>(pickup).FrictionCoeff = 0.0f;
+  em.GetComponent<Lifespan>(pickup).Timer = { 15.0f };
   
-  void HealthPickupSystem::SpawnHealthOrbOnDeath(const Vector2 position)
-  {
-    if(Random::RandomFloatRange(0.0f,100.0f) < PickupChance)
-    {
-      EntityID orb = SpawnHealthOrb(position);
-      PickupChance = 20.0f;
-    }
-    else
-    {
-      PickupChance += 3.0f;
-    }
-  }
-  
-  EntityID HealthPickupSystem::SpawnHealthOrb(const Vector2 position)
-  {
-    auto& em = env.pECS->GetWorld().GetEntityManager();
-    const EntityID pickup = em.CreateEntity<Transform, Collider, RigidBody, Lifespan, Renderer2D, Image, EntityType, Animator, State>();
-    
-    em.GetComponent<Transform>(pickup).position = position;
-    em.GetComponent<Transform>(pickup).scale = { 1.0f, 1.0f, 0.0f };
-    em.GetComponent<Collider>(pickup).isTrigger = true;
-    em.GetComponent<Collider>(pickup).size = { 0.1f, 0.1f };
-    em.GetComponent<RigidBody>(pickup).hasGravity = false;
-    em.GetComponent<RigidBody>(pickup).FrictionCoeff = 0.0f;
-    em.GetComponent<Lifespan>(pickup).Timer = { 15.0f };
-    
-    em.GetComponent<Renderer2D>(pickup).m_SortingLayer = 2;
-    em.GetComponent<Image>(pickup).m_Sprite.m_Key = "Textures/HEALTH_ANIM";
-    em.GetComponent<Image>(pickup).m_Sprite.m_Index = 0;
-    em.GetComponent<Image>(pickup).m_Size = { 1.0f, 1.0f };
-    em.GetComponent<EntityType>(pickup).type = EntityCategory::E_HEALTHUP;
-    em.GetComponent<Animator>(pickup).m_ControllerKey = "Animation/HealthPickup";
-    em.GetComponent<State>(pickup).SetBool("IsDead", false);
-    return pickup;
-  }
+  em.GetComponent<Renderer2D>(pickup).m_SortingLayer = 2;
+  em.GetComponent<Image>(pickup).m_Sprite.m_Key = "Textures/HEALTH_ANIM";
+  em.GetComponent<Image>(pickup).m_Sprite.m_Index = 0;
+  em.GetComponent<Image>(pickup).m_Size = { 1.0f, 1.0f };
+  em.GetComponent<EntityType>(pickup).type = EntityCategory::E_HEALTHUP;
+  em.GetComponent<Animator>(pickup).m_ControllerKey = "Animation/HealthPickup";
+  em.GetComponent<State>(pickup).SetBool("IsDead", false);
+  return pickup;
+}
 }

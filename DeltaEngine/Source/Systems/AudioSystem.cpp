@@ -78,8 +78,6 @@ void AudioSystem::LateUpdate()
     }
     else
       a.isPlaying = false;
-    std::cout << a.clip << std::endl;
-    std::cout << a.isPlaying << std::endl;
 
     if ( a.isPlaying )
       a.isPlayed = true;
