@@ -57,39 +57,42 @@ namespace DeltaEngine
 
   void AISystem::Update()
   {
-    //Check and apply transitions
-    em.ForEach([&](EntityID& id, AI& ai)
+    for (size_t step = 0; step < env.pClock->Timesteps(); ++step)
     {
-      AIState* ai_state = nullptr;
-
-      auto it = StateList.find(ai.key);
-      if (it != StateList.end())
-        ai_state = it->second;
-      else
-        return;
-
-      if (ai_state != nullptr)
-      {
-        if (ai.transition == "null")
+        //Check and apply transitions
+        em.ForEach([&](EntityID& id, AI& ai)
         {
-          ai_state->Update(id);
-          return;
-        }
+            AIState* ai_state = nullptr;
 
-        ai_state->onExit(id);
+            auto it = StateList.find(ai.key);
+            if (it != StateList.end())
+                ai_state = it->second;
+            else
+                return;
 
-        ai.key = ai.transition;
-        ai.transition = "null";
+            if (ai_state != nullptr)
+            {
+                if (ai.transition == "null")
+                {
+                    ai_state->Update(id);
+                    return;
+                }
 
-        const auto find = StateList.find(ai.key);
-        if (find != StateList.end())
-          ai_state = find->second;
-        else
-          return;
+                ai_state->onExit(id);
 
-        ai_state->onEnter(id);
-      }
-    });
+                ai.key = ai.transition;
+                ai.transition = "null";
+
+                const auto find = StateList.find(ai.key);
+                if (find != StateList.end())
+                    ai_state = find->second;
+                else
+                    return;
+
+                ai_state->onEnter(id);
+            }
+        });
+    }
     Profiler::Instance().Record("AI System");
   }
 

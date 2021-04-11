@@ -23,182 +23,184 @@ namespace DeltaEngine
 {
   void AttackSystem::Update()
   {
-  	if(em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
-  	{
-  	  //DASH
-      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
-      auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
-      auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-
-      if (a.CurrentDodgeCooldown > 0.0f)
-          a.CurrentDodgeCooldown -= env.pClock->FixedDeltaTime();
-  		
-      if (p.IsDodging)
+      for (size_t step = 0; step < env.pClock->Timesteps(); ++step)
       {
-        em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
-        p.StartDashingTimer = true;
-        p.StartUnMoveableTimer = true;
-        a.CurrentDodgeCooldown = a.DodgeCooldown;
-      }
-      if (p.StartDashingTimer)
-      {
-        p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
-        p.AllowDashing = false;
-      }
-      if (p.DashingTimerCooldown <= 0.0f)
-      {
-        p.StartDashingTimer = false;
-        p.DashingTimerCooldown = p.DashingTimerDuration;
-        p.AllowDashing = true;
-        s.SetBool("LancerAttack", false);
-      }
-      if (p.StartUnMoveableTimer)
-      {
-        p.UnMoveableTimerCooldown -= env.pClock->FixedDeltaTime();
-        p.AllowRunning = false;
-      }
-      if (p.UnMoveableTimerCooldown <= 0.0f)
-      {
-        p.StartUnMoveableTimer = false;
-        p.UnMoveableTimerCooldown = p.UnMoveableTimerDuration;
-        p.AllowRunning = true;
-        s.SetBool("IsPanting", false);
-      }
-  	}
-
-    // melee and ranged attack ----------------------------------------------------------------------------------
-    em.ForEach([&](EntityID& id,EntityType et, RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
-    {
-      //Reduce Cooldowns   	
-      if (a.MeleeCooldownTimer > -0.2f)
-        a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
-
-      if (a.RangeCooldownTimer > -0.2f)
-        a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
-
-      if(a.AttackDelay > 0.0f)
-        a.AttackDelay -= env.pClock->FixedDeltaTime();
-
-      //Toggle Ranged Attack
-      if (a.RangeAttack && a.RangeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
-      {
-        em.GetComponent<State>(id).SetBool("Ranged", true);
-        RangedAttackingEntities.push_back(id);
-        a.RangeCooldownTimer = a.RangeCooldown;
-        a.RangeAttack = false;
-      }
-      if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
-          em.GetComponent<State>(id).SetBool("Ranged", false);
-      
-      //FlipPunching();
-
-      //Toggle Player Melee Attack
-      if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f)
-      {
-        if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f && a.ComboCooldownTimer > 0.0f)
-        {  	
-          ++a.NumberOfCombos;
-          a.ComboCooldownTimer = a.ComboDuration;
-          a.StartComboCooldownTimer = true;
-          if (a.NumberOfCombos == 1)
+          if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
           {
-            st.SetBool("Punch1", true);
-            st.SetBool("Punch2", false);
-            st.SetBool("Punch3", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 1);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
+              //DASH
+              auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+              auto& p = env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(UnitManager::GetPlayerID());
+              auto& s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+
+              if (a.CurrentDodgeCooldown > 0.0f)
+                  a.CurrentDodgeCooldown -= env.pClock->FixedDeltaTime();
+
+              if (p.IsDodging)
+              {
+                  em.GetComponent<State>(UnitManager::GetPlayerID()).SetBool("LancerAttack", true);
+                  p.StartDashingTimer = true;
+                  p.StartUnMoveableTimer = true;
+                  a.CurrentDodgeCooldown = a.DodgeCooldown;
+              }
+              if (p.StartDashingTimer)
+              {
+                  p.DashingTimerCooldown -= env.pClock->FixedDeltaTime();
+                  p.AllowDashing = false;
+              }
+              if (p.DashingTimerCooldown <= 0.0f)
+              {
+                  p.StartDashingTimer = false;
+                  p.DashingTimerCooldown = p.DashingTimerDuration;
+                  p.AllowDashing = true;
+                  s.SetBool("LancerAttack", false);
+              }
+              if (p.StartUnMoveableTimer)
+              {
+                  p.UnMoveableTimerCooldown -= env.pClock->FixedDeltaTime();
+                  p.AllowRunning = false;
+              }
+              if (p.UnMoveableTimerCooldown <= 0.0f)
+              {
+                  p.StartUnMoveableTimer = false;
+                  p.UnMoveableTimerCooldown = p.UnMoveableTimerDuration;
+                  p.AllowRunning = true;
+                  s.SetBool("IsPanting", false);
+              }
           }
-          else if (a.NumberOfCombos == 2)
+
+          // melee and ranged attack ----------------------------------------------------------------------------------
+          em.ForEach([&](EntityID& id, EntityType et, RigidBody& r, Attack& a, Image& im, Animator& anim, State& st)
+              {
+                  //Reduce Cooldowns   	
+                  if (a.MeleeCooldownTimer > -0.2f)
+                      a.MeleeCooldownTimer -= env.pClock->FixedDeltaTime();
+
+                  if (a.RangeCooldownTimer > -0.2f)
+                      a.RangeCooldownTimer -= env.pClock->FixedDeltaTime();
+
+                  if (a.AttackDelay > 0.0f)
+                      a.AttackDelay -= env.pClock->FixedDeltaTime();
+
+                  //Toggle Ranged Attack
+                  if (a.RangeAttack && a.RangeCooldownTimer <= 0 && a.AttackDelay < 0.0f)
+                  {
+                      em.GetComponent<State>(id).SetBool("Ranged", true);
+                      RangedAttackingEntities.push_back(id);
+                      a.RangeCooldownTimer = a.RangeCooldown;
+                      a.RangeAttack = false;
+                  }
+                  if (a.RangeCooldownTimer <= (a.RangeCooldown - 0.5f))
+                      em.GetComponent<State>(id).SetBool("Ranged", false);
+
+                  //FlipPunching();
+
+                  //Toggle Player Melee Attack
+                  if (a.MeleeAttack && a.MeleeCooldownTimer < 0.0f)
+                  {
+                      if (et.type == EntityCategory::E_PLAYER && a.AttackDelay < 0.0f && a.ComboCooldownTimer > 0.0f)
+                      {
+                          ++a.NumberOfCombos;
+                          a.ComboCooldownTimer = a.ComboDuration;
+                          a.StartComboCooldownTimer = true;
+                          if (a.NumberOfCombos == 1)
+                          {
+                              st.SetBool("Punch1", true);
+                              st.SetBool("Punch2", false);
+                              st.SetBool("Punch3", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 1);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                          }
+                          else if (a.NumberOfCombos == 2)
+                          {
+                              st.SetBool("Punch2", true);
+                              st.SetBool("Punch1", false);
+                              st.SetBool("Punch3", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 2);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                          }
+                          else if (a.NumberOfCombos == 3)
+                          {
+                              st.SetBool("Punch1", true);
+                              st.SetBool("Punch2", false);
+                              st.SetBool("Punch3", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 1);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                          }
+                          else if (a.NumberOfCombos == 4)
+                          {
+                              st.SetBool("Punch2", true);
+                              st.SetBool("Punch1", false);
+                              st.SetBool("Punch3", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 2);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                          }
+                          else if (a.NumberOfCombos == a.MaxComboNumber)
+                          {
+                              st.SetBool("Punch3", true);
+                              st.SetBool("Punch1", false);
+                              st.SetBool("Punch2", false);
+                              AudioEngine::SetGlobalParameterByName("Punch", 3);
+                              MeleeAttackingEntities.push_back(id);
+                              a.MeleeCooldownTimer = a.MeleeCooldown;
+                              a.MeleeAttack = false;
+                              a.NumberOfCombos = 0;
+                              a.AttackDelay = 0.65f;
+                              a.StartComboCooldownTimer = false;
+                              a.ComboCooldownTimer = a.ComboDuration;
+                          }
+                      }
+                      else if (et.type != EntityCategory::E_PLAYER)
+                      {
+                          MeleeAttackingEntities.push_back(id);
+                          a.MeleeCooldownTimer = a.MeleeCooldown;
+                          a.MeleeAttack = false;
+                      }
+                      else if (a.AttackDelay < 0.3f)
+                      {
+                          st.SetBool("Punch3", false);
+                      }
+                  }
+              });
+
+          // reset combo back to 0 for player
+          if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
           {
-            st.SetBool("Punch2", true);
-            st.SetBool("Punch1", false);
-            st.SetBool("Punch3", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 2);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
+              auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
+              auto& st = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
+              if (a.StartComboCooldownTimer)
+              {
+                  a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
+                  if (a.ComboCooldownTimer < 0.0f)
+                  {
+                      st.SetBool("Punch1", false);
+                      st.SetBool("Punch2", false);
+                      st.SetBool("Punch3", false);
+                      st.SetBool("IsIdle", true);
+                      a.NumberOfCombos = 0;
+                      a.StartComboCooldownTimer = false;
+                      a.ComboCooldownTimer = a.ComboDuration;
+                  }
+              }
           }
-          else if (a.NumberOfCombos == 3)
+
+          for (auto& id1 : RangedAttackingEntities)
           {
-            st.SetBool("Punch1", true);
-            st.SetBool("Punch2", false);
-            st.SetBool("Punch3", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 1);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
+              RangedAttack(id1);
           }
-          else if (a.NumberOfCombos == 4)
+
+          for (auto& id1 : MeleeAttackingEntities)
           {
-            st.SetBool("Punch2", true);
-            st.SetBool("Punch1", false);
-            st.SetBool("Punch3", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 2);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
+              MeleeAttack(id1);
           }
-          else if (a.NumberOfCombos == a.MaxComboNumber)
-          {
-            st.SetBool("Punch3", true);
-            st.SetBool("Punch1", false);
-            st.SetBool("Punch2", false);
-            AudioEngine::SetGlobalParameterByName("Punch", 3);
-            MeleeAttackingEntities.push_back(id);
-            a.MeleeCooldownTimer = a.MeleeCooldown;
-            a.MeleeAttack = false;
-            a.NumberOfCombos = 0;
-            a.AttackDelay = 0.65f;
-            a.StartComboCooldownTimer = false;
-            a.ComboCooldownTimer = a.ComboDuration;
-          }
-        }
-        else if(et.type != EntityCategory::E_PLAYER)
-        {
-          MeleeAttackingEntities.push_back(id);
-          a.MeleeCooldownTimer = a.MeleeCooldown;
-          a.MeleeAttack = false;
-        }
-        else if(a.AttackDelay < 0.3f)
-        {
-          st.SetBool("Punch3", false);
-        }
       }
-    });
- 
-    // reset combo back to 0 for player
-    if (em.IsEntityValid(UnitManager::GetPlayerID()) && em.HasComponent<Player>(UnitManager::GetPlayerID()))
-    {
-      auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(UnitManager::GetPlayerID());
-      auto& st = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(UnitManager::GetPlayerID());
-      if (a.StartComboCooldownTimer)
-      {
-        a.ComboCooldownTimer -= env.pClock->FixedDeltaTime();
-        if (a.ComboCooldownTimer < 0.0f)
-        {
-          st.SetBool("Punch1", false);
-          st.SetBool("Punch2", false);
-          st.SetBool("Punch3", false);
-          st.SetBool("IsIdle", true);
-          a.NumberOfCombos = 0;
-          a.StartComboCooldownTimer = false;
-          a.ComboCooldownTimer = a.ComboDuration;
-        }
-      }
-    }
-
-    for (auto& id1 : RangedAttackingEntities)
-    {
-      RangedAttack(id1);
-    }
-
-    for (auto& id1 : MeleeAttackingEntities)
-    {
-      MeleeAttack(id1);
-    }
-
     RangedAttackingEntities.clear();
     MeleeAttackingEntities.clear();
     Profiler::Instance().Record("Attack System");

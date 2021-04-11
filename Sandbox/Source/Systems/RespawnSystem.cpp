@@ -11,7 +11,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "../../Sandbox/Source/Systems/RespawnSystem.h"
 #include "AI/AITools.h"
 #include "UnitManager.h"
-#include "LevelManager/LevelManager.h"
 #include "../GameState.h"
 
 namespace DeltaEngine
@@ -53,48 +52,11 @@ namespace DeltaEngine
   {
   }
 
-  //void RespawnSystem::temp_create_checkpoints()
-  //{
-  //    EntityID id = UnitManager::GetPlayerID();
-  //
-  //    //Stop crash by checking for components	
-  //    if (!em.HasComponent<Player>(id) || !em.HasComponent<Transform>(id))
-  //        return;
-  //
-  //    Transform& t = em.GetComponent<Transform>(id);
-  //    player_initial_position = { t.position.x, t.position.y };
-  //
-  //    for (size_t i = 0; i < respawns.m_respawns.size(); i++)
-  //    {
-  //        //auto& em = GetEnv().pECS->GetWorld().GetEntityManager();
-  //        EntityID checkpoints = em.CreateEntity<Animator, Renderer2D, Image, State>();
-  //        em.GetComponent<EntityName>(checkpoints).name = "Checkpoint";
-  //
-  //        em.GetComponent<Transform>(checkpoints).position.x = respawns.m_respawns[i].x;
-  //        em.GetComponent<Transform>(checkpoints).position.y = respawns.m_respawns[i].y;
-  //        em.GetComponent<Transform>(checkpoints).scale = { 1.0f, 1.0f, 1.0f };
-  //
-  //        em.GetComponent<Renderer2D>(checkpoints).m_SortingLayer = 3;
-  //        em.GetComponent<Image>(checkpoints).m_Sprite.m_Key = "Textures/CHECKPOINT_OFF"; // e.g. "Textures/DAVE_HITFX"
-  //        em.GetComponent<Image>(checkpoints).m_Sprite.m_Index = 0;
-  //        em.GetComponent<Image>(checkpoints).m_Size = { 1.0f, 1.0f };
-  //        em.GetComponent<EntityType>(checkpoints).type = EntityCategory::E_CHECKPOINT;
-  //        em.GetComponent<Animator>(checkpoints).m_ControllerKey = "Animation/Checkpoint"; // e.g. "Animation/DaveHitVFX"
-  //        em.GetComponent<State>(checkpoints).SetBool("CheckpointReached", false);
-  //    }
-  //}
-
   void RespawnSystem::CreateCheckpoints(int level)
   {
     JsonFile file;;
     if (level == 0) // tutorial
-    {
-      //file.StartReader("Player/tutorial_respawn_points.json").LoadObject(respawns).EndReader();
-      //opening_tutorial = true;
-      //opening_level_1 = false;
-      //in_tutorial = true;
-      //in_level_1 = false;
-    }
+    {}
     if (level == 1) // tutorial
     {
       file.StartReader("Player/level1_respawn_points.json").LoadObject(respawns).EndReader();
