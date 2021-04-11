@@ -28,8 +28,10 @@ namespace DeltaEngine
     em.ForEach(e_query, [&](EntityID id, Transform& tr, ParticleEmitter& ps)
       {
         if (!ParticleEmitter::particlePools.count(id))
+        {
           ParticleEmitter::particlePools[id] = std::vector<ParticleEmitter::Particle>();
-        ParticleEmitter::particlePools[id].resize(ps.maxParticles);
+          ParticleEmitter::particlePools[id].resize(100);
+        }
 
         auto Emit = [&id, &ps](unsigned count)
         {
@@ -177,14 +179,14 @@ namespace DeltaEngine
             particle.velocity = Vector3(
               ps.velocityOverLifetime.minX.min,
               ps.velocityOverLifetime.minY.min,
-              0
+              ps.velocityOverLifetime.minZ.min
             );
             break;
           case BezierCurve::Type::ConstantCurve:
             particle.velocity = Vector3(
               ps.velocityOverLifetime.minX.Evaluate(particle.lifeTimer / particle.lifeTime),
               ps.velocityOverLifetime.minY.Evaluate(particle.lifeTimer / particle.lifeTime),
-              0
+              ps.velocityOverLifetime.minZ.Evaluate(particle.lifeTimer / particle.lifeTime)
             );
             break;
           case BezierCurve::Type::RandomBetweenConstants:
@@ -195,7 +197,9 @@ namespace DeltaEngine
               Random::RandomFloatRange(
                 ps.velocityOverLifetime.minY.min,
                 ps.velocityOverLifetime.maxY.min),
-              0
+              Random::RandomFloatRange(
+                ps.velocityOverLifetime.minZ.min,
+                ps.velocityOverLifetime.maxZ.min)
             );
             break;
           case BezierCurve::Type::RandomBetweenCurves:
@@ -206,7 +210,9 @@ namespace DeltaEngine
               Random::RandomFloatRange(
                 ps.velocityOverLifetime.minY.Evaluate(particle.lifeTimer / particle.lifeTime),
                 ps.velocityOverLifetime.maxY.Evaluate(particle.lifeTimer / particle.lifeTime)),
-              0
+              Random::RandomFloatRange(
+                ps.velocityOverLifetime.minZ.Evaluate(particle.lifeTimer / particle.lifeTime),
+                ps.velocityOverLifetime.maxZ.Evaluate(particle.lifeTimer / particle.lifeTime))
             );
           }
           //switch (ps.rotationOverLifetime.type)
@@ -271,7 +277,7 @@ namespace DeltaEngine
                 ps.sizeOverLifetime.minY.Evaluate(particle.lifeTimer / particle.lifeTime),
                 ps.sizeOverLifetime.maxY.Evaluate(particle.lifeTimer / particle.lifeTime)),
               1
-            );
+              );
           }
 
           Color min = ps.colorOverLifetime.min.Evaluate(particle.lifeTimer / particle.lifeTime);

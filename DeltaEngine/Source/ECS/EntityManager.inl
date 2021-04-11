@@ -110,7 +110,7 @@ inline void EntityManager::Clear()
   Archetype *empty_arch = CreateEmptyArchetype();
   m_archetypes.push_back( empty_arch );
   CreateChunk( empty_arch );
-
+  ParticleEmitter::particlePools.clear();
 }
 
 template <typename... C>
