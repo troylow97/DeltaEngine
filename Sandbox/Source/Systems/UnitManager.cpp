@@ -75,8 +75,6 @@ void UnitManager::Update()
 
     if ( c.isCollidingOnFloor && a.m_ClipKey == "Clip/DAVE_FALL" )
     {
-
-      std::cout << "Landing" << std::endl;
       audio.clip = "event:/Player/Player Land";
       AudioEngine::AudioSourcePlay2DEvent( audio );
 
