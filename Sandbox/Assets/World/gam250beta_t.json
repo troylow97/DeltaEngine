@@ -4115,6 +4115,15 @@
             "Entity Type": {
                 "Category": "player"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false,
+                "Is 3D": false
+            },
             "Transform": {
                 "Position": {
                     "x": 25.0,
@@ -4264,6 +4273,15 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -4417,6 +4435,15 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -32163,7 +32190,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -32323,7 +32351,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -32483,7 +32512,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -32643,7 +32673,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -32803,7 +32834,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -32963,7 +32995,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -33123,7 +33156,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -33283,7 +33317,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -33443,7 +33478,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -33603,7 +33639,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -33763,7 +33800,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -33923,7 +33961,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -34083,7 +34122,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -34243,7 +34283,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -34403,7 +34444,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -34563,7 +34605,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -34723,7 +34766,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -34883,7 +34927,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -35043,7 +35088,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -35203,7 +35249,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -35363,7 +35410,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -35523,7 +35571,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -35683,7 +35732,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -35843,7 +35893,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -36003,7 +36054,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -36163,7 +36215,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -36323,7 +36376,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -36483,7 +36537,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -36643,7 +36698,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -36803,7 +36859,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -36963,7 +37020,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -37123,7 +37181,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -37283,7 +37342,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -37443,7 +37503,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -37603,7 +37664,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -37763,7 +37825,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -37923,7 +37986,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -38083,7 +38147,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -38243,7 +38308,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -38401,7 +38467,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -38559,7 +38626,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -38717,7 +38785,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -38875,7 +38944,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -39530,7 +39600,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -39688,7 +39759,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -39846,7 +39918,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -40004,7 +40077,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -40162,7 +40236,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -40320,7 +40395,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -40478,7 +40554,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -40636,7 +40713,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -40794,7 +40872,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -40955,7 +41034,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -41116,7 +41196,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -41277,7 +41358,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
@@ -41438,7 +41520,8 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false
+                "Is Event": false,
+                "Is 3D": false
             },
             "Transform": {
                 "Position": {
