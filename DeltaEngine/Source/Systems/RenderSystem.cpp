@@ -12,10 +12,10 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Core/Debugging/Profiler/Profiler.h"
 #include "ECS/EntityManager.h"
 #include "Render/Camera.h"
-#include "Render/VideoClip.h"
 #include "Render/Mesh.h"
 #include "Render/Window.h"
 #include "Render/OpenGLSystem.h"
+#include "Render/Cutscenes.h"
 #include "Assets/AssetManager.h"
 #include "Components/ParticleEmitter.h"
 #include "Core/Utils/Random.h"
@@ -269,7 +269,8 @@ namespace DeltaEngine
   {
     Material spriteMat{ "Shaders/Default" };
     Material textMat{ "Shaders/DefaultText" };
-    
+    Material cutsceneMat{ "Shaders/DefaultTransition" };
+
     for (EntityID ID : sortedRenderersOverlay)
     {
       if ( !em.HasComponent<RendererOverlay>(ID))
@@ -355,22 +356,59 @@ namespace DeltaEngine
             img.m_Sprite.GetTexture()->Bind(0);
           }
 
-          spriteMat.SetUniformMatrix4f("_M", model);
-          spriteMat.SetUniformMatrix4f("_V", view);
-          spriteMat.SetUniformMatrix4f("_P", proj);
-          spriteMat.SetUniformColor4f("_Color", r.m_Color);
-          spriteMat.SetUniform1i("_MainTex", 0);
-          spriteMat.SetUniform1f("_FadeAmt", 0);
-          spriteMat.SetUniform1i("_FillType", static_cast<int>(img.m_FillType));
-          spriteMat.SetUniform1f("_FillAmount", img.m_FillAmount);
-          spriteMat.SetUniform1f("_RRot", img.m_OverallAngle);
-          spriteMat.SetUniform1f("_RStart", img.m_StartAngle);
-          spriteMat.SetUniform1f("_REnd", img.m_EndAngle);
-          spriteMat.SetUniformVector4f("_SpriteUV", Vector4(
-            img.m_Sprite.GetOffset().x,
-            img.m_Sprite.GetOffset().y,
-            img.m_Sprite.GetOffset().x + img.m_Sprite.GetTiling().x,
-            img.m_Sprite.GetOffset().y + img.m_Sprite.GetTiling().y));
+          if (!std::strcmp(r.m_Material.m_ShaderKey.c_str(), "DefaultTransition"))
+          {
+            if (Cutscene::frame < 10)
+            {
+              cutsceneMat.SetUniformMatrix4f("_M", model);
+              cutsceneMat.SetUniformMatrix4f("_V", view);
+              cutsceneMat.SetUniformMatrix4f("_P", proj);
+              cutsceneMat.SetUniformColor4f("_Color", r.m_Color);
+              if (Cutscene::frame >= 0)
+              {
+                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 1))->Bind(2);
+              }
+              else
+              {
+                GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(2);
+              }
+
+              if (Cutscene::frame < 9)
+              {
+                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 2))->Bind(1);
+              }
+              else
+              {
+                GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(1);
+              }
+
+              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(0);
+
+              cutsceneMat.SetUniform1i("_MainTex", 2);
+              cutsceneMat.SetUniform1i("_DispTex", 0);
+              cutsceneMat.SetUniform1i("_NextTex", 1);
+              cutsceneMat.SetUniform1f("_Cutoff", (Cutscene::timer) * (1.f + .1f) - .1f);
+            }
+          }
+          else
+          {
+            spriteMat.SetUniformMatrix4f("_M", model);
+            spriteMat.SetUniformMatrix4f("_V", view);
+            spriteMat.SetUniformMatrix4f("_P", proj);
+            spriteMat.SetUniformColor4f("_Color", r.m_Color);
+            spriteMat.SetUniform1i("_MainTex", 0);
+            spriteMat.SetUniform1f("_FadeAmt", 0);
+            spriteMat.SetUniform1i("_FillType", static_cast<int>(img.m_FillType));
+            spriteMat.SetUniform1f("_FillAmount", img.m_FillAmount);
+            spriteMat.SetUniform1f("_RRot", img.m_OverallAngle);
+            spriteMat.SetUniform1f("_RStart", img.m_StartAngle);
+            spriteMat.SetUniform1f("_REnd", img.m_EndAngle);
+            spriteMat.SetUniformVector4f("_SpriteUV", Vector4(
+              img.m_Sprite.GetOffset().x,
+              img.m_Sprite.GetOffset().y,
+              img.m_Sprite.GetOffset().x + img.m_Sprite.GetTiling().x,
+              img.m_Sprite.GetOffset().y + img.m_Sprite.GetTiling().y));
+          }
           Mesh::DrawQuad(offset, tiling, pivot);
 
           if (img.m_Sprite)
@@ -468,9 +506,28 @@ namespace DeltaEngine
               c.End();
 
 #ifndef DE_EDITOR
+              Vector2 cameraAspect{ 1, 1 };
+
+              if (Camera::GetFixedAspectRatio() > .01f)
+              {
+                if (c.GetAspectRatio() > Camera::GetFixedAspectRatio())
+                {
+                  cameraAspect.x = Camera::GetFixedAspectRatio() / c.GetAspectRatio();
+                }
+                else
+                {
+                  cameraAspect.y = c.GetAspectRatio() / Camera::GetFixedAspectRatio();
+                }
+              }
+              glActiveTexture(GL_TEXTURE0);
+              glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(1);
+              
               Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
               shader->SetUniform1i("_MainTex", 0);
-              glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
+              shader->SetUniform1i("_DispTex", 1);
+              shader->SetUniformVector2f("_ScreenAspect", cameraAspect);
+              shader->SetUniform1f("_Cutoff", (1 - c.backgroundColor.a) * (1.f + c.blurAmt) - c.blurAmt);
 
               Mesh::DrawQuad();
 #endif // !DE_EDITOR
@@ -506,7 +563,7 @@ namespace DeltaEngine
 
               glActiveTexture(GL_TEXTURE0);
               glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
-              GetEnv().pManager->Get<Texture2D>("Textures/screentrans2")->Bind(1);
+              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(0);
 
               Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
               shader->SetUniform1i("_MainTex", 0);

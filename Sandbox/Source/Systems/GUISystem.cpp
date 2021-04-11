@@ -24,6 +24,14 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
 
+bool attacked { false };
+bool healed { false };
+bool changing { false };
+float target { 0 };
+float current { 0 };
+float diff { 0.0f };
+float timer { 0.5f };
+
 void GUISystem::Update()
 {
   Attack *player_attack { nullptr };
@@ -37,21 +45,43 @@ void GUISystem::Update()
 
   if ( player_attack && player_health )
   {
-    em.ForEach( [&]( EntityName &name, GUI &g, Image &i )
+
+    if ( !changing )
+      current = player_health->CurrentHealth;
+    target = player_health->CurrentHealth;
+
+
+    em.ForEach( [&]( EntityID &id, EntityName &name, GUI &g, Image &i, State &s )
     {
       if ( name.name == "Dodge Cooldown" )
       {
-        if ( player_attack->CurrentDodgeCooldown <= player_attack->DodgeCooldown )
-          i.m_FillAmount = Math::Clamp01( player_attack->CurrentDodgeCooldown / player_attack->DodgeCooldown );
-        else
-          i.m_FillAmount = 1.0f;
+        s.SetFloat( "Cooldown", player_attack->CurrentDodgeCooldown );
+        auto &a = em.GetComponent<Animator>( id );
+        s.SetBool( "Anim", a.LoopsCompleted() ? false : true );
       }
 
       if ( name.name == "Health" )
       {
-        i.m_FillAmount = Math::Clamp01( static_cast<float>( player_health->CurrentHealth ) / static_cast<float>( player_health->MaxHealth ) );
+        s.SetBool( "Hit", attacked && changing );
+        s.SetBool( "Heal", attacked && changing );
+        auto p = Math::Clamp01( current / static_cast<float>( player_health->MaxHealth ) );
+        s.SetFloat( "Health", p );
+        i.m_FillAmount = p;
       }
     } );
+
+    for ( size_t i = 0; i < GetEnv().pClock->Timesteps(); ++i )
+      current += diff * GetEnv().pClock->FixedDeltaTime();
+
+
+
+    if ( changing )
+    {
+      if ( diff > 0.0f && current > target )
+        changing = healed = attacked = false;
+      else if ( diff < 0.0f && current < target )
+        changing = healed = attacked = false;
+    }
   }
 }
 
@@ -59,6 +89,23 @@ void GUISystem::LateUpdate()
 {
 
 }
+
+void GUISystem::Attacked( bool b )
+{
+  attacked = true;
+  changing = true;
+  diff = target - current;
+  diff /= timer;
+}
+
+void GUISystem::Heal( bool b )
+{
+  healed = true;
+  changing = true;
+  diff = target - current;
+  diff /= timer;
+}
+
 
 
 }

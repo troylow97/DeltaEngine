@@ -1,0 +1,30 @@
+frames 5
+fps 12
+loop 1
+
+Textures/HEALTHBAR_DMG_i_0
+key Textures/HEALTHBAR_DMG
+value 0
+frame 0
+
+Textures/HEALTHBAR_DMG_i_1
+key Textures/HEALTHBAR_DMG
+value 1
+frame 1
+
+Textures/HEALTHBAR_DMG_i_2
+key Textures/HEALTHBAR_DMG
+value 2
+frame 2
+
+Textures/HEALTHBAR_DMG_i_3
+key Textures/HEALTHBAR_DMG
+value 3
+frame 3
+
+Textures/HEALTHBAR_DMG_i_4
+key Textures/HEALTHBAR_DMG
+value 4
+frame 4
+
+%

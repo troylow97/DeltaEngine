@@ -53,8 +53,8 @@ namespace DeltaEngine
   {
     if (*this)
       return Vector2(
-        1.0f * GetWidth() / GetTexture()->GetWidth(),
-        1.0f * GetHeight() / GetTexture()->GetHeight()
+        1.0f * ( GetWidth() ) /  ( GetTexture()->GetWidth() ),
+        1.0f * ( GetHeight() ) / ( GetTexture()->GetHeight() )
       );
     return Vector2(1.0f, 1.0f);
   }

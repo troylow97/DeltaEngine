@@ -11,10 +11,6 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include <DeltaEngine.h>
 #include "EntryPoint.h"
-#include <memory>
-#include <string>
-#include <unordered_map>
-#include <chrono>
 #include "../Source/Systems/AI/AI_StateMachine.h"
 #include "Physics/CollisionSystem.h"
 #include "Systems/AttackSystem.h"
@@ -23,10 +19,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/LifespanSystem.h"
 #include "Systems/RespawnSystem.h"
 #include "Systems/GCameraSystem.h"
-#include "Systems/UpgradeSystem.h"
 #include "Systems/HealthSystem.h"
 #include "Systems/CollisionHandler/CollisionHandlingFunctions.h"
-#include "Audio/AudioEngine.h"
 #include "Systems/Menus.h"
 #include "Systems/AudioSystem.h"
 #include "Systems/GUISystem.h"
@@ -48,15 +42,15 @@ public:
     CollisionSystem::collision_handler.RegisterOnEnter(CollisionHandlerFunctions::TakeDamage);
     CollisionSystem::collision_handler.RegisterOnEnter(CollisionHandlerFunctions::PickupHealthOrb);
     CollisionSystem::collision_handler.RegisterOnStay(CollisionHandlerFunctions::CheckGroundType);
-    env.pECS->GetWorld().CreateSystems<AttackSystem, VFXSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, HealthSystem, MenuSystem,AudioSystem, GUISystem,LevelManager,HealthPickupSystem>();
+    env.pECS->GetWorld().CreateSystems<AttackSystem, VFXSystem, EnemySpawner, LifespanSystem, RespawnSystem, GCameraSystem, HealthSystem, MenuSystem, GUISystem,LevelManager,HealthPickupSystem>();
     env.pECS->GetWorld().SetUpdateSequence<AttackSystem, VFXSystem, EnemySpawner, HealthSystem, RespawnSystem, LifespanSystem, MenuSystem, GUISystem, LevelManager>();
     //env.pECS->GetWorld().SetUpdateSequence<AttackSystem, EnemySpawner, HealthSystem, RespawnSystem, UpgradeSystem,
     //    ExitSceneCinematic, LifespanSystem>();
-    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem, AudioSystem>();
+    env.pECS->GetWorld().SetLateUpdateSequence<GCameraSystem>();
     env.pECS->GetWorld().InitSystems();
     CollisionHandlerFunctions::Initialise();
     //EnemySpawner::ActivateGauntlet = true;
-
+ 
 
   }
 

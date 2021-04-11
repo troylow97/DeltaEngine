@@ -20,7 +20,8 @@ enum class GUIType : unsigned
   Image,
   Button,
   Toggle,
-  Slider
+  Slider,
+  Cursor
 };
 
 struct GUI
@@ -44,11 +45,19 @@ struct Toggle
 
 struct Slider
 {
+  std::string on_change {};
   unsigned fill_entity {u32_max};
   unsigned handle_entity { u32_max };
   float min { 0 };
   float max { 0 };
   float value { 0 };
+  bool selected { false };
+};
+
+struct Cursor
+{
+  bool visible;
+  bool enabled;
 };
 
 }

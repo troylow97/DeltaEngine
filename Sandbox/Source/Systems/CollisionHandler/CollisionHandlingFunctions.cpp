@@ -16,43 +16,43 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Audio/AudioEngine.h"
 namespace DeltaEngine
 {
-  EnemyData CollisionHandlerFunctions::CollisionHandlerFiddlerData{};
-  EnemyData CollisionHandlerFunctions::CollisionHandlerLancerData{};
-  EnemyData CollisionHandlerFunctions::CollisionHandlerSerpentipedeData{};
-  
-  void CollisionHandlerFunctions::Initialise()
+EnemyData CollisionHandlerFunctions::CollisionHandlerFiddlerData {};
+EnemyData CollisionHandlerFunctions::CollisionHandlerLancerData {};
+EnemyData CollisionHandlerFunctions::CollisionHandlerSerpentipedeData {};
+
+void CollisionHandlerFunctions::Initialise()
+{
+  JsonFile file;
+  file.StartReader( "Enemy/Lancer.json" ).LoadObject( CollisionHandlerLancerData ).EndReader();
+  JsonFile file2;
+  file.StartReader( "Enemy/Fiddler.json" ).LoadObject( CollisionHandlerFiddlerData ).EndReader();
+  JsonFile file3;
+  file.StartReader( "Enemy/Serpentipede.json" ).LoadObject( CollisionHandlerSerpentipedeData ).EndReader();
+}
+
+void CollisionHandlerFunctions::ReduceHealth( EntityID &id1, int amount )
+{
+  if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Health>( id1 ) &&
+       !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).isInvulnerable )
   {
-    JsonFile file;
-    file.StartReader("Enemy/Lancer.json").LoadObject(CollisionHandlerLancerData).EndReader();
-    JsonFile file2;
-    file.StartReader("Enemy/Fiddler.json").LoadObject(CollisionHandlerFiddlerData).EndReader();
-    JsonFile file3;
-    file.StartReader("Enemy/Serpentipede.json").LoadObject(CollisionHandlerSerpentipedeData).EndReader();
+    env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).CurrentHealth -= amount;
+    env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).isDamagedTimer = 0.4f;
   }
-  
-  void CollisionHandlerFunctions::ReduceHealth(EntityID& id1, int amount)
-  {
-    if (env.pECS->GetWorld().GetEntityManager().HasComponent<Health>(id1) &&
-        !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isInvulnerable)
-    {
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).CurrentHealth -= amount;
-      env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(id1).isDamagedTimer = 0.6f;
-    }
-  }
-  
-  bool CollisionHandlerFunctions::CheckEntityType(EntityID id1, EntityCategory typecheck1, EntityID id2,
-      EntityCategory typecheck2)
-  {
-    auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
-    auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
-    return (type1 == typecheck1 && type2 == typecheck2);
-  }
-  
-  EntityID GetEntityID(EntityID id1, EntityID id2, EntityCategory type)
-  {
-    auto& type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id1).type;
-    auto& type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>(id2).type;
-    (void)type2;
+}
+
+bool CollisionHandlerFunctions::CheckEntityType( EntityID id1, EntityCategory typecheck1, EntityID id2,
+                                                 EntityCategory typecheck2 )
+{
+  auto &type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( id1 ).type;
+  auto &type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( id2 ).type;
+  return ( type1 == typecheck1 && type2 == typecheck2 );
+}
+
+EntityID GetEntityID( EntityID id1, EntityID id2, EntityCategory type )
+{
+  auto &type1 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( id1 ).type;
+  auto &type2 = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityType>( id2 ).type;
+  (void) type2;
 
   if ( type1 == type )
     return id1;
@@ -84,8 +84,9 @@ bool CollisionHandlerFunctions::CheckBlock( EntityID &defender, EntityID &attack
 
 unsigned player_impact_id { 0 };
 
-void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
+void CollisionHandlerFunctions::TakeDamage( EntityID &id1, EntityID &id2 )
 {
+  //std::cout << "TAKE DAMAGE" << std::endl;
   auto &em = env.pECS->GetWorld().GetEntityManager();
   const auto &et1 = em.GetComponent<EntityType>( id1 );
   const auto &et2 = em.GetComponent<EntityType>( id2 );
@@ -94,25 +95,25 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
   {
     //Fiddler Melee Attack
     {
-    	//if(AITools::isFacingEachOther(id1,id2))
-    	{
-            if (CheckEntityType(id1, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id2, EntityCategory::E_PLAYER))
-            {
-                //if(!CheckBlock(id2,id1))
-                ReduceHealth(id2, static_cast<int>(CollisionHandlerFiddlerData.Damage));
-                em.GetComponent<Lifespan>(id1).Timer = -0.1f;
-                ApplyKnockBack(id2, id1, 15000.0f);
-                return;
-            }
-            else if (CheckEntityType(id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER))
-            {
-                //if (!CheckBlock(id1, id2))
-                ReduceHealth(id1, static_cast<int>(CollisionHandlerFiddlerData.Damage));
-                em.GetComponent<Lifespan>(id2).Timer = -0.1f;
-                ApplyKnockBack(id1, id2, 15000.0f);
-                return;
-            }
-    	}
+      //if(AITools::isFacingEachOther(id1,id2))
+      {
+        if ( CheckEntityType( id1, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id2, EntityCategory::E_PLAYER ) )
+        {
+            //if(!CheckBlock(id2,id1))
+          ReduceHealth( id2, static_cast<int>( CollisionHandlerFiddlerData.Damage ) );
+          em.GetComponent<Lifespan>( id1 ).Timer = -0.1f;
+          ApplyKnockBack( id2, id1, 15000.0f );
+          return;
+        }
+        else if ( CheckEntityType( id2, EntityCategory::E_ENEMY_FIDDLER_PUNCH, id1, EntityCategory::E_PLAYER ) )
+        {
+            //if (!CheckBlock(id1, id2))
+          ReduceHealth( id1, static_cast<int>( CollisionHandlerFiddlerData.Damage ) );
+          em.GetComponent<Lifespan>( id2 ).Timer = -0.1f;
+          ApplyKnockBack( id1, id2, 15000.0f );
+          return;
+        }
+      }
 
     }
 
@@ -139,22 +140,22 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
       if ( CheckEntityType( id1, EntityCategory::E_ENEMY_BULLET, id2, EntityCategory::E_PLAYER ) )
       {
         ReduceHealth( id2, static_cast<int>( CollisionHandlerSerpentipedeData.Damage ) );
-        em.GetComponent<EntityType>(id1).type = EntityCategory::E_ENEMY_BULLET_DEAD;
-        em.GetComponent<Lifespan>( id1 ).Timer = 0.4f;
-        em.GetComponent<State>(id1).SetBool("IsDead", true);
-        em.GetComponent<RigidBody>(id1).Velocity *= 0.6f;
-        //em.GetComponent<RigidBody>(id1).isMoveable = false;
+        em.GetComponent<EntityType>( id1 ).type = EntityCategory::E_ENEMY_BULLET;
+        em.GetComponent<Lifespan>( id1 ).Timer = 5.55f;
+
+        em.GetComponent<Animator>( id1 ).m_ClipKey = "Textures/SERP_BULLET_FX";
+        std::cout << "clip key is " << em.GetComponent<Animator>( id1 ).m_ClipKey << std::endl;
+        em.GetComponent<RigidBody>( id1 ).isMoveable = false;
         //ApplyKnockBack(id2, id1, 600.0f);
         return;
       }
       else if ( CheckEntityType( id2, EntityCategory::E_ENEMY_BULLET, id1, EntityCategory::E_PLAYER ) )
       {
         ReduceHealth( id1, static_cast<int>( CollisionHandlerSerpentipedeData.Damage ) );
-        em.GetComponent<EntityType>(id2).type = EntityCategory::E_ENEMY_BULLET_DEAD;
-        em.GetComponent<Lifespan>( id2 ).Timer = 0.4f;
-        em.GetComponent<State>(id2).SetBool("IsDead", true);
-        em.GetComponent<RigidBody>(id2).Velocity *= 0.6f;
-        //em.GetComponent<RigidBody>(id2).isMoveable = false;
+        em.GetComponent<EntityType>( id2 ).type = EntityCategory::E_ENEMY_BULLET;
+        em.GetComponent<Lifespan>( id2 ).Timer = 0.55f;
+        em.GetComponent<State>( id2 ).SetBool( "IsDead", true );
+        std::cout << "clip key is " << em.GetComponent<Animator>( id2 ).m_ClipKey << std::endl;        em.GetComponent<RigidBody>( id2 ).isMoveable = false;
         //ApplyKnockBack(id2, id1, 600.0f);
         return;
       }
@@ -218,11 +219,11 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
       const EntityID enemy = GetEntityID( id1, id2, EntityCategory::E_ENEMY );
       const EntityID punch = GetEntityID( id1, id2, EntityCategory::E_PLAYER_PUNCH );
 
-      if(env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(enemy).isInvulnerable)
+      if ( env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( enemy ).isInvulnerable )
       {
-          return;
+        return;
       }
-    	
+
       Vector2 kb_vector = em.GetComponent<RigidBody>( punch ).Velocity.Normalize();
       if ( !em.GetComponent<Health>( enemy ).isInvulnerable )
         att.DamageEnemy = true;
@@ -243,57 +244,67 @@ void CollisionHandlerFunctions::TakeDamage(EntityID &id1, EntityID &id2)
       /*if ( !AudioEngine::IsEventPlaying( player_impact_id ) )
         player_impact_id =*/ AudioEngine::Play2DEvent( "event:/Player/Player Punch Impact" );
 
-      if ( env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( enemy ).CurrentHealth <= 0 )
-        env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( UnitManager::GetPlayerID() ).EnemiesDefeated++;
+        if ( env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( enemy ).CurrentHealth <= 0 )
+          env.pECS->GetWorld().GetEntityManager().GetComponent<Player>( UnitManager::GetPlayerID() ).EnemiesDefeated++;
     }
   }
 }
 
-void CollisionHandlerFunctions::CheckGroundType(EntityID& id1, EntityID& id2)
+void CollisionHandlerFunctions::CheckGroundType( EntityID &id1, EntityID &id2 )
 {
-    //auto& em = env.pECS->GetWorld().GetEntityManager();
-    //const auto& et1 = em.GetComponent<EntityType>(id1);
-    //const auto& et2 = em.GetComponent<EntityType>(id2);
-    //
-	//if(et1.type == EntityCategory::E_MUD || et2.type == EntityCategory::E_PLAYER)
-	//{
-    //    //MUD
-	//}
-    //else if(et1.type == EntityCategory::E_PLAYER || et2.type == EntityCategory::E_MUD)
-    //{
-	//    //MUD
-    //}
-    //
-    //if (et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_PLAYER)
-    //{
-    //    //CONCRETE
-    //}
-    //else if (et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_MUD)
-    //{
-    //    //CONCRETE
-    //}
-	
+  auto &em = env.pECS->GetWorld().GetEntityManager();
+  const auto &et1 = em.GetComponent<EntityType>( id1 );
+  const auto &et2 = em.GetComponent<EntityType>( id2 );
+  if ( et1.type == EntityCategory::E_MUD || et2.type == EntityCategory::E_PLAYER )
+  {
+    auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id2 );
+    if ( audio.clip == "event:/Player/Player Run" )
+      AudioEngine::SetEventParameterByName( audio.id, "Player Grounds", 1.0f );
+  }
+  else if ( et1.type == EntityCategory::E_PLAYER || et2.type == EntityCategory::E_MUD )
+  {
+    auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id1 );
+    if ( audio.clip == "event:/Player/Player Run" )
+      AudioEngine::SetEventParameterByName( audio.id, "Player Grounds", 1.0f );
+  }
+
+  if ( et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_PLAYER )
+  {
+    auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id2 );
+    if ( audio.clip == "event:/Player/Player Run" )
+      AudioEngine::SetEventParameterByName( audio.id, "Player Grounds", 0.0f );
+  }
+  else if ( et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_MUD )
+  {
+    auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id1 );
+    if ( audio.clip == "event:/Player/Player Run" )
+      AudioEngine::SetEventParameterByName( audio.id, "Player Grounds", 0.0f );
+  }
+
 }
 
-void CollisionHandlerFunctions::PickupHealthOrb(EntityID& id1, EntityID& id2)
+void CollisionHandlerFunctions::PickupHealthOrb( EntityID &id1, EntityID &id2 )
 {
-  auto& em = env.pECS->GetWorld().GetEntityManager();
-  const auto& et1 = em.GetComponent<EntityType>(id1);
-  const auto& et2 = em.GetComponent<EntityType>(id2);
-  
-  if(et1.type == EntityCategory::E_HEALTHUP && et2.type == EntityCategory::E_PLAYER)
+  auto &em = env.pECS->GetWorld().GetEntityManager();
+  const auto &et1 = em.GetComponent<EntityType>( id1 );
+  const auto &et2 = em.GetComponent<EntityType>( id2 );
+
+  if ( et1.type == EntityCategory::E_HEALTHUP && et2.type == EntityCategory::E_PLAYER )
   {
-    em.GetComponent<Lifespan>(id1).Timer = 1.0f;
-    em.GetComponent<Health>(id2).CurrentHealth += em.GetComponent<Health>(id2).MaxHealth * 0.30f;
-    em.GetComponent<State>(id1).SetBool("IsDead", true);
-    em.GetComponent<EntityType>(id1).type = EntityCategory::E_HEALTHUP_USED;
+    em.GetComponent<Lifespan>( id1 ).Timer = 1.0f;
+    em.GetComponent<Health>( id2 ).CurrentHealth *= 1.30f;
+    em.GetComponent<EntityType>( id1 ).type = EntityCategory::E_HEALTHUP_USED;
+    em.GetComponent<State>( id1 ).SetBool( "IsDead", true );
+    //std::cout << "picked up\n";
   }
-  else if(et1.type == EntityCategory::E_PLAYER && et2.type == EntityCategory::E_HEALTHUP)
+  else if ( et1.type == EntityCategory::E_PLAYER && et2.type == EntityCategory::E_HEALTHUP )
   {
-    em.GetComponent<Lifespan>(id2).Timer = 1.0f;
-    em.GetComponent<Health>(id1).CurrentHealth += em.GetComponent<Health>(id1).MaxHealth * 0.30f;
-    em.GetComponent<State>(id2).SetBool("IsDead", true);
-    em.GetComponent<EntityType>(id2).type = EntityCategory::E_HEALTHUP_USED;
+    em.GetComponent<Lifespan>( id2 ).Timer = 1.0f;
+    em.GetComponent<Health>( id1 ).CurrentHealth *= 1.30f;
+    em.GetComponent<EntityType>( id2 ).type = EntityCategory::E_HEALTHUP_USED;
+    em.GetComponent<State>( id2 ).SetBool( "IsDead", true );
+    //std::cout << "picked up\n";
   }
+
 }
 }

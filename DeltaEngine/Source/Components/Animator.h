@@ -24,6 +24,7 @@ namespace DeltaEngine
 
     float m_Timer{0.0f};
     float m_Speed{1.0f};
+    int m_Frame{0};
 
     int m_LoopsCompleted = 0;
 

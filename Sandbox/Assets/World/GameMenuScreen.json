@@ -189,11 +189,11 @@
             "RendererOverlay": {
                 "Pos": {
                     "x": 80.0,
-                    "y": 75.0
+                    "y": 80.0
                 },
                 "Width/Height": {
-                    "x": 114.0,
-                    "y": 114.0
+                    "x": 179.0,
+                    "y": 179.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -226,7 +226,12 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
-            }
+            },
+            "Animator": {
+                "Controller Key": "Animation/Dash",
+                "Speed": 1.0
+            },
+            "State": {}
         },
         {
             "Parent": {
@@ -325,7 +330,12 @@
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
-            }
+            },
+            "Animator": {
+                "Controller Key": "Animation/Health",
+                "Speed": 1.0
+            },
+            "State": {}
         },
         {
             "Parent": {
@@ -386,111 +396,12 @@
             },
             "RendererOverlay": {
                 "Pos": {
-                    "x": 105.0,
-                    "y": 200.0
+                    "x": 152.5,
+                    "y": 260.0
                 },
                 "Width/Height": {
-                    "x": 63.0,
-                    "y": 28.0
-                },
-                "Left": 0.0,
-                "Right": 0.0,
-                "Top": 0.0,
-                "Bottom": 0.0,
-                "Anchor Min": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Anchor Max": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Pivot": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Materials": {
-                    "key": "Default"
-                },
-                "Colors": {
-                    "r": 1.0,
-                    "g": 1.0,
-                    "b": 1.0,
-                    "a": 1.0
-                },
-                "Layer": 0,
-                "Order": 0.0,
-                "Preserve Aspect": false,
-                "Active": true,
-                "Shaded": true,
-                "Wireframe": false
-            }
-        },
-        {
-            "Parent": {
-                "ID": 0
-            },
-            "Entity Name": {
-                "Name": "Dodge Base"
-            },
-            "Entity Type": {
-                "Category": "none"
-            },
-            "GUI": {
-                "Type": "Image",
-                "Screen": 0
-            },
-            "Transform": {
-                "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0,
-                    "w": 1.0
-                }
-            },
-            "Image": {
-                "Sprite": {
-                    "key": "Textures/SPRITES_GUI",
-                    "index": 5
-                },
-                "Size": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Tiling": {
-                    "x": 1.0,
-                    "y": 1.0
-                },
-                "Fill Type": "horizontal_left_to_right",
-                "Fill Amount": 1.0,
-                "Overall Angle": 0.0,
-                "Start Angle": 0.0,
-                "End Angle": 0.0,
-                "Flip X": false,
-                "Flip Y": false
-            },
-            "RendererOverlay": {
-                "Pos": {
-                    "x": 80.0,
-                    "y": 75.0
-                },
-                "Width/Height": {
-                    "x": 114.0,
-                    "y": 114.0
+                    "x": 34.0,
+                    "y": 50.0
                 },
                 "Left": 0.0,
                 "Right": 0.0,
@@ -614,7 +525,7 @@
                     "a": 0.3137255012989044
                 },
                 "Layer": 1,
-                "Order": 0.0,
+                "Order": -1.0,
                 "Preserve Aspect": false,
                 "Active": false,
                 "Shaded": true,
@@ -623,7 +534,7 @@
         },
         {
             "Parent": {
-                "ID": 6
+                "ID": 5
             },
             "Entity Name": {
                 "Name": "Pause Menu Base"
@@ -713,7 +624,7 @@
                     "a": 1.0
                 },
                 "Layer": 1,
-                "Order": 0.0,
+                "Order": 1.0,
                 "Preserve Aspect": true,
                 "Active": false,
                 "Shaded": true,
@@ -722,7 +633,7 @@
         },
         {
             "Parent": {
-                "ID": 6
+                "ID": 5
             },
             "Entity Name": {
                 "Name": "Pause Menu Text"
@@ -821,7 +732,7 @@
         },
         {
             "Parent": {
-                "ID": 6
+                "ID": 5
             },
             "Entity Name": {
                 "Name": "Resume Button"
@@ -930,7 +841,7 @@
         },
         {
             "Parent": {
-                "ID": 6
+                "ID": 5
             },
             "Entity Name": {
                 "Name": "Restart Button"
@@ -1039,7 +950,7 @@
         },
         {
             "Parent": {
-                "ID": 6
+                "ID": 5
             },
             "Entity Name": {
                 "Name": "Control Button"
@@ -1148,7 +1059,7 @@
         },
         {
             "Parent": {
-                "ID": 6
+                "ID": 5
             },
             "Entity Name": {
                 "Name": "Options Button"
@@ -1257,7 +1168,7 @@
         },
         {
             "Parent": {
-                "ID": 6
+                "ID": 5
             },
             "Entity Name": {
                 "Name": "Credits Button"
@@ -1366,7 +1277,7 @@
         },
         {
             "Parent": {
-                "ID": 6
+                "ID": 5
             },
             "Entity Name": {
                 "Name": "Quit Game Button"
@@ -1561,7 +1472,7 @@
                     "b": 1.0,
                     "a": 0.3137255012989044
                 },
-                "Layer": 1,
+                "Layer": 3,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
@@ -1571,7 +1482,7 @@
         },
         {
             "Parent": {
-                "ID": 15
+                "ID": 14
             },
             "Entity Name": {
                 "Name": "Control Page"
@@ -1762,7 +1673,7 @@
                     "b": 1.0,
                     "a": 0.3137255012989044
                 },
-                "Layer": 1,
+                "Layer": 3,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
@@ -1772,7 +1683,7 @@
         },
         {
             "Parent": {
-                "ID": 17
+                "ID": 16
             },
             "Entity Name": {
                 "Name": "Option Button"
@@ -1876,6 +1787,311 @@
             "State": {}
         },
         {
+            "Parent": {
+                "ID": 16
+            },
+            "Entity Name": {
+                "Name": "Master Volume Slider"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Slider",
+                "Screen": 3
+            },
+            "Slider": {
+                "On Change": "MasterVolumeControl",
+                "Fill Entity": 19,
+                "Handle Entity": 20,
+                "Min": 0.0,
+                "Max": 1.0,
+                "Value": 1.0
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Sliderbar_Empty",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 0.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 165.0,
+                    "y": 185.0
+                },
+                "Width/Height": {
+                    "x": 568.0,
+                    "y": 27.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 16
+            },
+            "Entity Name": {
+                "Name": "Master Volume Fill"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 3
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Sliderbar_Full",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "horizontal_left_to_right",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 165.0,
+                    "y": 185.0
+                },
+                "Width/Height": {
+                    "x": 568.0,
+                    "y": 27.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.10000000149011612,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 16
+            },
+            "Entity Name": {
+                "Name": "Master Volume Handle"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Image",
+                "Screen": 3
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Circle_knob",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 669.0,
+                    "y": 190.0
+                },
+                "Width/Height": {
+                    "x": 128.0,
+                    "y": 128.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Anchor Max": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 3,
+                "Order": 0.20000000298023225,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
+        },
+        {
             "Entity Name": {
                 "Name": "Credits Overlay"
             },
@@ -1963,7 +2179,7 @@
                     "b": 1.0,
                     "a": 0.3137255012989044
                 },
-                "Layer": 1,
+                "Layer": 3,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
@@ -1973,7 +2189,7 @@
         },
         {
             "Parent": {
-                "ID": 19
+                "ID": 21
             },
             "Entity Name": {
                 "Name": "Credits Page"
@@ -2164,7 +2380,7 @@
                     "b": 1.0,
                     "a": 0.3137255012989044
                 },
-                "Layer": 1,
+                "Layer": 3,
                 "Order": 0.0,
                 "Preserve Aspect": false,
                 "Active": false,
@@ -2174,7 +2390,7 @@
         },
         {
             "Parent": {
-                "ID": 21
+                "ID": 23
             },
             "Entity Name": {
                 "Name": "Quit Game Base"
@@ -2264,7 +2480,7 @@
                     "a": 1.0
                 },
                 "Layer": 3,
-                "Order": 0.0,
+                "Order": 1.0,
                 "Preserve Aspect": false,
                 "Active": false,
                 "Shaded": true,
@@ -2273,7 +2489,7 @@
         },
         {
             "Parent": {
-                "ID": 21
+                "ID": 23
             },
             "Entity Name": {
                 "Name": "Quit Game Text"
@@ -2372,7 +2588,7 @@
         },
         {
             "Parent": {
-                "ID": 21
+                "ID": 23
             },
             "Entity Name": {
                 "Name": "Quit Game Yes"
@@ -2481,7 +2697,7 @@
         },
         {
             "Parent": {
-                "ID": 21
+                "ID": 23
             },
             "Entity Name": {
                 "Name": "Quit Game No"
@@ -2587,6 +2803,109 @@
                 "Speed": 1.0
             },
             "State": {}
+        },
+        {
+            "Parent": {
+                "ID": 5
+            },
+            "Entity Name": {
+                "Name": "Cursor"
+            },
+            "Entity Type": {
+                "Category": "none"
+            },
+            "GUI": {
+                "Type": "Cursor",
+                "Screen": 1
+            },
+            "Cursor": {
+                "Visible": false,
+                "Enable": false
+            },
+            "Transform": {
+                "Position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Image": {
+                "Sprite": {
+                    "key": "Textures/Cursor_center_On",
+                    "index": 0
+                },
+                "Size": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Tiling": {
+                    "x": 1.0,
+                    "y": 1.0
+                },
+                "Fill Type": "none",
+                "Fill Amount": 1.0,
+                "Overall Angle": 0.0,
+                "Start Angle": 0.0,
+                "End Angle": 0.0,
+                "Flip X": false,
+                "Flip Y": false
+            },
+            "RendererOverlay": {
+                "Pos": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Width/Height": {
+                    "x": 64.0,
+                    "y": 64.0
+                },
+                "Left": 0.0,
+                "Right": 0.0,
+                "Top": 0.0,
+                "Bottom": 0.0,
+                "Anchor Min": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Anchor Max": {
+                    "x": 0.0,
+                    "y": 1.0
+                },
+                "Pivot": {
+                    "x": 0.5,
+                    "y": 0.5
+                },
+                "Materials": {
+                    "key": "Default"
+                },
+                "Colors": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "Layer": 1,
+                "Order": 0.0,
+                "Preserve Aspect": false,
+                "Active": false,
+                "Shaded": true,
+                "Wireframe": false
+            }
         }
     ]
 }

@@ -18,6 +18,10 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Reflect/Reflect.h"
 #include <filesystem>
 
+
+
+#include "AudioPanel.h"
+#include "Audio/AudioEngine.h"
 #include "ImGui/Editor.h"
 #include "ImGui/CustomWidgets.h"
 
@@ -45,9 +49,9 @@ void PropertyInspectorPanel::Render()
     if ( !em.IsEntityValid( { index } ) )
     {
       ImGui::End();
-      return; 
+      return;
     }
-      
+
     if ( em.HasComponent<EntityName>( { index } ) )
     {
       const auto &entity = em.GetComponent<EntityName>( { index } );
@@ -152,17 +156,17 @@ void PropertyInspectorPanel::Render()
               ImGui::Checkbox( ( "##" + prop_name ).c_str(), value.get_value<bool *>() );
             else if ( prop_type == rttr::type::get<size_t *>() && instance.get_type() == rttr::type::get<Parent>() )
             {
-              auto& id = *value.get_value<size_t *>();
+              auto &id = *value.get_value<size_t *>();
 
               size_t selection { id == u64_max ? 0 : id + 1 };
-              
-              if ( ImGui::BeginCombo( ( "##" + prop_name ).c_str(), id != u64_max ? std::to_string(id).c_str(): "Select..." ) )
+
+              if ( ImGui::BeginCombo( ( "##" + prop_name ).c_str(), id != u64_max ? std::to_string( id ).c_str() : "Select..." ) )
               {
                 for ( size_t i = 0; i < em.GetEntities().size() + 1; i++ )
                 {
                   if ( index == i - 1 )
                     continue;
-                  std::string id_label{ i == 0 ? "Select..." : std::to_string(i - 1)};
+                  std::string id_label { i == 0 ? "Select..." : std::to_string( i - 1 ) };
 
                   const bool is_selected = ( selection == i );
                   if ( ImGui::Selectable( id_label.c_str(), is_selected ) )
@@ -173,22 +177,101 @@ void PropertyInspectorPanel::Render()
                 }
                 ImGui::EndCombo();
               }
-              if (id != u64_max)
-              DeltaEngine_CORE_INFO( "Parent Name: {}", em.GetComponent<EntityName>( { id } ).name);
+              if ( id != u64_max )
+                DeltaEngine_CORE_INFO( "Parent Name: {}", em.GetComponent<EntityName>( { id } ).name );
             }
-            else if ( prop_type == rttr::type::get<std::string *>() && (
-              instance.get_type() == rttr::type::get<AI>() ||
-              instance.get_type() == rttr::type::get<EntityName>() ||
-              instance.get_type() == rttr::type::get<Text>() ||
-              instance.get_type() == rttr::type::get<Button>() ||
-              instance.get_type() == rttr::type::get<Toggle>() ||
-              instance.get_type() == rttr::type::get<AudioSource>()) )
+            else if ( prop_type == rttr::type::get<std::string *>() )
             {
-              auto &str = *value.get_value<std::string *>();
-              char buffer[256] {};
-              std::copy( str.begin(), str.end(), buffer );
-              if ( ImGui::InputText( ( "##" + prop_name ).c_str(), buffer, sizeof( buffer ), ImGuiInputTextFlags_EnterReturnsTrue ) )
-                str = std::string( buffer );
+              if ( instance.get_type() == rttr::type::get<AI>() ||
+                   instance.get_type() == rttr::type::get<EntityName>() ||
+                   instance.get_type() == rttr::type::get<Text>())
+              {
+                auto &str = *value.get_value<std::string *>();
+                char buffer[256] {};
+                std::copy( str.begin(), str.end(), buffer );
+                if ( ImGui::InputText( ( "##" + prop_name ).c_str(), buffer, sizeof( buffer ), ImGuiInputTextFlags_EnterReturnsTrue ) )
+                  str = std::string( buffer );
+              }
+              else if ( instance.get_type() == rttr::type::get<Button>() ||
+                        instance.get_type() == rttr::type::get<Toggle>() ||
+                        instance.get_type() == rttr::type::get<Slider>() )
+              {
+                std::vector<std::string> global_func_key;
+                global_func_key.push_back( {} );
+                for ( const auto &method : rttr::type::get_global_methods() )
+                  global_func_key.push_back( method.get_name().to_string() );
+
+                auto &str = *value.get_value<std::string *>();
+                size_t selection = 0;
+
+                for ( size_t i = 0; i < global_func_key.size(); i++ )
+                  if ( str == global_func_key[i] )
+                  {
+                    selection = i;
+                    break;
+                  }
+
+                size_t initial = selection;
+                const char *anim_key = global_func_key[selection].c_str();
+
+                if ( ImGui::BeginCombo( ( "##" + prop_name ).c_str(), anim_key ) )
+                {
+                  for ( size_t i = 0; i < global_func_key.size(); i++ )
+                  {
+                    const bool is_selected = ( selection == i );
+                    if ( ImGui::Selectable( global_func_key[i].c_str(), is_selected ) )
+                      selection = i;
+
+                    if ( is_selected )
+                      ImGui::SetItemDefaultFocus();
+                  }
+                  ImGui::EndCombo();
+                }
+                if ( initial != selection )
+                  str = global_func_key[selection];
+              }
+              else if ( instance.get_type() == rttr::type::get<AudioSource>() )
+              {
+                {
+                  std::vector<std::string> audio_key;
+                  audio_key.push_back( {} );
+                  for ( const auto &bank : AudioPanel::config.banks_config )
+                  for ( const auto &name : AudioEngine::EventList(bank.path) )
+                    audio_key.push_back( name );
+
+                  for ( const auto &name : AudioPanel::config.sounds_config )
+                      audio_key.push_back( name.path );
+
+                  auto &str = *value.get_value<std::string *>();
+                  size_t selection = 0;
+
+                  for ( size_t i = 0; i < audio_key.size(); i++ )
+                    if ( str == audio_key[i] )
+                    {
+                      selection = i;
+                      break;
+                    }
+
+                  size_t initial = selection;
+                  const char *anim_key = audio_key[selection].c_str();
+
+                  if ( ImGui::BeginCombo( ( "##" + prop_name ).c_str(), anim_key ) )
+                  {
+                    for ( size_t i = 0; i < audio_key.size(); i++ )
+                    {
+                      const bool is_selected = ( selection == i );
+                      if ( ImGui::Selectable( audio_key[i].c_str(), is_selected ) )
+                        selection = i;
+
+                      if ( is_selected )
+                        ImGui::SetItemDefaultFocus();
+                    }
+                    ImGui::EndCombo();
+                  }
+                  if ( initial != selection )
+                    str = audio_key[selection];
+                }
+              }
             }
             else if ( prop_type.get_raw_type().is_enumeration() )
             {
@@ -387,17 +470,17 @@ void PropertyInspectorPanel::Render()
               if ( initial != selection )
                 str = shader_key_vec[selection];
             }
-            else if (prop_type == rttr::type::get<BezierRange*>())
+            else if ( prop_type == rttr::type::get<BezierRange *>() )
             {
-              BezierEdit(("##" + prop_name).c_str(), (value.get_value<BezierRange*>()));
+              BezierEdit( ( "##" + prop_name ).c_str(), ( value.get_value<BezierRange *>() ) );
             }
-            else if (prop_type == rttr::type::get<BezierRange3*>())
+            else if ( prop_type == rttr::type::get<BezierRange3 *>() )
             {
-              BezierEdit3(("##" + prop_name).c_str(), (value.get_value<BezierRange3*>()));
+              BezierEdit3( ( "##" + prop_name ).c_str(), ( value.get_value<BezierRange3 *>() ) );
             }
-            else if (prop_type == rttr::type::get<GradientRange*>())
+            else if ( prop_type == rttr::type::get<GradientRange *>() )
             {
-              GradientEdit(("##" + prop_name).c_str(), (value.get_value<GradientRange*>()));
+              GradientEdit( ( "##" + prop_name ).c_str(), ( value.get_value<GradientRange *>() ) );
             }
 
             if ( prop_type == rttr::type::get<bool *>() )

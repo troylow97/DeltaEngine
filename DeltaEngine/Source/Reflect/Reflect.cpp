@@ -191,8 +191,6 @@ namespace DeltaEngine
       .property("b", &Color::b)
       .property("a", &Color::a);
 
-    rttr::registration::class_<Material>("Material")
-      .property("key", &Material::m_ShaderKey);
 
     rttr::registration::class_<Sprite>("Sprite")
       .property("key", &Sprite::m_Key)
@@ -305,16 +303,21 @@ namespace DeltaEngine
     rttr::registration::class_<AudioSource>( "Audio Source" )
       ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<AudioSource>()->bits ) )
       .constructor<>()( rttr::policy::ctor::as_object )
-      .property("Audio File", &AudioSource::clip)(rttr::policy::prop::bind_as_ptr )
-      .property( "Source ID", &AudioSource::id )(rttr::metadata("NO_SERIALIZE", true),
-                                                  (rttr::metadata("NO_EDITOR", true)))
+      .property( "Audio File", &AudioSource::clip )( rttr::policy::prop::bind_as_ptr )
+      .property( "Source ID", &AudioSource::id )( rttr::metadata( "NO_SERIALIZE", true ),
+                                                  ( rttr::metadata( "NO_EDITOR", true ) ) )
       .property( "Volume", &AudioSource::volume )( rttr::policy::prop::bind_as_ptr )
       .property( "Pitch", &AudioSource::pitch )( rttr::policy::prop::bind_as_ptr )
       .property( "Loop", &AudioSource::loop )( rttr::policy::prop::bind_as_ptr )
       .property( "Is Loop", &AudioSource::isLoop )( rttr::policy::prop::bind_as_ptr )
       .property( "Is Event", &AudioSource::isEvent )( rttr::policy::prop::bind_as_ptr )
+      .property( "Is 3D", &AudioSource::is3D)(rttr::policy::prop::bind_as_ptr)
       .property("Is Start", &AudioSource::isStart)(rttr::metadata("NO_SERIALIZE", true),
-                                                    (rttr::metadata("NO_EDITOR", true)));
+                                                    (rttr::metadata("NO_EDITOR", true)))
+    .property("Is Playing", &AudioSource::isPlaying)(rttr::metadata("NO_SERIALIZE", true),
+                                                      (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Played", &AudioSource::isPlayed)(rttr::metadata("NO_SERIALIZE", true),
+                                                        (rttr::metadata("NO_EDITOR", true)));
 
 #pragma endregion  
     /*
@@ -335,7 +338,8 @@ namespace DeltaEngine
       rttr::value("Image", GUIType::Image),
       rttr::value("Button", GUIType::Button),
       rttr::value("Toggle", GUIType::Toggle),
-      rttr::value("Slider", GUIType::Slider)
+      rttr::value("Slider", GUIType::Slider),
+      rttr::value("Cursor", GUIType::Cursor)
       );
 
     rttr::registration::class_<GUI>("GUI")
@@ -363,11 +367,20 @@ namespace DeltaEngine
     rttr::registration::class_<Slider>("Slider")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Slider>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
+      .property("On Change", &Slider::on_change)(rttr::policy::prop::bind_as_ptr )
       .property("Fill Entity", &Slider::fill_entity)(rttr::policy::prop::bind_as_ptr)
       .property("Handle Entity", &Slider::handle_entity)(rttr::policy::prop::bind_as_ptr)
       .property("Min", &Slider::min)(rttr::policy::prop::bind_as_ptr)
       .property("Max", &Slider::max)(rttr::policy::prop::bind_as_ptr)
-      .property("Value", &Slider::value)(rttr::policy::prop::bind_as_ptr);
+      .property("Value", &Slider::value)(rttr::policy::prop::bind_as_ptr)
+      .property("Selected", &Slider::selected)(rttr::metadata("NO_SERIALIZE", true));
+
+    rttr::registration::class_<Cursor>( "Cursor" )
+      ( rttr::metadata( "bits", ComponentMeta::GetComponentMeta<Cursor>()->bits ) )
+      .constructor<>()( rttr::policy::ctor::as_object )
+      .property( "Visible", &Cursor::visible )( rttr::policy::prop::bind_as_ptr )
+      .property( "Enable", &Cursor::enabled )( rttr::policy::prop::bind_as_ptr );
+
 
   rttr::registration::class_<RigidBody>("Rigidbody")
     (rttr::metadata("bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits))
@@ -401,32 +414,6 @@ namespace DeltaEngine
       .property("Position", &Transform::position)(rttr::policy::prop::bind_as_ptr)
       .property("Scale", &Transform::scale)(rttr::policy::prop::bind_as_ptr)
       .property("Rotation", &Transform::rotation)(rttr::policy::prop::bind_as_ptr);
-
-    rttr::registration::class_<RigidBody>("Rigidbody")
-      (rttr::metadata("bits", ComponentMeta::GetComponentMeta<RigidBody>()->bits))
-      .constructor<>()(rttr::policy::ctor::as_object)
-      .property("Direction", &RigidBody::Direction)(rttr::metadata("NO_SERIALIZE", true),
-                                                    (rttr::metadata("NO_EDITOR", true)))
-      .property("Velocity", &RigidBody::Velocity)(rttr::metadata("NO_SERIALIZE", true),
-                                                  (rttr::metadata("NO_EDITOR", true)))
-      .property("Reflected Vector", &RigidBody::ReflectedVector)(rttr::metadata("NO_SERIALIZE", true),
-                                                                 (rttr::metadata("NO_EDITOR", true)))
-      .property("Acceleration", &RigidBody::Acceleration)(rttr::metadata("NO_SERIALIZE", true),
-                                                          (rttr::metadata("NO_EDITOR", true)))
-      .property("Accumulated Force", &RigidBody::AccumulatedForce)(rttr::metadata("NO_SERIALIZE", true),
-                                                                   (rttr::metadata("NO_EDITOR", true)))
-      .property("Point End", &RigidBody::PointEnd)(rttr::metadata("NO_SERIALIZE", true),
-                                                   (rttr::metadata("NO_EDITOR", true)))
-      .property("Mass", &RigidBody::Mass)(rttr::policy::prop::bind_as_ptr)
-      .property("Move Speed", &RigidBody::Movespeed)(rttr::policy::prop::bind_as_ptr)
-      .property("Restitution", &RigidBody::Restitution)(rttr::policy::prop::bind_as_ptr)
-      .property("Friction Coefficient", &RigidBody::FrictionCoeff)(rttr::policy::prop::bind_as_ptr)
-      .property("Inherent Acceleration", &RigidBody::InherentAcceleration)(rttr::policy::prop::bind_as_ptr)(
-        rttr::metadata("NO_SERIALIZE", true), (rttr::metadata("NO_EDITOR", true)))
-      .property("Max Acceleration", &RigidBody::MaxAcceleration)(rttr::policy::prop::bind_as_ptr)
-      .property("Acceleration Pickup", &RigidBody::AccelerationPickup)(rttr::policy::prop::bind_as_ptr)
-      .property("Gravity", &RigidBody::hasGravity)(rttr::policy::prop::bind_as_ptr)
-      .property("Moveable", &RigidBody::isMoveable)(rttr::policy::prop::bind_as_ptr);
 
     rttr::registration::class_<Collider>("Collider")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Collider>()->bits))
@@ -767,6 +754,8 @@ namespace DeltaEngine::RT_Reflect
       return rttr::type::get_by_name("Toggle");
     case ComponentMeta::ComponentBits<Slider>():
       return rttr::type::get_by_name("Slider");
+    case ComponentMeta::ComponentBits<Cursor>():
+      return rttr::type::get_by_name("Cursor");
     case ComponentMeta::ComponentBits<AudioSource>():
       return rttr::type::get_by_name("Audio Source");
     case ComponentMeta::ComponentBits<Serpentipede>() :
@@ -855,6 +844,9 @@ namespace DeltaEngine::RT_Reflect
       break;
     case ComponentMeta::ComponentBits<Slider>():
       em.RemoveComponent<Slider>(id);
+      break;
+    case ComponentMeta::ComponentBits<Cursor>():
+      em.RemoveComponent<Cursor>(id);
       break;
     case ComponentMeta::ComponentBits<AudioSource>():
       em.RemoveComponent<AudioSource>(id);
@@ -947,6 +939,9 @@ namespace DeltaEngine::RT_Reflect
     case ComponentMeta::ComponentBits<Slider>():
       em.AddComponent<Slider>(id);
       break;
+    case ComponentMeta::ComponentBits<Cursor>():
+      em.AddComponent<Cursor>(id);
+      break;
     case ComponentMeta::ComponentBits<AudioSource>():
       em.AddComponent<AudioSource>(id);
       break;
@@ -1014,6 +1009,8 @@ namespace DeltaEngine::RT_Reflect
       return rttr::instance(em.GetComponent<Toggle>(id));
     case ComponentMeta::ComponentBits<Slider>():
       return rttr::instance(em.GetComponent<Slider>(id));
+    case ComponentMeta::ComponentBits<Cursor>():
+      return rttr::instance(em.GetComponent<Cursor>(id));
     case ComponentMeta::ComponentBits<AudioSource>() :
       return rttr::instance( em.GetComponent<AudioSource>( id ) );
     case ComponentMeta::ComponentBits<Serpentipede>() :
@@ -1029,54 +1026,56 @@ namespace DeltaEngine::RT_Reflect
 
   void SerializeType(const std::string& str, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer, void* ptr)
   {
-    if (str == "Entity Name")
-      Serialize::WriteObject(*static_cast<EntityName*>(ptr), writer);
-    else if (str == "Parent")
-      Serialize::WriteObject(*static_cast<Parent*>(ptr), writer);
-    else if (str == "Transform")
-      Serialize::WriteObject(*static_cast<Transform*>(ptr), writer);
-    else if (str == "Collider")
-      Serialize::WriteObject(*static_cast<Collider*>(ptr), writer);
-    else if (str == "Rigidbody")
-      Serialize::WriteObject(*static_cast<RigidBody*>(ptr), writer);
-    else if (str == "Input")
-      Serialize::WriteObject(*static_cast<Input*>(ptr), writer);
-    else if (str == "Animator")
-      Serialize::WriteObject(*static_cast<Animator*>(ptr), writer);
-    else if (str == "State")
-      Serialize::WriteObject(*static_cast<State*>(ptr), writer);
-    else if (str == "Image")
-      Serialize::WriteObject(*static_cast<Image*>(ptr), writer);
-    else if (str == "Text")
-      Serialize::WriteObject(*static_cast<Text*>(ptr), writer);
-    else if (str == "ParticleEmitter")
-      Serialize::WriteObject(*static_cast<ParticleEmitter*>(ptr), writer);
-    else if (str == "Renderer2D")
-      Serialize::WriteObject(*static_cast<Renderer2D*>(ptr), writer);
-    else if (str == "RendererOverlay")
-      Serialize::WriteObject(*static_cast<RendererOverlay*>(ptr), writer);
-    else if (str == "AI")
-      Serialize::WriteObject(*static_cast<AI*>(ptr), writer);
-    else if (str == "Entity Type")
-      Serialize::WriteObject(*static_cast<EntityType*>(ptr), writer);
-    else if (str == "Attack")
-      Serialize::WriteObject(*static_cast<Attack*>(ptr), writer);
-    else if (str == "Health")
-      Serialize::WriteObject(*static_cast<Health*>(ptr), writer);
-    else if (str == "Lifespan")
-      Serialize::WriteObject(*static_cast<Lifespan*>(ptr), writer);
-    else if (str == "Player")
-      Serialize::WriteObject(*static_cast<Player*>(ptr), writer);
-    else if (str == "Camera")
-      Serialize::WriteObject(*static_cast<Camera*>(ptr), writer);
-    else if (str == "GUI")
-      Serialize::WriteObject(*static_cast<GUI*>(ptr), writer);
-    else if (str == "Button")
-      Serialize::WriteObject(*static_cast<Button*>(ptr), writer);
-    else if (str == "Toggle")
-      Serialize::WriteObject(*static_cast<Toggle*>(ptr), writer);
-    else if (str == "Slider")
-      Serialize::WriteObject(*static_cast<Slider*>(ptr), writer);
+    if ( str == "Entity Name" )
+      Serialize::WriteObject( *static_cast<EntityName *>( ptr ), writer );
+    else if ( str == "Parent" )
+      Serialize::WriteObject( *static_cast<Parent *>( ptr ), writer );
+    else if ( str == "Transform" )
+      Serialize::WriteObject( *static_cast<Transform *>( ptr ), writer );
+    else if ( str == "Collider" )
+      Serialize::WriteObject( *static_cast<Collider *>( ptr ), writer );
+    else if ( str == "Rigidbody" )
+      Serialize::WriteObject( *static_cast<RigidBody *>( ptr ), writer );
+    else if ( str == "Input" )
+      Serialize::WriteObject( *static_cast<Input *>( ptr ), writer );
+    else if ( str == "Animator" )
+      Serialize::WriteObject( *static_cast<Animator *>( ptr ), writer );
+    else if ( str == "State" )
+      Serialize::WriteObject( *static_cast<State *>( ptr ), writer );
+    else if ( str == "Image" )
+      Serialize::WriteObject( *static_cast<Image *>( ptr ), writer );
+    else if ( str == "Text" )
+      Serialize::WriteObject( *static_cast<Text *>( ptr ), writer );
+    else if ( str == "ParticleEmitter" )
+      Serialize::WriteObject( *static_cast<ParticleEmitter *>( ptr ), writer );
+    else if ( str == "Renderer2D" )
+      Serialize::WriteObject( *static_cast<Renderer2D *>( ptr ), writer );
+    else if ( str == "RendererOverlay" )
+      Serialize::WriteObject( *static_cast<RendererOverlay *>( ptr ), writer );
+    else if ( str == "AI" )
+      Serialize::WriteObject( *static_cast<AI *>( ptr ), writer );
+    else if ( str == "Entity Type" )
+      Serialize::WriteObject( *static_cast<EntityType *>( ptr ), writer );
+    else if ( str == "Attack" )
+      Serialize::WriteObject( *static_cast<Attack *>( ptr ), writer );
+    else if ( str == "Health" )
+      Serialize::WriteObject( *static_cast<Health *>( ptr ), writer );
+    else if ( str == "Lifespan" )
+      Serialize::WriteObject( *static_cast<Lifespan *>( ptr ), writer );
+    else if ( str == "Player" )
+      Serialize::WriteObject( *static_cast<Player *>( ptr ), writer );
+    else if ( str == "Camera" )
+      Serialize::WriteObject( *static_cast<Camera *>( ptr ), writer );
+    else if ( str == "GUI" )
+      Serialize::WriteObject( *static_cast<GUI *>( ptr ), writer );
+    else if ( str == "Button" )
+      Serialize::WriteObject( *static_cast<Button *>( ptr ), writer );
+    else if ( str == "Toggle" )
+      Serialize::WriteObject( *static_cast<Toggle *>( ptr ), writer );
+    else if ( str == "Slider" )
+      Serialize::WriteObject( *static_cast<Slider *>( ptr ), writer );
+    else if ( str == "Cursor" )
+      Serialize::WriteObject( *static_cast<Cursor *>( ptr ), writer );
     else if (str == "Audio Source" )
       Serialize::WriteObject(*static_cast<AudioSource*>(ptr), writer);
     else if (str == "Serpentipede")
@@ -1136,7 +1135,13 @@ namespace DeltaEngine::RT_Reflect
     else if (str == "Toggle")
       em.AddComponent<Toggle>(id, var.get_value<Toggle>());
     else if (str == "Slider")
+    {
       em.AddComponent<Slider>(id, var.get_value<Slider>());
+      em.GetComponent<Slider>( id ).fill_entity += p_adj;
+      em.GetComponent<Slider>( id ).handle_entity += p_adj;
+    }
+    else if (str == "Cursor")
+      em.AddComponent<Cursor>(id, var.get_value<Cursor>());
     else if (str == "Audio Source")
       em.AddComponent<AudioSource>(id, var.get_value<AudioSource>());
     else if (str == "Serpentipede")

@@ -15,13 +15,15 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "Systems/EnemySpawner/EnemySpawner.h"
 #include "Systems/UISystem.h"
 #include "Systems/RespawnSystem.h"
+#include "Systems/Menus.h"
 #include "Input/InputManager.h"
 #include "Input/Keys.h"
+#include "Render/Cutscenes.h"
 
 namespace DeltaEngine
 {
 
-GameState current {GameState::NONE};
+GameState current {GameState::MAIN_MENU };
 
 void GameStateLoad( GameState state )
 {
@@ -41,11 +43,21 @@ void GameStateLoad( GameState state )
       EnemySpawner::ActivateGauntlet = false;
       break;
     }
+    case GameState::CUTSCENE_INTRO :
+    {
+      current = GameState::CUTSCENE_INTRO;
+      world.Load("World/IntroCutscene.json");
+      Cutscene::timer = 0;
+      Cutscene::frame = -1;
+      break;
+    }
     case GameState::TUTORIAL :
     {
       current = GameState::TUTORIAL;
       world.Load( "World/gam250tutorial.json" );
       world.Load( "World/GameMenuScreen.json" );
+      MenuSystem::fading = true;
+      Camera::allCameras[0]->backgroundColor.a = 0;
       RespawnSystem::CreateCheckpoints(0);
       EnemySpawner::ActivateGauntlet = false;
       break;
@@ -55,6 +67,8 @@ void GameStateLoad( GameState state )
       current = GameState::LEVEL_1;
       world.Load( "World/gam250beta_t.json" );
       world.Load( "World/GameMenuScreen.json" );
+      MenuSystem::fading = true;
+      Camera::allCameras[0]->backgroundColor.a = 0;
       RespawnSystem::CreateCheckpoints(1);
       EnemySpawner::ActivateGauntlet = true;
       break;

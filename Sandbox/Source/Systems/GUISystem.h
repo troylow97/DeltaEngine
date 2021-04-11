@@ -17,5 +17,8 @@ namespace DeltaEngine
 DEFINE_SYSTEM( GUISystem, GUI )
 void Update() override;
 void LateUpdate() override;
+
+static void Attacked(bool b);
+static void Heal(bool b);
 END_DEFINE_SYSTEM( GUISystem )
 }

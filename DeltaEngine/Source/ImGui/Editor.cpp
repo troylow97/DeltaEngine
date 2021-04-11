@@ -247,12 +247,12 @@ Editor::Editor()
 
   ImFontConfig icons_config;
   icons_config.MergeMode = false;
-  icons_config.GlyphMinAdvanceX = 16.0f; // Use if you want to make the icon monospaced
+  //icons_config.GlyphMinAdvanceX = 16.0f; // Use if you want to make the icon monospaced
   icons_config.PixelSnapH = true;
   // add character ranges and merge into main font, merge in icons from Font Awesome
   static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
   io.FontDefault = io.Fonts->AddFontFromFileTTF( "Fonts/Roboto-Medium.ttf", 20.0f );
-  font_awesome = io.Fonts->AddFontFromFileTTF( "Fonts/fa-solid-900.ttf", 32.0f, &icons_config, icons_ranges );
+  font_awesome = io.Fonts->AddFontFromFileTTF( "Fonts/fa-solid-900.ttf", 20.0f, &icons_config, icons_ranges );
 
   WindowStyle();
   ThemeStyle1();
@@ -295,8 +295,16 @@ void Editor::Begin()
 {
   if (entity_selected && tool_selection == Tool::EntitySelector )
   {
-    auto& t = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<Transform>( { entity_id } );
-    selection_transform.position = t.position;
+    if (GetEnv().pECS->GetWorld().GetEntityManager().IsEntityValid({entity_id}))
+    {
+      auto& t = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<Transform>( { entity_id } );
+      selection_transform.position = t.position;
+    }
+    else
+    {
+      entity_selected = false;
+      entity_id = u64_max;
+    }
   }
 
 

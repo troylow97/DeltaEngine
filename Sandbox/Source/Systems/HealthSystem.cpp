@@ -11,115 +11,113 @@ written consent of DigiPen Institute of Technology is prohibited.
 #include "HealthSystem.h"
 
 
+
+#include "GUISystem.h"
 #include "UnitManager.h"
 #include "Audio/AudioEngine.h"
 #include "Core/GlobalStruct.h"
 #include "Core/Debugging/Profiler/Profiler.h"
-#include "Core/GameClock/EngineClock.h"
-#include "HealthPickUpSystem/HealthPickupSystem.h"
 
 namespace DeltaEngine
 {
-  static std::vector<EntityID> entities;
+static std::vector<EntityID> entities;
 
-  void HealthSystem::LimitCurrentHealthToMaxHealth(Health& hp)
+void HealthSystem::LimitCurrentHealthToMaxHealth( Health &hp )
+{
+  if ( hp.CurrentHealth > hp.MaxHealth )
   {
-    if (hp.CurrentHealth > hp.MaxHealth)
-    {
-      hp.CurrentHealth = hp.MaxHealth;
-    }
+    hp.CurrentHealth = hp.MaxHealth;
   }
+}
 
-  void HealthSystem::Update()
+void HealthSystem::Update()
+{
+  Query q;
+  q.Exclude<Lifespan>();
+  em.ForEach( q, [&]( EntityID &id, Health &hp, EntityType &et )
   {
-    Query q;
-    q.Exclude<Lifespan>();
-    em.ForEach(q, [&](EntityID& id, Health& hp, EntityType& et)
+    LimitCurrentHealthToMaxHealth( hp );
+
+    if ( hp.CurrentHealth <= 0 )
     {
-      LimitCurrentHealthToMaxHealth(hp);
-	  
-      if (hp.CurrentHealth <= 0)
+      if ( et.type == EntityCategory::E_ENEMY )
+        entities.push_back( id );
+      else if ( et.type == EntityCategory::E_PLAYER )
+        em.GetComponent<Player>( id ).IsDead = true;
+    }
+    else
+    {
+      auto &renderer = em.GetComponent<Renderer2D>( id );
+
+      if ( hp.isDamagedTimer > -0.1f )
       {
-        if (et.type == EntityCategory::E_ENEMY || et.type == EntityCategory::E_ENEMY_BULLET_DEAD || et.type == EntityCategory::E_HEALTHUP_USED)
-          entities.push_back(id);
-        else if (et.type == EntityCategory::E_PLAYER)
-          em.GetComponent<Player>(id).IsDead = true;
-      } 
+        renderer.m_Color = { 1, 0, 0 };
+        hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
+        PlayAttackedAnimation( id );
+      }
       else
       {
-        auto& renderer = em.GetComponent<Renderer2D>(id);
-
-        if (hp.isDamagedTimer > -0.1f)
-        {
-          renderer.m_Color = {1, 0, 0};
-          hp.isDamagedTimer -= env.pClock->FixedDeltaTime();
-          PlayAttackedAnimation(id);
-        }
-        else
-        {
-          renderer.m_Color = { 1, 1, 1 };
-          em.GetComponent<State>(id).SetBool("IsAttacked", false);
-
-        }
-
+        renderer.m_Color = { 1, 1, 1 };
+        em.GetComponent<State>( id ).SetBool( "IsAttacked", false );
       }
-    });
 
-    for (auto& entity : entities)
-    {
-      if (!em.HasComponent<State>(entity))
-          continue;
-      em.GetComponent<State>(entity).SetBool("IsAlertRunning", false);
-      em.GetComponent<State>(entity).SetBool("IsAttacked", true);
-      em.GetComponent<State>(entity).SetBool("IsAttacked", false);
-      em.GetComponent<State>(entity).SetBool("BeginCharging", false);
-      em.GetComponent<State>(entity).SetBool("Charge", false);
-      em.GetComponent<State>(entity).SetBool("MeleeAttack", false);    	
-      em.GetComponent<State>(entity).SetBool("IsAlerted", false);
-      em.GetComponent<State>(entity).SetBool("IsBouncing", false);
-      em.GetComponent<State>(entity).SetBool("IsIdle", false);
-      em.GetComponent<State>(entity).SetBool("IsDead", true);
-      em.AddComponent<Lifespan>(entity);
-      em.GetComponent<Lifespan>(entity).Timer = 1.0f;
-      em.GetComponent<RigidBody>(entity).isMoveable = false;
-      HealthPickupSystem::SpawnHealthOrbOnDeath(em.GetComponent<Transform>(entity).position);
     }
-    entities.clear();
+  } );
 
-   
-
-
-
-    Profiler::Instance().Record("Health System");
-  }
-
-  void HealthSystem::PlayAttackedAnimation(EntityID id)
+  for ( auto &entity : entities )
   {
-      auto& et_type = em.GetComponent<EntityType>(id);
-      auto& state = em.GetComponent<State>(id);
-
-	  if(et_type.type == EntityCategory::E_ENEMY || et_type.type == EntityCategory::E_PLAYER)
-	  {
-          state.SetBool("IsIdle", false);
-          state.SetBool("IsAlerted", false);
-          state.SetBool("IsAlertRunning", false);
-          state.SetBool("MeleeAttack", false);
-          state.SetBool("IsAttacked", true);
-	  }
+    em.GetComponent<State>( entity ).SetBool( "IsAlertRunning", false );
+    em.GetComponent<State>( entity ).SetBool( "IsAttacked", true );
+    em.GetComponent<State>( entity ).SetBool( "IsAttacked", false );
+    em.GetComponent<State>( entity ).SetBool( "BeginCharging", false );
+    em.GetComponent<State>( entity ).SetBool( "Charge", false );
+    em.GetComponent<State>( entity ).SetBool( "MeleeAttack", false );
+    em.GetComponent<State>( entity ).SetBool( "IsAlerted", false );
+    em.GetComponent<State>( entity ).SetBool( "IsBouncing", false );
+    em.GetComponent<State>( entity ).SetBool( "IsIdle", false );
+    em.GetComponent<State>( entity ).SetBool( "IsDead", true );
+    em.AddComponent<Lifespan>( entity );
+    em.GetComponent<Lifespan>( entity ).Timer = 1.0f;
+    em.GetComponent<RigidBody>( entity ).isMoveable = false;
   }
+  entities.clear();
 
-  void HealthSystem::ResetAttackedAnimation(EntityID id)
+
+
+
+
+  Profiler::Instance().Record( "Health System" );
+}
+
+void HealthSystem::PlayAttackedAnimation( EntityID id )
+{
+  auto &et_type = em.GetComponent<EntityType>( id );
+  auto &state = em.GetComponent<State>( id );
+
+  if ( et_type.type == EntityCategory::E_PLAYER )
+    GUISystem::Attacked(true);
+
+  if ( et_type.type == EntityCategory::E_ENEMY || et_type.type == EntityCategory::E_PLAYER )
   {
-      auto& et_type = em.GetComponent<EntityType>(id);
-      auto& state = em.GetComponent<State>(id);
+    state.SetBool( "IsIdle", false );
+    state.SetBool( "IsAlerted", false );
+    state.SetBool( "IsAlertRunning", false );
+    state.SetBool( "MeleeAttack", false );
+    state.SetBool( "IsAttacked", true );
+  }
+}
 
-      if (et_type.type == EntityCategory::E_ENEMY)
-      {
-          state.SetBool("IsAttacked", false);
-      }
-  }
-	
-  void HealthSystem::LateUpdate()
-  {
-  }
+void HealthSystem::ResetAttackedAnimation( EntityID id )
+{
+  auto &et_type = em.GetComponent<EntityType>( id );
+  auto &state = em.GetComponent<State>( id );
+
+  //if ( et_type.type == EntityCategory::E_ENEMY )
+  //{
+  //  state.SetBool( "IsAttacked", false );
+  //}
+}
+
+void HealthSystem::LateUpdate()
+{  }
 }

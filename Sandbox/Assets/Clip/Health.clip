@@ -1,0 +1,10 @@
+frames 1
+fps 24
+loop 0
+
+Textures/SPRITES_GUI_i_4
+key Textures/SPRITES_GUI
+value 4
+frame 0
+
+%

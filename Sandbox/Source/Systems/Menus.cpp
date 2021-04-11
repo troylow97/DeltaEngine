@@ -24,6 +24,9 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
+float MenuSystem::fadeTimer = 0;
+bool MenuSystem::fading = false;
+
 void MenuSystem::Update()
 {
   if ( InputManager::Instance().IsKeyReleased( DEVK_ESCAPE ) && !InputManager::Instance().IsKeyPressed(DEVK_ESCAPE) )
@@ -71,7 +74,7 @@ void Back()
 
 void StartGame()
 {
-  GameStateLoad( GameState::TUTORIAL );
+  MenuSystem::fading = true;
 }
 
 void OpenControls()
@@ -133,6 +136,11 @@ void Restart()
   GameStateLoad( GameStateCurrent() );
 }
 
+void UpdateVolume(float volume)
+{
+  AudioEngine::SetMasterVolume( volume );
+}
+
 RTTR_REGISTRATION
 {
 rttr::registration::method( "ButtonHover", &ButtonHover );
@@ -147,6 +155,6 @@ rttr::registration::method( "QuitInGame", &QuitInGame );
 rttr::registration::method( "ConfirmQuitInGame", &ConfirmQuitInGame );
 rttr::registration::method( "Resume", &Resume );
 rttr::registration::method( "Restart", &Restart );
-
+rttr::registration::method( "MasterVolumeControl", &UpdateVolume );
 }
 }

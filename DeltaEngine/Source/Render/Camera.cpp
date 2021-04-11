@@ -35,6 +35,7 @@ namespace DeltaEngine
     m_zNear{ .3f },
     m_zFar{ 1000 },
     backgroundColor{ 49 / 255.0f, 77 / 255.0f, 121 / 255.0f, 1 },
+    transitionTexKey{ "Textures/Sharp_swipe_1" },
     perspective{true}
   {
     if (!editor)
@@ -65,6 +66,7 @@ namespace DeltaEngine
     m_zNear{ copy.m_zNear },
     m_zFar{ copy.m_zFar },
     backgroundColor{ copy.backgroundColor },
+    transitionTexKey{ "Textures/Sharp_swipe_1" },
     perspective{ copy.perspective }
   {
     if (&copy == editorCamera)
@@ -87,6 +89,7 @@ namespace DeltaEngine
     m_zNear{ move.m_zNear },
     m_zFar{ move.m_zFar },
     backgroundColor{ move.backgroundColor },
+    transitionTexKey{ "Textures/Sharp_swipe_1" },
     perspective{ move.perspective }
   {
     if (&move == editorCamera)
@@ -169,6 +172,9 @@ namespace DeltaEngine
 
   Matrix4x4 Camera::GetViewMatrix(Transform transform) const
   {
+    Vector3 pos = -transform.position;
+    pos.x = static_cast<int>(pos.x * 10) / 10.f;
+    pos.y = static_cast<int>(pos.y * 10) / 10.f;
     return Matrix4x4::Transpose(Matrix4x4::Translate(-transform.position));
   }
 
