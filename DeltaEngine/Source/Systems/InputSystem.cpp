@@ -160,7 +160,7 @@ void InputSystem::RunRight()
 
         im1.m_FlipX = false;
         idle_timer = 0.0f;
-        if ( anim.m_ClipKey == "Clip/DAVE_RUN" && ( anim.m_Frame == 2 || anim.m_Frame == 6 ) && !audio.isStart && !audio.isPlayed )
+        if ( anim.m_ClipKey == "Clip/DAVE_RUN" && ( anim.m_Frame == 1 || anim.m_Frame == 5 ) && !audio.isStart && !audio.isPlayed )
         {
           audio.clip = "event:/Player/Player Run";
           AudioEngine::AudioSourcePlay2DEvent( audio );
@@ -211,8 +211,7 @@ void InputSystem::Jump()
       s1.SetBool( "JumpStart", true );
       idle_timer = 0.0f;
 
-      audio.clip = "event:/Player/Player Jump";
-      AudioEngine::AudioSourcePlay2DEvent( audio );
+      AudioEngine::Play2DEvent( "event:/Player/Player Jump" );
     }
 
   } );

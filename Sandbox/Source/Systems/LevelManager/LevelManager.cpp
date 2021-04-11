@@ -25,101 +25,108 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-	
-	void LevelManager::Update()
-	{
-		switch(GameStateCurrent())
-		{
-			case GameState::MAIN_MENU:
-			{
-				if (MenuSystem::fadingIn)
-				{
-					MenuSystem::fadeTimer += DeltaTimef() / 2;
-					Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
-					if (MenuSystem::fadeTimer > 5 / 2)
-					{
-						MenuSystem::fadeTimer = 0;
-						MenuSystem::fadingIn = false;
-						GameStateLoad(GameState::CUTSCENE_INTRO);
-					}
-				}
-				break;
-			}
-			case GameState::CUTSCENE_INTRO:
-			{
-				Cutscene::timer += DeltaTimef() * 2;
-				if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
-				{
-					++Cutscene::frame;
-					Cutscene::timer = 0;
-				}
-				if (InputManager::Instance().IsKeyPressed(DEVK_SPACE) || 
-					Cutscene::frame > 9 && Cutscene::timer > 1)
-				{
-					GameStateLoad(GameState::TUTORIAL);
-				}
-				break;
-			}
-			case GameState::TUTORIAL:
-			{
-				if (MenuSystem::fadingIn)
-				{
-					MenuSystem::fadeTimer += DeltaTimef() / 2;
-					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-					Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
-					if (MenuSystem::fadeTimer > 5 / 2)
-					{
-						MenuSystem::fadeTimer = 0;
-						MenuSystem::fadingIn = false;
-					}
-				}
+bool play { false };
+void LevelManager::Update()
+{
+  switch ( GameStateCurrent() )
+  {
+    case GameState::MAIN_MENU:
+    {
+      if ( MenuSystem::fadingIn )
+      {
+        MenuSystem::fadeTimer += DeltaTimef() / 2;
+        Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
+        if ( MenuSystem::fadeTimer > 5 / 2 )
+        {
+          MenuSystem::fadeTimer = 0;
+          MenuSystem::fadingIn = false;
+          GameStateLoad( GameState::CUTSCENE_INTRO );
+        }
+      }
+      break;
+    }
+    case GameState::CUTSCENE_INTRO:
+    {
+      for ( auto i = 0u; i < GetEnv().pClock->Timesteps(); ++i )
+        Cutscene::timer += FixedDeltaTimef() * 2;
+      if ( !play )
+      {
+        AudioEngine::SetEventVolume( AudioEngine::Play2DEvent( "event:/Overall Cutscene controller" ), 0.2f );
+        play = true;
+      }
+      if ( Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1] )
+      {
+        ++Cutscene::frame;
+        Cutscene::timer = 0;
+      }
+      if ( InputManager::Instance().IsKeyPressed( DEVK_SPACE ) ||
+           Cutscene::frame > 9 && Cutscene::timer > 1 )
+      {
+        GameStateLoad( GameState::TUTORIAL );
+        play = false;
+      }
+      break;
+    }
+    case GameState::TUTORIAL:
+    {
+      if ( MenuSystem::fadingIn )
+      {
+        MenuSystem::fadeTimer += DeltaTimef() / 2;
+        Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+        Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
+        if ( MenuSystem::fadeTimer > 5 / 2 )
+        {
+          MenuSystem::fadeTimer = 0;
+          MenuSystem::fadingIn = false;
+        }
+      }
 
-				auto player = UnitManager::GetPlayerID();
-				Vector2 EndPoint{ 290.0f,0.2f };
-				if(AITools::EntityisAtPoint(player, EndPoint,0.2f))
-					GameStateLoad(GameState::LEVEL_1);
-				break;
-			}
-			case GameState::LEVEL_1:
-			{
-				if (MenuSystem::fadingIn)
-				{
-					MenuSystem::fadeTimer += DeltaTimef() / 2;
-					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
-					Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
-					if (MenuSystem::fadeTimer > 5 / 2)
-					{
-						MenuSystem::fadeTimer = 0;
-						MenuSystem::fadingIn = false;
-					}
-				}
-				break;
-			}
-			case GameState::CUTSCENE_END:
-			{
-				Cutscene::timer += DeltaTimef() * 2;
-				if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
-				{
-					++Cutscene::frame;
-					Cutscene::timer = 0;
-				}
-				if (InputManager::Instance().IsKeyPressed(DEVK_SPACE) ||
-					Cutscene::frame > 5 && Cutscene::timer > 1)
-				{
-					GameStateLoad(GameState::MAIN_MENU);
-				}
-				break;
-			}
-			default:
-			{
-				break;
-			}
-		}
-	}
-	void LevelManager::LateUpdate()
-	{
-		
-	}
+      auto player = UnitManager::GetPlayerID();
+      Vector2 EndPoint { 290.0f,0.2f };
+      if ( AITools::EntityisAtPoint( player, EndPoint, 0.2f ) )
+        GameStateLoad( GameState::LEVEL_1 );
+      break;
+    }
+    case GameState::LEVEL_1:
+    {
+      if ( MenuSystem::fadingIn )
+      {
+        MenuSystem::fadeTimer += DeltaTimef() / 2;
+        Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
+        Camera::allCameras[0]->backgroundColor.a = MenuSystem::fadeTimer;
+        if ( MenuSystem::fadeTimer > 5 / 2 )
+        {
+          MenuSystem::fadeTimer = 0;
+          MenuSystem::fadingIn = false;
+        }
+      }
+      break;
+    }
+    case GameState::CUTSCENE_END:
+    {
+      Cutscene::timer += DeltaTimef() * 2;
+      if ( Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1] )
+      {
+        ++Cutscene::frame;
+        Cutscene::timer = 0;
+      }
+      if ( InputManager::Instance().IsKeyPressed( DEVK_SPACE ) ||
+           Cutscene::frame > 5 && Cutscene::timer > 1 )
+      {
+        GameStateLoad( GameState::MAIN_MENU );
+      }
+      break;
+    }
+    default:
+    {
+      break;
+    }
+  }
+}
+void LevelManager::LateUpdate()
+{
+
+}
 
 }
 

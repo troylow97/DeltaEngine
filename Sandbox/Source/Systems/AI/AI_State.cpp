@@ -82,19 +82,12 @@ void IdleLancer::onEnter( EntityID &id )
 {
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsAttacked", false );
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsAlerted", true );
-  auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id );
-
-  //std::cout << "IdleLancer onEnter" << std::endl;
 }
 
 void IdleLancer::onExit( EntityID &id )
 {
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsIdle", false );
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsAlerted", false );
-  auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id );
-
-
-
 }
 
 void IdleLancer::Update( EntityID &monster )

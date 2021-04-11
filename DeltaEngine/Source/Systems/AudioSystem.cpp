@@ -27,9 +27,6 @@ void AudioSystem::Update()
 
 void AudioSystem::LateUpdate()
 {
-
-
-
   em.ForEach( [&]( EntityID &id, AudioSource &a )
   {
     // Update all 3D Position

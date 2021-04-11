@@ -18,6 +18,8 @@ namespace DeltaEngine
     static EntityID player;
 
   public:
+    static void Update();
+    static void Reset();
     static EntityID GetPlayerID();
   };
 

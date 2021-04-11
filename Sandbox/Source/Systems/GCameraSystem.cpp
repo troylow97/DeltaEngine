@@ -13,6 +13,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 **********************************************************************************/
 #include "GCameraSystem.h"
 
+
+#include "UnitManager.h"
 #include "Audio/AudioEngine.h"
 #include "Components/Components.h"
 
@@ -78,5 +80,9 @@ void GCameraSystem::LateUpdate()
     c_t->position.z = Math::MoveTowards( c_t->position.z, pos.z,
                                          Math::Abs( c_t->position.z - pos.z ) * DeltaTimef() * zspeed );
   } );
+
+  UnitManager::Reset();
 }
+
+
 }
