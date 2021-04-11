@@ -1155,8 +1155,8 @@
                     },
                     "type": "RandomBetweenConstants"
                 },
-                "maxParticles": 64,
-                "rateOverTime": 4,
+                "maxParticles": 32,
+                "rateOverTime": 2,
                 "shape": "Line",
                 "genType": "Random",
                 "radius": 10.0,

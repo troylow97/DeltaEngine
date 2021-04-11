@@ -141,7 +141,7 @@ namespace DeltaEngine
           //    Emit(burst.count);
           em.ForEach([&](EntityID id, Transform& tr, Camera& c)
             {
-              ps.shapeTransform.position = tr.position + Vector2(3.5f, -2.5f);
+              ps.shapeTransform.position = tr.position + Vector2(2.5f, -1.5f);
               ps.shapeTransform.position.z = 0;
             });
 
@@ -183,14 +183,14 @@ namespace DeltaEngine
               particle.velocity = Vector3(
                 ps.velocityOverLifetime.minX.min,
                 ps.velocityOverLifetime.minY.min,
-                ps.velocityOverLifetime.minZ.min
+                0
               );
               break;
             case BezierCurve::Type::ConstantCurve:
               particle.velocity = Vector3(
                 ps.velocityOverLifetime.minX.Evaluate(particle.lifeTimer / particle.lifeTime),
                 ps.velocityOverLifetime.minY.Evaluate(particle.lifeTimer / particle.lifeTime),
-                ps.velocityOverLifetime.minZ.Evaluate(particle.lifeTimer / particle.lifeTime)
+                0
               );
               break;
             case BezierCurve::Type::RandomBetweenConstants:
@@ -201,9 +201,7 @@ namespace DeltaEngine
                 Random::RandomFloatRange(
                   ps.velocityOverLifetime.minY.min,
                   ps.velocityOverLifetime.maxY.min),
-                Random::RandomFloatRange(
-                  ps.velocityOverLifetime.minZ.min,
-                  ps.velocityOverLifetime.maxZ.min)
+                0
               );
               break;
             case BezierCurve::Type::RandomBetweenCurves:
@@ -214,9 +212,7 @@ namespace DeltaEngine
                 Random::RandomFloatRange(
                   ps.velocityOverLifetime.minY.Evaluate(particle.lifeTimer / particle.lifeTime),
                   ps.velocityOverLifetime.maxY.Evaluate(particle.lifeTimer / particle.lifeTime)),
-                Random::RandomFloatRange(
-                  ps.velocityOverLifetime.minZ.Evaluate(particle.lifeTimer / particle.lifeTime),
-                  ps.velocityOverLifetime.maxZ.Evaluate(particle.lifeTimer / particle.lifeTime))
+                0
               );
             }
             //switch (ps.rotationOverLifetime.type)
