@@ -83,7 +83,7 @@ namespace DeltaEngine
 
     void FaceLeft(EntityID& id1)
     {
-		env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX = true;
+	  env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX = true;
     }
 
     void FaceRight(EntityID& id1)
@@ -93,12 +93,12 @@ namespace DeltaEngine
 
     bool isFacingLeft(EntityID& id1)
     {
-		return env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
+	  return env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
     }
 
     bool isFacingRight(EntityID& id1)
     {
-		return !env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
+	  return !env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(id1).m_FlipX;
     }
 
     bool isFacingEachOther(EntityID& id1, EntityID& id2)
@@ -119,17 +119,17 @@ namespace DeltaEngine
       auto& audio = em.GetComponent<AudioSource>(id);
       if (!audio.isStart && !audio.isPlayed)
       {
-          if (em.HasComponent<Fiddler>(id))
-          {
-              audio.clip = "event:/Enemy/Fiddler/Fiddler Move";
-              AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
-          }
-          else if (em.HasComponent<Serpentipede>(id))
-          {
-              auto& audio = em.GetComponent<AudioSource>(id);
-              audio.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
-              AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
-          }
+        if (em.HasComponent<Fiddler>(id))
+        {
+          audio.clip = "event:/Enemy/Fiddler/Fiddler Move";
+          AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+        }
+        else if (em.HasComponent<Serpentipede>(id))
+        {
+          auto& audio = em.GetComponent<AudioSource>(id);
+          audio.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
+          AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+        }
       }
     }
 
@@ -143,15 +143,14 @@ namespace DeltaEngine
       {
         if (em.HasComponent<Fiddler>(id))
         {
-
-            audio.clip = "event:/Enemy/Fiddler/Fiddler Move";
-            AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+          audio.clip = "event:/Enemy/Fiddler/Fiddler Move";
+          AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
         }
         else if (em.HasComponent<Serpentipede>(id))
         {
-            auto& audio = em.GetComponent<AudioSource>(id);
-            audio.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
-            AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+          auto& audio = em.GetComponent<AudioSource>(id);
+          audio.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
+          AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
         }
       }
     }
@@ -166,13 +165,11 @@ namespace DeltaEngine
       if (EntityisOnTheRight(id1, id2))
       {
         FaceRight(id1);
-        //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = Vector2::right();
         return;
       }
 
       if (EntityisOnTheLeft(id1, id2))
       {
-        //env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = Vector2::left();
         FaceLeft(id1);
       }
     }
@@ -219,7 +216,6 @@ namespace DeltaEngine
       return (id2_posY < id1_posY);
     }
 
-    //
     bool PointisOnTheRight(EntityID& id1, Vector2& point)
     {
       return (point.x > env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position.x);
@@ -240,7 +236,6 @@ namespace DeltaEngine
       return (point.y < env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1).position.y);
     }
 
-    //
     void MoveTowardsEntityInX(EntityID& id1, EntityID& id2)
     {
       if (EntityisOnTheRight(id1, id2))
@@ -316,7 +311,6 @@ namespace DeltaEngine
           return true;
         }
       }
-
       return false;
     }
 
@@ -330,7 +324,6 @@ namespace DeltaEngine
       {
         return true;
       }
-
       return false;
     }
 
@@ -341,7 +334,6 @@ namespace DeltaEngine
       {
         return true;
       }
-
       return false;
     }
   }

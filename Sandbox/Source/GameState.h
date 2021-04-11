@@ -22,7 +22,6 @@ enum class GameState : unsigned
   CUTSCENE_END,
 };
 
-
 namespace DeltaEngine
 {
 void GameStateLoad( GameState state );

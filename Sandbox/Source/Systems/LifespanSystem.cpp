@@ -30,8 +30,8 @@ namespace DeltaEngine
   	//Clear VFX
     em.ForEach([&](EntityID& id, EntityType& et,Animator& anim)
     {
-        if (et.type == EntityCategory::E_VFX && anim.LoopsCompleted() > 0)
-            DestroyedEntities.push_back(id);
+      if (et.type == EntityCategory::E_VFX && anim.LoopsCompleted() > 0)
+        DestroyedEntities.push_back(id);
     });
 
     for (auto& ref : DestroyedEntities)

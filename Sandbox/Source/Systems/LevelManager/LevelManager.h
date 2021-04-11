@@ -13,18 +13,16 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 enum class LevelType : unsigned
 {
-    MainMenu,
-	Tutorial,
-	Level1
+  MainMenu,
+  Tutorial,
+  Level1
 };
 
 namespace DeltaEngine
 {
-    DEFINE_SYSTEM(LevelManager, Player)
-    // void Initialize() override;
-    void Update() override;
-    void LateUpdate() override;
+DEFINE_SYSTEM(LevelManager, Player)
+  void Update() override;
+  void LateUpdate() override;
 private:
-
-    END_DEFINE_SYSTEM(LevelManager)
+END_DEFINE_SYSTEM(LevelManager)
 }

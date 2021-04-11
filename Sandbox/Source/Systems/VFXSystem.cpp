@@ -1,8 +1,7 @@
 /**********************************************************************************
 * \file   VFXSystem.cpp
 * \brief  The file contains the system for getting upgrading the player's stat
-* \author Chin, Clara,       0% Code Contribution
-* \author Low , Troy ,       0% Code Contribution 
+* \author Chin, Clara,     100% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
@@ -42,7 +41,7 @@ namespace DeltaEngine
     // 
   }
   
-  void VFXSystem::ShowHitVFX(Vector3 pos, Vector2 size, std::string image, std::string animation, /*std::string animation_bool,*/ float duration)
+  void VFXSystem::ShowHitVFX(Vector3 pos, Vector2 size, std::string image, std::string animation, float duration)
   {
     auto& player_id = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
 
@@ -71,6 +70,5 @@ namespace DeltaEngine
     em.GetComponent<Lifespan>(vfx).Timer = duration;
     em.GetComponent<EntityType>(vfx).type = EntityCategory::E_VFX;
     em.GetComponent<Animator>(vfx).m_ControllerKey = animation; // e.g. "Animation/DaveHitVFX"
-    //em.GetComponent<State>(vfx).SetBool(animation_bool, true);
   }
 }

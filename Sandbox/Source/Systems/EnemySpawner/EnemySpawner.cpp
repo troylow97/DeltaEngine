@@ -77,19 +77,16 @@ namespace DeltaEngine
       	//Activate gauntlet
         if (GauntletIsActive)
         {
-            //If player dies, a json file is loaded so just reset all the stuff
-            if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(player).IsDead)
-            {
-                GauntletIsActive = false;
-                list.Gauntlets[CurrentGauntlet].isActivated = false;
-                list.Gauntlets[CurrentGauntlet].isFinished = false;
-                list.Gauntlets[CurrentGauntlet].CurrentEnemyWave = 0;
-                ActivateGauntlet = true;
-                return;
-            }
-        	
-          //if (CheckForOutsideEnemies())
-          //  return;
+          //If player dies, a json file is loaded so just reset all the stuff
+          if (env.pECS->GetWorld().GetEntityManager().GetComponent<Player>(player).IsDead)
+          {
+            GauntletIsActive = false;
+            list.Gauntlets[CurrentGauntlet].isActivated = false;
+            list.Gauntlets[CurrentGauntlet].isFinished = false;
+            list.Gauntlets[CurrentGauntlet].CurrentEnemyWave = 0;
+            ActivateGauntlet = true;
+            return;
+          }
 
           for (auto it = SpawnedEnemiesInGauntlet.begin(); it != SpawnedEnemiesInGauntlet.end();)
           {

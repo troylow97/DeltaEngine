@@ -80,5 +80,4 @@ GameState GameStateCurrent()
 {
   return current;
 }
-
 }

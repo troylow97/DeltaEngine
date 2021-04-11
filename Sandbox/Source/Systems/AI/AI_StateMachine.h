@@ -26,8 +26,5 @@ namespace DeltaEngine
     void AISystem::Update() override;
     void AISystem::LateUpdate() override;
     std::unordered_map<std::string, AIState*> StateList; //All possible states AI can be in
-  private:
-
-
   END_DEFINE_SYSTEM(AISystem)
 }

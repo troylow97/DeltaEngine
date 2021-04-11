@@ -1,8 +1,7 @@
 /**********************************************************************************
 * \file   VFXSystem.h
 * \brief  The file contains the system for getting upgrading the player's stat
-* \author Chin, Clara,       0% Code Contribution
-* \author Low , Troy ,       0% Code Contribution
+* \author Chin, Clara,     100% Code Contribution
 *
 *
 * \copyright Copyright (c) 2020 DigiPen Institute of Technology. Reproduction
@@ -18,7 +17,7 @@ namespace DeltaEngine
     void Update() override;
     void LateUpdate() override;
 
-    void ShowHitVFX(Vector3 pos, Vector2 size, std::string image, std::string animation, /*std::string animation_bool,*/ float duration);
+    void ShowHitVFX(Vector3 pos, Vector2 size, std::string image, std::string animation, float duration);
 private:
     int ShowVFX = 0;
   END_DEFINE_SYSTEM(VFXSystem)

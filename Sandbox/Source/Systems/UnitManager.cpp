@@ -12,6 +12,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "Core/GlobalStruct.h"
 #include "Core/GameClock/EngineClock.h"
+
 namespace DeltaEngine
 {
   EntityID UnitManager::player;
