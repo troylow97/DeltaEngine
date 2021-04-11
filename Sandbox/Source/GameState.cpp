@@ -49,6 +49,8 @@ void GameStateLoad( GameState state )
       world.Load("World/IntroCutscene.json");
       Cutscene::timer = 0;
       Cutscene::frame = -1;
+      Cutscene::totalFrames = 10;
+      Cutscene::cutscenePrefix = "Textures/INTRO_";
       break;
     }
     case GameState::TUTORIAL :
@@ -56,7 +58,7 @@ void GameStateLoad( GameState state )
       current = GameState::TUTORIAL;
       world.Load( "World/gam250tutorial.json" );
       world.Load( "World/GameMenuScreen.json" );
-      MenuSystem::fading = true;
+      MenuSystem::fadingIn = true;
       Camera::allCameras[0]->backgroundColor.a = 0;
       RespawnSystem::CreateCheckpoints(0);
       EnemySpawner::ActivateGauntlet = false;
@@ -67,10 +69,20 @@ void GameStateLoad( GameState state )
       current = GameState::LEVEL_1;
       world.Load( "World/gam250beta_t.json" );
       world.Load( "World/GameMenuScreen.json" );
-      MenuSystem::fading = true;
+      MenuSystem::fadingIn = true;
       Camera::allCameras[0]->backgroundColor.a = 0;
       RespawnSystem::CreateCheckpoints(1);
       EnemySpawner::ActivateGauntlet = true;
+      break;
+    }
+    case GameState::CUTSCENE_END:
+    {
+      current = GameState::CUTSCENE_END;
+      world.Load("World/EndCutscene.json");
+      Cutscene::timer = 0;
+      Cutscene::frame = -1;
+      Cutscene::totalFrames = 6;
+      Cutscene::cutscenePrefix = "Textures/ENDING_";
       break;
     }
   }

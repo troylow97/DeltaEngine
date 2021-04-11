@@ -25,7 +25,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 namespace DeltaEngine
 {
 float MenuSystem::fadeTimer = 0;
-bool MenuSystem::fading = false;
+bool MenuSystem::fadingIn = false;
+bool MenuSystem::fadingOut = false;
 
 void MenuSystem::Update()
 {
@@ -74,7 +75,7 @@ void Back()
 
 void StartGame()
 {
-  MenuSystem::fading = true;
+  MenuSystem::fadingIn = true;
 }
 
 void OpenControls()

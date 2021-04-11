@@ -18,6 +18,7 @@ DEFINE_SYSTEM( MenuSystem, GUI )
 void Update() override;
 void LateUpdate() override;
 static float fadeTimer;
-static bool fading;
+static bool fadingIn;
+static bool fadingOut;
 END_DEFINE_SYSTEM( MenuSystem )
 }
