@@ -315,7 +315,9 @@ namespace DeltaEngine
       .property("Is Start", &AudioSource::isStart)(rttr::metadata("NO_SERIALIZE", true),
                                                     (rttr::metadata("NO_EDITOR", true)))
     .property("Is Playing", &AudioSource::isPlaying)(rttr::metadata("NO_SERIALIZE", true),
-                                                      (rttr::metadata("NO_EDITOR", true)));
+                                                      (rttr::metadata("NO_EDITOR", true)))
+      .property("Is Played", &AudioSource::isPlayed)(rttr::metadata("NO_SERIALIZE", true),
+                                                        (rttr::metadata("NO_EDITOR", true)));
 
 #pragma endregion  
     /*

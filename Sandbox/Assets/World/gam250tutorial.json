@@ -24087,7 +24087,7 @@
                 "Pitch": 0.0,
                 "Loop": 0,
                 "Is Loop": false,
-                "Is Event": false,
+                "Is Event": true,
                 "Is 3D": false
             },
             "Transform": {
