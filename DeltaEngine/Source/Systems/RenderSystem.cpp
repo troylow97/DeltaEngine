@@ -356,7 +356,7 @@ namespace DeltaEngine
 
           if (!std::strcmp(r.m_Material.m_ShaderKey.c_str(), "DefaultTransition"))
           {
-            if (Cutscene::frame < 10)
+            if (Cutscene::frame < Cutscene::totalFrames)
             {
               cutsceneMat.SetUniformMatrix4f("_M", model);
               cutsceneMat.SetUniformMatrix4f("_V", view);
@@ -364,16 +364,16 @@ namespace DeltaEngine
               cutsceneMat.SetUniformColor4f("_Color", r.m_Color);
               if (Cutscene::frame >= 0)
               {
-                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 1))->Bind(2);
+                GetEnv().pManager->Get<Texture2D>(Cutscene::cutscenePrefix + std::to_string(Cutscene::frame + 1))->Bind(2);
               }
               else
               {
                 GetEnv().pManager->Get<Texture2D>("Textures/Black")->Bind(2);
               }
 
-              if (Cutscene::frame < 9)
+              if (Cutscene::frame < Cutscene::totalFrames - 1)
               {
-                GetEnv().pManager->Get<Texture2D>("Textures/INTRO_" + std::to_string(Cutscene::frame + 2))->Bind(1);
+                GetEnv().pManager->Get<Texture2D>(Cutscene::cutscenePrefix + std::to_string(Cutscene::frame + 2))->Bind(1);
               }
               else
               {
@@ -519,7 +519,7 @@ namespace DeltaEngine
               }
               glActiveTexture(GL_TEXTURE0);
               glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
-              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(1);
+              GetEnv().pManager->Get<Texture2D>(c.transitionTexKey)->Bind(1);
               
               Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
               shader->SetUniform1i("_MainTex", 0);
@@ -561,7 +561,7 @@ namespace DeltaEngine
 
               glActiveTexture(GL_TEXTURE0);
               glBindTexture(GL_TEXTURE_2D, c.GetFrameBuffer().GetColorAttachment());
-              GetEnv().pManager->Get<Texture2D>("Textures/Sharp_swipe_1")->Bind(0);
+              GetEnv().pManager->Get<Texture2D>(c.transitionTexKey)->Bind(1);
 
               Shader* shader = GetEnv().pManager->Get<Shader>("DefaultScreen");
               shader->SetUniform1i("_MainTex", 0);
