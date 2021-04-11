@@ -122,11 +122,13 @@ namespace DeltaEngine
         if (em.HasComponent<Fiddler>(id))
         {
           audio.clip = "event:/Enemy/Fiddler/Fiddler Move";
+          AudioEngine::SetEventVolume(audio.id, 0.1f);
           AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
         }
         else if (em.HasComponent<Serpentipede>(id))
         {
           auto& audio_to_play = em.GetComponent<AudioSource>(id);
+          AudioEngine::SetEventVolume(audio.id, 0.1f);
           audio_to_play.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
           AudioEngine::AudioSourcePlay3DEvent(audio_to_play, { trans.position, {},{0,0,1},{0,1,0} });
         }
@@ -144,11 +146,13 @@ namespace DeltaEngine
         if (em.HasComponent<Fiddler>(id))
         {
           audio.clip = "event:/Enemy/Fiddler/Fiddler Move";
+          AudioEngine::SetEventVolume(audio.id, 0.1f);
           AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
         }
         else if (em.HasComponent<Serpentipede>(id))
         {
           auto& audio_to_play = em.GetComponent<AudioSource>(id);
+          AudioEngine::SetEventVolume(audio.id, 0.1f);
           audio_to_play.clip = "event:/Enemy/Serpentipede/Serpentipede Moving";
           AudioEngine::AudioSourcePlay3DEvent(audio_to_play, { trans.position, {},{0,0,1},{0,1,0} });
         }

@@ -288,7 +288,7 @@ void CollisionHandlerFunctions::PickupHealthOrb( EntityID &id1, EntityID &id2 )
   else if ( et1.type == EntityCategory::E_PLAYER && et2.type == EntityCategory::E_HEALTHUP )
   {
     em.GetComponent<Lifespan>( id2 ).Timer = 1.0f;
-    em.GetComponent<Health>(id2).CurrentHealth += static_cast<int>(0.30f * em.GetComponent<Health>(id2).MaxHealth);
+    em.GetComponent<Health>(id1).CurrentHealth += static_cast<int>(0.30f * em.GetComponent<Health>(id1).MaxHealth);
     em.GetComponent<EntityType>( id2 ).type = EntityCategory::E_HEALTHUP_USED;
     em.GetComponent<State>( id2 ).SetBool( "IsDead", true );
   }
