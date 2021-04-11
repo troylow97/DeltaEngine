@@ -21002,9 +21002,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 273
-            },
             "Entity Name": {
                 "Name": "Collider"
             },
@@ -38329,9 +38326,6 @@
             }
         },
         {
-            "Parent": {
-                "ID": 481
-            },
             "Entity Name": {
                 "Name": "Bg3"
             },
