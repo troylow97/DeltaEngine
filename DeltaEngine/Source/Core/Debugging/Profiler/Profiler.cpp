@@ -14,42 +14,53 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
-  void Profiler::FrameStart()
+void Profiler::FrameStart()
+{
+#ifdef DE_EDITOR
+  m_prev = m_start = HighResClock::now();
+#endif
+
+}
+
+void Profiler::FrameEnd()
+{
+#ifdef DE_EDITOR
+
+  TimePoint end = HighResClock::now();
+
+  m_delta[m_index] = end - m_start;
+
+  m_index = 1 - m_index;
+  m_buffer[m_index].clear();
+#endif
+
+}
+
+void Profiler::Record( std::string_view str )
+{
+#ifdef DE_EDITOR
+  TimePoint current = HighResClock::now();
+  Nanoseconds delta = current - m_prev;
+  m_buffer[m_index].push_back( { std::string( str ), delta } );
+  m_prev = current;
+#endif
+}
+
+
+void Profiler::Print()
+{
+#ifdef DE_EDITOR
+  DeltaEngine_CORE_INFO( "Profiler Status Start" );
+  const Nanoseconds &delta_ref = m_delta[1 - m_index];
+  for ( const auto &entries : m_buffer[1 - m_index] )
   {
-    m_prev = m_start = HighResClock::now();
+    double percentage = ( ( entries.delta.count() * 1e-9 ) / ( delta_ref.count() * 1e-9 ) ) * 100.0;
+    DeltaEngine_CORE_INFO( "Entry - {}, Delta: {}ms, Percentage: {}%",
+                           entries.name,
+                           static_cast<float>( entries.delta.count() * 1e-6 ),
+                           percentage );
   }
-
-  void Profiler::FrameEnd()
-  {
-    TimePoint end = HighResClock::now();
-
-    m_delta[m_index] = end - m_start;
-
-    m_index = 1 - m_index;
-    m_buffer[m_index].clear();
-  }
-
-  void Profiler::Record(std::string_view str)
-  {
-    TimePoint current = HighResClock::now();
-    Nanoseconds delta = current - m_prev;
-    m_buffer[m_index].push_back({std::string(str), delta});
-    m_prev = current;
-  }
-
-
-  void Profiler::Print()
-  {
-    DeltaEngine_CORE_INFO("Profiler Status Start");
-    const Nanoseconds& delta_ref = m_delta[1 - m_index];
-    for (const auto& entries : m_buffer[1 - m_index])
-    {
-      double percentage = ((entries.delta.count() * 1e-9) / (delta_ref.count() * 1e-9)) * 100.0;
-      DeltaEngine_CORE_INFO("Entry - {}, Delta: {}ms, Percentage: {}%",
-                            entries.name,
-                            static_cast<float>(entries.delta.count() * 1e-6),
-                            percentage);
-    }
-    DeltaEngine_CORE_INFO("Profiler Status End");
-  }
+  DeltaEngine_CORE_INFO( "Profiler Status End" );
+#endif
+}
 }

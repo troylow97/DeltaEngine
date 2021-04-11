@@ -73,6 +73,10 @@ void AudioEngine::Update()
 void AudioEngine::AudioSourcePlay( AudioSource &a )
 {
   a.id = Play( a.clip, a.volume );
+
+  if ( a.id == 0 )
+    DeltaEngine_CORE_INFO( "Audio - {} is missing", a.clip );
+
   a.isPlayed = a.is3D = a.isEvent = false;
   a.isStart = true;
   SetChannelPitch( a.id, a.pitch );
@@ -81,6 +85,10 @@ void AudioEngine::AudioSourcePlay( AudioSource &a )
 void AudioEngine::AudioSourcePlay3D( AudioSource &a, const Vector3 &pos )
 {
   a.id = Play( a.clip, a.volume, pos );
+
+  if ( a.id == 0 )
+    DeltaEngine_CORE_INFO( "Audio - {} is missing", a.clip );
+
   a.isPlayed = a.isEvent = false;
   a.isStart = a.is3D = true;
   SetChannelPitch( a.id, a.pitch );
@@ -89,6 +97,10 @@ void AudioEngine::AudioSourcePlay3D( AudioSource &a, const Vector3 &pos )
 void AudioEngine::AudioSourcePlay2DEvent( AudioSource &a, ParametersMap params )
 {
   a.id = Play2DEvent( a.clip, std::move(params ));
+
+  if ( a.id == 0 )
+    DeltaEngine_CORE_INFO( "Audio Event - {} is missing", a.clip );
+
   a.isPlayed = a.is3D = false;
   a.isStart = a.isEvent = true;
   SetEventVolume( a.id, a.volume );
