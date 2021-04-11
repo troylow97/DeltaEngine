@@ -295,8 +295,16 @@ void Editor::Begin()
 {
   if (entity_selected && tool_selection == Tool::EntitySelector )
   {
-    auto& t = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<Transform>( { entity_id } );
-    selection_transform.position = t.position;
+    if (GetEnv().pECS->GetWorld().GetEntityManager().IsEntityValid({entity_id}))
+    {
+      auto& t = GetEnv().pECS->GetWorld().GetEntityManager().GetComponent<Transform>( { entity_id } );
+      selection_transform.position = t.position;
+    }
+    else
+    {
+      entity_selected = false;
+      entity_id = u64_max;
+    }
   }
 
 

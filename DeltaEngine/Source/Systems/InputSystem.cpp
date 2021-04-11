@@ -119,6 +119,9 @@ namespace DeltaEngine
           
           im1.m_FlipX = true;
           idle_timer = 0.0f;
+
+          
+
           if ( !AudioEngine::IsEventPlaying( run_sound_id ) )
           {
             run_sound_id = AudioEngine::Play2DEvent( "event:/Player/Player Run Pavement" );

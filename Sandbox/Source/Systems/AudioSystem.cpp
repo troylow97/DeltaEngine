@@ -46,7 +46,6 @@ void AudioSystem::LateUpdate()
         a.clip.clear();
       a.isStart = false;
     }
-    std::cout << a.isStart << std::endl;
 
     if ( !a.isStart && !a.clip.empty() )
     {

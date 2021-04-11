@@ -365,6 +365,7 @@ namespace DeltaEngine
     rttr::registration::class_<Slider>("Slider")
       (rttr::metadata("bits", ComponentMeta::GetComponentMeta<Slider>()->bits))
       .constructor<>()(rttr::policy::ctor::as_object)
+      .property("On Change", &Slider::on_change)(rttr::policy::prop::bind_as_ptr )
       .property("Fill Entity", &Slider::fill_entity)(rttr::policy::prop::bind_as_ptr)
       .property("Handle Entity", &Slider::handle_entity)(rttr::policy::prop::bind_as_ptr)
       .property("Min", &Slider::min)(rttr::policy::prop::bind_as_ptr)
