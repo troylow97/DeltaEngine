@@ -32,11 +32,34 @@ void CollisionHandlerFunctions::Initialise()
 
 void CollisionHandlerFunctions::ReduceHealth( EntityID &id1, int amount )
 {
-  if ( env.pECS->GetWorld().GetEntityManager().HasComponent<Health>( id1 ) &&
-       !env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).isInvulnerable )
+  auto& em = env.pECS->GetWorld().GetEntityManager();
+	
+  if ( em.HasComponent<Health>( id1 ) &&
+       !em.GetComponent<Health>( id1 ).isInvulnerable )
   {
-    env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).CurrentHealth -= amount;
-    env.pECS->GetWorld().GetEntityManager().GetComponent<Health>( id1 ).isDamagedTimer = 0.4f;
+    em.GetComponent<Health>( id1 ).CurrentHealth -= amount;
+    em.GetComponent<Health>( id1 ).isDamagedTimer = 0.4f;
+
+    auto& trans = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>(id1);
+    if (em.HasComponent<Lancer>(id1))
+    {
+        auto& audio = em.GetComponent<AudioSource>(id1);
+        audio.clip = "event:/Enemy/Lancer/Lancer Hurt";
+        AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+    }
+    else if (em.HasComponent<Fiddler>(id1))
+    {
+        auto& audio = em.GetComponent<AudioSource>(id1);
+        audio.clip = "event:/Enemy/Fiddler/Fiddler Hurt";
+        AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+    }
+    else if (em.HasComponent<Serpentipede>(id1))
+    {
+        auto& audio = em.GetComponent<AudioSource>(id1);
+        audio.clip = "event:/Enemy/Serpentipede/Serpentipede Hurt";
+        AudioEngine::AudioSourcePlay3DEvent(audio, { trans.position, {},{0,0,1},{0,1,0} });
+    }
+  	
   }
 }
 
