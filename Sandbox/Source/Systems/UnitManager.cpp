@@ -53,6 +53,7 @@ void UnitManager::Update()
 
       if ( fall )
       {
+        s.SetBool("VelocityY", false);
         if ( c.isCollidingOnFloor )
         {
           //std::cout << "here3" << std::endl;
