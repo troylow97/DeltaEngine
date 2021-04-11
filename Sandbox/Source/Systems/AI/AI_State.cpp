@@ -227,7 +227,8 @@ void GotHitEnemyLancer::Update( EntityID &monster )
 void GotHitEnemyLancer::onExit( EntityID &monster )
 {
   auto &state = env.pECS->GetWorld().GetEntityManager().GetComponent<State>( monster );
-  if ( AITools::EntityisOnTheRight( monster, UnitManager::GetPlayerID() ) )
+  auto &player = env.pECS->GetWorld().GetEntityManager().GetComponent<EntityID>(UnitManager::GetPlayerID());
+  if ( AITools::EntityisOnTheRight( monster, player) )
     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( monster ).m_FlipX = true;
   else
     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( monster ).m_FlipX = false;
