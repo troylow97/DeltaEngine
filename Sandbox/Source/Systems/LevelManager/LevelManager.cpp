@@ -32,14 +32,14 @@ namespace DeltaEngine
 		{
 			case GameState::MAIN_MENU:
 			{
-				if (MenuSystem::fading)
+				if (MenuSystem::fadingIn)
 				{
 					MenuSystem::fadeTimer += DeltaTimef() / 2;
 					Camera::allCameras[0]->backgroundColor.a = 1 - MenuSystem::fadeTimer;
 					if (MenuSystem::fadeTimer > 5 / 2)
 					{
 						MenuSystem::fadeTimer = 0;
-						MenuSystem::fading = false;
+						MenuSystem::fadingIn = false;
 						GameStateLoad(GameState::CUTSCENE_INTRO);
 					}
 				}
@@ -62,7 +62,7 @@ namespace DeltaEngine
 			}
 			case GameState::TUTORIAL:
 			{
-				if (MenuSystem::fading)
+				if (MenuSystem::fadingIn)
 				{
 					MenuSystem::fadeTimer += DeltaTimef() / 2;
 					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
@@ -70,7 +70,7 @@ namespace DeltaEngine
 					if (MenuSystem::fadeTimer > 5 / 2)
 					{
 						MenuSystem::fadeTimer = 0;
-						MenuSystem::fading = false;
+						MenuSystem::fadingIn = false;
 					}
 				}
 
@@ -82,7 +82,7 @@ namespace DeltaEngine
 			}
 			case GameState::LEVEL_1:
 			{
-				if (MenuSystem::fading)
+				if (MenuSystem::fadingIn)
 				{
 					MenuSystem::fadeTimer += DeltaTimef() / 2;
 					Camera::allCameras[0]->transitionTexKey = "Textures/Sharp_swipe_0";
@@ -90,8 +90,23 @@ namespace DeltaEngine
 					if (MenuSystem::fadeTimer > 5 / 2)
 					{
 						MenuSystem::fadeTimer = 0;
-						MenuSystem::fading = false;
+						MenuSystem::fadingIn = false;
 					}
+				}
+				break;
+			}
+			case GameState::CUTSCENE_END:
+			{
+				Cutscene::timer += DeltaTimef() * 2;
+				if (Cutscene::timer / 2 > Cutscene::introTimings[Cutscene::frame + 1])
+				{
+					++Cutscene::frame;
+					Cutscene::timer = 0;
+				}
+				if (InputManager::Instance().IsKeyPressed(DEVK_SPACE) ||
+					Cutscene::frame > 5 && Cutscene::timer > 1)
+				{
+					GameStateLoad(GameState::MAIN_MENU);
 				}
 				break;
 			}
