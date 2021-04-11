@@ -215,26 +215,26 @@ void CollisionHandlerFunctions::CheckGroundType( EntityID &id1, EntityID &id2 )
   auto &em = env.pECS->GetWorld().GetEntityManager();
   const auto &et1 = em.GetComponent<EntityType>( id1 );
   const auto &et2 = em.GetComponent<EntityType>( id2 );
-  if ( et1.type == EntityCategory::E_MUD || et2.type == EntityCategory::E_PLAYER )
+  if ( et1.type == EntityCategory::E_MUD && et2.type == EntityCategory::E_PLAYER )
   {
     auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id2 );
     if ( audio.clip == "event:/Player/Player Run" )
       AudioEngine::SetEventParameterByName( audio.id, "Player Grounds", 1.0f );
   }
-  else if ( et1.type == EntityCategory::E_PLAYER || et2.type == EntityCategory::E_MUD )
+  else if ( et1.type == EntityCategory::E_PLAYER && et2.type == EntityCategory::E_MUD )
   {
     auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id1 );
     if ( audio.clip == "event:/Player/Player Run" )
       AudioEngine::SetEventParameterByName( audio.id, "Player Grounds", 1.0f );
   }
 
-  if ( et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_PLAYER )
+  if ( et1.type == EntityCategory::E_CONCRETE && et2.type == EntityCategory::E_PLAYER )
   {
     auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id2 );
     if ( audio.clip == "event:/Player/Player Run" )
       AudioEngine::SetEventParameterByName( audio.id, "Player Grounds", 0.0f );
   }
-  else if ( et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_MUD )
+  else if ( et1.type == EntityCategory::E_CONCRETE && et2.type == EntityCategory::E_MUD )
   {
     auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id1 );
     if ( audio.clip == "event:/Player/Player Run" )
@@ -242,33 +242,33 @@ void CollisionHandlerFunctions::CheckGroundType( EntityID &id1, EntityID &id2 )
   }
 
   //For Fiddler Attacks
-  if (et1.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH || et2.type == EntityCategory::E_CONCRETE)
+  if (et1.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH && et2.type == EntityCategory::E_CONCRETE)
   {
     auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id1);
     AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(id1).position, {},{0,0,1},{0,1,0} });
-    audio.clip = "event:/Enemy/Fiddler/Pavement Smash";
+    audio.clip = "event:/Enemy/Fiddler/Fiddler Smash";
     AudioEngine::SetEventParameterByName(audio.id, "Ground Type", 1.0f);
   }
-  else if (et1.type == EntityCategory::E_CONCRETE || et2.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH)
+  else if (et1.type == EntityCategory::E_CONCRETE && et2.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH)
   {
     auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id2);
     AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(id2).position, {},{0,0,1},{0,1,0} });
-    audio.clip = "event:/Enemy/Fiddler/Pavement Smash";
+    audio.clip = "event:/Enemy/Fiddler/Fiddler Smash";
     AudioEngine::SetEventParameterByName(audio.id, "Ground Type", 1.0f);
   }
 
-  if (et1.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH || et2.type == EntityCategory::E_MUD)
+  if (et1.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH && et2.type == EntityCategory::E_MUD)
   {
     auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id1);
     AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(id1).position, {},{0,0,1},{0,1,0} });
-    audio.clip = "event:/Enemy/Fiddler/Pavement Smash";
+    audio.clip = "event:/Enemy/Fiddler/Fiddler Smash";
     AudioEngine::SetEventParameterByName(audio.id, "Ground Type", 2.0f);
   }
-  else if (et1.type == EntityCategory::E_MUD || et2.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH)
+  else if (et1.type == EntityCategory::E_MUD && et2.type == EntityCategory::E_ENEMY_FIDDLER_PUNCH)
   {
     auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id2);
     AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(id2).position, {},{0,0,1},{0,1,0} });
-    audio.clip = "event:/Enemy/Fiddler/Pavement Smash";
+    audio.clip = "event:/Enemy/Fiddler/Fiddler Smash";
     AudioEngine::SetEventParameterByName(audio.id, "Ground Type", 2.0f);
   }
 }
