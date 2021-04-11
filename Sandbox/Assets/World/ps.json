@@ -62,13 +62,13 @@
                 "startRotationMin": 0.0,
                 "startRotationMax": 360.0,
                 "startSizeMin": {
-                    "x": 0.05000000074505806,
-                    "y": 0.05000000074505806,
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
                     "z": 1.0
                 },
                 "startSizeMax": {
-                    "x": 0.15000000596046449,
-                    "y": 0.15000000596046449,
+                    "x": 0.20000000298023225,
+                    "y": 0.20000000298023225,
                     "z": 1.0
                 },
                 "velocityOverLifetime": {
@@ -1155,8 +1155,8 @@
                     },
                     "type": "RandomBetweenConstants"
                 },
-                "maxParticles": 32,
-                "rateOverTime": 2,
+                "maxParticles": 64,
+                "rateOverTime": 4,
                 "shape": "Line",
                 "genType": "Random",
                 "radius": 10.0,
