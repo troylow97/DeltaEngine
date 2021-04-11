@@ -30,7 +30,7 @@ namespace DeltaEngine
     controlsLeft[1] = Vector3(-0.1f, 0, 1);
     controlsRight[1] = Vector3(0.1f, 0, 1);
 
-    anchors[2] = Vector3(1, 1, 0);
+    anchors[2] = Vector3(1, 1, 1);
     controlsLeft[2] = Vector3(-0.1f, 0, 1);
     controlsRight[2] = Vector3(0.1f, 0, 1);
 
@@ -51,7 +51,7 @@ namespace DeltaEngine
     controlsLeft[1] = Vector3(-0.1f, 0, 1);
     controlsRight[1] = Vector3(0.1f, 0, 1);
 
-    anchors[2] = Vector3(1, 1, 0);
+    anchors[2] = Vector3(1, 0.5f, 1);
     controlsLeft[2] = Vector3(-0.1f, 0, 1);
     controlsRight[2] = Vector3(0.1f, 0, 1);
 
@@ -63,37 +63,22 @@ namespace DeltaEngine
   float BezierCurve::Evaluate(float time)
   {
     int i = 0;
-    float firstCheck = 0, lastCheck = 1;
     int startInd = 0, endInd = -1;
     for (auto position : anchors)
     {
-      position.z = 1;
-      if (!position.z)
-        continue;
-      if (position.x < time)
+      if (position.x > time)
       {
-        if (position.x > firstCheck)
-        {
-          firstCheck = position.x;
-          startInd = i;
-        }
-      }
-      else
-      {
-        if (position.x <= lastCheck)
-        {
-          lastCheck = position.x;
-          endInd = i;
-        }
+        endInd = i;
+        break;
       }
       ++i;
     }
-
     if (endInd == 0)
       return anchors[0].y;
     else if (endInd == -1)
       return anchors.back().y;
 
+    startInd = endInd - 1;
     float t0 = anchors[startInd].x;
     float t1 = anchors[endInd].x;
     time = (time - t0) / (t1 - t0);
