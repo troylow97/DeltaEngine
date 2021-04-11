@@ -56,7 +56,12 @@ namespace DeltaEngine
   {
     JsonFile file;;
     if (level == 0) // tutorial
-    {}
+    {
+      opening_tutorial = true;
+      opening_level_1 = false;
+      in_tutorial = true;
+      in_level_1 = false;
+    }
     if (level == 1) // tutorial
     {
       file.StartReader("Player/level1_respawn_points.json").LoadObject(respawns).EndReader();
