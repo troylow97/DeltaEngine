@@ -3985,11 +3985,11 @@
                 "Name": "floorcollider"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
-                    "x": 120.0,
+                    "x": 60.0,
                     "y": -0.30799999833106997,
                     "z": 0.0
                 },
@@ -4026,7 +4026,7 @@
                     "y": 0.0
                 },
                 "Size": {
-                    "x": 220.0,
+                    "x": 85.0,
                     "y": 0.4699999988079071
                 },
                 "Type": "box",
@@ -4213,13 +4213,13 @@
                 "Current Health": 100,
                 "Max Health": 100,
                 "TakenDamageTimer": -0.10000000149011612,
-                "Invulnerable": false
+                "Invulnerable": true
             },
             "Attack": {
-                "Range Damage": 8192,
-                "Melee Damage": 4,
-                "SMG Damage": 4096,
-                "Melee Combo Damage": 6,
+                "Range Damage": 32768,
+                "Melee Damage": 16,
+                "SMG Damage": 16384,
+                "Melee Combo Damage": 24,
                 "Number Of Combo": 0,
                 "Max Combo Number": 5,
                 "Melee Cooldown": 0.20000000298023225,
@@ -5735,7 +5735,7 @@
                 "Name": "NormalPlatformV2"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -6039,7 +6039,7 @@
                 "Name": "NormalPlatformV2"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -7880,7 +7880,7 @@
                 "Name": "NormalPlatformV2"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -7980,7 +7980,7 @@
                 "Name": "Normal Platform Bottom Left"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -8050,7 +8050,7 @@
                 "Name": "Normal Platform Center Bottom"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -8120,7 +8120,7 @@
                 "Name": "Normal Platform Bottom Right"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -8190,7 +8190,7 @@
                 "Name": "Normal Platform Middle Left"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -8260,7 +8260,7 @@
                 "Name": "Normal Platform Middle Center "
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -8360,7 +8360,7 @@
                 "Name": "Normal Platform Middle Right"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -8430,7 +8430,7 @@
                 "Name": "Normal  Platform Top Left"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -8500,7 +8500,7 @@
                 "Name": "Normal Platform Middle Top"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -8570,7 +8570,7 @@
                 "Name": "Normal Platform Top Right"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -8780,7 +8780,7 @@
                 "Name": "NormalPlatformV2"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -9160,7 +9160,7 @@
                 "Name": "NormalPlatformV2"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -11847,7 +11847,7 @@
                 "Name": "Normal Platform Bottom Left"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -11917,7 +11917,7 @@
                 "Name": "Normal Platform Center Bottom"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -11987,7 +11987,7 @@
                 "Name": "Normal Platform Bottom Right"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -12057,7 +12057,7 @@
                 "Name": "Normal Platform Middle Left"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -12127,7 +12127,7 @@
                 "Name": "Normal Platform Middle Left"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -12197,7 +12197,7 @@
                 "Name": "Normal Platform Middle Center "
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -12297,7 +12297,7 @@
                 "Name": "Normal Platform Middle Center "
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -12367,7 +12367,7 @@
                 "Name": "Normal Platform Middle Right"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -12437,7 +12437,7 @@
                 "Name": "Normal Platform Middle Right"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -12507,7 +12507,7 @@
                 "Name": "Normal  Platform Top Left"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -12577,7 +12577,7 @@
                 "Name": "Normal Platform Middle Top"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -12647,7 +12647,7 @@
                 "Name": "Normal Platform Top Right"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -13478,7 +13478,7 @@
                 "Name": "NormalPlatformV2"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -16014,7 +16014,7 @@
                     "a": 1.0
                 },
                 "Layer": 0,
-                "Order": -0.003000000026077032,
+                "Order": 0.0,
                 "Active": true,
                 "Shaded": true,
                 "Wireframe": false
@@ -38681,7 +38681,7 @@
                 "Name": "BrownPlatform"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "checkpoint"
             },
             "Transform": {
                 "Position": {
@@ -38781,7 +38781,7 @@
                 "Name": "BrownPlatform"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "checkpoint"
             },
             "Transform": {
                 "Position": {
@@ -38881,7 +38881,7 @@
                 "Name": "BrownPlatform"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "checkpoint"
             },
             "Transform": {
                 "Position": {
@@ -38981,7 +38981,7 @@
                 "Name": "BrownPlatform"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "checkpoint"
             },
             "Transform": {
                 "Position": {
@@ -39081,7 +39081,7 @@
                 "Name": "BrownPlatform"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "checkpoint"
             },
             "Transform": {
                 "Position": {
@@ -41441,7 +41441,7 @@
                 "Name": "NormalPlatformV2"
             },
             "Entity Type": {
-                "Category": "none"
+                "Category": "mud"
             },
             "Transform": {
                 "Position": {
@@ -43378,6 +43378,183 @@
                         "w": 1.0
                     }
                 }
+            }
+        },
+        {
+            "Parent": {
+                "ID": 53
+            },
+            "Entity Name": {
+                "Name": "floorcollider"
+            },
+            "Entity Type": {
+                "Category": "checkpoint"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 124.5,
+                    "y": -0.30799999833106997,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 120.0,
+                    "y": -0.30799999833106997
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 44.0,
+                    "y": 0.4699999988079071
+                },
+                "Type": "box",
+                "Collision Layer": 11,
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 53
+            },
+            "Entity Name": {
+                "Name": "floorcollider"
+            },
+            "Entity Type": {
+                "Category": "mud"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 158.6999969482422,
+                    "y": -0.30799999833106997,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 120.0,
+                    "y": -0.30799999833106997
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 25.0,
+                    "y": 0.4699999988079071
+                },
+                "Type": "box",
+                "Collision Layer": 11,
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
+            }
+        },
+        {
+            "Parent": {
+                "ID": 53
+            },
+            "Entity Name": {
+                "Name": "floorcollider"
+            },
+            "Entity Type": {
+                "Category": "checkpoint"
+            },
+            "Transform": {
+                "Position": {
+                    "x": 196.1999969482422,
+                    "y": -0.30799999833106997,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                }
+            },
+            "Rigidbody": {
+                "Mass": 20.0,
+                "Move Speed": 10.0,
+                "Restitution": 1.0,
+                "Friction Coefficient": 0.8500000238418579,
+                "Inherent Acceleration": 0.0,
+                "Max Acceleration": 40.0,
+                "Acceleration Pickup": 3.0,
+                "Gravity": false,
+                "Moveable": false
+            },
+            "Collider": {
+                "Center": {
+                    "x": 120.0,
+                    "y": -0.30799999833106997
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Size": {
+                    "x": 50.0,
+                    "y": 0.4699999988079071
+                },
+                "Type": "box",
+                "Collision Layer": 11,
+                "Collision Layer ID": 1,
+                "Trigger": false,
+                "Platform": false
             }
         }
     ]
