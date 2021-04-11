@@ -83,8 +83,6 @@ void IdleLancer::onEnter( EntityID &id )
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsAttacked", false );
   env.pECS->GetWorld().GetEntityManager().GetComponent<State>( id ).SetBool( "IsAlerted", true );
   auto &audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>( id );
-
-  //std::cout << "IdleLancer onEnter" << std::endl;
 }
 
 void IdleLancer::onExit( EntityID &id )
@@ -110,6 +108,7 @@ void IdleLancer::Update( EntityID &monster )
   if (!audio.isStart && !audio.isPlayed)
   {
     audio.clip = "event:/Enemy/Lancer/Lancer Master Idle";
+    AudioEngine::SetEventVolume(audio.id, 0.1f);
     AudioEngine::AudioSourcePlay3DEvent(audio, { em.GetComponent<Transform>(monster).position, {},{0,0,1},{0,1,0} });
   }
 
@@ -176,8 +175,6 @@ void ChaseEnemyLancer::Update( EntityID &monster )
     lancer.TransitionTimer -= env.pClock->FixedDeltaTime();
   else
     ai.transition = "charging_enemy_lancer";
-
-//std::cout << "ChaseEnemyLancer" << std::endl;
 }
 
 //----------------------------------------------------------------------
@@ -230,8 +227,6 @@ void GotHitEnemyLancer::Update( EntityID &monster )
 
   state.SetBool( "IsAttacked", true );
   state.SetBool( "IsDead", false );
-  //auto& a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>(monster);
-  //std::cout << "GotHitEnemyLancer" << std::endl;
 
   rb.Direction = { 0,0 };
 
@@ -255,7 +250,6 @@ void GotHitEnemyLancer::onExit( EntityID &monster )
 ChargingEnemyLancer::ChargingEnemyLancer()
 {
   TransitionEdges["hit_enemy_lancer"] = new DamagedEnemyLancer();
-  // TransitionEdges["attack_enemy_lancer"] = new AttackEnemyLancer();
 }
 
 void ChargingEnemyLancer::onEnter( EntityID &monster )
@@ -271,18 +265,15 @@ void ChargingEnemyLancer::Update( EntityID &monster )
 {
   auto &s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>( monster );
   auto &t = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( monster );
-  //auto& hp = env.pECS->GetWorld().GetEntityManager().GetComponent<Health>(monster);
-  //auto& image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(monster);
   auto &a = env.pECS->GetWorld().GetEntityManager().GetComponent<Attack>( monster );
   auto &rb = env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>( monster );
   auto &ai = env.pECS->GetWorld().GetEntityManager().GetComponent<AI>( monster );
   s.SetBool( "IsAttacked", false );
   EntityID player = UnitManager::GetPlayerID();
   const auto player_pos = env.pECS->GetWorld().GetEntityManager().GetComponent<Transform>( player ).position;
-  //auto& player_image = env.pECS->GetWorld().GetEntityManager().GetComponent<Image>(player);
- // auto& player_col = env.pECS->GetWorld().GetEntityManager().GetComponent<Collider>(player);
+
   CheckEdges( monster );
-  //std::cout << "ChargingEnemyLancer" << std::endl;
+
   //Face player
   if ( AITools::EntityisOnTheRight( monster, player ) )
     env.pECS->GetWorld().GetEntityManager().GetComponent<Image>( monster ).m_FlipX = true;
@@ -315,10 +306,7 @@ void ChargingEnemyLancer::Update( EntityID &monster )
 }
 
 void ChargingEnemyLancer::onExit( EntityID &monster )
-{
-    //auto& state = env.pECS->GetWorld().GetEntityManager().GetComponent<State>(monster);
-    //state.SetBool("Charging", false);
-}
+{}
 
 AttackingEnemyLancer::AttackingEnemyLancer()
 {
@@ -435,9 +423,6 @@ void ChaseEnemyFiddler::onEnter( EntityID &id )
   s.SetBool( "IsPatrolling", false );
   s.SetBool( "IsAlertRunning", true );
   fid.DurationBeforeExitState = 1.0f;
-  //auto& anim = em.GetComponent<Animator>(id);
-
-
 }
 
 void ChaseEnemyFiddler::onExit( EntityID &id )
@@ -456,7 +441,6 @@ void ChaseEnemyFiddler::Update( EntityID &monster )
   auto &a = em.GetComponent<Attack>( monster );
   auto &hp = em.GetComponent <Health>( monster );
   auto &fid = env.pECS->GetWorld().GetEntityManager().GetComponent<Fiddler>( monster );
-  //auto& anim = em.GetComponent<Animator>(monster);
 
   if ( fid.DurationBeforeExitState > 0.0f )
     fid.DurationBeforeExitState -= env.pClock->FixedDeltaTime();
@@ -515,8 +499,6 @@ void ChaseEnemyFiddler::Update( EntityID &monster )
       }
     }
 
-    //To Add Blocking Mechanic here
-
     //if (a.AttackDelay < 0.0f)
     {
         //attacking
@@ -536,7 +518,6 @@ void ChaseEnemyFiddler::Update( EntityID &monster )
       }
       else if ( AITools::Distance_X_BetweenTwoEntities( monster, player ) < 0.5f ) //fiddler is too close to player
       {
-          //std::cout << "too close" << std::endl;
         s.SetBool( "IsAlertRunning", true );
         if ( AITools::EntityisOnTheRight( player, monster ) )
         {
@@ -576,7 +557,6 @@ void ChaseEnemyFiddler::Update( EntityID &monster )
 
   }
   em.GetComponent<RigidBody>( monster ).Direction = Vector2 { 0,0 };
-  //std::cout << "here4" << std::endl;
 }
 #pragma endregion
 
@@ -602,8 +582,6 @@ void IdleSerpentipede::onExit( EntityID &id )
 
 void IdleSerpentipede::Update( EntityID &monster )
 {
-    //std::cout << "state is idle" << std::endl;
-    //std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
   CheckEdges( monster );
   auto &s = env.pECS->GetWorld().GetEntityManager().GetComponent<State>( monster );
   s.SetBool( "IsAlerted", false );
@@ -642,10 +620,6 @@ void ChaseEnemySerpentipede::Update( EntityID &monster )
   auto &rend = em.GetComponent<Renderer2D>( monster );
   auto &hp = em.GetComponent<Health>( monster );
   auto &serp = em.GetComponent<Serpentipede>( monster );
-
-  //std::cout << "burrow state is: " << BurrowState << std::endl;
-  //std::cout << "state is chase" << std::endl;
-  //std::cout << "Current anim is: " << env.pECS->GetWorld().GetEntityManager().GetComponent<Animator>(monster).m_ClipKey << std::endl;
 
   if ( hp.isDamagedTimer > 0.0f || a.AttackDelay > 0.0f || hp.CurrentHealth < 0.0f )
   {

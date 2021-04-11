@@ -294,13 +294,6 @@ namespace DeltaEngine
       Vector2 diff{point - pos};
       const Vector2 temp = Normalise(diff);
       env.pECS->GetWorld().GetEntityManager().GetComponent<RigidBody>(id1).Direction = temp;
-
-      if (env.pECS->GetWorld().GetEntityManager().HasComponent<Lancer>(id1))
-      {
-          auto& audio = env.pECS->GetWorld().GetEntityManager().GetComponent<AudioSource>(id1);
-          audio.clip = "event:/Enemy/Lancer/Lancer Master Death";
-          AudioEngine::AudioSourcePlay3DEvent(audio, { pos, {},{0,0,1},{0,1,0} });
-      }
     }
 
     bool EntityisAtPoint(EntityID& id1, Vector2& point)
