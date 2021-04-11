@@ -32157,6 +32157,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 34.0,
@@ -32309,6 +32317,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 39.5,
@@ -32460,6 +32476,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -32613,6 +32637,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 40.5,
@@ -32764,6 +32796,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -32917,6 +32957,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 37.25,
@@ -33068,6 +33116,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -33220,6 +33276,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -33373,6 +33437,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 49.0,
@@ -33525,6 +33597,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 52.0,
@@ -33676,6 +33756,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -33829,6 +33917,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 53.0,
@@ -33980,6 +34076,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -34133,6 +34237,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 55.0,
@@ -34285,6 +34397,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 56.0,
@@ -34436,6 +34556,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -34589,6 +34717,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 67.0,
@@ -34740,6 +34876,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -34893,6 +35037,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 77.0,
@@ -35044,6 +35196,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -35197,6 +35357,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 79.0,
@@ -35348,6 +35516,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -35500,6 +35676,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -35653,6 +35837,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 82.5,
@@ -35804,6 +35996,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -35957,6 +36157,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 91.0,
@@ -36108,6 +36316,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -36261,6 +36477,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 98.5,
@@ -36413,6 +36637,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 135.0,
@@ -36564,6 +36796,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -36717,6 +36957,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 146.5,
@@ -36868,6 +37116,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -37021,6 +37277,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 154.0,
@@ -37172,6 +37436,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -37325,6 +37597,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 160.0,
@@ -37477,6 +37757,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 165.0,
@@ -37628,6 +37916,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -37781,6 +38077,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 180.0,
@@ -37933,6 +38237,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 55.394256591796878,
@@ -38082,6 +38394,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -38233,6 +38553,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 79.89427185058594,
@@ -38383,6 +38711,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 77.89427185058594,
@@ -38532,6 +38868,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -39180,6 +39524,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 94.39427185058594,
@@ -39329,6 +39681,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -39480,6 +39840,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 159.3482208251953,
@@ -39629,6 +39997,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -39780,6 +40156,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 168.32115173339845,
@@ -39929,6 +40313,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -40080,6 +40472,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 184.8720703125,
@@ -40229,6 +40629,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -40380,6 +40788,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 124.0,
@@ -40532,6 +40948,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
@@ -40686,6 +41110,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 135.5,
@@ -40839,6 +41271,14 @@
             "Entity Type": {
                 "Category": "enemy"
             },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
+            },
             "Transform": {
                 "Position": {
                     "x": 136.5,
@@ -40991,6 +41431,14 @@
             },
             "Entity Type": {
                 "Category": "enemy"
+            },
+            "Audio Source": {
+                "Audio File": "",
+                "Volume": 1.0,
+                "Pitch": 0.0,
+                "Loop": 0,
+                "Is Loop": false,
+                "Is Event": false
             },
             "Transform": {
                 "Position": {
