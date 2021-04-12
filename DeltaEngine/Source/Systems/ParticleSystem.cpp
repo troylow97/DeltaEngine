@@ -34,7 +34,6 @@ namespace DeltaEngine
             ParticleEmitter::particlePools[id] = std::vector<ParticleEmitter::Particle>();
             ParticleEmitter::particlePools[id].resize(ps.maxParticles);
           }
-
           auto Emit = [&id, &ps](unsigned count)
           {
             auto FindInactiveParticle = [&id, &ps]()
@@ -141,7 +140,7 @@ namespace DeltaEngine
           //    Emit(burst.count);
           em.ForEach([&](EntityID id, Transform& tr, Camera& c)
             {
-              ps.shapeTransform.position = tr.position + Vector2(2.5f, -1.5f);
+              ps.shapeTransform.position = tr.position + Vector2(10.5f, -2.5f);
               ps.shapeTransform.position.z = 0;
             });
 
