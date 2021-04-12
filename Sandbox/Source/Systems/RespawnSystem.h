@@ -23,6 +23,7 @@ namespace DeltaEngine
     void Update() override;
     void LateUpdate() override;
     static void CreateCheckpoints(int level);
+    static void DestroyCheckpoints();
 
   private:
     static bool opening_tutorial;

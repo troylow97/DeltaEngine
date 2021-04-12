@@ -62,6 +62,7 @@ void GameStateLoad( GameState state )
       world.Load( "World/ps.json" );
       MenuSystem::fadingIn = true;
       Camera::allCameras[0]->backgroundColor.a = 0;
+      RespawnSystem::DestroyCheckpoints();
       RespawnSystem::CreateCheckpoints(0);
       EnemySpawner::ActivateGauntlet = false;
       break;

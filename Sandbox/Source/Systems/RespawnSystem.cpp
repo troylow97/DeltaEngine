@@ -70,14 +70,9 @@ namespace DeltaEngine
       in_tutorial = false;
       in_level_1 = true;
     }
+    DestroyCheckpoints();
+
     auto& em = GetEnv().pECS->GetWorld().GetEntityManager();
-    em.ForEach([&](EntityID id1, EntityType& et1)
-    {
-      if (et1.type == EntityCategory::E_CHECKPOINT)
-      {
-        em.DestroyEntity(id1);
-      }
-    });
     if (opening_tutorial || opening_level_1)
     {
       EntityID id = UnitManager::GetPlayerID();
@@ -91,26 +86,41 @@ namespace DeltaEngine
       if (!checkpoint_passed)
         player_spawning_position = player_initial_position;
 
-      for (size_t i = 0; i < respawns.m_respawns.size(); i++)
+      if (in_level_1)
       {
-        EntityID checkpoints = em.CreateEntity<Animator, Renderer2D, Image, State>();
-        em.GetComponent<EntityName>(checkpoints).name = "Checkpoint";
-        
-        em.GetComponent<Transform>(checkpoints).position.x = respawns.m_respawns[i].x;
-        em.GetComponent<Transform>(checkpoints).position.y = respawns.m_respawns[i].y;
-        em.GetComponent<Transform>(checkpoints).scale = { 1.0f, 1.0f, 1.0f };
-        
-        em.GetComponent<Renderer2D>(checkpoints).m_SortingLayer = 3;
-        em.GetComponent<Image>(checkpoints).m_Sprite.m_Key = "Textures/CHECKPOINT_OFF"; // e.g. "Textures/DAVE_HITFX"
-        em.GetComponent<Image>(checkpoints).m_Sprite.m_Index = 0;
-        em.GetComponent<Image>(checkpoints).m_Size = { 1.0f, 1.0f };
-        em.GetComponent<EntityType>(checkpoints).type = EntityCategory::E_CHECKPOINT;
-        em.GetComponent<Animator>(checkpoints).m_ControllerKey = "Animation/Checkpoint"; // e.g. "Animation/DaveHitVFX"
-        em.GetComponent<State>(checkpoints).SetBool("CheckpointReached", false);
+        for (size_t i = 0; i < respawns.m_respawns.size(); i++)
+        {
+          EntityID checkpoints = em.CreateEntity<Animator, Renderer2D, Image, State>();
+          em.GetComponent<EntityName>(checkpoints).name = "Checkpoint";
+          
+          em.GetComponent<Transform>(checkpoints).position.x = respawns.m_respawns[i].x;
+          em.GetComponent<Transform>(checkpoints).position.y = respawns.m_respawns[i].y;
+          em.GetComponent<Transform>(checkpoints).scale = { 1.0f, 1.0f, 1.0f };
+          
+          em.GetComponent<Renderer2D>(checkpoints).m_SortingLayer = 3;
+          em.GetComponent<Image>(checkpoints).m_Sprite.m_Key = "Textures/CHECKPOINT_OFF"; // e.g. "Textures/DAVE_HITFX"
+          em.GetComponent<Image>(checkpoints).m_Sprite.m_Index = 0;
+          em.GetComponent<Image>(checkpoints).m_Size = { 1.0f, 1.0f };
+          em.GetComponent<EntityType>(checkpoints).type = EntityCategory::E_CHECKPOINT;
+          em.GetComponent<Animator>(checkpoints).m_ControllerKey = "Animation/Checkpoint"; // e.g. "Animation/DaveHitVFX"
+          em.GetComponent<State>(checkpoints).SetBool("CheckpointReached", false);
+        }
       }
       opening_tutorial = false;
       opening_level_1 = false;
     }
+  }
+
+  void RespawnSystem::DestroyCheckpoints()
+  {
+    auto& em = GetEnv().pECS->GetWorld().GetEntityManager();
+    em.ForEach([&](EntityID id1, EntityType& et1)
+    {
+      if (et1.type == EntityCategory::E_CHECKPOINT)
+      {
+        em.DestroyEntity(id1);
+      }
+    });
   }
 
   void RespawnSystem::CheckpointsLightUp()
