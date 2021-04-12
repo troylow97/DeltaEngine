@@ -270,20 +270,6 @@ namespace DeltaEngine
       {
         if (em.GetComponent<Animator>(id).m_ClipKey == "Clip/LANCER_DMG") //do not attack if damaged
             return;
-      	
-        unsigned rand_sound = Random::RandomIntRange(0, 3);
-        switch (rand_sound)
-        {
-        case 0:
-          AudioEngine::Play("Audio/Lancer/LancerCharge1.ogg");
-          break;
-        case 1:
-          AudioEngine::Play("Audio/Lancer/LancerCharge2.ogg");
-          break;
-        case 2:
-          AudioEngine::Play("Audio/Lancer/LancerCharge3.ogg");
-          break;
-        }
         
         EntityID missile = CreateProjectile(id, Vector2{0.3f, 0.3f}, false, 0.2f, EntityCategory::E_ENEMY_LANCER_PUNCH);
         const Vector2 player_pos = em.GetComponent<Transform>(UnitManager::GetPlayerID()).position;
