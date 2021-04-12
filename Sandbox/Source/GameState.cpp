@@ -77,6 +77,7 @@ void GameStateLoad( GameState state )
       Camera::allCameras[0]->backgroundColor.a = 0;
       RespawnSystem::CreateCheckpoints(1);
       EnemySpawner::ActivateGauntlet = true;
+      EnemySpawner::ResetActivationPointBool();
       break;
     }
     case GameState::CUTSCENE_END:

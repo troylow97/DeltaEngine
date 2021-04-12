@@ -18,6 +18,8 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 namespace DeltaEngine
 {
+  GauntletsList EnemySpawner::list;
+
   Gauntlet::Gauntlet() :
     EnemyWaves{},
     ActivationPoint{{0, 0}},
@@ -159,6 +161,7 @@ namespace DeltaEngine
     {
       list.Gauntlets[i].isActivated = false;
       list.Gauntlets[i].isFinished = false;
+      list.Gauntlets[i].CurrentEnemyWave = 0;
     }
   }
 
@@ -270,6 +273,12 @@ namespace DeltaEngine
         em.GetComponent<Collider>(enemy).size = FiddlerData.ColliderScale;
         em.GetComponent<Image>(enemy).m_Sprite.m_Key = "Textures/FID_WALK";
         em.GetComponent<Animator>(enemy).m_ControllerKey = "Animation/Fiddler";
+        em.GetComponent<Animator>(enemy).m_ClipKey = "Clip/FID_WALK";
+        em.GetComponent<State>(enemy).SetBool("IsDead", false);
+        em.GetComponent<State>(enemy).SetBool("IsAlertRunning", false);
+        em.GetComponent<State>(enemy).SetBool("IsAlerted", false);
+        em.GetComponent<State>(enemy).SetBool("MeleeAttack", false);
+        em.GetComponent<State>(enemy).SetBool("IsPatrolling", true);
         em.GetComponent<Image>(enemy).m_Sprite.m_Index = 0;
       }
       else if (type == "serpentipede")
